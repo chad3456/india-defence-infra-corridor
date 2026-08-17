@@ -1,0 +1,179 @@
+[
+  {
+    "id": "total-exports",
+    "title": "Total exports (goods + services)",
+    "definition": "Combined merchandise and services exports for the fiscal year, as reported by the Department of Commerce.",
+    "category": "trade",
+    "unit": "US$ billion",
+    "unitShort": "$bn",
+    "frequency": "fiscal-year",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "newsonair-exports-fy26",
+      "newsonair-exports-fy25",
+      "pib-commerce-yer-2025"
+    ],
+    "notes": [
+      "FY2024-25 was first reported at $820.93 bn and later revised to $825.26 bn as late services returns came in. Services export data is estimated monthly and revised for up to a year.",
+      "Growth is now almost entirely services-led. Merchandise exports grew 0.93% in FY2025-26 against 8.71% for services."
+    ],
+    "points": [
+      {
+        "period": "FY2024-25",
+        "value": 825.26,
+        "sourceId": "bw-exports-fy26",
+        "revised": true,
+        "note": "First reported at $820.93 bn."
+      },
+      {
+        "period": "FY2025-26",
+        "value": 863.11,
+        "sourceId": "newsonair-exports-fy26"
+      }
+    ]
+  },
+  {
+    "id": "merchandise-exports",
+    "title": "Merchandise exports",
+    "definition": "Value of physical goods exported during the fiscal year.",
+    "category": "trade",
+    "unit": "US$ billion",
+    "unitShort": "$bn",
+    "frequency": "fiscal-year",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "bw-exports-fy26",
+      "pib-commerce-yer-2025"
+    ],
+    "notes": [
+      "Effectively flat in FY2025-26. This is the clearest single sign that 'Make in India' has not yet converted into export competitiveness in goods.",
+      "Petroleum products remain a large share, which makes the headline sensitive to crude prices rather than manufacturing capability."
+    ],
+    "points": [
+      {
+        "period": "FY2024-25",
+        "value": 437.7,
+        "sourceId": "bw-exports-fy26"
+      },
+      {
+        "period": "FY2025-26",
+        "value": 441.78,
+        "sourceId": "bw-exports-fy26"
+      }
+    ]
+  },
+  {
+    "id": "services-exports",
+    "title": "Services exports",
+    "definition": "Value of services exported during the fiscal year, including software, business and financial services.",
+    "category": "trade",
+    "unit": "US$ billion",
+    "unitShort": "$bn",
+    "frequency": "fiscal-year",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "bw-exports-fy26",
+      "pib-commerce-yer-2025"
+    ],
+    "notes": [
+      "India's genuine global strength. Telecom/computer/information services alone were $206.6 bn — about 49% of services exports.",
+      "Concentration is also the risk: roughly half of services exports sit in one sector exposed to AI-driven automation of exactly that work."
+    ],
+    "points": [
+      {
+        "period": "FY2024-25",
+        "value": 387.55,
+        "sourceId": "bw-exports-fy26"
+      },
+      {
+        "period": "FY2025-26",
+        "value": 421.32,
+        "sourceId": "bw-exports-fy26"
+      }
+    ]
+  },
+  {
+    "id": "services-exports-composition",
+    "title": "Services exports by segment",
+    "definition": "Breakdown of services export value by major category, FY2025-26.",
+    "category": "trade",
+    "unit": "US$ billion",
+    "unitShort": "$bn",
+    "frequency": "point-in-time",
+    "higherIsBetter": null,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-commerce-yer-2025",
+      "bw-exports-fy26"
+    ],
+    "points": [
+      {
+        "period": "Telecom / computer / information",
+        "value": 206.6,
+        "sourceId": "bw-exports-fy26"
+      },
+      {
+        "period": "Business services",
+        "value": 124.2,
+        "sourceId": "bw-exports-fy26"
+      },
+      {
+        "period": "Other services",
+        "value": 90.52,
+        "sourceId": "derived",
+        "note": "Residual: total 421.32 less the two named segments."
+      }
+    ]
+  },
+  {
+    "id": "gdp-nominal-usd",
+    "title": "GDP, nominal",
+    "definition": "Gross domestic product at current market prices in US dollars.",
+    "category": "economy",
+    "unit": "US$ trillion",
+    "unitShort": "$tn",
+    "frequency": "annual",
+    "higherIsBetter": true,
+    "provenance": "multilateral",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "worldbank-wdi"
+    ],
+    "notes": [
+      "India is the 5th largest economy by nominal GDP as of 2025, behind the US, China, Germany and Japan — not 4th, a claim that circulates widely but did not hold at the time of verification.",
+      "Nominal dollar GDP moves with the exchange rate. Rupee depreciation has repeatedly masked real growth in this series.",
+      "Per-capita GDP, not total GDP, is the meaningful development measure — see the benchmark page."
+    ],
+    "points": [
+      {
+        "period": "2014",
+        "value": 2.0,
+        "sourceId": "worldbank-wdi",
+        "note": "Crossed the $2 trillion mark."
+      },
+      {
+        "period": "2024",
+        "value": 3.761,
+        "sourceId": "worldbank-wdi",
+        "note": "Implied by the reported 5.19% increase to 2025."
+      },
+      {
+        "period": "2025",
+        "value": 3.956,
+        "sourceId": "worldbank-wdi"
+      }
+    ]
+  }
+]

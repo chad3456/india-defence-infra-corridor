@@ -1,0 +1,166 @@
+/**
+ * News tracker connector.
+ *
+ * Aggregates public RSS/Atom feeds from the outlets specified for this project.
+ * Deliberately dependency-free: a regex reader over a well-formed feed is more
+ * predictable here than pulling an XML parser, and every field is escaped before
+ * it reaches the page.
+ *
+ * This is a *tracker*, not a data source. Nothing ingested here is ever promoted
+ * into a chart series — headlines flag that a number may have moved, a human
+ * then verifies against the primary release. That separation is the whole point:
+ * press reports of government figures are tier-3 evidence.
+ */
+import type { NewsItem } from "../../../lib/types";
+import { getText } from "../lib/http";
+
+export interface Outlet {
+  id: string;
+  name: string;
+  feed: string;
+}
+
+export const OUTLETS: Outlet[] = [
+  { id: "theprint", name: "ThePrint", feed: "https://theprint.in/feed/" },
+  {
+    id: "thehindu",
+    name: "The Hindu",
+    feed: "https://www.thehindu.com/news/national/feeder/default.rss",
+  },
+  { id: "swarajya", name: "Swarajya", feed: "https://swarajyamag.com/feed" },
+  { id: "opindia", name: "OpIndia", feed: "https://www.opindia.com/feed/" },
+  { id: "ndtv", name: "NDTV", feed: "https://feeds.feedburner.com/ndtvnews-india-news" },
+  { id: "indiatoday", name: "India Today", feed: "https://www.indiatoday.in/rss/1206578" },
+  { id: "restofworld", name: "Rest of World", feed: "https://restofworld.org/feed/latest/" },
+];
+
+/** Topic buckets. A headline can match several. */
+const TOPIC_RULES: Array<{ topic: string; re: RegExp }> = [
+  { topic: "defence", re: /\b(defence|defense|military|army|navy|air force|drdo|hal|missile|rafale|tejas|brahmos|submarine|warship)\b/i },
+  { topic: "exports", re: /\b(export|exports|shipment|trade surplus|outbound)\b/i },
+  { topic: "infrastructure", re: /\b(highway|expressway|metro|airport|port|corridor|bridge|railway|infrastructure|nhai)\b/i },
+  { topic: "manufacturing", re: /\b(manufactur|factory|plant|production|pli scheme|make in india|semiconductor|assembly)\b/i },
+  { topic: "space", re: /\b(isro|satellite|launch vehicle|pslv|gslv|space|gaganyaan|chandrayaan)\b/i },
+  { topic: "economy", re: /\b(gdp|inflation|rbi|budget|fiscal|rupee|economy|growth rate)\b/i },
+  { topic: "energy", re: /\b(solar|renewable|nuclear power|coal|electricity|grid|energy)\b/i },
+];
+
+function decodeEntities(s: string): string {
+  return s
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#0?39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&#(\d+);/g, (_, d: string) => String.fromCodePoint(Number(d)))
+    .replace(/&amp;/g, "&")
+    .trim();
+}
+
+function stripTags(s: string): string {
+  return decodeEntities(s.replace(/<[^>]*>/g, " ")).replace(/\s+/g, " ").trim();
+}
+
+function pick(block: string, tags: string[]): string | null {
+  for (const tag of tags) {
+    const m = block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, "i"));
+    if (m?.[1]) return m[1];
+    // Atom self-closing link form.
+    const self = block.match(new RegExp(`<${tag}[^>]*href=["']([^"']+)["'][^>]*/?>`, "i"));
+    if (self?.[1]) return self[1];
+  }
+  return null;
+}
+
+function parseFeed(xml: string, outlet: Outlet): NewsItem[] {
+  const blocks = xml.match(/<(item|entry)\b[\s\S]*?<\/\1>/gi) ?? [];
+  const items: NewsItem[] = [];
+
+  for (const block of blocks) {
+    const rawTitle = pick(block, ["title"]);
+    const rawLink = pick(block, ["link"]);
+    if (!rawTitle || !rawLink) continue;
+
+    const title = stripTags(rawTitle);
+    const url = decodeEntities(rawLink);
+    if (!title || !/^https?:\/\//i.test(url)) continue;
+
+    const rawDate = pick(block, ["pubDate", "published", "updated", "dc:date"]);
+    const parsed = rawDate ? new Date(decodeEntities(rawDate)) : null;
+    const publishedAt =
+      parsed && !Number.isNaN(parsed.getTime())
+        ? parsed.toISOString()
+        : new Date().toISOString();
+
+    const rawSummary = pick(block, ["description", "summary", "content"]);
+    const summary = rawSummary ? stripTags(rawSummary).slice(0, 280) : undefined;
+
+    const haystack = `${title} ${summary ?? ""}`;
+    const topics = TOPIC_RULES.filter((r) => r.re.test(haystack)).map((r) => r.topic);
+
+    // Only keep items relevant to this site's remit.
+    if (topics.length === 0) continue;
+
+    items.push({
+      id: `${outlet.id}:${Buffer.from(url).toString("base64url").slice(0, 24)}`,
+      title,
+      url,
+      outlet: outlet.name,
+      publishedAt,
+      summary,
+      topics,
+    });
+  }
+  return items;
+}
+
+export interface NewsResult {
+  items: NewsItem[];
+  errors: string[];
+  outletsOk: number;
+}
+
+export async function runNews(
+  opts: { dryRun?: boolean; onProgress?: (msg: string) => void } = {},
+): Promise<NewsResult> {
+  const errors: string[] = [];
+  const all: NewsItem[] = [];
+  let outletsOk = 0;
+
+  // Sequential rather than parallel — polite to publishers, and the whole run
+  // is well inside any reasonable CI budget.
+  for (const outlet of OUTLETS) {
+    if (opts.dryRun) {
+      opts.onProgress?.(`[dry-run] would fetch ${outlet.name} — ${outlet.feed}`);
+      continue;
+    }
+    const res = await getText(outlet.feed, {
+      cacheMs: 15 * 60 * 1000,
+      accept: "application/rss+xml, application/atom+xml, application/xml, text/xml",
+    });
+    if (!res.ok || !res.data) {
+      errors.push(`${outlet.name}: ${res.error ?? "no body"}`);
+      opts.onProgress?.(`  ${outlet.name.padEnd(14)} FAILED (${res.error})`);
+      continue;
+    }
+    const items = parseFeed(res.data, outlet);
+    all.push(...items);
+    outletsOk++;
+    opts.onProgress?.(`  ${outlet.name.padEnd(14)} ${items.length} relevant items`);
+  }
+
+  // Newest first, de-duplicated by URL.
+  const seen = new Set<string>();
+  const deduped = all
+    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+    .filter((i) => {
+      if (seen.has(i.url)) return false;
+      seen.add(i.url);
+      return true;
+    })
+    .slice(0, 300);
+
+  return { items: deduped, errors, outletsOk };
+}

@@ -1,0 +1,511 @@
+[
+  {
+    "id": "nh-network-length",
+    "title": "National highway network length",
+    "definition": "Total length of roads designated as National Highways by the Ministry of Road Transport & Highways.",
+    "category": "infrastructure",
+    "unit": "kilometres",
+    "unitShort": "km",
+    "frequency": "fiscal-year",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-morth-yer-2025",
+      "ddnews-nh-growth",
+      "swarajya-nh-fy25"
+    ],
+    "notes": [
+      "Network length grows partly by building new roads and partly by re-designating existing state highways as national highways. The two are not distinguished in the headline figure, so this series overstates new construction.",
+      "Use 'National highways constructed per year' alongside this for the build-rate picture."
+    ],
+    "points": [
+      {
+        "period": "FY2013-14",
+        "value": 91287,
+        "sourceId": "ddnews-nh-growth",
+        "note": "Baseline widely cited as 'in 2014'."
+      },
+      {
+        "period": "FY2023-24",
+        "value": 146195,
+        "sourceId": "ddnews-nh-growth"
+      },
+      {
+        "period": "FY2024-25",
+        "value": 146342,
+        "sourceId": "swarajya-nh-fy25"
+      }
+    ]
+  },
+  {
+    "id": "nh-constructed-annual",
+    "title": "National highways constructed per year",
+    "definition": "Kilometres of national highway completed during the fiscal year.",
+    "category": "infrastructure",
+    "unit": "kilometres per year",
+    "unitShort": "km/yr",
+    "frequency": "fiscal-year",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-morth-yer-2025",
+      "pib-morth-yer-2024",
+      "deccan-nh-construction"
+    ],
+    "notes": [
+      "The honest read: construction peaked at 13,327 km in FY2020-21 and has since plateaued around 10,000-12,000 km a year. The 'record pace' framing does not survive contact with this series.",
+      "FY2020-21's peak coincided with pandemic-period low traffic, which eased construction windows."
+    ],
+    "points": [
+      {
+        "period": "FY2019-20",
+        "value": 10237,
+        "sourceId": "deccan-nh-construction"
+      },
+      {
+        "period": "FY2020-21",
+        "value": 13327,
+        "sourceId": "deccan-nh-construction"
+      },
+      {
+        "period": "FY2021-22",
+        "value": 10457,
+        "sourceId": "deccan-nh-construction"
+      },
+      {
+        "period": "FY2022-23",
+        "value": 10331,
+        "sourceId": "deccan-nh-construction"
+      },
+      {
+        "period": "FY2023-24",
+        "value": 12349,
+        "sourceId": "swarajya-nh-fy25"
+      },
+      {
+        "period": "FY2024-25",
+        "value": 10660,
+        "sourceId": "swarajya-nh-fy25"
+      }
+    ]
+  },
+  {
+    "id": "expressway-length",
+    "title": "Access-controlled high-speed corridors and expressways",
+    "definition": "Length of access-controlled national high-speed corridors and expressways — the grade-separated, limited-access subset of the network.",
+    "category": "infrastructure",
+    "unit": "kilometres",
+    "unitShort": "km",
+    "frequency": "point-in-time",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-morth-yer-2025"
+    ],
+    "notes": [
+      "This is the most genuinely impressive infrastructure series on the site: a 55-fold increase off a near-zero base in a decade.",
+      "Still small in absolute terms — China's expressway network is roughly thirty times longer."
+    ],
+    "points": [
+      {
+        "period": "Mar 2014",
+        "value": 93,
+        "sourceId": "pib-morth-yer-2025"
+      },
+      {
+        "period": "2025",
+        "value": 5110,
+        "sourceId": "pib-morth-yer-2025",
+        "note": "Reported as 'around 5,110 km at present'."
+      }
+    ]
+  },
+  {
+    "id": "nh-four-lane-plus",
+    "title": "Four-lane and above national highways",
+    "definition": "Length of national highway with four or more lanes.",
+    "category": "infrastructure",
+    "unit": "kilometres",
+    "unitShort": "km",
+    "frequency": "point-in-time",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-morth-yer-2025"
+    ],
+    "notes": [
+      "Lane-width upgrades matter more for freight throughput than raw network length. This series has grown faster than total network length, which is the right direction."
+    ],
+    "points": [
+      {
+        "period": "2014",
+        "value": 18278,
+        "sourceId": "pib-morth-yer-2025"
+      },
+      {
+        "period": "2025",
+        "value": 45947,
+        "sourceId": "pib-morth-yer-2025"
+      }
+    ]
+  },
+  {
+    "id": "airports-operational",
+    "title": "Operational airports",
+    "definition": "Count of airports and airstrips in India handling scheduled commercial passenger flights.",
+    "category": "infrastructure",
+    "unit": "airports",
+    "unitShort": "airports",
+    "frequency": "point-in-time",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "newsonair-airports-160",
+      "newsonair-airports-157",
+      "moca-rs-1870"
+    ],
+    "notes": [
+      "Counts drift between releases (157, 159, 160, 163) because 'operational' sometimes includes heliports, water aerodromes and seasonally-served strips. Treat the trend as solid and any single year as ±5.",
+      "Several UDAN airports have since lost their scheduled service. An airport being built is not the same as an airport being used — see the route-viability caveats on the methodology page."
+    ],
+    "points": [
+      {
+        "period": "2014",
+        "value": 74,
+        "sourceId": "newsonair-airports-160"
+      },
+      {
+        "period": "2024",
+        "value": 157,
+        "sourceId": "newsonair-airports-157"
+      },
+      {
+        "period": "2025",
+        "value": 160,
+        "sourceId": "newsonair-airports-160"
+      },
+      {
+        "period": "2026",
+        "value": 163,
+        "sourceId": "moca-rs-1870",
+        "note": "33 international, 118 domestic, 12 customs airports."
+      }
+    ]
+  },
+  {
+    "id": "airports-by-type",
+    "title": "Airports by classification",
+    "definition": "Breakdown of operational airports by customs and international designation.",
+    "category": "infrastructure",
+    "unit": "airports",
+    "unitShort": "airports",
+    "frequency": "point-in-time",
+    "higherIsBetter": null,
+    "provenance": "official",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "moca-rs-1870"
+    ],
+    "points": [
+      {
+        "period": "International",
+        "value": 33,
+        "sourceId": "moca-rs-1870"
+      },
+      {
+        "period": "Domestic",
+        "value": 118,
+        "sourceId": "moca-rs-1870"
+      },
+      {
+        "period": "Customs",
+        "value": 12,
+        "sourceId": "moca-rs-1870"
+      }
+    ]
+  },
+  {
+    "id": "udan-aerodromes",
+    "title": "Aerodromes operationalised under UDAN",
+    "definition": "Count of airports, heliports and water aerodromes brought into scheduled service under the UDAN regional connectivity scheme since 2016.",
+    "category": "infrastructure",
+    "unit": "aerodromes",
+    "unitShort": "count",
+    "frequency": "point-in-time",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "newsonair-airports-160"
+    ],
+    "points": [
+      {
+        "period": "Oct 2025",
+        "value": 93,
+        "sourceId": "newsonair-airports-160"
+      }
+    ]
+  },
+  {
+    "id": "udan-routes",
+    "title": "UDAN routes inaugurated",
+    "definition": "Cumulative count of regional air routes started under the UDAN scheme.",
+    "category": "infrastructure",
+    "unit": "routes",
+    "unitShort": "routes",
+    "frequency": "point-in-time",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "newsonair-airports-160"
+    ],
+    "notes": [
+      "Cumulative inaugurations, not currently-flying routes. A material share of UDAN routes have been discontinued after their three-year viability-gap subsidy expired — the scheme's central unresolved weakness."
+    ],
+    "points": [
+      {
+        "period": "Oct 2025",
+        "value": 649,
+        "sourceId": "newsonair-airports-160"
+      },
+      {
+        "period": "Feb 2026",
+        "value": 663,
+        "sourceId": "newsonair-airports-160"
+      }
+    ]
+  },
+  {
+    "id": "metro-network-length",
+    "title": "Operational metro rail network",
+    "definition": "Total length of metro rail in revenue service across Indian cities.",
+    "category": "infrastructure",
+    "unit": "kilometres",
+    "unitShort": "km",
+    "frequency": "point-in-time",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-metro-2025",
+      "metrorailtoday-3rd-largest"
+    ],
+    "notes": [
+      "India passed 1,000 km in October 2025 to become the third-largest metro network in the world, behind China and the United States.",
+      "Ridership has not kept pace with track: several networks run far below the projections used to justify them. Length is an input, not an outcome."
+    ],
+    "points": [
+      {
+        "period": "2014",
+        "value": 248,
+        "sourceId": "pib-metro-2025"
+      },
+      {
+        "period": "2025",
+        "value": 1013,
+        "sourceId": "metrorailtoday-3rd-largest",
+        "note": "1,095 km including the Delhi-Meerut RRTS."
+      }
+    ]
+  },
+  {
+    "id": "metro-cities",
+    "title": "Cities with operational metro rail",
+    "definition": "Count of Indian cities with a metro system in revenue service.",
+    "category": "infrastructure",
+    "unit": "cities",
+    "unitShort": "cities",
+    "frequency": "point-in-time",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-metro-2025"
+    ],
+    "points": [
+      {
+        "period": "2014",
+        "value": 5,
+        "sourceId": "pib-metro-2025"
+      },
+      {
+        "period": "2025",
+        "value": 23,
+        "sourceId": "pib-metro-2025"
+      }
+    ]
+  },
+  {
+    "id": "metro-ridership",
+    "title": "Daily metro rail ridership",
+    "definition": "Average daily passenger journeys across all operational Indian metro systems.",
+    "category": "infrastructure",
+    "unit": "million journeys per day",
+    "unitShort": "m/day",
+    "frequency": "point-in-time",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-metro-2025"
+    ],
+    "notes": [
+      "Ridership grew 4x while network length grew 4.1x — meaning average passengers per kilometre has been flat. New lines are not, on average, as well used as the old ones."
+    ],
+    "points": [
+      {
+        "period": "2014",
+        "value": 2.8,
+        "sourceId": "pib-metro-2025",
+        "note": "Fiscal year 2013-14, aligned to the 2014 network-length observation."
+      },
+      {
+        "period": "2025",
+        "value": 11.2,
+        "sourceId": "pib-metro-2025"
+      }
+    ]
+  },
+  {
+    "id": "major-ports-cargo",
+    "title": "Cargo handled at major ports",
+    "definition": "Total cargo throughput at India's centrally-administered major ports in a fiscal year.",
+    "category": "infrastructure",
+    "unit": "million tonnes",
+    "unitShort": "MT",
+    "frequency": "fiscal-year",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-ports-fy26",
+      "newsonair-ports-fy25"
+    ],
+    "points": [
+      {
+        "period": "FY2024-25",
+        "value": 855,
+        "sourceId": "newsonair-ports-fy25"
+      },
+      {
+        "period": "FY2025-26",
+        "value": 915.17,
+        "sourceId": "pib-ports-fy26",
+        "note": "7.06% growth, ahead of target."
+      }
+    ]
+  },
+  {
+    "id": "all-ports-cargo",
+    "title": "Cargo handled at all ports",
+    "definition": "Total cargo throughput across both major and non-major (state) ports.",
+    "category": "infrastructure",
+    "unit": "million tonnes",
+    "unitShort": "MT",
+    "frequency": "fiscal-year",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-ports-fy26"
+    ],
+    "notes": [
+      "Non-major ports have grown faster than major ports over the period, driven largely by private terminals on the west coast."
+    ],
+    "points": [
+      {
+        "period": "FY2014-15",
+        "value": 1052,
+        "sourceId": "pib-ports-fy26"
+      },
+      {
+        "period": "FY2025-26",
+        "value": 1668,
+        "sourceId": "pib-ports-fy26"
+      }
+    ]
+  },
+  {
+    "id": "port-capacity",
+    "title": "Total port capacity",
+    "definition": "Installed annual cargo handling capacity across major and non-major ports.",
+    "category": "infrastructure",
+    "unit": "million tonnes per annum",
+    "unitShort": "MTPA",
+    "frequency": "fiscal-year",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-ports-fy26"
+    ],
+    "notes": [
+      "Capacity (2,817 MTPA) runs well ahead of throughput (1,668 MT) — utilisation near 59%. Headroom is healthy; it also means further capacity spending has weak near-term returns."
+    ],
+    "points": [
+      {
+        "period": "FY2014-15",
+        "value": 1561,
+        "sourceId": "pib-ports-fy26"
+      },
+      {
+        "period": "FY2025-26",
+        "value": 2817,
+        "sourceId": "pib-ports-fy26"
+      }
+    ]
+  },
+  {
+    "id": "port-turnaround-time",
+    "title": "Average vessel turnaround time at major ports",
+    "definition": "Mean time a vessel spends in port from arrival to departure.",
+    "category": "infrastructure",
+    "unit": "hours",
+    "unitShort": "hrs",
+    "frequency": "fiscal-year",
+    "higherIsBetter": false,
+    "provenance": "official",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "constructionmirror-tat-fy26",
+      "pib-ports-fy26"
+    ],
+    "notes": [
+      "Genuine operational gain, and one of the few Indian logistics metrics that now beats several developed-economy averages.",
+      "Turnaround improvement has stalled since FY2021-22 — from 52.87 to 48.84 hours in four years, against a halving in the decade before."
+    ],
+    "points": [
+      {
+        "period": "FY2021-22",
+        "value": 52.87,
+        "sourceId": "constructionmirror-tat-fy26"
+      },
+      {
+        "period": "FY2025-26",
+        "value": 48.84,
+        "sourceId": "constructionmirror-tat-fy26"
+      }
+    ]
+  }
+]

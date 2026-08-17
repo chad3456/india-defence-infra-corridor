@@ -1,0 +1,85 @@
+[
+  {
+    "id": "isro-missions-cumulative",
+    "title": "ISRO launch missions, cumulative",
+    "definition": "Cumulative count of ISRO launch vehicle missions flown since the SLV programme began in 1979.",
+    "category": "space",
+    "unit": "missions",
+    "unitShort": "missions",
+    "frequency": "point-in-time",
+    "higherIsBetter": true,
+    "provenance": "press",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": ["thefederal-isro-100", "factly-pslv"],
+    "notes": [
+      "The 100th mission was reached in January 2025, 46 years after the first launch.",
+      "Cadence, not total, is the real story: 43 missions in the 35 years to 2009, then 91 missions in the 17 years to 2026."
+    ],
+    "points": [
+      { "period": "2025-01", "value": 100, "sourceId": "thefederal-isro-100", "note": "100th mission milestone." }
+    ]
+  },
+  {
+    "id": "isro-launch-cadence",
+    "title": "ISRO launch cadence by era",
+    "definition": "Average launch missions per year across two distinct eras of the Indian space programme.",
+    "category": "space",
+    "unit": "missions per year",
+    "unitShort": "/yr",
+    "frequency": "point-in-time",
+    "higherIsBetter": true,
+    "provenance": "press",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": ["factly-pslv"],
+    "notes": [
+      "A roughly 4x increase in launch tempo. Still an order of magnitude below China (60+ orbital launches a year) and SpaceX alone."
+    ],
+    "points": [
+      { "period": "1975-2009", "value": 1.23, "sourceId": "factly-pslv", "note": "43 missions over 35 years." },
+      { "period": "2010-2026", "value": 5.35, "sourceId": "factly-pslv", "note": "91 missions over 17 years." }
+    ]
+  },
+  {
+    "id": "isro-launches-by-vehicle",
+    "title": "ISRO missions by launch vehicle",
+    "definition": "Count of missions flown by each Indian launch vehicle family.",
+    "category": "space",
+    "unit": "missions",
+    "unitShort": "missions",
+    "frequency": "point-in-time",
+    "higherIsBetter": null,
+    "provenance": "press",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": ["thefederal-isro-100", "factly-pslv"],
+    "notes": [
+      "PSLV has carried roughly every second ISRO satellite. That dependence is a single-point risk, underlined by third-stage failures on PSLV-C61 (May 2025) and PSLV-C62 (January 2026)."
+    ],
+    "points": [
+      { "period": "PSLV", "value": 62, "sourceId": "thefederal-isro-100" },
+      { "period": "GSLV (indigenous cryogenic)", "value": 17, "sourceId": "thefederal-isro-100" }
+    ]
+  },
+  {
+    "id": "isro-record-single-launch",
+    "title": "Satellites on a single launch",
+    "definition": "Largest number of satellites placed in orbit by India on one launch vehicle.",
+    "category": "space",
+    "unit": "satellites",
+    "unitShort": "sats",
+    "frequency": "point-in-time",
+    "higherIsBetter": true,
+    "provenance": "press",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": ["factly-pslv"],
+    "notes": [
+      "The 2017 PSLV-C37 record of 104 satellites stood as a world record until surpassed by SpaceX Transporter missions."
+    ],
+    "points": [
+      { "period": "2017", "value": 104, "sourceId": "factly-pslv" }
+    ]
+  }
+]

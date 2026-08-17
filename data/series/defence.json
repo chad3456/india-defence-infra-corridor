@@ -1,0 +1,653 @@
+[
+  {
+    "id": "defence-exports",
+    "title": "Defence exports",
+    "definition": "Value of defence goods and services exported from India, as reported by the Ministry of Defence. Counts authorisations realised, not order book.",
+    "category": "defence",
+    "unit": "₹ crore (nominal)",
+    "unitShort": "₹ cr",
+    "frequency": "fiscal-year",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-defexp-fy25",
+      "pib-defexp-fy24",
+      "vif-defence-exports",
+      "theprint-defexp-fy25"
+    ],
+    "notes": [
+      "Nominal rupees, not inflation-adjusted. Roughly a third of the 2013-14 to 2025-26 growth is rupee inflation and depreciation.",
+      "FY2014-15 and FY2015-16 are omitted rather than estimated: no primary release was located for those two years at the time of verification.",
+      "The FY2018-19 spike and FY2019-20 fall largely reflect a small number of large contracts, not a trend reversal."
+    ],
+    "points": [
+      {
+        "period": "FY2013-14",
+        "value": 686,
+        "sourceId": "ddnews-defexp-decade"
+      },
+      {
+        "period": "FY2014-15",
+        "value": null,
+        "note": "No primary release located."
+      },
+      {
+        "period": "FY2015-16",
+        "value": null,
+        "note": "No primary release located."
+      },
+      {
+        "period": "FY2016-17",
+        "value": 1521,
+        "sourceId": "vif-defence-exports"
+      },
+      {
+        "period": "FY2017-18",
+        "value": 4682,
+        "sourceId": "vif-defence-exports"
+      },
+      {
+        "period": "FY2018-19",
+        "value": 10745,
+        "sourceId": "vif-defence-exports"
+      },
+      {
+        "period": "FY2019-20",
+        "value": 9115,
+        "sourceId": "vif-defence-exports"
+      },
+      {
+        "period": "FY2020-21",
+        "value": 8434,
+        "sourceId": "vif-defence-exports"
+      },
+      {
+        "period": "FY2021-22",
+        "value": 12814,
+        "sourceId": "vif-defence-exports"
+      },
+      {
+        "period": "FY2022-23",
+        "value": 15920,
+        "sourceId": "deccan-defexp-fy23"
+      },
+      {
+        "period": "FY2023-24",
+        "value": 21083,
+        "sourceId": "pib-defexp-fy24"
+      },
+      {
+        "period": "FY2024-25",
+        "value": 23622,
+        "sourceId": "pib-defexp-fy25"
+      },
+      {
+        "period": "FY2025-26",
+        "value": 38424,
+        "sourceId": "newsonair-defexp-fy26"
+      }
+    ]
+  },
+  {
+    "id": "defence-production",
+    "title": "Defence production",
+    "definition": "Total value of defence items produced in India by DPSUs, other PSUs and private firms in a fiscal year.",
+    "category": "defence",
+    "unit": "₹ crore (nominal)",
+    "unitShort": "₹ cr",
+    "frequency": "fiscal-year",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-defprod-fy25",
+      "pib-defence-decade"
+    ],
+    "notes": [
+      "FY2024-25 was first announced as ₹1,50,590 crore and later restated to ~₹1.54 lakh crore once remaining private-sector returns were counted. The revised figure is shown and flagged.",
+      "Production value counts output, not indigenous content. A platform assembled here from imported kits counts in full — this series is not a measure of self-reliance on its own."
+    ],
+    "points": [
+      {
+        "period": "FY2014-15",
+        "value": 46429,
+        "sourceId": "pib-defence-decade"
+      },
+      {
+        "period": "FY2019-20",
+        "value": 79071,
+        "sourceId": "pib-defprod-fy25"
+      },
+      {
+        "period": "FY2020-21",
+        "value": 84643,
+        "sourceId": "pib-defprod-fy25"
+      },
+      {
+        "period": "FY2023-24",
+        "value": 127265,
+        "sourceId": "pib-defprod-fy25",
+        "note": "Reported as ₹1.27 lakh crore."
+      },
+      {
+        "period": "FY2024-25",
+        "value": 154000,
+        "sourceId": "newsonair-defprod-fy25-revised",
+        "revised": true,
+        "note": "First announced as ₹1,50,590 crore; restated to ~₹1.54 lakh crore."
+      },
+      {
+        "period": "FY2025-26",
+        "value": 178000,
+        "sourceId": "pib-defence-decade",
+        "note": "Reported as ₹1.78 lakh crore."
+      }
+    ]
+  },
+  {
+    "id": "defence-production-private-share",
+    "title": "Private sector share of defence production",
+    "definition": "Share of total defence production value contributed by private firms rather than DPSUs and other public undertakings.",
+    "category": "defence",
+    "unit": "% of production value",
+    "unitShort": "%",
+    "frequency": "fiscal-year",
+    "higherIsBetter": null,
+    "provenance": "official",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-defprod-fy25"
+    ],
+    "notes": [
+      "Direction of 'good' is genuinely contested: a higher private share signals a broader industrial base, but says nothing about whether the output is indigenous or competitively priced."
+    ],
+    "points": [
+      {
+        "period": "FY2023-24",
+        "value": 21,
+        "sourceId": "pib-defprod-fy25"
+      },
+      {
+        "period": "FY2024-25",
+        "value": 23,
+        "sourceId": "pib-defprod-fy25"
+      }
+    ]
+  },
+  {
+    "id": "defence-export-private-share",
+    "title": "Private sector share of defence exports",
+    "definition": "Share of defence export value originating from private firms rather than DPSUs.",
+    "category": "defence",
+    "unit": "% of export value",
+    "unitShort": "%",
+    "frequency": "fiscal-year",
+    "higherIsBetter": null,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-defexp-fy25",
+      "pib-defexp-fy24"
+    ],
+    "notes": [
+      "Much of the private share is components and sub-assemblies feeding foreign primes, not finished platforms sold under an Indian badge."
+    ],
+    "points": [
+      {
+        "period": "FY2023-24",
+        "value": 60,
+        "sourceId": "pib-defexp-fy24"
+      },
+      {
+        "period": "FY2024-25",
+        "value": 64.5,
+        "sourceId": "pib-defexp-fy25",
+        "note": "₹15,233 cr of ₹23,622 cr."
+      }
+    ]
+  },
+  {
+    "id": "defence-export-authorisations",
+    "title": "Defence export authorisations issued",
+    "definition": "Count of export authorisations issued by the Department of Defence Production in a fiscal year.",
+    "category": "defence",
+    "unit": "authorisations",
+    "unitShort": "count",
+    "frequency": "fiscal-year",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-defexp-fy25"
+    ],
+    "notes": [
+      "An authorisation is a permission to export, not a completed sale. Counts breadth of exporter participation rather than value."
+    ],
+    "points": [
+      {
+        "period": "FY2023-24",
+        "value": 1507,
+        "sourceId": "pib-defexp-fy25"
+      },
+      {
+        "period": "FY2024-25",
+        "value": 1762,
+        "sourceId": "pib-defexp-fy25"
+      }
+    ]
+  },
+  {
+    "id": "defence-budget",
+    "title": "Ministry of Defence budget allocation",
+    "definition": "Total Union Budget allocation to the Ministry of Defence, including defence pensions and civil expenditure.",
+    "category": "defence",
+    "unit": "₹ crore (nominal)",
+    "unitShort": "₹ cr",
+    "frequency": "fiscal-year",
+    "higherIsBetter": null,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-defbudget-fy26",
+      "prs-dfg-defence-2026",
+      "theprint-defbudget-history"
+    ],
+    "notes": [
+      "Includes pensions, which are roughly a fifth of the total and buy no new capability. Comparisons with China's or America's budgets that ignore this overstate India's usable defence spend.",
+      "Nominal rupees. Real growth after inflation is far shallower than the headline curve."
+    ],
+    "points": [
+      {
+        "period": "FY2014-15",
+        "value": 285203,
+        "sourceId": "theprint-defbudget-history"
+      },
+      {
+        "period": "FY2024-25",
+        "value": 621541,
+        "sourceId": "pib-defbudget-fy26",
+        "note": "Implied by the 9.53% increase to FY2025-26."
+      },
+      {
+        "period": "FY2025-26",
+        "value": 681210,
+        "sourceId": "pib-defbudget-fy26"
+      },
+      {
+        "period": "FY2026-27",
+        "value": 784678,
+        "sourceId": "theprint-defbudget-history"
+      }
+    ]
+  },
+  {
+    "id": "defence-capital-outlay",
+    "title": "Defence capital outlay",
+    "definition": "Budget line for capital acquisition and infrastructure — the portion that buys new equipment rather than paying salaries and pensions.",
+    "category": "defence",
+    "unit": "₹ crore (nominal)",
+    "unitShort": "₹ cr",
+    "frequency": "fiscal-year",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "high",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-defbudget-fy26",
+      "newsonair-capoutlay-fy26"
+    ],
+    "notes": [
+      "This is the single most informative defence budget line: it is what actually modernises the force.",
+      "Capital outlay has hovered near 26-27% of the defence budget for a decade. That ratio, not the headline total, is the constraint.",
+      "Capital outlay for FY2025-26 was reported as fully utilised at about ₹1.86 lakh crore against the ₹1.80 lakh crore budget estimate shown here."
+    ],
+    "points": [
+      {
+        "period": "FY2024-25",
+        "value": 140871,
+        "sourceId": "pib-defbudget-fy26",
+        "note": "Budget estimate."
+      },
+      {
+        "period": "FY2025-26",
+        "value": 180000,
+        "sourceId": "pib-defbudget-fy26",
+        "note": "BE; ₹1,48,723 cr acquisition + ₹31,277 cr R&D and infrastructure."
+      }
+    ]
+  },
+  {
+    "id": "nuclear-warheads",
+    "title": "Estimated nuclear warhead inventory",
+    "definition": "Independent expert estimate of India's total nuclear warhead stockpile as of January each year.",
+    "category": "defence",
+    "unit": "warheads (estimated)",
+    "unitShort": "warheads",
+    "frequency": "point-in-time",
+    "higherIsBetter": null,
+    "provenance": "think-tank",
+    "confidence": "low",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "sipri-yb25-nuclear"
+    ],
+    "notes": [
+      "India publishes nothing about its arsenal. Every figure here is an external estimate inferred from fissile-material production and delivery systems, with an error bar SIPRI itself describes as significant.",
+      "Treat this series as an order-of-magnitude indicator only. It is the least certain dataset on this site and is marked low confidence for that reason."
+    ],
+    "points": [
+      {
+        "period": "2025",
+        "value": 180,
+        "sourceId": "sipri-yb25-nuclear"
+      }
+    ],
+    "peers": [
+      {
+        "country": "China",
+        "iso3": "CHN",
+        "value": 600,
+        "period": "2025",
+        "sourceId": "sipri-yb25-nuclear"
+      },
+      {
+        "country": "India",
+        "iso3": "IND",
+        "value": 180,
+        "period": "2025",
+        "sourceId": "sipri-yb25-nuclear"
+      }
+    ]
+  },
+  {
+    "id": "arms-imports-global-share",
+    "title": "India's share of global major-arms imports",
+    "definition": "India's share of world imports of major conventional weapons, measured by SIPRI trend-indicator value over rolling five-year windows.",
+    "category": "defence",
+    "unit": "% of global imports",
+    "unitShort": "%",
+    "frequency": "annual",
+    "higherIsBetter": false,
+    "provenance": "think-tank",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "sipri-at-2024",
+      "theprint-sipri-imports"
+    ],
+    "notes": [
+      "SIPRI's trend-indicator value measures military capability transferred, not money paid. It is not comparable to customs data.",
+      "A falling share is usually read as rising self-reliance. It can equally reflect delayed procurement — India's import decline coincided with well-documented acquisition delays."
+    ],
+    "points": [
+      {
+        "period": "2020-2024",
+        "value": 8.3,
+        "sourceId": "sipri-at-2024",
+        "note": "Second largest importer, behind Ukraine at 8.8%."
+      }
+    ]
+  },
+  {
+    "id": "arms-imports-russia-share",
+    "title": "Russia's share of India's arms imports",
+    "definition": "Share of India's major-arms imports supplied by Russia, over rolling five-year windows.",
+    "category": "defence",
+    "unit": "% of India's imports",
+    "unitShort": "%",
+    "frequency": "annual",
+    "higherIsBetter": null,
+    "provenance": "think-tank",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "sipri-at-2024",
+      "theprint-sipri-imports"
+    ],
+    "notes": [
+      "The halving of Russian dependence since 2010-14 is one of the clearest structural shifts in Indian defence procurement.",
+      "Legacy Russian platforms still dominate the in-service fleet; supplier diversification shows up in new orders long before it shows up in the order of battle."
+    ],
+    "points": [
+      {
+        "period": "2010-2014",
+        "value": 72,
+        "sourceId": "theprint-sipri-imports"
+      },
+      {
+        "period": "2020-2024",
+        "value": 36,
+        "sourceId": "sipri-at-2024"
+      }
+    ]
+  },
+  {
+    "category": "defence",
+    "unit": "₹ crore",
+    "unitShort": "₹ cr",
+    "frequency": "point-in-time",
+    "higherIsBetter": true,
+    "provenance": "press",
+    "confidence": "low",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "indianmasterminds-corridors-70k",
+      "swarajya-defcorridor-investment"
+    ],
+    "id": "defence-corridor-committed",
+    "title": "Defence corridor investment committed",
+    "definition": "Investment committed via MoU to each defence industrial corridor.",
+    "notes": [
+      "Committed is not grounded. Against roughly ₹70,000 crore of commitments across both corridors, grounded investment is about ₹10,855 crore — around 15%.",
+      "Marked low confidence: figures come from ministry statements at differing dates with no single reconciled public register."
+    ],
+    "points": [
+      {
+        "period": "Uttar Pradesh",
+        "value": 42057,
+        "sourceId": "indianmasterminds-corridors-70k"
+      },
+      {
+        "period": "Tamil Nadu",
+        "value": 32699,
+        "sourceId": "indianmasterminds-corridors-70k"
+      }
+    ]
+  },
+  {
+    "category": "defence",
+    "unit": "₹ crore",
+    "unitShort": "₹ cr",
+    "frequency": "point-in-time",
+    "higherIsBetter": true,
+    "provenance": "press",
+    "confidence": "low",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "indianmasterminds-corridors-70k",
+      "swarajya-defcorridor-investment"
+    ],
+    "id": "defence-corridor-grounded",
+    "title": "Defence corridor investment grounded",
+    "definition": "Investment actually deployed on the ground in each defence industrial corridor.",
+    "notes": [
+      "This is the number that matters, and the one rarely quoted. Grounded investment runs at roughly 15% of committed.",
+      "Marked low confidence: no independently audited register of grounded corridor investment was located."
+    ],
+    "points": [
+      {
+        "period": "Uttar Pradesh",
+        "value": 4409,
+        "sourceId": "indianmasterminds-corridors-70k"
+      },
+      {
+        "period": "Tamil Nadu",
+        "value": 6446,
+        "sourceId": "indianmasterminds-corridors-70k"
+      }
+    ]
+  },
+  {
+    "id": "defence-corridors-count",
+    "title": "Defence industrial corridors by status",
+    "definition": "Count of announced defence industrial corridors by delivery status.",
+    "category": "defence",
+    "unit": "corridors",
+    "unitShort": "count",
+    "frequency": "point-in-time",
+    "higherIsBetter": true,
+    "provenance": "press",
+    "confidence": "low",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "indianmasterminds-corridors-70k",
+      "swarajya-defcorridor-investment"
+    ],
+    "notes": [
+      "Two corridors (UP, Tamil Nadu) are operating with land allotted and units producing. Two more (Maharashtra, Assam) are announced but not established.",
+      "Graded low confidence: the operational/announced split rests on ministry statements relayed by press, with no single reconciled public register."
+    ],
+    "points": [
+      {
+        "period": "Operational",
+        "value": 2,
+        "sourceId": "indianmasterminds-corridors-70k"
+      },
+      {
+        "period": "Announced",
+        "value": 2,
+        "sourceId": "indianmasterminds-corridors-70k"
+      }
+    ]
+  },
+  {
+    "id": "defence-corridor-nodes",
+    "title": "Defence corridor nodes",
+    "definition": "Count of designated nodal industrial locations within each established defence corridor.",
+    "category": "defence",
+    "unit": "nodes",
+    "unitShort": "count",
+    "frequency": "point-in-time",
+    "higherIsBetter": null,
+    "provenance": "official",
+    "confidence": "low",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "swarajya-defcorridor-investment"
+    ],
+    "points": [
+      {
+        "period": "Uttar Pradesh",
+        "value": 6,
+        "sourceId": "swarajya-defcorridor-investment",
+        "note": "Agra, Aligarh, Chitrakoot, Jhansi, Kanpur, Lucknow."
+      },
+      {
+        "period": "Tamil Nadu",
+        "value": 5,
+        "sourceId": "swarajya-defcorridor-investment",
+        "note": "Chennai, Coimbatore, Hosur, Salem, Tiruchirappalli."
+      }
+    ],
+    "notes": [
+      "Node lists are press-sourced. They are stable and uncontested, but no primary notification was located during verification, so this is graded low rather than treated as a record."
+    ]
+  },
+  {
+    "id": "defence-corridor-jobs",
+    "title": "Direct jobs created in UP defence corridor",
+    "definition": "Direct employment reported at units established in the Uttar Pradesh defence industrial corridor.",
+    "category": "defence",
+    "unit": "jobs",
+    "unitShort": "jobs",
+    "frequency": "point-in-time",
+    "higherIsBetter": true,
+    "provenance": "press",
+    "confidence": "low",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "indianmasterminds-corridors-70k"
+    ],
+    "notes": [
+      "Reported against a stated potential of 50,000 jobs — actual delivery is around a quarter of that.",
+      "No independent audit of these employment numbers was located."
+    ],
+    "points": [
+      {
+        "period": "2026 (achieved)",
+        "value": 13000,
+        "sourceId": "indianmasterminds-corridors-70k"
+      },
+      {
+        "period": "2026 (stated potential)",
+        "value": 50000,
+        "sourceId": "indianmasterminds-corridors-70k"
+      }
+    ]
+  },
+  {
+    "id": "defence-corridor-mous",
+    "title": "MoUs signed in UP defence corridor",
+    "definition": "Count of memoranda of understanding signed with the Uttar Pradesh defence industrial corridor authority, and land allotments made.",
+    "category": "defence",
+    "unit": "count",
+    "unitShort": "count",
+    "frequency": "point-in-time",
+    "higherIsBetter": null,
+    "provenance": "press",
+    "confidence": "low",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "indianmasterminds-corridors-70k"
+    ],
+    "notes": [
+      "170 MoUs converted into 57 land allotments — a conversion rate of roughly one in three. Useful as a reality check on announcement-driven reporting."
+    ],
+    "points": [
+      {
+        "period": "MoUs signed",
+        "value": 170,
+        "sourceId": "indianmasterminds-corridors-70k"
+      },
+      {
+        "period": "Land allotted to companies",
+        "value": 57,
+        "sourceId": "indianmasterminds-corridors-70k"
+      }
+    ]
+  },
+  {
+    "id": "defence-export-destinations",
+    "title": "Countries receiving Indian defence exports",
+    "definition": "Approximate count of destination countries for Indian defence exports in a fiscal year.",
+    "category": "defence",
+    "unit": "countries",
+    "unitShort": "countries",
+    "frequency": "fiscal-year",
+    "higherIsBetter": true,
+    "provenance": "official",
+    "confidence": "medium",
+    "lastVerified": "2026-08-17",
+    "sourceIds": [
+      "pib-defexp-fy25"
+    ],
+    "notes": [
+      "Reported as 'around 80 countries'. Breadth includes small consignments of parts and ammunition, so country count overstates strategic reach."
+    ],
+    "points": [
+      {
+        "period": "FY2024-25",
+        "value": 80,
+        "sourceId": "pib-defexp-fy25",
+        "note": "Reported as approximately 80."
+      }
+    ]
+  }
+]

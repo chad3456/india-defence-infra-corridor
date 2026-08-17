@@ -1,0 +1,61 @@
+name: Data pipeline
+
+# Refreshes World Bank series and the news tracker, validates the result, and
+# commits only if something actually changed. A failed upstream leaves the last
+# good data in place rather than blanking the site.
+
+on:
+  schedule:
+    # 02:15 UTC daily — after the World Bank's usual refresh window.
+    - cron: "15 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-pipeline
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run ETL
+        run: npm run etl
+
+      - name: Validate data
+        run: npm run validate
+
+      - name: Audit chart registry
+        run: npm run registry:audit
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Commit refreshed data
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/series/wdi.json data/live/ 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No data changes."
+            exit 0
+          fi
+          git commit -m "chore(data): scheduled pipeline refresh $(date -u +%Y-%m-%d)"
+          for i in 1 2 3 4; do
+            git push && break
+            echo "push failed, retrying in $((2**i))s"
+            sleep $((2**i))
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          done

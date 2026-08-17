@@ -1,0 +1,142 @@
+{
+  "note": "Corridor lines are SCHEMATIC: straight segments joining real, geocoded endpoint cities. They are not surveyed alignments and must not be read as route geometry. Opening years are the operative fact; the geometry exists only to show where and when capacity appeared.",
+  "confidence": "medium",
+  "lastVerified": "2026-08-17",
+  "cities": {
+    "delhi": [77.21, 28.61],
+    "greater-noida": [77.5, 28.47],
+    "meerut": [77.7, 28.98],
+    "agra": [78.01, 27.18],
+    "lucknow": [80.95, 26.85],
+    "ghazipur": [83.58, 25.58],
+    "chitrakoot": [80.87, 25.2],
+    "etawah": [79.02, 26.78],
+    "kanpur": [80.35, 26.45],
+    "jhansi": [78.58, 25.45],
+    "aligarh": [78.09, 27.9],
+    "prayagraj": [81.85, 25.44],
+    "mumbai": [72.88, 19.08],
+    "pune": [73.86, 18.52],
+    "nagpur": [79.09, 21.15],
+    "jaipur": [75.79, 26.91],
+    "vadodara": [73.18, 22.31],
+    "ahmedabad": [72.57, 23.02],
+    "surat": [72.83, 21.17],
+    "chennai": [80.27, 13.08],
+    "coimbatore": [76.96, 11.02],
+    "hosur": [77.83, 12.74],
+    "salem": [78.15, 11.66],
+    "tiruchirappalli": [78.7, 10.79],
+    "bengaluru": [77.59, 12.97],
+    "hyderabad": [78.49, 17.39],
+    "kolkata": [88.36, 22.57],
+    "amritsar": [74.87, 31.63],
+    "kochi": [76.27, 9.93],
+    "visakhapatnam": [83.22, 17.69],
+    "guwahati": [91.75, 26.14],
+    "patna": [85.14, 25.61],
+    "bhopal": [77.41, 23.26]
+  },
+  "expressways": [
+    {
+      "id": "mumbai-pune",
+      "name": "Mumbai–Pune Expressway",
+      "path": ["mumbai", "pune"],
+      "lengthKm": 94.5,
+      "openedYear": 2002,
+      "status": "operational",
+      "note": "India's first six-lane access-controlled expressway. The baseline this whole story starts from."
+    },
+    {
+      "id": "yamuna",
+      "name": "Yamuna Expressway",
+      "path": ["greater-noida", "agra"],
+      "lengthKm": 165,
+      "openedYear": 2012,
+      "status": "operational"
+    },
+    {
+      "id": "agra-lucknow",
+      "name": "Agra–Lucknow Expressway",
+      "path": ["agra", "etawah", "lucknow"],
+      "lengthKm": 302,
+      "openedYear": 2017,
+      "status": "operational",
+      "note": "Inaugurated in phases from late 2016; fully open to traffic 2017-18. Year is approximate."
+    },
+    {
+      "id": "eastern-peripheral",
+      "name": "Eastern Peripheral Expressway",
+      "path": ["greater-noida", "meerut"],
+      "lengthKm": 135,
+      "openedYear": 2018,
+      "status": "operational",
+      "note": "Ring corridor around Delhi; schematic line shown between two points on the ring."
+    },
+    {
+      "id": "delhi-meerut",
+      "name": "Delhi–Meerut Expressway",
+      "path": ["delhi", "meerut"],
+      "lengthKm": 96,
+      "openedYear": 2021,
+      "status": "operational"
+    },
+    {
+      "id": "purvanchal",
+      "name": "Purvanchal Expressway",
+      "path": ["lucknow", "ghazipur"],
+      "lengthKm": 341,
+      "openedYear": 2021,
+      "status": "operational"
+    },
+    {
+      "id": "bundelkhand",
+      "name": "Bundelkhand Expressway",
+      "path": ["chitrakoot", "etawah"],
+      "lengthKm": 296,
+      "openedYear": 2022,
+      "status": "operational",
+      "note": "Opened 16 July 2022."
+    },
+    {
+      "id": "samruddhi",
+      "name": "Samruddhi Mahamarg (Nagpur–Mumbai)",
+      "path": ["nagpur", "mumbai"],
+      "lengthKm": 701,
+      "openedYear": 2022,
+      "status": "operational",
+      "note": "Opened in phases from December 2022; final section completed later. Year marks first opening."
+    },
+    {
+      "id": "delhi-mumbai",
+      "name": "Delhi–Mumbai Expressway",
+      "path": ["delhi", "jaipur", "vadodara", "mumbai"],
+      "lengthKm": 1386,
+      "openedYear": 2023,
+      "status": "in-progress",
+      "note": "Longest in India. Opened in sections from February 2023; not complete end-to-end. Shown from first section opening."
+    },
+    {
+      "id": "ganga",
+      "name": "Ganga Expressway",
+      "path": ["meerut", "prayagraj"],
+      "lengthKm": 594,
+      "openedYear": 2025,
+      "status": "in-progress",
+      "note": "Under construction at the time of verification. Shown as announced/in-progress, not operational."
+    }
+  ],
+  "defenceCorridorNodes": [
+    { "id": "up-agra", "name": "Agra", "corridor": "Uttar Pradesh", "city": "agra" },
+    { "id": "up-aligarh", "name": "Aligarh", "corridor": "Uttar Pradesh", "city": "aligarh" },
+    { "id": "up-chitrakoot", "name": "Chitrakoot", "corridor": "Uttar Pradesh", "city": "chitrakoot" },
+    { "id": "up-jhansi", "name": "Jhansi", "corridor": "Uttar Pradesh", "city": "jhansi" },
+    { "id": "up-kanpur", "name": "Kanpur", "corridor": "Uttar Pradesh", "city": "kanpur" },
+    { "id": "up-lucknow", "name": "Lucknow", "corridor": "Uttar Pradesh", "city": "lucknow" },
+    { "id": "tn-chennai", "name": "Chennai", "corridor": "Tamil Nadu", "city": "chennai" },
+    { "id": "tn-coimbatore", "name": "Coimbatore", "corridor": "Tamil Nadu", "city": "coimbatore" },
+    { "id": "tn-hosur", "name": "Hosur", "corridor": "Tamil Nadu", "city": "hosur" },
+    { "id": "tn-salem", "name": "Salem", "corridor": "Tamil Nadu", "city": "salem" },
+    { "id": "tn-trichy", "name": "Tiruchirappalli", "corridor": "Tamil Nadu", "city": "tiruchirappalli" }
+  ]
+}
