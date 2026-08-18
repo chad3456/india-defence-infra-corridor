@@ -24,6 +24,11 @@ jobs:
       - name: Audit chart registry
         run: npm run registry:audit
 
+      # Runs the real migration against Postgres-in-WASM, so schema changes are
+      # exercised before they reach a database shared with other projects.
+      - name: Schema tests
+        run: npm run test:schema
+
       - name: Typecheck
         run: npm run typecheck
 

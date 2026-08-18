@@ -1,0 +1,86 @@
+name: Provision database
+
+# One-shot backend setup, and safe to re-run.
+#
+#   1. applies supabase/migrations/0001_init.sql (idempotent)
+#   2. seeds the bharat_tracker schema from the committed JSON
+#   3. verifies the schema is reachable through PostgREST
+#
+# Required repository secrets:
+#   SUPABASE_DB_URL            direct Postgres connection string
+#                              (Supabase -> Settings -> Database -> Connection string -> URI,
+#                               or the POSTGRES_URL_NON_POOLING value from the Vercel integration)
+#   NEXT_PUBLIC_SUPABASE_URL   project URL, e.g. https://xxxx.supabase.co
+#   SUPABASE_SERVICE_ROLE_KEY  service role key (write access — repo secret only)
+#   NEXT_PUBLIC_SUPABASE_ANON_KEY  anon / publishable key
+#
+# Everything here targets the bharat_tracker schema only. No object in public is
+# created or altered, so running this against a database shared with other
+# projects cannot disturb them.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/india-defence-infra-tracker-qfpsfu]
+    paths:
+      - "supabase/migrations/**"
+      - ".github/workflows/db-setup.yml"
+
+concurrency:
+  group: db-setup
+  cancel-in-progress: false
+
+jobs:
+  provision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check credentials are present
+        env:
+          DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          if [ -z "$DB_URL" ]; then
+            echo "::warning::SUPABASE_DB_URL is not set — skipping provisioning."
+            echo "The site builds and deploys fine without it; the tracker just"
+            echo "refreshes on rebuild rather than continuously."
+            echo "skip=true" >> "$GITHUB_ENV"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: env.skip != 'true'
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install psql
+        if: env.skip != 'true'
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends postgresql-client
+
+      - name: Apply migration
+        if: env.skip != 'true'
+        env:
+          PGCONNECT_TIMEOUT: "30"
+        run: |
+          psql "${{ secrets.SUPABASE_DB_URL }}" \
+            --set ON_ERROR_STOP=1 \
+            -f supabase/migrations/0001_init.sql
+
+      - run: npm ci
+        if: env.skip != 'true'
+
+      - name: Seed schema from committed data
+        if: env.skip != 'true'
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run db:push
+
+      - name: Verify the schema is reachable
+        if: env.skip != 'true'
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+        run: npm run db:check

@@ -17,7 +17,7 @@ import { join } from "node:path";
 import { runWorldBank } from "./connectors/worldbank";
 import { runNews } from "./connectors/news";
 import { validateSeries } from "../lib/validate-series";
-import { supabaseConfigured, pushNews, pushRun } from "../../lib/supabase";
+import { supabaseConfigured, pushNews, pushRun, pushSeries } from "../../lib/supabase";
 import type { PipelineRun } from "../../lib/types";
 
 const ROOT = process.cwd();
@@ -123,11 +123,15 @@ async function main() {
     // Mirror to Postgres when configured. Optional by design — a database
     // failure here must not fail a run whose JSON output already landed.
     if (supabaseConfigured) {
+      if (wb.series.length > 0) {
+        const s = await pushSeries(wb.series);
+        log(s.ok ? `  pushed ${wb.series.length} series to Postgres` : `  series push skipped: ${s.error}`);
+      }
       const n = await pushNews(news.items);
       const r = await pushRun(run);
-      if (!n.ok) log(`  supabase news push skipped: ${n.error}`);
-      if (!r.ok) log(`  supabase run push skipped: ${r.error}`);
-      if (n.ok && r.ok) log("  mirrored to Postgres");
+      if (!n.ok) log(`  news push skipped: ${n.error}`);
+      if (!r.ok) log(`  run push skipped: ${r.error}`);
+      if (n.ok && r.ok) log("  news and run log mirrored to Postgres");
     }
   }
 

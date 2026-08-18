@@ -20,9 +20,12 @@ npm run dev            # http://localhost:3000
 No environment variables are needed. The site ships with committed data and works offline.
 
 ```bash
-npm test               # validate data + audit registry + typecheck
+npm test               # validate data + audit registry + schema tests + typecheck
 npm run etl            # refresh World Bank series and the news tracker
 npm run etl:dry        # show what would be fetched, touch no network
+npm run db:check       # is the bharat_tracker schema reachable?
+npm run db:push        # seed Postgres from the committed JSON
+npm run db:pull        # hydrate the JSON from Postgres (runs before every build)
 ```
 
 ## Getting it live on Vercel (free tier)
@@ -35,17 +38,33 @@ npm run etl:dry        # show what would be fetched, touch no network
 
 Region is pinned to `bom1` (Mumbai) in `vercel.json`, which is closest to the audience.
 
-### Optional: the live Postgres tracker
+### Optional: the Postgres backend
 
-Without a database the news tracker refreshes when the site rebuilds (the scheduled
-GitHub Action commits fresh data daily). With Supabase it refreshes continuously.
+The site works with no database at all — chart data is committed as JSON and the tracker
+falls back to `data/live/news.json`. Connecting Postgres makes it the store of record and
+lets the news tracker refresh continuously instead of on rebuild.
 
-1. Create a free Supabase project. *(Note: the free tier allows two active projects. At the time
-   of writing this account is at that limit, so a project must be paused or deleted first.)*
-2. Run `supabase/migrations/0001_init.sql` in the SQL editor.
-3. Copy `.env.example` to `.env.local` and fill in the three keys.
-4. Add the same keys in **Vercel → Settings → Environment Variables**, and add
-   `SUPABASE_SERVICE_ROLE_KEY` as a **GitHub repository secret** so the pipeline can write.
+**Everything lives in a dedicated `bharat_tracker` schema.** Nothing is created in `public`,
+no `public` object is altered, and grants are scoped to that schema — so this is safe in a
+Supabase project shared with other projects. `drop schema bharat_tracker cascade` removes
+this project completely and touches nothing else. The schema tests assert the isolation
+(`npm run test:schema`).
+
+Add four repository secrets, then run the **Provision database** workflow:
+
+| Secret | Where to find it |
+|---|---|
+| `SUPABASE_DB_URL` | Settings → Database → Connection string (URI), or `POSTGRES_URL_NON_POOLING` from the Vercel integration |
+| `NEXT_PUBLIC_SUPABASE_URL` | Settings → API → Project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Settings → API → anon / publishable key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Settings → API → service role key (write access — repo secret only) |
+
+The workflow applies the migration, seeds the schema from the committed JSON, and verifies
+it is reachable. It is idempotent, so re-running it is safe. The migration also exposes
+`bharat_tracker` to PostgREST itself, so there is no dashboard step; if it lacks the rights
+to do that it warns and you add the schema under **Settings → API → Exposed schemas**.
+
+Locally: copy `.env.example` to `.env.local`, then `npm run db:check` / `db:push` / `db:pull`.
 
 The service role key has write access — never expose it to the browser.
 
