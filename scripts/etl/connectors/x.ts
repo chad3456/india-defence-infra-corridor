@@ -19,7 +19,7 @@
 import type { DevEvent } from "../../../lib/types";
 import { X_HANDLES } from "../../../lib/sources";
 import { getJson } from "../lib/http";
-import { categorise, locate, idFor } from "../lib/classify";
+import { categorise, locate, idFor, reportsAction } from "../lib/classify";
 
 const API = "https://api.x.com/2";
 
@@ -112,6 +112,8 @@ export async function runX(
     for (const t of tweets) {
       const category = categorise(t.text);
       if (!category) continue;
+      // Same gate as the feed path: a post about a topic is not an event.
+      if (!reportsAction(t.text)) continue;
       const place = locate(t.text, "");
       if (!place) continue;
 

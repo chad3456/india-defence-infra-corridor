@@ -9,7 +9,7 @@
 import { readFileSync } from "node:fs";
 import { parseFeed, stripTags, decodeEntities } from "./etl/lib/feed";
 import { extractText } from "./etl/lib/extract";
-import { categorise, locate } from "./etl/lib/classify";
+import { categorise, locate, reportsAction } from "./etl/lib/classify";
 import { ALL_SOURCES, X_HANDLES } from "../lib/sources";
 
 const failures: string[] = [];
@@ -91,6 +91,30 @@ check(
 );
 
 console.log("");
+console.log("Action gate — a development is something that was done");
+check(reportsAction("Vizhinjam Port Begins Export-Import Ops"), "accepts: begins operations");
+check(reportsAction("Railway Board approves merger"), "accepts: approves");
+check(reportsAction("TechnoSport to invest Rs 130 crore to expand Erode facility"), "accepts: invest/expand");
+check(reportsAction("PM lays foundation stone for semiconductor plant"), "accepts: foundation stone");
+check(reportsAction("India test-fires Agni-III missile"), "accepts: test-fires");
+check(
+  !reportsAction("‘Hindu marriage a contractual agreement’: Andhra HC"),
+  "rejects: a court ruling (was pinned as defence)",
+);
+check(
+  !reportsAction("Linking India’s rivers Part II: Why Bundelkhand needs the project"),
+  "rejects: an opinion column (was pinned as infrastructure)",
+);
+check(
+  !reportsAction("PM Modi urges youth to dream big"),
+  "rejects: a speech (was pinned as startups)",
+);
+check(
+  !reportsAction("States turn to solar subsidies to offset losses"),
+  "rejects: an analysis piece (was pinned as energy)",
+);
+
+console.log("");
 console.log("Geo-location");
 check(locate("Semiconductor plant approved at Sanand", "")?.state === "Gujarat", "city in the headline");
 check(
@@ -114,7 +138,7 @@ check(locate("New plant in Greater Noida announced", "")?.name === "Noida", "mat
 
 console.log("");
 console.log("Source registry");
-check(ALL_SOURCES.length >= 25, `at least 25 feeds configured (got ${ALL_SOURCES.length})`);
+check(ALL_SOURCES.length >= 20, `at least 20 feeds configured (got ${ALL_SOURCES.length})`);
 check(
   ALL_SOURCES.every((s) => /^https?:\/\//.test(s.feed)),
   "every feed URL is absolute",

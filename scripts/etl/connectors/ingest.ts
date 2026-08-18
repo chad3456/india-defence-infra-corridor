@@ -20,7 +20,7 @@ import { ALL_SOURCES, type FeedSource } from "../../../lib/sources";
 import { getText } from "../lib/http";
 import { parseFeed, type RawItem } from "../lib/feed";
 import { fetchArticle } from "../lib/extract";
-import { categorise, locate, idFor } from "../lib/classify";
+import { categorise, locate, idFor, reportsAction } from "../lib/classify";
 
 /** Topic tags for the headline tracker. An item can carry several. */
 const TOPIC_RULES: Array<{ topic: string; re: RegExp }> = [
@@ -154,6 +154,7 @@ export async function runIngest(
   const events: DevEvent[] = [];
   let articlesFetched = 0;
   let unplaceable = 0;
+  let notAnAction = 0;
 
   for (const s of candidates) {
     const headlineText = `${s.title} ${s.summary ?? ""}`;
@@ -175,6 +176,15 @@ export async function runIngest(
     }
 
     if (!category) continue;
+
+    // A development is something that was done. Without a completed or
+    // committed action in the headline or the lede, this is commentary,
+    // analysis or a speech — not an event, and not a pin.
+    if (!reportsAction(`${s.title} ${(s.summary ?? "") || body.slice(0, 600)}`)) {
+      notAnAction++;
+      continue;
+    }
+
     if (!place) {
       unplaceable++;
       continue;
@@ -199,7 +209,10 @@ export async function runIngest(
   }
 
   log(`  fetched ${articlesFetched} article bodies`);
-  log(`  ${events.length} events located, ${unplaceable} matched a sector but had no place`);
+  log(
+    `  ${events.length} events located · ${notAnAction} were commentary not action · ` +
+      `${unplaceable} matched a sector but had no place`,
+  );
 
   return {
     items: items.slice(0, 400),

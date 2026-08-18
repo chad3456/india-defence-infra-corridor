@@ -26,38 +26,21 @@ export interface FeedSource {
 }
 
 /**
- * PIB serves one feed per ministry. `Regid` selects the ministry; the ids below
- * are the ones whose output is relevant to this site. A dead id simply returns
- * nothing and is reported as a connector warning — no code change needed.
+ * PIB feeds.
+ *
+ * `Regid` is a PIB *regional office* code, not a ministry code — a wrong guess
+ * on my part. The per-ministry feeds built from it returned valid XML with zero
+ * items on the first live run, so they are gone rather than left generating
+ * fourteen warnings a run. PIB's national feed carries every ministry's
+ * releases anyway; the sector split happens in the classifier, not the source.
  */
-const PIB = (regid: number, name: string): FeedSource => ({
-  id: `pib-${regid}`,
-  name: `PIB — ${name}`,
-  feed: `https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=${regid}`,
-  kind: "official",
-});
-
 export const OFFICIAL_SOURCES: FeedSource[] = [
   {
-    id: "pib-all",
+    id: "pib-national",
     name: "Press Information Bureau",
-    feed: "https://www.pib.gov.in/ViewRss.aspx?reg=1&lang=1",
+    feed: "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
     kind: "official",
   },
-  PIB(3, "Defence"),
-  PIB(13, "Road Transport & Highways"),
-  PIB(15, "Civil Aviation"),
-  PIB(24, "Ports, Shipping & Waterways"),
-  PIB(30, "Railways"),
-  PIB(36, "Power"),
-  PIB(38, "New & Renewable Energy"),
-  PIB(42, "Commerce & Industry"),
-  PIB(46, "Petroleum & Natural Gas"),
-  PIB(52, "Science & Technology"),
-  PIB(58, "Space"),
-  PIB(62, "Heavy Industries"),
-  PIB(69, "Electronics & IT"),
-  PIB(78, "MSME"),
   {
     id: "pmindia",
     name: "PMO India",
@@ -69,8 +52,7 @@ export const OFFICIAL_SOURCES: FeedSource[] = [
     name: "ISRO",
     feed: "https://www.isro.gov.in/rss.xml",
     kind: "official",
-    // 404 as of the first live run; ISRO publishes no stable feed at this path.
-    // PIB Space (Regid 58) carries the same announcements, so nothing is lost.
+    // 404 on the first live run; ISRO publishes no stable feed at this path.
     disabled: true,
   },
   {
@@ -78,11 +60,20 @@ export const OFFICIAL_SOURCES: FeedSource[] = [
     name: "Ministry of External Affairs",
     feed: "https://www.mea.gov.in/rss-feed.htm",
     kind: "official",
+    // 403 even with a browser user-agent.
+    disabled: true,
   },
 ];
 
 export const PRESS_SOURCES: FeedSource[] = [
-  { id: "theprint", name: "ThePrint", feed: "https://theprint.in/feed/", kind: "press" },
+  {
+    id: "theprint",
+    name: "ThePrint",
+    feed: "https://theprint.in/feed/",
+    kind: "press",
+    // Answers 200 with an interstitial rather than the feed, from CI ranges.
+    disabled: true,
+  },
   {
     id: "thehindu",
     name: "The Hindu",
@@ -155,6 +146,75 @@ export const PRESS_SOURCES: FeedSource[] = [
     id: "thehindubusinessline",
     name: "BusinessLine",
     feed: "https://www.thehindubusinessline.com/economy/feeder/default.rss",
+    kind: "press",
+  },
+  // Additional desks from the publishers that answered reliably on the first
+  // live run — ET, BusinessLine, The Hindu and Business Standard between them
+  // carried 138 of 138 items.
+  {
+    id: "et-cons-products",
+    name: "Economic Times (Manufacturing)",
+    feed: "https://economictimes.indiatimes.com/industry/cons-products/rssfeeds/13352306.cms",
+    kind: "press",
+  },
+  {
+    id: "et-tech",
+    name: "Economic Times (Technology)",
+    feed: "https://economictimes.indiatimes.com/tech/rssfeedstopstories.cms",
+    kind: "press",
+  },
+  {
+    id: "et-startups",
+    name: "Economic Times (Startups)",
+    feed: "https://economictimes.indiatimes.com/tech/startups/rssfeeds/78404506.cms",
+    kind: "press",
+  },
+  {
+    id: "et-economy",
+    name: "Economic Times (Economy)",
+    feed: "https://economictimes.indiatimes.com/news/economy/rssfeeds/1373380680.cms",
+    kind: "press",
+  },
+  {
+    id: "et-foreign-trade",
+    name: "Economic Times (Foreign Trade)",
+    feed: "https://economictimes.indiatimes.com/news/economy/foreign-trade/rssfeeds/1977021501.cms",
+    kind: "press",
+  },
+  {
+    id: "bl-companies",
+    name: "BusinessLine (Companies)",
+    feed: "https://www.thehindubusinessline.com/companies/feeder/default.rss",
+    kind: "press",
+  },
+  {
+    id: "bl-logistics",
+    name: "BusinessLine (Logistics)",
+    feed: "https://www.thehindubusinessline.com/economy/logistics/feeder/default.rss",
+    kind: "press",
+  },
+  {
+    id: "bs-companies",
+    name: "Business Standard (Companies)",
+    feed: "https://www.business-standard.com/rss/companies-101.rss",
+    kind: "press",
+  },
+  {
+    id: "bs-industry",
+    name: "Business Standard (Industry)",
+    feed: "https://www.business-standard.com/rss/industry-217.rss",
+    kind: "press",
+  },
+  {
+    id: "thehindu-national",
+    name: "The Hindu (Science & Tech)",
+    feed: "https://www.thehindu.com/sci-tech/feeder/default.rss",
+    kind: "press",
+  },
+  {
+    id: "ndtv-business",
+    name: "NDTV Profit",
+    feed: "https://feeds.feedburner.com/ndtvprofit-latest",
     kind: "press",
   },
 ];

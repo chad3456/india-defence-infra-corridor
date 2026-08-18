@@ -63,6 +63,25 @@ export const EVENT_RULES: Array<{ category: EventCategory; re: RegExp }> = [
   },
 ];
 
+/**
+ * A development is something that was *done*, not something that was said or
+ * analysed. This gate is what separates the two.
+ *
+ * Sector keywords alone are not enough: a High Court judgment whose body
+ * mentioned the army twice became a defence pin, an opinion column about river
+ * linking became an infrastructure pin, and a speech about innovation became a
+ * startup pin. None of them reported anything happening anywhere. Requiring a
+ * completed or committed action in the headline or the lede removes that whole
+ * class of false pin.
+ */
+export const ACTION_RE =
+  /\b(inaugurat\w*|foundation stone|commission(ed|ing|s)?|approv(e|ed|es|al)|clear(ed|s|ance)|sanction(ed|s)?|launch(ed|es|ing)?|open(ed|s|ing)?|complet(ed|es|ion)|award(ed|s)?|order(ed|s)?|contract|sign(ed|s)?|test-fir\w*|test(ed|s)?|induct(ed|s|ion)?|deliver(ed|s|y)?|invest(ed|ment|ments|s|ing)?|expand(ed|s|ing|sion)?|set up|begin(s|ning)?|began|start(ed|s)?|roll(ed)? out|unveil(ed|s)?|acquir(e|ed|es)|build(s|ing)?|built|construct(ed|ion)?|handed over|flag(ged|s)? off)\b/i;
+
+/** True when the text reports an action, not just a topic. */
+export function reportsAction(text: string): boolean {
+  return ACTION_RE.test(text);
+}
+
 /** Occurrences of a rule's pattern in a block of text. */
 function countMatches(re: RegExp, text: string): number {
   const global = new RegExp(re.source, re.flags.includes("g") ? re.flags : re.flags + "g");
