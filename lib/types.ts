@@ -226,3 +226,50 @@ export interface PipelineRun {
   seriesUpdated: number;
   messages: string[];
 }
+
+/* ------------------------------------------------------------------ */
+/* Development events (map)                                           */
+/* ------------------------------------------------------------------ */
+
+export type EventCategory =
+  | "startups"
+  | "infrastructure"
+  | "defence"
+  | "roads-airports"
+  | "pipelines"
+  | "exports"
+  | "trade-deals"
+  | "psu-msme"
+  | "manufacturing"
+  | "energy"
+  | "space"
+  | "ports";
+
+/**
+ * A dated, geo-located development event.
+ *
+ * Events are reported activity, not measured data — they never feed a chart
+ * series. Each carries the outlet that reported it and a link, so a reader can
+ * check the claim rather than take the pin on trust.
+ */
+export interface DevEvent {
+  id: string;
+  title: string;
+  category: EventCategory;
+  /** ISO date the event was reported. */
+  date: string;
+  /** Gazetteer place id, or null when no location could be determined. */
+  placeId: string | null;
+  placeName: string | null;
+  state: string | null;
+  /** [longitude, latitude]; null when unplaceable. */
+  coords: [number, number] | null;
+  outlet: string;
+  url: string;
+  summary?: string;
+  /**
+   * `verified` — corroborated against a primary release or an official source.
+   * `reported`  — single press report, taken at face value and labelled as such.
+   */
+  status: "verified" | "reported";
+}

@@ -12,13 +12,13 @@
  *   - Output is written only after validation passes, so a malformed upstream
  *     response cannot land in the repo.
  */
-import { writeFile, mkdir } from "node:fs/promises";
+import { writeFile, mkdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { runWorldBank } from "./connectors/worldbank";
 import { runNews } from "./connectors/news";
 import { validateSeries } from "../lib/validate-series";
 import { supabaseConfigured, pushNews, pushRun, pushSeries } from "../../lib/supabase";
-import type { PipelineRun } from "../../lib/types";
+import type { PipelineRun, DevEvent } from "../../lib/types";
 
 const ROOT = process.cwd();
 const DRY = process.argv.includes("--dry-run");
@@ -95,6 +95,37 @@ async function main() {
       "utf8",
     );
     log(`  wrote data/live/news.json — ${news.items.length} items from ${news.outletsOk} outlets`);
+
+    // Map events are a strict subset: an item becomes a pin only if it has both
+    // a category and a place. New events are merged into the existing set so the
+    // map keeps history rather than showing only the last fetch window.
+    if (news.events.length > 0) {
+      let existing: DevEvent[] = [];
+      try {
+        existing = JSON.parse(await readFile(join(ROOT, "data/events.json"), "utf8")) as DevEvent[];
+      } catch {
+        existing = [];
+      }
+      const byId = new Map(existing.map((e) => [e.id, e]));
+      let added = 0;
+      for (const e of news.events) {
+        if (!byId.has(e.id)) added++;
+        byId.set(e.id, e);
+      }
+      // Keep two years; beyond that the map is history, not a tracker.
+      const cutoff = new Date(Date.now() - 730 * 86_400_000).toISOString().slice(0, 10);
+      const merged = [...byId.values()]
+        .filter((e) => e.date >= cutoff)
+        .sort((a, b) => b.date.localeCompare(a.date));
+      await writeFile(
+        join(ROOT, "data/events.json"),
+        JSON.stringify(merged, null, 2) + "\n",
+        "utf8",
+      );
+      log(`  wrote data/events.json — ${added} new, ${merged.length} total`);
+    } else {
+      log("  no geo-locatable events in this batch — data/events.json unchanged");
+    }
   } else if (!DRY) {
     messages.push("news: no items ingested; keeping previous data");
     log("  no items ingested — previous data left in place");

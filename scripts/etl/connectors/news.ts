@@ -11,7 +11,8 @@
  * then verifies against the primary release. That separation is the whole point:
  * press reports of government figures are tier-3 evidence.
  */
-import type { NewsItem } from "../../../lib/types";
+import type { NewsItem, DevEvent, EventCategory } from "../../../lib/types";
+import { detectPlace } from "../../../lib/gazetteer";
 import { getText } from "../lib/http";
 
 export interface Outlet {
@@ -32,7 +33,28 @@ export const OUTLETS: Outlet[] = [
   { id: "ndtv", name: "NDTV", feed: "https://feeds.feedburner.com/ndtvnews-india-news" },
   { id: "indiatoday", name: "India Today", feed: "https://www.indiatoday.in/rss/1206578" },
   { id: "restofworld", name: "Rest of World", feed: "https://restofworld.org/feed/latest/" },
+  {
+    id: "economictimes",
+    name: "Economic Times",
+    feed: "https://economictimes.indiatimes.com/rssfeedstopstories.cms",
+  },
+  {
+    id: "et-industry",
+    name: "Economic Times (Industry)",
+    feed: "https://economictimes.indiatimes.com/industry/rssfeeds/13352306.cms",
+  },
+  { id: "pib", name: "Press Information Bureau", feed: "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3" },
 ];
+
+/**
+ * Outlets whose reporting is treated as corroborated on ingest.
+ *
+ * Only government wire services qualify: PIB is the primary release itself, so
+ * an item from it is the record rather than a report of one. Everything else is
+ * marked `reported` and says so on the pin — including the outlets the brief
+ * named, because "reputable" and "primary" are different things.
+ */
+const PRIMARY_OUTLETS = new Set(["pib"]);
 
 /** Topic buckets. A headline can match several. */
 const TOPIC_RULES: Array<{ topic: string; re: RegExp }> = [
@@ -136,8 +158,74 @@ function parseFeed(xml: string, outlet: Outlet): NewsItem[] {
   return items;
 }
 
+/**
+ * Event categorisation.
+ *
+ * Ordered: the first rule that matches wins, so a story about an airport
+ * expressway lands in roads-airports rather than generic infrastructure.
+ * Rules are deliberately narrow — an item matching none is kept as a headline
+ * in the tracker but never becomes a map pin, because a mis-categorised pin is
+ * worse than an absent one.
+ */
+const EVENT_RULES: Array<{ category: EventCategory; re: RegExp }> = [
+  { category: "space", re: /\b(isro|pslv|gslv|lvm3|satellite launch|gaganyaan|chandrayaan|spadex|space station|in-space|skyroot|agnikul)\b/i },
+  { category: "defence", re: /\b(drdo|hal |brahmos|tejas|agni-|akash missile|missile test|indian army|indian navy|indian air force|warship|submarine|frigate|destroyer|defence ministry|defence acquisition|defence corridor|ordnance|bharat dynamics|bharat electronics)\b/i },
+  { category: "trade-deals", re: /\b(free trade agreement|\bfta\b|trade pact|trade deal|bilateral trade|cepa|ceca|trade agreement signed)\b/i },
+  { category: "exports", re: /\b(export (record|order|deal|growth|surge)|exports (rose|rise|jump|surge|hit)|shipment to|first consignment)\b/i },
+  { category: "pipelines", re: /\b(gas pipeline|oil pipeline|lng terminal|pipeline project|city gas distribution|gail )\b/i },
+  { category: "ports", re: /\b(port|harbour|container terminal|transshipment|shipyard|jnpa|cargo terminal)\b/i },
+  { category: "roads-airports", re: /\b(highway|expressway|airport|terminal building|runway|nhai|road project|flyover|udan|greenfield airport)\b/i },
+  { category: "energy", re: /\b(solar|wind power|renewable|nuclear plant|nuclear reactor|power plant|transmission line|green hydrogen|electricity grid|battery storage)\b/i },
+  { category: "startups", re: /\b(startup|start-up|unicorn|series [a-e] funding|seed round|venture capital|raises \$|funding round)\b/i },
+  { category: "psu-msme", re: /\b(\bpsu\b|public sector undertaking|\bmsme\b|small enterprise|disinvestment|navratna|maharatna)\b/i },
+  { category: "manufacturing", re: /\b(factory|manufacturing plant|semiconductor|chip fab|assembly line|production line|\bpli\b|make in india|new plant|foundry)\b/i },
+  { category: "infrastructure", re: /\b(metro rail|metro line|railway|bullet train|smart city|water project|dam |bridge |urban development|infrastructure project)\b/i },
+];
+
+function categorise(text: string): EventCategory | null {
+  for (const rule of EVENT_RULES) {
+    if (rule.re.test(text)) return rule.category;
+  }
+  return null;
+}
+
+/**
+ * Turn ingested headlines into map events.
+ *
+ * An item becomes an event only when it has BOTH a category and a place. That
+ * is a deliberately high bar: the map's value is that every pin means
+ * something specific happened somewhere specific.
+ */
+export function toEvents(items: NewsItem[], outletIds: Map<string, string>): DevEvent[] {
+  const events: DevEvent[] = [];
+  for (const item of items) {
+    const text = `${item.title} ${item.summary ?? ""}`;
+    const category = categorise(text);
+    if (!category) continue;
+    const place = detectPlace(text);
+    if (!place) continue;
+
+    events.push({
+      id: item.id,
+      title: item.title,
+      category,
+      date: item.publishedAt.slice(0, 10),
+      placeId: place.id,
+      placeName: place.name,
+      state: place.state,
+      coords: place.coords,
+      outlet: item.outlet,
+      url: item.url,
+      summary: item.summary,
+      status: PRIMARY_OUTLETS.has(outletIds.get(item.outlet) ?? "") ? "verified" : "reported",
+    });
+  }
+  return events;
+}
+
 export interface NewsResult {
   items: NewsItem[];
+  events: DevEvent[];
   errors: string[];
   outletsOk: number;
 }
@@ -182,5 +270,6 @@ export async function runNews(
     })
     .slice(0, 300);
 
-  return { items: deduped, errors, outletsOk };
+  const outletIds = new Map(OUTLETS.map((o) => [o.name, o.id]));
+  return { items: deduped, events: toEvents(deduped, outletIds), errors, outletsOk };
 }

@@ -106,10 +106,41 @@ async function main() {
     }
   }
 
+  /* ---------------- Development events ---------------- */
+  const events = await readJson<Array<Record<string, unknown>>>("data/events.json");
+  const EVENT_CATS = new Set([
+    "startups","infrastructure","defence","roads-airports","pipelines","exports",
+    "trade-deals","psu-msme","manufacturing","energy","space","ports",
+  ]);
+  const seenEvent = new Set<string>();
+  for (const e of events) {
+    const id = String(e.id ?? "");
+    if (!id) errors.push("an event has no id");
+    if (seenEvent.has(id)) errors.push(`duplicate event id "${id}"`);
+    seenEvent.add(id);
+    if (!EVENT_CATS.has(String(e.category))) errors.push(`event "${id}": unknown category "${e.category}"`);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(e.date))) errors.push(`event "${id}": date must be YYYY-MM-DD`);
+    // An event without a working link is unverifiable, which defeats the point.
+    if (!/^https?:\/\//.test(String(e.url ?? ""))) errors.push(`event "${id}": missing or malformed url`);
+    if (!e.outlet) errors.push(`event "${id}": no outlet named`);
+    if (e.status !== "verified" && e.status !== "reported") {
+      errors.push(`event "${id}": status must be verified or reported`);
+    }
+    const coords = e.coords as [number, number] | null;
+    if (coords !== null) {
+      const [lon, lat] = coords ?? [];
+      // Bounding box for India, so a transposed lat/lon cannot ship.
+      if (!(lon >= 68 && lon <= 98 && lat >= 6 && lat <= 38)) {
+        errors.push(`event "${id}": coords ${JSON.stringify(coords)} fall outside India`);
+      }
+    }
+  }
+
   console.log("Data validation");
   console.log(`  series       : ${total}`);
   console.log(`  data points  : ${points}`);
   console.log(`  sources      : ${sources.length}`);
+  console.log(`  map events   : ${events.length}`);
   console.log(
     `  confidence   : ${byConfidence.high} high · ${byConfidence.medium} medium · ${byConfidence.low} low`,
   );
