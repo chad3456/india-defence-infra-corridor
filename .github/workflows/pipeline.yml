@@ -10,6 +10,16 @@ on:
     # connector is cached and cheap to re-run.
     - cron: "15 */6 * * *"
   workflow_dispatch:
+  # Also run when the ingest code itself changes, so a connector fix is
+  # exercised against live feeds immediately rather than waiting for the
+  # next scheduled window.
+  push:
+    branches: [claude/india-defence-infra-tracker-qfpsfu]
+    paths:
+      - "scripts/etl/**"
+      - "lib/sources.ts"
+      - "lib/gazetteer.ts"
+      - ".github/workflows/pipeline.yml"
 
 permissions:
   contents: write
