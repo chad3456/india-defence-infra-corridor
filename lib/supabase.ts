@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import type { NewsItem, PipelineRun, Series, Source } from "./types";
+import type { NewsItem, PipelineRun, Series, Source, DevEvent } from "./types";
 
 /**
  * Postgres layer, scoped to the `bharat_tracker` schema.
@@ -154,6 +154,37 @@ export async function fetchSources(): Promise<Source[] | null> {
     .select("id,name,publisher,url,provenance,accessed,tier");
   if (error || !data || data.length === 0) return null;
   return data as Source[];
+}
+
+export async function fetchEvents(limit = 500): Promise<DevEvent[] | null> {
+  const client = getReadClient();
+  if (!client) return null;
+  const { data, error } = await client
+    .from("events")
+    .select("id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status")
+    .order("date", { ascending: false })
+    .limit(limit);
+  if (error || !data || data.length === 0) return null;
+  return data.map((r) => {
+    const lon = num(r.lon as number | string | null);
+    const lat = num(r.lat as number | string | null);
+    return {
+      id: r.id as string,
+      title: r.title as string,
+      category: r.category as DevEvent["category"],
+      date: r.date as string,
+      placeId: (r.place_id as string | null) ?? null,
+      placeName: (r.place_name as string | null) ?? null,
+      state: (r.state as string | null) ?? null,
+      // Both or neither — the schema enforces the pairing, and this mirrors it
+      // so a partially-null row can never become a pin at (0, lat).
+      coords: lon !== null && lat !== null ? ([lon, lat] as [number, number]) : null,
+      outlet: r.outlet as string,
+      url: r.url as string,
+      summary: (r.summary as string | null) ?? undefined,
+      status: r.status as DevEvent["status"],
+    };
+  });
 }
 
 export async function fetchNews(limit = 200): Promise<NewsItem[] | null> {

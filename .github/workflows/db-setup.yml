@@ -1,22 +1,22 @@
 name: Provision database
 
-# One-shot backend setup, and safe to re-run.
+# Applies the schema and seeds it. Idempotent — safe to run as often as you like.
 #
-#   1. applies supabase/migrations/0001_init.sql (idempotent)
-#   2. seeds the bharat_tracker schema from the committed JSON
-#   3. verifies the schema is reachable through PostgREST
+# ONE required secret:
+#   SUPABASE_DB_URL   Supabase -> Settings -> Database -> Connection string (URI),
+#                     or POSTGRES_URL_NON_POOLING from the Vercel integration.
+#                     Remember to substitute your real password into the URI.
 #
-# Required repository secrets:
-#   SUPABASE_DB_URL            direct Postgres connection string
-#                              (Supabase -> Settings -> Database -> Connection string -> URI,
-#                               or the POSTGRES_URL_NON_POOLING value from the Vercel integration)
-#   NEXT_PUBLIC_SUPABASE_URL   project URL, e.g. https://xxxx.supabase.co
-#   SUPABASE_SERVICE_ROLE_KEY  service role key (write access — repo secret only)
-#   NEXT_PUBLIC_SUPABASE_ANON_KEY  anon / publishable key
+# Seeding runs over plain Postgres rather than the REST API, so it needs only
+# this connection string and does not depend on the schema being exposed to
+# PostgREST first.
 #
-# Everything here targets the bharat_tracker schema only. No object in public is
-# created or altered, so running this against a database shared with other
-# projects cannot disturb them.
+# Optional, only for the reachability check at the end:
+#   NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY
+#
+# Everything targets the bharat_tracker schema. No object in public is created
+# or altered, so running this against a database shared with other projects
+# cannot disturb them.
 
 on:
   workflow_dispatch:
@@ -24,6 +24,7 @@ on:
     branches: [claude/india-defence-infra-tracker-qfpsfu]
     paths:
       - "supabase/migrations/**"
+      - "data/**"
       - ".github/workflows/db-setup.yml"
 
 concurrency:
@@ -37,49 +38,83 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check credentials are present
+      - name: Check for the connection string
+        id: creds
         env:
           DB_URL: ${{ secrets.SUPABASE_DB_URL }}
         run: |
           if [ -z "$DB_URL" ]; then
-            echo "::warning::SUPABASE_DB_URL is not set — skipping provisioning."
-            echo "The site builds and deploys fine without it; the tracker just"
-            echo "refreshes on rebuild rather than continuously."
-            echo "skip=true" >> "$GITHUB_ENV"
+            echo "has_db=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "### Database not provisioned"
+              echo ""
+              echo "\`SUPABASE_DB_URL\` is not set, so the schema and seed steps were skipped."
+              echo "The site still builds and deploys — it falls back to the committed JSON."
+              echo ""
+              echo "To provision: **Settings -> Secrets and variables -> Actions -> New repository secret**,"
+              echo "name \`SUPABASE_DB_URL\`, value the Supabase connection URI (with your password"
+              echo "substituted for \`[YOUR-PASSWORD]\`), then re-run this workflow."
+            } >> "$GITHUB_STEP_SUMMARY"
+            # A manual run means someone expected this to do something.
+            if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+              echo "::error::SUPABASE_DB_URL is not set — nothing to provision."
+              exit 1
+            fi
+            echo "::warning::SUPABASE_DB_URL not set; skipping provisioning."
+          else
+            echo "has_db=true" >> "$GITHUB_OUTPUT"
           fi
 
       - uses: actions/setup-node@v4
-        if: env.skip != 'true'
+        if: steps.creds.outputs.has_db == 'true'
         with:
           node-version: "22"
           cache: npm
 
       - name: Install psql
-        if: env.skip != 'true'
+        if: steps.creds.outputs.has_db == 'true'
         run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends postgresql-client
 
-      - name: Apply migration
-        if: env.skip != 'true'
+      - run: npm ci
+        if: steps.creds.outputs.has_db == 'true'
+
+      - name: Apply schema
+        if: steps.creds.outputs.has_db == 'true'
         env:
           PGCONNECT_TIMEOUT: "30"
         run: |
-          psql "${{ secrets.SUPABASE_DB_URL }}" \
-            --set ON_ERROR_STOP=1 \
+          psql "${{ secrets.SUPABASE_DB_URL }}" --set ON_ERROR_STOP=1 \
             -f supabase/migrations/0001_init.sql
 
-      - run: npm ci
-        if: env.skip != 'true'
-
-      - name: Seed schema from committed data
-        if: env.skip != 'true'
+      - name: Seed data
+        if: steps.creds.outputs.has_db == 'true'
         env:
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: npm run db:push
+          PGCONNECT_TIMEOUT: "30"
+        run: |
+          npx tsx scripts/db/seed-sql.ts > /tmp/seed.sql
+          echo "generated $(wc -l < /tmp/seed.sql) statements"
+          psql "${{ secrets.SUPABASE_DB_URL }}" --set ON_ERROR_STOP=1 -f /tmp/seed.sql
 
-      - name: Verify the schema is reachable
-        if: env.skip != 'true'
+      - name: Report row counts
+        if: steps.creds.outputs.has_db == 'true'
+        run: |
+          {
+            echo "### Database provisioned"
+            echo ""
+            echo '```'
+            psql "${{ secrets.SUPABASE_DB_URL }}" -A -F' | ' -c "
+              SELECT
+                (SELECT count(*) FROM bharat_tracker.sources)      AS sources,
+                (SELECT count(*) FROM bharat_tracker.series)       AS series,
+                (SELECT count(*) FROM bharat_tracker.data_points)  AS data_points,
+                (SELECT count(*) FROM bharat_tracker.series_peers) AS peers,
+                (SELECT count(*) FROM bharat_tracker.events)       AS events;"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Verify the schema is reachable over the API
+        if: steps.creds.outputs.has_db == 'true'
+        continue-on-error: true
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}

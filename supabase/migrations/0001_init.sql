@@ -266,3 +266,45 @@ begin
 exception when others then
   raise warning 'Could not auto-expose bharat_tracker to PostgREST (%). Add it manually under Settings -> API -> Exposed schemas.', sqlerrm;
 end $$;
+
+-- ---------------------------------------------------------------------------
+-- Development events (map pins)
+-- ---------------------------------------------------------------------------
+
+create table if not exists bharat_tracker.events (
+  id         text primary key,
+  title      text not null,
+  category   text not null check (category in (
+               'startups','infrastructure','defence','roads-airports','pipelines',
+               'exports','trade-deals','psu-msme','manufacturing','energy','space','ports')),
+  date       date not null,
+  place_id   text,
+  place_name text,
+  state      text,
+  lon        double precision,
+  lat        double precision,
+  outlet     text not null,
+  url        text not null,
+  summary    text,
+  status     text not null check (status in ('verified','reported')),
+  ingested_at timestamptz not null default now(),
+
+  -- A pin is either fully located or not located at all; half a coordinate
+  -- would place an event on the equator off Africa.
+  constraint coords_are_paired check ((lon is null) = (lat is null)),
+  -- Bounding box for India, so a transposed lat/lon cannot reach the map.
+  constraint coords_within_india check (
+    lon is null or (lon between 68 and 98 and lat between 6 and 38)
+  )
+);
+
+create index if not exists events_date_idx     on bharat_tracker.events (date desc);
+create index if not exists events_category_idx on bharat_tracker.events (category);
+
+alter table bharat_tracker.events enable row level security;
+drop policy if exists events_public_read on bharat_tracker.events;
+create policy events_public_read on bharat_tracker.events
+  for select to anon, authenticated using (true);
+
+grant select on bharat_tracker.events to anon, authenticated;
+grant all    on bharat_tracker.events to service_role;

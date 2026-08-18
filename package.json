@@ -19,7 +19,8 @@
     "db:check": "tsx scripts/db/sync.ts check",
     "prebuild": "tsx scripts/db/sync.ts pull",
     "test:schema": "node scripts/test-schema.mjs",
-    "test:news": "tsx scripts/test-news.ts"
+    "test:news": "tsx scripts/test-news.ts",
+    "db:seed-sql": "tsx scripts/db/seed-sql.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",

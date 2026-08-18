@@ -50,23 +50,38 @@ Supabase project shared with other projects. `drop schema bharat_tracker cascade
 this project completely and touches nothing else. The schema tests assert the isolation
 (`npm run test:schema`).
 
-Add four repository secrets, then run the **Provision database** workflow:
+**One secret provisions everything.** Add `SUPABASE_DB_URL` under
+**Settings → Secrets and variables → Actions**, then run the **Provision database** workflow
+(Actions tab → Provision database → Run workflow). It applies the schema, seeds every table
+from the committed JSON, and prints the row counts in the run summary.
 
-| Secret | Where to find it |
+`SUPABASE_DB_URL` is Supabase → **Settings → Database → Connection string (URI)** — remember
+to substitute your real password for `[YOUR-PASSWORD]`. If you connected Supabase through the
+Vercel integration, `POSTGRES_URL_NON_POOLING` is the same thing.
+
+Seeding runs over plain Postgres rather than the REST API, so it needs nothing else and does
+not depend on the schema being exposed to PostgREST first.
+
+Optional extras, only if you want the app to *read* from Postgres rather than the committed
+JSON (the news tracker and the map then refresh without a redeploy):
+
+| Secret / env var | Where to find it |
 |---|---|
-| `SUPABASE_DB_URL` | Settings → Database → Connection string (URI), or `POSTGRES_URL_NON_POOLING` from the Vercel integration |
 | `NEXT_PUBLIC_SUPABASE_URL` | Settings → API → Project URL |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Settings → API → anon / publishable key |
-| `SUPABASE_SERVICE_ROLE_KEY` | Settings → API → service role key (write access — repo secret only) |
+| `SUPABASE_SERVICE_ROLE_KEY` | Settings → API → service role key — repo secret only, never the browser |
 
-The workflow applies the migration, seeds the schema from the committed JSON, and verifies
-it is reachable. It is idempotent, so re-running it is safe. The migration also exposes
-`bharat_tracker` to PostgREST itself, so there is no dashboard step; if it lacks the rights
-to do that it warns and you add the schema under **Settings → API → Exposed schemas**.
+Set those in **Vercel → Settings → Environment Variables** for the app, and as repository
+secrets for the scheduled pipeline. The Vercel Supabase integration injects `SUPABASE_URL` /
+`SUPABASE_ANON_KEY` automatically and the app reads either naming, so you may not need to add
+them by hand there.
+
+Reading over the API also needs `bharat_tracker` in **Settings → API → Exposed schemas**. The
+migration tries to add it itself and warns if it lacks the rights.
 
 Locally: copy `.env.example` to `.env.local`, then `npm run db:check` / `db:push` / `db:pull`.
-
-The service role key has write access — never expose it to the browser.
+`npm run db:seed-sql` prints the same SQL the workflow runs, if you would rather paste it into
+the SQL editor.
 
 ---
 

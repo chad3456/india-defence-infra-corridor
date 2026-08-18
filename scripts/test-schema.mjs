@@ -58,6 +58,7 @@ for (const expected of [
   "pipeline_runs",
   "series_full",
   "coverage",
+  "events",
 ]) {
   check(names.includes(expected), `bharat_tracker.${expected} exists`);
 }
@@ -86,6 +87,9 @@ const base = (id, overrides) => {
 };
 
 const mustReject = [
+  ["event with only one coordinate", `insert into bharat_tracker.events (id,title,category,date,lon,outlet,url,status) values ('e1','t','ports','2026-01-01',72.8,'o','https://x','reported')`],
+  ["event pinned outside India", `insert into bharat_tracker.events (id,title,category,date,lon,lat,outlet,url,status) values ('e2','t','ports','2026-01-01',-74.0,40.7,'o','https://x','reported')`],
+  ["event with an unknown status", `insert into bharat_tracker.events (id,title,category,date,outlet,url,status) values ('e3','t','ports','2026-01-01','o','https://x','maybe')`],
   ["low-confidence series with no explanatory note", base("bad1", { confidence: "low", provenance: "press" })],
   ["think-tank estimate graded high confidence", base("bad2", { provenance: "think-tank", notes: "{note}" })],
   ["series citing no source", base("bad3", { source_ids: "{}" })],

@@ -1,14 +1,22 @@
 import IndiaMap from "@/components/map/IndiaMap";
 import DevelopmentMap from "@/components/map/DevelopmentMap";
-import { getEvents, latestEventDate } from "@/lib/events";
+import { getEvents } from "@/lib/events";
+import { supabaseConfigured, fetchEvents } from "@/lib/supabase";
 import ChartCard from "@/components/charts/ChartCard";
 import { getChart } from "@/lib/registry";
 
 export const metadata = { title: "Map & timelapse" };
 
-export default function MapPage() {
-  const events = getEvents();
-  const latest = latestEventDate();
+// Rebuilt hourly so Postgres-backed events refresh without a redeploy.
+export const revalidate = 3600;
+
+export default async function MapPage() {
+  // Postgres first when configured, committed JSON otherwise. Either path is
+  // complete; the JSON is what ships by default so the map works with no
+  // database at all.
+  const fromDb = supabaseConfigured ? await fetchEvents() : null;
+  const events = fromDb && fromDb.length > 0 ? fromDb : getEvents();
+  const latest = events[0]?.date ?? null;
 
   const related = [
     "expressway-length--level",
