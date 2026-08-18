@@ -11,6 +11,8 @@ import { parseFeed, stripTags, decodeEntities } from "./etl/lib/feed";
 import { extractText } from "./etl/lib/extract";
 import { categorise, locate, reportsAction } from "./etl/lib/classify";
 import { ALL_SOURCES, X_HANDLES } from "../lib/sources";
+import { dedupeEvents, similarity, titleTokens } from "./etl/lib/dedupe";
+import type { DevEvent } from "../lib/types";
 
 const failures: string[] = [];
 function check(ok: boolean | undefined, label: string) {
@@ -151,6 +153,38 @@ check(
   "a place named past the lede is ignored (PM CARES was pinned to Tamil Nadu)",
 );
 check(locate("New plant in Greater Noida announced", "")?.name === "Noida", "matches multi-word aliases");
+
+console.log("");
+console.log("Duplicate collapsing");
+check(
+  similarity(
+    titleTokens("Vizhinjam Port Begins Export-Import Ops, Opens New Gateway"),
+    titleTokens("Vizhinjam Port begins EXIM operations, opens gateway for India"),
+  ) >= 0.5,
+  "two rewrites of one headline read as the same story",
+);
+check(
+  similarity(titleTokens("Delhi airport expands capacity"), titleTokens("Chennai metro line opens")) < 0.5,
+  "unrelated headlines do not",
+);
+
+const mk = (id: string, title: string, status: DevEvent["status"], outlet: string): DevEvent => ({
+  id, title, category: "ports", date: "2026-08-18", placeId: "vizhinjam",
+  placeName: "Vizhinjam", state: "Kerala", coords: [76.98, 8.38], outlet,
+  url: `https://example.com/${id}`, status,
+});
+const collapsed = dedupeEvents([
+  mk("a", "Vizhinjam Port Begins Export-Import Ops, Opens New Gateway", "reported", "NDTV"),
+  mk("b", "Vizhinjam Port begins EXIM operations, opens gateway for India", "verified", "PIB"),
+  mk("c", "Vizhinjam Port Begins Full-Fledged Export-Import Operations", "reported", "ET"),
+  mk("d", "Saatvik Solar signs pact for 3.6 GW cell plant", "reported", "ET"),
+]);
+check(collapsed.length === 2, `three reports of one event collapse to one (got ${collapsed.length} of 2 expected)`);
+check(
+  collapsed.some((e) => e.outlet === "PIB"),
+  "the official report is the one kept",
+);
+check(collapsed.some((e) => e.title.includes("Saatvik")), "a genuinely different event survives");
 
 console.log("");
 console.log("Source registry");
