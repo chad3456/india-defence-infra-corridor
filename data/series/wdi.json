@@ -3339,6 +3339,172 @@
     ]
   },
   {
+    "id": "wdi-current-account",
+    "title": "Current account balance",
+    "definition": "Net trade, income and transfers with the rest of the world, as a share of GDP.",
+    "category": "trade",
+    "unit": "% of GDP",
+    "unitShort": "%",
+    "frequency": "annual",
+    "higherIsBetter": null,
+    "points": [
+      {
+        "period": "2001",
+        "value": 0.290495460210208
+      },
+      {
+        "period": "2002",
+        "value": 1.37093793900847
+      },
+      {
+        "period": "2003",
+        "value": 1.44355773291234
+      },
+      {
+        "period": "2004",
+        "value": 0.110018010197154
+      },
+      {
+        "period": "2005",
+        "value": -1.25350400207393
+      },
+      {
+        "period": "2006",
+        "value": -0.988988302952292
+      },
+      {
+        "period": "2007",
+        "value": -0.663717648772609
+      },
+      {
+        "period": "2008",
+        "value": -2.58337749259838
+      },
+      {
+        "period": "2009",
+        "value": -1.95146209111802
+      },
+      {
+        "period": "2010",
+        "value": -3.25348368945179
+      },
+      {
+        "period": "2011",
+        "value": -3.42928468606061
+      },
+      {
+        "period": "2012",
+        "value": -5.00488971805303
+      },
+      {
+        "period": "2013",
+        "value": -2.64566711733892
+      },
+      {
+        "period": "2014",
+        "value": -1.33950896483453
+      },
+      {
+        "period": "2015",
+        "value": -1.06754907167965
+      },
+      {
+        "period": "2016",
+        "value": -0.52788060603752
+      },
+      {
+        "period": "2017",
+        "value": -1.43948820320989
+      },
+      {
+        "period": "2018",
+        "value": -2.42697545810527
+      },
+      {
+        "period": "2019",
+        "value": -1.04961203910072
+      },
+      {
+        "period": "2020",
+        "value": 1.22362111042791
+      },
+      {
+        "period": "2021",
+        "value": -1.05524166809383
+      },
+      {
+        "period": "2022",
+        "value": -2.43238270956779
+      },
+      {
+        "period": "2023",
+        "value": -0.912777939495827
+      },
+      {
+        "period": "2024",
+        "value": -0.851289719084462
+      },
+      {
+        "period": "2025",
+        "value": -0.416854153498652
+      }
+    ],
+    "sourceIds": [
+      "worldbank-wdi"
+    ],
+    "provenance": "multilateral",
+    "confidence": "high",
+    "lastVerified": "2026-08-18",
+    "notes": [
+      "World Bank indicator BN.CAB.XOKA.GD.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.",
+      "Peer comparison uses each country's latest available year (2024, 2025), which are not all the same."
+    ],
+    "peers": [
+      {
+        "country": "India",
+        "iso3": "IND",
+        "value": -0.416854153498652,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "China",
+        "iso3": "CHN",
+        "value": 3.76972243689338,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Vietnam",
+        "iso3": "VNM",
+        "value": 6.33496605552948,
+        "period": "2024",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Brazil",
+        "iso3": "BRA",
+        "value": -2.92630139201733,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Indonesia",
+        "iso3": "IDN",
+        "value": -0.105263812011573,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "United States",
+        "iso3": "USA",
+        "value": -3.62698693844919,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      }
+    ]
+  },
+  {
     "id": "wdi-reserves",
     "title": "Total reserves including gold",
     "definition": "Foreign exchange reserves, SDRs, IMF position and gold.",
@@ -6021,7 +6187,8 @@
       }
     ],
     "sourceIds": [
-      "worldbank-wdi"
+      "worldbank-wdi",
+      "sipri-milex"
     ],
     "provenance": "multilateral",
     "confidence": "high",
@@ -6185,7 +6352,8 @@
       }
     ],
     "sourceIds": [
-      "worldbank-wdi"
+      "worldbank-wdi",
+      "sipri-milex"
     ],
     "provenance": "multilateral",
     "confidence": "high",
@@ -6348,7 +6516,8 @@
       }
     ],
     "sourceIds": [
-      "worldbank-wdi"
+      "worldbank-wdi",
+      "sipri-milex"
     ],
     "provenance": "multilateral",
     "confidence": "high",
@@ -6495,7 +6664,8 @@
       }
     ],
     "sourceIds": [
-      "worldbank-wdi"
+      "worldbank-wdi",
+      "sipri-milex"
     ],
     "provenance": "multilateral",
     "confidence": "high",
@@ -6641,7 +6811,8 @@
       }
     ],
     "sourceIds": [
-      "worldbank-wdi"
+      "worldbank-wdi",
+      "sipri-milex"
     ],
     "provenance": "multilateral",
     "confidence": "high",
@@ -8731,6 +8902,171 @@
     ]
   },
   {
+    "id": "wdi-urban-growth",
+    "title": "Urban population growth",
+    "definition": "Annual growth rate of the urban population.",
+    "category": "real-estate",
+    "unit": "% per year",
+    "unitShort": "%",
+    "frequency": "annual",
+    "higherIsBetter": null,
+    "points": [
+      {
+        "period": "2001",
+        "value": 2.79167632635927
+      },
+      {
+        "period": "2002",
+        "value": 2.78430381700354
+      },
+      {
+        "period": "2003",
+        "value": 2.75957503853038
+      },
+      {
+        "period": "2004",
+        "value": 2.77480790295643
+      },
+      {
+        "period": "2005",
+        "value": 2.74412999366421
+      },
+      {
+        "period": "2006",
+        "value": 2.7138445773411
+      },
+      {
+        "period": "2007",
+        "value": 2.68838973840524
+      },
+      {
+        "period": "2008",
+        "value": 2.6496554632103
+      },
+      {
+        "period": "2009",
+        "value": 2.68133844908469
+      },
+      {
+        "period": "2010",
+        "value": 2.71046640355998
+      },
+      {
+        "period": "2011",
+        "value": 2.60834363267832
+      },
+      {
+        "period": "2012",
+        "value": 2.37699314592326
+      },
+      {
+        "period": "2013",
+        "value": 2.33991754994745
+      },
+      {
+        "period": "2014",
+        "value": 2.25647131147126
+      },
+      {
+        "period": "2015",
+        "value": 2.17617533145353
+      },
+      {
+        "period": "2016",
+        "value": 2.16325487902533
+      },
+      {
+        "period": "2017",
+        "value": 2.12248866445848
+      },
+      {
+        "period": "2018",
+        "value": 2.0460160617663
+      },
+      {
+        "period": "2019",
+        "value": 1.97750804279549
+      },
+      {
+        "period": "2020",
+        "value": 1.89985832105548
+      },
+      {
+        "period": "2021",
+        "value": 1.73813803578169
+      },
+      {
+        "period": "2022",
+        "value": 1.69490092263281
+      },
+      {
+        "period": "2023",
+        "value": 1.7773369092557
+      },
+      {
+        "period": "2024",
+        "value": 1.77423382325139
+      },
+      {
+        "period": "2025",
+        "value": 1.7603200913122
+      }
+    ],
+    "sourceIds": [
+      "worldbank-wdi"
+    ],
+    "provenance": "multilateral",
+    "confidence": "high",
+    "lastVerified": "2026-08-18",
+    "notes": [
+      "World Bank indicator SP.URB.GROW. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to."
+    ],
+    "peers": [
+      {
+        "country": "India",
+        "iso3": "IND",
+        "value": 1.7603200913122,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "China",
+        "iso3": "CHN",
+        "value": 0.508242457875982,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Vietnam",
+        "iso3": "VNM",
+        "value": 1.48211515761228,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Brazil",
+        "iso3": "BRA",
+        "value": 0.702841649549349,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Indonesia",
+        "iso3": "IDN",
+        "value": 1.87143284954533,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "United States",
+        "iso3": "USA",
+        "value": 0.606543345545608,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      }
+    ]
+  },
+  {
     "id": "wdi-slum-population",
     "title": "Population living in slums",
     "definition": "Share of the urban population living in slum households.",
@@ -9440,6 +9776,167 @@
         "country": "United States",
         "iso3": "USA",
         "value": 6.5,
+        "period": "2024",
+        "sourceId": "worldbank-wdi"
+      }
+    ]
+  },
+  {
+    "id": "wdi-water-access",
+    "title": "Access to basic drinking water",
+    "definition": "Share of population using at least basic drinking water services.",
+    "category": "quality-of-life",
+    "unit": "% of population",
+    "unitShort": "%",
+    "frequency": "annual",
+    "higherIsBetter": true,
+    "points": [
+      {
+        "period": "2001",
+        "value": 80.0659857611388
+      },
+      {
+        "period": "2002",
+        "value": 80.7684916224213
+      },
+      {
+        "period": "2003",
+        "value": 81.4693446422868
+      },
+      {
+        "period": "2004",
+        "value": 82.1686302902513
+      },
+      {
+        "period": "2005",
+        "value": 82.8660018054267
+      },
+      {
+        "period": "2006",
+        "value": 83.5615500374212
+      },
+      {
+        "period": "2007",
+        "value": 84.2553439378038
+      },
+      {
+        "period": "2008",
+        "value": 84.9473094624581
+      },
+      {
+        "period": "2009",
+        "value": 85.6371461321776
+      },
+      {
+        "period": "2010",
+        "value": 86.3249166723471
+      },
+      {
+        "period": "2011",
+        "value": 87.0106732998892
+      },
+      {
+        "period": "2012",
+        "value": 87.6951918936397
+      },
+      {
+        "period": "2013",
+        "value": 88.3781430142448
+      },
+      {
+        "period": "2014",
+        "value": 89.0593975763785
+      },
+      {
+        "period": "2015",
+        "value": 89.7387066732488
+      },
+      {
+        "period": "2016",
+        "value": 90.4158282525921
+      },
+      {
+        "period": "2017",
+        "value": 91.0905825625786
+      },
+      {
+        "period": "2018",
+        "value": 91.7626505318817
+      },
+      {
+        "period": "2019",
+        "value": 92.4317828217009
+      },
+      {
+        "period": "2020",
+        "value": 93.0977309081783
+      },
+      {
+        "period": "2021",
+        "value": 93.760281159736
+      },
+      {
+        "period": "2022",
+        "value": 94.4191311935781
+      },
+      {
+        "period": "2023",
+        "value": 95.0740565981493
+      },
+      {
+        "period": "2024",
+        "value": 95.7247373523918
+      }
+    ],
+    "sourceIds": [
+      "worldbank-wdi"
+    ],
+    "provenance": "multilateral",
+    "confidence": "high",
+    "lastVerified": "2026-08-18",
+    "notes": [
+      "World Bank indicator SH.H2O.BASW.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to."
+    ],
+    "peers": [
+      {
+        "country": "India",
+        "iso3": "IND",
+        "value": 95.7247373523918,
+        "period": "2024",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "China",
+        "iso3": "CHN",
+        "value": 96.1224151867516,
+        "period": "2024",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Vietnam",
+        "iso3": "VNM",
+        "value": 98.761246653694,
+        "period": "2024",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Brazil",
+        "iso3": "BRA",
+        "value": 99.9999987323028,
+        "period": "2024",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Indonesia",
+        "iso3": "IDN",
+        "value": 89.008759557411,
+        "period": "2024",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "United States",
+        "iso3": "USA",
+        "value": 99.9804443465812,
         "period": "2024",
         "sourceId": "worldbank-wdi"
       }
