@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { NewsItem, PipelineRun } from "@/lib/types";
-import { OUTLET_NAMES } from "@/lib/outlets";
+import { ALL_SOURCES, OFFICIAL_SOURCES, PRESS_SOURCES } from "@/lib/sources";
 import { supabaseConfigured, fetchNews, fetchLastRun } from "@/lib/supabase";
 
 export const metadata = { title: "Live tracker" };
@@ -29,7 +29,7 @@ async function loadNews(): Promise<NewsFile | null> {
       return {
         fetchedAt: rows[0]!.publishedAt,
         outletsOk: new Set(rows.map((r) => r.outlet)).size,
-        outletsTotal: OUTLET_NAMES.length,
+        outletsTotal: ALL_SOURCES.length,
         items: rows,
       };
     }
@@ -76,17 +76,22 @@ export default async function TrackerPage() {
           What the press is reporting
         </h1>
         <p className="mt-2 max-w-[640px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
-          Headlines from {OUTLET_NAMES.length} outlets, filtered to defence, infrastructure, trade,
-          manufacturing, space and energy.{" "}
+          Headlines from {ALL_SOURCES.length} feeds — {OFFICIAL_SOURCES.length} official (PIB by
+          ministry, PMO, ISRO, MEA) and {PRESS_SOURCES.length} press — filtered to defence,
+          infrastructure, trade, manufacturing, space and energy.{" "}
           <strong>Nothing here feeds a chart.</strong> Press reports of government figures are
           tier-3 evidence: they flag that a number may have moved, and a human then verifies against
           the primary release before any series changes. That separation is deliberate and is the
           main reason this site&apos;s numbers can be trusted.
         </p>
         <div className="mt-3 flex flex-wrap gap-1.5">
-          {OUTLET_NAMES.map((n) => (
-            <span key={n} className="rounded-full border px-2 py-0.5 text-[10px] text-[color:var(--text-secondary)]">
-              {n}
+          {ALL_SOURCES.map((s) => (
+            <span
+              key={s.id}
+              className="rounded-full border px-2 py-0.5 text-[10px] text-[color:var(--text-secondary)]"
+              title={s.kind === "official" ? "Primary release" : "Press report"}
+            >
+              {s.name}
             </span>
           ))}
         </div>

@@ -13,15 +13,15 @@
     "etl:dry": "tsx scripts/etl/run.ts --dry-run",
     "validate": "tsx scripts/validate.ts",
     "registry:audit": "tsx scripts/audit-registry.ts",
-    "test": "npm run validate && npm run registry:audit && npm run test:schema && npm run test:news && npm run db:seed-check && npm run typecheck",
+    "test": "npm run validate && npm run registry:audit && npm run test:schema && npm run test:ingest && npm run db:seed-check && npm run typecheck",
     "db:push": "tsx scripts/db/sync.ts push",
     "db:pull": "tsx scripts/db/sync.ts pull",
     "db:check": "tsx scripts/db/sync.ts check",
     "prebuild": "tsx scripts/db/sync.ts pull",
     "test:schema": "node scripts/test-schema.mjs",
-    "test:news": "tsx scripts/test-news.ts",
     "db:seed-sql": "tsx scripts/db/seed-sql.ts > supabase/seed.sql",
-    "db:seed-check": "tsx scripts/db/seed-sql.ts > /tmp/seed.check.sql && diff -q supabase/seed.sql /tmp/seed.check.sql"
+    "db:seed-check": "tsx scripts/db/seed-sql.ts > /tmp/seed.check.sql && diff -q supabase/seed.sql /tmp/seed.check.sql",
+    "test:ingest": "tsx scripts/test-ingest.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",

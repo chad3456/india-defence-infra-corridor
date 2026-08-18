@@ -6,8 +6,9 @@ name: Data pipeline
 
 on:
   schedule:
-    # 02:15 UTC daily — after the World Bank's usual refresh window.
-    - cron: "15 2 * * *"
+    # Every 6 hours. Events are the fast-moving part; the World Bank
+    # connector is cached and cheap to re-run.
+    - cron: "15 */6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -36,6 +37,8 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          # Optional: activates the X connector. Absent, it reports inactive.
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
         run: npm run etl
 
       - name: Validate data
@@ -51,7 +54,7 @@ jobs:
         run: |
           git config user.name  "bharat-tracker-bot"
           git config user.email "actions@github.com"
-          git add data/series/wdi.json data/live/ 2>/dev/null || true
+          git add data/series/wdi.json data/live/ data/events.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No data changes."
             exit 0

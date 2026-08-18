@@ -342,6 +342,35 @@ export async function pushNews(items: NewsItem[]): Promise<{ ok: boolean; error?
   return error ? { ok: false, error: error.message } : { ok: true };
 }
 
+export async function pushEvents(events: DevEvent[]): Promise<{ ok: boolean; error?: string }> {
+  const client = getWriteClient();
+  if (!client) return { ok: false, error: "no service role key configured" };
+  if (events.length === 0) return { ok: true };
+  // Chunked: a single insert of a large batch exceeds the request body limit.
+  for (let i = 0; i < events.length; i += 300) {
+    const { error } = await client.from("events").upsert(
+      events.slice(i, i + 300).map((e) => ({
+        id: e.id,
+        title: e.title,
+        category: e.category,
+        date: e.date,
+        place_id: e.placeId,
+        place_name: e.placeName,
+        state: e.state,
+        lon: e.coords?.[0] ?? null,
+        lat: e.coords?.[1] ?? null,
+        outlet: e.outlet,
+        url: e.url,
+        summary: e.summary ?? null,
+        status: e.status,
+      })),
+      { onConflict: "id" },
+    );
+    if (error) return { ok: false, error: error.message };
+  }
+  return { ok: true };
+}
+
 export async function pushRun(run: PipelineRun): Promise<{ ok: boolean; error?: string }> {
   const client = getWriteClient();
   if (!client) return { ok: false, error: "no service role key configured" };

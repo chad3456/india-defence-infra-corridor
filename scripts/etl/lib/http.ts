@@ -56,10 +56,12 @@ export interface GetOptions {
   /** Cache lifetime. 0 disables the cache read (writes still happen). */
   cacheMs?: number;
   accept?: string;
+  /** Extra request headers, e.g. an Authorization bearer token. */
+  headers?: Record<string, string>;
 }
 
 export async function getText(url: string, opts: GetOptions = {}): Promise<FetchResult<string>> {
-  const { timeoutMs = 30_000, retries = 3, cacheMs = 6 * 60 * 60 * 1000, accept } = opts;
+  const { timeoutMs = 30_000, retries = 3, cacheMs = 6 * 60 * 60 * 1000, accept, headers } = opts;
 
   if (cacheMs > 0) {
     const cached = await readCache<string>(url, cacheMs);
@@ -81,6 +83,7 @@ export async function getText(url: string, opts: GetOptions = {}): Promise<Fetch
         headers: {
           "user-agent": USER_AGENT,
           ...(accept ? { accept } : {}),
+          ...(headers ?? {}),
         },
       });
       clearTimeout(timer);

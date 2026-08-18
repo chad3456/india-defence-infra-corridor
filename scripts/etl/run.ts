@@ -15,9 +15,10 @@
 import { writeFile, mkdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { runWorldBank } from "./connectors/worldbank";
-import { runNews } from "./connectors/news";
+import { runIngest } from "./connectors/ingest";
+import { runX } from "./connectors/x";
 import { validateSeries } from "../lib/validate-series";
-import { supabaseConfigured, pushNews, pushRun, pushSeries } from "../../lib/supabase";
+import { supabaseConfigured, pushNews, pushRun, pushSeries, pushEvents } from "../../lib/supabase";
 import type { PipelineRun, DevEvent } from "../../lib/types";
 
 const ROOT = process.cwd();
@@ -33,6 +34,7 @@ async function main() {
   let connectorsRun = 0;
   let connectorsFailed = 0;
   let seriesUpdated = 0;
+  let eventsAdded = 0;
 
   log(`Bharat Tracker ETL — ${startedAt}${DRY ? " (dry run)" : ""}`);
   log("");
@@ -68,67 +70,77 @@ async function main() {
     log("  no series returned — previous data left in place");
   }
 
-  /* ---------------- News tracker ---------------- */
+  /* ---------------- Event ingest ---------------- */
   log("");
-  log("News tracker");
+  log("Ingest — feeds and article bodies");
   connectorsRun++;
-  const news = await runNews({ dryRun: DRY, onProgress: log });
-  if (news.errors.length) {
-    for (const e of news.errors) messages.push(`news: ${e}`);
-  }
-  if (news.outletsOk === 0 && !DRY) connectorsFailed++;
+  const ingest = await runIngest({ dryRun: DRY, onProgress: log });
+  for (const e of ingest.errors) messages.push(`ingest: ${e}`);
+  if (ingest.sourcesOk === 0 && !DRY) connectorsFailed++;
 
-  if (!DRY && news.items.length > 0) {
+  /* ---------------- X / official handles ---------------- */
+  log("");
+  log("X — official handles");
+  connectorsRun++;
+  const x = await runX({ dryRun: DRY, onProgress: log });
+  for (const e of x.errors) messages.push(`x: ${e}`);
+  if (!x.active && x.reason) messages.push(`x: ${x.reason}`);
+
+  const allEvents = [...ingest.events, ...x.events];
+
+  if (!DRY && ingest.items.length > 0) {
     await mkdir(join(ROOT, "data/live"), { recursive: true });
     await writeFile(
       join(ROOT, "data/live/news.json"),
       JSON.stringify(
         {
           fetchedAt: new Date().toISOString(),
-          outletsOk: news.outletsOk,
-          outletsTotal: 7,
-          items: news.items,
+          outletsOk: ingest.sourcesOk,
+          outletsTotal: ingest.sourcesTotal,
+          items: ingest.items,
         },
         null,
         2,
       ) + "\n",
       "utf8",
     );
-    log(`  wrote data/live/news.json — ${news.items.length} items from ${news.outletsOk} outlets`);
-
-    // Map events are a strict subset: an item becomes a pin only if it has both
-    // a category and a place. New events are merged into the existing set so the
-    // map keeps history rather than showing only the last fetch window.
-    if (news.events.length > 0) {
-      let existing: DevEvent[] = [];
-      try {
-        existing = JSON.parse(await readFile(join(ROOT, "data/events.json"), "utf8")) as DevEvent[];
-      } catch {
-        existing = [];
-      }
-      const byId = new Map(existing.map((e) => [e.id, e]));
-      let added = 0;
-      for (const e of news.events) {
-        if (!byId.has(e.id)) added++;
-        byId.set(e.id, e);
-      }
-      // Keep two years; beyond that the map is history, not a tracker.
-      const cutoff = new Date(Date.now() - 730 * 86_400_000).toISOString().slice(0, 10);
-      const merged = [...byId.values()]
-        .filter((e) => e.date >= cutoff)
-        .sort((a, b) => b.date.localeCompare(a.date));
-      await writeFile(
-        join(ROOT, "data/events.json"),
-        JSON.stringify(merged, null, 2) + "\n",
-        "utf8",
-      );
-      log(`  wrote data/events.json — ${added} new, ${merged.length} total`);
-    } else {
-      log("  no geo-locatable events in this batch — data/events.json unchanged");
-    }
+    log("");
+    log(`  wrote data/live/news.json — ${ingest.items.length} items from ${ingest.sourcesOk}/${ingest.sourcesTotal} sources`);
   } else if (!DRY) {
-    messages.push("news: no items ingested; keeping previous data");
+    messages.push("ingest: no items; keeping previous data");
     log("  no items ingested — previous data left in place");
+  }
+
+  if (!DRY && allEvents.length > 0) {
+    // Merge into the existing set so the map accumulates history rather than
+    // showing only the last fetch window. Newer rows win on id collision.
+    let existing: DevEvent[] = [];
+    try {
+      existing = JSON.parse(await readFile(join(ROOT, "data/events.json"), "utf8")) as DevEvent[];
+    } catch {
+      existing = [];
+    }
+    const byId = new Map(existing.map((e) => [e.id, e]));
+    let added = 0;
+    for (const e of allEvents) {
+      if (!byId.has(e.id)) added++;
+      byId.set(e.id, e);
+    }
+    // Keep two years; beyond that the map is history, not a tracker.
+    const cutoff = new Date(Date.now() - 730 * 86_400_000).toISOString().slice(0, 10);
+    const merged = [...byId.values()]
+      .filter((e) => e.date >= cutoff)
+      .sort((a, b) => b.date.localeCompare(a.date));
+    await writeFile(
+      join(ROOT, "data/events.json"),
+      JSON.stringify(merged, null, 2) + "\n",
+      "utf8",
+    );
+    eventsAdded = added;
+    log(`  wrote data/events.json — ${added} new, ${merged.length} total`);
+  } else if (!DRY) {
+    messages.push("ingest: no geo-locatable events this run; events.json unchanged");
+    log("  no locatable events this run — data/events.json unchanged");
   }
 
   /* ---------------- Run record ---------------- */
@@ -158,16 +170,22 @@ async function main() {
         const s = await pushSeries(wb.series);
         log(s.ok ? `  pushed ${wb.series.length} series to Postgres` : `  series push skipped: ${s.error}`);
       }
-      const n = await pushNews(news.items);
+      const n = await pushNews(ingest.items);
+      const ev = await pushEvents(allEvents);
       const r = await pushRun(run);
       if (!n.ok) log(`  news push skipped: ${n.error}`);
+      if (!ev.ok) log(`  events push skipped: ${ev.error}`);
       if (!r.ok) log(`  run push skipped: ${r.error}`);
-      if (n.ok && r.ok) log("  news and run log mirrored to Postgres");
+      if (n.ok && ev.ok && r.ok) log(`  mirrored to Postgres (${allEvents.length} events)`);
     }
   }
 
   log("");
-  log(`Status: ${run.status.toUpperCase()} · ${seriesUpdated} series updated · ${messages.length} message(s)`);
+  log(
+    `Status: ${run.status.toUpperCase()} · ${seriesUpdated} series updated · ` +
+      `${eventsAdded} new events · ${ingest.articlesFetched} article bodies read · ` +
+      `${messages.length} message(s)`,
+  );
 
   // A partial run is not a build failure — stale-but-valid data still serves.
   // Only a total connector failure exits non-zero.

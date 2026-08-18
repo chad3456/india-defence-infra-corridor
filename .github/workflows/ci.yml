@@ -29,8 +29,8 @@ jobs:
       - name: Schema tests
         run: npm run test:schema
 
-      - name: News parser tests
-        run: npm run test:news
+      - name: Ingest tests
+        run: npm run test:ingest
 
       # supabase/seed.sql is committed so it can be pasted straight into the
       # SQL editor. This fails if it has drifted from the JSON it is built from.
