@@ -77,10 +77,25 @@ export const EVENT_RULES: Array<{ category: EventCategory; re: RegExp }> = [
 export const ACTION_RE =
   /\b(inaugurat\w*|foundation stone|commission(ed|ing|s)?|approv(e|ed|es|al)|clear(ed|s|ance)|sanction(ed|s)?|launch(ed|es|ing)?|open(ed|s|ing)?|complet(ed|es|ion)|award(ed|s)?|order(ed|s)?|contract|sign(ed|s)?|test-fir\w*|test(ed|s)?|induct(ed|s|ion)?|deliver(ed|s|y)?|invest(ed|ment|ments|s|ing)?|expand(ed|s|ing|sion)?|set up|begin(s|ning)?|began|start(ed|s)?|roll(ed)? out|unveil(ed|s)?|acquir(e|ed|es)|build(s|ing)?|built|construct(ed|ion)?|handed over|flag(ged|s)? off)\b/i;
 
-/** True when the text reports an action, not just a topic. */
+/**
+ * Incidents are news, but they are not development.
+ *
+ * "Fire breaks out in old ATC building of Kolkata Airport" cleared the sector
+ * rule (airport) and the action gate (the noun "building"), and became an
+ * infrastructure pin. A map of what India built should not mark the places
+ * where something went wrong.
+ */
+const INCIDENT_RE =
+  /\b(fire|blaze|crash(ed|es)?|accident|collision|derail\w*|collapse[ds]?|blast|explosion|killed|dead|death[s]?|injur\w*|arrest\w*|protest\w*|stampede|scam|fraud|probe|raid(ed|s)?|seiz\w*|strike|stir|outage|breach|leak(ed|age)?)\b/i;
+
+/** True when the text reports a development, not a topic or an incident. */
 export function reportsAction(text: string): boolean {
+  if (INCIDENT_RE.test(text)) return false;
   return ACTION_RE.test(text);
 }
+
+/** How much of the body counts as the lede, for both category and location. */
+const LEDE_CHARS = 600;
 
 /** Occurrences of a rule's pattern in a block of text. */
 function countMatches(re: RegExp, text: string): number {
@@ -101,14 +116,18 @@ function countMatches(re: RegExp, text: string): number {
 export function categorise(headline: string, body = ""): EventCategory | null {
   for (const rule of EVENT_RULES) if (rule.re.test(headline)) return rule.category;
   if (!body) return null;
+
+  // A body-derived category must clear two bars: mentioned at least twice
+  // overall, AND present in the lede. An article genuinely about a sector says
+  // so in its first paragraphs; one that mentions it only further down is
+  // referring to it, not reporting on it. A visa-services story became a
+  // defence pin on two late mentions alone.
+  const lede = body.slice(0, LEDE_CHARS);
   for (const rule of EVENT_RULES) {
-    if (countMatches(rule.re, body) >= 2) return rule.category;
+    if (countMatches(rule.re, body) >= 2 && rule.re.test(lede)) return rule.category;
   }
   return null;
 }
-
-/** How much of the body counts as the lede for location purposes. */
-const LEDE_CHARS = 600;
 
 /**
  * Locate an item, preferring the headline, then the lede.

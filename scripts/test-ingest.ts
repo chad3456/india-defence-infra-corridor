@@ -113,6 +113,22 @@ check(
   !reportsAction("States turn to solar subsidies to offset losses"),
   "rejects: an analysis piece (was pinned as energy)",
 );
+check(
+  !reportsAction("Fire breaks out in old ATC building of Kolkata Airport, no injuries"),
+  "rejects: an incident — the noun 'building' had cleared the gate",
+);
+check(
+  !reportsAction("Two killed as under-construction bridge collapses"),
+  "rejects: an incident even when it names construction",
+);
+check(reportsAction("Nitin Gadkari to build 500 km of new highway in Bihar"), "still accepts: build as a verb");
+check(
+  categorise(
+    "VFS Global launches first Model SRO in Pune",
+    "The centre will streamline visa services. " + "x".repeat(700) + " The army was mentioned. The army again.",
+  ) === null,
+  "a category mentioned only past the lede is rejected (VFS Global was pinned as defence)",
+);
 
 console.log("");
 console.log("Geo-location");
