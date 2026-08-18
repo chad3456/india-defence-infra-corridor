@@ -19,7 +19,7 @@ export const EVENT_RULES: Array<{ category: EventCategory; re: RegExp }> = [
   },
   {
     category: "defence",
-    re: /\b(drdo|brahmos|tejas|agni-[iv]|akash missile|missile|test-fire[d]?|indian army|indian navy|indian air force|armed forces|warship|submarine|frigate|destroyer|corvette|defence|defense|ordnance|hindustan aeronautics|bharat dynamics|bharat electronics|mazagon dock|cochin shipyard|garden reach|rafale|sukhoi|artillery|howitzer|radar|border roads|\bbro\b|shipbuilding)\b/i,
+    re: /\b(drdo|brahmos|tejas|agni-[iv]|akash missile|missile|test-fire[d]?|indian army|indian navy|indian air force|armed forces|warship|submarine|frigate|destroyer|corvette|ordnance|hindustan aeronautics|bharat dynamics|bharat electronics|mazagon dock|cochin shipyard|garden reach|rafale|sukhoi|artillery|howitzer|border roads|shipbuilding|defen[cs]e (ministry|sector|production|export|exports|deal|order|orders|corridor|budget|forces|procurement|acquisition|contract))\b/i,
   },
   {
     category: "trade-deals",
@@ -85,12 +85,22 @@ export const ACTION_RE =
  * infrastructure pin. A map of what India built should not mark the places
  * where something went wrong.
  */
+/**
+ * Court and tribunal proceedings are news about a sector, not development in
+ * it. "SC dismisses Karnataka discoms' plea over Adani Power" cleared the
+ * energy rule and the action gate and became an energy pin; a High Court
+ * judgment did the same under defence. A ruling is not a thing built.
+ */
+const LEGAL_RE =
+  /\b(supreme court|high court|\bsc\b (dismiss|uphold|quash|stay|rule)\w*|tribunal|\bnclt\b|\bnclat\b|bench|plea|petition|verdict|judgment|judgement|ruling|dismiss(es|ed)|uphold(s|ing)?|upheld|quash(es|ed)?|litigation|lawsuit|appeal(s|ed)?)\b/i;
+
 const INCIDENT_RE =
   /\b(fire|blaze|crash(ed|es)?|accident|collision|derail\w*|collapse[ds]?|blast|explosion|killed|dead|death[s]?|injur\w*|arrest\w*|protest\w*|stampede|scam|fraud|probe|raid(ed|s)?|seiz\w*|strike|stir|outage|breach|leak(ed|age)?)\b/i;
 
 /** True when the text reports a development, not a topic or an incident. */
 export function reportsAction(text: string): boolean {
   if (INCIDENT_RE.test(text)) return false;
+  if (LEGAL_RE.test(text)) return false;
   return ACTION_RE.test(text);
 }
 

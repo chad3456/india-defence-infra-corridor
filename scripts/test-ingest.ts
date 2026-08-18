@@ -125,6 +125,22 @@ check(
 );
 check(reportsAction("Nitin Gadkari to build 500 km of new highway in Bihar"), "still accepts: build as a verb");
 check(
+  !reportsAction("SC dismisses Karnataka discoms' plea over Adani Power tariff"),
+  "rejects: a court ruling on a power dispute (was pinned as energy)",
+);
+check(
+  !reportsAction("NCLT approves resolution plan for steel maker"),
+  "rejects: a tribunal order even though it says approves",
+);
+check(
+  categorise("The Mines and Minerals Amendment Bill clears Parliament, defence use cited") !== "defence",
+  "a passing mention of defence does not outrank the actual sector",
+);
+check(
+  categorise("Defence ministry signs Rs 2,000 crore order for artillery") === "defence",
+  "defence in context still classifies as defence",
+);
+check(
   categorise(
     "VFS Global launches first Model SRO in Pune",
     "The centre will streamline visa services. " + "x".repeat(700) + " The army was mentioned. The army again.",
