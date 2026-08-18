@@ -63,20 +63,48 @@ export const EVENT_RULES: Array<{ category: EventCategory; re: RegExp }> = [
   },
 ];
 
-export function categorise(text: string): EventCategory | null {
-  for (const rule of EVENT_RULES) if (rule.re.test(text)) return rule.category;
-  return null;
+/** Occurrences of a rule's pattern in a block of text. */
+function countMatches(re: RegExp, text: string): number {
+  const global = new RegExp(re.source, re.flags.includes("g") ? re.flags : re.flags + "g");
+  return (text.match(global) ?? []).length;
 }
 
 /**
- * Locate an item, preferring the headline over the body.
+ * Categorise, treating the headline as authoritative and the body as evidence
+ * that needs corroborating.
  *
- * Body text mentions many places incidentally — an analyst quoted from Mumbai,
- * a comparison with Chennai. The headline names the place the story is about,
- * so it is tried first and the body is only a fallback.
+ * A single body mention is not enough. A story about the PM CARES fund was
+ * filed under defence because its body mentioned DRDO once in passing — the
+ * body of a long article touches many sectors, and one keyword says nothing
+ * about what the article is *about*. Requiring two occurrences discriminates
+ * between a subject and an aside.
  */
-export function locate(title: string, body: string): Place | null {
-  return detectPlace(title) ?? detectPlace(body);
+export function categorise(headline: string, body = ""): EventCategory | null {
+  for (const rule of EVENT_RULES) if (rule.re.test(headline)) return rule.category;
+  if (!body) return null;
+  for (const rule of EVENT_RULES) {
+    if (countMatches(rule.re, body) >= 2) return rule.category;
+  }
+  return null;
+}
+
+/** How much of the body counts as the lede for location purposes. */
+const LEDE_CHARS = 600;
+
+/**
+ * Locate an item, preferring the headline, then the lede.
+ *
+ * Later paragraphs name places incidentally — an analyst quoted from Mumbai, a
+ * comparison with Chennai, a company's registered office. News writing puts the
+ * where in the first paragraph or two, so only the lede is trusted as a
+ * fallback. Reading the whole body pinned a national story about the PM CARES
+ * fund to Tamil Nadu.
+ */
+export function locate(title: string, body = ""): Place | null {
+  const fromTitle = detectPlace(title);
+  if (fromTitle) return fromTitle;
+  if (!body) return null;
+  return detectPlace(body.slice(0, LEDE_CHARS));
 }
 
 /** Stable id from a URL, so re-ingesting the same article updates rather than duplicates. */

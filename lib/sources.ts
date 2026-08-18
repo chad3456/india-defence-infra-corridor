@@ -69,6 +69,9 @@ export const OFFICIAL_SOURCES: FeedSource[] = [
     name: "ISRO",
     feed: "https://www.isro.gov.in/rss.xml",
     kind: "official",
+    // 404 as of the first live run; ISRO publishes no stable feed at this path.
+    // PIB Space (Regid 58) carries the same announcements, so nothing is lost.
+    disabled: true,
   },
   {
     id: "mea",

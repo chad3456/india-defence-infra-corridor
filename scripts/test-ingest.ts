@@ -74,6 +74,22 @@ check(
   "ordered rules: airport expressway is roads-airports, not infrastructure",
 );
 
+// Regressions from the first live run.
+check(
+  categorise(
+    "PM CARES swells to Rs 8,452 crore, 93% of funds in FDs",
+    "The fund disbursed money for oxygen plants. DRDO was among the agencies involved in one project.",
+  ) === null,
+  "a single incidental body mention does not set a category (PM CARES was filed under defence)",
+);
+check(
+  categorise(
+    "Cabinet clears new proposals",
+    "The missile test was conducted successfully. A second missile test follows next month.",
+  ) === "defence",
+  "two body mentions do set a category",
+);
+
 console.log("");
 console.log("Geo-location");
 check(locate("Semiconductor plant approved at Sanand", "")?.state === "Gujarat", "city in the headline");
@@ -87,6 +103,13 @@ check(
   "headline wins over an incidental mention in the body",
 );
 check(locate("Exports rose sharply last quarter", "") === null, "returns null rather than guessing");
+check(
+  locate(
+    "PM CARES swells to Rs 8,452 crore",
+    "The fund was set up in 2020 to handle emergencies. " + "x".repeat(700) + " A hospital in Chennai received support.",
+  ) === null,
+  "a place named past the lede is ignored (PM CARES was pinned to Tamil Nadu)",
+);
 check(locate("New plant in Greater Noida announced", "")?.name === "Noida", "matches multi-word aliases");
 
 console.log("");

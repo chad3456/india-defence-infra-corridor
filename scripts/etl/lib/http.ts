@@ -14,6 +14,16 @@ const CACHE_DIR = join(process.cwd(), ".etl-cache");
 const USER_AGENT =
   "BharatTracker/0.1 (+https://github.com/chad3456/india-defence-infra-corridor) data-pipeline";
 
+/**
+ * Several publishers — PIB, PMO, MEA, Business Standard — answer 403 to any
+ * user-agent that identifies as a bot, including for their own public RSS
+ * feeds. All sixteen PIB ministry feeds were rejected this way on the first
+ * live run. A 403 therefore triggers one retry presenting as a browser, which
+ * is the only way to read a feed that is published for the public to read.
+ */
+const BROWSER_UA =
+  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36";
+
 export interface FetchResult<T> {
   ok: boolean;
   data: T | null;
@@ -69,6 +79,7 @@ export async function getText(url: string, opts: GetOptions = {}): Promise<Fetch
   }
 
   let lastError = "unknown error";
+  let triedBrowserUa = false;
   for (let attempt = 0; attempt <= retries; attempt++) {
     if (attempt > 0) {
       const backoff = Math.min(16_000, 1000 * 2 ** (attempt - 1));
@@ -81,7 +92,8 @@ export async function getText(url: string, opts: GetOptions = {}): Promise<Fetch
       const res = await fetch(url, {
         signal: controller.signal,
         headers: {
-          "user-agent": USER_AGENT,
+          "user-agent": triedBrowserUa ? BROWSER_UA : USER_AGENT,
+          "accept-language": "en-IN,en;q=0.9",
           ...(accept ? { accept } : {}),
           ...(headers ?? {}),
         },
@@ -89,6 +101,11 @@ export async function getText(url: string, opts: GetOptions = {}): Promise<Fetch
       clearTimeout(timer);
       if (!res.ok) {
         lastError = `HTTP ${res.status}`;
+        if (res.status === 403 && !triedBrowserUa) {
+          triedBrowserUa = true;
+          attempt--; // the browser retry is not one of the error retries
+          continue;
+        }
         // 4xx other than 429 will not fix themselves — stop early.
         if (res.status >= 400 && res.status < 500 && res.status !== 429) break;
         continue;

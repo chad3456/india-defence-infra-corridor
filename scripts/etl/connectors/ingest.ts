@@ -88,10 +88,15 @@ export async function runIngest(
       log(`  ${source.name.padEnd(34)} FAILED (${res.error})`);
       continue;
     }
-    const parsed = parseFeed(res.data);
+    // A 200 that is not XML is usually an interstitial or a consent wall, not
+    // an empty feed. Saying which one it is makes the difference between "this
+    // publisher has no news" and "this publisher is blocking us".
+    const looksLikeFeed = /<(rss|feed|rdf:RDF)\b/i.test(res.data.slice(0, 2000));
+    const parsed = looksLikeFeed ? parseFeed(res.data) : [];
     if (parsed.length === 0) {
-      errors.push(`${source.name}: feed parsed to zero items`);
-      log(`  ${source.name.padEnd(34)} 0 items (parsed empty)`);
+      const why = looksLikeFeed ? "feed had no items" : "response was not a feed (blocked or interstitial)";
+      errors.push(`${source.name}: ${why}`);
+      log(`  ${source.name.padEnd(34)} 0 items — ${why}`);
       continue;
     }
     sourcesOk++;
@@ -164,7 +169,7 @@ export async function runIngest(
       articlesFetched++;
       if (art.ok) {
         body = art.text;
-        category ??= categorise(body);
+        category ??= categorise(s.title, body);
         place ??= locate(s.title, body);
       }
     }
