@@ -91,9 +91,11 @@ jobs:
         env:
           PGCONNECT_TIMEOUT: "30"
         run: |
+          # Regenerate and verify it matches the committed file, so what runs
+          # here is exactly what supabase/seed.sql says it is.
           npx tsx scripts/db/seed-sql.ts > /tmp/seed.sql
-          echo "generated $(wc -l < /tmp/seed.sql) statements"
-          psql "${{ secrets.SUPABASE_DB_URL }}" --set ON_ERROR_STOP=1 -f /tmp/seed.sql
+          diff -q supabase/seed.sql /tmp/seed.sql
+          psql "${{ secrets.SUPABASE_DB_URL }}" --set ON_ERROR_STOP=1 -f supabase/seed.sql
 
       - name: Report row counts
         if: steps.creds.outputs.has_db == 'true'

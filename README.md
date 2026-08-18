@@ -50,20 +50,34 @@ Supabase project shared with other projects. `drop schema bharat_tracker cascade
 this project completely and touches nothing else. The schema tests assert the isolation
 (`npm run test:schema`).
 
-**One secret provisions everything.** Add `SUPABASE_DB_URL` under
-**Settings → Secrets and variables → Actions**, then run the **Provision database** workflow
-(Actions tab → Provision database → Run workflow). It applies the schema, seeds every table
-from the committed JSON, and prints the row counts in the run summary.
+### Getting data into the schema
 
-`SUPABASE_DB_URL` is Supabase → **Settings → Database → Connection string (URI)** — remember
-to substitute your real password for `[YOUR-PASSWORD]`. If you connected Supabase through the
-Vercel integration, `POSTGRES_URL_NON_POOLING` is the same thing.
+Two ways. Both are idempotent and produce the same result: **41 sources, 114 series,
+1,742 data points, 434 peer values, 20 events.**
+
+**A. Paste the SQL** (no setup at all). Open [`supabase/seed.sql`](supabase/seed.sql), copy it,
+paste into the Supabase **SQL Editor**, run. Apply
+[`supabase/migrations/0001_init.sql`](supabase/migrations/0001_init.sql) first if the schema
+does not exist yet.
+
+**B. One secret, then a button.** Add `SUPABASE_DB_URL` under
+**Settings → Secrets and variables → Actions**, then **Actions → Provision database → Run
+workflow**. It applies the schema, seeds it, and prints the row counts in the run summary.
+
+`SUPABASE_DB_URL` is Supabase → **Settings → Database → Connection string (URI)**, with your
+real password substituted for `[YOUR-PASSWORD]`. If Supabase was connected through the Vercel
+integration, `POSTGRES_URL_NON_POOLING` is the same value.
 
 Seeding runs over plain Postgres rather than the REST API, so it needs nothing else and does
 not depend on the schema being exposed to PostgREST first.
 
-Optional extras, only if you want the app to *read* from Postgres rather than the committed
-JSON (the news tracker and the map then refresh without a redeploy):
+`supabase/seed.sql` is committed so it can be read and pasted, and CI fails if it drifts from
+the JSON it is generated from (`npm run db:seed-check`).
+
+### Optional: let the app read from Postgres
+
+Without these the site renders from the committed JSON, which is complete. With them, the news
+tracker and the events map refresh without a redeploy.
 
 | Secret / env var | Where to find it |
 |---|---|
@@ -71,10 +85,9 @@ JSON (the news tracker and the map then refresh without a redeploy):
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Settings → API → anon / publishable key |
 | `SUPABASE_SERVICE_ROLE_KEY` | Settings → API → service role key — repo secret only, never the browser |
 
-Set those in **Vercel → Settings → Environment Variables** for the app, and as repository
+Set them in **Vercel → Settings → Environment Variables** for the app, and as repository
 secrets for the scheduled pipeline. The Vercel Supabase integration injects `SUPABASE_URL` /
-`SUPABASE_ANON_KEY` automatically and the app reads either naming, so you may not need to add
-them by hand there.
+`SUPABASE_ANON_KEY` automatically and the app reads either naming.
 
 Reading over the API also needs `bharat_tracker` in **Settings → API → Exposed schemas**. The
 migration tries to add it itself and warns if it lacks the rights.

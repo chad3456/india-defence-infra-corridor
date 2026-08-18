@@ -32,6 +32,11 @@ jobs:
       - name: News parser tests
         run: npm run test:news
 
+      # supabase/seed.sql is committed so it can be pasted straight into the
+      # SQL editor. This fails if it has drifted from the JSON it is built from.
+      - name: Seed file is in sync with the data
+        run: npm run db:seed-check
+
       - name: Typecheck
         run: npm run typecheck
 

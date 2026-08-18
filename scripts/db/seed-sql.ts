@@ -93,24 +93,37 @@ async function main() {
 
   // Points and peers are replaced wholesale: upstream revisions delete and
   // renumber periods, so merging would leave stale rows behind.
+  // Batched multi-row INSERTs rather than one statement per row: ~1,700 points
+  // as individual statements is half a megabyte of SQL, which is awkward to
+  // paste into a SQL editor and slow to execute one round-trip at a time.
+  function batched(table: string, columns: string, rows: string[], size = 250) {
+    for (let i = 0; i < rows.length; i += size) {
+      const chunk = rows.slice(i, i + size);
+      w(`INSERT INTO ${table} (${columns}) VALUES`);
+      w(chunk.map((r, j) => `  ${r}${j === chunk.length - 1 ? ";" : ","}`).join("\n"));
+    }
+  }
+
   w("-- Data points ---------------------------------------------------------");
   w("DELETE FROM bharat_tracker.data_points;");
   w("DELETE FROM bharat_tracker.series_peers;");
+
+  const pointRows: string[] = [];
+  const peerRows: string[] = [];
   for (const s of series) {
     s.points.forEach((p, i) => {
-      w(
-        `INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES (` +
-          `${q(s.id)},${q(p.period)},${n(p.value)},${q(p.sourceId)},${p.revised ? "true" : "false"},` +
-          `${q(p.note)},${i});`,
+      pointRows.push(
+        `(${q(s.id)},${q(p.period)},${n(p.value)},${q(p.sourceId)},${p.revised ? "true" : "false"},${q(p.note)},${i})`,
       );
     });
     for (const p of s.peers ?? []) {
-      w(
-        `INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES (` +
-          `${q(s.id)},${q(p.iso3)},${q(p.country)},${n(p.value)},${q(p.period)},${q(p.sourceId)});`,
+      peerRows.push(
+        `(${q(s.id)},${q(p.iso3)},${q(p.country)},${n(p.value)},${q(p.period)},${q(p.sourceId)})`,
       );
     }
   }
+  batched("bharat_tracker.data_points", "series_id,period,value,source_id,revised,note,ordinal", pointRows);
+  batched("bharat_tracker.series_peers", "series_id,iso3,country,value,period,source_id", peerRows);
   w("");
 
   w("-- Development events --------------------------------------------------");
