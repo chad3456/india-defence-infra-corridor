@@ -19,7 +19,7 @@ export const EVENT_RULES: Array<{ category: EventCategory; re: RegExp }> = [
   },
   {
     category: "defence",
-    re: /\b(drdo|brahmos|tejas|agni-[iv]|akash missile|missile test|test-fire[d]?|indian army|indian navy|indian air force|warship|submarine|frigate|destroyer|corvette|defence ministry|ministry of defence|defence acquisition|defence corridor|ordnance|hindustan aeronautics|bharat dynamics|bharat electronics|mazagon dock|cochin shipyard|garden reach|rafale|sukhoi|artillery|howitzer)\b/i,
+    re: /\b(drdo|brahmos|tejas|agni-[iv]|akash missile|missile|test-fire[d]?|indian army|indian navy|indian air force|armed forces|warship|submarine|frigate|destroyer|corvette|defence|defense|ordnance|hindustan aeronautics|bharat dynamics|bharat electronics|mazagon dock|cochin shipyard|garden reach|rafale|sukhoi|artillery|howitzer|radar|border roads|\bbro\b|shipbuilding)\b/i,
   },
   {
     category: "trade-deals",
@@ -35,19 +35,19 @@ export const EVENT_RULES: Array<{ category: EventCategory; re: RegExp }> = [
   },
   {
     category: "ports",
-    re: /\b(port|harbour|container terminal|transshipment|shipyard|jnpa|jnpt|cargo terminal|berth|dredging|sagarmala)\b/i,
+    re: /\b(port|harbour|container terminal|transshipment|shipyard|jnpa|jnpt|cargo terminal|berth|dredging|sagarmala|waterway|maritime|\bexim\b)\b/i,
   },
   {
     category: "roads-airports",
-    re: /\b(highway|expressway|airport|terminal building|runway|\bnhai\b|road project|flyover|\budan\b|greenfield airport|ring road|corridor road|bharatmala)\b/i,
+    re: /\b(highway|expressway|airport|terminal building|runway|\bnhai\b|road project|roads? project|flyover|\budan\b|greenfield airport|ring road|bharatmala|\bnh-?\d+|bypass|elevated corridor|toll road)\b/i,
   },
   {
     category: "energy",
-    re: /\b(solar|wind power|renewable|nuclear (plant|reactor|power)|power plant|transmission line|green hydrogen|electricity grid|battery storage|thermal plant|\bmw\b solar|\bgw\b|hydro(electric| power)?)\b/i,
+    re: /\b(solar|wind (power|energy|farm)|renewable|nuclear (plant|reactor|power)|power (plant|project|capacity)|transmission line|green hydrogen|electricity|grid|battery storage|thermal (plant|power)|\d+\s?(mw|gw)\b|hydro(electric| power)?|coal (block|mine)|electrification|power purchase)\b/i,
   },
   {
     category: "startups",
-    re: /\b(startup|start-up|unicorn|series [a-e] (funding|round)|seed round|venture capital|raises \$|raised \$|funding round|pre-ipo)\b/i,
+    re: /\b(startup|start-up|unicorn|series [a-e] (funding|round)|seed (round|funding)|venture capital|rais(es|ed) (\$|rs|₹)|funding round|pre-ipo|incubator|accelerator)\b/i,
   },
   {
     category: "psu-msme",
@@ -55,11 +55,11 @@ export const EVENT_RULES: Array<{ category: EventCategory; re: RegExp }> = [
   },
   {
     category: "manufacturing",
-    re: /\b(factory|manufacturing (plant|unit|facility)|semiconductor|chip (fab|plant)|assembly line|production line|\bpli\b|make in india|new plant|foundry|industrial park|gigafactory)\b/i,
+    re: /\b(factory|manufactur\w*|semiconductor|chip (fab|plant)|assembly line|production (line|unit|facility|capacity)|\bpli\b|make in india|plant|foundry|industrial (park|estate|corridor)|gigafactory|greenfield (unit|facility|project)|brownfield|fabrication)\b/i,
   },
   {
     category: "infrastructure",
-    re: /\b(metro (rail|line|project)|railway|bullet train|smart city|water (project|supply)|\bdam\b|bridge |urban development|infrastructure project|\brrts\b|vande bharat)\b/i,
+    re: /\b(metro (rail|line|project)|railway|rail (line|project|corridor)|bullet train|smart city|water (project|supply|treatment)|\bdam\b|bridge|urban development|infrastructure|\brrts\b|vande bharat|tunnel|irrigation|canal|township|sewage|logistics park|freight corridor)\b/i,
   },
 ];
 

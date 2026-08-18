@@ -44,9 +44,24 @@ export function similarity(a: Set<string>, b: Set<string>): number {
   return shared / Math.min(a.size, b.size);
 }
 
+/** Count of tokens present in both sets. */
+export function sharedTokens(a: Set<string>, b: Set<string>): number {
+  let n = 0;
+  for (const t of a) if (b.has(t)) n++;
+  return n;
+}
+
 // Only ever applied to events already sharing a place and a date, so this can
 // be looser than it would need to be on its own.
 const SAME_STORY = 0.5;
+
+/**
+ * Ratio alone is unsafe on short titles: two unrelated three-word headlines
+ * from the same city on the same day can share one generic word and clear 0.5.
+ * Requiring three shared meaningful words as well means a collapse is always
+ * backed by real overlap, not by arithmetic on a small set.
+ */
+const MIN_SHARED_TOKENS = 3;
 
 /**
  * Collapse near-duplicates, preferring the most authoritative report.
@@ -68,7 +83,8 @@ export function dedupeEvents(events: DevEvent[]): DevEvent[] {
       (k) =>
         k.event.placeId === e.placeId &&
         k.event.date === e.date &&
-        similarity(k.tokens, tokens) >= SAME_STORY,
+        similarity(k.tokens, tokens) >= SAME_STORY &&
+        sharedTokens(k.tokens, tokens) >= MIN_SHARED_TOKENS,
     );
     if (!dup) kept.push({ event: e, tokens });
   }
