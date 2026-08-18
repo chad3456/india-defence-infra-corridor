@@ -152,7 +152,12 @@ check(
   ) === null,
   "a place named past the lede is ignored (PM CARES was pinned to Tamil Nadu)",
 );
-check(locate("New plant in Greater Noida announced", "")?.name === "Noida", "matches multi-word aliases");
+check(
+  locate("New plant in Greater Noida announced", "")?.name === "Greater Noida",
+  "longest name wins: Greater Noida is not collapsed into Noida",
+);
+check(locate("Metro line opens in Bangalore", "")?.name === "Bengaluru", "resolves an alias to its canonical name");
+check(locate("New unit coming up in Gujarat", "")?.state === "Gujarat", "falls back to a state when no city is named");
 
 console.log("");
 console.log("Duplicate collapsing");

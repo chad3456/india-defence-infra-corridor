@@ -78,6 +78,12 @@ async function main() {
   connectorsRun++;
   const ingest = await runIngest({ dryRun: DRY, onProgress: log });
   for (const e of ingest.errors) messages.push(`ingest: ${e}`);
+  const f = ingest.funnel;
+  messages.push(
+    `ingest funnel: ${f.itemsSeen} items -> ${f.candidates} candidates -> ` +
+      `${f.events} events (lost: ${f.noCategory} no sector, ${f.notAnAction} not an action, ` +
+      `${f.noPlace} no place)`,
+  );
   if (ingest.sourcesOk === 0 && !DRY) connectorsFailed++;
 
   /* ---------------- X / official handles ---------------- */

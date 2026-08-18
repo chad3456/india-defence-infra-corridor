@@ -1,17 +1,24 @@
 /**
  * X (Twitter) connector — official handles.
  *
- * X has no free read tier: the v2 API's free plan is write-only, and reading
- * timelines needs Basic ($200/month at the time of writing) or above. Scraping
- * the site instead would need an authenticated session and would breach the
- * terms of service.
+ * READING X COSTS MONEY, PER POST. As of February 2026 X bills pay-per-use at
+ * roughly $0.005 per post read; the free tier is closed to new developers and
+ * the old $200/month Basic tier is closed to new signups. Scraping instead
+ * would need an authenticated session and would breach the terms of service.
  *
- * So this connector is token-gated. With `X_BEARER_TOKEN` set it pulls the
- * recent posts of the handles in `sources.ts` and turns the ones that name a
- * sector and a place into map events. Without it, it reports that it is
- * inactive and the pipeline carries on — the official PIB, PMO and ministry
- * feeds carry the same announcements, from the source those handles are
- * quoting.
+ * So this connector is token-gated AND budgeted. Left at its defaults it reads
+ * a few hundred posts a day, not a few hundred thousand:
+ *
+ *   - `X_MAX_POSTS_PER_HANDLE` (default 10) caps posts per handle per fetch.
+ *   - Timelines are cached for 20 hours, so the connector effectively runs once
+ *     a day even though the pipeline runs every six. Without this the same
+ *     posts would be re-billed four times over.
+ *   - Every run logs the reads it made and what they cost, so the bill is
+ *     visible in the run log rather than at the end of the month.
+ *
+ * Without a token it reports itself inactive and the pipeline carries on. The
+ * PIB, PMO and ministry feeds carry the same announcements, from the source
+ * those handles are quoting, for nothing.
  *
  * No post text is ever committed to the repository. Handles are configuration;
  * content is fetched at run time like every other feed.
@@ -40,9 +47,23 @@ export interface XResult {
   errors: string[];
   active: boolean;
   handlesOk: number;
+  /** Posts actually read from the API this run — what you are billed for. */
+  postsRead: number;
+  /** Estimated cost of this run, in US dollars. */
+  estimatedCostUsd: number;
   /** Reason the connector did nothing, when inactive. */
   reason?: string;
 }
+
+/** X pay-per-use rate for a post read, February 2026. */
+const USD_PER_POST_READ = 0.005;
+
+/**
+ * Timelines are cached for 20 hours rather than the pipeline's 6-hour cadence.
+ * A cached response costs nothing; without this the same posts are re-billed on
+ * every run of the day.
+ */
+const TIMELINE_CACHE_MS = 20 * 60 * 60 * 1000;
 
 function authHeaders(token: string) {
   return { authorization: `Bearer ${token}` };
@@ -56,20 +77,36 @@ export async function runX(
 
   if (!token) {
     const reason =
-      "X_BEARER_TOKEN not set — the X API has no free read tier, so this connector is inactive. " +
-      "Official announcements still arrive via the PIB, PMO and ministry feeds.";
+      "X_BEARER_TOKEN not set — reading X is paid per post since February 2026, so this " +
+      "connector is inactive. Official announcements still arrive via the PIB, PMO and " +
+      "ministry feeds at no cost.";
     log(`  inactive: ${reason}`);
-    return { events: [], errors: [], active: false, handlesOk: 0, reason };
+    return {
+      events: [],
+      errors: [],
+      active: false,
+      handlesOk: 0,
+      postsRead: 0,
+      estimatedCostUsd: 0,
+      reason,
+    };
   }
 
+  const maxPerHandle = Math.max(5, Math.min(100, Number(process.env.X_MAX_POSTS_PER_HANDLE ?? 10)));
+
   if (opts.dryRun) {
-    log(`[dry-run] would read ${X_HANDLES.length} handles via the X API`);
-    return { events: [], errors: [], active: true, handlesOk: 0 };
+    const worstCase = X_HANDLES.length * maxPerHandle;
+    log(
+      `[dry-run] would read up to ${worstCase} posts across ${X_HANDLES.length} handles ` +
+        `(~$${(worstCase * USD_PER_POST_READ).toFixed(2)} at $${USD_PER_POST_READ}/read)`,
+    );
+    return { events: [], errors: [], active: true, handlesOk: 0, postsRead: 0, estimatedCostUsd: 0 };
   }
 
   const errors: string[] = [];
   const events: DevEvent[] = [];
   let handlesOk = 0;
+  let postsRead = 0;
 
   // Resolve usernames to ids in one call — the API takes up to 100 at a time,
   // and this is far cheaper against the rate limit than one lookup per handle.
@@ -82,7 +119,15 @@ export async function runX(
   if (!userRes.ok || !userRes.data?.data) {
     const reason = `handle lookup failed: ${userRes.error ?? "no data"}`;
     log(`  ${reason}`);
-    return { events: [], errors: [reason], active: true, handlesOk: 0, reason };
+    return {
+      events: [],
+      errors: [reason],
+      active: true,
+      handlesOk: 0,
+      postsRead: 0,
+      estimatedCostUsd: 0,
+      reason,
+    };
   }
 
   const byUsername = new Map(userRes.data.data.map((u) => [u.username.toLowerCase(), u]));
@@ -95,8 +140,9 @@ export async function runX(
     }
 
     const res = await getJson<{ data?: XTweet[] }>(
-      `${API}/users/${user.id}/tweets?max_results=50&tweet.fields=created_at&exclude=retweets,replies`,
-      { headers: authHeaders(token), cacheMs: 30 * 60 * 1000, retries: 2 },
+      `${API}/users/${user.id}/tweets?max_results=${maxPerHandle}` +
+        `&tweet.fields=created_at&exclude=retweets,replies`,
+      { headers: authHeaders(token), cacheMs: TIMELINE_CACHE_MS, retries: 2 },
     );
 
     if (!res.ok) {
@@ -108,6 +154,8 @@ export async function runX(
     handlesOk++;
 
     const tweets = res.data?.data ?? [];
+    // Only a live fetch is billed; a cache hit costs nothing.
+    if (!res.fromCache) postsRead += tweets.length;
     let placed = 0;
     for (const t of tweets) {
       const category = categorise(t.text);
@@ -140,5 +188,11 @@ export async function runX(
     log(`  ${handle.handle.padEnd(22)} ${tweets.length} posts, ${placed} located`);
   }
 
-  return { events, errors, active: true, handlesOk };
+  const estimatedCostUsd = postsRead * USD_PER_POST_READ;
+  log(
+    `  ${postsRead} posts read this run (~$${estimatedCostUsd.toFixed(3)}), ` +
+      `${events.length} became events`,
+  );
+
+  return { events, errors, active: true, handlesOk, postsRead, estimatedCostUsd };
 }

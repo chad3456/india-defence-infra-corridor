@@ -21,7 +21,8 @@
     "test:schema": "node scripts/test-schema.mjs",
     "db:seed-sql": "tsx scripts/db/seed-sql.ts > supabase/seed.sql",
     "db:seed-check": "tsx scripts/db/seed-sql.ts > /tmp/seed.check.sql && diff -q supabase/seed.sql /tmp/seed.check.sql",
-    "test:ingest": "tsx scripts/test-ingest.ts"
+    "test:ingest": "tsx scripts/test-ingest.ts",
+    "geo:build": "tsx scripts/geo/build-gazetteer.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",

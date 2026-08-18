@@ -52,6 +52,19 @@ export interface IngestResult {
   articlesFetched: number;
   /** Items that matched a sector but could not be placed — reported, not hidden. */
   unplaceable: number;
+  /**
+   * Where candidates were lost, so a low yield can be diagnosed from the run
+   * log instead of guessed at. A drop concentrated in one stage is a rule to
+   * fix; a drop spread evenly is just the world being uneventful.
+   */
+  funnel: {
+    itemsSeen: number;
+    candidates: number;
+    noCategory: number;
+    notAnAction: number;
+    noPlace: number;
+    events: number;
+  };
 }
 
 interface Staged extends RawItem {
@@ -113,6 +126,7 @@ export async function runIngest(
       sourcesTotal: ALL_SOURCES.length,
       articlesFetched: 0,
       unplaceable: 0,
+      funnel: { itemsSeen: 0, candidates: 0, noCategory: 0, notAnAction: 0, noPlace: 0, events: 0 },
     };
   }
 
@@ -155,6 +169,7 @@ export async function runIngest(
   let articlesFetched = 0;
   let unplaceable = 0;
   let notAnAction = 0;
+  let noCategory = 0;
 
   for (const s of candidates) {
     const headlineText = `${s.title} ${s.summary ?? ""}`;
@@ -175,7 +190,10 @@ export async function runIngest(
       }
     }
 
-    if (!category) continue;
+    if (!category) {
+      noCategory++;
+      continue;
+    }
 
     // A development is something that was done. Without a completed or
     // committed action in the headline or the lede, this is commentary,
@@ -209,6 +227,14 @@ export async function runIngest(
   }
 
   log(`  fetched ${articlesFetched} article bodies`);
+  log("");
+  log("  funnel:");
+  log(`    ${unique.length} unique items`);
+  log(`    ${candidates.length} looked like developments`);
+  log(`    -${noCategory} no sector matched`);
+  log(`    -${notAnAction} commentary or incident, not an action`);
+  log(`    -${unplaceable} had a sector but no place`);
+  log(`    =${events.length} events`);
   log(
     `  ${events.length} events located · ${notAnAction} were commentary not action · ` +
       `${unplaceable} matched a sector but had no place`,
@@ -222,5 +248,13 @@ export async function runIngest(
     sourcesTotal: ALL_SOURCES.length,
     articlesFetched,
     unplaceable,
+    funnel: {
+      itemsSeen: unique.length,
+      candidates: candidates.length,
+      noCategory,
+      notAnAction,
+      noPlace: unplaceable,
+      events: events.length,
+    },
   };
 }
