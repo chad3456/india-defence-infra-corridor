@@ -51,13 +51,33 @@ export async function runWorldBank(
       continue;
     }
 
-    const res = await getJson<WbResponse>(url);
+    let res = await getJson<WbResponse>(url);
+
+    // A handful of indicators return HTTP 400 for the full multi-country,
+    // date-bounded query while answering the unbounded one fine. Retry once
+    // without the date filter and trim the range here instead of dropping the
+    // indicator — three indicators were lost this way on the first live run.
+    if (!res.ok) {
+      const fallback =
+        `${BASE}/country/${COUNTRIES}/indicator/${ind.code}?format=json&per_page=20000`;
+      const retry = await getJson<WbResponse>(fallback, { cacheMs: 0 });
+      if (retry.ok) {
+        opts.onProgress?.(`  ${ind.code.padEnd(22)} recovered via unbounded query`);
+        res = retry;
+      }
+    }
+
     if (!res.ok || !res.data) {
       errors.push(`${ind.code}: ${res.error ?? "no data"}`);
       continue;
     }
 
-    const rows = Array.isArray(res.data) ? res.data[1] : null;
+    const all = Array.isArray(res.data) ? res.data[1] : null;
+    // The fallback returns the full history, so bound the range here.
+    const rows = all?.filter((r) => {
+      const y = Number(r.date);
+      return Number.isFinite(y) && y >= WDI_START_YEAR && y <= endYear;
+    });
     if (!rows || rows.length === 0) {
       errors.push(`${ind.code}: empty result set`);
       continue;
@@ -130,7 +150,7 @@ export async function runWorldBank(
       frequency: "annual",
       higherIsBetter: ind.higherIsBetter,
       points,
-      sourceIds: ["worldbank-wdi"],
+      sourceIds,
       provenance: "multilateral",
       confidence: "high",
       lastVerified: today,

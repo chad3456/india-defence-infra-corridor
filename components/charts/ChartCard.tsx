@@ -44,17 +44,55 @@ export default function ChartCard({
     );
   }
 
-  const inputs: SeriesInput[] = resolved.map((s) => ({
-    id: s.id,
-    label: s.title,
-    unitShort: s.unitShort,
-    data: applyTransform(s, spec.transform).map((d) => ({
-      period: d.period,
-      value: d.value,
-      note: d.note,
-      revised: d.revised,
-    })),
-  }));
+  /**
+   * A peer chart plots one value per country, not the time axis. Without this
+   * branch the comparison charts silently rendered the full time series with
+   * country context dropped — the same marks as the level chart beside them,
+   * under a heading promising a comparison.
+   */
+  const peerSeries = spec.peerView ? resolved[0] : undefined;
+  const peers = peerSeries?.peers ?? [];
+
+  if (spec.peerView && peers.length < 2) {
+    return (
+      <figure className="rounded-lg border bg-[var(--surface-1)] p-4">
+        <figcaption className="mb-1">
+          <h3 className="text-[13px] font-medium leading-snug">{spec.title}</h3>
+        </figcaption>
+        <div className="flex h-[180px] items-center justify-center rounded border border-dashed">
+          <span className="eyebrow">no comparator values available</span>
+        </div>
+      </figure>
+    );
+  }
+
+  const inputs: SeriesInput[] = spec.peerView
+    ? [
+        {
+          id: `${peerSeries!.id}-peers`,
+          label: peerSeries!.title,
+          unitShort: peerSeries!.unitShort,
+          // Largest first, so the reader sees the ranking without hunting.
+          data: [...peers]
+            .sort((a, b) => b.value - a.value)
+            .map((p) => ({
+              period: p.country,
+              value: p.value,
+              note: `${p.country}, ${p.period}`,
+            })),
+        },
+      ]
+    : resolved.map((s) => ({
+        id: s.id,
+        label: s.title,
+        unitShort: s.unitShort,
+        data: applyTransform(s, spec.transform).map((d) => ({
+          period: d.period,
+          value: d.value,
+          note: d.note,
+          revised: d.revised,
+        })),
+      }));
 
   const primary = resolved[0]!;
   const unitOverride = TRANSFORM_UNITS[spec.transform] ?? null;
@@ -87,8 +125,8 @@ export default function ChartCard({
         kind={spec.kind}
         series={inputs}
         height={compact ? 190 : 240}
-        unitOverride={unitOverride ?? primary.unitShort}
-        zeroLine={spec.transform === "yoy" || spec.transform === "delta"}
+        unitOverride={spec.peerView ? primary.unitShort : (unitOverride ?? primary.unitShort)}
+        zeroLine={!spec.peerView && (spec.transform === "yoy" || spec.transform === "delta")}
       />
 
       {spec.annotation && (

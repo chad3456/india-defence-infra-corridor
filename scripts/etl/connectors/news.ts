@@ -45,9 +45,21 @@ const TOPIC_RULES: Array<{ topic: string; re: RegExp }> = [
   { topic: "energy", re: /\b(solar|renewable|nuclear power|coal|electricity|grid|energy)\b/i },
 ];
 
+/**
+ * CDATA must be unwrapped BEFORE any tag stripping.
+ *
+ * `<[^>]*>` treats an entire `<![CDATA[ ... ]]>` block as one tag, because the
+ * first `>` in it is the one closing `]]>`. Stripping first therefore deletes
+ * the content instead of revealing it — which silently emptied every title in
+ * the WordPress-style feeds (ThePrint, Swarajya, OpIndia) and dropped every
+ * item on the first live pipeline run.
+ */
+function unwrapCdata(s: string): string {
+  return s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1");
+}
+
 function decodeEntities(s: string): string {
-  return s
-    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
+  return unwrapCdata(s)
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
@@ -55,12 +67,16 @@ function decodeEntities(s: string): string {
     .replace(/&apos;/g, "'")
     .replace(/&nbsp;/g, " ")
     .replace(/&#(\d+);/g, (_, d: string) => String.fromCodePoint(Number(d)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, h: string) => String.fromCodePoint(parseInt(h, 16)))
+    // &amp; last, so "&amp;lt;" does not decode twice into a real tag.
     .replace(/&amp;/g, "&")
     .trim();
 }
 
 function stripTags(s: string): string {
-  return decodeEntities(s.replace(/<[^>]*>/g, " ")).replace(/\s+/g, " ").trim();
+  return decodeEntities(unwrapCdata(s).replace(/<[^>]*>/g, " "))
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function pick(block: string, tags: string[]): string | null {
@@ -72,6 +88,10 @@ function pick(block: string, tags: string[]): string | null {
     if (self?.[1]) return self[1];
   }
   return null;
+}
+
+export function parseFeedForTest(xml: string, outlet: Outlet): NewsItem[] {
+  return parseFeed(xml, outlet);
 }
 
 function parseFeed(xml: string, outlet: Outlet): NewsItem[] {

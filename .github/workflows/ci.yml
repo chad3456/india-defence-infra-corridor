@@ -29,6 +29,9 @@ jobs:
       - name: Schema tests
         run: npm run test:schema
 
+      - name: News parser tests
+        run: npm run test:news
+
       - name: Typecheck
         run: npm run typecheck
 
