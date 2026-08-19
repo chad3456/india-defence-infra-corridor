@@ -39,6 +39,14 @@ export interface FeedSource {
   domains: EventCategory[];
   /** A keyword search across many publishers rather than one publisher's desk. */
   discovery?: boolean;
+  /**
+   * The newsroom this feed represents, when the URL does not say.
+   *
+   * Set on site-scoped searches: a search restricted to swarajyamag.com is
+   * Swarajya, and should count as Swarajya for sector coverage rather than as
+   * an anonymous search.
+   */
+  publisherHost?: string;
   /** Skipped when a feed is known to be down; keeps the URL and the reason. */
   disabled?: boolean;
   note?: string;
@@ -166,6 +174,8 @@ export const PRESS_SOURCES: FeedSource[] = [
     feed: "https://swarajyamag.com/feed",
     kind: "press",
     domains: ["defence", "infrastructure", "roads-airports", "space", "manufacturing"],
+    disabled: true,
+    note: "Parses as a feed but has returned zero items on every run since 2026-08-18.",
   },
   {
     id: "opindia",
@@ -205,6 +215,8 @@ export const PRESS_SOURCES: FeedSource[] = [
     feed: "https://economictimes.indiatimes.com/news/defence/rssfeeds/48781595.cms",
     kind: "press",
     domains: ["defence"],
+    disabled: true,
+    note: "Parses as a feed but has returned zero items on every run since 2026-08-18.",
   },
   {
     id: "et-industry",
@@ -247,6 +259,8 @@ export const PRESS_SOURCES: FeedSource[] = [
     feed: "https://economictimes.indiatimes.com/tech/startups/rssfeeds/78404506.cms",
     kind: "press",
     domains: ["startups"],
+    disabled: true,
+    note: "Parses as a feed but has returned zero items on every run since 2026-08-18.",
   },
   {
     id: "et-economy",
@@ -353,6 +367,8 @@ export const PRESS_SOURCES: FeedSource[] = [
     feed: "https://www.financialexpress.com/business/defence/feed/",
     kind: "press",
     domains: ["defence"],
+    disabled: true,
+    note: "403 to the pipeline and to a browser user-agent (probed 2026-08-19).",
   },
   {
     id: "fe-infrastructure",
@@ -360,6 +376,8 @@ export const PRESS_SOURCES: FeedSource[] = [
     feed: "https://www.financialexpress.com/business/infrastructure/feed/",
     kind: "press",
     domains: ["infrastructure", "roads-airports", "ports"],
+    disabled: true,
+    note: "403 to the pipeline and to a browser user-agent (probed 2026-08-19).",
   },
   {
     id: "fe-industry",
@@ -367,6 +385,8 @@ export const PRESS_SOURCES: FeedSource[] = [
     feed: "https://www.financialexpress.com/business/industry/feed/",
     kind: "press",
     domains: ["manufacturing", "psu-msme"],
+    disabled: true,
+    note: "403 to the pipeline and to a browser user-agent (probed 2026-08-19).",
   },
 
   /* --- Livemint --- */
@@ -413,6 +433,8 @@ export const PRESS_SOURCES: FeedSource[] = [
     feed: "https://raksha-anirveda.com/feed/",
     kind: "press",
     domains: ["defence"],
+    disabled: true,
+    note: "200 with an interstitial rather than the feed (probed 2026-08-19).",
   },
   {
     id: "mercom",
@@ -427,6 +449,8 @@ export const PRESS_SOURCES: FeedSource[] = [
     feed: "https://www.saurenergy.com/feed",
     kind: "press",
     domains: ["energy"],
+    disabled: true,
+    note: "404 at this path (probed 2026-08-19).",
   },
   {
     id: "pv-magazine-india",
@@ -448,6 +472,8 @@ export const PRESS_SOURCES: FeedSource[] = [
     feed: "https://www.constructionworld.in/rss.php",
     kind: "press",
     domains: ["infrastructure", "roads-airports"],
+    disabled: true,
+    note: "200 with an interstitial rather than the feed (probed 2026-08-19).",
   },
   {
     id: "maritimegateway",
@@ -469,6 +495,8 @@ export const PRESS_SOURCES: FeedSource[] = [
     feed: "https://entrackr.com/feed/",
     kind: "press",
     domains: ["startups"],
+    disabled: true,
+    note: "404 at this path (probed 2026-08-19).",
   },
   {
     id: "yourstory",
@@ -522,6 +550,74 @@ export function discoveryFeed(query: string): string {
   return `https://news.google.com/rss/search?q=${q}&hl=en-IN&gl=IN&ceid=IN:en`;
 }
 
+/**
+ * Outlets worth keeping that no longer serve a usable feed.
+ *
+ * Financial Express answers 403 to everything, Swarajya's feed parses but has
+ * been empty on every run, ThePrint serves an interstitial. Dropping them would
+ * quietly remove desks this tracker was asked to follow, so each is reached
+ * through a site-scoped search instead — the one mechanism here proven to
+ * answer, and one that still credits the publisher, because the aggregator
+ * names it on every item.
+ *
+ * This is a fallback, not a preference. A publisher's own feed is always better
+ * and should be restored the moment it works again.
+ */
+const OUTLET_FALLBACKS: Array<{ id: string; name: string; host: string; domains: EventCategory[] }> = [
+  {
+    id: "swarajya",
+    name: "Swarajya",
+    host: "swarajyamag.com",
+    domains: ["defence", "infrastructure", "roads-airports", "space", "manufacturing"],
+  },
+  {
+    id: "theprint",
+    name: "ThePrint",
+    host: "theprint.in",
+    domains: ["defence", "infrastructure"],
+  },
+  {
+    id: "financialexpress",
+    name: "Financial Express",
+    host: "financialexpress.com",
+    domains: ["defence", "infrastructure", "roads-airports", "manufacturing", "psu-msme"],
+  },
+  {
+    id: "entrackr",
+    name: "Entrackr",
+    host: "entrackr.com",
+    domains: ["startups"],
+  },
+  {
+    id: "constructionworld",
+    name: "Construction World",
+    host: "constructionworld.in",
+    domains: ["infrastructure", "roads-airports"],
+  },
+  {
+    id: "raksha-anirveda",
+    name: "Raksha Anirveda",
+    host: "raksha-anirveda.com",
+    domains: ["defence"],
+  },
+  {
+    id: "saurenergy",
+    name: "Saur Energy",
+    host: "saurenergy.com",
+    domains: ["energy"],
+  },
+];
+
+export const FALLBACK_SOURCES: FeedSource[] = OUTLET_FALLBACKS.map((o) => ({
+  id: `via-${o.id}`,
+  name: o.name,
+  feed: discoveryFeed(`site:${o.host}`),
+  kind: "press" as const,
+  domains: o.domains,
+  discovery: true,
+  publisherHost: o.host,
+}));
+
 /** One search feed per sector phrase, built rather than pasted. */
 export const DISCOVERY_SOURCES: FeedSource[] = Object.entries(SECTOR_KEYWORDS).flatMap(
   ([domain, queries]) =>
@@ -541,6 +637,7 @@ export const DECLARED_SOURCES: FeedSource[] = [
   ...OFFICIAL_SOURCES,
   ...PRESS_SOURCES,
   ...DISCOVERY_SOURCES,
+  ...FALLBACK_SOURCES,
 ];
 
 export const ALL_SOURCES: FeedSource[] = DECLARED_SOURCES.filter((s) => !s.disabled);

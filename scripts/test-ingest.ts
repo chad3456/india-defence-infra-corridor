@@ -17,7 +17,7 @@ import {
   SECTOR_KEYWORDS,
   X_HANDLES,
 } from "../lib/sources";
-import { publisherOf } from "./etl/lib/publisher";
+import { publisherOf, namesAPublisher } from "./etl/lib/publisher";
 import { mergeEvents } from "./etl/lib/merge";
 import { dedupeEvents, similarity, titleTokens } from "./etl/lib/dedupe";
 import type { DevEvent } from "../lib/types";
@@ -245,7 +245,7 @@ check(
 const DOMAINS = [...new Set(DECLARED_SOURCES.flatMap((s) => s.domains))];
 for (const domain of DOMAINS) {
   const publishers = new Set(
-    ALL_SOURCES.filter((s) => s.domains.includes(domain) && !s.discovery).map(publisherOf),
+    ALL_SOURCES.filter((s) => s.domains.includes(domain) && namesAPublisher(s)).map(publisherOf),
   );
   check(
     publishers.size >= 3,

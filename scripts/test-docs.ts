@@ -16,7 +16,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseDoc, parseInline, inlineText, outline, type Block } from "../lib/markdown";
 import { ALL_SOURCES, DISCOVERY_SOURCES, X_HANDLES } from "../lib/sources";
-import { publisherOf } from "./etl/lib/publisher";
+import { publisherOf, namesAPublisher } from "./etl/lib/publisher";
 import type { EventCategory } from "../lib/types";
 import { WDI_INDICATORS, PEERS } from "../lib/wdi-catalogue";
 import { getAllSeries, getAllSources } from "../lib/data";
@@ -262,6 +262,11 @@ for (const freq of ["annual", "fiscal-year", "point-in-time"] as const) {
     eq("official feed count", stated["Official releases"], desks.filter((s) => s.kind === "official").length);
     eq("publisher desk count", stated["Publisher desks"], desks.filter((s) => s.kind === "press").length);
     eq("keyword search count", stated["Keyword searches"], DISCOVERY_SOURCES.length);
+    eq(
+      "site-scoped fallback count",
+      stated["Site-scoped fallbacks"],
+      ALL_SOURCES.filter((s) => s.publisherHost).length,
+    );
   }
 }
 
@@ -296,7 +301,7 @@ for (const freq of ["annual", "fiscal-year", "point-in-time"] as const) {
         continue;
       }
       const actual = new Set(
-        ALL_SOURCES.filter((s) => s.domains.includes(domain) && !s.discovery).map(publisherOf),
+        ALL_SOURCES.filter((s) => s.domains.includes(domain) && namesAPublisher(s)).map(publisherOf),
       ).size;
       const stated = Number(inlineText(row[1] ?? []).trim());
       check(`${label}: declared publishers`, stated === actual, `stated ${stated}, actual ${actual}`);

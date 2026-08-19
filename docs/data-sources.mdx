@@ -127,14 +127,15 @@ are the load-bearing fact.
 
 ## The news and events pipeline
 
-**82 active feeds** declared in `lib/sources.ts` and nowhere else. No ingest code knows about
-any particular publisher; adding one is a one-line change. They fall into three groups.
+**79 active feeds** declared in `lib/sources.ts` and nowhere else. No ingest code knows about
+any particular publisher; adding one is a one-line change. They fall into four groups.
 
 | Group | Feeds | Marked |
 |---|---:|---|
 | Official releases | 3 | `verified` |
-| Publisher desks | 48 | `reported` |
+| Publisher desks | 38 | `reported` |
 | Keyword searches | 31 | `reported`, credited to the publisher the item names |
+| Site-scoped fallbacks | 7 | `reported`, credited to the site searched |
 
 `kind` on the source decides the label, so trust is a property of the publisher rather than a
 hardcoded list inside the parser. **Reputable and primary are different things**: The Hindu is
@@ -152,8 +153,8 @@ editorial judgement ten times over, and they all go down together, so they count
 
 | Sector | Distinct publishers declared | Beyond the national desks |
 |---|---:|---|
-| Defence | 13 | IDRW, Bharat Shakti, Raksha Anirveda, FE Defence |
-| Infrastructure | 15 | ETInfra, Construction World, Metro Rail News, FE Infrastructure |
+| Defence | 14 | IDRW, Bharat Shakti, Raksha Anirveda, FE Defence |
+| Infrastructure | 16 | ETInfra, Construction World, Metro Rail News, FE Infrastructure |
 | Manufacturing | 13 | ET Manufacturing, ETAuto, pv magazine India |
 | Roads & airports | 11 | ETInfra, Metro Rail News, BL Logistics |
 | Startups | 11 | Inc42, Entrackr, YourStory |
@@ -162,7 +163,7 @@ editorial judgement ten times over, and they all go down together, so they count
 | Exports | 8 | ET Foreign Trade, ETAuto, Mint Economy |
 | Trade deals | 8 | Mint Economy, BS Economy, BusinessLine |
 | Space | 8 | Mint Science, The Hindu Sci-Tech, ET Tech |
-| Ports | 7 | Maritime Gateway, BL Logistics, ETInfra |
+| Ports | 6 | Maritime Gateway, BL Logistics, ETInfra |
 | Pipelines | 6 | ETEnergyWorld, Maritime Gateway, BL Logistics |
 
 `npm run test:ingest` asserts the declared floor without touching the network;
@@ -189,11 +190,19 @@ so the event is credited to the publisher, never to the aggregator, and the `" -
 suffix is stripped from the headline. When a body fetch follows the aggregator link to the
 publisher, the resolved URL replaces the redirect, so most pins cite the article directly.
 
-### Feeds on record but disabled
+### When a publisher's own feed stops working
 
-Three feeds are declared with their URL and reason kept: **ISRO** (404 — no stable feed at the
-published path), **MEA** (403 even with a browser user-agent) and **ThePrint** (answers 200 with
-an interstitial rather than the feed, from CI address ranges).
+Thirteen declared feeds are disabled, each keeping its URL and the reason the probe gave.
+Financial Express answers 403 to every user-agent; ThePrint, Construction World and Raksha
+Anirveda serve an interstitial instead of the feed; Saur Energy and Entrackr 404; ISRO has no
+stable feed at its published path; MEA blocks; and Swarajya, ET Defence and ET Startups parse
+as feeds but have returned zero items on every run.
+
+Dropping those would quietly remove desks this tracker was asked to follow, so seven of them
+are reached through a **site-scoped search** instead — the one mechanism here proven to answer,
+and one that still credits the publisher, because the aggregator names it on every item. It is
+a fallback, not a preference: a publisher's own feed is better and gets restored the moment it
+works again.
 
 ### From headline to pin
 

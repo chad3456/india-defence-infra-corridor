@@ -21,7 +21,7 @@ import { DECLARED_SOURCES, type FeedSource } from "../../lib/sources";
 import type { EventCategory } from "../../lib/types";
 import { getText } from "./lib/http";
 import { parseFeed } from "./lib/feed";
-import { publisherOf } from "./lib/publisher";
+import { publisherOf, namesAPublisher } from "./lib/publisher";
 
 const ROOT = process.cwd();
 const MIN_PUBLISHERS_PER_DOMAIN = 3;
@@ -134,10 +134,10 @@ async function main() {
     const feeds = working.filter((h) => h.domains.includes(domain));
     const publishers = [
       ...new Set(
-        feeds.map((h) => {
-          const s = byId.get(h.id);
-          return s ? publisherOf(s) : h.id;
-        }),
+        feeds
+          .map((h) => byId.get(h.id))
+          .filter((s): s is FeedSource => s !== undefined && namesAPublisher(s))
+          .map(publisherOf),
       ),
     ].sort();
     coverage[domain] = { publishers, feeds: feeds.length };
