@@ -507,7 +507,44 @@ export const PRESS_SOURCES: FeedSource[] = [
     kind: "press",
     domains: ["startups", "psu-msme"],
   },
+/* --- National dailies and wires ------------------------------------- */
+  { id: "hindustantimes", name: "Hindustan Times", feed: "https://www.hindustantimes.com/feeds/rss/india-news/rssfeed.xml", kind: "press", domains: ["defence", "infrastructure", "roads-airports"] },
+  { id: "tribuneindia", name: "The Tribune", feed: "https://www.tribuneindia.com/rss/feed?catId=17", kind: "press", domains: ["defence", "infrastructure"] },
+  { id: "deccanherald", name: "Deccan Herald", feed: "https://www.deccanherald.com/rss/national.rss", kind: "press", domains: ["defence", "infrastructure", "manufacturing"] },
+  { id: "newindianexpress", name: "The New Indian Express", feed: "https://www.newindianexpress.com/Nation/rssfeed/?id=170&getXmlFeed=true", kind: "press", domains: ["defence", "infrastructure"] },
+  { id: "telegraphindia", name: "The Telegraph India", feed: "https://www.telegraphindia.com/feeds/rss.jsp?id=3", kind: "press", domains: ["defence", "infrastructure"] },
+  { id: "thestatesman", name: "The Statesman", feed: "https://www.thestatesman.com/feed", kind: "press", domains: ["defence", "infrastructure"] },
+  { id: "deccanchronicle", name: "Deccan Chronicle", feed: "https://www.deccanchronicle.com/rss_feed/", kind: "press", domains: ["defence", "infrastructure"] },
+  { id: "aninews", name: "ANI", feed: "https://www.aninews.in/rss/national-news.xml", kind: "press", domains: ["defence", "infrastructure", "trade-deals"] },
+  { id: "news18", name: "News18", feed: "https://www.news18.com/rss/india.xml", kind: "press", domains: ["defence", "infrastructure"] },
+  { id: "zeenews", name: "Zee News", feed: "https://zeenews.india.com/rss/india-national-news.xml", kind: "press", domains: ["defence", "infrastructure"] },
+  { id: "firstpost", name: "Firstpost", feed: "https://www.firstpost.com/rss/india.xml", kind: "press", domains: ["defence", "trade-deals"] },
+  { id: "wionews", name: "WION", feed: "https://www.wionews.com/feeds/rss/india-news", kind: "press", domains: ["defence", "trade-deals"] },
+  { id: "indiatvnews", name: "India TV", feed: "https://www.indiatvnews.com/rssnews/topstory-india.xml", kind: "press", domains: ["defence", "infrastructure"] },
+  { id: "theweek", name: "The Week", feed: "https://www.theweek.in/news/india.rss", kind: "press", domains: ["defence", "infrastructure"] },
+  { id: "outlookindia", name: "Outlook India", feed: "https://www.outlookindia.com/rss/main/magazine", kind: "press", domains: ["defence", "infrastructure"] },
+  { id: "scroll", name: "Scroll.in", feed: "https://scroll.in/feed", kind: "press", domains: ["defence", "infrastructure", "psu-msme"] },
+  { id: "thewire", name: "The Wire", feed: "https://thewire.in/rss", kind: "press", domains: ["defence", "psu-msme"] },
+  { id: "organiser", name: "Organiser", feed: "https://organiser.org/feed/", kind: "press", domains: ["defence", "infrastructure"] },
+  { id: "moneycontrol", name: "Moneycontrol", feed: "https://www.moneycontrol.com/rss/latestnews.xml", kind: "press", domains: ["manufacturing", "startups", "energy", "psu-msme"] },
+  { id: "rediff", name: "Rediff News", feed: "https://www.rediff.com/rss/newsrss.xml", kind: "press", domains: ["defence", "infrastructure"] },
+  { id: "indiaspend", name: "IndiaSpend", feed: "https://www.indiaspend.com/feed", kind: "press", domains: ["defence", "psu-msme", "infrastructure"] },
+
+  /* --- Defence and strategic-affairs specialists ------------------------ */
+  { id: "defence-capital", name: "Defence.Capital", feed: "https://defence.capital/feed/", kind: "press", domains: ["defence"] },
+  { id: "indiandefensenews", name: "Indian Defence News", feed: "https://www.indiandefensenews.in/feeds/posts/default?alt=rss", kind: "press", domains: ["defence"] },
+  { id: "forceindia", name: "FORCE Magazine", feed: "https://forceindia.net/feed/", kind: "press", domains: ["defence"] },
+  { id: "stratnewsglobal", name: "StratNews Global", feed: "https://stratnewsglobal.com/feed/", kind: "press", domains: ["defence", "trade-deals"] },
+  { id: "defenceaviationpost", name: "Defence Aviation Post", feed: "https://www.defenceaviationpost.com/feed/", kind: "press", domains: ["defence"] },
+
+  /* --- Regional desks, for theatres the national papers under-cover ----- */
+  { id: "greaterkashmir", name: "Greater Kashmir", feed: "https://www.greaterkashmir.com/feed/", kind: "press", domains: ["defence", "infrastructure"] },
+  { id: "dailyexcelsior", name: "Daily Excelsior", feed: "https://www.dailyexcelsior.com/feed/", kind: "press", domains: ["defence", "infrastructure"] },
+  { id: "kashmirlife", name: "Kashmir Life", feed: "https://kashmirlife.net/feed/", kind: "press", domains: ["defence"] },
+  { id: "risingkashmir", name: "Rising Kashmir", feed: "https://risingkashmir.com/feed", kind: "press", domains: ["defence"] },
+  { id: "eastmojo", name: "EastMojo", feed: "https://www.eastmojo.com/feed/", kind: "press", domains: ["defence", "infrastructure"] },
 ];
+
 
 /* ------------------------------------------------------------------ */
 /* Keyword discovery                                                   */
