@@ -34,6 +34,11 @@ jobs:
 
       # docs/data-sources.mdx is rendered as a page, so its counted claims are
       # published content. This fails if the document overstates its own coverage.
+      # The constructed indices compute a number nobody upstream will
+      # contradict, so their arithmetic is tested rather than eyeballed.
+      - name: Security index tests
+        run: npm run test:security
+
       - name: Doc tests
         run: npm run test:docs
 

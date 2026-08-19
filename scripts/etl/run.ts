@@ -15,6 +15,7 @@
 import { writeFile, mkdir } from "node:fs/promises";
 import { join } from "node:path";
 import { runWorldBank } from "./connectors/worldbank";
+import { runSatp } from "./connectors/satp";
 import { runIngest } from "./connectors/ingest";
 import { runX } from "./connectors/x";
 import { mergeEvents, readStoredEvents } from "./lib/merge";
@@ -68,6 +69,34 @@ async function main() {
     }
   } else if (!DRY) {
     messages.push("worldbank: no series returned; keeping previous data");
+    log("  no series returned — previous data left in place");
+  }
+
+  /* ---------------- SATP fatality datasheets ---------------- */
+  log("");
+  log("SATP — fatality datasheets");
+  connectorsRun++;
+  const satp = await runSatp({ dryRun: DRY, onProgress: log });
+  for (const e of satp.errors) messages.push(`satp: ${e}`);
+
+  if (!DRY && satp.series.length > 0) {
+    const problems = satp.series.flatMap((s) => validateSeries(s).map((p) => `${s.id}: ${p}`));
+    if (problems.length > 0) {
+      connectorsFailed++;
+      messages.push(...problems.map((p) => `satp validation: ${p}`));
+      log(`  VALIDATION FAILED — ${problems.length} problem(s), not writing security.json`);
+      for (const p of problems.slice(0, 10)) log(`    - ${p}`);
+    } else {
+      await writeFile(
+        join(ROOT, "data/series/security.json"),
+        JSON.stringify(satp.series, null, 2) + "\n",
+        "utf8",
+      );
+      seriesUpdated += satp.series.length;
+      log(`  wrote data/series/security.json — ${satp.series.length} series`);
+    }
+  } else if (!DRY) {
+    messages.push("satp: no series returned; keeping previous data");
     log("  no series returned — previous data left in place");
   }
 

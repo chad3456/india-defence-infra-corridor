@@ -80,7 +80,7 @@ Read in this order when you are new to the repo:
 | The map's category panel and 2-day / all-time modes | `components/map/DevelopmentMap.tsx`, `lib/events.ts` |
 | Hand-curated series | `data/series/{defence,infrastructure,economy,space}.json` |
 | World Bank series | `data/series/wdi.json` — **ETL-owned, never hand-edit** |
-| Which WDI indicators are tracked | `lib/wdi-catalogue.ts` (76 indicators, 5 comparator countries) |
+| Which WDI indicators are tracked | `lib/wdi-catalogue.ts` (82 indicators, 5 comparator countries) |
 | The source register | `data/sources.json` |
 | Which feeds are ingested | `lib/sources.ts` — **the only place a publisher is named** |
 | Sector keyword searches | `SECTOR_KEYWORDS` in `lib/sources.ts` — searches are built, never pasted |
@@ -94,6 +94,9 @@ Read in this order when you are new to the repo:
 | Place lookup | `lib/gazetteer.ts` reading generated `data/geo/places.json` |
 | Database schema | `supabase/migrations/0001_init.sql` |
 | Editorial grades | `lib/assessment.ts` |
+| The constructed security indices | `lib/security-index.ts` — read the header before touching |
+| Which security series exist | `lib/security-catalogue.ts` |
+| SATP fatality scraping | `scripts/etl/connectors/satp.ts` |
 | The published source catalogue | `docs/data-sources.mdx` — rendered at `/data-sources` |
 | How that file is rendered | `lib/markdown.ts`, `components/ui/Markdown.tsx` |
 
@@ -116,6 +119,13 @@ land in the repo.
 
 **The World Bank connector rewrites history in full, never appends.** The World Bank revises
 past years; appending would freeze a stale revision.
+
+**Constructed numbers are never hand-scored.** The Tonality Score and Action Index are the only
+figures on this site not reported by someone else. Every dimension is computed from published
+counts, so a reader can recompute them. Do not add a hand-assigned dimension, however much more
+directly it would track the thing the name implies — an index whose inputs live in the author's
+head is worth less than no index at all. Any change to the arithmetic updates `LIMITS` and the
+methodology page in the same commit.
 
 **Charts are specs.** A spec is emitted only when the transform is *meaningful* for that
 series — no year-on-year across non-adjacent periods, no index off a zero base. A spec for a
@@ -181,6 +191,7 @@ npm run registry:audit   # fails if the gallery drops below its target size
 npm run test:schema      # runs the real migration against Postgres-in-WASM
 npm run test:ingest      # feed parsing + classification against committed fixtures
 npm run test:docs        # the docs render, and their counted claims match the code
+npm run test:security    # the constructed indices' arithmetic, and the SATP parser
 npm run db:seed-check    # supabase/seed.sql matches the JSON it is generated from
 npm test                 # all of the above, in that order
 

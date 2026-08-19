@@ -218,6 +218,8 @@ for (const freq of ["annual", "fiscal-year", "point-in-time"] as const) {
     Energy: "energy",
     Space: "space",
     "Real estate": "real-estate",
+    "AI & science": "ai-science",
+    "Internal security": "security",
   };
   const table = doc.blocks.find(
     (b): b is Extract<Block, { kind: "table" }> => b.kind === "table" && b.head[0] === "Domain",

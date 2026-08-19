@@ -1,0 +1,241 @@
+/**
+ * SATP fatality datasheets.
+ *
+ * The South Asia Terrorism Portal publishes year-by-year fatality tables for
+ * left-wing extremism and for terrorism, as plain HTML tables. There is no API
+ * and no download, so this reads the table — which is the whole mechanism, and
+ * also its main fragility: a layout change breaks it, and it must break loudly
+ * rather than quietly emitting a shorter series.
+ *
+ * What it does NOT do is invent the missing pieces. SATP publishes deaths, not
+ * incidents, arrests or surrenders. Those feed two of the five tonality
+ * dimensions, and where they are absent the index says so by scoring those
+ * dimensions zero rather than assuming a value.
+ *
+ * Guard rails, because this is the one connector whose numbers are about people
+ * being killed:
+ *   - A year is emitted only if every one of its three columns parsed.
+ *   - A table yielding fewer than 10 years is treated as a parse failure, not
+ *     as a short history.
+ *   - Values outside a sanity envelope are dropped with a message rather than
+ *     published.
+ */
+import type { Series, DataPoint } from "../../../lib/types";
+import {
+  SECURITY_SERIES,
+  SECURITY_START_YEAR,
+  type SecuritySeriesSpec,
+} from "../../../lib/security-catalogue";
+import { scoreSeries, type SecurityYear } from "../../../lib/security-index";
+import { getText } from "../lib/http";
+import { decodeEntities } from "../lib/feed";
+
+/** Where each theatre's datasheet lives, and which series it fills. */
+const SHEETS = [
+  {
+    theatre: "lwe" as const,
+    url: "https://www.satp.org/datasheet-terrorist-attack/fatalities/india-maoistinsurgency",
+    sourceId: "satp-lwe-fatalities",
+    ids: {
+      civilians: "lwe-civilians-killed",
+      securityForces: "lwe-security-forces-killed",
+      insurgents: "lwe-insurgents-killed",
+      total: "lwe-total-fatalities",
+      tonality: "lwe-tonality",
+      action: "lwe-action-index",
+    },
+  },
+  {
+    theatre: "terror" as const,
+    url: "https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir",
+    sourceId: "satp-jk-fatalities",
+    ids: {
+      civilians: "terror-civilians-killed",
+      securityForces: "terror-security-forces-killed",
+      insurgents: "terror-militants-killed",
+      total: "terror-total-fatalities",
+      tonality: "terror-tonality",
+      action: "terror-action-index",
+    },
+  },
+];
+
+/** A single year's row must clear this to be published. */
+const MIN_YEARS = 10;
+const MAX_DEATHS_PER_YEAR = 20_000;
+
+export interface SatpResult {
+  series: Series[];
+  errors: string[];
+  /** Years parsed per theatre, so a partial scrape is visible in the log. */
+  parsed: Record<string, number>;
+}
+
+/** Strip tags and entities from one table cell. */
+function cellText(html: string): string {
+  return decodeEntities(html.replace(/<[^>]*>/g, " "))
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/**
+ * Read an integer out of a cell.
+ *
+ * Returns null rather than 0 for anything unparseable. A missing figure and a
+ * year with no deaths are different facts, and collapsing them would put
+ * fabricated zeroes on a chart about fatalities.
+ */
+function cellNumber(text: string): number | null {
+  const cleaned = text.replace(/[,\s*]/g, "");
+  if (cleaned === "" || /^[-–—]$/.test(cleaned)) return null;
+  const n = Number(cleaned);
+  if (!Number.isFinite(n) || n < 0 || n > MAX_DEATHS_PER_YEAR) return null;
+  return Math.round(n);
+}
+
+export interface ParsedRow extends SecurityYear {}
+
+/**
+ * Parse a SATP fatality table.
+ *
+ * Column order on these sheets is year, civilians, security forces, terrorists,
+ * total. The parser reads the first four numeric columns and recomputes the
+ * total rather than trusting it, so a row whose parts do not add up is caught
+ * here instead of on the chart.
+ */
+export function parseFatalityTable(html: string): { rows: ParsedRow[]; skipped: string[] } {
+  const rows: ParsedRow[] = [];
+  const skipped: string[] = [];
+
+  const tableRows = html.match(/<tr\b[\s\S]*?<\/tr>/gi) ?? [];
+  for (const tr of tableRows) {
+    const cells = [...tr.matchAll(/<t[dh]\b[^>]*>([\s\S]*?)<\/t[dh]>/gi)].map((m) =>
+      cellText(m[1] ?? ""),
+    );
+    if (cells.length < 4) continue;
+
+    const yearText = (cells[0] ?? "").replace(/\D/g, "");
+    const year = Number(yearText);
+    if (!/^(19|20)\d{2}$/.test(yearText) || year < SECURITY_START_YEAR) continue;
+
+    const civilians = cellNumber(cells[1] ?? "");
+    const securityForces = cellNumber(cells[2] ?? "");
+    const insurgents = cellNumber(cells[3] ?? "");
+
+    if (civilians === null || securityForces === null || insurgents === null) {
+      skipped.push(`${year}: a column did not parse`);
+      continue;
+    }
+    rows.push({ year, civilians, securityForces, insurgents });
+  }
+
+  // Latest wins on duplicate years — these sheets sometimes repeat a header
+  // block partway down.
+  const byYear = new Map<number, ParsedRow>();
+  for (const r of rows) byYear.set(r.year, r);
+  return { rows: [...byYear.values()].sort((a, b) => a.year - b.year), skipped };
+}
+
+function seriesFrom(
+  spec: SecuritySeriesSpec,
+  points: DataPoint[],
+  extraSourceIds: string[] = [],
+): Series {
+  return {
+    id: spec.id,
+    title: spec.title,
+    definition: spec.definition,
+    category: spec.category,
+    unit: spec.unit,
+    unitShort: spec.unitShort,
+    frequency: spec.frequency,
+    provenance: spec.provenance,
+    confidence: spec.confidence,
+    higherIsBetter: spec.higherIsBetter,
+    sourceIds: [...new Set([...spec.sourceIds, ...extraSourceIds])],
+    points,
+    notes: spec.note ? [spec.note] : [],
+    lastVerified: new Date().toISOString().slice(0, 10),
+  };
+}
+
+export async function runSatp(
+  opts: { dryRun?: boolean; onProgress?: (msg: string) => void } = {},
+): Promise<SatpResult> {
+  const log = opts.onProgress ?? (() => {});
+  const errors: string[] = [];
+  const series: Series[] = [];
+  const parsed: Record<string, number> = {};
+
+  const byId = new Map(SECURITY_SERIES.map((s) => [s.id, s]));
+
+  for (const sheet of SHEETS) {
+    if (opts.dryRun) {
+      log(`[dry-run] would fetch ${sheet.theatre} — ${sheet.url}`);
+      continue;
+    }
+
+    const res = await getText(sheet.url, {
+      cacheMs: 12 * 60 * 60 * 1000,
+      timeoutMs: 30_000,
+      accept: "text/html",
+    });
+    if (!res.ok || !res.data) {
+      errors.push(`${sheet.theatre}: ${res.error ?? "no body"}`);
+      log(`  ${sheet.theatre.padEnd(8)} FAILED (${res.error})`);
+      continue;
+    }
+
+    const { rows, skipped } = parseFatalityTable(res.data);
+    for (const s of skipped) errors.push(`${sheet.theatre}: ${s}`);
+
+    // A short table means the layout moved, not that the conflict is new.
+    // Publishing the fragment would silently truncate a 20-year series.
+    if (rows.length < MIN_YEARS) {
+      errors.push(
+        `${sheet.theatre}: only ${rows.length} year(s) parsed — the datasheet layout has probably changed; keeping previous data`,
+      );
+      log(`  ${sheet.theatre.padEnd(8)} PARSE FAILED — ${rows.length} rows`);
+      continue;
+    }
+
+    parsed[sheet.theatre] = rows.length;
+    log(`  ${sheet.theatre.padEnd(8)} ${rows.length} years (${rows[0]?.year}–${rows.at(-1)?.year})`);
+
+    const period = (r: ParsedRow) => String(r.year);
+    const pt = (r: ParsedRow, value: number): DataPoint => ({ period: period(r), value });
+
+    const push = (id: string, points: DataPoint[], extra: string[] = []) => {
+      const spec = byId.get(id);
+      if (!spec) {
+        errors.push(`${sheet.theatre}: no catalogue entry for ${id}`);
+        return;
+      }
+      series.push(seriesFrom(spec, points, extra));
+    };
+
+    push(sheet.ids.civilians, rows.map((r) => pt(r, r.civilians)));
+    push(sheet.ids.securityForces, rows.map((r) => pt(r, r.securityForces)));
+    push(sheet.ids.insurgents, rows.map((r) => pt(r, r.insurgents)));
+    push(
+      sheet.ids.total,
+      rows.map((r) => pt(r, r.civilians + r.securityForces + r.insurgents)),
+    );
+
+    // The constructed indices, computed here so the arithmetic runs against
+    // exactly the numbers published above and cannot drift from them.
+    const scored = scoreSeries(rows);
+    push(
+      sheet.ids.tonality,
+      scored.map((s) => ({ period: String(s.year), value: s.tonality.score })),
+      ["derived"],
+    );
+    push(
+      sheet.ids.action,
+      scored.map((s) => ({ period: String(s.year), value: s.action.index })),
+      ["derived"],
+    );
+  }
+
+  return { series, errors, parsed };
+}

@@ -4,6 +4,7 @@ import infraRaw from "@/data/series/infrastructure.json";
 import economyRaw from "@/data/series/economy.json";
 import spaceRaw from "@/data/series/space.json";
 import wdiRaw from "@/data/series/wdi.json";
+import securityRaw from "@/data/series/security.json";
 import sourcesRaw from "@/data/sources.json";
 
 const ALL: Series[] = [
@@ -12,6 +13,7 @@ const ALL: Series[] = [
   ...(economyRaw as Series[]),
   ...(spaceRaw as Series[]),
   ...(wdiRaw as Series[]),
+  ...(securityRaw as Series[]),
 ];
 
 const SERIES_BY_ID = new Map(ALL.map((s) => [s.id, s]));

@@ -1,3 +1,4 @@
+import { LIMITS } from "@/lib/security-index";
 import Link from "next/link";
 import { DATA_COVERAGE, getAllSeries } from "@/lib/data";
 import { registryStats } from "@/lib/registry";
@@ -118,6 +119,93 @@ export default function MethodologyPage() {
             {stats.live} are live on currently-loaded data and {stats.pending} await the pipeline
             backfill; the pending ones are shown with an explicit &ldquo;awaiting data&rdquo; state
             rather than an empty axis.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-[15px] font-semibold tracking-tight">
+            The two constructed indices
+          </h2>
+          <p className="mt-2 text-[color:var(--text-secondary)]">
+            Every other number here reports something somebody else published. The{" "}
+            <strong className="font-medium text-[color:var(--text-primary)]">Tonality Score</strong>{" "}
+            and the{" "}
+            <strong className="font-medium text-[color:var(--text-primary)]">Action Index</strong>{" "}
+            do not. They are constructed on this site, they carry a judgement in their names, and
+            they are graded low confidence for that reason. This section is here so you can decide
+            whether to trust them, or reject them and keep the fatality counts underneath, which
+            stand on their own.
+          </p>
+
+          <h3 className="mt-5 text-[13px] font-semibold">Tonality Score, −100 to +100</h3>
+          <p className="mt-2 text-[color:var(--text-secondary)]">
+            A proxy for the state&rsquo;s posture in a given year. Negative reads accommodative —
+            talks first, threat downplayed. Positive reads decisive — security first, an
+            eradication mandate. Five dimensions, each bounded to ±20:
+          </p>
+          <ol className="mt-2 list-decimal space-y-1.5 pl-5 text-[color:var(--text-secondary)]">
+            <li>
+              <strong className="font-medium text-[color:var(--text-primary)]">Initiative</strong> —
+              the adversary&rsquo;s share of combatant deaths.
+            </li>
+            <li>
+              <strong className="font-medium text-[color:var(--text-primary)]">
+                Civilian protection
+              </strong>{" "}
+              — inverse of the civilian share of all deaths.
+            </li>
+            <li>
+              <strong className="font-medium text-[color:var(--text-primary)]">Containment</strong> —
+              direction of travel in total violence against the previous year.
+            </li>
+            <li>
+              <strong className="font-medium text-[color:var(--text-primary)]">Attrition</strong> —
+              cadre taken alive by arrest and surrender, as a share of all cadre removed.
+            </li>
+            <li>
+              <strong className="font-medium text-[color:var(--text-primary)]">
+                Escalation dominance
+              </strong>{" "}
+              — this year&rsquo;s exchange ratio against its own three-year baseline.
+            </li>
+          </ol>
+
+          <h3 className="mt-5 text-[13px] font-semibold">Action Index, −1.6 to +1.6</h3>
+          <p className="mt-2 text-[color:var(--text-secondary)]">
+            A performance measure rather than a posture one. Four components, each bounded to ±0.4
+            and each measured against the series&rsquo; own average: neutralisations and
+            arrests-plus-surrenders push it up, civilian deaths and total incident volume push it
+            down.
+          </p>
+
+          <h3 className="mt-5 text-[13px] font-semibold">Why nothing here is hand-scored</h3>
+          <p className="mt-2 text-[color:var(--text-secondary)]">
+            The obvious way to build a &ldquo;willpower&rdquo; index is to read the year&rsquo;s
+            policy documents and code doctrine and framing by judgement. That would track the
+            stated posture more directly — and it would be unfalsifiable, unreproducible and
+            impossible for you to check. So posture is inferred from what the state did, not from
+            what it said: every dimension above is computed from published fatality counts, and you
+            can recompute all of it from the series on this site.
+          </p>
+          <p className="mt-2 text-[color:var(--text-secondary)]">
+            That choice has a cost, and it is the first item below.
+          </p>
+
+          <h3 className="mt-5 text-[13px] font-semibold">What these numbers cannot tell you</h3>
+          <ul className="mt-2 space-y-2 text-[color:var(--text-secondary)]">
+            {LIMITS.map((l) => (
+              <li key={l} className="flex gap-2">
+                <span aria-hidden className="text-[color:var(--text-muted)]">
+                  —
+                </span>
+                <span>{l}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-[11px] text-[color:var(--text-muted)]">
+            These are ordinal, not cardinal. A year at +60 is more security-first than one at +30;
+            it is not twice anything. Differences under about 10 points are inside the noise of the
+            underlying compilations.
           </p>
         </section>
 

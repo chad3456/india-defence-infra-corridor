@@ -14,8 +14,9 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { ALL_SOURCES, DISCOVERY_SOURCES } from "../../lib/sources";
+import { getAllSeries } from "../../lib/data";
 import { namesAPublisher, publisherOf } from "../etl/lib/publisher";
-import type { EventCategory } from "../../lib/types";
+import type { Category, EventCategory } from "../../lib/types";
 
 const DOC = join(process.cwd(), "docs/data-sources.mdx");
 
@@ -48,14 +49,33 @@ const GROUPS: Record<string, () => number> = {
   "Site-scoped fallbacks": () => ALL_SOURCES.filter((s) => s.publisherHost).length,
 };
 
+/** Domains in the coverage table, which counts series rather than publishers. */
+const DOMAINS: Record<string, Category> = {
+  Defence: "defence",
+  Infrastructure: "infrastructure",
+  Trade: "trade",
+  Economy: "economy",
+  Manufacturing: "manufacturing",
+  Social: "social",
+  "Quality of life": "quality-of-life",
+  Energy: "energy",
+  Space: "space",
+  "Real estate": "real-estate",
+  "Internal security": "security",
+  "AI & science": "ai-science",
+};
+
 /**
  * Rewrite the second column of every row of the table whose header row starts
- * with `headerCell`, for rows whose label the caller recognises.
+ * with `headerCell`, for rows whose label the caller recognises. `column`
+ * selects which cell to write, because the coverage table carries two counted
+ * columns and both go stale.
  */
 function patchTable(
   lines: string[],
   headerCell: string,
   valueFor: (label: string) => number | null,
+  column = 2,
 ): number {
   const header = lines.findIndex((l) => l.startsWith(`| ${headerCell} |`));
   if (header === -1) throw new Error(`no table headed "${headerCell}" in docs/data-sources.mdx`);
@@ -69,8 +89,8 @@ function patchTable(
     const value = valueFor(label);
     if (value === null) continue;
     const replaced = ` ${String(value)} `;
-    if (cells[2] === replaced) continue;
-    cells[2] = replaced;
+    if (cells[column] === replaced) continue;
+    cells[column] = replaced;
     lines[i] = cells.join("|");
     changed++;
   }
@@ -84,7 +104,26 @@ const sectors = patchTable(lines, "Sector", (label) => {
 });
 const groups = patchTable(lines, "Group", (label) => GROUPS[label]?.() ?? null);
 
+// The coverage table: series count and defined data points per domain. These
+// move whenever the ETL recategorises an indicator, which is exactly the kind
+// of change nobody remembers to mirror by hand.
+const series = getAllSeries();
+const inDomain = (label: string) => {
+  const domain = DOMAINS[label];
+  return domain ? series.filter((s) => s.category === domain) : null;
+};
+const coverageSeries = patchTable(lines, "Domain", (label) => inDomain(label)?.length ?? null, 2);
+const coveragePoints = patchTable(
+  lines,
+  "Domain",
+  (label) =>
+    inDomain(label)?.reduce((n, s) => n + s.points.filter((p) => p.value !== null).length, 0) ??
+    null,
+  3,
+);
+
 writeFileSync(DOC, lines.join("\n"));
 process.stdout.write(
-  `docs/data-sources.mdx — ${sectors} sector row(s) and ${groups} group row(s) updated\n`,
+  `docs/data-sources.mdx — ${sectors} sector row(s), ${groups} group row(s), ` +
+    `${coverageSeries + coveragePoints} coverage cell(s) updated\n`,
 );

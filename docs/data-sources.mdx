@@ -35,6 +35,8 @@ moved, not the number.
 | Energy | 5 | 112 | 2001–2024 | World Bank WDI |
 | Space | 4 | 6 | 1975–2025 | ISRO, FACTLY / Dataful |
 | Real estate | 3 | 52 | 2001–2025 | World Bank WDI |
+| AI & science | 0 | 0 | pending | World Bank WDI |
+| Internal security | 0 | 0 | pending | SATP, MHA parliamentary answers |
 
 Series carry one of three frequencies: `annual` (79), `fiscal-year` (17, India's April–March
 year, never silently converted to calendar years) and `point-in-time` (21, a stock count as of
@@ -46,7 +48,7 @@ a stated date rather than a flow).
 
 ### World Bank — World Development Indicators
 
-The backbone of every cross-country comparison. **76 indicators**, fetched from 2001 to the
+The backbone of every cross-country comparison. **82 indicators**, fetched from 2001 to the
 present for India and five comparators — **China, Vietnam, Brazil, Indonesia and the United
 States** — chosen because each answers a different question: China as the manufacturing
 benchmark India explicitly measures itself against, Vietnam as the small-economy counterexample,
@@ -55,7 +57,7 @@ Brazil and Indonesia as fellow large developing federations, the US as the front
 | | |
 |---|---|
 | Endpoint | `api.worldbank.org/v2` |
-| Indicators | 76 across economy, trade, manufacturing, energy, social, quality of life, real estate, infrastructure, defence |
+| Indicators | 82 across economy, trade, manufacturing, AI & science, energy, social, quality of life, real estate, infrastructure, defence |
 | Refresh | Every 6 hours, whole history rewritten |
 | Provenance | `multilateral`, tier 1 |
 | Licence | CC BY 4.0 |
@@ -99,6 +101,29 @@ Where India publishes nothing, or publishes something that cannot be compared in
 constraint in the database. Warhead counts in particular are external inferences — India
 publishes no number at all — and are graded low confidence with an explicit note. Treat them as
 order-of-magnitude.
+
+### South Asia Terrorism Portal
+
+The spine of the internal-security series. SATP publishes year-by-year fatality tables for
+left-wing extremism and for terrorism as plain HTML — no API, no download — so the connector
+reads the table.
+
+| | |
+|---|---|
+| Datasheets | Fatalities in left-wing extremism; fatalities in terrorist violence |
+| Used for | Civilian, security-force and cadre deaths by year, 2004 onward; the two constructed indices computed from them |
+| Refresh | Every 6 hours with the full pipeline |
+| Provenance | `think-tank`, tier 2 |
+| Connector | `scripts/etl/connectors/satp.ts` |
+
+**It is a compilation, not a register.** SATP reads the same press reporting and parliamentary
+answers everyone else does, and disagrees with MHA figures by a few per cent in most years and
+by more on contested incidents. Nothing sourced from it is graded above medium confidence.
+
+The connector will not publish a fragment. A year is emitted only if all three of its columns
+parsed; a table yielding fewer than ten years is treated as a layout change rather than a short
+history, and the previous data is kept. Deaths are not a series where a silent truncation is
+survivable.
 
 ### Natural Earth
 
@@ -256,6 +281,50 @@ fetched at run time like any other feed.
 
 ---
 
+## The two constructed indices
+
+Every other number on this site reports something somebody else published. The **Tonality
+Score** (−100 to +100) and the **Action Index** (−1.6 to +1.6) do not — they are constructed
+here, they carry a judgement in their names, and they are graded `derived` and low confidence
+for that reason.
+
+Tonality is a proxy for the state's posture: negative reads accommodative, positive reads
+security-first. Five dimensions, each bounded to ±20 — initiative, civilian protection,
+containment, attrition, escalation dominance. Action is a performance measure: four components,
+each bounded to ±0.4 and each measured against the series' own average, with neutralisations
+and arrests-plus-surrenders pushing up and civilian deaths and incident volume pushing down.
+
+**Nothing in either is hand-scored.** The obvious way to build a willpower index is to read the
+year's policy documents and code doctrine and framing by judgement; that tracks the stated
+posture more directly and is unfalsifiable, unreproducible and impossible for a reader to
+check. So posture is inferred from what the state did, not from what it said, and every
+dimension is computed from published fatality counts you can recompute yourself.
+
+The cost of that choice, and five other limits, are published in full on `/methodology` and
+enumerated in `LIMITS` in `lib/security-index.ts`. The first one matters most: a government
+that talks tough while operations stall scores low, and one that talks softly while operations
+succeed scores high. The name says willpower; the arithmetic reads behaviour.
+
+The fatality counts underneath stand on their own. A reader can reject both indices entirely
+and still use every death count on the page.
+
+---
+
+## AI, research and the digital base
+
+"Defence innovation" and "AI development" are claims, and claims have to be measurable to be
+worth making. Ten World Bank indicators carry this section: R&D spending as a share of GDP,
+researchers and technicians per million people, resident and non-resident patent filings,
+scientific and technical journal articles, charges for the use of intellectual property in both
+directions, and ICT goods and service exports.
+
+The pair to read together is IP receipts against IP payments — the honest test of whether
+research becomes property, rather than whether papers get written. The second is researchers per
+million, where the constraint on any AI or defence-technology ambition shows up as people
+before it shows up as money.
+
+---
+
 ## How sources are graded
 
 ### Tier — how close to the record
@@ -266,7 +335,7 @@ fetched at run time like any other feed.
 | **2** | An institution restating a primary figure, or a specialist analysis of one | Prasar Bharati, PRS, VIF |
 | **3** | Press reporting of someone else's numbers | ThePrint, Swarajya, Deccan Herald, BusinessLine |
 
-Current register: **41 sources — 15 tier 1, 14 tier 2, 12 tier 3.**
+Current register: **43 sources — 15 tier 1, 16 tier 2, 12 tier 3.**
 
 ### Provenance — who produced the number
 

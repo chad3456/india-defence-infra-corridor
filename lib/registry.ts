@@ -2,6 +2,7 @@ import type { ChartSpec, ChartKind, Transform, Series, Category } from "./types"
 import { getAllSeries, getSeries, definedPoints, isTemporal } from "./data";
 import { transformIsValid, TRANSFORM_LABELS } from "./transforms";
 import { WDI_INDICATORS } from "./wdi-catalogue";
+import { ALL_SECURITY_SPECS } from "./security-catalogue";
 
 /**
  * The chart registry.
@@ -154,6 +155,50 @@ function specsFromPendingWdi(): RegistryEntry[] {
   return out;
 }
 
+/**
+ * Specs for security series the SATP connector has not yet filled, and for the
+ * defence series that need a document read by a person.
+ *
+ * Emitted pending rather than omitted: a chart that says what it is waiting for
+ * is a commitment, and a reader can see the gap. Silently leaving them out
+ * would make the gallery look complete when it is not.
+ */
+function specsFromPendingSecurity(): RegistryEntry[] {
+  const out: RegistryEntry[] = [];
+  for (const spec of ALL_SECURITY_SPECS) {
+    if (getSeries(spec.id)) continue; // filled — handled by specsFromLoadedSeries
+    const base = {
+      category: spec.category,
+      seriesIds: [spec.id],
+      pending: true,
+      annotation:
+        spec.note ??
+        (spec.filledBy === "satp"
+          ? "Fills on the next pipeline run from the SATP datasheet."
+          : "Awaiting a sourced figure for each year."),
+    };
+    out.push({
+      ...base,
+      id: `${spec.id}--level`,
+      title: spec.title,
+      subtitle: spec.definition,
+      kind: "line" as ChartKind,
+      transform: "level" as Transform,
+      tags: [spec.category, "level", spec.provenance, `confidence:${spec.confidence}`],
+    });
+    out.push({
+      ...base,
+      id: `${spec.id}--yoy`,
+      title: spec.title,
+      subtitle: `Year-on-year change — derived from "${spec.title}".`,
+      kind: "column" as ChartKind,
+      transform: "yoy" as Transform,
+      tags: [spec.category, "yoy", spec.provenance],
+    });
+  }
+  return out;
+}
+
 /** Hand-authored charts that compare distinct series against each other. */
 function curatedSpecs(): RegistryEntry[] {
   const curated: Array<Omit<RegistryEntry, "pending">> = [
@@ -281,7 +326,12 @@ let cached: RegistryEntry[] | null = null;
 
 export function getRegistry(): RegistryEntry[] {
   if (cached) return cached;
-  const all = [...curatedSpecs(), ...specsFromLoadedSeries(), ...specsFromPendingWdi()];
+  const all = [
+    ...curatedSpecs(),
+    ...specsFromLoadedSeries(),
+    ...specsFromPendingWdi(),
+    ...specsFromPendingSecurity(),
+  ];
   const seen = new Set<string>();
   cached = all.filter((s) => {
     if (seen.has(s.id)) return false;

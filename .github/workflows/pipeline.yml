@@ -69,7 +69,7 @@ jobs:
         run: |
           git config user.name  "bharat-tracker-bot"
           git config user.email "actions@github.com"
-          git add data/series/wdi.json data/live/ data/events.json supabase/seed.sql 2>/dev/null || true
+          git add data/series/wdi.json data/series/security.json data/live/ data/events.json supabase/seed.sql 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No data changes."
             exit 0
