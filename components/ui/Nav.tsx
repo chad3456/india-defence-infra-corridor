@@ -6,6 +6,7 @@ const LINKS = [
   { href: "/map", label: "Map" },
   { href: "/benchmark", label: "Assessment" },
   { href: "/tracker", label: "Tracker" },
+  { href: "/data-sources", label: "Sources" },
   { href: "/methodology", label: "Method" },
 ];
 

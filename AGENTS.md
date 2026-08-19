@@ -90,6 +90,8 @@ Read in this order when you are new to the repo:
 | Place lookup | `lib/gazetteer.ts` reading generated `data/geo/places.json` |
 | Database schema | `supabase/migrations/0001_init.sql` |
 | Editorial grades | `lib/assessment.ts` |
+| The published source catalogue | `docs/data-sources.mdx` — rendered at `/data-sources` |
+| How that file is rendered | `lib/markdown.ts`, `components/ui/Markdown.tsx` |
 
 ---
 
@@ -149,6 +151,9 @@ Adding data is a two-sided change. One side without the other fails the gate.
   generated from Natural Earth plus a curated overlay inside `scripts/geo/build-gazetteer.ts`.
 - **Any data change at all** → `npm run db:seed-sql` to regenerate `supabase/seed.sql`.
   CI fails on drift (`npm run db:seed-check`).
+- **`docs/data-sources.mdx` is published**, not just a README — it is rendered at
+  `/data-sources`. `npm run test:docs` fails if a count in it no longer matches the code, so
+  changing the feed list or the series set means updating the document in the same commit.
 
 ---
 
@@ -163,6 +168,7 @@ npm run validate         # THE GATE — provenance, units, confidence, source re
 npm run registry:audit   # fails if the gallery drops below its target size
 npm run test:schema      # runs the real migration against Postgres-in-WASM
 npm run test:ingest      # feed parsing + classification against committed fixtures
+npm run test:docs        # the docs render, and their counted claims match the code
 npm run db:seed-check    # supabase/seed.sql matches the JSON it is generated from
 npm test                 # all of the above, in that order
 

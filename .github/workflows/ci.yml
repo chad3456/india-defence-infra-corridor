@@ -32,6 +32,11 @@ jobs:
       - name: Ingest tests
         run: npm run test:ingest
 
+      # docs/data-sources.mdx is rendered as a page, so its counted claims are
+      # published content. This fails if the document overstates its own coverage.
+      - name: Doc tests
+        run: npm run test:docs
+
       # supabase/seed.sql is committed so it can be pasted straight into the
       # SQL editor. This fails if it has drifted from the JSON it is built from.
       - name: Seed file is in sync with the data

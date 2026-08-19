@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getAllSources, getAllSeries } from "@/lib/data";
 
 export const metadata = { title: "Source register" };
@@ -40,7 +41,12 @@ export default function SourcesPage() {
         <p className="mt-2 text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
           {sources.length} sources, grouped by tier. Tier 1 is the primary record holder for that
           quantity; tier 3 is a press report of a primary claim. A series resting only on tier-3
-          sources cannot be graded above low confidence.
+          sources cannot be graded above low confidence. For what each publisher covers, how often
+          it refreshes and where it falls short, see the{" "}
+          <Link href="/data-sources" className="link-underline">
+            data source catalogue
+          </Link>
+          .
         </p>
       </section>
 

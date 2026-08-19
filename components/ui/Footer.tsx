@@ -42,6 +42,9 @@ export default function Footer() {
           <Link href="/sources" className="link-underline">
             Source register
           </Link>
+          <Link href="/data-sources" className="link-underline">
+            Data sources
+          </Link>
           <Link href="/benchmark" className="link-underline">
             Honest assessment
           </Link>
