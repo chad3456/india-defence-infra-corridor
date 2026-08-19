@@ -3,7 +3,7 @@ title: Data sources
 description: Every publisher, feed and dataset behind Bharat Tracker — what each covers, how far back it goes, how much to trust it, and where it falls short.
 ---
 
-Bharat Tracker publishes nothing it cannot attribute. Each of the **117 series** on this site
+Bharat Tracker publishes nothing it cannot attribute. Each of the **123 series** on this site
 carries a list of source ids resolving into `data/sources.json`, where a source is a specific
 document — a named press release, a yearbook chapter, a parliamentary answer — with a URL and
 the date it was read, not a vague gesture at an institution.
@@ -29,16 +29,16 @@ moved, not the number.
 | Infrastructure | 22 | 195 | 2001–2026 | MoRTH, MoCA, Ministry of Ports & Shipping, PIB |
 | Trade | 16 | 291 | 2001–2025 | World Bank WDI, Department of Commerce |
 | Economy | 14 | 315 | 2001–2025 | World Bank WDI |
-| Manufacturing | 13 | 309 | 2001–2025 | World Bank WDI, PIB |
+| Manufacturing | 9 | 224 | 2001–2025 | World Bank WDI, PIB |
 | Social | 10 | 187 | 2001–2025 | World Bank WDI |
 | Quality of life | 8 | 189 | 2001–2024 | World Bank WDI |
 | Energy | 5 | 112 | 2001–2024 | World Bank WDI |
 | Space | 4 | 6 | 1975–2025 | ISRO, FACTLY / Dataful |
 | Real estate | 3 | 52 | 2001–2025 | World Bank WDI |
-| AI & science | 0 | 0 | pending | World Bank WDI |
+| AI & science | 10 | 193 | pending | World Bank WDI |
 | Internal security | 0 | 0 | pending | SATP, MHA parliamentary answers |
 
-Series carry one of three frequencies: `annual` (79), `fiscal-year` (17, India's April–March
+Series carry one of three frequencies: `annual` (85), `fiscal-year` (17, India's April–March
 year, never silently converted to calendar years) and `point-in-time` (21, a stock count as of
 a stated date rather than a flow).
 
@@ -339,13 +339,13 @@ Current register: **43 sources — 15 tier 1, 16 tier 2, 12 tier 3.**
 
 ### Provenance — who produced the number
 
-`official` (28 series) · `multilateral` (77) · `think-tank` (3) · `press` (9) · `derived`.
+`official` (28 series) · `multilateral` (83) · `think-tank` (3) · `press` (9) · `derived`.
 `derived` is reserved for figures this site computes from cited underlying series, and it is
 always labelled on the chart.
 
 ### Confidence — how much weight it bears
 
-`high` (94 series) · `medium` (16) · `low` (7).
+`high` (100 series) · `medium` (16) · `low` (7).
 
 Four rules are enforced mechanically, in `scripts/lib/validate-series.ts` and again as CHECK
 constraints in `supabase/migrations/0001_init.sql`:
