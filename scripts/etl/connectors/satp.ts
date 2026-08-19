@@ -108,7 +108,39 @@ function cellNumber(text: string): number | null {
   return Math.round(n);
 }
 
-export interface ParsedRow extends SecurityYear {}
+export interface ParsedRow extends SecurityYear {
+  /** The total the page itself states, when it publishes one. */
+  statedTotal: number | null;
+}
+
+export interface ParsedTable {
+  rows: ParsedRow[];
+  skipped: string[];
+  /** The header row as read, so a wrong table is diagnosable from the log. */
+  header: string[];
+  /** Rows whose three parts did not add up to the page's own total. */
+  mismatched: number;
+}
+
+/**
+ * The column headings a fatality sheet must present.
+ *
+ * This is the check that was missing. Without it the parser reads the first
+ * four numeric columns of whatever table it lands on and publishes them under
+ * labels it has no evidence for — which is what happened: a table was found,
+ * the columns were not the columns assumed, and 13,142 security force deaths
+ * reached the site for a year in which nothing of the kind occurred.
+ *
+ * Matching the header is not sufficient on its own, so the stated total is
+ * cross-checked too. Between them, a wrong table is rejected rather than
+ * relabelled.
+ */
+const EXPECTED_HEADER: RegExp[] = [
+  /year/i,
+  /civilian/i,
+  /security\s*force|\bsfs?\b|police/i,
+  /terrorist|militant|maoist|extremist|insurgent|naxal|cadre/i,
+];
 
 /**
  * Parse a SATP fatality table.
@@ -118,9 +150,11 @@ export interface ParsedRow extends SecurityYear {}
  * total rather than trusting it, so a row whose parts do not add up is caught
  * here instead of on the chart.
  */
-export function parseFatalityTable(html: string): { rows: ParsedRow[]; skipped: string[] } {
+export function parseFatalityTable(html: string): ParsedTable {
   const rows: ParsedRow[] = [];
   const skipped: string[] = [];
+  let header: string[] = [];
+  let mismatched = 0;
 
   const tableRows = html.match(/<tr\b[\s\S]*?<\/tr>/gi) ?? [];
   for (const tr of tableRows) {
@@ -128,6 +162,11 @@ export function parseFatalityTable(html: string): { rows: ParsedRow[]; skipped: 
       cellText(m[1] ?? ""),
     );
     if (cells.length < 4) continue;
+
+    // The first row whose leading cell is not a year is taken as the header.
+    if (header.length === 0 && !/^(19|20)\d{2}$/.test((cells[0] ?? "").replace(/\D/g, ""))) {
+      header = cells;
+    }
 
     const yearText = (cells[0] ?? "").replace(/\D/g, "");
     const year = Number(yearText);
@@ -141,15 +180,46 @@ export function parseFatalityTable(html: string): { rows: ParsedRow[]; skipped: 
       skipped.push(`${year}: a column did not parse`);
       continue;
     }
-    rows.push({ year, civilians, securityForces, insurgents });
+
+    // Cross-check against the page's own total. This is what the comment used
+    // to promise and the code did not do.
+    const statedTotal = cells.length > 4 ? cellNumber(cells[4] ?? "") : null;
+    if (statedTotal !== null && statedTotal !== civilians + securityForces + insurgents) {
+      mismatched++;
+      skipped.push(
+        `${year}: parts sum to ${civilians + securityForces + insurgents} but the page states ${statedTotal}`,
+      );
+      continue;
+    }
+
+    rows.push({ year, civilians, securityForces, insurgents, statedTotal });
   }
 
   // Latest wins on duplicate years — these sheets sometimes repeat a header
   // block partway down.
   const byYear = new Map<number, ParsedRow>();
   for (const r of rows) byYear.set(r.year, r);
-  return { rows: [...byYear.values()].sort((a, b) => a.year - b.year), skipped };
+  return {
+    rows: [...byYear.values()].sort((a, b) => a.year - b.year),
+    skipped,
+    header,
+    mismatched,
+  };
 }
+
+/** Does this table present the columns a fatality sheet must present? */
+export function headerMatches(header: string[]): boolean {
+  return EXPECTED_HEADER.every((re, i) => re.test(header[i] ?? ""));
+}
+
+/**
+ * A ceiling on annual deaths for one Indian internal conflict.
+ *
+ * The worst year of the Kashmir insurgency ran to roughly 4,500 deaths. A
+ * table claiming five figures in a year is not this conflict, and the old
+ * 20,000 envelope was loose enough to wave 19,370 straight through.
+ */
+export const MAX_ANNUAL_FATALITIES = 6_000;
 
 function seriesFrom(
   spec: SecuritySeriesSpec,
@@ -207,10 +277,38 @@ export async function runSatp(
         continue;
       }
       const out = parseFatalityTable(res.data);
-      if (out.rows.length < MIN_YEARS) {
-        attempts.push(`${url} -> only ${out.rows.length} year(s) parsed`);
+
+      // Always log what was found, whether or not it is accepted. The wrong
+      // table was only identifiable after the fact because nothing recorded
+      // what had actually been read.
+      log(`    ${url}`);
+      log(`      header: ${out.header.slice(0, 5).join(" | ") || "(none found)"}`);
+      const sample = out.rows[0];
+      if (sample) {
+        log(
+          `      first row: ${sample.year} civ=${sample.civilians} sf=${sample.securityForces} ` +
+            `adv=${sample.insurgents} stated=${sample.statedTotal ?? "-"}`,
+        );
+      }
+
+      if (!headerMatches(out.header)) {
+        attempts.push(`${url} -> header is not a fatality table: ${out.header.slice(0, 5).join(" | ")}`);
         continue;
       }
+      if (out.rows.length < MIN_YEARS) {
+        attempts.push(`${url} -> only ${out.rows.length} year(s) parsed, ${out.mismatched} row(s) did not add up`);
+        continue;
+      }
+      const worst = Math.max(
+        ...out.rows.map((r) => r.civilians + r.securityForces + r.insurgents),
+      );
+      if (worst > MAX_ANNUAL_FATALITIES) {
+        attempts.push(
+          `${url} -> a year totals ${worst} deaths, above the ${MAX_ANNUAL_FATALITIES} ceiling for one Indian internal conflict; this is not the table it claims to be`,
+        );
+        continue;
+      }
+
       for (const sk of out.skipped) errors.push(`${sheet.theatre}: ${sk}`);
       rows = out.rows;
       usedUrl = url;

@@ -9,7 +9,11 @@
  */
 import { readFileSync } from "node:fs";
 import { tonality, actionIndex, scoreSeries, LIMITS, type SecurityYear } from "../lib/security-index";
-import { parseFatalityTable } from "./etl/connectors/satp";
+import {
+  parseFatalityTable,
+  headerMatches,
+  MAX_ANNUAL_FATALITIES,
+} from "./etl/connectors/satp";
 import { SECURITY_SERIES, DEFENCE_PENDING, ALL_SECURITY_SPECS } from "../lib/security-catalogue";
 import { getAllSources } from "../lib/data";
 import { validateSeries } from "./lib/validate-series";
@@ -177,6 +181,42 @@ console.log("SATP table parsing");
     rows[rows.length - 1]?.year === 2021,
     `ends at the last readable year (got ${rows.at(-1)?.year})`,
   );
+}
+
+console.log("");
+console.log("SATP — rejecting the wrong table");
+{
+  // The live run published 23 years off a table that was not a fatality sheet.
+  // These are the three checks that would have stopped it.
+  const good = parseFatalityTable(readFileSync("scripts/__fixtures__/satp-fatalities.html", "utf8"));
+  check(headerMatches(good.header), `the real sheet's header is accepted (${good.header.slice(0, 4).join(" | ")})`);
+  check(good.mismatched === 0, "and every row agrees with the page's own total");
+
+  const wrongHeader = parseFatalityTable(
+    `<table><tr><th>Year</th><th>Incidents</th><th>Arrests</th><th>Seizures</th><th>Total</th></tr>
+     <tr><td>2010</td><td>100</td><td>200</td><td>300</td><td>600</td></tr></table>`,
+  );
+  check(!headerMatches(wrongHeader.header), "a table with different columns is refused");
+
+  const badTotals = parseFatalityTable(
+    `<table><tr><th>Year</th><th>Civilians</th><th>Security Force Personnel</th><th>Terrorists</th><th>Total</th></tr>
+     <tr><td>2010</td><td>10</td><td>20</td><td>30</td><td>999</td></tr>
+     <tr><td>2011</td><td>10</td><td>20</td><td>30</td><td>60</td></tr></table>`,
+  );
+  check(badTotals.mismatched === 1, "a row whose parts do not sum to the stated total is dropped");
+  check(
+    badTotals.rows.length === 1 && badTotals.rows[0]?.year === 2011,
+    "and the row that does add up survives",
+  );
+  check(
+    badTotals.skipped.some((m) => m.includes("999")),
+    "the mismatch is reported with both numbers",
+  );
+
+  // The ceiling: the run that got through showed 19,370 deaths in one year
+  // against a 20,000 envelope.
+  check(MAX_ANNUAL_FATALITIES < 19_370, `the ceiling would reject the year that got through (${MAX_ANNUAL_FATALITIES})`);
+  check(MAX_ANNUAL_FATALITIES > 4_500, "but still admits the worst real year of the Kashmir insurgency");
 }
 
 console.log("");
