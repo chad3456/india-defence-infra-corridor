@@ -127,12 +127,12 @@ are the load-bearing fact.
 
 ## The news and events pipeline
 
-**79 active feeds** declared in `lib/sources.ts` and nowhere else. No ingest code knows about
+**78 active feeds** declared in `lib/sources.ts` and nowhere else. No ingest code knows about
 any particular publisher; adding one is a one-line change. They fall into four groups.
 
 | Group | Feeds | Marked |
 |---|---:|---|
-| Official releases | 3 | `verified` |
+| Official releases | 2 | `verified` |
 | Publisher desks | 38 | `reported` |
 | Keyword searches | 31 | `reported`, credited to the publisher the item names |
 | Site-scoped fallbacks | 7 | `reported`, credited to the site searched |
@@ -153,18 +153,18 @@ editorial judgement ten times over, and they all go down together, so they count
 
 | Sector | Distinct publishers declared | Beyond the national desks |
 |---|---:|---|
-| Defence | 14 | IDRW, Bharat Shakti, Raksha Anirveda, FE Defence |
-| Infrastructure | 16 | ETInfra, Construction World, Metro Rail News, FE Infrastructure |
-| Manufacturing | 13 | ET Manufacturing, ETAuto, pv magazine India |
-| Roads & airports | 11 | ETInfra, Metro Rail News, BL Logistics |
-| Startups | 11 | Inc42, Entrackr, YourStory |
-| PSU & MSME | 11 | ETGovernment, FE Industry, YourStory |
-| Energy | 10 | Mercom India, Saur Energy, pv magazine, ETEnergyWorld |
-| Exports | 8 | ET Foreign Trade, ETAuto, Mint Economy |
-| Trade deals | 8 | Mint Economy, BS Economy, BusinessLine |
-| Space | 8 | Mint Science, The Hindu Sci-Tech, ET Tech |
-| Ports | 6 | Maritime Gateway, BL Logistics, ETInfra |
-| Pipelines | 6 | ETEnergyWorld, Maritime Gateway, BL Logistics |
+| Defence | 13 | IDRW, Bharat Shakti, Raksha Anirveda, FE Defence |
+| Infrastructure | 15 | ETInfra, Construction World, Metro Rail News, FE Infrastructure |
+| Manufacturing | 12 | ET Manufacturing, ETAuto, pv magazine India |
+| Roads & airports | 10 | ETInfra, Metro Rail News, BL Logistics |
+| Startups | 10 | Inc42, Entrackr, YourStory |
+| PSU & MSME | 10 | ETGovernment, FE Industry, YourStory |
+| Energy | 9 | Mercom India, Saur Energy, pv magazine, ETEnergyWorld |
+| Exports | 7 | ET Foreign Trade, ETAuto, Mint Economy |
+| Trade deals | 7 | Mint Economy, BS Economy, BusinessLine |
+| Space | 7 | Mint Science, The Hindu Sci-Tech, ET Tech |
+| Ports | 5 | Maritime Gateway, BL Logistics, ETInfra |
+| Pipelines | 5 | ETEnergyWorld, Maritime Gateway, BL Logistics |
 
 `npm run test:ingest` asserts the declared floor without touching the network;
 `npm run sources:verify` proves the feeds actually answer, and writes
@@ -192,11 +192,11 @@ publisher, the resolved URL replaces the redirect, so most pins cite the article
 
 ### When a publisher's own feed stops working
 
-Thirteen declared feeds are disabled, each keeping its URL and the reason the probe gave.
+Fourteen declared feeds are disabled, each keeping its URL and the reason the probe gave.
 Financial Express answers 403 to every user-agent; ThePrint, Construction World and Raksha
 Anirveda serve an interstitial instead of the feed; Saur Energy and Entrackr 404; ISRO has no
-stable feed at its published path; MEA blocks; and Swarajya, ET Defence and ET Startups parse
-as feeds but have returned zero items on every run.
+stable feed at its published path; MEA blocks; DD News timed out on both probes; and Swarajya,
+ET Defence and ET Startups parse as feeds but have returned zero items on every run.
 
 Dropping those would quietly remove desks this tracker was asked to follow, so seven of them
 are reached through a **site-scoped search** instead — the one mechanism here proven to answer,

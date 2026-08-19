@@ -156,6 +156,9 @@ Adding data is a two-sided change. One side without the other fails the gate.
   declared floor offline; `npm run sources:verify` proves the feeds answer. Newsrooms are
   counted, not feeds — ET's ten desks are one publisher.
 - **Wider sector reach** → add a phrase to `SECTOR_KEYWORDS`, not another hand-written URL.
+- **After any registry change** → `npm run docs:sync`, which regenerates the counted tables in
+  the published catalogue. Do not hand-edit those numbers; three of them were wrong the one
+  time I did.
 - **Gazetteer** → `npm run geo:build`. Never hand-edit `data/geo/places.json`; it is
   generated from Natural Earth plus a curated overlay inside `scripts/geo/build-gazetteer.ts`.
 - **Any data change at all** → `npm run db:seed-sql` to regenerate `supabase/seed.sql`.
@@ -186,6 +189,7 @@ npm run etl:dry          # show what would be fetched, touch no network
 npm run map:refresh      # the half-hourly wrapper: feeds -> classify -> merge
 npm run map:refresh:dry  # same, touching no network
 npm run sources:verify   # probe every feed; fails if a sector has <3 publishers
+npm run docs:sync        # regenerate the counted tables in docs/data-sources.mdx
 
 npm run db:check         # is bharat_tracker reachable?
 npm run db:push          # seed Postgres from committed JSON

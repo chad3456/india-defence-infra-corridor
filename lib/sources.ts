@@ -99,6 +99,8 @@ export const OFFICIAL_SOURCES: FeedSource[] = [
     feed: "https://ddnews.gov.in/en/feed/",
     kind: "official",
     domains: ALL_DOMAINS,
+    disabled: true,
+    note: "Timed out on both probe runs of 2026-08-19; PIB and PMO carry the same releases.",
   },
   {
     id: "isro",

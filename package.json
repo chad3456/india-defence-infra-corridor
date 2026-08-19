@@ -14,6 +14,7 @@
     "map:refresh": "tsx scripts/etl/refresh-map.ts",
     "map:refresh:dry": "tsx scripts/etl/refresh-map.ts --dry-run",
     "sources:verify": "tsx scripts/etl/verify-sources.ts",
+    "docs:sync": "tsx scripts/docs/sync-tables.ts",
     "validate": "tsx scripts/validate.ts",
     "registry:audit": "tsx scripts/audit-registry.ts",
     "test": "npm run validate && npm run registry:audit && npm run test:schema && npm run test:ingest && npm run test:docs && npm run db:seed-check && npm run typecheck",
