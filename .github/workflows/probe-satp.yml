@@ -1,0 +1,59 @@
+name: Probe SATP
+
+# Reads SATP's pages and commits what it saw. Publishes no data.
+#
+# The connector was written against a fixture built from an assumption about
+# the column layout, the assumption was wrong, and implausible fatality figures
+# reached the site. The development sandbox cannot reach satp.org, so every
+# correction after that was another guess. This runs where the network works
+# and records the real table shapes, so the fix is written against evidence.
+#
+# Manual and on-change only. There is no reason to probe on a schedule.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-satp.ts"
+      - ".github/workflows/probe-satp.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-satp
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Probe
+        run: npm run satp:probe
+
+      - name: Commit the probe report
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/live/satp-probe.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "Probe report unchanged."
+            exit 0
+          fi
+          git commit -m "chore(satp): probe report $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do
+            git push && break
+            echo "push failed, retrying in $((2**i))s"
+            sleep $((2**i))
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          done
