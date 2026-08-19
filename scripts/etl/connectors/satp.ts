@@ -22,7 +22,7 @@
  */
 import type { Series, DataPoint } from "../../../lib/types";
 import {
-  SECURITY_SERIES,
+  ALL_SECURITY_SPECS,
   SECURITY_START_YEAR,
   type SecuritySeriesSpec,
 } from "../../../lib/security-catalogue";
@@ -109,6 +109,8 @@ function cellNumber(text: string): number | null {
 }
 
 export interface ParsedRow extends SecurityYear {
+  /** Deaths the sheet could not attribute to a category. Part of its total. */
+  notSpecified: number;
   /** The total the page itself states, when it publishes one. */
   statedTotal: number | null;
 }
@@ -135,11 +137,46 @@ export interface ParsedTable {
  * cross-checked too. Between them, a wrong table is rejected rather than
  * relabelled.
  */
-const EXPECTED_HEADER: RegExp[] = [
-  /year/i,
-  /civilian/i,
-  /security\s*force|\bsfs?\b|police/i,
-  /terrorist|militant|maoist|extremist|insurgent|naxal|cadre/i,
+const COLUMNS = {
+  year: /^year$/i,
+  incidents: /incident/i,
+  civilians: /civilian/i,
+  securityForces: /security\s*force|\bsfs?\b|police/i,
+  insurgents: /terrorist|militant|maoist|extremist|insurgent|naxal|cadre/i,
+  notSpecified: /not\s*specified/i,
+  total: /^total$/i,
+} as const;
+
+export type ColumnMap = Partial<Record<keyof typeof COLUMNS, number>>;
+
+/**
+ * Find each column by its heading rather than by counting from the left.
+ *
+ * The first version counted positions, assuming `year | civilians | security
+ * forces | terrorists | total`. The real sheet is `Year | Incidents of Killing
+ * | Civilians | Security Forces | Terrorists/Insurgents/Extremists | Not
+ * Specified | Total` — seven columns, with an incident count second. So every
+ * figure landed one place to the left of its label: incidents were published as
+ * civilian deaths, civilian deaths as security force deaths, and so on.
+ *
+ * Reading the heading costs nothing and survives a column being inserted, which
+ * counting never does.
+ */
+export function resolveColumns(header: string[]): ColumnMap {
+  const map: ColumnMap = {};
+  for (const [key, re] of Object.entries(COLUMNS) as Array<[keyof typeof COLUMNS, RegExp]>) {
+    const i = header.findIndex((h) => re.test(h));
+    if (i !== -1) map[key] = i;
+  }
+  return map;
+}
+
+/** The columns a sheet must present to be usable at all. */
+const REQUIRED: Array<keyof typeof COLUMNS> = [
+  "year",
+  "civilians",
+  "securityForces",
+  "insurgents",
 ];
 
 /**
@@ -154,6 +191,7 @@ export function parseFatalityTable(html: string): ParsedTable {
   const rows: ParsedRow[] = [];
   const skipped: string[] = [];
   let header: string[] = [];
+  let cols: ColumnMap = {};
   let mismatched = 0;
 
   const tableRows = html.match(/<tr\b[\s\S]*?<\/tr>/gi) ?? [];
@@ -163,36 +201,65 @@ export function parseFatalityTable(html: string): ParsedTable {
     );
     if (cells.length < 4) continue;
 
-    // The first row whose leading cell is not a year is taken as the header.
-    if (header.length === 0 && !/^(19|20)\d{2}$/.test((cells[0] ?? "").replace(/\D/g, ""))) {
-      header = cells;
-    }
+    const looksLikeYear = (c: string) => /^(19|20)\d{2}$/.test(c.replace(/\D/g, ""));
 
-    const yearText = (cells[0] ?? "").replace(/\D/g, "");
+    // The first row that is not a data row, and that names the columns we
+    // need, is the header. Rows are read only once it is found.
+    if (header.length === 0 && !looksLikeYear(cells[0] ?? "")) {
+      const candidate = resolveColumns(cells);
+      if (REQUIRED.every((k) => candidate[k] !== undefined)) {
+        header = cells;
+        cols = candidate;
+      }
+      continue;
+    }
+    if (header.length === 0) continue;
+
+    const at = (k: keyof typeof COLUMNS): string | null => {
+      const i = cols[k];
+      return i === undefined ? null : (cells[i] ?? "");
+    };
+
+    // SATP marks partial years with an asterisk; cellNumber strips it.
+    const yearText = (at("year") ?? "").replace(/\D/g, "");
     const year = Number(yearText);
     if (!/^(19|20)\d{2}$/.test(yearText) || year < SECURITY_START_YEAR) continue;
 
-    const civilians = cellNumber(cells[1] ?? "");
-    const securityForces = cellNumber(cells[2] ?? "");
-    const insurgents = cellNumber(cells[3] ?? "");
+    const civilians = cellNumber(at("civilians") ?? "");
+    const securityForces = cellNumber(at("securityForces") ?? "");
+    const insurgents = cellNumber(at("insurgents") ?? "");
 
     if (civilians === null || securityForces === null || insurgents === null) {
       skipped.push(`${year}: a column did not parse`);
       continue;
     }
 
-    // Cross-check against the page's own total. This is what the comment used
-    // to promise and the code did not do.
-    const statedTotal = cells.length > 4 ? cellNumber(cells[4] ?? "") : null;
-    if (statedTotal !== null && statedTotal !== civilians + securityForces + insurgents) {
+    const notSpecifiedCell = at("notSpecified");
+    const notSpecified = notSpecifiedCell === null ? 0 : (cellNumber(notSpecifiedCell) ?? 0);
+    const incidentsCell = at("incidents");
+    const incidents = incidentsCell === null ? undefined : (cellNumber(incidentsCell) ?? undefined);
+
+    // Cross-check against the page's own total. "Not specified" deaths are part
+    // of the total but belong to no category, so they count here and are not
+    // silently folded into one of the three.
+    const totalCell = at("total");
+    const statedTotal = totalCell === null ? null : cellNumber(totalCell);
+    const computed = civilians + securityForces + insurgents + notSpecified;
+    if (statedTotal !== null && statedTotal !== computed) {
       mismatched++;
-      skipped.push(
-        `${year}: parts sum to ${civilians + securityForces + insurgents} but the page states ${statedTotal}`,
-      );
+      skipped.push(`${year}: parts sum to ${computed} but the page states ${statedTotal}`);
       continue;
     }
 
-    rows.push({ year, civilians, securityForces, insurgents, statedTotal });
+    rows.push({
+      year,
+      civilians,
+      securityForces,
+      insurgents,
+      notSpecified,
+      ...(incidents === undefined ? {} : { incidents }),
+      statedTotal,
+    });
   }
 
   // Latest wins on duplicate years — these sheets sometimes repeat a header
@@ -209,7 +276,8 @@ export function parseFatalityTable(html: string): ParsedTable {
 
 /** Does this table present the columns a fatality sheet must present? */
 export function headerMatches(header: string[]): boolean {
-  return EXPECTED_HEADER.every((re, i) => re.test(header[i] ?? ""));
+  const cols = resolveColumns(header);
+  return REQUIRED.every((k) => cols[k] !== undefined);
 }
 
 /**
@@ -252,7 +320,9 @@ export async function runSatp(
   const series: Series[] = [];
   const parsed: Record<string, number> = {};
 
-  const byId = new Map(SECURITY_SERIES.map((s) => [s.id, s]));
+  // Every catalogue entry, not just the fatality block: the incident series
+  // live alongside the hand-entered ones but are filled from this table.
+  const byId = new Map(ALL_SECURITY_SPECS.map((s) => [s.id, s]));
 
   for (const sheet of SHEETS) {
     if (opts.dryRun) {

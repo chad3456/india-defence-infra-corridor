@@ -39,6 +39,11 @@ jobs:
       - name: Security index tests
         run: npm run test:security
 
+      # Hand-entered figures are the one path in that no upstream will
+      # contradict, so the gate is stricter than for scraped data.
+      - name: Curated security data
+        run: npm run security:check
+
       - name: Doc tests
         run: npm run test:docs
 

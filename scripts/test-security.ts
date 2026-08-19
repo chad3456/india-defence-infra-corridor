@@ -174,7 +174,25 @@ console.log("SATP table parsing");
   );
   check(!rows.some((r) => r.year === 1999), "ignores years before the series starts");
   check(!rows.some((r) => r.year === 2020), "drops a row whose column did not parse");
-  check(skipped.length === 1, `and says so (got ${skipped.length} skip message(s))`);
+  check(skipped.length === 2, `and says so (got ${skipped.length} skip message(s))`);
+  // The fixture carries the real seven-column layout, so these assert the
+  // column mapping that was wrong in production rather than the one I assumed.
+  check(
+    rows[1]?.year === 2005 && rows[1]?.civilians === 524 && rows[1]?.securityForces === 153,
+    "civilians and security forces come from their own columns, not the ones beside them",
+  );
+  check(
+    rows[1]?.incidents === 402,
+    `the incident column is read as incidents (got ${rows[1]?.incidents})`,
+  );
+  check(
+    rows.every((r) => (r.incidents ?? 0) !== r.civilians),
+    "an incident count is never published as a civilian death count",
+  );
+  check(
+    rows.some((r) => r.year === 2000) === false,
+    "years before the window are excluded even when the sheet marks them with an asterisk",
+  );
   check(new Set(rows.map((r) => r.year)).size === rows.length, "a repeated header block does not duplicate years");
   check(rows.every((r) => r.civilians >= 0 && r.securityForces >= 0), "no negative counts survive");
   check(
@@ -190,7 +208,19 @@ console.log("SATP — rejecting the wrong table");
   // These are the three checks that would have stopped it.
   const good = parseFatalityTable(readFileSync("scripts/__fixtures__/satp-fatalities.html", "utf8"));
   check(headerMatches(good.header), `the real sheet's header is accepted (${good.header.slice(0, 4).join(" | ")})`);
-  check(good.mismatched === 0, "and every row agrees with the page's own total");
+  check(good.mismatched === 1, `the fixture's one bad total is caught (got ${good.mismatched})`);
+  check(
+    !good.rows.some((r) => r.year === 2022),
+    "and that row does not reach the series",
+  );
+  check(
+    good.rows.every(
+      (r) =>
+        r.statedTotal === null ||
+        r.statedTotal === r.civilians + r.securityForces + r.insurgents + r.notSpecified,
+    ),
+    "every published row agrees with the page's own total, unattributed deaths included",
+  );
 
   const wrongHeader = parseFatalityTable(
     `<table><tr><th>Year</th><th>Incidents</th><th>Arrests</th><th>Seizures</th><th>Total</th></tr>

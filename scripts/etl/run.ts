@@ -12,10 +12,11 @@
  *   - Output is written only after validation passes, so a malformed upstream
  *     response cannot land in the repo.
  */
-import { writeFile, mkdir } from "node:fs/promises";
+import { writeFile, mkdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { runWorldBank } from "./connectors/worldbank";
 import { runSatp } from "./connectors/satp";
+import { runCuratedSecurity } from "./connectors/curated-security";
 import { runIngest } from "./connectors/ingest";
 import { runX } from "./connectors/x";
 import { mergeEvents, readStoredEvents } from "./lib/merge";
@@ -98,6 +99,34 @@ async function main() {
   } else if (!DRY) {
     messages.push("satp: no series returned; keeping previous data");
     log("  no series returned — previous data left in place");
+  }
+
+  /* ---------------- Hand-entered security figures ---------------- */
+  log("");
+  log("Curated security — hand-entered figures");
+  connectorsRun++;
+  const curated = await runCuratedSecurity({
+    root: ROOT,
+    sources: JSON.parse(await readFile(join(ROOT, "data/sources.json"), "utf8")),
+    onProgress: log,
+  });
+  for (const e of curated.errors) messages.push(`curated: ${e}`);
+
+  if (!DRY && curated.series.length > 0) {
+    const problems = curated.series.flatMap((s) => validateSeries(s).map((p) => `${s.id}: ${p}`));
+    if (problems.length > 0) {
+      connectorsFailed++;
+      messages.push(...problems.map((p) => `curated validation: ${p}`));
+      log(`  VALIDATION FAILED — ${problems.length} problem(s), not writing security-curated.json`);
+    } else {
+      await writeFile(
+        join(ROOT, "data/series/security-curated.json"),
+        JSON.stringify(curated.series, null, 2) + "\n",
+        "utf8",
+      );
+      seriesUpdated += curated.series.length;
+      log(`  wrote data/series/security-curated.json — ${curated.series.length} series`);
+    }
   }
 
   /* ---------------- Event ingest ---------------- */
