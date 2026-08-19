@@ -1,0 +1,293 @@
+---
+title: Data sources
+description: Every publisher, feed and dataset behind Bharat Tracker — what each covers, how far back it goes, how much to trust it, and where it falls short.
+---
+
+Bharat Tracker publishes nothing it cannot attribute. Each of the **117 series** on this site
+carries a list of source ids resolving into `data/sources.json`, where a source is a specific
+document — a named press release, a yearbook chapter, a parliamentary answer — with a URL and
+the date it was read, not a vague gesture at an institution.
+
+Data reaches the site by two separate routes that never mix:
+
+**The measured route.** Curated series in `data/series/` and the World Bank connector in
+`scripts/etl/connectors/worldbank.ts`. These become charts. Every value is either published
+verbatim by its source or computed by a labelled transform.
+
+**The reported route.** RSS from ministries and news desks, through
+`scripts/etl/connectors/ingest.ts`. These become map pins and tracker headlines. They never
+become chart data. A headline that a plant was announced is evidence that a number may have
+moved, not the number.
+
+---
+
+## Coverage at a glance
+
+| Domain | Series | Data points | Span | Primary providers |
+|---|---:|---:|---|---|
+| Defence | 22 | 160 | 2001–2026 | PIB / MoD, SIPRI, PRS Legislative Research |
+| Infrastructure | 22 | 195 | 2001–2026 | MoRTH, MoCA, Ministry of Ports & Shipping, PIB |
+| Trade | 16 | 291 | 2001–2025 | World Bank WDI, Department of Commerce |
+| Economy | 14 | 315 | 2001–2025 | World Bank WDI |
+| Manufacturing | 13 | 309 | 2001–2025 | World Bank WDI, PIB |
+| Social | 10 | 187 | 2001–2025 | World Bank WDI |
+| Quality of life | 8 | 189 | 2001–2024 | World Bank WDI |
+| Energy | 5 | 112 | 2001–2024 | World Bank WDI |
+| Space | 4 | 6 | 1975–2025 | ISRO, FACTLY / Dataful |
+| Real estate | 3 | 52 | 2001–2025 | World Bank WDI |
+
+Series carry one of three frequencies: `annual` (79), `fiscal-year` (17, India's April–March
+year, never silently converted to calendar years) and `point-in-time` (21, a stock count as of
+a stated date rather than a flow).
+
+---
+
+## Key providers
+
+### World Bank — World Development Indicators
+
+The backbone of every cross-country comparison. **76 indicators**, fetched from 2001 to the
+present for India and five comparators — **China, Vietnam, Brazil, Indonesia and the United
+States** — chosen because each answers a different question: China as the manufacturing
+benchmark India explicitly measures itself against, Vietnam as the small-economy counterexample,
+Brazil and Indonesia as fellow large developing federations, the US as the frontier.
+
+| | |
+|---|---|
+| Endpoint | `api.worldbank.org/v2` |
+| Indicators | 76 across economy, trade, manufacturing, energy, social, quality of life, real estate, infrastructure, defence |
+| Refresh | Every 6 hours, whole history rewritten |
+| Provenance | `multilateral`, tier 1 |
+| Licence | CC BY 4.0 |
+| Catalogue | `lib/wdi-catalogue.ts` |
+
+The connector **rewrites every series in full on each run and never appends**. The World Bank
+revises past years; an append-only store would freeze a stale revision and quietly disagree
+with its own source.
+
+### Press Information Bureau and the ministries
+
+The primary record for Indian government activity — production and export totals, highway
+kilometres, airport counts, budget allocations, port cargo. PIB's national feed carries every
+ministry's releases, so the sector split happens in the classifier rather than in the source
+list.
+
+| Provider | Used for | Provenance |
+|---|---|---|
+| Press Information Bureau | Defence production and exports, MoRTH and MoCA year-end reviews, port cargo, metro network, Department of Commerce | `official`, tier 1 |
+| Ministry of Civil Aviation | Operational and greenfield airport counts, via Rajya Sabha answers | `official`, tier 1 |
+| PMO India | Inaugurations, foundation stones, project commitments | `official`, tier 1 |
+| All India Radio News / DD News (Prasar Bharati) | State broadcaster reporting of ministry figures, used where the underlying release is not individually addressable | `official`, tier 2 |
+
+PIB, PMO, MEA and Business Standard answer **HTTP 403 to any user-agent identifying as a bot**,
+including for their own public RSS. All sixteen PIB ministry feeds were rejected this way on the
+first live run, so `scripts/etl/lib/http.ts` retries a 403 once presenting as a browser. That is
+the only way to read a feed published for the public to read.
+
+### SIPRI
+
+Where India publishes nothing, or publishes something that cannot be compared internationally.
+
+| | |
+|---|---|
+| Datasets | Military Expenditure Database; Trends in International Arms Transfers; Yearbook chapter on world nuclear forces |
+| Used for | Defence spending in constant terms, arms import and export volumes, warhead estimates |
+| Provenance | `think-tank`, tier 1 |
+
+**SIPRI figures are estimates, and the schema knows it.** A `think-tank` provenance graded
+`high` confidence is rejected outright by `scripts/lib/validate-series.ts` and by a CHECK
+constraint in the database. Warhead counts in particular are external inferences — India
+publishes no number at all — and are graded low confidence with an explicit note. Treat them as
+order-of-magnitude.
+
+### Natural Earth
+
+The gazetteer behind every map pin. `npm run geo:build` fetches
+`ne_10m_populated_places_simple`, filters to `adm0name === "India"`, and merges a curated overlay
+of project sites that a populated-places dataset does not carry — Sriharikota, Vizhinjam, Dholera,
+Jewar, Vadhavan, Bhogapuram, Chandipur and others — plus an alias map for the renamed cities.
+
+Result: **211 places across 34 states and union territories**, written to `data/geo/places.json`.
+Public domain, no attribution required. The file is generated; hand-editing it is a bug.
+
+State boundaries and corridor geometry live in `data/geo/india-states.topo.json` and
+`data/geo/corridors.json`. Corridor lines join real geocoded endpoint cities in straight
+segments — they are schematic, not surveyed alignments, and the map says so. The opening years
+are the load-bearing fact.
+
+### Think tanks and analysis
+
+| Provider | Used for | Provenance |
+|---|---|---|
+| PRS Legislative Research | Demand for Grants analysis, defence budget breakdowns | `think-tank`, tier 2 |
+| Vivekananda International Foundation | Year-wise defence export tables predating the current PIB series | `think-tank`, tier 2 |
+| FACTLY / Dataful | ISRO launch-vehicle history | `press`, tier 2 |
+
+---
+
+## The news and events pipeline
+
+**27 active feeds** — two official, twenty-five press desks — declared in `lib/sources.ts`
+and nowhere else. No ingest code knows about any particular publisher; adding one is a one-line
+change.
+
+| Group | Feeds | Marked |
+|---|---|---|
+| Official | PIB (national), PMO India | `verified` |
+| National press | The Hindu (National, Business, Science & Tech), NDTV, NDTV Profit, India Today, Swarajya, OpIndia | `reported` |
+| Business desks | Economic Times ×10, Business Standard ×3, BusinessLine ×3 | `reported` |
+| International | Rest of World | `reported` |
+
+`kind` on the source decides the label, so trust is a property of the publisher rather than a
+hardcoded list inside the parser. **Reputable and primary are different things**: The Hindu is
+marked `reported`, not `verified`, because it is reporting someone else's announcement.
+
+Three feeds are declared but disabled, with their URL and reason kept on record: **ISRO**
+(404 — no stable feed at the published path), **MEA** (403 even with a browser user-agent) and
+**ThePrint** (answers 200 with an interstitial rather than the feed, from CI address ranges).
+
+### From headline to pin
+
+Ingest runs in two passes. Pass one reads every feed. Pass two fetches article bodies, but only
+for candidates the headline alone cannot resolve, under a budget of 120 requests per run.
+
+A story becomes a map pin only if it survives, in order:
+
+1. **Sector rules** — ordered, first match wins: space → defence → trade deals → exports →
+   pipelines → ports → roads & airports → energy → startups → PSU & MSME → manufacturing →
+   infrastructure. A body-only match needs the term **twice in the body and once in the first
+   600 characters**, so a passing mention cannot set the sector.
+2. **Action gate** — something must have been done: inaugurated, commissioned, sanctioned,
+   awarded, ordered, signed, test-fired, inducted, delivered, flagged off. Commentary,
+   analysis and speeches are not events.
+3. **Incident filter** — fires, crashes, collapses, arrests, protests, raids and outages are
+   dropped. A tracker of what is being built is not a tracker of what went wrong.
+4. **Legal filter** — court rulings, tribunals, pleas, petitions and appeals are dropped. A
+   Supreme Court judgment about a power company is not an energy project.
+5. **Geo-location** — the gazetteer must find a place in the title or the lede. It returns
+   `null` rather than guessing, and an unplaceable story is kept off the map rather than
+   pinned to a state capital.
+6. **Deduplication** — three outlets reporting one port commissioning is one pin. Near-
+   duplicates are collapsed on shared place, shared date, an **overlap coefficient** of ≥0.5
+   over title tokens and at least three shared tokens; `verified` wins over `reported`, then
+   the earliest report.
+
+Every run prints its funnel, and the losses are large by design:
+
+```
+ingest funnel: 784 items -> 273 candidates -> 24 events
+               (lost: 178 no sector, 41 not an action, 30 no place)
+```
+
+Stored events are **re-checked against the current rules on every merge**, so tightening a rule
+retroactively removes pins it should never have created. Events older than 730 days are dropped.
+
+### Official X handles
+
+`lib/sources.ts` lists **17 official handles** — the PM, Home, Defence, Road Transport, Commerce,
+Railways, Ports, Civil Aviation and Renewable Energy ministers and ministries, plus ISRO, DRDO
+and PIB. The connector is **dormant**: X has no free read tier, so it activates only when
+`X_BEARER_TOKEN` is set and otherwise reports itself inactive and the pipeline carries on. The
+PIB and PMO feeds carry the same announcements from the primary source.
+
+Handles are configuration. **No post content is ever committed to this repository** — it is
+fetched at run time like any other feed.
+
+---
+
+## How sources are graded
+
+### Tier — how close to the record
+
+| Tier | Meaning | Examples |
+|---|---|---|
+| **1** | The primary release, or the reference dataset for a field with no Indian equivalent | PIB, MoCA parliamentary answers, World Bank WDI, SIPRI |
+| **2** | An institution restating a primary figure, or a specialist analysis of one | Prasar Bharati, PRS, VIF |
+| **3** | Press reporting of someone else's numbers | ThePrint, Swarajya, Deccan Herald, BusinessLine |
+
+Current register: **41 sources — 15 tier 1, 14 tier 2, 12 tier 3.**
+
+### Provenance — who produced the number
+
+`official` (28 series) · `multilateral` (77) · `think-tank` (3) · `press` (9) · `derived`.
+`derived` is reserved for figures this site computes from cited underlying series, and it is
+always labelled on the chart.
+
+### Confidence — how much weight it bears
+
+`high` (94 series) · `medium` (16) · `low` (7).
+
+Four rules are enforced mechanically, in `scripts/lib/validate-series.ts` and again as CHECK
+constraints in `supabase/migrations/0001_init.sql`:
+
+- A series with **no sources** is rejected.
+- **`confidence: "low"` without a note** explaining the uncertainty is rejected.
+- **`think-tank` provenance graded `high`** is rejected — estimates are not records.
+- A series backed **only by tier-3 press** and graded above `low` raises a warning.
+
+The database constraints use `cardinality()`, not `array_length()`. `array_length()` returns
+NULL on an empty array and a CHECK passes on NULL, which meant the constraints accepted exactly
+the rows they existed to reject. The Postgres-in-WASM tests caught it; `npm run test:schema`
+keeps it caught.
+
+---
+
+## Freshness
+
+| Path | Cadence | Written to |
+|---|---|---|
+| World Bank | Every 6 hours (cached, cheap to re-run) | `data/series/wdi.json` |
+| Feeds and events | Every 6 hours, and on any push touching ingest code | `data/live/news.json`, `data/events.json` |
+| Curated series | Manual, on verification against a primary release | `data/series/*.json` |
+| Gazetteer | Manual, `npm run geo:build` | `data/geo/places.json` |
+
+HTTP responses are cached on disk for six hours (fifteen minutes for feeds), so a development
+re-run does not hammer public APIs. Every request is retried with exponential backoff and
+jitter under a hard timeout, and failures are returned rather than thrown — one dead publisher
+must not take down a run.
+
+A run in which a connector fails is marked `partial`: the previous committed data stays in
+place and the site keeps serving last-known-good values rather than blanking a chart. Output is
+written only after validation passes, so a malformed upstream response cannot land in the repo.
+
+---
+
+## Known limitations
+
+These are properties of the underlying data, not bugs to be fixed in code. `/methodology` on
+the site carries the full list.
+
+- **Nominal rupees.** Indian financial series are stored as published. A large share of the
+  apparent growth in defence exports, production and budget is inflation and currency
+  depreciation, not real expansion. Comparisons across years need deflating; the site does not
+  do it for you, and says so on every affected chart.
+- **Fiscal versus calendar years.** Indian releases run April–March, the World Bank runs
+  calendar years. The two are never silently reconciled — `frequency` records which is which.
+- **Definitional drift.** Airport counts vary between releases depending on what counts as
+  operational. National highway length grows partly by re-designating existing state roads, so
+  "kilometres added" and "kilometres built" are different quantities that press coverage
+  routinely conflates.
+- **Estimates presented as data.** Nuclear warhead counts and some arms-transfer volumes are
+  external inferences. Graded low confidence, order-of-magnitude only.
+- **Schematic map geometry.** Corridor lines are straight segments between real geocoded
+  endpoints, not surveyed alignments.
+- **Feeds are a partial window.** RSS carries recent items only, so `data/events.json`
+  accumulates forward from when the pipeline started rather than reaching back. Twenty
+  hand-verified seed events carry the map's earlier history; they are marked with a `seed-`
+  id prefix and can be retired as ingested history accumulates.
+- **Recall is deliberately traded for precision.** Roughly 180 items per run fail the sector
+  match and are dropped. Two attempts at widening the rules produced false pins — a PM CARES
+  story filed as Tamil Nadu defence, a High Court marriage ruling filed as defence, "fire
+  breaks out in old ATC building" filed as an airport opening — so the gates stay tight. A
+  missing pin is a gap; a wrong pin is a false claim.
+
+---
+
+## Licence and attribution
+
+Underlying data is public-domain government output, CC BY 4.0 multilateral data, or published
+research credited to its authors. Every figure on the site links to its publisher. Natural
+Earth is public domain. Bharat Tracker is not affiliated with any government body, political
+party or contractor, and receives nothing from any of them.
+
+Full register: [`data/sources.json`](../data/sources.json), rendered at `/sources`.

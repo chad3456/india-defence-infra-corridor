@@ -121,7 +121,7 @@ scripts/
 
 ### Charts are specs, not components
 
-421 charts are generated from ~40 series × a set of transforms, rendered by one SVG chart
+570 charts are generated from 117 series × a set of transforms, rendered by one SVG chart
 component. Two rules keep the gallery honest:
 
 1. A spec is only emitted when the transform is **meaningful** for that series — no
@@ -129,7 +129,8 @@ component. Two rules keep the gallery honest:
 2. Specs for series the ETL has not yet populated are still emitted, flagged `pending`, and
    render an explicit *awaiting data* state rather than an empty axis pretending to be a finding.
 
-At the time of writing: **117 charts live on committed data, 304 fill on the first ETL run.**
+At the time of writing all 570 render on committed data; see [`docs/data-sources.mdx`](docs/data-sources.mdx)
+for where each series comes from.
 
 ### The data model encodes the editorial rules
 
@@ -145,12 +146,14 @@ chart shows a break in the line. Nothing is interpolated or back-filled.
 
 ### The pipeline
 
-Two connectors, both fail-soft:
+Three connectors, all fail-soft:
 
-- **World Bank** — full 2001-present history for 66 indicators across India and five comparator
+- **World Bank** — full 2001-present history for 76 indicators across India and five comparator
   countries. Rewritten in full each run, never appended to, because the World Bank revises history.
-- **News tracker** — RSS from ThePrint, The Hindu, Swarajya, OpIndia, NDTV, India Today and
-  Rest of World, filtered to relevant topics.
+- **Ingest** — 27 RSS feeds from PIB, PMO, The Hindu, NDTV, India Today, Swarajya, OpIndia,
+  Economic Times, Business Standard, BusinessLine and Rest of World. Headlines feed the tracker;
+  those that pass the sector, action and geo gates become map pins.
+- **X / official handles** — dormant unless `X_BEARER_TOKEN` is set; X has no free read tier.
 
 Nothing from the news connector ever becomes chart data. Press reports of government figures are
 tier-3 evidence: they flag that a number may have moved, and a human verifies against the primary
@@ -159,7 +162,9 @@ release before any series changes.
 A connector that fails leaves the previous committed data in place and marks the run `partial`,
 so the site keeps serving last-known-good values. Output is written only after validation passes.
 
-`.github/workflows/pipeline.yml` runs this daily at 02:15 UTC and commits only if data changed.
+`.github/workflows/pipeline.yml` runs this every 6 hours — and on any push touching the ingest
+code — committing only if data changed. [`docs/data-sources.mdx`](docs/data-sources.mdx) documents
+every provider, tier and classification gate.
 
 ---
 

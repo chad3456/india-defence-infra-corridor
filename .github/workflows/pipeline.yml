@@ -57,6 +57,11 @@ jobs:
       - name: Audit chart registry
         run: npm run registry:audit
 
+      # Refreshed events change the seed file. Regenerate it in the same commit,
+      # otherwise the next CI run fails db:seed-check on drift the bot created.
+      - name: Regenerate seed SQL
+        run: npm run db:seed-sql
+
       - name: Typecheck
         run: npm run typecheck
 
@@ -64,7 +69,7 @@ jobs:
         run: |
           git config user.name  "bharat-tracker-bot"
           git config user.email "actions@github.com"
-          git add data/series/wdi.json data/live/ data/events.json 2>/dev/null || true
+          git add data/series/wdi.json data/live/ data/events.json supabase/seed.sql 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No data changes."
             exit 0
