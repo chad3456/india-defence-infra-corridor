@@ -12,16 +12,15 @@
  *   - Output is written only after validation passes, so a malformed upstream
  *     response cannot land in the repo.
  */
-import { writeFile, mkdir, readFile } from "node:fs/promises";
+import { writeFile, mkdir } from "node:fs/promises";
 import { join } from "node:path";
 import { runWorldBank } from "./connectors/worldbank";
 import { runIngest } from "./connectors/ingest";
 import { runX } from "./connectors/x";
-import { dedupeEvents } from "./lib/dedupe";
-import { reportsAction } from "./lib/classify";
+import { mergeEvents, readStoredEvents } from "./lib/merge";
 import { validateSeries } from "../lib/validate-series";
 import { supabaseConfigured, pushNews, pushRun, pushSeries, pushEvents } from "../../lib/supabase";
-import type { PipelineRun, DevEvent } from "../../lib/types";
+import type { PipelineRun } from "../../lib/types";
 
 const ROOT = process.cwd();
 const DRY = process.argv.includes("--dry-run");
@@ -120,43 +119,23 @@ async function main() {
   }
 
   if (!DRY && allEvents.length > 0) {
-    // Merge into the existing set so the map accumulates history rather than
-    // showing only the last fetch window. Newer rows win on id collision.
-    let existing: DevEvent[] = [];
-    try {
-      existing = JSON.parse(await readFile(join(ROOT, "data/events.json"), "utf8")) as DevEvent[];
-    } catch {
-      existing = [];
+    const stored = await readStoredEvents(ROOT);
+    const merge = mergeEvents(stored, allEvents);
+    if (merge.staleDropped > 0)
+      log(`  dropped ${merge.staleDropped} stored event(s) that no longer pass the rules`);
+    if (merge.collapsed > 0)
+      log(`  collapsed ${merge.collapsed} duplicate report(s) of the same event`);
+    if (merge.unchanged) {
+      log(`  no change — data/events.json left at ${merge.events.length} events`);
+    } else {
+      await writeFile(
+        join(ROOT, "data/events.json"),
+        JSON.stringify(merge.events, null, 2) + "\n",
+        "utf8",
+      );
+      log(`  wrote data/events.json — ${merge.added} new, ${merge.events.length} total`);
     }
-    // Re-check stored rows against the current rules. Ingest rules get
-    // tightened as false pins turn up, and without this a row written under a
-    // looser rule stays on the map for ever. Seeded rows are hand-verified and
-    // exempt.
-    const revalidated = existing.filter(
-      (e) => e.id.startsWith("seed-") || reportsAction(`${e.title} ${e.summary ?? ""}`),
-    );
-    const staleDropped = existing.length - revalidated.length;
-    if (staleDropped > 0) log(`  dropped ${staleDropped} stored event(s) that no longer pass the rules`);
-
-    const byId = new Map(revalidated.map((e) => [e.id, e]));
-    let added = 0;
-    for (const e of allEvents) {
-      if (!byId.has(e.id)) added++;
-      byId.set(e.id, e);
-    }
-    // Keep two years; beyond that the map is history, not a tracker.
-    const cutoff = new Date(Date.now() - 730 * 86_400_000).toISOString().slice(0, 10);
-    const deduped = dedupeEvents([...byId.values()]);
-    const collapsed = byId.size - deduped.length;
-    if (collapsed > 0) log(`  collapsed ${collapsed} duplicate report(s) of the same event`);
-    const merged = deduped.filter((e) => e.date >= cutoff);
-    await writeFile(
-      join(ROOT, "data/events.json"),
-      JSON.stringify(merged, null, 2) + "\n",
-      "utf8",
-    );
-    eventsAdded = added;
-    log(`  wrote data/events.json — ${added} new, ${merged.length} total`);
+    eventsAdded = merge.added;
   } else if (!DRY) {
     messages.push("ingest: no geo-locatable events this run; events.json unchanged");
     log("  no locatable events this run — data/events.json unchanged");

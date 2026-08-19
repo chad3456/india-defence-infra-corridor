@@ -2,17 +2,31 @@
  * Ingest source registry.
  *
  * Everything the pipeline reads is declared here and nowhere else. Adding a
- * ministry or an outlet is a one-line change; no ingest code knows about any
- * particular publisher.
+ * ministry, a trade desk or a sector keyword is a one-line change; no ingest
+ * code knows about any particular publisher.
+ *
+ * Three things are declared per feed:
  *
  * `kind` decides how an item is labelled downstream, so trust is a property of
  * the source rather than a hardcoded list somewhere in the parser:
- *   `official` — the primary release itself (PIB, a ministry, ISRO). Marked
- *                `verified`, because it is the record, not a report of one.
+ *   `official` — the primary release itself (PIB, PMO). Marked `verified`,
+ *                because it is the record, not a report of one.
  *   `press`    — a report of someone else's announcement. Marked `reported`,
  *                including the reputable outlets, because reputable and primary
  *                are different things.
+ *
+ * `domains` says which sectors a feed is a useful source for. It does not
+ * classify anything — the classifier still reads the story — but it is what
+ * `npm run sources:verify` uses to prove every sector on the map is fed by at
+ * least three independent working portals rather than resting on one desk that
+ * might go dark.
+ *
+ * `discovery` marks a keyword-search feed. Those are built programmatically
+ * from SECTOR_KEYWORDS below rather than pasted in, so widening coverage for a
+ * sector means adding a phrase, not hand-writing another URL.
  */
+
+import type { EventCategory } from "./types";
 
 export type SourceKind = "official" | "press";
 
@@ -21,13 +35,35 @@ export interface FeedSource {
   name: string;
   feed: string;
   kind: SourceKind;
-  /** Skipped when a feed is known to be down; keeps the URL on record. */
+  /** Sectors this feed is expected to carry. Used by the coverage check. */
+  domains: EventCategory[];
+  /** A keyword search across many publishers rather than one publisher's desk. */
+  discovery?: boolean;
+  /** Skipped when a feed is known to be down; keeps the URL and the reason. */
   disabled?: boolean;
+  note?: string;
 }
 
+const ALL_DOMAINS: EventCategory[] = [
+  "startups",
+  "infrastructure",
+  "defence",
+  "roads-airports",
+  "pipelines",
+  "exports",
+  "trade-deals",
+  "psu-msme",
+  "manufacturing",
+  "energy",
+  "space",
+  "ports",
+];
+
+/* ------------------------------------------------------------------ */
+/* Official                                                            */
+/* ------------------------------------------------------------------ */
+
 /**
- * PIB feeds.
- *
  * `Regid` is a PIB *regional office* code, not a ministry code — a wrong guess
  * on my part. The per-ministry feeds built from it returned valid XML with zero
  * items on the first live run, so they are gone rather than left generating
@@ -40,188 +76,479 @@ export const OFFICIAL_SOURCES: FeedSource[] = [
     name: "Press Information Bureau",
     feed: "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
     kind: "official",
+    domains: ALL_DOMAINS,
   },
   {
     id: "pmindia",
     name: "PMO India",
     feed: "https://www.pmindia.gov.in/en/feed/",
     kind: "official",
+    domains: ALL_DOMAINS,
+  },
+  {
+    id: "ddnews",
+    name: "DD News",
+    feed: "https://ddnews.gov.in/en/feed/",
+    kind: "official",
+    domains: ALL_DOMAINS,
   },
   {
     id: "isro",
     name: "ISRO",
     feed: "https://www.isro.gov.in/rss.xml",
     kind: "official",
-    // 404 on the first live run; ISRO publishes no stable feed at this path.
+    domains: ["space"],
     disabled: true,
+    note: "404 on the first live run; ISRO publishes no stable feed at this path.",
   },
   {
     id: "mea",
     name: "Ministry of External Affairs",
     feed: "https://www.mea.gov.in/rss-feed.htm",
     kind: "official",
-    // 403 even with a browser user-agent.
+    domains: ["trade-deals", "exports", "defence"],
     disabled: true,
+    note: "403 even with a browser user-agent.",
   },
 ];
 
+/* ------------------------------------------------------------------ */
+/* Press desks                                                         */
+/* ------------------------------------------------------------------ */
+
 export const PRESS_SOURCES: FeedSource[] = [
-  {
-    id: "theprint",
-    name: "ThePrint",
-    feed: "https://theprint.in/feed/",
-    kind: "press",
-    // Answers 200 with an interstitial rather than the feed, from CI ranges.
-    disabled: true,
-  },
+  /* --- General national --- */
   {
     id: "thehindu",
     name: "The Hindu",
     feed: "https://www.thehindu.com/news/national/feeder/default.rss",
     kind: "press",
+    domains: ["defence", "infrastructure", "roads-airports"],
   },
   {
     id: "thehindu-business",
     name: "The Hindu (Business)",
     feed: "https://www.thehindu.com/business/feeder/default.rss",
     kind: "press",
+    domains: ["manufacturing", "trade-deals", "exports", "psu-msme"],
   },
-  { id: "swarajya", name: "Swarajya", feed: "https://swarajyamag.com/feed", kind: "press" },
-  { id: "opindia", name: "OpIndia", feed: "https://www.opindia.com/feed/", kind: "press" },
+  {
+    id: "thehindu-scitech",
+    name: "The Hindu (Science & Tech)",
+    feed: "https://www.thehindu.com/sci-tech/feeder/default.rss",
+    kind: "press",
+    domains: ["space", "defence"],
+  },
   {
     id: "ndtv",
     name: "NDTV",
     feed: "https://feeds.feedburner.com/ndtvnews-india-news",
     kind: "press",
-  },
-  {
-    id: "indiatoday",
-    name: "India Today",
-    feed: "https://www.indiatoday.in/rss/1206578",
-    kind: "press",
-  },
-  {
-    id: "restofworld",
-    name: "Rest of World",
-    feed: "https://restofworld.org/feed/latest/",
-    kind: "press",
-  },
-  {
-    id: "economictimes",
-    name: "Economic Times",
-    feed: "https://economictimes.indiatimes.com/rssfeedstopstories.cms",
-    kind: "press",
-  },
-  {
-    id: "et-industry",
-    name: "Economic Times (Industry)",
-    feed: "https://economictimes.indiatimes.com/industry/rssfeeds/13352306.cms",
-    kind: "press",
-  },
-  {
-    id: "et-defence",
-    name: "Economic Times (Defence)",
-    feed: "https://economictimes.indiatimes.com/news/defence/rssfeeds/48781595.cms",
-    kind: "press",
-  },
-  {
-    id: "et-infra",
-    name: "Economic Times (Infrastructure)",
-    feed: "https://economictimes.indiatimes.com/industry/transportation/rssfeeds/13358350.cms",
-    kind: "press",
-  },
-  {
-    id: "et-energy",
-    name: "Economic Times (Energy)",
-    feed: "https://economictimes.indiatimes.com/industry/energy/rssfeeds/13358368.cms",
-    kind: "press",
-  },
-  {
-    id: "bs-economy",
-    name: "Business Standard (Economy)",
-    feed: "https://www.business-standard.com/rss/economy-102.rss",
-    kind: "press",
-  },
-  {
-    id: "thehindubusinessline",
-    name: "BusinessLine",
-    feed: "https://www.thehindubusinessline.com/economy/feeder/default.rss",
-    kind: "press",
-  },
-  // Additional desks from the publishers that answered reliably on the first
-  // live run — ET, BusinessLine, The Hindu and Business Standard between them
-  // carried 138 of 138 items.
-  {
-    id: "et-cons-products",
-    name: "Economic Times (Manufacturing)",
-    feed: "https://economictimes.indiatimes.com/industry/cons-products/rssfeeds/13352306.cms",
-    kind: "press",
-  },
-  {
-    id: "et-tech",
-    name: "Economic Times (Technology)",
-    feed: "https://economictimes.indiatimes.com/tech/rssfeedstopstories.cms",
-    kind: "press",
-  },
-  {
-    id: "et-startups",
-    name: "Economic Times (Startups)",
-    feed: "https://economictimes.indiatimes.com/tech/startups/rssfeeds/78404506.cms",
-    kind: "press",
-  },
-  {
-    id: "et-economy",
-    name: "Economic Times (Economy)",
-    feed: "https://economictimes.indiatimes.com/news/economy/rssfeeds/1373380680.cms",
-    kind: "press",
-  },
-  {
-    id: "et-foreign-trade",
-    name: "Economic Times (Foreign Trade)",
-    feed: "https://economictimes.indiatimes.com/news/economy/foreign-trade/rssfeeds/1977021501.cms",
-    kind: "press",
-  },
-  {
-    id: "bl-companies",
-    name: "BusinessLine (Companies)",
-    feed: "https://www.thehindubusinessline.com/companies/feeder/default.rss",
-    kind: "press",
-  },
-  {
-    id: "bl-logistics",
-    name: "BusinessLine (Logistics)",
-    feed: "https://www.thehindubusinessline.com/economy/logistics/feeder/default.rss",
-    kind: "press",
-  },
-  {
-    id: "bs-companies",
-    name: "Business Standard (Companies)",
-    feed: "https://www.business-standard.com/rss/companies-101.rss",
-    kind: "press",
-  },
-  {
-    id: "bs-industry",
-    name: "Business Standard (Industry)",
-    feed: "https://www.business-standard.com/rss/industry-217.rss",
-    kind: "press",
-  },
-  {
-    id: "thehindu-national",
-    name: "The Hindu (Science & Tech)",
-    feed: "https://www.thehindu.com/sci-tech/feeder/default.rss",
-    kind: "press",
+    domains: ["defence", "infrastructure", "roads-airports"],
   },
   {
     id: "ndtv-business",
     name: "NDTV Profit",
     feed: "https://feeds.feedburner.com/ndtvprofit-latest",
     kind: "press",
+    domains: ["manufacturing", "startups", "energy", "psu-msme"],
+  },
+  {
+    id: "indiatoday",
+    name: "India Today",
+    feed: "https://www.indiatoday.in/rss/1206578",
+    kind: "press",
+    domains: ["defence", "infrastructure", "space"],
+  },
+  {
+    id: "swarajya",
+    name: "Swarajya",
+    feed: "https://swarajyamag.com/feed",
+    kind: "press",
+    domains: ["defence", "infrastructure", "roads-airports", "space", "manufacturing"],
+  },
+  {
+    id: "opindia",
+    name: "OpIndia",
+    feed: "https://www.opindia.com/feed/",
+    kind: "press",
+    domains: ["defence", "infrastructure"],
+  },
+  {
+    id: "restofworld",
+    name: "Rest of World",
+    feed: "https://restofworld.org/feed/latest/",
+    kind: "press",
+    domains: ["startups", "manufacturing"],
+  },
+  {
+    id: "theprint",
+    name: "ThePrint",
+    feed: "https://theprint.in/feed/",
+    kind: "press",
+    domains: ["defence", "infrastructure"],
+    disabled: true,
+    note: "Answers 200 with an interstitial rather than the feed, from CI ranges.",
+  },
+
+  /* --- Economic Times, main site and verticals --- */
+  {
+    id: "economictimes",
+    name: "Economic Times",
+    feed: "https://economictimes.indiatimes.com/rssfeedstopstories.cms",
+    kind: "press",
+    domains: ALL_DOMAINS,
+  },
+  {
+    id: "et-defence",
+    name: "Economic Times (Defence)",
+    feed: "https://economictimes.indiatimes.com/news/defence/rssfeeds/48781595.cms",
+    kind: "press",
+    domains: ["defence"],
+  },
+  {
+    id: "et-industry",
+    name: "Economic Times (Industry)",
+    feed: "https://economictimes.indiatimes.com/industry/rssfeeds/13352306.cms",
+    kind: "press",
+    domains: ["manufacturing", "psu-msme", "infrastructure"],
+  },
+  {
+    id: "et-infra",
+    name: "Economic Times (Transport)",
+    feed: "https://economictimes.indiatimes.com/industry/transportation/rssfeeds/13358350.cms",
+    kind: "press",
+    domains: ["roads-airports", "ports", "infrastructure"],
+  },
+  {
+    id: "et-energy",
+    name: "Economic Times (Energy)",
+    feed: "https://economictimes.indiatimes.com/industry/energy/rssfeeds/13358368.cms",
+    kind: "press",
+    domains: ["energy", "pipelines"],
+  },
+  {
+    id: "et-cons-products",
+    name: "Economic Times (Manufacturing)",
+    feed: "https://economictimes.indiatimes.com/industry/cons-products/rssfeeds/13352306.cms",
+    kind: "press",
+    domains: ["manufacturing"],
+  },
+  {
+    id: "et-tech",
+    name: "Economic Times (Technology)",
+    feed: "https://economictimes.indiatimes.com/tech/rssfeedstopstories.cms",
+    kind: "press",
+    domains: ["startups", "space", "manufacturing"],
+  },
+  {
+    id: "et-startups",
+    name: "Economic Times (Startups)",
+    feed: "https://economictimes.indiatimes.com/tech/startups/rssfeeds/78404506.cms",
+    kind: "press",
+    domains: ["startups"],
+  },
+  {
+    id: "et-economy",
+    name: "Economic Times (Economy)",
+    feed: "https://economictimes.indiatimes.com/news/economy/rssfeeds/1373380680.cms",
+    kind: "press",
+    domains: ["trade-deals", "exports", "infrastructure"],
+  },
+  {
+    id: "et-foreign-trade",
+    name: "Economic Times (Foreign Trade)",
+    feed: "https://economictimes.indiatimes.com/news/economy/foreign-trade/rssfeeds/1977021501.cms",
+    kind: "press",
+    domains: ["exports", "trade-deals"],
+  },
+  // ET's standalone B2B verticals. Same publisher, different newsrooms, and the
+  // only desks that cover pipelines, ports and PSU procurement in any depth.
+  {
+    id: "etenergyworld",
+    name: "ETEnergyWorld",
+    feed: "https://energy.economictimes.indiatimes.com/rss/topstories",
+    kind: "press",
+    domains: ["energy", "pipelines"],
+  },
+  {
+    id: "etinfra",
+    name: "ETInfra",
+    feed: "https://infra.economictimes.indiatimes.com/rss/topstories",
+    kind: "press",
+    domains: ["infrastructure", "roads-airports", "ports"],
+  },
+  {
+    id: "etmanufacturing",
+    name: "ET Manufacturing",
+    feed: "https://manufacturing.economictimes.indiatimes.com/rss/topstories",
+    kind: "press",
+    domains: ["manufacturing", "psu-msme"],
+  },
+  {
+    id: "etauto",
+    name: "ETAuto",
+    feed: "https://auto.economictimes.indiatimes.com/rss/topstories",
+    kind: "press",
+    domains: ["manufacturing", "exports"],
+  },
+  {
+    id: "etgovernment",
+    name: "ETGovernment",
+    feed: "https://government.economictimes.indiatimes.com/rss/topstories",
+    kind: "press",
+    domains: ["infrastructure", "psu-msme", "defence"],
+  },
+
+  /* --- Business Standard --- */
+  {
+    id: "bs-economy",
+    name: "Business Standard (Economy)",
+    feed: "https://www.business-standard.com/rss/economy-102.rss",
+    kind: "press",
+    domains: ["trade-deals", "exports"],
+  },
+  {
+    id: "bs-companies",
+    name: "Business Standard (Companies)",
+    feed: "https://www.business-standard.com/rss/companies-101.rss",
+    kind: "press",
+    domains: ["manufacturing", "psu-msme", "startups"],
+  },
+  {
+    id: "bs-industry",
+    name: "Business Standard (Industry)",
+    feed: "https://www.business-standard.com/rss/industry-217.rss",
+    kind: "press",
+    domains: ["manufacturing", "energy", "infrastructure"],
+  },
+
+  /* --- BusinessLine --- */
+  {
+    id: "thehindubusinessline",
+    name: "BusinessLine",
+    feed: "https://www.thehindubusinessline.com/economy/feeder/default.rss",
+    kind: "press",
+    domains: ["trade-deals", "exports", "infrastructure"],
+  },
+  {
+    id: "bl-companies",
+    name: "BusinessLine (Companies)",
+    feed: "https://www.thehindubusinessline.com/companies/feeder/default.rss",
+    kind: "press",
+    domains: ["manufacturing", "energy", "psu-msme"],
+  },
+  {
+    id: "bl-logistics",
+    name: "BusinessLine (Logistics)",
+    feed: "https://www.thehindubusinessline.com/economy/logistics/feeder/default.rss",
+    kind: "press",
+    domains: ["ports", "roads-airports", "pipelines"],
+  },
+
+  /* --- Financial Express --- */
+  {
+    id: "fe-defence",
+    name: "Financial Express (Defence)",
+    feed: "https://www.financialexpress.com/business/defence/feed/",
+    kind: "press",
+    domains: ["defence"],
+  },
+  {
+    id: "fe-infrastructure",
+    name: "Financial Express (Infrastructure)",
+    feed: "https://www.financialexpress.com/business/infrastructure/feed/",
+    kind: "press",
+    domains: ["infrastructure", "roads-airports", "ports"],
+  },
+  {
+    id: "fe-industry",
+    name: "Financial Express (Industry)",
+    feed: "https://www.financialexpress.com/business/industry/feed/",
+    kind: "press",
+    domains: ["manufacturing", "psu-msme"],
+  },
+
+  /* --- Livemint --- */
+  {
+    id: "mint-companies",
+    name: "Mint (Companies)",
+    feed: "https://www.livemint.com/rss/companies",
+    kind: "press",
+    domains: ["manufacturing", "startups", "psu-msme"],
+  },
+  {
+    id: "mint-economy",
+    name: "Mint (Economy)",
+    feed: "https://www.livemint.com/rss/economy",
+    kind: "press",
+    domains: ["trade-deals", "exports", "infrastructure"],
+  },
+  {
+    id: "mint-science",
+    name: "Mint (Science)",
+    feed: "https://www.livemint.com/rss/science",
+    kind: "press",
+    domains: ["space"],
+  },
+
+  /* --- Sector trade press --- */
+  {
+    id: "idrw",
+    name: "IDRW",
+    feed: "https://idrw.org/feed/",
+    kind: "press",
+    domains: ["defence"],
+  },
+  {
+    id: "bharatshakti",
+    name: "Bharat Shakti",
+    feed: "https://bharatshakti.in/feed/",
+    kind: "press",
+    domains: ["defence"],
+  },
+  {
+    id: "raksha-anirveda",
+    name: "Raksha Anirveda",
+    feed: "https://raksha-anirveda.com/feed/",
+    kind: "press",
+    domains: ["defence"],
+  },
+  {
+    id: "mercom",
+    name: "Mercom India",
+    feed: "https://mercomindia.com/feed/",
+    kind: "press",
+    domains: ["energy"],
+  },
+  {
+    id: "saurenergy",
+    name: "Saur Energy",
+    feed: "https://www.saurenergy.com/feed",
+    kind: "press",
+    domains: ["energy"],
+  },
+  {
+    id: "pv-magazine-india",
+    name: "pv magazine India",
+    feed: "https://www.pv-magazine-india.com/feed/",
+    kind: "press",
+    domains: ["energy", "manufacturing"],
+  },
+  {
+    id: "metrorailnews",
+    name: "Metro Rail News",
+    feed: "https://www.metrorailnews.in/feed/",
+    kind: "press",
+    domains: ["infrastructure", "roads-airports"],
+  },
+  {
+    id: "constructionworld",
+    name: "Construction World",
+    feed: "https://www.constructionworld.in/rss.php",
+    kind: "press",
+    domains: ["infrastructure", "roads-airports"],
+  },
+  {
+    id: "maritimegateway",
+    name: "Maritime Gateway",
+    feed: "https://www.maritimegateway.com/feed/",
+    kind: "press",
+    domains: ["ports", "pipelines"],
+  },
+  {
+    id: "inc42",
+    name: "Inc42",
+    feed: "https://inc42.com/feed/",
+    kind: "press",
+    domains: ["startups"],
+  },
+  {
+    id: "entrackr",
+    name: "Entrackr",
+    feed: "https://entrackr.com/feed/",
+    kind: "press",
+    domains: ["startups"],
+  },
+  {
+    id: "yourstory",
+    name: "YourStory",
+    feed: "https://yourstory.com/feed",
+    kind: "press",
+    domains: ["startups", "psu-msme"],
   },
 ];
 
-export const ALL_SOURCES: FeedSource[] = [...OFFICIAL_SOURCES, ...PRESS_SOURCES].filter(
-  (s) => !s.disabled,
+/* ------------------------------------------------------------------ */
+/* Keyword discovery                                                   */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Sector phrases, turned into search feeds at run time.
+ *
+ * A publisher's desk only carries what that desk wrote. A state-level plant
+ * commissioning covered by one regional paper reaches the map through here or
+ * not at all — which is the difference between eleven states on the map and
+ * most of them.
+ *
+ * Phrases are quoted so the aggregator matches them intact; a bare `port`
+ * matches Portugal, and a bare `corridor` matches wildlife corridors.
+ */
+export const SECTOR_KEYWORDS: Record<EventCategory, string[]> = {
+  defence: ['"defence production"', '"defence export"', '"test-fired" India', '"inducted into" Indian Army'],
+  space: ['ISRO launch', '"space startup" India', '"satellite" India launched'],
+  "roads-airports": ['"national highway" inaugurated', '"new airport" India operational', '"expressway" opened India'],
+  ports: ['"port" India commissioned cargo', '"container terminal" India'],
+  pipelines: ['"gas pipeline" India commissioned', '"LNG terminal" India'],
+  energy: ['"solar plant" India commissioned', '"nuclear power" India unit', '"transmission line" India charged'],
+  manufacturing: ['"manufacturing plant" India inaugurated', '"semiconductor fab" India', '"PLI scheme" approved'],
+  startups: ['India startup "raises" funding round', '"unicorn" India startup'],
+  exports: ['India "record exports"', 'India export order signed'],
+  "trade-deals": ['India "free trade agreement" signed', 'India "MoU signed" investment'],
+  "psu-msme": ['"public sector undertaking" India order', 'MSME India cluster launched'],
+  infrastructure: ['"foundation stone" India project', '"metro" India inaugurated', '"industrial park" India approved'],
+};
+
+/** Recency window applied to every keyword feed. Matches the map's 2-day mode. */
+const DISCOVERY_WINDOW = "when:2d";
+
+/**
+ * Google News search RSS. No key, no quota, no account — a plain feed URL,
+ * which is the only reason keyword discovery is affordable here at all. Items
+ * carry `<source>`, so the real publisher survives the round trip.
+ */
+export function discoveryFeed(query: string): string {
+  const q = encodeURIComponent(`${query} ${DISCOVERY_WINDOW}`);
+  return `https://news.google.com/rss/search?q=${q}&hl=en-IN&gl=IN&ceid=IN:en`;
+}
+
+/** One search feed per sector phrase, built rather than pasted. */
+export const DISCOVERY_SOURCES: FeedSource[] = Object.entries(SECTOR_KEYWORDS).flatMap(
+  ([domain, queries]) =>
+    queries.map((query, i) => ({
+      id: `find-${domain}-${i + 1}`,
+      name: `Search: ${domain} — ${query.replace(/"/g, "")}`,
+      feed: discoveryFeed(query),
+      kind: "press" as const,
+      domains: [domain as EventCategory],
+      discovery: true,
+    })),
 );
+
+/* ------------------------------------------------------------------ */
+
+export const DECLARED_SOURCES: FeedSource[] = [
+  ...OFFICIAL_SOURCES,
+  ...PRESS_SOURCES,
+  ...DISCOVERY_SOURCES,
+];
+
+export const ALL_SOURCES: FeedSource[] = DECLARED_SOURCES.filter((s) => !s.disabled);
+
+/** Feeds declared for a sector, whether or not they are currently reachable. */
+export function sourcesForDomain(domain: EventCategory): FeedSource[] {
+  return ALL_SOURCES.filter((s) => s.domains.includes(domain));
+}
 
 /**
  * Official X/Twitter handles worth following for announcements.

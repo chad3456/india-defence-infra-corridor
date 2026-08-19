@@ -40,6 +40,10 @@ const TOPIC_RULES: Array<{ topic: string; re: RegExp }> = [
  * request on, and being too strict here loses stories whose headline is vague
  * but whose body is exactly on topic — the case the second pass exists for.
  */
+/** Per-feed item caps, so no single desk can crowd out the rest. */
+const FEED_ITEM_CAP = 40;
+const DISCOVERY_ITEM_CAP = 25;
+
 const WORTH_FETCHING =
   /\b(project|projects|plant|factory|inaugurat|foundation stone|approved|approval|cabinet|commission|launch|launched|test|trial|order|contract|deal|agreement|mou|expansion|capacity|invest|crore|billion|export|corridor|terminal|highway|airport|port|metro|missile|satellite|semiconductor|solar|pipeline|startup|funding|unicorn)\b/i;
 
@@ -69,6 +73,25 @@ export interface IngestResult {
 
 interface Staged extends RawItem {
   source: FeedSource;
+}
+
+/**
+ * Who to credit. A keyword-search feed carries the real publisher on each item;
+ * a publisher's own desk is its own name. Crediting the aggregator would be the
+ * one thing this site cannot do.
+ */
+function outletOf(s: Staged): string {
+  return s.source.discovery && s.publisher ? s.publisher : s.source.name;
+}
+
+const AGGREGATOR_HOSTS = /(^|\.)news\.google\.com$/i;
+
+function isAggregatorLink(url: string): boolean {
+  try {
+    return AGGREGATOR_HOSTS.test(new URL(url).hostname);
+  } catch {
+    return false;
+  }
 }
 
 export async function runIngest(
@@ -113,8 +136,11 @@ export async function runIngest(
       continue;
     }
     sourcesOk++;
-    for (const item of parsed) staged.push({ ...item, source });
-    log(`  ${source.name.padEnd(34)} ${parsed.length} items`);
+    // Cap per feed. Without it a single high-volume desk decides what the run
+    // looks at, and the long tail of sector desks never gets a body fetch.
+    const kept = parsed.slice(0, source.discovery ? DISCOVERY_ITEM_CAP : FEED_ITEM_CAP);
+    for (const item of kept) staged.push({ ...item, source });
+    log(`  ${source.name.slice(0, 40).padEnd(42)} ${kept.length} items`);
   }
 
   if (opts.dryRun) {
@@ -151,7 +177,7 @@ export async function runIngest(
       id: idFor(s.source.id, s.url),
       title: s.title,
       url: s.url,
-      outlet: s.source.name,
+      outlet: outletOf(s),
       publishedAt: s.publishedAt,
       summary: s.summary,
       topics,
@@ -179,14 +205,20 @@ export async function runIngest(
     let category = categorise(headlineText);
     let place = locate(s.title, s.summary ?? "");
     let body = "";
+    let url = s.url;
 
-    if ((!category || !place) && articlesFetched < budget) {
+    // An aggregator link is always fetched, even when the headline already
+    // classifies: following it is the only way to cite the publisher rather
+    // than the index that pointed at it.
+    const mustResolve = isAggregatorLink(s.url);
+    if ((!category || !place || mustResolve) && articlesFetched < budget) {
       const art = await fetchArticle(s.url);
       articlesFetched++;
       if (art.ok) {
         body = art.text;
         category ??= categorise(s.title, body);
         place ??= locate(s.title, body);
+        if (art.finalUrl && !isAggregatorLink(art.finalUrl)) url = art.finalUrl;
       }
     }
 
@@ -209,7 +241,7 @@ export async function runIngest(
     }
 
     events.push({
-      id: idFor(s.source.id, s.url),
+      id: idFor(s.source.id, url),
       title: s.title,
       category,
       date: s.publishedAt.slice(0, 10),
@@ -217,8 +249,8 @@ export async function runIngest(
       placeName: place.name,
       state: place.state,
       coords: place.coords,
-      outlet: s.source.name,
-      url: s.url,
+      outlet: outletOf(s),
+      url,
       // Prefer the feed's own summary; fall back to the opening of the body.
       summary: s.summary ?? (body ? body.slice(0, 280) : undefined),
       // Trust follows the source kind, not a hardcoded list.

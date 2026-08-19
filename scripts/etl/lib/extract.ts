@@ -46,6 +46,8 @@ export interface ArticleResult {
   ok: boolean;
   text: string;
   error?: string;
+  /** Where the fetch landed after redirects; the publisher, for aggregator links. */
+  finalUrl?: string;
 }
 
 /**
@@ -63,5 +65,5 @@ export async function fetchArticle(url: string, timeoutMs = 12_000): Promise<Art
     accept: "text/html,application/xhtml+xml",
   });
   if (!res.ok || !res.data) return { ok: false, text: "", error: res.error };
-  return { ok: true, text: extractText(res.data) };
+  return { ok: true, text: extractText(res.data), finalUrl: res.finalUrl ?? url };
 }

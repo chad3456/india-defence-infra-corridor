@@ -29,6 +29,15 @@ export interface FetchResult<T> {
   data: T | null;
   error?: string;
   fromCache?: boolean;
+  /**
+   * The URL the response actually came from, after redirects.
+   *
+   * Keyword-discovery feeds hand out aggregator links. Following one and
+   * keeping where it landed is what lets an event cite the publisher instead of
+   * the aggregator — the difference between a source citation and a pointer to
+   * someone else's index.
+   */
+  finalUrl?: string;
 }
 
 function cacheKey(url: string): string {
@@ -75,7 +84,7 @@ export async function getText(url: string, opts: GetOptions = {}): Promise<Fetch
 
   if (cacheMs > 0) {
     const cached = await readCache<string>(url, cacheMs);
-    if (cached !== null) return { ok: true, data: cached, fromCache: true };
+    if (cached !== null) return { ok: true, data: cached, fromCache: true, finalUrl: url };
   }
 
   let lastError = "unknown error";
@@ -112,7 +121,7 @@ export async function getText(url: string, opts: GetOptions = {}): Promise<Fetch
       }
       const body = await res.text();
       await writeCache(url, body);
-      return { ok: true, data: body };
+      return { ok: true, data: body, finalUrl: res.url || url };
     } catch (err) {
       clearTimeout(timer);
       lastError = err instanceof Error ? err.message : String(err);
@@ -125,7 +134,7 @@ export async function getJson<T>(url: string, opts: GetOptions = {}): Promise<Fe
   const res = await getText(url, { ...opts, accept: "application/json" });
   if (!res.ok || res.data === null) return { ok: false, data: null, error: res.error };
   try {
-    return { ok: true, data: JSON.parse(res.data) as T, fromCache: res.fromCache };
+    return { ok: true, data: JSON.parse(res.data) as T, fromCache: res.fromCache, finalUrl: res.finalUrl };
   } catch (err) {
     return {
       ok: false,

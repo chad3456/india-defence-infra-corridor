@@ -1,0 +1,71 @@
+name: Verify sources
+
+# Probes every declared feed and fails if any sector on the map is down to
+# fewer than three independent working publishers.
+#
+# It runs on a schedule rather than in CI because it depends on the open
+# internet: a publisher having a bad morning would otherwise block an unrelated
+# pull request. It also runs on any push that touches the registry, so a feed
+# added by hand is checked immediately instead of at the next daily window.
+
+on:
+  schedule:
+    - cron: "40 3 * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "lib/sources.ts"
+      - "scripts/etl/verify-sources.ts"
+      - ".github/workflows/verify-sources.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verify-sources
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      # Continues on failure so the health report is still committed when a
+      # sector is thin. The report is exactly what is needed to fix it, and
+      # losing it because the check failed would be backwards.
+      - name: Probe every declared feed
+        id: probe
+        continue-on-error: true
+        run: npm run sources:verify
+
+      - name: Publish the health report
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/live/source-health.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "Source health unchanged."
+            exit 0
+          fi
+          git commit -m "chore(sources): feed health $(date -u +%Y-%m-%d)"
+          for i in 1 2 3 4; do
+            git push && break
+            echo "push failed, retrying in $((2**i))s"
+            sleep $((2**i))
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          done
+
+      - name: Fail if a sector is under-covered
+        if: steps.probe.outcome == 'failure'
+        run: |
+          echo "::error::A sector has fewer than three working publishers. See data/live/source-health.json."
+          exit 1

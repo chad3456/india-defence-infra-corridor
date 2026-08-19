@@ -1,0 +1,70 @@
+name: Map refresh
+
+# Every 30 minutes: read the feeds, classify what they carry, and merge anything
+# new onto the map. Commits only when the stored set actually changed, so a
+# quiet half hour costs one workflow minute and no commit.
+#
+# This is the ingest half of the pipeline only. data-pipeline.yml still owns the
+# World Bank series, which update far too slowly to be worth re-fetching here.
+
+on:
+  schedule:
+    # GitHub's scheduler is best-effort and queues under load, so treat this as
+    # "about every half hour", not a guarantee.
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Never let two refreshes race for the same file. A queued run is dropped
+# rather than stacked: by the time it would start, the next one is due anyway.
+concurrency:
+  group: map-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Refresh the map
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run map:refresh
+
+      # The same gate the site build runs. New pins are published content, and
+      # nothing reaches the repository without passing it.
+      - name: Validate data
+        run: npm run validate
+
+      - name: Regenerate seed SQL
+        run: npm run db:seed-sql
+
+      - name: Commit if the map moved
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/events.json data/live/ supabase/seed.sql 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No new developments this half hour."
+            exit 0
+          fi
+          git commit -m "chore(map): refresh $(date -u +'%Y-%m-%d %H:%M') UTC"
+          for i in 1 2 3 4; do
+            git push && break
+            echo "push failed, retrying in $((2**i))s"
+            sleep $((2**i))
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          done

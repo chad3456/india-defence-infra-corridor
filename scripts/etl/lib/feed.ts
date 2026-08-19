@@ -17,6 +17,15 @@ export interface RawItem {
   url: string;
   publishedAt: string;
   summary?: string;
+  /**
+   * The outlet that actually published the story, when the feed says so.
+   *
+   * Keyword-search feeds (Google News) aggregate hundreds of publishers and
+   * carry `<source url="…">The Hindu</source>` on every item. Without reading
+   * it, every story discovered that way would be attributed to the aggregator,
+   * which on a site whose whole claim is traceable attribution would be a lie.
+   */
+  publisher?: string;
 }
 
 export function unwrapCdata(s: string): string {
@@ -55,6 +64,18 @@ function pick(block: string, tags: string[]): string | null {
   return null;
 }
 
+/**
+ * Aggregators append " - The Hindu" to every headline. The outlet is carried
+ * separately, so the suffix is duplication that then leaks into token overlap
+ * and makes two reports of one story look less alike than they are.
+ */
+export function stripOutletSuffix(title: string, publisher: string): string {
+  const at = title.lastIndexOf(" - ");
+  if (at === -1) return title;
+  const tail = title.slice(at + 3).trim();
+  return tail.toLowerCase() === publisher.trim().toLowerCase() ? title.slice(0, at).trim() : title;
+}
+
 export function parseFeed(xml: string): RawItem[] {
   const blocks = xml.match(/<(item|entry)\b[\s\S]*?<\/\1>/gi) ?? [];
   const items: RawItem[] = [];
@@ -76,7 +97,16 @@ export function parseFeed(xml: string): RawItem[] {
     const rawSummary = pick(block, ["description", "summary", "content:encoded", "content"]);
     const summary = rawSummary ? stripTags(rawSummary).slice(0, 400) : undefined;
 
-    items.push({ title, url, publishedAt, summary });
+    const rawPublisher = pick(block, ["source"]);
+    const publisher = rawPublisher ? stripTags(rawPublisher) : undefined;
+
+    items.push({
+      title: publisher ? stripOutletSuffix(title, publisher) : title,
+      url,
+      publishedAt,
+      summary,
+      ...(publisher ? { publisher } : {}),
+    });
   }
   return items;
 }

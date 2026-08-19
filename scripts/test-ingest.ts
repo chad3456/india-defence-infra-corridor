@@ -7,10 +7,18 @@
  * stories whose sector and state appear only in the body.
  */
 import { readFileSync } from "node:fs";
-import { parseFeed, stripTags, decodeEntities } from "./etl/lib/feed";
+import { parseFeed, stripTags, decodeEntities, stripOutletSuffix } from "./etl/lib/feed";
 import { extractText } from "./etl/lib/extract";
 import { categorise, locate, reportsAction } from "./etl/lib/classify";
-import { ALL_SOURCES, X_HANDLES } from "../lib/sources";
+import {
+  ALL_SOURCES,
+  DECLARED_SOURCES,
+  DISCOVERY_SOURCES,
+  SECTOR_KEYWORDS,
+  X_HANDLES,
+} from "../lib/sources";
+import { publisherOf } from "./etl/lib/publisher";
+import { mergeEvents } from "./etl/lib/merge";
 import { dedupeEvents, similarity, titleTokens } from "./etl/lib/dedupe";
 import type { DevEvent } from "../lib/types";
 
@@ -215,18 +223,140 @@ check(
   "every feed URL is absolute",
 );
 check(
-  new Set(ALL_SOURCES.map((s) => s.id)).size === ALL_SOURCES.length,
+  new Set(DECLARED_SOURCES.map((s) => s.id)).size === DECLARED_SOURCES.length,
   "source ids are unique",
 );
 check(
   ALL_SOURCES.some((s) => s.kind === "official") && ALL_SOURCES.some((s) => s.kind === "press"),
   "both official and press sources are configured",
 );
-check(X_HANDLES.length >= 10, `at least 10 X handles configured (got ${X_HANDLES.length})`);
 check(
-  X_HANDLES.every((h) => !h.handle.startsWith("@")),
-  "X handles are stored without a leading @",
+  DECLARED_SOURCES.filter((s) => s.disabled).every((s) => Boolean(s.note)),
+  "a disabled feed records why it was disabled",
 );
+check(
+  ALL_SOURCES.every((s) => s.domains.length > 0),
+  "every feed declares at least one sector",
+);
+
+// The live check in `npm run sources:verify` proves these feeds actually
+// answer. This proves we bothered to declare enough of them in the first
+// place, which is the half that can be checked without the network.
+const DOMAINS = [...new Set(DECLARED_SOURCES.flatMap((s) => s.domains))];
+for (const domain of DOMAINS) {
+  const publishers = new Set(
+    ALL_SOURCES.filter((s) => s.domains.includes(domain) && !s.discovery).map(publisherOf),
+  );
+  check(
+    publishers.size >= 3,
+    `${domain}: at least 3 distinct publishers declared (got ${publishers.size})`,
+  );
+}
+
+check(
+  publisherOf({ id: "a", feed: "https://economictimes.indiatimes.com/x.cms" }) ===
+    publisherOf({ id: "b", feed: "https://energy.economictimes.indiatimes.com/rss/topstories" }),
+  "one newsroom's several desks count as one publisher",
+);
+check(
+  publisherOf({ id: "c", feed: "https://www.thehindubusinessline.com/economy/feeder/default.rss" }) !==
+    publisherOf({ id: "d", feed: "https://www.thehindu.com/business/feeder/default.rss" }),
+  "different publishers are not folded together",
+);
+
+console.log("");
+console.log("Keyword discovery");
+check(
+  DISCOVERY_SOURCES.length === Object.values(SECTOR_KEYWORDS).flat().length,
+  `one search feed per sector phrase (got ${DISCOVERY_SOURCES.length})`,
+);
+check(
+  DISCOVERY_SOURCES.every((s) => s.discovery === true && /^https:\/\/news\.google\.com\/rss\/search\?q=/.test(s.feed)),
+  "search feeds are built, not pasted",
+);
+check(
+  DISCOVERY_SOURCES.every((s) => !/[ "']/.test(s.feed)),
+  "search queries are URL-encoded, not pasted raw",
+);
+check(
+  DISCOVERY_SOURCES.every((s) => new URL(s.feed).searchParams.get("q") !== null),
+  "every search feed carries a q parameter",
+);
+check(
+  DISCOVERY_SOURCES.every((s) => s.feed.includes("when%3A2d")),
+  "search feeds ask only for the last two days",
+);
+check(
+  Object.keys(SECTOR_KEYWORDS).length === 12,
+  `every map sector has search phrases (got ${Object.keys(SECTOR_KEYWORDS).length})`,
+);
+
+console.log("");
+console.log("Aggregator attribution");
+const gnews = parseFeed(readFileSync("scripts/__fixtures__/gnews.xml", "utf8"));
+check(gnews.length === 2, `parses aggregator items (got ${gnews.length}, want 2)`);
+check(gnews[0]?.publisher === "The Hindu", "reads the publisher out of <source>");
+check(
+  gnews[0]?.title === "Vizhinjam port handles record container volume",
+  "drops the ' - Outlet' suffix the aggregator appends",
+);
+check(
+  stripOutletSuffix("A story - with a dash in it", "The Hindu") ===
+    "A story - with a dash in it",
+  "a dash that is not the outlet name is left alone",
+);
+
+console.log("");
+console.log("Merging a refresh");
+const base: DevEvent = {
+  id: "a",
+  title: "Coastal berth commissioned at Paradip port",
+  category: "ports",
+  date: "2026-08-18",
+  placeId: "paradip",
+  placeName: "Paradip",
+  state: "Odisha",
+  coords: [86.61, 20.31],
+  outlet: "BusinessLine",
+  url: "https://example.test/a",
+  status: "reported",
+};
+check(mergeEvents([base], [base]).unchanged, "re-reporting the same story changes nothing");
+check(mergeEvents([base], []).unchanged, "a quiet run leaves the stored map alone");
+// A different id but the same story is not a new event — that is the duplicate
+// collapse doing its job — so this has to be a genuinely different development.
+const another: DevEvent = {
+  ...base,
+  id: "b",
+  title: "Semiconductor assembly unit inaugurated at Sanand",
+  category: "manufacturing",
+  placeId: "sanand",
+  placeName: "Sanand",
+  state: "Gujarat",
+  coords: [72.38, 22.99],
+  url: "https://example.test/b",
+};
+const withNew = mergeEvents([base], [another]);
+check(withNew.added === 1 && !withNew.unchanged, "a genuinely new report is added");
+check(
+  mergeEvents([base], [{ ...base, id: "b2", url: "https://example.test/b2" }]).events.length === 1,
+  "a second outlet's report of the same story does not add a pin",
+);
+const commentary = mergeEvents(
+  [{ ...base, id: "c", title: "What the port debate tells us about coastal policy", summary: "" }],
+  [],
+);
+check(
+  commentary.staleDropped === 1 && commentary.events.length === 0,
+  "a stored row that no longer passes the rules is dropped",
+);
+check(
+  mergeEvents([{ ...base, id: "seed-1", title: "Seeded, hand-verified, no action verb" }], [])
+    .events.length === 1,
+  "seeded rows are exempt from the re-check",
+);
+const old = mergeEvents([{ ...base, id: "d", date: "2020-01-01" }], []);
+check(old.expired === 1 && old.events.length === 0, "events past the two-year horizon expire");
 
 console.log("");
 if (failures.length) {

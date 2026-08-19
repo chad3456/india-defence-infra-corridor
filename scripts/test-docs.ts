@@ -15,7 +15,9 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseDoc, parseInline, inlineText, outline, type Block } from "../lib/markdown";
-import { ALL_SOURCES, X_HANDLES } from "../lib/sources";
+import { ALL_SOURCES, DISCOVERY_SOURCES, X_HANDLES } from "../lib/sources";
+import { publisherOf } from "./etl/lib/publisher";
+import type { EventCategory } from "../lib/types";
 import { WDI_INDICATORS, PEERS } from "../lib/wdi-catalogue";
 import { getAllSeries, getAllSources } from "../lib/data";
 import placesRaw from "../data/geo/places.json";
@@ -242,6 +244,63 @@ for (const freq of ["annual", "fiscal-year", "point-in-time"] as const) {
         `stated ${num(1)}, actual ${inCategory.length}`,
       );
       check(`${label}: data points`, num(2) === points, `stated ${num(2)}, actual ${points}`);
+    }
+  }
+}
+
+{
+  // The feed-group table: three numbers that drift the moment a feed is added.
+  const groups = doc.blocks.find(
+    (b): b is Extract<Block, { kind: "table" }> => b.kind === "table" && b.head[0] === "Group",
+  );
+  check("the feed-group table is present", Boolean(groups));
+  if (groups) {
+    const stated = Object.fromEntries(
+      groups.rows.map((r) => [inlineText(r[0] ?? []).trim(), Number(inlineText(r[1] ?? []).trim())]),
+    );
+    const desks = ALL_SOURCES.filter((s) => !s.discovery);
+    eq("official feed count", stated["Official releases"], desks.filter((s) => s.kind === "official").length);
+    eq("publisher desk count", stated["Publisher desks"], desks.filter((s) => s.kind === "press").length);
+    eq("keyword search count", stated["Keyword searches"], DISCOVERY_SOURCES.length);
+  }
+}
+
+{
+  // The per-sector publisher table. These are the numbers that decide whether a
+  // sector is covered, so a stale one here is worse than no table at all.
+  const LABELS: Record<string, EventCategory> = {
+    Defence: "defence",
+    Infrastructure: "infrastructure",
+    Manufacturing: "manufacturing",
+    "Roads & airports": "roads-airports",
+    Startups: "startups",
+    "PSU & MSME": "psu-msme",
+    Energy: "energy",
+    Exports: "exports",
+    "Trade deals": "trade-deals",
+    Space: "space",
+    Ports: "ports",
+    Pipelines: "pipelines",
+  };
+  const table = doc.blocks.find(
+    (b): b is Extract<Block, { kind: "table" }> => b.kind === "table" && b.head[0] === "Sector",
+  );
+  check("the sector-coverage table is present", Boolean(table));
+  if (table) {
+    eq("every sector has a row", table.rows.length, Object.keys(LABELS).length);
+    for (const row of table.rows) {
+      const label = inlineText(row[0] ?? []).trim();
+      const domain = LABELS[label];
+      if (!domain) {
+        check(`coverage row "${label}" names a real sector`, false);
+        continue;
+      }
+      const actual = new Set(
+        ALL_SOURCES.filter((s) => s.domains.includes(domain) && !s.discovery).map(publisherOf),
+      ).size;
+      const stated = Number(inlineText(row[1] ?? []).trim());
+      check(`${label}: declared publishers`, stated === actual, `stated ${stated}, actual ${actual}`);
+      check(`${label}: at least three publishers`, actual >= 3, `${actual}`);
     }
   }
 }

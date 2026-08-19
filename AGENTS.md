@@ -83,6 +83,10 @@ Read in this order when you are new to the repo:
 | Which WDI indicators are tracked | `lib/wdi-catalogue.ts` (76 indicators, 5 comparator countries) |
 | The source register | `data/sources.json` |
 | Which feeds are ingested | `lib/sources.ts` — **the only place a publisher is named** |
+| Sector keyword searches | `SECTOR_KEYWORDS` in `lib/sources.ts` — searches are built, never pasted |
+| Merging a refresh into the stored map | `scripts/etl/lib/merge.ts` |
+| The half-hourly wrapper | `scripts/etl/refresh-map.ts` |
+| Proving every sector has sources | `scripts/etl/verify-sources.ts` |
 | Classification: sector, action gate, geo | `scripts/etl/lib/classify.ts` |
 | Near-duplicate collapsing | `scripts/etl/lib/dedupe.ts` |
 | Feed parsing / article body extraction | `scripts/etl/lib/{feed,extract}.ts` |
@@ -146,7 +150,12 @@ Adding data is a two-sided change. One side without the other fails the gate.
 - **`confidence: "low"`** → requires at least one `notes` entry explaining the uncertainty.
 - **`provenance: "think-tank"` + `confidence: "high"`** → rejected. Estimates are not records.
 - **New feed** → `lib/sources.ts` only. No ingest code may know about a particular publisher.
-  A dead feed gets `disabled: true` with a one-line reason, keeping the URL on record.
+  Declare its `domains`; a dead feed gets `disabled: true` with a `note` giving the reason,
+  keeping the URL on record.
+- **Every sector needs three independent publishers.** `npm run test:ingest` enforces the
+  declared floor offline; `npm run sources:verify` proves the feeds answer. Newsrooms are
+  counted, not feeds — ET's ten desks are one publisher.
+- **Wider sector reach** → add a phrase to `SECTOR_KEYWORDS`, not another hand-written URL.
 - **Gazetteer** → `npm run geo:build`. Never hand-edit `data/geo/places.json`; it is
   generated from Natural Earth plus a curated overlay inside `scripts/geo/build-gazetteer.ts`.
 - **Any data change at all** → `npm run db:seed-sql` to regenerate `supabase/seed.sql`.
@@ -174,6 +183,9 @@ npm test                 # all of the above, in that order
 
 npm run etl              # live run: World Bank + feeds + article bodies + X
 npm run etl:dry          # show what would be fetched, touch no network
+npm run map:refresh      # the half-hourly wrapper: feeds -> classify -> merge
+npm run map:refresh:dry  # same, touching no network
+npm run sources:verify   # probe every feed; fails if a sector has <3 publishers
 
 npm run db:check         # is bharat_tracker reachable?
 npm run db:push          # seed Postgres from committed JSON
@@ -229,6 +241,13 @@ Two GitHub workflows matter:
 - `pipeline.yml` — every 6 hours, plus on any push touching `scripts/etl/**`,
   `lib/sources.ts` or `lib/gazetteer.ts`, so a connector fix is exercised against live feeds
   immediately.
+- `map-refresh.yml` — every 30 minutes. Ingest only; commits **only when the stored map
+  actually changed**, so a quiet half hour costs one workflow minute and no commit.
+- `verify-sources.yml` — daily and on any registry change; commits the health report and fails
+  if a sector drops below three working publishers.
+
+Note that this sandbox's network policy denies every news host, so feeds cannot be probed
+locally — `npm run sources:verify` only means something in Actions.
 
 ---
 

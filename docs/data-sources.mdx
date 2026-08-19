@@ -127,29 +127,81 @@ are the load-bearing fact.
 
 ## The news and events pipeline
 
-**27 active feeds** — two official, twenty-five press desks — declared in `lib/sources.ts`
-and nowhere else. No ingest code knows about any particular publisher; adding one is a one-line
-change.
+**82 active feeds** declared in `lib/sources.ts` and nowhere else. No ingest code knows about
+any particular publisher; adding one is a one-line change. They fall into three groups.
 
 | Group | Feeds | Marked |
-|---|---|---|
-| Official | PIB (national), PMO India | `verified` |
-| National press | The Hindu (National, Business, Science & Tech), NDTV, NDTV Profit, India Today, Swarajya, OpIndia | `reported` |
-| Business desks | Economic Times ×10, Business Standard ×3, BusinessLine ×3 | `reported` |
-| International | Rest of World | `reported` |
+|---|---:|---|
+| Official releases | 3 | `verified` |
+| Publisher desks | 48 | `reported` |
+| Keyword searches | 31 | `reported`, credited to the publisher the item names |
 
 `kind` on the source decides the label, so trust is a property of the publisher rather than a
 hardcoded list inside the parser. **Reputable and primary are different things**: The Hindu is
 marked `reported`, not `verified`, because it is reporting someone else's announcement.
 
-Three feeds are declared but disabled, with their URL and reason kept on record: **ISRO**
-(404 — no stable feed at the published path), **MEA** (403 even with a browser user-agent) and
-**ThePrint** (answers 200 with an interstitial rather than the feed, from CI address ranges).
+### Every sector, from more than one newsroom
+
+Each feed declares the sectors it is expected to carry, and `npm run sources:verify` fails if a
+sector is down to fewer than **three independent working publishers**. Three is the floor
+because two is a coin flip: when one desk goes dark — and they do — a sector with two sources
+becomes a sector with one, and nobody notices until the map has a hole in it.
+
+"Independent" counts newsrooms, not feeds. Ten Economic Times desks are one newsroom's
+editorial judgement ten times over, and they all go down together, so they count once.
+
+| Sector | Distinct publishers declared | Beyond the national desks |
+|---|---:|---|
+| Defence | 13 | IDRW, Bharat Shakti, Raksha Anirveda, FE Defence |
+| Infrastructure | 15 | ETInfra, Construction World, Metro Rail News, FE Infrastructure |
+| Manufacturing | 13 | ET Manufacturing, ETAuto, pv magazine India |
+| Roads & airports | 11 | ETInfra, Metro Rail News, BL Logistics |
+| Startups | 11 | Inc42, Entrackr, YourStory |
+| PSU & MSME | 11 | ETGovernment, FE Industry, YourStory |
+| Energy | 10 | Mercom India, Saur Energy, pv magazine, ETEnergyWorld |
+| Exports | 8 | ET Foreign Trade, ETAuto, Mint Economy |
+| Trade deals | 8 | Mint Economy, BS Economy, BusinessLine |
+| Space | 8 | Mint Science, The Hindu Sci-Tech, ET Tech |
+| Ports | 7 | Maritime Gateway, BL Logistics, ETInfra |
+| Pipelines | 6 | ETEnergyWorld, Maritime Gateway, BL Logistics |
+
+`npm run test:ingest` asserts the declared floor without touching the network;
+`npm run sources:verify` proves the feeds actually answer, and writes
+`data/live/source-health.json` with the status of every one of them.
+
+### Keyword discovery
+
+A publisher's desk only carries what that desk wrote. A plant commissioning covered by one
+regional paper reaches the map through a keyword search or not at all — which is the difference
+between eleven states on the map and most of them.
+
+So 31 of the feeds are **sector phrase searches**, built at run time from `SECTOR_KEYWORDS`
+rather than pasted in as URLs. Widening a sector's reach means adding a phrase. Each search is
+a plain Google News RSS URL — no key, no quota, no account, which is the only reason keyword
+discovery is affordable here.
+
+Phrases are quoted so they match intact: a bare `port` matches Portugal, and a bare `corridor`
+matches wildlife corridors. Every search asks for the last two days only, matching the map's
+2-day mode.
+
+Attribution survives the round trip. Aggregator items carry `<source url="…">The Hindu</source>`,
+so the event is credited to the publisher, never to the aggregator, and the `" - The Hindu"`
+suffix is stripped from the headline. When a body fetch follows the aggregator link to the
+publisher, the resolved URL replaces the redirect, so most pins cite the article directly.
+
+### Feeds on record but disabled
+
+Three feeds are declared with their URL and reason kept: **ISRO** (404 — no stable feed at the
+published path), **MEA** (403 even with a browser user-agent) and **ThePrint** (answers 200 with
+an interstitial rather than the feed, from CI address ranges).
 
 ### From headline to pin
 
-Ingest runs in two passes. Pass one reads every feed. Pass two fetches article bodies, but only
-for candidates the headline alone cannot resolve, under a budget of 120 requests per run.
+Ingest runs in two passes. Pass one reads every feed, capped at 40 items per desk and 25 per
+search so no single high-volume feed decides what the run looks at. Pass two fetches article
+bodies, but only for candidates the headline alone cannot resolve — plus every aggregator link,
+because following it is the only way to cite the publisher. The budget is 120 requests on the
+full pipeline and 60 on the half-hourly refresh.
 
 A story becomes a map pin only if it survives, in order:
 
@@ -237,7 +289,9 @@ keeps it caught.
 | Path | Cadence | Written to |
 |---|---|---|
 | World Bank | Every 6 hours (cached, cheap to re-run) | `data/series/wdi.json` |
-| Feeds and events | Every 6 hours, and on any push touching ingest code | `data/live/news.json`, `data/events.json` |
+| Map refresh (feeds, classification, merge) | **Every 30 minutes** | `data/events.json`, `data/live/news.json`, `data/live/last-refresh.json` |
+| Full pipeline (adds World Bank) | Every 6 hours, and on any push touching ingest code | all of the above plus `data/series/wdi.json` |
+| Feed health check | Daily, and on any change to the registry | `data/live/source-health.json` |
 | Curated series | Manual, on verification against a primary release | `data/series/*.json` |
 | Gazetteer | Manual, `npm run geo:build` | `data/geo/places.json` |
 
