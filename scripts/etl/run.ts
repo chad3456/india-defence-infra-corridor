@@ -175,7 +175,17 @@ async function main() {
     id: `run-${Date.now()}`,
     startedAt,
     finishedAt: new Date().toISOString(),
-    status: connectorsFailed === 0 ? (messages.length ? "partial" : "ok") : "failed",
+    // Failed means the run produced nothing usable. One connector losing its
+    // upstream, or failing validation, is a partial run — the others' output
+    // is already validated and must still reach the repository. The first
+    // live run of the SATP connector proved why: one series missing a note
+    // discarded 82 freshly-fetched World Bank series and 57 events with it.
+    status:
+      connectorsFailed >= connectorsRun
+        ? "failed"
+        : connectorsFailed > 0 || messages.length > 0
+          ? "partial"
+          : "ok",
     connectorsRun,
     connectorsFailed,
     seriesUpdated,
@@ -214,8 +224,9 @@ async function main() {
       `${messages.length} message(s)`,
   );
 
-  // A partial run is not a build failure — stale-but-valid data still serves.
-  // Only a total connector failure exits non-zero.
+  // A partial run is not a build failure — stale-but-valid data still serves,
+  // and the connectors that did work have already written theirs. Only a run
+  // where every connector failed exits non-zero.
   if (run.status === "failed") process.exit(1);
 }
 

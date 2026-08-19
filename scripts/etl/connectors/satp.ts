@@ -30,11 +30,26 @@ import { scoreSeries, type SecurityYear } from "../../../lib/security-index";
 import { getText } from "../lib/http";
 import { decodeEntities } from "../lib/feed";
 
-/** Where each theatre's datasheet lives, and which series it fills. */
+/**
+ * Where each theatre's datasheet lives, and which series it fills.
+ *
+ * `urls` is a candidate list tried in order. SATP's Jammu & Kashmir sheet
+ * answered on the first path; the left-wing extremism sheet returned 403 to
+ * both the pipeline and the browser user-agent, on a host that was plainly
+ * serving the other sheet fine — which reads as a wrong path rather than a
+ * block. Rather than guess once per pipeline run, the connector tries the
+ * plausible slugs and logs which one answered, so the next run's log names the
+ * right URL and the list can be trimmed to it.
+ */
 const SHEETS = [
   {
     theatre: "lwe" as const,
-    url: "https://www.satp.org/datasheet-terrorist-attack/fatalities/india-maoistinsurgency",
+    urls: [
+      "https://www.satp.org/datasheet-terrorist-attack/fatalities/india-maoistinsurgency",
+      "https://www.satp.org/datasheet-terrorist-attack/fatalities/india-leftwingextremism",
+      "https://www.satp.org/datasheet-terrorist-attack/fatalities/india-naxalinsurgency",
+      "https://www.satp.org/datasheet-terrorist-attack/india-maoistinsurgency",
+    ],
     sourceId: "satp-lwe-fatalities",
     ids: {
       civilians: "lwe-civilians-killed",
@@ -47,7 +62,7 @@ const SHEETS = [
   },
   {
     theatre: "terror" as const,
-    url: "https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir",
+    urls: ["https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir"],
     sourceId: "satp-jk-fatalities",
     ids: {
       civilians: "terror-civilians-killed",
@@ -171,36 +186,50 @@ export async function runSatp(
 
   for (const sheet of SHEETS) {
     if (opts.dryRun) {
-      log(`[dry-run] would fetch ${sheet.theatre} — ${sheet.url}`);
+      for (const u of sheet.urls) log(`[dry-run] would try ${sheet.theatre} — ${u}`);
       continue;
     }
 
-    const res = await getText(sheet.url, {
-      cacheMs: 12 * 60 * 60 * 1000,
-      timeoutMs: 30_000,
-      accept: "text/html",
-    });
-    if (!res.ok || !res.data) {
-      errors.push(`${sheet.theatre}: ${res.error ?? "no body"}`);
-      log(`  ${sheet.theatre.padEnd(8)} FAILED (${res.error})`);
-      continue;
+    // Try each candidate until one yields a full table. A path that answers
+    // but parses short is not accepted: a fragment would silently truncate a
+    // twenty-year series about people being killed.
+    let rows: ParsedRow[] = [];
+    let usedUrl = "";
+    const attempts: string[] = [];
+    for (const url of sheet.urls) {
+      const res = await getText(url, {
+        cacheMs: 12 * 60 * 60 * 1000,
+        timeoutMs: 30_000,
+        accept: "text/html",
+      });
+      if (!res.ok || !res.data) {
+        attempts.push(`${url} -> ${res.error ?? "no body"}`);
+        continue;
+      }
+      const out = parseFatalityTable(res.data);
+      if (out.rows.length < MIN_YEARS) {
+        attempts.push(`${url} -> only ${out.rows.length} year(s) parsed`);
+        continue;
+      }
+      for (const sk of out.skipped) errors.push(`${sheet.theatre}: ${sk}`);
+      rows = out.rows;
+      usedUrl = url;
+      break;
     }
 
-    const { rows, skipped } = parseFatalityTable(res.data);
-    for (const s of skipped) errors.push(`${sheet.theatre}: ${s}`);
-
-    // A short table means the layout moved, not that the conflict is new.
-    // Publishing the fragment would silently truncate a 20-year series.
-    if (rows.length < MIN_YEARS) {
-      errors.push(
-        `${sheet.theatre}: only ${rows.length} year(s) parsed — the datasheet layout has probably changed; keeping previous data`,
-      );
-      log(`  ${sheet.theatre.padEnd(8)} PARSE FAILED — ${rows.length} rows`);
+    if (rows.length === 0) {
+      for (const a of attempts) errors.push(`${sheet.theatre}: ${a}`);
+      errors.push(`${sheet.theatre}: no candidate URL yielded a full table; keeping previous data`);
+      log(`  ${sheet.theatre.padEnd(8)} FAILED — ${attempts.length} candidate(s) tried`);
+      for (const a of attempts) log(`    ${a}`);
       continue;
     }
 
     parsed[sheet.theatre] = rows.length;
-    log(`  ${sheet.theatre.padEnd(8)} ${rows.length} years (${rows[0]?.year}–${rows.at(-1)?.year})`);
+    log(`  ${sheet.theatre.padEnd(8)} ${rows.length} years (${rows[0]?.year}–${rows.at(-1)?.year})  ${usedUrl}`);
+    if (attempts.length > 0) {
+      log(`    (${attempts.length} candidate(s) failed first — trim the list in lib to the working one)`);
+    }
 
     const period = (r: ParsedRow) => String(r.year);
     const pt = (r: ParsedRow, value: number): DataPoint => ({ period: period(r), value });

@@ -134,6 +134,7 @@ export const SECURITY_SERIES: SecuritySeriesSpec[] = [
     confidence: "low",
     sourceIds: ["satp-lwe-fatalities", "derived"],
     filledBy: "satp",
+    note: "Author-constructed, and measured against the series' own average rather than an absolute bar — a year scores well by beating this conflict's recent record, not a fixed standard. Arrests and surrenders are unevenly reported, so that component is often zero.",
   },
 
   /* ---------------- Terrorism ---------------- */
@@ -223,6 +224,7 @@ export const SECURITY_SERIES: SecuritySeriesSpec[] = [
     confidence: "low",
     sourceIds: ["satp-jk-fatalities", "derived"],
     filledBy: "satp",
+    note: "Author-constructed on the same basis as the left-wing extremism index, and carrying the same caveats.",
   },
 ];
 

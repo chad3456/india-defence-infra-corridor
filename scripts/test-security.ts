@@ -12,6 +12,8 @@ import { tonality, actionIndex, scoreSeries, LIMITS, type SecurityYear } from ".
 import { parseFatalityTable } from "./etl/connectors/satp";
 import { SECURITY_SERIES, DEFENCE_PENDING, ALL_SECURITY_SPECS } from "../lib/security-catalogue";
 import { getAllSources } from "../lib/data";
+import { validateSeries } from "./lib/validate-series";
+import type { Series } from "../lib/types";
 
 const failures: string[] = [];
 function check(ok: boolean | undefined, label: string, detail = "") {
@@ -208,6 +210,35 @@ console.log("Catalogue");
     "a series awaiting hand-entry says what it is waiting for",
   );
   check(LIMITS.length >= 5, `the index ships its limits (got ${LIMITS.length})`);
+
+  // Run the real publish gate over a synthetic series built from each spec.
+  // A catalogue entry that cannot pass validation is a chart that will never
+  // appear, and the first run found exactly that: two low-confidence indices
+  // with no note explaining the uncertainty. Catching it here costs a second;
+  // catching it in Actions cost a whole pipeline run.
+  const asSeries = (spec: (typeof ALL_SECURITY_SPECS)[number]): Series => ({
+    id: spec.id,
+    title: spec.title,
+    definition: spec.definition,
+    category: spec.category,
+    unit: spec.unit,
+    unitShort: spec.unitShort,
+    frequency: spec.frequency,
+    provenance: spec.provenance,
+    confidence: spec.confidence,
+    higherIsBetter: spec.higherIsBetter,
+    sourceIds: spec.sourceIds,
+    points: [
+      { period: "2004", value: 1 },
+      { period: "2005", value: 2 },
+    ],
+    notes: spec.note ? [spec.note] : [],
+    lastVerified: "2026-08-19",
+  });
+  for (const spec of SECURITY_SERIES) {
+    const problems = validateSeries(asSeries(spec));
+    check(problems.length === 0, `${spec.id} would pass the publish gate`, problems.join("; "));
+  }
 }
 
 console.log("");
