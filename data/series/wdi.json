@@ -5319,7 +5319,7 @@
     "id": "wdi-rd-spending",
     "title": "Research and development expenditure",
     "definition": "Gross domestic R&D spending as a share of GDP.",
-    "category": "manufacturing",
+    "category": "ai-science",
     "unit": "% of GDP",
     "unitShort": "%",
     "frequency": "annual",
@@ -5466,7 +5466,7 @@
     "id": "wdi-patents-resident",
     "title": "Patent applications, residents",
     "definition": "Patent applications filed by residents.",
-    "category": "manufacturing",
+    "category": "ai-science",
     "unit": "applications",
     "unitShort": "apps",
     "frequency": "annual",
@@ -5615,7 +5615,7 @@
     "id": "wdi-patents-nonresident",
     "title": "Patent applications, non-residents",
     "definition": "Patent applications filed by non-residents.",
-    "category": "manufacturing",
+    "category": "ai-science",
     "unit": "applications",
     "unitShort": "apps",
     "frequency": "annual",
@@ -5764,7 +5764,7 @@
     "id": "wdi-scientific-articles",
     "title": "Scientific and technical journal articles",
     "definition": "Number of scientific and engineering articles published.",
-    "category": "manufacturing",
+    "category": "ai-science",
     "unit": "articles",
     "unitShort": "articles",
     "frequency": "annual",
@@ -11813,6 +11813,799 @@
         "country": "United States",
         "iso3": "USA",
         "value": 17.0990415161586,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      }
+    ]
+  },
+  {
+    "id": "wdi-researchers",
+    "title": "Researchers in R&D",
+    "definition": "Professionals engaged in the conception or creation of new knowledge, per million people.",
+    "category": "ai-science",
+    "unit": "per million people",
+    "unitShort": "per m",
+    "frequency": "annual",
+    "higherIsBetter": true,
+    "points": [
+      {
+        "period": "2005",
+        "value": 135.14649
+      },
+      {
+        "period": "2010",
+        "value": 156.19059
+      },
+      {
+        "period": "2015",
+        "value": 214.34935
+      },
+      {
+        "period": "2018",
+        "value": 250.00794
+      },
+      {
+        "period": "2020",
+        "value": 259.26325
+      }
+    ],
+    "sourceIds": [
+      "worldbank-wdi"
+    ],
+    "provenance": "multilateral",
+    "confidence": "high",
+    "lastVerified": "2026-08-19",
+    "notes": [
+      "India has roughly 260 researchers per million against Korea's 8,700. The constraint on an AI or defence-tech ambition is people before it is money.",
+      "World Bank indicator SP.POP.SCIE.RD.P6. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.",
+      "Peer comparison uses each country's latest available year (2014, 2020, 2022, 2023), which are not all the same."
+    ],
+    "peers": [
+      {
+        "country": "India",
+        "iso3": "IND",
+        "value": 259.26325,
+        "period": "2020",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "China",
+        "iso3": "CHN",
+        "value": 2107.27003,
+        "period": "2023",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Vietnam",
+        "iso3": "VNM",
+        "value": 836.10677,
+        "period": "2023",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Brazil",
+        "iso3": "BRA",
+        "value": 903.20079,
+        "period": "2014",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Indonesia",
+        "iso3": "IDN",
+        "value": 395.34168,
+        "period": "2020",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "United States",
+        "iso3": "USA",
+        "value": 4937.49441,
+        "period": "2022",
+        "sourceId": "worldbank-wdi"
+      }
+    ]
+  },
+  {
+    "id": "wdi-technicians",
+    "title": "Technicians in R&D",
+    "definition": "Technical staff supporting research, per million people.",
+    "category": "ai-science",
+    "unit": "per million people",
+    "unitShort": "per m",
+    "frequency": "annual",
+    "higherIsBetter": true,
+    "points": [
+      {
+        "period": "2005",
+        "value": 92.19858
+      },
+      {
+        "period": "2010",
+        "value": 100.61565
+      },
+      {
+        "period": "2015",
+        "value": 95.54919
+      },
+      {
+        "period": "2018",
+        "value": 73.05997
+      }
+    ],
+    "sourceIds": [
+      "worldbank-wdi"
+    ],
+    "provenance": "multilateral",
+    "confidence": "high",
+    "lastVerified": "2026-08-19",
+    "notes": [
+      "World Bank indicator SP.POP.TECH.RD.P6. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.",
+      "Peer comparison uses each country's latest available year (2014, 2017, 2018), which are not all the same."
+    ],
+    "peers": [
+      {
+        "country": "India",
+        "iso3": "IND",
+        "value": 73.05997,
+        "period": "2018",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Vietnam",
+        "iso3": "VNM",
+        "value": 71.49,
+        "period": "2017",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Brazil",
+        "iso3": "BRA",
+        "value": 969.90222,
+        "period": "2014",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Indonesia",
+        "iso3": "IDN",
+        "value": 34.74204,
+        "period": "2018",
+        "sourceId": "worldbank-wdi"
+      }
+    ]
+  },
+  {
+    "id": "wdi-ip-receipts",
+    "title": "Charges for the use of intellectual property, receipts",
+    "definition": "What the country earns from licensing its own intellectual property abroad.",
+    "category": "ai-science",
+    "unit": "current US$",
+    "unitShort": "US$",
+    "frequency": "annual",
+    "higherIsBetter": true,
+    "points": [
+      {
+        "period": "2001",
+        "value": 37156159.5439439
+      },
+      {
+        "period": "2002",
+        "value": 20159947.9368238
+      },
+      {
+        "period": "2003",
+        "value": 24088615.6906115
+      },
+      {
+        "period": "2004",
+        "value": 52796059.5739589
+      },
+      {
+        "period": "2005",
+        "value": 205974583.701423
+      },
+      {
+        "period": "2006",
+        "value": 60913260.3059551
+      },
+      {
+        "period": "2007",
+        "value": 163126496.583273
+      },
+      {
+        "period": "2008",
+        "value": 147815443.392231
+      },
+      {
+        "period": "2009",
+        "value": 191939516.593492
+      },
+      {
+        "period": "2010",
+        "value": 127378163.310578
+      },
+      {
+        "period": "2011",
+        "value": 302615975.492119
+      },
+      {
+        "period": "2012",
+        "value": 321445173.962871
+      },
+      {
+        "period": "2013",
+        "value": 445568319.526626
+      },
+      {
+        "period": "2014",
+        "value": 658722433.043535
+      },
+      {
+        "period": "2015",
+        "value": 466556838.054459
+      },
+      {
+        "period": "2016",
+        "value": 524879155.063454
+      },
+      {
+        "period": "2017",
+        "value": 659628260.998322
+      },
+      {
+        "period": "2018",
+        "value": 784900902.149806
+      },
+      {
+        "period": "2019",
+        "value": 871605164.428632
+      },
+      {
+        "period": "2020",
+        "value": 1253654725.41466
+      },
+      {
+        "period": "2021",
+        "value": 870139762.196607
+      },
+      {
+        "period": "2022",
+        "value": 1167577791.2464
+      },
+      {
+        "period": "2023",
+        "value": 1526339965.47209
+      },
+      {
+        "period": "2024",
+        "value": 1728889909.66743
+      },
+      {
+        "period": "2025",
+        "value": 1737079880.21995
+      }
+    ],
+    "sourceIds": [
+      "worldbank-wdi"
+    ],
+    "provenance": "multilateral",
+    "confidence": "high",
+    "lastVerified": "2026-08-19",
+    "notes": [
+      "The honest test of whether research becomes property. Receipts against payments is the number to read.",
+      "World Bank indicator BX.GSR.ROYL.CD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to."
+    ],
+    "peers": [
+      {
+        "country": "India",
+        "iso3": "IND",
+        "value": 1737079880.21995,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "China",
+        "iso3": "CHN",
+        "value": 13069938163.36,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Brazil",
+        "iso3": "BRA",
+        "value": 1164138662.4,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Indonesia",
+        "iso3": "IDN",
+        "value": 217484630.463053,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "United States",
+        "iso3": "USA",
+        "value": 189145000000,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      }
+    ]
+  },
+  {
+    "id": "wdi-ip-payments",
+    "title": "Charges for the use of intellectual property, payments",
+    "definition": "What the country pays to license intellectual property from abroad.",
+    "category": "ai-science",
+    "unit": "current US$",
+    "unitShort": "US$",
+    "frequency": "annual",
+    "higherIsBetter": null,
+    "points": [
+      {
+        "period": "2001",
+        "value": 317035850.702584
+      },
+      {
+        "period": "2002",
+        "value": 345233066.962673
+      },
+      {
+        "period": "2003",
+        "value": 549887942.05063
+      },
+      {
+        "period": "2004",
+        "value": 611481232.354589
+      },
+      {
+        "period": "2005",
+        "value": 671829366.31862
+      },
+      {
+        "period": "2006",
+        "value": 845949436.030585
+      },
+      {
+        "period": "2007",
+        "value": 1159824390.70936
+      },
+      {
+        "period": "2008",
+        "value": 1528826912.72299
+      },
+      {
+        "period": "2009",
+        "value": 1860070100.10474
+      },
+      {
+        "period": "2010",
+        "value": 2438302981.08653
+      },
+      {
+        "period": "2011",
+        "value": 2819291078.7559
+      },
+      {
+        "period": "2012",
+        "value": 3990055616.79302
+      },
+      {
+        "period": "2013",
+        "value": 3903908830.45921
+      },
+      {
+        "period": "2014",
+        "value": 4848711888.70729
+      },
+      {
+        "period": "2015",
+        "value": 5009034406.59605
+      },
+      {
+        "period": "2016",
+        "value": 5466041709.7527
+      },
+      {
+        "period": "2017",
+        "value": 6515405393.63595
+      },
+      {
+        "period": "2018",
+        "value": 7905957776.50493
+      },
+      {
+        "period": "2019",
+        "value": 7889685402.17332
+      },
+      {
+        "period": "2020",
+        "value": 7241107556.78618
+      },
+      {
+        "period": "2021",
+        "value": 8631569309.27649
+      },
+      {
+        "period": "2022",
+        "value": 10427794881.2932
+      },
+      {
+        "period": "2023",
+        "value": 14349449523.6213
+      },
+      {
+        "period": "2024",
+        "value": 16263058709.4908
+      },
+      {
+        "period": "2025",
+        "value": 18764908516.913
+      }
+    ],
+    "sourceIds": [
+      "worldbank-wdi"
+    ],
+    "provenance": "multilateral",
+    "confidence": "high",
+    "lastVerified": "2026-08-19",
+    "notes": [
+      "World Bank indicator BM.GSR.ROYL.CD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to."
+    ],
+    "peers": [
+      {
+        "country": "India",
+        "iso3": "IND",
+        "value": 18764908516.913,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "China",
+        "iso3": "CHN",
+        "value": 46629335623.43,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Brazil",
+        "iso3": "BRA",
+        "value": 12330577067.63,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Indonesia",
+        "iso3": "IDN",
+        "value": 2484141605.34098,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "United States",
+        "iso3": "USA",
+        "value": 51640000000,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      }
+    ]
+  },
+  {
+    "id": "wdi-ict-goods-exports",
+    "title": "ICT goods exports",
+    "definition": "Share of total goods exports made up of information and communication technology goods.",
+    "category": "ai-science",
+    "unit": "% of goods exports",
+    "unitShort": "%",
+    "frequency": "annual",
+    "higherIsBetter": true,
+    "points": [
+      {
+        "period": "2001",
+        "value": 1.85
+      },
+      {
+        "period": "2002",
+        "value": 1.4
+      },
+      {
+        "period": "2003",
+        "value": 1.51
+      },
+      {
+        "period": "2004",
+        "value": 1.27
+      },
+      {
+        "period": "2005",
+        "value": 0.99
+      },
+      {
+        "period": "2006",
+        "value": 0.98
+      },
+      {
+        "period": "2007",
+        "value": 0.91
+      },
+      {
+        "period": "2008",
+        "value": 0.67
+      },
+      {
+        "period": "2009",
+        "value": 3.19
+      },
+      {
+        "period": "2010",
+        "value": 1.72
+      },
+      {
+        "period": "2011",
+        "value": 2.07
+      },
+      {
+        "period": "2012",
+        "value": 1.94
+      },
+      {
+        "period": "2013",
+        "value": 1.53
+      },
+      {
+        "period": "2014",
+        "value": 0.91
+      },
+      {
+        "period": "2015",
+        "value": 0.83
+      },
+      {
+        "period": "2016",
+        "value": 0.9
+      },
+      {
+        "period": "2017",
+        "value": 0.81
+      },
+      {
+        "period": "2018",
+        "value": 1.14
+      },
+      {
+        "period": "2019",
+        "value": 1.9
+      },
+      {
+        "period": "2020",
+        "value": 2.01
+      },
+      {
+        "period": "2021",
+        "value": 2.18
+      },
+      {
+        "period": "2022",
+        "value": 2.77
+      },
+      {
+        "period": "2023",
+        "value": 4.2
+      },
+      {
+        "period": "2024",
+        "value": 5.71
+      }
+    ],
+    "sourceIds": [
+      "worldbank-wdi"
+    ],
+    "provenance": "multilateral",
+    "confidence": "high",
+    "lastVerified": "2026-08-19",
+    "notes": [
+      "World Bank indicator TX.VAL.ICTG.ZS.UN. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.",
+      "Peer comparison uses each country's latest available year (2023, 2024), which are not all the same."
+    ],
+    "peers": [
+      {
+        "country": "India",
+        "iso3": "IND",
+        "value": 5.71,
+        "period": "2024",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "China",
+        "iso3": "CHN",
+        "value": 21.32,
+        "period": "2024",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Vietnam",
+        "iso3": "VNM",
+        "value": 35.9,
+        "period": "2023",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Brazil",
+        "iso3": "BRA",
+        "value": 0.23,
+        "period": "2024",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Indonesia",
+        "iso3": "IDN",
+        "value": 2.66,
+        "period": "2024",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "United States",
+        "iso3": "USA",
+        "value": 9.05,
+        "period": "2024",
+        "sourceId": "worldbank-wdi"
+      }
+    ]
+  },
+  {
+    "id": "wdi-ict-service-exports",
+    "title": "ICT service exports",
+    "definition": "Share of service exports made up of information and communication technology services.",
+    "category": "ai-science",
+    "unit": "% of service exports",
+    "unitShort": "%",
+    "frequency": "annual",
+    "higherIsBetter": true,
+    "points": [
+      {
+        "period": "2001",
+        "value": 45.9088228860763
+      },
+      {
+        "period": "2002",
+        "value": 47.6380440122007
+      },
+      {
+        "period": "2003",
+        "value": 51.7126486257784
+      },
+      {
+        "period": "2004",
+        "value": 44.3361553759666
+      },
+      {
+        "period": "2005",
+        "value": 43.4233516111529
+      },
+      {
+        "period": "2006",
+        "value": 43.4601454460562
+      },
+      {
+        "period": "2007",
+        "value": 44.6728352683608
+      },
+      {
+        "period": "2008",
+        "value": 47.4761893339426
+      },
+      {
+        "period": "2009",
+        "value": 52.0883106344788
+      },
+      {
+        "period": "2010",
+        "value": 46.335545842622
+      },
+      {
+        "period": "2011",
+        "value": 44.819288452736
+      },
+      {
+        "period": "2012",
+        "value": 46.1653897891748
+      },
+      {
+        "period": "2013",
+        "value": 48.4413845617866
+      },
+      {
+        "period": "2014",
+        "value": 47.5793301671388
+      },
+      {
+        "period": "2015",
+        "value": 48.867001424996
+      },
+      {
+        "period": "2016",
+        "value": 47.300749949433
+      },
+      {
+        "period": "2017",
+        "value": 42.3751022077089
+      },
+      {
+        "period": "2018",
+        "value": 41.3042841946734
+      },
+      {
+        "period": "2019",
+        "value": 43.95814821332
+      },
+      {
+        "period": "2020",
+        "value": 48.9656874345531
+      },
+      {
+        "period": "2021",
+        "value": 49.6661074598787
+      },
+      {
+        "period": "2022",
+        "value": 46.8040630285382
+      },
+      {
+        "period": "2023",
+        "value": 48.1688192762242
+      },
+      {
+        "period": "2024",
+        "value": 47.4135569645014
+      },
+      {
+        "period": "2025",
+        "value": 48.5955481655845
+      }
+    ],
+    "sourceIds": [
+      "worldbank-wdi"
+    ],
+    "provenance": "multilateral",
+    "confidence": "high",
+    "lastVerified": "2026-08-19",
+    "notes": [
+      "India's strongest card, and the reason the AI conversation here starts from services rather than from silicon.",
+      "World Bank indicator BX.GSR.CCIS.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to."
+    ],
+    "peers": [
+      {
+        "country": "India",
+        "iso3": "IND",
+        "value": 48.5955481655845,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "China",
+        "iso3": "CHN",
+        "value": 19.135055120832,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Brazil",
+        "iso3": "BRA",
+        "value": 13.6726278252098,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "Indonesia",
+        "iso3": "IDN",
+        "value": 9.61715450472404,
+        "period": "2025",
+        "sourceId": "worldbank-wdi"
+      },
+      {
+        "country": "United States",
+        "iso3": "USA",
+        "value": 8.29810402774419,
         "period": "2025",
         "sourceId": "worldbank-wdi"
       }
