@@ -312,6 +312,72 @@ console.log("Catalogue");
 }
 
 console.log("");
+console.log("Published security data");
+{
+  // Runs over whatever the connector last wrote, not over a fixture. A fixture
+  // only ever proves the parser agrees with my assumptions; this catches the
+  // case where it agrees with them and they are wrong about the real page.
+  let published: Series[] = [];
+  try {
+    published = JSON.parse(readFileSync("data/series/security.json", "utf8")) as Series[];
+  } catch {
+    published = [];
+  }
+
+  if (published.length === 0) {
+    console.log("  skip  data/series/security.json is empty — nothing published to check");
+  } else {
+    const byId = new Map(published.map((s) => [s.id, s]));
+    const at = (id: string, period: string) =>
+      byId.get(id)?.points.find((p) => p.period === period)?.value ?? null;
+
+    for (const theatre of ["terror", "lwe"] as const) {
+      const totalId = `${theatre}-total-fatalities`;
+      const total = byId.get(totalId);
+      if (!total) continue;
+
+      const parts =
+        theatre === "terror"
+          ? ["terror-civilians-killed", "terror-security-forces-killed", "terror-militants-killed"]
+          : ["lwe-civilians-killed", "lwe-security-forces-killed", "lwe-insurgents-killed"];
+
+      // The published total must equal its published parts. If a column ever
+      // shifts again, this is what says so — the parts would still sum, but to
+      // a different total than the one the page stated.
+      const bad = total.points.filter((p) => {
+        if (p.value === null) return false;
+        const sum = parts.reduce((n, id) => n + (at(id, p.period) ?? 0), 0);
+        // Unattributed deaths are in the total and in no part, so the total may
+        // exceed the parts. It must never fall below them.
+        return sum > p.value;
+      });
+      check(bad.length === 0, `${theatre}: no year's parts exceed its published total`, bad.map((p) => p.period).join(", "));
+
+      // A single Indian internal conflict does not kill five figures in a year.
+      const huge = total.points.filter((p) => (p.value ?? 0) > MAX_ANNUAL_FATALITIES);
+      check(
+        huge.length === 0,
+        `${theatre}: no year exceeds the plausibility ceiling`,
+        huge.map((p) => `${p.period}=${p.value}`).join(", "),
+      );
+
+      // Every part must be a non-negative whole number of people.
+      const nonsense = parts.flatMap((id) =>
+        (byId.get(id)?.points ?? []).filter(
+          (p) => p.value !== null && (p.value < 0 || !Number.isInteger(p.value)),
+        ),
+      );
+      check(nonsense.length === 0, `${theatre}: every count is a whole non-negative number`);
+    }
+
+    for (const s of published) {
+      check(s.points.length > 0, `${s.id}: published with points`);
+    }
+    console.log(`  note  ${published.length} series published, ${published.reduce((n, s) => n + s.points.length, 0)} points`);
+  }
+}
+
+console.log("");
 if (failures.length) {
   console.error(`${failures.length} security test(s) failed.`);
   process.exit(1);

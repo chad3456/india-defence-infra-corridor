@@ -33,29 +33,27 @@ import { decodeEntities } from "../lib/feed";
 /**
  * Where each theatre's datasheet lives, and which series it fills.
  *
- * `urls` is a candidate list tried in order. SATP's Jammu & Kashmir sheet
- * answered on the first path; the left-wing extremism sheet returned 403 to
- * both the pipeline and the browser user-agent, on a host that was plainly
- * serving the other sheet fine — which reads as a wrong path rather than a
- * block. Rather than guess once per pipeline run, the connector tries the
- * plausible slugs and logs which one answered, so the next run's log names the
- * right URL and the list can be trimmed to it.
+ * `urls` is one proven path each, not a candidate list. The probe
+ * (`npm run satp:probe`) confirmed both, so guessing is over.
+ *
+ * The list used to carry three extra left-wing-extremism slugs. Two of them
+ * resolve to South Asia-wide aggregates: they answer, they parse, and one year
+ * totals 28,355 deaths. The plausibility ceiling caught them, which is the only
+ * reason the aggregate did not reach the site a second time under an Indian
+ * label. Shotgunning slugs also hammers one host several times a run, which is
+ * the most likely cause of the intermittent 403 on the real page.
  */
 const SHEETS = [
   {
     theatre: "lwe" as const,
-    urls: [
-      "https://www.satp.org/datasheet-terrorist-attack/fatalities/india-maoistinsurgency",
-      "https://www.satp.org/datasheet-terrorist-attack/fatalities/india-leftwingextremism",
-      "https://www.satp.org/datasheet-terrorist-attack/fatalities/india-naxalinsurgency",
-      "https://www.satp.org/datasheet-terrorist-attack/india-maoistinsurgency",
-    ],
+    urls: ["https://www.satp.org/datasheet-terrorist-attack/fatalities/india-maoistinsurgency"],
     sourceId: "satp-lwe-fatalities",
     ids: {
       civilians: "lwe-civilians-killed",
       securityForces: "lwe-security-forces-killed",
       insurgents: "lwe-insurgents-killed",
       total: "lwe-total-fatalities",
+      incidents: "lwe-attacks",
       tonality: "lwe-tonality",
       action: "lwe-action-index",
     },
@@ -69,6 +67,7 @@ const SHEETS = [
       securityForces: "terror-security-forces-killed",
       insurgents: "terror-militants-killed",
       total: "terror-total-fatalities",
+      incidents: "terror-attacks",
       tonality: "terror-tonality",
       action: "terror-action-index",
     },
@@ -337,9 +336,13 @@ export async function runSatp(
     let usedUrl = "";
     const attempts: string[] = [];
     for (const url of sheet.urls) {
+      // SATP answered this exact URL for the probe and 403'd it for the
+      // pipeline minutes later, which reads as throttling rather than a block.
+      // More retries, and the backoff in getText spaces them out.
       const res = await getText(url, {
         cacheMs: 12 * 60 * 60 * 1000,
         timeoutMs: 30_000,
+        retries: 5,
         accept: "text/html",
       });
       if (!res.ok || !res.data) {
@@ -416,8 +419,22 @@ export async function runSatp(
     push(sheet.ids.insurgents, rows.map((r) => pt(r, r.insurgents)));
     push(
       sheet.ids.total,
-      rows.map((r) => pt(r, r.civilians + r.securityForces + r.insurgents)),
+      rows.map((r) => pt(r, r.civilians + r.securityForces + r.insurgents + r.notSpecified)),
     );
+
+    // The incident count is in the same table, so the attacks-by-year series
+    // needs no separate source and no hand entry.
+    const withIncidents = rows.filter((r) => r.incidents !== undefined);
+    if (withIncidents.length >= MIN_YEARS) {
+      push(
+        sheet.ids.incidents,
+        withIncidents.map((r) => pt(r, r.incidents ?? 0)),
+      );
+    } else {
+      errors.push(
+        `${sheet.theatre}: incident column absent or short (${withIncidents.length} year(s)); attacks series left pending`,
+      );
+    }
 
     // The constructed indices, computed here so the arithmetic runs against
     // exactly the numbers published above and cannot drift from them.
