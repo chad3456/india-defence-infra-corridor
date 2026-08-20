@@ -243,6 +243,10 @@ series. The site's failure mode is not a crash — it is a confidently wrong num
 ## Delivery
 
 - Work on `claude/india-defence-infra-tracker-qfpsfu`. Push with `git push -u origin <branch>`.
+- **Enable the pre-push hook once per clone: `git config core.hooksPath .githooks`.** It runs
+  `npm test` and blocks a red push. Added after pushing a failing branch twice in one session —
+  both times the test command and the push were separate shell statements, so a non-zero exit
+  printed a failure and the push went out anyway. Do not rely on reading the output.
 - Commit messages describe the behaviour change, not the file list.
 - `data/series/wdi.json`, `data/live/` and `data/events.json` are written by the scheduled
   pipeline. Expect to rebase on bot commits; do not fight them.

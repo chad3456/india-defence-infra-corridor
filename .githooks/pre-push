@@ -1,0 +1,21 @@
+#!/bin/sh
+# Refuse a push that the test suite does not pass.
+#
+# Written after pushing a red branch twice in one session. Both times the test
+# command and the push were separate shell statements, so a non-zero exit
+# printed a failure and the push went out anyway. A hook does not rely on me
+# reading the output.
+#
+# Enable once per clone:  git config core.hooksPath .githooks
+# Bypass deliberately:    git push --no-verify
+echo "pre-push: running npm test"
+if ! npm test >/tmp/bharat-prepush.log 2>&1; then
+  echo ""
+  echo "pre-push: BLOCKED — npm test failed."
+  grep -iE "^ *FAIL|differ|error TS" /tmp/bharat-prepush.log | head -20
+  echo ""
+  echo "Full output: /tmp/bharat-prepush.log"
+  echo "To push anyway: git push --no-verify"
+  exit 1
+fi
+echo "pre-push: tests pass"
