@@ -15,6 +15,7 @@ import {
   MAX_ANNUAL_FATALITIES,
 } from "./etl/connectors/satp";
 import { SECURITY_SERIES, DEFENCE_PENDING, ALL_SECURITY_SPECS } from "../lib/security-catalogue";
+import { LWE_STATES, sumStates, type StateYear } from "./etl/connectors/satp-states";
 import { getAllSources } from "../lib/data";
 import { validateSeries } from "./lib/validate-series";
 import type { Series } from "../lib/types";
@@ -375,6 +376,55 @@ console.log("Published security data");
     }
     console.log(`  note  ${published.length} series published, ${published.reduce((n, s) => n + s.points.length, 0)} points`);
   }
+}
+
+console.log("");
+console.log("Summing state sheets");
+{
+  check(LWE_STATES.length === 18, `all eighteen LWE state sheets are declared (got ${LWE_STATES.length})`);
+  check(
+    new Set(LWE_STATES.map((s) => s.state)).size === LWE_STATES.length,
+    "state names are unique",
+  );
+  check(
+    new Set(LWE_STATES.map((s) => s.slug)).size === LWE_STATES.length,
+    "state slugs are unique",
+  );
+
+  const row = (state: string, year: number, c: number, sf: number, i: number, inc: number | null): StateYear => ({
+    state,
+    year,
+    civilians: c,
+    securityForces: sf,
+    insurgents: i,
+    notSpecified: 0,
+    incidents: inc,
+  });
+
+  const summed = sumStates([
+    row("Chhattisgarh", 2010, 100, 50, 40, 200),
+    row("Jharkhand", 2010, 60, 30, 20, 120),
+    row("Bihar", 2010, 10, 5, 5, 20),
+    row("Chhattisgarh", 2011, 80, 40, 30, 150),
+  ]);
+  check(summed.length === 2, `one row per year (got ${summed.length})`);
+  const y2010 = summed.find((r) => r.year === 2010);
+  check(y2010?.civilians === 170, `civilians sum across states (got ${y2010?.civilians})`);
+  check(y2010?.securityForces === 85, `security forces sum (got ${y2010?.securityForces})`);
+  check(y2010?.incidents === 340, `incidents sum (got ${y2010?.incidents})`);
+  check(summed[0]?.year === 2010 && summed[1]?.year === 2011, "years come out in order");
+
+  // A state that publishes no incident count makes the national incident total
+  // unknowable for that year. Better absent than quietly short.
+  const partial = sumStates([
+    row("Chhattisgarh", 2010, 100, 50, 40, 200),
+    row("Odisha", 2010, 20, 10, 5, null),
+  ]);
+  check(
+    partial[0]?.incidents === undefined,
+    "a state with no incident count leaves the national incident total unset, not short",
+  );
+  check(partial[0]?.civilians === 120, "but the fatality columns still sum");
 }
 
 console.log("");

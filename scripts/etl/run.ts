@@ -16,6 +16,7 @@ import { writeFile, mkdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { runWorldBank } from "./connectors/worldbank";
 import { runSatp } from "./connectors/satp";
+import { runSatpStates } from "./connectors/satp-states";
 import { runCuratedSecurity } from "./connectors/curated-security";
 import { runIngest } from "./connectors/ingest";
 import { runX } from "./connectors/x";
@@ -80,8 +81,15 @@ async function main() {
   const satp = await runSatp({ dryRun: DRY, onProgress: log });
   for (const e of satp.errors) messages.push(`satp: ${e}`);
 
-  if (!DRY && satp.series.length > 0) {
-    const problems = satp.series.flatMap((s) => validateSeries(s).map((p) => `${s.id}: ${p}`));
+  log("");
+  log("SATP — left-wing extremism, by state");
+  connectorsRun++;
+  const satpStates = await runSatpStates({ root: ROOT, dryRun: DRY, onProgress: log });
+  for (const e of satpStates.errors) messages.push(`satp-states: ${e}`);
+
+  const satpAll = [...satp.series, ...satpStates.series];
+  if (!DRY && satpAll.length > 0) {
+    const problems = satpAll.flatMap((s) => validateSeries(s).map((p) => `${s.id}: ${p}`));
     if (problems.length > 0) {
       connectorsFailed++;
       messages.push(...problems.map((p) => `satp validation: ${p}`));
@@ -90,11 +98,11 @@ async function main() {
     } else {
       await writeFile(
         join(ROOT, "data/series/security.json"),
-        JSON.stringify(satp.series, null, 2) + "\n",
+        JSON.stringify(satpAll, null, 2) + "\n",
         "utf8",
       );
-      seriesUpdated += satp.series.length;
-      log(`  wrote data/series/security.json — ${satp.series.length} series`);
+      seriesUpdated += satpAll.length;
+      log(`  wrote data/series/security.json — ${satpAll.length} series`);
     }
   } else if (!DRY) {
     messages.push("satp: no series returned; keeping previous data");

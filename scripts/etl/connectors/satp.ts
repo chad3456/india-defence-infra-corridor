@@ -44,20 +44,9 @@ import { decodeEntities } from "../lib/feed";
  * the most likely cause of the intermittent 403 on the real page.
  */
 const SHEETS = [
-  {
-    theatre: "lwe" as const,
-    urls: ["https://www.satp.org/datasheet-terrorist-attack/fatalities/india-maoistinsurgency"],
-    sourceId: "satp-lwe-fatalities",
-    ids: {
-      civilians: "lwe-civilians-killed",
-      securityForces: "lwe-security-forces-killed",
-      insurgents: "lwe-insurgents-killed",
-      total: "lwe-total-fatalities",
-      incidents: "lwe-attacks",
-      tonality: "lwe-tonality",
-      action: "lwe-action-index",
-    },
-  },
+  // Left-wing extremism is not here. SATP's national LWE page answers 403 to
+  // the pipeline while serving the probe, so that theatre is rebuilt from the
+  // eighteen state sheets in satp-states.ts, which all answer 200.
   {
     theatre: "terror" as const,
     urls: ["https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir"],
