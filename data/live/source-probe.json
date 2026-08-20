@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-08-20T06:18:19.672Z",
+  "probedAt": "2026-08-20T06:27:23.791Z",
   "findings": [
     {
       "id": "econ-survey-appendix",
@@ -119,7 +119,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 137506,
+      "bytes": 137505,
       "looksLike": "html",
       "title": "Press Release: Press Information Bureau",
       "yearTables": 0,
@@ -155,6 +155,72 @@
       "bytes": 2621,
       "looksLike": "html",
       "title": "Ministry of Statistics and Program Implementation | Government Of India",
+      "yearTables": 0,
+      "dataLinks": [],
+      "score": 1
+    },
+    {
+      "id": "dataful-catalog",
+      "publisher": "Dataful",
+      "url": "https://dataful.in/datasets/",
+      "feeds": [
+        "many"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 269439,
+      "looksLike": "html",
+      "title": "Dataset - Dataful",
+      "yearTables": 0,
+      "dataLinks": [],
+      "score": 1
+    },
+    {
+      "id": "dataful-search-ev",
+      "publisher": "Dataful",
+      "url": "https://dataful.in/datasets/?q=electric+vehicle",
+      "feeds": [
+        "ev-registrations",
+        "ev-share-registrations"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 296456,
+      "looksLike": "html",
+      "title": "Dataset - Dataful",
+      "yearTables": 0,
+      "dataLinks": [],
+      "score": 1
+    },
+    {
+      "id": "dataful-search-upi",
+      "publisher": "Dataful",
+      "url": "https://dataful.in/datasets/?q=UPI",
+      "feeds": [
+        "upi-transactions",
+        "upi-value"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 244116,
+      "looksLike": "html",
+      "title": "Dataset - Dataful",
+      "yearTables": 0,
+      "dataLinks": [],
+      "score": 1
+    },
+    {
+      "id": "dataful-search-cpi",
+      "publisher": "Dataful",
+      "url": "https://dataful.in/datasets/?q=consumer+price+index",
+      "feeds": [
+        "food-inflation"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 235337,
+      "looksLike": "html",
+      "title": "Dataset - Dataful",
       "yearTables": 0,
       "dataLinks": [],
       "score": 1
@@ -254,6 +320,17 @@
       "expect": "html",
       "status": "failed",
       "detail": "fetch failed"
+    },
+    {
+      "id": "dataful-api-root",
+      "publisher": "Dataful",
+      "url": "https://dataful.in/api/",
+      "feeds": [
+        "many"
+      ],
+      "expect": "json",
+      "status": "failed",
+      "detail": "HTTP 404"
     },
     {
       "id": "sebi-stats",
