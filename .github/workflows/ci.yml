@@ -41,6 +41,11 @@ jobs:
 
       # Hand-entered figures are the one path in that no upstream will
       # contradict, so the gate is stricter than for scraped data.
+      # Layout reconstruction from a PDF is a guess about geometry, and this
+      # project has published wrong numbers from a layout guess before.
+      - name: PDF extraction tests
+        run: npm run test:pdf
+
       - name: Curated security data
         run: npm run security:check
 

@@ -470,3 +470,4 @@ if (failures.length) {
   process.exit(1);
 }
 console.log("All security tests passed.");
+

@@ -2,7 +2,7 @@
   "name": "bharat-tracker",
   "version": "0.1.0",
   "private": true,
-  "description": "India Defence & Infrastructure Tracker \u2014 curated, source-cited data on defence, infrastructure, trade and manufacturing since 2001.",
+  "description": "India Defence & Infrastructure Tracker — curated, source-cited data on defence, infrastructure, trade and manufacturing since 2001.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -16,11 +16,12 @@
     "sources:verify": "tsx scripts/etl/verify-sources.ts",
     "satp:probe": "tsx scripts/etl/probe-satp.ts",
     "sources:probe": "tsx scripts/etl/probe-sources.ts",
+    "pdf:read": "tsx scripts/pdf-read.ts",
     "security:check": "tsx scripts/check-curated.ts",
     "docs:sync": "tsx scripts/docs/sync-tables.ts",
     "validate": "tsx scripts/validate.ts",
     "registry:audit": "tsx scripts/audit-registry.ts",
-    "test": "npm run validate && npm run registry:audit && npm run test:schema && npm run test:ingest && npm run test:security && npm run security:check && npm run test:docs && npm run db:seed-check && npm run typecheck",
+    "test": "npm run validate && npm run registry:audit && npm run test:schema && npm run test:ingest && npm run test:security && npm run test:pdf && npm run security:check && npm run test:docs && npm run db:seed-check && npm run typecheck",
     "db:push": "tsx scripts/db/sync.ts push",
     "db:pull": "tsx scripts/db/sync.ts pull",
     "db:check": "tsx scripts/db/sync.ts check",
@@ -31,6 +32,7 @@
     "test:ingest": "tsx scripts/test-ingest.ts",
     "test:docs": "tsx scripts/test-docs.ts",
     "test:security": "tsx scripts/test-security.ts",
+    "test:pdf": "tsx scripts/test-pdf.ts",
     "geo:build": "tsx scripts/geo/build-gazetteer.ts"
   },
   "dependencies": {
@@ -56,6 +58,7 @@
     "@types/react-dom": "^19.1.0",
     "@types/topojson-client": "^3.1.5",
     "@types/topojson-specification": "^1.0.5",
+    "pdfjs-dist": "^6.2.108",
     "tailwindcss": "^4.1.13",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",

@@ -96,7 +96,11 @@ Read in this order when you are new to the repo:
 | Editorial grades | `lib/assessment.ts` |
 | The constructed security indices | `lib/security-index.ts` — read the header before touching |
 | Which security series exist | `lib/security-catalogue.ts` |
-| SATP fatality scraping | `scripts/etl/connectors/satp.ts` |
+| SATP fatality scraping | `scripts/etl/connectors/satp.ts` (national) and `satp-states.ts` (by state) |
+| India-only series (EV, UPI, CPI, schemes) | `lib/india-catalogue.ts` |
+| Hand-entered figures | `data/security/curated.json`, validated by `npm run security:check` |
+| Reading a committed PDF | `scripts/etl/lib/pdf-table.ts`, `npm run pdf:read` |
+| Source PDFs | `data/pdf/` — see its README before adding one |
 | The published source catalogue | `docs/data-sources.mdx` — rendered at `/data-sources` |
 | How that file is rendered | `lib/markdown.ts`, `components/ui/Markdown.tsx` |
 
@@ -201,6 +205,9 @@ npm run map:refresh      # the half-hourly wrapper: feeds -> classify -> merge
 npm run map:refresh:dry  # same, touching no network
 npm run sources:verify   # probe every feed; fails if a sector has <3 publishers
 npm run docs:sync        # regenerate the counted tables in docs/data-sources.mdx
+npm run sources:probe    # what Indian statistical endpoints actually return
+npm run satp:probe       # SATP page structure, before touching that connector
+npm run pdf:read -- <f>  # read a table out of a committed PDF; publishes nothing
 
 npm run db:check         # is bharat_tracker reachable?
 npm run db:push          # seed Postgres from committed JSON

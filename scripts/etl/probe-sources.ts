@@ -128,6 +128,47 @@ const CANDIDATES: Candidate[] = [
     expect: "html",
   },
 
+  /* --- Dataful: an aggregator that cleans and republishes Indian official
+         series, which is exactly the shape this project keeps wanting. Worth
+         probing before every other candidate here, because one well-formed
+         catalogue beats a dozen dashboards. Licensing and whether downloads
+         sit behind an account are the open questions the probe answers. --- */
+  {
+    id: "dataful-catalog",
+    feeds: ["many"],
+    publisher: "Dataful",
+    url: "https://dataful.in/datasets/",
+    expect: "html",
+  },
+  {
+    id: "dataful-search-ev",
+    feeds: ["ev-registrations", "ev-share-registrations"],
+    publisher: "Dataful",
+    url: "https://dataful.in/datasets/?q=electric+vehicle",
+    expect: "html",
+  },
+  {
+    id: "dataful-search-upi",
+    feeds: ["upi-transactions", "upi-value"],
+    publisher: "Dataful",
+    url: "https://dataful.in/datasets/?q=UPI",
+    expect: "html",
+  },
+  {
+    id: "dataful-search-cpi",
+    feeds: ["food-inflation"],
+    publisher: "Dataful",
+    url: "https://dataful.in/datasets/?q=consumer+price+index",
+    expect: "html",
+  },
+  {
+    id: "dataful-api-root",
+    feeds: ["many"],
+    publisher: "Dataful",
+    url: "https://dataful.in/api/",
+    expect: "json",
+  },
+
   /* --- Open data portal: CSV downloads, no key on the catalogue pages --- */
   {
     id: "datagov-catalog",
