@@ -23,7 +23,7 @@ import { runX } from "./connectors/x";
 import { mergeEvents, readStoredEvents } from "./lib/merge";
 import { validateSeries } from "../lib/validate-series";
 import { supabaseConfigured, pushNews, pushRun, pushSeries, pushEvents } from "../../lib/supabase";
-import type { PipelineRun } from "../../lib/types";
+import type { PipelineRun, Series } from "../../lib/types";
 
 const ROOT = process.cwd();
 const DRY = process.argv.includes("--dry-run");
@@ -76,6 +76,9 @@ async function main() {
 
   /* ---------------- SATP fatality datasheets ---------------- */
   log("");
+  // Jammu & Kashmir goes first, on purpose. SATP throttles a burst, and the
+  // eighteen state sheets that follow are what tips it over — so the single
+  // sheet that has no state-level fallback takes the first request.
   log("SATP — fatality datasheets");
   connectorsRun++;
   const satp = await runSatp({ dryRun: DRY, onProgress: log });
@@ -87,7 +90,26 @@ async function main() {
   const satpStates = await runSatpStates({ root: ROOT, dryRun: DRY, onProgress: log });
   for (const e of satpStates.errors) messages.push(`satp-states: ${e}`);
 
-  const satpAll = [...satp.series, ...satpStates.series];
+  // Merge with what is already published rather than replacing it. SATP
+  // throttles: the run that fixed left-wing extremism lost Jammu & Kashmir to
+  // a 403, and a whole-file write meant the working theatre erased the one
+  // that had been fine for days. A theatre that fails keeps its last good
+  // series; only what came back this run is overwritten.
+  let priorSecurity: Series[] = [];
+  try {
+    priorSecurity = JSON.parse(
+      await readFile(join(ROOT, "data/series/security.json"), "utf8"),
+    ) as Series[];
+  } catch {
+    priorSecurity = [];
+  }
+  const fetchedNow = [...satp.series, ...satpStates.series];
+  const securityById = new Map(priorSecurity.map((s) => [s.id, s]));
+  for (const s of fetchedNow) securityById.set(s.id, s);
+  const satpAll = [...securityById.values()];
+  const kept = satpAll.length - fetchedNow.length;
+  if (kept > 0) log(`  kept ${kept} previously published series whose sheet did not answer`);
+
   if (!DRY && satpAll.length > 0) {
     const problems = satpAll.flatMap((s) => validateSeries(s).map((p) => `${s.id}: ${p}`));
     if (problems.length > 0) {

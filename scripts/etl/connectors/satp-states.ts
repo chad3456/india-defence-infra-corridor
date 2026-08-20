@@ -68,6 +68,18 @@ export const LWE_STATES: Array<{ slug: string; state: string }> = [
  */
 const MIN_STATES = 15;
 
+/**
+ * Pause between state fetches.
+ *
+ * Nineteen SATP requests in a burst is what throttles the host: the run that
+ * fixed left-wing extremism lost Jammu & Kashmir to a 403 on the twentieth.
+ * Eighteen states at a second and a half each costs under half a minute on a
+ * six-hourly job and stops the pipeline behaving like a scraper.
+ */
+const PAUSE_MS = 1_500;
+
+const pause = () => new Promise((r) => setTimeout(r, PAUSE_MS));
+
 const IDS = {
   civilians: "lwe-civilians-killed",
   securityForces: "lwe-security-forces-killed",
@@ -159,7 +171,10 @@ export async function runSatpStates(
   }
 
   const missing: string[] = [];
+  let first = true;
   for (const { slug, state } of LWE_STATES) {
+    if (!first) await pause();
+    first = false;
     const res = await getText(`${BASE}/${slug}`, {
       cacheMs: 12 * 60 * 60 * 1000,
       timeoutMs: 30_000,
