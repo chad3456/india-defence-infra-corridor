@@ -15,6 +15,7 @@
     "map:refresh:dry": "tsx scripts/etl/refresh-map.ts --dry-run",
     "sources:verify": "tsx scripts/etl/verify-sources.ts",
     "satp:probe": "tsx scripts/etl/probe-satp.ts",
+    "sources:probe": "tsx scripts/etl/probe-sources.ts",
     "security:check": "tsx scripts/check-curated.ts",
     "docs:sync": "tsx scripts/docs/sync-tables.ts",
     "validate": "tsx scripts/validate.ts",
