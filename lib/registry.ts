@@ -3,6 +3,7 @@ import { getAllSeries, getSeries, definedPoints, isTemporal } from "./data";
 import { transformIsValid, TRANSFORM_LABELS } from "./transforms";
 import { WDI_INDICATORS } from "./wdi-catalogue";
 import { ALL_SECURITY_SPECS } from "./security-catalogue";
+import { INDIA_SERIES } from "./india-catalogue";
 
 /**
  * The chart registry.
@@ -165,7 +166,7 @@ function specsFromPendingWdi(): RegistryEntry[] {
  */
 function specsFromPendingSecurity(): RegistryEntry[] {
   const out: RegistryEntry[] = [];
-  for (const spec of ALL_SECURITY_SPECS) {
+  for (const spec of [...ALL_SECURITY_SPECS, ...INDIA_SERIES]) {
     if (getSeries(spec.id)) continue; // filled — handled by specsFromLoadedSeries
     const base = {
       category: spec.category,

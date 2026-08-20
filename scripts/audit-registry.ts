@@ -9,6 +9,7 @@ import { getRegistry, registryStats } from "../lib/registry";
 import { getSeries, getAllSeries, sourcesForSeries } from "../lib/data";
 import { WDI_BY_ID } from "../lib/wdi-catalogue";
 import { SECURITY_BY_ID } from "../lib/security-catalogue";
+import { INDIA_BY_ID } from "../lib/india-catalogue";
 
 const TARGET = 250;
 
@@ -26,7 +27,7 @@ function main() {
       // A pending spec is allowed to name a series no connector has filled
       // yet, provided a catalogue declares it. That is the promise; an id in
       // neither the data nor a catalogue is a typo.
-      if (!getSeries(sid) && !WDI_BY_ID.has(sid) && !SECURITY_BY_ID.has(sid)) {
+      if (!getSeries(sid) && !WDI_BY_ID.has(sid) && !SECURITY_BY_ID.has(sid) && !INDIA_BY_ID.has(sid)) {
         errors.push(`Chart ${spec.id} references unknown series "${sid}"`);
       }
     }

@@ -1,0 +1,279 @@
+/**
+ * India-specific series that no multilateral dataset carries.
+ *
+ * The World Bank covers cross-country comparables. It does not publish Indian
+ * EV registrations, mobile data prices, demat account counts, or the
+ * beneficiary numbers of individual central schemes. Those live on Indian
+ * government dashboards and industry-body releases — VAHAN, TRAI, NPCI, AMFI,
+ * PM-KISAN — most of which render numbers into a page rather than a file.
+ *
+ * Declared here so the charts exist and name their source, filled through
+ * `data/security/curated.json` with a citation per point. Same arrangement as
+ * the hand-entered security figures, and for the same reason: scraping a
+ * dashboard whose shape I cannot see is how wrong numbers reach a site.
+ *
+ * Two things were asked for and are deliberately absent, because declaring them
+ * would imply a source exists:
+ *
+ *   - MacBook or any single-vendor laptop sales for India. IDC and Counterpoint
+ *     publish this behind a paywall, Apple does not break out India, and no
+ *     free series exists. Nothing here can carry it honestly.
+ *   - First-time flyers per year. DGCA publishes passengers carried, not how
+ *     many had never flown before; nobody counts that. The nearest honest proxy
+ *     is UDAN route passengers, which is a different claim and is declared as
+ *     itself below rather than relabelled.
+ */
+import type { SecuritySeriesSpec } from "./security-catalogue";
+
+export const INDIA_SERIES: SecuritySeriesSpec[] = [
+  /* ---------------- Mobility and the EV transition ---------------- */
+  {
+    id: "ev-registrations",
+    title: "Electric vehicles registered",
+    definition: "Electric vehicles registered on the VAHAN national register in a financial year.",
+    category: "manufacturing",
+    unit: "vehicles",
+    unitShort: "vehicles",
+    higherIsBetter: true,
+    frequency: "fiscal-year",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "VAHAN excludes Telangana and Lakshadweep, which do not report to it, so the national figure is a slight undercount. Two- and three-wheelers dominate the count; reading it as a car number overstates the passenger-vehicle transition by an order of magnitude.",
+  },
+  {
+    id: "ev-share-registrations",
+    title: "EV share of new vehicle registrations",
+    definition: "Electric vehicles as a share of all vehicles registered on VAHAN in a financial year.",
+    category: "manufacturing",
+    unit: "% of registrations",
+    unitShort: "%",
+    higherIsBetter: true,
+    frequency: "fiscal-year",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "The penetration number. Reported against the same VAHAN base, so the Telangana gap cancels out of the ratio.",
+  },
+
+  /* ---------------- Digital cost and use ---------------- */
+  {
+    id: "mobile-data-price-per-gb",
+    title: "Mobile data price per GB",
+    definition: "Average retail price of one gigabyte of mobile data.",
+    category: "quality-of-life",
+    unit: "₹ per GB (nominal)",
+    unitShort: "₹/GB",
+    higherIsBetter: false,
+    frequency: "annual",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "Nominal rupees, so part of the fall since 2016 is inflation rather than price competition. TRAI's figure is an average realised rate across bundles rather than a tariff, and headline comparisons of India as 'cheapest in the world' usually cite a different basket.",
+  },
+  {
+    id: "data-per-subscriber",
+    title: "Mobile data used per subscriber",
+    definition: "Average wireless data consumption per subscriber per month.",
+    category: "quality-of-life",
+    unit: "GB per month",
+    unitShort: "GB/mo",
+    higherIsBetter: null,
+    frequency: "annual",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+  },
+  {
+    id: "upi-transactions",
+    title: "UPI transactions",
+    definition: "Unified Payments Interface transactions processed in a financial year.",
+    category: "ai-science",
+    unit: "transactions",
+    unitShort: "txns",
+    higherIsBetter: true,
+    frequency: "fiscal-year",
+    provenance: "official",
+    confidence: "high",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "NPCI publishes this monthly and it is one of the few Indian series with no definitional ambiguity at all.",
+  },
+  {
+    id: "upi-value",
+    title: "UPI transaction value",
+    definition: "Total value of UPI transactions in a financial year.",
+    category: "ai-science",
+    unit: "₹ crore (nominal)",
+    unitShort: "₹ cr",
+    higherIsBetter: true,
+    frequency: "fiscal-year",
+    provenance: "official",
+    confidence: "high",
+    sourceIds: [],
+    filledBy: "curated",
+  },
+
+  /* ---------------- Household finance ---------------- */
+  {
+    id: "demat-accounts",
+    title: "Demat accounts",
+    definition: "Dematerialised securities accounts held with CDSL and NSDL at year end.",
+    category: "economy",
+    unit: "accounts",
+    unitShort: "accounts",
+    higherIsBetter: null,
+    frequency: "fiscal-year",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "Accounts, not investors. One person may hold accounts at both depositories and with several brokers, so this overstates the number of participating individuals — by how much is not published.",
+  },
+  {
+    id: "mutual-fund-sip-accounts",
+    title: "Mutual fund SIP accounts",
+    definition: "Live systematic investment plan accounts at year end.",
+    category: "economy",
+    unit: "accounts",
+    unitShort: "accounts",
+    higherIsBetter: null,
+    frequency: "fiscal-year",
+    provenance: "press",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "AMFI figure. Carries the same account-versus-person caveat as demat counts.",
+  },
+  {
+    id: "ppf-accounts",
+    title: "Public Provident Fund accounts",
+    definition: "Live PPF accounts held with post offices and banks.",
+    category: "economy",
+    unit: "accounts",
+    unitShort: "accounts",
+    higherIsBetter: null,
+    frequency: "fiscal-year",
+    provenance: "official",
+    confidence: "low",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "Published irregularly, usually only in answer to a parliamentary question, and bank-held accounts are not always included in the same figure as post-office ones. Graded low until a consistent basis is found; the series may end up shorter than the period asked for.",
+  },
+
+  /* ---------------- Prices ---------------- */
+  {
+    id: "food-inflation",
+    title: "Food inflation",
+    definition:
+      "Year-on-year change in the Consumer Price Index for food and beverages, combined rural and urban.",
+    category: "quality-of-life",
+    unit: "% year-on-year",
+    unitShort: "%",
+    higherIsBetter: false,
+    frequency: "annual",
+    provenance: "official",
+    confidence: "high",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "MoSPI's CPI food and beverages group. The general CPI series already on this site is a different basket and moves less; food is the one households feel, and it is the reason headline inflation and perceived inflation diverge.",
+  },
+
+  /* ---------------- Farm and rural schemes ---------------- */
+  {
+    id: "pm-kisan-beneficiaries",
+    title: "PM-KISAN beneficiaries paid",
+    definition: "Farmer families receiving a PM-KISAN instalment in a financial year.",
+    category: "social",
+    unit: "families",
+    unitShort: "families",
+    higherIsBetter: null,
+    frequency: "fiscal-year",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "The beneficiary count fell sharply after Aadhaar seeding and land-record verification removed ineligible registrations. That fall is a data-quality improvement, not a reduction in support, and a chart without that annotation reads as the opposite.",
+  },
+  {
+    id: "pm-kisan-disbursed",
+    title: "PM-KISAN funds disbursed",
+    definition: "Amount transferred to farmer families under PM-KISAN in a financial year.",
+    category: "social",
+    unit: "₹ crore (nominal)",
+    unitShort: "₹ cr",
+    higherIsBetter: null,
+    frequency: "fiscal-year",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+  },
+  {
+    id: "drone-didi-drones",
+    title: "Drones delivered under Namo Drone Didi",
+    definition:
+      "Agricultural drones supplied to women's self-help groups under the Namo Drone Didi scheme.",
+    category: "social",
+    unit: "drones",
+    unitShort: "drones",
+    higherIsBetter: true,
+    frequency: "fiscal-year",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "Scheme approved in late 2023, so the series is short by construction and a growth rate off a base of near zero says very little. Sanctioned and delivered counts differ; this is deliveries.",
+  },
+  {
+    id: "agri-credit-disbursed",
+    title: "Agricultural credit disbursed",
+    definition: "Institutional credit disbursed to agriculture and allied activities in a financial year.",
+    category: "social",
+    unit: "₹ crore (nominal)",
+    unitShort: "₹ cr",
+    higherIsBetter: null,
+    frequency: "fiscal-year",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+  },
+
+  /* ---------------- Aviation ---------------- */
+  {
+    id: "domestic-air-passengers",
+    title: "Domestic air passengers",
+    definition: "Passengers carried on domestic scheduled flights in a financial year.",
+    category: "infrastructure",
+    unit: "passengers",
+    unitShort: "pax",
+    higherIsBetter: true,
+    frequency: "fiscal-year",
+    provenance: "official",
+    confidence: "high",
+    sourceIds: [],
+    filledBy: "curated",
+  },
+  {
+    id: "udan-passengers",
+    title: "UDAN route passengers",
+    definition: "Passengers flown on subsidised regional connectivity routes under the UDAN scheme.",
+    category: "infrastructure",
+    unit: "passengers",
+    unitShort: "pax",
+    higherIsBetter: true,
+    frequency: "fiscal-year",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "The nearest published thing to a first-time-flyer count, and it is not one. Nobody counts how many passengers had never flown before; UDAN passenger totals are often quoted as if they did.",
+  },
+];
+
+export const INDIA_BY_ID = new Map(INDIA_SERIES.map((s) => [s.id, s]));

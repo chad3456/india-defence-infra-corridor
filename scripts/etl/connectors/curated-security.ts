@@ -26,6 +26,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { DataPoint, Series, Source } from "../../../lib/types";
 import { ALL_SECURITY_SPECS } from "../../../lib/security-catalogue";
+import { INDIA_SERIES } from "../../../lib/india-catalogue";
 
 export interface CuratedPoint {
   period: string;
@@ -85,7 +86,7 @@ export function buildCuratedSeries(
   const accepted: Record<string, number> = {};
   const series: Series[] = [];
 
-  const specById = new Map(ALL_SECURITY_SPECS.map((s) => [s.id, s]));
+  const specById = new Map([...ALL_SECURITY_SPECS, ...INDIA_SERIES].map((s) => [s.id, s]));
   const knownSources = new Set(sources.map((s) => s.id));
   const seen = new Set<string>();
 
@@ -192,7 +193,8 @@ export async function runCuratedSecurity(
     return { series: [], errors: [`${FILE}: ${error}`], accepted: {} };
   }
   if (entries.length === 0) {
-    log(`  ${FILE} is empty — ${ALL_SECURITY_SPECS.filter((s) => s.filledBy === "curated").length} series stay pending`);
+    const pending = [...ALL_SECURITY_SPECS, ...INDIA_SERIES].filter((s) => s.filledBy === "curated").length;
+    log(`  ${FILE} is empty — ${pending} series stay pending`);
     return { series: [], errors: [], accepted: {} };
   }
 

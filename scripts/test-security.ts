@@ -16,6 +16,7 @@ import {
 } from "./etl/connectors/satp";
 import { SECURITY_SERIES, DEFENCE_PENDING, ALL_SECURITY_SPECS } from "../lib/security-catalogue";
 import { LWE_STATES, sumStates, type StateYear } from "./etl/connectors/satp-states";
+import { INDIA_SERIES } from "../lib/india-catalogue";
 import { getAllSources } from "../lib/data";
 import { validateSeries } from "./lib/validate-series";
 import type { Series } from "../lib/types";
@@ -425,6 +426,42 @@ console.log("Summing state sheets");
     "a state with no incident count leaves the national incident total unset, not short",
   );
   check(partial[0]?.civilians === 120, "but the fatality columns still sum");
+}
+
+console.log("");
+console.log("India catalogue");
+{
+  const ids = INDIA_SERIES.map((s) => s.id);
+  check(new Set(ids).size === ids.length, "series ids are unique");
+  const secIds = new Set(ALL_SECURITY_SPECS.map((s) => s.id));
+  check(
+    !ids.some((id) => secIds.has(id)),
+    "no id collides with the security catalogue",
+  );
+  check(
+    INDIA_SERIES.every((s) => s.filledBy === "curated"),
+    "every India series is hand-entered, not scraped",
+  );
+  check(
+    INDIA_SERIES.every((s) => Boolean(s.definition) && s.definition.length > 20),
+    "every series defines what it counts",
+  );
+  // These are the series most likely to be misread, so a caveat is not
+  // optional on the ones whose headline number misleads.
+  for (const id of [
+    "ev-registrations",
+    "demat-accounts",
+    "pm-kisan-beneficiaries",
+    "mobile-data-price-per-gb",
+    "udan-passengers",
+  ]) {
+    const spec = INDIA_SERIES.find((s) => s.id === id);
+    check(Boolean(spec?.note), `${id} carries the caveat that makes it readable`);
+  }
+  check(
+    !INDIA_SERIES.some((s) => /macbook|laptop|first.?time.?fl/i.test(s.id + s.title)),
+    "nothing is declared that has no published source",
+  );
 }
 
 console.log("");
