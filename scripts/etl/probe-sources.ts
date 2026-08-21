@@ -89,6 +89,14 @@ const CANDIDATES: Candidate[] = [
     expect: "html-table",
   },
 
+  {
+    id: "npci-upi-alt",
+    feeds: ["upi-transactions", "upi-value"],
+    publisher: "NPCI",
+    url: "https://www.npci.org.in/what-we-do/upi/upi-ecosystem-statistics",
+    expect: "html-table",
+  },
+
   /* --- EV: VAHAN is the register; the dashboard is a form post --- */
   {
     id: "vahan-dashboard",
@@ -168,6 +176,34 @@ const CANDIDATES: Candidate[] = [
     url: "https://dataful.in/api/",
     expect: "json",
   },
+  {
+    id: "dataful-sitemap",
+    feeds: ["many"],
+    publisher: "Dataful",
+    url: "https://dataful.in/sitemap.xml",
+    expect: "json",
+  },
+  {
+    id: "dataful-robots",
+    feeds: ["many"],
+    publisher: "Dataful",
+    url: "https://dataful.in/robots.txt",
+    expect: "csv",
+  },
+  {
+    id: "dataful-api-datasets",
+    feeds: ["many"],
+    publisher: "Dataful",
+    url: "https://dataful.in/api/datasets/",
+    expect: "json",
+  },
+  {
+    id: "dataful-api-v1",
+    feeds: ["many"],
+    publisher: "Dataful",
+    url: "https://api.dataful.in/",
+    expect: "json",
+  },
 
   /* --- Open data portal: CSV downloads, no key on the catalogue pages --- */
   {
@@ -211,6 +247,13 @@ const CANDIDATES: Candidate[] = [
     url: "https://www.trai.gov.in/release-publication/reports",
     expect: "html",
   },
+  {
+    id: "trai-root",
+    feeds: ["mobile-data-price-per-gb", "data-per-subscriber"],
+    publisher: "TRAI",
+    url: "https://www.trai.gov.in/",
+    expect: "html",
+  },
 
   /* --- Aviation --- */
   {
@@ -238,8 +281,46 @@ interface Finding {
   yearTables?: number;
   /** Links to files a connector could fetch directly. */
   dataLinks?: string[];
+  /**
+   * Server-embedded JSON found in the page.
+   *
+   * A React or Next.js catalogue renders nothing useful to a plain fetch, but
+   * usually ships its data in a __NEXT_DATA__ or self.__next_f payload. That is
+   * the difference between "needs a headless browser" and "needs a JSON.parse",
+   * so it is worth detecting before concluding a source is unreachable.
+   */
+  embeddedJson?: { kind: string; bytes: number; topKeys: string[] };
   /** How usable this is, highest first. */
   score?: number;
+}
+
+function embeddedJsonIn(html: string): Finding["embeddedJson"] {
+  const patterns: Array<{ kind: string; re: RegExp }> = [
+    { kind: "__NEXT_DATA__", re: /<script[^>]*id=["']__NEXT_DATA__["'][^>]*>([\s\S]*?)<\/script>/i },
+    { kind: "ld+json", re: /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i },
+    { kind: "__NUXT__", re: /window\.__NUXT__\s*=\s*([\s\S]*?)<\/script>/i },
+    { kind: "initial-state", re: /window\.__INITIAL_STATE__\s*=\s*([\s\S]*?)<\/script>/i },
+  ];
+  for (const { kind, re } of patterns) {
+    const m = re.exec(html);
+    const body = m?.[1]?.trim();
+    if (!body) continue;
+    try {
+      const parsed: unknown = JSON.parse(body.replace(/;\s*$/, ""));
+      const topKeys =
+        parsed && typeof parsed === "object" ? Object.keys(parsed as object).slice(0, 12) : [];
+      return { kind, bytes: body.length, topKeys };
+    } catch {
+      // Present but not parseable on its own — still worth reporting.
+      return { kind: `${kind} (unparsed)`, bytes: body.length, topKeys: [] };
+    }
+  }
+  // Next.js app router streams flight data rather than one JSON blob.
+  if (/self\.__next_f\.push/.test(html)) {
+    const n = (html.match(/self\.__next_f\.push/g) ?? []).length;
+    return { kind: "next-flight", bytes: n, topKeys: [] };
+  }
+  return undefined;
 }
 
 function sniff(body: string): Finding["looksLike"] {
@@ -290,6 +371,9 @@ function scoreOf(f: Finding): number {
   if ((f.dataLinks?.length ?? 0) > 0) n += 100 + (f.dataLinks?.length ?? 0);
   if (f.looksLike === "json" || f.looksLike === "csv") n += 60;
   if ((f.yearTables ?? 0) > 0) n += 30 + (f.yearTables ?? 0);
+  // Embedded JSON is worth more than an HTML table: it is already structured,
+  // and it is the only way into a page that renders client-side.
+  if (f.embeddedJson) n += 45;
   return n;
 }
 
@@ -317,6 +401,7 @@ async function probe(c: Candidate): Promise<Finding> {
       .slice(0, 100),
     yearTables: looksLike === "html" ? yearTableCount(res.data) : 0,
     dataLinks: looksLike === "html" ? dataLinksIn(res.data, c.url) : [],
+    embeddedJson: looksLike === "html" ? embeddedJsonIn(res.data) : undefined,
   };
   return { ...finding, score: scoreOf(finding) };
 }
@@ -338,6 +423,12 @@ async function main() {
         `${String(f.bytes).padStart(8)}b  tables:${f.yearTables}  files:${f.dataLinks?.length ?? 0}`,
     );
     for (const l of (f.dataLinks ?? []).slice(0, 4)) log(`         -> ${l}`);
+    if (f.embeddedJson) {
+      log(
+        `         embedded ${f.embeddedJson.kind} (${f.embeddedJson.bytes}b)` +
+          (f.embeddedJson.topKeys.length ? ` keys: ${f.embeddedJson.topKeys.join(", ")}` : ""),
+      );
+    }
   }
 
   const ranked = [...findings].sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
