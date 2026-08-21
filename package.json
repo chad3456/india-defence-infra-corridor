@@ -17,6 +17,8 @@
     "satp:probe": "tsx scripts/etl/probe-satp.ts",
     "sources:probe": "tsx scripts/etl/probe-sources.ts",
     "pdf:read": "tsx scripts/pdf-read.ts",
+    "sheet:read": "tsx scripts/sheet-read.ts",
+    "workbooks:probe": "tsx scripts/etl/probe-workbooks.ts",
     "security:check": "tsx scripts/check-curated.ts",
     "docs:sync": "tsx scripts/docs/sync-tables.ts",
     "validate": "tsx scripts/validate.ts",
@@ -62,6 +64,7 @@
     "tailwindcss": "^4.1.13",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
+    "xlsx": "^0.18.5",
     "zod": "^3.24.1"
   },
   "engines": {

@@ -16,6 +16,7 @@ import {
   parseIndianNumber,
   extractTables,
 } from "./etl/lib/pdf-table";
+import { readWorkbook, parseCellNumber, looksLikeYear } from "./etl/lib/sheet-table";
 
 const failures: string[] = [];
 function check(ok: boolean | undefined, label: string) {
@@ -76,11 +77,44 @@ async function main() {
   );
 
   console.log("");
+  console.log("Spreadsheets");
+  // Real cells, so none of the layout reconstruction applies — but the number
+  // formats and the missing-versus-zero rule must behave identically, or a
+  // figure would mean different things depending on which file it came from.
+  check(parseCellNumber("1,68,300") === 168300, "lakh grouping parses");
+  check(parseCellNumber("₹ 2,15,48,494") === 21548494, "a currency symbol is stripped");
+  check(parseCellNumber("(1,234)") === -1234, "accounting parentheses read as negative");
+  check(parseCellNumber("—") === null, "an em-dash is missing, not zero");
+  check(parseCellNumber("N.A.") === null, "N.A. is missing, not zero");
+  check(parseCellNumber("0") === 0, "a real zero is kept");
+
+  check(looksLikeYear("2019-20"), "an Indian fiscal year is a year");
+  check(looksLikeYear("2019"), "a calendar year is a year");
+  check(looksLikeYear("2019-2020"), "the four-digit fiscal form too");
+  check(!looksLikeYear("Source: MHA"), "a source line is not");
+  check(!looksLikeYear("Table 1.1"), "nor a table caption");
+
+  const sheets = await readWorkbook(new Uint8Array(readFileSync("scripts/__fixtures__/table.xlsx")));
+  const t = sheets[0];
+  check(sheets.length === 1, `one sheet (got ${sheets.length})`);
+  check(t?.sheet === "Table 1.1", `the sheet keeps its name (got ${t?.sheet})`);
+  check(t?.yearRows.length === 4, `four year rows (got ${t?.yearRows.length})`);
+  check(t?.header[1] === "LWE-affected districts", "the header row is identified");
+  check(
+    parseCellNumber(t?.yearRows[0]?.[1] ?? "") === 106,
+    `a value comes back off the sheet (got ${t?.yearRows[0]?.[1]})`,
+  );
+  check(
+    parseCellNumber(t?.yearRows[3]?.[3] ?? "") === null,
+    "and a dash in the last row stays missing",
+  );
+
+  console.log("");
   if (failures.length) {
     console.error(`${failures.length} PDF test(s) failed.`);
     process.exit(1);
   }
-  console.log("All PDF tests passed.");
+  console.log("All PDF and spreadsheet tests passed.");
 }
 
 main().catch((err: unknown) => {

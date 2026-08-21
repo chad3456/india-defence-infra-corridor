@@ -100,6 +100,7 @@ Read in this order when you are new to the repo:
 | India-only series (EV, UPI, CPI, schemes) | `lib/india-catalogue.ts` |
 | Hand-entered figures | `data/security/curated.json`, validated by `npm run security:check` |
 | Reading a committed PDF | `scripts/etl/lib/pdf-table.ts`, `npm run pdf:read` |
+| Reading a spreadsheet | `scripts/etl/lib/sheet-table.ts`, `npm run sheet:read` |
 | Source PDFs | `data/pdf/` — see its README before adding one |
 | The published source catalogue | `docs/data-sources.mdx` — rendered at `/data-sources` |
 | How that file is rendered | `lib/markdown.ts`, `components/ui/Markdown.tsx` |
@@ -208,6 +209,8 @@ npm run docs:sync        # regenerate the counted tables in docs/data-sources.md
 npm run sources:probe    # what Indian statistical endpoints actually return
 npm run satp:probe       # SATP page structure, before touching that connector
 npm run pdf:read -- <f>  # read a table out of a committed PDF; publishes nothing
+npm run sheet:read -- <f># read a table out of a spreadsheet, local or URL
+npm run workbooks:probe  # what is inside the Economic Survey spreadsheets
 
 npm run db:check         # is bharat_tracker reachable?
 npm run db:push          # seed Postgres from committed JSON

@@ -1,0 +1,63 @@
+name: Probe workbooks
+
+# Fetches candidate Indian statistical endpoints and commits what came back:
+# status, content type, and whether the body is something a connector can read.
+# Publishes no data.
+#
+# The development sandbox's network policy denies every Indian government host,
+# so anything written here about a page nobody has seen is a guess — and a
+# guess that typechecks looks exactly like knowledge. That is how a connector
+# built on an assumed layout published incident counts as civilian deaths.
+#
+# The ranking is the point: a linked CSV or spreadsheet outranks any dashboard,
+# because it has a fixed shape rather than a layout that moves.
+#
+# Manual and on-change only. There is no reason to probe on a schedule.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-workbooks.ts"
+      - ".github/workflows/probe-workbooks.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-workbooks
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Probe
+        run: npm run workbooks:probe
+
+      - name: Commit the probe report
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/live/workbook-probe.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "Probe report unchanged."
+            exit 0
+          fi
+          git commit -m "chore(sources): workbook probe $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do
+            git push && break
+            echo "push failed, retrying in $((2**i))s"
+            sleep $((2**i))
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          done
