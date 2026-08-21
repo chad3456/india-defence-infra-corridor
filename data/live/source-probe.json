@@ -1,6 +1,40 @@
 {
-  "probedAt": "2026-08-20T06:27:23.791Z",
+  "probedAt": "2026-08-21T06:02:21.218Z",
   "findings": [
+    {
+      "id": "amfi-stats",
+      "publisher": "AMFI",
+      "url": "https://www.amfiindia.com/research-information/amfi-monthly",
+      "feeds": [
+        "mutual-fund-sip-accounts"
+      ],
+      "expect": "html-table",
+      "status": "ok",
+      "bytes": 577804,
+      "looksLike": "html",
+      "title": "AMFI",
+      "yearTables": 0,
+      "dataLinks": [
+        "https://portal.amfiindia.com/spages/amjul2026repo.xls",
+        "https://portal.amfiindia.com/spages/amjun2026repo.xls",
+        "https://portal.amfiindia.com/spages/ammay2026repo.xls",
+        "https://portal.amfiindia.com/spages/amapr2026repo.xls",
+        "https://portal.amfiindia.com/spages/ammar2026repo.xls",
+        "https://portal.amfiindia.com/spages/amfeb2026repo.xls",
+        "https://portal.amfiindia.com/spages/amjan2026repo.xls",
+        "https://portal.amfiindia.com/spages/amdec2025repo.xls",
+        "https://portal.amfiindia.com/spages/amnov2025repo.xls",
+        "https://portal.amfiindia.com/spages/amoct2025repo.xls",
+        "https://portal.amfiindia.com/spages/amsep2025repo.xls",
+        "https://portal.amfiindia.com/spages/amaug2025repo.xls"
+      ],
+      "embeddedJson": {
+        "kind": "next-flight",
+        "bytes": 14,
+        "topKeys": []
+      },
+      "score": 158
+    },
     {
       "id": "econ-survey-appendix",
       "publisher": "Ministry of Finance",
@@ -31,33 +65,111 @@
       "score": 113
     },
     {
-      "id": "amfi-stats",
-      "publisher": "AMFI",
-      "url": "https://www.amfiindia.com/research-information/amfi-monthly",
+      "id": "dataful-catalog",
+      "publisher": "Dataful",
+      "url": "https://dataful.in/datasets/",
       "feeds": [
-        "mutual-fund-sip-accounts"
+        "many"
       ],
-      "expect": "html-table",
+      "expect": "html",
       "status": "ok",
-      "bytes": 577804,
+      "bytes": 222299,
       "looksLike": "html",
-      "title": "AMFI",
+      "title": "Dataset - Dataful",
       "yearTables": 0,
-      "dataLinks": [
-        "https://portal.amfiindia.com/spages/amjul2026repo.xls",
-        "https://portal.amfiindia.com/spages/amjun2026repo.xls",
-        "https://portal.amfiindia.com/spages/ammay2026repo.xls",
-        "https://portal.amfiindia.com/spages/amapr2026repo.xls",
-        "https://portal.amfiindia.com/spages/ammar2026repo.xls",
-        "https://portal.amfiindia.com/spages/amfeb2026repo.xls",
-        "https://portal.amfiindia.com/spages/amjan2026repo.xls",
-        "https://portal.amfiindia.com/spages/amdec2025repo.xls",
-        "https://portal.amfiindia.com/spages/amnov2025repo.xls",
-        "https://portal.amfiindia.com/spages/amoct2025repo.xls",
-        "https://portal.amfiindia.com/spages/amsep2025repo.xls",
-        "https://portal.amfiindia.com/spages/amaug2025repo.xls"
+      "dataLinks": [],
+      "embeddedJson": {
+        "kind": "next-flight",
+        "bytes": 10,
+        "topKeys": []
+      },
+      "score": 46
+    },
+    {
+      "id": "dataful-search-ev",
+      "publisher": "Dataful",
+      "url": "https://dataful.in/datasets/?q=electric+vehicle",
+      "feeds": [
+        "ev-registrations",
+        "ev-share-registrations"
       ],
-      "score": 113
+      "expect": "html",
+      "status": "ok",
+      "bytes": 296456,
+      "looksLike": "html",
+      "title": "Dataset - Dataful",
+      "yearTables": 0,
+      "dataLinks": [],
+      "embeddedJson": {
+        "kind": "next-flight",
+        "bytes": 7,
+        "topKeys": []
+      },
+      "score": 46
+    },
+    {
+      "id": "dataful-search-upi",
+      "publisher": "Dataful",
+      "url": "https://dataful.in/datasets/?q=UPI",
+      "feeds": [
+        "upi-transactions",
+        "upi-value"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 244116,
+      "looksLike": "html",
+      "title": "Dataset - Dataful",
+      "yearTables": 0,
+      "dataLinks": [],
+      "embeddedJson": {
+        "kind": "next-flight",
+        "bytes": 18,
+        "topKeys": []
+      },
+      "score": 46
+    },
+    {
+      "id": "dataful-search-cpi",
+      "publisher": "Dataful",
+      "url": "https://dataful.in/datasets/?q=consumer+price+index",
+      "feeds": [
+        "food-inflation"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 235199,
+      "looksLike": "html",
+      "title": "Dataset - Dataful",
+      "yearTables": 0,
+      "dataLinks": [],
+      "embeddedJson": {
+        "kind": "next-flight",
+        "bytes": 8,
+        "topKeys": []
+      },
+      "score": 46
+    },
+    {
+      "id": "datagov-catalog",
+      "publisher": "data.gov.in",
+      "url": "https://www.data.gov.in/catalogs",
+      "feeds": [
+        "many"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 1002289,
+      "looksLike": "html",
+      "title": "Catalog | Open Government Data (OGD) Platform India",
+      "yearTables": 0,
+      "dataLinks": [],
+      "embeddedJson": {
+        "kind": "__NUXT__ (unparsed)",
+        "bytes": 1453,
+        "topKeys": []
+      },
+      "score": 46
     },
     {
       "id": "rbi-handbook",
@@ -70,7 +182,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 333026,
+      "bytes": 423365,
       "looksLike": "unknown",
       "title": "Handbook of Statistics on Indian Economy - Reserve Bank of India",
       "yearTables": 0,
@@ -103,7 +215,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 39744,
+      "bytes": 39743,
       "looksLike": "html",
       "title": "Welcome to Data Analytics Portal",
       "yearTables": 0,
@@ -119,7 +231,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 137505,
+      "bytes": 137670,
       "looksLike": "html",
       "title": "Press Release: Press Information Bureau",
       "yearTables": 0,
@@ -160,83 +272,33 @@
       "score": 1
     },
     {
-      "id": "dataful-catalog",
+      "id": "dataful-sitemap",
       "publisher": "Dataful",
-      "url": "https://dataful.in/datasets/",
+      "url": "https://dataful.in/sitemap.xml",
       "feeds": [
         "many"
       ],
-      "expect": "html",
+      "expect": "json",
       "status": "ok",
-      "bytes": 269439,
-      "looksLike": "html",
-      "title": "Dataset - Dataful",
+      "bytes": 4273,
+      "looksLike": "xml",
+      "title": "",
       "yearTables": 0,
       "dataLinks": [],
       "score": 1
     },
     {
-      "id": "dataful-search-ev",
+      "id": "dataful-robots",
       "publisher": "Dataful",
-      "url": "https://dataful.in/datasets/?q=electric+vehicle",
-      "feeds": [
-        "ev-registrations",
-        "ev-share-registrations"
-      ],
-      "expect": "html",
-      "status": "ok",
-      "bytes": 296456,
-      "looksLike": "html",
-      "title": "Dataset - Dataful",
-      "yearTables": 0,
-      "dataLinks": [],
-      "score": 1
-    },
-    {
-      "id": "dataful-search-upi",
-      "publisher": "Dataful",
-      "url": "https://dataful.in/datasets/?q=UPI",
-      "feeds": [
-        "upi-transactions",
-        "upi-value"
-      ],
-      "expect": "html",
-      "status": "ok",
-      "bytes": 244116,
-      "looksLike": "html",
-      "title": "Dataset - Dataful",
-      "yearTables": 0,
-      "dataLinks": [],
-      "score": 1
-    },
-    {
-      "id": "dataful-search-cpi",
-      "publisher": "Dataful",
-      "url": "https://dataful.in/datasets/?q=consumer+price+index",
-      "feeds": [
-        "food-inflation"
-      ],
-      "expect": "html",
-      "status": "ok",
-      "bytes": 235337,
-      "looksLike": "html",
-      "title": "Dataset - Dataful",
-      "yearTables": 0,
-      "dataLinks": [],
-      "score": 1
-    },
-    {
-      "id": "datagov-catalog",
-      "publisher": "data.gov.in",
-      "url": "https://www.data.gov.in/catalogs",
+      "url": "https://dataful.in/robots.txt",
       "feeds": [
         "many"
       ],
-      "expect": "html",
+      "expect": "csv",
       "status": "ok",
-      "bytes": 1002289,
-      "looksLike": "html",
-      "title": "Catalog | Open Government Data (OGD) Platform India",
+      "bytes": 96,
+      "looksLike": "unknown",
+      "title": "",
       "yearTables": 0,
       "dataLinks": [],
       "score": 1
@@ -254,6 +316,23 @@
       "bytes": 1398,
       "looksLike": "html",
       "title": "",
+      "yearTables": 0,
+      "dataLinks": [],
+      "score": 1
+    },
+    {
+      "id": "trai-root",
+      "publisher": "TRAI",
+      "url": "https://www.trai.gov.in/",
+      "feeds": [
+        "mobile-data-price-per-gb",
+        "data-per-subscriber"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 425156,
+      "looksLike": "html",
+      "title": "Home | Telecom Regulatory Authority of India | Government of India",
       "yearTables": 0,
       "dataLinks": [],
       "score": 1
@@ -310,6 +389,18 @@
       "detail": "HTTP 403"
     },
     {
+      "id": "npci-upi-alt",
+      "publisher": "NPCI",
+      "url": "https://www.npci.org.in/what-we-do/upi/upi-ecosystem-statistics",
+      "feeds": [
+        "upi-transactions",
+        "upi-value"
+      ],
+      "expect": "html-table",
+      "status": "failed",
+      "detail": "HTTP 403"
+    },
+    {
       "id": "vahan-dashboard",
       "publisher": "Ministry of Road Transport & Highways",
       "url": "https://vahan.parivahan.gov.in/vahan4dashboard/",
@@ -325,6 +416,28 @@
       "id": "dataful-api-root",
       "publisher": "Dataful",
       "url": "https://dataful.in/api/",
+      "feeds": [
+        "many"
+      ],
+      "expect": "json",
+      "status": "failed",
+      "detail": "HTTP 404"
+    },
+    {
+      "id": "dataful-api-datasets",
+      "publisher": "Dataful",
+      "url": "https://dataful.in/api/datasets/",
+      "feeds": [
+        "many"
+      ],
+      "expect": "json",
+      "status": "failed",
+      "detail": "HTTP 404"
+    },
+    {
+      "id": "dataful-api-v1",
+      "publisher": "Dataful",
+      "url": "https://api.dataful.in/",
       "feeds": [
         "many"
       ],
