@@ -18,6 +18,7 @@ import { runWorldBank } from "./connectors/worldbank";
 import { runSatp } from "./connectors/satp";
 import { runSatpStates } from "./connectors/satp-states";
 import { runCuratedSecurity } from "./connectors/curated-security";
+import { runEconSurvey } from "./connectors/econ-survey";
 import { runIngest } from "./connectors/ingest";
 import { runX } from "./connectors/x";
 import { mergeEvents, readStoredEvents } from "./lib/merge";
@@ -129,6 +130,31 @@ async function main() {
   } else if (!DRY) {
     messages.push("satp: no series returned; keeping previous data");
     log("  no series returned — previous data left in place");
+  }
+
+  /* ---------------- Economic Survey workbooks ---------------- */
+  log("");
+  log("Economic Survey — statistical workbooks");
+  connectorsRun++;
+  const survey = await runEconSurvey({ dryRun: DRY, onProgress: log });
+  for (const e of survey.errors) messages.push(`econ-survey: ${e}`);
+
+  if (!DRY && survey.series.length > 0) {
+    const problems = survey.series.flatMap((s) => validateSeries(s).map((p) => `${s.id}: ${p}`));
+    if (problems.length > 0) {
+      connectorsFailed++;
+      messages.push(...problems.map((p) => `econ-survey validation: ${p}`));
+      log(`  VALIDATION FAILED — ${problems.length} problem(s), not writing survey.json`);
+      for (const p of problems.slice(0, 8)) log(`    - ${p}`);
+    } else {
+      await writeFile(
+        join(ROOT, "data/series/survey.json"),
+        JSON.stringify(survey.series, null, 2) + "\n",
+        "utf8",
+      );
+      seriesUpdated += survey.series.length;
+      log(`  wrote data/series/survey.json — ${survey.series.length} series`);
+    }
   }
 
   /* ---------------- Hand-entered security figures ---------------- */

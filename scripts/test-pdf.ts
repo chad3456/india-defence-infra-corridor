@@ -17,6 +17,8 @@ import {
   extractTables,
 } from "./etl/lib/pdf-table";
 import { readWorkbook, parseCellNumber, looksLikeYear } from "./etl/lib/sheet-table";
+import { EXTRACTIONS } from "./etl/connectors/econ-survey";
+import { INDIA_SERIES } from "../lib/india-catalogue";
 
 const failures: string[] = [];
 function check(ok: boolean | undefined, label: string) {
@@ -107,6 +109,33 @@ async function main() {
   check(
     parseCellNumber(t?.yearRows[3]?.[3] ?? "") === null,
     "and a dash in the last row stays missing",
+  );
+
+  console.log("");
+  console.log("Economic Survey extractions");
+  // Sheet names repeat across workbooks with different contents — "Chart
+  // VIII.16" is tourism in tabchart10 and a financial-year table in tabchart8.
+  // Addressing a table by name alone would publish one under the other's
+  // label, so every extraction is keyed on workbook plus sheet.
+  const keys = EXTRACTIONS.map((e) => `${e.workbook}::${e.sheet}::${e.column}`);
+  check(new Set(keys).size === keys.length, "no two extractions read the same cell range");
+  check(
+    EXTRACTIONS.every((e) => e.expectHeader.length >= 2),
+    "every extraction checks at least two header patterns before reading",
+  );
+  const declared = new Set(INDIA_SERIES.map((s) => s.id));
+  const undeclared = EXTRACTIONS.filter((e) => !declared.has(e.seriesId)).map((e) => e.seriesId);
+  check(undeclared.length === 0, `every target series is declared (${undeclared.join(", ")})`);
+  check(
+    EXTRACTIONS.every((e) => Boolean(e.sourceId)),
+    "every extraction cites a source",
+  );
+  // The two that share a sheet must read different columns, or one silently
+  // overwrites the other with the same numbers.
+  const vi4 = EXTRACTIONS.filter((e) => e.workbook === 6 && e.sheet === "Chart VI.4");
+  check(
+    vi4.length === 2 && vi4[0]?.column !== vi4[1]?.column,
+    "two series off one sheet read different columns",
   );
 
   console.log("");
