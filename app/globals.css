@@ -43,6 +43,17 @@
   --seq-400: #3987e5;
   --seq-550: #1c5cab;
   --seq-700: #0d366b;
+
+  /* Ordinal ramp — discrete ordered rungs, validated with --ordinal in both
+     modes. Distinct from the sequential scale above: an ordinal step must stay
+     readable against the surface, so the pale end starts at step 250 on light
+     and stops at step 600 on dark rather than fading to near-white. Rung 1 is
+     the strongest evidence; weaker evidence recedes toward the surface. */
+  --rung-1: #0d366b;
+  --rung-2: #184f95;
+  --rung-3: #256abf;
+  --rung-4: #3987e5;
+  --rung-5: #86b6ef;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -73,6 +84,12 @@
     --seq-400: #2a78d6;
     --seq-550: #6da7ec;
     --seq-700: #cde2fb;
+
+    --rung-1: #cde2fb;
+    --rung-2: #9ec5f4;
+    --rung-3: #5598e7;
+    --rung-4: #2a78d6;
+    --rung-5: #184f95;
   }
 }
 
@@ -103,6 +120,12 @@
   --seq-400: #2a78d6;
   --seq-550: #6da7ec;
   --seq-700: #cde2fb;
+
+  --rung-1: #cde2fb;
+  --rung-2: #9ec5f4;
+  --rung-3: #5598e7;
+  --rung-4: #2a78d6;
+  --rung-5: #184f95;
 }
 
 @theme inline {

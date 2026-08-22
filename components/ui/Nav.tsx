@@ -8,6 +8,7 @@ const LINKS = [
   { href: "/matrix", label: "Matrix" },
   { href: "/benchmark", label: "Assessment" },
   { href: "/tracker", label: "Tracker" },
+  { href: "/evidence", label: "Evidence" },
   { href: "/data-sources", label: "Sources" },
   { href: "/methodology", label: "Method" },
 ];

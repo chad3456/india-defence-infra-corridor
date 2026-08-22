@@ -2,7 +2,7 @@
   "name": "bharat-tracker",
   "version": "0.1.0",
   "private": true,
-  "description": "India Defence & Infrastructure Tracker — curated, source-cited data on defence, infrastructure, trade and manufacturing since 2001.",
+  "description": "India Defence & Infrastructure Tracker \u2014 curated, source-cited data on defence, infrastructure, trade and manufacturing since 2001.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -23,7 +23,7 @@
     "docs:sync": "tsx scripts/docs/sync-tables.ts",
     "validate": "tsx scripts/validate.ts",
     "registry:audit": "tsx scripts/audit-registry.ts",
-    "test": "npm run validate && npm run registry:audit && npm run test:schema && npm run test:ingest && npm run test:security && npm run test:pdf && npm run security:check && npm run test:docs && npm run db:seed-check && npm run typecheck",
+    "test": "npm run validate && npm run registry:audit && npm run test:schema && npm run test:ingest && npm run test:security && npm run test:epistemic && npm run test:pdf && npm run security:check && npm run test:docs && npm run db:seed-check && npm run typecheck",
     "db:push": "tsx scripts/db/sync.ts push",
     "db:pull": "tsx scripts/db/sync.ts pull",
     "db:check": "tsx scripts/db/sync.ts check",
@@ -35,7 +35,8 @@
     "test:docs": "tsx scripts/test-docs.ts",
     "test:security": "tsx scripts/test-security.ts",
     "test:pdf": "tsx scripts/test-pdf.ts",
-    "geo:build": "tsx scripts/geo/build-gazetteer.ts"
+    "geo:build": "tsx scripts/geo/build-gazetteer.ts",
+    "test:epistemic": "tsx scripts/test-epistemic.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",

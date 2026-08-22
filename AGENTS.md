@@ -72,7 +72,7 @@ Read in this order when you are new to the repo:
 
 | You are changing | Go to |
 |---|---|
-| A page or route | `app/` — `/`, `/charts`, `/map`, `/tracker`, `/benchmark`, `/sources`, `/methodology` |
+| A page or route | `app/` — `/`, `/charts`, `/map`, `/defence-tracker`, `/matrix`, `/evidence`, `/tracker`, `/benchmark`, `/sources`, `/data-sources`, `/methodology` |
 | How a chart draws | `components/charts/ChartCanvas.tsx` (one SVG renderer for all 15 kinds) |
 | Which charts exist | `lib/registry.ts` — specs, not components |
 | A transform (yoy, index, cagr…) | `lib/transforms.ts` |
@@ -95,6 +95,9 @@ Read in this order when you are new to the repo:
 | Database schema | `supabase/migrations/0001_init.sql` |
 | Editorial grades | `lib/assessment.ts` |
 | The constructed security indices | `lib/security-index.ts` — read the header before touching |
+| The development matrix (standing × momentum) | `lib/quadrant.ts`, `components/charts/QuadrantMatrix.tsx` |
+| The evidence ladder and the rules behind it | `lib/epistemic.ts` — grades are computed from provenance and tier, never assigned |
+| Ordinal ramp colours (`--rung-*`) | `app/globals.css` — validated with `--ordinal`, not the categorical checks |
 | Which security series exist | `lib/security-catalogue.ts` |
 | SATP fatality scraping | `scripts/etl/connectors/satp.ts` (national) and `satp-states.ts` (by state) |
 | India-only series (EV, UPI, CPI, schemes) | `lib/india-catalogue.ts` |
@@ -197,6 +200,7 @@ npm run test:schema      # runs the real migration against Postgres-in-WASM
 npm run test:ingest      # feed parsing + classification against committed fixtures
 npm run test:docs        # the docs render, and their counted claims match the code
 npm run test:security    # the constructed indices' arithmetic, and the SATP parser
+npm run test:epistemic   # the evidence ladder: one case per rule, and the claims /evidence makes in prose
 npm run db:seed-check    # supabase/seed.sql matches the JSON it is generated from
 npm test                 # all of the above, in that order
 
