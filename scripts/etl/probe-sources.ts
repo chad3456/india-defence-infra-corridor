@@ -74,6 +74,12 @@ const CANDIDATES: Candidate[] = [
   // state, and it is published as PDF volumes with hundreds of tables. Whether
   // any part of it is machine-readable is the question; if the answer is no,
   // that is recorded and the series say so rather than being quietly dropped.
+  //
+  // Second attempt for all four. The first returned HTTP 503 from both NCRB
+  // hosts and a DNS-level failure from NIMHANS and rchiips.org. A 503 is a
+  // server saying "not now" rather than "not here", so the same host is worth
+  // one retry on a different path; a DNS failure is not, so those two are
+  // replaced with different hosts entirely rather than retried as they were.
   {
     id: "ncrb-publications",
     feeds: ["pocso-cases", "murder-victims-by-sex", "communal-riots"],
@@ -91,22 +97,58 @@ const CANDIDATES: Candidate[] = [
     follow: true,
   },
   {
-    id: "nmhs-survey",
-    feeds: ["mental-health-prevalence"],
-    publisher: "NIMHANS / Ministry of Health",
-    // The National Mental Health Survey is the only national prevalence study.
-    // It is a decade old, which is itself the finding if nothing newer exists.
-    url: "https://nimhans.ac.in/national-mental-health-survey/",
+    id: "ncrb-bare-host",
+    feeds: ["pocso-cases", "murder-victims-by-sex"],
+    publisher: "National Crime Records Bureau",
+    url: "https://ncrb.gov.in/",
     expect: "html",
     follow: true,
   },
   {
-    id: "nfhs-reports",
-    feeds: ["mental-health-prevalence"],
-    publisher: "IIPS / Ministry of Health",
-    url: "https://rchiips.org/nfhs/factsheet_NFHS-5.shtml",
+    id: "ncrb-en-crime-india",
+    feeds: ["pocso-cases", "murder-victims-by-sex"],
+    publisher: "National Crime Records Bureau",
+    url: "https://www.ncrb.gov.in/en/crime-in-india-table-addtional-table-and-chapter-contents",
     expect: "html",
     follow: true,
+  },
+  {
+    id: "mohfw-home",
+    feeds: ["mental-health-prevalence"],
+    publisher: "Ministry of Health and Family Welfare",
+    url: "https://mohfw.gov.in/",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "nimhans-www",
+    feeds: ["mental-health-prevalence"],
+    publisher: "NIMHANS",
+    // The National Mental Health Survey is the only national prevalence study
+    // with an age breakdown. It is from 2015-16, and if nothing newer exists
+    // that is the finding rather than a gap — a decade-old point estimate is
+    // not a series and should not be drawn as one.
+    url: "https://www.nimhans.ac.in/",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "nfhs-iips",
+    feeds: ["mental-health-prevalence"],
+    publisher: "IIPS",
+    url: "https://www.iipsindia.ac.in/content/national-family-health-survey-nfhs",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "who-gho-india",
+    feeds: ["mental-health-prevalence"],
+    publisher: "World Health Organization",
+    // WHO's observatory is the one route here with a documented machine
+    // interface, and it carries suicide mortality by age and sex — adjacent to
+    // what was asked for, and a different claim from prevalence of illness.
+    url: "https://ghoapi.azureedge.net/api/Indicator",
+    expect: "json",
   },
 
   /* --- Confirmed one hop in by the previous probe run --- */
