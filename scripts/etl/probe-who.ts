@@ -30,8 +30,24 @@ const BASE = "https://ghoapi.azureedge.net/api";
 /** What counts as relevant to the question being asked. */
 const WANTED = /suicide|self.?harm|mental|depress|anxiet|psychiatr|substance use|alcohol use disorder/i;
 
-/** How many matching indicators to pull observations for. */
-const MAX_INDICATORS = 24;
+/**
+ * How many matching indicators to pull observations for.
+ *
+ * The first run capped this at 24 and reported "no age breakdown for India" —
+ * a conclusion its own sample could not support, because the cap took the first
+ * 24 of 163 matches in list order and every suicide indicator fell outside it.
+ * Suicide mortality is the one measure in this group most likely to carry an
+ * age dimension, so the answer was drawn from a sample that excluded the
+ * question. The cap is now wide enough for the whole match set, and the
+ * ordering below puts the indicators that matter first so a truncated run still
+ * answers the question it was asked.
+ */
+const MAX_INDICATORS = 180;
+/** Bounded by time rather than by count, so a slow API cannot overrun the job. */
+const RUN_BUDGET_MS = 10 * 60_000;
+
+/** Checked first: the measures most likely to answer "by age group". */
+const PRIORITY = /suicide|self.?harm|depress|anxiet/i;
 
 interface IndicatorRow {
   IndicatorCode: string;
@@ -76,11 +92,22 @@ async function main() {
     process.exit(1);
   }
   const all = list.data.value;
-  const matches = all.filter((i) => WANTED.test(i.IndicatorName ?? ""));
-  log(`${all.length} indicators listed · ${matches.length} match the mental-health question\n`);
+  const matches = all
+    .filter((i) => WANTED.test(i.IndicatorName ?? ""))
+    .sort(
+      (a, b) =>
+        Number(PRIORITY.test(b.IndicatorName ?? "")) - Number(PRIORITY.test(a.IndicatorName ?? "")),
+    );
+  log(`${all.length} indicators listed · ${matches.length} match the mental-health question`);
+  log(`${matches.filter((i) => PRIORITY.test(i.IndicatorName ?? "")).length} of them are suicide or mood-disorder measures, checked first\n`);
 
+  const startedAt = Date.now();
   const reports: Report[] = [];
   for (const ind of matches.slice(0, MAX_INDICATORS)) {
+    if (Date.now() - startedAt > RUN_BUDGET_MS) {
+      log(`\nbudget spent after ${reports.length} indicator(s)`);
+      break;
+    }
     const url = `${BASE}/${encodeURIComponent(ind.IndicatorCode)}?$filter=SpatialDim%20eq%20%27IND%27`;
     const res = await getJson<{ value: Observation[] }>(url);
     if (!res.ok || !res.data?.value) {
