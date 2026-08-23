@@ -1,5 +1,186 @@
 [
   {
+    "id": "mobile-data-price-per-gb",
+    "title": "Mobile data price per GB",
+    "definition": "Average retail price of one gigabyte of mobile data.",
+    "category": "quality-of-life",
+    "unit": "₹ per GB (nominal)",
+    "unitShort": "₹/GB",
+    "frequency": "annual",
+    "provenance": "official",
+    "confidence": "medium",
+    "higherIsBetter": false,
+    "sourceIds": [
+      "econ-survey-tabchart"
+    ],
+    "points": [
+      {
+        "period": "2014",
+        "value": 268.97,
+        "sourceId": "econ-survey-tabchart"
+      },
+      {
+        "period": "2025",
+        "value": 8.27,
+        "sourceId": "econ-survey-tabchart"
+      }
+    ],
+    "notes": [
+      "Nominal rupees, so part of the fall since 2016 is inflation rather than price competition. TRAI's figure is an average realised rate across bundles rather than a tariff, and headline comparisons of India as 'cheapest in the world' usually cite a different basket.",
+      "The Survey's table carries 2014 and 2025 only, so this is a two-point comparison rather than a path — the years in between are not published here and are not guessed at. The 2025 figure is as of September 2025.",
+      "Read from the Economic Survey workbook tabchart9, sheet \"Chart IX.21\". These are the tables behind the Survey's charts, so the series is only as long as the chart needed."
+    ],
+    "lastVerified": "2026-08-23"
+  },
+  {
+    "id": "data-per-subscriber",
+    "title": "Mobile data used per subscriber",
+    "definition": "Average wireless data consumption per data user per month.",
+    "category": "quality-of-life",
+    "unit": "GB per month",
+    "unitShort": "GB/mo",
+    "frequency": "fiscal-year",
+    "provenance": "official",
+    "confidence": "medium",
+    "higherIsBetter": null,
+    "sourceIds": [
+      "econ-survey-tabchart"
+    ],
+    "points": [
+      {
+        "period": "FY2020-21",
+        "value": 12.11,
+        "sourceId": "econ-survey-tabchart"
+      },
+      {
+        "period": "FY2021-22",
+        "value": 14.89,
+        "sourceId": "econ-survey-tabchart"
+      },
+      {
+        "period": "FY2022-23",
+        "value": 17.02,
+        "sourceId": "econ-survey-tabchart"
+      },
+      {
+        "period": "FY2023-24",
+        "value": 19.3,
+        "sourceId": "econ-survey-tabchart"
+      }
+    ],
+    "notes": [
+      "Per data *user*, not per subscriber: people who own a phone but buy no data are outside the denominator, which lifts the average above what an ordinary reading of ‘per subscriber’ would give. The Survey publishes a much longer comparison elsewhere — 0.06 GB a month in 2014 against 25 GB in 2025 — but only as those two endpoints, so it is not spliced onto this series.",
+      "The total column, across all network generations. FY25 is published only as an April-to-September part-year and is left out: a seven-month figure on an annual axis reads as a collapse that did not happen.",
+      "Read from the Economic Survey workbook tabchart10, sheet \"Chart VIII.20\", units as printed: (GB). These are the tables behind the Survey's charts, so the series is only as long as the chart needed."
+    ],
+    "lastVerified": "2026-08-23"
+  },
+  {
+    "id": "ev-registrations",
+    "title": "Electric vehicles registered",
+    "definition": "Electric vehicles registered on the VAHAN national register in a financial year.",
+    "category": "manufacturing",
+    "unit": "vehicles",
+    "unitShort": "vehicles",
+    "frequency": "fiscal-year",
+    "provenance": "official",
+    "confidence": "medium",
+    "higherIsBetter": true,
+    "sourceIds": [
+      "econ-survey-tabchart"
+    ],
+    "points": [
+      {
+        "period": "FY2019-20",
+        "value": 173580,
+        "sourceId": "econ-survey-tabchart"
+      },
+      {
+        "period": "FY2020-21",
+        "value": 142360,
+        "sourceId": "econ-survey-tabchart"
+      },
+      {
+        "period": "FY2021-22",
+        "value": 458980,
+        "sourceId": "econ-survey-tabchart"
+      },
+      {
+        "period": "FY2022-23",
+        "value": 1183750,
+        "sourceId": "econ-survey-tabchart"
+      },
+      {
+        "period": "FY2023-24",
+        "value": 1681200,
+        "sourceId": "econ-survey-tabchart"
+      },
+      {
+        "period": "FY2024-25",
+        "value": 1965700,
+        "sourceId": "econ-survey-tabchart"
+      }
+    ],
+    "notes": [
+      "VAHAN excludes Telangana and Lakshadweep, which do not report to it, so the national figure is a slight undercount. Two- and three-wheelers dominate the count; reading it as a car number overstates the passenger-vehicle transition by an order of magnitude.",
+      "The workbook labels this column with no unit. The figures are read as thousands of vehicles, the only reading consistent with their magnitude — a hundred and seventy-four vehicles nationally in FY20 is not a number, and a hundred and seventy-four million is more than the whole vehicle fleet. Treat the level as the Survey's chart value rather than as a VAHAN extract.",
+      "Read from the Economic Survey workbook tabchart8, sheet \"Chart VIII.15\". These are the tables behind the Survey's charts, so the series is only as long as the chart needed."
+    ],
+    "lastVerified": "2026-08-23"
+  },
+  {
+    "id": "domestic-air-passengers",
+    "title": "Domestic air passengers",
+    "definition": "Passengers carried on domestic scheduled flights in a financial year.",
+    "category": "infrastructure",
+    "unit": "passengers",
+    "unitShort": "pax",
+    "frequency": "fiscal-year",
+    "provenance": "official",
+    "confidence": "high",
+    "higherIsBetter": true,
+    "sourceIds": [
+      "econ-survey-tabchart"
+    ],
+    "points": [
+      {
+        "period": "FY2018-19",
+        "value": 275000000,
+        "sourceId": "econ-survey-tabchart"
+      },
+      {
+        "period": "FY2019-20",
+        "value": 275000000,
+        "sourceId": "econ-survey-tabchart"
+      },
+      {
+        "period": "FY2020-21",
+        "value": 105000000,
+        "sourceId": "econ-survey-tabchart"
+      },
+      {
+        "period": "FY2021-22",
+        "value": 167000000,
+        "sourceId": "econ-survey-tabchart"
+      },
+      {
+        "period": "FY2022-23",
+        "value": 270000000,
+        "sourceId": "econ-survey-tabchart"
+      },
+      {
+        "period": "FY2023-24",
+        "value": 307000000,
+        "sourceId": "econ-survey-tabchart"
+      }
+    ],
+    "notes": [
+      "Passengers handled at domestic terminals. The sheet also lists April-to-October part-years for FY24 and FY25; both are excluded, and the FY24 part-year in particular would otherwise contradict the full FY24 row directly above it.",
+      "Read from the Economic Survey workbook tabchart10, sheet \"Chart VIII.12\", units as printed: (Crore) (Crore). These are the tables behind the Survey's charts, so the series is only as long as the chart needed."
+    ],
+    "lastVerified": "2026-08-23"
+  },
+  {
     "id": "startups-recognised",
     "title": "Recognised startups",
     "definition": "Startups recognised by DPIIT, cumulative to the end of the year.",
@@ -109,7 +290,7 @@
     ],
     "notes": [
       "Visits, not visitors: one person touring four states counts four times, and the total exceeds India's population in most years for that reason.",
-      "Read from the Economic Survey workbook tabchart10, sheet \"Chart VIII.17\". These are the tables behind the Survey's charts, so the series is only as long as the chart needed."
+      "Read from the Economic Survey workbook tabchart10, sheet \"Chart VIII.17\", units as printed: (Crore). These are the tables behind the Survey's charts, so the series is only as long as the chart needed."
     ],
     "lastVerified": "2026-08-23"
   },
