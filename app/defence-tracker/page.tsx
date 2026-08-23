@@ -4,6 +4,8 @@ import ConfidenceBadge from "@/components/ui/ConfidenceBadge";
 import { getRegistry } from "@/lib/registry";
 import { getSeries, definedPoints } from "@/lib/data";
 import { ALL_SECURITY_SPECS, SECURITY_SERIES } from "@/lib/security-catalogue";
+import SecurityMap from "@/components/map/SecurityMap";
+import { TRACKED_STATES, FIRST_YEAR, LAST_YEAR, ROWS } from "@/lib/lwe-states";
 import { LIMITS } from "@/lib/security-index";
 
 /**
@@ -155,6 +157,30 @@ export default function DefenceTrackerPage() {
           </ul>
         </section>
       )}
+
+      {/* ---------------- The map ---------------- */}
+      <section id="map" className="mt-10">
+        <div className="border-b pb-2">
+          <h2 className="text-[15px] font-semibold tracking-tight">Where it happened</h2>
+        </div>
+        <p className="mt-3 max-w-[760px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
+          The same {ROWS.length} state-year rows behind every left-wing-extremism chart on this
+          page, put back on the geography the national series throws away. SATP publishes a
+          datasheet for {TRACKED_STATES.length} states, {FIRST_YEAR} to {LAST_YEAR}; the rest are
+          drawn as not tracked rather than as zero, because nobody counted there and a pale shade
+          would say otherwise.
+        </p>
+        <div className="mt-5">
+          <SecurityMap />
+        </div>
+        <p className="mt-4 max-w-[760px] text-[11px] leading-relaxed text-[color:var(--text-muted)]">
+          One state dominates. Chhattisgarh accounts for roughly a third of all recorded fatalities
+          across the period, which is why the shading uses quantiles rather than equal steps — on an
+          equal-width scale the map is one dark state and seventeen pale ones in every year, which is
+          accurate and tells a reader nothing. Every state&rsquo;s number is listed beside the map so
+          nothing rests on telling two shades apart.
+        </p>
+      </section>
 
       {SECTIONS.map((section) => {
         const charts = chartsFor(section.seriesIds);
