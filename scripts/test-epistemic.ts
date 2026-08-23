@@ -22,7 +22,9 @@ import {
   CONTESTS,
   type Rung,
 } from "../lib/epistemic";
-import { getAllSeries, getAllSources } from "../lib/data";
+import { getAllSeries, getAllSources, getSeries } from "../lib/data";
+import { ALL_SECURITY_SPECS } from "../lib/security-catalogue";
+import { INDIA_SERIES } from "../lib/india-catalogue";
 import type { Series, Source, Provenance } from "../lib/types";
 import lweStates from "../data/security/lwe-states.json";
 
@@ -222,6 +224,31 @@ console.log("The attribution break");
     rows.slice(rows.findIndex((r) => r.year === shape.firstZeroRunYear)).every((r) => r.unattributed === 0),
     "nothing after the zero-run start is non-zero",
   );
+}
+
+console.log("");
+console.log("Every empty chart says what is missing");
+{
+  // A declared series with no data and no stated blocker is the worst kind of
+  // gap: it looks like work in progress and is indistinguishable from a
+  // question nobody has looked into. If a spec ships empty, it has to name the
+  // document that would fill it.
+  const declared = [...ALL_SECURITY_SPECS, ...INDIA_SERIES];
+  const empty = declared.filter((spec) => !getSeries(spec.id));
+  const silent = empty.filter((spec) => !spec.blockedBy && spec.filledBy !== "satp");
+  check(
+    silent.length === 0,
+    `all ${empty.length} empty series name their blocker`,
+    silent.map((s) => s.id).join(", "),
+  );
+  check(
+    empty.every((spec) => !spec.blockedBy || spec.blockedBy.needs.trim().length > 30),
+    "each blocker names a document rather than gesturing at one",
+  );
+  // And the converse: a series that is filled should not still claim to be
+  // blocked, or the page contradicts its own chart.
+  const stale = declared.filter((spec) => getSeries(spec.id) && spec.blockedBy);
+  check(stale.length === 0, "no filled series still carries a blocker", stale.map((s) => s.id).join(", "));
 }
 
 console.log("");

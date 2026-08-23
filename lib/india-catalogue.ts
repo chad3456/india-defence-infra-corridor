@@ -56,6 +56,13 @@ export const INDIA_SERIES: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "The penetration number. Reported against the same VAHAN base, so the Telangana gap cancels out of the ratio.",
+    blockedBy: {
+      needs: "Total vehicle registrations on VAHAN, to divide the EV count by. The Economic Survey publishes the EV numerator and not the denominator.",
+      ruledOut: [
+        "the VAHAN dashboard renders client-side and its analytics endpoint returned nothing a fetch can read",
+        "no Survey workbook sheet carries total registrations",
+      ],
+    },
   },
 
   /* ---------------- Digital cost and use ---------------- */
@@ -103,6 +110,12 @@ export const INDIA_SERIES: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "NPCI publishes this monthly and it is one of the few Indian series with no definitional ambiguity at all.",
+    blockedBy: {
+      needs: "Monthly UPI volumes. RBI's entity-wise retail payments page is the most promising public route and is under probe.",
+      ruledOut: [
+        "NPCI's own statistics pages answer 403 to any non-browser request",
+      ],
+    },
   },
   {
     id: "upi-value",
@@ -117,6 +130,12 @@ export const INDIA_SERIES: SecuritySeriesSpec[] = [
     confidence: "high",
     sourceIds: [],
     filledBy: "curated",
+    blockedBy: {
+      needs: "The value side of the same table as UPI volumes.",
+      ruledOut: [
+        "NPCI's statistics pages answer 403",
+      ],
+    },
   },
 
   /* ---------------- Household finance ---------------- */
@@ -134,6 +153,13 @@ export const INDIA_SERIES: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "Accounts, not investors. One person may hold accounts at both depositories and with several brokers, so this overstates the number of participating individuals — by how much is not published.",
+    blockedBy: {
+      needs: "CDSL and NSDL each publish monthly account totals; the series is their sum.",
+      ruledOut: [
+        "CDSL's monthly progress report page links no data file",
+        "SEBI's statistics page did not answer",
+      ],
+    },
   },
   {
     id: "mutual-fund-sip-accounts",
@@ -149,6 +175,12 @@ export const INDIA_SERIES: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "AMFI figure. Carries the same account-versus-person caveat as demat counts.",
+    blockedBy: {
+      needs: "AMFI publishes live SIP account counts monthly, in a different release from the one this project found.",
+      ruledOut: [
+        "AMFI's monthly report spreadsheets carry scheme-level folios and funds mobilised, not SIP account counts",
+      ],
+    },
   },
   {
     id: "ppf-accounts",
@@ -164,6 +196,12 @@ export const INDIA_SERIES: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "Published irregularly, usually only in answer to a parliamentary question, and bank-held accounts are not always included in the same figure as post-office ones. Graded low until a consistent basis is found; the series may end up shorter than the period asked for.",
+    blockedBy: {
+      needs: "Published irregularly, usually only in answer to a parliamentary question, and post-office and bank-held accounts are not always counted on the same basis.",
+      ruledOut: [
+        "no finance ministry publication carries a continuous series",
+      ],
+    },
   },
 
   /* ---------------- Prices ---------------- */
@@ -182,6 +220,13 @@ export const INDIA_SERIES: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "MoSPI's CPI food and beverages group. The general CPI series already on this site is a different basket and moves less; food is the one households feel, and it is the reason headline inflation and perceived inflation diverge.",
+    blockedBy: {
+      needs: "MoSPI's CPI food and beverages index, which is published monthly with a back series.",
+      ruledOut: [
+        "cpi.mospi.gov.in did not answer the probe",
+        "the Economic Survey workbooks carry headline CPI and WPI only, not the food group",
+      ],
+    },
   },
 
   /* ---------------- Farm and rural schemes ---------------- */
@@ -199,6 +244,12 @@ export const INDIA_SERIES: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "The beneficiary count fell sharply after Aadhaar seeding and land-record verification removed ineligible registrations. That fall is a data-quality improvement, not a reduction in support, and a chart without that annotation reads as the opposite.",
+    blockedBy: {
+      needs: "The PM-KISAN dashboard holds instalment-wise beneficiary counts.",
+      ruledOut: [
+        "pmkisan.gov.in renders its dashboard client-side and links no data file",
+      ],
+    },
   },
   {
     id: "pm-kisan-disbursed",
@@ -213,6 +264,12 @@ export const INDIA_SERIES: SecuritySeriesSpec[] = [
     confidence: "medium",
     sourceIds: [],
     filledBy: "curated",
+    blockedBy: {
+      needs: "The amount transferred, from the same dashboard as the beneficiary count.",
+      ruledOut: [
+        "pmkisan.gov.in links no data file",
+      ],
+    },
   },
   {
     id: "drone-didi-drones",
@@ -229,6 +286,12 @@ export const INDIA_SERIES: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "Scheme approved in late 2023, so the series is short by construction and a growth rate off a base of near zero says very little. Sanctioned and delivered counts differ; this is deliveries.",
+    blockedBy: {
+      needs: "Deliveries under the scheme, announced in Ministry of Agriculture and PIB releases. Sanctioned and delivered counts differ and are often quoted interchangeably.",
+      ruledOut: [
+        "no scheme dashboard publishes a delivered count by year",
+      ],
+    },
   },
   {
     id: "agri-credit-disbursed",
@@ -243,6 +306,12 @@ export const INDIA_SERIES: SecuritySeriesSpec[] = [
     confidence: "medium",
     sourceIds: [],
     filledBy: "curated",
+    blockedBy: {
+      needs: "Institutional credit disbursed to agriculture in a financial year, in rupees.",
+      ruledOut: [
+        "the Economic Survey's credit sheet carries year-on-year growth rates by sector, monthly, not amounts disbursed — publishing that under this label would be a different quantity wearing this one's name",
+      ],
+    },
   },
 
   /* ---------------- Aviation ---------------- */
@@ -274,6 +343,13 @@ export const INDIA_SERIES: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "The nearest published thing to a first-time-flyer count, and it is not one. Nobody counts how many passengers had never flown before; UDAN passenger totals are often quoted as if they did.",
+    blockedBy: {
+      needs: "Passengers flown on subsidised regional routes, published by the Ministry of Civil Aviation in scheme reviews.",
+      ruledOut: [
+        "DGCA's traffic pages link no data file",
+        "the Survey's airways sheet carries terminal passenger traffic, which is a different measure",
+      ],
+    },
   },
   /* ---------------- From the Economic Survey workbooks ---------------- */
   {

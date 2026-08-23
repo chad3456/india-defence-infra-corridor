@@ -168,15 +168,28 @@ function specsFromPendingSecurity(): RegistryEntry[] {
   const out: RegistryEntry[] = [];
   for (const spec of [...ALL_SECURITY_SPECS, ...INDIA_SERIES]) {
     if (getSeries(spec.id)) continue; // filled — handled by specsFromLoadedSeries
+    // What a pending chart says about itself.
+    //
+    // Every one of these used to read "Awaiting a sourced figure for each
+    // year", which tells a reader nothing they can check or act on. Where the
+    // spec names its blocker, the chart names the document that would fill it
+    // and the routes already found closed — so an empty chart is a specific
+    // request rather than a shrug, and a reader who knows where the number
+    // lives can say so.
+    const blocked = spec.blockedBy;
+    const annotation = blocked
+      ? `Needs: ${blocked.needs}` +
+        (blocked.ruledOut?.length ? ` Already ruled out: ${blocked.ruledOut.join("; ")}.` : "")
+      : (spec.note ??
+        (spec.filledBy === "satp"
+          ? "Fills on the next pipeline run from the SATP datasheet."
+          : "Awaiting a sourced figure for each year."));
+
     const base = {
       category: spec.category,
       seriesIds: [spec.id],
       pending: true,
-      annotation:
-        spec.note ??
-        (spec.filledBy === "satp"
-          ? "Fills on the next pipeline run from the SATP datasheet."
-          : "Awaiting a sourced figure for each year."),
+      annotation,
     };
     out.push({
       ...base,

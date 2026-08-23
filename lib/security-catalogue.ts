@@ -30,6 +30,22 @@ export interface SecuritySeriesSpec {
   note?: string;
   /** Which connector fills it, so a permanently empty chart can be traced. */
   filledBy: "satp" | "curated";
+  /**
+   * Why this series is still empty, and what has already been ruled out.
+   *
+   * "Awaiting a sourced figure" was the annotation on every pending chart, and
+   * it says nothing a reader can act on or check. These fields name the
+   * document that would fill the series and the routes the source probe has
+   * already tried and found closed, so an empty chart is a specific request
+   * rather than a shrug. Where the honest answer is that nobody publishes the
+   * number, that is stated too — a question with no answer is worth showing.
+   */
+  blockedBy?: {
+    /** The document or dataset that would fill it. */
+    needs: string;
+    /** Routes already attempted, with what came back. */
+    ruledOut?: string[];
+  };
 }
 
 /** First year on the site. Everything security-side runs 2004 onward. */
@@ -253,6 +269,13 @@ export const DEFENCE_PENDING: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "Awaiting entry from Lok Sabha and Rajya Sabha answers, cross-read against IISS Military Balance. The gap against 42 is the fact this chart exists to show.",
+    blockedBy: {
+      needs: "The Standing Committee on Defence reports a squadron count most years, and the Ministry answers it in the Lok Sabha. Both are prose in a PDF, not a table.",
+      ruledOut: [
+        "sansad.in question search returns only a manifest file, not the answers themselves",
+        "no ministry release publishes the series as a table",
+      ],
+    },
   },
   {
     id: "iaf-squadrons-sanctioned",
@@ -268,6 +291,12 @@ export const DEFENCE_PENDING: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "Awaiting the citation for the sanctioned figure. It is a flat line for most of the period, and it is what the held strength is short against.",
+    blockedBy: {
+      needs: "The sanctioned strength of 42 squadrons is quoted constantly and dated rarely. Filling this needs the parliamentary answers that state when it was set and whether it has been revised.",
+      ruledOut: [
+        "repeating the figure of 42 across every year would be an assumption, not a series",
+      ],
+    },
   },
   {
     id: "advanced-platform-inductions",
@@ -284,6 +313,12 @@ export const DEFENCE_PENDING: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "Awaiting entry from MoD contract announcements and PIB releases, one citation per year.",
+    blockedBy: {
+      needs: "Induction dates for each platform, from Ministry of Defence releases. Every induction is announced; nobody publishes the list as one table.",
+      ruledOut: [
+        "PIB's release index returns no linked data files",
+      ],
+    },
   },
   {
     id: "terror-attacks",
@@ -330,6 +365,13 @@ export const DEFENCE_PENDING: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "The red-corridor series, and the spine of the map. MHA revises both the count and the classification criteria, so a fall partly reflects redefinition as well as control — the criteria change has to be annotated per revision or the chart overstates the win.",
+    blockedBy: {
+      needs: "The district count is announced in Home Ministry releases and revised periodically, but is not published as a series.",
+      ruledOut: [
+        "PIB release index has no downloadable table",
+        "SATP's datasheets carry fatalities and incidents, not district classifications",
+      ],
+    },
   },
   {
     id: "lwe-most-affected-districts",
@@ -345,6 +387,12 @@ export const DEFENCE_PENDING: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "Awaiting MHA figures. Tracked separately from the headline count because the two move differently and the headline is the one usually quoted.",
+    blockedBy: {
+      needs: "The 'most affected' subset is a separate Home Ministry classification with its own revisions, quoted in releases rather than tabulated.",
+      ruledOut: [
+        "same as the affected-district count: announced, never tabulated",
+      ],
+    },
   },
   {
     id: "jk-tourist-arrivals",
@@ -360,6 +408,12 @@ export const DEFENCE_PENDING: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "Awaiting J&K Tourism Department and PIB figures. Read alongside the fatality series rather than as a proxy for it: arrivals include the Amarnath and Vaishno Devi pilgrimages, which move on their own logic, and the official count has changed basis at least once.",
+    blockedBy: {
+      needs: "The Jammu & Kashmir tourism department publishes annual arrivals, and the union territory's own economic survey carries the series.",
+      ruledOut: [
+        "the national Economic Survey workbooks carry domestic tourist visits by state only for recent years, and not the J&K pilgrim split",
+      ],
+    },
   },
   {
     id: "jk-stone-pelting-incidents",
@@ -375,6 +429,13 @@ export const DEFENCE_PENDING: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "Awaiting MHA parliamentary answers, which are the only regular published source. What counts as an incident is a police classification and has never been defined publicly, so year-to-year comparability is weaker than the series looks.",
+    blockedBy: {
+      needs: "Home Ministry answers in Parliament are the only public source, and they are given for selected years in response to specific questions.",
+      ruledOut: [
+        "no ministry publication carries a continuous series",
+        "SATP does not track this category",
+      ],
+    },
   },
   {
     id: "communal-riots",
@@ -390,6 +451,13 @@ export const DEFENCE_PENDING: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "Awaiting MHA and NCRB figures, which disagree with each other because they count different things — MHA counts communal incidents reported by states, NCRB counts registered cases under rioting sections. Both series need publishing separately rather than blended.",
+    blockedBy: {
+      needs: "Two bodies publish and they count different objects: the Home Ministry counts incidents states report, the National Crime Records Bureau counts registered cases. Filling this means picking one and labelling it as that one.",
+      ruledOut: [
+        "NCRB publishes annual volumes as PDFs with no machine-readable table",
+        "the two series are not reconcilable — see the evidence page",
+      ],
+    },
   },
   {
     id: "protests-recorded",
@@ -405,6 +473,12 @@ export const DEFENCE_PENDING: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "Awaiting a source that publishes this consistently, and there may not be one. Protest counts are a measure of what police recorded, not of what happened, and the direction of good is contested — a fall can mean contentment or suppression. Graded low confidence and marked with no better direction for that reason.",
+    blockedBy: {
+      needs: "No national count of protests and agitations is published on a consistent basis. The nearest figures come from Home Ministry answers about specific years or specific movements.",
+      ruledOut: [
+        "there is no continuous public series to fetch; this may stay empty",
+      ],
+    },
   },
   {
     id: "bulletproof-jackets-produced",
@@ -420,6 +494,12 @@ export const DEFENCE_PENDING: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     note: "Awaiting MoD and PIB figures. India moved from importing jackets to exporting them within a decade, which is the clearest single case of the import-substitution story working.",
+    blockedBy: {
+      needs: "Ministry of Defence and PIB releases give production and procurement figures for particular years, usually in the context of an order.",
+      ruledOut: [
+        "no ordnance-factory or DPSU publication carries an annual series",
+      ],
+    },
   },
   {
     id: "arms-imports-by-supplier",
@@ -436,6 +516,13 @@ export const DEFENCE_PENDING: SecuritySeriesSpec[] = [
     sourceIds: ["sipri-at-2024"],
     filledBy: "curated",
     note: "SIPRI trend-indicator values measure military capability transferred, not money paid. They are the standard for comparing suppliers over time and they are not import bills — treating them as spending is the most common misreading of this dataset.",
+    blockedBy: {
+      needs: "SIPRI's arms transfers database holds this and exports it, but only through a query interface rather than a fixed file.",
+      ruledOut: [
+        "sipri.org/databases/armstransfers links no downloadable dataset",
+        "the shares already on this site come from SIPRI's published fact sheets, which give totals rather than a supplier breakdown by year",
+      ],
+    },
   },
 ];
 
