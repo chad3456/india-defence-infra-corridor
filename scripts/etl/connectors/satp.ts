@@ -42,7 +42,27 @@ import { decodeEntities } from "../lib/feed";
  * reason the aggregate did not reach the site a second time under an Indian
  * label. Shotgunning slugs also hammers one host several times a run, which is
  * the most likely cause of the intermittent 403 on the real page.
+ *
+ * The Punjab probe found the same trap again, which is why `REFUSED` exists
+ * below. `india-khalistan` and `india-sikhextremism` both answer 200 and both
+ * return a well-formed seven-column table — reporting 8,429 deaths for 2000,
+ * against 4,121 on SATP's own all-India page for the same year. Whatever they
+ * are, they are not Punjab, and a connector that had trusted the slug would
+ * have published a regional aggregate under a Khalistan label. Only
+ * `india-punjab` returns Punjab.
  */
+
+/**
+ * Slugs that answer, parse, and mean something other than their name.
+ *
+ * Listed rather than deleted so nobody re-adds them from the same reasoning
+ * that produced them the first time, and so the test can assert they are never
+ * fetched.
+ */
+export const REFUSED_SLUGS = [
+  "india-khalistan",
+  "india-sikhextremism",
+] as const;
 const SHEETS = [
   // Left-wing extremism is not here. SATP's national LWE page answers 403 to
   // the pipeline while serving the probe, so that theatre is rebuilt from the
@@ -59,6 +79,30 @@ const SHEETS = [
       incidents: "terror-attacks",
       tonality: "terror-tonality",
       action: "terror-action-index",
+    },
+  },
+  {
+    // Punjab. SATP's yearly table starts in 2000, which is a decade after the
+    // insurgency it is named for ended — the peak years, 1981 to 1993, appear
+    // on the page only as a single aggregate with no rows. So this series is
+    // the aftermath and any revival, not the insurgency, and the catalogue
+    // entries say so in their own text rather than leaving a reader to infer a
+    // resolved conflict from a flat line near zero.
+    theatre: "punjab" as const,
+    urls: ["https://www.satp.org/datasheet-terrorist-attack/fatalities/india-punjab"],
+    sourceId: "satp-punjab-fatalities",
+    ids: {
+      civilians: "punjab-civilians-killed",
+      securityForces: "punjab-security-forces-killed",
+      insurgents: "punjab-militants-killed",
+      total: "punjab-total-fatalities",
+      incidents: "punjab-attacks",
+      // No tonality or action index. Both are built to read a conflict's
+      // direction from its casualty mix, and Punjab records single-digit
+      // totals in most years — several are zero. A willpower score computed
+      // from four deaths would be numerology with a decimal point.
+      tonality: null,
+      action: null,
     },
   },
 ];
@@ -427,17 +471,19 @@ export async function runSatp(
 
     // The constructed indices, computed here so the arithmetic runs against
     // exactly the numbers published above and cannot drift from them.
-    const scored = scoreSeries(rows);
-    push(
-      sheet.ids.tonality,
-      scored.map((s) => ({ period: String(s.year), value: s.tonality.score })),
-      ["derived"],
-    );
-    push(
-      sheet.ids.action,
-      scored.map((s) => ({ period: String(s.year), value: s.action.index })),
-      ["derived"],
-    );
+    if (sheet.ids.tonality && sheet.ids.action) {
+      const scored = scoreSeries(rows);
+      push(
+        sheet.ids.tonality,
+        scored.map((s) => ({ period: String(s.year), value: s.tonality.score })),
+        ["derived"],
+      );
+      push(
+        sheet.ids.action,
+        scored.map((s) => ({ period: String(s.year), value: s.action.index })),
+        ["derived"],
+      );
+    }
   }
 
   return { series, errors, parsed };

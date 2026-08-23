@@ -25,6 +25,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { ALL_SOURCES, DISCOVERY_SOURCES } from "../../lib/sources";
+import { getAllSources } from "../../lib/data";
 import { getAllSeries } from "../../lib/data";
 import { namesAPublisher, publisherOf } from "../etl/lib/publisher";
 import type { Category, EventCategory } from "../../lib/types";
@@ -167,8 +168,17 @@ function patchClaim(all: string[], label: string, re: RegExp, value: number): bo
 const byConfidence = (g: string) => series.filter((s) => s.confidence === g).length;
 const byFrequency = (f: string) => series.filter((s) => s.frequency === f).length;
 
+const sources = getAllSources();
+const byTier = (t: 1 | 2 | 3) => sources.filter((x) => x.tier === t).length;
+
 let claims = 0;
 claims += patchClaim(lines, "series total", /\*\*(\d+) series\*\*/, series.length) ? 1 : 0;
+claims += patchClaim(lines, "source register size", /\*\*(\d+) sources — /, sources.length) ? 1 : 0;
+for (const tier of [1, 2, 3] as const) {
+  claims += patchClaim(lines, `tier ${tier} sources`, new RegExp(`(\\d+) tier ${tier}`), byTier(tier))
+    ? 1
+    : 0;
+}
 for (const grade of ["high", "medium", "low"]) {
   claims += patchClaim(
     lines,
