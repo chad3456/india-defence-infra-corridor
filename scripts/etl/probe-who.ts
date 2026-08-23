@@ -79,6 +79,17 @@ interface Report {
   dim2Values: string[];
   /** True when at least one dimension is an age band. */
   hasAgeBreakdown: boolean;
+  /**
+   * For an age-dimensioned indicator: what actually exists, per band.
+   *
+   * The count alone is misleading. SDGSUICIDE reports 99 Indian observations
+   * across three sexes, twelve age bands and twenty-two years — a full grid
+   * would be 792, so most combinations are absent, and which ones are present
+   * decides whether this can be a series by age or only a single-year profile.
+   * The bands also overlap: 30-49 is published alongside 30-39 and 40-49, and
+   * charting all three would double-count the same deaths.
+   */
+  byAgeBand: Array<{ band: string; observations: number; years: number[]; sexes: string[] }>;
   sample: Array<{ year: number; dim1: string | null; dim2: string | null; value: number | null }>;
 }
 
@@ -123,6 +134,7 @@ async function main() {
         dim2Type: null,
         dim2Values: [],
         hasAgeBreakdown: false,
+        byAgeBand: [],
         sample: [],
       });
       continue;
@@ -148,6 +160,33 @@ async function main() {
       dim2Values: dim2Values.slice(0, 20),
       // The whole point of the run: an age band is what "by age group" needs.
       hasAgeBreakdown: /AGEGROUP|AGE/i.test(`${dim1Type ?? ""}${dim2Type ?? ""}`),
+      byAgeBand: (() => {
+        const ageOn: "Dim1" | "Dim2" | null = /AGE/i.test(dim1Type ?? "")
+          ? "Dim1"
+          : /AGE/i.test(dim2Type ?? "")
+            ? "Dim2"
+            : null;
+        if (!ageOn) return [];
+        const other = ageOn === "Dim1" ? "Dim2" : "Dim1";
+        const map = new Map<string, { years: Set<number>; sexes: Set<string>; n: number }>();
+        for (const r of rows) {
+          const band = (ageOn === "Dim1" ? r.Dim1 : r.Dim2) ?? "(none)";
+          const acc = map.get(band) ?? { years: new Set<number>(), sexes: new Set<string>(), n: 0 };
+          acc.n++;
+          if (r.TimeDim) acc.years.add(r.TimeDim);
+          const o = (other === "Dim1" ? r.Dim1 : r.Dim2) ?? null;
+          if (o) acc.sexes.add(o);
+          map.set(band, acc);
+        }
+        return [...map.entries()]
+          .map(([band, a]) => ({
+            band,
+            observations: a.n,
+            years: [...a.years].sort((x, y) => x - y),
+            sexes: [...a.sexes].sort(),
+          }))
+          .sort((a, b) => b.observations - a.observations);
+      })(),
       sample: rows.slice(0, 6).map((r) => ({
         year: r.TimeDim ?? 0,
         dim1: r.Dim1 ?? null,
@@ -175,6 +214,16 @@ async function main() {
   );
 
   const withAge = reports.filter((r) => r.hasAgeBreakdown);
+  for (const r of withAge) {
+    log("");
+    log(`${r.code} — ${r.name}`);
+    for (const b of r.byAgeBand) {
+      log(
+        `  ${b.band.padEnd(24)} ${String(b.observations).padStart(3)} obs  ` +
+          `${b.years[0] ?? "-"}–${b.years.at(-1) ?? "-"} (${b.years.length} yr)  ${b.sexes.join(",")}`,
+      );
+    }
+  }
   log("");
   log(`${reports.filter((r) => r.status === "ok").length}/${reports.length} answered · ${withAge.length} carry an age breakdown for India`);
   log("Wrote data/live/who-probe.json — read it before writing a connector.");
