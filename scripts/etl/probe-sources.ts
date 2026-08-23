@@ -68,6 +68,56 @@ const CANDIDATES: Candidate[] = [
     expect: "html",
   },
 
+  /* --- Confirmed one hop in by the previous probe run --- */
+  //
+  // Each of these was found by following an index page, not by guessing a path.
+  // They are promoted to first-class candidates so the report says what they
+  // return directly, and so a connector can cite a URL this probe has fetched.
+  {
+    id: "rbi-entity-retail",
+    feeds: ["upi-transactions", "upi-value"],
+    publisher: "Reserve Bank of India",
+    // Named "Entity-wise UPI/IMPS/NETC/NFS/AePS/CTS/BBPS Statistics" on RBI's
+    // own statistics index — the only public, non-API route to UPI volumes
+    // found so far, NPCI's own statistics pages having answered 403.
+    url: "https://www.rbi.org.in/Scripts/EntityWiseRetailStatistics.aspx",
+    expect: "html-table",
+    follow: true,
+  },
+  {
+    id: "rbi-neft-view",
+    feeds: ["upi-transactions", "upi-value"],
+    publisher: "Reserve Bank of India",
+    url: "https://www.rbi.org.in/Scripts/NEFTView.aspx",
+    expect: "html-table",
+    follow: true,
+  },
+  {
+    id: "rbi-payments-xlsx",
+    feeds: ["upi-transactions", "upi-value"],
+    publisher: "Reserve Bank of India",
+    url: "https://rbidocs.rbi.org.in/rdocs/content/docs/PSDDP04062020.xlsx",
+    expect: "xlsx",
+  },
+  {
+    id: "trai-qpir",
+    feeds: ["mobile-data-price-per-gb", "data-per-subscriber"],
+    publisher: "TRAI",
+    // The quarterly performance indicator report. Followed from TRAI's home
+    // page and confirmed at 200, 2.05 MB of PDF. This project can read a PDF
+    // table; whether this one is readable is the next question.
+    url: "https://www.trai.gov.in/sites/default/files/2026-06/QPIR_22062026.pdf",
+    expect: "html",
+  },
+  {
+    id: "rbi-annual-publications",
+    feeds: ["food-inflation", "agri-credit-disbursed", "demat-accounts"],
+    publisher: "Reserve Bank of India",
+    url: "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Statistical%20Tables%20Relating%20to%20Banks%20in%20India",
+    expect: "html",
+    follow: true,
+  },
+
   /* --- Still-unsourced series: index pages worth following once --- */
   //
   // Every one of these feeds a chart that is declared and empty. None of the
@@ -575,7 +625,12 @@ async function probe(c: Candidate): Promise<Finding> {
     embeddedJson: looksLike === "html" ? embeddedJsonIn(res.data) : undefined,
   };
 
-  if (c.follow && looksLike === "html" && (finding.dataLinks?.length ?? 0) === 0) {
+  // Follow regardless of whether the page already links a file. The first
+  // version skipped following whenever one file was found, and RBI's statistics
+  // index is exactly the case that breaks: it links a single 2020 spreadsheet
+  // and nineteen named statistics pages, and the pages are the valuable half.
+  // One file is not evidence that the rest of the page is uninteresting.
+  if (c.follow && looksLike === "html") {
     finding.followed = await followLinks(finding.candidateLinks ?? []);
   }
   return { ...finding, score: scoreOf(finding) };
