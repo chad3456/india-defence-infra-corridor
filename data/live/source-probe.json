@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-08-23T08:27:23.499Z",
+  "probedAt": "2026-08-23T08:42:14.106Z",
   "findings": [
     {
       "id": "amfi-stats",
@@ -118,7 +118,7 @@
           "status": 200,
           "contentType": "application/pdf",
           "bytes": 4826655,
-          "looksLike": "binary"
+          "looksLike": "unknown"
         },
         {
           "url": "https://www.trai.gov.in/sites/default/files/2024-12/broadcasting-dashboard.pdf",
@@ -129,7 +129,7 @@
           "looksLike": "binary"
         }
       ],
-      "score": 123
+      "score": 122
     },
     {
       "id": "rbi-bulletin-current",
@@ -142,7 +142,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 321223,
+      "bytes": 322782,
       "looksLike": "html",
       "title": "RBI Bulletin | Official Website of Reserve Bank of India",
       "yearTables": 0,
@@ -202,6 +202,118 @@
         {
           "url": "https://www.rbi.org.in/scripts/Statistics.aspx",
           "text": "Data Releases",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        }
+      ],
+      "score": 121
+    },
+    {
+      "id": "rbi-handbook",
+      "publisher": "Reserve Bank of India",
+      "url": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy",
+      "feeds": [
+        "food-inflation",
+        "demat-accounts",
+        "many"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 423317,
+      "looksLike": "html",
+      "title": "Handbook of Statistics on Indian Economy - Reserve Bank of India",
+      "yearTables": 0,
+      "dataLinks": [
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/1T_HBIE310720260FBAA53A59A94B94A78CB8313C150B62.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/2T_HBIE310720261ED415A38F9E465C9B9BEDEA897741FB.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/3T_HBIE3107202652095164B57C43B0B310E415B27E8B6C.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/4T_HBIE31072026F0C76C15F0DC456FBC2FE3F0E9031F41.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/5T_HBIE310720269D892692410D4CDE90B8D8D010BDC6BD.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/6T_HBIE31072026B0ED4698A2884D62BBB82A7C93EC5D0B.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/7T_HBIE310720261C6A115880DE44C4B9A5D1A29A2D111D.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/8T_HBIE310720266C3B86A85C3040DB9DEA7F513E20F73A.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/9T_HBIE31072026A3F18AB442CE4A23BEC929D29B406162.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/10T_HBIE310720268B682995CC224C51B22FC6036E99B7D1.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/11T_HBIE31072026BCEC5B4D423F4C8CB5C240A3F204325D.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/12T_HBIE31072026BB07C9F4CC59463DA173B25E5DA2DE8C.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/13T_HBIE310720269307659238684ED9870EA1D235062EA7.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/14T_HBIE31072026B0F0C489ABB44F2082CC4AD55DE9B027.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/15T_HBIE31072026A1DCB169BACD4B8694F96C48D854BA2E.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/16T_HBIE310720267F9C80E5540E48A1B2A0715D8B9470D2.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/17T_HBIE3107202631E57FDEF1BC41429F5A6606CD9ED6F5.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/18T_HBIE31072026F66166DD083C4F4AA4F2CDF71DBE801B.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/19T_HBIE3107202629B99CB632CF4D45B187E8C67BE219D6.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/20T_HBIE3107202671C15323BC42438093450A506466C9E4.XLSX"
+      ],
+      "candidateLinks": [
+        {
+          "href": "https://www.rbi.org.in/Scripts/StateStatisticsFinances.aspx",
+          "text": "State Statistics and Finances"
+        },
+        {
+          "href": "https://www.rbi.org.in/scripts/FS_PDS.aspx",
+          "text": "Public Debt Statistics"
+        },
+        {
+          "href": "https://rbidocs.rbi.org.in/rdocs/Publications/PDFs/0HSIE31072026042B2753EC8F4B9EA7081AF75B56AA20.PDF",
+          "text": "(Note: To obtain the tables in Near-Real time, please access the Database on Indian Economy"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy#mainsection",
+          "text": "Skip to main content"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy#",
+          "text": ""
+        },
+        {
+          "href": "https://www.rbi.org.in/scripts/Statistics.aspx",
+          "text": "Data Releases"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy#top",
+          "text": "Top"
+        }
+      ],
+      "followed": [
+        {
+          "url": "https://www.rbi.org.in/Scripts/StateStatisticsFinances.aspx",
+          "text": "State Statistics and Finances",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://www.rbi.org.in/scripts/FS_PDS.aspx",
+          "text": "Public Debt Statistics",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://rbidocs.rbi.org.in/rdocs/Publications/PDFs/0HSIE31072026042B2753EC8F4B9EA7081AF75B56AA20.PDF",
+          "text": "(Note: To obtain the tables in Near-Real time, please access the Database on Indian Economy",
+          "status": 200,
+          "contentType": "text/html",
+          "bytes": 43467,
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy#mainsection",
+          "text": "Skip to main content",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy#",
+          "text": "",
           "status": 200,
           "contentType": "text/html; charset=utf-8",
           "looksLike": "html",
@@ -649,6 +761,55 @@
       "score": 102
     },
     {
+      "id": "who-gho-india",
+      "publisher": "World Health Organization",
+      "url": "https://ghoapi.azureedge.net/api/Indicator",
+      "feeds": [
+        "mental-health-prevalence"
+      ],
+      "expect": "json",
+      "status": "ok",
+      "bytes": 413935,
+      "looksLike": "json",
+      "title": "",
+      "yearTables": 0,
+      "dataLinks": [],
+      "candidateLinks": [],
+      "score": 61
+    },
+    {
+      "id": "mohfw-home",
+      "publisher": "Ministry of Health and Family Welfare",
+      "url": "https://mohfw.gov.in/",
+      "feeds": [
+        "mental-health-prevalence"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 5390,
+      "looksLike": "html",
+      "title": "",
+      "yearTables": 0,
+      "dataLinks": [],
+      "candidateLinks": [],
+      "embeddedJson": {
+        "kind": "__NEXT_DATA__",
+        "bytes": 155,
+        "topKeys": [
+          "props",
+          "page",
+          "query",
+          "buildId",
+          "nextExport",
+          "autoExport",
+          "isFallback",
+          "scriptLoader"
+        ]
+      },
+      "followed": [],
+      "score": 46
+    },
+    {
       "id": "dataful-catalog",
       "publisher": "Dataful",
       "url": "https://dataful.in/datasets/",
@@ -657,7 +818,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 225144,
+      "bytes": 225541,
       "looksLike": "html",
       "title": "Dataset - Dataful",
       "yearTables": 0,
@@ -680,7 +841,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 296456,
+      "bytes": 296407,
       "looksLike": "html",
       "title": "Dataset - Dataful",
       "yearTables": 0,
@@ -750,7 +911,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 235624,
+      "bytes": 235337,
       "looksLike": "html",
       "title": "Dataset - Dataful",
       "yearTables": 0,
@@ -794,6 +955,7 @@
           "text": "Suggest Dataset",
           "status": 200,
           "contentType": "text/html; charset=utf-8",
+          "bytes": 134823,
           "looksLike": "html",
           "dataLinks": []
         }
@@ -810,7 +972,7 @@
       ],
       "expect": "xlsx",
       "status": "ok",
-      "bytes": 46444,
+      "bytes": 47513,
       "looksLike": "html",
       "title": "",
       "yearTables": 0,
@@ -1015,25 +1177,6 @@
       "score": 1
     },
     {
-      "id": "rbi-handbook",
-      "publisher": "Reserve Bank of India",
-      "url": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy",
-      "feeds": [
-        "food-inflation",
-        "demat-accounts",
-        "many"
-      ],
-      "expect": "html",
-      "status": "ok",
-      "bytes": 423318,
-      "looksLike": "unknown",
-      "title": "Handbook of Statistics on Indian Economy - Reserve Bank of India",
-      "yearTables": 0,
-      "dataLinks": [],
-      "candidateLinks": [],
-      "score": 1
-    },
-    {
       "id": "rbi-dbie",
       "publisher": "Reserve Bank of India",
       "url": "https://data.rbi.org.in/DBIE/#/dbie/home",
@@ -1079,7 +1222,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 142522,
+      "bytes": 142521,
       "looksLike": "html",
       "title": "Press Release: Press Information Bureau",
       "yearTables": 0,
@@ -1232,9 +1375,33 @@
       "detail": "HTTP 503"
     },
     {
-      "id": "nmhs-survey",
-      "publisher": "NIMHANS / Ministry of Health",
-      "url": "https://nimhans.ac.in/national-mental-health-survey/",
+      "id": "ncrb-bare-host",
+      "publisher": "National Crime Records Bureau",
+      "url": "https://ncrb.gov.in/",
+      "feeds": [
+        "pocso-cases",
+        "murder-victims-by-sex"
+      ],
+      "expect": "html",
+      "status": "failed",
+      "detail": "HTTP 503"
+    },
+    {
+      "id": "ncrb-en-crime-india",
+      "publisher": "National Crime Records Bureau",
+      "url": "https://www.ncrb.gov.in/en/crime-in-india-table-addtional-table-and-chapter-contents",
+      "feeds": [
+        "pocso-cases",
+        "murder-victims-by-sex"
+      ],
+      "expect": "html",
+      "status": "failed",
+      "detail": "HTTP 503"
+    },
+    {
+      "id": "nimhans-www",
+      "publisher": "NIMHANS",
+      "url": "https://www.nimhans.ac.in/",
       "feeds": [
         "mental-health-prevalence"
       ],
@@ -1243,15 +1410,15 @@
       "detail": "fetch failed"
     },
     {
-      "id": "nfhs-reports",
-      "publisher": "IIPS / Ministry of Health",
-      "url": "https://rchiips.org/nfhs/factsheet_NFHS-5.shtml",
+      "id": "nfhs-iips",
+      "publisher": "IIPS",
+      "url": "https://www.iipsindia.ac.in/content/national-family-health-survey-nfhs",
       "feeds": [
         "mental-health-prevalence"
       ],
       "expect": "html",
       "status": "failed",
-      "detail": "fetch failed"
+      "detail": "HTTP 404"
     },
     {
       "id": "npci-statistics-index",
