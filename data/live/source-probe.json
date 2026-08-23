@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-08-21T06:02:21.218Z",
+  "probedAt": "2026-08-23T07:46:59.156Z",
   "findings": [
     {
       "id": "amfi-stats",
@@ -26,14 +26,108 @@
         "https://portal.amfiindia.com/spages/amnov2025repo.xls",
         "https://portal.amfiindia.com/spages/amoct2025repo.xls",
         "https://portal.amfiindia.com/spages/amsep2025repo.xls",
-        "https://portal.amfiindia.com/spages/amaug2025repo.xls"
+        "https://portal.amfiindia.com/spages/amaug2025repo.xls",
+        "https://portal.amfiindia.com/spages/amjul2025repo.xls",
+        "https://portal.amfiindia.com/spages/amjun2025repo.xls",
+        "https://portal.amfiindia.com/spages/ammay2025repo.xls",
+        "https://portal.amfiindia.com/spages/amapr2025repo.xls",
+        "https://portal.amfiindia.com/spages/ammar2025repo.xls",
+        "https://portal.amfiindia.com/spages/amfeb2025repo.xls",
+        "https://portal.amfiindia.com/spages/amjan2025repo.xls",
+        "https://portal.amfiindia.com/spages/amdec2024repo.xls"
       ],
+      "candidateLinks": [],
       "embeddedJson": {
         "kind": "next-flight",
         "bytes": 14,
         "topKeys": []
       },
-      "score": 158
+      "score": 166
+    },
+    {
+      "id": "sansad-ls-questions",
+      "publisher": "Lok Sabha",
+      "url": "https://sansad.in/ls/questions/questions-and-answers",
+      "feeds": [
+        "iaf-fighter-squadrons",
+        "communal-riots",
+        "ppf-accounts",
+        "protests-recorded"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 312043,
+      "looksLike": "html",
+      "title": "",
+      "yearTables": 0,
+      "dataLinks": [
+        "https://sansad.in/ls/questions/manifest.json"
+      ],
+      "candidateLinks": [],
+      "embeddedJson": {
+        "kind": "__NEXT_DATA__",
+        "bytes": 86591,
+        "topKeys": [
+          "props",
+          "page",
+          "query",
+          "buildId",
+          "assetPrefix",
+          "isFallback",
+          "isExperimentalCompile",
+          "gssp",
+          "locale",
+          "locales",
+          "defaultLocale",
+          "scriptLoader"
+        ]
+      },
+      "score": 147
+    },
+    {
+      "id": "trai-root",
+      "publisher": "TRAI",
+      "url": "https://www.trai.gov.in/",
+      "feeds": [
+        "mobile-data-price-per-gb",
+        "data-per-subscriber"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 425070,
+      "looksLike": "html",
+      "title": "Home | Telecom Regulatory Authority of India | Government of India",
+      "yearTables": 0,
+      "dataLinks": [],
+      "candidateLinks": [
+        {
+          "href": "https://www.trai.gov.in/sites/default/files/2026-06/QPIR_22062026.pdf",
+          "text": "Download Telecom Report (2.05 MB)"
+        },
+        {
+          "href": "https://www.trai.gov.in/sites/default/files/2024-12/broadcasting-dashboard.pdf",
+          "text": "Download Broadcasting Report (213 KB)"
+        }
+      ],
+      "followed": [
+        {
+          "url": "https://www.trai.gov.in/sites/default/files/2026-06/QPIR_22062026.pdf",
+          "text": "Download Telecom Report (2.05 MB)",
+          "status": 200,
+          "contentType": "application/pdf",
+          "bytes": 4826655,
+          "looksLike": "binary"
+        },
+        {
+          "url": "https://www.trai.gov.in/sites/default/files/2024-12/broadcasting-dashboard.pdf",
+          "text": "Download Broadcasting Report (213 KB)",
+          "status": 200,
+          "contentType": "application/pdf",
+          "bytes": 98195,
+          "looksLike": "binary"
+        }
+      ],
+      "score": 123
     },
     {
       "id": "econ-survey-appendix",
@@ -60,9 +154,214 @@
         "https://www.indiabudget.gov.in/economicsurvey/doc/tabchart/tabchart9.xlsx",
         "https://www.indiabudget.gov.in/economicsurvey/doc/tabchart/tabchart10.xlsx",
         "https://www.indiabudget.gov.in/economicsurvey/doc/tabchart/tabchart11.xlsx",
-        "https://www.indiabudget.gov.in/economicsurvey/doc/tabchart/tabchart12.xlsx"
+        "https://www.indiabudget.gov.in/economicsurvey/doc/tabchart/tabchart12.xlsx",
+        "https://www.indiabudget.gov.in/economicsurvey/doc/tabchart/tabchart13.xlsx",
+        "https://www.indiabudget.gov.in/economicsurvey/doc/tabchart/tabchart14.xlsx",
+        "https://www.indiabudget.gov.in/economicsurvey/doc/tabchart/tabchart15.xlsx",
+        "https://www.indiabudget.gov.in/economicsurvey/doc/tabchart/tabchart16-1.xlsx",
+        "https://www.indiabudget.gov.in/economicsurvey/doc/tabchart/tabchart16-2.xlsx",
+        "https://www.indiabudget.gov.in/economicsurvey/doc/tabchart1.xlsx"
       ],
-      "score": 113
+      "candidateLinks": [
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/#tableachartapp",
+          "text": "List of Tables & Charts"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/#statapp",
+          "text": "Statistical Appendix"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/echapter.pdf",
+          "text": "Download Economic Survey &nbsp;&nbsp;"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/Statistical-Appendix-in-English.pdf",
+          "text": "Download Statistical Appendix &nbsp;&nbsp;"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.1.pdf",
+          "text": "Table 1.1 Gross National Income and Net National Income"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.2.pdf",
+          "text": "Table 1.2 Annual Growth Rates of Gross National Income and Net National Income"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.3.pdf",
+          "text": "Table 1.3 Real Gross Value Added at Basic Prices by Industry of Origin"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.4.pdf",
+          "text": "Table 1.4 Nominal Gross Value Added at Basic Prices by Industry of Origin"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.5.pdf",
+          "text": "Table 1.5 Annual Growth Rates of Real Gross Value Added at Basic Prices by Industry of Origin"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.6.pdf",
+          "text": "Table 1.6 Components of Gross Domestic Product at Current Prices"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.7.pdf",
+          "text": "Table 1.7 Components of Gross Domestic Product at Constant Prices"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.8.pdf",
+          "text": "Table 1.8 Gross Domestic Saving and Gross Capital Formation (at current prices)"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.9.pdf",
+          "text": "Table 1.9 Gross Domestic Saving and Gross Capital Formation (as per cent of GDP at current market prices)"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.10a.pdf",
+          "text": "Table 1.10 A Net State Domestic Product at Current Prices (2011-12 Series)"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.10b.pdf",
+          "text": "Table 1.10 B Growth of Net State Domestic Product at Current Prices (2011-12 Series)"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.11a.pdf",
+          "text": "Table 1.11 A Per Capita Net State Domestic Product at Current Prices (2011-12 Series)"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.11b.pdf",
+          "text": "Table 1.11 B Growth of Per Capita Net State Domestic Product at Current Prices (2011-12 Series)"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.12.pdf",
+          "text": "Table 1.12 Index Numbers of Agricultural Production"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.13.pdf",
+          "text": "Table 1.13 Index Numbers of Area under Principal Crops"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.14.pdf",
+          "text": "Table 1.14 Index Numbers of Yield of Principal Crops"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.15.pdf",
+          "text": "Table 1.15 Production of Major Crops"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.16.pdf",
+          "text": "Table 1.16 Gross Area Under Major Crops"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.17.pdf",
+          "text": "Table 1.17 Yield per Hectare of Major Crops"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.18.pdf",
+          "text": "Table 1.18 Production of Important Crops in Three Largest Producing States in 2024-25"
+        },
+        {
+          "href": "https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.19.pdf",
+          "text": "Table 1.19 Per Capita Net Availability of Foodgrains"
+        }
+      ],
+      "score": 119
+    },
+    {
+      "id": "rbi-payment-indicators",
+      "publisher": "Reserve Bank of India",
+      "url": "https://www.rbi.org.in/Scripts/Statistics.aspx",
+      "feeds": [
+        "upi-transactions",
+        "upi-value"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 83555,
+      "looksLike": "html",
+      "title": "Data Releases | Official Website of Reserve Bank of India",
+      "yearTables": 0,
+      "dataLinks": [
+        "https://rbidocs.rbi.org.in/rdocs/content/docs/PSDDP04062020.xlsx"
+      ],
+      "candidateLinks": [
+        {
+          "href": "https://www.rbi.org.in/Scripts/StateStatisticsFinances.aspx",
+          "text": "State Statistics and Finances"
+        },
+        {
+          "href": "https://www.rbi.org.in/scripts/FS_PDS.aspx",
+          "text": "Public Debt Statistics"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/ATMView.aspx",
+          "text": "Bank-wise ATM/POS/Card Statistics"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/NEFTView.aspx",
+          "text": "Bank-wise NEFT/RTGS/Mobile Banking/Internet Banking Statistics"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/PPIStatisticsView.aspx",
+          "text": "Entity-wise PPI Statistics"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/TReDSStatisticsView.aspx",
+          "text": "Entity-wise TReDS Statistics"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/EntityWiseRetailStatistics.aspx",
+          "text": "Entity-wise UPI/IMPS/NETC/NFS/AePS/CTS/BBPS Statistics"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/Data_ForeignStatistics.aspx",
+          "text": "Foreign Trade Statistics"
+        },
+        {
+          "href": "https://www.rbi.org.in/scripts/Pr_DataRelease.aspx?SectionID=358&DateFilter=Year",
+          "text": "Quarterly Statistics on Deposits and Credit of Scheduled Commercial Banks: Press Releases"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Branch%20Banking%20Statistics",
+          "text": "Branch Banking Statistics"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy",
+          "text": "Handbook of Statistics on Indian Economy"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Statistical%20Tables%20Relating%20to%20Banks%20in%20India",
+          "text": "Statistical Tables Relating to Banks in India"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?fromdate=05/21/1998&amp;todate=05/22/1998&amp;head=banking%20statistics",
+          "text": "Banking Statistics 1972 - 1995 (Summary Tables)"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/Pr_DataRelease.aspx?SectionID=353&DateFilter=Year",
+          "text": "International Banking Statistics of India"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/Statistics.aspx#mainsection",
+          "text": "Skip to main content"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/Statistics.aspx#",
+          "text": ""
+        },
+        {
+          "href": "https://www.rbi.org.in/scripts/Statistics.aspx",
+          "text": "Data Releases"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/Statistics.aspx",
+          "text": "Data Releases"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/Statistics.aspx#top",
+          "text": "Top"
+        }
+      ],
+      "score": 102
     },
     {
       "id": "dataful-catalog",
@@ -73,14 +372,15 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 222299,
+      "bytes": 225144,
       "looksLike": "html",
       "title": "Dataset - Dataful",
       "yearTables": 0,
       "dataLinks": [],
+      "candidateLinks": [],
       "embeddedJson": {
         "kind": "next-flight",
-        "bytes": 10,
+        "bytes": 12,
         "topKeys": []
       },
       "score": 46
@@ -100,6 +400,7 @@
       "title": "Dataset - Dataful",
       "yearTables": 0,
       "dataLinks": [],
+      "candidateLinks": [],
       "embeddedJson": {
         "kind": "next-flight",
         "bytes": 7,
@@ -122,6 +423,32 @@
       "title": "Dataset - Dataful",
       "yearTables": 0,
       "dataLinks": [],
+      "candidateLinks": [
+        {
+          "href": "https://dataful.in/datasets/413",
+          "text": "Year, Month and Payment Application-wise UPI Apps Transaction Statistics"
+        },
+        {
+          "href": "https://dataful.in/datasets/23519/",
+          "text": "Year, Month, State and District wise Volume and Value of UPI Transaction Statistics"
+        },
+        {
+          "href": "https://dataful.in/datasets/21563/",
+          "text": "Year, Month and State wise Volume and Value of UPI Transaction Statistics"
+        },
+        {
+          "href": "https://dataful.in/datasets/431/",
+          "text": "Year and Month-wise Volume and Value of Peer-to-Peer (P2P) and Peer-to-Merchants (P2M) UPI Transaction Statistics"
+        },
+        {
+          "href": "https://dataful.in/datasets/18251/",
+          "text": "Year, Month and Merchant Category wise Volume and Value of UPI Transaction Statistics"
+        },
+        {
+          "href": "https://dataful.in/datasets/413/",
+          "text": "Year, Month and Payment Application-wise UPI Apps Transaction Statistics"
+        }
+      ],
       "embeddedJson": {
         "kind": "next-flight",
         "bytes": 18,
@@ -138,11 +465,12 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 235199,
+      "bytes": 235194,
       "looksLike": "html",
       "title": "Dataset - Dataful",
       "yearTables": 0,
       "dataLinks": [],
+      "candidateLinks": [],
       "embeddedJson": {
         "kind": "next-flight",
         "bytes": 8,
@@ -164,12 +492,153 @@
       "title": "Catalog | Open Government Data (OGD) Platform India",
       "yearTables": 0,
       "dataLinks": [],
+      "candidateLinks": [
+        {
+          "href": "https://www.data.gov.in/Suggest_Dataset",
+          "text": "Suggest Dataset"
+        }
+      ],
       "embeddedJson": {
         "kind": "__NUXT__ (unparsed)",
         "bytes": 1453,
         "topKeys": []
       },
+      "followed": [
+        {
+          "url": "https://www.data.gov.in/Suggest_Dataset",
+          "text": "Suggest Dataset",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "unknown"
+        }
+      ],
       "score": 46
+    },
+    {
+      "id": "rbi-bulletin-current",
+      "publisher": "Reserve Bank of India",
+      "url": "https://www.rbi.org.in/Scripts/BS_ViewBulletin.aspx",
+      "feeds": [
+        "upi-transactions",
+        "upi-value",
+        "agri-credit-disbursed"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 322783,
+      "looksLike": "unknown",
+      "title": "RBI Bulletin | Official Website of Reserve Bank of India",
+      "yearTables": 0,
+      "dataLinks": [],
+      "candidateLinks": [],
+      "score": 1
+    },
+    {
+      "id": "mospi-cpi-releases",
+      "publisher": "MoSPI",
+      "url": "https://www.mospi.gov.in/archive/press-release",
+      "feeds": [
+        "food-inflation"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 2621,
+      "looksLike": "html",
+      "title": "Ministry of Statistics and Program Implementation | Government Of India",
+      "yearTables": 0,
+      "dataLinks": [],
+      "candidateLinks": [],
+      "followed": [],
+      "score": 1
+    },
+    {
+      "id": "pib-releases-index",
+      "publisher": "Press Information Bureau",
+      "url": "https://www.pib.gov.in/allRel.aspx",
+      "feeds": [
+        "drone-didi-drones",
+        "pm-kisan-beneficiaries",
+        "bulletproof-jackets-produced"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 133619,
+      "looksLike": "html",
+      "title": "All Press Release: Press Information Bureau",
+      "yearTables": 0,
+      "dataLinks": [],
+      "candidateLinks": [],
+      "followed": [],
+      "score": 1
+    },
+    {
+      "id": "sipri-transfers-index",
+      "publisher": "SIPRI",
+      "url": "https://www.sipri.org/databases/armstransfers",
+      "feeds": [
+        "arms-imports-by-supplier"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 60876,
+      "looksLike": "html",
+      "title": "SIPRI Arms Transfers Database | SIPRI",
+      "yearTables": 0,
+      "dataLinks": [],
+      "candidateLinks": [
+        {
+          "href": "https://doi.org/10.1177/00220027241228189",
+          "text": "The interwar period international trade in arms (IPITA): A new dataset"
+        }
+      ],
+      "followed": [
+        {
+          "url": "https://doi.org/10.1177/00220027241228189",
+          "text": "The interwar period international trade in arms (IPITA): A new dataset",
+          "status": 403,
+          "contentType": "text/html; charset=UTF-8",
+          "looksLike": "html",
+          "dataLinks": []
+        }
+      ],
+      "score": 1
+    },
+    {
+      "id": "dgca-monthly-index",
+      "publisher": "DGCA",
+      "url": "https://www.dgca.gov.in/digigov-portal/?page=jsp/dgca/InventoryList/dataReports/aviationDataStatistics/airTransport/domestic/domesticTraffic.jsp",
+      "feeds": [
+        "domestic-air-passengers",
+        "udan-passengers"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 190458,
+      "looksLike": "html",
+      "title": "Home | Directorate General of Civil Aviation | Government of India",
+      "yearTables": 0,
+      "dataLinks": [],
+      "candidateLinks": [],
+      "followed": [],
+      "score": 1
+    },
+    {
+      "id": "cdsl-nsdl-stats",
+      "publisher": "CDSL",
+      "url": "https://www.cdslindia.com/Publications/MonthlyProgressReport.aspx",
+      "feeds": [
+        "demat-accounts"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 2945,
+      "looksLike": "html",
+      "title": ":: Central Depository Services (India) Limited ::",
+      "yearTables": 0,
+      "dataLinks": [],
+      "candidateLinks": [],
+      "followed": [],
+      "score": 1
     },
     {
       "id": "rbi-handbook",
@@ -182,11 +651,12 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 423365,
+      "bytes": 423324,
       "looksLike": "unknown",
       "title": "Handbook of Statistics on Indian Economy - Reserve Bank of India",
       "yearTables": 0,
       "dataLinks": [],
+      "candidateLinks": [],
       "score": 1
     },
     {
@@ -204,6 +674,8 @@
       "title": "DBIE",
       "yearTables": 0,
       "dataLinks": [],
+      "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -215,11 +687,13 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 39743,
+      "bytes": 39763,
       "looksLike": "html",
       "title": "Welcome to Data Analytics Portal",
       "yearTables": 0,
       "dataLinks": [],
+      "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -231,11 +705,12 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 137670,
+      "bytes": 139827,
       "looksLike": "html",
       "title": "Press Release: Press Information Bureau",
       "yearTables": 0,
       "dataLinks": [],
+      "candidateLinks": [],
       "score": 1
     },
     {
@@ -252,6 +727,8 @@
       "title": "Ministry of Statistics and Program Implementation | Government Of India",
       "yearTables": 0,
       "dataLinks": [],
+      "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -269,6 +746,8 @@
       "title": "Ministry of Statistics and Program Implementation | Government Of India",
       "yearTables": 0,
       "dataLinks": [],
+      "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -285,6 +764,7 @@
       "title": "",
       "yearTables": 0,
       "dataLinks": [],
+      "candidateLinks": [],
       "score": 1
     },
     {
@@ -301,6 +781,7 @@
       "title": "",
       "yearTables": 0,
       "dataLinks": [],
+      "candidateLinks": [],
       "score": 1
     },
     {
@@ -318,23 +799,8 @@
       "title": "",
       "yearTables": 0,
       "dataLinks": [],
-      "score": 1
-    },
-    {
-      "id": "trai-root",
-      "publisher": "TRAI",
-      "url": "https://www.trai.gov.in/",
-      "feeds": [
-        "mobile-data-price-per-gb",
-        "data-per-subscriber"
-      ],
-      "expect": "html",
-      "status": "ok",
-      "bytes": 425156,
-      "looksLike": "html",
-      "title": "Home | Telecom Regulatory Authority of India | Government of India",
-      "yearTables": 0,
-      "dataLinks": [],
+      "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -351,6 +817,8 @@
       "title": "Home | Directorate General of Civil Aviation | Government of India",
       "yearTables": 0,
       "dataLinks": [],
+      "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -363,6 +831,29 @@
       "expect": "html",
       "status": "failed",
       "detail": "HTTP 404"
+    },
+    {
+      "id": "npci-statistics-index",
+      "publisher": "NPCI",
+      "url": "https://www.npci.org.in/statistics",
+      "feeds": [
+        "upi-transactions",
+        "upi-value"
+      ],
+      "expect": "html",
+      "status": "failed",
+      "detail": "HTTP 403"
+    },
+    {
+      "id": "mospi-cpi-portal",
+      "publisher": "MoSPI",
+      "url": "https://cpi.mospi.gov.in/",
+      "feeds": [
+        "food-inflation"
+      ],
+      "expect": "html",
+      "status": "failed",
+      "detail": "fetch failed"
     },
     {
       "id": "npci-upi-stats",
