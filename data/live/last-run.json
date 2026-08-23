@@ -1,17 +1,17 @@
 {
-  "id": "run-1787477249578",
-  "startedAt": "2026-08-23T09:22:33.037Z",
-  "finishedAt": "2026-08-23T09:27:29.578Z",
+  "id": "run-1787480321730",
+  "startedAt": "2026-08-23T10:16:03.241Z",
+  "finishedAt": "2026-08-23T10:18:41.730Z",
   "status": "partial",
   "connectorsRun": 8,
   "connectorsFailed": 0,
-  "seriesUpdated": 669,
+  "seriesUpdated": 675,
   "messages": [
     "worldbank: SL.EMP.OWAC.FE.ZS: no Indian observations",
     "worldbank: SL.EMP.OWAC.MA.ZS: no Indian observations",
     "satp: terror: https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir -> HTTP 403",
     "satp: terror: no candidate URL yielded a full table; keeping previous data",
-    "who: SDGSUICIDE: no rows returned; keeping previous data",
+    "econ-survey: tabchart9: The operation was aborted due to timeout",
     "ingest: The Tribune: HTTP 403",
     "ingest: Deccan Herald: HTTP 404",
     "ingest: The New Indian Express: HTTP 404",
@@ -23,13 +23,14 @@
     "ingest: Outlook India: HTTP 404",
     "ingest: Scroll.in: response was not a feed (blocked or interstitial)",
     "ingest: The Wire: response was not a feed (blocked or interstitial)",
+    "ingest: Moneycontrol: response was not a feed (blocked or interstitial)",
     "ingest: IndiaSpend: HTTP 404",
     "ingest: FORCE Magazine: HTTP 404",
     "ingest: Defence Aviation Post: HTTP 404",
     "ingest: Daily Excelsior: HTTP 403",
     "ingest: Search: pipelines — gas pipeline India commissioned: feed had no items",
     "ingest: Search: psu-msme — MSME India cluster launched: feed had no items",
-    "ingest funnel: 1737 items -> 577 candidates -> 69 events (lost: 264 no sector, 150 not an action, 94 no place)",
+    "ingest funnel: 1725 items -> 587 candidates -> 77 events (lost: 260 no sector, 155 not an action, 95 no place)",
     "x: X_BEARER_TOKEN not set — reading X is paid per post since February 2026, so this connector is inactive. Official announcements still arrive via the PIB, PMO and ministry feeds at no cost."
   ]
 }
