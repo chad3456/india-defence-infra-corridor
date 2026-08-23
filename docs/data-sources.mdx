@@ -3,7 +3,7 @@ title: Data sources
 description: Every publisher, feed and dataset behind Bharat Tracker — what each covers, how far back it goes, how much to trust it, and where it falls short.
 ---
 
-Bharat Tracker publishes nothing it cannot attribute. Each of the **170 series** on this site
+Bharat Tracker publishes nothing it cannot attribute. Each of the **710 series** on this site
 carries a list of source ids resolving into `data/sources.json`, where a source is a specific
 document — a named press release, a yearbook chapter, a parliamentary answer — with a URL and
 the date it was read, not a vague gesture at an institution.
@@ -25,20 +25,20 @@ moved, not the number.
 
 | Domain | Series | Data points | Span | Primary providers |
 |---|---:|---:|---|---|
-| Defence | 22 | 158 | 2001–2026 | PIB / MoD, SIPRI, PRS Legislative Research |
-| Infrastructure | 23 | 201 | 2001–2026 | MoRTH, MoCA, Ministry of Ports & Shipping, PIB |
-| Trade | 18 | 325 | 2001–2025 | World Bank WDI, Department of Commerce |
-| Economy | 19 | 440 | 2001–2025 | World Bank WDI |
-| Manufacturing | 10 | 230 | 2001–2025 | World Bank WDI, PIB |
-| Social | 15 | 251 | 2001–2025 | World Bank WDI |
-| Quality of life | 19 | 341 | 2001–2024 | World Bank WDI |
-| Energy | 7 | 158 | 2001–2024 | World Bank WDI |
+| Defence | 24 | 205 | 2001–2026 | PIB / MoD, SIPRI, PRS Legislative Research |
+| Infrastructure | 40 | 549 | 2001–2026 | MoRTH, MoCA, Ministry of Ports & Shipping, PIB |
+| Trade | 107 | 2383 | 2001–2025 | World Bank WDI, Department of Commerce |
+| Economy | 174 | 3737 | 2001–2025 | World Bank WDI |
+| Manufacturing | 17 | 349 | 2001–2025 | World Bank WDI, PIB |
+| Social | 80 | 1807 | 2001–2025 | World Bank WDI |
+| Quality of life | 85 | 1729 | 2001–2024 | World Bank WDI |
+| Energy | 91 | 2034 | 2001–2024 | World Bank WDI |
 | Space | 4 | 6 | 1975–2025 | ISRO, FACTLY / Dataful |
 | Real estate | 3 | 52 | 2001–2025 | World Bank WDI |
-| AI & science | 11 | 202 | pending | World Bank WDI |
-| Internal security | 19 | 437 | pending | SATP, MHA parliamentary answers |
+| AI & science | 17 | 318 | pending | World Bank WDI |
+| Internal security | 25 | 558 | pending | SATP, MHA parliamentary answers |
 
-Series carry one of three frequencies: `annual` (127), `fiscal-year` (22, India's April–March
+Series carry one of three frequencies: `annual` (667), `fiscal-year` (22, India's April–March
 year, never silently converted to calendar years) and `point-in-time` (21, a stock count as of
 a stated date rather than a flow).
 
@@ -345,7 +345,7 @@ always labelled on the chart.
 
 ### Confidence — how much weight it bears
 
-`high` (123 series) · `medium` (36) · `low` (11).
+`high` (663 series) · `medium` (36) · `low` (11).
 
 Four rules are enforced mechanically, in `scripts/lib/validate-series.ts` and again as CHECK
 constraints in `supabase/migrations/0001_init.sql`:

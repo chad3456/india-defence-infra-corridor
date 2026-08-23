@@ -26,7 +26,20 @@ export default async function ChartsPage({
   const category = CATEGORIES.includes(sp.category as Category)
     ? (sp.category as Category)
     : undefined;
-  const view = TRANSFORMS.includes(sp.view as Transform) ? (sp.view as Transform) : undefined;
+  // Default to the as-published view rather than to everything.
+  //
+  // Every series generates up to six charts — level, year-on-year, indexed,
+  // compound growth, change, and a peer comparison — and showing all of them
+  // means six near-identical cards before a reader reaches a second metric.
+  // That was tolerable at a hundred and sixty series. At seven hundred it makes
+  // the gallery unreadable: a page of twelve cards carries two measures.
+  //
+  // So "as published" is the default and the derived views stay one chip away.
+  // `view=all` is an explicit choice a reader can make, not the state they land
+  // in by accident.
+  const rawView = sp.view === "all" ? undefined : (sp.view ?? "level");
+  const view = TRANSFORMS.includes(rawView as Transform) ? (rawView as Transform) : undefined;
+  const showingAll = sp.view === "all";
   const status = sp.status === "live" || sp.status === "pending" ? sp.status : undefined;
   const page = Math.max(1, Number(sp.page ?? "1") || 1);
 
@@ -47,7 +60,12 @@ export default async function ChartsPage({
 
   const qs = (over: Partial<Params>) => {
     const p = new URLSearchParams();
-    const merged = { category, view, status, ...over };
+    // Carry the view as it appears in the URL, not as it was resolved. "all" is
+    // a sentinel rather than a transform, and rebuilding the link from the
+    // resolved value would silently drop it — so changing topic while showing
+    // every view would snap back to the default.
+    const viewParam = showingAll ? "all" : view;
+    const merged = { category, view: viewParam, status, ...over };
     if (merged.category) p.set("category", merged.category);
     if (merged.view) p.set("view", merged.view);
     if (merged.status) p.set("status", merged.status);
@@ -93,7 +111,7 @@ export default async function ChartsPage({
 
       {/* Filters — one row per dimension, above the charts */}
       <div className="sticky top-[45px] z-20 -mx-4 mb-4 space-y-2 border-b bg-[var(--plane)]/95 px-4 py-3 backdrop-blur-sm sm:-mx-6 sm:px-6">
-        <div className="flex items-center gap-2 overflow-x-auto">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5">
           <span className="eyebrow shrink-0 pr-1">topic</span>
           <Chip href={qs({ category: undefined, page: "1" })} active={!category}>
             all
@@ -107,8 +125,8 @@ export default async function ChartsPage({
         </div>
         <div className="flex items-center gap-2 overflow-x-auto">
           <span className="eyebrow shrink-0 pr-1">view</span>
-          <Chip href={qs({ view: undefined, page: "1" })} active={!view}>
-            all
+          <Chip href={qs({ view: "all", page: "1" })} active={showingAll}>
+            every view
           </Chip>
           {TRANSFORMS.map((t) => (
             <Chip key={t} href={qs({ view: t, page: "1" })} active={view === t}>
