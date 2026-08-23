@@ -32,6 +32,17 @@ interface Candidate {
   url: string;
   /** What the endpoint is expected to return, for comparison against reality. */
   expect: "csv" | "xlsx" | "json" | "html-table" | "html";
+  /**
+   * Follow the page's most promising links one hop and report what they return.
+   *
+   * Set on landing pages that are indexes rather than data. The RBI Handbook,
+   * MoSPI's release pages and TRAI's reports list are all navigation: the
+   * spreadsheet is a click away, and the first version of this probe reported
+   * "ok, no data links" for every one of them because the file is not on the
+   * page it looked at. Following is how a real URL gets found instead of
+   * guessed, which is the difference this whole probe exists to preserve.
+   */
+  follow?: boolean;
 }
 
 /**
@@ -57,6 +68,94 @@ const CANDIDATES: Candidate[] = [
     expect: "html",
   },
 
+  /* --- Still-unsourced series: index pages worth following once --- */
+  //
+  // Every one of these feeds a chart that is declared and empty. None of the
+  // URLs is a guessed file path: each is a landing page a person can open, and
+  // the probe's job is to find out whether a machine-readable table sits one
+  // click behind it. If the answer is no, that is recorded too — a declared
+  // series with no reachable source is a finding, not a gap to paper over.
+  {
+    id: "rbi-payment-indicators",
+    feeds: ["upi-transactions", "upi-value"],
+    publisher: "Reserve Bank of India",
+    url: "https://www.rbi.org.in/Scripts/Statistics.aspx",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "rbi-bulletin-current",
+    feeds: ["upi-transactions", "upi-value", "agri-credit-disbursed"],
+    publisher: "Reserve Bank of India",
+    url: "https://www.rbi.org.in/Scripts/BS_ViewBulletin.aspx",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "npci-statistics-index",
+    feeds: ["upi-transactions", "upi-value"],
+    publisher: "NPCI",
+    url: "https://www.npci.org.in/statistics",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "mospi-cpi-releases",
+    feeds: ["food-inflation"],
+    publisher: "MoSPI",
+    url: "https://www.mospi.gov.in/archive/press-release",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "mospi-cpi-portal",
+    feeds: ["food-inflation"],
+    publisher: "MoSPI",
+    url: "https://cpi.mospi.gov.in/",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "pib-releases-index",
+    feeds: ["drone-didi-drones", "pm-kisan-beneficiaries", "bulletproof-jackets-produced"],
+    publisher: "Press Information Bureau",
+    url: "https://www.pib.gov.in/allRel.aspx",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "sansad-ls-questions",
+    feeds: ["iaf-fighter-squadrons", "communal-riots", "ppf-accounts", "protests-recorded"],
+    publisher: "Lok Sabha",
+    url: "https://sansad.in/ls/questions/questions-and-answers",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "sipri-transfers-index",
+    feeds: ["arms-imports-by-supplier"],
+    publisher: "SIPRI",
+    url: "https://www.sipri.org/databases/armstransfers",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "dgca-monthly-index",
+    feeds: ["domestic-air-passengers", "udan-passengers"],
+    publisher: "DGCA",
+    url: "https://www.dgca.gov.in/digigov-portal/?page=jsp/dgca/InventoryList/dataReports/aviationDataStatistics/airTransport/domestic/domesticTraffic.jsp",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "cdsl-nsdl-stats",
+    feeds: ["demat-accounts"],
+    publisher: "CDSL",
+    url: "https://www.cdslindia.com/Publications/MonthlyProgressReport.aspx",
+    expect: "html",
+    follow: true,
+  },
+
   /* --- RBI: Handbook of Statistics publishes per-table files --- */
   {
     id: "rbi-handbook",
@@ -64,6 +163,7 @@ const CANDIDATES: Candidate[] = [
     publisher: "Reserve Bank of India",
     url: "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy",
     expect: "html",
+    follow: true,
   },
   {
     id: "rbi-dbie",
@@ -71,6 +171,7 @@ const CANDIDATES: Candidate[] = [
     publisher: "Reserve Bank of India",
     url: "https://data.rbi.org.in/DBIE/#/dbie/home",
     expect: "html",
+    follow: true,
   },
 
   /* --- UPI: NPCI publishes monthly product statistics --- */
@@ -111,6 +212,7 @@ const CANDIDATES: Candidate[] = [
     publisher: "Ministry of Road Transport & Highways",
     url: "https://analytics.parivahan.gov.in/analytics/",
     expect: "html",
+    follow: true,
   },
   {
     id: "pib-ev",
@@ -127,6 +229,7 @@ const CANDIDATES: Candidate[] = [
     publisher: "Ministry of Statistics and Programme Implementation",
     url: "https://www.mospi.gov.in/web/mospi/cpi",
     expect: "html",
+    follow: true,
   },
   {
     id: "mospi-home",
@@ -134,6 +237,7 @@ const CANDIDATES: Candidate[] = [
     publisher: "Ministry of Statistics and Programme Implementation",
     url: "https://www.mospi.gov.in/",
     expect: "html",
+    follow: true,
   },
 
   /* --- Dataful: an aggregator that cleans and republishes Indian official
@@ -212,6 +316,7 @@ const CANDIDATES: Candidate[] = [
     publisher: "data.gov.in",
     url: "https://www.data.gov.in/catalogs",
     expect: "html",
+    follow: true,
   },
 
   /* --- Schemes --- */
@@ -221,6 +326,7 @@ const CANDIDATES: Candidate[] = [
     publisher: "Ministry of Agriculture",
     url: "https://pmkisan.gov.in/Dashboard.aspx",
     expect: "html",
+    follow: true,
   },
 
   /* --- Markets --- */
@@ -230,6 +336,7 @@ const CANDIDATES: Candidate[] = [
     publisher: "SEBI",
     url: "https://www.sebi.gov.in/statistics.html",
     expect: "html",
+    follow: true,
   },
   {
     id: "amfi-stats",
@@ -237,6 +344,7 @@ const CANDIDATES: Candidate[] = [
     publisher: "AMFI",
     url: "https://www.amfiindia.com/research-information/amfi-monthly",
     expect: "html-table",
+    follow: true,
   },
 
   /* --- Telecom --- */
@@ -246,6 +354,7 @@ const CANDIDATES: Candidate[] = [
     publisher: "TRAI",
     url: "https://www.trai.gov.in/release-publication/reports",
     expect: "html",
+    follow: true,
   },
   {
     id: "trai-root",
@@ -253,6 +362,7 @@ const CANDIDATES: Candidate[] = [
     publisher: "TRAI",
     url: "https://www.trai.gov.in/",
     expect: "html",
+    follow: true,
   },
 
   /* --- Aviation --- */
@@ -262,6 +372,7 @@ const CANDIDATES: Candidate[] = [
     publisher: "DGCA",
     url: "https://www.dgca.gov.in/digigov-portal/?page=jsp/dgca/InventoryList/dataReports/aviationDataStatistics/monthlyDomestic/monthlyDomestic.jsp",
     expect: "html",
+    follow: true,
   },
 ];
 
@@ -281,6 +392,25 @@ interface Finding {
   yearTables?: number;
   /** Links to files a connector could fetch directly. */
   dataLinks?: string[];
+  /**
+   * Links that name data without advertising a file extension.
+   *
+   * Government sites route downloads through `PublicationsView.aspx?id=` and
+   * similar, so the extension test alone misses them. The anchor text is kept
+   * because it is what makes such a link identifiable at all.
+   */
+  candidateLinks?: Array<{ href: string; text: string }>;
+  /** What the followed links actually returned. */
+  followed?: Array<{
+    url: string;
+    text: string;
+    status: number | "error";
+    contentType?: string;
+    bytes?: number;
+    looksLike?: Finding["looksLike"];
+    /** Files found on the followed page, when it turned out to be another index. */
+    dataLinks?: string[];
+  }>;
   /**
    * Server-embedded JSON found in the page.
    *
@@ -334,19 +464,52 @@ function sniff(body: string): Finding["looksLike"] {
   return "unknown";
 }
 
+const FILE_HREF = /\.(csv|xlsx?|ods|json)(\?|$)/i;
+/** Anchor text that names a statistical table even when the href hides the file. */
+const DATA_TEXT =
+  /\b(table|tables|statistic|statistics|handbook|indicator|time.?series|data\s*(set|book|table)|excel|xls|spreadsheet|annex|appendix|download)\b/i;
+
+function absolute(href: string, base: string): string {
+  if (/^https?:\/\//i.test(href)) return href;
+  try {
+    return new URL(href, base).toString();
+  } catch {
+    return href;
+  }
+}
+
+/** Every anchor on the page, as href plus the words a reader would click. */
+function anchorsIn(html: string, base: string): Array<{ href: string; text: string }> {
+  const out: Array<{ href: string; text: string }> = [];
+  const seen = new Set<string>();
+  for (const m of html.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
+    const href = absolute(m[1] ?? "", base);
+    if (!/^https?:/i.test(href) || seen.has(href)) continue;
+    seen.add(href);
+    const text = (m[2] ?? "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 120);
+    out.push({ href, text });
+  }
+  return out;
+}
+
 /** Downloadable data files linked from a page — the prize when one exists. */
 function dataLinksIn(html: string, base: string): string[] {
   const hrefs = [...html.matchAll(/href=["']([^"']+)["']/gi)].map((m) => m[1] ?? "");
-  const data = hrefs.filter((h) => /\.(csv|xlsx?|json)(\?|$)/i.test(h));
-  const abs = data.map((h) => {
-    if (/^https?:\/\//i.test(h)) return h;
-    try {
-      return new URL(h, base).toString();
-    } catch {
-      return h;
-    }
-  });
-  return [...new Set(abs)].slice(0, 12);
+  const abs = hrefs.filter((h) => FILE_HREF.test(h)).map((h) => absolute(h, base));
+  return [...new Set(abs)].slice(0, 20);
+}
+
+/**
+ * Links worth following: they name data but do not advertise a file.
+ *
+ * Ranked so the follow budget is spent on the most likely ones rather than on
+ * whatever the page happened to list first.
+ */
+function candidateLinksIn(html: string, base: string): Array<{ href: string; text: string }> {
+  return anchorsIn(html, base)
+    .filter((a) => !FILE_HREF.test(a.href) && (DATA_TEXT.test(a.text) || DATA_TEXT.test(a.href)))
+    .sort((a, b) => Number(DATA_TEXT.test(b.text)) - Number(DATA_TEXT.test(a.text)))
+    .slice(0, 25);
 }
 
 function yearTableCount(html: string): number {
@@ -369,6 +532,13 @@ function scoreOf(f: Finding): number {
   if (f.status !== "ok") return 0;
   let n = 1;
   if ((f.dataLinks?.length ?? 0) > 0) n += 100 + (f.dataLinks?.length ?? 0);
+  // A followed link that came back as a file is worth more than a page that
+  // merely lists files, because it has actually been seen to answer.
+  const hits = (f.followed ?? []).filter(
+    (x) => x.status === 200 && (x.looksLike === "binary" || x.looksLike === "csv" || x.looksLike === "json"),
+  ).length;
+  if (hits > 0) n += 120 + hits;
+  n += (f.followed ?? []).reduce((m, x) => m + (x.dataLinks?.length ?? 0), 0);
   if (f.looksLike === "json" || f.looksLike === "csv") n += 60;
   if ((f.yearTables ?? 0) > 0) n += 30 + (f.yearTables ?? 0);
   // Embedded JSON is worth more than an HTML table: it is already structured,
@@ -401,9 +571,70 @@ async function probe(c: Candidate): Promise<Finding> {
       .slice(0, 100),
     yearTables: looksLike === "html" ? yearTableCount(res.data) : 0,
     dataLinks: looksLike === "html" ? dataLinksIn(res.data, c.url) : [],
+    candidateLinks: looksLike === "html" ? candidateLinksIn(res.data, c.url) : [],
     embeddedJson: looksLike === "html" ? embeddedJsonIn(res.data) : undefined,
   };
+
+  if (c.follow && looksLike === "html" && (finding.dataLinks?.length ?? 0) === 0) {
+    finding.followed = await followLinks(finding.candidateLinks ?? []);
+  }
   return { ...finding, score: scoreOf(finding) };
+}
+
+/** How many links one index page is allowed to cost. */
+const FOLLOW_BUDGET = 8;
+/** Spacing between followed requests — these are somebody's public servers. */
+const FOLLOW_PAUSE_MS = 1_200;
+
+/**
+ * Fetch a handful of an index page's links and report what each returned.
+ *
+ * Deliberately shallow: one hop, a small budget, and nothing published. The
+ * aim is to turn "there is probably a spreadsheet behind this page" into a URL
+ * that has been seen to answer, which is the only kind of URL a connector in
+ * this project is allowed to be written against.
+ */
+async function followLinks(
+  links: Array<{ href: string; text: string }>,
+): Promise<NonNullable<Finding["followed"]>> {
+  const out: NonNullable<Finding["followed"]> = [];
+  for (const link of links.slice(0, FOLLOW_BUDGET)) {
+    try {
+      const res = await fetch(link.href, {
+        headers: { "user-agent": "BharatTracker/0.1 data-pipeline", accept: "*/*" },
+        signal: AbortSignal.timeout(25_000),
+      });
+      const type = res.headers.get("content-type") ?? "";
+      // Read a spreadsheet's first bytes only — the probe is establishing that
+      // a file is there and what it is, not downloading a dataset.
+      const head = await res
+        .arrayBuffer()
+        .then((b) => new Uint8Array(b).slice(0, 4_096))
+        .catch(() => new Uint8Array());
+      const text = new TextDecoder("utf8", { fatal: false }).decode(head);
+      const entry: NonNullable<Finding["followed"]>[number] = {
+        url: link.href,
+        text: link.text,
+        status: res.status,
+        contentType: type.slice(0, 60),
+        bytes: Number(res.headers.get("content-length") ?? 0) || undefined,
+        looksLike: sniff(text),
+      };
+      // An index that leads to another index still counts as progress, so long
+      // as the report says which it was.
+      if (entry.looksLike === "html") entry.dataLinks = dataLinksIn(text, link.href).slice(0, 6);
+      out.push(entry);
+    } catch (err) {
+      out.push({
+        url: link.href,
+        text: link.text,
+        status: "error",
+        contentType: err instanceof Error ? err.message.slice(0, 60) : undefined,
+      });
+    }
+    await new Promise((r) => setTimeout(r, FOLLOW_PAUSE_MS));
+  }
+  return out;
 }
 
 async function main() {
@@ -423,6 +654,11 @@ async function main() {
         `${String(f.bytes).padStart(8)}b  tables:${f.yearTables}  files:${f.dataLinks?.length ?? 0}`,
     );
     for (const l of (f.dataLinks ?? []).slice(0, 4)) log(`         -> ${l}`);
+    for (const x of f.followed ?? []) {
+      log(`         followed ${String(x.status).padEnd(5)} ${String(x.looksLike ?? "").padEnd(7)} ${x.text.slice(0, 44)}`);
+      log(`            ${x.url.slice(0, 120)}`);
+      for (const l of (x.dataLinks ?? []).slice(0, 3)) log(`              -> ${l}`);
+    }
     if (f.embeddedJson) {
       log(
         `         embedded ${f.embeddedJson.kind} (${f.embeddedJson.bytes}b)` +

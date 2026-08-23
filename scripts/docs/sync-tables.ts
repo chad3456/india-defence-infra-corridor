@@ -8,8 +8,19 @@
  *
  * So the numbers are generated and the test is left to catch anything this does
  * not cover. It rewrites only the count column of tables it identifies by their
- * header row, and leaves the prose alone: an earlier attempt matched on row
- * shape and silently rewrote a different table that happened to look the same.
+ * header row: an earlier attempt matched on row shape and silently rewrote a
+ * different table that happened to look the same.
+ *
+ * ── Counted prose ────────────────────────────────────────────────────────
+ *
+ * The document also states counts in sentences — how many series, how many at
+ * each confidence grade, how many on each reporting frequency — and those were
+ * left to be maintained by hand. They drifted every time the pipeline added an
+ * indicator, and the failure landed on whoever next ran the tests rather than
+ * on whoever changed the data. Each one is now patched from the same registry
+ * the test reads, through a narrow pattern that rewrites the digits and nothing
+ * else. Prose that states a number is generated; prose that makes an argument
+ * is not touched.
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -122,8 +133,65 @@ const coveragePoints = patchTable(
   3,
 );
 
+/**
+ * Rewrite a single counted claim in the prose.
+ *
+ * The pattern must capture the digits in group 1 and match once. A pattern that
+ * matches nothing is reported rather than ignored, because a silently skipped
+ * claim is one the test will fail on later with no clue why.
+ */
+function patchClaim(all: string[], label: string, re: RegExp, value: number): boolean {
+  let matched = 0;
+  let rewritten = 0;
+  for (let i = 0; i < all.length; i++) {
+    const line = all[i];
+    if (line === undefined || !re.test(line)) continue;
+    matched++;
+    // Whether the pattern matched and whether the text changed are different
+    // questions. Conflating them made this report "no line matched" for every
+    // claim that was already correct, which is the opposite of the truth and
+    // exactly the kind of misleading output that sends someone hunting a
+    // pattern bug that is not there.
+    const next = line.replace(re, (whole, digits: string) => whole.replace(digits, String(value)));
+    if (next !== line) {
+      all[i] = next;
+      rewritten++;
+    }
+  }
+  if (matched === 0) {
+    process.stdout.write(`  no line matched the ${label} claim — check the pattern\n`);
+  }
+  return rewritten > 0;
+}
+
+const byConfidence = (g: string) => series.filter((s) => s.confidence === g).length;
+const byFrequency = (f: string) => series.filter((s) => s.frequency === f).length;
+
+let claims = 0;
+claims += patchClaim(lines, "series total", /\*\*(\d+) series\*\*/, series.length) ? 1 : 0;
+for (const grade of ["high", "medium", "low"]) {
+  claims += patchClaim(
+    lines,
+    `confidence ${grade}`,
+    new RegExp("`" + grade + "` \\((\\d+)(?: series)?\\)"),
+    byConfidence(grade),
+  )
+    ? 1
+    : 0;
+}
+for (const freq of ["annual", "fiscal-year", "point-in-time"]) {
+  claims += patchClaim(
+    lines,
+    `frequency ${freq}`,
+    new RegExp("`" + freq + "` \\((\\d+)"),
+    byFrequency(freq),
+  )
+    ? 1
+    : 0;
+}
+
 writeFileSync(DOC, lines.join("\n"));
 process.stdout.write(
   `docs/data-sources.mdx — ${sectors} sector row(s), ${groups} group row(s), ` +
-    `${coverageSeries + coveragePoints} coverage cell(s) updated\n`,
+    `${coverageSeries + coveragePoints} coverage cell(s), ${claims} counted claim(s) updated\n`,
 );
