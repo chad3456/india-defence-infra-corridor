@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-08-23T08:21:26.029Z",
+  "probedAt": "2026-08-23T08:27:23.499Z",
   "findings": [
     {
       "id": "amfi-stats",
@@ -42,6 +42,7 @@
         "bytes": 14,
         "topKeys": []
       },
+      "followed": [],
       "score": 166
     },
     {
@@ -82,7 +83,132 @@
           "scriptLoader"
         ]
       },
+      "followed": [],
       "score": 147
+    },
+    {
+      "id": "trai-root",
+      "publisher": "TRAI",
+      "url": "https://www.trai.gov.in/",
+      "feeds": [
+        "mobile-data-price-per-gb",
+        "data-per-subscriber"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 425070,
+      "looksLike": "html",
+      "title": "Home | Telecom Regulatory Authority of India | Government of India",
+      "yearTables": 0,
+      "dataLinks": [],
+      "candidateLinks": [
+        {
+          "href": "https://www.trai.gov.in/sites/default/files/2026-06/QPIR_22062026.pdf",
+          "text": "Download Telecom Report (2.05 MB)"
+        },
+        {
+          "href": "https://www.trai.gov.in/sites/default/files/2024-12/broadcasting-dashboard.pdf",
+          "text": "Download Broadcasting Report (213 KB)"
+        }
+      ],
+      "followed": [
+        {
+          "url": "https://www.trai.gov.in/sites/default/files/2026-06/QPIR_22062026.pdf",
+          "text": "Download Telecom Report (2.05 MB)",
+          "status": 200,
+          "contentType": "application/pdf",
+          "bytes": 4826655,
+          "looksLike": "binary"
+        },
+        {
+          "url": "https://www.trai.gov.in/sites/default/files/2024-12/broadcasting-dashboard.pdf",
+          "text": "Download Broadcasting Report (213 KB)",
+          "status": 200,
+          "contentType": "application/pdf",
+          "bytes": 98195,
+          "looksLike": "binary"
+        }
+      ],
+      "score": 123
+    },
+    {
+      "id": "rbi-bulletin-current",
+      "publisher": "Reserve Bank of India",
+      "url": "https://www.rbi.org.in/Scripts/BS_ViewBulletin.aspx",
+      "feeds": [
+        "upi-transactions",
+        "upi-value",
+        "agri-credit-disbursed"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 321223,
+      "looksLike": "html",
+      "title": "RBI Bulletin | Official Website of Reserve Bank of India",
+      "yearTables": 0,
+      "dataLinks": [
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/1T_2207202683AE9D7361C84521B0865358EDCCA347.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/2T_2207202663462794396844D28093799CA695793E.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/3T_22072026071CCD067FA64FECB796A3420B0EE371.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/4T_22072026C4C5220AE07C478CB32D444CFBE12329.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/4AT_220720264EAFDCC5EB1A4244A41AB073D892E17A.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/5T_22072026AF5389FF205E486A85D3E33B489F3793.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/6T_2207202640ED4D36A4814429978D3E30FDED7A95.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/7T_220720266171BCCA3E84448B88AC1BE746802E67.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/8T_22072026ECC13C6E95C84F0BBC9046254179A1A7.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/9T_22072026AD48F8465C754A32B2330C19B5143288.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/10T_220720268073D7301D204D6AA82997F83895FB57.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/11T_2207202661183C22EA164868B93AC9CACD6C49A2.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/12T_220720261E3E3838DA2A4C4E99598BF5E3AA95E4.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/13T_2207202696A855C744FD467980CD32F560424C2F.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/14T_220720267AEC369CA383472E9CE0CDF45B3ED9BB.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/15T_220720264B6784CC36414DAC82464178F9DF8D31.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/16T_22072026F5AC41CC42924711AC1FD37CE5B6B11A.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/17T_22072026DE197BA31459436E80794F049CEA291F.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/18AT_22072026C47F5F9227B348D6A2E0C5DF205A9355.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Bulletin/DOCs/18BT_22072026FA870626AC7D4D13AB034C42294990CF.XLSX"
+      ],
+      "candidateLinks": [
+        {
+          "href": "https://www.rbi.org.in/Scripts/StateStatisticsFinances.aspx",
+          "text": "State Statistics and Finances"
+        },
+        {
+          "href": "https://www.rbi.org.in/scripts/FS_PDS.aspx",
+          "text": "Public Debt Statistics"
+        },
+        {
+          "href": "https://www.rbi.org.in/scripts/Statistics.aspx",
+          "text": "Data Releases"
+        }
+      ],
+      "followed": [
+        {
+          "url": "https://www.rbi.org.in/Scripts/StateStatisticsFinances.aspx",
+          "text": "State Statistics and Finances",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://www.rbi.org.in/scripts/FS_PDS.aspx",
+          "text": "Public Debt Statistics",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://www.rbi.org.in/scripts/Statistics.aspx",
+          "text": "Data Releases",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        }
+      ],
+      "score": 121
     },
     {
       "id": "econ-survey-appendix",
@@ -231,7 +357,7 @@
       ],
       "expect": "html-table",
       "status": "ok",
-      "bytes": 105105,
+      "bytes": 105099,
       "looksLike": "html",
       "title": "Entity-wise Retail Payments Systems Statistics | Official Website of Reserve Bank of India",
       "yearTables": 0,
@@ -313,7 +439,7 @@
       ],
       "expect": "html-table",
       "status": "ok",
-      "bytes": 101408,
+      "bytes": 101414,
       "looksLike": "html",
       "title": "Bankwise Volumes in ECS/NEFT/RTGS/Mobile Transactions | Official Website of Reserve Bank of India",
       "yearTables": 0,
@@ -393,7 +519,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 83555,
+      "bytes": 83549,
       "looksLike": "html",
       "title": "Data Releases | Official Website of Reserve Bank of India",
       "yearTables": 0,
@@ -478,6 +604,48 @@
           "text": "Top"
         }
       ],
+      "followed": [
+        {
+          "url": "https://www.rbi.org.in/Scripts/StateStatisticsFinances.aspx",
+          "text": "State Statistics and Finances",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://www.rbi.org.in/scripts/FS_PDS.aspx",
+          "text": "Public Debt Statistics",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://www.rbi.org.in/Scripts/ATMView.aspx",
+          "text": "Bank-wise ATM/POS/Card Statistics",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://www.rbi.org.in/Scripts/NEFTView.aspx",
+          "text": "Bank-wise NEFT/RTGS/Mobile Banking/Internet Banking Statistics",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://www.rbi.org.in/Scripts/PPIStatisticsView.aspx",
+          "text": "Entity-wise PPI Statistics",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        }
+      ],
       "score": 102
     },
     {
@@ -489,7 +657,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 225006,
+      "bytes": 225144,
       "looksLike": "html",
       "title": "Dataset - Dataful",
       "yearTables": 0,
@@ -512,7 +680,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 296743,
+      "bytes": 296456,
       "looksLike": "html",
       "title": "Dataset - Dataful",
       "yearTables": 0,
@@ -535,7 +703,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 244603,
+      "bytes": 244254,
       "looksLike": "html",
       "title": "Dataset - Dataful",
       "yearTables": 0,
@@ -582,7 +750,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 235336,
+      "bytes": 235624,
       "looksLike": "html",
       "title": "Dataset - Dataful",
       "yearTables": 0,
@@ -620,6 +788,16 @@
         "bytes": 1453,
         "topKeys": []
       },
+      "followed": [
+        {
+          "url": "https://www.data.gov.in/Suggest_Dataset",
+          "text": "Suggest Dataset",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        }
+      ],
       "score": 46
     },
     {
@@ -632,7 +810,7 @@
       ],
       "expect": "xlsx",
       "status": "ok",
-      "bytes": 42514,
+      "bytes": 46444,
       "looksLike": "html",
       "title": "",
       "yearTables": 0,
@@ -692,25 +870,41 @@
           "text": "Data Releases"
         }
       ],
-      "score": 1
-    },
-    {
-      "id": "rbi-bulletin-current",
-      "publisher": "Reserve Bank of India",
-      "url": "https://www.rbi.org.in/Scripts/BS_ViewBulletin.aspx",
-      "feeds": [
-        "upi-transactions",
-        "upi-value",
-        "agri-credit-disbursed"
+      "followed": [
+        {
+          "url": "https://www.rbi.org.in/Scripts/StateStatisticsFinances.aspx",
+          "text": "State Statistics and Finances",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://www.rbi.org.in/scripts/FS_PDS.aspx",
+          "text": "Public Debt Statistics",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://data.rbi.org.in/#/dbie/reports/Publication/Time-Series%20Publications/Statistical%20Tables%20Relating%20to%20Banks%20in%20India",
+          "text": "Statistical Tables relating to Banks in India: 2024-25",
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8",
+          "bytes": 8117,
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://www.rbi.org.in/scripts/Statistics.aspx",
+          "text": "Data Releases",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        }
       ],
-      "expect": "html",
-      "status": "ok",
-      "bytes": 322789,
-      "looksLike": "unknown",
-      "title": "RBI Bulletin | Official Website of Reserve Bank of India",
-      "yearTables": 0,
-      "dataLinks": [],
-      "candidateLinks": [],
       "score": 1
     },
     {
@@ -728,6 +922,7 @@
       "yearTables": 0,
       "dataLinks": [],
       "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -747,6 +942,7 @@
       "yearTables": 0,
       "dataLinks": [],
       "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -769,6 +965,16 @@
           "text": "The interwar period international trade in arms (IPITA): A new dataset"
         }
       ],
+      "followed": [
+        {
+          "url": "https://doi.org/10.1177/00220027241228189",
+          "text": "The interwar period international trade in arms (IPITA): A new dataset",
+          "status": 403,
+          "contentType": "text/html; charset=UTF-8",
+          "looksLike": "html",
+          "dataLinks": []
+        }
+      ],
       "score": 1
     },
     {
@@ -787,6 +993,7 @@
       "yearTables": 0,
       "dataLinks": [],
       "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -804,6 +1011,7 @@
       "yearTables": 0,
       "dataLinks": [],
       "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -841,6 +1049,7 @@
       "yearTables": 0,
       "dataLinks": [],
       "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -858,6 +1067,7 @@
       "yearTables": 0,
       "dataLinks": [],
       "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -869,7 +1079,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 142521,
+      "bytes": 142522,
       "looksLike": "html",
       "title": "Press Release: Press Information Bureau",
       "yearTables": 0,
@@ -892,6 +1102,7 @@
       "yearTables": 0,
       "dataLinks": [],
       "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -910,6 +1121,7 @@
       "yearTables": 0,
       "dataLinks": [],
       "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -962,6 +1174,7 @@
       "yearTables": 0,
       "dataLinks": [],
       "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -979,6 +1192,7 @@
       "yearTables": 0,
       "dataLinks": [],
       "candidateLinks": [],
+      "followed": [],
       "score": 1
     },
     {
@@ -991,6 +1205,53 @@
       "expect": "html",
       "status": "failed",
       "detail": "HTTP 404"
+    },
+    {
+      "id": "ncrb-publications",
+      "publisher": "National Crime Records Bureau",
+      "url": "https://www.ncrb.gov.in/crime-in-india.html",
+      "feeds": [
+        "pocso-cases",
+        "murder-victims-by-sex",
+        "communal-riots"
+      ],
+      "expect": "html",
+      "status": "failed",
+      "detail": "HTTP 503"
+    },
+    {
+      "id": "ncrb-home",
+      "publisher": "National Crime Records Bureau",
+      "url": "https://www.ncrb.gov.in/",
+      "feeds": [
+        "pocso-cases",
+        "murder-victims-by-sex"
+      ],
+      "expect": "html",
+      "status": "failed",
+      "detail": "HTTP 503"
+    },
+    {
+      "id": "nmhs-survey",
+      "publisher": "NIMHANS / Ministry of Health",
+      "url": "https://nimhans.ac.in/national-mental-health-survey/",
+      "feeds": [
+        "mental-health-prevalence"
+      ],
+      "expect": "html",
+      "status": "failed",
+      "detail": "fetch failed"
+    },
+    {
+      "id": "nfhs-reports",
+      "publisher": "IIPS / Ministry of Health",
+      "url": "https://rchiips.org/nfhs/factsheet_NFHS-5.shtml",
+      "feeds": [
+        "mental-health-prevalence"
+      ],
+      "expect": "html",
+      "status": "failed",
+      "detail": "fetch failed"
     },
     {
       "id": "npci-statistics-index",
@@ -1118,18 +1379,6 @@
       "expect": "html",
       "status": "failed",
       "detail": "HTTP 404"
-    },
-    {
-      "id": "trai-root",
-      "publisher": "TRAI",
-      "url": "https://www.trai.gov.in/",
-      "feeds": [
-        "mobile-data-price-per-gb",
-        "data-per-subscriber"
-      ],
-      "expect": "html",
-      "status": "failed",
-      "detail": "fetch failed"
     }
   ]
 }
