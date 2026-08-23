@@ -325,6 +325,7 @@ export const SECURITY_SERIES: SecuritySeriesSpec[] = [
     filledBy: "satp",
     note: "SATP's Punjab table begins in 2000, roughly a decade after the insurgency it belongs to had ended. The peak — the early and mid-1980s through 1993, with fatalities in the thousands each year — is on SATP's page only as a single 1981-2000 aggregate with no annual rows, so it is outside this series entirely. Read a flat line near zero as the aftermath of a conflict that was over, not as evidence there was never one. Incidents, not attacks: an attack in which nobody died does not appear, so this tracks lethality rather than the volume of violence.",
   },
+
 ];
 
 /**
@@ -604,6 +605,88 @@ export const DEFENCE_PENDING: SecuritySeriesSpec[] = [
       ruledOut: [
         "sipri.org/databases/armstransfers links no downloadable dataset",
         "the shares already on this site come from SIPRI's published fact sheets, which give totals rather than a supplier breakdown by year",
+      ],
+    },
+  },
+  /* ---------------- Crime, from NCRB ---------------- */
+  //
+  // Declared and empty, with four documented attempts behind each. NCRB's own
+  // host returned HTTP 503 to www.ncrb.gov.in, the bare host, the Crime in
+  // India landing page and the tables page, on two separate probe runs. A 503
+  // repeated across four paths is a host refusing, not a hiccup.
+  //
+  // These stay declared because the questions are worth asking and because a
+  // reader deserves to know the number exists and is not reachable, rather than
+  // finding a gallery that looks complete.
+  {
+    id: "pocso-cases",
+    title: "POCSO cases registered",
+    definition:
+      "Cases registered under the Protection of Children from Sexual Offences Act, by state and year.",
+    category: "security",
+    unit: "cases",
+    unitShort: "cases",
+    higherIsBetter: null,
+    frequency: "annual",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "Registered cases, not incidents. A rise can mean more offending, better reporting, or both, and the two are not separable from this series alone — which is why the direction of good is left unset rather than assumed to be downward.",
+    blockedBy: {
+      needs: "NCRB's Crime in India volume for each year, which carries POCSO registrations by state in its own table.",
+      ruledOut: [
+        "www.ncrb.gov.in returned HTTP 503 on two separate probe runs",
+        "the bare host ncrb.gov.in, the Crime in India landing page and the tables page all returned 503 as well",
+        "no mirror publishes the state tables in a machine-readable form",
+      ],
+    },
+  },
+  {
+    id: "murder-victims-by-sex",
+    title: "Murder victims by sex",
+    definition: "Victims of murder recorded by NCRB, split by sex, by state and year.",
+    category: "security",
+    unit: "victims",
+    unitShort: "victims",
+    higherIsBetter: false,
+    frequency: "annual",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "Victims, not cases: one case can have several victims, and the two counts are published separately and quoted interchangeably.",
+    blockedBy: {
+      needs: "NCRB's Crime in India victim tables, which carry murder victims by sex and state.",
+      ruledOut: [
+        "every NCRB path probed returned HTTP 503",
+        "the World Bank carries an intentional-homicide rate for India but no sex split and no state detail",
+      ],
+    },
+  },
+
+  /* ---------------- Mental health ---------------- */
+  {
+    id: "mental-health-prevalence",
+    title: "Mental illness prevalence by age group",
+    definition:
+      "Share of the population living with a diagnosable mental illness, by age band.",
+    category: "quality-of-life",
+    unit: "% of age group",
+    unitShort: "%",
+    higherIsBetter: false,
+    frequency: "point-in-time",
+    provenance: "official",
+    confidence: "low",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "If this fills, it will be a single year rather than a series, and it should be drawn as an age profile rather than a trend. The National Mental Health Survey of 2015-16 is the only national study with an age breakdown, and a decade-old point estimate repeated across years would be an invented trend.",
+    blockedBy: {
+      needs: "The National Mental Health Survey age-band prevalence tables, or a successor survey.",
+      ruledOut: [
+        "nimhans.ac.in failed at DNS on two probe runs",
+        "the NFHS factsheet host answered 404 and the IIPS page 404 as well",
+        "WHO's observatory carries suicide mortality, which is a different claim from prevalence of illness and is declared separately rather than relabelled",
       ],
     },
   },
