@@ -31,7 +31,7 @@ concurrency:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
@@ -45,7 +45,13 @@ jobs:
       - name: Probe
         run: npm run sources:probe
 
+      # Runs even when the probe step was cancelled or failed. The probe writes
+      # its report after every candidate, so a run killed by the timeout still
+      # has findings on disk — and the first run with link-following enabled
+      # was cancelled at fourteen minutes with its commit step skipped, which
+      # threw all of them away.
       - name: Commit the probe report
+        if: always()
         run: |
           git config user.name  "bharat-tracker-bot"
           git config user.email "actions@github.com"

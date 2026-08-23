@@ -630,16 +630,29 @@ async function probe(c: Candidate): Promise<Finding> {
   // index is exactly the case that breaks: it links a single 2020 spreadsheet
   // and nineteen named statistics pages, and the pages are the valuable half.
   // One file is not evidence that the rest of the page is uninteresting.
-  if (c.follow && looksLike === "html") {
+  if (c.follow && looksLike === "html" && !budgetSpent()) {
     finding.followed = await followLinks(finding.candidateLinks ?? []);
   }
   return { ...finding, score: scoreOf(finding) };
 }
 
 /** How many links one index page is allowed to cost. */
-const FOLLOW_BUDGET = 8;
+const FOLLOW_BUDGET = 5;
 /** Spacing between followed requests — these are somebody's public servers. */
-const FOLLOW_PAUSE_MS = 1_200;
+const FOLLOW_PAUSE_MS = 900;
+/**
+ * A wall-clock ceiling on the whole run, checked before each request.
+ *
+ * The first run with following enabled was killed by the workflow timeout at
+ * fourteen minutes and its commit step was skipped, so everything it had
+ * learned was discarded. That is the same all-or-nothing failure this project
+ * has now hit three times: a job that does most of the work and publishes none
+ * of it. Following is now bounded, the report is written as findings arrive,
+ * and a run cut short says so in the report rather than vanishing.
+ */
+const RUN_BUDGET_MS = 9 * 60_000;
+const startedAt = Date.now();
+const budgetSpent = () => Date.now() - startedAt > RUN_BUDGET_MS;
 
 /**
  * Fetch a handful of an index page's links and report what each returned.
@@ -654,6 +667,10 @@ async function followLinks(
 ): Promise<NonNullable<Finding["followed"]>> {
   const out: NonNullable<Finding["followed"]> = [];
   for (const link of links.slice(0, FOLLOW_BUDGET)) {
+    if (budgetSpent()) {
+      out.push({ url: link.href, text: link.text, status: "error", contentType: "run budget spent" });
+      break;
+    }
     try {
       const res = await fetch(link.href, {
         headers: { "user-agent": "BharatTracker/0.1 data-pipeline", accept: "*/*" },
@@ -697,9 +714,29 @@ async function main() {
   log(`Probing ${CANDIDATES.length} candidate data sources — publishes nothing\n`);
 
   const findings: Finding[] = [];
+  await mkdir(join(ROOT, "data/live"), { recursive: true });
+  /** Write what is known so far. Cheap, and it survives a killed run. */
+  const save = async (cutShort: boolean) =>
+    writeFile(
+      join(ROOT, "data/live/source-probe.json"),
+      JSON.stringify(
+        {
+          probedAt: new Date().toISOString(),
+          ...(cutShort
+            ? { cutShort: true, note: "The run budget ran out; later candidates were not probed." }
+            : {}),
+          findings: [...findings].sort((a, b) => (b.score ?? 0) - (a.score ?? 0)),
+        },
+        null,
+        2,
+      ) + "\n",
+      "utf8",
+    );
+
   for (const c of CANDIDATES) {
     const f = await probe(c);
     findings.push(f);
+    await save(false);
     if (f.status === "failed") {
       log(`  FAIL ${f.id.padEnd(26)} ${f.detail}`);
       continue;
@@ -723,12 +760,12 @@ async function main() {
   }
 
   const ranked = [...findings].sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
-  await mkdir(join(ROOT, "data/live"), { recursive: true });
-  await writeFile(
-    join(ROOT, "data/live/source-probe.json"),
-    JSON.stringify({ probedAt: new Date().toISOString(), findings: ranked }, null, 2) + "\n",
-    "utf8",
-  );
+  const cutShort = findings.length < CANDIDATES.length;
+  await save(cutShort);
+  if (cutShort) {
+    log("");
+    log(`RUN CUT SHORT — ${findings.length}/${CANDIDATES.length} candidates probed before the budget ran out.`);
+  }
 
   const usable = ranked.filter((f) => (f.score ?? 0) > 30);
   log("");
