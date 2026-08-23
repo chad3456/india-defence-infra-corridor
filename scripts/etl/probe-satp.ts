@@ -39,10 +39,18 @@ const DIRECT = [
   `${BASE}/datasheet-terrorist-attack/fatalities/india-jammukashmir`,
   `${BASE}/datasheet-terrorist-attack/fatalities/india`,
   `${BASE}/datasheet-terrorist-attack/fatalities/india-northeast`,
+  // Punjab, for the Khalistan series. SATP tracks the insurgency's later years
+  // as a Punjab datasheet; whether its coverage reaches back to the 1980s peak
+  // is exactly the question a probe should answer rather than a connector
+  // assume, because a Punjab series that silently starts in 2000 would show a
+  // resolved conflict as an empty one.
+  `${BASE}/datasheet-terrorist-attack/fatalities/india-punjab`,
+  `${BASE}/datasheet-terrorist-attack/fatalities/india-khalistan`,
+  `${BASE}/datasheet-terrorist-attack/fatalities/india-sikhextremism`,
 ];
 
 /** How many pages to open in total. Politeness, and a bounded run. */
-const MAX_PAGES = 24;
+const MAX_PAGES = 30;
 
 interface TableShape {
   /** Index of the table within the page. */

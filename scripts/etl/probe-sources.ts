@@ -68,6 +68,47 @@ const CANDIDATES: Candidate[] = [
     expect: "html",
   },
 
+  /* --- Crime and mental health --- */
+  //
+  // NCRB's Crime in India is the only national source for offence counts by
+  // state, and it is published as PDF volumes with hundreds of tables. Whether
+  // any part of it is machine-readable is the question; if the answer is no,
+  // that is recorded and the series say so rather than being quietly dropped.
+  {
+    id: "ncrb-publications",
+    feeds: ["pocso-cases", "murder-victims-by-sex", "communal-riots"],
+    publisher: "National Crime Records Bureau",
+    url: "https://www.ncrb.gov.in/crime-in-india.html",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "ncrb-home",
+    feeds: ["pocso-cases", "murder-victims-by-sex"],
+    publisher: "National Crime Records Bureau",
+    url: "https://www.ncrb.gov.in/",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "nmhs-survey",
+    feeds: ["mental-health-prevalence"],
+    publisher: "NIMHANS / Ministry of Health",
+    // The National Mental Health Survey is the only national prevalence study.
+    // It is a decade old, which is itself the finding if nothing newer exists.
+    url: "https://nimhans.ac.in/national-mental-health-survey/",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "nfhs-reports",
+    feeds: ["mental-health-prevalence"],
+    publisher: "IIPS / Ministry of Health",
+    url: "https://rchiips.org/nfhs/factsheet_NFHS-5.shtml",
+    expect: "html",
+    follow: true,
+  },
+
   /* --- Confirmed one hop in by the previous probe run --- */
   //
   // Each of these was found by following an index page, not by guessing a path.

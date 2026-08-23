@@ -111,9 +111,11 @@ export const INDIA_SERIES: SecuritySeriesSpec[] = [
     filledBy: "curated",
     note: "NPCI publishes this monthly and it is one of the few Indian series with no definitional ambiguity at all.",
     blockedBy: {
-      needs: "Monthly UPI volumes. RBI's entity-wise retail payments page is the most promising public route and is under probe.",
+      needs:
+        "A UPI series running back to 2016. RBI's entity-wise retail payments page does publish real spreadsheets — the probe found twelve — but they are one month each and only the last twelve are listed, so they give a year of monthly data rather than the decade this series is declared over.",
       ruledOut: [
         "NPCI's own statistics pages answer 403 to any non-browser request",
+        "RBI's monthly files carry a random identifier in the filename, so older months cannot be reached by constructing a URL — only the twelve the index page lists",
       ],
     },
   },
@@ -131,9 +133,10 @@ export const INDIA_SERIES: SecuritySeriesSpec[] = [
     sourceIds: [],
     filledBy: "curated",
     blockedBy: {
-      needs: "The value side of the same table as UPI volumes.",
+      needs: "The value side of the same table as UPI volumes, and with the same twelve-month limit.",
       ruledOut: [
         "NPCI's statistics pages answer 403",
+        "RBI's entity-wise files cover the last twelve months only",
       ],
     },
   },
