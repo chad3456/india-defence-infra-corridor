@@ -342,6 +342,34 @@ section("AGENTS.md");
   eq("every file it routes to exists", gone.join(", "), "");
 }
 
+
+section("Pipeline workflow");
+{
+  // Every series file run.ts writes has to be in the workflow's `git add`
+  // line, or the connector runs, succeeds, and commits nothing. who.json was
+  // missing and stayed empty through two green pipeline runs; seed.sql had the
+  // same problem before it. A green pipeline that silently discards its own
+  // output is the worst kind of failure, because nothing looks wrong.
+  const runSrc = readFileSync(join(ROOT, "scripts/etl/run.ts"), "utf8");
+  const workflow = readFileSync(join(ROOT, ".github/workflows/pipeline.yml"), "utf8");
+  // Every data file run.ts touches, not just the ones it obviously writes.
+  //
+  // Separating reads from writes by pattern was tried and dropped: a file that
+  // is read for a merge and then written — security.json is exactly that —
+  // looks like a read and falls out of the check, which is the one failure a
+  // guard must not have. Staging a file the pipeline only reads costs nothing,
+  // since an unchanged file stages as nothing at all.
+  const all = [...runSrc.matchAll(/join\(ROOT,\s*"(data\/[^"]+\.json)"\)/g)].map((m) => m[1] ?? "");
+  const unique = [...new Set(all)].filter(Boolean);
+  check("run.ts names the files it writes", unique.length > 0, `${unique.length} found`);
+  for (const file of unique) {
+    // data/live/ is added as a directory, so anything under it is covered.
+    const covered =
+      workflow.includes(file) || (file.startsWith("data/live/") && workflow.includes("data/live/"));
+    check(`the pipeline workflow commits ${file}`, covered);
+  }
+}
+
 process.stdout.write(
   failed === 0
     ? `\nAll doc tests passed (${passed}).\n`

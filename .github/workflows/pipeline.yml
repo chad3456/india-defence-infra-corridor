@@ -69,7 +69,12 @@ jobs:
         run: |
           git config user.name  "bharat-tracker-bot"
           git config user.email "actions@github.com"
-          git add data/series/wdi.json data/series/survey.json data/series/security.json data/security/lwe-states.json data/series/security-curated.json data/live/ data/events.json supabase/seed.sql 2>/dev/null || true
+          # Every file the ETL writes must be listed here. A connector whose
+          # output is missing from this line runs, succeeds, and silently
+          # commits nothing — which is how who.json stayed empty through two
+          # green pipeline runs, and how seed.sql drifted before it.
+          # scripts/test-docs.ts now checks this list against run.ts.
+          git add data/series/wdi.json data/series/survey.json data/series/security.json data/series/who.json data/sources.json data/security/lwe-states.json data/series/security-curated.json data/live/ data/events.json supabase/seed.sql 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No data changes."
             exit 0
