@@ -140,20 +140,37 @@ async function main() {
   for (const e of survey.errors) messages.push(`econ-survey: ${e}`);
 
   if (!DRY && survey.series.length > 0) {
-    const problems = survey.series.flatMap((s) => validateSeries(s).map((p) => `${s.id}: ${p}`));
-    if (problems.length > 0) {
-      connectorsFailed++;
-      messages.push(...problems.map((p) => `econ-survey validation: ${p}`));
-      log(`  VALIDATION FAILED — ${problems.length} problem(s), not writing survey.json`);
-      for (const p of problems.slice(0, 8)) log(`    - ${p}`);
-    } else {
+    // Validate per series, not as a batch.
+    //
+    // This was a batch gate, and it cost four working charts for months: one
+    // sheet produced duplicate periods, the whole write was abandoned, and
+    // startups, tourist visits, foodgrains and horticulture — all clean — never
+    // reached the site. A bad series is a reason not to publish that series.
+    // It is not a reason to withhold the ones that passed, and the same
+    // all-or-nothing mistake was already fixed once on the connector loop.
+    const good: typeof survey.series = [];
+    for (const s of survey.series) {
+      const problems = validateSeries(s);
+      if (problems.length === 0) {
+        good.push(s);
+        continue;
+      }
+      messages.push(...problems.map((p) => `econ-survey validation: ${s.id}: ${p}`));
+      log(`  REJECTED ${s.id} — ${problems.length} problem(s)`);
+      for (const p of problems.slice(0, 4)) log(`    - ${p}`);
+    }
+    if (good.length < survey.series.length) connectorsFailed++;
+
+    if (good.length > 0) {
       await writeFile(
         join(ROOT, "data/series/survey.json"),
-        JSON.stringify(survey.series, null, 2) + "\n",
+        JSON.stringify(good, null, 2) + "\n",
         "utf8",
       );
-      seriesUpdated += survey.series.length;
-      log(`  wrote data/series/survey.json — ${survey.series.length} series`);
+      seriesUpdated += good.length;
+      log(`  wrote data/series/survey.json — ${good.length} of ${survey.series.length} series`);
+    } else {
+      log(`  nothing passed validation; survey.json left as it was`);
     }
   }
 
