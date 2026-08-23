@@ -38,7 +38,8 @@
     "geo:build": "tsx scripts/geo/build-gazetteer.ts",
     "test:epistemic": "tsx scripts/test-epistemic.ts",
     "test:sheets": "tsx scripts/test-sheets.ts",
-    "wdi:probe": "tsx scripts/etl/probe-wdi.ts"
+    "wdi:probe": "tsx scripts/etl/probe-wdi.ts",
+    "wdi:promote": "tsx scripts/docs/promote-wdi.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",

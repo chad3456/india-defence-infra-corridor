@@ -12,7 +12,7 @@
  *   - Output is written only after validation passes, so a malformed upstream
  *     response cannot land in the repo.
  */
-import { writeFile, mkdir, readFile } from "node:fs/promises";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { join } from "node:path";
 import { runWorldBank } from "./connectors/worldbank";
 import { runSatp } from "./connectors/satp";
@@ -55,20 +55,45 @@ async function main() {
   }
 
   if (!DRY && wb.series.length > 0) {
-    const problems = wb.series.flatMap((s) => validateSeries(s).map((p) => `${s.id}: ${p}`));
-    if (problems.length > 0) {
-      connectorsFailed++;
-      messages.push(...problems.map((p) => `worldbank validation: ${p}`));
-      log(`  VALIDATION FAILED — ${problems.length} problem(s), not writing wdi.json`);
-      for (const p of problems.slice(0, 10)) log(`    - ${p}`);
-    } else {
-      await writeFile(
-        join(ROOT, "data/series/wdi.json"),
-        JSON.stringify(wb.series, null, 2) + "\n",
-        "utf8",
+    // Validate per series, and merge rather than replace.
+    //
+    // Two failures avoided here, both of which this project has already paid
+    // for once. A batch gate would let one bad series discard the other six
+    // hundred — the same mistake fixed on the connector loop and again on the
+    // Economic Survey write. And a wholesale rewrite would delete every series
+    // the run did not reach: with six hundred indicators a run can be cut short
+    // by a timeout or a rate limit, and "fetched 300 of 644" must not mean
+    // "delete 344".
+    const good: typeof wb.series = [];
+    for (const s of wb.series) {
+      const problems = validateSeries(s);
+      if (problems.length === 0) {
+        good.push(s);
+        continue;
+      }
+      messages.push(...problems.map((p) => `worldbank validation: ${s.id}: ${p}`));
+      log(`  REJECTED ${s.id} — ${problems[0]}`);
+    }
+    if (good.length < wb.series.length) connectorsFailed++;
+
+    if (good.length > 0) {
+      const path = join(ROOT, "data/series/wdi.json");
+      let prior: Array<{ id: string }> = [];
+      try {
+        prior = JSON.parse(await readFile(path, "utf8")) as Array<{ id: string }>;
+      } catch {
+        prior = [];
+      }
+      const fresh = new Set(good.map((s) => s.id));
+      const kept = prior.filter((s) => !fresh.has(s.id));
+      const merged = [...good, ...kept];
+      await writeFile(path, JSON.stringify(merged, null, 2) + "\n", "utf8");
+      seriesUpdated += good.length;
+      log(
+        `  wrote data/series/wdi.json — ${good.length} refreshed, ${kept.length} carried over, ${merged.length} total`,
       );
-      seriesUpdated += wb.series.length;
-      log(`  wrote data/series/wdi.json — ${wb.series.length} series`);
+    } else {
+      log("  nothing passed validation; wdi.json left as it was");
     }
   } else if (!DRY) {
     messages.push("worldbank: no series returned; keeping previous data");

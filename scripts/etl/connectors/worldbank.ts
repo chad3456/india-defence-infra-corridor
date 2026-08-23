@@ -30,6 +30,8 @@ export interface ConnectorResult {
   series: Series[];
   errors: string[];
   fetched: number;
+  /** True when the run budget stopped the loop before the catalogue ended. */
+  stoppedEarly?: boolean;
 }
 
 export async function runWorldBank(
@@ -41,7 +43,24 @@ export async function runWorldBank(
   const endYear = new Date().getFullYear();
   let fetched = 0;
 
+  // A wall-clock ceiling, because the catalogue grew from a hundred indicators
+  // to six hundred and forty and this connector makes one request each. A run
+  // killed mid-loop by the workflow timeout takes the whole job's later steps
+  // with it; a run that stops on its own hands back what it fetched, and the
+  // write path carries the rest forward from what is already stored.
+  const startedAt = Date.now();
+  const BUDGET_MS = 13 * 60_000;
+  let stoppedEarly = false;
+
   for (const ind of WDI_INDICATORS) {
+    if (!opts.dryRun && Date.now() - startedAt > BUDGET_MS) {
+      stoppedEarly = true;
+      errors.push(
+        `stopped after ${fetched} of ${WDI_INDICATORS.length} indicators — run budget spent; the rest keep their stored values`,
+      );
+      opts.onProgress?.(`  BUDGET SPENT — ${fetched}/${WDI_INDICATORS.length} fetched this run`);
+      break;
+    }
     const url =
       `${BASE}/country/${COUNTRIES}/indicator/${ind.code}` +
       `?format=json&per_page=20000&date=${WDI_START_YEAR}:${endYear}`;
@@ -161,5 +180,5 @@ export async function runWorldBank(
     opts.onProgress?.(`  ${ind.code.padEnd(22)} ${points.length} points, ${peers.length} peers`);
   }
 
-  return { series: out, errors, fetched };
+  return { series: out, errors, fetched, stoppedEarly };
 }

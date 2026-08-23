@@ -27,6 +27,7 @@ import { join } from "node:path";
 import { ALL_SOURCES, DISCOVERY_SOURCES } from "../../lib/sources";
 import { getAllSources } from "../../lib/data";
 import { getAllSeries } from "../../lib/data";
+import { WDI_INDICATORS } from "../../lib/wdi-catalogue";
 import { namesAPublisher, publisherOf } from "../etl/lib/publisher";
 import type { Category, EventCategory } from "../../lib/types";
 
@@ -174,6 +175,7 @@ const byTier = (t: 1 | 2 | 3) => sources.filter((x) => x.tier === t).length;
 let claims = 0;
 claims += patchClaim(lines, "series total", /\*\*(\d+) series\*\*/, series.length) ? 1 : 0;
 claims += patchClaim(lines, "source register size", /\*\*(\d+) sources — /, sources.length) ? 1 : 0;
+claims += patchClaim(lines, "WDI indicators", /\*\*(\d+) indicators\*\*/, WDI_INDICATORS.length) ? 1 : 0;
 for (const tier of [1, 2, 3] as const) {
   claims += patchClaim(lines, `tier ${tier} sources`, new RegExp(`(\\d+) tier ${tier}`), byTier(tier))
     ? 1
