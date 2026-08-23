@@ -71,11 +71,45 @@ export interface WhoResult {
   fetched: number;
 }
 
-async function indiaRows(code: string): Promise<Observation[] | null> {
-  const url = `${BASE}/${encodeURIComponent(code)}?$filter=SpatialDim%20eq%20%27IND%27`;
-  const res = await getJson<{ value: Observation[] }>(url);
-  if (!res.ok || !res.data?.value) return null;
-  return res.data.value.filter((r) => r.NumericValue !== null && r.NumericValue !== undefined);
+/**
+ * Fetch one indicator's Indian rows, or say why not.
+ *
+ * The first version returned null on any failure and discarded the error, so a
+ * live run reported "no rows returned" and nothing else — while the probe had
+ * fetched the identical URL successfully minutes earlier. Throwing away the one
+ * piece of information needed to fix it is a worse bug than the failure it was
+ * hiding, so the reason is carried out now.
+ *
+ * The unfiltered fallback exists because the `$filter` parameter is the only
+ * thing separating the two call paths, and a CDN that mishandles it would
+ * produce exactly this: a probe that works and a connector that does not. If
+ * the filtered form fails, the whole indicator is fetched and India selected
+ * here, which is slower and always correct.
+ */
+async function indiaRows(
+  code: string,
+  log: (m: string) => void,
+): Promise<{ rows: Observation[] } | { error: string }> {
+  const filtered = `${BASE}/${encodeURIComponent(code)}?$filter=SpatialDim%20eq%20%27IND%27`;
+  const first = await getJson<{ value: Observation[] }>(filtered, { cacheMs: 0, timeoutMs: 60_000 });
+
+  let value: Observation[] | null = first.ok && first.data?.value ? first.data.value : null;
+  if (!value) {
+    log(`  ${code}: filtered request failed (${first.error ?? "no value array"}) — retrying unfiltered`);
+    const all = await getJson<{ value: Observation[] }>(`${BASE}/${encodeURIComponent(code)}`, {
+      cacheMs: 0,
+      timeoutMs: 120_000,
+    });
+    if (!all.ok || !all.data?.value) {
+      return { error: `filtered: ${first.error ?? "no value array"}; unfiltered: ${all.error ?? "no value array"}` };
+    }
+    value = all.data.value.filter((r) => r.SpatialDim === "IND");
+    log(`  ${code}: unfiltered fallback returned ${value.length} Indian row(s)`);
+  }
+
+  const rows = value.filter((r) => r.NumericValue !== null && r.NumericValue !== undefined);
+  if (rows.length === 0) return { error: "answered, but carried no Indian observations" };
+  return { rows };
 }
 
 function build(specId: string, points: DataPoint[], extraNotes: string[]): Series | null {
@@ -113,14 +147,17 @@ export async function runWho(
     return { series: [], errors: [], fetched: 0 };
   }
 
-  const crude = await indiaRows("SDGSUICIDE");
-  if (!crude) {
-    errors.push("SDGSUICIDE: no rows returned; keeping previous data");
-    return { series, errors, fetched: 0 };
+  const crudeRes = await indiaRows("SDGSUICIDE", log);
+  if ("error" in crudeRes) {
+    // Reported and stepped over, not returned on. The age-standardised series
+    // comes from a different indicator and there is no reason one failing
+    // should take the other with it.
+    errors.push(`SDGSUICIDE: ${crudeRes.error}`);
   }
+  const crude = "error" in crudeRes ? [] : crudeRes.rows;
 
   /* ---- The trend: all ages, one series per sex ---- */
-  for (const [key, dim] of Object.entries(SEX)) {
+  for (const [key, dim] of crude.length ? Object.entries(SEX) : []) {
     const rows = crude.filter((r) => r.Dim1 === dim && r.Dim2 === "AGEGROUP_YEARSALL");
     const points: DataPoint[] = rows
       .filter((r) => r.TimeDim)
@@ -170,11 +207,11 @@ export async function runWho(
   }
 
   /* ---- Age-standardised, for comparison with the crude trend ---- */
-  const std = await indiaRows("MH_12");
-  if (!std) {
-    errors.push("MH_12: no rows returned");
+  const stdRes = await indiaRows("MH_12", log);
+  if ("error" in stdRes) {
+    errors.push(`MH_12: ${stdRes.error}`);
   } else {
-    const rows = std.filter((r) => r.Dim1 === SEX.both);
+    const rows = stdRes.rows.filter((r) => r.Dim1 === SEX.both);
     const points: DataPoint[] = rows
       .filter((r) => r.TimeDim)
       .map((r) => ({ period: String(r.TimeDim), value: round(r.NumericValue ?? 0), sourceId: SOURCE_ID }))
