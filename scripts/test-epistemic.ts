@@ -235,7 +235,10 @@ console.log("Every empty chart says what is missing");
   // document that would fill it.
   const declared = [...ALL_SECURITY_SPECS, ...INDIA_SERIES];
   const empty = declared.filter((spec) => !getSeries(spec.id));
-  const silent = empty.filter((spec) => !spec.blockedBy && spec.filledBy !== "satp");
+  // A series a connector fills needs no blocker: "fills on the next pipeline
+  // run" is the answer, and it is true of every connector rather than of SATP
+  // specifically. The exemption was written when SATP was the only one.
+  const silent = empty.filter((spec) => !spec.blockedBy && spec.filledBy === "curated");
   check(
     silent.length === 0,
     `all ${empty.length} empty series name their blocker`,

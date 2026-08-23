@@ -151,7 +151,7 @@ export default function DefenceTrackerPage() {
             {awaiting.map((s) => (
               <li key={s.id} className="text-[11px] text-[color:var(--text-muted)]">
                 <span className="text-[color:var(--text-secondary)]">{s.title}</span>
-                {s.filledBy === "satp" ? " — next pipeline run" : " — needs a document read by a person"}
+                {s.filledBy === "curated" ? " — needs a document read by a person" : " — next pipeline run"}
               </li>
             ))}
           </ul>

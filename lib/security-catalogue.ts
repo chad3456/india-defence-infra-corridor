@@ -29,7 +29,7 @@ export interface SecuritySeriesSpec {
   sourceIds: string[];
   note?: string;
   /** Which connector fills it, so a permanently empty chart can be traced. */
-  filledBy: "satp" | "curated";
+  filledBy: "satp" | "who" | "curated";
   /**
    * Why this series is still empty, and what has already been ruled out.
    *
@@ -326,6 +326,120 @@ export const SECURITY_SERIES: SecuritySeriesSpec[] = [
     note: "SATP's Punjab table begins in 2000, roughly a decade after the insurgency it belongs to had ended. The peak — the early and mid-1980s through 1993, with fatalities in the thousands each year — is on SATP's page only as a single 1981-2000 aggregate with no annual rows, so it is outside this series entirely. Read a flat line near zero as the aftermath of a conflict that was over, not as evidence there was never one. Incidents, not attacks: an attack in which nobody died does not appear, so this tracks lethality rather than the volume of violence.",
   },
 
+
+  /* ---------------- Suicide mortality, from WHO ---------------- */
+  {
+    id: "suicide-rate",
+    title: "Suicide rate",
+    definition:
+      "Crude suicide deaths per 100,000 population, all ages and both sexes.",
+    category: "quality-of-life",
+    unit: "deaths per 100,000 population",
+    unitShort: "per 100k",
+    higherIsBetter: false,
+    frequency: "annual",
+    provenance: "multilateral",
+    confidence: "low",
+    sourceIds: ["who-gho-suicide"],
+    filledBy: "who",
+    note: "A modelled estimate, not a count. WHO models country rates where civil registration is incomplete, and India's is; NCRB publishes India's own recorded suicide figures and they differ substantially from these. This site carries the WHO series because it is comparable across countries and across years, and grades it low confidence because the two sources disagree and neither can settle the other. It is a measure of deaths, not of how common mental illness is \u2014 a different question, declared separately and still unfilled.",
+  },
+  {
+    id: "suicide-rate-male",
+    title: "Suicide rate \u2014 men",
+    definition:
+      "Crude suicide deaths per 100,000 male population, all ages.",
+    category: "quality-of-life",
+    unit: "deaths per 100,000 population",
+    unitShort: "per 100k",
+    higherIsBetter: false,
+    frequency: "annual",
+    provenance: "multilateral",
+    confidence: "low",
+    sourceIds: ["who-gho-suicide"],
+    filledBy: "who",
+    note: "A modelled estimate, not a count. WHO models country rates where civil registration is incomplete, and India's is; NCRB publishes India's own recorded suicide figures and they differ substantially from these. This site carries the WHO series because it is comparable across countries and across years, and grades it low confidence because the two sources disagree and neither can settle the other. It is a measure of deaths, not of how common mental illness is \u2014 a different question, declared separately and still unfilled.",
+  },
+  {
+    id: "suicide-rate-female",
+    title: "Suicide rate \u2014 women",
+    definition:
+      "Crude suicide deaths per 100,000 female population, all ages.",
+    category: "quality-of-life",
+    unit: "deaths per 100,000 population",
+    unitShort: "per 100k",
+    higherIsBetter: false,
+    frequency: "annual",
+    provenance: "multilateral",
+    confidence: "low",
+    sourceIds: ["who-gho-suicide"],
+    filledBy: "who",
+    note: "A modelled estimate, not a count. WHO models country rates where civil registration is incomplete, and India's is; NCRB publishes India's own recorded suicide figures and they differ substantially from these. This site carries the WHO series because it is comparable across countries and across years, and grades it low confidence because the two sources disagree and neither can settle the other. It is a measure of deaths, not of how common mental illness is \u2014 a different question, declared separately and still unfilled.",
+  },
+  {
+    id: "suicide-rate-age-standardised",
+    title: "Suicide rate, age-standardised",
+    definition:
+      "Suicide deaths per 100,000, standardised to a reference age structure, both sexes.",
+    category: "quality-of-life",
+    unit: "deaths per 100,000 population",
+    unitShort: "per 100k",
+    higherIsBetter: false,
+    frequency: "annual",
+    provenance: "multilateral",
+    confidence: "low",
+    sourceIds: ["who-gho-suicide"],
+    filledBy: "who",
+    note: "A modelled estimate, not a count. WHO models country rates where civil registration is incomplete, and India's is; NCRB publishes India's own recorded suicide figures and they differ substantially from these. This site carries the WHO series because it is comparable across countries and across years, and grades it low confidence because the two sources disagree and neither can settle the other. It is a measure of deaths, not of how common mental illness is \u2014 a different question, declared separately and still unfilled. Compare it against the crude rate: where they diverge, the gap is India's changing age structure rather than a change in risk.",
+  },
+  {
+    id: "suicide-rate-by-age",
+    title: "Suicide rate by age group",
+    definition:
+      "Crude suicide deaths per 100,000 within each age band, both sexes, in WHO's most recent breakdown year.",
+    category: "quality-of-life",
+    unit: "deaths per 100,000 population",
+    unitShort: "per 100k",
+    higherIsBetter: false,
+    frequency: "point-in-time",
+    provenance: "multilateral",
+    confidence: "low",
+    sourceIds: ["who-gho-suicide"],
+    filledBy: "who",
+    note: "A modelled estimate, not a count. WHO models country rates where civil registration is incomplete, and India's is; NCRB publishes India's own recorded suicide figures and they differ substantially from these. This site carries the WHO series because it is comparable across countries and across years, and grades it low confidence because the two sources disagree and neither can settle the other. It is a measure of deaths, not of how common mental illness is \u2014 a different question, declared separately and still unfilled. WHO publishes the age breakdown for a single year, so this is a profile rather than a trend and must not be read as one.",
+  },
+  {
+    id: "suicide-rate-by-age-male",
+    title: "Suicide rate by age group \u2014 men",
+    definition:
+      "Crude suicide deaths per 100,000 men within each age band, in WHO's most recent breakdown year.",
+    category: "quality-of-life",
+    unit: "deaths per 100,000 population",
+    unitShort: "per 100k",
+    higherIsBetter: false,
+    frequency: "point-in-time",
+    provenance: "multilateral",
+    confidence: "low",
+    sourceIds: ["who-gho-suicide"],
+    filledBy: "who",
+    note: "A modelled estimate, not a count. WHO models country rates where civil registration is incomplete, and India's is; NCRB publishes India's own recorded suicide figures and they differ substantially from these. This site carries the WHO series because it is comparable across countries and across years, and grades it low confidence because the two sources disagree and neither can settle the other. It is a measure of deaths, not of how common mental illness is \u2014 a different question, declared separately and still unfilled. A single year, not a trend.",
+  },
+  {
+    id: "suicide-rate-by-age-female",
+    title: "Suicide rate by age group \u2014 women",
+    definition:
+      "Crude suicide deaths per 100,000 women within each age band, in WHO's most recent breakdown year.",
+    category: "quality-of-life",
+    unit: "deaths per 100,000 population",
+    unitShort: "per 100k",
+    higherIsBetter: false,
+    frequency: "point-in-time",
+    provenance: "multilateral",
+    confidence: "low",
+    sourceIds: ["who-gho-suicide"],
+    filledBy: "who",
+    note: "A modelled estimate, not a count. WHO models country rates where civil registration is incomplete, and India's is; NCRB publishes India's own recorded suicide figures and they differ substantially from these. This site carries the WHO series because it is comparable across countries and across years, and grades it low confidence because the two sources disagree and neither can settle the other. It is a measure of deaths, not of how common mental illness is \u2014 a different question, declared separately and still unfilled. A single year, not a trend.",
+  },
 ];
 
 /**

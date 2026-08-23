@@ -19,6 +19,7 @@ import { runSatp } from "./connectors/satp";
 import { runSatpStates } from "./connectors/satp-states";
 import { runCuratedSecurity } from "./connectors/curated-security";
 import { runEconSurvey } from "./connectors/econ-survey";
+import { runWho } from "./connectors/who";
 import { runIngest } from "./connectors/ingest";
 import { runX } from "./connectors/x";
 import { mergeEvents, readStoredEvents } from "./lib/merge";
@@ -196,6 +197,43 @@ async function main() {
       log(`  wrote data/series/survey.json — ${good.length} of ${survey.series.length} series`);
     } else {
       log(`  nothing passed validation; survey.json left as it was`);
+    }
+  }
+
+  /* ---------------- WHO suicide mortality ---------------- */
+  log("");
+  log("WHO Global Health Observatory — suicide mortality");
+  connectorsRun++;
+  const who = await runWho({ dryRun: DRY, onProgress: log });
+  for (const e of who.errors) messages.push(`who: ${e}`);
+
+  if (!DRY && who.series.length > 0) {
+    // Per series, and merged — the same two rules the World Bank write follows,
+    // for the same two reasons.
+    const good: typeof who.series = [];
+    for (const s of who.series) {
+      const problems = validateSeries(s);
+      if (problems.length === 0) {
+        good.push(s);
+        continue;
+      }
+      messages.push(...problems.map((p) => `who validation: ${s.id}: ${p}`));
+      log(`  REJECTED ${s.id} — ${problems[0]}`);
+    }
+    if (good.length < who.series.length) connectorsFailed++;
+    if (good.length > 0) {
+      const path = join(ROOT, "data/series/who.json");
+      let prior: Array<{ id: string }> = [];
+      try {
+        prior = JSON.parse(await readFile(path, "utf8")) as Array<{ id: string }>;
+      } catch {
+        prior = [];
+      }
+      const fresh = new Set(good.map((s) => s.id));
+      const merged = [...good, ...prior.filter((s) => !fresh.has(s.id))];
+      await writeFile(path, JSON.stringify(merged, null, 2) + "\n", "utf8");
+      seriesUpdated += good.length;
+      log(`  wrote data/series/who.json — ${good.length} series`);
     }
   }
 
