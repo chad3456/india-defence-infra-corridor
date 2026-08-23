@@ -188,13 +188,29 @@ async function main() {
     if (good.length < survey.series.length) connectorsFailed++;
 
     if (good.length > 0) {
-      await writeFile(
-        join(ROOT, "data/series/survey.json"),
-        JSON.stringify(good, null, 2) + "\n",
-        "utf8",
-      );
+      // Merge, do not replace.
+      //
+      // One workbook timing out must not delete the series that came from the
+      // others. tabchart9 timed out on a live run and took mobile-data-price
+      // off the site with it — a series that had been published, verified and
+      // linked, removed by a transient network failure on an unrelated file.
+      // The same rule the World Bank and WHO writes follow, for the same
+      // reason.
+      const path = join(ROOT, "data/series/survey.json");
+      let prior: Array<{ id: string }> = [];
+      try {
+        prior = JSON.parse(await readFile(path, "utf8")) as Array<{ id: string }>;
+      } catch {
+        prior = [];
+      }
+      const fresh = new Set(good.map((s) => s.id));
+      const kept = prior.filter((s) => !fresh.has(s.id));
+      const merged = [...good, ...kept];
+      await writeFile(path, JSON.stringify(merged, null, 2) + "\n", "utf8");
       seriesUpdated += good.length;
-      log(`  wrote data/series/survey.json — ${good.length} of ${survey.series.length} series`);
+      log(
+        `  wrote data/series/survey.json — ${good.length} refreshed, ${kept.length} carried over, ${merged.length} total`,
+      );
     } else {
       log(`  nothing passed validation; survey.json left as it was`);
     }

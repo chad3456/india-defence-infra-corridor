@@ -358,7 +358,7 @@ export const SECURITY_SERIES: SecuritySeriesSpec[] = [
     confidence: "low",
     sourceIds: ["who-gho-suicide"],
     filledBy: "who",
-    note: "A modelled estimate, not a count. WHO models country rates where civil registration is incomplete, and India's is; NCRB publishes India's own recorded suicide figures and they differ substantially from these. This site carries the WHO series because it is comparable across countries and across years, and grades it low confidence because the two sources disagree and neither can settle the other. It is a measure of deaths, not of how common mental illness is \u2014 a different question, declared separately and still unfilled.",
+    note: "A modelled estimate, not a count. WHO models country rates where civil registration is incomplete, and India's is; NCRB publishes India's own recorded suicide figures and they differ substantially from these. This site carries the WHO series because it is comparable across countries and across years, and grades it low confidence because the two sources disagree and neither can settle the other. It is a measure of deaths, not of how common mental illness is \u2014 a different question, declared separately and still unfilled. The gap between men and women is far narrower in India than in most countries, where male rates typically run at two to three times female rates. That narrowness is one of the more consistent findings about Indian suicide and is worth reading the two series against each other for.",
   },
   {
     id: "suicide-rate-female",
@@ -438,7 +438,7 @@ export const SECURITY_SERIES: SecuritySeriesSpec[] = [
     confidence: "low",
     sourceIds: ["who-gho-suicide"],
     filledBy: "who",
-    note: "A modelled estimate, not a count. WHO models country rates where civil registration is incomplete, and India's is; NCRB publishes India's own recorded suicide figures and they differ substantially from these. This site carries the WHO series because it is comparable across countries and across years, and grades it low confidence because the two sources disagree and neither can settle the other. It is a measure of deaths, not of how common mental illness is \u2014 a different question, declared separately and still unfilled. A single year, not a trend.",
+    note: "A modelled estimate, not a count. WHO models country rates where civil registration is incomplete, and India's is; NCRB publishes India's own recorded suicide figures and they differ substantially from these. This site carries the WHO series because it is comparable across countries and across years, and grades it low confidence because the two sources disagree and neither can settle the other. It is a measure of deaths, not of how common mental illness is \u2014 a different question, declared separately and still unfilled. A single year, not a trend. In WHO's published breakdown the youngest band is the one place where the female rate exceeds the male rate, and by a wide margin. India is among a small number of countries where that is true, and it is invisible in any chart that reports both sexes together.",
   },
 ];
 

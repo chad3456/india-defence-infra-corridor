@@ -423,5 +423,38 @@
       "Read from the Economic Survey workbook tabchart6, sheet \"Chart VI.4\". These are the tables behind the Survey's charts, so the series is only as long as the chart needed."
     ],
     "lastVerified": "2026-08-23"
+  },
+  {
+    "id": "mobile-data-price-per-gb",
+    "title": "Mobile data price per GB",
+    "definition": "Average retail price of one gigabyte of mobile data.",
+    "category": "quality-of-life",
+    "unit": "₹ per GB (nominal)",
+    "unitShort": "₹/GB",
+    "frequency": "annual",
+    "provenance": "official",
+    "confidence": "medium",
+    "higherIsBetter": false,
+    "sourceIds": [
+      "econ-survey-tabchart"
+    ],
+    "points": [
+      {
+        "period": "2014",
+        "value": 268.97,
+        "sourceId": "econ-survey-tabchart"
+      },
+      {
+        "period": "2025",
+        "value": 8.27,
+        "sourceId": "econ-survey-tabchart"
+      }
+    ],
+    "notes": [
+      "Nominal rupees, so part of the fall since 2016 is inflation rather than price competition. TRAI's figure is an average realised rate across bundles rather than a tariff, and headline comparisons of India as 'cheapest in the world' usually cite a different basket.",
+      "The Survey's table carries 2014 and 2025 only, so this is a two-point comparison rather than a path — the years in between are not published here and are not guessed at. The 2025 figure is as of September 2025.",
+      "Read from the Economic Survey workbook tabchart9, sheet \"Chart IX.21\". These are the tables behind the Survey's charts, so the series is only as long as the chart needed."
+    ],
+    "lastVerified": "2026-08-23"
   }
 ]

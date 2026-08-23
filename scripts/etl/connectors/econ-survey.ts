@@ -218,7 +218,10 @@ export async function runEconSurvey(
     try {
       const res = await fetch(url, {
         headers: { "user-agent": "BharatTracker/0.1 data-pipeline", accept: "*/*" },
-        signal: AbortSignal.timeout(45_000),
+        // These workbooks run to hundreds of kilobytes and tabchart9 has timed
+        // out at forty-five seconds on a live run. A slow download is not a
+        // reason to drop a source.
+        signal: AbortSignal.timeout(120_000),
       });
       if (!res.ok) {
         errors.push(`tabchart${n}: HTTP ${res.status}`);
