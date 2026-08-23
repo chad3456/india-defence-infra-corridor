@@ -1,5 +1,5 @@
 import type { Series, Transform } from "./types";
-import { definedPoints, periodYear, sortedByPeriod } from "./data";
+import { definedPoints, periodYear, sortedByPeriod, isTemporal } from "./data";
 
 export interface Datum {
   period: string;
@@ -117,19 +117,31 @@ export function applyTransform(series: Series, transform: Transform): Datum[] {
 /** Whether a transform produces something meaningful for this series. */
 export function transformIsValid(series: Series, transform: Transform): boolean {
   const n = definedPoints(series).length;
+  // Time transforms need a time axis, and this did not check for one.
+  //
+  // A categorical series — suicide rate by age band, exports by destination,
+  // launches by vehicle — has periods that are labels, not dates. Year-on-year
+  // change between "10–19" and "20–29" is not a change over time; indexing an
+  // age profile to "first year = 100" indexes it to whichever band happens to
+  // sort first. Both rendered happily and meant nothing, which is worse than
+  // failing.
+  //
+  // Share and level are unaffected: a share of total across categories is a
+  // legitimate reading, and arguably the more natural one.
+  const overTime = isTemporal(series);
   switch (transform) {
     case "level":
       return n >= 1;
     case "yoy":
-      return applyTransform(series, "yoy").length >= 2;
+      return overTime && applyTransform(series, "yoy").length >= 2;
     case "delta":
-      return n >= 3;
+      return overTime && n >= 3;
     case "index-2001":
-      return n >= 3 && (definedPoints(series)[0]?.value ?? 0) !== 0;
+      return overTime && n >= 3 && (definedPoints(series)[0]?.value ?? 0) !== 0;
     case "share":
       return n >= 2 && definedPoints(series).every((p) => (p.value ?? 0) >= 0);
     case "cagr":
-      return applyTransform(series, "cagr").length >= 2;
+      return overTime && applyTransform(series, "cagr").length >= 2;
     case "per-capita":
       return false;
     default:
