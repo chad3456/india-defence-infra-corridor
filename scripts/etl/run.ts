@@ -20,6 +20,7 @@ import { runSatpStates } from "./connectors/satp-states";
 import { runCuratedSecurity } from "./connectors/curated-security";
 import { runEconSurvey } from "./connectors/econ-survey";
 import { runWho } from "./connectors/who";
+import { runTrai } from "./connectors/trai";
 import { runIngest } from "./connectors/ingest";
 import { runX } from "./connectors/x";
 import { mergeEvents, readStoredEvents } from "./lib/merge";
@@ -250,6 +251,41 @@ async function main() {
       await writeFile(path, JSON.stringify(merged, null, 2) + "\n", "utf8");
       seriesUpdated += good.length;
       log(`  wrote data/series/who.json — ${good.length} series`);
+    }
+  }
+
+  /* ---------------- TRAI connectivity by service area ---------------- */
+  log("");
+  log("TRAI — connectivity by service area");
+  connectorsRun++;
+  const trai = await runTrai({ dryRun: DRY, onProgress: log });
+  for (const e of trai.errors) messages.push(`trai: ${e}`);
+
+  if (!DRY && trai.series.length > 0) {
+    const good: typeof trai.series = [];
+    for (const s of trai.series) {
+      const problems = validateSeries(s);
+      if (problems.length === 0) {
+        good.push(s);
+        continue;
+      }
+      messages.push(...problems.map((p) => `trai validation: ${s.id}: ${p}`));
+      log(`  REJECTED ${s.id} — ${problems[0]}`);
+    }
+    if (good.length < trai.series.length) connectorsFailed++;
+    if (good.length > 0) {
+      const path = join(ROOT, "data/series/trai.json");
+      let prior: Array<{ id: string }> = [];
+      try {
+        prior = JSON.parse(await readFile(path, "utf8")) as Array<{ id: string }>;
+      } catch {
+        prior = [];
+      }
+      const fresh = new Set(good.map((s) => s.id));
+      const merged = [...good, ...prior.filter((s) => !fresh.has(s.id))];
+      await writeFile(path, JSON.stringify(merged, null, 2) + "\n", "utf8");
+      seriesUpdated += good.length;
+      log(`  wrote data/series/trai.json — ${good.length} series`);
     }
   }
 

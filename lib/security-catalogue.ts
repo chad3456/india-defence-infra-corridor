@@ -29,7 +29,7 @@ export interface SecuritySeriesSpec {
   sourceIds: string[];
   note?: string;
   /** Which connector fills it, so a permanently empty chart can be traced. */
-  filledBy: "satp" | "who" | "curated";
+  filledBy: "satp" | "who" | "trai" | "curated";
   /**
    * Why this series is still empty, and what has already been ruled out.
    *
@@ -439,6 +439,72 @@ export const SECURITY_SERIES: SecuritySeriesSpec[] = [
     sourceIds: ["who-gho-suicide"],
     filledBy: "who",
     note: "A modelled estimate, not a count. WHO models country rates where civil registration is incomplete, and India's is; NCRB publishes India's own recorded suicide figures and they differ substantially from these. This site carries the WHO series because it is comparable across countries and across years, and grades it low confidence because the two sources disagree and neither can settle the other. It is a measure of deaths, not of how common mental illness is \u2014 a different question, declared separately and still unfilled. A single year, not a trend. In WHO's published breakdown the youngest band is the one place where the female rate exceeds the male rate, and by a wide margin. India is among a small number of countries where that is true, and it is invisible in any chart that reports both sexes together.",
+  },
+
+  /* ---------------- Connectivity by service area, from TRAI ---------------- */
+  {
+    id: "teledensity-by-area",
+    title: "Tele-density by service area",
+    definition:
+      "Telephone connections per 100 people, by TRAI service area.",
+    category: "infrastructure",
+    unit: "connections per 100 people",
+    unitShort: "per 100",
+    higherIsBetter: true,
+    frequency: "point-in-time",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: ["trai-qpir"],
+    filledBy: "trai",
+    note: "Service areas are not states. Some cover two states, some split one, and Delhi, Mumbai and Kolkata are their own areas \u2014 so this is labelled by service area and is deliberately not drawn on the state map, which would assert a correspondence that does not exist. One TRAI report covers one quarter, so this is a snapshot rather than a series over time. Tele-density counts connections, not people, so it exceeds 100 per cent wherever people hold more than one SIM \u2014 which in urban areas is most of them.",
+  },
+  {
+    id: "teledensity-rural-by-area",
+    title: "Rural tele-density by service area",
+    definition:
+      "Telephone connections per 100 rural people, by TRAI service area.",
+    category: "infrastructure",
+    unit: "connections per 100 people",
+    unitShort: "per 100",
+    higherIsBetter: true,
+    frequency: "point-in-time",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: ["trai-qpir"],
+    filledBy: "trai",
+    note: "Service areas are not states. Some cover two states, some split one, and Delhi, Mumbai and Kolkata are their own areas \u2014 so this is labelled by service area and is deliberately not drawn on the state map, which would assert a correspondence that does not exist. One TRAI report covers one quarter, so this is a snapshot rather than a series over time. The half of the gap that matters: rural tele-density runs far below urban in every service area, and the national figure hides the distance between them.",
+  },
+  {
+    id: "teledensity-urban-by-area",
+    title: "Urban tele-density by service area",
+    definition:
+      "Telephone connections per 100 urban people, by TRAI service area.",
+    category: "infrastructure",
+    unit: "connections per 100 people",
+    unitShort: "per 100",
+    higherIsBetter: true,
+    frequency: "point-in-time",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: ["trai-qpir"],
+    filledBy: "trai",
+    note: "Service areas are not states. Some cover two states, some split one, and Delhi, Mumbai and Kolkata are their own areas \u2014 so this is labelled by service area and is deliberately not drawn on the state map, which would assert a correspondence that does not exist. One TRAI report covers one quarter, so this is a snapshot rather than a series over time. Above 100 everywhere, and above 190 in some areas. Read as SIMs per hundred residents, not as people connected.",
+  },
+  {
+    id: "subscribers-by-service-area",
+    title: "Telephone subscribers by service area",
+    definition:
+      "Wireless and wireline subscribers, by TRAI service area.",
+    category: "infrastructure",
+    unit: "million subscribers",
+    unitShort: "m subs",
+    higherIsBetter: null,
+    frequency: "point-in-time",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: ["trai-qpir"],
+    filledBy: "trai",
+    note: "Service areas are not states. Some cover two states, some split one, and Delhi, Mumbai and Kolkata are their own areas \u2014 so this is labelled by service area and is deliberately not drawn on the state map, which would assert a correspondence that does not exist. One TRAI report covers one quarter, so this is a snapshot rather than a series over time. Connections rather than people, and undirected on purpose: more SIMs in a service area is not straightforwardly better.",
   },
 ];
 

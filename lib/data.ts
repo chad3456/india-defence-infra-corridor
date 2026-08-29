@@ -8,6 +8,7 @@ import securityRaw from "@/data/series/security.json";
 import securityCuratedRaw from "@/data/series/security-curated.json";
 import surveyRaw from "@/data/series/survey.json";
 import whoRaw from "@/data/series/who.json";
+import traiRaw from "@/data/series/trai.json";
 import sourcesRaw from "@/data/sources.json";
 
 const ALL: Series[] = [
@@ -20,6 +21,7 @@ const ALL: Series[] = [
   ...(securityCuratedRaw as Series[]),
   ...(surveyRaw as Series[]),
   ...(whoRaw as Series[]),
+  ...(traiRaw as Series[]),
 ];
 
 const SERIES_BY_ID = new Map(ALL.map((s) => [s.id, s]));
