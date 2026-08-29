@@ -68,6 +68,104 @@ const CANDIDATES: Candidate[] = [
     expect: "html",
   },
 
+  /* --- State-level penetration: connectivity, power, gas, housing --- */
+  //
+  // A different problem from anything probed so far. Everything above is a
+  // national annual figure; these are asked for by state and by year, and that
+  // combination is rare in Indian statistics. Household amenities are surveyed
+  // every five years, not annually, and some of what was asked for — air
+  // conditioner ownership, households owning more than one home — is not
+  // collected as an annual series by anyone. The point of this batch is to find
+  // out which of them exists in a readable form and to record the answer for
+  // the ones that do not.
+  {
+    id: "trai-qpir-latest",
+    feeds: ["broadband-subscribers", "internet-penetration", "wireless-by-state"],
+    publisher: "TRAI",
+    // Confirmed at 200 and two megabytes of PDF by an earlier run. The
+    // performance indicator report carries subscribers by service area, which
+    // is the closest thing to a state breakdown Indian telecom publishes.
+    url: "https://www.trai.gov.in/sites/default/files/2026-06/QPIR_22062026.pdf",
+    expect: "html",
+  },
+  {
+    id: "trai-releases",
+    feeds: ["broadband-subscribers", "internet-penetration"],
+    publisher: "TRAI",
+    url: "https://www.trai.gov.in/release-publication/reports",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "pmay-urban",
+    feeds: ["pmay-houses-sanctioned", "pmay-houses-completed"],
+    publisher: "Ministry of Housing and Urban Affairs",
+    url: "https://pmay-urban.gov.in/",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "pmay-gramin",
+    feeds: ["pmay-houses-sanctioned", "pmay-houses-completed"],
+    publisher: "Ministry of Rural Development",
+    url: "https://pmayg.nic.in/netiay/home.aspx",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "cea-general-review",
+    feeds: ["electricity-connections", "per-capita-power"],
+    publisher: "Central Electricity Authority",
+    url: "https://cea.nic.in/general-review/",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "cea-home",
+    feeds: ["electricity-connections"],
+    publisher: "Central Electricity Authority",
+    url: "https://cea.nic.in/",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "ppac-snapshot",
+    feeds: ["png-connections", "gas-pipeline-km"],
+    publisher: "Petroleum Planning and Analysis Cell",
+    url: "https://ppac.gov.in/natural-gas",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "pngrb-cgd",
+    feeds: ["png-connections", "gas-pipeline-km"],
+    publisher: "PNGRB",
+    url: "https://www.pngrb.gov.in/",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "nfhs-nrhm",
+    feeds: ["household-electricity-state", "household-internet-state", "household-clean-fuel-state"],
+    publisher: "IIPS / Ministry of Health",
+    // Third attempt at NFHS on a third host. The factsheets carry household
+    // amenities by state, which is what a penetration map needs; two earlier
+    // hosts failed at DNS and 404.
+    url: "https://main.mohfw.gov.in/",
+    expect: "html",
+    follow: true,
+  },
+  {
+    id: "mospi-nss",
+    feeds: ["household-assets-state"],
+    publisher: "MoSPI",
+    // The consumption expenditure survey is where air-conditioner ownership and
+    // second-home ownership would live if they live anywhere.
+    url: "https://mospi.gov.in/web/mospi/download-tables-data",
+    expect: "html",
+    follow: true,
+  },
+
   /* --- Crime and mental health --- */
   //
   // NCRB's Crime in India is the only national source for offence counts by
