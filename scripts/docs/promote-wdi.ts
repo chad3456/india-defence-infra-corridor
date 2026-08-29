@@ -69,11 +69,21 @@ interface Candidate {
 
 /** Whole families this site does not carry, and why. */
 const SKIP_PREFIX: Array<[string, string]> = [
-  ["DT.", "external debt and creditor-by-creditor service; a balance-sheet detail, not a development measure"],
+  // DT. and GFDD.OI were both excluded on the first pass, and that was wrong.
+  // They were judged balance-sheet detail below the resolution this site
+  // reports at — but external debt stocks, debt service against exports,
+  // short-term debt against reserves and bank non-performing loans are exactly
+  // what "financial development" means, and they are the series a reader asks
+  // for by name. Only the genuinely creditor-by-creditor lines are skipped now.
+  ["DT.DOD.MWBG", "IBRD and IDA loan balances specifically; a creditor line rather than a debt measure"],
+  ["DT.DOD.DIMF", "use of IMF credit; a creditor line"],
+  ["DT.NFL.", "net financial flows by individual creditor"],
+  ["DT.INT.", "interest paid by individual creditor"],
+  ["DT.AMT.", "principal repaid by individual creditor"],
+  ["DT.DIS.", "disbursements by individual creditor"],
   ["DC.", "donor disbursement flows; measures what is received, not how the country is doing"],
   ["BM.", "granular balance-of-payments debits, mostly the mirror of an export line already carried"],
   ["IQ.CPA", "CPIA scores are assessed for IDA-eligible borrowers; India's entries are stale or absent in substance"],
-  ["GFDD.OI", "financial-institution ownership internals, below the resolution this site reports at"],
   ["PA.", "PPP conversion factors, an input to other series rather than a series"],
 ];
 
@@ -118,14 +128,20 @@ const CATEGORY_BY_PREFIX: Array<[string, Category]> = [
   ["NE.", "economy"],
   ["GC.", "economy"],
   ["GF.", "economy"],
-  ["FM.", "economy"],
-  ["FB.", "economy"],
-  ["FD.", "economy"],
-  ["FI.", "economy"],
-  ["FR.", "economy"],
-  ["FS.", "economy"],
+  // Banking, debt and financial depth get their own category. They were all
+  // "economy" before, which put a hundred and seventy series behind one chip
+  // and made the ones a reader actually looks for — public debt, bad loans,
+  // credit to the private sector — impossible to find.
+  ["FM.", "finance"],
+  ["FB.", "finance"],
+  ["FD.", "finance"],
+  ["FI.", "finance"],
+  ["FR.", "finance"],
+  ["FS.", "finance"],
   ["FP.", "economy"],
-  ["GFDD.", "economy"],
+  ["GFDD.", "finance"],
+  ["DT.", "finance"],
+  ["GC.DOD", "finance"],
 ];
 
 /**
@@ -155,6 +171,9 @@ const BETTER_UP: RegExp[] = [
 ];
 
 const BETTER_DOWN: RegExp[] = [
+  /\bnon-?performing loans\b/i,
+  /\bdebt service\b/i,
+  /\bshort-?term debt\b/i,
   /\b(mortality|death rate|deaths)\b/i,
   /\b(poverty|poverty headcount)\b/i,
   /\b(undernourish|stunting|wasting|underweight|anemia|anaemia)\b/i,

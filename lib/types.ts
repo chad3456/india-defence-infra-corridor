@@ -19,7 +19,8 @@ export type Category =
   | "energy"
   | "security"
   | "ai-science"
-  | "education";
+  | "education"
+  | "finance";
 
 export const CATEGORIES: Category[] = [
   "defence",
@@ -35,6 +36,7 @@ export const CATEGORIES: Category[] = [
   "security",
   "ai-science",
   "education",
+  "finance",
 ];
 
 export const CATEGORY_LABELS: Record<Category, string> = {
@@ -51,6 +53,7 @@ export const CATEGORY_LABELS: Record<Category, string> = {
   security: "Internal security",
   "ai-science": "AI & science",
   education: "Education",
+  finance: "Finance & debt",
 };
 
 /**
