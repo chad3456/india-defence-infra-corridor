@@ -39,12 +39,6 @@ const DOCUMENTS = [
     url: "https://www.trai.gov.in/sites/default/files/2026-06/QPIR_22062026.pdf",
   },
   {
-    id: "ppac-flash",
-    publisher: "PPAC",
-    feeds: ["png-connections", "gas-consumption"],
-    url: "https://ppac.gov.in/download.php?file=menu/1785597488_Web_Upload_Flash_Report_July_26.pdf",
-  },
-  {
     id: "ppac-industry-consumption",
     publisher: "PPAC",
     feeds: ["gas-consumption", "petroleum-consumption-state"],
@@ -63,7 +57,7 @@ const STATES =
   /(Andhra|Arunachal|Assam|Bihar|Chhattisgarh|Goa|Gujarat|Haryana|Himachal|Jharkhand|Karnataka|Kerala|Madhya Pradesh|Maharashtra|Manipur|Meghalaya|Mizoram|Nagaland|Odisha|Punjab|Rajasthan|Sikkim|Tamil Nadu|Telangana|Tripura|Uttar Pradesh|Uttarakhand|West Bengal|Delhi|Jammu|Ladakh|Puducherry|Chandigarh)/i;
 
 /** Pages to read. These reports run to hundreds of pages; the tables are early. */
-const MAX_PAGES = 60;
+const MAX_PAGES = 90;
 
 interface PageReport {
   page: number;
@@ -76,6 +70,18 @@ interface PageReport {
   widestRow: number;
   /** A few rows as they came out, so a person can see the real shape. */
   sample: string[][];
+  /**
+   * The page's opening rows, in document order.
+   *
+   * The first version sorted the sample by width, which surfaced the widest
+   * data row and discarded the page title and column headers with it. That
+   * left tables whose columns could only be guessed at — five numbers beside a
+   * state name, and no way to know which was subscribers and which was a
+   * percentage change. Guessing a column's meaning from its position is
+   * precisely how this project once published incident counts as civilian
+   * deaths, so the header now comes back with the data.
+   */
+  opening: string[][];
 }
 
 interface Report {
@@ -121,6 +127,8 @@ async function probe(doc: (typeof DOCUMENTS)[number]): Promise<Report> {
           .sort((a, b) => b.length - a.length)
           .slice(0, 4)
           .map((r) => r.slice(0, 10)),
+        // Untouched order, so the title and header sit where they actually are.
+        opening: t.rows.slice(0, 12).map((r) => r.slice(0, 12)),
       };
     });
 
@@ -162,9 +170,12 @@ async function main() {
       `  ok   ${r.id.padEnd(26)} ${String(r.bytes).padStart(9)}b  ${r.pagesRead} page(s) read  ` +
         `${r.statePages?.length ?? 0} with a state-indexed table`,
     );
-    for (const p of (r.pages ?? []).filter((p) => p.stateRows >= 3).slice(0, 4)) {
+    for (const p of (r.pages ?? []).filter((p) => p.stateRows >= 3).slice(0, 6)) {
       log(`         page ${p.page}: ${p.rows} rows, ${p.stateRows} name a state, widest ${p.widestRow} cells`);
-      for (const row of p.sample.slice(0, 3)) log(`            | ${row.join(" | ").slice(0, 150)}`);
+      log(`            -- opening rows, in order --`);
+      for (const row of p.opening.slice(0, 6)) log(`            | ${row.join(" | ").slice(0, 160)}`);
+      log(`            -- widest rows --`);
+      for (const row of p.sample.slice(0, 2)) log(`            | ${row.join(" | ").slice(0, 160)}`);
     }
   }
 
