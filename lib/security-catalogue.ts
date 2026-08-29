@@ -804,6 +804,245 @@ export const DEFENCE_PENDING: SecuritySeriesSpec[] = [
       ],
     },
   },
+
+  /* ---------------- State-level penetration ---------------- */
+  //
+  // Asked for by state and by year. That combination is rare in Indian
+  // statistics: the registers that update yearly are national, and the
+  // surveys that go to state level run every five years or so. Each entry
+  // below records which of those two walls it hit.
+  {
+    id: "household-electricity-state",
+    title: "Households with an electricity connection, by state",
+    definition:
+      "Share of households with an electricity connection, by state.",
+    category: "infrastructure",
+    unit: "% of households",
+    unitShort: "%",
+    higherIsBetter: true,
+    frequency: "point-in-time",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "A survey measure, not a register. NFHS asks households whether they have a connection; the Saubhagya scheme separately counted connections issued, and the two are different quantities \u2014 a connection issued is not a household reporting electricity.",
+    blockedBy: {
+      needs: "NFHS state factsheets, or the Central Electricity Authority's household connection tables.",
+      ruledOut: [
+        "rchiips.org and nimhans hosts failed at DNS; iipsindia.ac.in answered 404; mohfw.gov.in failed on a third attempt",
+        "cea.nic.in answers but links no data file from its home or general-review pages",
+        "even if found, NFHS runs roughly every five years, so this can be a state map at two or three points in time and not a yearly series",
+      ],
+    },
+  },
+  {
+    id: "household-internet-state",
+    title: "Households with internet access, by state",
+    definition:
+      "Share of households with internet access, by state.",
+    category: "infrastructure",
+    unit: "% of households",
+    unitShort: "%",
+    higherIsBetter: true,
+    frequency: "point-in-time",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "Household access, which is a different question from individual use and from a subscription count. TRAI counts subscriptions, and one household can hold several while another holds none.",
+    blockedBy: {
+      needs: "NFHS state factsheets, which carry household internet access.",
+      ruledOut: [
+        "the same three NFHS hosts that failed for the electricity series",
+        "TRAI's subscriber data is by service area and counts subscriptions, not households",
+      ],
+    },
+  },
+  {
+    id: "household-clean-fuel-state",
+    title: "Households using clean cooking fuel, by state",
+    definition:
+      "Share of households using clean fuel for cooking, by state.",
+    category: "quality-of-life",
+    unit: "% of households",
+    unitShort: "%",
+    higherIsBetter: true,
+    frequency: "point-in-time",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "The measure the Ujjwala scheme is judged on, and the one where a connection count and a usage rate diverge most: a cylinder issued is not a household cooking on gas.",
+    blockedBy: {
+      needs: "NFHS state factsheets, or PPAC's LPG coverage tables.",
+      ruledOut: [
+        "NFHS hosts unreachable on three attempts",
+        "PPAC answers and publishes monthly PDFs, but whether they carry a state breakdown is still being read",
+      ],
+    },
+  },
+  {
+    id: "broadband-subscribers",
+    title: "Broadband subscribers",
+    definition:
+      "Broadband subscriptions on fixed and wireless networks.",
+    category: "infrastructure",
+    unit: "subscriptions",
+    unitShort: "subs",
+    higherIsBetter: true,
+    frequency: "annual",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "Subscriptions, not people and not households. India's figure is dominated by mobile broadband, so reading it as home connections overstates fixed-line coverage by an order of magnitude.",
+    blockedBy: {
+      needs: "TRAI's quarterly performance indicator report, which is reachable and is being read for structure.",
+      ruledOut: [
+        "TRAI's reports index answered 404; only the report file itself is reachable",
+        "the report is a PDF, so whether its tables can be rebuilt from text position is the open question",
+      ],
+    },
+  },
+  {
+    id: "wireless-by-service-area",
+    title: "Wireless subscribers by service area",
+    definition:
+      "Wireless telephone subscribers by TRAI service area, the nearest published equivalent of a state breakdown.",
+    category: "infrastructure",
+    unit: "subscribers",
+    unitShort: "subs",
+    higherIsBetter: null,
+    frequency: "annual",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "TRAI's service areas are not states. Some cover two states, some split one, and Delhi and Mumbai are their own areas \u2014 so this can be shown on a map only with that mismatch stated, never silently mapped onto state boundaries.",
+    blockedBy: {
+      needs: "The subscriber-by-service-area table in TRAI's performance indicator report.",
+      ruledOut: [
+        "TRAI's reports index answered 404",
+        "the service-area to state mapping is many-to-many and would have to be published alongside any map built from it",
+      ],
+    },
+  },
+  {
+    id: "png-connections",
+    title: "Piped natural gas connections",
+    definition:
+      "Domestic piped natural gas connections in service.",
+    category: "energy",
+    unit: "connections",
+    unitShort: "conns",
+    higherIsBetter: true,
+    frequency: "annual",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "Connections in service, which is not the same as households cooking on piped gas \u2014 a connection can be inactive.",
+    blockedBy: {
+      needs: "PNGRB's city gas distribution statistics, or PPAC's natural gas tables.",
+      ruledOut: [
+        "pngrb.gov.in answers but its statistics page returns 404",
+        "PPAC answers and its monthly reports download as PDFs; whether they carry connection counts is being read",
+      ],
+    },
+  },
+  {
+    id: "gas-pipeline-km",
+    title: "Natural gas pipeline network",
+    definition:
+      "Length of the natural gas transmission pipeline network.",
+    category: "energy",
+    unit: "kilometres",
+    unitShort: "km",
+    higherIsBetter: true,
+    frequency: "annual",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "Authorised length and commissioned length are published separately and quoted interchangeably; this is commissioned.",
+    blockedBy: {
+      needs: "PNGRB's pipeline authorisation and commissioning tables.",
+      ruledOut: [
+        "pngrb.gov.in statistics page returns 404",
+        "no PPAC report found so far carries the network length as a series",
+      ],
+    },
+  },
+  {
+    id: "pmay-houses-completed",
+    title: "Houses completed under PMAY",
+    definition:
+      "Houses completed under the Pradhan Mantri Awas Yojana, urban and rural.",
+    category: "real-estate",
+    unit: "houses",
+    unitShort: "houses",
+    higherIsBetter: true,
+    frequency: "fiscal-year",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "Sanctioned, grounded and completed are three different numbers published together and often quoted as one. This is completed, which is the smallest of the three and the only one that means a family has a house.",
+    blockedBy: {
+      needs: "The PMAY urban and rural dashboards, which publish state-wise sanctioned, grounded and completed counts.",
+      ruledOut: [
+        "pmay-urban.gov.in and pmayg.nic.in both failed at DNS from the probe environment",
+        "no ministry release carries the series in a machine-readable form",
+      ],
+    },
+  },
+  {
+    id: "household-ac-ownership",
+    title: "Households owning an air conditioner",
+    definition:
+      "Share of households owning an air conditioner or air cooler.",
+    category: "quality-of-life",
+    unit: "% of households",
+    unitShort: "%",
+    higherIsBetter: null,
+    frequency: "point-in-time",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "Nobody keeps this as a register. It is a question on a consumption survey, asked every few years, and the answer is a snapshot rather than a series. It is also the metric where a national average hides the most: ownership is concentrated in a handful of states and in urban households within them.",
+    blockedBy: {
+      needs: "MoSPI's Household Consumption Expenditure Survey asset tables, or NFHS's household possessions block.",
+      ruledOut: [
+        "mospi.gov.in answers but its download-tables page links no data file",
+        "NFHS hosts unreachable on three attempts",
+        "no source publishes this annually; the honest form is a snapshot every five years or so, not a yearly series",
+      ],
+    },
+  },
+  {
+    id: "households-multiple-homes",
+    title: "Households owning more than one home",
+    definition:
+      "Share of households owning more than one dwelling.",
+    category: "real-estate",
+    unit: "% of households",
+    unitShort: "%",
+    higherIsBetter: null,
+    frequency: "point-in-time",
+    provenance: "official",
+    confidence: "medium",
+    sourceIds: [],
+    filledBy: "curated",
+    note: "Among the least-published statistics asked for here. The decennial census counts houses and households; it does not publish multiple ownership as a rate, and the surveys that ask about assets do not ask this question consistently.",
+    blockedBy: {
+      needs: "A census or survey table reporting households by number of dwellings owned.",
+      ruledOut: [
+        "no census or NSS release found so far publishes this as a rate",
+        "this may not exist as a published series at all, in which case the chart stays empty and says so",
+      ],
+    },
+  },
 ];
 
 export const ALL_SECURITY_SPECS: SecuritySeriesSpec[] = [...SECURITY_SERIES, ...DEFENCE_PENDING];

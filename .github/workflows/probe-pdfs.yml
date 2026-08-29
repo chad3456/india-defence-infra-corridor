@@ -1,0 +1,63 @@
+name: Probe report PDFs
+
+# Lists every World Bank indicator under the topics this site covers, checks
+# which carry real Indian data since 2001, and commits the report. Publishes no
+# series.
+#
+# This exists so the catalogue can be expanded from what the API says rather
+# than from what I remember. A wrong indicator code fails loudly and is
+# survivable; a plausible code for a slightly different measure does not, and
+# the site would carry a chart whose title and contents disagree.
+#
+# Manual and on-change only.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-pdfs.ts"
+      - ".github/workflows/probe-pdfs.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-pdfs
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Probe
+        run: npm run pdfs:probe
+
+      # Always, because the probe writes its report after every topic and a run
+      # killed by the timeout still has findings worth keeping.
+      - name: Commit the probe report
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/live/pdf-probe.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "Probe report unchanged."
+            exit 0
+          fi
+          git commit -m "chore(sources): report PDF probe $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do
+            git push && break
+            echo "push failed, retrying in $((2**i))s"
+            sleep $((2**i))
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          done
