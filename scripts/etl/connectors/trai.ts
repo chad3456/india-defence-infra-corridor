@@ -150,15 +150,22 @@ export async function runTrai(
       );
       if (!known) continue;
       // The numbers may sit on this row or on one of the next few.
+      // Store the canonical name, not the text as it came off the page.
+      //
+      // The raw labels arrive truncated mid-parenthesis — "Maharashtra (incl.",
+      // "West Bengal (incl.", and a loose "Kolkata) *" that is the tail of
+      // another area's name rather than an area. Publishing those as period
+      // labels put mangled text on the axis of a live chart. The matched name
+      // is the honest label and it is the one TRAI itself uses.
       const inline = numbersOf(cells);
       if (inline.length >= 6) {
-        rows.push({ area: label, values: inline.slice(0, 6) });
+        rows.push({ area: known, values: inline.slice(0, 6) });
         continue;
       }
       for (let j = i + 1; j < Math.min(i + 5, density.rows.length); j++) {
         const values = numbersOf(density.rows[j] ?? []);
         if (values.length >= 6) {
-          rows.push({ area: label, values: values.slice(0, 6) });
+          rows.push({ area: known, values: values.slice(0, 6) });
           used.add(j);
           break;
         }
@@ -166,6 +173,26 @@ export async function runTrai(
         const next = (density.rows[j] ?? []).join(" ").trim().toLowerCase();
         if (SERVICE_AREAS.some((a) => next.startsWith(a.toLowerCase()))) break;
       }
+    }
+
+    // A fragment of one area's name can match another area's prefix, so the
+    // same canonical name can arrive twice. First occurrence wins and the
+    // repeat is reported — a duplicate period would be rejected downstream
+    // anyway, and losing the whole table to a stray footnote row would be a
+    // poor trade.
+    const seen = new Set<string>();
+    const duplicates: string[] = [];
+    for (let i = rows.length - 1; i >= 0; i--) {
+      const area = rows[i]?.area ?? "";
+      if (seen.has(area)) {
+        duplicates.push(area);
+        rows.splice(i, 1);
+      } else {
+        seen.add(area);
+      }
+    }
+    if (duplicates.length > 0) {
+      errors.push(`tele-density: ${duplicates.length} duplicate label(s) dropped (${[...new Set(duplicates)].join(", ")})`);
     }
 
     // The check that makes the column order a claim rather than a guess.
@@ -178,12 +205,19 @@ export async function runTrai(
       );
     });
 
-    if (rows.length < 15) {
-      const missing = SERVICE_AREAS.filter(
-        (a) => !rows.some((r) => r.area.toLowerCase().startsWith(a.toLowerCase())),
-      );
+    // Eighteen of twenty-two, not fifteen.
+    //
+    // Fifteen was an arbitrary floor and the table passed at exactly fifteen,
+    // publishing a map of India missing Delhi, Kerala, Mumbai, Odisha and
+    // Jammu & Kashmir. A partial map is the failure this gate exists to
+    // prevent, and setting the bar at two-thirds of the country did not
+    // prevent it. The subscriber table on the same document parses twenty, so
+    // eighteen is achievable rather than aspirational.
+    const MIN_AREAS = 18;
+    if (rows.length < MIN_AREAS) {
+      const missing = SERVICE_AREAS.filter((a) => !rows.some((r) => r.area === a));
       errors.push(
-        `tele-density: only ${rows.length} service area(s) parsed; expected at least 15. ` +
+        `tele-density: only ${rows.length} service area(s) parsed; expected at least ${MIN_AREAS}. ` +
           `Not found: ${missing.join(", ")}`,
       );
     } else if (bad.length > 0) {
