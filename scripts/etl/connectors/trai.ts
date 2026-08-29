@@ -129,17 +129,42 @@ export async function runTrai(
   } else {
     // The service-area name and its numbers sit on separate rows on this page,
     // so a name row is paired with the next row carrying six numbers.
+    // Pair a label row with the next row carrying six numbers.
+    //
+    // The first version looked ahead two rows and found twelve of the twenty-two
+    // service areas — the subscriber table matched twenty names on the same
+    // list, so the names were never the problem; the gap between a label and
+    // its numbers is wider than two rows for some areas. The look-ahead is now
+    // generous, a label matches on prefix so TRAI's own longer names ("Madhya
+    // Pradesh & Chhattisgarh") are recognised, and any label consumed is
+    // reported so a short parse says which areas it missed rather than only how
+    // many.
     const rows: Array<{ area: string; values: number[] }> = [];
+    const used = new Set<number>();
     for (let i = 0; i < density.rows.length; i++) {
+      if (used.has(i)) continue;
       const cells = density.rows[i] ?? [];
       const label = cells.join(" ").replace(/\s+/g, " ").trim();
-      if (!NAME.has(label.toLowerCase())) continue;
-      for (let j = i + 1; j < Math.min(i + 3, density.rows.length); j++) {
+      const known = SERVICE_AREAS.find(
+        (a) => label.toLowerCase() === a.toLowerCase() || label.toLowerCase().startsWith(a.toLowerCase()),
+      );
+      if (!known) continue;
+      // The numbers may sit on this row or on one of the next few.
+      const inline = numbersOf(cells);
+      if (inline.length >= 6) {
+        rows.push({ area: label, values: inline.slice(0, 6) });
+        continue;
+      }
+      for (let j = i + 1; j < Math.min(i + 5, density.rows.length); j++) {
         const values = numbersOf(density.rows[j] ?? []);
         if (values.length >= 6) {
           rows.push({ area: label, values: values.slice(0, 6) });
+          used.add(j);
           break;
         }
+        // A second label before any numbers means this one has none.
+        const next = (density.rows[j] ?? []).join(" ").trim().toLowerCase();
+        if (SERVICE_AREAS.some((a) => next.startsWith(a.toLowerCase()))) break;
       }
     }
 
@@ -154,7 +179,13 @@ export async function runTrai(
     });
 
     if (rows.length < 15) {
-      errors.push(`tele-density: only ${rows.length} service area(s) parsed; expected at least 15`);
+      const missing = SERVICE_AREAS.filter(
+        (a) => !rows.some((r) => r.area.toLowerCase().startsWith(a.toLowerCase())),
+      );
+      errors.push(
+        `tele-density: only ${rows.length} service area(s) parsed; expected at least 15. ` +
+          `Not found: ${missing.join(", ")}`,
+      );
     } else if (bad.length > 0) {
       errors.push(
         `tele-density: column order refused — ${bad.length} row(s) do not satisfy rural < total < urban ` +
