@@ -4,6 +4,8 @@ import { getEvents } from "@/lib/events";
 import { supabaseConfigured, fetchEvents } from "@/lib/supabase";
 import ChartCard from "@/components/charts/ChartCard";
 import { getChart } from "@/lib/registry";
+import Freshness from "@/components/map/Freshness";
+import { refreshState } from "@/lib/freshness";
 
 export const metadata = { title: "Map & timelapse" };
 
@@ -17,6 +19,7 @@ export default async function MapPage() {
   const fromDb = supabaseConfigured ? await fetchEvents() : null;
   const events = fromDb && fromDb.length > 0 ? fromDb : getEvents();
   const latest = events[0]?.date ?? null;
+  const refresh = refreshState();
 
   const related = [
     "expressway-length--level",
@@ -58,6 +61,9 @@ export default async function MapPage() {
           <strong>reported</strong> (a single press report). None of this feeds a chart: reported
           activity and measured data are kept apart deliberately.
         </p>
+        <div className="mb-4">
+          <Freshness state={refresh} />
+        </div>
         <DevelopmentMap events={events} latestDate={latest} recentDays={2} />
       </section>
 
