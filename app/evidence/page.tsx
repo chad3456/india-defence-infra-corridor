@@ -18,6 +18,7 @@ import {
   CONTEST_NATURE,
 } from "@/lib/epistemic";
 import { ALL_SECURITY_SPECS } from "@/lib/security-catalogue";
+import { buildVerification } from "@/lib/verification";
 import { INDIA_SERIES } from "@/lib/india-catalogue";
 import { CATEGORY_LABELS, type Category } from "@/lib/types";
 import lweStates from "@/data/security/lwe-states.json";
@@ -49,6 +50,10 @@ export default function EvidencePage() {
 
   const attribution = attributionSeries(lweStates.rows);
   const shape = attributionShape(attribution);
+  const verification = buildVerification();
+  // Counted, not typed in: these move every time the pipeline adds a series.
+  const officialCount = getAllSeries().filter((s) => s.provenance === "official").length;
+  const multilateralCount = getAllSeries().filter((s) => s.provenance === "multilateral").length;
 
   const total = map.totals.series;
   const records = map.byRung.record.length;
@@ -207,6 +212,112 @@ export default function EvidencePage() {
           precision the earlier years never claimed — a change of method in the middle of a line
           that looks unbroken. The charts are published as they are; this is the caveat that belongs
           beside them.
+        </p>
+      </section>
+
+      {/* ---------------------------------------------------------- */}
+
+      <section className="mt-9">
+        <h2 className="border-b pb-2 text-[15px] font-semibold tracking-tight">
+          Checked against the government&rsquo;s own numbers
+        </h2>
+        <p className="mt-3 max-w-[760px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
+          Most of what is here is multilateral — {multilateralCount} World Bank and WHO series
+          against {officialCount} from Indian ministries — and a compilation is only as good as the
+          record behind it. Where this site
+          holds both an Indian government figure and the World Bank&rsquo;s for the same quantity,
+          the two are compared year by year and the gap is published. Nobody has to take either on
+          trust.
+        </p>
+        <p className="mt-2 max-w-[760px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
+          None of these should match exactly, and a pair that did would be the suspicious one — it
+          would suggest one body is republishing the other rather than compiling independently. What
+          matters is whether the gap is small and stable, or large and moving. Each pair states the
+          ratio its definitions predict, and the figure reported is the departure from that ratio
+          rather than from equality.
+        </p>
+
+        <div className="mt-5 space-y-5">
+          {verification.map((v) => (
+            <article key={v.pair.id} className="border-t pt-4">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h3 className="text-[13px] font-semibold">{v.pair.quantity}</h3>
+                {v.comparable ? (
+                  <span className="tnum text-[11px] text-[color:var(--text-muted)]">
+                    {v.years.length} shared year{v.years.length === 1 ? "" : "s"} ·{" "}
+                    median departure {v.medianPercent?.toFixed(1)}%
+                    {v.outliers.length > 0 ? ` · ${v.outliers.length} beyond tolerance` : ""}
+                  </span>
+                ) : (
+                  <span className="text-[11px] text-[color:var(--text-muted)]">
+                    not comparable — {v.reason}
+                  </span>
+                )}
+              </div>
+              <p className="mt-1 text-[11px] text-[color:var(--text-secondary)]">
+                {v.officialTitle} <span className="text-[color:var(--text-muted)]">(India)</span>
+                {"  ·vs·  "}
+                {v.multilateralTitle}{" "}
+                <span className="text-[color:var(--text-muted)]">(World Bank)</span>
+                {v.pair.expectedRatio !== 1 && (
+                  <span className="text-[color:var(--text-muted)]">
+                    {" "}· compared at a ratio of {v.pair.expectedRatio}
+                  </span>
+                )}
+              </p>
+              <p className="mt-2 max-w-[760px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
+                {v.pair.expectedDifference}
+              </p>
+              {v.comparable && v.years.length > 0 && (
+                <div className="mt-3 overflow-x-auto">
+                  <table className="min-w-[440px] border-collapse text-[11px]">
+                    <thead>
+                      <tr className="text-[color:var(--text-muted)]">
+                        <th className="pb-1 pr-4 text-left font-medium">year</th>
+                        <th className="pb-1 pr-4 text-right font-medium">India</th>
+                        <th className="pb-1 pr-4 text-right font-medium">World Bank</th>
+                        <th className="pb-1 text-right font-medium">departure</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {v.years.slice(-6).map((y) => (
+                        <tr key={y.year} className="border-t">
+                          <td className="tnum py-1 pr-4">{y.year}</td>
+                          <td className="tnum py-1 pr-4 text-right">
+                            {y.official.toLocaleString("en-IN", { maximumSignificantDigits: 4 })}
+                          </td>
+                          <td className="tnum py-1 pr-4 text-right">
+                            {y.multilateral.toLocaleString("en-IN", { maximumSignificantDigits: 4 })}
+                          </td>
+                          <td
+                            className="tnum py-1 text-right"
+                            style={{
+                              color:
+                                Math.abs(y.excessPercent) > v.pair.tolerancePercent
+                                  ? "var(--status-critical)"
+                                  : undefined,
+                            }}
+                          >
+                            {y.excessPercent > 0 ? "+" : ""}
+                            {y.excessPercent.toFixed(1)}%
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <p className="mt-1.5 text-[11px] text-[color:var(--text-muted)]">
+                    Both in {v.pair.unit}. Last {Math.min(6, v.years.length)} shared years shown.
+                  </p>
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
+
+        <p className="mt-5 max-w-[760px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
+          Where two sources differ this site does not declare a winner, because it has no standing
+          to. Both are published by bodies with better access to the underlying returns than this
+          project has. The gap is reported; what it means is the reader&rsquo;s to judge.
         </p>
       </section>
 
