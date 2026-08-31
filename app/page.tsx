@@ -2,7 +2,10 @@ import Link from "next/link";
 import ChartCard from "@/components/charts/ChartCard";
 import StatTile from "@/components/ui/StatTile";
 import { getRegistry, registryStats } from "@/lib/registry";
-import { getSeries, latestPoint, firstPoint, DATA_COVERAGE } from "@/lib/data";
+import { getSeries, latestPoint, firstPoint, DATA_COVERAGE, getAllSeries } from "@/lib/data";
+import HeroGlobe, { type GlobeEvent } from "@/components/ui/HeroGlobe";
+import { getEvents } from "@/lib/events";
+import { refreshState } from "@/lib/freshness";
 
 const HEADLINE_SERIES = [
   "defence-exports",
@@ -30,40 +33,77 @@ export default function Home() {
 
   const exports = getSeries("defence-exports");
   const exportsLatest = exports ? latestPoint(exports) : undefined;
+  const seriesCount = getAllSeries().length;
+  const refresh = refreshState();
+
+  // The globe's marks. Recency drives size and opacity, so the most recent
+  // fortnight reads first and older pins recede rather than disappear.
+  const events = getEvents();
+  const dated = events
+    .map((e) => ({ e, t: new Date(e.date).getTime() }))
+    .filter((x) => Number.isFinite(x.t) && Array.isArray(x.e.coords));
+  const newest = Math.max(0, ...dated.map((x) => x.t));
+  const oldest = Math.min(...dated.map((x) => x.t), newest);
+  const span = Math.max(1, newest - oldest);
+  const globeEvents: GlobeEvent[] = dated.map(({ e, t }) => ({
+    coords: e.coords as [number, number],
+    recency: (t - oldest) / span,
+    title: `${e.placeName ?? e.state ?? "India"} — ${e.date}`,
+  }));
 
   return (
     <div>
       {/* Hero */}
-      <section className="border-b pb-8">
-        <p className="eyebrow">India · defence · infrastructure · trade · manufacturing</p>
-        <h1 className="mt-3 max-w-[720px] text-[28px] font-semibold leading-[1.15] tracking-tight sm:text-[34px]">
-          What India actually built, measured against what was announced.
-        </h1>
-        <p className="mt-3 max-w-[620px] text-[13px] leading-relaxed text-[color:var(--text-secondary)]">
-          {stats.total} charts drawn from {DATA_COVERAGE.sourceCount} named sources. Every figure
-          carries its publisher, its verification date and a confidence grade. Where the numbers
-          contradict the press release, the numbers win.
-        </p>
+      <section className="relative overflow-hidden border-b pb-10">
+        <div className="grid items-center gap-8 lg:grid-cols-[1fr_460px]">
+          <div className="min-w-0">
+            <p className="eyebrow">India · defence · infrastructure · trade · manufacturing</p>
+            <h1 className="mt-3 max-w-[640px] text-[30px] font-semibold leading-[1.12] tracking-tight sm:text-[38px]">
+              What India actually built,
+              <br className="hidden sm:block" /> measured against what was announced.
+            </h1>
+            <p className="mt-4 max-w-[560px] text-[13px] leading-relaxed text-[color:var(--text-secondary)]">
+              {seriesCount} series and {stats.total} charts drawn from{" "}
+              {DATA_COVERAGE.sourceCount} named sources. Every figure carries its publisher, its
+              verification date and a confidence grade. Where the numbers contradict the press
+              release, the numbers win.
+            </p>
 
-        {exportsLatest?.value != null && (
-          <div className="mt-6 flex flex-wrap items-end gap-x-6 gap-y-3">
-            <div>
-              <p className="eyebrow">defence exports, {exportsLatest.period}</p>
-              <p className="mt-1 text-[48px] font-semibold leading-none tracking-tight">
-                ₹{(exportsLatest.value / 1000).toFixed(1)}k
-                <span className="ml-1.5 text-[16px] font-normal text-[color:var(--text-secondary)]">
-                  crore
-                </span>
-              </p>
+            {exportsLatest?.value != null && (
+              <div className="mt-8 flex flex-wrap items-end gap-x-7 gap-y-3">
+                <div>
+                  <p className="eyebrow">defence exports, {exportsLatest.period}</p>
+                  <p className="mt-1 text-[52px] font-semibold leading-none tracking-tight">
+                    ₹{(exportsLatest.value / 1000).toFixed(1)}k
+                    <span className="ml-1.5 text-[16px] font-normal text-[color:var(--text-secondary)]">
+                      crore
+                    </span>
+                  </p>
+                </div>
+                <p className="max-w-[290px] pb-1 text-[11px] leading-snug text-[color:var(--text-muted)]">
+                  Up 56x from ₹686 crore in FY2013-14 — though roughly a third of that is rupee
+                  inflation and depreciation, not volume.
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* The globe is data, not decoration: the landmass the map page draws,
+              and the developments the ingest actually found this fortnight. */}
+          <div className="mx-auto w-full max-w-[460px] lg:mx-0">
+            <div className="overflow-hidden rounded-xl border">
+              <HeroGlobe events={globeEvents} />
             </div>
-            <p className="max-w-[300px] pb-1 text-[11px] leading-snug text-[color:var(--text-muted)]">
-              Up 56x from ₹686 crore in FY2013-14 — though roughly a third of that is rupee
-              inflation and depreciation, not volume.
+            <p className="mt-2.5 text-[11px] leading-relaxed text-[color:var(--text-muted)]">
+              {globeEvents.length} development{globeEvents.length === 1 ? "" : "s"} the pipeline
+              placed on the map, newest brightest
+              {refresh ? ` · feeds read ${refresh.ago}` : ""}. Nothing here is decorative: a quiet
+              week is a quieter globe.
             </p>
           </div>
-        )}
+        </div>
 
-        <div className="mt-6 flex flex-wrap gap-2">
+        <div className="mt-7 flex flex-wrap gap-2">
           <Link
             href="/charts"
             className="rounded border px-3 py-1.5 text-[12px] transition-colors hover:bg-[var(--surface-2)]"
