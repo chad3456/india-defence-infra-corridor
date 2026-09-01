@@ -1,5 +1,341 @@
 [
   {
+    "id": "teledensity-rural-by-area",
+    "title": "Rural tele-density by service area",
+    "definition": "Telephone connections per 100 rural people, by TRAI service area.",
+    "category": "infrastructure",
+    "unit": "connections per 100 people",
+    "unitShort": "per 100",
+    "frequency": "point-in-time",
+    "provenance": "official",
+    "confidence": "medium",
+    "higherIsBetter": true,
+    "sourceIds": [
+      "trai-qpir"
+    ],
+    "points": [
+      {
+        "period": "Andhra Pradesh",
+        "value": 79.71,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Assam",
+        "value": 59.05,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Bihar",
+        "value": 46.16,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Gujarat",
+        "value": 73.65,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Haryana",
+        "value": 70.52,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Himachal Pradesh",
+        "value": 93.03,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Jammu & Kashmir",
+        "value": 71.1,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Karnataka",
+        "value": 74.94,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Madhya Pradesh",
+        "value": 45.97,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Maharashtra",
+        "value": 65.53,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "North East",
+        "value": 67.73,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Odisha",
+        "value": 63.35,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Punjab",
+        "value": 69.01,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Rajasthan",
+        "value": 59.05,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Tamil Nadu",
+        "value": 72.77,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Uttar Pradesh",
+        "value": 51,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "West Bengal",
+        "value": 59.14,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Kolkata",
+        "value": 60.46,
+        "sourceId": "trai-qpir"
+      }
+    ],
+    "notes": [
+      "Service areas are not states. Some cover two states, some split one, and Delhi, Mumbai and Kolkata are their own areas — so this is labelled by service area and is deliberately not drawn on the state map, which would assert a correspondence that does not exist. One TRAI report covers one quarter, so this is a snapshot rather than a series over time. The half of the gap that matters: rural tele-density runs far below urban in every service area, and the national figure hides the distance between them.",
+      "Rural tele-density at the later of the two dates in TRAI's Table 1.4. One report is one quarter, so this is a snapshot by service area rather than a series over time."
+    ],
+    "lastVerified": "2026-09-01"
+  },
+  {
+    "id": "teledensity-urban-by-area",
+    "title": "Urban tele-density by service area",
+    "definition": "Telephone connections per 100 urban people, by TRAI service area.",
+    "category": "infrastructure",
+    "unit": "connections per 100 people",
+    "unitShort": "per 100",
+    "frequency": "point-in-time",
+    "provenance": "official",
+    "confidence": "medium",
+    "higherIsBetter": true,
+    "sourceIds": [
+      "trai-qpir"
+    ],
+    "points": [
+      {
+        "period": "Andhra Pradesh",
+        "value": 130.09,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Assam",
+        "value": 200.23,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Bihar",
+        "value": 155.59,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Gujarat",
+        "value": 123.64,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Haryana",
+        "value": 115.67,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Himachal Pradesh",
+        "value": 429.8,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Jammu & Kashmir",
+        "value": 164.76,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Karnataka",
+        "value": 195.58,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Madhya Pradesh",
+        "value": 140.91,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Maharashtra",
+        "value": 167.13,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "North East",
+        "value": 114.84,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Odisha",
+        "value": 167.34,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Punjab",
+        "value": 177.07,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Rajasthan",
+        "value": 150.68,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Tamil Nadu",
+        "value": 135.98,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Uttar Pradesh",
+        "value": 130.55,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "West Bengal",
+        "value": 120.96,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Kolkata",
+        "value": 151.47,
+        "sourceId": "trai-qpir"
+      }
+    ],
+    "notes": [
+      "Service areas are not states. Some cover two states, some split one, and Delhi, Mumbai and Kolkata are their own areas — so this is labelled by service area and is deliberately not drawn on the state map, which would assert a correspondence that does not exist. One TRAI report covers one quarter, so this is a snapshot rather than a series over time. Above 100 everywhere, and above 190 in some areas. Read as SIMs per hundred residents, not as people connected.",
+      "Urban tele-density at the later of the two dates in TRAI's Table 1.4. One report is one quarter, so this is a snapshot by service area rather than a series over time."
+    ],
+    "lastVerified": "2026-09-01"
+  },
+  {
+    "id": "teledensity-by-area",
+    "title": "Tele-density by service area",
+    "definition": "Telephone connections per 100 people, by TRAI service area.",
+    "category": "infrastructure",
+    "unit": "connections per 100 people",
+    "unitShort": "per 100",
+    "frequency": "point-in-time",
+    "provenance": "official",
+    "confidence": "medium",
+    "higherIsBetter": true,
+    "sourceIds": [
+      "trai-qpir"
+    ],
+    "points": [
+      {
+        "period": "Andhra Pradesh",
+        "value": 101.52,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Assam",
+        "value": 81.55,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Bihar",
+        "value": 63.54,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Gujarat",
+        "value": 99.11,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Haryana",
+        "value": 90.34,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Himachal Pradesh",
+        "value": 128.01,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Jammu & Kashmir",
+        "value": 100.49,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Karnataka",
+        "value": 130.3,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Madhya Pradesh",
+        "value": 73.51,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Maharashtra",
+        "value": 116.06,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "North East",
+        "value": 84.96,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Odisha",
+        "value": 83.52,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Punjab",
+        "value": 117.82,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Rajasthan",
+        "value": 83.83,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Tamil Nadu",
+        "value": 107.79,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Uttar Pradesh",
+        "value": 70.95,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "West Bengal",
+        "value": 82.78,
+        "sourceId": "trai-qpir"
+      },
+      {
+        "period": "Kolkata",
+        "value": 93.26,
+        "sourceId": "trai-qpir"
+      }
+    ],
+    "notes": [
+      "Service areas are not states. Some cover two states, some split one, and Delhi, Mumbai and Kolkata are their own areas — so this is labelled by service area and is deliberately not drawn on the state map, which would assert a correspondence that does not exist. One TRAI report covers one quarter, so this is a snapshot rather than a series over time. Tele-density counts connections, not people, so it exceeds 100 per cent wherever people hold more than one SIM — which in urban areas is most of them.",
+      "Total tele-density at the later of the two dates in TRAI's Table 1.4. One report is one quarter, so this is a snapshot by service area rather than a series over time."
+    ],
+    "lastVerified": "2026-09-01"
+  },
+  {
     "id": "subscribers-by-service-area",
     "title": "Telephone subscribers by service area",
     "definition": "Wireless and wireline subscribers, by TRAI service area.",
