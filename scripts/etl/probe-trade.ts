@@ -75,6 +75,20 @@ interface Check {
 
 const checks: Check[] = [];
 
+/**
+ * A batch of real HS6 codes, used to test whether naming codes explicitly is a
+ * way past the 500-row cap. Drawn from the curated sectors so the answer also
+ * confirms those codes exist and carry Indian trade.
+ */
+const EXPLICIT_BATCH = [
+  "300490", "300420", "300210", "294190", "294110", "293629", "292242",
+  "851712", "851713", "847130", "854231", "854232", "854239", "850760", "851770",
+  "854233", "854190", "381800", "280461", "848620", "854143", "854140",
+  "930690", "880240", "890610", "871000", "841112", "852610",
+  "950300", "950450", "731940", "961610", "820551", "392690", "691110",
+  "270900", "151190", "710812", "310210",
+];
+
 /** Round numbers a truncating API is likely to stop on. */
 const CAP_SUSPECTS = new Set([100, 250, 500, 1000, 2500, 5000, 10_000, 50_000, 100_000]);
 
@@ -245,6 +259,37 @@ async function main(): Promise<void> {
     reporterCode: String(INDIA), period: "2023", partnerCode: "0", cmdCode: "AG6", flowCode: "M",
     motCode: "0", customsCode: "C00", partner2Code: "0",
   }, false);
+
+  // 7c. Getting past the cap.
+  //
+  // Round two settled the shape: pinning partner2Code, motCode and customsCode
+  // gives exactly one row per commodity, and the answer stops at 500. Roughly
+  // 5,300 HS6 lines therefore need paging, and the preview endpoint has no
+  // offset. The way through is to name the codes explicitly in batches, which
+  // needs the HS6 universe from somewhere. These check both halves.
+  await comtrade("comtrade/explicit-code-batch", {
+    reporterCode: String(INDIA), period: "2023", partnerCode: "0", flowCode: "M,X",
+    cmdCode: EXPLICIT_BATCH.join(","),
+    motCode: "0", customsCode: "C00", partner2Code: "0",
+  }, false);
+
+  // Does count report the true total when the answer is truncated, or just
+  // echo the cap? Round two saw count=500 next to rows=500, which cannot be
+  // distinguished from a genuine 500. A request known to exceed the cap
+  // settles whether the envelope can ever be trusted to say "there is more".
+  await comtrade("comtrade/cap-honesty-hs6-all", {
+    reporterCode: String(INDIA), period: "2023", partnerCode: "0", cmdCode: "AG6", flowCode: "M",
+    motCode: "0", customsCode: "C00", partner2Code: "0", maxRecords: "100000",
+  }, false);
+
+  // Reference files: the code universe, if Comtrade will hand it over.
+  for (const ref of ["HS", "H6", "H5"]) {
+    await plain(
+      `comtrade/reference-${ref}`,
+      `https://comtradeapi.un.org/files/v1/app/reference/${ref}.json`,
+      /\{|\[/,
+    );
+  }
 
   // 8. Fallbacks. WITS publishes free bulk SDMX; the World Bank API is already
   // used elsewhere in this pipeline and doubles as a reachability control — if
