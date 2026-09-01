@@ -45,12 +45,21 @@ const URL =
 const SOURCE_ID = "trai-qpir";
 
 /** Service areas as TRAI names them, so a row is recognised rather than guessed. */
+/**
+ * TRAI's licensed service areas.
+ *
+ * Both halves of Uttar Pradesh are kept alongside the merged name because the
+ * source changed: the December 2025 / March 2026 report carries a single row,
+ * "Uttar Pradesh (incl. UPE & UPW)*", where earlier reports carried two. That
+ * is a definition change rather than a parse failure, and it means twenty-two
+ * areas is no longer reachable -- the current report has twenty-one.
+ */
 const SERVICE_AREAS = [
   "Andhra Pradesh", "Assam", "Bihar", "Delhi", "Gujarat", "Haryana",
   "Himachal Pradesh", "Jammu & Kashmir", "Karnataka", "Kerala",
   "Madhya Pradesh", "Maharashtra", "Mumbai", "North East", "Odisha",
   "Punjab", "Rajasthan", "Tamil Nadu", "Uttar Pradesh (East)",
-  "Uttar Pradesh (West)", "West Bengal", "Kolkata",
+  "Uttar Pradesh (West)", "Uttar Pradesh", "West Bengal", "Kolkata",
 ];
 
 const NAME = new Set(SERVICE_AREAS.map((s) => s.toLowerCase()));
@@ -102,7 +111,15 @@ export function norm(s: string): string {
     .trim();
 }
 
-const NORM_AREA = SERVICE_AREAS.map((a) => ({ canon: a, n: norm(a) }));
+/**
+ * Longest normalised name first, so the most specific wins.
+ *
+ * Without this, "Uttar Pradesh" would swallow "Uttar Pradesh (East)" on the
+ * older reports that still separate the two circles.
+ */
+const NORM_AREA = SERVICE_AREAS
+  .map((a) => ({ canon: a, n: norm(a) }))
+  .sort((a, b) => b.n.length - a.n.length);
 
 /** The canonical service area a label refers to, or null. */
 export function matchArea(label: string): string | null {
@@ -209,7 +226,6 @@ export async function runTrai(
     const unmatched: string[] = [];
     const used = new Set<number>();
     for (let i = 0; i < density.rows.length; i++) {
-      if (used.has(i)) continue;
       const cells = density.rows[i] ?? [];
       const label = cells.join(" ").replace(/\s+/g, " ").trim();
       const known = matchArea(label);
@@ -228,8 +244,15 @@ export async function runTrai(
       // another area's name rather than an area. Publishing those as period
       // labels put mangled text on the axis of a live chart. The matched name
       // is the honest label and it is the one TRAI itself uses.
-      const inline = numbersOf(cells);
+      // A row already consumed as the PREVIOUS area's numbers can still carry
+      // this area's label: the table extractor merges a value row with the
+      // label beneath it. Skipping consumed rows outright is why Delhi, Kerala
+      // and Mumbai vanished while the areas above them parsed -- their labels
+      // sat on rows already eaten. So the label is read from any row, and only
+      // the NUMBERS are protected from being counted twice.
+      const inline = used.has(i) ? [] : numbersOf(cells);
       if (inline.length >= 6) {
+        used.add(i);
         rows.push({ area: known, values: inline.slice(0, 6) });
         continue;
       }
@@ -284,6 +307,7 @@ export async function runTrai(
     // prevent, and setting the bar at two-thirds of the country did not
     // prevent it. The subscriber table on the same document parses twenty, so
     // eighteen is achievable rather than aspirational.
+    // Against a ceiling of 21 in the current report (UP merged), not 22.
     const MIN_AREAS = 18;
     if (rows.length < MIN_AREAS) {
       const missing = SERVICE_AREAS.filter((a) => !rows.some((r) => r.area === a));

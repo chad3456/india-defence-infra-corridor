@@ -28,6 +28,13 @@ eq("Uttar Pradesh ( East )", "Uttar Pradesh (East)");
 eq("UP (West)", "Uttar Pradesh (West)");
 eq("Uttar Pradesh(East)", "Uttar Pradesh (East)");
 
+console.log("\nthe source merged both halves of Uttar Pradesh");
+eq("Uttar Pradesh (incl. UPE & UPW)*", "Uttar Pradesh");
+eq("Uttar Pradesh (incl.", "Uttar Pradesh");
+// the merged name must not swallow the split names on older reports
+eq("Uttar Pradesh (East)", "Uttar Pradesh (East)");
+eq("Uttar Pradesh (West)", "Uttar Pradesh (West)");
+
 console.log("\nstill matches what already worked");
 eq("Andhra Pradesh", "Andhra Pradesh");
 eq("Madhya Pradesh & Chhattisgarh", "Madhya Pradesh");
