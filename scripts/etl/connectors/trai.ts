@@ -338,8 +338,27 @@ export async function runTrai(
           })),
           [
             `${label} tele-density at the later of the two dates in TRAI's Table 1.4. One report is one quarter, so this is a snapshot by service area rather than a series over time.`,
+            ...gapNote,
           ],
         );
+      // A chart that ships eighteen of twenty-one areas has to say which three
+      // are absent, and this one especially: the areas that fail to parse are
+      // not a random sample. Delhi and Mumbai are among the densest circles in
+      // the country, so a distribution missing them reads low, and a reader
+      // counting bars has no way to notice. This project withdrew this series
+      // once for exactly that -- showing a partial map of India as if it were
+      // the whole one -- so the gap travels with the chart.
+      const absent = SERVICE_AREAS.filter(
+        (a) => !rows.some((r) => r.area === a) &&
+          // the split UP names are not absent, they no longer exist in this report
+          !(a.startsWith("Uttar Pradesh (") && rows.some((r) => r.area === "Uttar Pradesh")),
+      );
+      const gapNote = absent.length > 0
+        ? [`${rows.length} of the ${rows.length + absent.length} service areas in this report. ` +
+           `${absent.join(", ")} did not parse and ${absent.length === 1 ? "is" : "are"} absent from this chart — ` +
+           `so the spread shown is narrower than the country's, and notably so where the missing areas are metros.`]
+        : [];
+
       for (const [idx, id, label] of [
         [3, "teledensity-rural-by-area", "Rural"],
         [4, "teledensity-urban-by-area", "Urban"],
