@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-09-01T05:25:02.352Z",
+  "probedAt": "2026-09-01T05:28:29.026Z",
   "keyPresent": false,
   "purpose": "establish whether HS6 import/export series for India are reachable, and at what cap",
   "checks": [
@@ -11,7 +11,7 @@
       "count": 215,
       "rows": 215,
       "distinctCodes": 1,
-      "elapsedMs": 3785,
+      "elapsedMs": 2644,
       "sample": [
         {
           "cmdCode": "TOTAL",
@@ -27,7 +27,15 @@
           "period": "2023",
           "primaryValue": 127281.621
         }
-      ]
+      ],
+      "splitBy": {
+        "partner2Code": 215,
+        "netWgt": 2,
+        "isNetWgtEstimated": 2,
+        "cifvalue": 215,
+        "primaryValue": 215,
+        "legacyEstimationFlag": 2
+      }
     },
     {
       "name": "comtrade/hs2-imports-2023",
@@ -37,7 +45,7 @@
       "count": 500,
       "rows": 500,
       "distinctCodes": 40,
-      "elapsedMs": 843,
+      "elapsedMs": 2372,
       "sample": [
         {
           "cmdCode": "54",
@@ -54,6 +62,14 @@
           "primaryValue": 1026228.414
         }
       ],
+      "splitBy": {
+        "partner2Code": 22,
+        "netWgt": 2,
+        "isNetWgtEstimated": 2,
+        "cifvalue": 22,
+        "primaryValue": 22,
+        "legacyEstimationFlag": 2
+      },
       "suspectedCap": 500,
       "note": "returned exactly 500 rows — treat as a cap, not a complete answer, until a request known to have fewer results comes back short"
     },
@@ -65,7 +81,7 @@
       "count": 500,
       "rows": 500,
       "distinctCodes": 76,
-      "elapsedMs": 2405,
+      "elapsedMs": 2274,
       "sample": [
         {
           "cmdCode": "6401",
@@ -82,6 +98,14 @@
           "primaryValue": 48538.513
         }
       ],
+      "splitBy": {
+        "partner2Code": 13,
+        "qty": 13,
+        "altQty": 13,
+        "netWgt": 13,
+        "cifvalue": 13,
+        "primaryValue": 13
+      },
       "suspectedCap": 500,
       "note": "returned exactly 500 rows — treat as a cap, not a complete answer, until a request known to have fewer results comes back short"
     },
@@ -93,7 +117,7 @@
       "count": 500,
       "rows": 500,
       "distinctCodes": 93,
-      "elapsedMs": 2078,
+      "elapsedMs": 2364,
       "sample": [
         {
           "cmdCode": "842230",
@@ -110,6 +134,13 @@
           "primaryValue": 9595.343
         }
       ],
+      "splitBy": {
+        "partner2Code": 19,
+        "altQty": 19,
+        "netWgt": 19,
+        "cifvalue": 19,
+        "primaryValue": 19
+      },
       "suspectedCap": 500,
       "note": "returned exactly 500 rows — treat as a cap, not a complete answer, until a request known to have fewer results comes back short"
     },
@@ -121,7 +152,7 @@
       "count": 500,
       "rows": 500,
       "distinctCodes": 498,
-      "elapsedMs": 4057,
+      "elapsedMs": 1784,
       "sample": [
         {
           "cmdCode": "850300",
@@ -138,6 +169,9 @@
           "primaryValue": 269556895.091
         }
       ],
+      "splitBy": {
+        "partner2Code": 2
+      },
       "suspectedCap": 500,
       "note": "returned exactly 500 rows — treat as a cap, not a complete answer, until a request known to have fewer results comes back short"
     },
@@ -147,7 +181,88 @@
       "withKey": false,
       "status": "failed",
       "httpError": "HTTP 400",
-      "elapsedMs": 4054
+      "elapsedMs": 2380
+    },
+    {
+      "name": "comtrade/total-pinned-mot-customs-p2",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=699&period=2023&partnerCode=0&cmdCode=TOTAL&flowCode=M&motCode=0&customsCode=C00&partner2Code=0",
+      "withKey": false,
+      "status": "ok",
+      "count": 1,
+      "rows": 1,
+      "distinctCodes": 1,
+      "elapsedMs": 3866,
+      "sample": [
+        {
+          "cmdCode": "TOTAL",
+          "cmdDesc": null,
+          "flowCode": "M",
+          "period": "2023",
+          "primaryValue": 672140129635.882
+        }
+      ]
+    },
+    {
+      "name": "comtrade/total-pinned-mot-only",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=699&period=2023&partnerCode=0&cmdCode=TOTAL&flowCode=M&motCode=0",
+      "withKey": false,
+      "status": "ok",
+      "count": 215,
+      "rows": 215,
+      "distinctCodes": 1,
+      "elapsedMs": 3897,
+      "sample": [
+        {
+          "cmdCode": "TOTAL",
+          "cmdDesc": null,
+          "flowCode": "M",
+          "period": "2023",
+          "primaryValue": 21526304798.113
+        },
+        {
+          "cmdCode": "TOTAL",
+          "cmdDesc": null,
+          "flowCode": "M",
+          "period": "2023",
+          "primaryValue": 127281.621
+        }
+      ],
+      "splitBy": {
+        "partner2Code": 215,
+        "netWgt": 2,
+        "isNetWgtEstimated": 2,
+        "cifvalue": 215,
+        "primaryValue": 215,
+        "legacyEstimationFlag": 2
+      }
+    },
+    {
+      "name": "comtrade/hs6-pinned-2023",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=699&period=2023&partnerCode=0&cmdCode=AG6&flowCode=M&motCode=0&customsCode=C00&partner2Code=0",
+      "withKey": false,
+      "status": "ok",
+      "count": 500,
+      "rows": 500,
+      "distinctCodes": 500,
+      "elapsedMs": 3852,
+      "sample": [
+        {
+          "cmdCode": "842230",
+          "cmdDesc": null,
+          "flowCode": "M",
+          "period": "2023",
+          "primaryValue": 424074502.613
+        },
+        {
+          "cmdCode": "854233",
+          "cmdDesc": null,
+          "flowCode": "M",
+          "period": "2023",
+          "primaryValue": 525971201.369
+        }
+      ],
+      "suspectedCap": 500,
+      "note": "returned exactly 500 rows — treat as a cap, not a complete answer, until a request known to have fewer results comes back short"
     },
     {
       "name": "wits/sdmx-india-imports",
@@ -155,8 +270,34 @@
       "withKey": false,
       "status": "ok",
       "rows": 7148,
-      "elapsedMs": 1498,
-      "sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?><!--NSI Web Service v5.2.3--><message:StructureSpecificData xmlns:ss=\"http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific\" xmlns:footer=\"http://www.sdmx.org/reso"
+      "elapsedMs": 1650,
+      "sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?><!--NSI Web Service v5.2.3--><message:StructureSpecificData xmlns:ss=\"http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific\" xmlns:footer=\"http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message/footer\" xmlns:ns1=\"urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=WBG_WITS:TRADESTATS(1.0):ObsLevelDim:TIME_PERIOD\" xmlns:message=\"http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message\" xmlns:common=\"http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xml=\"http://www.w3.org/XML/1998/namespace\"><message:Header><message:ID>DF_WITS_TradeStats_Trade</message:ID><message:Test>false</message:Test><message:Prepared>2026-09-01T01:28:28</message:Prepared><message:Sender id=\"WBG_WITS\"><common:Name xml:lang=\"en\">World Bank Group - WITS</common:Name><message:Contact><common:Name xml:lang=\"en\">WITS Admin</common:Name><message:Department xml:lang=\"en\">DECDG</message:Department><message:Role xml:lang=\"en\">Support</message:Role><message:Email>wits@worldbank.org</message:Email></message:Contact></message:Sender><message:Structure structureID=\"WBG_WITS_TRADESTATS_1_0\" namespace=\"urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=WBG_WITS:TRADESTATS(1.0):ObsLevelDim:TIME_PERIOD\" dimensionAtObservation=\"TIME_PERIOD\"><common:Structure><Ref agencyID=\"WBG_WITS\" id=\"TRADESTATS\" version=\"1.0\" /></common:Structure></message:Structure><message:DataSetAction>Information</"
+    },
+    {
+      "name": "wits/sdmx-datasource-list",
+      "url": "https://wits.worldbank.org/API/V1/SDMX/V21/datasource/tradestats-trade/",
+      "withKey": false,
+      "status": "failed",
+      "httpError": "HTTP 403",
+      "elapsedMs": 87
+    },
+    {
+      "name": "wits/product-codelist",
+      "url": "https://wits.worldbank.org/API/V1/wits/datasource/trn/product/all",
+      "withKey": false,
+      "status": "ok",
+      "rows": 1719360,
+      "elapsedMs": 349,
+      "sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<wits:datasource datasourcecode=\"TRN\" datasourcename=\"WITS - UNTCTAD TRAINS\" language=\"en\" total=\"6882\" xmlns:wits=\"http://wits.worldbank.org\">\r\n  <wits:products>\r\n    <wits:product productcode=\"010110\" isgroup=\"No\" nomenclaturecode=\"HS\" grouptype=\"N/A\">\r\n      <wits:productdescription>010110 -- (2002-2011) - Pure-bred breeding animals</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"010111\" isgroup=\"No\" nomenclaturecode=\"HS\" grouptype=\"N/A\">\r\n      <wits:productdescription>010111 -- (-2001) -- Pure-bred breeding animals</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"010119\" isgroup=\"No\" nomenclaturecode=\"HS\" grouptype=\"N/A\">\r\n      <wits:productdescription>010119 -- (-2001) -- Other</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"010120\" isgroup=\"No\" nomenclaturecode=\"HS\" grouptype=\"N/A\">\r\n      <wits:productdescription>010120 -- (-2001) - Asses, mules and hinnies</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"010121\" isgroup=\"No\" nomenclaturecode=\"HS\" grouptype=\"N/A\">\r\n      <wits:productdescription>010121 -- (2012-) -- Pure-bred breeding animals</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"010129\" isgroup=\"No\" nomenclaturecode=\"HS\" grouptype=\"N/A\">\r\n      <wits:productd"
+    },
+    {
+      "name": "wits/nomenclature-h5-products",
+      "url": "https://wits.worldbank.org/API/V1/wits/datasource/tradestats-trade/product/ALL",
+      "withKey": false,
+      "status": "ok",
+      "rows": 7076,
+      "elapsedMs": 201,
+      "sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<wits:datasource datasourcecode=\"tradestats-trade\" datasourcename=\"WITS TradeStats - Trade\" language=\"en\" total=\"31\" xmlns:wits=\"http://wits.worldbank.org\">\r\n  <wits:products>\r\n    <wits:product productcode=\"999999\" isgroup=\"N/A\" nomenclaturecode=\"N/A\" grouptype=\"N/A\">\r\n      <wits:productdescription>Not Applicable</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"01-05_Animal\" isgroup=\"Yes\" nomenclaturecode=\"H0\" grouptype=\"Sector\">\r\n      <wits:productdescription>Animal</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"06-15_Vegetable\" isgroup=\"Yes\" nomenclaturecode=\"H0\" grouptype=\"Sector\">\r\n      <wits:productdescription>Vegetable</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"16-24_FoodProd\" isgroup=\"Yes\" nomenclaturecode=\"H0\" grouptype=\"Sector\">\r\n      <wits:productdescription>Food Products</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"25-26_Minerals\" isgroup=\"Yes\" nomenclaturecode=\"H0\" grouptype=\"Sector\">\r\n      <wits:productdescription>Minerals</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"27-27_Fuels\" isgroup=\"Yes\" nomenclaturecode=\"H0\" grouptype=\"Sector\">\r\n      <wits:productdescription>Fuels</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <w"
     },
     {
       "name": "worldbank/control",
@@ -164,8 +305,8 @@
       "withKey": false,
       "status": "ok",
       "rows": 775,
-      "elapsedMs": 838,
-      "sample": "[{\"page\":1,\"pages\":22,\"per_page\":3,\"total\":66,\"sourceid\":\"2\",\"lastupdated\":\"2026-07-13\"},[{\"indicator\":{\"id\":\"NE.IMP.GNFS.ZS\",\"value\":\"Imports of goods and services (% of GDP)\"},\"country\":{\"id\":\"IN\",\"value\":\"India\"},\"cou"
+      "elapsedMs": 93,
+      "sample": "[{\"page\":1,\"pages\":22,\"per_page\":3,\"total\":66,\"sourceid\":\"2\",\"lastupdated\":\"2026-07-13\"},[{\"indicator\":{\"id\":\"NE.IMP.GNFS.ZS\",\"value\":\"Imports of goods and services (% of GDP)\"},\"country\":{\"id\":\"IN\",\"value\":\"India\"},\"countryiso3code\":\"IND\",\"date\":\"2025\",\"value\":24.0051596190103,\"unit\":\"\",\"obs_status\":\"\",\"decimal\":1},{\"indicator\":{\"id\":\"NE.IMP.GNFS.ZS\",\"value\":\"Imports of goods and services (% of GDP)\"},\"country\":{\"id\":\"IN\",\"value\":\"India\"},\"countryiso3code\":\"IND\",\"date\":\"2024\",\"value\":23.8527091324349,\"unit\":\"\",\"obs_status\":\"\",\"decimal\":1},{\"indicator\":{\"id\":\"NE.IMP.GNFS.ZS\",\"value\":\"Imports of goods and services (% of GDP)\"},\"country\":{\"id\":\"IN\",\"value\":\"India\"},\"countryiso3code\":\"IND\",\"date\":\"2023\",\"value\":23.9681500915008,\"unit\":\"\",\"obs_status\":\"\",\"decimal\":1}]]"
     }
   ]
 }
