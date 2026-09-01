@@ -1,0 +1,349 @@
+{
+  "probedAt": "2026-09-01T15:40:52.455Z",
+  "checks": [
+    {
+      "id": "osm-metro-count",
+      "group": "mobility",
+      "wants": "every metro line in India, with geometry",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A60%5D%3Barea%5B%22ISO3166-1%22%3D%22IN%22%5D%5Badmin_level%3D2%5D-%3E.in%3Brelation%5B%22route%22%3D%22subway%22%5D(area.in)%3Bout%20count%3B",
+      "status": "ok",
+      "bytes": 484,
+      "looksLike": "json",
+      "hits": {
+        "count": 1,
+        "relations": 1,
+        "elements": 1
+      },
+      "elapsedMs": 14166,
+      "sample": "{ \"version\": 0.6, \"generator\": \"Overpass API 0.7.62.11 87bfad18\", \"osm3s\": { \"timestamp_osm_base\": \"2026-09-01T15:36:06Z\", \"timestamp_areas_base\": \"2026-08-31T18:31:53Z\", \"copyright\": \"The data included in this document "
+    },
+    {
+      "id": "osm-metro-sample",
+      "group": "mobility",
+      "wants": "metro line names + operators",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A60%5D%3Barea%5B%22ISO3166-1%22%3D%22IN%22%5D%5Badmin_level%3D2%5D-%3E.in%3Brelation%5B%22route%22%3D%22subway%22%5D(area.in)%3Bout%20tags%2040%3B",
+      "status": "ok",
+      "bytes": 24078,
+      "looksLike": "json",
+      "hits": {
+        "Delhi": 62,
+        "Metro": 106,
+        "Namma": 8,
+        "Kochi": 4,
+        "colour": 40,
+        "operator": 85
+      },
+      "elapsedMs": 5181,
+      "sample": "{ \"version\": 0.6, \"generator\": \"Overpass API 0.7.62.11 87bfad18\", \"osm3s\": { \"timestamp_osm_base\": \"2026-09-01T15:36:06Z\", \"timestamp_areas_base\": \"2026-08-31T18:31:53Z\", \"copyright\": \"The data included in this document "
+    },
+    {
+      "id": "osm-rail-count",
+      "group": "mobility",
+      "wants": "national rail network geometry",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A90%5D%3Barea%5B%22ISO3166-1%22%3D%22IN%22%5D%5Badmin_level%3D2%5D-%3E.in%3Bway%5B%22railway%22%3D%22rail%22%5D%5B%22usage%22%3D%22main%22%5D(area.in)%3Bout%20count%3B",
+      "status": "failed",
+      "httpError": "This operation was aborted",
+      "elapsedMs": 91254
+    },
+    {
+      "id": "osm-vandebharat",
+      "group": "mobility",
+      "wants": "Vande Bharat services as route relations",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A60%5D%3Brelation%5B%22route%22%3D%22train%22%5D%5B%22name%22~%22Vande%20Bharat%22%2Ci%5D%3Bout%20tags%2060%3B",
+      "status": "ok",
+      "bytes": 5483,
+      "looksLike": "json",
+      "hits": {
+        "Vande Bharat": 30,
+        "from": 9,
+        "to": 26,
+        "operator": 7
+      },
+      "elapsedMs": 14414,
+      "sample": "{ \"version\": 0.6, \"generator\": \"Overpass API 0.7.62.11 87bfad18\", \"osm3s\": { \"timestamp_osm_base\": \"2026-09-01T15:37:04Z\", \"copyright\": \"The data included in this document is from www.openstreetmap.org. The data is made "
+    },
+    {
+      "id": "osm-airports",
+      "group": "mobility",
+      "wants": "airports with IATA codes for the flight map",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A60%5D%3Barea%5B%22ISO3166-1%22%3D%22IN%22%5D%5Badmin_level%3D2%5D-%3E.in%3Bnode%5B%22aeroway%22%3D%22aerodrome%22%5D%5B%22iata%22%5D(area.in)%3Bout%20tags%2060%3B",
+      "status": "failed",
+      "httpError": "HTTP 429",
+      "elapsedMs": 22728
+    },
+    {
+      "id": "osm-busroutes-count",
+      "group": "mobility",
+      "wants": "city bus route coverage",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A90%5D%3Barea%5B%22ISO3166-1%22%3D%22IN%22%5D%5Badmin_level%3D2%5D-%3E.in%3Brelation%5B%22route%22%3D%22bus%22%5D(area.in)%3Bout%20count%3B",
+      "status": "ok",
+      "bytes": 486,
+      "looksLike": "json",
+      "hits": {
+        "count": 1,
+        "relations": 1
+      },
+      "elapsedMs": 15761,
+      "sample": "{ \"version\": 0.6, \"generator\": \"Overpass API 0.7.62.11 87bfad18\", \"osm3s\": { \"timestamp_osm_base\": \"2026-09-01T15:38:09Z\", \"timestamp_areas_base\": \"2026-09-01T01:22:02Z\", \"copyright\": \"The data included in this document "
+    },
+    {
+      "id": "opensky-india-bbox",
+      "group": "mobility",
+      "wants": "live aircraft over India, for a density map",
+      "url": "https://opensky-network.org/api/states/all?lamin=6.5&lomin=68.0&lamax=36.0&lomax=97.5",
+      "status": "ok",
+      "bytes": 31189,
+      "looksLike": "json",
+      "hits": {
+        "states": 3,
+        "time": 1
+      },
+      "elapsedMs": 818,
+      "sample": "{\"time\":1788277176,\"states\":[[\"801638\",\"AXB1082 \",\"India\",1788277174,1788277175,76.9332,28.6021,899.16,false,87.72,104.61,-2.93,null,838.2,null,false,0],[\"801642\",\"AXB1547 \",\"India\",1788277062,1788277154,73.5459,19.3029,"
+    },
+    {
+      "id": "dgca-traffic",
+      "group": "mobility",
+      "wants": "airport-wise passenger and movement counts",
+      "url": "https://www.dgca.gov.in/digigov-portal/?page=jsp/dgca/InventoryList/dataReports/aviationDataStatistics/airportActivities/airportActivity.jsp",
+      "status": "ok",
+      "bytes": 190242,
+      "looksLike": "html",
+      "hits": {
+        "passenger": 1,
+        "aircraft": 58
+      },
+      "elapsedMs": 1744,
+      "sample": " <script type=\"text/javascript\" src=\"script/content.js\"></script> <!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\"> <html> <head> <meta http-equiv=\"X-UA-Compatible\" co"
+    },
+    {
+      "id": "aai-traffic",
+      "group": "mobility",
+      "wants": "AAI airport traffic statistics",
+      "url": "https://www.aai.aero/en/business-opportunities/aai-traffic-news",
+      "status": "failed",
+      "httpError": "fetch failed",
+      "elapsedMs": 22366
+    },
+    {
+      "id": "indianrail-stats",
+      "group": "mobility",
+      "wants": "railway freight and passenger originating traffic",
+      "url": "https://indianrailways.gov.in/railwayboard/view_section.jsp?lang=0&id=0,1,304,366,554",
+      "status": "failed",
+      "httpError": "fetch failed",
+      "elapsedMs": 2106
+    },
+    {
+      "id": "mohua-metro",
+      "group": "mobility",
+      "wants": "operational metro km by city",
+      "url": "https://mohua.gov.in/cms/metro-rail.php",
+      "status": "ok",
+      "bytes": 7310,
+      "looksLike": "html",
+      "hits": {},
+      "elapsedMs": 2378,
+      "sample": "<!DOCTYPE html><html class=\"default-theme\" lang=\"en\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width\" data-next-head=\"\"/><link rel=\"icon\" href=\"/favicon.svg\"/><link data-n"
+    },
+    {
+      "id": "eci-results",
+      "group": "elections",
+      "wants": "constituency results and turnout",
+      "url": "https://results.eci.gov.in/",
+      "status": "ok",
+      "bytes": 558,
+      "looksLike": "html",
+      "hits": {
+        "election": 1,
+        "result": 2
+      },
+      "elapsedMs": 1659,
+      "sample": "<!doctype html> <html lang=\"en\"> <head> <!-- Required meta tags --> <meta charset=\"utf-8\"> <meta http-equiv = \"refresh\" content = \"1; url = https://results.eci.gov.in/ResultAcByeAugust2026/index.htm\"/> <!-- Bootstrap CSS"
+    },
+    {
+      "id": "eci-main",
+      "group": "elections",
+      "wants": "ECI publications, incl. SIR roll revision",
+      "url": "https://www.eci.gov.in/",
+      "status": "failed",
+      "httpError": "HTTP 406",
+      "elapsedMs": 12518
+    },
+    {
+      "id": "eci-statistical",
+      "group": "elections",
+      "wants": "statistical reports by state",
+      "url": "https://www.eci.gov.in/statistical-reports",
+      "status": "failed",
+      "httpError": "HTTP 406",
+      "elapsedMs": 880
+    },
+    {
+      "id": "sansad-q-search",
+      "group": "blocked",
+      "wants": "Parliament answers: the tabled tables",
+      "url": "https://sansad.in/ls/questions/questions-and-answers",
+      "status": "ok",
+      "bytes": 312041,
+      "looksLike": "html",
+      "hits": {
+        "question": 190,
+        "answer": 19,
+        "ministry": 36
+      },
+      "elapsedMs": 1956,
+      "sample": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no\" data-next-head=\""
+    },
+    {
+      "id": "sansad-rs-q",
+      "group": "blocked",
+      "wants": "Rajya Sabha Q&A",
+      "url": "https://sansad.in/rs/questions/questions-and-answers",
+      "status": "failed",
+      "httpError": "fetch failed",
+      "elapsedMs": 2231
+    },
+    {
+      "id": "ncrb-cii-2022",
+      "group": "blocked",
+      "wants": "Crime in India tables: POCSO, murder by sex, riots",
+      "url": "https://www.ncrb.gov.in/crime-in-india-table-addtional-table-and-chapter-contents.html",
+      "status": "failed",
+      "httpError": "HTTP 500",
+      "elapsedMs": 3829
+    },
+    {
+      "id": "ncrb-publications",
+      "group": "blocked",
+      "wants": "NCRB publication index",
+      "url": "https://www.ncrb.gov.in/en/crime-india",
+      "status": "failed",
+      "httpError": "HTTP 404",
+      "elapsedMs": 1168
+    },
+    {
+      "id": "mha-annual",
+      "group": "blocked",
+      "wants": "MHA annual report: J&K incidents, LWE districts",
+      "url": "https://www.mha.gov.in/en/documents/annual-reports",
+      "status": "ok",
+      "bytes": 82696,
+      "looksLike": "html",
+      "hits": {
+        "annual report": 26,
+        "pdf": 62
+      },
+      "elapsedMs": 1240,
+      "sample": "<!DOCTYPE html> <html lang=\"en\" dir=\"ltr\" prefix=\"content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf"
+    },
+    {
+      "id": "trai-pir",
+      "group": "blocked",
+      "wants": "TRAI performance indicators: tele-density by circle",
+      "url": "https://www.trai.gov.in/release-publication/reports/performance-indicators-reports",
+      "status": "ok",
+      "bytes": 423263,
+      "looksLike": "html",
+      "hits": {
+        "performance indicator": 184,
+        "telecom": 286,
+        "pdf": 150
+      },
+      "elapsedMs": 2825,
+      "sample": "<!DOCTYPE html> <html lang=\"en\" dir=\"ltr\" style=\"--color--primary-hue:202;--color--primary-saturation:79%;--color--primary-lightness:50\"> <head> <meta charset=\"utf-8\" /> <link rel=\"canonical\" href=\"http://www.trai.gov.in"
+    },
+    {
+      "id": "pmay-u-dashboard",
+      "group": "blocked",
+      "wants": "PMAY houses completed",
+      "url": "https://pmay-urban.gov.in/",
+      "status": "ok",
+      "bytes": 102327,
+      "looksLike": "html",
+      "hits": {
+        "houses": 13,
+        "sanctioned": 3,
+        "completed": 2
+      },
+      "elapsedMs": 1465,
+      "sample": "<!DOCTYPE html> <html dir=\"ltr\" lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <meta name=\"csrf-token\" "
+    },
+    {
+      "id": "ppac-gas",
+      "group": "blocked",
+      "wants": "PNG connections and pipeline km",
+      "url": "https://ppac.gov.in/natural-gas/gas-infrastructure",
+      "status": "ok",
+      "bytes": 38459,
+      "looksLike": "html",
+      "hits": {
+        "pipeline": 3,
+        "png": 5
+      },
+      "elapsedMs": 1062,
+      "sample": " <!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"UTF-8\"> <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <link rel=\"stylesheet\" href=\"ht"
+    },
+    {
+      "id": "cbfc-annual",
+      "group": "cinema",
+      "wants": "films certified, a floor on cinema activity",
+      "url": "https://www.cbfcindia.gov.in/cbfcAdmin/statistics.php",
+      "status": "ok",
+      "bytes": 38455,
+      "looksLike": "html",
+      "hits": {
+        "films": 1
+      },
+      "elapsedMs": 2728,
+      "sample": " <!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta content=\"width=device-width, initial-scale=1.0\" name=\"viewport\"> <meta name=\"keywords,\" content=\"Home, Contact Us, Film Certification Process, List of"
+    },
+    {
+      "id": "datagov-catalog",
+      "group": "aggregator",
+      "wants": "OGD India catalogue: many of the above at once",
+      "url": "https://www.data.gov.in/catalogs",
+      "status": "ok",
+      "bytes": 1002289,
+      "looksLike": "html",
+      "hits": {
+        "catalog": 480,
+        "dataset": 283,
+        "resource": 524
+      },
+      "elapsedMs": 4942,
+      "sample": "<!doctype html> <html data-n-head-ssr lang=\"en\" data-n-head=\"%7B%22lang%22:%7B%22ssr%22:%22en%22%7D%7D\"> <head > <meta data-n-head=\"ssr\" charset=\"utf-8\"><meta data-n-head=\"ssr\" name=\"http-equiv\" content=\"text/html\"><meta"
+    },
+    {
+      "id": "datagov-api-root",
+      "group": "aggregator",
+      "wants": "OGD API without a key",
+      "url": "https://api.data.gov.in/lists?format=json&limit=5",
+      "status": "ok",
+      "bytes": 7969,
+      "looksLike": "json",
+      "hits": {
+        "records": 1,
+        "title": 5,
+        "index_name": 5
+      },
+      "elapsedMs": 1266,
+      "sample": "{ \"message\": \"Resource lists\", \"version\": \"2.2.0\", \"status\": \"ok\", \"total\": 287810, \"count\": 5, \"limit\": \"5\", \"offset\": \"0\", \"records\": [ { \"index_name\": \"vs17a72ll20a48i57culugq2gbkr8rcw\", \"title\": \"Sample Data for Stac"
+    },
+    {
+      "id": "wikidata-metro",
+      "group": "aggregator",
+      "wants": "metro systems and opening years via SPARQL",
+      "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fs%20%3FsLabel%20%3Flen%20WHERE%20%7B%20%3Fs%20wdt%3AP31%20wd%3AQ1414671%20%3B%20wdt%3AP17%20wd%3AQ668%20.%20OPTIONAL%7B%3Fs%20wdt%3AP2043%20%3Flen%7D%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20'en'.%20%7D%20%7D%20LIMIT%2040",
+      "status": "ok",
+      "bytes": 100,
+      "looksLike": "json",
+      "hits": {
+        "bindings": 1,
+        "sLabel": 1
+      },
+      "elapsedMs": 632,
+      "sample": "{ \"head\" : { \"vars\" : [ \"s\", \"sLabel\", \"len\" ] }, \"results\" : { \"bindings\" : [ ] } }"
+    }
+  ]
+}
