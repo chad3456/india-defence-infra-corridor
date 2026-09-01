@@ -5,6 +5,7 @@ const LINKS = [
   { href: "/charts", label: "Charts" },
   { href: "/map", label: "Map" },
   { href: "/defence-tracker", label: "Defence" },
+  { href: "/made-in-india", label: "Made in India" },
   { href: "/matrix", label: "Matrix" },
   { href: "/benchmark", label: "Assessment" },
   { href: "/tracker", label: "Tracker" },

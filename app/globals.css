@@ -54,6 +54,24 @@
   --rung-3: #256abf;
   --rung-4: #3987e5;
   --rung-5: #86b6ef;
+
+  /* Diverging ramp for import-substitution stage — polarity, not magnitude.
+     Blue arm = moving toward made-here, orange arm = moving toward bought-in,
+     neutral gray midpoint for "holding". Blue/orange rather than red/green
+     because the poles have to survive protanopia and deuteranopia.
+
+     Computed at target OKLCH lightness rather than picked by eye, then run
+     through the validator: all four chromatic steps pass band, chroma, CVD
+     separation and the normal-vision floor. The neutral midpoint is gray on
+     purpose and will fail a categorical chroma check — that is the check being
+     wrong about a diverging ramp, not the ramp being wrong. Stage is always
+     rendered with its name beside the colour, which is also the standing
+     relief for the sub-3:1 contrast warning on the pale steps. */
+  --stage-reversed: #1a52a1;
+  --stage-narrowing: #4c88d3;
+  --stage-holding: #8f8d84;
+  --stage-import-reliant: #d2764a;
+  --stage-deepening: #aa3606;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -90,6 +108,14 @@
     --rung-3: #5598e7;
     --rung-4: #2a78d6;
     --rung-5: #184f95;
+
+    /* Dark arm of the diverging stage ramp — re-stepped against the dark
+       surface and re-validated, never an automatic flip of the light values. */
+    --stage-reversed: #215db3;
+    --stage-narrowing: #5f97d5;
+    --stage-holding: #8a887f;
+    --stage-import-reliant: #cc7d50;
+    --stage-deepening: #ad2608;
   }
 }
 
@@ -126,6 +152,12 @@
   --rung-3: #5598e7;
   --rung-4: #2a78d6;
   --rung-5: #184f95;
+
+  --stage-reversed: #215db3;
+  --stage-narrowing: #5f97d5;
+  --stage-holding: #8a887f;
+  --stage-import-reliant: #cc7d50;
+  --stage-deepening: #ad2608;
 }
 
 @theme inline {
