@@ -1,0 +1,47 @@
+name: Probe mobility and blocked sources
+
+# Two questions in one run: what can fill the 27 declared-but-empty series,
+# and what can supply flight / rail / metro / bus / election data.
+#
+# Runs here rather than in the sandbox because every Indian government host is
+# denied there. Publishes no series.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-mobility.ts"
+      - ".github/workflows/probe-mobility.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-mobility
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Probe
+        run: npm run mobility:probe
+      - name: Commit the report
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/live/mobility-probe.json 2>/dev/null || true
+          if git diff --staged --quiet; then echo "unchanged"; exit 0; fi
+          git commit -m "chore(sources): mobility + unblock probe $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do
+            git push && break
+            sleep $((2**i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          done
