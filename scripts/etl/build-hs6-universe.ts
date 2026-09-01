@@ -25,6 +25,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getJson } from "./lib/http";
 import { curatedCodes } from "../../lib/localisation-sectors";
+import { CONCORDANCES } from "../../lib/localisation";
 
 const ROOT = process.cwd();
 const OUT = join(ROOT, "data/trade/hs6-universe.json");
@@ -86,20 +87,35 @@ async function main(): Promise<void> {
   const byCode = new Map(codes.map((c) => [c.code, c]));
   const verified: Array<{ code: string; label: string; officialDesc: string }> = [];
   const rejected: Array<{ code: string; label: string; reason: string; officialDesc?: string }> = [];
+  // A concordance id is synthetic -- it names a group of real codes rather
+  // than a code the reference has ever heard of -- so it is checked through
+  // its constituents. Each of those must exist and match the expectation.
+  const conById = new Map(CONCORDANCES.map((c) => [c.id, c]));
+
   for (const c of curatedCodes()) {
-    const found = byCode.get(c.code);
-    if (!found) {
+    const con = conById.get(c.code);
+    const parts = con ? con.codes : [c.code];
+
+    const missing = parts.filter((p) => !byCode.has(p));
+    if (missing.length === parts.length) {
       rejected.push({ code: c.code, label: c.label, reason: "not in the HS reference at all" });
       continue;
     }
-    if (!c.expect.test(found.desc)) {
+
+    const live = parts.filter((p) => byCode.has(p));
+    const mismatched = live.filter((p) => !c.expect.test(byCode.get(p)?.desc ?? ""));
+    if (mismatched.length > 0) {
       rejected.push({
-        code: c.code, label: c.label, officialDesc: found.desc,
+        code: c.code, label: c.label,
+        officialDesc: mismatched.map((p) => `${p}: ${byCode.get(p)?.desc ?? ""}`).join(" | "),
         reason: `description does not match ${c.expect}`,
       });
       continue;
     }
-    verified.push({ code: c.code, label: c.label, officialDesc: found.desc });
+    verified.push({
+      code: c.code, label: c.label,
+      officialDesc: live.map((p) => byCode.get(p)?.desc ?? "").join(" | "),
+    });
   }
 
   await mkdir(join(ROOT, "data/trade"), { recursive: true });

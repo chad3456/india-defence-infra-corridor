@@ -410,10 +410,10 @@ export const CONCORDANCES: Concordance[] = [
       "8517.12 carried mobile phones until HS2022 retired it and split the traffic into 8517.13 (smartphones) and 8517.14 (other telephones). The old code and the new ones never report in the same year.",
   },
   {
-    id: "854140-41-42-43",
-    label: "Photovoltaic cells and modules (all vintages)",
-    codes: ["854140", "854141", "854142", "854143"],
+    id: "854140-4x",
+    label: "Photosensitive semiconductor devices, incl. PV cells and LEDs (all vintages)",
+    codes: ["854140", "854141", "854142", "854143", "854149"],
     note:
-      "8541.40 covered photosensitive semiconductor devices including photovoltaic cells until HS2022 split it into 8541.41 through 8541.43. Pre-2022 and post-2022 codes do not overlap.",
+      "8541.40 covered photosensitive semiconductor devices -- photovoltaic cells and light-emitting diodes together -- until HS2022 split it into 8541.41 (LEDs), 8541.42 and 8541.43 (PV cells, loose and in modules) and 8541.49 (other diodes). All four successors are kept so the bundle means the same thing on both sides of the revision. That makes it a coarse proxy for solar rather than a clean one: the PV-only codes exist from 2022 and have too few years to grade on their own, so the choice is a consistent bundle with LEDs in it or no trend at all.",
   },
 ];

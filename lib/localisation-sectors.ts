@@ -122,9 +122,9 @@ export const SECTORS: Sector[] = [
     claim:
       "India stopped importing Chinese solar panels and now makes its own.",
     reading:
-      "Module assembly capacity did grow, and a duty wall arrived to protect it. Whether that is substitution depends entirely on the cell and wafer lines underneath: a module assembled from imported cells is a different achievement from a module made from domestic polysilicon. The wafer line is the one to read.",
+      "Read this one with its caveat attached. The trend line bundles photovoltaic cells with light-emitting diodes, because the code that carried both until 2022 was split into separate successors and the PV-only codes have three years of history -- too few to grade. A consistent bundle with LEDs in it was the alternative to no trend at all, and the bundle is what is shown. Within that limit the direction is not the one the story predicts: India was a net exporter of these devices in the early 2000s and is a substantial net importer now. The silicon and doped-wafer lines underneath show why a module assembled from imported cells is a different achievement from one made from domestic polysilicon.",
     outputs: [
-      { code: "854140-41-42-43", label: "Photovoltaic cells and modules (all HS vintages)", expect: /photovoltaic|cells/i },
+      { code: "854140-4x", label: "Photosensitive devices, incl. PV cells and LEDs", expect: /photosensitiv/i },
     ],
     inputs: [
       { code: "280461", label: "Silicon, over 99.99% pure", expect: /silicon/i },
