@@ -50,13 +50,13 @@ function LineRow({ p }: { p: Product }) {
   return (
     <tr className="border-b border-gridline">
       <td className="py-1.5 pr-3">
-        <span className="block max-w-[20rem] truncate text-ink" title={p.name}>{p.name}</span>
+        <span className="block max-w-[15rem] truncate text-ink" title={p.name}>{p.name}</span>
         <span className="font-mono text-[10px] text-ink-muted">HS {p.code}</span>
       </td>
       <td className="py-1.5 pr-3"><StageChip stage={p.stage} small /></td>
-      <td className="py-1.5 pr-3 text-right font-mono text-[11px] text-ink-2">{usd(p.closeM)}</td>
-      <td className="py-1.5 pr-3 text-right font-mono text-[11px] text-ink-2">{usd(p.closeX)}</td>
-      <td className="py-1.5"><CoverageSpark years={p.years} width={92} height={22} /></td>
+      <td className="py-1.5 pr-2 text-right font-mono text-[11px] text-ink-2">{usd(p.closeM)}</td>
+      <td className="py-1.5 pr-2 text-right font-mono text-[11px] text-ink-2">{usd(p.closeX)}</td>
+      <td className="py-1.5"><CoverageSpark years={p.years} width={72} height={22} /></td>
     </tr>
   );
 }
@@ -259,7 +259,10 @@ export default function MadeInIndiaPage() {
                        ["Inputs", inputs, sector.inputs.length]] as const).map(([title, list, declared]) => {
                       const items = list as Product[];
                       return (
-                        <div key={title as string}>
+                        // min-w-0 so the table's own scroller can engage: a grid
+                        // item defaults to min-width:auto and would otherwise be
+                        // stretched by the table instead of clipping it.
+                        <div key={title as string} className="min-w-0">
                           <h4 className="mb-2 text-[11px] uppercase tracking-wide text-ink-muted">
                             {title as string}
                           </h4>
@@ -274,7 +277,16 @@ export default function MadeInIndiaPage() {
                           ) : (
                             // Its own scroller: a wide table must never make the page scroll.
                             <div className="overflow-x-auto">
-                              <table className="w-full min-w-[30rem] border-collapse text-sm">
+                              <table className="w-full min-w-[27rem] border-collapse text-sm">
+                                <thead>
+                                  <tr className="border-b border-gridline text-left text-[10px] uppercase tracking-wide text-ink-muted">
+                                    <th className="pb-1 pr-3 font-normal">Line</th>
+                                    <th className="pb-1 pr-3 font-normal">Stage</th>
+                                    <th className="pb-1 pr-2 text-right font-normal">Imports</th>
+                                    <th className="pb-1 pr-2 text-right font-normal">Exports</th>
+                                    <th className="pb-1 font-normal">X ÷ M</th>
+                                  </tr>
+                                </thead>
                                 <tbody>{items.map((p) => <LineRow key={p.code} p={p} />)}</tbody>
                               </table>
                             </div>

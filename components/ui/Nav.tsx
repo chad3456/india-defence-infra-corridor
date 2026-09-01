@@ -22,7 +22,10 @@ export default function Nav() {
           <span className="text-[14px] font-semibold tracking-tight">Bharat Tracker</span>
           <span className="eyebrow hidden sm:inline">since 2001</span>
         </Link>
-        <nav className="ml-auto flex items-center gap-3 overflow-x-auto sm:gap-4">
+        {/* min-w-0: a flex item defaults to min-width:auto, so without it the
+            overflow-x-auto never engages and the links push the page wider
+            than the viewport instead of scrolling inside the bar. */}
+        <nav className="ml-auto flex min-w-0 items-center gap-3 overflow-x-auto sm:gap-4">
           {LINKS.map((l) => (
             <Link
               key={l.href}
