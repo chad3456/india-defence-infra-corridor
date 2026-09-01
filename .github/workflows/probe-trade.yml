@@ -1,0 +1,60 @@
+name: Probe HS-code trade data
+
+# Finds out whether India's imports and exports are readable at commodity-code
+# level, and what the free tier's real per-call cap is. That cap decides the
+# ingest strategy for the made-in-India dashboard, so it is measured here rather
+# than assumed. Publishes no series.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-trade.ts"
+      - ".github/workflows/probe-trade.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-trade
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Probe
+        env:
+          # Absent is the expected case; the probe reports what the free tier allows.
+          COMTRADE_KEY: ${{ secrets.COMTRADE_KEY }}
+        run: npm run trade:probe
+
+      # Always: the probe writes after every check, and a run killed by the
+      # timeout still has findings worth keeping.
+      - name: Commit the probe report
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/live/trade-probe.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "Probe report unchanged."
+            exit 0
+          fi
+          git commit -m "chore(sources): HS-code trade probe $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do
+            git push && break
+            echo "push failed, retrying in $((2**i))s"
+            sleep $((2**i))
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          done
