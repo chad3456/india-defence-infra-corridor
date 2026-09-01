@@ -179,6 +179,42 @@ async function main(): Promise<void> {
       "SELECT ?s ?sLabel ?len WHERE { ?s wdt:P31 wd:Q1414671 ; wdt:P17 wd:Q668 . OPTIONAL{?s wdt:P2043 ?len} SERVICE wikibase:label { bd:serviceParam wikibase:language 'en'. } } LIMIT 40"),
     ["bindings", "sLabel", "Metro"]);
 
+  // ── H. round two: how to SEARCH data.gov.in, and ECI with real headers ──
+  //
+  // The catalogue holds 287,810 resources and paging it is not an option, so
+  // the question is whether it takes a query at all. Each of these is a
+  // different guess at the parameter name; the one that returns fewer than the
+  // full count, with on-topic titles, is the answer.
+  const BROWSER = {
+    "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+    accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+  };
+  for (const [pname, qs] of [
+    ["filters-title", "filters[title]=railway"],
+    ["q", "q=railway"],
+    ["query", "query=railway"],
+    ["title", "title=railway"],
+    ["search", "search=railway"],
+  ] as const) {
+    await probe(`datagov-search-${pname}`, "aggregator", "a working search parameter for the OGD catalogue",
+      `https://api.data.gov.in/lists?format=json&limit=8&${qs}`, ["total", "title", "railway"]);
+  }
+  // ECI answered 406 to a plain fetch, which is a content-negotiation refusal
+  // rather than a block: worth one attempt presenting as a browser.
+  await probe("eci-main-browser", "elections", "ECI site with browser headers",
+    "https://www.eci.gov.in/", ["electoral", "roll", "revision", "SIR"], { headers: BROWSER });
+  await probe("eci-results-follow", "elections", "the page the ECI results host redirects to",
+    "https://results.eci.gov.in/ResultAcByeAugust2026/index.htm", ["constituency", "votes", "result"], { headers: BROWSER });
+  // Railways and buses, via the aggregator rather than the ministry portals
+  // that failed DNS.
+  for (const [id, term] of [
+    ["rail", "railway"], ["bus", "bus"], ["metro", "metro"],
+    ["election", "election"], ["cinema", "cinema"],
+  ] as const) {
+    await probe(`datagov-cat-${id}`, "aggregator", `catalogue titles mentioning ${term}`,
+      `https://www.data.gov.in/search?q=${encodeURIComponent(term)}`, [term, "dataset", "resource"], { headers: BROWSER });
+  }
+
   const ok = checks.filter((c) => c.status === "ok").length;
   console.log(`\n${ok}/${checks.length} answered.\n`);
   for (const c of checks) {
