@@ -3,7 +3,7 @@ title: Data sources
 description: Every publisher, feed and dataset behind Bharat Tracker — what each covers, how far back it goes, how much to trust it, and where it falls short.
 ---
 
-Bharat Tracker publishes nothing it cannot attribute. Each of the **764 series** on this site
+Bharat Tracker publishes nothing it cannot attribute. Each of the **767 series** on this site
 carries a list of source ids resolving into `data/sources.json`, where a source is a specific
 document — a named press release, a yearbook chapter, a parliamentary answer — with a URL and
 the date it was read, not a vague gesture at an institution.
@@ -26,7 +26,7 @@ moved, not the number.
 | Domain | Series | Data points | Span | Primary providers |
 |---|---:|---:|---|---|
 | Defence | 24 | 205 | 2001–2026 | PIB / MoD, SIPRI, PRS Legislative Research |
-| Infrastructure | 41 | 569 | 2001–2026 | MoRTH, MoCA, Ministry of Ports & Shipping, PIB |
+| Infrastructure | 44 | 623 | 2001–2026 | MoRTH, MoCA, Ministry of Ports & Shipping, PIB |
 | Trade | 107 | 2383 | 2001–2025 | World Bank WDI, Department of Commerce |
 | Economy | 127 | 2826 | 2001–2025 | World Bank WDI |
 | Manufacturing | 18 | 374 | 2001–2025 | World Bank WDI, PIB |
@@ -39,7 +39,7 @@ moved, not the number.
 | Internal security | 25 | 558 | pending | SATP, MHA parliamentary answers |
 
 Series carry one of three frequencies: `annual` (717), `fiscal-year` (22, India's April–March
-year, never silently converted to calendar years) and `point-in-time` (25, a stock count as of
+year, never silently converted to calendar years) and `point-in-time` (28, a stock count as of
 a stated date rather than a flow).
 
 ---
@@ -345,7 +345,7 @@ always labelled on the chart.
 
 ### Confidence — how much weight it bears
 
-`high` (709 series) · `medium` (37) · `low` (18).
+`high` (709 series) · `medium` (40) · `low` (18).
 
 Four rules are enforced mechanically, in `scripts/lib/validate-series.ts` and again as CHECK
 constraints in `supabase/migrations/0001_init.sql`:
