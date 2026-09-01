@@ -1,0 +1,50 @@
+name: Ingest mobility
+
+# Network geometry from OpenStreetMap plus a live flight snapshot.
+#
+# Runs on a schedule because the flight file is a ROLLING set of snapshots: one
+# call is a single instant in the sky and would misrepresent density on its own,
+# so the connector appends and keeps the last 60.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/connectors/mobility.ts"
+      - "scripts/etl/ingest-mobility.ts"
+      - ".github/workflows/mobility-ingest.yml"
+  schedule:
+    - cron: "23 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mobility-ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Ingest
+        run: npm run mobility:ingest
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/mobility 2>/dev/null || true
+          if git diff --staged --quiet; then echo "unchanged"; exit 0; fi
+          git commit -m "chore(mobility): network + flight snapshot $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do
+            git push && break
+            sleep $((2**i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          done
