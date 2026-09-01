@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { getTradeData, getSectorViews, stageCounts, chapterName, type Product } from "@/lib/trade-data";
 import { STAGES, CONFOUNDERS, RULES, HS_REVISIONS, nearRevision } from "@/lib/localisation";
+import { INSTRUMENTS } from "@/lib/localisation-sectors";
 import StageChip from "@/components/charts/StageChip";
 import CoverageSpark from "@/components/charts/CoverageSpark";
 import ProductExplorer, { type ExplorerRow } from "@/components/charts/ProductExplorer";
-import { getSeries, definedPoints } from "@/lib/data";
+import { getSeries, definedPoints, getSource } from "@/lib/data";
 
 /**
  * Made in India: import substitution, measured rather than announced.
@@ -77,6 +78,13 @@ export default function MadeInIndiaPage() {
       ? { period: lastGdpPoint.period, value: lastGdpPoint.value }
       : null;
 
+  // The quarterly figure is press-tier and cited as such: three independent
+  // outlets, none of them the statistical office, because the statistical
+  // office is not machine-readable here.
+  const gdpQuarterSources = ["blin-gdp-q1-fy27", "mint-gdp-q1-fy27", "ndtvprofit-gdp-q1-fy27"]
+    .map((id) => getSource(id))
+    .filter((x): x is NonNullable<typeof x> => x !== undefined);
+
   const rows: ExplorerRow[] = data.products.map((p) => ({
     code: p.code,
     name: p.name,
@@ -132,6 +140,20 @@ export default function MadeInIndiaPage() {
             sub={`Of ${data.products.length.toLocaleString("en-IN")} with trade data. The rest are too thin to judge and are labelled as such rather than scored.`}
           />
         </div>
+        {gdpQuarterSources.length > 0 && (
+          <p className="mt-2 text-xs text-ink-muted">
+            The 7.8% figure, reported by{" "}
+            {gdpQuarterSources.map((src, i) => (
+              <span key={src.id}>
+                {i > 0 && (i === gdpQuarterSources.length - 1 ? " and " : ", ")}
+                <a href={src.url} className="underline" rel="noopener noreferrer" target="_blank">
+                  {src.publisher}
+                </a>
+              </span>
+            ))}
+            . Tier 3 — a press report of a primary claim, not the primary claim.
+          </p>
+        )}
         <div className="mt-4 rounded-lg border border-gridline bg-surface-2 p-4 text-sm leading-relaxed text-ink-2">
           <p>
             <strong className="text-ink">Why the headline figure carries a caveat.</strong>{" "}
@@ -268,6 +290,45 @@ export default function MadeInIndiaPage() {
           </p>
         </section>
       )}
+
+      {/* ── How the chain actually gets moved ──────────────────────────── */}
+      <section className="mb-12">
+        <h2 className="mb-1 text-lg font-semibold text-ink">How a supply chain gets moved</h2>
+        <p className="mb-4 max-w-2xl text-sm text-ink-2">
+          Five instruments, working by different mechanisms. They matter here because each leaves a
+          different fingerprint in the trade data — the shape of a line can tell you which lever was
+          pulled, and whether it did what it was meant to.
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[760px] border-collapse text-sm">
+            <thead>
+              <tr className="border-b border-baseline text-left text-[11px] uppercase tracking-wide text-ink-muted">
+                <th className="py-2 pr-4 font-medium">Instrument</th>
+                <th className="py-2 pr-4 font-medium">How it works</th>
+                <th className="py-2 pr-4 font-medium">Fingerprint in the data</th>
+                <th className="py-2 font-medium">How it fails</th>
+              </tr>
+            </thead>
+            <tbody>
+              {INSTRUMENTS.map((i) => (
+                <tr key={i.id} className="border-b border-gridline align-top">
+                  <td className="py-3 pr-4 font-medium text-ink">{i.name}</td>
+                  <td className="py-3 pr-4 text-xs leading-relaxed text-ink-2">{i.mechanism}</td>
+                  <td className="py-3 pr-4 text-xs leading-relaxed text-ink-2">{i.fingerprint}</td>
+                  <td className="py-3 text-xs leading-relaxed text-ink-muted">{i.failureMode}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-3 max-w-3xl text-xs leading-relaxed text-ink-muted">
+          These are instrument types, not claims about particular schemes. No scheme name, outlay or
+          date appears here, because this pipeline has no machine-readable access to Indian scheme
+          documentation and a figure that cannot be cited should not be printed. Nothing measured on
+          this page depends on it: the commodity lines moved or they did not, whichever lever gets
+          the credit — and attributing a movement to a lever is the step this page declines to take.
+        </p>
+      </section>
 
       {/* ── Method ─────────────────────────────────────────────────────────── */}
       <section className="mb-12">

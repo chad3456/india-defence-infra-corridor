@@ -211,3 +211,91 @@ export function curatedCodes(): SectorCode[] {
   }
   return [...seen.values()];
 }
+
+/**
+ * The instruments.
+ *
+ * "How did India fix the supply chain" has a real answer, and it is not one
+ * thing. Five distinct policy instruments were used, they work by different
+ * mechanisms, they fail in different ways, and they leave different fingerprints
+ * in trade data. Naming them separately is what makes the sector panels
+ * readable: a tariff wall and a production subsidy both raise domestic output,
+ * but only one of them also raises domestic prices.
+ *
+ * ── The status of this list ──────────────────────────────────────────────
+ *
+ * These are descriptions of instrument *types*, not claims about particular
+ * schemes, outlays or outcomes. This pipeline has no machine-readable access to
+ * Indian scheme documentation — MoSPI serves a JavaScript shell, and the
+ * ministry portals that carry scheme detail were not readable in the source
+ * probe — so nothing here carries a scheme name, a rupee figure or a date that
+ * would need a primary citation to be trustworthy.
+ *
+ * The measured half of this page does not depend on any of it. The commodity
+ * lines moved or they did not, regardless of which instrument gets the credit,
+ * and attributing a movement to an instrument is exactly the step this page
+ * declines to take.
+ */
+export interface Instrument {
+  id: string;
+  name: string;
+  /** How it is supposed to work. */
+  mechanism: string;
+  /** What it looks like in trade data when it works. */
+  fingerprint: string;
+  /** The characteristic way it goes wrong. */
+  failureMode: string;
+}
+
+export const INSTRUMENTS: Instrument[] = [
+  {
+    id: "tariff",
+    name: "Tariff walls",
+    mechanism:
+      "Raise the landed cost of the imported good until domestic production is competitive at the domestic price.",
+    fingerprint:
+      "Imports fall sharply within a year or two of the duty change, faster than any plant could have been built. Exports do not move.",
+    failureMode:
+      "Domestic prices rise to just under the tariff-inclusive import price, and the cost is paid by whoever buys the product downstream. If that downstream is an export industry, the wall protects one line by taxing another.",
+  },
+  {
+    id: "phased-manufacturing",
+    name: "Phased manufacturing programmes",
+    mechanism:
+      "A published schedule of rising duties on successively deeper parts of the assembly — finished goods first, then sub-assemblies, then components — so localisation moves up the chain on a timetable firms can plan against.",
+    fingerprint:
+      "The finished-good import line falls first; component import lines rise, then fall in turn a few years later. The staircase is the signature.",
+    failureMode:
+      "The schedule outruns the capability. Duties land on components nobody domestically makes yet, and the assembler pays them without any localisation occurring.",
+  },
+  {
+    id: "production-subsidy",
+    name: "Production-linked incentives",
+    mechanism:
+      "Pay a percentage of incremental output, conditional on hitting investment and turnover thresholds. Unlike a tariff it does not raise the domestic price, so downstream users are not taxed.",
+    fingerprint:
+      "Exports rise without imports of the finished good falling much, because subsidised capacity is built for world demand rather than to displace imports.",
+    failureMode:
+      "It buys assembly. Output subsidies reward units shipped, and units can be shipped from imported kits — which is precisely what the input lines on this page are here to check.",
+  },
+  {
+    id: "quality-orders",
+    name: "Quality control orders",
+    mechanism:
+      "Mandate a domestic standard and require certification to sell in India. Not framed as protection, but certification cost and delay fall hardest on small foreign suppliers.",
+    fingerprint:
+      "Imports drop steeply at a single date with no tariff change to explain it, and the drop is concentrated in low-value shipments.",
+    failureMode:
+      "It removes the cheap end of the market without replacing it, so the consumer substitutes toward a more expensive domestic good or does without.",
+  },
+  {
+    id: "procurement",
+    name: "Public procurement preference",
+    mechanism:
+      "Require government buyers to prefer suppliers meeting a domestic value-addition threshold. The state is a large enough customer in defence, railways and power to create a market by itself.",
+    fingerprint:
+      "Weak in customs data, because the substitution happens inside a procurement decision rather than at a border. Defence is the clearest case and the least visible one.",
+    failureMode:
+      "Value-addition thresholds are self-certified and hard to audit, so the number that matters is the one nobody checks.",
+  },
+];
