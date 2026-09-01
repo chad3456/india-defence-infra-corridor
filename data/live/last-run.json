@@ -1,7 +1,7 @@
 {
-  "id": "run-1788240428738",
-  "startedAt": "2026-09-01T05:24:35.103Z",
-  "finishedAt": "2026-09-01T05:27:08.738Z",
+  "id": "run-1788240707715",
+  "startedAt": "2026-09-01T05:28:11.837Z",
+  "finishedAt": "2026-09-01T05:31:47.715Z",
   "status": "partial",
   "connectorsRun": 9,
   "connectorsFailed": 0,
@@ -12,6 +12,7 @@
     "satp: terror: https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir -> HTTP 403",
     "satp: terror: no candidate URL yielded a full table; keeping previous data",
     "trai: tele-density: only 15 service area(s) parsed; expected at least 18. Not found: Delhi, Jammu & Kashmir, Kerala, Mumbai, Odisha, Uttar Pradesh (East), Uttar Pradesh (West)",
+    "ingest: Metro Rail News: fetch failed",
     "ingest: The Tribune: HTTP 403",
     "ingest: Deccan Herald: HTTP 404",
     "ingest: The New Indian Express: HTTP 404",
@@ -28,7 +29,7 @@
     "ingest: Defence Aviation Post: HTTP 404",
     "ingest: Daily Excelsior: HTTP 403",
     "ingest: Search: psu-msme — MSME India cluster launched: feed had no items",
-    "ingest funnel: 1816 items -> 616 candidates -> 57 events (lost: 259 no sector, 166 not an action, 134 no place)",
+    "ingest funnel: 1810 items -> 601 candidates -> 45 events (lost: 258 no sector, 163 not an action, 135 no place)",
     "x: X_BEARER_TOKEN not set — reading X is paid per post since February 2026, so this connector is inactive. Official announcements still arrive via the PIB, PMO and ministry feeds at no cost."
   ]
 }
