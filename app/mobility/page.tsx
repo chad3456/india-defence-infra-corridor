@@ -63,8 +63,8 @@ export default function MobilityPage() {
       {d.present ? (
         <>
           <section className="mb-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <Stat label="Metro & light rail, running" value={`${Math.round(runningKm).toLocaleString("en-IN")} km`}
-              sub={`Union of track across ${d.networks.length} networks. A further ${Math.round(totalKm - runningKm).toLocaleString("en-IN")} km is mapped but marked under construction.`} />
+            <Stat label="Metro & light rail, mapped" value={`${Math.round(totalKm).toLocaleString("en-IN")} km`}
+              sub={`Union of track across ${d.networks.length} networks. An upper bound — see the note below on what OSM does and does not tag.`} />
             <Stat label="Distinct alignments" value={alignments.length.toLocaleString("en-IN")}
               sub={`From ${d.metro.length} route relations — each direction is mapped separately and is collapsed here.`} />
             <Stat label="Metro stations" value={stations.toLocaleString("en-IN")}
@@ -154,6 +154,20 @@ export default function MobilityPage() {
               <p className="text-xs leading-relaxed text-ink-2">{b}</p>
             </div>
           ))}
+        </div>
+        <div className="mt-4 rounded-lg border border-gridline bg-surface-2 p-4">
+          <h3 className="mb-1.5 text-sm font-medium text-ink">Why the track total is an upper bound</h3>
+          <p className="text-xs leading-relaxed text-ink-2">
+            Only {d.tagged.lifecycle} of {d.tagged.total} mapped lines carry any lifecycle tag at
+            all. The rest say nothing about whether they are running, and this page treats an
+            untagged line as running — which is the generous reading. So{" "}
+            {Math.round(totalKm).toLocaleString("en-IN")} km is the ceiling on mapped alignment, not
+            a measurement of operating network, and the true operating figure is lower. Published
+            operational totals for Indian metro sit closer to a thousand kilometres. The gap is
+            construction that OSM maps the same way it maps running track, and it is shown here
+            rather than quietly closed, because the alternative is a confident number that would be
+            wrong.
+          </p>
         </div>
         <p className="mt-4 max-w-3xl text-xs leading-relaxed text-ink-muted">
           Passenger and freight volumes are the obvious missing half. They are published by DGCA and

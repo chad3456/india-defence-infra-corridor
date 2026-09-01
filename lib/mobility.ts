@@ -129,6 +129,8 @@ export interface MobilityData {
   snapshots: FlightSnapshot[];
   networks: Network[];
   present: boolean;
+  /** How many lines carry any lifecycle tag at all — the evidence behind "running". */
+  tagged: { lifecycle: number; total: number };
 }
 
 let cached: MobilityData | null = null;
@@ -180,7 +182,10 @@ export function getMobility(): MobilityData {
   }
   const networks = [...byNet.values()].sort((a, b) => b.km - a.km);
 
+  const lifecycle = metro.filter((m) => m.status && m.status !== "unknown").length;
+
   cached = {
+    tagged: { lifecycle, total: metro.length },
     metro, vande, airports,
     snapshots: flights.snapshots ?? [],
     networks,
