@@ -45,6 +45,7 @@ interface Found {
   error?: string;
 }
 const found: Found[] = [];
+let resourceTest: Record<string, unknown> | null = null;
 
 /** Terms per topic. Several spellings, because the catalogue is inconsistent. */
 const TOPICS: Record<string, string[]> = {
@@ -99,13 +100,38 @@ async function main(): Promise<void> {
     for (const term of terms) await search(topic, term);
   }
 
+  // Listing a resource and READING it are different permissions. Everything
+  // above is worthless if the rows need a key, so take the most on-topic id
+  // found and try to pull actual records from it.
+  const target = found
+    .filter((f) => f.total !== catalogueTotal && f.hits.length > 0)
+    .flatMap((f) => f.hits)
+    .find((h) => /freight|ridership|passenger|transport undertaking/i.test(h.title));
+  if (target?.id) {
+    const rurl = `https://api.data.gov.in/resource/${target.id}?format=json&limit=5`;
+    const rr = await getJson<{ records?: unknown[]; field?: unknown[]; message?: string; status?: string }>(
+      rurl, { timeoutMs: 45_000, retries: 1, cacheMs: 0 },
+    );
+    resourceTest = {
+      id: target.id, title: target.title, url: rurl,
+      ok: rr.ok && Array.isArray(rr.data?.records),
+      rows: Array.isArray(rr.data?.records) ? rr.data.records.length : 0,
+      fields: Array.isArray(rr.data?.field) ? rr.data.field.length : 0,
+      message: rr.data?.message ?? rr.error ?? null,
+      sample: rr.data?.records ? JSON.stringify(rr.data.records[0] ?? {}).slice(0, 300) : null,
+    };
+    console.log(`\nresource read: ${resourceTest.ok ? "OK" : "FAILED"} — ${target.title.slice(0, 60)}`);
+    console.log(`  rows=${resourceTest.rows} fields=${resourceTest.fields} ${resourceTest.message ?? ""}`);
+    if (resourceTest.sample) console.log(`  ${resourceTest.sample}`);
+  }
+
   console.log("");
   for (const f of found) {
     const suspect = f.total === catalogueTotal && f.total > 0 ? "  <- UNFILTERED, ignore" : "";
     console.log(`  ${f.topic.padEnd(14)} ${JSON.stringify(f.term).padEnd(30)} total=${String(f.total).padStart(6)} ${f.error ?? ""}${suspect}`);
     if (!suspect) for (const h of f.hits.slice(0, 3)) console.log(`      · ${h.title.slice(0, 84)}  [${h.org.slice(0, 30)}]`);
   }
-  await writeFile(OUT, JSON.stringify({ probedAt: new Date().toISOString(), catalogueTotal, found }, null, 2) + "\n", "utf8");
+  await writeFile(OUT, JSON.stringify({ probedAt: new Date().toISOString(), catalogueTotal, resourceTest, found }, null, 2) + "\n", "utf8");
 }
 
 main().catch(async (e) => { console.error(e); await flush(); process.exit(1); });

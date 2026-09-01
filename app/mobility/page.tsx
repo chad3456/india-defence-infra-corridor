@@ -97,10 +97,6 @@ export default function MobilityPage() {
                     <span className="relative block h-3.5 overflow-hidden rounded-sm bg-surface-2">
                       <span className="absolute inset-y-0 left-0 rounded-sm"
                         style={{ width: `${(n.km / maxKm) * 100}%`, background: "var(--series-1)" }} />
-                      {n.runningKm < n.km && (
-                        <span className="absolute inset-y-0 left-0 rounded-sm opacity-90"
-                          style={{ width: `${(n.runningKm / maxKm) * 100}%`, background: "var(--series-3)" }} />
-                      )}
                     </span>
                     <span className="text-right font-mono text-[11px] tabular-nums text-ink-2">
                       {Math.round(n.km)} km
@@ -108,9 +104,12 @@ export default function MobilityPage() {
                   </div>
                 ))}
               </div>
-              <p className="mt-3 flex flex-wrap gap-x-4 text-[11px] text-ink-muted">
-                <span><span className="mr-1.5 inline-block h-2 w-3 align-middle" style={{ background: "var(--series-3)" }} />Running</span>
-                <span><span className="mr-1.5 inline-block h-2 w-3 align-middle" style={{ background: "var(--series-1)" }} />Mapped, incl. under construction</span>
+              {/* One bar, not two. A running/under-construction split would rest on
+                  the 5 lines of 118 that carry a lifecycle tag, and drawing it
+                  would imply a precision the tagging does not support. */}
+              <p className="mt-3 text-[11px] text-ink-muted">
+                Mapped alignment, including sections under construction. Only {d.tagged.lifecycle} of{" "}
+                {d.tagged.total} lines say which they are.
               </p>
 
               <h2 className="mt-8 mb-1 text-lg font-semibold text-ink">Vande Bharat</h2>
