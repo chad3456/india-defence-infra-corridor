@@ -17,7 +17,7 @@
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import { getJson } from "./lib/http";
+import { getJson, getText } from "./lib/http";
 
 const ROOT = process.cwd();
 const OUT = join(ROOT, "data/live/ogd-probe.json");
@@ -120,7 +120,22 @@ async function main(): Promise<void> {
       message: rr.data?.message ?? rr.error ?? null,
       sample: rr.data?.records ? JSON.stringify(rr.data.records[0] ?? {}).slice(0, 300) : null,
     };
+    // A bare "HTTP 400" is not a diagnosis. Fetch the body of the refusal so
+    // the report says what the endpoint actually wants, and try the documented
+    // shapes -- an explicit empty key, and the catalogue's own download path --
+    // so the next step is known rather than guessed.
+    const raw = await getText(rurl, { timeoutMs: 30_000, retries: 0, cacheMs: 0 });
+    resourceTest.refusalBody = (raw.data ?? raw.error ?? "").slice(0, 300);
+    const alt = await getText(`${rurl}&api-key=`, { timeoutMs: 30_000, retries: 0, cacheMs: 0 });
+    resourceTest.emptyKeyBody = (alt.data ?? alt.error ?? "").slice(0, 300);
+    const dl = await getText(`https://www.data.gov.in/resource/${target.id}`, { timeoutMs: 30_000, retries: 0, cacheMs: 0 });
+    resourceTest.catalogPage = dl.ok
+      ? { bytes: (dl.data ?? "").length, hasCsv: /\.csv|download/i.test(dl.data ?? "") }
+      : { error: dl.error };
+
     console.log(`\nresource read: ${resourceTest.ok ? "OK" : "FAILED"} — ${target.title.slice(0, 60)}`);
+    console.log(`  refusal: ${String(resourceTest.refusalBody).slice(0, 180)}`);
+    console.log(`  catalog page: ${JSON.stringify(resourceTest.catalogPage)}`);
     console.log(`  rows=${resourceTest.rows} fields=${resourceTest.fields} ${resourceTest.message ?? ""}`);
     if (resourceTest.sample) console.log(`  ${resourceTest.sample}`);
   }
