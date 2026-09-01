@@ -59,6 +59,15 @@ interface Check {
   distinctCodes?: number;
   /** Set when rows lands exactly on a round number that smells like a cap. */
   suspectedCap?: number;
+  /**
+   * Fields that vary within a single commodity code.
+   *
+   * The first run returned 215 rows for one commodity in one year for one
+   * flow, which means some dimension is splitting each line. Summing those
+   * rows without knowing which one would double-count; picking the first would
+   * under-count. This names the culprit instead of guessing.
+   */
+  splitBy?: Record<string, number>;
   elapsedMs?: number;
   sample?: unknown;
   note?: string;
@@ -76,6 +85,7 @@ interface ComtradeRow {
   flowCode?: string;
   period?: string | number;
   reporterCode?: number;
+  [k: string]: unknown;
 }
 interface ComtradeEnvelope {
   count?: number | null;
@@ -120,6 +130,21 @@ async function comtrade(name: string, params: Record<string, string>, useKey: bo
       primaryValue: r.primaryValue,
     })),
   };
+  // Which fields take more than one value inside a single commodity code?
+  if (rows.length > 1) {
+    const first = rows[0]?.cmdCode;
+    const sameCode = rows.filter((r) => r.cmdCode === first);
+    if (sameCode.length > 1) {
+      const varying: Record<string, number> = {};
+      const keys = new Set<string>();
+      for (const r of sameCode) for (const k of Object.keys(r)) keys.add(k);
+      for (const k of keys) {
+        const vals = new Set(sameCode.map((r) => JSON.stringify(r[k])));
+        if (vals.size > 1) varying[k] = vals.size;
+      }
+      check.splitBy = varying;
+    }
+  }
   if (CAP_SUSPECTS.has(rows.length)) {
     check.suspectedCap = rows.length;
     check.note =
@@ -146,7 +171,7 @@ async function plain(name: string, url: string, expect: RegExp): Promise<void> {
       httpError: expect.test(body) ? undefined : `body did not match ${expect}`,
       rows: body.length,
       elapsedMs,
-      sample: body.slice(0, 220),
+      sample: body.slice(0, 1500),
     });
   }
   await flush();
@@ -203,6 +228,24 @@ async function main(): Promise<void> {
     }, true);
   }
 
+  // 7b. Collapse attempts. One commodity came back as 215 rows, so some
+  // dimension is splitting each line. Comtrade's newer API carries mode of
+  // transport, customs procedure and a second partner; if the split is one of
+  // those, pinning it should return a single row per commodity. Whichever of
+  // these collapses the answer is the one the ingest must pin.
+  await comtrade("comtrade/total-pinned-mot-customs-p2", {
+    reporterCode: String(INDIA), period: "2023", partnerCode: "0", cmdCode: "TOTAL", flowCode: "M",
+    motCode: "0", customsCode: "C00", partner2Code: "0",
+  }, false);
+  await comtrade("comtrade/total-pinned-mot-only", {
+    reporterCode: String(INDIA), period: "2023", partnerCode: "0", cmdCode: "TOTAL", flowCode: "M",
+    motCode: "0",
+  }, false);
+  await comtrade("comtrade/hs6-pinned-2023", {
+    reporterCode: String(INDIA), period: "2023", partnerCode: "0", cmdCode: "AG6", flowCode: "M",
+    motCode: "0", customsCode: "C00", partner2Code: "0",
+  }, false);
+
   // 8. Fallbacks. WITS publishes free bulk SDMX; the World Bank API is already
   // used elsewhere in this pipeline and doubles as a reachability control — if
   // it fails here, the network is the problem, not the trade hosts.
@@ -210,6 +253,24 @@ async function main(): Promise<void> {
     "wits/sdmx-india-imports",
     "https://wits.worldbank.org/API/V1/SDMX/V21/datasource/tradestats-trade/reporter/ind/year/2020/partner/wld/product/all/indicator/MPRT-TRD-VL",
     /<|Series|Obs/i,
+  );
+  // WITS answered, but a 7kB body for "all products" is far too small to be
+  // 5,300 commodity lines. These establish what its product dimension actually
+  // is before anything is built on it.
+  await plain(
+    "wits/sdmx-datasource-list",
+    "https://wits.worldbank.org/API/V1/SDMX/V21/datasource/tradestats-trade/",
+    /./,
+  );
+  await plain(
+    "wits/product-codelist",
+    "https://wits.worldbank.org/API/V1/wits/datasource/trn/product/all",
+    /</,
+  );
+  await plain(
+    "wits/nomenclature-h5-products",
+    "https://wits.worldbank.org/API/V1/wits/datasource/tradestats-trade/product/ALL",
+    /</,
   );
   await plain(
     "worldbank/control",
