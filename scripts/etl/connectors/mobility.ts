@@ -70,6 +70,15 @@ export interface MetroLine {
   /** Simplified alignment, [lon,lat] pairs. */
   path: Array<[number, number]>;
   stations: number;
+  /**
+   * Whether the line is running.
+   *
+   * OSM maps lines under construction as route relations too, so a total that
+   * ignores this reports concrete that does not exist yet. Delhi came to 566 km
+   * of mapped alignment against roughly 390 km actually operating, and most of
+   * that gap is construction.
+   */
+  status: "operational" | "construction" | "proposed" | "unknown";
 }
 export interface TrainRoute {
   id: number;
@@ -128,6 +137,17 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   );
   const metro: MetroLine[] = [];
   let dropped = 0;
+
+  /** OSM records lifecycle in several competing ways; check all of them. */
+  const statusOf = (t: Record<string, string>): MetroLine["status"] => {
+    const raw = (t.state ?? t.status ?? t["route:state"] ?? "").toLowerCase();
+    if (/construct/.test(raw) || t["construction:route"] || t.construction) return "construction";
+    if (/propos|plan/.test(raw) || t["proposed:route"] || t.proposed) return "proposed";
+    if (/(open|operational|in_use)/.test(raw)) return "operational";
+    // An untagged route relation on a mapped network is, in practice, running:
+    // mappers tag the exception, not the norm.
+    return "unknown";
+  };
   for (const el of metroEls) {
     const t = el.tags ?? {};
     const name = t.name ?? t["name:en"] ?? "";
@@ -142,6 +162,7 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
       colour: t.colour ?? t.color ?? null,
       path,
       stations: (el.members ?? []).filter((m) => /^stop/.test(m.role)).length,
+      status: statusOf(t),
     });
   }
   if (metro.length === 0) errors.push("mobility: no metro relations carried a usable alignment");
