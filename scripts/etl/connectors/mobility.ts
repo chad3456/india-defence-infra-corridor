@@ -36,9 +36,11 @@ async function pace(): Promise<void> {
 interface OverpassEl {
   type: string; id: number;
   tags?: Record<string, string>;
-  members?: Array<{ type: string; ref: number; role: string }>;
+  /** For a relation, the alignment lives here -- one geometry per member way. */
+  members?: Array<{ type: string; ref: number; role: string; geometry?: Array<{ lat: number; lon: number }> }>;
   geometry?: Array<{ lat: number; lon: number }>;
   lat?: number; lon?: number;
+  center?: { lat: number; lon: number };
 }
 interface OverpassRes { elements?: OverpassEl[] }
 
@@ -92,9 +94,25 @@ function simplify(pts: Array<[number, number]>, tol = 0.012): Array<[number, num
   return out;
 }
 
+/**
+ * The alignment of a route.
+ *
+ * A relation has no geometry of its own -- it is a list of member ways, and
+ * each of those carries the coordinates. Reading `el.geometry` on a relation
+ * returns undefined, which is why the first run wrote eight Vande Bharat routes
+ * with zero points each and no metro lines at all. Members with a role are
+ * stops and platforms; only the unroled ways are track.
+ */
 function pathOf(el: OverpassEl): Array<[number, number]> {
-  if (!el.geometry) return [];
-  return simplify(el.geometry.map((g) => [Number(g.lon.toFixed(4)), Number(g.lat.toFixed(4))] as [number, number]));
+  const pts: Array<[number, number]> = [];
+  if (el.geometry) {
+    for (const g of el.geometry) pts.push([Number(g.lon.toFixed(4)), Number(g.lat.toFixed(4))]);
+  }
+  for (const m of el.members ?? []) {
+    if (m.role && m.role !== "") continue;
+    for (const g of m.geometry ?? []) pts.push([Number(g.lon.toFixed(4)), Number(g.lat.toFixed(4))]);
+  }
+  return simplify(pts);
 }
 
 export async function run(opts: { onProgress?: (s: string) => void } = {}): Promise<{ errors: string[] }> {
@@ -105,16 +123,17 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   // ── metro: one relation per line, with its alignment ──────────────
   const metroEls = await ask(
     '[out:json][timeout:180];area["ISO3166-1"="IN"][admin_level=2]->.in;' +
-    'relation["route"="subway"](area.in);out tags geom;',
-    "metro lines", log,
+    'relation["route"~"^(subway|light_rail|monorail)$"](area.in);out geom;',
+    "metro / light rail", log,
   );
   const metro: MetroLine[] = [];
+  let dropped = 0;
   for (const el of metroEls) {
     const t = el.tags ?? {};
     const name = t.name ?? t["name:en"] ?? "";
     if (!name) continue;
     const path = pathOf(el);
-    if (path.length < 2) continue;
+    if (path.length < 2) { dropped++; continue; }
     metro.push({
       id: el.id, name,
       // OSM has no "city" tag on routes; the network name carries it
@@ -122,16 +141,17 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
       operator: t.operator ?? null,
       colour: t.colour ?? t.color ?? null,
       path,
-      stations: (el.members ?? []).filter((m) => m.role === "stop" || m.role.startsWith("stop")).length,
+      stations: (el.members ?? []).filter((m) => /^stop/.test(m.role)).length,
     });
   }
-  if (metro.length === 0) errors.push("mobility: no metro relations returned");
+  if (metro.length === 0) errors.push("mobility: no metro relations carried a usable alignment");
+  else if (dropped > 0) log(`  ${dropped} metro relation(s) had no member geometry and were skipped`);
   await writeFile(join(OUT_DIR, "metro.json"), JSON.stringify(metro), "utf8");
   log(`metro lines written: ${metro.length}`);
 
   // ── Vande Bharat: the named services ──────────────────────────────
   const vbEls = await ask(
-    '[out:json][timeout:180];relation["route"="train"]["name"~"Vande Bharat",i];out tags geom;',
+    '[out:json][timeout:180];relation["route"="train"]["name"~"Vande ?Bharat",i];out geom;',
     "Vande Bharat", log,
   );
   const vande: TrainRoute[] = [];
@@ -156,8 +176,8 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   for (const el of apEls) {
     const t = el.tags ?? {};
     const iata = (t.iata ?? "").trim().toUpperCase();
-    const lon = el.lon ?? (el as unknown as { center?: { lon: number } }).center?.lon;
-    const lat = el.lat ?? (el as unknown as { center?: { lat: number } }).center?.lat;
+    const lon = el.lon ?? el.center?.lon;
+    const lat = el.lat ?? el.center?.lat;
     if (!/^[A-Z]{3}$/.test(iata) || lon === undefined || lat === undefined) continue;
     if (airports.some((a) => a.iata === iata)) continue;
     airports.push({
