@@ -1,0 +1,171 @@
+{
+  "probedAt": "2026-09-01T05:25:02.352Z",
+  "keyPresent": false,
+  "purpose": "establish whether HS6 import/export series for India are reachable, and at what cap",
+  "checks": [
+    {
+      "name": "comtrade/total-imports-2023",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=699&period=2023&partnerCode=0&cmdCode=TOTAL&flowCode=M",
+      "withKey": false,
+      "status": "ok",
+      "count": 215,
+      "rows": 215,
+      "distinctCodes": 1,
+      "elapsedMs": 3785,
+      "sample": [
+        {
+          "cmdCode": "TOTAL",
+          "cmdDesc": null,
+          "flowCode": "M",
+          "period": "2023",
+          "primaryValue": 21526304798.113
+        },
+        {
+          "cmdCode": "TOTAL",
+          "cmdDesc": null,
+          "flowCode": "M",
+          "period": "2023",
+          "primaryValue": 127281.621
+        }
+      ]
+    },
+    {
+      "name": "comtrade/hs2-imports-2023",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=699&period=2023&partnerCode=0&cmdCode=AG2&flowCode=M",
+      "withKey": false,
+      "status": "ok",
+      "count": 500,
+      "rows": 500,
+      "distinctCodes": 40,
+      "elapsedMs": 843,
+      "sample": [
+        {
+          "cmdCode": "54",
+          "cmdDesc": null,
+          "flowCode": "M",
+          "period": "2023",
+          "primaryValue": 5368685.654
+        },
+        {
+          "cmdCode": "95",
+          "cmdDesc": null,
+          "flowCode": "M",
+          "period": "2023",
+          "primaryValue": 1026228.414
+        }
+      ],
+      "suspectedCap": 500,
+      "note": "returned exactly 500 rows — treat as a cap, not a complete answer, until a request known to have fewer results comes back short"
+    },
+    {
+      "name": "comtrade/hs4-imports-2023",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=699&period=2023&partnerCode=0&cmdCode=AG4&flowCode=M",
+      "withKey": false,
+      "status": "ok",
+      "count": 500,
+      "rows": 500,
+      "distinctCodes": 76,
+      "elapsedMs": 2405,
+      "sample": [
+        {
+          "cmdCode": "6401",
+          "cmdDesc": null,
+          "flowCode": "M",
+          "period": "2023",
+          "primaryValue": 55161.725
+        },
+        {
+          "cmdCode": "6405",
+          "cmdDesc": null,
+          "flowCode": "M",
+          "period": "2023",
+          "primaryValue": 48538.513
+        }
+      ],
+      "suspectedCap": 500,
+      "note": "returned exactly 500 rows — treat as a cap, not a complete answer, until a request known to have fewer results comes back short"
+    },
+    {
+      "name": "comtrade/hs6-imports-2023",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=699&period=2023&partnerCode=0&cmdCode=AG6&flowCode=M",
+      "withKey": false,
+      "status": "ok",
+      "count": 500,
+      "rows": 500,
+      "distinctCodes": 93,
+      "elapsedMs": 2078,
+      "sample": [
+        {
+          "cmdCode": "842230",
+          "cmdDesc": null,
+          "flowCode": "M",
+          "period": "2023",
+          "primaryValue": 424074502.613
+        },
+        {
+          "cmdCode": "821193",
+          "cmdDesc": null,
+          "flowCode": "M",
+          "period": "2023",
+          "primaryValue": 9595.343
+        }
+      ],
+      "suspectedCap": 500,
+      "note": "returned exactly 500 rows — treat as a cap, not a complete answer, until a request known to have fewer results comes back short"
+    },
+    {
+      "name": "comtrade/hs6-both-flows-2023",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=699&period=2023&partnerCode=0&cmdCode=AG6&flowCode=M%2CX",
+      "withKey": false,
+      "status": "ok",
+      "count": 500,
+      "rows": 500,
+      "distinctCodes": 498,
+      "elapsedMs": 4057,
+      "sample": [
+        {
+          "cmdCode": "850300",
+          "cmdDesc": null,
+          "flowCode": "X",
+          "period": "2023",
+          "primaryValue": 1145545492.113
+        },
+        {
+          "cmdCode": "730840",
+          "cmdDesc": null,
+          "flowCode": "X",
+          "period": "2023",
+          "primaryValue": 269556895.091
+        }
+      ],
+      "suspectedCap": 500,
+      "note": "returned exactly 500 rows — treat as a cap, not a complete answer, until a request known to have fewer results comes back short"
+    },
+    {
+      "name": "comtrade/hs2-multiyear",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=699&period=2015%2C2016%2C2017%2C2018%2C2019&partnerCode=0&cmdCode=AG2&flowCode=M",
+      "withKey": false,
+      "status": "failed",
+      "httpError": "HTTP 400",
+      "elapsedMs": 4054
+    },
+    {
+      "name": "wits/sdmx-india-imports",
+      "url": "https://wits.worldbank.org/API/V1/SDMX/V21/datasource/tradestats-trade/reporter/ind/year/2020/partner/wld/product/all/indicator/MPRT-TRD-VL",
+      "withKey": false,
+      "status": "ok",
+      "rows": 7148,
+      "elapsedMs": 1498,
+      "sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?><!--NSI Web Service v5.2.3--><message:StructureSpecificData xmlns:ss=\"http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific\" xmlns:footer=\"http://www.sdmx.org/reso"
+    },
+    {
+      "name": "worldbank/control",
+      "url": "https://api.worldbank.org/v2/country/IND/indicator/NE.IMP.GNFS.ZS?format=json&per_page=3",
+      "withKey": false,
+      "status": "ok",
+      "rows": 775,
+      "elapsedMs": 838,
+      "sample": "[{\"page\":1,\"pages\":22,\"per_page\":3,\"total\":66,\"sourceid\":\"2\",\"lastupdated\":\"2026-07-13\"},[{\"indicator\":{\"id\":\"NE.IMP.GNFS.ZS\",\"value\":\"Imports of goods and services (% of GDP)\"},\"country\":{\"id\":\"IN\",\"value\":\"India\"},\"cou"
+    }
+  ]
+}
