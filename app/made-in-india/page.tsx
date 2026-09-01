@@ -136,8 +136,12 @@ export default function MadeInIndiaPage() {
           )}
           <Stat
             label="Commodity lines graded"
-            value={graded.length.toLocaleString("en-IN")}
-            sub={`Of ${data.products.length.toLocaleString("en-IN")} with trade data. The rest are too thin to judge and are labelled as such rather than scored.`}
+            value={data.present ? graded.length.toLocaleString("en-IN") : "—"}
+            sub={
+              data.present
+                ? `Of ${data.products.length.toLocaleString("en-IN")} with trade data. The rest are too thin to judge and are labelled as such rather than scored.`
+                : "The commodity ingest has not landed yet. Showing a dash rather than a zero, because none-fetched and none-found are different facts."
+            }
           />
         </div>
         {gdpQuarterSources.length > 0 && (
