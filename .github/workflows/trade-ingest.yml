@@ -1,0 +1,63 @@
+name: Ingest HS6 trade
+
+# Builds the commodity universe, then fetches India's imports and exports for
+# each six-digit line across the sampled years.
+#
+# Deliberately resumable. The free Comtrade tier caps at 500 rows per call and
+# ignores maxRecords, so ~5,300 lines across 11 years is several hundred paced
+# requests and will not always finish in one job. Every batch is written the
+# moment it lands and recorded in a state file, so this workflow can be run
+# repeatedly until the state file says it is complete.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Weekly, to pick up whatever the previous run did not finish.
+    - cron: "17 3 * * 1"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: trade-ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build the HS6 universe and verify curated codes
+        run: npm run trade:universe
+
+      - name: Fetch trade batches
+        run: npm run trade:ingest
+
+      # Always: the ingest writes after every batch, and a run killed by the
+      # timeout has real data on disk that the next run would otherwise refetch.
+      - name: Commit what landed
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/trade data/live/trade-ingest-state.json data/live/hs6-universe-report.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "Nothing new."
+            exit 0
+          fi
+          git commit -m "chore(trade): HS6 ingest $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do
+            git push && break
+            echo "push failed, retrying in $((2**i))s"
+            sleep $((2**i))
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          done

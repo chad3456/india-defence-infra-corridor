@@ -43,7 +43,9 @@
     "wdi:promote": "tsx scripts/docs/promote-wdi.ts",
     "who:probe": "tsx scripts/etl/probe-who.ts",
     "pdfs:probe": "tsx scripts/etl/probe-pdfs.ts",
-    "trade:probe": "tsx scripts/etl/probe-trade.ts"
+    "trade:probe": "tsx scripts/etl/probe-trade.ts",
+    "trade:universe": "tsx scripts/etl/build-hs6-universe.ts",
+    "trade:ingest": "tsx scripts/etl/ingest-trade.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",

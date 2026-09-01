@@ -74,15 +74,20 @@ const YEARS = [2002, 2003, 2004, 2008, 2012, 2013, 2017, 2018, 2022, 2023, 2024]
 
 interface Row {
   cmdCode?: string;
-  cmdDesc?: string;
   flowCode?: string;
   period?: string | number;
   primaryValue?: number;
 }
 interface Envelope { count?: number | null; data?: Row[] }
 
-/** One commodity-year, both flows. */
-export interface YearRow { code: string; desc: string; m: number; x: number }
+/**
+ * One commodity-year, both flows.
+ *
+ * No description field: the preview endpoint returns `cmdDesc: null` on every
+ * row, so the trade data cannot name its own products. Names live once in
+ * `hs6-universe.json` rather than being repeated across eleven year files.
+ */
+export interface YearRow { code: string; m: number; x: number }
 
 interface State {
   /** `${year}:${batchIndex}` for every batch already written. */
@@ -180,8 +185,7 @@ async function fetchBatch(
       return { ok: false, error: `duplicate ${key} — a dimension escaped the pins` };
     }
     seen.add(key);
-    const entry = byCode.get(code) ?? { code, desc: "", m: 0, x: 0 };
-    if (typeof r.cmdDesc === "string" && r.cmdDesc && !entry.desc) entry.desc = r.cmdDesc;
+    const entry = byCode.get(code) ?? { code, m: 0, x: 0 };
     const v = typeof r.primaryValue === "number" ? r.primaryValue : 0;
     if (flow === "M") entry.m = v;
     else entry.x = v;
