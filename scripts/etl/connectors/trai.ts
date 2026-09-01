@@ -55,6 +55,72 @@ const SERVICE_AREAS = [
 
 const NAME = new Set(SERVICE_AREAS.map((s) => s.toLowerCase()));
 
+/**
+ * Spellings TRAI actually prints that are not the canonical name.
+ *
+ * Keys are normalised (see `norm`). Two of these are historical -- TRAI still
+ * prints "Orissa" in some tables -- and the rest are the abbreviations used
+ * when a column is narrow.
+ */
+const ALIASES: Record<string, string> = {
+  "orissa": "Odisha",
+  "j&k": "Jammu & Kashmir",
+  "jk": "Jammu & Kashmir",
+  "up(east)": "Uttar Pradesh (East)",
+  "up(e)": "Uttar Pradesh (East)",
+  "uttar pradesh(e)": "Uttar Pradesh (East)",
+  "up(west)": "Uttar Pradesh (West)",
+  "up(w)": "Uttar Pradesh (West)",
+  "uttar pradesh(w)": "Uttar Pradesh (West)",
+  "ne": "North East",
+  "north east i": "North East",
+  "north east ii": "North East",
+  "delhi(incl": "Delhi",
+  "mumbai(incl": "Mumbai",
+  "kolkata(incl": "Kolkata",
+};
+
+/**
+ * Normalise a table label so it can be compared with a service-area name.
+ *
+ * Fifteen of twenty-two areas matched before this existed, and the seven that
+ * did not -- Delhi, J&K, Kerala, Mumbai, Odisha and both halves of Uttar
+ * Pradesh -- were not missing from the page. They were spelled differently:
+ * a leading serial number, a footnote marker, "and" for "&", or a space inside
+ * the parenthesis. Comparing raw text was the bug.
+ */
+export function norm(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/^[\s\d.)(|:-]+/, "")        // leading serial: "4 ", "4.", "4)"
+    .replace(/[*#\u2020\u2021]+/g, "")     // footnote markers
+    .replace(/\band\b/g, "&")
+    .replace(/\s*\(\s*/g, "(")
+    .replace(/\s*\)\s*/g, ")")
+    .replace(/[^a-z0-9&()]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const NORM_AREA = SERVICE_AREAS.map((a) => ({ canon: a, n: norm(a) }));
+
+/** The canonical service area a label refers to, or null. */
+export function matchArea(label: string): string | null {
+  const n = norm(label);
+  if (!n) return null;
+  const alias = ALIASES[n] ?? ALIASES[n.replace(/\s+/g, "")];
+  if (alias) return alias;
+  for (const { canon, n: an } of NORM_AREA) {
+    if (n === an || n.startsWith(an)) return canon;
+  }
+  // A label that merely contains the name still counts, but only when the name
+  // is long enough that a containment hit cannot be a coincidence.
+  for (const { canon, n: an } of NORM_AREA) {
+    if (an.length >= 6 && n.includes(an)) return canon;
+  }
+  return null;
+}
+
 function num(cell: string): number | null {
   const t = (cell ?? "").replace(/[,%\s]/g, "");
   if (!t || !/^-?\d/.test(t)) return null;
@@ -140,15 +206,20 @@ export async function runTrai(
     // reported so a short parse says which areas it missed rather than only how
     // many.
     const rows: Array<{ area: string; values: number[] }> = [];
+    const unmatched: string[] = [];
     const used = new Set<number>();
     for (let i = 0; i < density.rows.length; i++) {
       if (used.has(i)) continue;
       const cells = density.rows[i] ?? [];
       const label = cells.join(" ").replace(/\s+/g, " ").trim();
-      const known = SERVICE_AREAS.find(
-        (a) => label.toLowerCase() === a.toLowerCase() || label.toLowerCase().startsWith(a.toLowerCase()),
-      );
-      if (!known) continue;
+      const known = matchArea(label);
+      if (!known) {
+        // Keep short, word-ish labels that did not match: when a parse comes up
+        // short these are the evidence for which spelling to add, instead of
+        // another round of guessing at what the page says.
+        if (label && label.length < 46 && /[a-z]{3}/i.test(label)) unmatched.push(label);
+        continue;
+      }
       // The numbers may sit on this row or on one of the next few.
       // Store the canonical name, not the text as it came off the page.
       //
@@ -170,8 +241,8 @@ export async function runTrai(
           break;
         }
         // A second label before any numbers means this one has none.
-        const next = (density.rows[j] ?? []).join(" ").trim().toLowerCase();
-        if (SERVICE_AREAS.some((a) => next.startsWith(a.toLowerCase()))) break;
+        const next = (density.rows[j] ?? []).join(" ").trim();
+        if (matchArea(next)) break;
       }
     }
 
@@ -216,9 +287,15 @@ export async function runTrai(
     const MIN_AREAS = 18;
     if (rows.length < MIN_AREAS) {
       const missing = SERVICE_AREAS.filter((a) => !rows.some((r) => r.area === a));
+      // Report the labels the page actually carried, not only the names we
+      // wanted. The first short parse said which areas were absent, which is
+      // the half that cannot be acted on -- the spellings are what tell you
+      // which alias to add.
+      const saw = [...new Set(unmatched)].slice(0, 14).join(" | ");
       errors.push(
         `tele-density: only ${rows.length} service area(s) parsed; expected at least ${MIN_AREAS}. ` +
-          `Not found: ${missing.join(", ")}`,
+          `Not found: ${missing.join(", ")}.` +
+          (saw ? ` Unmatched labels on the page: ${saw}` : ""),
       );
     } else if (bad.length > 0) {
       errors.push(
