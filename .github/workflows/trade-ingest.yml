@@ -11,6 +11,14 @@ name: Ingest HS6 trade
 
 on:
   workflow_dispatch:
+  # Scoped to the code, never to data/trade -- this workflow commits there, and
+  # a data-path trigger would make it retrigger itself forever.
+  push:
+    paths:
+      - "scripts/etl/connectors/comtrade.ts"
+      - "scripts/etl/build-hs6-universe.ts"
+      - "scripts/etl/ingest-trade.ts"
+      - ".github/workflows/trade-ingest.yml"
   schedule:
     # Weekly, to pick up whatever the previous run did not finish.
     - cron: "17 3 * * 1"
