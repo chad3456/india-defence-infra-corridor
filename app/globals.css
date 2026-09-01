@@ -66,12 +66,22 @@
      purpose and will fail a categorical chroma check — that is the check being
      wrong about a diverging ramp, not the ramp being wrong. Stage is always
      rendered with its name beside the colour, which is also the standing
-     relief for the sub-3:1 contrast warning on the pale steps. */
+     relief for the sub-3:1 contrast warning on the pale steps.
+
+     Six categories, five hues. "Net exporter throughout" is not a point on
+     this axis at all -- it describes a line that never had an import to
+     substitute -- so it takes no hue and renders as an outline. Trying to give
+     it one meant three steps on the orange arm, and the validator showed three
+     cannot separate inside either mode's lightness band: the worst adjacent
+     pair fell to 13.4 under normal vision, below the hard floor of 15. The two
+     crossings sit at the poles, the two trends inside them, and the neutral
+     midpoint is the net importer that went nowhere. */
   --stage-reversed: #1a52a1;
   --stage-narrowing: #4c88d3;
-  --stage-holding: #8f8d84;
-  --stage-import-reliant: #d2764a;
-  --stage-deepening: #aa3606;
+  --stage-import-reliant: #8f8d84;
+  --stage-deepening: #d2764a;
+  --stage-slipping: #aa3606;
+  --stage-holding: var(--baseline);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -113,9 +123,10 @@
        surface and re-validated, never an automatic flip of the light values. */
     --stage-reversed: #215db3;
     --stage-narrowing: #5f97d5;
-    --stage-holding: #8a887f;
-    --stage-import-reliant: #cc7d50;
-    --stage-deepening: #ad2608;
+    --stage-import-reliant: #8a887f;
+    --stage-deepening: #cc7d50;
+    --stage-slipping: #ad2608;
+    --stage-holding: var(--baseline);
   }
 }
 
@@ -155,9 +166,10 @@
 
   --stage-reversed: #215db3;
   --stage-narrowing: #5f97d5;
-  --stage-holding: #8a887f;
-  --stage-import-reliant: #cc7d50;
-  --stage-deepening: #ad2608;
+  --stage-import-reliant: #8a887f;
+  --stage-deepening: #cc7d50;
+  --stage-slipping: #ad2608;
+  --stage-holding: var(--baseline);
 }
 
 @theme inline {

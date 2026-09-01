@@ -62,12 +62,46 @@ const reexport = classifyLine(line([
 ]));
 check("proportional two-way growth is flagged as re-export", reexport.flags.includes("reexport"), JSON.stringify(reexport.flags));
 
-// Dependence getting worse.
+// Dependence getting worse, on a line that is a net importer throughout.
 const deepening = classifyLine(line([
   [2002, 100 * M, 50 * M], [2003, 100 * M, 50 * M], [2004, 100 * M, 50 * M],
   [2022, 400 * M, 50 * M], [2023, 420 * M, 52 * M], [2024, 450 * M, 51 * M],
 ]));
 check("imports outrunning exports is deepening", deepening.stage === "deepening", deepening.stage);
+
+// The bug this ladder was rebuilt to fix. Refined petroleum exports nine times
+// what it imports, and its ratio still fell from a higher one. Calling that
+// "dependence is increasing" was simply false, so level is settled before
+// trend: a net exporter can never land in an import-dependence category.
+const bigExporterLosingGround = classifyLine(line([
+  [2002, 100 * M, 2000 * M], [2003, 100 * M, 2000 * M], [2004, 100 * M, 2000 * M],
+  [2022, 2700 * M, 24500 * M], [2023, 2800 * M, 24000 * M], [2024, 2700 * M, 24600 * M],
+]));
+check("a large net exporter whose ratio fell is never 'deepening'",
+  bigExporterLosingGround.stage !== "deepening", bigExporterLosingGround.stage);
+check("a net exporter at both ends is 'holding'",
+  bigExporterLosingGround.stage === "holding", bigExporterLosingGround.stage);
+check("...and it is genuinely a net exporter",
+  bigExporterLosingGround.closeX > bigExporterLosingGround.closeM);
+
+// The mirror of a reversal: sold it, now buys it.
+const slipped = classifyLine(line([
+  [2002, 20 * M, 200 * M], [2003, 22 * M, 210 * M], [2004, 21 * M, 190 * M],
+  [2022, 400 * M, 90 * M], [2023, 420 * M, 88 * M], [2024, 450 * M, 92 * M],
+]));
+check("net exporter to net importer is 'slipped'", slipped.stage === "slipping", slipped.stage);
+
+// No stage on the import-dependence arm may hold a net exporter.
+const IMPORT_STAGES = new Set(["narrowing", "import-reliant", "deepening"]);
+for (const [name, v] of [
+  ["reversal", reversal], ["deepening", deepening], ["slipped", slipped],
+  ["big exporter", bigExporterLosingGround],
+] as const) {
+  if (IMPORT_STAGES.has(v.stage)) {
+    check(`${name}: an import-dependence stage implies a net importer now`,
+      v.closeCoverage < 1, `coverage ${v.closeCoverage}`);
+  }
+}
 
 // Too small to mean anything, even though the ratio moved enormously.
 const thin = classifyLine(line([

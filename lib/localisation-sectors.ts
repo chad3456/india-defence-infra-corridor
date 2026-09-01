@@ -85,8 +85,7 @@ export const SECTORS: Sector[] = [
     reading:
       "The handset line moved further and faster than almost anything else in this dataset. The component lines beneath it — integrated circuits, display modules, batteries — did not move with it, and in several cases moved the other way. That pattern is the assembly signature: it is a real industrial achievement and it is not the same claim as making the phone.",
     outputs: [
-      { code: "851712", label: "Telephones for cellular networks", expect: /telephone|cellular/i },
-      { code: "851713", label: "Smartphones", expect: /smart.?phone|telephone/i, from: 2022 },
+      { code: "851712-13-14", label: "Mobile phones (all HS vintages)", expect: /phone/i },
       { code: "847130", label: "Portable computers under 10kg", expect: /portable|automatic data processing/i },
     ],
     inputs: [
@@ -125,8 +124,7 @@ export const SECTORS: Sector[] = [
     reading:
       "Module assembly capacity did grow, and a duty wall arrived to protect it. Whether that is substitution depends entirely on the cell and wafer lines underneath: a module assembled from imported cells is a different achievement from a module made from domestic polysilicon. The wafer line is the one to read.",
     outputs: [
-      { code: "854143", label: "Photovoltaic cells in modules or panels", expect: /photovoltaic/i, from: 2022 },
-      { code: "854140", label: "Photosensitive semiconductor devices", expect: /photosensitiv|photovoltaic|light.emitting/i },
+      { code: "854140-41-42-43", label: "Photovoltaic cells and modules (all HS vintages)", expect: /photovoltaic|cells/i },
     ],
     inputs: [
       { code: "280461", label: "Silicon, over 99.99% pure", expect: /silicon/i },
@@ -148,7 +146,7 @@ export const SECTORS: Sector[] = [
       { code: "871000", label: "Tanks and armoured vehicles", expect: /tank|armoured|armored/i },
     ],
     inputs: [
-      { code: "841112", label: "Turbojets over 25kN thrust", expect: /turbojet/i },
+      { code: "841112", label: "Turbojets over 25kN thrust", expect: /turbo-?jet/i },
       { code: "852610", label: "Radar apparatus", expect: /radar/i },
     ],
   },

@@ -185,8 +185,11 @@ export default function MadeInIndiaPage() {
             <h2 className="mb-1 text-lg font-semibold text-ink">Where the lines landed</h2>
             <p className="mb-4 max-w-2xl text-sm text-ink-2">
               Each commodity line is graded by comparing three years at the start of the record
-              against three at the end. A line has to move a long way to change category: coverage
-              must improve by {RULES.narrowingFactor}× to count as narrowing.
+              against three at the end. Whether India is a net importer is settled first, and only
+              then is the trend consulted — so a large net exporter whose ratio slipped is never
+              filed under rising dependence. Within the net-importer group a line has to move a long
+              way to change category: coverage must improve by {RULES.narrowingFactor}× to count as
+              narrowing.
             </p>
             <div className="space-y-2">
               {STAGES.map((s) => {
@@ -196,7 +199,14 @@ export default function MadeInIndiaPage() {
                   <div key={s.id} className="grid grid-cols-[13rem_1fr_5rem] items-center gap-3">
                     <StageChip stage={s.id} />
                     <div className="h-4 w-full overflow-hidden rounded-sm bg-surface-2">
-                      <div className="h-full rounded-sm" style={{ width: `${pct}%`, background: `var(--stage-${s.id})` }} />
+                      <div
+                        className="h-full rounded-sm"
+                        style={
+                          s.id === "holding" || s.id === "thin"
+                            ? { width: `${pct}%`, border: "1.5px solid var(--baseline)" }
+                            : { width: `${pct}%`, background: `var(--stage-${s.id})` }
+                        }
+                      />
                     </div>
                     <span className="text-right font-mono text-xs tabular-nums text-ink-2">
                       {n.toLocaleString("en-IN")}
@@ -245,7 +255,8 @@ export default function MadeInIndiaPage() {
                   <p className="mb-4 max-w-3xl text-sm leading-relaxed text-ink-2">{sector.reading}</p>
 
                   <div className="grid gap-6 lg:grid-cols-2">
-                    {[["Finished goods", outputs], ["Inputs", inputs]].map(([title, list]) => {
+                    {([["Finished goods", outputs, sector.outputs.length],
+                       ["Inputs", inputs, sector.inputs.length]] as const).map(([title, list, declared]) => {
                       const items = list as Product[];
                       return (
                         <div key={title as string}>
@@ -254,14 +265,19 @@ export default function MadeInIndiaPage() {
                           </h4>
                           {items.length === 0 ? (
                             <p className="text-xs text-ink-muted">
-                              {data.years.length === 0
-                                ? "Awaiting the ingest."
-                                : "No line in this group carries usable trade data."}
+                              {declared === 0
+                                ? "None declared — this sector is listed for the other column."
+                                : data.years.length === 0
+                                  ? "Awaiting the ingest."
+                                  : "No line in this group carries usable trade data."}
                             </p>
                           ) : (
-                            <table className="w-full border-collapse text-sm">
-                              <tbody>{items.map((p) => <LineRow key={p.code} p={p} />)}</tbody>
-                            </table>
+                            // Its own scroller: a wide table must never make the page scroll.
+                            <div className="overflow-x-auto">
+                              <table className="w-full min-w-[30rem] border-collapse text-sm">
+                                <tbody>{items.map((p) => <LineRow key={p.code} p={p} />)}</tbody>
+                              </table>
+                            </div>
                           )}
                         </div>
                       );
@@ -277,7 +293,9 @@ export default function MadeInIndiaPage() {
             <h2 className="mb-1 text-lg font-semibold text-ink">Every commodity line</h2>
             <p className="mb-4 max-w-2xl text-sm text-ink-2">
               {data.products.length.toLocaleString("en-IN")} six-digit lines with Indian trade data,
-              searchable. The sparkline is exports divided by imports on a log scale; the dashed rule
+              searchable. Chapter 99 — the residual &ldquo;not specified according to kind&rdquo;
+              bucket — is excluded: it is not a product, and it is big enough to sit near the top of
+              the table pretending to be one. The sparkline is exports divided by imports on a log scale; the dashed rule
               is parity, where India sells as much as it buys.
             </p>
             <ProductExplorer rows={rows} />

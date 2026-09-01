@@ -14,11 +14,15 @@ export const STAGE_VAR: Record<Stage, string> = {
   narrowing: "var(--stage-narrowing)",
   holding: "var(--stage-holding)",
   "import-reliant": "var(--stage-import-reliant)",
+  slipping: "var(--stage-slipping)",
   deepening: "var(--stage-deepening)",
   thin: "var(--baseline)",
 };
 
 export default function StageChip({ stage, small }: { stage: Stage; small?: boolean }) {
+  // "Net exporter throughout" is not a point on the substitution axis, so it
+  // gets a hollow marker rather than a hue. See the note in globals.css.
+  const hollow = stage === "holding" || stage === "thin";
   return (
     <span
       className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-hairline ${
@@ -28,7 +32,11 @@ export default function StageChip({ stage, small }: { stage: Stage; small?: bool
       <span
         aria-hidden="true"
         className="inline-block h-2 w-2 shrink-0 rounded-full"
-        style={{ background: STAGE_VAR[stage] }}
+        style={
+          hollow
+            ? { border: `1.5px solid ${STAGE_VAR[stage]}` }
+            : { background: STAGE_VAR[stage] }
+        }
       />
       <span className="text-ink-2">{STAGE_LABEL[stage]}</span>
     </span>

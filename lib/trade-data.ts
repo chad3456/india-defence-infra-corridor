@@ -13,7 +13,7 @@
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import {
-  classifyLine, assemblySignature,
+  classifyLine, assemblySignature, CONCORDANCES,
   type LocalisationLine, type LineVerdict, type Stage,
 } from "./localisation";
 import { SECTORS, type Sector } from "./localisation-sectors";
@@ -28,6 +28,8 @@ export interface Product extends LineVerdict {
   name: string;
   chapter: string;
   years: Array<{ year: number; m: number; x: number }>;
+  /** Set on merged lines: which codes contributed, and why they were merged. */
+  merged?: { codes: string[]; note: string; byYear: Record<number, string[]> };
 }
 
 export interface TradeDataset {
@@ -85,23 +87,55 @@ export function getTradeData(): TradeDataset {
     }
   }
 
+  // Fold successive HS vintages of one product into a single line before
+  // anything is graded. See CONCORDANCES for why summing these is safe.
+  const mergedMeta = new Map<string, Product["merged"]>();
+  for (const con of CONCORDANCES) {
+    const present = con.codes.filter((c) => byCode.has(c));
+    if (present.length < 2) continue;
+    const summed = new Map<number, { m: number; x: number }>();
+    const byYear: Record<number, string[]> = {};
+    for (const c of present) {
+      for (const [year, v] of byCode.get(c) ?? []) {
+        if (v.m === 0 && v.x === 0) continue;
+        const cur = summed.get(year) ?? { m: 0, x: 0 };
+        summed.set(year, { m: cur.m + v.m, x: cur.x + v.x });
+        (byYear[year] ??= []).push(c);
+      }
+      byCode.delete(c);
+    }
+    byCode.set(con.id, summed);
+    mergedMeta.set(con.id, { codes: present, note: con.note, byYear });
+  }
+
+  const conById = new Map(CONCORDANCES.map((c) => [c.id, c]));
+
   const products: Product[] = [];
   for (const [code, yearMap] of byCode) {
+    // Chapter 99 is the residual bucket -- "commodities not specified
+    // according to kind" and the confidential/special lines. It is not a
+    // product, and it is large: grading it would put a $4bn nothing-in-
+    // particular near the top of the table as if it were a thing India buys.
+    if (code.startsWith("99")) continue;
     const rows = [...yearMap.entries()]
       .map(([year, v]) => ({ year, m: v.m, x: v.x }))
       .sort((a, b) => a.year - b.year);
+    const con = conById.get(code);
+    const name = con?.label ?? universe.names[code] ?? `HS ${code}`;
     const line: LocalisationLine = {
       code,
-      description: universe.names[code] ?? code,
+      description: name,
       chapter: code.slice(0, 2),
       years: rows,
     };
+    const merged = mergedMeta.get(code);
     products.push({
       ...classifyLine(line),
       code,
-      name: universe.names[code] ?? `HS ${code}`,
+      name,
       chapter: code.slice(0, 2),
       years: rows,
+      ...(merged ? { merged } : {}),
     });
   }
 
@@ -121,7 +155,7 @@ export function getTradeData(): TradeDataset {
 
 export function stageCounts(products: Product[]): Record<Stage, number> {
   const out: Record<Stage, number> = {
-    reversed: 0, narrowing: 0, holding: 0, "import-reliant": 0, deepening: 0, thin: 0,
+    reversed: 0, narrowing: 0, holding: 0, "import-reliant": 0, deepening: 0, slipping: 0, thin: 0,
   };
   for (const p of products) out[p.stage]++;
   return out;

@@ -52,6 +52,7 @@ export type Stage =
   | "holding"
   | "import-reliant"
   | "deepening"
+  | "slipping"
   | "thin";
 
 export const STAGES: Array<{
@@ -80,10 +81,19 @@ export const STAGES: Array<{
   },
   {
     id: "holding",
-    label: "Holding",
+    label: "Net exporter throughout",
     meaning:
-      "Coverage ratio roughly flat. Domestic capacity is keeping pace with demand but not gaining on it.",
-    disproof: "Nothing much — this is the least interesting and most common reading.",
+      "India sold more of this to the world than it bought at both ends of the record. There was no import to substitute — this line was already a strength.",
+    disproof:
+      "The ratio can still be falling inside this category. A large exporter losing ground year on year sits here, because it is not import-dependent even while it weakens.",
+  },
+  {
+    id: "slipping",
+    label: "Slipped",
+    meaning:
+      "The reverse of a reversal: a net exporter at the start of the record and a net importer at the end. India used to sell this and now buys it.",
+    disproof:
+      "Domestic output may have grown while demand grew faster, in which case the industry is bigger and the country is still more dependent. Both are true at once.",
   },
   {
     id: "import-reliant",
@@ -305,12 +315,24 @@ export function classifyLine(line: LocalisationLine): LineVerdict {
     flags.push("reexport");
   }
 
+  // Level first, direction second.
+  //
+  // An earlier version tested direction alone, and put refined petroleum --
+  // which India exports nine times more of than it imports -- in "deepening",
+  // under the words "dependence on this line is increasing". That was simply
+  // false: its ratio had fallen from a higher one, which is a different fact
+  // from being import-dependent. Whether India is a net importer is the
+  // question this page asks, so it is settled before the trend is consulted.
+  const wasNetExporter = oc >= RULES.netExportCoverage;
+  const isNetExporter = cc >= RULES.netExportCoverage;
+
   let stage: Stage;
-  if (oc < RULES.netExportCoverage && cc >= RULES.netExportCoverage) stage = "reversed";
+  if (!wasNetExporter && isNetExporter) stage = "reversed";
+  else if (wasNetExporter && !isNetExporter) stage = "slipping";
+  else if (isNetExporter) stage = "holding";
   else if (shift >= RULES.narrowingFactor) stage = "narrowing";
   else if (shift <= RULES.deepeningFactor) stage = "deepening";
-  else if (cc < RULES.netExportCoverage) stage = "import-reliant";
-  else stage = "holding";
+  else stage = "import-reliant";
 
   // A reversal that rests on collapsing imports is not a reversal.
   if (stage === "reversed" && flags.includes("demand")) stage = "holding";
@@ -344,3 +366,54 @@ export function assemblySignature(
   else verdict = "mixed";
   return { verdict, inputsDeepening: deepening, inputsTotal: usable.length };
 }
+
+/**
+ * Concordances: codes that are successive vintages of one product.
+ *
+ * The Harmonised System is revised every five years, and when a code is split
+ * or retired its history does not follow it. That is the "reclassification"
+ * confounder, and on this dataset it did not stay theoretical — it hit the
+ * single most important line.
+ *
+ * Mobile phones sat in 8517.12 until HS2022 retired it and split the traffic
+ * into 8517.13 (smartphones) and 8517.14 (other). Graded separately, each half
+ * has too few years to judge and both come back "too thin", which is how the
+ * largest manufacturing reversal in this dataset — imports down from $4.6bn to
+ * $0.5bn while exports went from $2.9bn to $20.1bn — nearly went unreported.
+ *
+ * ── Why summing these is safe here ───────────────────────────────────────
+ *
+ * Two different things are being combined and only one of them is risky.
+ * Across vintages the codes are disjoint: the predecessor stops reporting
+ * before the successor starts, verified year by year against this dataset, so
+ * concatenating them cannot double-count. Within a year the constituents are
+ * siblings of one parent heading — smartphones and other phones — and summing
+ * siblings is what recovers the parent.
+ *
+ * The composition is carried on the merged line so a reader can see which
+ * codes produced which years rather than taking the merge on trust.
+ */
+export interface Concordance {
+  /** Synthetic identifier used in place of the constituent codes. */
+  id: string;
+  label: string;
+  codes: string[];
+  note: string;
+}
+
+export const CONCORDANCES: Concordance[] = [
+  {
+    id: "851712-13-14",
+    label: "Mobile phones (all vintages)",
+    codes: ["851712", "851713", "851714"],
+    note:
+      "8517.12 carried mobile phones until HS2022 retired it and split the traffic into 8517.13 (smartphones) and 8517.14 (other telephones). The old code and the new ones never report in the same year.",
+  },
+  {
+    id: "854140-41-42-43",
+    label: "Photovoltaic cells and modules (all vintages)",
+    codes: ["854140", "854141", "854142", "854143"],
+    note:
+      "8541.40 covered photosensitive semiconductor devices including photovoltaic cells until HS2022 split it into 8541.41 through 8541.43. Pre-2022 and post-2022 codes do not overlap.",
+  },
+];
