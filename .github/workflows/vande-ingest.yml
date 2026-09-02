@@ -1,0 +1,42 @@
+name: Ingest Vande Bharat services
+
+# One article per route, not one table: the probe established there is no
+# single list page. Enumerates exhaustively by title and category, then reads
+# each article's rail-service infobox.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/connectors/vande.ts"
+      - "scripts/etl/ingest-vande.ts"
+      - "scripts/etl/lib/wikitext.ts"
+      - ".github/workflows/vande-ingest.yml"
+  schedule:
+    - cron: "41 4 * * 2"
+
+permissions:
+  contents: write
+concurrency:
+  group: vande-ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npm run vande:ingest
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/mobility/vande-services.json 2>/dev/null || true
+          if git diff --staged --quiet; then echo unchanged; exit 0; fi
+          git commit -m "chore(mobility): Vande Bharat services $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do git push && break; sleep $((2**i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true; done

@@ -36,6 +36,20 @@ export function plain(cell: string): string {
     const parts = String(inner).split("|");
     return parts[parts.length - 1] ?? "";
   });
+  // {{convert|455|km|mi|abbr=on}} -> "455 km". The value and its unit are the
+  // first two arguments; everything after is display options.
+  s = s.replace(/\{\{\s*(?:convert|cvt)\s*\|([^{}]*)\}\}/gi, (_m, inner: string) => {
+    const a = String(inner).split("|").map((x) => x.trim());
+    return a[0] && a[1] ? `${a[0]} ${a[1]}` : (a[0] ?? "");
+  });
+  // {{start date|2023|2|10}} and {{start date and age|...}} -> an ISO date.
+  // Dates are the one field where a partial unwrap would be worse than none,
+  // so this only fires when all three components are present and numeric.
+  s = s.replace(/\{\{\s*(?:start date(?: and age)?|end date)\s*\|([^{}]*)\}\}/gi, (_m, inner: string) => {
+    const a = String(inner).split("|").map((x) => x.trim()).filter((x) => /^\d+$/.test(x));
+    if (a.length < 3) return a[0] ?? "";
+    return `${a[0]}-${String(a[1]).padStart(2, "0")}-${String(a[2]).padStart(2, "0")}`;
+  });
   s = s.replace(/\{\{[^{}]*\}\}/g, " ");           // any remaining simple template
   s = s.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2");   // [[Target|Display]]
   s = s.replace(/\[\[([^\]]+)\]\]/g, "$1");              // [[Target]]
@@ -135,4 +149,68 @@ export function columnIndex(headers: string[], want: RegExp): number {
     if (want.test(headers[i] ?? "")) return i;
   }
   return -1;
+}
+
+/**
+ * Read a template's named parameters.
+ *
+ * Route articles carry their facts in an {{Infobox rail service}} rather than
+ * in a table, so this is what turns one article into one row. Nested templates
+ * and links inside a value are handled by depth-counting rather than by regex:
+ * a value like `{{convert|759|km}}` contains the delimiter this splits on, and
+ * a naive split would cut it in half and produce a plausible wrong number.
+ */
+export function parseInfobox(wikitext: string, namePattern: RegExp): Record<string, string> | null {
+  const start = wikitext.search(new RegExp(`\\{\\{\\s*${namePattern.source}`, namePattern.flags));
+  if (start < 0) return null;
+
+  // Walk forward tracking brace and bracket depth so the template's own end is
+  // found, not the end of the first nested one.
+  let i = start + 2;
+  let brace = 1, bracket = 0;
+  const body: string[] = [];
+  while (i < wikitext.length && brace > 0) {
+    const two = wikitext.slice(i, i + 2);
+    if (two === "{{") { brace++; body.push(two); i += 2; continue; }
+    if (two === "}}") { brace--; if (brace === 0) { i += 2; break; } body.push(two); i += 2; continue; }
+    if (two === "[[") { bracket++; body.push(two); i += 2; continue; }
+    if (two === "]]") { bracket--; body.push(two); i += 2; continue; }
+    body.push(wikitext[i]!);
+    i++;
+  }
+
+  // Split on top-level pipes only.
+  const text = body.join("");
+  const parts: string[] = [];
+  let cur = "";
+  let b2 = 0, k2 = 0;
+  for (let j = 0; j < text.length; j++) {
+    const two = text.slice(j, j + 2);
+    if (two === "{{") { b2++; cur += two; j++; continue; }
+    if (two === "}}") { b2--; cur += two; j++; continue; }
+    if (two === "[[") { k2++; cur += two; j++; continue; }
+    if (two === "]]") { k2--; cur += two; j++; continue; }
+    const ch = text[j]!;
+    if (ch === "|" && b2 === 0 && k2 === 0) { parts.push(cur); cur = ""; continue; }
+    cur += ch;
+  }
+  parts.push(cur);
+
+  const out: Record<string, string> = {};
+  for (const p of parts.slice(1)) {
+    const eq = p.indexOf("=");
+    if (eq < 0) continue;
+    const key = p.slice(0, eq).trim().toLowerCase();
+    if (!key || /[{}[\]]/.test(key)) continue;
+    out[key] = plain(p.slice(eq + 1));
+  }
+  return out;
+}
+
+/** First number in a string, ignoring thousands separators. `null` when absent. */
+export function firstNumber(s: string): number | null {
+  const m = s.replace(/,/g, "").match(/-?\d+(?:\.\d+)?/);
+  if (!m) return null;
+  const n = Number(m[0]);
+  return Number.isFinite(n) ? n : null;
 }
