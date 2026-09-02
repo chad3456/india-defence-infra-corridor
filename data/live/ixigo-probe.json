@@ -1,0 +1,49 @@
+{
+  "probedAt": "2026-09-02T05:45:19.941Z",
+  "checks": [
+    {
+      "id": "ixigo-22227",
+      "url": "https://www.ixigo.com/trains/22227",
+      "status": "failed",
+      "httpError": "HTTP 403"
+    },
+    {
+      "id": "ixigo-22435",
+      "url": "https://www.ixigo.com/trains/22435",
+      "status": "failed",
+      "httpError": "HTTP 403"
+    },
+    {
+      "id": "ixigo-20901",
+      "url": "https://www.ixigo.com/trains/20901",
+      "status": "failed",
+      "httpError": "HTTP 403"
+    },
+    {
+      "id": "ixigo-bogus",
+      "url": "https://www.ixigo.com/trains/99999",
+      "status": "failed",
+      "httpError": "HTTP 403"
+    },
+    {
+      "id": "ixigo-api-1",
+      "url": "https://www.ixigo.com/api/trains/22227",
+      "status": "failed",
+      "httpError": "HTTP 404"
+    },
+    {
+      "id": "ixigo-search",
+      "url": "https://www.ixigo.com/trains/vande-bharat-express",
+      "status": "ok",
+      "bytes": 36747,
+      "signals": {
+        "platform": 2,
+        "schedule": 4,
+        "vande bharat": 1
+      },
+      "jsonBlobs": [],
+      "stationGuess": [],
+      "sample": "<!DOCTYPE html> <html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:og=\"http://ogp.me/ns#\" xmlns:fb=\"http://ogp.me/ns/fb#\" xmlns:o=\"http://omnifaces.org/ui\" xmlns:of=\"http://omnifaces.org/functions\" xmln"
+    }
+  ]
+}
