@@ -1,0 +1,38 @@
+name: Probe for the Vande Bharat route table
+
+# Stops guessing page titles: searches, fetches each candidate's raw wikitext,
+# and counts distinct Vande Bharat train numbers. The page with ~160 is the
+# list. Publishes no series.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-vande-list.ts"
+      - ".github/workflows/probe-vande-list.yml"
+
+permissions:
+  contents: write
+concurrency:
+  group: probe-vande-list
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npm run vandelist:probe
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/live/vande-list-probe.json 2>/dev/null || true
+          if git diff --staged --quiet; then echo unchanged; exit 0; fi
+          git commit -m "chore(sources): Vande Bharat list probe $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do git push && break; sleep $((2**i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true; done
