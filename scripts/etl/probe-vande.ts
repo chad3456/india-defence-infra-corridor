@@ -42,6 +42,7 @@ interface Check {
   sample?: string;
 }
 const checks: Check[] = [];
+let tableReport: unknown = null;
 
 function classify(b: string): string {
   const t = b.slice(0, 300).toLowerCase();
@@ -85,7 +86,7 @@ async function probe(id: string, group: string, url: string, terms: string[], br
 
 async function flush(): Promise<void> {
   await mkdir(join(ROOT, "data/live"), { recursive: true });
-  await writeFile(OUT, JSON.stringify({ probedAt: new Date().toISOString(), checks }, null, 2) + "\n", "utf8");
+  await writeFile(OUT, JSON.stringify({ probedAt: new Date().toISOString(), tableReport, checks }, null, 2) + "\n", "utf8");
 }
 
 async function main(): Promise<void> {
@@ -132,6 +133,41 @@ async function main(): Promise<void> {
     "https://www.pib.gov.in/PressReleseDetail.aspx?PRID=2001000", ["vande bharat", "trains"], true);
   await probe("indianrail-vb", "official",
     "https://indianrailways.gov.in/", ["vande", "train"], true);
+
+  // ── E. round two: WHERE is the route table? ───────────────────────
+  //
+  // The dedicated list page 404s and the main article carries no train numbers,
+  // so the table is on a page whose title I do not know. Asking the search API
+  // is the alternative to guessing at titles one at a time.
+  await probe("wiki-search", "list",
+    "https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=20&srsearch=" +
+    encodeURIComponent("Vande Bharat Express routes list"),
+    ["title", "snippet", "Vande Bharat"]);
+  await probe("wiki-cat", "list",
+    "https://en.wikipedia.org/w/api.php?action=query&format=json&list=categorymembers&cmlimit=200&cmtitle=" +
+    encodeURIComponent("Category:Vande Bharat Express"),
+    ["title", "pageid"]);
+  // What tables does the main article actually contain? Reported as structure
+  // rather than sampled text, so the answer is which table to read, not a guess.
+  {
+    const res = await getText(
+      "https://en.wikipedia.org/w/index.php?title=Vande_Bharat_Express&action=raw",
+      { timeoutMs: 45_000, retries: 1, cacheMs: 0 },
+    );
+    if (res.ok && res.data) {
+      const { parseTables } = await import("./lib/wikitext");
+      const tables = parseTables(res.data);
+      tableReport = tables.map((t, i) => ({
+        i, caption: t.caption, headers: t.headers.slice(0, 12), rows: t.rows.length,
+        firstRow: t.rows[0]?.slice(0, 8) ?? [],
+      }));
+      console.log(`\nmain article: ${tables.length} table(s)`);
+      for (const t of tableReport) {
+        console.log(`  [${t.i}] rows=${t.rows} caption=${JSON.stringify(t.caption)?.slice(0, 50)}`);
+        console.log(`       headers: ${t.headers.join(" | ").slice(0, 150)}`);
+      }
+    }
+  }
 
   console.log("");
   for (const c of checks) {
