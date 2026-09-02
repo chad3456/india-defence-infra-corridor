@@ -90,6 +90,11 @@ export interface TrainRoute {
 export interface Airport {
   id: number; name: string; iata: string; lon: number; lat: number;
 }
+export interface Station {
+  name: string; lon: number; lat: number;
+  /** Station code where OSM carries one -- the only unambiguous key. */
+  code: string | null;
+}
 
 /** Drop points that add nothing at map scale. */
 function simplify(pts: Array<[number, number]>, tol = 0.012): Array<[number, number]> {
@@ -209,6 +214,39 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   if (airports.length === 0) errors.push("mobility: no airports returned");
   await writeFile(join(OUT_DIR, "airports.json"), JSON.stringify(airports), "utf8");
   log(`airports written: ${airports.length}`);
+
+  // ── railway stations, so a route's endpoints can be placed ────────
+  //
+  // Needed because most Vande Bharat services are not traced as OSM route
+  // relations: without station coordinates a service list is a table with
+  // nowhere to draw it. Names are stored as given plus a normalised key, since
+  // "New Delhi", "New Delhi railway station" and "NDLS" all refer to one place
+  // and a route table will use whichever it likes.
+  const stEls = await ask(
+    '[out:json][timeout:180];area["ISO3166-1"="IN"][admin_level=2]->.in;' +
+    'node["railway"="station"](area.in);out tags center;',
+    "railway stations", log,
+  );
+  const stations: Station[] = [];
+  const seenSt = new Set<string>();
+  for (const el of stEls) {
+    const t = el.tags ?? {};
+    const name = (t.name ?? t["name:en"] ?? "").trim();
+    const lon = el.lon ?? el.center?.lon;
+    const lat = el.lat ?? el.center?.lat;
+    if (!name || lon === undefined || lat === undefined) continue;
+    const key = name.toLowerCase();
+    if (seenSt.has(key)) continue;
+    seenSt.add(key);
+    stations.push({
+      name,
+      code: (t["railway:ref"] ?? t.ref ?? "").trim().toUpperCase() || null,
+      lon: Number(lon.toFixed(4)), lat: Number(lat.toFixed(4)),
+    });
+  }
+  if (stations.length === 0) errors.push("mobility: no railway stations returned");
+  await writeFile(join(OUT_DIR, "stations.json"), JSON.stringify(stations), "utf8");
+  log(`railway stations written: ${stations.length}`);
 
   // ── live flights: a snapshot, and labelled as one ─────────────────
   // Appended to a rolling file rather than replacing it, so the density map is
