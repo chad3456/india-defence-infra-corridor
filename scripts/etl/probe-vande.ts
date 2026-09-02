@@ -42,7 +42,10 @@ interface Check {
   sample?: string;
 }
 const checks: Check[] = [];
-let tableReport: unknown = null;
+interface TableSummary {
+  i: number; caption: string | null; headers: string[]; rows: number; firstRow: string[];
+}
+let tableReport: TableSummary[] | null = null;
 
 function classify(b: string): string {
   const t = b.slice(0, 300).toLowerCase();
