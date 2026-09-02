@@ -1,0 +1,39 @@
+name: Probe ixigo train pages
+
+# Can a train number be turned into a route, station by station? That decides
+# whether ~160 Vande Bharat services can be drawn along the stations they
+# actually call at, or only as straight lines between endpoints.
+# Publishes no series. Six requests, paced.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-ixigo.ts"
+      - ".github/workflows/probe-ixigo.yml"
+
+permissions:
+  contents: write
+concurrency:
+  group: probe-ixigo
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npm run ixigo:probe
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/live/ixigo-probe.json 2>/dev/null || true
+          if git diff --staged --quiet; then echo unchanged; exit 0; fi
+          git commit -m "chore(sources): ixigo route probe $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do git push && break; sleep $((2**i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true; done
