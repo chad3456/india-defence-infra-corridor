@@ -36,6 +36,14 @@ export function plain(cell: string): string {
     const parts = String(inner).split("|");
     return parts[parts.length - 1] ?? "";
   });
+  // Station-link templates: {{stnlnk|Agra Cantonment}} and friends. The station
+  // NAME is the first argument, unlike {{sort}} where the display text is last.
+  // Stripping these left 62 of 81 routes with an origin of "(AGC)" -- the code
+  // in parentheses that followed the template, and nothing else.
+  s = s.replace(/\{\{\s*(?:stnlnk|stn|rws|rwsx|station link)\s*\|([^{}]*)\}\}/gi, (_m, inner: string) => {
+    const a = String(inner).split("|").map((x) => x.trim()).filter(Boolean);
+    return a[0] ?? "";
+  });
   // {{convert|455|km|mi|abbr=on}} -> "455 km". The value and its unit are the
   // first two arguments; everything after is display options.
   s = s.replace(/\{\{\s*(?:convert|cvt)\s*\|([^{}]*)\}\}/gi, (_m, inner: string) => {

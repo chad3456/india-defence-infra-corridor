@@ -37,6 +37,9 @@ export interface VandeService {
   trainNumbers: string[];
   from: string | null;
   to: string | null;
+  /** Station codes, where the article prints them. The most reliable join key. */
+  fromCode: string | null;
+  toCode: string | null;
   /** Route km as stated in the infobox. */
   distanceKm: number | null;
   stops: number | null;
@@ -140,12 +143,25 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
       continue;
     }
     const nums = trainNumbersOf(ib["trainnumber"] ?? ib["trainno"] ?? ib["number"] ?? "");
+    // Articles print "Agra Cantonment (AGC)". The code is the surer join key
+    // than the name, so it is kept apart rather than left inside the string.
+    const splitStation = (v: string | undefined): { name: string | null; code: string | null } => {
+      if (!v) return { name: null, code: null };
+      const m = /\(([A-Z]{2,6})\)?\s*$/.exec(v.trim());
+      const code = m?.[1] ?? null;
+      const name = v.replace(/\(([A-Z]{2,6})\)?\s*$/, "").trim() || null;
+      return { name, code };
+    };
+    const a = splitStation(ib["start"]);
+    const b = splitStation(ib["end"]);
     services.push({
       title,
       name: ib["name"] || title,
       trainNumbers: nums,
-      from: ib["start"] || null,
-      to: ib["end"] || null,
+      from: a.name,
+      to: b.name,
+      fromCode: a.code,
+      toCode: b.code,
       distanceKm: firstNumber(ib["distance"] ?? ""),
       stops: firstNumber(ib["stops"] ?? ""),
       frequency: ib["frequency"] || null,
