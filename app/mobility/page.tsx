@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { getMobility, pooledFlights, collapseDirections, pathKm } from "@/lib/mobility";
 import MobilityMap from "@/components/map/MobilityMap";
+import VandeMap from "@/components/map/VandeMap";
+import { getVande, growth } from "@/lib/vande";
 
 /**
  * How India moves.
@@ -35,6 +37,8 @@ function Stat({ label, value, sub }: { label: string; value: string; sub?: strin
 
 export default function MobilityPage() {
   const d = getMobility();
+  const vb = getVande();
+  const vbGrowth = growth(vb);
   const flights = pooledFlights(d);
   const alignments = collapseDirections(d.metro);
   const vande = collapseDirections(d.vande);
@@ -112,20 +116,6 @@ export default function MobilityPage() {
                 {d.tagged.total} lines say which they are.
               </p>
 
-              <h2 className="mt-8 mb-1 text-lg font-semibold text-ink">Vande Bharat</h2>
-              <p className="mb-3 text-sm text-ink-2">
-                {vande.length} services mapped as route relations, {Math.round(vandeKm).toLocaleString("en-IN")} route km.
-                This is what volunteers have traced, not the operator&rsquo;s timetable — the real
-                fleet is larger than the mapped set.
-              </p>
-              <ul className="space-y-1 text-xs text-ink-2">
-                {vande.slice(0, 10).map((v) => (
-                  <li key={v.id} className="flex items-baseline justify-between gap-3 border-b border-gridline py-1">
-                    <span className="truncate" title={v.name}>{v.name.replace(/^Train\s+/, "")}</span>
-                    <span className="shrink-0 font-mono text-[11px] text-ink-muted">{Math.round(pathKm(v.path))} km</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </section>
         </>
@@ -136,6 +126,113 @@ export default function MobilityPage() {
             Geometry is fetched in CI from Overpass, which throttles country-wide queries hard.
             This page fills in as the ingest completes.
           </p>
+        </section>
+      )}
+
+      {/* ── Vande Bharat ─────────────────────────────────────────────── */}
+      {vb.present && (
+        <section className="mb-12">
+          <h2 className="mb-1 text-lg font-semibold text-ink">Vande Bharat</h2>
+          <p className="mb-5 max-w-2xl text-sm text-ink-2">
+            Two counts, both true. There are{" "}
+            <strong className="text-ink">{vb.routes} routes</strong> and{" "}
+            <strong className="text-ink">{vb.trainNumbers} train numbers</strong>, because a route
+            runs in both directions and each direction is numbered separately. Quoting one without
+            the other makes the other look wrong.
+          </p>
+
+          <div className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <Stat label="Routes" value={String(vb.routes)}
+              sub="One article per origin–destination pair." />
+            <Stat label="Train numbers" value={String(vb.trainNumbers)}
+              sub="Both directions counted, as the railway numbers them." />
+            <Stat label="Route km, summed" value={Math.round(vb.totalRouteKm).toLocaleString("en-IN")}
+              sub="Stated distances added up — a corridor served by several routes counts once per route." />
+            <Stat label="Drawn on the map" value={`${vb.drawable} of ${vb.routes}`}
+              sub={vb.unplaced.length > 0
+                ? "Some endpoint names matched no station and are named below rather than approximated."
+                : "Every endpoint resolved to a station."} />
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+            <div className="min-w-0">
+              <VandeMap
+                routes={vb.services.map((s) => ({
+                  title: s.title, name: s.name, trainNumbers: s.trainNumbers,
+                  from: s.from, to: s.to, distanceKm: s.distanceKm,
+                  frequency: s.frequency, a: s.a, b: s.b, drawable: s.drawable,
+                }))}
+                hubs={vb.hubs}
+                tracedCount={d.vande.length}
+              />
+            </div>
+
+            <div className="min-w-0">
+              <h3 className="mb-1 text-base font-semibold text-ink">How fast it was built</h3>
+              <p className="mb-3 text-sm text-ink-2">
+                Cumulative routes in service, by the year each began running. {vbGrowth.dated} of{" "}
+                {vb.routes} articles state a start date; the rest are left out rather than dropped
+                into the first year.
+              </p>
+              <svg viewBox="0 0 320 132" className="w-full" role="img"
+                aria-label="Cumulative Vande Bharat routes in service by year">
+                {(() => {
+                  const pts = vbGrowth.points;
+                  if (pts.length < 2) return null;
+                  const maxC = Math.max(...pts.map((p) => p.count));
+                  const x = (i: number) => 26 + (i / (pts.length - 1)) * 280;
+                  const y = (c: number) => 108 - (c / maxC) * 92;
+                  const line = pts.map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(p.count).toFixed(1)}`).join("");
+                  const last = pts[pts.length - 1]!;
+                  return (
+                    <>
+                      <line x1={26} y1={108} x2={306} y2={108} stroke="var(--baseline)" strokeWidth={1} />
+                      <path d={`${line}L${x(pts.length - 1).toFixed(1)},108L26,108Z`} fill="var(--series-2)" opacity={0.12} />
+                      <path d={line} fill="none" stroke="var(--series-2)" strokeWidth={2} strokeLinejoin="round" />
+                      {pts.map((p, i) => (
+                        <g key={p.year}>
+                          <circle cx={x(i)} cy={y(p.count)} r={i === pts.length - 1 ? 3.4 : 2}
+                            fill="var(--series-2)" stroke="var(--surface-1)" strokeWidth={1.2} />
+                          <text x={x(i)} y={123} fontSize={8.5} textAnchor="middle" fill="var(--text-muted)">
+                            {String(p.year).slice(2)}
+                          </text>
+                        </g>
+                      ))}
+                      <text x={x(pts.length - 1)} y={y(last.count) - 9} fontSize={11} textAnchor="end"
+                        fill="var(--text-primary)" fontWeight={600}>{last.count}</text>
+                    </>
+                  );
+                })()}
+              </svg>
+
+              <h3 className="mb-1 mt-6 text-base font-semibold text-ink">Where they converge</h3>
+              <p className="mb-3 text-sm text-ink-2">
+                Stations by how many services start or end there.
+              </p>
+              <div className="space-y-1.5">
+                {vb.hubs.slice(0, 9).map((h) => (
+                  <div key={h.name} className="grid grid-cols-[10.5rem_1fr_1.6rem] items-center gap-2">
+                    <span className="truncate text-xs text-ink-2" title={h.name}>{h.name}</span>
+                    <span className="block h-3 overflow-hidden rounded-sm bg-surface-2">
+                      <span className="block h-full rounded-sm"
+                        style={{ width: `${(h.services / (vb.hubs[0]?.services ?? 1)) * 100}%`, background: "var(--series-1)" }} />
+                    </span>
+                    <span className="text-right font-mono text-[11px] tabular-nums text-ink-2">{h.services}</span>
+                  </div>
+                ))}
+              </div>
+
+              {vb.unplaced.length > 0 && (
+                <p className="mt-5 text-[11px] leading-relaxed text-ink-muted">
+                  <span className="text-ink-2">Not placed:</span>{" "}
+                  {[...new Set(vb.unplaced.map((u) => u.replace(/\s*\([A-Z]+\)\s*$/, "")))].join(", ")}.
+                  These stations are real; they are absent from the mapped station set this build
+                  uses. The nearest same-name station would have put trains in the wrong city, so
+                  those routes are left undrawn.
+                </p>
+              )}
+            </div>
+          </div>
         </section>
       )}
 
