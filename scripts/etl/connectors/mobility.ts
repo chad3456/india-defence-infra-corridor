@@ -222,9 +222,17 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   // nowhere to draw it. Names are stored as given plus a normalised key, since
   // "New Delhi", "New Delhi railway station" and "NDLS" all refer to one place
   // and a route table will use whichever it likes.
+  // Nodes alone missed Madgaon, Mysuru Junction and Gomti Nagar -- all real,
+  // all major, and all mapped as something other than a plain station node.
+  // Ways and relations carry station areas, and `halt` carries the smaller
+  // stops that route endpoints sometimes are. The alternative to widening this
+  // was aliasing Mysuru onto "Mysore Road", which is a different city's
+  // suburban stop: a wrong join dressed as a fix.
   const stEls = await ask(
-    '[out:json][timeout:180];area["ISO3166-1"="IN"][admin_level=2]->.in;' +
-    'node["railway"="station"](area.in);out tags center;',
+    '[out:json][timeout:240];area["ISO3166-1"="IN"][admin_level=2]->.in;' +
+    '(node["railway"~"^(station|halt)$"](area.in);' +
+    ' way["railway"~"^(station|halt)$"](area.in);' +
+    ' relation["railway"~"^(station|halt)$"](area.in););out tags center;',
     "railway stations", log,
   );
   const stations: Station[] = [];
