@@ -6,6 +6,7 @@ import { feature } from "topojson-client";
 import type { FeatureCollection, Geometry } from "geojson";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import topo from "@/data/geo/india-states.topo.json";
+import HoverCard, { useHoverCard } from "@/components/charts/HoverCard";
 import {
   METRICS,
   METRIC_BY_ID,
@@ -54,6 +55,7 @@ export default function SecurityMap() {
   const [from, setFrom] = useState(FIRST_YEAR);
   const [to, setTo] = useState(LAST_YEAR);
 
+  const card = useHoverCard();
   const { states, path } = useMemo(() => {
     const t = topo as unknown as Topology<{ india: GeometryCollection<StateProps> }>;
     const fc = feature(t, t.objects.india) as FeatureCollection<Geometry, StateProps>;
@@ -208,7 +210,24 @@ export default function SecurityMap() {
                   // in the country rather than as parts of it.
                   stroke="var(--gridline)"
                   strokeWidth="0.6"
+                  onMouseMove={(e) =>
+                    card.show(e, {
+                      title: name,
+                      subtitle: `${from}–${to}`,
+                      rows:
+                        v === null || v === undefined
+                          ? undefined
+                          : [{ label: spec?.short ?? "value", value: v.toLocaleString("en-IN") }],
+                      note:
+                        v === null || v === undefined
+                          ? "SATP publishes no left-wing-extremism datasheet for this state, which is not the same as a zero."
+                          : undefined,
+                    })
+                  }
+                  onMouseLeave={card.hide}
                 >
+                  {/* Kept alongside the card: the native title is what a
+                      screen reader and a touch device get. */}
                   <title>
                     {v === null || v === undefined
                       ? `${name} — SATP publishes no left-wing-extremism datasheet for this state`
@@ -218,6 +237,7 @@ export default function SecurityMap() {
               );
             })}
           </svg>
+          <HoverCard hover={card.hover} />
         </div>
 
         <Legend buckets={buckets} unit={spec?.short ?? ""} />

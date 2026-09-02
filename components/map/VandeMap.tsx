@@ -6,6 +6,7 @@ import { feature } from "topojson-client";
 import type { FeatureCollection, Geometry } from "geojson";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import topo from "@/data/geo/india-states.topo.json";
+import HoverCard, { useHoverCard } from "@/components/charts/HoverCard";
 
 type StateProps = { name: string | null };
 
@@ -31,6 +32,7 @@ export default function VandeMap({
 }: { routes: VandeRoute[]; hubs: Hub[]; tracedCount: number }) {
   const [hover, setHover] = useState<VandeRoute | null>(null);
   const [minKm, setMinKm] = useState(0);
+  const card = useHoverCard();
 
   const width = 640, height = 700;
 
@@ -100,7 +102,19 @@ export default function VandeMap({
               opacity={hover ? (hover.title === r.title ? 1 : 0.16) : 0.5}
               strokeLinecap="round"
               onMouseEnter={() => setHover(r)}
-              onMouseLeave={() => setHover(null)}
+              onMouseMove={(e) =>
+                card.show(e, {
+                  title: r.name.replace(/ Vande Bharat Express$/, ""),
+                  subtitle: `${r.from ?? "?"} → ${r.to ?? "?"}`,
+                  rows: [
+                    { label: "Train numbers", value: r.trainNumbers.join(" / ") || "—" },
+                    { label: "Distance", value: r.distanceKm ? `${r.distanceKm} km` : "—" },
+                    { label: "Frequency", value: r.frequency ?? "—" },
+                  ],
+                  note: "A link between endpoints, not the track the train runs on.",
+                })
+              }
+              onMouseLeave={() => { setHover(null); card.hide(); }}
             />
           ))}
         </g>
@@ -112,7 +126,18 @@ export default function VandeMap({
             const r = 2 + (h.services / maxHub) * 6;
             return (
               <g key={h.name}>
-                <circle cx={p[0]} cy={p[1]} r={r} fill="var(--series-1)" opacity={0.85} />
+                <circle
+                  cx={p[0]} cy={p[1]} r={Math.max(r, 5)}
+                  fill="var(--series-1)" opacity={0.85}
+                  onMouseMove={(e) =>
+                    card.show(e, {
+                      title: h.name,
+                      rows: [{ label: "Services here", value: String(h.services) }],
+                      note: "Counted once per service that starts or ends at this station.",
+                    })
+                  }
+                  onMouseLeave={card.hide}
+                />
                 {h.services >= 4 && (
                   <text x={p[0] + r + 3} y={p[1] + 3} fontSize={9} fill="var(--text-secondary)">
                     {h.name.replace(/ (Junction|Central|Terminus|Jn)$/i, "")}
@@ -123,6 +148,7 @@ export default function VandeMap({
           })}
         </g>
       </svg>
+      <HoverCard hover={card.hover} />
 
       <p className="mt-2 text-[11px] leading-relaxed text-ink-muted">
         Each line links a service&rsquo;s two endpoints. It is not the track the train runs on —

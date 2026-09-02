@@ -6,6 +6,7 @@ import { feature } from "topojson-client";
 import type { FeatureCollection, Geometry } from "geojson";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import topo from "@/data/geo/india-states.topo.json";
+import HoverCard, { useHoverCard } from "@/components/charts/HoverCard";
 
 type StateProps = { name: string | null };
 
@@ -39,6 +40,7 @@ export default function MobilityMap({ metro, vande, airports, flights, snapshotC
     flights: true, metro: true, vande: true, airports: false,
   });
   const [hover, setHover] = useState<string | null>(null);
+  const card = useHoverCard();
 
   const width = 660, height = 700;
 
@@ -124,7 +126,13 @@ export default function MobilityMap({ metro, vande, airports, flights, snapshotC
               <path key={v.id} d={line(v.path)} fill="none"
                 stroke="var(--series-2)" strokeWidth={1.6} opacity={0.85}
                 strokeLinejoin="round" strokeLinecap="round"
-                onMouseEnter={() => setHover(v.name)} onMouseLeave={() => setHover(null)} />
+                onMouseEnter={() => setHover(v.name)}
+                onMouseMove={(e) => card.show(e, {
+                  title: v.name.replace(/^Train\s+/, ""),
+                  subtitle: v.from && v.to ? `${v.from} → ${v.to}` : undefined,
+                  note: "Alignment traced in OpenStreetMap.",
+                })}
+                onMouseLeave={() => { setHover(null); card.hide(); }} />
             ))}
           </g>
         )}
@@ -136,7 +144,12 @@ export default function MobilityMap({ metro, vande, airports, flights, snapshotC
                 stroke="var(--series-1)" strokeWidth={2.2} opacity={0.9}
                 strokeLinejoin="round" strokeLinecap="round"
                 onMouseEnter={() => setHover(`${m.city ?? "Metro"} — ${m.name}`)}
-                onMouseLeave={() => setHover(null)} />
+                onMouseMove={(e) => card.show(e, {
+                  title: m.name,
+                  subtitle: m.city ?? undefined,
+                  note: "Mapped alignment, which may include sections under construction.",
+                })}
+                onMouseLeave={() => { setHover(null); card.hide(); }} />
             ))}
           </g>
         )}
@@ -147,15 +160,21 @@ export default function MobilityMap({ metro, vande, airports, flights, snapshotC
               const p = project([a.lon, a.lat]);
               if (!p) return null;
               return (
-                <circle key={a.id} cx={p[0]} cy={p[1]} r={2.4}
-                  fill="none" stroke="var(--series-3)" strokeWidth={1}
+                <circle key={a.id} cx={p[0]} cy={p[1]} r={5}
+                  fill="transparent" stroke="var(--series-3)" strokeWidth={1}
                   onMouseEnter={() => setHover(`${a.iata} — ${a.name}`)}
-                  onMouseLeave={() => setHover(null)} />
+                  onMouseMove={(e) => card.show(e, {
+                    title: a.name,
+                    subtitle: `IATA ${a.iata}`,
+                    note: "A location only — nothing here says how busy it is.",
+                  })}
+                  onMouseLeave={() => { setHover(null); card.hide(); }} />
               );
             })}
           </g>
         )}
       </svg>
+      <HoverCard hover={card.hover} />
 
       <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-[11px] text-ink-muted">
         <span><span className="mr-1.5 inline-block h-2 w-2 rounded-full align-middle" style={{ background: "var(--series-4)" }} />Aircraft aloft</span>
