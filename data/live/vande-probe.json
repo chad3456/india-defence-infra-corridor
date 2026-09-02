@@ -1,5 +1,6 @@
 {
-  "probedAt": "2026-09-02T05:19:07.472Z",
+  "probedAt": "2026-09-02T05:22:41.645Z",
+  "tableReport": null,
   "checks": [
     {
       "id": "wiki-raw-list",
@@ -61,7 +62,7 @@
         "name": 5276
       },
       "trainNumbers": 0,
-      "sample": "{ \"version\": 0.6, \"generator\": \"Overpass API 0.7.62.11 87bfad18\", \"osm3s\": { \"timestamp_osm_base\": \"2026-09-02T05:17:01Z\", \"timestamp_areas_base\": \"2026-09-01T07:54:35Z\", \"copyright\": \"The data includ"
+      "sample": "{ \"version\": 0.6, \"generator\": \"Overpass API 0.7.62.11 87bfad18\", \"osm3s\": { \"timestamp_osm_base\": \"2026-09-02T05:20:06Z\", \"timestamp_areas_base\": \"2026-09-01T07:54:35Z\", \"copyright\": \"The data includ"
     },
     {
       "id": "ntes",
@@ -105,7 +106,7 @@
       "group": "live",
       "url": "https://indiarailinfo.com/search/vande-bharat/0/0/0",
       "status": "ok",
-      "bytes": 3705,
+      "bytes": 3706,
       "looksLike": "html",
       "hits": {
         "status": 1,
@@ -129,7 +130,7 @@
       "bytes": 177206,
       "looksLike": "html",
       "hits": {},
-      "trainNumbers": 1,
+      "trainNumbers": 2,
       "sample": " <!DOCTYPE HTML> <html lang=\"en\"> <meta charset=\"utf-8\" /> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" /> <meta http-equiv=\"Cache-control\" content=\"public\"> <meta name=\"descr"
     },
     {
@@ -138,6 +139,32 @@
       "url": "https://indianrailways.gov.in/",
       "status": "failed",
       "httpError": "fetch failed"
+    },
+    {
+      "id": "wiki-search",
+      "group": "list",
+      "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=20&srsearch=Vande%20Bharat%20Express%20routes%20list",
+      "status": "ok",
+      "bytes": 10656,
+      "looksLike": "json",
+      "hits": {
+        "title": 20,
+        "snippet": 20,
+        "Vande Bharat": 12
+      },
+      "trainNumbers": 18,
+      "sample": "{\"batchcomplete\":\"\",\"continue\":{\"sroffset\":20,\"continue\":\"-||\"},\"query\":{\"searchinfo\":{\"totalhits\":183},\"search\":[{\"ns\":0,\"title\":\"Vande Bharat Express\",\"pageid\":59953154,\"size\":70389,\"wordcount\":3541"
+    },
+    {
+      "id": "wiki-cat",
+      "group": "list",
+      "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&list=categorymembers&cmlimit=200&cmtitle=Category%3AVande%20Bharat%20Express",
+      "status": "ok",
+      "bytes": 51,
+      "looksLike": "json",
+      "hits": {},
+      "trainNumbers": 0,
+      "sample": "{\"batchcomplete\":\"\",\"query\":{\"categorymembers\":[]}}"
     }
   ]
 }
