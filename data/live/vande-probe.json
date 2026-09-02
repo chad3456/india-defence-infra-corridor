@@ -1,0 +1,143 @@
+{
+  "probedAt": "2026-09-02T05:19:07.472Z",
+  "checks": [
+    {
+      "id": "wiki-raw-list",
+      "group": "list",
+      "url": "https://en.wikipedia.org/w/index.php?title=List_of_Vande_Bharat_Express_routes&action=raw",
+      "status": "failed",
+      "httpError": "HTTP 404"
+    },
+    {
+      "id": "wiki-raw-main",
+      "group": "list",
+      "url": "https://en.wikipedia.org/w/index.php?title=Vande_Bharat_Express&action=raw",
+      "status": "ok",
+      "bytes": 70021,
+      "looksLike": "json",
+      "hits": {
+        "vande bharat": 174,
+        "route": 43,
+        "rake": 4
+      },
+      "trainNumbers": 0,
+      "sample": "{{Short description|Series of Indian semi-high speed EMU train services}} {{Redirect|Vande Bharat}} {{Use dmy dates|date=November 2025}} {{Use Indian English|date=November 2025}} {{Infobox rail servic"
+    },
+    {
+      "id": "wiki-api-parse",
+      "group": "list",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_Vande_Bharat_Express_routes&prop=wikitext&format=json",
+      "status": "ok",
+      "bytes": 397,
+      "looksLike": "json",
+      "hits": {},
+      "trainNumbers": 0,
+      "sample": "{\"error\":{\"code\":\"missingtitle\",\"info\":\"The page you specified doesn't exist.\",\"*\":\"See https://en.wikipedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;ht"
+    },
+    {
+      "id": "wikidata-vb",
+      "group": "list",
+      "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Ft%20%3FtLabel%20%3Ffrom%20%3FfromLabel%20%3Fto%20%3FtoLabel%20WHERE%20%7B%20%3Ft%20wdt%3AP31%2Fwdt%3AP279*%20wd%3AQ17518461%20%3B%20wdt%3AP17%20wd%3AQ668%20.%20OPTIONAL%20%7B%20%3Ft%20wdt%3AP1427%20%3Ffrom%20%7D%20OPTIONAL%20%7B%20%3Ft%20wdt%3AP1444%20%3Fto%20%7D%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20'en'.%20%7D%20%7D%20LIMIT%20300",
+      "status": "ok",
+      "bytes": 131,
+      "looksLike": "json",
+      "hits": {
+        "bindings": 1,
+        "tLabel": 1
+      },
+      "trainNumbers": 0,
+      "sample": "{ \"head\" : { \"vars\" : [ \"t\", \"tLabel\", \"from\", \"fromLabel\", \"to\", \"toLabel\" ] }, \"results\" : { \"bindings\" : [ ] } }"
+    },
+    {
+      "id": "osm-stations",
+      "group": "geo",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A120%5D%3Barea%5B%22ISO3166-1%22%3D%22IN%22%5D%5Badmin_level%3D2%5D-%3E.in%3Bnode%5B%22railway%22%3D%22station%22%5D(area.in)%3Bout%20tags%20center%203000%3B",
+      "status": "ok",
+      "bytes": 1061311,
+      "looksLike": "json",
+      "hits": {
+        "railway": 4142,
+        "station": 6772,
+        "name": 5276
+      },
+      "trainNumbers": 0,
+      "sample": "{ \"version\": 0.6, \"generator\": \"Overpass API 0.7.62.11 87bfad18\", \"osm3s\": { \"timestamp_osm_base\": \"2026-09-02T05:17:01Z\", \"timestamp_areas_base\": \"2026-09-01T07:54:35Z\", \"copyright\": \"The data includ"
+    },
+    {
+      "id": "ntes",
+      "group": "live",
+      "url": "https://enquiry.indianrail.gov.in/mntes/",
+      "status": "failed",
+      "httpError": "fetch failed"
+    },
+    {
+      "id": "erail",
+      "group": "live",
+      "url": "https://erail.in/trains-between-stations",
+      "status": "ok",
+      "bytes": 15337,
+      "looksLike": "html",
+      "hits": {
+        "train": 105,
+        "status": 17,
+        "running": 16
+      },
+      "trainNumbers": 0,
+      "sample": " <!DOCTYPE html> <html lang=\"en\"> <head><title> Train Between Station, Indian Railway Train Between two Stations - eRail.in </title><meta charset=\"utf-8\" /><meta http-equiv=\"X-UA-Compatible\" content=\""
+    },
+    {
+      "id": "railyatri",
+      "group": "live",
+      "url": "https://www.railyatri.in/live-train-status",
+      "status": "ok",
+      "bytes": 53803,
+      "looksLike": "html",
+      "hits": {
+        "train": 150,
+        "status": 65,
+        "running": 26
+      },
+      "trainNumbers": 0,
+      "sample": "<!DOCTYPE html> <html lang=\"en\"> <head> <title>Live Train Running Status | Spot Your Train | NTES(National Train Enquiry System) Online</title> <meta charset=\"utf-8\"> <meta http-equiv=\"X-UA-Compatible"
+    },
+    {
+      "id": "indiarailinfo",
+      "group": "live",
+      "url": "https://indiarailinfo.com/search/vande-bharat/0/0/0",
+      "status": "ok",
+      "bytes": 3705,
+      "looksLike": "html",
+      "hits": {
+        "status": 1,
+        "vande": 1
+      },
+      "trainNumbers": 0,
+      "sample": "<!DOCTYPE html> <html> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <title>India Rail Info</title> <style> *{margin:0;padding:0;box-sizing:border-"
+    },
+    {
+      "id": "trainman",
+      "group": "live",
+      "url": "https://www.trainman.in/live-train-status",
+      "status": "failed",
+      "httpError": "HTTP 404"
+    },
+    {
+      "id": "pib-vb",
+      "group": "official",
+      "url": "https://www.pib.gov.in/PressReleseDetail.aspx?PRID=2001000",
+      "status": "ok",
+      "bytes": 177206,
+      "looksLike": "html",
+      "hits": {},
+      "trainNumbers": 1,
+      "sample": " <!DOCTYPE HTML> <html lang=\"en\"> <meta charset=\"utf-8\" /> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" /> <meta http-equiv=\"Cache-control\" content=\"public\"> <meta name=\"descr"
+    },
+    {
+      "id": "indianrail-vb",
+      "group": "official",
+      "url": "https://indianrailways.gov.in/",
+      "status": "failed",
+      "httpError": "fetch failed"
+    }
+  ]
+}
