@@ -10,7 +10,7 @@ import HoverCard, { useHoverCard } from "@/components/charts/HoverCard";
 import type { CensusSpec } from "@/lib/census-specs";
 import { CENSUS_GROUPS } from "@/lib/census-specs";
 import type { MetricCount, Normalisation } from "@/lib/census-shared";
-import { NORMALISATIONS } from "@/lib/census-shared";
+import { NORMALISATIONS, mappingBaseline, readBias } from "@/lib/census-shared";
 
 type StateProps = { name: string | null };
 
@@ -46,6 +46,12 @@ export default function AtlasMap({ specs, counts, facts }: AtlasMapProps) {
   const spec = specs.find((s) => s.id === metricId) ?? specs[0];
   const count = spec ? counts[spec.id] : undefined;
 
+  // Each state's share of every mapped feature: roughly, how much of the map it
+  // drew. A metric whose leader merely matches its own baseline is telling you
+  // about mappers, not about the thing.
+  const baseline = useMemo(() => mappingBaseline(Object.values(counts)), [counts]);
+  const bias = useMemo(() => (count ? readBias(count, baseline) : null), [count, baseline]);
+
   const { values, max, ranked } = useMemo(() => {
     if (!count) return { values: {} as Record<string, number>, max: 0, ranked: [] as Array<[string, number]> };
     const v: Record<string, number> = {};
@@ -60,16 +66,25 @@ export default function AtlasMap({ specs, counts, facts }: AtlasMapProps) {
   }, [count, mode, facts]);
 
   /**
-   * Quantile buckets, not equal width.
+   * Log-spaced buckets.
    *
-   * These distributions are heavily skewed — one state often holds a quarter of
-   * everything — and equal-width bins would paint the whole country the palest
-   * step and tell the reader nothing.
+   * Equal-width bins are useless here — one state often holds a quarter of
+   * everything, so linear steps paint the country one pale shade. Quantiles
+   * were the first fix and were worse in a different way: with only a dozen
+   * states holding any of a given thing, the top quintile swallowed everything
+   * above fifth place, and Maharashtra with 51 gurdwaras rendered as dark as
+   * Himachal with 324.
+   *
+   * Log steps keep the ordering visible across that range, which is what a
+   * choropleth of a skewed count actually needs.
    */
   const thresholds = useMemo(() => {
-    const vals = ranked.map(([, v]) => v).filter((v) => v > 0).sort((a, b) => a - b);
+    const vals = ranked.map(([, v]) => v).filter((v) => v > 0);
     if (vals.length === 0) return [];
-    return [0.2, 0.4, 0.6, 0.8].map((q) => vals[Math.floor(q * (vals.length - 1))] ?? 0);
+    const lo = Math.log10(Math.min(...vals));
+    const hi = Math.log10(Math.max(...vals));
+    if (!Number.isFinite(lo) || !Number.isFinite(hi) || hi <= lo) return [];
+    return [1, 2, 3, 4].map((i) => 10 ** (lo + ((hi - lo) * i) / 5));
   }, [ranked]);
 
   function fill(state: string): string {
@@ -207,6 +222,24 @@ export default function AtlasMap({ specs, counts, facts }: AtlasMapProps) {
               </li>
             ))}
           </ol>
+          {bias && (
+            <div className="mt-4 rounded border border-gridline bg-surface-2 p-3">
+              <p className="text-[11px] uppercase tracking-wide text-ink-muted">Signal or artifact</p>
+              <p className="mt-1 text-xs leading-snug text-ink-2">
+                <strong className="text-ink">{bias.leader}</strong> holds{" "}
+                <strong className="text-ink">{(bias.share * 100).toFixed(0)}%</strong> of this, and
+                draws {(bias.baseline * 100).toFixed(0)}% of everything mapped in India.
+              </p>
+              <p className="mt-1.5 flex items-baseline gap-1.5 text-xs">
+                <span className="font-mono tabular-nums text-ink">{bias.lift.toFixed(1)}×</span>
+                <span className="text-ink-2">its own mapping share — {bias.verdict}.</span>
+              </p>
+              <p className="mt-1.5 text-[10.5px] leading-snug text-ink-muted">
+                Near 1× means the lead is mapping density rather than the thing itself. Far above
+                means a concentration real enough to show through the bias.
+              </p>
+            </div>
+          )}
           {spec?.note && <p className="mt-3 text-[11px] leading-snug text-ink-muted">{spec.note}</p>}
           <p className="mt-3 text-[11px] leading-snug text-ink-muted">
             {NORMALISATIONS.find((n) => n.id === mode)?.note}

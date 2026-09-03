@@ -57,7 +57,17 @@ export default function AtlasPage() {
               partly ranks how many people showed up to map.
             </p>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-2">
-              That is why the per-million and per-area views exist, and why none of them fixes it.
+              So the bias is measured rather than warned about. Every state has a{" "}
+              <strong className="text-ink">baseline</strong> — its share of all mapped features,
+              which is roughly how much of the map it drew. Kerala&rsquo;s is 36%. A metric whose
+              leader merely matches its own baseline is telling you about mappers; one where a state
+              runs far above its baseline is a concentration real enough to show through. Kerala
+              leads mapped museums, at 0.35× its baseline — which means it is{" "}
+              <em>under</em>-represented in museums. Rajasthan&rsquo;s observatories run at 23×.
+              That number sits beside every map.
+            </p>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-2">
+              The per-million and per-area views exist for the same reason, and none of them fixes it.
               Treat this as <strong className="text-ink">a census of the map, not of the
               country</strong> — a lower bound everywhere, and a tighter one in well-mapped states.
               A blank state means nothing of that kind has been mapped there, which is a different
