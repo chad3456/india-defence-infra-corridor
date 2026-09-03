@@ -23,6 +23,20 @@
  * that comes back at exactly its limit is therefore recorded as CAPPED and the
  * page refuses to rank it, because a truncated count looks exactly like a real
  * one and would put whichever states Overpass happened to reach at the top.
+ *
+ * ── Waiting for a slot instead of knocking harder ────────────────────────
+ *
+ * The first live run got 24 metrics and then every remaining query failed at
+ * the connection level, seven seconds apart, for eleven minutes: Overpass had
+ * rate-limited the runner and the loop kept knocking. A fixed gap is not a
+ * rate limit, it is a guess about one.
+ *
+ * Overpass publishes the real answer at /api/status — how many slots the
+ * caller has and, when it has none, the time the next one frees. This asks,
+ * and waits for the time it is given. If it is refused anyway it stops after
+ * three consecutive failures rather than spending the rest of the job
+ * discovering the same thing ninety-seven more times; the run is resumable, so
+ * stopping early costs nothing but the wait.
  */
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
@@ -36,13 +50,27 @@ import { CENSUS_SPECS } from "../../../lib/census-specs";
 const ROOT = process.cwd();
 const OUT = join(ROOT, "data/census/counts.json");
 const STATE_FILE = join(ROOT, "data/geo/india-states.topo.json");
-const OVERPASS = "https://overpass-api.de/api/interpreter";
+/**
+ * The main instance first, then the public mirrors the Overpass API wiki lists
+ * for exactly this purpose. Rotation happens only when an instance says it has
+ * no slot for us — it is a way of spreading load off a busy server, not a way
+ * of getting around one that has said no.
+ */
+const ENDPOINTS = [
+  "https://overpass-api.de/api",
+  "https://overpass.kumi.systems/api",
+  "https://overpass.private.coffee/api",
+] as const;
 
 /** Above this a result is assumed truncated rather than complete. */
 const LIMIT = 60_000;
-/** Overpass is a shared free service; this is the politeness budget. */
+/** Floor between queries even when a slot is free. */
 const GAP_MS = 7_000;
-const RUN_BUDGET_MS = 45 * 60_000;
+/** Beyond this wait for a slot, try a different instance instead. */
+const MAX_SLOT_WAIT_MS = 90_000;
+/** Consecutive failures after which the run gives up and leaves it to the next. */
+const MAX_CONSECUTIVE_FAILURES = 3;
+const RUN_BUDGET_MS = 42 * 60_000;
 
 interface Metric {
   id: string;
@@ -51,14 +79,67 @@ interface Metric {
   /** Points that fell outside every state polygon — offshore, or bad geometry. */
   unplaced: number;
   capped: boolean;
+  /** Which Overpass instance answered — the counts are only as good as it was. */
+  endpoint?: string;
   fetchedAt: string;
 }
 
 let last = 0;
-async function pace(): Promise<void> {
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+async function floorGap(): Promise<void> {
   const w = GAP_MS - (Date.now() - last);
-  if (w > 0) await new Promise((r) => setTimeout(r, w));
+  if (w > 0) await sleep(w);
   last = Date.now();
+}
+
+/**
+ * Read one instance's slot state.
+ *
+ * The body is plain text, either "2 slots available now." or one
+ * "Slot available after: <time>, in <n> seconds." line per busy slot. Returns
+ * the wait in ms — 0 when a slot is free, null when the status page itself
+ * could not be read or did not say, which is treated as "do not use this
+ * instance": a status page we cannot parse is not permission to proceed.
+ */
+export function parseSlotWait(body: string): number | null {
+  if (/\bslots? available now\b/i.test(body)) return 0;
+  // "Rate limit: 0" means the instance does not rate-limit at all, so every
+  // request has a slot. It is not the same as having zero slots left, which is
+  // reported by the "Slot available after" lines below.
+  const noLimit = /\bRate limit:\s*0\b/i.test(body);
+  const waits = [...body.matchAll(/\bin (-?\d+) seconds?\b/gi)].map((m) => Number(m[1]));
+  if (waits.length > 0) return Math.max(0, Math.min(...waits)) * 1000 + 2_000;
+  if (noLimit) return 0;
+  return null;
+}
+
+async function slotWaitMs(api: string): Promise<number | null> {
+  const res = await getText(`${api}/status`, { timeoutMs: 20_000, retries: 1, cacheMs: 0 });
+  if (!res.ok || res.data === null) return null;
+  return parseSlotWait(res.data);
+}
+
+/**
+ * Pick an instance with a slot, waiting a bounded amount for one. Returns null
+ * when every instance is either busy for longer than we will wait or not
+ * answering — the signal to stop this run rather than to try harder.
+ */
+async function claimSlot(log: (s: string) => void): Promise<string | null> {
+  let shortest: { api: string; wait: number } | null = null;
+  for (const api of ENDPOINTS) {
+    const wait = await slotWaitMs(api);
+    if (wait === null) { log(`  status unreadable: ${api}`); continue; }
+    if (wait === 0) return api;
+    if (shortest === null || wait < shortest.wait) shortest = { api, wait };
+  }
+  if (shortest !== null && shortest.wait <= MAX_SLOT_WAIT_MS) {
+    log(`  no slot free; waiting ${Math.round(shortest.wait / 1000)}s for ${shortest.api}`);
+    await sleep(shortest.wait);
+    return shortest.api;
+  }
+  if (shortest !== null) log(`  soonest slot is ${Math.round(shortest.wait / 1000)}s away — longer than this run will wait`);
+  return null;
 }
 
 async function loadStates(): Promise<FeatureCollection<Geometry, { name: string | null }>> {
@@ -86,6 +167,7 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   } catch { /* first run */ }
 
   let done = 0;
+  let consecutiveFailures = 0;
   for (const spec of CENSUS_SPECS) {
     if (metrics[spec.id]) continue;
     if (Date.now() - started > RUN_BUDGET_MS) {
@@ -100,15 +182,31 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
       `area["ISO3166-1"="IN"][admin_level=2]->.in;` +
       `nwr${spec.filter}(area.in);out center ${LIMIT};`;
 
-    await pace();
-    const res = await getText(`${OVERPASS}?data=${encodeURIComponent(q)}`, {
+    await floorGap();
+    const api = await claimSlot(log);
+    if (api === null) {
+      log(`no instance has a slot for us; stopping at ${Object.keys(metrics).length} of ${CENSUS_SPECS.length}. Next run resumes.`);
+      errors.push("census: no Overpass slot available; run stopped early");
+      break;
+    }
+
+    const res = await getText(`${api}/interpreter?data=${encodeURIComponent(q)}`, {
       timeoutMs: 240_000, retries: 2, cacheMs: 0,
     });
     if (!res.ok || res.data === null) {
       errors.push(`census: ${spec.id}: ${res.error ?? "no body"}`);
       log(`  FAIL ${spec.id}: ${res.error}`);
+      // A run of failures means the service has stopped answering us, not that
+      // these particular metrics are unlucky. Knocking ninety-seven more times
+      // at seven-second intervals is what the first run did; it learned
+      // nothing and was rude about it.
+      if (++consecutiveFailures >= MAX_CONSECUTIVE_FAILURES) {
+        log(`${consecutiveFailures} failures in a row; stopping. Next run resumes.`);
+        break;
+      }
       continue;
     }
+    consecutiveFailures = 0;
 
     const byState: Record<string, number> = {};
     let total = 0, unplaced = 0;
@@ -134,6 +232,7 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
     metrics[spec.id] = {
       id: spec.id, total, byState, unplaced,
       capped: total >= LIMIT,
+      endpoint: api,
       fetchedAt: new Date().toISOString(),
     };
     done++;
