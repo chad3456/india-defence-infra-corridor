@@ -1,0 +1,42 @@
+name: Ingest statewise census
+
+# 121 Overpass queries, one per metric, paced at 7s. Resumable: the connector
+# writes after every metric and skips what it already holds, so several runs
+# complete the set without refetching.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/connectors/census.ts"
+      - "scripts/etl/ingest-census.ts"
+      - "lib/census-specs.ts"
+      - ".github/workflows/census-ingest.yml"
+  schedule:
+    - cron: "13 2 * * 3"
+
+permissions:
+  contents: write
+concurrency:
+  group: census-ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npm run census:ingest
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/census 2>/dev/null || true
+          if git diff --staged --quiet; then echo unchanged; exit 0; fi
+          git commit -m "chore(census): statewise counts $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do git push && break; sleep $((2**i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true; done
