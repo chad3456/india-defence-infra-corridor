@@ -1,0 +1,38 @@
+name: Ingest statewise elections
+
+# Turnout, electors and seats by state for 2014, 2019 and 2024, from the
+# Wikipedia tables the probe found carry the ECI numbers. Every row is checked
+# against its own arithmetic before it is kept.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/connectors/elections.ts"
+      - ".github/workflows/elections-ingest.yml"
+
+permissions:
+  contents: write
+concurrency:
+  group: elections-ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npm run elections:ingest
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/elections 2>/dev/null || true
+          if git diff --staged --quiet; then echo unchanged; exit 0; fi
+          git commit -m "chore(elections): statewise turnout $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do git push && break; sleep $((2**i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true; done
