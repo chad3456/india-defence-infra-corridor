@@ -76,6 +76,18 @@
      pair fell to 13.4 under normal vision, below the hard floor of 15. The two
      crossings sit at the poles, the two trends inside them, and the neutral
      midpoint is the net importer that went nowhere. */
+  /* The same validated diverging ramp under a neutral name, for any measure
+     with a meaningful zero in the middle — turnout rising or falling between
+     two elections is the first. The hexes are identical because the validation
+     is what makes them usable: re-picking a second blue/orange pair by eye
+     would mean re-running the CVD and lightness-band checks to land somewhere
+     no better. Midpoint is gray on purpose; see the note above. */
+  --div-neg-2: #aa3606;
+  --div-neg-1: #d2764a;
+  --div-mid: #8f8d84;
+  --div-pos-1: #4c88d3;
+  --div-pos-2: #1a52a1;
+
   --stage-reversed: #1a52a1;
   --stage-narrowing: #4c88d3;
   --stage-import-reliant: #8f8d84;
@@ -121,6 +133,11 @@
 
     /* Dark arm of the diverging stage ramp — re-stepped against the dark
        surface and re-validated, never an automatic flip of the light values. */
+    --div-neg-2: #ad2608;
+    --div-neg-1: #cc7d50;
+    --div-mid: #8a887f;
+    --div-pos-1: #5f97d5;
+    --div-pos-2: #215db3;
     --stage-reversed: #215db3;
     --stage-narrowing: #5f97d5;
     --stage-import-reliant: #8a887f;
