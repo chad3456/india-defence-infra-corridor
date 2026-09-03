@@ -27,6 +27,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getText } from "./lib/http";
 import { parseTables, columnIndex } from "./lib/wikitext";
+import { isEntryPoint } from "./lib/entry";
 
 const ROOT = process.cwd();
 const OUT = join(ROOT, "data/live/elections-probe.json");
@@ -151,6 +152,6 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   return { errors: [] };
 }
 
-if (process.argv[1]?.includes("probe-elections")) {
+if (isEntryPoint(import.meta.url)) {
   run({ onProgress: (s) => console.log(s) }).then(() => console.log(`\nwrote ${OUT}`));
 }

@@ -29,6 +29,7 @@ import { join } from "node:path";
 import { getText } from "../lib/http";
 import { parseTables, columnIndex, plain } from "../lib/wikitext";
 import { STATE_FACTS } from "../../../lib/census-shared";
+import { isEntryPoint } from "../lib/entry";
 
 const ROOT = process.cwd();
 const OUT = join(ROOT, "data/elections/statewise.json");
@@ -57,32 +58,67 @@ const TURNOUT_TOLERANCE_PP = 0.2;
  */
 const ALIASES: Record<string, string> = {
   "delhi": "NCT of Delhi",
-  "nct of delhi": "NCT of Delhi",
   "national capital territory of delhi": "NCT of Delhi",
-  "jammu and kashmir": "Jammu & Kashmir",
   "ladakh": "Jammu & Kashmir",
   "arunachal pradesh": "Arunanchal Pradesh",
   "andaman and nicobar islands": "Andaman & Nicobar Island",
-  "andaman & nicobar islands": "Andaman & Nicobar Island",
   "dadra and nagar haveli": "Dadara & Nagar Havelli",
-  "dadra and nagar haveli and daman and diu": "Dadara & Nagar Havelli",
-  "daman and diu": "Daman & Diu",
   "orissa": "Odisha",
   "pondicherry": "Puducherry",
   "uttaranchal": "Uttarakhand",
   "chhatisgarh": "Chhattisgarh",
 };
 
+/**
+ * Rows that name more than one polygon and cannot be divided between them.
+ *
+ * Dadra & Nagar Haveli and Daman & Diu were merged into a single union
+ * territory in 2020 and 2024 reports them as one row, but this boundary file
+ * predates the merger and holds them as two polygons. Splitting one electorate
+ * across two shapes would need a ratio nobody published, so the row is refused
+ * by name. Two seats of five hundred and forty-three, visible in the seat
+ * total rather than quietly folded into whichever half looked closer.
+ */
+const NOT_SPLITTABLE: Record<string, string> = {
+  "dadra and nagar haveli and daman and diu":
+    "one row covering two polygons on this map; no published split to divide it by",
+};
+
+/** The whole-country summary row, which is not a state. */
+const TOTAL_ROWS = new Set(["india", "total", "grand total", "all india"]);
+
+/**
+ * Wikipedia writes "Andaman & Nicobar Islands (UT)" where the boundary file
+ * writes "Andaman & Nicobar Island". Ampersands and the "(UT)" suffix are
+ * levelled here so the alias table only has to carry real differences —
+ * leaving the suffix in place was worth six union territories a year, every
+ * one of them refused for a name that was otherwise correct.
+ */
 const norm = (s: string) =>
-  s.toLowerCase().replace(/[^a-z& ]+/g, " ").replace(/\s+/g, " ").trim();
+  s
+    .toLowerCase()
+    .replace(/\((?:ut|union territory)\)/g, " ")
+    .replace(/&/g, " and ")
+    .replace(/[^a-z ]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
 const BY_NORM = new Map(Object.keys(STATE_FACTS).map((k) => [norm(k), k]));
 
-/** Boundary-file name, or null. A name that does not resolve is named, never guessed. */
-function resolveState(raw: string): string | null {
+export type Resolution =
+  | { kind: "state"; state: string }
+  | { kind: "total" }
+  | { kind: "refused"; reason: string };
+
+/** Boundary-file name, or a stated reason. A name that does not resolve is never guessed. */
+export function resolveState(raw: string): Resolution {
   const n = norm(raw);
-  if (n === "" || n === "total" || n.startsWith("total ")) return null;
-  return BY_NORM.get(n) ?? ALIASES[n] ?? null;
+  if (n === "") return { kind: "refused", reason: "empty cell" };
+  if (TOTAL_ROWS.has(n) || n.startsWith("total ")) return { kind: "total" };
+  const notSplittable = NOT_SPLITTABLE[n];
+  if (notSplittable) return { kind: "refused", reason: notSplittable };
+  const hit = BY_NORM.get(n) ?? ALIASES[n];
+  return hit ? { kind: "state", state: hit } : { kind: "refused", reason: "state name not on the map" };
 }
 
 /** Digits out of a wikitext cell, ignoring footnotes and separators. */
@@ -162,8 +198,10 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
     for (const row of table.rows) {
       const label = plain(row[cState] ?? "").trim();
       if (label === "") continue;
-      const state = resolveState(label);
-      if (state === null) { rejected.push({ label, reason: "state name not on the map" }); continue; }
+      const r = resolveState(label);
+      if (r.kind === "total") continue;   // the country row, not a state
+      if (r.kind === "refused") { rejected.push({ label, reason: r.reason }); continue; }
+      const state = r.state;
 
       const electors = num(row[cElectors] ?? "");
       const voters = num(row[cVoters] ?? "");
@@ -222,7 +260,15 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   return { errors };
 }
 
-if (process.argv[1]?.includes("elections")) {
+/**
+ * Run only when this file is the entry point.
+ *
+ * The first version tested `process.argv[1]?.includes("elections")`, which is
+ * true for scripts/test-elections.ts as well — so importing the connector from
+ * its own test fired a live ingest, three network calls and a file write, from
+ * inside `npm test`. A substring is not an identity; compare the paths.
+ */
+if (isEntryPoint(import.meta.url)) {
   run({ onProgress: (s) => console.log(s) }).then((r) => {
     for (const e of r.errors) console.error("ERROR " + e);
     console.log(`\nwrote ${OUT}`);

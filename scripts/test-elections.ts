@@ -10,7 +10,7 @@
  */
 import { readFile } from "node:fs/promises";
 import { STATE_FACTS } from "../lib/census-shared";
-import type { ElectionYear } from "./etl/connectors/elections";
+import { resolveState, type ElectionYear } from "./etl/connectors/elections";
 
 let failed = 0;
 function ok(name: string, cond: boolean, detail = ""): void {
@@ -20,7 +20,53 @@ function ok(name: string, cond: boolean, detail = ""): void {
 
 const LOK_SABHA_SEATS = 543;
 
+/**
+ * The labels below are the exact strings the source produced, including the
+ * ones that were refused on the first run. Wikipedia writes "(UT)" after every
+ * union territory, which cost six of them a year until the suffix was levelled
+ * — a resolver failure is silent by nature, so it is pinned here.
+ */
+function testResolver(): void {
+  console.log("\nState resolver");
+  const cases: Array<[string, string]> = [
+    ["Andaman & Nicobar Islands (UT)", "Andaman & Nicobar Island"],
+    ["Chandigarh (UT)", "Chandigarh"],
+    ["Dadra & Nagar Haveli (UT)", "Dadara & Nagar Havelli"],
+    ["Daman & Diu (UT)", "Daman & Diu"],
+    ["Lakshadweep (UT)", "Lakshadweep"],
+    ["Puducherry (UT)", "Puducherry"],
+    ["Delhi", "NCT of Delhi"],
+    ["NCT of Delhi", "NCT of Delhi"],
+    ["Jammu and Kashmir", "Jammu & Kashmir"],
+    // Ladakh votes separately from 2024 but has no polygon here, so it folds
+    // back into the undivided unit the map does have.
+    ["Ladakh (UT)", "Jammu & Kashmir"],
+    ["Arunachal Pradesh", "Arunanchal Pradesh"],
+    ["Orissa", "Odisha"],
+    ["Uttar Pradesh", "Uttar Pradesh"],
+  ];
+  for (const [label, want] of cases) {
+    const r = resolveState(label);
+    ok(`"${label}" resolves`, r.kind === "state" && r.state === want,
+      r.kind === "state" ? `got ${r.state}, want ${want}` : `got ${r.kind}`);
+  }
+
+  for (const total of ["India", "Total", "All India"]) {
+    ok(`"${total}" is the country row, not a state`, resolveState(total).kind === "total");
+  }
+
+  // A row naming two polygons must be refused, never assigned to one of them.
+  const combined = resolveState("Dadra & Nagar Haveli and Daman & Diu (UT)");
+  ok("a row covering two polygons is refused rather than assigned to one",
+    combined.kind === "refused", `got ${combined.kind}`);
+
+  ok("an unknown name is refused, not guessed",
+    resolveState("Republic of Elbonia").kind === "refused");
+}
+
 async function main(): Promise<void> {
+  testResolver();
+
   let data: { years?: ElectionYear[] } | null = null;
   try {
     data = JSON.parse(await readFile("data/elections/statewise.json", "utf8"));
@@ -65,6 +111,14 @@ async function main(): Promise<void> {
 
     ok(`${y.year}: seats never exceed the house`,
       y.seatsTotal <= LOK_SABHA_SEATS, `${y.seatsTotal}`);
+
+    // Every refusal must be one this project decided on, not a name that
+    // merely failed to resolve. A silent resolver gap looks like a state that
+    // simply did not vote.
+    const unexplained = y.rejected.filter((r) => !/two polygons/.test(r.reason));
+    ok(`${y.year}: nothing was refused for an unrecognised name`,
+      unexplained.length === 0,
+      unexplained.map((r) => `${r.label} (${r.reason})`).join("; "));
 
     // National turnout in every general election since 2014 has sat in the
     // sixties. A parse that lands outside that has read the wrong column.
