@@ -1,5 +1,137 @@
 [
   {
+    "id": "suicide-rate-age-standardised",
+    "title": "Suicide rate, age-standardised",
+    "definition": "Suicide deaths per 100,000, standardised to a reference age structure, both sexes.",
+    "category": "quality-of-life",
+    "unit": "deaths per 100,000 population",
+    "unitShort": "per 100k",
+    "frequency": "annual",
+    "provenance": "multilateral",
+    "confidence": "low",
+    "higherIsBetter": false,
+    "sourceIds": [
+      "who-gho-suicide"
+    ],
+    "points": [
+      {
+        "period": "2000",
+        "value": 17.38,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2001",
+        "value": 16.47,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2002",
+        "value": 16.49,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2003",
+        "value": 16.33,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2004",
+        "value": 16.58,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2005",
+        "value": 16.74,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2006",
+        "value": 16.86,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2007",
+        "value": 16.84,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2008",
+        "value": 16.7,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2009",
+        "value": 16.51,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2010",
+        "value": 16.64,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2011",
+        "value": 16.53,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2012",
+        "value": 16.49,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2013",
+        "value": 16.29,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2014",
+        "value": 15.73,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2015",
+        "value": 15.17,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2016",
+        "value": 15.08,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2017",
+        "value": 15.22,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2018",
+        "value": 14.61,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2019",
+        "value": 14.2,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2020",
+        "value": 13.18,
+        "sourceId": "who-gho-suicide"
+      },
+      {
+        "period": "2021",
+        "value": 12.62,
+        "sourceId": "who-gho-suicide"
+      }
+    ],
+    "notes": [
+      "A modelled estimate, not a count. WHO models country rates where civil registration is incomplete, and India's is; NCRB publishes India's own recorded suicide figures and they differ substantially from these. This site carries the WHO series because it is comparable across countries and across years, and grades it low confidence because the two sources disagree and neither can settle the other. It is a measure of deaths, not of how common mental illness is — a different question, declared separately and still unfilled. Compare it against the crude rate: where they diverge, the gap is India's changing age structure rather than a change in risk.",
+      "Age-standardised to a reference population, which is what makes it comparable across countries and across time. Where this and the crude rate diverge, the gap is the effect of India's changing age structure rather than a change in risk."
+    ],
+    "lastVerified": "2026-09-03"
+  },
+  {
     "id": "suicide-rate",
     "title": "Suicide rate",
     "definition": "Crude suicide deaths per 100,000 population, all ages and both sexes.",
@@ -563,138 +695,6 @@
     "notes": [
       "A modelled estimate, not a count. WHO models country rates where civil registration is incomplete, and India's is; NCRB publishes India's own recorded suicide figures and they differ substantially from these. This site carries the WHO series because it is comparable across countries and across years, and grades it low confidence because the two sources disagree and neither can settle the other. It is a measure of deaths, not of how common mental illness is — a different question, declared separately and still unfilled. A single year, not a trend. In WHO's published breakdown the youngest band is the one place where the female rate exceeds the male rate, and by a wide margin. India is among a small number of countries where that is true, and it is invisible in any chart that reports both sexes together.",
       "WHO publishes an age breakdown for 2021 only, so this is a single-year profile and not a trend. The bands are non-overlapping and contiguous from 10; WHO also publishes wider bands that overlap these, and including them would count the same deaths twice."
-    ],
-    "lastVerified": "2026-09-03"
-  },
-  {
-    "id": "suicide-rate-age-standardised",
-    "title": "Suicide rate, age-standardised",
-    "definition": "Suicide deaths per 100,000, standardised to a reference age structure, both sexes.",
-    "category": "quality-of-life",
-    "unit": "deaths per 100,000 population",
-    "unitShort": "per 100k",
-    "frequency": "annual",
-    "provenance": "multilateral",
-    "confidence": "low",
-    "higherIsBetter": false,
-    "sourceIds": [
-      "who-gho-suicide"
-    ],
-    "points": [
-      {
-        "period": "2000",
-        "value": 17.38,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2001",
-        "value": 16.47,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2002",
-        "value": 16.49,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2003",
-        "value": 16.33,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2004",
-        "value": 16.58,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2005",
-        "value": 16.74,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2006",
-        "value": 16.86,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2007",
-        "value": 16.84,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2008",
-        "value": 16.7,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2009",
-        "value": 16.51,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2010",
-        "value": 16.64,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2011",
-        "value": 16.53,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2012",
-        "value": 16.49,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2013",
-        "value": 16.29,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2014",
-        "value": 15.73,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2015",
-        "value": 15.17,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2016",
-        "value": 15.08,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2017",
-        "value": 15.22,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2018",
-        "value": 14.61,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2019",
-        "value": 14.2,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2020",
-        "value": 13.18,
-        "sourceId": "who-gho-suicide"
-      },
-      {
-        "period": "2021",
-        "value": 12.62,
-        "sourceId": "who-gho-suicide"
-      }
-    ],
-    "notes": [
-      "A modelled estimate, not a count. WHO models country rates where civil registration is incomplete, and India's is; NCRB publishes India's own recorded suicide figures and they differ substantially from these. This site carries the WHO series because it is comparable across countries and across years, and grades it low confidence because the two sources disagree and neither can settle the other. It is a measure of deaths, not of how common mental illness is — a different question, declared separately and still unfilled. Compare it against the crude rate: where they diverge, the gap is India's changing age structure rather than a change in risk.",
-      "Age-standardised to a reference population, which is what makes it comparable across countries and across time. Where this and the crude rate diverge, the gap is the effect of India's changing age structure rather than a change in risk."
     ],
     "lastVerified": "2026-09-03"
   }
