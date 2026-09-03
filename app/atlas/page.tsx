@@ -58,13 +58,22 @@ export default function AtlasPage() {
             </p>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-2">
               So the bias is measured rather than warned about. Every state has a{" "}
-              <strong className="text-ink">baseline</strong> — its share of all mapped features,
-              which is roughly how much of the map it drew. Kerala&rsquo;s is 36%. A metric whose
-              leader merely matches its own baseline is telling you about mappers; one where a state
-              runs far above its baseline is a concentration real enough to show through. Kerala
-              leads mapped museums, at 0.35× its baseline — which means it is{" "}
-              <em>under</em>-represented in museums. Rajasthan&rsquo;s observatories run at 23×.
-              That number sits beside every map.
+              <strong className="text-ink">baseline</strong> — its share of a typical metric, which
+              is roughly how much of the map it drew. Kerala&rsquo;s is 22%, Maharashtra&rsquo;s 12%.
+              A metric whose leader merely matches its own baseline is telling you about mappers;
+              one where a state runs far above its baseline is a concentration real enough to show
+              through. Maharashtra leads mapped hospitals at 1.1× its baseline, which is to say it
+              leads them because it is well mapped. Kerala leads mapped museums at 0.6×, so it is{" "}
+              <em>under</em>-represented in museums even while leading them. Rajasthan&rsquo;s
+              observatories run at 14×. That number sits beside every map.
+            </p>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-2">
+              The baseline is the median across metrics, not a share of all features added up, and
+              that choice is load-bearing. Water wells alone are a quarter of everything counted
+              here and 85% of them are in Maharashtra — enough, when features were simply summed,
+              to push Maharashtra&rsquo;s baseline to 29% and make its ordinary share of hospitals
+              look like under-representation. One bulk import should not be able to redefine how
+              well a state is mapped.
             </p>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-2">
               The per-million and per-area views exist for the same reason, and none of them fixes it.

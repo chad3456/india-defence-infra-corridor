@@ -159,18 +159,51 @@ export interface BiasReading {
   verdict: "likely a mapping artifact" | "mixed" | "a real concentration";
 }
 
+/**
+ * Each state's share of a *typical* metric — how much of the map it drew.
+ *
+ * The first version summed raw features across every metric and divided. That
+ * broke the moment the counts got big enough to test it: water wells came in
+ * at 164,023, a quarter of all 662,746 features across 101 metrics, and 84.7%
+ * of them are in Maharashtra. Maharashtra's baseline went to 29% on the
+ * strength of one metric, and hospitals — where it holds a perfectly ordinary
+ * 12.8% — were then reported as "likely a mapping artifact" for falling below
+ * it. The baseline was corrupting the readings it exists to correct.
+ *
+ * So each metric now counts once, whatever its size, and the summary is the
+ * median rather than the mean. A median survives one bulk import; a mean does
+ * not, and a bulk import is exactly what a single state holding 85% of a
+ * single metric looks like. On this data the change moves Maharashtra from 29%
+ * to 12% and Kerala from 13% to 22%, which is much closer to what anyone
+ * looking at Indian OpenStreetMap coverage would tell you.
+ *
+ * Shares are renormalised to sum to one, since medians of parts do not.
+ */
 export function mappingBaseline(metrics: MetricCount[]): Record<string, number> {
-  const totals: Record<string, number> = {};
-  let all = 0;
-  for (const m of metrics) {
-    for (const [st, n] of Object.entries(m.byState)) {
-      totals[st] = (totals[st] ?? 0) + n;
-      all += n;
-    }
+  const usable = metrics.filter((m) => m.total > 0);
+  if (usable.length === 0) return {};
+
+  const states = new Set<string>();
+  for (const m of usable) for (const st of Object.keys(m.byState)) states.add(st);
+
+  const raw: Record<string, number> = {};
+  let sum = 0;
+  for (const st of states) {
+    // A state absent from a metric holds none of it, which is a zero and must
+    // be counted as one — dropping it would let a state that appears in three
+    // metrics outrank one that appears in all hundred.
+    const shares = usable.map((m) => (m.byState[st] ?? 0) / m.total).sort((a, b) => a - b);
+    const mid = shares.length >> 1;
+    const median = shares.length % 2 === 1
+      ? shares[mid]!
+      : (shares[mid - 1]! + shares[mid]!) / 2;
+    raw[st] = median;
+    sum += median;
   }
-  if (all === 0) return {};
+  if (sum === 0) return {};
+
   const out: Record<string, number> = {};
-  for (const [st, n] of Object.entries(totals)) out[st] = n / all;
+  for (const [st, v] of Object.entries(raw)) out[st] = v / sum;
   return out;
 }
 

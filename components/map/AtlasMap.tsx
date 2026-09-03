@@ -228,7 +228,8 @@ export default function AtlasMap({ specs, counts, facts }: AtlasMapProps) {
               <p className="mt-1 text-xs leading-snug text-ink-2">
                 <strong className="text-ink">{bias.leader}</strong> holds{" "}
                 <strong className="text-ink">{(bias.share * 100).toFixed(0)}%</strong> of this, and
-                draws {(bias.baseline * 100).toFixed(0)}% of everything mapped in India.
+                normally
+                holds {(bias.baseline * 100).toFixed(0)}% of a typical metric on this map.
               </p>
               <p className="mt-1.5 flex items-baseline gap-1.5 text-xs">
                 <span className="font-mono tabular-nums text-ink">{bias.lift.toFixed(1)}×</span>
