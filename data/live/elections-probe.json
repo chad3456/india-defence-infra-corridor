@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-09-03T11:53:20.598Z",
+  "probedAt": "2026-09-03T15:26:35.505Z",
   "probes": [
     {
       "group": "wikipedia",
@@ -181,36 +181,22 @@
       "group": "eci",
       "what": "results portal",
       "url": "https://results.eci.gov.in/",
-      "ok": true,
-      "status": "200",
-      "bytes": 558,
-      "statewiseTables": 0,
-      "headersSeen": [],
-      "looksLikeShell": false
+      "ok": false,
+      "status": "fetch failed"
     },
     {
       "group": "eci",
       "what": "statistical reports index",
       "url": "https://www.eci.gov.in/statistical-reports",
-      "ok": true,
-      "status": "200",
-      "bytes": 1279,
-      "statewiseTables": 0,
-      "headersSeen": [],
-      "looksLikeShell": true,
-      "note": "body is mostly script — opens in a browser, does not answer a fetch"
+      "ok": false,
+      "status": "HTTP 406"
     },
     {
       "group": "eci",
       "what": "main site",
       "url": "https://www.eci.gov.in/",
-      "ok": true,
-      "status": "200",
-      "bytes": 1279,
-      "statewiseTables": 0,
-      "headersSeen": [],
-      "looksLikeShell": true,
-      "note": "body is mostly script — opens in a browser, does not answer a fetch"
+      "ok": false,
+      "status": "HTTP 406"
     }
   ]
 }
