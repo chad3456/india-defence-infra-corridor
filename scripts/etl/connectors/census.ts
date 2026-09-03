@@ -84,7 +84,17 @@ const GAP_MS = 7_000;
 const MAX_SLOT_WAIT_MS = 90_000;
 /** Consecutive failures after which the run gives up and leaves it to the next. */
 const MAX_CONSECUTIVE_FAILURES = 3;
-const RUN_BUDGET_MS = 42 * 60_000;
+/**
+ * How long a run will keep asking before leaving the rest to the next one.
+ *
+ * The job is allowed 55 minutes. This was 42, which left thirteen unused
+ * because the budget was set when a run could still die at a rate limit and
+ * the headroom was insurance against that. The slot protocol removed that
+ * failure mode — run three spent its whole budget and counted 42 metrics
+ * without one failure — so the insurance is now just idle time. Seven minutes
+ * is enough for a slow final query plus the commit.
+ */
+const RUN_BUDGET_MS = 48 * 60_000;
 
 interface Metric {
   id: string;
