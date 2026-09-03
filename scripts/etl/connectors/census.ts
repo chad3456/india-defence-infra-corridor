@@ -62,8 +62,22 @@ const ENDPOINTS = [
   "https://overpass.private.coffee/api",
 ] as const;
 
-/** Above this a result is assumed truncated rather than complete. */
-const LIMIT = 60_000;
+/**
+ * Above this a result is assumed truncated rather than complete.
+ *
+ * The first setting of 60,000 was too low, and one metric proved it: water
+ * wells came back at exactly the limit with Maharashtra holding 47,927 of
+ * them, which is not a fact about Maharashtra but about the order Overpass
+ * happened to traverse in before it stopped. Two more — level crossings at
+ * 56,540 and hospitals at 55,635 — were close enough to the ceiling that they
+ * could not be shown to be under it.
+ *
+ * A coordinate row in CSV is about twenty-two bytes, so this ceiling is a few
+ * megabytes rather than the hundreds a tagged JSON response would cost. It is
+ * still a ceiling, and a metric that reaches it is still recorded as CAPPED
+ * and refused a ranking.
+ */
+const LIMIT = 200_000;
 /** Floor between queries even when a slot is free. */
 const GAP_MS = 7_000;
 /** Beyond this wait for a slot, try a different instance instead. */
@@ -79,6 +93,8 @@ interface Metric {
   /** Points that fell outside every state polygon — offshore, or bad geometry. */
   unplaced: number;
   capped: boolean;
+  /** The ceiling this count was taken under; a lower one earns a re-fetch. */
+  limit?: number;
   /** Which Overpass instance answered — the counts are only as good as it was. */
   endpoint?: string;
   fetchedAt: string;
@@ -163,13 +179,19 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   try {
     const prev = JSON.parse(await readFile(OUT, "utf8")) as { metrics?: Record<string, Metric> };
     metrics = prev.metrics ?? {};
-    log(`already counted: ${Object.keys(metrics).length}`);
+    const stale = Object.values(metrics).filter((m) => m.capped && (m.limit ?? 0) < LIMIT).length;
+    log(`already counted: ${Object.keys(metrics).length}${stale ? `, of which ${stale} to recount under the raised limit` : ""}`);
   } catch { /* first run */ }
 
   let done = 0;
   let consecutiveFailures = 0;
   for (const spec of CENSUS_SPECS) {
-    if (metrics[spec.id]) continue;
+    const held = metrics[spec.id];
+    // A count taken under a lower ceiling and stopped by it is not a count.
+    // Anything else already held is left alone — this stays resumable, not
+    // a full refetch every run.
+    if (held && !(held.capped && (held.limit ?? 0) < LIMIT)) continue;
+    if (held) log(`  recounting ${spec.id}: was capped at ${held.limit ?? "an older limit"}`);
     if (Date.now() - started > RUN_BUDGET_MS) {
       log(`budget spent; ${Object.keys(metrics).length} of ${CENSUS_SPECS.length} counted. Next run resumes.`);
       break;
@@ -232,6 +254,7 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
     metrics[spec.id] = {
       id: spec.id, total, byState, unplaced,
       capped: total >= LIMIT,
+      limit: LIMIT,
       endpoint: api,
       fetchedAt: new Date().toISOString(),
     };
