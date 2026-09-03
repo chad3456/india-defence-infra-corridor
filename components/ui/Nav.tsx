@@ -7,6 +7,7 @@ const LINKS = [
   { href: "/defence-tracker", label: "Defence" },
   { href: "/made-in-india", label: "Made in India" },
   { href: "/mobility", label: "Mobility" },
+  { href: "/atlas", label: "Atlas" },
   { href: "/matrix", label: "Matrix" },
   { href: "/benchmark", label: "Assessment" },
   { href: "/tracker", label: "Tracker" },
