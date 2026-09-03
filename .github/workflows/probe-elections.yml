@@ -1,0 +1,37 @@
+name: Probe election sources
+
+# Which of the ECI, Lok Dhaba and Wikipedia will actually hand over a statewise
+# table from a fetch. Publishes no series.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-elections.ts"
+      - ".github/workflows/probe-elections.yml"
+
+permissions:
+  contents: write
+concurrency:
+  group: probe-elections
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npm run elections:probe
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/live/elections-probe.json 2>/dev/null || true
+          if git diff --staged --quiet; then echo unchanged; exit 0; fi
+          git commit -m "chore(sources): election source probe $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do git push && break; sleep $((2**i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true; done
