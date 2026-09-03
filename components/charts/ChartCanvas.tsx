@@ -1,10 +1,11 @@
 "use client";
 
-import { useMemo, useRef, useState, useId } from "react";
+import { useMemo, useState, useId } from "react";
 import { scaleLinear, scaleBand, scalePoint } from "d3-scale";
 import { line as d3line, area as d3area, curveMonotoneX, curveStepAfter } from "d3-shape";
 import type { ChartKind } from "@/lib/types";
 import { formatAxis, formatNumber } from "@/lib/transforms";
+import HoverCard, { useHoverCard } from "./HoverCard";
 
 export interface SeriesInput {
   id: string;
@@ -51,9 +52,12 @@ export default function ChartCanvas({
   unitOverride,
   zeroLine = false,
 }: Props) {
-  const [hover, setHover] = useState<{ i: number; x: number; y: number } | null>(null);
+  // The crosshair needs the hovered index; the card needs client coordinates.
+  // They are tracked separately because the card lives on a fixed layer above
+  // the page, not inside this component's box.
+  const [hover, setHover] = useState<{ i: number } | null>(null);
+  const { hover: card, show, hide } = useHoverCard();
   const [showTable, setShowTable] = useState(false);
-  const wrapRef = useRef<HTMLDivElement>(null);
   const clipId = useId().replace(/:/g, "");
 
   const width = 560; // viewBox width; SVG scales responsively
@@ -168,7 +172,38 @@ export default function ChartCanvas({
         Math.min(periods.length - 1, Math.round((relX / innerW) * (periods.length - 1))),
       );
     }
-    setHover({ i: idx, x: e.clientX - rect.left, y: e.clientY - rect.top });
+    setHover({ i: idx });
+    const period = periods[idx];
+    if (period === undefined) return;
+    const rows = rowsFor(period);
+    if (rows.length === 0) { hide(); return; }
+    show(e, {
+      title: period,
+      rows: rows.map((r) => ({ label: r.label, value: formatNumber(r.d!.value, unit), colour: r.color })),
+      note: noteFor(rows),
+    });
+  }
+
+  function onLeave() {
+    setHover(null);
+    hide();
+  }
+
+  /** The series that actually carry a reading at this period, in series order. */
+  function rowsFor(period: string) {
+    return series
+      .map((sr, i) => ({ label: sr.label, color: colorOf(i), d: sr.data.find((x) => x.period === period) }))
+      .filter((r) => r.d);
+  }
+
+  /**
+   * A revision is a caveat about the number, so it travels with it. Where a
+   * point carries its own note that is more specific, and wins the line.
+   */
+  function noteFor(rows: ReturnType<typeof rowsFor>): string | undefined {
+    const own = rows.find((r) => r.d?.note)?.d?.note;
+    const revised = rows.some((r) => r.d?.revised) ? "Revised figure." : undefined;
+    return [revised, own].filter(Boolean).join(" ") || undefined;
   }
 
   const hoveredPeriod = hover ? periods[hover.i] : null;
@@ -482,25 +517,15 @@ export default function ChartCanvas({
 
   /* ------------------------------ render ---------------------------- */
 
-  const hoverRows = hoveredPeriod
-    ? series
-        .map((s, i) => ({
-          label: s.label,
-          color: colorOf(i),
-          d: s.data.find((x) => x.period === hoveredPeriod),
-        }))
-        .filter((r) => r.d)
-    : [];
-
   return (
-    <div ref={wrapRef} className="relative">
+    <div className="relative">
       <svg
         viewBox={`0 0 ${width} ${height}`}
         className="w-full h-auto touch-none"
         role="img"
         aria-label={series.map((s) => s.label).join(", ")}
         onMouseMove={onMove}
-        onMouseLeave={() => setHover(null)}
+        onMouseLeave={onLeave}
       >
         <defs>
           <clipPath id={clipId}>
@@ -646,40 +671,10 @@ export default function ChartCanvas({
         </g>
       </svg>
 
-      {/* tooltip */}
-      {hover && hoveredPeriod && hoverRows.length > 0 && (
-        <div
-          className="pointer-events-none absolute z-20 rounded border bg-[var(--surface-1)] px-2.5 py-1.5 shadow-sm"
-          style={{
-            left: Math.min(hover.x + 12, 380),
-            top: Math.max(0, hover.y - 10),
-            minWidth: 130,
-          }}
-        >
-          <div className="eyebrow mb-1">{hoveredPeriod}</div>
-          {hoverRows.map((r) => (
-            <div key={r.label} className="flex items-center gap-1.5 text-[11px]">
-              <span
-                className="inline-block h-2 w-2 shrink-0 rounded-full"
-                style={{ background: r.color }}
-                aria-hidden
-              />
-              <span className="text-[color:var(--text-secondary)] truncate max-w-[110px]">{r.label}</span>
-              <span className="tnum ml-auto font-medium">
-                {formatNumber(r.d!.value, unit)}
-              </span>
-            </div>
-          ))}
-          {hoverRows.some((r) => r.d?.revised) && (
-            <div className="mt-1 text-[10px] text-[color:var(--text-muted)]">revised figure</div>
-          )}
-          {hoverRows[0]?.d?.note && (
-            <div className="mt-1 max-w-[190px] text-[10px] leading-snug text-[color:var(--text-muted)]">
-              {hoverRows[0].d.note}
-            </div>
-          )}
-        </div>
-      )}
+      {/* The card is the shared one, on a fixed layer: charts and maps answer a
+          hover the same way, and it can leave this box rather than being
+          clamped inside it. */}
+      <HoverCard hover={card} />
 
       {/* legend — always present for 2+ series */}
       {series.length > 1 && (

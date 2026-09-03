@@ -7,6 +7,7 @@ import type { FeatureCollection, Geometry } from "geojson";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import topo from "@/data/geo/india-states.topo.json";
 import corridors from "@/data/geo/corridors.json";
+import HoverCard, { useHoverCard } from "@/components/charts/HoverCard";
 
 type Cities = Record<string, [number, number]>;
 type StateProps = { name: string | null };
@@ -29,6 +30,7 @@ export default function IndiaMap() {
   const [playing, setPlaying] = useState(false);
   const [showNodes, setShowNodes] = useState(true);
   const [hovered, setHovered] = useState<Expressway | null>(null);
+  const { hover, show, hide } = useHoverCard();
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const width = 620;
@@ -108,16 +110,30 @@ export default function IndiaMap() {
               const isOp = e.status === "operational";
               const active = hovered?.id === e.id;
               return (
-                <g key={e.id}>
-                  {/* wide invisible hit target */}
+                // The handlers sit on the group, not on the hit band below it.
+                // The band is drawn first so it cannot cover the line it widens,
+                // which meant pointing straight at a corridor landed on the
+                // visible path instead and did nothing — only the few pixels of
+                // margin either side of the line responded.
+                <g
+                  key={e.id}
+                  onMouseMove={(ev) => {
+                    setHovered(e);
+                    show(ev, {
+                      title: e.name,
+                      subtitle: `${e.lengthKm.toLocaleString("en-IN")} km · opened ${e.openedYear} · ${e.status}`,
+                      note: e.note,
+                    });
+                  }}
+                  onMouseLeave={() => { setHovered(null); hide(); }}
+                  style={{ cursor: "pointer" }}
+                >
+                  {/* Widens the target either side of a 2.5px line. */}
                   <path
                     d={lineFor(e)}
                     fill="none"
                     stroke="transparent"
                     strokeWidth={14}
-                    onMouseEnter={() => setHovered(e)}
-                    onMouseLeave={() => setHovered(null)}
-                    style={{ cursor: "pointer" }}
                   />
                   <path
                     d={lineFor(e)}
@@ -156,7 +172,19 @@ export default function IndiaMap() {
                 const p = project(n.city);
                 if (!p) return null;
                 return (
-                  <g key={n.id}>
+                  <g
+                    key={n.id}
+                    onMouseMove={(ev) =>
+                      show(ev, {
+                        title: n.name,
+                        subtitle: `${n.corridor} defence corridor node`,
+                      })
+                    }
+                    onMouseLeave={hide}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {/* Widened hit target: a 5px dot is hard to hold a pointer on. */}
+                    <circle cx={p[0]} cy={p[1]} r={11} fill="transparent" />
                     <circle
                       cx={p[0]}
                       cy={p[1]}
@@ -166,6 +194,7 @@ export default function IndiaMap() {
                       stroke="var(--series-3)"
                       strokeWidth={1.5}
                     />
+                    {/* Kept for screen readers and touch, where there is no hover. */}
                     <title>{`${n.name} — ${n.corridor} defence corridor node`}</title>
                   </g>
                 );
@@ -188,20 +217,10 @@ export default function IndiaMap() {
           </text>
         </svg>
 
-        {hovered && (
-          <div className="pointer-events-none absolute left-3 top-3 max-w-[240px] rounded border bg-[var(--surface-1)] px-2.5 py-2 shadow-sm">
-            <p className="text-[12px] font-medium">{hovered.name}</p>
-            <p className="tnum mt-0.5 text-[11px] text-[color:var(--text-secondary)]">
-              {hovered.lengthKm.toLocaleString("en-IN")} km · opened {hovered.openedYear} ·{" "}
-              {hovered.status}
-            </p>
-            {hovered.note && (
-              <p className="mt-1 text-[10px] leading-snug text-[color:var(--text-muted)]">
-                {hovered.note}
-              </p>
-            )}
-          </div>
-        )}
+        {/* `hovered` still drives the highlight on the line itself; the detail
+            now follows the pointer instead of parking in the corner, where a
+            reader had to look away from the corridor to read about it. */}
+        <HoverCard hover={hover} />
       </div>
 
       {/* Controls */}

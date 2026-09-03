@@ -8,6 +8,7 @@ import type { Topology, GeometryCollection } from "topojson-specification";
 import topo from "@/data/geo/india-states.topo.json";
 import type { DevEvent, EventCategory } from "@/lib/types";
 import { EVENT_CATEGORIES, CATEGORY_LABEL } from "@/lib/events";
+import HoverCard, { useHoverCard } from "@/components/charts/HoverCard";
 
 type StateProps = { name: string | null };
 
@@ -57,6 +58,7 @@ export default function DevelopmentMap({
   const [mode, setMode] = useState<Mode>("all");
   const [category, setCategory] = useState<EventCategory | null>(null);
   const [selected, setSelected] = useState<Cluster | null>(null);
+  const { hover, show, hide } = useHoverCard();
 
   const width = 620;
   const height = 660;
@@ -112,6 +114,32 @@ export default function DevelopmentMap({
 
   const unplaced = visible.filter((e) => !e.coords).length;
   const maxCount = Math.max(1, ...clusters.map((c) => c.events.length));
+
+  /**
+   * What a pin is worth saying on hover: where it is, how much is stacked
+   * there, and the most recent headline — clicking still opens the full list,
+   * but a reader should not have to click to find out whether it is worth it.
+   */
+  function hoverFor(c: Cluster) {
+    const byCategory = new Map<EventCategory, number>();
+    for (const e of c.events) byCategory.set(e.category, (byCategory.get(e.category) ?? 0) + 1);
+    const rows = [...byCategory.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 4)
+      .map(([cat, n]) => ({
+        label: CATEGORY_LABEL[cat],
+        value: String(n),
+        colour: CAT_COLOR[cat],
+      }));
+    const newest = c.events.reduce((a, b) => (a.date >= b.date ? a : b));
+    const more = byCategory.size > 4 ? ` +${byCategory.size - 4} more` : "";
+    return {
+      title: c.placeName,
+      subtitle: `${c.state} — ${c.events.length} ${c.events.length === 1 ? "event" : "events"}${more}`,
+      rows,
+      note: `Latest, ${newest.date}: ${newest.title}`,
+    };
+  }
 
   return (
     <div className="grid gap-4 lg:grid-cols-[260px_1fr]">
@@ -260,6 +288,8 @@ export default function DevelopmentMap({
                   <g
                     key={c.key}
                     onClick={() => setSelected(isSelected ? null : c)}
+                    onMouseMove={(ev) => show(ev, hoverFor(c))}
+                    onMouseLeave={hide}
                     style={{ cursor: "pointer" }}
                   >
                     <circle
@@ -356,6 +386,7 @@ export default function DevelopmentMap({
           </div>
         )}
       </div>
+      <HoverCard hover={hover} />
     </div>
   );
 }

@@ -1,6 +1,12 @@
+"use client";
+
+// A client component only so the hover card can live here: every other chart
+// and map on the site answers a hover the same way, and the browser's native
+// tooltip — delayed, unstyled, and impossible to place — is not that way.
 import type { Placement, Quadrant } from "@/lib/quadrant";
 import { QUADRANTS } from "@/lib/quadrant";
 import { CATEGORY_LABELS } from "@/lib/types";
+import HoverCard, { useHoverCard } from "./HoverCard";
 
 /**
  * The development matrix: standing against momentum, as a labelled 2×2 scatter.
@@ -54,6 +60,7 @@ export default function QuadrantMatrix({
   /** Category to emphasise; everything else recedes rather than disappearing. */
   highlight?: string;
 }) {
+  const { hover, show, hide } = useHoverCard();
   const cx = x(0, W);
   const cy = y(0, H);
 
@@ -156,7 +163,24 @@ export default function QuadrantMatrix({
                 opacity={dim ? 0.18 : 0.85}
                 stroke="var(--plane)"
                 strokeWidth="2"
+                onMouseMove={(ev) =>
+                  show(ev, {
+                    title: p.title,
+                    subtitle: CATEGORY_LABELS[p.category],
+                    rows: [
+                      { label: p.detail.firstPeriod, value: String(p.detail.first) },
+                      { label: p.detail.latestPeriod, value: String(p.detail.latest) },
+                      {
+                        label: "change",
+                        value: `${p.detail.changePercent > 0 ? "+" : ""}${p.detail.changePercent}%`,
+                      },
+                    ],
+                    note: `Comparator median ${p.detail.peerMedian}, across ${p.detail.peerCount} countries.`,
+                  })
+                }
+                onMouseLeave={hide}
               >
+                {/* Kept for screen readers and touch, where there is no hover. */}
                 <title>
                   {`${p.title}\n${CATEGORY_LABELS[p.category]}\n` +
                     `${p.detail.firstPeriod}: ${p.detail.first} → ${p.detail.latestPeriod}: ${p.detail.latest} ` +
@@ -184,6 +208,7 @@ export default function QuadrantMatrix({
         </span>
         <span>{placed.length} series placed · hover a point for its numbers</span>
       </figcaption>
+      <HoverCard hover={hover} />
     </figure>
   );
 }
