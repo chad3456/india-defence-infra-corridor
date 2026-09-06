@@ -12,6 +12,17 @@
  * and the tags are not needed: the filter already selected the things that
  * match, so all that remains is where each one is.
  *
+ * ── A note on the map this counts against ───────────────────────────────
+ *
+ * Every count here is only as good as the polygon it was tested against, and
+ * for the first four runs the polygons were wrong. The boundary file's
+ * latitude scale was short by 5.3%, compressing every state southward in
+ * proportion to its latitude, and the Delhi polygon ended up 125 km from
+ * Delhi. Those runs counted the real Delhi as Uttar Pradesh and reported that
+ * a city of 16.8 million holds four hospitals and no cash machines. The counts
+ * were rebuilt from scratch once the file was fixed; scripts/test-geo.ts now
+ * fails the suite if the map moves again.
+ *
  * States are assigned locally by point-in-polygon rather than by asking
  * Overpass 121 x 36 times. Four thousand queries against a free endpoint to
  * learn what one query plus some arithmetic can tell you is not a reasonable
