@@ -1,0 +1,38 @@
+name: Probe satellite sources
+
+# What CelesTrak serves, how many objects each group carries, how fresh the
+# elements are, and what satellitemap.space actually returns to a fetch.
+# Publishes no series.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-satellites.ts"
+      - ".github/workflows/probe-satellites.yml"
+
+permissions:
+  contents: write
+concurrency:
+  group: probe-satellites
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npm run satellites:probe
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/live/satellites-probe.json 2>/dev/null || true
+          if git diff --staged --quiet; then echo unchanged; exit 0; fi
+          git commit -m "chore(sources): satellite source probe $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do git push && break; sleep $((2**i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true; done

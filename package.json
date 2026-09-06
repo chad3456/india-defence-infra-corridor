@@ -2,7 +2,7 @@
   "name": "bharat-tracker",
   "version": "0.1.0",
   "private": true,
-  "description": "India Defence & Infrastructure Tracker \u2014 curated, source-cited data on defence, infrastructure, trade and manufacturing since 2001.",
+  "description": "India Defence & Infrastructure Tracker — curated, source-cited data on defence, infrastructure, trade and manufacturing since 2001.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -53,6 +53,7 @@
     "mobility:probe": "tsx scripts/etl/probe-mobility.ts",
     "mobility:ingest": "tsx scripts/etl/ingest-mobility.ts",
     "elections:ingest": "tsx scripts/etl/connectors/elections.ts",
+    "satellites:probe": "tsx scripts/etl/probe-satellites.ts",
     "elections:probe": "tsx scripts/etl/probe-elections.ts",
     "ogd:probe": "tsx scripts/etl/probe-ogd.ts",
     "vande:probe": "tsx scripts/etl/probe-vande.ts",
@@ -72,6 +73,7 @@
     "next": "^16.3.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "satellite.js": "^7.1.0",
     "topojson-client": "^3.1.0"
   },
   "devDependencies": {
