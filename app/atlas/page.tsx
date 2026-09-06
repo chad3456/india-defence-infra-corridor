@@ -64,8 +64,23 @@ export default function AtlasPage() {
               one where a state runs far above its baseline is a concentration real enough to show
               through. Maharashtra leads mapped hospitals at 1.1× its baseline, which is to say it
               leads them because it is well mapped. Kerala leads mapped museums at 0.6×, so it is{" "}
-              <em>under</em>-represented in museums even while leading them. Rajasthan&rsquo;s
-              observatories run at 14×. That number sits beside every map.
+              <em>under</em>-represented in museums even while leading them. Glaciers in Jammu &amp;
+              Kashmir run at 17×. That number sits beside every map.
+            </p>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-2">
+              Where the count is too thin to carry a claim, no multiple is shown at all. Twelve of
+              these metrics are below the hundred features that a share across thirty-six states
+              needs to mean anything, and three have nothing mapped in the whole country. India has
+              hundreds of stepwells; OpenStreetMap has one tagged as such, in Rajasthan, and before
+              this floor the page called that &ldquo;100% of this, 32× its mapping share, a real
+              concentration&rdquo;. The multiples that are shown are the conservative end of a 95%
+              interval, so they read as &ldquo;at least&rdquo;.
+            </p>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-2">
+              A metric where one state holds nearly everything across a handful of states is
+              flagged separately, because that is the shape of a single bulk import rather than a
+              distribution. Assam holds 682 of India&rsquo;s 696 mapped mines. The arithmetic is
+              right and the map is not lying; it is describing one upload.
             </p>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-2">
               The baseline is the median across metrics, not a share of all features added up, and

@@ -20,6 +20,18 @@ export interface AtlasMapProps {
   facts: Record<string, { pop: number; areaKm2: number }>;
 }
 
+/**
+ * A baseline can be a fraction of a percent — Assam's is 0.4% — and rounding
+ * that to "0%" reads as a division by zero rather than as a barely-mapped
+ * state, which is the whole point being made.
+ */
+function fmtShare(v: number): string {
+  const pct = v * 100;
+  if (pct >= 1) return `${pct.toFixed(0)}%`;
+  if (pct >= 0.1) return `${pct.toFixed(1)}%`;
+  return "under 0.1%";
+}
+
 /** Five steps from the site's sequential ramp — magnitude, so one hue. */
 const RAMP = ["var(--seq-100)", "var(--seq-250)", "var(--seq-400)", "var(--seq-550)", "var(--seq-700)"];
 
@@ -228,17 +240,41 @@ export default function AtlasMap({ specs, counts, facts }: AtlasMapProps) {
               <p className="mt-1 text-xs leading-snug text-ink-2">
                 <strong className="text-ink">{bias.leader}</strong> holds{" "}
                 <strong className="text-ink">{(bias.share * 100).toFixed(0)}%</strong> of this, and
-                normally
-                holds {(bias.baseline * 100).toFixed(0)}% of a typical metric on this map.
+                normally holds {fmtShare(bias.baseline)} of a typical metric on this map.
               </p>
-              <p className="mt-1.5 flex items-baseline gap-1.5 text-xs">
-                <span className="font-mono tabular-nums text-ink">{bias.lift.toFixed(1)}×</span>
-                <span className="text-ink-2">its own mapping share — {bias.verdict}.</span>
-              </p>
-              <p className="mt-1.5 text-[10.5px] leading-snug text-ink-muted">
-                Near 1× means the lead is mapping density rather than the thing itself. Far above
-                means a concentration real enough to show through the bias.
-              </p>
+
+              {bias.verdict === "too few mapped to say" ? (
+                /* No multiple is printed here on purpose. With this few
+                   features a share is not a measurement, and a number beside
+                   the words would be read as one anyway. */
+                <p className="mt-1.5 text-xs leading-snug text-ink-2">
+                  Only <strong className="text-ink">{bias.n}</strong>{" "}
+                  {bias.n === 1 ? "feature is" : "features are"} mapped across the whole country —
+                  too few to say whether that lead means anything.
+                </p>
+              ) : (
+                <>
+                  <p className="mt-1.5 flex items-baseline gap-1.5 text-xs">
+                    <span className="font-mono tabular-nums text-ink">
+                      ≥{bias.lift.toFixed(1)}×
+                    </span>
+                    <span className="text-ink-2">its own mapping share — {bias.verdict}.</span>
+                  </p>
+                  <p className="mt-1.5 text-[10.5px] leading-snug text-ink-muted">
+                    Near 1× means the lead is mapping density rather than the thing itself. Far
+                    above means a concentration real enough to show through the bias. The multiple
+                    is the conservative end of a 95% interval, so it reads as “at least”.
+                  </p>
+                </>
+              )}
+
+              {bias.singleSource && (
+                <p className="mt-1.5 border-t border-gridline pt-1.5 text-[10.5px] leading-snug text-ink-muted">
+                  One state holds almost all of it, across very few states. That is usually the
+                  shape of a single bulk import rather than a distribution — the arithmetic is
+                  right, but it is describing one upload.
+                </p>
+              )}
             </div>
           )}
           {spec?.note && <p className="mt-3 text-[11px] leading-snug text-ink-muted">{spec.note}</p>}

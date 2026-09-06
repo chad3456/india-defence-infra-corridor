@@ -152,11 +152,54 @@ export interface BiasReading {
   leader: string;
   /** Leader's share of this metric, 0..1. */
   share: number;
-  /** Leader's share of every mapped feature — its share of the map itself. */
+  /** Leader's share of a typical metric — its share of the map itself. */
   baseline: number;
-  /** share / baseline. Near 1 means the lead is just mapping density. */
+  /**
+   * How far the leader runs above its own mapping share — conservatively.
+   *
+   * Computed from the lower end of a 95% Wilson interval on the share rather
+   * than the share itself, so this reads as "at least this much" and a thin
+   * count cannot produce a confident multiple.
+   */
   lift: number;
-  verdict: "likely a mapping artifact" | "mixed" | "a real concentration";
+  verdict:
+    | "too few mapped to say"
+    | "likely a mapping artifact"
+    | "mixed"
+    | "a real concentration";
+  /** Number of features the reading is based on. */
+  n: number;
+  /**
+   * One state holds almost all of it, across very few states — the shape of a
+   * single bulk import rather than a distribution. True of mines, where Assam
+   * holds 682 of 696.
+   */
+  singleSource: boolean;
+}
+
+/**
+ * Below this a leader's share is not a measurement.
+ *
+ * There are 36 polygons, so a hundred features average under three each and
+ * one enthusiast's afternoon can decide the ranking. Three metrics here have
+ * no features at all, and two have exactly one — before this floor the page
+ * reported "Rajasthan holds 100% of stepwells, 32x its mapping share, a real
+ * concentration" on the strength of a single node.
+ */
+const MIN_FOR_VERDICT = 100;
+
+/**
+ * Lower bound of the Wilson score interval — the conservative end of what a
+ * share of n could be. Unlike the normal approximation it stays sane at shares
+ * of 0 and 1, which is exactly where the counts here live.
+ */
+function wilsonLower(share: number, n: number, z = 1.96): number {
+  if (n <= 0) return 0;
+  const z2 = z * z;
+  const centre = (share + z2 / (2 * n)) / (1 + z2 / n);
+  const margin =
+    (z / (1 + z2 / n)) * Math.sqrt((share * (1 - share)) / n + z2 / (4 * n * n));
+  return Math.max(0, centre - margin);
 }
 
 /**
@@ -211,15 +254,23 @@ export function readBias(count: MetricCount, baseline: Record<string, number>): 
   const entries = Object.entries(count.byState).sort((a, b) => b[1] - a[1]);
   const top = entries[0];
   if (!top || count.total === 0) return null;
-  const share = top[1] / count.total;
+
+  const n = count.total;
+  const share = top[1] / n;
   const base = baseline[top[0]] ?? 0;
+  // A bulk import is a lot of features from one place. One node is not an
+  // import, so this only applies once there are enough features for the shape
+  // to mean anything — otherwise every n=1 metric claims to be an upload.
+  const singleSource = n >= MIN_FOR_VERDICT && share >= 0.9 && entries.length <= 8;
+
   // With no baseline to compare against, claim nothing.
-  const lift = base > 0 ? share / base : 1;
-  return {
-    leader: top[0],
-    share,
-    baseline: base,
-    lift,
-    verdict: lift < 1.35 ? "likely a mapping artifact" : lift < 2.2 ? "mixed" : "a real concentration",
-  };
+  const lift = base > 0 ? wilsonLower(share, n) / base : 1;
+
+  const verdict: BiasReading["verdict"] =
+    n < MIN_FOR_VERDICT ? "too few mapped to say"
+      : lift < 1.35 ? "likely a mapping artifact"
+        : lift < 2.2 ? "mixed"
+          : "a real concentration";
+
+  return { leader: top[0], share, baseline: base, lift, verdict, n, singleSource };
 }

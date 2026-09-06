@@ -98,6 +98,37 @@ console.log("\nmapping baseline");
 
   check("a metric with no features yields no reading",
     readBias(st({}), flat) === null);
+
+  // The floor. Before it, one mapped stepwell in Rajasthan was reported as
+  // "100% of this, 32x its mapping share, a real concentration".
+  const oneNode = readBias(st({ A: 1 }), flat);
+  check("a single mapped feature is refused a verdict",
+    oneNode?.verdict === "too few mapped to say", String(oneNode?.verdict));
+  check("the refusal still reports how few there were", oneNode?.n === 1);
+
+  const thin = readBias(st({ A: 60, B: 5 }), flat);
+  check("a thin count is refused a verdict",
+    thin?.verdict === "too few mapped to say", `n=${thin?.n}, ${thin?.verdict}`);
+
+  // Above the floor the same shape is allowed to speak.
+  const ample = readBias(st({ A: 6000, B: 500 }), flat);
+  check("the same shape with enough features does get a verdict",
+    ample?.verdict === "a real concentration", String(ample?.verdict));
+
+  // The reported multiple is a lower bound, so it must never exceed the naive
+  // ratio it replaces.
+  const naive = (ample!.share) / (ample!.baseline);
+  check("the reported multiple is conservative, never above the raw ratio",
+    ample!.lift <= naive + 1e-9, `${ample!.lift.toFixed(2)} vs raw ${naive.toFixed(2)}`);
+
+  // The bulk-import shape is flagged separately from the strength of the lead.
+  check("one state holding almost everything is flagged as a single source",
+    readBias(st({ A: 682, B: 8, C: 6 }), flat)?.singleSource === true);
+  // One node is not a bulk import, whatever share of one it happens to be.
+  check("a single feature is not called a bulk import",
+    readBias(st({ A: 1 }), flat)?.singleSource === false);
+  check("a spread-out metric is not flagged as a single source",
+    readBias(st({ ...TEN, A: 500 }), flat)?.singleSource === false);
 }
 
 console.log(bad === 0 ? "\nAll census tests passed." : `\n${bad} failing.`);
