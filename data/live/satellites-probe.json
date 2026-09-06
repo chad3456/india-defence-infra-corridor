@@ -1,0 +1,138 @@
+{
+  "probedAt": "2026-09-06T15:30:46.701Z",
+  "probes": [
+    {
+      "what": "all active objects (TLE)",
+      "url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=active&FORMAT=tle",
+      "ok": true,
+      "status": "200",
+      "bytes": 2693376,
+      "objects": 16032,
+      "freshestEpochDays": -1.7110590117588749,
+      "sample": "CALSPHERE 1 / 1 00900U 64063C   26249.20713286  .00000411  00000+0  40779-3 0  9995 / 2 00900  90.2173  73.6483 0027514  50.0623   2.9696 13"
+    },
+    {
+      "what": "group: stations",
+      "url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle",
+      "ok": true,
+      "status": "200",
+      "bytes": 3528,
+      "objects": 21,
+      "freshestEpochDays": 0.38523752564889413,
+      "sample": "ISS (ZARYA) / 1 25544U 98067A   26249.14365581  .00003658  00000+0  74533-4 0  9993 / 2 25544  51.6309 259.4125 0005023 112.3189 247.8332 15"
+    },
+    {
+      "what": "group: science",
+      "url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=science&FORMAT=tle",
+      "ok": true,
+      "status": "200",
+      "bytes": 7728,
+      "objects": 46,
+      "freshestEpochDays": -1.7110293589810972,
+      "sample": "HST / 1 20580U 90037B   26249.28948943  .00003784  00000+0  11325-3 0  9990 / 2 20580  28.4722 245.9180 0001514 329.2257  30.8250 15.3156371"
+    },
+    {
+      "what": "group: resource",
+      "url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=tle",
+      "ok": true,
+      "status": "200",
+      "bytes": 28056,
+      "objects": 167,
+      "freshestEpochDays": 0.19301577055471913,
+      "sample": "SCD 1 / 1 22490U 93009B   26249.20156166  .00000286  00000+0  27288-4 0  9994 / 2 22490  24.9702  67.3474 0041724 275.5755 247.7304 14.46146"
+    },
+    {
+      "what": "group: geo",
+      "url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=geo&FORMAT=tle",
+      "ok": true,
+      "status": "200",
+      "bytes": 95256,
+      "objects": 567,
+      "freshestEpochDays": 0.20690117981522171,
+      "sample": "TDRS 3 / 1 19548U 88091B   26249.17336331 -.00000306  00000+0  00000+0 0  9991 / 2 19548  12.5422 340.4569 0038377 352.2229  26.0912  1.0027"
+    },
+    {
+      "what": "group: gnss",
+      "url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=gnss&FORMAT=tle",
+      "ok": true,
+      "status": "200",
+      "bytes": 28728,
+      "objects": 171,
+      "freshestEpochDays": 0.3239306673148826,
+      "sample": "GPS BIIR-5  (PRN 22) / 1 26407U 00040A   26249.27739032  .00000025  00000+0  00000+0 0  9994 / 2 26407  54.8406 211.9434 0118608 303.6340 20"
+    },
+    {
+      "what": "group: weather",
+      "url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=weather&FORMAT=tle",
+      "ok": true,
+      "status": "200",
+      "bytes": 12096,
+      "objects": 72,
+      "freshestEpochDays": 0.22594463222362376,
+      "sample": "DMSP 5D-3 F16 (USA 172) / 1 28054U 03048A   26249.29861434  .00000008  00000+0  27674-4 0  9991 / 2 28054  98.9873 273.6552 0005937 278.9920"
+    },
+    {
+      "what": "group: starlink",
+      "url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=starlink&FORMAT=tle",
+      "ok": true,
+      "status": "200",
+      "bytes": 1801128,
+      "objects": 10721,
+      "freshestEpochDays": 0.17754755536962438,
+      "sample": "STARLINK-1008 / 1 44714U 19074B   26249.14104810  .00061327  00000+0  64785-3 0  9994 / 2 44714  53.1478  37.2574 0002728  90.1893 269.9435 "
+    },
+    {
+      "what": "group: last-30-days",
+      "url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=last-30-days&FORMAT=tle",
+      "ok": false,
+      "status": "HTTP 404"
+    },
+    {
+      "what": "SATCAT, country=IND",
+      "url": "https://celestrak.org/satcat/records.php?COUNTRY=IND&FORMAT=csv",
+      "ok": true,
+      "status": "200",
+      "bytes": 39,
+      "objects": 0,
+      "sample": "Invalid query: \"COUNTRY=IND&FORMAT=csv\""
+    },
+    {
+      "what": "SATCAT, full CSV",
+      "url": "https://celestrak.org/pub/satcat.csv",
+      "ok": true,
+      "status": "200",
+      "bytes": 6729891,
+      "objects": 70580,
+      "sample": "OBJECT_NAME,OBJECT_ID,NORAD_CAT_ID,OBJECT_TYPE,OPS_STATUS_CODE,OWNER,LAUNCH_DATE,LAUNCH_SITE,DECAY_DATE,PERIOD,INCLINATION,APOGEE,PERIGEE,RCS,DATA_STATUS_CODE,ORBIT_CENTER,ORBIT_TYPE\r / SL-1 R/B,1957-001A,1,R/B,D,CIS,195"
+    },
+    {
+      "what": "GP by name: CARTOSAT",
+      "url": "https://celestrak.org/NORAD/elements/gp.php?NAME=CARTOSAT&FORMAT=tle",
+      "ok": true,
+      "status": "200",
+      "bytes": 1344,
+      "objects": 8,
+      "freshestEpochDays": 0.3443129258332429,
+      "sample": "IRS-P5 (CARTOSAT-1) / 1 28649U 05017A   26248.80486305  .00000814  00000+0  87174-4 0  9991 / 2 28649  97.5298 268.2154 0002276 114.1938 245"
+    },
+    {
+      "what": "GP by name: RISAT",
+      "url": "https://celestrak.org/NORAD/elements/gp.php?NAME=RISAT&FORMAT=tle",
+      "ok": true,
+      "status": "200",
+      "bytes": 1512,
+      "objects": 9,
+      "freshestEpochDays": 0.3547051621302852,
+      "sample": "MARISAT 1 / 1 08697U 76017A   26249.10584600  .00000073  00000+0  00000+0 0  9996 / 2 08697   5.6397 294.4856 0011970 208.8354 305.7702  0.9"
+    },
+    {
+      "what": "satellitemap.space",
+      "url": "https://satellitemap.space/",
+      "ok": true,
+      "status": "200",
+      "bytes": 72284,
+      "note": "carries markup",
+      "sample": "<!DOCTYPE html> <html style=\"scrollbar-gutter: auto !important\" class=\"preload\" > <head> <title>Satellite Tracker — Live Map of Starli"
+    }
+  ]
+}
