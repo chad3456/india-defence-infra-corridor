@@ -14,8 +14,19 @@
  */
 
 export interface WikiTable {
-  /** Header cells, in order, as plain text. */
+  /**
+   * The header row that lines up with the body, as plain text.
+   *
+   * A wikitable may have several header rows: a spanning title above the real
+   * headers, a second tier under them, or both. They must not be flattened
+   * together — doing so was worth an off-by-one on every page whose table had
+   * a caption row, which put "Production company" under the heading "Title"
+   * and read the studio as the film. So the row chosen here is the one whose
+   * width matches the body, and the others are kept separately.
+   */
   headers: string[];
+  /** Every header row, in order, before the body starts. */
+  headerRows: string[][];
   /** Body rows, each already aligned to `headers` by position. */
   rows: string[][];
   /** Anything on the table line itself, e.g. a class or caption. */
@@ -83,6 +94,32 @@ function splitCells(line: string, marker: "|" | "!"): string[] {
 }
 
 /**
+ * Which header row actually labels the body's columns.
+ *
+ * A spanning title row has one cell; a real header row has as many cells as
+ * the body has columns. So the body decides: take the most common row width
+ * and pick the header row that matches it, preferring the last such row since
+ * it sits closest to the data. With nothing matching, fall back to the widest
+ * header row, which is still better than concatenating them all.
+ */
+function alignedHeader(headerRows: string[][], rows: string[][]): string[] {
+  if (headerRows.length === 0) return [];
+  if (headerRows.length === 1) return headerRows[0]!;
+
+  const widths = new Map<number, number>();
+  for (const r of rows) widths.set(r.length, (widths.get(r.length) ?? 0) + 1);
+  let modal = 0, best = 0;
+  for (const [w, n] of widths) if (n > best) { best = n; modal = w; }
+
+  if (modal > 0) {
+    for (let i = headerRows.length - 1; i >= 0; i--) {
+      if (headerRows[i]!.length === modal) return headerRows[i]!;
+    }
+  }
+  return headerRows.reduce((a, b) => (b.length > a.length ? b : a));
+}
+
+/**
  * Every table in a page, in document order.
  *
  * Nested tables are skipped rather than mis-parsed: a table inside a cell is
@@ -109,38 +146,47 @@ export function parseTables(wikitext: string): WikiTable[] {
       i++;
     }
 
-    const headers: string[] = [];
+    // Rows are delimited by |-, and a row is a header row when every cell in
+    // it came from ! rather than |. Tracking that per row, instead of
+    // accumulating all ! cells into one list, is what keeps a spanning title
+    // above the headers from shifting every column index by one.
+    const headerRows: string[][] = [];
     const rows: string[][] = [];
-    let cur: string[] | null = null;
+    let cur: string[] = [];
+    let curIsHeader = true;
+    let started = false;
     let caption = caption0;
+
+    const flush = (): void => {
+      if (cur.length === 0) return;
+      if (curIsHeader && rows.length === 0) headerRows.push(cur);
+      else rows.push(cur);
+      cur = [];
+      curIsHeader = true;
+    };
 
     for (const ln of body) {
       if (/^\s*\|\+/.test(ln)) { caption = plain(ln.replace(/^\s*\|\+/, "")); continue; }
-      if (/^\s*\|-/.test(ln)) {
-        if (cur && cur.length) rows.push(cur);
-        cur = [];
+      if (/^\s*\|-/.test(ln)) { flush(); started = true; continue; }
+      if (/^\s*!/.test(ln)) {
+        cur.push(...splitCells(ln.trim(), "!"));
+        started = true;
         continue;
       }
-      if (/^\s*!/.test(ln)) {
-        // Header cells only count before any body row has started.
-        if (rows.length === 0 && (cur === null || cur.length === 0)) {
-          headers.push(...splitCells(ln.trim(), "!"));
-          continue;
-        }
-      }
       if (/^\s*\|/.test(ln)) {
-        const cells = splitCells(ln.trim(), "|");
-        if (cur === null) cur = [];
-        cur.push(...cells);
+        cur.push(...splitCells(ln.trim(), "|"));
+        curIsHeader = false;
+        started = true;
         continue;
       }
       // A continuation line belongs to the cell above it.
-      if (cur && cur.length > 0 && ln.trim()) {
+      if (started && cur.length > 0 && ln.trim()) {
         cur[cur.length - 1] = `${cur[cur.length - 1]} ${plain(ln)}`.trim();
       }
     }
-    if (cur && cur.length) rows.push(cur);
-    out.push({ headers, rows, caption });
+    flush();
+
+    out.push({ headers: alignedHeader(headerRows, rows), headerRows, rows, caption });
   }
   return out;
 }

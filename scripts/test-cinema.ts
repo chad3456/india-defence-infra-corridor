@@ -9,7 +9,7 @@
  * pure weekly cycle around a flat mean must read as "holding".
  */
 import { readTrend, filmId, type Film, type Observation } from "../lib/cinema-shared";
-import { parseCroreGross } from "./etl/connectors/cinema";
+import { parseCroreGross, looksLikeTitle } from "./etl/connectors/cinema";
 
 let bad = 0;
 function ok(name: string, cond: boolean, detail = ""): void {
@@ -149,6 +149,23 @@ console.log("\nReading a gross figure");
   ok("an empty cell is refused", why("") === "empty");
   ok("a dash is refused", why("—") === "empty");
   ok("prose with no number is refused", why("not yet reported") !== null);
+}
+
+console.log("\nIs that a film, or a column we landed on by mistake?");
+{
+  const why = (t: string) => { const r = looksLikeTitle(t); return "reason" in r ? r.reason : null; };
+  ok("a real film passes", why("Toxic") === null);
+  ok("a film with punctuation passes", why("Pushpa 2: The Rule") === null);
+  ok("a film with a long name passes", why("Theertharoopa Thandeyavarige") === null);
+
+  // The two shapes the first run actually produced.
+  ok("a language is refused, and says why",
+    (why("Telugu") ?? "").includes("misaligned"), String(why("Telugu")));
+  ok("a production house is refused",
+    (why("Mythri Movie Makers") ?? "").includes("misaligned"), String(why("Mythri Movie Makers")));
+  ok("another production house is refused",
+    (why("Vishesh Films") ?? "").includes("misaligned"), String(why("Vishesh Films")));
+  ok("an empty cell is refused", why("") === "empty");
 }
 
 if (bad > 0) { console.error(`\n${bad} cinema test(s) failed.`); process.exit(1); }

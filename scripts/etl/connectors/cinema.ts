@@ -72,6 +72,38 @@ interface Output {
  * day that was — a converted figure would be a number I made up to one
  * significant figure.
  */
+/**
+ * Languages, which appear as a column on the cross-language list and are the
+ * commonest thing to mistake for a title when the columns are off by one.
+ */
+const LANGUAGE_NAMES = new Set([
+  "hindi", "tamil", "telugu", "malayalam", "kannada", "english", "marathi",
+  "bengali", "punjabi", "gujarati", "odia", "assamese", "bhojpuri", "tulu",
+]);
+
+/**
+ * Is this cell plausibly a film title, or is it a column we landed on by
+ * mistake?
+ *
+ * The first run answered "Mythri Movie Makers" and "Telugu" when asked for
+ * films, because a spanning header row had shifted every column by one. The
+ * parser no longer does that, but a lexical check costs nothing and the
+ * failure it guards is silent: a studio in a title column still looks like a
+ * row.
+ */
+export function looksLikeTitle(title: string): { ok: true } | { reason: string } {
+  const t = title.trim();
+  if (t === "") return { reason: "empty" };
+  if (LANGUAGE_NAMES.has(t.toLowerCase())) {
+    return { reason: "this is a language, so the title column is misaligned" };
+  }
+  if (/\b(productions?|pictures|studios?|entertainments?|cinemas?|movie makers|films?)\b/i.test(t)
+      && !/[:!?]/.test(t)) {
+    return { reason: "this names a production house, so the title column is misaligned" };
+  }
+  return { ok: true };
+}
+
 export function parseCroreGross(cell: string): { crore: number } | { reason: string } {
   const t = plain(cell).replace(/\[[^\]]*\]/g, "").replace(/&nbsp;/g, " ").trim();
   if (t === "" || /^[-–—]$/.test(t)) return { reason: "empty" };
@@ -133,20 +165,44 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
 
     let pageKept = 0;
     for (const table of tables) {
+      // If most of a table's rows are refused, the table was misread rather
+      // than being full of unusual films — keeping the few that slipped
+      // through would publish exactly the rows a misalignment happens to make
+      // look valid. Counted first, applied before anything is written.
+      let tableSeen = 0, tableUsable = 0;
       const cTitle = columnIndex(table.headers, /^title$/i);
       const cGross = columnIndex(table.headers, /worldwide\s+gross/i);
       const cRank = columnIndex(table.headers, /^rank$/i);
       const cLang = columnIndex(table.headers, /^language$/i);
 
+      const usable: Array<{ title: string; crore: number; row: string[] }> = [];
       for (const row of table.rows) {
         const title = plain(row[cTitle] ?? "").replace(/\[[^\]]*\]/g, "").trim();
         if (title === "") continue;
+        tableSeen++;
 
+        const named = looksLikeTitle(title);
+        if ("reason" in named) {
+          out.rejected.push({ source: page.title, label: title, reason: named.reason });
+          continue;
+        }
         const gross = parseCroreGross(row[cGross] ?? "");
         if ("reason" in gross) {
           out.rejected.push({ source: page.title, label: title, reason: gross.reason });
           continue;
         }
+        tableUsable++;
+        usable.push({ title, crore: gross.crore, row });
+      }
+
+      if (tableSeen >= 3 && tableUsable / tableSeen < 0.4) {
+        errors.push(`cinema: ${page.title}: a table yielded ${tableUsable} usable rows of ${tableSeen}; treated as misread`);
+        log(`  SKIP a table on ${page.title}: ${tableUsable}/${tableSeen} rows usable — misread, not kept`);
+        continue;
+      }
+
+      for (const { title, crore, row } of usable) {
+        const gross = { crore };
 
         // Language comes from the column when the table has one, otherwise
         // from the page. A cross-language list without a language column would
