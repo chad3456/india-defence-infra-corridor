@@ -1,0 +1,41 @@
+name: Ingest box office
+
+# Worldwide gross by film from Wikipedia's per-language release lists, appended
+# as a dated snapshot. The trend is the difference between snapshots, so this
+# runs daily and every run matters — a missed day is a gap in the chart.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/connectors/cinema.ts"
+      - ".github/workflows/cinema-ingest.yml"
+  schedule:
+    # Early morning IST, after the previous day's collections are reported.
+    - cron: "40 2 * * *"
+
+permissions:
+  contents: write
+concurrency:
+  group: cinema-ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npm run cinema:ingest
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/cinema 2>/dev/null || true
+          if git diff --staged --quiet; then echo unchanged; exit 0; fi
+          git commit -m "chore(cinema): box office snapshot $(date -u +'%Y-%m-%d')"
+          for i in 1 2 3 4; do git push && break; sleep $((2**i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true; done
