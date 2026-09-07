@@ -15,6 +15,7 @@ import * as satellite from "satellite.js";
 import {
   parseTle, tleEpoch, epochAgeDays, footprintRadiusKm,
   distanceKm, isOverIndia, elevationDegrees, EARTH_RADIUS_KM,
+  isIndianSatellite,
 } from "../lib/satellites-shared";
 
 let bad = 0;
@@ -154,6 +155,28 @@ console.log("\nSGP4 end to end");
       Math.abs(lat) <= 51.7, lat.toFixed(2));
     ok("longitude is a real longitude", lon >= -180 && lon <= 180, lon.toFixed(2));
   }
+}
+
+console.log("\nIndia's own fleet");
+{
+  // The fleet is assembled by catalogue name because CelesTrak has no operator
+  // group and its country filter returned nothing when probed. That cuts one
+  // way on purpose: a missed satellite is absent from the Indian view, never
+  // counted as somebody else's.
+  for (const n of ["CARTOSAT-3", "RISAT-2B", "EOS-04", "GSAT-30", "IRNSS-1I",
+                   "ASTROSAT", "CHANDRAYAAN-2 O", "ADITYA-L1", "XPOSAT", "OCEANSAT-3"]) {
+    ok(`${n} is recognised as Indian`, isIndianSatellite(n));
+  }
+  for (const n of ["STARLINK-1007", "ISS (ZARYA)", "NOAA 19", "COSMOS 2251",
+                   "SENTINEL-2A", "LANDSAT 9", "GPS BIIR-2  (PRN 13)"]) {
+    ok(`${n} is not claimed as Indian`, !isIndianSatellite(n));
+  }
+  ok("matching is case-insensitive", isIndianSatellite("cartosat-2f"));
+  ok("leading space does not break it", isIndianSatellite("  RISAT-1A"));
+  // A prefix must match at the start, or every satellite with "SAT" anywhere
+  // in its name would be claimed.
+  ok("a prefix in the middle of a name does not match",
+    !isIndianSatellite("EUTELSAT INSAT LOOKALIKE"));
 }
 
 if (bad > 0) { console.error(`\n${bad} satellite test(s) failed.`); process.exit(1); }

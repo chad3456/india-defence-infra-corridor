@@ -181,11 +181,16 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
 
     let pageKept = 0;
     for (const table of tables) {
-      // If most of a table's rows are refused, the table was misread rather
-      // than being full of unusual films — keeping the few that slipped
-      // through would publish exactly the rows a misalignment happens to make
-      // look valid. Counted first, applied before anything is written.
-      let tableSeen = 0, tableUsable = 0;
+      // Sparse is not the same as misread, and conflating them cost a round.
+      //
+      // A table whose gross column is mostly empty is a table about films that
+      // have not reported yet — in September most of a year's releases have
+      // no worldwide figure, and Hindi's list had exactly two. Discarding it
+      // for that threw away Border 2 at 464 crore. What actually signals a
+      // misread is the *titles* being wrong: languages and production houses
+      // where films should be. So the guard counts title failures, and an
+      // absent gross is recorded as an absent gross.
+      let titlesSeen = 0, titlesBad = 0;
       const cTitle = columnIndex(table.headers, /^title$/i);
       const cGross = columnIndex(table.headers, /worldwide\s+gross/i);
       const cRank = columnIndex(table.headers, /^rank$/i);
@@ -200,14 +205,15 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
         sampleRows: table.rows.slice(0, 3).map((r) => r.map((c) => plain(c).slice(0, 40))),
       });
 
-      const usable: Array<{ title: string; crore: number; row: string[] }> = [];
+      const usable: Array<{ title: string; crore: number | null; row: string[] }> = [];
       for (const row of table.rows) {
         const title = plain(row[cTitle] ?? "").replace(/\[[^\]]*\]/g, "").trim();
         if (title === "") continue;
-        tableSeen++;
+        titlesSeen++;
 
         const named = looksLikeTitle(title);
         if ("reason" in named) {
+          titlesBad++;
           out.rejected.push({ source: page.title, label: title, reason: named.reason });
           continue;
         }
@@ -225,28 +231,32 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
           if (candidates.length === 1) {
             gross = candidates[0]!;
             fellBack++;
-          } else {
+          } else if (candidates.length > 1) {
             out.rejected.push({
               source: page.title, label: title,
-              reason: candidates.length === 0
-                ? gross.reason
-                : `${candidates.length} cells in the row read as a gross; ambiguous`,
+              reason: `${candidates.length} cells in the row read as a gross; ambiguous`,
             });
+            continue;
+          } else {
+            // A film with no figure yet is still a film that exists and is
+            // playing. It is kept without a gross rather than dropped, because
+            // "what is running" and "what is earning" are different questions
+            // and only the second needs a number.
+            usable.push({ title, crore: null, row });
             continue;
           }
         }
-        tableUsable++;
-        usable.push({ title, crore: gross.crore, row });
+        usable.push({ title, crore: "crore" in gross ? gross.crore : null, row });
       }
 
-      if (tableSeen >= 3 && tableUsable / tableSeen < 0.4) {
-        errors.push(`cinema: ${page.title}: a table yielded ${tableUsable} usable rows of ${tableSeen}; treated as misread`);
-        log(`  SKIP a table on ${page.title}: ${tableUsable}/${tableSeen} rows usable — misread, not kept`);
+      // Half the titles being wrong is a misalignment, not an odd year.
+      if (titlesSeen >= 4 && titlesBad / titlesSeen > 0.5) {
+        errors.push(`cinema: ${page.title}: ${titlesBad} of ${titlesSeen} titles were not films; table treated as misread`);
+        log(`  SKIP a table on ${page.title}: ${titlesBad}/${titlesSeen} titles misread`);
         continue;
       }
 
       for (const { title, crore, row } of usable) {
-        const gross = { crore };
 
         // Language comes from the column when the table has one, otherwise
         // from the page. A cross-language list without a language column would
@@ -266,9 +276,11 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
         if (existing) {
           // One snapshot per film per day. A film listed on both its language
           // page and the all-India page must not be counted twice.
-          const already = existing.snapshots.find((s) => s.date === today);
-          if (already) already.croreGross = Math.max(already.croreGross, gross.crore);
-          else existing.snapshots.push({ date: today, croreGross: gross.crore });
+          if (crore !== null) {
+            const already = existing.snapshots.find((s) => s.date === today);
+            if (already) already.croreGross = Math.max(already.croreGross, crore);
+            else existing.snapshots.push({ date: today, croreGross: crore });
+          }
           if (Number.isFinite(rank)) {
             existing.bestRank = existing.bestRank === null ? rank : Math.min(existing.bestRank, rank);
           }
@@ -276,7 +288,7 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
           out.films[id] = {
             id, title, language, year,
             bestRank: Number.isFinite(rank) ? rank : null,
-            snapshots: [{ date: today, croreGross: gross.crore }],
+            snapshots: crore !== null ? [{ date: today, croreGross: crore }] : [],
           };
         }
         pageKept++;
@@ -292,7 +304,9 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   out.builtAt = new Date().toISOString();
 
   const films = Object.values(out.films);
+  const withGross = films.filter((f) => f.snapshots.length > 0).length;
   const withTrend = films.filter((f) => f.snapshots.length >= 8).length;
+  log(`films with a reported gross: ${withGross} of ${films.length}`);
   log(`films held: ${films.length}; rows kept this run: ${kept}; refused: ${out.rejected.length}`);
   if (fellBack > 0) log(`  ${fellBack} row(s) read their gross by searching the row, not by the named column`);
   for (const sh of out.shapes ?? []) {

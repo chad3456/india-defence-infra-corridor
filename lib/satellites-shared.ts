@@ -165,3 +165,26 @@ export function elevationDegrees(
   );
   return (el * 180) / Math.PI;
 }
+
+/**
+ * Name prefixes of India's own satellites.
+ *
+ * CelesTrak has no "operator: India" group, and its SATCAT country filter
+ * returned nothing usable when probed, so the fleet is assembled by name.
+ * That is a real limitation and it cuts one way: a satellite whose catalogue
+ * name does not begin with one of these is missed, never misattributed. An
+ * Indian satellite absent from this list is absent from the Indian view, not
+ * quietly counted as someone else's.
+ */
+export const INDIAN_PREFIXES = [
+  "CARTOSAT", "RISAT", "RESOURCESAT", "OCEANSAT", "INSAT", "GSAT", "IRNSS",
+  "NVS-", "EOS-", "HYSIS", "MEGHA-TROPIQUES", "SCATSAT", "ASTROSAT",
+  "CHANDRAYAAN", "ADITYA", "SARAL", "KALPANA", "MICROSAT", "RESOURCESAT",
+  "PSLV", "SSLV", "XPOSAT", "INS-",
+] as const;
+
+/** Does this catalogue name belong to an Indian satellite, by prefix? */
+export function isIndianSatellite(name: string): boolean {
+  const n = name.trim().toUpperCase();
+  return INDIAN_PREFIXES.some((p) => n.startsWith(p));
+}
