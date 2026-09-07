@@ -61,6 +61,20 @@ interface Output {
   films: Record<string, FilmRecord>;
   /** Rows read but not kept, with the reason. Published, not swallowed. */
   rejected: Array<{ source: string; label: string; reason: string }>;
+  /**
+   * What the tables actually looked like on the last run.
+   *
+   * Written because this connector is parsing pages it cannot fetch from the
+   * machine it is written on, and two rounds have now been lost to guessing at
+   * a table's shape. One run with this in it settles what the next fix should
+   * be.
+   */
+  shapes?: Array<{
+    source: string;
+    headers: string[];
+    rowWidths: Record<string, number>;
+    sampleRows: string[][];
+  }>;
 }
 
 /**
@@ -133,6 +147,7 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
     out = JSON.parse(await readFile(OUT, "utf8")) as Output;
   } catch { /* first run */ }
   out.rejected = [];   // diagnostics describe this run, not every run ever
+  out.shapes = [];
 
   const pages: Array<{ title: string; language: string | null }> = [
     { title: `List of Indian films of ${year}`, language: null },
@@ -140,6 +155,7 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   ];
 
   let kept = 0;
+  let fellBack = 0;
   for (const page of pages) {
     const res = await getText(WIKI + encodeURIComponent(page.title), {
       timeoutMs: 45_000, retries: 2, cacheMs: 0,
@@ -175,6 +191,15 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
       const cRank = columnIndex(table.headers, /^rank$/i);
       const cLang = columnIndex(table.headers, /^language$/i);
 
+      const widths: Record<string, number> = {};
+      for (const r of table.rows) widths[String(r.length)] = (widths[String(r.length)] ?? 0) + 1;
+      out.shapes!.push({
+        source: page.title,
+        headers: table.headers,
+        rowWidths: widths,
+        sampleRows: table.rows.slice(0, 3).map((r) => r.map((c) => plain(c).slice(0, 40))),
+      });
+
       const usable: Array<{ title: string; crore: number; row: string[] }> = [];
       for (const row of table.rows) {
         const title = plain(row[cTitle] ?? "").replace(/\[[^\]]*\]/g, "").trim();
@@ -186,10 +211,29 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
           out.rejected.push({ source: page.title, label: title, reason: named.reason });
           continue;
         }
-        const gross = parseCroreGross(row[cGross] ?? "");
+        // The named column first. Where a table uses rowspan, later rows carry
+        // fewer cells than the header describes and every positional index
+        // after the span is wrong — so when the named cell yields nothing,
+        // look for the one cell in the row that reads as a gross. Exactly one,
+        // or none: two candidates mean the row is ambiguous and a guess would
+        // be indistinguishable from a reading.
+        let gross = parseCroreGross(row[cGross] ?? "");
         if ("reason" in gross) {
-          out.rejected.push({ source: page.title, label: title, reason: gross.reason });
-          continue;
+          const candidates = row
+            .map((c) => parseCroreGross(c))
+            .filter((r): r is { crore: number } => "crore" in r);
+          if (candidates.length === 1) {
+            gross = candidates[0]!;
+            fellBack++;
+          } else {
+            out.rejected.push({
+              source: page.title, label: title,
+              reason: candidates.length === 0
+                ? gross.reason
+                : `${candidates.length} cells in the row read as a gross; ambiguous`,
+            });
+            continue;
+          }
         }
         tableUsable++;
         usable.push({ title, crore: gross.crore, row });
@@ -250,6 +294,12 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   const films = Object.values(out.films);
   const withTrend = films.filter((f) => f.snapshots.length >= 8).length;
   log(`films held: ${films.length}; rows kept this run: ${kept}; refused: ${out.rejected.length}`);
+  if (fellBack > 0) log(`  ${fellBack} row(s) read their gross by searching the row, not by the named column`);
+  for (const sh of out.shapes ?? []) {
+    log(`  shape ${sh.source}: headers[${sh.headers.length}] ${sh.headers.join(" | ").slice(0, 120)}`);
+    log(`         row widths ${JSON.stringify(sh.rowWidths)}`);
+    for (const r of sh.sampleRows) log(`         row: ${r.join(" | ").slice(0, 150)}`);
+  }
   log(`runs recorded: ${out.runs.length}; films with enough history for a trend: ${withTrend}`);
   for (const r of out.rejected.slice(0, 12)) log(`    refused ${r.label}: ${r.reason}`);
 
