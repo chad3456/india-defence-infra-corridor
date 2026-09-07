@@ -105,6 +105,42 @@ const LANGUAGE_NAMES = new Set([
  * failure it guards is silent: a studio in a title column still looks like a
  * row.
  */
+/**
+ * One language from a cell that may name several.
+ *
+ * The cross-language list writes a bilingual release as "Kannada English",
+ * which was kept verbatim and produced a sixth language holding one film.
+ * The first recognised name wins, which for an Indian bilingual is the one it
+ * was made in — Toxic is a Kannada film with an English version, not an
+ * English one. A cell naming nothing recognised is refused rather than
+ * guessed at.
+ */
+/**
+ * A title, with the markup that survived the cell split taken off.
+ *
+ * Some rows came through as "| Vaazha II: Biopic of a Billion Bros" — a stray
+ * bar left over from a cell that carried attributes or a template the plain
+ * text pass did not fully unwrap. No film title begins with a bar, so leading
+ * and trailing ones are removed rather than published, and reference markers
+ * go with them.
+ */
+export function cleanTitle(cell: string): string {
+  return plain(cell)
+    .replace(/\[[^\]]*\]/g, "")
+    .replace(/^[|!\s]+/, "")
+    .replace(/[|\s]+$/, "")
+    .trim();
+}
+
+export function normaliseLanguage(cell: string): string | null {
+  const words = plain(cell).replace(/[/,()]/g, " ").split(/\s+/).filter(Boolean);
+  for (const w of words) {
+    const lower = w.toLowerCase();
+    if (LANGUAGE_NAMES.has(lower)) return lower[0]!.toUpperCase() + lower.slice(1);
+  }
+  return null;
+}
+
 export function looksLikeTitle(title: string): { ok: true } | { reason: string } {
   const t = title.trim();
   if (t === "") return { reason: "empty" };
@@ -207,7 +243,7 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
 
       const usable: Array<{ title: string; crore: number | null; row: string[] }> = [];
       for (const row of table.rows) {
-        const title = plain(row[cTitle] ?? "").replace(/\[[^\]]*\]/g, "").trim();
+        const title = cleanTitle(row[cTitle] ?? "");
         if (title === "") continue;
         titlesSeen++;
 
@@ -262,7 +298,7 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
         // from the page. A cross-language list without a language column would
         // otherwise silently inherit whichever page it came from.
         const language = cLang >= 0
-          ? (plain(row[cLang] ?? "").trim() || page.language)
+          ? (normaliseLanguage(row[cLang] ?? "") ?? page.language)
           : page.language;
         if (!language) {
           out.rejected.push({ source: page.title, label: title, reason: "no language, on a page that does not imply one" });

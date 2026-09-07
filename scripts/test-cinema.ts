@@ -9,7 +9,7 @@
  * pure weekly cycle around a flat mean must read as "holding".
  */
 import { readTrend, filmId, type Film, type Observation } from "../lib/cinema-shared";
-import { parseCroreGross, looksLikeTitle } from "./etl/connectors/cinema";
+import { parseCroreGross, looksLikeTitle, normaliseLanguage, cleanTitle } from "./etl/connectors/cinema";
 
 let bad = 0;
 function ok(name: string, cond: boolean, detail = ""): void {
@@ -166,6 +166,42 @@ console.log("\nIs that a film, or a column we landed on by mistake?");
   ok("another production house is refused",
     (why("Vishesh Films") ?? "").includes("misaligned"), String(why("Vishesh Films")));
   ok("an empty cell is refused", why("") === "empty");
+}
+
+console.log("\nOne language from a cell that may name two");
+{
+  ok("a single language passes through", normaliseLanguage("Hindi") === "Hindi");
+  ok("case is normalised", normaliseLanguage("tamil") === "Tamil");
+  // Toxic is a Kannada film with an English version, and was creating a sixth
+  // language holding exactly one film.
+  ok("a bilingual takes the language it was made in",
+    normaliseLanguage("Kannada English") === "Kannada", String(normaliseLanguage("Kannada English")));
+  ok("a slash-separated pair resolves",
+    normaliseLanguage("Telugu / Tamil") === "Telugu", String(normaliseLanguage("Telugu / Tamil")));
+  ok("brackets do not defeat it",
+    normaliseLanguage("Malayalam (dubbed)") === "Malayalam", String(normaliseLanguage("Malayalam (dubbed)")));
+  ok("an unrecognised cell is refused, not guessed",
+    normaliseLanguage("Bilingual") === null, String(normaliseLanguage("Bilingual")));
+  ok("an empty cell is refused", normaliseLanguage("") === null);
+}
+
+console.log("\nTitles, with the markup taken off");
+{
+  // The three that actually rendered with a bar in front of them.
+  ok("a leading bar is removed",
+    cleanTitle("| Vaazha II: Biopic of a Billion Bros") === "Vaazha II: Biopic of a Billion Bros",
+    cleanTitle("| Vaazha II: Biopic of a Billion Bros"));
+  ok("a leading bar on a short title is removed",
+    cleanTitle("| Patriot") === "Patriot", cleanTitle("| Patriot"));
+  ok("a trailing bar is removed", cleanTitle("Karuppu |") === "Karuppu", cleanTitle("Karuppu |"));
+  ok("a reference marker goes too",
+    cleanTitle("Drishyam 3[14]") === "Drishyam 3", cleanTitle("Drishyam 3[14]"));
+  // Colons and ampersands are part of real titles and must survive.
+  ok("a colon survives", cleanTitle("KD: The Devil") === "KD: The Devil");
+  ok("an ampersand survives", cleanTitle("Vishwanath & Sons") === "Vishwanath & Sons");
+  ok("an interior bar is not treated as an edge",
+    cleanTitle("| A | B |") === "A | B", cleanTitle("| A | B |"));
+  ok("an empty cell stays empty", cleanTitle("  |  ") === "");
 }
 
 if (bad > 0) { console.error(`\n${bad} cinema test(s) failed.`); process.exit(1); }

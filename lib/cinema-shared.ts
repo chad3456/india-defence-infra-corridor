@@ -158,3 +158,15 @@ export function filmId(title: string, year?: number | null): string {
     .replace(/^-|-$/g, "");
   return year ? `${slug}-${year}` : slug;
 }
+
+/** One film as the page renders it. Kept here so the client can import it. */
+export interface FilmRow {
+  id: string;
+  title: string;
+  language: string;
+  year: number;
+  bestRank: number | null;
+  /** Latest reported worldwide gross in rupees crore; null when unreported. */
+  croreGross: number | null;
+  trend: TrendReading;
+}

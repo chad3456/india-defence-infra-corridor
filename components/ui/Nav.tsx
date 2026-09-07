@@ -9,6 +9,7 @@ const LINKS = [
   { href: "/mobility", label: "Mobility" },
   { href: "/atlas", label: "Atlas" },
   { href: "/elections", label: "Elections" },
+  { href: "/cinema", label: "Cinema" },
   { href: "/matrix", label: "Matrix" },
   { href: "/benchmark", label: "Assessment" },
   { href: "/tracker", label: "Tracker" },
