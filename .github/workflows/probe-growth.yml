@@ -1,21 +1,19 @@
-name: Probe cinema sources
+name: Probe growth sources
 
-# Whether BookMyShow and District hand listings to a fetch or only to a
-# browser, and what Wikipedia's release lists carry instead. The test is
-# whether the bytes contain film titles, not whether the request succeeds.
-# Publishes no series.
+# Which scheme portals and startup registries hand over a statewise table to a
+# fetch, and which only render one in a browser. Publishes no series.
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - "scripts/etl/probe-cinema.ts"
-      - ".github/workflows/probe-cinema.yml"
+      - "scripts/etl/probe-growth.ts"
+      - ".github/workflows/probe-growth.yml"
 
 permissions:
   contents: write
 concurrency:
-  group: probe-cinema
+  group: probe-growth
   cancel-in-progress: true
 
 jobs:
@@ -27,13 +25,13 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: "22", cache: npm }
       - run: npm ci
-      - run: npm run cinema:probe
+      - run: npm run growth:probe
       - name: Commit
         if: always()
         run: |
           git config user.name  "bharat-tracker-bot"
           git config user.email "actions@github.com"
-          git add data/live/cinema-probe.json 2>/dev/null || true
+          git add data/live/growth-probe.json 2>/dev/null || true
           if git diff --staged --quiet; then echo unchanged; exit 0; fi
-          git commit -m "chore(sources): cinema source probe $(date -u +'%Y-%m-%d %H:%M')"
+          git commit -m "chore(sources): growth source probe $(date -u +'%Y-%m-%d %H:%M')"
           for i in 1 2 3 4; do git push && break; sleep $((2**i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true; done
