@@ -2,7 +2,7 @@
   "name": "bharat-tracker",
   "version": "0.1.0",
   "private": true,
-  "description": "India Defence & Infrastructure Tracker — curated, source-cited data on defence, infrastructure, trade and manufacturing since 2001.",
+  "description": "India Defence & Infrastructure Tracker \u2014 curated, source-cited data on defence, infrastructure, trade and manufacturing since 2001.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -53,6 +53,7 @@
     "test:overpass": "tsx scripts/test-overpass-slot.ts",
     "test:sheets": "tsx scripts/test-sheets.ts",
     "wdi:probe": "tsx scripts/etl/probe-wdi.ts",
+    "stability:probe": "tsx scripts/etl/probe-stability.ts",
     "wdi:promote": "tsx scripts/docs/promote-wdi.ts",
     "who:probe": "tsx scripts/etl/probe-who.ts",
     "pdfs:probe": "tsx scripts/etl/probe-pdfs.ts",
