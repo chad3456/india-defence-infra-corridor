@@ -15,6 +15,7 @@ import Link from "next/link";
 const LINKS = [
   { href: "/", label: "Overview" },
   { href: "/growth", label: "Growth" },
+  { href: "/everyday", label: "Everyday" },
   { href: "/made-in-india", label: "Made in India" },
   { href: "/defence-tracker", label: "Defence" },
   { href: "/mobility", label: "Mobility" },
