@@ -106,7 +106,6 @@ INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-gross-capital-formation','Gross capital formation','Investment in fixed assets plus inventory change, as a share of GDP.','economy','% of GDP','%','annual',true,'multilateral','high','2026-09-08',ARRAY['The best single proxy for how much of national income is being converted into future capacity.','World Bank indicator NE.GDI.TOTL.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-fixed-capital-formation','Gross fixed capital formation','Fixed asset investment as a share of GDP.','economy','% of GDP','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator NE.GDI.FTOT.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-govt-debt','Central government debt','Total central government debt stock as a share of GDP.','finance','% of GDP','%','annual',false,'multilateral','high','2026-09-08',ARRAY['World Bank indicator GC.DOD.TOTL.GD.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2009, 2018, 2024), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-gross-savings','Gross domestic savings','GDP less final consumption expenditure, as a share of GDP.','economy','% of GDP','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator NY.GDS.TOTL.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-tax-revenue','Tax revenue','Compulsory transfers to central government, as a share of GDP.','economy','% of GDP','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['India''s tax-to-GDP ratio is low for its income level, which constrains every spending series on this site.','World Bank indicator GC.TAX.TOTL.GD.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2009, 2022, 2024), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-unemployment','Unemployment rate','Share of the labour force without work but available for and seeking employment (ILO estimate).','economy','% of labour force','%','annual',false,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SL.UEM.TOTL.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-female-labour-participation','Female labour force participation','Share of women aged 15+ economically active (ILO estimate).','economy','% of female pop 15+','%','annual',true,'multilateral','high','2026-09-08',ARRAY['One of India''s weakest indicators against every peer — and a direct constraint on growth.','World Bank indicator SL.TLF.CACT.FE.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
@@ -115,23 +114,17 @@ INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-imports-usd','Imports of goods and services','Value of all goods and services received from the rest of the world.','trade','current US$','US$','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator NE.IMP.GNFS.CD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-trade-openness','Trade openness','Sum of exports and imports as a share of GDP.','trade','% of GDP','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator NE.TRD.GNFS.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-hightech-exports-share','High-technology exports','Share of manufactured exports with high R&D intensity — aerospace, computers, pharmaceuticals, instruments.','trade','% of manufactured exports','%','annual',true,'multilateral','high','2026-09-08',ARRAY['The sharpest test of whether manufacturing is moving up the value chain. Compare against Vietnam.','World Bank indicator TX.VAL.TECH.MF.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2023, 2024), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-hightech-exports-usd','High-technology exports (US$)','Value of high-technology manufactured exports.','trade','current US$','US$','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator TX.VAL.TECH.CD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2023, 2024), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-fdi-inflows','Foreign direct investment, net inflows','Net inflows of investment acquiring a lasting management interest.','trade','current US$','US$','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator BX.KLT.DINV.CD.WD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-fdi-gdp','FDI net inflows as share of GDP','Foreign direct investment inflows relative to economy size.','trade','% of GDP','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator BX.KLT.DINV.WD.GD.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-current-account','Current account balance','Net trade, income and transfers with the rest of the world, as a share of GDP.','trade','% of GDP','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator BN.CAB.XOKA.GD.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-reserves','Total reserves including gold','Foreign exchange reserves, SDRs, IMF position and gold.','trade','current US$','US$','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator FI.RES.TOTL.CD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-remittances','Personal remittances received','Transfers received from nationals working abroad.','trade','current US$','US$','annual',NULL,'multilateral','high','2026-09-08',ARRAY['India is the world''s largest remittance recipient — a strength that is also a measure of how many skilled workers left.','World Bank indicator BX.TRF.PWKR.CD.DT. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2004, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-merch-exports','Merchandise exports','Value of goods exported, customs basis.','trade','current US$','US$','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator TX.VAL.MRCH.CD.WT. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-manufacturing-gdp','Manufacturing value added','Manufacturing output net of intermediate inputs, as a share of GDP.','manufacturing','% of GDP','%','annual',true,'multilateral','high','2026-09-08',ARRAY['The single most damaging number on this site: essentially flat since 2001 despite a decade of Make in India. The 25% target has never been approached.','World Bank indicator NV.IND.MANF.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2021, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-manufacturing-usd','Manufacturing value added (US$)','Absolute manufacturing value added.','manufacturing','current US$','US$','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator NV.IND.MANF.CD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2021, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-manufacturing-growth','Manufacturing value added growth','Annual growth in real manufacturing value added.','manufacturing','% per year','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator NV.IND.MANF.KD.ZG. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-industry-gdp','Industry value added','Mining, manufacturing, construction and utilities, as a share of GDP.','manufacturing','% of GDP','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator NV.IND.TOTL.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2021, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-agriculture-gdp','Agriculture value added','Agriculture, forestry and fishing, as a share of GDP.','manufacturing','% of GDP','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator NV.AGR.TOTL.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2021, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-services-gdp','Services value added','Services sector output as a share of GDP.','manufacturing','% of GDP','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['India industrialised out of order — services grew before manufacturing did. This chart is that anomaly.','World Bank indicator NV.SRV.TOTL.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2021, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-industry-employment','Employment in industry','Share of total employment in the industrial sector (ILO estimate).','manufacturing','% of employment','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SL.IND.EMPL.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-agriculture-employment','Employment in agriculture','Share of total employment in agriculture (ILO estimate).','manufacturing','% of employment','%','annual',false,'multilateral','high','2026-09-08',ARRAY['Still over 40%. Structural transformation has stalled — the workers left agriculture for construction and services, not factories.','World Bank indicator SL.AGR.EMPL.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-rd-spending','Research and development expenditure','Gross domestic R&D spending as a share of GDP.','ai-science','% of GDP','%','annual',true,'multilateral','high','2026-09-08',ARRAY['India spends around 0.65% of GDP on R&D against China''s 2.4%. No defence-industrial ambition survives that gap indefinitely.','World Bank indicator GB.XPD.RSDV.GD.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2020, 2023), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-patents-resident','Patent applications, residents','Patent applications filed by residents.','ai-science','applications','apps','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator IP.PAT.RESD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-patents-nonresident','Patent applications, non-residents','Patent applications filed by non-residents.','ai-science','applications','apps','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator IP.PAT.NRES. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-scientific-articles','Scientific and technical journal articles','Number of scientific and engineering articles published.','ai-science','articles','articles','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator IP.JRN.ARTC.SC. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-manufactured-exports-share','Manufactured exports','Manufactured goods as a share of merchandise exports.','manufacturing','% of merchandise exports','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator TX.VAL.MANF.ZS.UN. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2023, 2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
@@ -142,7 +135,7 @@ INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-armed-forces-share','Armed forces personnel share of labour force','Military personnel as a share of the total labour force.','defence','% of labour force','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator MS.MIL.TOTL.TF.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Compiled by SIPRI and redistributed by the World Bank. SIPRI estimates spending on a consistent cross-country definition that does not match India''s own budget headings, so this will not tie to the Ministry of Defence allocation series.']::text[],ARRAY['worldbank-wdi','sipri-milex']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-electricity-access','Access to electricity','Share of population with access to electricity.','infrastructure','% of population','%','annual',true,'multilateral','high','2026-09-08',ARRAY['From roughly 60% to near-universal. On any honest reckoning this is the single largest infrastructure achievement of the period.','World Bank indicator EG.ELC.ACCS.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-electricity-per-capita','Electric power consumption per capita','Electricity consumed per person per year.','energy','kWh per capita','kWh','annual',true,'multilateral','high','2026-09-08',ARRAY['Still roughly a third of China''s. Consumption per head is the least gameable measure of industrialisation.','World Bank indicator EG.USE.ELEC.KH.PC. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2023, 2024), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-renewable-share','Renewable energy consumption','Renewable energy as a share of total final energy consumption.','energy','% of final energy','%','annual',true,'multilateral','high','2026-09-08',ARRAY['Falling in this series is not necessarily bad — it partly reflects households switching off traditional biomass.','World Bank indicator EG.FEC.RNEW.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-renewable-electricity','Renewable electricity output','Electricity generated from renewable sources as a share of total generation.','energy','% of output','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator EG.ELC.RNEW.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-energy-imports','Energy imports, net','Net energy imports as a share of energy use.','energy','% of energy use','%','annual',false,'multilateral','high','2026-09-08',ARRAY['Import dependence is the strategic vulnerability that most constrains Indian foreign policy.','World Bank indicator EG.IMP.CONS.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2022, 2023), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-co2-per-capita','CO2 emissions per capita','Carbon dioxide emissions per person.','energy','tonnes per capita','t','annual',false,'multilateral','high','2026-09-08',ARRAY['India''s per-capita emissions remain far below the world average — the core of its position in climate negotiations.','World Bank indicator EN.GHG.CO2.PC.CE.AR5. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-mobile-subscriptions','Mobile cellular subscriptions','Mobile subscriptions per 100 people.','infrastructure','per 100 people','/100','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator IT.CEL.SETS.P2. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
@@ -151,44 +144,52 @@ INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-air-passengers','Air transport, passengers carried','Passengers carried by air carriers registered in the country.','infrastructure','passengers','pax','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator IS.AIR.PSGR. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-air-freight','Air transport freight','Volume of freight carried by air.','infrastructure','million tonne-km','mt-km','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator IS.AIR.GOOD.MT.K1. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-container-traffic','Container port traffic','Container throughput measured in twenty-foot equivalent units.','infrastructure','TEU','TEU','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator IS.SHP.GOOD.TU. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-urban-population','Urban population','Share of population living in urban areas.','real-estate','% of population','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['India urbanised far more slowly than every comparator. Under-urbanisation, not over-urbanisation, is the planning problem.','World Bank indicator SP.URB.TOTL.IN.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-urban-growth','Urban population growth','Annual growth rate of the urban population.','real-estate','% per year','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SP.URB.GROW. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-slum-population','Population living in slums','Share of the urban population living in slum households.','real-estate','% of urban population','%','annual',false,'multilateral','high','2026-09-08',ARRAY['World Bank indicator EN.POP.SLUM.UR.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2019, 2022), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-life-expectancy','Life expectancy at birth','Years a newborn would live under prevailing mortality patterns.','quality-of-life','years','yrs','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SP.DYN.LE00.IN. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-infant-mortality','Infant mortality rate','Deaths of infants under one year per 1,000 live births.','quality-of-life','per 1,000 live births','/1k','annual',false,'multilateral','high','2026-09-08',ARRAY['Roughly a two-thirds reduction since 2001 — among the strongest social gains in the dataset.','World Bank indicator SP.DYN.IMRT.IN. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-maternal-mortality','Maternal mortality ratio','Maternal deaths per 100,000 live births.','quality-of-life','per 100,000 live births','/100k','annual',false,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SH.STA.MMRT. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-under5-mortality','Under-five mortality rate','Deaths before age five per 1,000 live births.','quality-of-life','per 1,000 live births','/1k','annual',false,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SH.DYN.MORT. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-water-access','Access to basic drinking water','Share of population using at least basic drinking water services.','quality-of-life','% of population','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SH.H2O.BASW.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-sanitation-access','Access to basic sanitation','Share of population using at least basic sanitation services.','quality-of-life','% of population','%','annual',true,'multilateral','high','2026-09-08',ARRAY['The steepest improvement of any social indicator here, concentrated in 2014-2019.','World Bank indicator SH.STA.BASS.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-health-spending','Current health expenditure','Total health spending, public and private, as a share of GDP.','quality-of-life','% of GDP','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SH.XPD.CHEX.GD.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-oop-health','Out-of-pocket health expenditure','Share of health spending paid directly by households.','quality-of-life','% of health spending','%','annual',false,'multilateral','high','2026-09-08',ARRAY['Among the highest in the world. Medical costs remain a leading cause of household impoverishment in India.','World Bank indicator SH.XPD.OOPC.CH.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-education-spending','Government expenditure on education','Public education spending as a share of GDP.','social','% of GDP','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SE.XPD.TOTL.GD.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2021, 2022, 2023), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-literacy','Adult literacy rate','Share of people aged 15+ who can read and write.','social','% of people 15+','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SE.ADT.LITR.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2020, 2022, 2024), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-secondary-enrolment','Secondary school enrolment, gross','Total secondary enrolment as a share of the official school-age population.','social','% gross','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SE.SEC.ENRR. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2012, 2022, 2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-tertiary-enrolment','Tertiary school enrolment, gross','Total tertiary enrolment as a share of the relevant age cohort.','social','% gross','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SE.TER.ENRR. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2022, 2023, 2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-extreme-poverty','Poverty headcount at $2.15/day','Share of population below the international extreme poverty line, 2017 PPP.','social','% of population','%','annual',false,'multilateral','high','2026-09-08',ARRAY['The most consequential number in this dataset. Hundreds of millions moved above the line in this period.','World Bank indicator SI.POV.DDAY. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2022, 2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-gini','Gini index','Income distribution inequality, 0 = perfect equality.','social','index','Gini','annual',false,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SI.POV.GINI. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2022, 2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-population','Population, total','Total midyear resident population.','social','people','people','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SP.POP.TOTL. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-fertility','Fertility rate, total','Births per woman over a lifetime at current age-specific rates.','social','births per woman','births','annual',NULL,'multilateral','high','2026-09-08',ARRAY['India fell below the 2.1 replacement rate around 2020. The demographic dividend has a closing window.','World Bank indicator SP.DYN.TFRT.IN. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-population-65plus','Population aged 65 and above','Share of population aged 65+.','social','% of population','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SP.POP.65UP.TO.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-population-0-14','Population aged 0-14','Share of population aged 0-14.','social','% of population','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SP.POP.0014.TO.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-researchers','Researchers in R&D','Professionals engaged in the conception or creation of new knowledge, per million people.','ai-science','per million people','per m','annual',true,'multilateral','high','2026-09-08',ARRAY['India has roughly 260 researchers per million against Korea''s 8,700. The constraint on an AI or defence-tech ambition is people before it is money.','World Bank indicator SP.POP.SCIE.RD.P6. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2014, 2020, 2022, 2023), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-technicians','Technicians in R&D','Technical staff supporting research, per million people.','ai-science','per million people','per m','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SP.POP.TECH.RD.P6. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2014, 2017, 2018), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-ip-receipts','Charges for the use of intellectual property, receipts','What the country earns from licensing its own intellectual property abroad.','ai-science','current US$','US$','annual',true,'multilateral','high','2026-09-08',ARRAY['The honest test of whether research becomes property. Receipts against payments is the number to read.','World Bank indicator BX.GSR.ROYL.CD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-ip-payments','Charges for the use of intellectual property, payments','What the country pays to license intellectual property from abroad.','ai-science','current US$','US$','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator BM.GSR.ROYL.CD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-ict-goods-exports','ICT goods exports','Share of total goods exports made up of information and communication technology goods.','ai-science','% of goods exports','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator TX.VAL.ICTG.ZS.UN. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2023, 2024), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-ict-service-exports','ICT service exports','Share of service exports made up of information and communication technology services.','ai-science','% of service exports','%','annual',true,'multilateral','high','2026-09-08',ARRAY['India''s strongest card, and the reason the AI conversation here starts from services rather than from silicon.','World Bank indicator BX.GSR.CCIS.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-household-consumption-pc','Household consumption per capita','Household final consumption expenditure per person, constant 2015 US$.','quality-of-life','constant 2015 US$','US$','annual',true,'multilateral','high','2026-09-08',ARRAY['What a household actually spends, rather than what the economy produces. It tracks GDP per capita loosely, and the gap between them is where the distribution argument sits.','World Bank indicator NE.CON.PRVT.PC.KD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-household-consumption-share','Household consumption, share of GDP','Household final consumption expenditure as a share of GDP.','economy','% of GDP','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator NE.CON.PRVT.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-food-production-index','Food production index','Food production relative to the 2014-16 base period.','quality-of-life','index (2014-16 = 100)','index','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator AG.PRD.FOOD.XD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-undernourishment','Prevalence of undernourishment','Share of the population whose food intake is insufficient to meet dietary energy requirements.','quality-of-life','% of population','%','annual',false,'multilateral','high','2026-09-08',ARRAY['The food-security number that matters most, and the one that has moved least. Read it against the food inflation series rather than instead of it.','World Bank indicator SN.ITK.DEFC.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-child-stunting','Stunting, children under five','Share of children under five whose height for age is more than two standard deviations below the median.','quality-of-life','% of children','%','annual',false,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SH.STA.STNT.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2017, 2019, 2020, 2022, 2023), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-clean-cooking','Access to clean cooking fuel','Share of the population with primary reliance on clean fuels and technology for cooking.','quality-of-life','% of population','%','annual',true,'multilateral','high','2026-09-08',ARRAY['The Ujjwala scheme''s headline claim is a connection count; this is the share who actually cook with it. The two diverge.','World Bank indicator EG.CFT.ACCS.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-account-ownership','Account ownership at a financial institution','Share of adults aged 15+ with an account at a bank or mobile-money provider.','social','% of adults 15+','%','annual',true,'multilateral','high','2026-09-08',ARRAY['Findex data, collected every three years, so the series is sparse by construction rather than by omission.','World Bank indicator FX.OWN.TOTL.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-account-ownership-female','Account ownership, women','Share of women aged 15+ with an account at a financial institution or mobile-money provider.','social','% of women 15+','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator FX.OWN.TOTL.FE.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-market-cap-gdp','Market capitalisation of listed companies','Market value of domestically listed companies as a share of GDP.','economy','% of GDP','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['The closest published proxy for retail equity participation over a long run. Demat account counts are the number people usually quote, and SEBI publishes those separately.','World Bank indicator CM.MKT.LCAP.GD.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-listed-companies','Listed domestic companies','Number of domestically incorporated companies listed on the country''s stock exchanges at year end.','economy','companies','cos','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator CM.MKT.LDOM.NO. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-stocks-traded','Stocks traded, total value','Total value of shares traded during the period as a share of GDP.','economy','% of GDP','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator CM.MKT.TRAD.GD.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-gross-savings','Gross domestic savings','GDP less final consumption expenditure, as a share of GDP.','economy','% of GDP','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator NY.GDS.TOTL.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-hightech-exports-usd','High-technology exports (US$)','Value of high-technology manufactured exports.','trade','current US$','US$','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator TX.VAL.TECH.CD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2023, 2024), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-reserves','Total reserves including gold','Foreign exchange reserves, SDRs, IMF position and gold.','trade','current US$','US$','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator FI.RES.TOTL.CD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-industry-gdp','Industry value added','Mining, manufacturing, construction and utilities, as a share of GDP.','manufacturing','% of GDP','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator NV.IND.TOTL.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2021, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-services-gdp','Services value added','Services sector output as a share of GDP.','manufacturing','% of GDP','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['India industrialised out of order — services grew before manufacturing did. This chart is that anomaly.','World Bank indicator NV.SRV.TOTL.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2021, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-rd-spending','Research and development expenditure','Gross domestic R&D spending as a share of GDP.','ai-science','% of GDP','%','annual',true,'multilateral','high','2026-09-08',ARRAY['India spends around 0.65% of GDP on R&D against China''s 2.4%. No defence-industrial ambition survives that gap indefinitely.','World Bank indicator GB.XPD.RSDV.GD.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2020, 2023), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-patents-resident','Patent applications, residents','Patent applications filed by residents.','ai-science','applications','apps','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator IP.PAT.RESD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-renewable-share','Renewable energy consumption','Renewable energy as a share of total final energy consumption.','energy','% of final energy','%','annual',true,'multilateral','high','2026-09-08',ARRAY['Falling in this series is not necessarily bad — it partly reflects households switching off traditional biomass.','World Bank indicator EG.FEC.RNEW.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-urban-population','Urban population','Share of population living in urban areas.','real-estate','% of population','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['India urbanised far more slowly than every comparator. Under-urbanisation, not over-urbanisation, is the planning problem.','World Bank indicator SP.URB.TOTL.IN.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-infant-mortality','Infant mortality rate','Deaths of infants under one year per 1,000 live births.','quality-of-life','per 1,000 live births','/1k','annual',false,'multilateral','high','2026-09-08',ARRAY['Roughly a two-thirds reduction since 2001 — among the strongest social gains in the dataset.','World Bank indicator SP.DYN.IMRT.IN. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-health-spending','Current health expenditure','Total health spending, public and private, as a share of GDP.','quality-of-life','% of GDP','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SH.XPD.CHEX.GD.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-oop-health','Out-of-pocket health expenditure','Share of health spending paid directly by households.','quality-of-life','% of health spending','%','annual',false,'multilateral','high','2026-09-08',ARRAY['Among the highest in the world. Medical costs remain a leading cause of household impoverishment in India.','World Bank indicator SH.XPD.OOPC.CH.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-literacy','Adult literacy rate','Share of people aged 15+ who can read and write.','social','% of people 15+','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SE.ADT.LITR.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2020, 2022, 2024), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-extreme-poverty','Poverty headcount at $2.15/day','Share of population below the international extreme poverty line, 2017 PPP.','social','% of population','%','annual',false,'multilateral','high','2026-09-08',ARRAY['The most consequential number in this dataset. Hundreds of millions moved above the line in this period.','World Bank indicator SI.POV.DDAY. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2022, 2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-population','Population, total','Total midyear resident population.','social','people','people','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SP.POP.TOTL. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-population-65plus','Population aged 65 and above','Share of population aged 65+.','social','% of population','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SP.POP.65UP.TO.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-population-0-14','Population aged 0-14','Share of population aged 0-14.','social','% of population','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SP.POP.0014.TO.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-researchers','Researchers in R&D','Professionals engaged in the conception or creation of new knowledge, per million people.','ai-science','per million people','per m','annual',true,'multilateral','high','2026-09-08',ARRAY['India has roughly 260 researchers per million against Korea''s 8,700. The constraint on an AI or defence-tech ambition is people before it is money.','World Bank indicator SP.POP.SCIE.RD.P6. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2014, 2020, 2022, 2023), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-ip-payments','Charges for the use of intellectual property, payments','What the country pays to license intellectual property from abroad.','ai-science','current US$','US$','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator BM.GSR.ROYL.CD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-child-stunting','Stunting, children under five','Share of children under five whose height for age is more than two standard deviations below the median.','quality-of-life','% of children','%','annual',false,'multilateral','high','2026-09-08',ARRAY['World Bank indicator SH.STA.STNT.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2017, 2019, 2020, 2022, 2023), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-clean-cooking','Access to clean cooking fuel','Share of the population with primary reliance on clean fuels and technology for cooking.','quality-of-life','% of population','%','annual',true,'multilateral','high','2026-09-08',ARRAY['The Ujjwala scheme''s headline claim is a connection count; this is the share who actually cook with it. The two diverge.','World Bank indicator EG.CFT.ACCS.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-account-ownership-female','Account ownership, women','Share of women aged 15+ with an account at a financial institution or mobile-money provider.','social','% of women 15+','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator FX.OWN.TOTL.FE.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
+INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-market-cap-gdp','Market capitalisation of listed companies','Market value of domestically listed companies as a share of GDP.','economy','% of GDP','%','annual',NULL,'multilateral','high','2026-09-08',ARRAY['The closest published proxy for retail equity participation over a long run. Demat account counts are the number people usually quote, and SEBI publishes those separately.','World Bank indicator CM.MKT.LCAP.GD.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-private-credit','Domestic credit to the private sector','Financial resources provided to the private sector by financial corporations, as a share of GDP.','finance','% of GDP','%','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator FS.AST.PRVT.GD.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2022, 2024, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-tourist-arrivals','International tourist arrivals','Number of tourists who travel to a country other than their usual residence for less than a year.','quality-of-life','arrivals','arrivals','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator ST.INT.ARVL. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2019, 2020), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-tourism-receipts','International tourism receipts','Expenditure by international inbound visitors, including payments to national carriers.','trade','current US$','US$','annual',true,'multilateral','high','2026-09-08',ARRAY['World Bank indicator ST.INT.RCPT.CD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2004, 2020), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
@@ -783,7 +784,6 @@ INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-nv-ind-totl-cd','Industry (including construction), value added (current US$)','Industry (including construction) corresponds to ISIC (Rev.4) divisions 05-43. It is comprised of mining, manufacturing, construction, electricity, water, and gas industries. Value added is the…','manufacturing','current US$','US$','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator NV.IND.TOTL.CD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2021, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-nv-agr-totl-cd','Agriculture, forestry, and fishing, value added (current US$)','Agriculture, forestry, and fishing corresponds to ISIC (Rev. 4) divisions 01-03 and includes the exploitation of vegetal and animal natural resources, comprising the activities of growing of crops,…','social','current US$','US$','annual',NULL,'multilateral','high','2026-09-08',ARRAY['World Bank indicator NV.AGR.TOTL.CD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2021, 2025), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-gdp-per-capita-ppp','GDP per capita, PPP','GDP per capita converted at purchasing power parity.','economy','current international $','int$','annual',true,'multilateral','high','2026-09-07',ARRAY['World Bank indicator NY.GDP.PCAP.PP.CD. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
-INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-renewable-electricity','Renewable electricity output','Electricity generated from renewable sources as a share of total generation.','energy','% of output','%','annual',true,'multilateral','high','2026-09-07',ARRAY['World Bank indicator EG.ELC.RNEW.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-gc-rev-socl-zs','Social contributions (% of revenue)','Social contributions are actual or imputed contributions payable to social insurance schemes to make provisions for social benefits to be paid. This indicator is expressed as a percentage of revenue…','economy','% of revenue','%','annual',NULL,'multilateral','high','2026-09-07',ARRAY['World Bank indicator GC.REV.SOCL.ZS. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.','Peer comparison uses each country''s latest available year (2004, 2022, 2024), which are not all the same.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 INSERT INTO bharat_tracker.series (id,title,definition,category,unit,unit_short,frequency,higher_is_better,provenance,confidence,last_verified,notes,source_ids,updated_at) VALUES ('wdi-tm-val-tran-zs-wt','Transport services (% of commercial service imports)','Transport is the process of carriage of people and objects from one location to another as well as related supporting and auxiliary services. Also included are postal and courier services. This…','trade','% of commercial service imports','%','annual',NULL,'multilateral','high','2026-09-07',ARRAY['World Bank indicator TM.VAL.TRAN.ZS.WT. History is restated by the World Bank as national accounts are revised; this series is rewritten in full on every pipeline run rather than appended to.']::text[],ARRAY['worldbank-wdi']::text[],now()) ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,definition=EXCLUDED.definition,category=EXCLUDED.category,unit=EXCLUDED.unit,unit_short=EXCLUDED.unit_short,frequency=EXCLUDED.frequency,higher_is_better=EXCLUDED.higher_is_better,provenance=EXCLUDED.provenance,confidence=EXCLUDED.confidence,last_verified=EXCLUDED.last_verified,notes=EXCLUDED.notes,source_ids=EXCLUDED.source_ids,updated_at=now();
 
@@ -1088,31 +1088,6 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-govt-debt','2016',47.6337555915272,NULL,false,NULL,15),
   ('wdi-govt-debt','2017',47.5836093800197,NULL,false,NULL,16),
   ('wdi-govt-debt','2018',46.5224986659322,NULL,false,NULL,17),
-  ('wdi-gross-savings','2001',24.0916926834607,NULL,false,NULL,0),
-  ('wdi-gross-savings','2002',25.6562581746682,NULL,false,NULL,1),
-  ('wdi-gross-savings','2003',27.6200324775481,NULL,false,NULL,2),
-  ('wdi-gross-savings','2004',31.2437497123137,NULL,false,NULL,3),
-  ('wdi-gross-savings','2005',32.255129867281,NULL,false,NULL,4),
-  ('wdi-gross-savings','2006',34.0875841266633,NULL,false,NULL,5),
-  ('wdi-gross-savings','2007',34.3773731960541,NULL,false,NULL,6),
-  ('wdi-gross-savings','2008',32.7847028620241,NULL,false,NULL,7),
-  ('wdi-gross-savings','2009',32.5804441151796,NULL,false,NULL,8),
-  ('wdi-gross-savings','2010',34.2675343705701,NULL,false,NULL,9),
-  ('wdi-gross-savings','2011',32.708319830057,NULL,false,NULL,10),
-  ('wdi-gross-savings','2012',32.8551899788478,NULL,false,NULL,11),
-  ('wdi-gross-savings','2013',32.0590737671998,NULL,false,NULL,12),
-  ('wdi-gross-savings','2014',31.4314260905683,NULL,false,NULL,13),
-  ('wdi-gross-savings','2015',30.5644282130068,NULL,false,NULL,14),
-  ('wdi-gross-savings','2016',30.3961706924706,NULL,false,NULL,15),
-  ('wdi-gross-savings','2017',30.5076513689534,NULL,false,NULL,16),
-  ('wdi-gross-savings','2018',29.8884586617548,NULL,false,NULL,17),
-  ('wdi-gross-savings','2019',28.0860368485782,NULL,false,NULL,18),
-  ('wdi-gross-savings','2020',27.2894188790877,NULL,false,NULL,19),
-  ('wdi-gross-savings','2021',28.5732421263582,NULL,false,NULL,20),
-  ('wdi-gross-savings','2022',31.7941969900494,NULL,false,NULL,21),
-  ('wdi-gross-savings','2023',32.8913417357203,NULL,false,NULL,22),
-  ('wdi-gross-savings','2024',32.8269324325985,NULL,false,NULL,23),
-  ('wdi-gross-savings','2025',32.559492763302,NULL,false,NULL,24),
   ('wdi-tax-revenue','2001',8.07945444456957,NULL,false,NULL,0),
   ('wdi-tax-revenue','2002',8.67627393090217,NULL,false,NULL,1),
   ('wdi-tax-revenue','2003',9.10808432214403,NULL,false,NULL,2),
@@ -1291,30 +1266,13 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-hightech-exports-share','2015',8.02476917234515,NULL,false,NULL,6),
   ('wdi-hightech-exports-share','2016',7.66325704378624,NULL,false,NULL,7),
   ('wdi-hightech-exports-share','2017',7.36208114076572,NULL,false,NULL,8),
-  ('wdi-hightech-exports-share','2018',9.04145168835151,NULL,false,NULL,9);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-hightech-exports-share','2018',9.04145168835151,NULL,false,NULL,9),
   ('wdi-hightech-exports-share','2019',10.2237396907979,NULL,false,NULL,10),
   ('wdi-hightech-exports-share','2020',11.0325638466576,NULL,false,NULL,11),
   ('wdi-hightech-exports-share','2021',10.2125596625118,NULL,false,NULL,12),
   ('wdi-hightech-exports-share','2022',12.6822794807287,NULL,false,NULL,13),
   ('wdi-hightech-exports-share','2023',14.9343472986716,NULL,false,NULL,14),
   ('wdi-hightech-exports-share','2024',18.5723946411049,NULL,false,NULL,15),
-  ('wdi-hightech-exports-usd','2009',11219528624,NULL,false,NULL,0),
-  ('wdi-hightech-exports-usd','2010',10668887032,NULL,false,NULL,1),
-  ('wdi-hightech-exports-usd','2011',14508694707,NULL,false,NULL,2),
-  ('wdi-hightech-exports-usd','2012',13881886778,NULL,false,NULL,3),
-  ('wdi-hightech-exports-usd','2013',17945576995,NULL,false,NULL,4),
-  ('wdi-hightech-exports-usd','2014',18334404544,NULL,false,NULL,5),
-  ('wdi-hightech-exports-usd','2015',14588767825,NULL,false,NULL,6),
-  ('wdi-hightech-exports-usd','2016',14266747536,NULL,false,NULL,7),
-  ('wdi-hightech-exports-usd','2017',15104651310,NULL,false,NULL,8),
-  ('wdi-hightech-exports-usd','2018',20197216794,NULL,false,NULL,9),
-  ('wdi-hightech-exports-usd','2019',23471089532,NULL,false,NULL,10),
-  ('wdi-hightech-exports-usd','2020',21583797567,NULL,false,NULL,11),
-  ('wdi-hightech-exports-usd','2021',27447578528,NULL,false,NULL,12),
-  ('wdi-hightech-exports-usd','2022',35784973166,NULL,false,NULL,13),
-  ('wdi-hightech-exports-usd','2023',40942449667,NULL,false,NULL,14),
-  ('wdi-hightech-exports-usd','2024',54140883629,NULL,false,NULL,15),
   ('wdi-fdi-inflows','2001',5128093561.62688,NULL,false,NULL,0),
   ('wdi-fdi-inflows','2002',5208967106.27894,NULL,false,NULL,1),
   ('wdi-fdi-inflows','2003',3681984671.43428,NULL,false,NULL,2),
@@ -1333,7 +1291,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-fdi-inflows','2016',44458571545.798,NULL,false,NULL,15),
   ('wdi-fdi-inflows','2017',39966091358.7384,NULL,false,NULL,16),
   ('wdi-fdi-inflows','2018',42117450737.2644,NULL,false,NULL,17),
-  ('wdi-fdi-inflows','2019',50610647353.5911,NULL,false,NULL,18),
+  ('wdi-fdi-inflows','2019',50610647353.5911,NULL,false,NULL,18);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-fdi-inflows','2020',64362364994.3754,NULL,false,NULL,19),
   ('wdi-fdi-inflows','2021',44727277562.881,NULL,false,NULL,20),
   ('wdi-fdi-inflows','2022',49940258404.2659,NULL,false,NULL,21),
@@ -1390,31 +1349,6 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-current-account','2023',-0.912777939495827,NULL,false,NULL,22),
   ('wdi-current-account','2024',-0.851289719084462,NULL,false,NULL,23),
   ('wdi-current-account','2025',-0.416854153498652,NULL,false,NULL,24),
-  ('wdi-reserves','2001',49050841138.7213,NULL,false,NULL,0),
-  ('wdi-reserves','2002',71607865093.6969,NULL,false,NULL,1),
-  ('wdi-reserves','2003',103737208055.967,NULL,false,NULL,2),
-  ('wdi-reserves','2004',131631143125.845,NULL,false,NULL,3),
-  ('wdi-reserves','2005',137824828256.285,NULL,false,NULL,4),
-  ('wdi-reserves','2006',178049790065.97,NULL,false,NULL,5),
-  ('wdi-reserves','2007',276578100117.408,NULL,false,NULL,6),
-  ('wdi-reserves','2008',257422725614.879,NULL,false,NULL,7),
-  ('wdi-reserves','2009',284682887897.586,NULL,false,NULL,8),
-  ('wdi-reserves','2010',300480168786.346,NULL,false,NULL,9),
-  ('wdi-reserves','2011',298739463090.872,NULL,false,NULL,10),
-  ('wdi-reserves','2012',300425517446.546,NULL,false,NULL,11),
-  ('wdi-reserves','2013',298092478740.581,NULL,false,NULL,12),
-  ('wdi-reserves','2014',325081035127.891,NULL,false,NULL,13),
-  ('wdi-reserves','2015',353319061013.224,NULL,false,NULL,14),
-  ('wdi-reserves','2016',361694321972.036,NULL,false,NULL,15),
-  ('wdi-reserves','2017',412613792019.924,NULL,false,NULL,16),
-  ('wdi-reserves','2018',399167159226.682,NULL,false,NULL,17),
-  ('wdi-reserves','2019',463469902152.507,NULL,false,NULL,18),
-  ('wdi-reserves','2020',590227359928.896,NULL,false,NULL,19),
-  ('wdi-reserves','2021',638484779930.836,NULL,false,NULL,20),
-  ('wdi-reserves','2022',567298153917.14,NULL,false,NULL,21),
-  ('wdi-reserves','2023',627792750126.715,NULL,false,NULL,22),
-  ('wdi-reserves','2024',643042560625.541,NULL,false,NULL,23),
-  ('wdi-reserves','2025',700073798240.701,NULL,false,NULL,24),
   ('wdi-remittances','2001',14273018777.5311,NULL,false,NULL,0),
   ('wdi-remittances','2002',15735736285.9137,NULL,false,NULL,1),
   ('wdi-remittances','2003',20999150983.0332,NULL,false,NULL,2),
@@ -1540,32 +1474,6 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-manufacturing-growth','2023',12.7070256487047,NULL,false,NULL,22),
   ('wdi-manufacturing-growth','2024',9.28903365598556,NULL,false,NULL,23),
   ('wdi-manufacturing-growth','2025',11.5318729245421,NULL,false,NULL,24),
-  ('wdi-industry-gdp','2001',26.4877773440307,NULL,false,NULL,0),
-  ('wdi-industry-gdp','2002',27.6606541607882,NULL,false,NULL,1),
-  ('wdi-industry-gdp','2003',27.4741071211988,NULL,false,NULL,2);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
-  ('wdi-industry-gdp','2004',29.219106305293,NULL,false,NULL,3),
-  ('wdi-industry-gdp','2005',29.5337641914637,NULL,false,NULL,4),
-  ('wdi-industry-gdp','2006',30.9272399435883,NULL,false,NULL,5),
-  ('wdi-industry-gdp','2007',30.9032382510869,NULL,false,NULL,6),
-  ('wdi-industry-gdp','2008',31.1367192409548,NULL,false,NULL,7),
-  ('wdi-industry-gdp','2009',31.1213721116744,NULL,false,NULL,8),
-  ('wdi-industry-gdp','2010',30.7250782285817,NULL,false,NULL,9),
-  ('wdi-industry-gdp','2011',30.1616797630407,NULL,false,NULL,10),
-  ('wdi-industry-gdp','2012',29.3985276965289,NULL,false,NULL,11),
-  ('wdi-industry-gdp','2013',28.4048995600246,NULL,false,NULL,12),
-  ('wdi-industry-gdp','2014',27.6564012026443,NULL,false,NULL,13),
-  ('wdi-industry-gdp','2015',27.34739147794,NULL,false,NULL,14),
-  ('wdi-industry-gdp','2016',26.6189999399789,NULL,false,NULL,15),
-  ('wdi-industry-gdp','2017',26.5000166464804,NULL,false,NULL,16),
-  ('wdi-industry-gdp','2018',26.4120919013735,NULL,false,NULL,17),
-  ('wdi-industry-gdp','2019',24.5914753075066,NULL,false,NULL,18),
-  ('wdi-industry-gdp','2020',25.1229058078344,NULL,false,NULL,19),
-  ('wdi-industry-gdp','2021',26.466523606501,NULL,false,NULL,20),
-  ('wdi-industry-gdp','2022',25.6040259797277,NULL,false,NULL,21),
-  ('wdi-industry-gdp','2023',25.5525555206094,NULL,false,NULL,22),
-  ('wdi-industry-gdp','2024',25.1722625905927,NULL,false,NULL,23),
-  ('wdi-industry-gdp','2025',25.2049600095376,NULL,false,NULL,24),
   ('wdi-agriculture-gdp','2001',21.6188848861438,NULL,false,NULL,0),
   ('wdi-agriculture-gdp','2002',19.5345432709546,NULL,false,NULL,1),
   ('wdi-agriculture-gdp','2003',19.5919979784251,NULL,false,NULL,2),
@@ -1591,31 +1499,6 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-agriculture-gdp','2023',17.6565389328245,NULL,false,NULL,22),
   ('wdi-agriculture-gdp','2024',17.5735799524173,NULL,false,NULL,23),
   ('wdi-agriculture-gdp','2025',16.2342483910129,NULL,false,NULL,24),
-  ('wdi-services-gdp','2001',43.8089612621243,NULL,false,NULL,0),
-  ('wdi-services-gdp','2002',44.7288275521667,NULL,false,NULL,1),
-  ('wdi-services-gdp','2003',44.7046456542143,NULL,false,NULL,2),
-  ('wdi-services-gdp','2004',44.1148589722471,NULL,false,NULL,3),
-  ('wdi-services-gdp','2005',44.4429329227804,NULL,false,NULL,4),
-  ('wdi-services-gdp','2006',44.043235711462,NULL,false,NULL,5),
-  ('wdi-services-gdp','2007',44.0081579238245,NULL,false,NULL,6),
-  ('wdi-services-gdp','2008',45.8825499068249,NULL,false,NULL,7),
-  ('wdi-services-gdp','2009',45.9848828116978,NULL,false,NULL,8),
-  ('wdi-services-gdp','2010',45.0337495625601,NULL,false,NULL,9),
-  ('wdi-services-gdp','2011',45.4421452512796,NULL,false,NULL,10),
-  ('wdi-services-gdp','2012',46.3011472980511,NULL,false,NULL,11),
-  ('wdi-services-gdp','2013',46.6987147692338,NULL,false,NULL,12),
-  ('wdi-services-gdp','2014',47.8224137556558,NULL,false,NULL,13),
-  ('wdi-services-gdp','2015',47.7837481204463,NULL,false,NULL,14),
-  ('wdi-services-gdp','2016',47.7494012900074,NULL,false,NULL,15),
-  ('wdi-services-gdp','2017',47.6708899682407,NULL,false,NULL,16),
-  ('wdi-services-gdp','2018',48.4315663156522,NULL,false,NULL,17),
-  ('wdi-services-gdp','2019',50.0849578546822,NULL,false,NULL,18),
-  ('wdi-services-gdp','2020',47.9326881092162,NULL,false,NULL,19),
-  ('wdi-services-gdp','2021',47.8472234596709,NULL,false,NULL,20),
-  ('wdi-services-gdp','2022',47.1727519374304,NULL,false,NULL,21),
-  ('wdi-services-gdp','2023',47.5864648020094,NULL,false,NULL,22),
-  ('wdi-services-gdp','2024',47.9706270733631,NULL,false,NULL,23),
-  ('wdi-services-gdp','2025',49.337715077834,NULL,false,NULL,24),
   ('wdi-industry-employment','2001',16.7528345033409,NULL,false,NULL,0),
   ('wdi-industry-employment','2002',17.0567268841005,NULL,false,NULL,1),
   ('wdi-industry-employment','2003',17.6938066486046,NULL,false,NULL,2),
@@ -1659,54 +1542,14 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-agriculture-employment','2016',43.2048505926307,NULL,false,NULL,15),
   ('wdi-agriculture-employment','2017',42.2671064682124,NULL,false,NULL,16),
   ('wdi-agriculture-employment','2018',41.2949989249141,NULL,false,NULL,17),
-  ('wdi-agriculture-employment','2019',40.6518149993227,NULL,false,NULL,18),
+  ('wdi-agriculture-employment','2019',40.6518149993227,NULL,false,NULL,18);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-agriculture-employment','2020',44.6754951957099,NULL,false,NULL,19),
   ('wdi-agriculture-employment','2021',44.0791868866382,NULL,false,NULL,20),
   ('wdi-agriculture-employment','2022',42.8609991503088,NULL,false,NULL,21),
   ('wdi-agriculture-employment','2023',43.5135811245793,NULL,false,NULL,22),
   ('wdi-agriculture-employment','2024',42.3547738876441,NULL,false,NULL,23),
   ('wdi-agriculture-employment','2025',41.6251280877573,NULL,false,NULL,24),
-  ('wdi-rd-spending','2001',0.73591,NULL,false,NULL,0),
-  ('wdi-rd-spending','2002',0.72567,NULL,false,NULL,1),
-  ('wdi-rd-spending','2003',0.71929,NULL,false,NULL,2),
-  ('wdi-rd-spending','2004',0.7569,NULL,false,NULL,3),
-  ('wdi-rd-spending','2005',0.82411,NULL,false,NULL,4),
-  ('wdi-rd-spending','2006',0.80473,NULL,false,NULL,5),
-  ('wdi-rd-spending','2007',0.80507,NULL,false,NULL,6),
-  ('wdi-rd-spending','2008',0.85876,NULL,false,NULL,7),
-  ('wdi-rd-spending','2009',0.83314,NULL,false,NULL,8),
-  ('wdi-rd-spending','2010',0.78849,NULL,false,NULL,9),
-  ('wdi-rd-spending','2011',0.75502,NULL,false,NULL,10),
-  ('wdi-rd-spending','2012',0.74399,NULL,false,NULL,11),
-  ('wdi-rd-spending','2013',0.70642,NULL,false,NULL,12),
-  ('wdi-rd-spending','2014',0.70158,NULL,false,NULL,13),
-  ('wdi-rd-spending','2015',0.6931,NULL,false,NULL,14),
-  ('wdi-rd-spending','2016',0.66984,NULL,false,NULL,15),
-  ('wdi-rd-spending','2017',0.66603,NULL,false,NULL,16),
-  ('wdi-rd-spending','2018',0.66001,NULL,false,NULL,17),
-  ('wdi-rd-spending','2019',0.65942,NULL,false,NULL,18),
-  ('wdi-rd-spending','2020',0.64558,NULL,false,NULL,19),
-  ('wdi-patents-resident','2001',2379,NULL,false,NULL,0),
-  ('wdi-patents-resident','2002',2693,NULL,false,NULL,1),
-  ('wdi-patents-resident','2003',3425,NULL,false,NULL,2),
-  ('wdi-patents-resident','2004',4014,NULL,false,NULL,3),
-  ('wdi-patents-resident','2005',4721,NULL,false,NULL,4),
-  ('wdi-patents-resident','2006',5686,NULL,false,NULL,5),
-  ('wdi-patents-resident','2007',6296,NULL,false,NULL,6),
-  ('wdi-patents-resident','2008',6425,NULL,false,NULL,7),
-  ('wdi-patents-resident','2009',7262,NULL,false,NULL,8),
-  ('wdi-patents-resident','2010',8853,NULL,false,NULL,9),
-  ('wdi-patents-resident','2011',8841,NULL,false,NULL,10),
-  ('wdi-patents-resident','2012',9553,NULL,false,NULL,11),
-  ('wdi-patents-resident','2013',10669,NULL,false,NULL,12),
-  ('wdi-patents-resident','2014',12040,NULL,false,NULL,13),
-  ('wdi-patents-resident','2015',12579,NULL,false,NULL,14),
-  ('wdi-patents-resident','2016',13199,NULL,false,NULL,15),
-  ('wdi-patents-resident','2017',14961,NULL,false,NULL,16),
-  ('wdi-patents-resident','2018',16289,NULL,false,NULL,17),
-  ('wdi-patents-resident','2019',19454,NULL,false,NULL,18),
-  ('wdi-patents-resident','2020',23141,NULL,false,NULL,19),
-  ('wdi-patents-resident','2021',26267,NULL,false,NULL,20),
   ('wdi-patents-nonresident','2001',8213,NULL,false,NULL,0),
   ('wdi-patents-nonresident','2002',8772,NULL,false,NULL,1),
   ('wdi-patents-nonresident','2003',9188,NULL,false,NULL,2),
@@ -1793,8 +1636,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-milex-gdp','2016',2.54315152114541,NULL,false,NULL,15),
   ('wdi-milex-gdp','2017',2.53151136056791,NULL,false,NULL,16),
   ('wdi-milex-gdp','2018',2.42428452604417,NULL,false,NULL,17),
-  ('wdi-milex-gdp','2019',2.5459982314359,NULL,false,NULL,18);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-milex-gdp','2019',2.5459982314359,NULL,false,NULL,18),
   ('wdi-milex-gdp','2020',2.80361581112679,NULL,false,NULL,19),
   ('wdi-milex-gdp','2021',2.46874153034185,NULL,false,NULL,20),
   ('wdi-milex-gdp','2022',2.38309809835882,NULL,false,NULL,21),
@@ -1935,27 +1777,28 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-electricity-per-capita','2021',963.363913685612,NULL,false,NULL,20),
   ('wdi-electricity-per-capita','2022',1085.33520920382,NULL,false,NULL,21),
   ('wdi-electricity-per-capita','2023',1181.63126786529,NULL,false,NULL,22),
-  ('wdi-renewable-share','2001',47.1,NULL,false,NULL,0),
-  ('wdi-renewable-share','2002',45.8,NULL,false,NULL,1),
-  ('wdi-renewable-share','2003',45.6,NULL,false,NULL,2),
-  ('wdi-renewable-share','2004',44.9,NULL,false,NULL,3),
-  ('wdi-renewable-share','2005',44.2,NULL,false,NULL,4),
-  ('wdi-renewable-share','2006',43.2,NULL,false,NULL,5),
-  ('wdi-renewable-share','2007',41.5,NULL,false,NULL,6),
-  ('wdi-renewable-share','2008',39.4,NULL,false,NULL,7),
-  ('wdi-renewable-share','2009',37.4,NULL,false,NULL,8),
-  ('wdi-renewable-share','2010',36.2,NULL,false,NULL,9),
-  ('wdi-renewable-share','2011',35,NULL,false,NULL,10),
-  ('wdi-renewable-share','2012',34.8,NULL,false,NULL,11),
-  ('wdi-renewable-share','2013',34.9,NULL,false,NULL,12),
-  ('wdi-renewable-share','2014',33.9,NULL,false,NULL,13),
-  ('wdi-renewable-share','2015',33.4,NULL,false,NULL,14),
-  ('wdi-renewable-share','2016',33,NULL,false,NULL,15),
-  ('wdi-renewable-share','2017',32.5,NULL,false,NULL,16),
-  ('wdi-renewable-share','2018',32.9,NULL,false,NULL,17),
-  ('wdi-renewable-share','2019',33.5,NULL,false,NULL,18),
-  ('wdi-renewable-share','2020',36.1,NULL,false,NULL,19),
-  ('wdi-renewable-share','2021',34.9,NULL,false,NULL,20),
+  ('wdi-renewable-electricity','2001',13.6197629481384,NULL,false,NULL,0),
+  ('wdi-renewable-electricity','2002',12.8005809834912,NULL,false,NULL,1),
+  ('wdi-renewable-electricity','2003',11.5191856915079,NULL,false,NULL,2),
+  ('wdi-renewable-electricity','2004',12.8708458297682,NULL,false,NULL,3),
+  ('wdi-renewable-electricity','2005',14.3659113976406,NULL,false,NULL,4),
+  ('wdi-renewable-electricity','2006',15.9724580053981,NULL,false,NULL,5),
+  ('wdi-renewable-electricity','2007',16.8958319059597,NULL,false,NULL,6),
+  ('wdi-renewable-electricity','2008',17.1072579022733,NULL,false,NULL,7),
+  ('wdi-renewable-electricity','2009',15.3504789989236,NULL,false,NULL,8),
+  ('wdi-renewable-electricity','2010',14.9419430950586,NULL,false,NULL,9),
+  ('wdi-renewable-electricity','2011',15.306114125047,NULL,false,NULL,10),
+  ('wdi-renewable-electricity','2012',16.2449871875852,NULL,false,NULL,11),
+  ('wdi-renewable-electricity','2013',15.2987635527139,NULL,false,NULL,12),
+  ('wdi-renewable-electricity','2014',15.8631842012333,NULL,false,NULL,13),
+  ('wdi-renewable-electricity','2015',14.8948527456761,NULL,false,NULL,14),
+  ('wdi-renewable-electricity','2016',13.5971725653557,NULL,false,NULL,15),
+  ('wdi-renewable-electricity','2017',14.1593786090421,NULL,false,NULL,16);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-renewable-electricity','2018',15.0102597827208,NULL,false,NULL,17),
+  ('wdi-renewable-electricity','2019',16.8275232132522,NULL,false,NULL,18),
+  ('wdi-renewable-electricity','2020',19.7557474948152,NULL,false,NULL,19),
+  ('wdi-renewable-electricity','2021',19.131292447169,NULL,false,NULL,20),
   ('wdi-energy-imports','2001',21.6071184549194,NULL,false,NULL,0),
   ('wdi-energy-imports','2002',22.1969266729062,NULL,false,NULL,1),
   ('wdi-energy-imports','2003',22.3528918245213,NULL,false,NULL,2),
@@ -2044,8 +1887,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-internet-users','2015',14.89999962,NULL,false,NULL,14),
   ('wdi-internet-users','2016',16.5,NULL,false,NULL,15),
   ('wdi-internet-users','2017',18.20000076,NULL,false,NULL,16),
-  ('wdi-internet-users','2018',20.0813000379384,NULL,false,NULL,17);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-internet-users','2018',20.0813000379384,NULL,false,NULL,17),
   ('wdi-internet-users','2019',29.52350044,NULL,false,NULL,18),
   ('wdi-internet-users','2020',43.40544313,NULL,false,NULL,19),
   ('wdi-internet-users','2021',49.2580986,NULL,false,NULL,20),
@@ -2138,31 +1980,6 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-container-traffic','2022',19717168,NULL,false,NULL,12),
   ('wdi-container-traffic','2023',22208000,NULL,false,NULL,13),
   ('wdi-container-traffic','2024',23898000,NULL,false,NULL,14),
-  ('wdi-urban-population','2001',27.9028652096636,NULL,false,NULL,0),
-  ('wdi-urban-population','2002',28.1756878910456,NULL,false,NULL,1),
-  ('wdi-urban-population','2003',28.4660287698,NULL,false,NULL,2),
-  ('wdi-urban-population','2004',28.7726067228528,NULL,false,NULL,3),
-  ('wdi-urban-population','2005',29.0945497159107,NULL,false,NULL,4),
-  ('wdi-urban-population','2006',29.4309857146804,NULL,false,NULL,5),
-  ('wdi-urban-population','2007',29.7810426848684,NULL,false,NULL,6),
-  ('wdi-urban-population','2008',30.1438485921815,NULL,false,NULL,7),
-  ('wdi-urban-population','2009',30.5185314023263,NULL,false,NULL,8),
-  ('wdi-urban-population','2010',30.9042190810094,NULL,false,NULL,9),
-  ('wdi-urban-population','2011',31.2746502853309,NULL,false,NULL,10),
-  ('wdi-urban-population','2012',31.5898935604399,NULL,false,NULL,11),
-  ('wdi-urban-population','2013',31.9096789235237,NULL,false,NULL,12),
-  ('wdi-urban-population','2014',32.2288233408821,NULL,false,NULL,13),
-  ('wdi-urban-population','2015',32.5472990022299,NULL,false,NULL,14),
-  ('wdi-urban-population','2016',32.8650780972823,NULL,false,NULL,15),
-  ('wdi-urban-population','2017',33.1821328157539,NULL,false,NULL,16),
-  ('wdi-urban-population','2018',33.4984353473598,NULL,false,NULL,17),
-  ('wdi-urban-population','2019',33.8139578818147,NULL,false,NULL,18),
-  ('wdi-urban-population','2020',34.1286726088333,NULL,false,NULL,19),
-  ('wdi-urban-population','2021',34.4425517181304,NULL,false,NULL,20),
-  ('wdi-urban-population','2022',34.7555673994206,NULL,false,NULL,21),
-  ('wdi-urban-population','2023',35.0676918424186,NULL,false,NULL,22),
-  ('wdi-urban-population','2024',35.3788972368389,NULL,false,NULL,23),
-  ('wdi-urban-population','2025',35.689155772396,NULL,false,NULL,24),
   ('wdi-urban-growth','2001',2.79167632635927,NULL,false,NULL,0),
   ('wdi-urban-growth','2002',2.78430381700354,NULL,false,NULL,1),
   ('wdi-urban-growth','2003',2.75957503853038,NULL,false,NULL,2),
@@ -2214,30 +2031,6 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-life-expectancy','2022',71.698,NULL,false,NULL,21),
   ('wdi-life-expectancy','2023',72.003,NULL,false,NULL,22),
   ('wdi-life-expectancy','2024',72.235,NULL,false,NULL,23),
-  ('wdi-infant-mortality','2001',64.3,NULL,false,NULL,0),
-  ('wdi-infant-mortality','2002',62.4,NULL,false,NULL,1),
-  ('wdi-infant-mortality','2003',60.4,NULL,false,NULL,2),
-  ('wdi-infant-mortality','2004',58.5,NULL,false,NULL,3),
-  ('wdi-infant-mortality','2005',56.5,NULL,false,NULL,4),
-  ('wdi-infant-mortality','2006',54.5,NULL,false,NULL,5),
-  ('wdi-infant-mortality','2007',52.5,NULL,false,NULL,6),
-  ('wdi-infant-mortality','2008',50.5,NULL,false,NULL,7),
-  ('wdi-infant-mortality','2009',48.4,NULL,false,NULL,8),
-  ('wdi-infant-mortality','2010',46.3,NULL,false,NULL,9),
-  ('wdi-infant-mortality','2011',44.2,NULL,false,NULL,10),
-  ('wdi-infant-mortality','2012',42.2,NULL,false,NULL,11),
-  ('wdi-infant-mortality','2013',40.1,NULL,false,NULL,12),
-  ('wdi-infant-mortality','2014',38.2,NULL,false,NULL,13),
-  ('wdi-infant-mortality','2015',36.3,NULL,false,NULL,14),
-  ('wdi-infant-mortality','2016',34.6,NULL,false,NULL,15),
-  ('wdi-infant-mortality','2017',32.9,NULL,false,NULL,16),
-  ('wdi-infant-mortality','2018',31.3,NULL,false,NULL,17),
-  ('wdi-infant-mortality','2019',29.8,NULL,false,NULL,18),
-  ('wdi-infant-mortality','2020',28.3,NULL,false,NULL,19),
-  ('wdi-infant-mortality','2021',27,NULL,false,NULL,20),
-  ('wdi-infant-mortality','2022',25.7,NULL,false,NULL,21),
-  ('wdi-infant-mortality','2023',24.5,NULL,false,NULL,22),
-  ('wdi-infant-mortality','2024',23.3,NULL,false,NULL,23),
   ('wdi-maternal-mortality','2001',349,NULL,false,NULL,0),
   ('wdi-maternal-mortality','2002',330,NULL,false,NULL,1),
   ('wdi-maternal-mortality','2003',313,NULL,false,NULL,2),
@@ -2251,7 +2044,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-maternal-mortality','2011',173,NULL,false,NULL,10),
   ('wdi-maternal-mortality','2012',160,NULL,false,NULL,11),
   ('wdi-maternal-mortality','2013',148,NULL,false,NULL,12),
-  ('wdi-maternal-mortality','2014',137,NULL,false,NULL,13),
+  ('wdi-maternal-mortality','2014',137,NULL,false,NULL,13);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-maternal-mortality','2015',129,NULL,false,NULL,14),
   ('wdi-maternal-mortality','2016',121,NULL,false,NULL,15),
   ('wdi-maternal-mortality','2017',113,NULL,false,NULL,16),
@@ -2295,8 +2089,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-water-access','2008',84.9473094624581,NULL,false,NULL,7),
   ('wdi-water-access','2009',85.6371461321776,NULL,false,NULL,8),
   ('wdi-water-access','2010',86.3249166723471,NULL,false,NULL,9),
-  ('wdi-water-access','2011',87.0106732998892,NULL,false,NULL,10);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-water-access','2011',87.0106732998892,NULL,false,NULL,10),
   ('wdi-water-access','2012',87.6951918936397,NULL,false,NULL,11),
   ('wdi-water-access','2013',88.3781430142448,NULL,false,NULL,12),
   ('wdi-water-access','2014',89.0593975763785,NULL,false,NULL,13),
@@ -2334,52 +2127,6 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sanitation-access','2022',77.8161883735175,NULL,false,NULL,21),
   ('wdi-sanitation-access','2023',80.6978943350927,NULL,false,NULL,22),
   ('wdi-sanitation-access','2024',83.380872478201,NULL,false,NULL,23),
-  ('wdi-health-spending','2001',4.33754253,NULL,false,NULL,0),
-  ('wdi-health-spending','2002',4.31453371,NULL,false,NULL,1),
-  ('wdi-health-spending','2003',4.07877731,NULL,false,NULL,2),
-  ('wdi-health-spending','2004',4.02679491,NULL,false,NULL,3),
-  ('wdi-health-spending','2005',3.85508275,NULL,false,NULL,4),
-  ('wdi-health-spending','2006',3.66901541,NULL,false,NULL,5),
-  ('wdi-health-spending','2007',3.58103991,NULL,false,NULL,6),
-  ('wdi-health-spending','2008',3.58856082,NULL,false,NULL,7),
-  ('wdi-health-spending','2009',3.54637694,NULL,false,NULL,8),
-  ('wdi-health-spending','2010',3.33625913,NULL,false,NULL,9),
-  ('wdi-health-spending','2011',3.24634218,NULL,false,NULL,10),
-  ('wdi-health-spending','2012',3.32935286,NULL,false,NULL,11),
-  ('wdi-health-spending','2013',3.74944186,NULL,false,NULL,12),
-  ('wdi-health-spending','2014',3.61956549,NULL,false,NULL,13),
-  ('wdi-health-spending','2015',3.59565973,NULL,false,NULL,14),
-  ('wdi-health-spending','2016',3.50430417,NULL,false,NULL,15),
-  ('wdi-health-spending','2017',2.93597651,NULL,false,NULL,16),
-  ('wdi-health-spending','2018',2.8584938,NULL,false,NULL,17),
-  ('wdi-health-spending','2019',2.95299792,NULL,false,NULL,18),
-  ('wdi-health-spending','2020',3.34146094,NULL,false,NULL,19),
-  ('wdi-health-spending','2021',3.34680939,NULL,false,NULL,20),
-  ('wdi-health-spending','2022',3.39623499,NULL,false,NULL,21),
-  ('wdi-health-spending','2023',3.33944035,NULL,false,NULL,22),
-  ('wdi-oop-health','2001',74.1062088,NULL,false,NULL,0),
-  ('wdi-oop-health','2002',73.3739624,NULL,false,NULL,1),
-  ('wdi-oop-health','2003',73.42475128,NULL,false,NULL,2),
-  ('wdi-oop-health','2004',72.48267365,NULL,false,NULL,3),
-  ('wdi-oop-health','2005',73.14936829,NULL,false,NULL,4),
-  ('wdi-oop-health','2006',72.25708008,NULL,false,NULL,5),
-  ('wdi-oop-health','2007',70.81672668,NULL,false,NULL,6),
-  ('wdi-oop-health','2008',69.14794159,NULL,false,NULL,7),
-  ('wdi-oop-health','2009',66.75775146,NULL,false,NULL,8),
-  ('wdi-oop-health','2010',65.18476868,NULL,false,NULL,9),
-  ('wdi-oop-health','2011',62.22489929,NULL,false,NULL,10),
-  ('wdi-oop-health','2012',63.00013733,NULL,false,NULL,11),
-  ('wdi-oop-health','2013',69.07303619,NULL,false,NULL,12),
-  ('wdi-oop-health','2014',67.01399994,NULL,false,NULL,13),
-  ('wdi-oop-health','2015',64.66441345,NULL,false,NULL,14),
-  ('wdi-oop-health','2016',63.20619965,NULL,false,NULL,15),
-  ('wdi-oop-health','2017',55.11247635,NULL,false,NULL,16),
-  ('wdi-oop-health','2018',53.22994614,NULL,false,NULL,17),
-  ('wdi-oop-health','2019',52.00421143,NULL,false,NULL,18),
-  ('wdi-oop-health','2020',49.51094055,NULL,false,NULL,19),
-  ('wdi-oop-health','2021',45.10914612,NULL,false,NULL,20),
-  ('wdi-oop-health','2022',44.54133987,NULL,false,NULL,21),
-  ('wdi-oop-health','2023',43.88510513,NULL,false,NULL,22),
   ('wdi-education-spending','2003',3.61342000961304,NULL,false,NULL,0),
   ('wdi-education-spending','2004',3.35254001617432,NULL,false,NULL,1),
   ('wdi-education-spending','2005',3.18876004219055,NULL,false,NULL,2),
@@ -2398,18 +2145,6 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-education-spending','2020',4.29335021972656,NULL,false,NULL,15),
   ('wdi-education-spending','2021',4.62949991226196,NULL,false,NULL,16),
   ('wdi-education-spending','2022',4.09865814174589,NULL,false,NULL,17),
-  ('wdi-literacy','2001',61.0099983215332,NULL,false,NULL,0),
-  ('wdi-literacy','2006',62.75,NULL,false,NULL,1),
-  ('wdi-literacy','2010',68.325817300837,NULL,false,NULL,2),
-  ('wdi-literacy','2011',69.3000030517578,NULL,false,NULL,3),
-  ('wdi-literacy','2012',69.8279300354369,NULL,false,NULL,4),
-  ('wdi-literacy','2018',73.6883524760717,NULL,false,NULL,5),
-  ('wdi-literacy','2019',74.8938629973395,NULL,false,NULL,6),
-  ('wdi-literacy','2020',75.5270629470344,NULL,false,NULL,7),
-  ('wdi-literacy','2021',76.0596617430205,NULL,false,NULL,8),
-  ('wdi-literacy','2022',76.3199996948242,NULL,false,NULL,9),
-  ('wdi-literacy','2023',81.6999969482422,NULL,false,NULL,10),
-  ('wdi-literacy','2024',78.1625330351403,NULL,false,NULL,11),
   ('wdi-secondary-enrolment','2001',46.8245811462402,NULL,false,NULL,0),
   ('wdi-secondary-enrolment','2002',48.8069381713867,NULL,false,NULL,1),
   ('wdi-secondary-enrolment','2003',51.4255714416504,NULL,false,NULL,2),
@@ -2460,39 +2195,10 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-tertiary-enrolment','2023',34.2394344991225,NULL,false,NULL,22),
   ('wdi-tertiary-enrolment','2024',34.4184659748952,NULL,false,NULL,23),
   ('wdi-tertiary-enrolment','2025',34.4465039692543,NULL,false,NULL,24),
-  ('wdi-extreme-poverty','2004',46.4,NULL,false,NULL,0),
-  ('wdi-extreme-poverty','2009',34.6,NULL,false,NULL,1),
-  ('wdi-extreme-poverty','2011',27.1,NULL,false,NULL,2),
-  ('wdi-extreme-poverty','2022',5.3,NULL,false,NULL,3),
   ('wdi-gini','2004',27.7,NULL,false,NULL,0),
   ('wdi-gini','2009',27.8,NULL,false,NULL,1),
   ('wdi-gini','2011',28.8,NULL,false,NULL,2),
   ('wdi-gini','2022',25.5,NULL,false,NULL,3),
-  ('wdi-population','2001',1077898575,NULL,false,NULL,0),
-  ('wdi-population','2002',1097600380,NULL,false,NULL,1),
-  ('wdi-population','2003',1116803006,NULL,false,NULL,2),
-  ('wdi-population','2004',1135991513,NULL,false,NULL,3),
-  ('wdi-population','2005',1154676322,NULL,false,NULL,4),
-  ('wdi-population','2006',1172878890,NULL,false,NULL,5),
-  ('wdi-population','2007',1190676021,NULL,false,NULL,6),
-  ('wdi-population','2008',1207930964,NULL,false,NULL,7),
-  ('wdi-population','2009',1225524753,NULL,false,NULL,8),
-  ('wdi-population','2010',1243481564,NULL,false,NULL,9),
-  ('wdi-population','2011',1261224954,NULL,false,NULL,10),
-  ('wdi-population','2012',1278674502,NULL,false,NULL,11),
-  ('wdi-population','2013',1295829511,NULL,false,NULL,12),
-  ('wdi-population','2014',1312277191,NULL,false,NULL,13),
-  ('wdi-population','2015',1328024498,NULL,false,NULL,14),
-  ('wdi-population','2016',1343944296,NULL,false,NULL,15),
-  ('wdi-population','2017',1359657400,NULL,false,NULL,16),
-  ('wdi-population','2018',1374659064,NULL,false,NULL,17),
-  ('wdi-population','2019',1389030312,NULL,false,NULL,18),
-  ('wdi-population','2020',1402617695,NULL,false,NULL,19),
-  ('wdi-population','2021',1414203896,NULL,false,NULL,20),
-  ('wdi-population','2022',1425423212,NULL,false,NULL,21),
-  ('wdi-population','2023',1438069596,NULL,false,NULL,22),
-  ('wdi-population','2024',1450935791,NULL,false,NULL,23),
-  ('wdi-population','2025',1463865525,NULL,false,NULL,24),
   ('wdi-fertility','2001',3.303,NULL,false,NULL,0),
   ('wdi-fertility','2002',3.217,NULL,false,NULL,1),
   ('wdi-fertility','2003',3.122,NULL,false,NULL,2),
@@ -2517,62 +2223,6 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-fertility','2022',1.994,NULL,false,NULL,21),
   ('wdi-fertility','2023',1.975,NULL,false,NULL,22),
   ('wdi-fertility','2024',1.962,NULL,false,NULL,23),
-  ('wdi-population-65plus','2001',4.46128426322486,NULL,false,NULL,0),
-  ('wdi-population-65plus','2002',4.51627622226394,NULL,false,NULL,1),
-  ('wdi-population-65plus','2003',4.57336676437993,NULL,false,NULL,2),
-  ('wdi-population-65plus','2004',4.62602267494844,NULL,false,NULL,3),
-  ('wdi-population-65plus','2005',4.67467509912271,NULL,false,NULL,4),
-  ('wdi-population-65plus','2006',4.72189908061262,NULL,false,NULL,5),
-  ('wdi-population-65plus','2007',4.7700034284851,NULL,false,NULL,6),
-  ('wdi-population-65plus','2008',4.82207897305879,NULL,false,NULL,7),
-  ('wdi-population-65plus','2009',4.87809420851412,NULL,false,NULL,8),
-  ('wdi-population-65plus','2010',4.94044719106105,NULL,false,NULL,9),
-  ('wdi-population-65plus','2011',5.0124057389161,NULL,false,NULL,10),
-  ('wdi-population-65plus','2012',5.09338826047327,NULL,false,NULL,11),
-  ('wdi-population-65plus','2013',5.18262772655076,NULL,false,NULL,12),
-  ('wdi-population-65plus','2014',5.30715461269221,NULL,false,NULL,13),
-  ('wdi-population-65plus','2015',5.46921307827757,NULL,false,NULL,14),
-  ('wdi-population-65plus','2016',5.64173085340436,NULL,false,NULL,15),
-  ('wdi-population-65plus','2017',5.8247052897296,NULL,false,NULL,16),
-  ('wdi-population-65plus','2018',6.01925951437221,NULL,false,NULL,17),
-  ('wdi-population-65plus','2019',6.22347304109804,NULL,false,NULL,18),
-  ('wdi-population-65plus','2020',6.41685302336898,NULL,false,NULL,19),
-  ('wdi-population-65plus','2021',6.54579069268807,NULL,false,NULL,20),
-  ('wdi-population-65plus','2022',6.69899975408181,NULL,false,NULL,21),
-  ('wdi-population-65plus','2023',6.92184330138637,NULL,false,NULL,22),
-  ('wdi-population-65plus','2024',7.14651714039908,NULL,false,NULL,23),
-  ('wdi-population-65plus','2025',7.37657146047502,NULL,false,NULL,24),
-  ('wdi-population-0-14','2001',35.1665921350717,NULL,false,NULL,0),
-  ('wdi-population-0-14','2002',34.7802511535299,NULL,false,NULL,1),
-  ('wdi-population-0-14','2003',34.3900068263248,NULL,false,NULL,2),
-  ('wdi-population-0-14','2004',33.9801045969698,NULL,false,NULL,3),
-  ('wdi-population-0-14','2005',33.561919528129,NULL,false,NULL,4);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
-  ('wdi-population-0-14','2006',33.1286520695793,NULL,false,NULL,5),
-  ('wdi-population-0-14','2007',32.6823291810805,NULL,false,NULL,6),
-  ('wdi-population-0-14','2008',32.2404380107605,NULL,false,NULL,7),
-  ('wdi-population-0-14','2009',31.797288593811,NULL,false,NULL,8),
-  ('wdi-population-0-14','2010',31.3423674128553,NULL,false,NULL,9),
-  ('wdi-population-0-14','2011',30.8799657912256,NULL,false,NULL,10),
-  ('wdi-population-0-14','2012',30.4154795250561,NULL,false,NULL,11),
-  ('wdi-population-0-14','2013',29.9403754395359,NULL,false,NULL,12),
-  ('wdi-population-0-14','2014',29.4366305001804,NULL,false,NULL,13),
-  ('wdi-population-0-14','2015',28.9130012076453,NULL,false,NULL,14),
-  ('wdi-population-0-14','2016',28.3851530629213,NULL,false,NULL,15),
-  ('wdi-population-0-14','2017',27.8478721919213,NULL,false,NULL,16),
-  ('wdi-population-0-14','2018',27.3277554659182,NULL,false,NULL,17),
-  ('wdi-population-0-14','2019',26.832323620307,NULL,false,NULL,18),
-  ('wdi-population-0-14','2020',26.3453740591996,NULL,false,NULL,19),
-  ('wdi-population-0-14','2021',25.9051614152815,NULL,false,NULL,20),
-  ('wdi-population-0-14','2022',25.4877038842946,NULL,false,NULL,21),
-  ('wdi-population-0-14','2023',25.0570622244071,NULL,false,NULL,22),
-  ('wdi-population-0-14','2024',24.6239027058366,NULL,false,NULL,23),
-  ('wdi-population-0-14','2025',24.1952667831956,NULL,false,NULL,24),
-  ('wdi-researchers','2005',135.14649,NULL,false,NULL,0),
-  ('wdi-researchers','2010',156.19059,NULL,false,NULL,1),
-  ('wdi-researchers','2015',214.34935,NULL,false,NULL,2),
-  ('wdi-researchers','2018',250.00794,NULL,false,NULL,3),
-  ('wdi-researchers','2020',259.26325,NULL,false,NULL,4),
   ('wdi-technicians','2005',92.19858,NULL,false,NULL,0),
   ('wdi-technicians','2010',100.61565,NULL,false,NULL,1),
   ('wdi-technicians','2015',95.54919,NULL,false,NULL,2),
@@ -2602,31 +2252,6 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ip-receipts','2023',1526339965.47209,NULL,false,NULL,22),
   ('wdi-ip-receipts','2024',1728889909.66743,NULL,false,NULL,23),
   ('wdi-ip-receipts','2025',1737079880.21995,NULL,false,NULL,24),
-  ('wdi-ip-payments','2001',317035850.702584,NULL,false,NULL,0),
-  ('wdi-ip-payments','2002',345233066.962673,NULL,false,NULL,1),
-  ('wdi-ip-payments','2003',549887942.05063,NULL,false,NULL,2),
-  ('wdi-ip-payments','2004',611481232.354589,NULL,false,NULL,3),
-  ('wdi-ip-payments','2005',671829366.31862,NULL,false,NULL,4),
-  ('wdi-ip-payments','2006',845949436.030585,NULL,false,NULL,5),
-  ('wdi-ip-payments','2007',1159824390.70936,NULL,false,NULL,6),
-  ('wdi-ip-payments','2008',1528826912.72299,NULL,false,NULL,7),
-  ('wdi-ip-payments','2009',1860070100.10474,NULL,false,NULL,8),
-  ('wdi-ip-payments','2010',2438302981.08653,NULL,false,NULL,9),
-  ('wdi-ip-payments','2011',2819291078.7559,NULL,false,NULL,10),
-  ('wdi-ip-payments','2012',3990055616.79302,NULL,false,NULL,11),
-  ('wdi-ip-payments','2013',3903908830.45921,NULL,false,NULL,12),
-  ('wdi-ip-payments','2014',4848711888.70729,NULL,false,NULL,13),
-  ('wdi-ip-payments','2015',5009034406.59605,NULL,false,NULL,14),
-  ('wdi-ip-payments','2016',5466041709.7527,NULL,false,NULL,15),
-  ('wdi-ip-payments','2017',6515405393.63595,NULL,false,NULL,16),
-  ('wdi-ip-payments','2018',7905957776.50493,NULL,false,NULL,17),
-  ('wdi-ip-payments','2019',7889685402.17332,NULL,false,NULL,18),
-  ('wdi-ip-payments','2020',7241107556.78618,NULL,false,NULL,19),
-  ('wdi-ip-payments','2021',8631569309.27649,NULL,false,NULL,20),
-  ('wdi-ip-payments','2022',10427794881.2932,NULL,false,NULL,21),
-  ('wdi-ip-payments','2023',14349449523.6213,NULL,false,NULL,22),
-  ('wdi-ip-payments','2024',16263058709.4908,NULL,false,NULL,23),
-  ('wdi-ip-payments','2025',18764908516.913,NULL,false,NULL,24),
   ('wdi-ict-goods-exports','2001',1.85,NULL,false,NULL,0),
   ('wdi-ict-goods-exports','2002',1.4,NULL,false,NULL,1),
   ('wdi-ict-goods-exports','2003',1.51,NULL,false,NULL,2),
@@ -2670,7 +2295,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ict-service-exports','2017',42.3751022077089,NULL,false,NULL,16),
   ('wdi-ict-service-exports','2018',41.3042841946734,NULL,false,NULL,17),
   ('wdi-ict-service-exports','2019',43.95814821332,NULL,false,NULL,18),
-  ('wdi-ict-service-exports','2020',48.9656874345531,NULL,false,NULL,19),
+  ('wdi-ict-service-exports','2020',48.9656874345531,NULL,false,NULL,19);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-ict-service-exports','2021',49.6661074598787,NULL,false,NULL,20),
   ('wdi-ict-service-exports','2022',46.8040630285382,NULL,false,NULL,21),
   ('wdi-ict-service-exports','2023',48.1688192762242,NULL,false,NULL,22),
@@ -2771,70 +2397,11 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-undernourishment','2021',14.3,NULL,false,NULL,20),
   ('wdi-undernourishment','2022',13.5,NULL,false,NULL,21),
   ('wdi-undernourishment','2023',12,NULL,false,NULL,22),
-  ('wdi-child-stunting','2006',47.8,NULL,false,NULL,0),
-  ('wdi-child-stunting','2014',38.7,NULL,false,NULL,1),
-  ('wdi-child-stunting','2015',37.9,NULL,false,NULL,2),
-  ('wdi-child-stunting','2017',36.1,NULL,false,NULL,3),
-  ('wdi-child-stunting','2020',35.5,NULL,false,NULL,4),
-  ('wdi-clean-cooking','2001',23.8,NULL,false,NULL,0),
-  ('wdi-clean-cooking','2002',24.9,NULL,false,NULL,1),
-  ('wdi-clean-cooking','2003',26.2,NULL,false,NULL,2),
-  ('wdi-clean-cooking','2004',27.3,NULL,false,NULL,3),
-  ('wdi-clean-cooking','2005',28.3,NULL,false,NULL,4),
-  ('wdi-clean-cooking','2006',29.3,NULL,false,NULL,5),
-  ('wdi-clean-cooking','2007',30.7,NULL,false,NULL,6),
-  ('wdi-clean-cooking','2008',31.9,NULL,false,NULL,7),
-  ('wdi-clean-cooking','2009',33.6,NULL,false,NULL,8),
-  ('wdi-clean-cooking','2010',35,NULL,false,NULL,9),
-  ('wdi-clean-cooking','2011',36.95,NULL,false,NULL,10),
-  ('wdi-clean-cooking','2012',39.3,NULL,false,NULL,11),
-  ('wdi-clean-cooking','2013',42.4,NULL,false,NULL,12),
-  ('wdi-clean-cooking','2014',44.8,NULL,false,NULL,13),
-  ('wdi-clean-cooking','2015',48.4,NULL,false,NULL,14),
-  ('wdi-clean-cooking','2016',51.8,NULL,false,NULL,15),
-  ('wdi-clean-cooking','2017',55.3,NULL,false,NULL,16),
-  ('wdi-clean-cooking','2018',59,NULL,false,NULL,17),
-  ('wdi-clean-cooking','2019',62.7,NULL,false,NULL,18),
-  ('wdi-clean-cooking','2020',66.5,NULL,false,NULL,19),
-  ('wdi-clean-cooking','2021',70.2,NULL,false,NULL,20),
-  ('wdi-clean-cooking','2022',73.4,NULL,false,NULL,21);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
-  ('wdi-clean-cooking','2023',76.7,NULL,false,NULL,22),
   ('wdi-account-ownership','2011',35.2318385316409,NULL,false,NULL,0),
   ('wdi-account-ownership','2014',53.1415500480136,NULL,false,NULL,1),
   ('wdi-account-ownership','2017',79.8753284971461,NULL,false,NULL,2),
   ('wdi-account-ownership','2021',77.5291370626274,NULL,false,NULL,3),
   ('wdi-account-ownership','2024',89.0248224502547,NULL,false,NULL,4),
-  ('wdi-account-ownership-female','2011',26.4905002133377,NULL,false,NULL,0),
-  ('wdi-account-ownership-female','2014',43.1326096683799,NULL,false,NULL,1),
-  ('wdi-account-ownership-female','2017',76.6396327822793,NULL,false,NULL,2),
-  ('wdi-account-ownership-female','2021',77.552612718915,NULL,false,NULL,3),
-  ('wdi-account-ownership-female','2024',89.2482328079147,NULL,false,NULL,4),
-  ('wdi-market-cap-gdp','2001',30.6467519464107,NULL,false,NULL,0),
-  ('wdi-market-cap-gdp','2002',33.4380606971708,NULL,false,NULL,1),
-  ('wdi-market-cap-gdp','2003',50.8465706710106,NULL,false,NULL,2),
-  ('wdi-market-cap-gdp','2004',58.597294477825,NULL,false,NULL,3),
-  ('wdi-market-cap-gdp','2005',76.1521145313341,NULL,false,NULL,4),
-  ('wdi-market-cap-gdp','2006',95.2151519574149,NULL,false,NULL,5),
-  ('wdi-market-cap-gdp','2007',161.239453726325,NULL,false,NULL,6),
-  ('wdi-market-cap-gdp','2008',66.003104287215,NULL,false,NULL,7),
-  ('wdi-market-cap-gdp','2009',101.894485676839,NULL,false,NULL,8),
-  ('wdi-market-cap-gdp','2010',105.182951703662,NULL,false,NULL,9),
-  ('wdi-market-cap-gdp','2011',68.2700641693541,NULL,false,NULL,10),
-  ('wdi-market-cap-gdp','2012',76.0772432428783,NULL,false,NULL,11),
-  ('wdi-market-cap-gdp','2013',68.1342663963192,NULL,false,NULL,12),
-  ('wdi-market-cap-gdp','2014',82.7172077979209,NULL,false,NULL,13),
-  ('wdi-market-cap-gdp','2015',82.9615370858036,NULL,false,NULL,14),
-  ('wdi-market-cap-gdp','2016',76.0981248580096,NULL,false,NULL,15),
-  ('wdi-market-cap-gdp','2017',96.3987783868431,NULL,false,NULL,16),
-  ('wdi-market-cap-gdp','2018',153.160482470967,NULL,false,NULL,17),
-  ('wdi-market-cap-gdp','2019',76.2695069175453,NULL,false,NULL,18),
-  ('wdi-market-cap-gdp','2020',95.4245016969537,NULL,false,NULL,19),
-  ('wdi-market-cap-gdp','2021',112.02132346833,NULL,false,NULL,20),
-  ('wdi-market-cap-gdp','2022',104.228639351922,NULL,false,NULL,21),
-  ('wdi-market-cap-gdp','2023',123.971644540276,NULL,false,NULL,22),
-  ('wdi-market-cap-gdp','2024',136.443816484113,NULL,false,NULL,23),
-  ('wdi-market-cap-gdp','2025',266.92119852826,NULL,false,NULL,24),
   ('wdi-listed-companies','2001',5795,NULL,false,NULL,0),
   ('wdi-listed-companies','2002',5650,NULL,false,NULL,1),
   ('wdi-listed-companies','2003',5644,NULL,false,NULL,2),
@@ -2885,6 +2452,460 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-stocks-traded','2023',55.5571567181364,NULL,false,NULL,22),
   ('wdi-stocks-traded','2024',89.0081179579001,NULL,false,NULL,23),
   ('wdi-stocks-traded','2025',72.657125773746,NULL,false,NULL,24),
+  ('wdi-gross-savings','2001',24.0916926834607,NULL,false,NULL,0),
+  ('wdi-gross-savings','2002',25.6562581746682,NULL,false,NULL,1),
+  ('wdi-gross-savings','2003',27.6200324775481,NULL,false,NULL,2),
+  ('wdi-gross-savings','2004',31.2437497123137,NULL,false,NULL,3),
+  ('wdi-gross-savings','2005',32.255129867281,NULL,false,NULL,4),
+  ('wdi-gross-savings','2006',34.0875841266633,NULL,false,NULL,5),
+  ('wdi-gross-savings','2007',34.3773731960541,NULL,false,NULL,6),
+  ('wdi-gross-savings','2008',32.7847028620241,NULL,false,NULL,7),
+  ('wdi-gross-savings','2009',32.5804441151796,NULL,false,NULL,8),
+  ('wdi-gross-savings','2010',34.2675343705701,NULL,false,NULL,9),
+  ('wdi-gross-savings','2011',32.708319830057,NULL,false,NULL,10),
+  ('wdi-gross-savings','2012',32.8551899788478,NULL,false,NULL,11),
+  ('wdi-gross-savings','2013',32.0590737671998,NULL,false,NULL,12),
+  ('wdi-gross-savings','2014',31.4314260905683,NULL,false,NULL,13),
+  ('wdi-gross-savings','2015',30.5644282130068,NULL,false,NULL,14),
+  ('wdi-gross-savings','2016',30.3961706924706,NULL,false,NULL,15),
+  ('wdi-gross-savings','2017',30.5076513689534,NULL,false,NULL,16),
+  ('wdi-gross-savings','2018',29.8884586617548,NULL,false,NULL,17),
+  ('wdi-gross-savings','2019',28.0860368485782,NULL,false,NULL,18),
+  ('wdi-gross-savings','2020',27.2894188790877,NULL,false,NULL,19),
+  ('wdi-gross-savings','2021',28.5732421263582,NULL,false,NULL,20),
+  ('wdi-gross-savings','2022',31.7941969900494,NULL,false,NULL,21),
+  ('wdi-gross-savings','2023',32.8913417357203,NULL,false,NULL,22),
+  ('wdi-gross-savings','2024',32.8269324325985,NULL,false,NULL,23),
+  ('wdi-gross-savings','2025',32.559492763302,NULL,false,NULL,24),
+  ('wdi-hightech-exports-usd','2009',11219528624,NULL,false,NULL,0),
+  ('wdi-hightech-exports-usd','2010',10668887032,NULL,false,NULL,1),
+  ('wdi-hightech-exports-usd','2011',14508694707,NULL,false,NULL,2),
+  ('wdi-hightech-exports-usd','2012',13881886778,NULL,false,NULL,3),
+  ('wdi-hightech-exports-usd','2013',17945576995,NULL,false,NULL,4),
+  ('wdi-hightech-exports-usd','2014',18334404544,NULL,false,NULL,5),
+  ('wdi-hightech-exports-usd','2015',14588767825,NULL,false,NULL,6),
+  ('wdi-hightech-exports-usd','2016',14266747536,NULL,false,NULL,7),
+  ('wdi-hightech-exports-usd','2017',15104651310,NULL,false,NULL,8),
+  ('wdi-hightech-exports-usd','2018',20197216794,NULL,false,NULL,9),
+  ('wdi-hightech-exports-usd','2019',23471089532,NULL,false,NULL,10),
+  ('wdi-hightech-exports-usd','2020',21583797567,NULL,false,NULL,11),
+  ('wdi-hightech-exports-usd','2021',27447578528,NULL,false,NULL,12),
+  ('wdi-hightech-exports-usd','2022',35784973166,NULL,false,NULL,13),
+  ('wdi-hightech-exports-usd','2023',40942449667,NULL,false,NULL,14),
+  ('wdi-hightech-exports-usd','2024',54140883629,NULL,false,NULL,15),
+  ('wdi-reserves','2001',49050841138.7213,NULL,false,NULL,0),
+  ('wdi-reserves','2002',71607865093.6969,NULL,false,NULL,1),
+  ('wdi-reserves','2003',103737208055.967,NULL,false,NULL,2),
+  ('wdi-reserves','2004',131631143125.845,NULL,false,NULL,3),
+  ('wdi-reserves','2005',137824828256.285,NULL,false,NULL,4),
+  ('wdi-reserves','2006',178049790065.97,NULL,false,NULL,5),
+  ('wdi-reserves','2007',276578100117.408,NULL,false,NULL,6),
+  ('wdi-reserves','2008',257422725614.879,NULL,false,NULL,7),
+  ('wdi-reserves','2009',284682887897.586,NULL,false,NULL,8),
+  ('wdi-reserves','2010',300480168786.346,NULL,false,NULL,9),
+  ('wdi-reserves','2011',298739463090.872,NULL,false,NULL,10),
+  ('wdi-reserves','2012',300425517446.546,NULL,false,NULL,11),
+  ('wdi-reserves','2013',298092478740.581,NULL,false,NULL,12),
+  ('wdi-reserves','2014',325081035127.891,NULL,false,NULL,13),
+  ('wdi-reserves','2015',353319061013.224,NULL,false,NULL,14),
+  ('wdi-reserves','2016',361694321972.036,NULL,false,NULL,15),
+  ('wdi-reserves','2017',412613792019.924,NULL,false,NULL,16),
+  ('wdi-reserves','2018',399167159226.682,NULL,false,NULL,17),
+  ('wdi-reserves','2019',463469902152.507,NULL,false,NULL,18),
+  ('wdi-reserves','2020',590227359928.896,NULL,false,NULL,19),
+  ('wdi-reserves','2021',638484779930.836,NULL,false,NULL,20),
+  ('wdi-reserves','2022',567298153917.14,NULL,false,NULL,21),
+  ('wdi-reserves','2023',627792750126.715,NULL,false,NULL,22),
+  ('wdi-reserves','2024',643042560625.541,NULL,false,NULL,23),
+  ('wdi-reserves','2025',700073798240.701,NULL,false,NULL,24),
+  ('wdi-industry-gdp','2001',26.4877773440307,NULL,false,NULL,0),
+  ('wdi-industry-gdp','2002',27.6606541607882,NULL,false,NULL,1),
+  ('wdi-industry-gdp','2003',27.4741071211988,NULL,false,NULL,2),
+  ('wdi-industry-gdp','2004',29.219106305293,NULL,false,NULL,3),
+  ('wdi-industry-gdp','2005',29.5337641914637,NULL,false,NULL,4),
+  ('wdi-industry-gdp','2006',30.9272399435883,NULL,false,NULL,5),
+  ('wdi-industry-gdp','2007',30.9032382510869,NULL,false,NULL,6),
+  ('wdi-industry-gdp','2008',31.1367192409548,NULL,false,NULL,7),
+  ('wdi-industry-gdp','2009',31.1213721116744,NULL,false,NULL,8),
+  ('wdi-industry-gdp','2010',30.7250782285817,NULL,false,NULL,9),
+  ('wdi-industry-gdp','2011',30.1616797630407,NULL,false,NULL,10),
+  ('wdi-industry-gdp','2012',29.3985276965289,NULL,false,NULL,11),
+  ('wdi-industry-gdp','2013',28.4048995600246,NULL,false,NULL,12),
+  ('wdi-industry-gdp','2014',27.6564012026443,NULL,false,NULL,13),
+  ('wdi-industry-gdp','2015',27.34739147794,NULL,false,NULL,14),
+  ('wdi-industry-gdp','2016',26.6189999399789,NULL,false,NULL,15),
+  ('wdi-industry-gdp','2017',26.5000166464804,NULL,false,NULL,16),
+  ('wdi-industry-gdp','2018',26.4120919013735,NULL,false,NULL,17),
+  ('wdi-industry-gdp','2019',24.5914753075066,NULL,false,NULL,18),
+  ('wdi-industry-gdp','2020',25.1229058078344,NULL,false,NULL,19),
+  ('wdi-industry-gdp','2021',26.466523606501,NULL,false,NULL,20),
+  ('wdi-industry-gdp','2022',25.6040259797277,NULL,false,NULL,21),
+  ('wdi-industry-gdp','2023',25.5525555206094,NULL,false,NULL,22),
+  ('wdi-industry-gdp','2024',25.1722625905927,NULL,false,NULL,23),
+  ('wdi-industry-gdp','2025',25.2049600095376,NULL,false,NULL,24),
+  ('wdi-services-gdp','2001',43.8089612621243,NULL,false,NULL,0),
+  ('wdi-services-gdp','2002',44.7288275521667,NULL,false,NULL,1),
+  ('wdi-services-gdp','2003',44.7046456542143,NULL,false,NULL,2),
+  ('wdi-services-gdp','2004',44.1148589722471,NULL,false,NULL,3);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-services-gdp','2005',44.4429329227804,NULL,false,NULL,4),
+  ('wdi-services-gdp','2006',44.043235711462,NULL,false,NULL,5),
+  ('wdi-services-gdp','2007',44.0081579238245,NULL,false,NULL,6),
+  ('wdi-services-gdp','2008',45.8825499068249,NULL,false,NULL,7),
+  ('wdi-services-gdp','2009',45.9848828116978,NULL,false,NULL,8),
+  ('wdi-services-gdp','2010',45.0337495625601,NULL,false,NULL,9),
+  ('wdi-services-gdp','2011',45.4421452512796,NULL,false,NULL,10),
+  ('wdi-services-gdp','2012',46.3011472980511,NULL,false,NULL,11),
+  ('wdi-services-gdp','2013',46.6987147692338,NULL,false,NULL,12),
+  ('wdi-services-gdp','2014',47.8224137556558,NULL,false,NULL,13),
+  ('wdi-services-gdp','2015',47.7837481204463,NULL,false,NULL,14),
+  ('wdi-services-gdp','2016',47.7494012900074,NULL,false,NULL,15),
+  ('wdi-services-gdp','2017',47.6708899682407,NULL,false,NULL,16),
+  ('wdi-services-gdp','2018',48.4315663156522,NULL,false,NULL,17),
+  ('wdi-services-gdp','2019',50.0849578546822,NULL,false,NULL,18),
+  ('wdi-services-gdp','2020',47.9326881092162,NULL,false,NULL,19),
+  ('wdi-services-gdp','2021',47.8472234596709,NULL,false,NULL,20),
+  ('wdi-services-gdp','2022',47.1727519374304,NULL,false,NULL,21),
+  ('wdi-services-gdp','2023',47.5864648020094,NULL,false,NULL,22),
+  ('wdi-services-gdp','2024',47.9706270733631,NULL,false,NULL,23),
+  ('wdi-services-gdp','2025',49.337715077834,NULL,false,NULL,24),
+  ('wdi-rd-spending','2001',0.73591,NULL,false,NULL,0),
+  ('wdi-rd-spending','2002',0.72567,NULL,false,NULL,1),
+  ('wdi-rd-spending','2003',0.71929,NULL,false,NULL,2),
+  ('wdi-rd-spending','2004',0.7569,NULL,false,NULL,3),
+  ('wdi-rd-spending','2005',0.82411,NULL,false,NULL,4),
+  ('wdi-rd-spending','2006',0.80473,NULL,false,NULL,5),
+  ('wdi-rd-spending','2007',0.80507,NULL,false,NULL,6),
+  ('wdi-rd-spending','2008',0.85876,NULL,false,NULL,7),
+  ('wdi-rd-spending','2009',0.83314,NULL,false,NULL,8),
+  ('wdi-rd-spending','2010',0.78849,NULL,false,NULL,9),
+  ('wdi-rd-spending','2011',0.75502,NULL,false,NULL,10),
+  ('wdi-rd-spending','2012',0.74399,NULL,false,NULL,11),
+  ('wdi-rd-spending','2013',0.70642,NULL,false,NULL,12),
+  ('wdi-rd-spending','2014',0.70158,NULL,false,NULL,13),
+  ('wdi-rd-spending','2015',0.6931,NULL,false,NULL,14),
+  ('wdi-rd-spending','2016',0.66984,NULL,false,NULL,15),
+  ('wdi-rd-spending','2017',0.66603,NULL,false,NULL,16),
+  ('wdi-rd-spending','2018',0.66001,NULL,false,NULL,17),
+  ('wdi-rd-spending','2019',0.65942,NULL,false,NULL,18),
+  ('wdi-rd-spending','2020',0.64558,NULL,false,NULL,19),
+  ('wdi-patents-resident','2001',2379,NULL,false,NULL,0),
+  ('wdi-patents-resident','2002',2693,NULL,false,NULL,1),
+  ('wdi-patents-resident','2003',3425,NULL,false,NULL,2),
+  ('wdi-patents-resident','2004',4014,NULL,false,NULL,3),
+  ('wdi-patents-resident','2005',4721,NULL,false,NULL,4),
+  ('wdi-patents-resident','2006',5686,NULL,false,NULL,5),
+  ('wdi-patents-resident','2007',6296,NULL,false,NULL,6),
+  ('wdi-patents-resident','2008',6425,NULL,false,NULL,7),
+  ('wdi-patents-resident','2009',7262,NULL,false,NULL,8),
+  ('wdi-patents-resident','2010',8853,NULL,false,NULL,9),
+  ('wdi-patents-resident','2011',8841,NULL,false,NULL,10),
+  ('wdi-patents-resident','2012',9553,NULL,false,NULL,11),
+  ('wdi-patents-resident','2013',10669,NULL,false,NULL,12),
+  ('wdi-patents-resident','2014',12040,NULL,false,NULL,13),
+  ('wdi-patents-resident','2015',12579,NULL,false,NULL,14),
+  ('wdi-patents-resident','2016',13199,NULL,false,NULL,15),
+  ('wdi-patents-resident','2017',14961,NULL,false,NULL,16),
+  ('wdi-patents-resident','2018',16289,NULL,false,NULL,17),
+  ('wdi-patents-resident','2019',19454,NULL,false,NULL,18),
+  ('wdi-patents-resident','2020',23141,NULL,false,NULL,19),
+  ('wdi-patents-resident','2021',26267,NULL,false,NULL,20),
+  ('wdi-renewable-share','2001',47.1,NULL,false,NULL,0),
+  ('wdi-renewable-share','2002',45.8,NULL,false,NULL,1),
+  ('wdi-renewable-share','2003',45.6,NULL,false,NULL,2),
+  ('wdi-renewable-share','2004',44.9,NULL,false,NULL,3),
+  ('wdi-renewable-share','2005',44.2,NULL,false,NULL,4),
+  ('wdi-renewable-share','2006',43.2,NULL,false,NULL,5),
+  ('wdi-renewable-share','2007',41.5,NULL,false,NULL,6),
+  ('wdi-renewable-share','2008',39.4,NULL,false,NULL,7),
+  ('wdi-renewable-share','2009',37.4,NULL,false,NULL,8),
+  ('wdi-renewable-share','2010',36.2,NULL,false,NULL,9),
+  ('wdi-renewable-share','2011',35,NULL,false,NULL,10),
+  ('wdi-renewable-share','2012',34.8,NULL,false,NULL,11),
+  ('wdi-renewable-share','2013',34.9,NULL,false,NULL,12),
+  ('wdi-renewable-share','2014',33.9,NULL,false,NULL,13),
+  ('wdi-renewable-share','2015',33.4,NULL,false,NULL,14),
+  ('wdi-renewable-share','2016',33,NULL,false,NULL,15),
+  ('wdi-renewable-share','2017',32.5,NULL,false,NULL,16),
+  ('wdi-renewable-share','2018',32.9,NULL,false,NULL,17),
+  ('wdi-renewable-share','2019',33.5,NULL,false,NULL,18),
+  ('wdi-renewable-share','2020',36.1,NULL,false,NULL,19),
+  ('wdi-renewable-share','2021',34.9,NULL,false,NULL,20),
+  ('wdi-urban-population','2001',27.9028652096636,NULL,false,NULL,0),
+  ('wdi-urban-population','2002',28.1756878910456,NULL,false,NULL,1),
+  ('wdi-urban-population','2003',28.4660287698,NULL,false,NULL,2),
+  ('wdi-urban-population','2004',28.7726067228528,NULL,false,NULL,3),
+  ('wdi-urban-population','2005',29.0945497159107,NULL,false,NULL,4),
+  ('wdi-urban-population','2006',29.4309857146804,NULL,false,NULL,5),
+  ('wdi-urban-population','2007',29.7810426848684,NULL,false,NULL,6),
+  ('wdi-urban-population','2008',30.1438485921815,NULL,false,NULL,7),
+  ('wdi-urban-population','2009',30.5185314023263,NULL,false,NULL,8),
+  ('wdi-urban-population','2010',30.9042190810094,NULL,false,NULL,9),
+  ('wdi-urban-population','2011',31.2746502853309,NULL,false,NULL,10),
+  ('wdi-urban-population','2012',31.5898935604399,NULL,false,NULL,11),
+  ('wdi-urban-population','2013',31.9096789235237,NULL,false,NULL,12),
+  ('wdi-urban-population','2014',32.2288233408821,NULL,false,NULL,13),
+  ('wdi-urban-population','2015',32.5472990022299,NULL,false,NULL,14),
+  ('wdi-urban-population','2016',32.8650780972823,NULL,false,NULL,15),
+  ('wdi-urban-population','2017',33.1821328157539,NULL,false,NULL,16),
+  ('wdi-urban-population','2018',33.4984353473598,NULL,false,NULL,17),
+  ('wdi-urban-population','2019',33.8139578818147,NULL,false,NULL,18),
+  ('wdi-urban-population','2020',34.1286726088333,NULL,false,NULL,19),
+  ('wdi-urban-population','2021',34.4425517181304,NULL,false,NULL,20),
+  ('wdi-urban-population','2022',34.7555673994206,NULL,false,NULL,21),
+  ('wdi-urban-population','2023',35.0676918424186,NULL,false,NULL,22),
+  ('wdi-urban-population','2024',35.3788972368389,NULL,false,NULL,23),
+  ('wdi-urban-population','2025',35.689155772396,NULL,false,NULL,24),
+  ('wdi-infant-mortality','2001',64.3,NULL,false,NULL,0),
+  ('wdi-infant-mortality','2002',62.4,NULL,false,NULL,1),
+  ('wdi-infant-mortality','2003',60.4,NULL,false,NULL,2),
+  ('wdi-infant-mortality','2004',58.5,NULL,false,NULL,3),
+  ('wdi-infant-mortality','2005',56.5,NULL,false,NULL,4),
+  ('wdi-infant-mortality','2006',54.5,NULL,false,NULL,5),
+  ('wdi-infant-mortality','2007',52.5,NULL,false,NULL,6),
+  ('wdi-infant-mortality','2008',50.5,NULL,false,NULL,7),
+  ('wdi-infant-mortality','2009',48.4,NULL,false,NULL,8),
+  ('wdi-infant-mortality','2010',46.3,NULL,false,NULL,9),
+  ('wdi-infant-mortality','2011',44.2,NULL,false,NULL,10),
+  ('wdi-infant-mortality','2012',42.2,NULL,false,NULL,11),
+  ('wdi-infant-mortality','2013',40.1,NULL,false,NULL,12),
+  ('wdi-infant-mortality','2014',38.2,NULL,false,NULL,13),
+  ('wdi-infant-mortality','2015',36.3,NULL,false,NULL,14),
+  ('wdi-infant-mortality','2016',34.6,NULL,false,NULL,15),
+  ('wdi-infant-mortality','2017',32.9,NULL,false,NULL,16),
+  ('wdi-infant-mortality','2018',31.3,NULL,false,NULL,17),
+  ('wdi-infant-mortality','2019',29.8,NULL,false,NULL,18),
+  ('wdi-infant-mortality','2020',28.3,NULL,false,NULL,19),
+  ('wdi-infant-mortality','2021',27,NULL,false,NULL,20),
+  ('wdi-infant-mortality','2022',25.7,NULL,false,NULL,21),
+  ('wdi-infant-mortality','2023',24.5,NULL,false,NULL,22),
+  ('wdi-infant-mortality','2024',23.3,NULL,false,NULL,23),
+  ('wdi-health-spending','2001',4.33754253,NULL,false,NULL,0),
+  ('wdi-health-spending','2002',4.31453371,NULL,false,NULL,1),
+  ('wdi-health-spending','2003',4.07877731,NULL,false,NULL,2),
+  ('wdi-health-spending','2004',4.02679491,NULL,false,NULL,3),
+  ('wdi-health-spending','2005',3.85508275,NULL,false,NULL,4),
+  ('wdi-health-spending','2006',3.66901541,NULL,false,NULL,5),
+  ('wdi-health-spending','2007',3.58103991,NULL,false,NULL,6),
+  ('wdi-health-spending','2008',3.58856082,NULL,false,NULL,7),
+  ('wdi-health-spending','2009',3.54637694,NULL,false,NULL,8),
+  ('wdi-health-spending','2010',3.33625913,NULL,false,NULL,9),
+  ('wdi-health-spending','2011',3.24634218,NULL,false,NULL,10),
+  ('wdi-health-spending','2012',3.32935286,NULL,false,NULL,11),
+  ('wdi-health-spending','2013',3.74944186,NULL,false,NULL,12),
+  ('wdi-health-spending','2014',3.61956549,NULL,false,NULL,13),
+  ('wdi-health-spending','2015',3.59565973,NULL,false,NULL,14),
+  ('wdi-health-spending','2016',3.50430417,NULL,false,NULL,15),
+  ('wdi-health-spending','2017',2.93597651,NULL,false,NULL,16),
+  ('wdi-health-spending','2018',2.8584938,NULL,false,NULL,17),
+  ('wdi-health-spending','2019',2.95299792,NULL,false,NULL,18),
+  ('wdi-health-spending','2020',3.34146094,NULL,false,NULL,19),
+  ('wdi-health-spending','2021',3.34680939,NULL,false,NULL,20),
+  ('wdi-health-spending','2022',3.39623499,NULL,false,NULL,21),
+  ('wdi-health-spending','2023',3.33944035,NULL,false,NULL,22),
+  ('wdi-oop-health','2001',74.1062088,NULL,false,NULL,0),
+  ('wdi-oop-health','2002',73.3739624,NULL,false,NULL,1),
+  ('wdi-oop-health','2003',73.42475128,NULL,false,NULL,2),
+  ('wdi-oop-health','2004',72.48267365,NULL,false,NULL,3),
+  ('wdi-oop-health','2005',73.14936829,NULL,false,NULL,4),
+  ('wdi-oop-health','2006',72.25708008,NULL,false,NULL,5),
+  ('wdi-oop-health','2007',70.81672668,NULL,false,NULL,6),
+  ('wdi-oop-health','2008',69.14794159,NULL,false,NULL,7),
+  ('wdi-oop-health','2009',66.75775146,NULL,false,NULL,8),
+  ('wdi-oop-health','2010',65.18476868,NULL,false,NULL,9),
+  ('wdi-oop-health','2011',62.22489929,NULL,false,NULL,10),
+  ('wdi-oop-health','2012',63.00013733,NULL,false,NULL,11),
+  ('wdi-oop-health','2013',69.07303619,NULL,false,NULL,12),
+  ('wdi-oop-health','2014',67.01399994,NULL,false,NULL,13),
+  ('wdi-oop-health','2015',64.66441345,NULL,false,NULL,14),
+  ('wdi-oop-health','2016',63.20619965,NULL,false,NULL,15),
+  ('wdi-oop-health','2017',55.11247635,NULL,false,NULL,16),
+  ('wdi-oop-health','2018',53.22994614,NULL,false,NULL,17),
+  ('wdi-oop-health','2019',52.00421143,NULL,false,NULL,18),
+  ('wdi-oop-health','2020',49.51094055,NULL,false,NULL,19),
+  ('wdi-oop-health','2021',45.10914612,NULL,false,NULL,20),
+  ('wdi-oop-health','2022',44.54133987,NULL,false,NULL,21),
+  ('wdi-oop-health','2023',43.88510513,NULL,false,NULL,22),
+  ('wdi-literacy','2001',61.0099983215332,NULL,false,NULL,0),
+  ('wdi-literacy','2006',62.75,NULL,false,NULL,1),
+  ('wdi-literacy','2010',68.325817300837,NULL,false,NULL,2),
+  ('wdi-literacy','2011',69.3000030517578,NULL,false,NULL,3),
+  ('wdi-literacy','2012',69.8279300354369,NULL,false,NULL,4),
+  ('wdi-literacy','2018',73.6883524760717,NULL,false,NULL,5),
+  ('wdi-literacy','2019',74.8938629973395,NULL,false,NULL,6),
+  ('wdi-literacy','2020',75.5270629470344,NULL,false,NULL,7),
+  ('wdi-literacy','2021',76.0596617430205,NULL,false,NULL,8),
+  ('wdi-literacy','2022',76.3199996948242,NULL,false,NULL,9),
+  ('wdi-literacy','2023',81.6999969482422,NULL,false,NULL,10),
+  ('wdi-literacy','2024',78.1625330351403,NULL,false,NULL,11),
+  ('wdi-extreme-poverty','2004',46.4,NULL,false,NULL,0),
+  ('wdi-extreme-poverty','2009',34.6,NULL,false,NULL,1),
+  ('wdi-extreme-poverty','2011',27.1,NULL,false,NULL,2),
+  ('wdi-extreme-poverty','2022',5.3,NULL,false,NULL,3),
+  ('wdi-population','2001',1077898575,NULL,false,NULL,0),
+  ('wdi-population','2002',1097600380,NULL,false,NULL,1),
+  ('wdi-population','2003',1116803006,NULL,false,NULL,2),
+  ('wdi-population','2004',1135991513,NULL,false,NULL,3),
+  ('wdi-population','2005',1154676322,NULL,false,NULL,4),
+  ('wdi-population','2006',1172878890,NULL,false,NULL,5),
+  ('wdi-population','2007',1190676021,NULL,false,NULL,6),
+  ('wdi-population','2008',1207930964,NULL,false,NULL,7),
+  ('wdi-population','2009',1225524753,NULL,false,NULL,8),
+  ('wdi-population','2010',1243481564,NULL,false,NULL,9),
+  ('wdi-population','2011',1261224954,NULL,false,NULL,10),
+  ('wdi-population','2012',1278674502,NULL,false,NULL,11),
+  ('wdi-population','2013',1295829511,NULL,false,NULL,12),
+  ('wdi-population','2014',1312277191,NULL,false,NULL,13),
+  ('wdi-population','2015',1328024498,NULL,false,NULL,14),
+  ('wdi-population','2016',1343944296,NULL,false,NULL,15),
+  ('wdi-population','2017',1359657400,NULL,false,NULL,16),
+  ('wdi-population','2018',1374659064,NULL,false,NULL,17),
+  ('wdi-population','2019',1389030312,NULL,false,NULL,18),
+  ('wdi-population','2020',1402617695,NULL,false,NULL,19),
+  ('wdi-population','2021',1414203896,NULL,false,NULL,20),
+  ('wdi-population','2022',1425423212,NULL,false,NULL,21),
+  ('wdi-population','2023',1438069596,NULL,false,NULL,22),
+  ('wdi-population','2024',1450935791,NULL,false,NULL,23),
+  ('wdi-population','2025',1463865525,NULL,false,NULL,24),
+  ('wdi-population-65plus','2001',4.46128426322486,NULL,false,NULL,0),
+  ('wdi-population-65plus','2002',4.51627622226394,NULL,false,NULL,1),
+  ('wdi-population-65plus','2003',4.57336676437993,NULL,false,NULL,2),
+  ('wdi-population-65plus','2004',4.62602267494844,NULL,false,NULL,3),
+  ('wdi-population-65plus','2005',4.67467509912271,NULL,false,NULL,4),
+  ('wdi-population-65plus','2006',4.72189908061262,NULL,false,NULL,5),
+  ('wdi-population-65plus','2007',4.7700034284851,NULL,false,NULL,6),
+  ('wdi-population-65plus','2008',4.82207897305879,NULL,false,NULL,7),
+  ('wdi-population-65plus','2009',4.87809420851412,NULL,false,NULL,8),
+  ('wdi-population-65plus','2010',4.94044719106105,NULL,false,NULL,9),
+  ('wdi-population-65plus','2011',5.0124057389161,NULL,false,NULL,10),
+  ('wdi-population-65plus','2012',5.09338826047327,NULL,false,NULL,11),
+  ('wdi-population-65plus','2013',5.18262772655076,NULL,false,NULL,12),
+  ('wdi-population-65plus','2014',5.30715461269221,NULL,false,NULL,13),
+  ('wdi-population-65plus','2015',5.46921307827757,NULL,false,NULL,14),
+  ('wdi-population-65plus','2016',5.64173085340436,NULL,false,NULL,15),
+  ('wdi-population-65plus','2017',5.8247052897296,NULL,false,NULL,16),
+  ('wdi-population-65plus','2018',6.01925951437221,NULL,false,NULL,17),
+  ('wdi-population-65plus','2019',6.22347304109804,NULL,false,NULL,18),
+  ('wdi-population-65plus','2020',6.41685302336898,NULL,false,NULL,19),
+  ('wdi-population-65plus','2021',6.54579069268807,NULL,false,NULL,20),
+  ('wdi-population-65plus','2022',6.69899975408181,NULL,false,NULL,21),
+  ('wdi-population-65plus','2023',6.92184330138637,NULL,false,NULL,22),
+  ('wdi-population-65plus','2024',7.14651714039908,NULL,false,NULL,23),
+  ('wdi-population-65plus','2025',7.37657146047502,NULL,false,NULL,24),
+  ('wdi-population-0-14','2001',35.1665921350717,NULL,false,NULL,0),
+  ('wdi-population-0-14','2002',34.7802511535299,NULL,false,NULL,1),
+  ('wdi-population-0-14','2003',34.3900068263248,NULL,false,NULL,2),
+  ('wdi-population-0-14','2004',33.9801045969698,NULL,false,NULL,3),
+  ('wdi-population-0-14','2005',33.561919528129,NULL,false,NULL,4),
+  ('wdi-population-0-14','2006',33.1286520695793,NULL,false,NULL,5);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-population-0-14','2007',32.6823291810805,NULL,false,NULL,6),
+  ('wdi-population-0-14','2008',32.2404380107605,NULL,false,NULL,7),
+  ('wdi-population-0-14','2009',31.797288593811,NULL,false,NULL,8),
+  ('wdi-population-0-14','2010',31.3423674128553,NULL,false,NULL,9),
+  ('wdi-population-0-14','2011',30.8799657912256,NULL,false,NULL,10),
+  ('wdi-population-0-14','2012',30.4154795250561,NULL,false,NULL,11),
+  ('wdi-population-0-14','2013',29.9403754395359,NULL,false,NULL,12),
+  ('wdi-population-0-14','2014',29.4366305001804,NULL,false,NULL,13),
+  ('wdi-population-0-14','2015',28.9130012076453,NULL,false,NULL,14),
+  ('wdi-population-0-14','2016',28.3851530629213,NULL,false,NULL,15),
+  ('wdi-population-0-14','2017',27.8478721919213,NULL,false,NULL,16),
+  ('wdi-population-0-14','2018',27.3277554659182,NULL,false,NULL,17),
+  ('wdi-population-0-14','2019',26.832323620307,NULL,false,NULL,18),
+  ('wdi-population-0-14','2020',26.3453740591996,NULL,false,NULL,19),
+  ('wdi-population-0-14','2021',25.9051614152815,NULL,false,NULL,20),
+  ('wdi-population-0-14','2022',25.4877038842946,NULL,false,NULL,21),
+  ('wdi-population-0-14','2023',25.0570622244071,NULL,false,NULL,22),
+  ('wdi-population-0-14','2024',24.6239027058366,NULL,false,NULL,23),
+  ('wdi-population-0-14','2025',24.1952667831956,NULL,false,NULL,24),
+  ('wdi-researchers','2005',135.14649,NULL,false,NULL,0),
+  ('wdi-researchers','2010',156.19059,NULL,false,NULL,1),
+  ('wdi-researchers','2015',214.34935,NULL,false,NULL,2),
+  ('wdi-researchers','2018',250.00794,NULL,false,NULL,3),
+  ('wdi-researchers','2020',259.26325,NULL,false,NULL,4),
+  ('wdi-ip-payments','2001',317035850.702584,NULL,false,NULL,0),
+  ('wdi-ip-payments','2002',345233066.962673,NULL,false,NULL,1),
+  ('wdi-ip-payments','2003',549887942.05063,NULL,false,NULL,2),
+  ('wdi-ip-payments','2004',611481232.354589,NULL,false,NULL,3),
+  ('wdi-ip-payments','2005',671829366.31862,NULL,false,NULL,4),
+  ('wdi-ip-payments','2006',845949436.030585,NULL,false,NULL,5),
+  ('wdi-ip-payments','2007',1159824390.70936,NULL,false,NULL,6),
+  ('wdi-ip-payments','2008',1528826912.72299,NULL,false,NULL,7),
+  ('wdi-ip-payments','2009',1860070100.10474,NULL,false,NULL,8),
+  ('wdi-ip-payments','2010',2438302981.08653,NULL,false,NULL,9),
+  ('wdi-ip-payments','2011',2819291078.7559,NULL,false,NULL,10),
+  ('wdi-ip-payments','2012',3990055616.79302,NULL,false,NULL,11),
+  ('wdi-ip-payments','2013',3903908830.45921,NULL,false,NULL,12),
+  ('wdi-ip-payments','2014',4848711888.70729,NULL,false,NULL,13),
+  ('wdi-ip-payments','2015',5009034406.59605,NULL,false,NULL,14),
+  ('wdi-ip-payments','2016',5466041709.7527,NULL,false,NULL,15),
+  ('wdi-ip-payments','2017',6515405393.63595,NULL,false,NULL,16),
+  ('wdi-ip-payments','2018',7905957776.50493,NULL,false,NULL,17),
+  ('wdi-ip-payments','2019',7889685402.17332,NULL,false,NULL,18),
+  ('wdi-ip-payments','2020',7241107556.78618,NULL,false,NULL,19),
+  ('wdi-ip-payments','2021',8631569309.27649,NULL,false,NULL,20),
+  ('wdi-ip-payments','2022',10427794881.2932,NULL,false,NULL,21),
+  ('wdi-ip-payments','2023',14349449523.6213,NULL,false,NULL,22),
+  ('wdi-ip-payments','2024',16263058709.4908,NULL,false,NULL,23),
+  ('wdi-ip-payments','2025',18764908516.913,NULL,false,NULL,24),
+  ('wdi-child-stunting','2006',47.8,NULL,false,NULL,0),
+  ('wdi-child-stunting','2014',38.7,NULL,false,NULL,1),
+  ('wdi-child-stunting','2015',37.9,NULL,false,NULL,2),
+  ('wdi-child-stunting','2017',36.1,NULL,false,NULL,3),
+  ('wdi-child-stunting','2020',35.5,NULL,false,NULL,4),
+  ('wdi-clean-cooking','2001',23.8,NULL,false,NULL,0),
+  ('wdi-clean-cooking','2002',24.9,NULL,false,NULL,1),
+  ('wdi-clean-cooking','2003',26.2,NULL,false,NULL,2),
+  ('wdi-clean-cooking','2004',27.3,NULL,false,NULL,3),
+  ('wdi-clean-cooking','2005',28.3,NULL,false,NULL,4),
+  ('wdi-clean-cooking','2006',29.3,NULL,false,NULL,5),
+  ('wdi-clean-cooking','2007',30.7,NULL,false,NULL,6),
+  ('wdi-clean-cooking','2008',31.9,NULL,false,NULL,7),
+  ('wdi-clean-cooking','2009',33.6,NULL,false,NULL,8),
+  ('wdi-clean-cooking','2010',35,NULL,false,NULL,9),
+  ('wdi-clean-cooking','2011',36.95,NULL,false,NULL,10),
+  ('wdi-clean-cooking','2012',39.3,NULL,false,NULL,11),
+  ('wdi-clean-cooking','2013',42.4,NULL,false,NULL,12),
+  ('wdi-clean-cooking','2014',44.8,NULL,false,NULL,13),
+  ('wdi-clean-cooking','2015',48.4,NULL,false,NULL,14),
+  ('wdi-clean-cooking','2016',51.8,NULL,false,NULL,15),
+  ('wdi-clean-cooking','2017',55.3,NULL,false,NULL,16),
+  ('wdi-clean-cooking','2018',59,NULL,false,NULL,17),
+  ('wdi-clean-cooking','2019',62.7,NULL,false,NULL,18),
+  ('wdi-clean-cooking','2020',66.5,NULL,false,NULL,19),
+  ('wdi-clean-cooking','2021',70.2,NULL,false,NULL,20),
+  ('wdi-clean-cooking','2022',73.4,NULL,false,NULL,21),
+  ('wdi-clean-cooking','2023',76.7,NULL,false,NULL,22),
+  ('wdi-account-ownership-female','2011',26.4905002133377,NULL,false,NULL,0),
+  ('wdi-account-ownership-female','2014',43.1326096683799,NULL,false,NULL,1),
+  ('wdi-account-ownership-female','2017',76.6396327822793,NULL,false,NULL,2),
+  ('wdi-account-ownership-female','2021',77.552612718915,NULL,false,NULL,3),
+  ('wdi-account-ownership-female','2024',89.2482328079147,NULL,false,NULL,4),
+  ('wdi-market-cap-gdp','2001',30.6467519464107,NULL,false,NULL,0),
+  ('wdi-market-cap-gdp','2002',33.4380606971708,NULL,false,NULL,1),
+  ('wdi-market-cap-gdp','2003',50.8465706710106,NULL,false,NULL,2),
+  ('wdi-market-cap-gdp','2004',58.597294477825,NULL,false,NULL,3),
+  ('wdi-market-cap-gdp','2005',76.1521145313341,NULL,false,NULL,4),
+  ('wdi-market-cap-gdp','2006',95.2151519574149,NULL,false,NULL,5),
+  ('wdi-market-cap-gdp','2007',161.239453726325,NULL,false,NULL,6),
+  ('wdi-market-cap-gdp','2008',66.003104287215,NULL,false,NULL,7),
+  ('wdi-market-cap-gdp','2009',101.894485676839,NULL,false,NULL,8),
+  ('wdi-market-cap-gdp','2010',105.182951703662,NULL,false,NULL,9),
+  ('wdi-market-cap-gdp','2011',68.2700641693541,NULL,false,NULL,10),
+  ('wdi-market-cap-gdp','2012',76.0772432428783,NULL,false,NULL,11),
+  ('wdi-market-cap-gdp','2013',68.1342663963192,NULL,false,NULL,12),
+  ('wdi-market-cap-gdp','2014',82.7172077979209,NULL,false,NULL,13),
+  ('wdi-market-cap-gdp','2015',82.9615370858036,NULL,false,NULL,14),
+  ('wdi-market-cap-gdp','2016',76.0981248580096,NULL,false,NULL,15),
+  ('wdi-market-cap-gdp','2017',96.3987783868431,NULL,false,NULL,16),
+  ('wdi-market-cap-gdp','2018',153.160482470967,NULL,false,NULL,17),
+  ('wdi-market-cap-gdp','2019',76.2695069175453,NULL,false,NULL,18),
+  ('wdi-market-cap-gdp','2020',95.4245016969537,NULL,false,NULL,19),
+  ('wdi-market-cap-gdp','2021',112.02132346833,NULL,false,NULL,20),
+  ('wdi-market-cap-gdp','2022',104.228639351922,NULL,false,NULL,21),
+  ('wdi-market-cap-gdp','2023',123.971644540276,NULL,false,NULL,22),
+  ('wdi-market-cap-gdp','2024',136.443816484113,NULL,false,NULL,23),
+  ('wdi-market-cap-gdp','2025',266.92119852826,NULL,false,NULL,24),
   ('wdi-private-credit','2001',28.6194154254102,NULL,false,NULL,0),
   ('wdi-private-credit','2002',32.3064890735537,NULL,false,NULL,1),
   ('wdi-private-credit','2003',31.6262656186491,NULL,false,NULL,2),
@@ -3027,7 +3048,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-electricity-coal','2008',68.3001384598999,NULL,false,NULL,7),
   ('wdi-electricity-coal','2009',67.2645769493381,NULL,false,NULL,8),
   ('wdi-electricity-coal','2010',67.6732290874906,NULL,false,NULL,9),
-  ('wdi-electricity-coal','2011',67.7295275285747,NULL,false,NULL,10),
+  ('wdi-electricity-coal','2011',67.7295275285747,NULL,false,NULL,10);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-electricity-coal','2012',72.1827940395355,NULL,false,NULL,11),
   ('wdi-electricity-coal','2013',73.0460411698043,NULL,false,NULL,12),
   ('wdi-electricity-coal','2014',74.7943855237474,NULL,false,NULL,13),
@@ -3048,8 +3070,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-electricity-nuclear','2006',2.45040733688605,NULL,false,NULL,5),
   ('wdi-electricity-nuclear','2007',2.07462635437364,NULL,false,NULL,6),
   ('wdi-electricity-nuclear','2008',1.76648797055656,NULL,false,NULL,7),
-  ('wdi-electricity-nuclear','2009',2.04903568000475,NULL,false,NULL,8);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-electricity-nuclear','2009',2.04903568000475,NULL,false,NULL,8),
   ('wdi-electricity-nuclear','2010',2.70156019060882,NULL,false,NULL,9),
   ('wdi-electricity-nuclear','2011',3.04837634564945,NULL,false,NULL,10),
   ('wdi-electricity-nuclear','2012',2.94882929700398,NULL,false,NULL,11),
@@ -3278,7 +3299,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-bn-fin-totl-cd','2024',-30818003961.0456,NULL,false,NULL,23),
   ('wdi-bn-fin-totl-cd','2025',-17014157187.3761,NULL,false,NULL,24),
   ('wdi-bn-gsr-fcty-cd','2001',-4141838242.95872,NULL,false,NULL,0),
-  ('wdi-bn-gsr-fcty-cd','2002',-3909106938.85267,NULL,false,NULL,1),
+  ('wdi-bn-gsr-fcty-cd','2002',-3909106938.85267,NULL,false,NULL,1);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-bn-gsr-fcty-cd','2003',-4894896784.91885,NULL,false,NULL,2),
   ('wdi-bn-gsr-fcty-cd','2004',-4052167100.76616,NULL,false,NULL,3),
   ('wdi-bn-gsr-fcty-cd','2005',-6649958331.65172,NULL,false,NULL,4),
@@ -3299,8 +3321,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-bn-gsr-fcty-cd','2020',-32044833069.0406,NULL,false,NULL,19),
   ('wdi-bn-gsr-fcty-cd','2021',-37620114037.4454,NULL,false,NULL,20),
   ('wdi-bn-gsr-fcty-cd','2022',-41709031599.7156,NULL,false,NULL,21),
-  ('wdi-bn-gsr-fcty-cd','2023',-47525680473.0115,NULL,false,NULL,22);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-bn-gsr-fcty-cd','2023',-47525680473.0115,NULL,false,NULL,22),
   ('wdi-bn-gsr-fcty-cd','2024',-51278272225.5678,NULL,false,NULL,23),
   ('wdi-bn-gsr-fcty-cd','2025',-49048691737.1909,NULL,false,NULL,24),
   ('wdi-bn-gsr-gnfs-cd','2001',-9180938408.72285,NULL,false,NULL,0),
@@ -3529,7 +3550,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ne-con-govt-kd','2024',320162627637.677,NULL,false,NULL,23),
   ('wdi-ne-con-govt-kd','2025',341194220911.463,NULL,false,NULL,24),
   ('wdi-ne-con-govt-zs','2001',11.7614498890899,NULL,false,NULL,0),
-  ('wdi-ne-con-govt-zs','2002',11.3140950692424,NULL,false,NULL,1),
+  ('wdi-ne-con-govt-zs','2002',11.3140950692424,NULL,false,NULL,1);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-ne-con-govt-zs','2003',10.8762099129119,NULL,false,NULL,2),
   ('wdi-ne-con-govt-zs','2004',10.4047023481415,NULL,false,NULL,3),
   ('wdi-ne-con-govt-zs','2005',10.3661401972455,NULL,false,NULL,4),
@@ -3550,8 +3572,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ne-con-govt-zs','2020',11.6124524106018,NULL,false,NULL,19),
   ('wdi-ne-con-govt-zs','2021',10.4763782400684,NULL,false,NULL,20),
   ('wdi-ne-con-govt-zs','2022',11.0688036450937,NULL,false,NULL,21),
-  ('wdi-ne-con-govt-zs','2023',10.6054981056988,NULL,false,NULL,22);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-ne-con-govt-zs','2023',10.6054981056988,NULL,false,NULL,22),
   ('wdi-ne-con-govt-zs','2024',10.6747047439734,NULL,false,NULL,23),
   ('wdi-ne-con-govt-zs','2025',10.769509367472,NULL,false,NULL,24),
   ('wdi-ne-con-prvt-kd','2001',547966804541.322,NULL,false,NULL,0),
@@ -3780,7 +3801,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ne-gdi-ftot-kd','2024',1074125919425.71,NULL,false,NULL,23),
   ('wdi-ne-gdi-ftot-kd','2025',1150204050793.39,NULL,false,NULL,24),
   ('wdi-ne-gdi-stkb-cd','2001',-3169849092.81283,NULL,false,NULL,0),
-  ('wdi-ne-gdi-stkb-cd','2002',6922863915.10075,NULL,false,NULL,1),
+  ('wdi-ne-gdi-stkb-cd','2002',6922863915.10075,NULL,false,NULL,1);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-ne-gdi-stkb-cd','2003',9736996947.319,NULL,false,NULL,2),
   ('wdi-ne-gdi-stkb-cd','2004',21747530096.5137,NULL,false,NULL,3),
   ('wdi-ne-gdi-stkb-cd','2005',28745676785.8088,NULL,false,NULL,4),
@@ -3801,8 +3823,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ne-gdi-stkb-cd','2020',5181538734.94817,NULL,false,NULL,19),
   ('wdi-ne-gdi-stkb-cd','2021',28701481765.5631,NULL,false,NULL,20),
   ('wdi-ne-gdi-stkb-cd','2022',21573288852.0839,NULL,false,NULL,21),
-  ('wdi-ne-gdi-stkb-cd','2023',45757198143.3254,NULL,false,NULL,22);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-ne-gdi-stkb-cd','2023',45757198143.3254,NULL,false,NULL,22),
   ('wdi-ne-gdi-stkb-cd','2024',45202214134.8366,NULL,false,NULL,23),
   ('wdi-ne-gdi-stkb-cd','2025',47146877800.3932,NULL,false,NULL,24),
   ('wdi-ne-gdi-totl-kd','2001',177103830739.327,NULL,false,NULL,0),
@@ -4031,7 +4052,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-cm-mkt-trad-cd','2024',3347429290000,NULL,false,NULL,23),
   ('wdi-cm-mkt-trad-cd','2025',2874364660000,NULL,false,NULL,24),
   ('wdi-fd-ast-prvt-gd-zs','2001',28.6194154254102,NULL,false,NULL,0),
-  ('wdi-fd-ast-prvt-gd-zs','2002',32.3064890735537,NULL,false,NULL,1),
+  ('wdi-fd-ast-prvt-gd-zs','2002',32.3064890735537,NULL,false,NULL,1);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-fd-ast-prvt-gd-zs','2003',31.6262656186491,NULL,false,NULL,2),
   ('wdi-fd-ast-prvt-gd-zs','2004',36.1918038545968,NULL,false,NULL,3),
   ('wdi-fd-ast-prvt-gd-zs','2005',40.0679804780573,NULL,false,NULL,4),
@@ -4052,8 +4074,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-fd-ast-prvt-gd-zs','2020',40.7867848551821,NULL,false,NULL,19),
   ('wdi-fd-ast-prvt-gd-zs','2021',36.8920885102897,NULL,false,NULL,20),
   ('wdi-fd-ast-prvt-gd-zs','2022',38.1859763563586,NULL,false,NULL,21),
-  ('wdi-fd-ast-prvt-gd-zs','2023',40.8940758962907,NULL,false,NULL,22);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-fd-ast-prvt-gd-zs','2023',40.8940758962907,NULL,false,NULL,22),
   ('wdi-fd-ast-prvt-gd-zs','2024',41.6079694330613,NULL,false,NULL,23),
   ('wdi-fd-ast-prvt-gd-zs','2025',44.0250903358104,NULL,false,NULL,24),
   ('wdi-fi-res-totl-mo','2001',7.45295243694093,NULL,false,NULL,0),
@@ -4282,7 +4303,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-nv-mnf-chem-zs-un','2002',19.2715566967752,NULL,false,NULL,1),
   ('wdi-nv-mnf-chem-zs-un','2003',18.0399611619652,NULL,false,NULL,2),
   ('wdi-nv-mnf-chem-zs-un','2004',16.6269788000003,NULL,false,NULL,3),
-  ('wdi-nv-mnf-chem-zs-un','2005',16.1488323143846,NULL,false,NULL,4),
+  ('wdi-nv-mnf-chem-zs-un','2005',16.1488323143846,NULL,false,NULL,4);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-nv-mnf-chem-zs-un','2006',14.5403423298588,NULL,false,NULL,5),
   ('wdi-nv-mnf-chem-zs-un','2007',13.6179330194102,NULL,false,NULL,6),
   ('wdi-nv-mnf-chem-zs-un','2008',15.4644425152874,NULL,false,NULL,7),
@@ -4303,8 +4325,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-nv-mnf-chem-zs-un','2023',16.9978382080597,NULL,false,NULL,22),
   ('wdi-nv-mnf-fbto-zs-un','2001',13.2664499245273,NULL,false,NULL,0),
   ('wdi-nv-mnf-fbto-zs-un','2002',11.9065632458802,NULL,false,NULL,1),
-  ('wdi-nv-mnf-fbto-zs-un','2003',10.2310433007698,NULL,false,NULL,2);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-nv-mnf-fbto-zs-un','2003',10.2310433007698,NULL,false,NULL,2),
   ('wdi-nv-mnf-fbto-zs-un','2004',9.05657058477719,NULL,false,NULL,3),
   ('wdi-nv-mnf-fbto-zs-un','2005',9.30843642581898,NULL,false,NULL,4),
   ('wdi-nv-mnf-fbto-zs-un','2006',10.2965401048161,NULL,false,NULL,5),
@@ -4533,7 +4554,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ny-adj-aedu-gn-zs','2006',3.08,NULL,false,NULL,5),
   ('wdi-ny-adj-aedu-gn-zs','2007',3.08,NULL,false,NULL,6),
   ('wdi-ny-adj-aedu-gn-zs','2008',3.08,NULL,false,NULL,7),
-  ('wdi-ny-adj-aedu-gn-zs','2009',3.08,NULL,false,NULL,8),
+  ('wdi-ny-adj-aedu-gn-zs','2009',3.08,NULL,false,NULL,8);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-ny-adj-aedu-gn-zs','2010',3.08,NULL,false,NULL,9),
   ('wdi-ny-adj-aedu-gn-zs','2011',3.08,NULL,false,NULL,10),
   ('wdi-ny-adj-aedu-gn-zs','2012',3.08,NULL,false,NULL,11),
@@ -4554,8 +4576,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ny-adj-dco2-cd','2006',29801552467.8572,NULL,false,NULL,5),
   ('wdi-ny-adj-dco2-cd','2007',34425396656.3749,NULL,false,NULL,6),
   ('wdi-ny-adj-dco2-cd','2008',38227139775.8079,NULL,false,NULL,7),
-  ('wdi-ny-adj-dco2-cd','2009',43218037518.5465,NULL,false,NULL,8);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-ny-adj-dco2-cd','2009',43218037518.5465,NULL,false,NULL,8),
   ('wdi-ny-adj-dco2-cd','2010',47439310583.2614,NULL,false,NULL,9),
   ('wdi-ny-adj-dco2-cd','2011',52400720402.4541,NULL,false,NULL,10),
   ('wdi-ny-adj-dco2-cd','2012',59326391664.2192,NULL,false,NULL,11),
@@ -4784,7 +4805,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ny-gdp-ngas-rt-zs','2004',0.203889436106983,NULL,false,NULL,3),
   ('wdi-ny-gdp-ngas-rt-zs','2005',0.220626603025343,NULL,false,NULL,4),
   ('wdi-ny-gdp-ngas-rt-zs','2006',0.198610657575394,NULL,false,NULL,5),
-  ('wdi-ny-gdp-ngas-rt-zs','2007',0.0988812569418624,NULL,false,NULL,6),
+  ('wdi-ny-gdp-ngas-rt-zs','2007',0.0988812569418624,NULL,false,NULL,6);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-ny-gdp-ngas-rt-zs','2008',0.100824736385287,NULL,false,NULL,7),
   ('wdi-ny-gdp-ngas-rt-zs','2009',0.139884600408234,NULL,false,NULL,8),
   ('wdi-ny-gdp-ngas-rt-zs','2010',0.158053469617224,NULL,false,NULL,9),
@@ -4805,8 +4827,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ny-gdp-petr-rt-zs','2004',1.06043123794654,NULL,false,NULL,3),
   ('wdi-ny-gdp-petr-rt-zs','2005',1.28780837185882,NULL,false,NULL,4),
   ('wdi-ny-gdp-petr-rt-zs','2006',1.33146821912931,NULL,false,NULL,5),
-  ('wdi-ny-gdp-petr-rt-zs','2007',1.15214697247781,NULL,false,NULL,6);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-ny-gdp-petr-rt-zs','2007',1.15214697247781,NULL,false,NULL,6),
   ('wdi-ny-gdp-petr-rt-zs','2008',1.58498271088646,NULL,false,NULL,7),
   ('wdi-ny-gdp-petr-rt-zs','2009',0.638793187629364,NULL,false,NULL,8),
   ('wdi-ny-gdp-petr-rt-zs','2010',0.815747227430213,NULL,false,NULL,9),
@@ -5035,7 +5056,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ny-adj-svnx-gn-zs','2002',16.682904686271,NULL,false,NULL,1),
   ('wdi-ny-adj-svnx-gn-zs','2003',19.4148807841278,NULL,false,NULL,2),
   ('wdi-ny-adj-svnx-gn-zs','2004',21.5718160075896,NULL,false,NULL,3),
-  ('wdi-ny-adj-svnx-gn-zs','2005',22.4181696427672,NULL,false,NULL,4),
+  ('wdi-ny-adj-svnx-gn-zs','2005',22.4181696427672,NULL,false,NULL,4);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-ny-adj-svnx-gn-zs','2006',24.3131261657517,NULL,false,NULL,5),
   ('wdi-ny-adj-svnx-gn-zs','2007',24.8912545777431,NULL,false,NULL,6),
   ('wdi-ny-adj-svnx-gn-zs','2008',22.5574136912268,NULL,false,NULL,7),
@@ -5056,8 +5078,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ny-gdp-coal-rt-zs','2002',0.568997608664759,NULL,false,NULL,1),
   ('wdi-ny-gdp-coal-rt-zs','2003',0.573742461427988,NULL,false,NULL,2),
   ('wdi-ny-gdp-coal-rt-zs','2004',1.35785293463509,NULL,false,NULL,3),
-  ('wdi-ny-gdp-coal-rt-zs','2005',1.09839598619948,NULL,false,NULL,4);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-ny-gdp-coal-rt-zs','2005',1.09839598619948,NULL,false,NULL,4),
   ('wdi-ny-gdp-coal-rt-zs','2006',1.10274899573459,NULL,false,NULL,5),
   ('wdi-ny-gdp-coal-rt-zs','2007',1.18900229850656,NULL,false,NULL,6),
   ('wdi-ny-gdp-coal-rt-zs','2008',2.84447501265705,NULL,false,NULL,7),
@@ -5286,7 +5307,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-gfdd-di-08','2021',72.09265,NULL,false,NULL,20),
   ('wdi-gfdd-di-12','2001',28.61942,NULL,false,NULL,0),
   ('wdi-gfdd-di-12','2002',32.30649,NULL,false,NULL,1),
-  ('wdi-gfdd-di-12','2003',31.62627,NULL,false,NULL,2),
+  ('wdi-gfdd-di-12','2003',31.62627,NULL,false,NULL,2);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-gfdd-di-12','2004',36.19177,NULL,false,NULL,3),
   ('wdi-gfdd-di-12','2005',41.63029,NULL,false,NULL,4),
   ('wdi-gfdd-di-12','2006',45.84749,NULL,false,NULL,5),
@@ -5307,8 +5329,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-gfdd-di-12','2021',51.88083,NULL,false,NULL,20),
   ('wdi-gfdd-ei-01','2001',3.36064,NULL,false,NULL,0),
   ('wdi-gfdd-ei-01','2002',3.047019,NULL,false,NULL,1),
-  ('wdi-gfdd-ei-01','2003',3.342012,NULL,false,NULL,2);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-gfdd-ei-01','2003',3.342012,NULL,false,NULL,2),
   ('wdi-gfdd-ei-01','2004',3.719435,NULL,false,NULL,3),
   ('wdi-gfdd-ei-01','2005',3.525682,NULL,false,NULL,4),
   ('wdi-gfdd-ei-01','2006',3.37657,NULL,false,NULL,5),
@@ -5537,7 +5558,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-gfdd-si-04','2019',76.92273,NULL,false,NULL,18),
   ('wdi-gfdd-si-04','2020',73.69537,NULL,false,NULL,19),
   ('wdi-gfdd-si-04','2021',71.9641,NULL,false,NULL,20),
-  ('wdi-gfdd-si-06','2001',17.20102,NULL,false,NULL,0),
+  ('wdi-gfdd-si-06','2001',17.20102,NULL,false,NULL,0);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-gfdd-si-06','2002',15.70645,NULL,false,NULL,1),
   ('wdi-gfdd-si-06','2003',11.17043,NULL,false,NULL,2),
   ('wdi-gfdd-si-06','2004',11.4226,NULL,false,NULL,3),
@@ -5558,8 +5580,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-gfdd-si-06','2019',12.03945,NULL,false,NULL,18),
   ('wdi-gfdd-si-06','2020',12.95146,NULL,false,NULL,19),
   ('wdi-gfdd-si-06','2021',14.02921,NULL,false,NULL,20),
-  ('wdi-gfdd-sm-01','2001',25.56272,NULL,false,NULL,0);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-gfdd-sm-01','2001',25.56272,NULL,false,NULL,0),
   ('wdi-gfdd-sm-01','2002',27.19138,NULL,false,NULL,1),
   ('wdi-gfdd-sm-01','2003',38.83801,NULL,false,NULL,2),
   ('wdi-gfdd-sm-01','2004',44.10107,NULL,false,NULL,3),
@@ -5788,7 +5809,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-gfdd-em-01','2006',71.15281,NULL,false,NULL,5),
   ('wdi-gfdd-em-01','2007',55.58062,NULL,false,NULL,6),
   ('wdi-gfdd-em-01','2008',131.0811,NULL,false,NULL,7),
-  ('wdi-gfdd-em-01','2009',76.84672,NULL,false,NULL,8),
+  ('wdi-gfdd-em-01','2009',76.84672,NULL,false,NULL,8);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-gfdd-em-01','2010',60.19358,NULL,false,NULL,9),
   ('wdi-gfdd-em-01','2011',59.51004,NULL,false,NULL,10),
   ('wdi-gfdd-em-01','2012',45.84522,NULL,false,NULL,11),
@@ -5809,8 +5831,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-gfdd-om-01','2007',4.130291,NULL,false,NULL,6),
   ('wdi-gfdd-om-01','2008',4.098546,NULL,false,NULL,7),
   ('wdi-gfdd-om-01','2009',4.069059,NULL,false,NULL,8),
-  ('wdi-gfdd-om-01','2010',4.078487,NULL,false,NULL,9);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-gfdd-om-01','2010',4.078487,NULL,false,NULL,9),
   ('wdi-gfdd-om-01','2011',4.088658,NULL,false,NULL,10),
   ('wdi-gfdd-om-01','2012',4.101028,NULL,false,NULL,11),
   ('wdi-gfdd-om-01','2013',4.133218,NULL,false,NULL,12),
@@ -6039,7 +6060,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-gc-tax-gsrv-va-zs','2005',5.16400553186491,NULL,false,NULL,4),
   ('wdi-gc-tax-gsrv-va-zs','2006',5.08324317963477,NULL,false,NULL,5),
   ('wdi-gc-tax-gsrv-va-zs','2007',4.81813535497241,NULL,false,NULL,6),
-  ('wdi-gc-tax-gsrv-va-zs','2008',4.36841895939578,NULL,false,NULL,7),
+  ('wdi-gc-tax-gsrv-va-zs','2008',4.36841895939578,NULL,false,NULL,7);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-gc-tax-gsrv-va-zs','2009',3.5367614505739,NULL,false,NULL,8),
   ('wdi-gc-tax-gsrv-va-zs','2010',3.78202060517279,NULL,false,NULL,9),
   ('wdi-gc-tax-gsrv-va-zs','2011',3.80984179574832,NULL,false,NULL,10),
@@ -6060,8 +6082,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-gc-tax-impt-zs','2007',17.3311169069387,NULL,false,NULL,6),
   ('wdi-gc-tax-impt-zs','2008',16.206727925749,NULL,false,NULL,7),
   ('wdi-gc-tax-impt-zs','2009',13.3289673624999,NULL,false,NULL,8),
-  ('wdi-gc-tax-impt-zs','2010',17.1081566364718,NULL,false,NULL,9);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-gc-tax-impt-zs','2010',17.1081566364718,NULL,false,NULL,9),
   ('wdi-gc-tax-impt-zs','2011',16.7873089424494,NULL,false,NULL,10),
   ('wdi-gc-tax-impt-zs','2012',17.3183248113882,NULL,false,NULL,11),
   ('wdi-gc-tax-impt-zs','2013',15.1524027608082,NULL,false,NULL,12),
@@ -6290,7 +6311,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-gfdd-si-07','2014',48.721462,NULL,false,NULL,11),
   ('wdi-gfdd-si-07','2015',45.70577,NULL,false,NULL,12),
   ('wdi-gfdd-si-07','2016',41.080993,NULL,false,NULL,13),
-  ('wdi-gfdd-si-07','2017',44.285406,NULL,false,NULL,14),
+  ('wdi-gfdd-si-07','2017',44.285406,NULL,false,NULL,14);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-gfdd-si-07','2018',66.172248,NULL,false,NULL,15),
   ('wdi-gfdd-si-07','2019',42.324298,NULL,false,NULL,16),
   ('wdi-gfdd-si-07','2020',58.256805,NULL,false,NULL,17),
@@ -6311,8 +6333,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-gc-tax-othr-rv-zs','2015',0.0643224699828474,NULL,false,NULL,14),
   ('wdi-gc-tax-othr-rv-zs','2016',0.0000505232950282551,NULL,false,NULL,15),
   ('wdi-gc-tax-othr-rv-zs','2018',0.000360684434783445,NULL,false,NULL,16),
-  ('wdi-gc-tax-othr-rv-zs','2022',0.957011369408913,NULL,false,NULL,17);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-gc-tax-othr-rv-zs','2022',0.957011369408913,NULL,false,NULL,17),
   ('wdi-gc-xpn-othr-zs','2002',7.34871469343077,NULL,false,NULL,0),
   ('wdi-gc-xpn-othr-zs','2003',3.01533991250756,NULL,false,NULL,1),
   ('wdi-gc-xpn-othr-zs','2004',5.66960388052335,NULL,false,NULL,2),
@@ -6541,7 +6562,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-se-sec-enrr-fe','2021',78.4542146302356,NULL,false,NULL,20),
   ('wdi-se-sec-enrr-fe','2022',80.4518698611689,NULL,false,NULL,21),
   ('wdi-se-sec-enrr-fe','2023',78.7503140925354,NULL,false,NULL,22),
-  ('wdi-se-sec-enrr-fe','2024',78.7182686071249,NULL,false,NULL,23),
+  ('wdi-se-sec-enrr-fe','2024',78.7182686071249,NULL,false,NULL,23);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-se-sec-enrr-fe','2025',81.0166742736519,NULL,false,NULL,24),
   ('wdi-se-sec-enrr-ma','2001',54.2367706298828,NULL,false,NULL,0),
   ('wdi-se-sec-enrr-ma','2002',55.7173500061035,NULL,false,NULL,1),
@@ -6562,8 +6584,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-se-sec-enrr-ma','2017',75.0866012573242,NULL,false,NULL,16),
   ('wdi-se-sec-enrr-ma','2018',76.4107971191406,NULL,false,NULL,17),
   ('wdi-se-sec-enrr-ma','2019',76.0821914672852,NULL,false,NULL,18),
-  ('wdi-se-sec-enrr-ma','2020',78.6095664050448,NULL,false,NULL,19);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-se-sec-enrr-ma','2020',78.6095664050448,NULL,false,NULL,19),
   ('wdi-se-sec-enrr-ma','2021',82.6116113019876,NULL,false,NULL,20),
   ('wdi-se-sec-enrr-ma','2022',81.8421926159795,NULL,false,NULL,21),
   ('wdi-se-sec-enrr-ma','2023',78.9679674584088,NULL,false,NULL,22),
@@ -6792,7 +6813,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-se-prm-cmpt-zs','2017',98.5887118701809,NULL,false,NULL,10),
   ('wdi-se-prm-cmpt-zs','2019',96.2056732177734,NULL,false,NULL,11),
   ('wdi-se-prm-cmpt-zs','2020',98.1474685668945,NULL,false,NULL,12),
-  ('wdi-se-prm-cmpt-zs','2021',99.085491664945,NULL,false,NULL,13),
+  ('wdi-se-prm-cmpt-zs','2021',99.085491664945,NULL,false,NULL,13);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-se-prm-cmpt-zs','2023',93.4889604461665,NULL,false,NULL,14),
   ('wdi-se-prm-cmpt-zs','2024',94.4876304742988,NULL,false,NULL,15),
   ('wdi-se-prm-cmpt-zs','2025',90.2563989745259,NULL,false,NULL,16),
@@ -6813,8 +6835,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-se-prm-cmpt-fe-zs','2023',93.6491349800247,NULL,false,NULL,14),
   ('wdi-se-prm-cmpt-fe-zs','2024',95.1962200407252,NULL,false,NULL,15),
   ('wdi-se-prm-cmpt-fe-zs','2025',90.992252409282,NULL,false,NULL,16),
-  ('wdi-se-prm-cmpt-ma-zs','2001',81.5768280029297,NULL,false,NULL,0);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-se-prm-cmpt-ma-zs','2001',81.5768280029297,NULL,false,NULL,0),
   ('wdi-se-prm-cmpt-ma-zs','2002',84.6482086181641,NULL,false,NULL,1),
   ('wdi-se-prm-cmpt-ma-zs','2003',85.6525726318359,NULL,false,NULL,2),
   ('wdi-se-prm-cmpt-ma-zs','2008',97.6706085205078,NULL,false,NULL,3),
@@ -7043,7 +7064,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-se-adt-litr-fe-zs','2001',47.8400001525879,NULL,false,NULL,0),
   ('wdi-se-adt-litr-fe-zs','2006',50.8199996948242,NULL,false,NULL,1),
   ('wdi-se-adt-litr-fe-zs','2010',57.6517318985171,NULL,false,NULL,2),
-  ('wdi-se-adt-litr-fe-zs','2011',59.2799987792969,NULL,false,NULL,3),
+  ('wdi-se-adt-litr-fe-zs','2011',59.2799987792969,NULL,false,NULL,3);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-se-adt-litr-fe-zs','2012',59.9377489448701,NULL,false,NULL,4),
   ('wdi-se-adt-litr-fe-zs','2018',65.2235287519263,NULL,false,NULL,5),
   ('wdi-se-adt-litr-fe-zs','2019',66.9856882300986,NULL,false,NULL,6),
@@ -7064,8 +7086,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-se-adt-litr-ma-zs','2022',83.4499969482422,NULL,false,NULL,9),
   ('wdi-se-adt-litr-ma-zs','2023',88.3099975585938,NULL,false,NULL,10),
   ('wdi-se-adt-litr-ma-zs','2024',85.6937156128627,NULL,false,NULL,11),
-  ('wdi-se-prm-cuat-fe-zs','2005',32.2060043455237,NULL,false,NULL,0);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-se-prm-cuat-fe-zs','2005',32.2060043455237,NULL,false,NULL,0),
   ('wdi-se-prm-cuat-fe-zs','2010',39.3457084157553,NULL,false,NULL,1),
   ('wdi-se-prm-cuat-fe-zs','2011',40.330020904541,NULL,false,NULL,2),
   ('wdi-se-prm-cuat-fe-zs','2012',41.0819108172599,NULL,false,NULL,3),
@@ -7294,7 +7315,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-eg-elc-accs-ru-zs','2022',99.1,NULL,false,NULL,21),
   ('wdi-eg-elc-accs-ru-zs','2023',99.2,NULL,false,NULL,22),
   ('wdi-eg-elc-accs-ru-zs','2024',99.9,NULL,false,NULL,23),
-  ('wdi-eg-elc-accs-ur-zs','2001',89.9,NULL,false,NULL,0),
+  ('wdi-eg-elc-accs-ur-zs','2001',89.9,NULL,false,NULL,0);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-eg-elc-accs-ur-zs','2002',90.4,NULL,false,NULL,1),
   ('wdi-eg-elc-accs-ur-zs','2003',90.9,NULL,false,NULL,2),
   ('wdi-eg-elc-accs-ur-zs','2004',91.3,NULL,false,NULL,3),
@@ -7315,8 +7337,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-eg-elc-accs-ur-zs','2019',99.8,NULL,false,NULL,18),
   ('wdi-eg-elc-accs-ur-zs','2020',99,NULL,false,NULL,19),
   ('wdi-eg-elc-accs-ur-zs','2021',100,NULL,false,NULL,20),
-  ('wdi-eg-elc-accs-ur-zs','2022',100,NULL,false,NULL,21);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-eg-elc-accs-ur-zs','2022',100,NULL,false,NULL,21),
   ('wdi-eg-elc-accs-ur-zs','2023',100,NULL,false,NULL,22),
   ('wdi-eg-elc-accs-ur-zs','2024',100,NULL,false,NULL,23),
   ('wdi-en-ghg-all-mt-ce-ar5','2001',1859.4487,NULL,false,NULL,0),
@@ -7545,7 +7566,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-en-ghg-ch4-tr-mt-ce-ar5','2008',1.2654,NULL,false,NULL,7),
   ('wdi-en-ghg-ch4-tr-mt-ce-ar5','2009',1.4218,NULL,false,NULL,8),
   ('wdi-en-ghg-ch4-tr-mt-ce-ar5','2010',1.544,NULL,false,NULL,9),
-  ('wdi-en-ghg-ch4-tr-mt-ce-ar5','2011',1.5473,NULL,false,NULL,10),
+  ('wdi-en-ghg-ch4-tr-mt-ce-ar5','2011',1.5473,NULL,false,NULL,10);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-en-ghg-ch4-tr-mt-ce-ar5','2012',1.5091,NULL,false,NULL,11),
   ('wdi-en-ghg-ch4-tr-mt-ce-ar5','2013',1.4786,NULL,false,NULL,12),
   ('wdi-en-ghg-ch4-tr-mt-ce-ar5','2014',1.5026,NULL,false,NULL,13),
@@ -7566,8 +7588,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-en-ghg-ch4-wa-mt-ce-ar5','2005',93.9787,NULL,false,NULL,4),
   ('wdi-en-ghg-ch4-wa-mt-ce-ar5','2006',96.1657,NULL,false,NULL,5),
   ('wdi-en-ghg-ch4-wa-mt-ce-ar5','2007',98.3008,NULL,false,NULL,6),
-  ('wdi-en-ghg-ch4-wa-mt-ce-ar5','2008',99.3234,NULL,false,NULL,7);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-en-ghg-ch4-wa-mt-ce-ar5','2008',99.3234,NULL,false,NULL,7),
   ('wdi-en-ghg-ch4-wa-mt-ce-ar5','2009',100.5416,NULL,false,NULL,8),
   ('wdi-en-ghg-ch4-wa-mt-ce-ar5','2010',102.9249,NULL,false,NULL,9),
   ('wdi-en-ghg-ch4-wa-mt-ce-ar5','2011',105.0679,NULL,false,NULL,10),
@@ -7796,7 +7817,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-en-ghg-co2-rt-gdp-kd','2018',0.987541064279498,NULL,false,NULL,17),
   ('wdi-en-ghg-co2-rt-gdp-kd','2019',0.948787771578471,NULL,false,NULL,18),
   ('wdi-en-ghg-co2-rt-gdp-kd','2020',0.930196032104728,NULL,false,NULL,19),
-  ('wdi-en-ghg-co2-rt-gdp-kd','2021',0.934727877891927,NULL,false,NULL,20),
+  ('wdi-en-ghg-co2-rt-gdp-kd','2021',0.934727877891927,NULL,false,NULL,20);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-en-ghg-co2-rt-gdp-kd','2022',0.938559544252599,NULL,false,NULL,21),
   ('wdi-en-ghg-co2-rt-gdp-kd','2023',0.940133008676358,NULL,false,NULL,22),
   ('wdi-en-ghg-co2-rt-gdp-kd','2024',0.9183798922153,NULL,false,NULL,23),
@@ -7817,8 +7839,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-en-ghg-co2-rt-gdp-pp-kd','2015',0.272229702035272,NULL,false,NULL,14),
   ('wdi-en-ghg-co2-rt-gdp-pp-kd','2016',0.255192757114799,NULL,false,NULL,15),
   ('wdi-en-ghg-co2-rt-gdp-pp-kd','2017',0.252310872154683,NULL,false,NULL,16),
-  ('wdi-en-ghg-co2-rt-gdp-pp-kd','2018',0.248229813137767,NULL,false,NULL,17);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-en-ghg-co2-rt-gdp-pp-kd','2018',0.248229813137767,NULL,false,NULL,17),
   ('wdi-en-ghg-co2-rt-gdp-pp-kd','2019',0.238488726965652,NULL,false,NULL,18),
   ('wdi-en-ghg-co2-rt-gdp-pp-kd','2020',0.233815479257375,NULL,false,NULL,19),
   ('wdi-en-ghg-co2-rt-gdp-pp-kd','2021',0.234954610857686,NULL,false,NULL,20),
@@ -8047,7 +8068,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-en-ghg-n2o-pi-mt-ce-ar5','2004',4.3908,NULL,false,NULL,3),
   ('wdi-en-ghg-n2o-pi-mt-ce-ar5','2005',4.8243,NULL,false,NULL,4),
   ('wdi-en-ghg-n2o-pi-mt-ce-ar5','2006',5.8275,NULL,false,NULL,5),
-  ('wdi-en-ghg-n2o-pi-mt-ce-ar5','2007',7.3162,NULL,false,NULL,6),
+  ('wdi-en-ghg-n2o-pi-mt-ce-ar5','2007',7.3162,NULL,false,NULL,6);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-en-ghg-n2o-pi-mt-ce-ar5','2008',7.7954,NULL,false,NULL,7),
   ('wdi-en-ghg-n2o-pi-mt-ce-ar5','2009',9.0997,NULL,false,NULL,8),
   ('wdi-en-ghg-n2o-pi-mt-ce-ar5','2010',10.3898,NULL,false,NULL,9),
@@ -8068,8 +8090,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-en-ghg-n2o-tr-mt-ce-ar5','2001',2.5157,NULL,false,NULL,0),
   ('wdi-en-ghg-n2o-tr-mt-ce-ar5','2002',2.5522,NULL,false,NULL,1),
   ('wdi-en-ghg-n2o-tr-mt-ce-ar5','2003',2.4719,NULL,false,NULL,2),
-  ('wdi-en-ghg-n2o-tr-mt-ce-ar5','2004',2.7235,NULL,false,NULL,3);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-en-ghg-n2o-tr-mt-ce-ar5','2004',2.7235,NULL,false,NULL,3),
   ('wdi-en-ghg-n2o-tr-mt-ce-ar5','2005',2.8862,NULL,false,NULL,4),
   ('wdi-en-ghg-n2o-tr-mt-ce-ar5','2006',2.9797,NULL,false,NULL,5),
   ('wdi-en-ghg-n2o-tr-mt-ce-ar5','2007',3.688,NULL,false,NULL,6),
@@ -8298,7 +8319,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-eg-elc-loss-zs','2016',17.3912982792107,NULL,false,NULL,15),
   ('wdi-eg-elc-loss-zs','2017',17.1759941089838,NULL,false,NULL,16),
   ('wdi-eg-elc-loss-zs','2018',16.7930129549492,NULL,false,NULL,17),
-  ('wdi-eg-elc-loss-zs','2019',16.4401872729006,NULL,false,NULL,18),
+  ('wdi-eg-elc-loss-zs','2019',16.4401872729006,NULL,false,NULL,18);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-eg-elc-loss-zs','2020',17.7241293592232,NULL,false,NULL,19),
   ('wdi-eg-elc-loss-zs','2021',16.6469287712518,NULL,false,NULL,20),
   ('wdi-eg-elc-loss-zs','2022',14.9056434964792,NULL,false,NULL,21),
@@ -8319,8 +8341,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-eg-elc-ngas-zs','2014',4.59565914215087,NULL,false,NULL,13),
   ('wdi-eg-elc-ngas-zs','2015',4.89087484984382,NULL,false,NULL,14),
   ('wdi-eg-elc-ngas-zs','2016',4.91740811744664,NULL,false,NULL,15),
-  ('wdi-eg-elc-ngas-zs','2017',4.91816414320679,NULL,false,NULL,16);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-eg-elc-ngas-zs','2017',4.91816414320679,NULL,false,NULL,16),
   ('wdi-eg-elc-ngas-zs','2018',4.23867141221502,NULL,false,NULL,17),
   ('wdi-eg-elc-ngas-zs','2019',4.30619568669868,NULL,false,NULL,18),
   ('wdi-eg-elc-ngas-zs','2020',4.30431707156769,NULL,false,NULL,19),
@@ -8549,7 +8570,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-en-atm-pm25-mc-m3','2013',52.2693789873114,NULL,false,NULL,12),
   ('wdi-en-atm-pm25-mc-m3','2014',51.6872206933655,NULL,false,NULL,13),
   ('wdi-en-atm-pm25-mc-m3','2015',51.4355933740253,NULL,false,NULL,14),
-  ('wdi-en-atm-pm25-mc-m3','2016',54.4218755239322,NULL,false,NULL,15),
+  ('wdi-en-atm-pm25-mc-m3','2016',54.4218755239322,NULL,false,NULL,15);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-en-atm-pm25-mc-m3','2017',55.1724251484484,NULL,false,NULL,16),
   ('wdi-en-atm-pm25-mc-m3','2018',56.6795240921875,NULL,false,NULL,17),
   ('wdi-en-atm-pm25-mc-m3','2019',53.5981486621548,NULL,false,NULL,18),
@@ -8570,8 +8592,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-en-ghg-all-lu-mt-ce-ar5','2011',2647.5491,NULL,false,NULL,10),
   ('wdi-en-ghg-all-lu-mt-ce-ar5','2012',2673.2727,NULL,false,NULL,11),
   ('wdi-en-ghg-all-lu-mt-ce-ar5','2013',2709.57,NULL,false,NULL,12),
-  ('wdi-en-ghg-all-lu-mt-ce-ar5','2014',2953.1243,NULL,false,NULL,13);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-en-ghg-all-lu-mt-ce-ar5','2014',2953.1243,NULL,false,NULL,13),
   ('wdi-en-ghg-all-lu-mt-ce-ar5','2015',3014.3661,NULL,false,NULL,14),
   ('wdi-en-ghg-all-lu-mt-ce-ar5','2016',3046.0994,NULL,false,NULL,15),
   ('wdi-en-ghg-all-lu-mt-ce-ar5','2017',3183.7225,NULL,false,NULL,16),
@@ -8800,7 +8821,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-er-h2o-fwst-zs','2014',66.49209283,NULL,false,NULL,13),
   ('wdi-er-h2o-fwst-zs','2015',66.49209283,NULL,false,NULL,14),
   ('wdi-er-h2o-fwst-zs','2016',66.49209283,NULL,false,NULL,15),
-  ('wdi-er-h2o-fwst-zs','2017',66.49209283,NULL,false,NULL,16),
+  ('wdi-er-h2o-fwst-zs','2017',66.49209283,NULL,false,NULL,16);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-er-h2o-fwst-zs','2018',66.49209283,NULL,false,NULL,17),
   ('wdi-er-h2o-fwst-zs','2019',66.49209283,NULL,false,NULL,18),
   ('wdi-er-h2o-fwst-zs','2020',66.49209283,NULL,false,NULL,19),
@@ -8821,8 +8843,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-er-h2o-fwtl-k3','2013',647.5,NULL,false,NULL,12),
   ('wdi-er-h2o-fwtl-k3','2014',647.5,NULL,false,NULL,13),
   ('wdi-er-h2o-fwtl-k3','2015',647.5,NULL,false,NULL,14),
-  ('wdi-er-h2o-fwtl-k3','2016',647.5,NULL,false,NULL,15);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-er-h2o-fwtl-k3','2016',647.5,NULL,false,NULL,15),
   ('wdi-er-h2o-fwtl-k3','2017',647.5,NULL,false,NULL,16),
   ('wdi-er-h2o-fwtl-k3','2018',647.5,NULL,false,NULL,17),
   ('wdi-er-h2o-fwtl-k3','2019',647.5,NULL,false,NULL,18),
@@ -9051,7 +9072,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-en-atm-pm25-mc-zs','2013',100,NULL,false,NULL,4),
   ('wdi-en-atm-pm25-mc-zs','2014',100,NULL,false,NULL,5),
   ('wdi-en-atm-pm25-mc-zs','2015',100,NULL,false,NULL,6),
-  ('wdi-en-atm-pm25-mc-zs','2016',100,NULL,false,NULL,7),
+  ('wdi-en-atm-pm25-mc-zs','2016',100,NULL,false,NULL,7);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-en-atm-pm25-mc-zs','2017',100,NULL,false,NULL,8),
   ('wdi-ie-ppi-engy-cd','2001',240000000,NULL,false,NULL,0),
   ('wdi-ie-ppi-engy-cd','2002',390320000,NULL,false,NULL,1),
@@ -9072,8 +9094,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ie-ppi-engy-cd','2017',1311630000,NULL,false,NULL,16),
   ('wdi-ie-ppi-engy-cd','2018',1639510000,NULL,false,NULL,17),
   ('wdi-ie-ppi-engy-cd','2019',856350000,NULL,false,NULL,18),
-  ('wdi-ie-ppi-engy-cd','2020',3303310000,NULL,false,NULL,19);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-ie-ppi-engy-cd','2020',3303310000,NULL,false,NULL,19),
   ('wdi-ie-ppi-engy-cd','2021',1621240000,NULL,false,NULL,20),
   ('wdi-ie-ppi-engy-cd','2022',1568900000,NULL,false,NULL,21),
   ('wdi-ie-ppi-engy-cd','2023',6015150000,NULL,false,NULL,22),
@@ -9302,7 +9323,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-is-rrs-pasg-km','2010',903465,NULL,false,NULL,9),
   ('wdi-is-rrs-pasg-km','2011',978508,NULL,false,NULL,10),
   ('wdi-is-rrs-pasg-km','2012',1046522,NULL,false,NULL,11),
-  ('wdi-is-rrs-pasg-km','2013',1046522,NULL,false,NULL,12),
+  ('wdi-is-rrs-pasg-km','2013',1046522,NULL,false,NULL,12);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-is-rrs-pasg-km','2014',1140412,NULL,false,NULL,13),
   ('wdi-is-rrs-pasg-km','2015',1147190,NULL,false,NULL,14),
   ('wdi-is-rrs-pasg-km','2016',1143039,NULL,false,NULL,15),
@@ -9323,8 +9345,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-is-rrs-totl-km','2010',63974,NULL,false,NULL,9),
   ('wdi-is-rrs-totl-km','2011',64460,NULL,false,NULL,10),
   ('wdi-is-rrs-totl-km','2012',64600,NULL,false,NULL,11),
-  ('wdi-is-rrs-totl-km','2013',65436,NULL,false,NULL,12);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-is-rrs-totl-km','2013',65436,NULL,false,NULL,12),
   ('wdi-is-rrs-totl-km','2014',65808,NULL,false,NULL,13),
   ('wdi-is-rrs-totl-km','2015',66030,NULL,false,NULL,14),
   ('wdi-is-rrs-totl-km','2016',66687,NULL,false,NULL,15),
@@ -9553,7 +9574,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sh-h2o-basw-ru-zs','2005',78.8652326511818,NULL,false,NULL,4),
   ('wdi-sh-h2o-basw-ru-zs','2006',79.6879745578613,NULL,false,NULL,5),
   ('wdi-sh-h2o-basw-ru-zs','2007',80.5131369858192,NULL,false,NULL,6),
-  ('wdi-sh-h2o-basw-ru-zs','2008',81.3407199350553,NULL,false,NULL,7),
+  ('wdi-sh-h2o-basw-ru-zs','2008',81.3407199350553,NULL,false,NULL,7);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-sh-h2o-basw-ru-zs','2009',82.1707234055694,NULL,false,NULL,8),
   ('wdi-sh-h2o-basw-ru-zs','2010',83.0031473973618,NULL,false,NULL,9),
   ('wdi-sh-h2o-basw-ru-zs','2011',83.8379919104323,NULL,false,NULL,10),
@@ -9574,8 +9596,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sh-h2o-basw-ur-zs','2002',91.8376804990709,NULL,false,NULL,1),
   ('wdi-sh-h2o-basw-ur-zs','2003',92.0748855469787,NULL,false,NULL,2),
   ('wdi-sh-h2o-basw-ur-zs','2004',92.3123573535434,NULL,false,NULL,3),
-  ('wdi-sh-h2o-basw-ur-zs','2005',92.5500959187648,NULL,false,NULL,4);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-sh-h2o-basw-ur-zs','2005',92.5500959187648,NULL,false,NULL,4),
   ('wdi-sh-h2o-basw-ur-zs','2006',92.788101242643,NULL,false,NULL,5),
   ('wdi-sh-h2o-basw-ur-zs','2007',93.0263733251781,NULL,false,NULL,6),
   ('wdi-sh-h2o-basw-ur-zs','2008',93.2649121663699,NULL,false,NULL,7),
@@ -9804,7 +9825,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sh-sta-smss-ru-zs','2015',41.4952879405142,NULL,false,NULL,14),
   ('wdi-sh-sta-smss-ru-zs','2016',44.4272227906105,NULL,false,NULL,15),
   ('wdi-sh-sta-smss-ru-zs','2017',47.3788298797235,NULL,false,NULL,16),
-  ('wdi-sh-sta-smss-ru-zs','2018',50.2856986360429,NULL,false,NULL,17),
+  ('wdi-sh-sta-smss-ru-zs','2018',50.2856986360429,NULL,false,NULL,17);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-sh-sta-smss-ru-zs','2019',53.201838358235,NULL,false,NULL,18),
   ('wdi-sh-sta-smss-ru-zs','2020',55.9789839355697,NULL,false,NULL,19),
   ('wdi-sh-sta-smss-ru-zs','2021',58.7063036259541,NULL,false,NULL,20),
@@ -9825,8 +9847,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sh-sta-smss-ur-zs','2012',40.9078734191896,NULL,false,NULL,11),
   ('wdi-sh-sta-smss-ur-zs','2013',42.0787242776071,NULL,false,NULL,12),
   ('wdi-sh-sta-smss-ur-zs','2014',43.2727539457757,NULL,false,NULL,13),
-  ('wdi-sh-sta-smss-ur-zs','2015',44.4901967716344,NULL,false,NULL,14);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-sh-sta-smss-ur-zs','2015',44.4901967716344,NULL,false,NULL,14),
   ('wdi-sh-sta-smss-ur-zs','2016',45.7312871031218,NULL,false,NULL,15),
   ('wdi-sh-sta-smss-ur-zs','2017',46.9646656884271,NULL,false,NULL,16),
   ('wdi-sh-sta-smss-ur-zs','2018',48.2138677059993,NULL,false,NULL,17),
@@ -10055,7 +10076,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sh-dyn-mort-fe','2001',93.1,NULL,false,NULL,0),
   ('wdi-sh-dyn-mort-fe','2002',89.5,NULL,false,NULL,1),
   ('wdi-sh-dyn-mort-fe','2003',85.8,NULL,false,NULL,2),
-  ('wdi-sh-dyn-mort-fe','2004',81.5,NULL,false,NULL,3),
+  ('wdi-sh-dyn-mort-fe','2004',81.5,NULL,false,NULL,3);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-sh-dyn-mort-fe','2005',78.2,NULL,false,NULL,4),
   ('wdi-sh-dyn-mort-fe','2006',74.6,NULL,false,NULL,5),
   ('wdi-sh-dyn-mort-fe','2007',71.3,NULL,false,NULL,6),
@@ -10076,8 +10098,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sh-dyn-mort-fe','2022',29.8,NULL,false,NULL,21),
   ('wdi-sh-dyn-mort-fe','2023',28.1,NULL,false,NULL,22),
   ('wdi-sh-dyn-mort-fe','2024',26.7,NULL,false,NULL,23),
-  ('wdi-sh-dyn-mort-ma','2001',83.5,NULL,false,NULL,0);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-sh-dyn-mort-ma','2001',83.5,NULL,false,NULL,0),
   ('wdi-sh-dyn-mort-ma','2002',79.9,NULL,false,NULL,1),
   ('wdi-sh-dyn-mort-ma','2003',76.6,NULL,false,NULL,2),
   ('wdi-sh-dyn-mort-ma','2004',74,NULL,false,NULL,3),
@@ -10306,7 +10327,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sh-dth-stlb','2013',504202,NULL,false,NULL,12),
   ('wdi-sh-dth-stlb','2014',470427,NULL,false,NULL,13),
   ('wdi-sh-dth-stlb','2015',442115,NULL,false,NULL,14),
-  ('wdi-sh-dth-stlb','2016',422236,NULL,false,NULL,15),
+  ('wdi-sh-dth-stlb','2016',422236,NULL,false,NULL,15);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-sh-dth-stlb','2017',390491,NULL,false,NULL,16),
   ('wdi-sh-dth-stlb','2018',374409,NULL,false,NULL,17),
   ('wdi-sh-dth-stlb','2019',349587,NULL,false,NULL,18),
@@ -10327,8 +10349,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sh-dyn-stlb','2011',20,NULL,false,NULL,10),
   ('wdi-sh-dyn-stlb','2012',19.5,NULL,false,NULL,11),
   ('wdi-sh-dyn-stlb','2013',19,NULL,false,NULL,12),
-  ('wdi-sh-dyn-stlb','2014',18.4,NULL,false,NULL,13);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-sh-dyn-stlb','2014',18.4,NULL,false,NULL,13),
   ('wdi-sh-dyn-stlb','2015',17.3,NULL,false,NULL,14),
   ('wdi-sh-dyn-stlb','2016',16.5,NULL,false,NULL,15),
   ('wdi-sh-dyn-stlb','2017',15.7,NULL,false,NULL,16),
@@ -10557,7 +10578,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sh-alc-pcap-fe-li','2003',0.68,NULL,false,NULL,2),
   ('wdi-sh-alc-pcap-fe-li','2004',0.71,NULL,false,NULL,3),
   ('wdi-sh-alc-pcap-fe-li','2005',0.73,NULL,false,NULL,4),
-  ('wdi-sh-alc-pcap-fe-li','2006',0.8,NULL,false,NULL,5),
+  ('wdi-sh-alc-pcap-fe-li','2006',0.8,NULL,false,NULL,5);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-sh-alc-pcap-fe-li','2007',0.92,NULL,false,NULL,6),
   ('wdi-sh-alc-pcap-fe-li','2008',1.11,NULL,false,NULL,7),
   ('wdi-sh-alc-pcap-fe-li','2009',1.3,NULL,false,NULL,8),
@@ -10578,8 +10600,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sh-alc-pcap-li','2004',2.29,NULL,false,NULL,3),
   ('wdi-sh-alc-pcap-li','2005',2.39,NULL,false,NULL,4),
   ('wdi-sh-alc-pcap-li','2006',2.6,NULL,false,NULL,5),
-  ('wdi-sh-alc-pcap-li','2007',2.95,NULL,false,NULL,6);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-sh-alc-pcap-li','2007',2.95,NULL,false,NULL,6),
   ('wdi-sh-alc-pcap-li','2008',3.53,NULL,false,NULL,7),
   ('wdi-sh-alc-pcap-li','2009',4.11,NULL,false,NULL,8),
   ('wdi-sh-alc-pcap-li','2010',4.62,NULL,false,NULL,9),
@@ -10808,7 +10829,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-st-int-trnx-cd','2013',2269000000,NULL,false,NULL,9),
   ('wdi-st-int-trnx-cd','2014',2897000000,NULL,false,NULL,10),
   ('wdi-st-int-trnx-cd','2015',2848000000,NULL,false,NULL,11),
-  ('wdi-st-int-trnx-cd','2016',2808000000,NULL,false,NULL,12),
+  ('wdi-st-int-trnx-cd','2016',2808000000,NULL,false,NULL,12);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-st-int-trnx-cd','2017',3413000000,NULL,false,NULL,13),
   ('wdi-st-int-trnx-cd','2018',4471000000,NULL,false,NULL,14),
   ('wdi-st-int-trnx-cd','2019',5680000000,NULL,false,NULL,15),
@@ -10829,8 +10851,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-st-int-xpnd-mp-zs','2017',3.89165109332806,NULL,false,NULL,13),
   ('wdi-st-int-xpnd-mp-zs','2018',4.0111352655606,NULL,false,NULL,14),
   ('wdi-st-int-xpnd-mp-zs','2019',4.61593252634138,NULL,false,NULL,15),
-  ('wdi-st-int-xpnd-mp-zs','2020',3.19998995400312,NULL,false,NULL,16);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-st-int-xpnd-mp-zs','2020',3.19998995400312,NULL,false,NULL,16),
   ('wdi-sh-sta-hygn-ru-zs','2010',44.7631540817401,NULL,false,NULL,0),
   ('wdi-sh-sta-hygn-ru-zs','2011',44.7631540817401,NULL,false,NULL,1),
   ('wdi-sh-sta-hygn-ru-zs','2012',44.7631540817401,NULL,false,NULL,2),
@@ -11059,7 +11080,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-nv-agr-totl-kd','2020',436681199512.252,NULL,false,NULL,19),
   ('wdi-nv-agr-totl-kd','2021',456869650970.773,NULL,false,NULL,20),
   ('wdi-nv-agr-totl-kd','2022',485474424793.791,NULL,false,NULL,21),
-  ('wdi-nv-agr-totl-kd','2023',498277550479.968,NULL,false,NULL,22),
+  ('wdi-nv-agr-totl-kd','2023',498277550479.968,NULL,false,NULL,22);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-nv-agr-totl-kd','2024',519090689900.22,NULL,false,NULL,23),
   ('wdi-nv-agr-totl-kd','2025',531672827172.172,NULL,false,NULL,24),
   ('wdi-sl-agr-empl-fe-zs','2001',73.1950831042578,NULL,false,NULL,0),
@@ -11080,8 +11102,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sl-agr-empl-fe-zs','2016',54.0977447599498,NULL,false,NULL,15),
   ('wdi-sl-agr-empl-fe-zs','2017',52.6302055911395,NULL,false,NULL,16),
   ('wdi-sl-agr-empl-fe-zs','2018',51.0992095375496,NULL,false,NULL,17),
-  ('wdi-sl-agr-empl-fe-zs','2019',52.3986107663891,NULL,false,NULL,18);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-sl-agr-empl-fe-zs','2019',52.3986107663891,NULL,false,NULL,18),
   ('wdi-sl-agr-empl-fe-zs','2020',58.0724268080462,NULL,false,NULL,19),
   ('wdi-sl-agr-empl-fe-zs','2021',59.2958420307118,NULL,false,NULL,20),
   ('wdi-sl-agr-empl-fe-zs','2022',59.1538868543901,NULL,false,NULL,21),
@@ -11310,7 +11331,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sl-emp-vuln-ma-zs','2020',74.0507935342313,NULL,false,NULL,19),
   ('wdi-sl-emp-vuln-ma-zs','2021',73.445767539468,NULL,false,NULL,20),
   ('wdi-sl-emp-vuln-ma-zs','2022',72.5926933278351,NULL,false,NULL,21),
-  ('wdi-sl-emp-vuln-ma-zs','2023',70.1608180775776,NULL,false,NULL,22),
+  ('wdi-sl-emp-vuln-ma-zs','2023',70.1608180775776,NULL,false,NULL,22);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-sl-emp-vuln-ma-zs','2024',69.4030438035431,NULL,false,NULL,23),
   ('wdi-sl-emp-vuln-ma-zs','2025',68.9520045318113,NULL,false,NULL,24),
   ('wdi-sl-tlf-acti-1524-fe-zs','2001',27.86,NULL,false,NULL,0),
@@ -11331,8 +11353,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sl-tlf-acti-1524-fe-zs','2016',14.915,NULL,false,NULL,15),
   ('wdi-sl-tlf-acti-1524-fe-zs','2017',14.336,NULL,false,NULL,16),
   ('wdi-sl-tlf-acti-1524-fe-zs','2018',13.73,NULL,false,NULL,17),
-  ('wdi-sl-tlf-acti-1524-fe-zs','2019',13.098,NULL,false,NULL,18);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-sl-tlf-acti-1524-fe-zs','2019',13.098,NULL,false,NULL,18),
   ('wdi-sl-tlf-acti-1524-fe-zs','2020',12.489,NULL,false,NULL,19),
   ('wdi-sl-tlf-acti-1524-fe-zs','2021',13.245,NULL,false,NULL,20),
   ('wdi-sl-tlf-acti-1524-fe-zs','2022',14.019,NULL,false,NULL,21),
@@ -11561,7 +11582,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sp-urb-totl','2020',478694801,NULL,false,NULL,19),
   ('wdi-sp-urb-totl','2021',487087908,NULL,false,NULL,20),
   ('wdi-sp-urb-totl','2022',495413925,NULL,false,NULL,21),
-  ('wdi-sp-urb-totl','2023',504297814,NULL,false,NULL,22),
+  ('wdi-sp-urb-totl','2023',504297814,NULL,false,NULL,22);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-sp-urb-totl','2024',513325082,NULL,false,NULL,23),
   ('wdi-sp-urb-totl','2025',522441248,NULL,false,NULL,24),
   ('wdi-sl-emp-1524-sp-fe-zs','2001',22.379,NULL,false,NULL,0),
@@ -11582,8 +11604,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sl-emp-1524-sp-fe-zs','2016',11.278,NULL,false,NULL,15),
   ('wdi-sl-emp-1524-sp-fe-zs','2017',10.77,NULL,false,NULL,16),
   ('wdi-sl-emp-1524-sp-fe-zs','2018',10.242,NULL,false,NULL,17),
-  ('wdi-sl-emp-1524-sp-fe-zs','2019',10.06,NULL,false,NULL,18);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-sl-emp-1524-sp-fe-zs','2019',10.06,NULL,false,NULL,18),
   ('wdi-sl-emp-1524-sp-fe-zs','2020',9.379,NULL,false,NULL,19),
   ('wdi-sl-emp-1524-sp-fe-zs','2021',10.646,NULL,false,NULL,20),
   ('wdi-sl-emp-1524-sp-fe-zs','2022',11.395,NULL,false,NULL,21),
@@ -11812,7 +11833,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sl-emp-work-ma-zs','2020',23.2722014568543,NULL,false,NULL,19),
   ('wdi-sl-emp-work-ma-zs','2021',23.8778058307709,NULL,false,NULL,20),
   ('wdi-sl-emp-work-ma-zs','2022',23.7478293468236,NULL,false,NULL,21),
-  ('wdi-sl-emp-work-ma-zs','2023',25.3864630480677,NULL,false,NULL,22),
+  ('wdi-sl-emp-work-ma-zs','2023',25.3864630480677,NULL,false,NULL,22);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-sl-emp-work-ma-zs','2024',26.1896018524408,NULL,false,NULL,23),
   ('wdi-sl-emp-work-ma-zs','2025',26.6560649875315,NULL,false,NULL,24),
   ('wdi-sl-fam-work-fe-zs','2001',33.2939649156487,NULL,false,NULL,0),
@@ -11833,8 +11855,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sl-fam-work-fe-zs','2016',35.8165623646478,NULL,false,NULL,15),
   ('wdi-sl-fam-work-fe-zs','2017',35.8982164985403,NULL,false,NULL,16),
   ('wdi-sl-fam-work-fe-zs','2018',35.938869392821,NULL,false,NULL,17),
-  ('wdi-sl-fam-work-fe-zs','2019',35.9547388280753,NULL,false,NULL,18);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-sl-fam-work-fe-zs','2019',35.9547388280753,NULL,false,NULL,18),
   ('wdi-sl-fam-work-fe-zs','2020',35.5708160963225,NULL,false,NULL,19),
   ('wdi-sl-fam-work-fe-zs','2021',34.116912868625,NULL,false,NULL,20),
   ('wdi-sl-fam-work-fe-zs','2022',32.8417855849373,NULL,false,NULL,21),
@@ -12063,7 +12084,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sp-pop-grow','2020',0.973438646910149,NULL,false,NULL,19),
   ('wdi-sp-pop-grow','2021',0.822648220128724,NULL,false,NULL,20),
   ('wdi-sp-pop-grow','2022',0.790200540609834,NULL,false,NULL,21),
-  ('wdi-sp-pop-grow','2023',0.883289539766135,NULL,false,NULL,22),
+  ('wdi-sp-pop-grow','2023',0.883289539766135,NULL,false,NULL,22);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-sp-pop-grow','2024',0.890706546985984,NULL,false,NULL,23),
   ('wdi-sp-pop-grow','2025',0.887183543977214,NULL,false,NULL,24),
   ('wdi-ag-lnd-crel-ha','2001',99639400,NULL,false,NULL,0),
@@ -12084,8 +12106,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ag-lnd-crel-ha','2016',99258511,NULL,false,NULL,15),
   ('wdi-ag-lnd-crel-ha','2017',99009594,NULL,false,NULL,16),
   ('wdi-ag-lnd-crel-ha','2018',97146491,NULL,false,NULL,17),
-  ('wdi-ag-lnd-crel-ha','2019',95448166,NULL,false,NULL,18);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-ag-lnd-crel-ha','2019',95448166,NULL,false,NULL,18),
   ('wdi-ag-lnd-crel-ha','2020',100691880,NULL,false,NULL,19),
   ('wdi-ag-lnd-crel-ha','2021',100777969,NULL,false,NULL,20),
   ('wdi-ag-lnd-crel-ha','2022',99261351,NULL,false,NULL,21),
@@ -12314,7 +12335,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ag-lnd-arbl-ha','2009',157924000,NULL,false,NULL,8),
   ('wdi-ag-lnd-arbl-ha','2010',157009000,NULL,false,NULL,9),
   ('wdi-ag-lnd-arbl-ha','2011',156979000,NULL,false,NULL,10),
-  ('wdi-ag-lnd-arbl-ha','2012',156546000,NULL,false,NULL,11),
+  ('wdi-ag-lnd-arbl-ha','2012',156546000,NULL,false,NULL,11);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-ag-lnd-arbl-ha','2013',156442000,NULL,false,NULL,12),
   ('wdi-ag-lnd-arbl-ha','2014',156463000,NULL,false,NULL,13),
   ('wdi-ag-lnd-arbl-ha','2015',156413000,NULL,false,NULL,14),
@@ -12335,8 +12357,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ag-lnd-arbl-ha-pc','2007',0.132716202571447,NULL,false,NULL,6),
   ('wdi-ag-lnd-arbl-ha-pc','2008',0.130798037891841,NULL,false,NULL,7),
   ('wdi-ag-lnd-arbl-ha-pc','2009',0.128862350281716,NULL,false,NULL,8),
-  ('wdi-ag-lnd-arbl-ha-pc','2010',0.126265643613515,NULL,false,NULL,9);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-ag-lnd-arbl-ha-pc','2010',0.126265643613515,NULL,false,NULL,9),
   ('wdi-ag-lnd-arbl-ha-pc','2011',0.124465504351256,NULL,false,NULL,10),
   ('wdi-ag-lnd-arbl-ha-pc','2012',0.122428342596293,NULL,false,NULL,11),
   ('wdi-ag-lnd-arbl-ha-pc','2013',0.120727301448223,NULL,false,NULL,12),
@@ -12565,7 +12586,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-ag-prd-lvsk-xd','2008',68.38,NULL,false,NULL,7),
   ('wdi-ag-prd-lvsk-xd','2009',70.89,NULL,false,NULL,8),
   ('wdi-ag-prd-lvsk-xd','2010',78.77,NULL,false,NULL,9),
-  ('wdi-ag-prd-lvsk-xd','2011',82.68,NULL,false,NULL,10),
+  ('wdi-ag-prd-lvsk-xd','2011',82.68,NULL,false,NULL,10);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-ag-prd-lvsk-xd','2012',85.9,NULL,false,NULL,11),
   ('wdi-ag-prd-lvsk-xd','2013',89.71,NULL,false,NULL,12),
   ('wdi-ag-prd-lvsk-xd','2014',94.94,NULL,false,NULL,13),
@@ -12586,8 +12608,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-sg-gen-mnst-zs','2016',18.5,NULL,false,NULL,6),
   ('wdi-sg-gen-mnst-zs','2018',23.1,NULL,false,NULL,7),
   ('wdi-sg-gen-mnst-zs','2019',12.5,NULL,false,NULL,8),
-  ('wdi-sg-gen-mnst-zs','2020',9.09090909090909,NULL,false,NULL,9);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-sg-gen-mnst-zs','2020',9.09090909090909,NULL,false,NULL,9),
   ('wdi-sg-gen-mnst-zs','2022',6.66666666666667,NULL,false,NULL,10),
   ('wdi-sg-gen-mnst-zs','2023',6.45161290322581,NULL,false,NULL,11),
   ('wdi-sg-gen-mnst-zs','2024',5.55555555555556,NULL,false,NULL,12),
@@ -12816,7 +12837,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-bx-gsr-totl-cd','2014',498219673269.869,NULL,false,NULL,13),
   ('wdi-bx-gsr-totl-cd','2015',443164297038.466,NULL,false,NULL,14),
   ('wdi-bx-gsr-totl-cd','2016',445918512250.489,NULL,false,NULL,15),
-  ('wdi-bx-gsr-totl-cd','2017',507948171892.783,NULL,false,NULL,16),
+  ('wdi-bx-gsr-totl-cd','2017',507948171892.783,NULL,false,NULL,16);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-bx-gsr-totl-cd','2018',558423279580.479,NULL,false,NULL,17),
   ('wdi-bx-gsr-totl-cd','2019',569380732947.818,NULL,false,NULL,18),
   ('wdi-bx-gsr-totl-cd','2020',507289199021.317,NULL,false,NULL,19),
@@ -12837,8 +12859,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-bx-gsr-tran-zs','2010',11.3396396283738,NULL,false,NULL,9),
   ('wdi-bx-gsr-tran-zs','2011',12.7782739062081,NULL,false,NULL,10),
   ('wdi-bx-gsr-tran-zs','2012',12.0300780875252,NULL,false,NULL,11),
-  ('wdi-bx-gsr-tran-zs','2013',11.340392986222,NULL,false,NULL,12);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-bx-gsr-tran-zs','2013',11.340392986222,NULL,false,NULL,12),
   ('wdi-bx-gsr-tran-zs','2014',11.8305135189418,NULL,false,NULL,13),
   ('wdi-bx-gsr-tran-zs','2015',9.16252708297244,NULL,false,NULL,14),
   ('wdi-bx-gsr-tran-zs','2016',9.37809579204234,NULL,false,NULL,15),
@@ -13067,7 +13088,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-tm-val-othr-zs-wt','2014',54.7809122412647,NULL,false,NULL,13),
   ('wdi-tm-val-othr-zs-wt','2015',57.7808244339674,NULL,false,NULL,14),
   ('wdi-tm-val-othr-zs-wt','2016',61.3569272813628,NULL,false,NULL,15),
-  ('wdi-tm-val-othr-zs-wt','2017',61.0358569006148,NULL,false,NULL,16),
+  ('wdi-tm-val-othr-zs-wt','2017',61.0358569006148,NULL,false,NULL,16);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-tm-val-othr-zs-wt','2018',61.8427982039528,NULL,false,NULL,17),
   ('wdi-tm-val-othr-zs-wt','2019',60.5409331151321,NULL,false,NULL,18),
   ('wdi-tm-val-othr-zs-wt','2020',66.0857012970636,NULL,false,NULL,19),
@@ -13088,8 +13110,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-tm-val-serv-cd-wt','2010',78210856250.6131,NULL,false,NULL,9),
   ('wdi-tm-val-serv-cd-wt','2011',76915514527.4288,NULL,false,NULL,10),
   ('wdi-tm-val-serv-cd-wt','2012',79215876737.5454,NULL,false,NULL,11),
-  ('wdi-tm-val-serv-cd-wt','2013',77654804413.3522,NULL,false,NULL,12);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-tm-val-serv-cd-wt','2013',77654804413.3522,NULL,false,NULL,12),
   ('wdi-tm-val-serv-cd-wt','2014',80160943501.3086,NULL,false,NULL,13),
   ('wdi-tm-val-serv-cd-wt','2015',81766553452.7492,NULL,false,NULL,14),
   ('wdi-tm-val-serv-cd-wt','2016',95239156494.0897,NULL,false,NULL,15),
@@ -13318,7 +13339,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-tm-val-fuel-zs-un','2016',25.0353799489221,NULL,false,NULL,15),
   ('wdi-tm-val-fuel-zs-un','2017',27.722837394409,NULL,false,NULL,16),
   ('wdi-tm-val-fuel-zs-un','2018',33.2499008636957,NULL,false,NULL,17),
-  ('wdi-tm-val-fuel-zs-un','2019',31.880343122832,NULL,false,NULL,18),
+  ('wdi-tm-val-fuel-zs-un','2019',31.880343122832,NULL,false,NULL,18);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-tm-val-fuel-zs-un','2020',28.3590915050748,NULL,false,NULL,19),
   ('wdi-tm-val-fuel-zs-un','2021',29.8728403228095,NULL,false,NULL,20),
   ('wdi-tm-val-fuel-zs-un','2022',37.8444037124818,NULL,false,NULL,21),
@@ -13339,8 +13361,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-tm-val-mmtl-zs-un','2013',5.83743487910085,NULL,false,NULL,12),
   ('wdi-tm-val-mmtl-zs-un','2014',5.94358526486559,NULL,false,NULL,13),
   ('wdi-tm-val-mmtl-zs-un','2015',6.47213486642968,NULL,false,NULL,14),
-  ('wdi-tm-val-mmtl-zs-un','2016',5.26754235316349,NULL,false,NULL,15);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-tm-val-mmtl-zs-un','2016',5.26754235316349,NULL,false,NULL,15),
   ('wdi-tm-val-mmtl-zs-un','2017',5.64045090260919,NULL,false,NULL,16),
   ('wdi-tm-val-mmtl-zs-un','2018',5.90463534714866,NULL,false,NULL,17),
   ('wdi-tm-val-mmtl-zs-un','2019',5.19863637802351,NULL,false,NULL,18),
@@ -13569,7 +13590,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-bx-grt-tech-cd-wd','2003',418440000,NULL,false,NULL,2),
   ('wdi-bx-grt-tech-cd-wd','2004',387080000,NULL,false,NULL,3),
   ('wdi-bx-grt-tech-cd-wd','2005',352370000,NULL,false,NULL,4),
-  ('wdi-bx-grt-tech-cd-wd','2006',358350000,NULL,false,NULL,5),
+  ('wdi-bx-grt-tech-cd-wd','2006',358350000,NULL,false,NULL,5);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-bx-grt-tech-cd-wd','2007',279715040,NULL,false,NULL,6),
   ('wdi-bx-grt-tech-cd-wd','2008',282107700,NULL,false,NULL,7),
   ('wdi-bx-grt-tech-cd-wd','2009',266040000,NULL,false,NULL,8),
@@ -13590,8 +13612,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-tm-val-mrch-al-zs','2001',6.69808267957369,NULL,false,NULL,0),
   ('wdi-tm-val-mrch-al-zs','2002',6.39448708078892,NULL,false,NULL,1),
   ('wdi-tm-val-mrch-al-zs','2003',6.83972008833146,NULL,false,NULL,2),
-  ('wdi-tm-val-mrch-al-zs','2004',9.54258061516547,NULL,false,NULL,3);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-tm-val-mrch-al-zs','2004',9.54258061516547,NULL,false,NULL,3),
   ('wdi-tm-val-mrch-al-zs','2005',9.00235629738352,NULL,false,NULL,4),
   ('wdi-tm-val-mrch-al-zs','2006',20.7240494646275,NULL,false,NULL,5),
   ('wdi-tm-val-mrch-al-zs','2007',23.6981481056864,NULL,false,NULL,6),
@@ -13820,7 +13841,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-tm-val-mrch-rs-zs','2023',0.0268951262622899,NULL,false,NULL,22),
   ('wdi-tm-val-mrch-wl-cd','2001',36156334564,NULL,false,NULL,0),
   ('wdi-tm-val-mrch-wl-cd','2002',41974995087,NULL,false,NULL,1),
-  ('wdi-tm-val-mrch-wl-cd','2003',53938347189,NULL,false,NULL,2),
+  ('wdi-tm-val-mrch-wl-cd','2003',53938347189,NULL,false,NULL,2);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-tm-val-mrch-wl-cd','2004',72004183408,NULL,false,NULL,3),
   ('wdi-tm-val-mrch-wl-cd','2005',98752977713,NULL,false,NULL,4),
   ('wdi-tm-val-mrch-wl-cd','2006',164878745075,NULL,false,NULL,5),
@@ -13841,8 +13863,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-tm-val-mrch-wl-cd','2021',569859021305,NULL,false,NULL,20),
   ('wdi-tm-val-mrch-wl-cd','2022',731842092883.999,NULL,false,NULL,21),
   ('wdi-tm-val-mrch-wl-cd','2023',666533665809,NULL,false,NULL,22),
-  ('wdi-tm-val-mrch-wr-zs','2001',1.61139244346992,NULL,false,NULL,0);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-tm-val-mrch-wr-zs','2001',1.61139244346992,NULL,false,NULL,0),
   ('wdi-tm-val-mrch-wr-zs','2002',1.29858237236296,NULL,false,NULL,1),
   ('wdi-tm-val-mrch-wr-zs','2003',1.23213008302104,NULL,false,NULL,2),
   ('wdi-tm-val-mrch-wr-zs','2004',1.23528833173487,NULL,false,NULL,3),
@@ -14071,7 +14092,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-tx-val-mrch-r6-zs','2020',8.00099285714823,NULL,false,NULL,19),
   ('wdi-tx-val-mrch-r6-zs','2021',8.08798575027641,NULL,false,NULL,20),
   ('wdi-tx-val-mrch-r6-zs','2022',9.35280297259764,NULL,false,NULL,21),
-  ('wdi-tx-val-mrch-r6-zs','2023',8.97204663257978,NULL,false,NULL,22),
+  ('wdi-tx-val-mrch-r6-zs','2023',8.97204663257978,NULL,false,NULL,22);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-tx-val-mrch-rs-zs','2001',0.141821208160272,NULL,false,NULL,0),
   ('wdi-tx-val-mrch-rs-zs','2002',0.0892015184276419,NULL,false,NULL,1),
   ('wdi-tx-val-mrch-rs-zs','2003',0.0427586570814276,NULL,false,NULL,2),
@@ -14092,8 +14114,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-tx-val-mrch-rs-zs','2018',0.0226743813824712,NULL,false,NULL,17),
   ('wdi-tx-val-mrch-rs-zs','2019',0.0745115238450528,NULL,false,NULL,18),
   ('wdi-tx-val-mrch-rs-zs','2020',0.276709132757097,NULL,false,NULL,19),
-  ('wdi-tx-val-mrch-rs-zs','2021',0.0791654847597489,NULL,false,NULL,20);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-tx-val-mrch-rs-zs','2021',0.0791654847597489,NULL,false,NULL,20),
   ('wdi-tx-val-mrch-rs-zs','2022',0.0420122368784381,NULL,false,NULL,21),
   ('wdi-tx-val-mrch-rs-zs','2023',0.0362661028035307,NULL,false,NULL,22),
   ('wdi-tx-val-mrch-wl-cd','2001',41164365159,NULL,false,NULL,0),
@@ -14322,7 +14343,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-tm-tax-mrch-sm-fn-zs','2009',13.06,NULL,false,NULL,8),
   ('wdi-tm-tax-mrch-sm-fn-zs','2010',12.51,NULL,false,NULL,9),
   ('wdi-tm-tax-mrch-sm-fn-zs','2011',13.36,NULL,false,NULL,10),
-  ('wdi-tm-tax-mrch-sm-fn-zs','2012',14.04,NULL,false,NULL,11),
+  ('wdi-tm-tax-mrch-sm-fn-zs','2012',14.04,NULL,false,NULL,11);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-tm-tax-mrch-sm-fn-zs','2013',13.93,NULL,false,NULL,12),
   ('wdi-tm-tax-mrch-sm-fn-zs','2015',13.16,NULL,false,NULL,13),
   ('wdi-tm-tax-mrch-sm-fn-zs','2016',13.72,NULL,false,NULL,14),
@@ -14343,8 +14365,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-tm-tax-mrch-wm-ar-zs','2009',6.84,NULL,false,NULL,8),
   ('wdi-tm-tax-mrch-wm-ar-zs','2010',6.1,NULL,false,NULL,9),
   ('wdi-tm-tax-mrch-wm-ar-zs','2011',7.33,NULL,false,NULL,10),
-  ('wdi-tm-tax-mrch-wm-ar-zs','2012',6.32,NULL,false,NULL,11);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-tm-tax-mrch-wm-ar-zs','2012',6.32,NULL,false,NULL,11),
   ('wdi-tm-tax-mrch-wm-ar-zs','2013',6.34,NULL,false,NULL,12),
   ('wdi-tm-tax-mrch-wm-ar-zs','2015',7.32,NULL,false,NULL,13),
   ('wdi-tm-tax-mrch-wm-ar-zs','2016',6.35,NULL,false,NULL,14),
@@ -14573,7 +14594,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-tm-val-mrch-xd-wd','2015',100,NULL,false,NULL,10),
   ('wdi-tm-val-mrch-xd-wd','2016',91.8,NULL,false,NULL,11),
   ('wdi-tm-val-mrch-xd-wd','2017',114.2,NULL,false,NULL,12),
-  ('wdi-tm-val-mrch-xd-wd','2018',130.5,NULL,false,NULL,13),
+  ('wdi-tm-val-mrch-xd-wd','2018',130.5,NULL,false,NULL,13);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-tm-val-mrch-xd-wd','2019',123.3,NULL,false,NULL,14),
   ('wdi-tm-val-mrch-xd-wd','2020',94.7,NULL,false,NULL,15),
   ('wdi-tm-val-mrch-xd-wd','2021',145.4,NULL,false,NULL,16),
@@ -14594,8 +14616,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-tt-pri-mrch-xd-wd','2016',105,NULL,false,NULL,11),
   ('wdi-tt-pri-mrch-xd-wd','2017',100.4,NULL,false,NULL,12),
   ('wdi-tt-pri-mrch-xd-wd','2018',95.6,NULL,false,NULL,13),
-  ('wdi-tt-pri-mrch-xd-wd','2019',97.9,NULL,false,NULL,14);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-tt-pri-mrch-xd-wd','2019',97.9,NULL,false,NULL,14),
   ('wdi-tt-pri-mrch-xd-wd','2020',103.1,NULL,false,NULL,15),
   ('wdi-tt-pri-mrch-xd-wd','2021',91,NULL,false,NULL,16),
   ('wdi-tt-pri-mrch-xd-wd','2022',81.4,NULL,false,NULL,17),
@@ -14824,7 +14845,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-nv-srv-totl-cd','2006',414120879119.106,NULL,false,NULL,5),
   ('wdi-nv-srv-totl-cd','2007',535463293519.206,NULL,false,NULL,6),
   ('wdi-nv-srv-totl-cd','2008',550083660484.889,NULL,false,NULL,7),
-  ('wdi-nv-srv-totl-cd','2009',617065632079.319,NULL,false,NULL,8),
+  ('wdi-nv-srv-totl-cd','2009',617065632079.319,NULL,false,NULL,8);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-nv-srv-totl-cd','2010',754592496676.246,NULL,false,NULL,9),
   ('wdi-nv-srv-totl-cd','2011',828433860546.791,NULL,false,NULL,10),
   ('wdi-nv-srv-totl-cd','2012',846217172810.479,NULL,false,NULL,11),
@@ -14845,8 +14867,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-eg-gdp-puse-ko-pp','2002',5.56601890871041,NULL,false,NULL,1),
   ('wdi-eg-gdp-puse-ko-pp','2003',5.98133323401098,NULL,false,NULL,2),
   ('wdi-eg-gdp-puse-ko-pp','2004',6.26933525289323,NULL,false,NULL,3),
-  ('wdi-eg-gdp-puse-ko-pp','2005',6.70569251460254,NULL,false,NULL,4);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-eg-gdp-puse-ko-pp','2005',6.70569251460254,NULL,false,NULL,4),
   ('wdi-eg-gdp-puse-ko-pp','2006',7.08049893885209,NULL,false,NULL,5),
   ('wdi-eg-gdp-puse-ko-pp','2007',7.38773967813794,NULL,false,NULL,6),
   ('wdi-eg-gdp-puse-ko-pp','2008',7.32825426041396,NULL,false,NULL,7),
@@ -15075,7 +15096,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-dt-dod-dppg-cd','2016',153013284921.7,NULL,false,NULL,15),
   ('wdi-dt-dod-dppg-cd','2017',183017515967.3,NULL,false,NULL,16),
   ('wdi-dt-dod-dppg-cd','2018',180539953724.2,NULL,false,NULL,17),
-  ('wdi-dt-dod-dppg-cd','2019',192007477543.8,NULL,false,NULL,18),
+  ('wdi-dt-dod-dppg-cd','2019',192007477543.8,NULL,false,NULL,18);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-dt-dod-dppg-cd','2020',192805075629.9,NULL,false,NULL,19),
   ('wdi-dt-dod-dppg-cd','2021',205281682146,NULL,false,NULL,20),
   ('wdi-dt-dod-dppg-cd','2022',205217150708.4,NULL,false,NULL,21),
@@ -15096,8 +15118,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-dt-dod-dstc-cd','2013',92706062000,NULL,false,NULL,12),
   ('wdi-dt-dod-dstc-cd','2014',85574341000,NULL,false,NULL,13),
   ('wdi-dt-dod-dstc-cd','2015',81562824000,NULL,false,NULL,14),
-  ('wdi-dt-dod-dstc-cd','2016',83932884000,NULL,false,NULL,15);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-dt-dod-dstc-cd','2016',83932884000,NULL,false,NULL,15),
   ('wdi-dt-dod-dstc-cd','2017',97608593000,NULL,false,NULL,16),
   ('wdi-dt-dod-dstc-cd','2018',103923910000,NULL,false,NULL,17),
   ('wdi-dt-dod-dstc-cd','2019',106779537000,NULL,false,NULL,18),
@@ -15326,7 +15347,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-gfdd-oi-01','2008',32.51981,NULL,false,NULL,7),
   ('wdi-gfdd-oi-01','2009',32.06525,NULL,false,NULL,8),
   ('wdi-gfdd-oi-01','2010',30.13038,NULL,false,NULL,9),
-  ('wdi-gfdd-oi-01','2011',29.4784,NULL,false,NULL,10),
+  ('wdi-gfdd-oi-01','2011',29.4784,NULL,false,NULL,10);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-gfdd-oi-01','2012',28.80429,NULL,false,NULL,11),
   ('wdi-gfdd-oi-01','2013',29.21181,NULL,false,NULL,12),
   ('wdi-gfdd-oi-01','2014',29.34549,NULL,false,NULL,13),
@@ -15347,8 +15369,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-gfdd-oi-02','2008',66.48245,NULL,false,NULL,7),
   ('wdi-gfdd-oi-02','2009',71.64175,NULL,false,NULL,8),
   ('wdi-gfdd-oi-02','2010',69.34904,NULL,false,NULL,9),
-  ('wdi-gfdd-oi-02','2011',68.97489,NULL,false,NULL,10);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-gfdd-oi-02','2011',68.97489,NULL,false,NULL,10),
   ('wdi-gfdd-oi-02','2012',68.02185,NULL,false,NULL,11),
   ('wdi-gfdd-oi-02','2013',69.42916,NULL,false,NULL,12),
   ('wdi-gfdd-oi-02','2014',68.59116,NULL,false,NULL,13),
@@ -15577,7 +15598,8 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-gfdd-oi-19','2011',0,NULL,false,NULL,10),
   ('wdi-gfdd-oi-19','2012',0,NULL,false,NULL,11),
   ('wdi-gfdd-oi-19','2013',0,NULL,false,NULL,12),
-  ('wdi-gfdd-oi-19','2014',0,NULL,false,NULL,13),
+  ('wdi-gfdd-oi-19','2014',0,NULL,false,NULL,13);
+INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
   ('wdi-gfdd-oi-19','2015',0,NULL,false,NULL,14),
   ('wdi-gfdd-oi-19','2016',0,NULL,false,NULL,15),
   ('wdi-gfdd-oi-19','2017',0,NULL,false,NULL,16),
@@ -15598,8 +15620,7 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-gfdd-oi-15','2001',8,NULL,false,NULL,0),
   ('wdi-gfdd-oi-15','2002',9,NULL,false,NULL,1),
   ('wdi-gfdd-oi-15','2003',9,NULL,false,NULL,2),
-  ('wdi-gfdd-oi-15','2004',9,NULL,false,NULL,3);
-INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised,note,ordinal) VALUES
+  ('wdi-gfdd-oi-15','2004',9,NULL,false,NULL,3),
   ('wdi-gfdd-oi-15','2005',9,NULL,false,NULL,4),
   ('wdi-gfdd-oi-15','2006',11,NULL,false,NULL,5),
   ('wdi-gfdd-oi-15','2007',11,NULL,false,NULL,6),
@@ -15693,27 +15714,6 @@ INSERT INTO bharat_tracker.data_points (series_id,period,value,source_id,revised
   ('wdi-gdp-per-capita-ppp','2023',9853.04309264591,NULL,false,NULL,22),
   ('wdi-gdp-per-capita-ppp','2024',10718.5934040662,NULL,false,NULL,23),
   ('wdi-gdp-per-capita-ppp','2025',11747.9160436011,NULL,false,NULL,24),
-  ('wdi-renewable-electricity','2001',13.6197629481384,NULL,false,NULL,0),
-  ('wdi-renewable-electricity','2002',12.8005809834912,NULL,false,NULL,1),
-  ('wdi-renewable-electricity','2003',11.5191856915079,NULL,false,NULL,2),
-  ('wdi-renewable-electricity','2004',12.8708458297682,NULL,false,NULL,3),
-  ('wdi-renewable-electricity','2005',14.3659113976406,NULL,false,NULL,4),
-  ('wdi-renewable-electricity','2006',15.9724580053981,NULL,false,NULL,5),
-  ('wdi-renewable-electricity','2007',16.8958319059597,NULL,false,NULL,6),
-  ('wdi-renewable-electricity','2008',17.1072579022733,NULL,false,NULL,7),
-  ('wdi-renewable-electricity','2009',15.3504789989236,NULL,false,NULL,8),
-  ('wdi-renewable-electricity','2010',14.9419430950586,NULL,false,NULL,9),
-  ('wdi-renewable-electricity','2011',15.306114125047,NULL,false,NULL,10),
-  ('wdi-renewable-electricity','2012',16.2449871875852,NULL,false,NULL,11),
-  ('wdi-renewable-electricity','2013',15.2987635527139,NULL,false,NULL,12),
-  ('wdi-renewable-electricity','2014',15.8631842012333,NULL,false,NULL,13),
-  ('wdi-renewable-electricity','2015',14.8948527456761,NULL,false,NULL,14),
-  ('wdi-renewable-electricity','2016',13.5971725653557,NULL,false,NULL,15),
-  ('wdi-renewable-electricity','2017',14.1593786090421,NULL,false,NULL,16),
-  ('wdi-renewable-electricity','2018',15.0102597827208,NULL,false,NULL,17),
-  ('wdi-renewable-electricity','2019',16.8275232132522,NULL,false,NULL,18),
-  ('wdi-renewable-electricity','2020',19.7557474948152,NULL,false,NULL,19),
-  ('wdi-renewable-electricity','2021',19.131292447169,NULL,false,NULL,20),
   ('wdi-gc-rev-socl-zs','2001',0.384681142075568,NULL,false,NULL,0),
   ('wdi-gc-rev-socl-zs','2002',0.234473037319719,NULL,false,NULL,1),
   ('wdi-gc-rev-socl-zs','2003',0.140772779527015,NULL,false,NULL,2),
@@ -15807,12 +15807,6 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-govt-debt','BRA','Brazil',81.8554431191023,'2024','worldbank-wdi'),
   ('wdi-govt-debt','IDN','Indonesia',29.997306381567,'2009','worldbank-wdi'),
   ('wdi-govt-debt','USA','United States',115.768352618316,'2024','worldbank-wdi'),
-  ('wdi-gross-savings','IND','India',32.559492763302,'2025','worldbank-wdi'),
-  ('wdi-gross-savings','CHN','China',43.3210475865354,'2024','worldbank-wdi'),
-  ('wdi-gross-savings','VNM','Vietnam',37.4122487716134,'2025','worldbank-wdi'),
-  ('wdi-gross-savings','BRA','Brazil',17.4259600459081,'2025','worldbank-wdi'),
-  ('wdi-gross-savings','IDN','Indonesia',37.2378532261843,'2025','worldbank-wdi'),
-  ('wdi-gross-savings','USA','United States',18.465975832559,'2024','worldbank-wdi'),
   ('wdi-tax-revenue','IND','India',6.93372148022965,'2022','worldbank-wdi'),
   ('wdi-tax-revenue','CHN','China',7.01806095279297,'2024','worldbank-wdi'),
   ('wdi-tax-revenue','BRA','Brazil',15.4102340832552,'2024','worldbank-wdi'),
@@ -15860,12 +15854,6 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-hightech-exports-share','BRA','Brazil',11.1103644206652,'2024','worldbank-wdi'),
   ('wdi-hightech-exports-share','IDN','Indonesia',8.7110437578916,'2024','worldbank-wdi'),
   ('wdi-hightech-exports-share','USA','United States',24.322982844202,'2024','worldbank-wdi'),
-  ('wdi-hightech-exports-usd','IND','India',54140883629,'2024','worldbank-wdi'),
-  ('wdi-hightech-exports-usd','CHN','China',856764726389,'2024','worldbank-wdi'),
-  ('wdi-hightech-exports-usd','VNM','Vietnam',132776576635,'2023','worldbank-wdi'),
-  ('wdi-hightech-exports-usd','BRA','Brazil',8694667841,'2024','worldbank-wdi'),
-  ('wdi-hightech-exports-usd','IDN','Indonesia',10407239550,'2024','worldbank-wdi'),
-  ('wdi-hightech-exports-usd','USA','United States',232906639404,'2024','worldbank-wdi'),
   ('wdi-fdi-inflows','IND','India',39097233086.2133,'2025','worldbank-wdi'),
   ('wdi-fdi-inflows','CHN','China',79979865650.02,'2025','worldbank-wdi'),
   ('wdi-fdi-inflows','VNM','Vietnam',20170000000,'2024','worldbank-wdi'),
@@ -15884,12 +15872,6 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-current-account','BRA','Brazil',-2.92630139201733,'2025','worldbank-wdi'),
   ('wdi-current-account','IDN','Indonesia',-0.105263812011573,'2025','worldbank-wdi'),
   ('wdi-current-account','USA','United States',-3.62698693844919,'2025','worldbank-wdi'),
-  ('wdi-reserves','IND','India',700073798240.701,'2025','worldbank-wdi'),
-  ('wdi-reserves','CHN','China',3748744952817.94,'2025','worldbank-wdi'),
-  ('wdi-reserves','VNM','Vietnam',85580367980.9694,'2025','worldbank-wdi'),
-  ('wdi-reserves','BRA','Brazil',358513128727.455,'2025','worldbank-wdi'),
-  ('wdi-reserves','IDN','Indonesia',156542507869.671,'2025','worldbank-wdi'),
-  ('wdi-reserves','USA','United States',1385447111476.7,'2025','worldbank-wdi'),
   ('wdi-remittances','IND','India',150711596171.493,'2025','worldbank-wdi'),
   ('wdi-remittances','CHN','China',30002559370.67,'2025','worldbank-wdi'),
   ('wdi-remittances','VNM','Vietnam',2310000000,'2004','worldbank-wdi'),
@@ -15918,24 +15900,12 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-manufacturing-growth','VNM','Vietnam',9.96745166346183,'2025','worldbank-wdi'),
   ('wdi-manufacturing-growth','BRA','Brazil',-0.155256291465804,'2025','worldbank-wdi'),
   ('wdi-manufacturing-growth','IDN','Indonesia',5.29742297634328,'2025','worldbank-wdi'),
-  ('wdi-industry-gdp','IND','India',25.2049600095376,'2025','worldbank-wdi'),
-  ('wdi-industry-gdp','CHN','China',35.6416587106792,'2025','worldbank-wdi'),
-  ('wdi-industry-gdp','VNM','Vietnam',37.6491235864782,'2025','worldbank-wdi'),
-  ('wdi-industry-gdp','BRA','Brazil',20.1499461312909,'2025','worldbank-wdi'),
-  ('wdi-industry-gdp','IDN','Indonesia',38.7077414834802,'2025','worldbank-wdi'),
-  ('wdi-industry-gdp','USA','United States',17.5751653495616,'2021','worldbank-wdi'),
   ('wdi-agriculture-gdp','IND','India',16.2342483910129,'2025','worldbank-wdi'),
   ('wdi-agriculture-gdp','CHN','China',6.65869070601804,'2025','worldbank-wdi'),
   ('wdi-agriculture-gdp','VNM','Vietnam',11.6440301326976,'2025','worldbank-wdi'),
   ('wdi-agriculture-gdp','BRA','Brazil',6.08621695565171,'2025','worldbank-wdi'),
   ('wdi-agriculture-gdp','IDN','Indonesia',13.0995463199278,'2025','worldbank-wdi'),
   ('wdi-agriculture-gdp','USA','United States',0.942961672907101,'2021','worldbank-wdi'),
-  ('wdi-services-gdp','IND','India',49.337715077834,'2025','worldbank-wdi'),
-  ('wdi-services-gdp','CHN','China',57.6996434500205,'2025','worldbank-wdi'),
-  ('wdi-services-gdp','VNM','Vietnam',42.7438415027506,'2025','worldbank-wdi'),
-  ('wdi-services-gdp','BRA','Brazil',59.7388368058983,'2025','worldbank-wdi'),
-  ('wdi-services-gdp','IDN','Indonesia',43.941698402252,'2025','worldbank-wdi'),
-  ('wdi-services-gdp','USA','United States',76.2563816410471,'2021','worldbank-wdi'),
   ('wdi-industry-employment','IND','India',25.8173073806381,'2025','worldbank-wdi'),
   ('wdi-industry-employment','CHN','China',31.7923235092111,'2025','worldbank-wdi'),
   ('wdi-industry-employment','VNM','Vietnam',34.8260889132074,'2025','worldbank-wdi'),
@@ -15948,18 +15918,6 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-agriculture-employment','BRA','Brazil',7.62782592703127,'2025','worldbank-wdi'),
   ('wdi-agriculture-employment','IDN','Indonesia',27.2969124578361,'2025','worldbank-wdi'),
   ('wdi-agriculture-employment','USA','United States',1.52494439217106,'2025','worldbank-wdi'),
-  ('wdi-rd-spending','IND','India',0.64558,'2020','worldbank-wdi'),
-  ('wdi-rd-spending','CHN','China',2.57729,'2023','worldbank-wdi'),
-  ('wdi-rd-spending','VNM','Vietnam',0.41456,'2023','worldbank-wdi'),
-  ('wdi-rd-spending','BRA','Brazil',1.1938,'2023','worldbank-wdi'),
-  ('wdi-rd-spending','IDN','Indonesia',0.28068,'2020','worldbank-wdi'),
-  ('wdi-rd-spending','USA','United States',3.44716,'2023','worldbank-wdi'),
-  ('wdi-patents-resident','IND','India',26267,'2021','worldbank-wdi'),
-  ('wdi-patents-resident','CHN','China',1426644,'2021','worldbank-wdi'),
-  ('wdi-patents-resident','VNM','Vietnam',1066,'2021','worldbank-wdi'),
-  ('wdi-patents-resident','BRA','Brazil',4666,'2021','worldbank-wdi'),
-  ('wdi-patents-resident','IDN','Indonesia',1397,'2021','worldbank-wdi'),
-  ('wdi-patents-resident','USA','United States',262244,'2021','worldbank-wdi'),
   ('wdi-patents-nonresident','IND','India',35306,'2021','worldbank-wdi'),
   ('wdi-patents-nonresident','CHN','China',159019,'2021','worldbank-wdi'),
   ('wdi-patents-nonresident','VNM','Vietnam',7468,'2021','worldbank-wdi'),
@@ -16008,8 +15966,7 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-armed-forces-share','BRA','Brazil',0.7619857203876,'2020','worldbank-wdi'),
   ('wdi-armed-forces-share','IDN','Indonesia',0.492082315471498,'2020','worldbank-wdi'),
   ('wdi-armed-forces-share','USA','United States',0.837509609522221,'2020','worldbank-wdi'),
-  ('wdi-electricity-access','IND','India',99.9,'2024','worldbank-wdi');
-INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
+  ('wdi-electricity-access','IND','India',99.9,'2024','worldbank-wdi'),
   ('wdi-electricity-access','CHN','China',100,'2024','worldbank-wdi'),
   ('wdi-electricity-access','VNM','Vietnam',100,'2024','worldbank-wdi'),
   ('wdi-electricity-access','BRA','Brazil',99.8,'2024','worldbank-wdi'),
@@ -16021,12 +15978,12 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-electricity-per-capita','BRA','Brazil',3068.09612345834,'2024','worldbank-wdi'),
   ('wdi-electricity-per-capita','IDN','Indonesia',1445.21463483986,'2023','worldbank-wdi'),
   ('wdi-electricity-per-capita','USA','United States',12839.3419088787,'2024','worldbank-wdi'),
-  ('wdi-renewable-share','IND','India',34.9,'2021','worldbank-wdi'),
-  ('wdi-renewable-share','CHN','China',15.2,'2021','worldbank-wdi'),
-  ('wdi-renewable-share','VNM','Vietnam',24.2,'2021','worldbank-wdi'),
-  ('wdi-renewable-share','BRA','Brazil',46.5,'2021','worldbank-wdi'),
-  ('wdi-renewable-share','IDN','Indonesia',20.2,'2021','worldbank-wdi'),
-  ('wdi-renewable-share','USA','United States',10.9,'2021','worldbank-wdi'),
+  ('wdi-renewable-electricity','IND','India',19.131292447169,'2021','worldbank-wdi'),
+  ('wdi-renewable-electricity','CHN','China',28.427997926748,'2021','worldbank-wdi'),
+  ('wdi-renewable-electricity','VNM','Vietnam',41.1697321016349,'2021','worldbank-wdi'),
+  ('wdi-renewable-electricity','BRA','Brazil',77.3753492178891,'2021','worldbank-wdi'),
+  ('wdi-renewable-electricity','IDN','Indonesia',15.5300398228856,'2021','worldbank-wdi'),
+  ('wdi-renewable-electricity','USA','United States',20.2733089261925,'2021','worldbank-wdi'),
   ('wdi-energy-imports','IND','India',36.0871843474496,'2023','worldbank-wdi'),
   ('wdi-energy-imports','CHN','China',23.9617588276826,'2023','worldbank-wdi'),
   ('wdi-energy-imports','VNM','Vietnam',33.9991947830939,'2022','worldbank-wdi'),
@@ -16051,7 +16008,8 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-internet-users','BRA','Brazil',84.46347227,'2024','worldbank-wdi'),
   ('wdi-internet-users','IDN','Indonesia',72.78075544,'2024','worldbank-wdi'),
   ('wdi-internet-users','USA','United States',94.69380188,'2024','worldbank-wdi'),
-  ('wdi-broadband','IND','India',3.15046250037677,'2024','worldbank-wdi'),
+  ('wdi-broadband','IND','India',3.15046250037677,'2024','worldbank-wdi');
+INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
   ('wdi-broadband','CHN','China',47.1933952081567,'2024','worldbank-wdi'),
   ('wdi-broadband','VNM','Vietnam',23.711259212336,'2024','worldbank-wdi'),
   ('wdi-broadband','BRA','Brazil',24.079199344422,'2024','worldbank-wdi'),
@@ -16075,12 +16033,6 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-container-traffic','BRA','Brazil',13893906,'2024','worldbank-wdi'),
   ('wdi-container-traffic','IDN','Indonesia',14709550,'2024','worldbank-wdi'),
   ('wdi-container-traffic','USA','United States',59707490,'2024','worldbank-wdi'),
-  ('wdi-urban-population','IND','India',35.689155772396,'2025','worldbank-wdi'),
-  ('wdi-urban-population','CHN','China',66.3429910348272,'2025','worldbank-wdi'),
-  ('wdi-urban-population','VNM','Vietnam',38.8299160351294,'2025','worldbank-wdi'),
-  ('wdi-urban-population','BRA','Brazil',88.1772996487898,'2025','worldbank-wdi'),
-  ('wdi-urban-population','IDN','Indonesia',59.3929063969984,'2025','worldbank-wdi'),
-  ('wdi-urban-population','USA','United States',80.1921733027869,'2025','worldbank-wdi'),
   ('wdi-urban-growth','IND','India',1.7603200913122,'2025','worldbank-wdi'),
   ('wdi-urban-growth','CHN','China',0.508242457875982,'2025','worldbank-wdi'),
   ('wdi-urban-growth','VNM','Vietnam',1.48211515761228,'2025','worldbank-wdi'),
@@ -16099,12 +16051,6 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-life-expectancy','BRA','Brazil',76.023,'2024','worldbank-wdi'),
   ('wdi-life-expectancy','IDN','Indonesia',71.288,'2024','worldbank-wdi'),
   ('wdi-life-expectancy','USA','United States',78.890243902439,'2024','worldbank-wdi'),
-  ('wdi-infant-mortality','IND','India',23.3,'2024','worldbank-wdi'),
-  ('wdi-infant-mortality','CHN','China',4.1,'2024','worldbank-wdi'),
-  ('wdi-infant-mortality','VNM','Vietnam',12,'2024','worldbank-wdi'),
-  ('wdi-infant-mortality','BRA','Brazil',12.3,'2024','worldbank-wdi'),
-  ('wdi-infant-mortality','IDN','Indonesia',15.2,'2024','worldbank-wdi'),
-  ('wdi-infant-mortality','USA','United States',5.5,'2024','worldbank-wdi'),
   ('wdi-maternal-mortality','IND','India',80,'2023','worldbank-wdi'),
   ('wdi-maternal-mortality','CHN','China',16,'2023','worldbank-wdi'),
   ('wdi-maternal-mortality','VNM','Vietnam',48,'2023','worldbank-wdi'),
@@ -16129,29 +16075,12 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-sanitation-access','BRA','Brazil',92.4012701604853,'2024','worldbank-wdi'),
   ('wdi-sanitation-access','IDN','Indonesia',88.2031685658499,'2024','worldbank-wdi'),
   ('wdi-sanitation-access','USA','United States',99.6182734760609,'2024','worldbank-wdi'),
-  ('wdi-health-spending','IND','India',3.33944035,'2023','worldbank-wdi'),
-  ('wdi-health-spending','CHN','China',5.94388866,'2023','worldbank-wdi'),
-  ('wdi-health-spending','VNM','Vietnam',4.56109476,'2023','worldbank-wdi'),
-  ('wdi-health-spending','BRA','Brazil',9.73092747,'2023','worldbank-wdi'),
-  ('wdi-health-spending','IDN','Indonesia',2.70239949,'2023','worldbank-wdi'),
-  ('wdi-health-spending','USA','United States',16.69414902,'2023','worldbank-wdi'),
-  ('wdi-oop-health','IND','India',43.88510513,'2023','worldbank-wdi'),
-  ('wdi-oop-health','CHN','China',32.17354584,'2023','worldbank-wdi'),
-  ('wdi-oop-health','VNM','Vietnam',39.20284653,'2023','worldbank-wdi'),
-  ('wdi-oop-health','BRA','Brazil',26.23070717,'2023','worldbank-wdi'),
-  ('wdi-oop-health','IDN','Indonesia',31.0836544,'2023','worldbank-wdi'),
-  ('wdi-oop-health','USA','United States',10.92723846,'2023','worldbank-wdi'),
   ('wdi-education-spending','IND','India',4.09865814174589,'2022','worldbank-wdi'),
   ('wdi-education-spending','CHN','China',3.89714002609253,'2023','worldbank-wdi'),
   ('wdi-education-spending','VNM','Vietnam',2.88738689372749,'2022','worldbank-wdi'),
   ('wdi-education-spending','BRA','Brazil',5.61920976638794,'2022','worldbank-wdi'),
   ('wdi-education-spending','IDN','Indonesia',1.27517088245674,'2023','worldbank-wdi'),
   ('wdi-education-spending','USA','United States',5.42038011550903,'2021','worldbank-wdi'),
-  ('wdi-literacy','IND','India',78.1625330351403,'2024','worldbank-wdi'),
-  ('wdi-literacy','CHN','China',96.7399978637695,'2020','worldbank-wdi'),
-  ('wdi-literacy','VNM','Vietnam',96.129997253418,'2022','worldbank-wdi'),
-  ('wdi-literacy','BRA','Brazil',94.7399978637695,'2024','worldbank-wdi'),
-  ('wdi-literacy','IDN','Indonesia',96,'2020','worldbank-wdi'),
   ('wdi-secondary-enrolment','IND','India',79.594985086469,'2025','worldbank-wdi'),
   ('wdi-secondary-enrolment','CHN','China',92.2603063015232,'2012','worldbank-wdi'),
   ('wdi-secondary-enrolment','VNM','Vietnam',93.4123434096522,'2022','worldbank-wdi'),
@@ -16164,48 +16093,18 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-tertiary-enrolment','BRA','Brazil',69.7317733764648,'2024','worldbank-wdi'),
   ('wdi-tertiary-enrolment','IDN','Indonesia',44.8813034886441,'2023','worldbank-wdi'),
   ('wdi-tertiary-enrolment','USA','United States',79.361930847168,'2022','worldbank-wdi'),
-  ('wdi-extreme-poverty','IND','India',5.3,'2022','worldbank-wdi'),
-  ('wdi-extreme-poverty','CHN','China',0,'2022','worldbank-wdi'),
-  ('wdi-extreme-poverty','VNM','Vietnam',1.6,'2022','worldbank-wdi'),
-  ('wdi-extreme-poverty','BRA','Brazil',3,'2024','worldbank-wdi'),
-  ('wdi-extreme-poverty','IDN','Indonesia',4,'2025','worldbank-wdi'),
-  ('wdi-extreme-poverty','USA','United States',1.1,'2024','worldbank-wdi'),
   ('wdi-gini','IND','India',25.5,'2022','worldbank-wdi'),
   ('wdi-gini','CHN','China',36,'2022','worldbank-wdi'),
   ('wdi-gini','VNM','Vietnam',36.1,'2022','worldbank-wdi'),
   ('wdi-gini','BRA','Brazil',50.3,'2024','worldbank-wdi'),
   ('wdi-gini','IDN','Indonesia',34.4,'2025','worldbank-wdi'),
   ('wdi-gini','USA','United States',41.8,'2024','worldbank-wdi'),
-  ('wdi-population','IND','India',1463865525,'2025','worldbank-wdi'),
-  ('wdi-population','CHN','China',1406585000,'2025','worldbank-wdi'),
-  ('wdi-population','VNM','Vietnam',101598527,'2025','worldbank-wdi'),
-  ('wdi-population','BRA','Brazil',212812405,'2025','worldbank-wdi'),
-  ('wdi-population','IDN','Indonesia',285721236,'2025','worldbank-wdi'),
-  ('wdi-population','USA','United States',341784857,'2025','worldbank-wdi'),
   ('wdi-fertility','IND','India',1.962,'2024','worldbank-wdi'),
   ('wdi-fertility','CHN','China',1.013,'2024','worldbank-wdi'),
   ('wdi-fertility','VNM','Vietnam',1.895,'2024','worldbank-wdi'),
   ('wdi-fertility','BRA','Brazil',1.614,'2024','worldbank-wdi'),
   ('wdi-fertility','IDN','Indonesia',2.115,'2024','worldbank-wdi'),
   ('wdi-fertility','USA','United States',1.6265,'2024','worldbank-wdi'),
-  ('wdi-population-65plus','IND','India',7.37657146047502,'2025','worldbank-wdi'),
-  ('wdi-population-65plus','CHN','China',14.9114314271952,'2025','worldbank-wdi'),
-  ('wdi-population-65plus','VNM','Vietnam',9.49453578200007,'2025','worldbank-wdi'),
-  ('wdi-population-65plus','BRA','Brazil',11.4803394567154,'2025','worldbank-wdi'),
-  ('wdi-population-65plus','IDN','Indonesia',7.542769252795,'2025','worldbank-wdi'),
-  ('wdi-population-65plus','USA','United States',18.387224828496,'2025','worldbank-wdi'),
-  ('wdi-population-0-14','IND','India',24.1952667831956,'2025','worldbank-wdi'),
-  ('wdi-population-0-14','CHN','China',15.4072909264023,'2025','worldbank-wdi'),
-  ('wdi-population-0-14','VNM','Vietnam',22.8560173908821,'2025','worldbank-wdi'),
-  ('wdi-population-0-14','BRA','Brazil',19.3866212827208,'2025','worldbank-wdi'),
-  ('wdi-population-0-14','IDN','Indonesia',24.2472504288188,'2025','worldbank-wdi'),
-  ('wdi-population-0-14','USA','United States',17.0990415161586,'2025','worldbank-wdi'),
-  ('wdi-researchers','IND','India',259.26325,'2020','worldbank-wdi'),
-  ('wdi-researchers','CHN','China',2107.27003,'2023','worldbank-wdi'),
-  ('wdi-researchers','VNM','Vietnam',836.10677,'2023','worldbank-wdi'),
-  ('wdi-researchers','BRA','Brazil',903.20079,'2014','worldbank-wdi'),
-  ('wdi-researchers','IDN','Indonesia',395.34168,'2020','worldbank-wdi'),
-  ('wdi-researchers','USA','United States',4937.49441,'2022','worldbank-wdi'),
   ('wdi-technicians','IND','India',73.05997,'2018','worldbank-wdi'),
   ('wdi-technicians','VNM','Vietnam',71.49,'2017','worldbank-wdi'),
   ('wdi-technicians','BRA','Brazil',969.90222,'2014','worldbank-wdi'),
@@ -16215,11 +16114,6 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-ip-receipts','BRA','Brazil',1164138662.4,'2025','worldbank-wdi'),
   ('wdi-ip-receipts','IDN','Indonesia',217484630.463053,'2025','worldbank-wdi'),
   ('wdi-ip-receipts','USA','United States',189145000000,'2025','worldbank-wdi'),
-  ('wdi-ip-payments','IND','India',18764908516.913,'2025','worldbank-wdi'),
-  ('wdi-ip-payments','CHN','China',46629335623.43,'2025','worldbank-wdi'),
-  ('wdi-ip-payments','BRA','Brazil',12330577067.63,'2025','worldbank-wdi'),
-  ('wdi-ip-payments','IDN','Indonesia',2484141605.34098,'2025','worldbank-wdi'),
-  ('wdi-ip-payments','USA','United States',51640000000,'2025','worldbank-wdi'),
   ('wdi-ict-goods-exports','IND','India',5.71,'2024','worldbank-wdi'),
   ('wdi-ict-goods-exports','CHN','China',21.32,'2024','worldbank-wdi'),
   ('wdi-ict-goods-exports','VNM','Vietnam',35.9,'2023','worldbank-wdi'),
@@ -16255,37 +16149,12 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-undernourishment','BRA','Brazil',2.5,'2023','worldbank-wdi'),
   ('wdi-undernourishment','IDN','Indonesia',6.3,'2023','worldbank-wdi'),
   ('wdi-undernourishment','USA','United States',2.5,'2023','worldbank-wdi'),
-  ('wdi-child-stunting','IND','India',35.5,'2020','worldbank-wdi'),
-  ('wdi-child-stunting','CHN','China',4.8,'2017','worldbank-wdi'),
-  ('wdi-child-stunting','VNM','Vietnam',18.2,'2023','worldbank-wdi'),
-  ('wdi-child-stunting','BRA','Brazil',8,'2019','worldbank-wdi'),
-  ('wdi-child-stunting','IDN','Indonesia',22,'2023','worldbank-wdi');
-INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
-  ('wdi-child-stunting','USA','United States',3.8,'2022','worldbank-wdi'),
-  ('wdi-clean-cooking','IND','India',76.7,'2023','worldbank-wdi'),
-  ('wdi-clean-cooking','CHN','China',88.7,'2023','worldbank-wdi'),
-  ('wdi-clean-cooking','VNM','Vietnam',98.7,'2023','worldbank-wdi'),
-  ('wdi-clean-cooking','BRA','Brazil',96.5,'2023','worldbank-wdi'),
-  ('wdi-clean-cooking','IDN','Indonesia',90.6,'2023','worldbank-wdi'),
-  ('wdi-clean-cooking','USA','United States',100,'2023','worldbank-wdi'),
   ('wdi-account-ownership','IND','India',89.0248224502547,'2024','worldbank-wdi'),
   ('wdi-account-ownership','CHN','China',89.3830319754266,'2024','worldbank-wdi'),
   ('wdi-account-ownership','VNM','Vietnam',70.5507533567583,'2024','worldbank-wdi'),
   ('wdi-account-ownership','BRA','Brazil',86.3811782311541,'2024','worldbank-wdi'),
   ('wdi-account-ownership','IDN','Indonesia',56.3278493718021,'2024','worldbank-wdi'),
   ('wdi-account-ownership','USA','United States',97.0230983290589,'2024','worldbank-wdi'),
-  ('wdi-account-ownership-female','IND','India',89.2482328079147,'2024','worldbank-wdi'),
-  ('wdi-account-ownership-female','CHN','China',89.2021200745424,'2024','worldbank-wdi'),
-  ('wdi-account-ownership-female','VNM','Vietnam',69.8844155477409,'2024','worldbank-wdi'),
-  ('wdi-account-ownership-female','BRA','Brazil',82.2763902255203,'2024','worldbank-wdi'),
-  ('wdi-account-ownership-female','IDN','Indonesia',58.0308451514518,'2024','worldbank-wdi'),
-  ('wdi-account-ownership-female','USA','United States',97.1092143262693,'2024','worldbank-wdi'),
-  ('wdi-market-cap-gdp','IND','India',266.92119852826,'2025','worldbank-wdi'),
-  ('wdi-market-cap-gdp','CHN','China',79.540605039043,'2025','worldbank-wdi'),
-  ('wdi-market-cap-gdp','VNM','Vietnam',61.3951505252769,'2025','worldbank-wdi'),
-  ('wdi-market-cap-gdp','BRA','Brazil',38.2222400192741,'2025','worldbank-wdi'),
-  ('wdi-market-cap-gdp','IDN','Indonesia',65.6860990677901,'2025','worldbank-wdi'),
-  ('wdi-market-cap-gdp','USA','United States',224.04464850161,'2025','worldbank-wdi'),
   ('wdi-listed-companies','IND','India',8510,'2025','worldbank-wdi'),
   ('wdi-listed-companies','CHN','China',11149,'2025','worldbank-wdi'),
   ('wdi-listed-companies','VNM','Vietnam',400,'2025','worldbank-wdi'),
@@ -16298,6 +16167,143 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-stocks-traded','BRA','Brazil',45.3123205239512,'2025','worldbank-wdi'),
   ('wdi-stocks-traded','IDN','Indonesia',14.9246426719505,'2025','worldbank-wdi'),
   ('wdi-stocks-traded','USA','United States',180.259281598456,'2025','worldbank-wdi'),
+  ('wdi-gross-savings','IND','India',32.559492763302,'2025','worldbank-wdi'),
+  ('wdi-gross-savings','CHN','China',43.3210475865354,'2024','worldbank-wdi'),
+  ('wdi-gross-savings','VNM','Vietnam',37.4122487716134,'2025','worldbank-wdi'),
+  ('wdi-gross-savings','BRA','Brazil',17.4259600459081,'2025','worldbank-wdi'),
+  ('wdi-gross-savings','IDN','Indonesia',37.2378532261843,'2025','worldbank-wdi'),
+  ('wdi-gross-savings','USA','United States',18.465975832559,'2024','worldbank-wdi'),
+  ('wdi-hightech-exports-usd','IND','India',54140883629,'2024','worldbank-wdi'),
+  ('wdi-hightech-exports-usd','CHN','China',856764726389,'2024','worldbank-wdi'),
+  ('wdi-hightech-exports-usd','VNM','Vietnam',132776576635,'2023','worldbank-wdi'),
+  ('wdi-hightech-exports-usd','BRA','Brazil',8694667841,'2024','worldbank-wdi'),
+  ('wdi-hightech-exports-usd','IDN','Indonesia',10407239550,'2024','worldbank-wdi'),
+  ('wdi-hightech-exports-usd','USA','United States',232906639404,'2024','worldbank-wdi'),
+  ('wdi-reserves','IND','India',700073798240.701,'2025','worldbank-wdi'),
+  ('wdi-reserves','CHN','China',3748744952817.94,'2025','worldbank-wdi'),
+  ('wdi-reserves','VNM','Vietnam',85580367980.9694,'2025','worldbank-wdi'),
+  ('wdi-reserves','BRA','Brazil',358513128727.455,'2025','worldbank-wdi'),
+  ('wdi-reserves','IDN','Indonesia',156542507869.671,'2025','worldbank-wdi'),
+  ('wdi-reserves','USA','United States',1385447111476.7,'2025','worldbank-wdi'),
+  ('wdi-industry-gdp','IND','India',25.2049600095376,'2025','worldbank-wdi'),
+  ('wdi-industry-gdp','CHN','China',35.6416587106792,'2025','worldbank-wdi'),
+  ('wdi-industry-gdp','VNM','Vietnam',37.6491235864782,'2025','worldbank-wdi'),
+  ('wdi-industry-gdp','BRA','Brazil',20.1499461312909,'2025','worldbank-wdi'),
+  ('wdi-industry-gdp','IDN','Indonesia',38.7077414834802,'2025','worldbank-wdi'),
+  ('wdi-industry-gdp','USA','United States',17.5751653495616,'2021','worldbank-wdi'),
+  ('wdi-services-gdp','IND','India',49.337715077834,'2025','worldbank-wdi'),
+  ('wdi-services-gdp','CHN','China',57.6996434500205,'2025','worldbank-wdi'),
+  ('wdi-services-gdp','VNM','Vietnam',42.7438415027506,'2025','worldbank-wdi'),
+  ('wdi-services-gdp','BRA','Brazil',59.7388368058983,'2025','worldbank-wdi'),
+  ('wdi-services-gdp','IDN','Indonesia',43.941698402252,'2025','worldbank-wdi'),
+  ('wdi-services-gdp','USA','United States',76.2563816410471,'2021','worldbank-wdi'),
+  ('wdi-rd-spending','IND','India',0.64558,'2020','worldbank-wdi'),
+  ('wdi-rd-spending','CHN','China',2.57729,'2023','worldbank-wdi'),
+  ('wdi-rd-spending','VNM','Vietnam',0.41456,'2023','worldbank-wdi'),
+  ('wdi-rd-spending','BRA','Brazil',1.1938,'2023','worldbank-wdi'),
+  ('wdi-rd-spending','IDN','Indonesia',0.28068,'2020','worldbank-wdi'),
+  ('wdi-rd-spending','USA','United States',3.44716,'2023','worldbank-wdi'),
+  ('wdi-patents-resident','IND','India',26267,'2021','worldbank-wdi'),
+  ('wdi-patents-resident','CHN','China',1426644,'2021','worldbank-wdi'),
+  ('wdi-patents-resident','VNM','Vietnam',1066,'2021','worldbank-wdi'),
+  ('wdi-patents-resident','BRA','Brazil',4666,'2021','worldbank-wdi'),
+  ('wdi-patents-resident','IDN','Indonesia',1397,'2021','worldbank-wdi'),
+  ('wdi-patents-resident','USA','United States',262244,'2021','worldbank-wdi'),
+  ('wdi-renewable-share','IND','India',34.9,'2021','worldbank-wdi'),
+  ('wdi-renewable-share','CHN','China',15.2,'2021','worldbank-wdi'),
+  ('wdi-renewable-share','VNM','Vietnam',24.2,'2021','worldbank-wdi'),
+  ('wdi-renewable-share','BRA','Brazil',46.5,'2021','worldbank-wdi'),
+  ('wdi-renewable-share','IDN','Indonesia',20.2,'2021','worldbank-wdi'),
+  ('wdi-renewable-share','USA','United States',10.9,'2021','worldbank-wdi'),
+  ('wdi-urban-population','IND','India',35.689155772396,'2025','worldbank-wdi'),
+  ('wdi-urban-population','CHN','China',66.3429910348272,'2025','worldbank-wdi'),
+  ('wdi-urban-population','VNM','Vietnam',38.8299160351294,'2025','worldbank-wdi'),
+  ('wdi-urban-population','BRA','Brazil',88.1772996487898,'2025','worldbank-wdi'),
+  ('wdi-urban-population','IDN','Indonesia',59.3929063969984,'2025','worldbank-wdi'),
+  ('wdi-urban-population','USA','United States',80.1921733027869,'2025','worldbank-wdi'),
+  ('wdi-infant-mortality','IND','India',23.3,'2024','worldbank-wdi'),
+  ('wdi-infant-mortality','CHN','China',4.1,'2024','worldbank-wdi'),
+  ('wdi-infant-mortality','VNM','Vietnam',12,'2024','worldbank-wdi'),
+  ('wdi-infant-mortality','BRA','Brazil',12.3,'2024','worldbank-wdi'),
+  ('wdi-infant-mortality','IDN','Indonesia',15.2,'2024','worldbank-wdi'),
+  ('wdi-infant-mortality','USA','United States',5.5,'2024','worldbank-wdi'),
+  ('wdi-health-spending','IND','India',3.33944035,'2023','worldbank-wdi'),
+  ('wdi-health-spending','CHN','China',5.94388866,'2023','worldbank-wdi'),
+  ('wdi-health-spending','VNM','Vietnam',4.56109476,'2023','worldbank-wdi'),
+  ('wdi-health-spending','BRA','Brazil',9.73092747,'2023','worldbank-wdi'),
+  ('wdi-health-spending','IDN','Indonesia',2.70239949,'2023','worldbank-wdi'),
+  ('wdi-health-spending','USA','United States',16.69414902,'2023','worldbank-wdi'),
+  ('wdi-oop-health','IND','India',43.88510513,'2023','worldbank-wdi'),
+  ('wdi-oop-health','CHN','China',32.17354584,'2023','worldbank-wdi'),
+  ('wdi-oop-health','VNM','Vietnam',39.20284653,'2023','worldbank-wdi'),
+  ('wdi-oop-health','BRA','Brazil',26.23070717,'2023','worldbank-wdi'),
+  ('wdi-oop-health','IDN','Indonesia',31.0836544,'2023','worldbank-wdi'),
+  ('wdi-oop-health','USA','United States',10.92723846,'2023','worldbank-wdi'),
+  ('wdi-literacy','IND','India',78.1625330351403,'2024','worldbank-wdi'),
+  ('wdi-literacy','CHN','China',96.7399978637695,'2020','worldbank-wdi'),
+  ('wdi-literacy','VNM','Vietnam',96.129997253418,'2022','worldbank-wdi'),
+  ('wdi-literacy','BRA','Brazil',94.7399978637695,'2024','worldbank-wdi'),
+  ('wdi-literacy','IDN','Indonesia',96,'2020','worldbank-wdi'),
+  ('wdi-extreme-poverty','IND','India',5.3,'2022','worldbank-wdi'),
+  ('wdi-extreme-poverty','CHN','China',0,'2022','worldbank-wdi'),
+  ('wdi-extreme-poverty','VNM','Vietnam',1.6,'2022','worldbank-wdi'),
+  ('wdi-extreme-poverty','BRA','Brazil',3,'2024','worldbank-wdi'),
+  ('wdi-extreme-poverty','IDN','Indonesia',4,'2025','worldbank-wdi'),
+  ('wdi-extreme-poverty','USA','United States',1.1,'2024','worldbank-wdi'),
+  ('wdi-population','IND','India',1463865525,'2025','worldbank-wdi'),
+  ('wdi-population','CHN','China',1406585000,'2025','worldbank-wdi'),
+  ('wdi-population','VNM','Vietnam',101598527,'2025','worldbank-wdi'),
+  ('wdi-population','BRA','Brazil',212812405,'2025','worldbank-wdi'),
+  ('wdi-population','IDN','Indonesia',285721236,'2025','worldbank-wdi'),
+  ('wdi-population','USA','United States',341784857,'2025','worldbank-wdi'),
+  ('wdi-population-65plus','IND','India',7.37657146047502,'2025','worldbank-wdi'),
+  ('wdi-population-65plus','CHN','China',14.9114314271952,'2025','worldbank-wdi'),
+  ('wdi-population-65plus','VNM','Vietnam',9.49453578200007,'2025','worldbank-wdi'),
+  ('wdi-population-65plus','BRA','Brazil',11.4803394567154,'2025','worldbank-wdi');
+INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
+  ('wdi-population-65plus','IDN','Indonesia',7.542769252795,'2025','worldbank-wdi'),
+  ('wdi-population-65plus','USA','United States',18.387224828496,'2025','worldbank-wdi'),
+  ('wdi-population-0-14','IND','India',24.1952667831956,'2025','worldbank-wdi'),
+  ('wdi-population-0-14','CHN','China',15.4072909264023,'2025','worldbank-wdi'),
+  ('wdi-population-0-14','VNM','Vietnam',22.8560173908821,'2025','worldbank-wdi'),
+  ('wdi-population-0-14','BRA','Brazil',19.3866212827208,'2025','worldbank-wdi'),
+  ('wdi-population-0-14','IDN','Indonesia',24.2472504288188,'2025','worldbank-wdi'),
+  ('wdi-population-0-14','USA','United States',17.0990415161586,'2025','worldbank-wdi'),
+  ('wdi-researchers','IND','India',259.26325,'2020','worldbank-wdi'),
+  ('wdi-researchers','CHN','China',2107.27003,'2023','worldbank-wdi'),
+  ('wdi-researchers','VNM','Vietnam',836.10677,'2023','worldbank-wdi'),
+  ('wdi-researchers','BRA','Brazil',903.20079,'2014','worldbank-wdi'),
+  ('wdi-researchers','IDN','Indonesia',395.34168,'2020','worldbank-wdi'),
+  ('wdi-researchers','USA','United States',4937.49441,'2022','worldbank-wdi'),
+  ('wdi-ip-payments','IND','India',18764908516.913,'2025','worldbank-wdi'),
+  ('wdi-ip-payments','CHN','China',46629335623.43,'2025','worldbank-wdi'),
+  ('wdi-ip-payments','BRA','Brazil',12330577067.63,'2025','worldbank-wdi'),
+  ('wdi-ip-payments','IDN','Indonesia',2484141605.34098,'2025','worldbank-wdi'),
+  ('wdi-ip-payments','USA','United States',51640000000,'2025','worldbank-wdi'),
+  ('wdi-child-stunting','IND','India',35.5,'2020','worldbank-wdi'),
+  ('wdi-child-stunting','CHN','China',4.8,'2017','worldbank-wdi'),
+  ('wdi-child-stunting','VNM','Vietnam',18.2,'2023','worldbank-wdi'),
+  ('wdi-child-stunting','BRA','Brazil',8,'2019','worldbank-wdi'),
+  ('wdi-child-stunting','IDN','Indonesia',22,'2023','worldbank-wdi'),
+  ('wdi-child-stunting','USA','United States',3.8,'2022','worldbank-wdi'),
+  ('wdi-clean-cooking','IND','India',76.7,'2023','worldbank-wdi'),
+  ('wdi-clean-cooking','CHN','China',88.7,'2023','worldbank-wdi'),
+  ('wdi-clean-cooking','VNM','Vietnam',98.7,'2023','worldbank-wdi'),
+  ('wdi-clean-cooking','BRA','Brazil',96.5,'2023','worldbank-wdi'),
+  ('wdi-clean-cooking','IDN','Indonesia',90.6,'2023','worldbank-wdi'),
+  ('wdi-clean-cooking','USA','United States',100,'2023','worldbank-wdi'),
+  ('wdi-account-ownership-female','IND','India',89.2482328079147,'2024','worldbank-wdi'),
+  ('wdi-account-ownership-female','CHN','China',89.2021200745424,'2024','worldbank-wdi'),
+  ('wdi-account-ownership-female','VNM','Vietnam',69.8844155477409,'2024','worldbank-wdi'),
+  ('wdi-account-ownership-female','BRA','Brazil',82.2763902255203,'2024','worldbank-wdi'),
+  ('wdi-account-ownership-female','IDN','Indonesia',58.0308451514518,'2024','worldbank-wdi'),
+  ('wdi-account-ownership-female','USA','United States',97.1092143262693,'2024','worldbank-wdi'),
+  ('wdi-market-cap-gdp','IND','India',266.92119852826,'2025','worldbank-wdi'),
+  ('wdi-market-cap-gdp','CHN','China',79.540605039043,'2025','worldbank-wdi'),
+  ('wdi-market-cap-gdp','VNM','Vietnam',61.3951505252769,'2025','worldbank-wdi'),
+  ('wdi-market-cap-gdp','BRA','Brazil',38.2222400192741,'2025','worldbank-wdi'),
+  ('wdi-market-cap-gdp','IDN','Indonesia',65.6860990677901,'2025','worldbank-wdi'),
+  ('wdi-market-cap-gdp','USA','United States',224.04464850161,'2025','worldbank-wdi'),
   ('wdi-private-credit','IND','India',44.0250903358104,'2025','worldbank-wdi'),
   ('wdi-private-credit','CHN','China',194.312528264561,'2024','worldbank-wdi'),
   ('wdi-private-credit','VNM','Vietnam',124.961478822546,'2022','worldbank-wdi'),
@@ -16504,14 +16510,14 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-ne-dab-defl-zs','CHN','China',106.384245356604,'2024','worldbank-wdi'),
   ('wdi-ne-dab-defl-zs','VNM','Vietnam',178.008704789199,'2025','worldbank-wdi'),
   ('wdi-ne-dab-defl-zs','BRA','Brazil',272.814186823245,'2025','worldbank-wdi'),
-  ('wdi-ne-dab-defl-zs','IDN','Indonesia',174.747343170203,'2025','worldbank-wdi'),
+  ('wdi-ne-dab-defl-zs','IDN','Indonesia',174.747343170203,'2025','worldbank-wdi');
+INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
   ('wdi-ne-dab-defl-zs','USA','United States',117.980231686493,'2024','worldbank-wdi'),
   ('wdi-ne-dab-totl-kd','IND','India',3744296549342.17,'2025','worldbank-wdi'),
   ('wdi-ne-dab-totl-kd','CHN','China',18079254199186.4,'2025','worldbank-wdi'),
   ('wdi-ne-dab-totl-kd','VNM','Vietnam',432581924196.989,'2025','worldbank-wdi'),
   ('wdi-ne-dab-totl-kd','BRA','Brazil',2076193451318.38,'2025','worldbank-wdi'),
-  ('wdi-ne-dab-totl-kd','IDN','Indonesia',1263709661779.86,'2025','worldbank-wdi');
-INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
+  ('wdi-ne-dab-totl-kd','IDN','Indonesia',1263709661779.86,'2025','worldbank-wdi'),
   ('wdi-ne-dab-totl-kd','USA','United States',23797633614989.4,'2024','worldbank-wdi'),
   ('wdi-ne-dab-totl-zs','IND','India',102.043512133544,'2025','worldbank-wdi'),
   ('wdi-ne-dab-totl-zs','CHN','China',97.1604658584274,'2024','worldbank-wdi'),
@@ -16755,14 +16761,14 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-ny-adj-dmin-cd','BRA','Brazil',23221623969.3388,'2021','worldbank-wdi'),
   ('wdi-ny-adj-dmin-cd','IDN','Indonesia',14483011521.5155,'2021','worldbank-wdi'),
   ('wdi-ny-adj-dmin-cd','USA','United States',14313150943.3189,'2021','worldbank-wdi'),
-  ('wdi-ny-adj-dmin-gn-zs','IND','India',0.945670721584536,'2021','worldbank-wdi'),
+  ('wdi-ny-adj-dmin-gn-zs','IND','India',0.945670721584536,'2021','worldbank-wdi');
+INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
   ('wdi-ny-adj-dmin-gn-zs','CHN','China',0.322136443591558,'2021','worldbank-wdi'),
   ('wdi-ny-adj-dmin-gn-zs','VNM','Vietnam',0.0405145977926006,'2021','worldbank-wdi'),
   ('wdi-ny-adj-dmin-gn-zs','BRA','Brazil',1.48321032642025,'2021','worldbank-wdi'),
   ('wdi-ny-adj-dmin-gn-zs','IDN','Indonesia',1.25452118836604,'2021','worldbank-wdi'),
   ('wdi-ny-adj-dmin-gn-zs','USA','United States',0.0606049983472533,'2021','worldbank-wdi'),
-  ('wdi-ny-adj-dngy-cd','IND','India',16005565905.1323,'2021','worldbank-wdi');
-INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
+  ('wdi-ny-adj-dngy-cd','IND','India',16005565905.1323,'2021','worldbank-wdi'),
   ('wdi-ny-adj-dngy-cd','CHN','China',121148953241.301,'2021','worldbank-wdi'),
   ('wdi-ny-adj-dngy-cd','VNM','Vietnam',1647044866.15994,'2021','worldbank-wdi'),
   ('wdi-ny-adj-dngy-cd','BRA','Brazil',35438906336.3698,'2021','worldbank-wdi'),
@@ -17006,14 +17012,14 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-gfdd-si-06','CHN','China',18.89793,'2021','worldbank-wdi'),
   ('wdi-gfdd-si-06','VNM','Vietnam',21.10425,'2021','worldbank-wdi'),
   ('wdi-gfdd-si-06','BRA','Brazil',55.83577,'2021','worldbank-wdi'),
-  ('wdi-gfdd-si-06','IDN','Indonesia',28.40696,'2021','worldbank-wdi'),
+  ('wdi-gfdd-si-06','IDN','Indonesia',28.40696,'2021','worldbank-wdi');
+INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
   ('wdi-gfdd-si-06','USA','United States',23.71254,'2021','worldbank-wdi'),
   ('wdi-gfdd-sm-01','IND','India',20.59406,'2021','worldbank-wdi'),
   ('wdi-gfdd-sm-01','CHN','China',18.24084,'2021','worldbank-wdi'),
   ('wdi-gfdd-sm-01','VNM','Vietnam',22.49843,'2021','worldbank-wdi'),
   ('wdi-gfdd-sm-01','BRA','Brazil',33.79318,'2021','worldbank-wdi'),
-  ('wdi-gfdd-sm-01','IDN','Indonesia',21.77245,'2021','worldbank-wdi');
-INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
+  ('wdi-gfdd-sm-01','IDN','Indonesia',21.77245,'2021','worldbank-wdi'),
   ('wdi-gfdd-sm-01','USA','United States',24.99284,'2021','worldbank-wdi'),
   ('wdi-fb-atm-totl-p5','IND','India',24.4668640479183,'2024','worldbank-wdi'),
   ('wdi-fb-atm-totl-p5','CHN','China',67.8283270265072,'2024','worldbank-wdi'),
@@ -17257,14 +17263,14 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-gfdd-di-11','IND','India',18.905566,'2019','worldbank-wdi'),
   ('wdi-gfdd-di-11','CHN','China',22.739479,'2020','worldbank-wdi'),
   ('wdi-gfdd-di-11','VNM','Vietnam',7.6630068,'2019','worldbank-wdi'),
-  ('wdi-gfdd-di-11','BRA','Brazil',17.208749,'2020','worldbank-wdi'),
+  ('wdi-gfdd-di-11','BRA','Brazil',17.208749,'2020','worldbank-wdi');
+INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
   ('wdi-gfdd-di-11','IDN','Indonesia',4.6065377,'2020','worldbank-wdi'),
   ('wdi-gfdd-di-11','USA','United States',58.745591,'2020','worldbank-wdi'),
   ('wdi-gc-tax-expt-zs','IND','India',0.00493119659888326,'2018','worldbank-wdi'),
   ('wdi-gc-tax-expt-zs','CHN','China',-25.2242438200254,'2005','worldbank-wdi'),
   ('wdi-gc-tax-expt-zs','BRA','Brazil',0.000321568968186182,'2024','worldbank-wdi'),
-  ('wdi-gc-tax-expt-zs','IDN','Indonesia',0.0911332393430141,'2009','worldbank-wdi');
-INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
+  ('wdi-gc-tax-expt-zs','IDN','Indonesia',0.0911332393430141,'2009','worldbank-wdi'),
   ('wdi-ne-gdi-fprv-zs','IND','India',27.7291754596719,'2023','worldbank-wdi'),
   ('wdi-ne-gdi-fprv-zs','CHN','China',33.4827446951054,'2023','worldbank-wdi'),
   ('wdi-gfdd-di-13','IND','India',9.2892201,'2020','worldbank-wdi'),
@@ -17508,14 +17514,14 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-en-urb-lcty','VNM','Vietnam',9816318,'2025','worldbank-wdi'),
   ('wdi-en-urb-lcty','BRA','Brazil',22990007,'2025','worldbank-wdi'),
   ('wdi-en-urb-lcty','IDN','Indonesia',11634078,'2025','worldbank-wdi'),
-  ('wdi-en-urb-lcty','USA','United States',19154024,'2025','worldbank-wdi'),
+  ('wdi-en-urb-lcty','USA','United States',19154024,'2025','worldbank-wdi');
+INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
   ('wdi-en-urb-lcty-ur-zs','IND','India',6.63530476062258,'2025','worldbank-wdi'),
   ('wdi-en-urb-lcty-ur-zs','CHN','China',3.2665132513396,'2025','worldbank-wdi'),
   ('wdi-en-urb-lcty-ur-zs','VNM','Vietnam',24.8825424125748,'2025','worldbank-wdi'),
   ('wdi-en-urb-lcty-ur-zs','BRA','Brazil',12.2513901140275,'2025','worldbank-wdi'),
   ('wdi-en-urb-lcty-ur-zs','IDN','Indonesia',6.8557484417066,'2025','worldbank-wdi'),
-  ('wdi-en-urb-lcty-ur-zs','USA','United States',6.98835931030883,'2025','worldbank-wdi');
-INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
+  ('wdi-en-urb-lcty-ur-zs','USA','United States',6.98835931030883,'2025','worldbank-wdi'),
   ('wdi-en-urb-mcty','IND','India',248302968,'2025','worldbank-wdi'),
   ('wdi-en-urb-mcty','CHN','China',460164024,'2025','worldbank-wdi'),
   ('wdi-en-urb-mcty','VNM','Vietnam',20215932,'2025','worldbank-wdi'),
@@ -17759,14 +17765,14 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-er-fsh-capt-mt','IND','India',6356491.714,'2024','worldbank-wdi'),
   ('wdi-er-fsh-capt-mt','CHN','China',13262322.001,'2024','worldbank-wdi'),
   ('wdi-er-fsh-capt-mt','VNM','Vietnam',3433838.54,'2024','worldbank-wdi'),
-  ('wdi-er-fsh-capt-mt','BRA','Brazil',720403.886,'2024','worldbank-wdi'),
+  ('wdi-er-fsh-capt-mt','BRA','Brazil',720403.886,'2024','worldbank-wdi');
+INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
   ('wdi-er-fsh-capt-mt','IDN','Indonesia',7817069.965,'2024','worldbank-wdi'),
   ('wdi-er-fsh-capt-mt','USA','United States',4213780,'2024','worldbank-wdi'),
   ('wdi-er-fsh-prod-mt','IND','India',18450686.714,'2024','worldbank-wdi'),
   ('wdi-er-fsh-prod-mt','CHN','China',95211994.681,'2024','worldbank-wdi'),
   ('wdi-er-fsh-prod-mt','VNM','Vietnam',9080444.16,'2024','worldbank-wdi'),
-  ('wdi-er-fsh-prod-mt','BRA','Brazil',1603339.036,'2024','worldbank-wdi');
-INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
+  ('wdi-er-fsh-prod-mt','BRA','Brazil',1603339.036,'2024','worldbank-wdi'),
   ('wdi-er-fsh-prod-mt','IDN','Indonesia',23571754.022,'2024','worldbank-wdi'),
   ('wdi-er-fsh-prod-mt','USA','United States',4681397.1,'2024','worldbank-wdi'),
   ('wdi-eg-elc-fosl-zs','IND','India',77.5930339369078,'2023','worldbank-wdi'),
@@ -18010,14 +18016,14 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-en-atm-pm25-mc-zs','IDN','Indonesia',95.5671472610627,'2017','worldbank-wdi'),
   ('wdi-en-atm-pm25-mc-zs','USA','United States',3.34317037021352,'2017','worldbank-wdi'),
   ('wdi-ie-ppi-engy-cd','IND','India',3424970000,'2024','worldbank-wdi'),
-  ('wdi-ie-ppi-engy-cd','CHN','China',36350050000,'2024','worldbank-wdi'),
+  ('wdi-ie-ppi-engy-cd','CHN','China',36350050000,'2024','worldbank-wdi');
+INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
   ('wdi-ie-ppi-engy-cd','VNM','Vietnam',1640000000,'2024','worldbank-wdi'),
   ('wdi-ie-ppi-engy-cd','BRA','Brazil',5748120000,'2024','worldbank-wdi'),
   ('wdi-ie-ppi-engy-cd','IDN','Indonesia',146000000,'2024','worldbank-wdi'),
   ('wdi-ie-ppi-tran-cd','IND','India',1162000000,'2024','worldbank-wdi'),
   ('wdi-ie-ppi-tran-cd','CHN','China',3329410000,'2024','worldbank-wdi'),
-  ('wdi-ie-ppi-tran-cd','VNM','Vietnam',1629500000,'2022','worldbank-wdi');
-INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
+  ('wdi-ie-ppi-tran-cd','VNM','Vietnam',1629500000,'2022','worldbank-wdi'),
   ('wdi-ie-ppi-tran-cd','BRA','Brazil',4262010000,'2024','worldbank-wdi'),
   ('wdi-ie-ppi-tran-cd','IDN','Indonesia',93300000,'2022','worldbank-wdi'),
   ('wdi-ie-ppn-engy-cd','IND','India',3424970000,'2024','worldbank-wdi'),
@@ -18261,14 +18267,14 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-sh-dyn-aids-fe-zs','IDN','Indonesia',32.6609301887188,'2024','worldbank-wdi'),
   ('wdi-sh-dyn-aids-fe-zs','USA','United States',21.1254095086304,'2024','worldbank-wdi'),
   ('wdi-sh-dyn-mort-fe','IND','India',26.7,'2024','worldbank-wdi'),
-  ('wdi-sh-dyn-mort-fe','CHN','China',5.4,'2024','worldbank-wdi'),
+  ('wdi-sh-dyn-mort-fe','CHN','China',5.4,'2024','worldbank-wdi');
+INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
   ('wdi-sh-dyn-mort-fe','VNM','Vietnam',14.1,'2024','worldbank-wdi'),
   ('wdi-sh-dyn-mort-fe','BRA','Brazil',12.6,'2024','worldbank-wdi'),
   ('wdi-sh-dyn-mort-fe','IDN','Indonesia',15.8,'2024','worldbank-wdi'),
   ('wdi-sh-dyn-mort-fe','USA','United States',5.9,'2024','worldbank-wdi'),
   ('wdi-sh-dyn-mort-ma','IND','India',26.5,'2024','worldbank-wdi'),
-  ('wdi-sh-dyn-mort-ma','CHN','China',6,'2024','worldbank-wdi');
-INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
+  ('wdi-sh-dyn-mort-ma','CHN','China',6,'2024','worldbank-wdi'),
   ('wdi-sh-dyn-mort-ma','VNM','Vietnam',20.3,'2024','worldbank-wdi'),
   ('wdi-sh-dyn-mort-ma','BRA','Brazil',15.7,'2024','worldbank-wdi'),
   ('wdi-sh-dyn-mort-ma','IDN','Indonesia',19.4,'2024','worldbank-wdi'),
@@ -18512,14 +18518,14 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-vc-ihr-psrc-fe-p5','BRA','Brazil',3.91876469793225,'2023','worldbank-wdi'),
   ('wdi-vc-ihr-psrc-fe-p5','IDN','Indonesia',0.151340405758762,'2022','worldbank-wdi'),
   ('wdi-vc-ihr-psrc-fe-p5','USA','United States',2.55078416556168,'2023','worldbank-wdi'),
-  ('wdi-vc-ihr-psrc-ma-p5','IND','India',3.22910946938297,'2022','worldbank-wdi'),
+  ('wdi-vc-ihr-psrc-ma-p5','IND','India',3.22910946938297,'2022','worldbank-wdi');
+INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
   ('wdi-vc-ihr-psrc-ma-p5','BRA','Brazil',34.663592481411,'2023','worldbank-wdi'),
   ('wdi-vc-ihr-psrc-ma-p5','IDN','Indonesia',0.422644330870441,'2022','worldbank-wdi'),
   ('wdi-vc-ihr-psrc-ma-p5','USA','United States',8.94438578556032,'2023','worldbank-wdi'),
   ('wdi-vc-ihr-psrc-p5','IND','India',2.81530423021647,'2022','worldbank-wdi'),
   ('wdi-vc-ihr-psrc-p5','CHN','China',0.5018560705357,'2020','worldbank-wdi'),
-  ('wdi-vc-ihr-psrc-p5','VNM','Vietnam',1.53501286347562,'2011','worldbank-wdi');
-INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
+  ('wdi-vc-ihr-psrc-p5','VNM','Vietnam',1.53501286347562,'2011','worldbank-wdi'),
   ('wdi-vc-ihr-psrc-p5','BRA','Brazil',19.2752957673079,'2023','worldbank-wdi'),
   ('wdi-vc-ihr-psrc-p5','IDN','Indonesia',0.303768746039586,'2022','worldbank-wdi'),
   ('wdi-vc-ihr-psrc-p5','USA','United States',5.76340794073065,'2023','worldbank-wdi'),
@@ -18763,14 +18769,14 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-sl-tlf-totl-fe-zs','IND','India',28.3115461442145,'2025','worldbank-wdi'),
   ('wdi-sl-tlf-totl-fe-zs','CHN','China',45.3760696835158,'2025','worldbank-wdi'),
   ('wdi-sl-tlf-totl-fe-zs','VNM','Vietnam',48.8220092651077,'2025','worldbank-wdi'),
-  ('wdi-sl-tlf-totl-fe-zs','BRA','Brazil',43.3652105006614,'2025','worldbank-wdi'),
+  ('wdi-sl-tlf-totl-fe-zs','BRA','Brazil',43.3652105006614,'2025','worldbank-wdi');
+INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
   ('wdi-sl-tlf-totl-fe-zs','IDN','Indonesia',39.6127946973676,'2025','worldbank-wdi'),
   ('wdi-sl-tlf-totl-fe-zs','USA','United States',45.6256556901371,'2025','worldbank-wdi'),
   ('wdi-sl-uem-1524-fe-zs','IND','India',17.528,'2025','worldbank-wdi'),
   ('wdi-sl-uem-1524-fe-zs','CHN','China',14.21,'2025','worldbank-wdi'),
   ('wdi-sl-uem-1524-fe-zs','VNM','Vietnam',5.63,'2025','worldbank-wdi'),
-  ('wdi-sl-uem-1524-fe-zs','BRA','Brazil',16.588,'2025','worldbank-wdi');
-INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
+  ('wdi-sl-uem-1524-fe-zs','BRA','Brazil',16.588,'2025','worldbank-wdi'),
   ('wdi-sl-uem-1524-fe-zs','IDN','Indonesia',12.745,'2025','worldbank-wdi'),
   ('wdi-sl-uem-1524-fe-zs','USA','United States',8.519,'2025','worldbank-wdi'),
   ('wdi-sp-pop-grow','IND','India',0.887183543977214,'2025','worldbank-wdi'),
@@ -19014,14 +19020,14 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-tm-val-insf-zs-wt','IDN','Indonesia',9.47221695055614,'2025','worldbank-wdi'),
   ('wdi-tm-val-insf-zs-wt','USA','United States',20.2763653929189,'2025','worldbank-wdi'),
   ('wdi-tm-val-mrch-cd-wt','IND','India',753481000000,'2025','worldbank-wdi'),
-  ('wdi-tm-val-mrch-cd-wt','CHN','China',2582896000000,'2025','worldbank-wdi'),
+  ('wdi-tm-val-mrch-cd-wt','CHN','China',2582896000000,'2025','worldbank-wdi');
+INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
   ('wdi-tm-val-mrch-cd-wt','VNM','Vietnam',453778000000,'2025','worldbank-wdi'),
   ('wdi-tm-val-mrch-cd-wt','BRA','Brazil',293696000000,'2025','worldbank-wdi'),
   ('wdi-tm-val-mrch-cd-wt','IDN','Indonesia',241857000000,'2025','worldbank-wdi'),
   ('wdi-tm-val-mrch-cd-wt','USA','United States',3506554000000,'2025','worldbank-wdi'),
   ('wdi-tm-val-othr-zs-wt','IND','India',62.5424485781276,'2025','worldbank-wdi'),
-  ('wdi-tm-val-othr-zs-wt','CHN','China',38.0755240419842,'2025','worldbank-wdi');
-INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
+  ('wdi-tm-val-othr-zs-wt','CHN','China',38.0755240419842,'2025','worldbank-wdi'),
   ('wdi-tm-val-othr-zs-wt','BRA','Brazil',54.2502444778506,'2025','worldbank-wdi'),
   ('wdi-tm-val-othr-zs-wt','IDN','Indonesia',44.2343152067649,'2025','worldbank-wdi'),
   ('wdi-tm-val-othr-zs-wt','USA','United States',40.1301735913716,'2025','worldbank-wdi'),
@@ -19265,14 +19271,14 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-tx-val-mrch-r5-zs','USA','United States',2.23077444637369,'2023','worldbank-wdi'),
   ('wdi-tx-val-mrch-r6-zs','IND','India',8.97204663257978,'2023','worldbank-wdi'),
   ('wdi-tx-val-mrch-r6-zs','CHN','China',3.95296327347905,'2023','worldbank-wdi'),
-  ('wdi-tx-val-mrch-r6-zs','VNM','Vietnam',0.66963549360281,'2023','worldbank-wdi'),
+  ('wdi-tx-val-mrch-r6-zs','VNM','Vietnam',0.66963549360281,'2023','worldbank-wdi');
+INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
   ('wdi-tx-val-mrch-r6-zs','BRA','Brazil',1.85457459700049,'2023','worldbank-wdi'),
   ('wdi-tx-val-mrch-r6-zs','IDN','Indonesia',1.69622267000532,'2023','worldbank-wdi'),
   ('wdi-tx-val-mrch-r6-zs','USA','United States',0.891784387171511,'2023','worldbank-wdi'),
   ('wdi-tx-val-mrch-rs-zs','IND','India',0.0362661028035307,'2023','worldbank-wdi'),
   ('wdi-tx-val-mrch-rs-zs','CHN','China',0.102547265321339,'2023','worldbank-wdi'),
-  ('wdi-tx-val-mrch-rs-zs','VNM','Vietnam',0,'2023','worldbank-wdi');
-INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
+  ('wdi-tx-val-mrch-rs-zs','VNM','Vietnam',0,'2023','worldbank-wdi'),
   ('wdi-tx-val-mrch-rs-zs','BRA','Brazil',0.339769916399773,'2023','worldbank-wdi'),
   ('wdi-tx-val-mrch-rs-zs','IDN','Indonesia',0.0106893949985342,'2023','worldbank-wdi'),
   ('wdi-tx-val-mrch-rs-zs','USA','United States',0.124009678991315,'2023','worldbank-wdi'),
@@ -19516,14 +19522,14 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-dt-tds-dect-gn-zs','BRA','Brazil',5.40092552746669,'2024','worldbank-wdi'),
   ('wdi-dt-tds-dect-gn-zs','IDN','Indonesia',5.64347834292339,'2024','worldbank-wdi'),
   ('wdi-dt-dod-dlxf-cd','IND','India',555307373499.3,'2024','worldbank-wdi'),
-  ('wdi-dt-dod-dlxf-cd','CHN','China',1066746178385.9,'2024','worldbank-wdi'),
+  ('wdi-dt-dod-dlxf-cd','CHN','China',1066746178385.9,'2024','worldbank-wdi');
+INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
   ('wdi-dt-dod-dlxf-cd','VNM','Vietnam',93968096371.2,'2024','worldbank-wdi'),
   ('wdi-dt-dod-dlxf-cd','BRA','Brazil',503614416570.4,'2024','worldbank-wdi'),
   ('wdi-dt-dod-dlxf-cd','IDN','Indonesia',347543146878.8,'2024','worldbank-wdi'),
   ('wdi-dt-dod-dpng-cd','IND','India',316357573000,'2024','worldbank-wdi'),
   ('wdi-dt-dod-dpng-cd','CHN','China',562633647486.4,'2024','worldbank-wdi'),
-  ('wdi-dt-dod-dpng-cd','VNM','Vietnam',55517883000,'2024','worldbank-wdi');
-INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,source_id) VALUES
+  ('wdi-dt-dod-dpng-cd','VNM','Vietnam',55517883000,'2024','worldbank-wdi'),
   ('wdi-dt-dod-dpng-cd','BRA','Brazil',309245242000,'2024','worldbank-wdi'),
   ('wdi-dt-dod-dpng-cd','IDN','Indonesia',102046544757.3,'2024','worldbank-wdi'),
   ('wdi-dt-dod-dppg-cd','IND','India',238949800499.3,'2024','worldbank-wdi'),
@@ -19691,12 +19697,6 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-gdp-per-capita-ppp','BRA','Brazil',23433.2897595431,'2025','worldbank-wdi'),
   ('wdi-gdp-per-capita-ppp','IDN','Indonesia',17659.7921291587,'2025','worldbank-wdi'),
   ('wdi-gdp-per-capita-ppp','USA','United States',90026.5163005744,'2025','worldbank-wdi'),
-  ('wdi-renewable-electricity','IND','India',19.131292447169,'2021','worldbank-wdi'),
-  ('wdi-renewable-electricity','CHN','China',28.427997926748,'2021','worldbank-wdi'),
-  ('wdi-renewable-electricity','VNM','Vietnam',41.1697321016349,'2021','worldbank-wdi'),
-  ('wdi-renewable-electricity','BRA','Brazil',77.3753492178891,'2021','worldbank-wdi'),
-  ('wdi-renewable-electricity','IDN','Indonesia',15.5300398228856,'2021','worldbank-wdi'),
-  ('wdi-renewable-electricity','USA','United States',20.2733089261925,'2021','worldbank-wdi'),
   ('wdi-gc-rev-socl-zs','IND','India',0.0991717990385954,'2022','worldbank-wdi'),
   ('wdi-gc-rev-socl-zs','CHN','China',43.8458075895873,'2024','worldbank-wdi'),
   ('wdi-gc-rev-socl-zs','BRA','Brazil',22.4178842453697,'2024','worldbank-wdi'),
@@ -19709,12 +19709,13 @@ INSERT INTO bharat_tracker.series_peers (series_id,iso3,country,value,period,sou
   ('wdi-tm-val-tran-zs-wt','USA','United States',17.7542378191537,'2025','worldbank-wdi');
 
 -- Development events --------------------------------------------------
-INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('greaterkashmir:aHR0cHM6Ly93d3cuZ3JlYXRlcmth','Srinagar Jammu NH open for regulated 2-way traffic','roads-airports','2026-09-08','srinagar','Srinagar','Jammu and Kashmir',74.8131,34.1019,'Greater Kashmir','https://www.greaterkashmir.com/jammu/srinagar-jammu-nh-open-for-regulated-2-way-traffic-12505098','The Srinagar-Jammu National Highway (NH-44) remained open for regulated two-way traffic on Monday, although vehicular movement was slow at several vulnerable and construction-affected locations between Udhampur and Banihal. Traffic was particularly slow at Dewal in Udhampur district, where a 30&ndash;40-metre portion of the highway was damaged by recent rainfall. The uneven and undulating surface ','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
+INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('greaterkashmir:aHR0cHM6Ly93d3cuZ3JlYXRlcmth','Kashmir University hosts international conference on plant resilience, climate change','manufacturing','2026-09-08','srinagar','Srinagar','Jammu and Kashmir',74.8131,34.1019,'Greater Kashmir','https://www.greaterkashmir.com/city/kashmir-university-hosts-international-conference-on-plant-resilience-climate-change-12505111','Srinagar, Sep 7: The Department of Botany, University of Kashmir (KU), Monday inaugurated a two-day international conference on &ldquo;Plant Resilience in a Changing Climate: From Molecules to Ecosystem&rdquo;, bringing together scientists, academicians, researchers and young scholars to deliberate on the growing challenges posed by climate change to plants, agriculture and natural ecosystems, par','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('hindustantimes:aHR0cHM6Ly93d3cuaGluZHVzdGFu','PM Modi to unveil projects worth ₹35,000 crore in Gujarat today','infrastructure','2026-09-08','gujarat','Gujarat','Gujarat',71.19,22.26,'Hindustan Times','https://www.hindustantimes.com/india-news/pm-modi-to-unveil-projects-worth-rs-35-000-crore-in-gujarat-today-101788832710586.html','Railway works account for over ₹30,766 crore, including 326 km of the Western Dedicated Freight Corridor and new tracks between Vadodara and Ratlam.','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('risingkashmir:aHR0cHM6Ly9yaXNpbmdrYXNobWly','Climate change reshaping crops, ecosystems: Experts at KU conference','manufacturing','2026-09-08','srinagar','Srinagar','Jammu and Kashmir',74.8131,34.1019,'Rising Kashmir','https://risingkashmir.com/jammu-and-kashmir-news/kashmir/climate-change-reshaping-crops-ecosystems-experts-at-ku-conference-12505148','Srinagar, Sep 7: The Department of Botany, University of Kashmir (KU), Monday inaugurated a two-day international conference on &ldquo;Plant Resilience in a Changing Climate: From Molecules to Ecosystem&rdquo;, bringing together scientists, academicians, researchers and young scholars to deliberate on the growing challenges posed by climate change to plants, agriculture and natural ecosystems, par','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
-INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('theweek:aHR0cDovL3d3dy50aGV3ZWVrLmlu','tamil-nadu-ministers-list-full-list-of-tvk-ministers-departments-as-cm-vijay-expands-his-cabinet','infrastructure','2026-09-08','tamil-nadu','Tamil Nadu','Tamil Nadu',78.66,11.13,'The Week','http://www.theweek.in/news/india/2026/05/21/tamil-nadu-ministers-list-full-list-of-tvk-ministers-departments-as-cm-vijay-expands-his-cabinet.html','<a href="http://www.theweek.in/news/india/2026/05/21/tamil-nadu-ministers-list-full-list-of-tvk-ministers-departments-as-cm-vijay-expands-his-cabinet.html"><img border="0" hspace="10" align="left" style="margin-top:3px;margin-right:5px;" src="http://img.theweek.in/content/dam/week/week/magazine/theweek/current/images/2026/5/16/27-Vijay-with-Congress-leader-Rahul-Gandhi.jpg" /> <p>Tamil Nadu Chief ','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
+INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('theweek:aHR0cDovL3d3dy50aGV3ZWVrLmlu','indigo-to-launch-30-new-routes-from-navi-mumbai-airport-details-here','roads-airports','2026-09-08','mumbai','Mumbai','Maharashtra',72.855,19.0189,'The Week','http://www.theweek.in/news/india/2026/03/29/indigo-to-launch-30-new-routes-from-navi-mumbai-airport-details-here.html','<a href="http://www.theweek.in/news/india/2026/03/29/indigo-to-launch-30-new-routes-from-navi-mumbai-airport-details-here.html"><img border="0" hspace="10" align="left" style="margin-top:3px;margin-right:5px;" src="http://img.theweek.in/content/dam/week/week/news/biz-tech/images/2025/12/9/indigo-airlines-pti.jpg" /> <p>Low-cost airline IndiGo has announced plans to introduce 30 new routes from Nav','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('find-ports-2:aHR0cHM6Ly9uZXdzLmdvb2dsZS5j','J M Baxi launches inaugural Delhi-Nhava Sheva rail service on Dedicated Freight Corridor','infrastructure','2026-09-08','new-delhi','New Delhi','Delhi',77.2,28.6,'Maritime Gateway','https://news.google.com/rss/articles/CBMivgFBVV95cUxNQVN0Y2MtYjJ6amRTSktYTlRiaFh5aUlvZWw5ZGMybDhYQmhEdGhhMHV5ZWc4V0J2Q2sxZ01DVHRUcnh0X0tvRmlCRXQwdk1ZZE95RTY4UDB5MnZVS0FweGxRallsRUViNkZXREQ0aDluSGJxTmI5QTVMQXdzOVVqaGFMVGkzWUFYM2JmaWNPMW00azYyREVUdWRrR0RZU0tNQ2oxdl84bUZoU3lIcks5bjliSnc4S3dxQ0hsSjdR?oc=5','<a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxNQVN0Y2MtYjJ6amRTSktYTlRiaFh5aUlvZWw5ZGMybDhYQmhEdGhhMHV5ZWc4V0J2Q2sxZ01DVHRUcnh0X0tvRmlCRXQwdk1ZZE95RTY4UDB5MnZVS0FweGxRallsRUViNkZXREQ0aDluSGJxTmI5QTVMQXdzOVVqaGFMVGkzWUFYM2JmaWNPMW00azYyREVUdWRrR0RZU0tNQ2oxdl84bUZoU3lIcks5bjliSnc4S3dxQ0hsSjdR?oc=5" target="_blank">J M Baxi launches inaugural Delhi-Nhava Sheva rail service on Dedicated','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
-INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('theweek:aHR0cHM6Ly93d3cudGhld2Vlay5p','tmc-intimidating-voters-in-bengal-bjp-delegation-meets-election-commission','infrastructure','2026-09-07','west-bengal','West Bengal','West Bengal',87.86,22.99,'The Week','https://www.theweek.in/news/india/2026/03/30/tmc-intimidating-voters-in-bengal-bjp-delegation-meets-election-commission.html','<a href="http://www.theweek.in/news/india/2026/03/30/tmc-intimidating-voters-in-bengal-bjp-delegation-meets-election-commission.html"><img border="0" hspace="10" align="left" style="margin-top:3px;margin-right:5px;" src="http://img.theweek.in/content/dam/week/week/news/india/images/2026/3/30/kiren-rijiju-piyush-goyal-pti.jpg" /> <p>A delegation of the BJP leaders met the Election Commission offici','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
+INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('theweek:aHR0cHM6Ly93d3cudGhld2Vlay5p','tmc-intimidating-voters-in-bengal-bjp-delegation-meets-election-commission','infrastructure','2026-09-08','west-bengal','West Bengal','West Bengal',87.86,22.99,'The Week','https://www.theweek.in/news/india/2026/03/30/tmc-intimidating-voters-in-bengal-bjp-delegation-meets-election-commission.html','<a href="http://www.theweek.in/news/india/2026/03/30/tmc-intimidating-voters-in-bengal-bjp-delegation-meets-election-commission.html"><img border="0" hspace="10" align="left" style="margin-top:3px;margin-right:5px;" src="http://img.theweek.in/content/dam/week/week/news/india/images/2026/3/30/kiren-rijiju-piyush-goyal-pti.jpg" /> <p>A delegation of the BJP leaders met the Election Commission offici','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
+INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('bs-companies:aHR0cHM6Ly93d3cuYnVzaW5lc3Mt','Suzlon secures 200 MW wind energy order from Ayana Renewable Power','energy','2026-09-08','andhra-pradesh','Andhra Pradesh','Andhra Pradesh',79.74,15.91,'Business Standard (Companies)','https://www.business-standard.com/companies/news/suzlon-secures-200-mw-wind-energy-order-from-ayana-renewable-power-126090800327_1.html','Suzlon on Tuesday said it has secured a 200 MW wind energy order from Ayana Renewable Power Ltd, marking the company''s third devco-led wind order across two states -- Madhya Pradesh and Andhra Pradesh. A devco-led order is an integrated development model, where a renewable energy supplier provides end-to-end project execution from early-stage site development to complete construction. As part of t','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('find-manufacturing-1:aHR0cHM6Ly9uZXdzLmdvb2dsZS5j','Alpex Solar to Inaugurate 2.2 GW Solar Cell Manufacturing Facility in Uttar Pradesh','energy','2026-09-07','uttar-pradesh','Uttar Pradesh','Uttar Pradesh',80.95,26.85,'SolarQuarter','https://news.google.com/rss/articles/CBMivAFBVV95cUxQb1RUdVZmZTFQNVhzV2FSeE5KdzJnR2dGV05kdEUybWxJQzZXYVBtWnBidnE3bUxmWDRYbFBUS2s1aW5YamdXckl2cUNtQXV6UE1Mb1Q2bEY1TXFaQkZuQ00zZ3VhUG5TaHg2ZFo2R0lQQncyeEE5YUVHSnJaLU1zZ0xzaG15dVo5U3I1aDM0R2s4UGFkaWppd0c3eTYzVmVIdHhicVVOX2doNzdMOWhoZU1iVXBNX2JVZzQtTA?oc=5','<a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxQb1RUdVZmZTFQNVhzV2FSeE5KdzJnR2dGV05kdEUybWxJQzZXYVBtWnBidnE3bUxmWDRYbFBUS2s1aW5YamdXckl2cUNtQXV6UE1Mb1Q2bEY1TXFaQkZuQ00zZ3VhUG5TaHg2ZFo2R0lQQncyeEE5YUVHSnJaLU1zZ0xzaG15dVo5U3I1aDM0R2s4UGFkaWppd0c3eTYzVmVIdHhicVVOX2doNzdMOWhoZU1iVXBNX2JVZzQtTA?oc=5" target="_blank">Alpex Solar to Inaugurate 2.2 GW Solar Cell Manufacturing Facility in Utt','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('et-foreign-trade:aHR0cHM6Ly9lY29ub21pY3RpbWVz','Pranav Constructions IPO opens with GMP signalling 36% upside. Should you subscribe?','startups','2026-09-07','mumbai','Mumbai','Maharashtra',72.855,19.0189,'Economic Times (Foreign Trade)','https://economictimes.indiatimes.com/markets/ipos/fpos/pranav-constructions-ipo-opens-today-gmp-signals-36-listing-gain-should-you-subscribe/articleshow/133862756.cms','Pranav Constructions IPO GMP: Pranav Constructions IPO opens today, September 7. The Rs 351.03 crore issue is attracting strong investor interest; its grey market premium (GMP) stands at Rs 44, indicating a 36% premium over the upper price band of Rs 124. The Mumbai-based real estate developer also raised Rs 84.24 crore from anchor investors before the issue opened.','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('etenergyworld:aHR0cHM6Ly9lbmVyZ3kuZWNvbm9t','Weak green hydrogen demand puts L&T''s 1 GW plan on ice','energy','2026-09-07','gujarat','Gujarat','Gujarat',71.19,22.26,'ETEnergyWorld','https://energy.economictimes.indiatimes.com/news/renewable/weak-green-hydrogen-demand-puts-lts-1-gw-plan-on-ice/133861342','L&T Electrolysers Ltd (LTEL), a wholly-owned subsidiary of L&T Energy GreenTech Ltd, had planned to invest ₹ 450-550 crore to establish the 1 GW manufacturing capacity at Hazira in Gujarat by March 2027.','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
@@ -19730,7 +19731,7 @@ INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,st
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('pv-magazine-india:aHR0cHM6Ly93d3cucHYtbWFnYXpp','Sunsure Energy signs 20 MW PPA with Kajaria Ceramics for round-the-clock renewable energy supply','energy','2026-09-07','balotra','Balotra','Rajasthan',72.24,25.83,'pv magazine India','https://www.pv-magazine-india.com/2026/09/07/sunsure-energy-signs-20-mw-ppa-with-kajaria-ceramics-for-round-the-clock-renewable-energy-supply/','Sunsure Energy will develop dedicated 10 MW (15 MWp) solar and 10 MW wind power capacities at its upcoming project in the Barmer district of Rajasthan, to supply round-the-clock (RTC) renewable energy to Kajaria Ceramics’ production facilities in Gailpur and Alwar, Rajasthan.','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('deccanchronicle:aHR0cHM6Ly93d3cuZGVjY2FuY2hy','CM Lashes Out Against DMK','infrastructure','2026-09-07','chennai','Chennai','Tamil Nadu',80.2781,13.0919,'Deccan Chronicle','https://www.deccanchronicle.com/southern-states/tamil-nadu/cm-lashes-out-against-dmk-1985665','Reading out from ED documents, he said contractors, executing projects under the Municipal Administration and Water Supply Department, were allegedly forced to pay commissions ranging from 7.5 to 10 per cent of the total contract value.','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('mint-companies:aHR0cHM6Ly93d3cubGl2ZW1pbnQu','HRV Pharma bets ₹150 crore on peptides, high-potency oncology APIs','manufacturing','2026-09-07','hyderabad','Hyderabad','Telangana',78.478,17.4019,'Mint (Companies)','https://www.livemint.com/companies/news/hrv-pharma-bets-150-crore-on-peptides-high-potency-oncology-apis-11788774695787.html','The investments mark a shift in HRV’s seven-year-old business model—from using available manufacturing capacity to underwriting specialised capacity for products it owns and commercializes','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
-INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('mercom:aHR0cHM6Ly93d3cubWVyY29taW5k','Leanwatts Raises $2 Million Seed Funding to Expand Power Electronics Platform','startups','2026-09-07','hyderabad','Hyderabad','Telangana',78.478,17.4019,'Mercom India','https://www.mercomindia.com/leanwatts-raises-2-million-seed-funding-to-expand-power-electronics-platform','Hyderabad-based power electronics startup Leanwatts has raised approximately $2 million (₹188.88 million) in seed funding across two tranches, led by Trivest Partners, with participation from angel investors Abraham George and Alok Rungta.Leanwatts said it will use the funding to deepen its research and development activities, strengthen its supply chain, increase localization, and expand manufact','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
+INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('mercom:aHR0cHM6Ly93d3cubWVyY29taW5k','UP Regulator Allows UPPCL to Procure Power at Previous Year’s Purchase Cost','energy','2026-09-07','uttar-pradesh','Uttar Pradesh','Uttar Pradesh',80.95,26.85,'Mercom India','https://www.mercomindia.com/up-regulator-allows-uppcl-to-procure-power-at-previous-years-purchase-cost','The Uttar Pradesh Electricity Regulatory Commission (UPERC) has allowed Uttar Pradesh Power Corporation (UPPCL) to continue procuring electricity from certain renewable energy generators at the average power purchase cost (APPC) of the previous financial year, subject to adjustment once the applicable true-up APPC is determined.','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('etinfra:aHR0cHM6Ly9pbmZyYS5lY29ub21p','PM Modi to launch infrastructure projects worth over ₹35,000 crore in Gujarat','roads-airports','2026-09-07','gujarat','Gujarat','Gujarat',71.19,22.26,'ETInfra','https://infra.economictimes.indiatimes.com/news/urban-infrastructure/pm-modi-to-launch-infrastructure-projects-worth-over-35000-crore-in-gujarat/133874295','The projects include the completion of the Western Dedicated Freight Corridor, new railway and highway links, and urban development, housing and renewable energy projects across Gujarat.','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('et-industry:aHR0cHM6Ly9lY29ub21pY3RpbWVz','ADB signs first Transaction Advisory Pact in India to mobilise $1 billion for green energy projects','energy','2026-09-07','madhya-pradesh','Madhya Pradesh','Madhya Pradesh',78.66,22.97,'Economic Times (Industry)','https://economictimes.indiatimes.com/industry/renewables/adb-signs-first-transaction-advisory-pact-in-india-to-mobilise-1-billion-for-renewable-energy-projects/articleshow/133872369.cms','The Asian Development Bank will support Madhya Pradesh''s renewable energy projects. This partnership aims to attract significant private investment for clean energy infrastructure. The agreement focuses on structuring and rolling out three new clean energy initiatives. These projects will enhance grid stability and meet peak electricity demands. Madhya Pradesh''s renewable energy policy guides thes','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('find-infrastructure-2:aHR0cHM6Ly9uZXdzLmdvb2dsZS5j','Indore Metro Rail Network expands to 17 km as Priority Corridor 2 opened to public','infrastructure','2026-09-07','indore','Indore','Madhya Pradesh',75.8631,22.717,'metrorailtoday.com','https://news.google.com/rss/articles/CBMitAFBVV95cUxNeVRBUXpwdWtNZW9PMDloU0E5RFdZdGQ5V3NNRmxXdERFdjcwR1VUODdBbkpIVVRkWHZya01oU0EwUWRLdmxLSlhURDNrM09laXR0UnhCM21Jcm1mbU9QQ1hDQkdjVHB5aWZ2aDFjYVo1OXduTEczNEdwQkpNbE1KX3ZjeXM0eEZzRF85MnhCT1ZuM09pQWVxTTBNZDlrYVRuTUd6RHEwcHA3UWhBUlpoU0NZQkg?oc=5','<a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxNeVRBUXpwdWtNZW9PMDloU0E5RFdZdGQ5V3NNRmxXdERFdjcwR1VUODdBbkpIVVRkWHZya01oU0EwUWRLdmxLSlhURDNrM09laXR0UnhCM21Jcm1mbU9QQ1hDQkdjVHB5aWZ2aDFjYVo1OXduTEczNEdwQkpNbE1KX3ZjeXM0eEZzRF85MnhCT1ZuM09pQWVxTTBNZDlrYVRuTUd6RHEwcHA3UWhBUlpoU0NZQkg?oc=5" target="_blank">Indore Metro Rail Network expands to 17 km as Priority Corridor 2 opened to public</','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
@@ -19749,7 +19750,7 @@ INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,st
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('bs-industry:aHR0cHM6Ly93d3cuYnVzaW5lc3Mt','India may overtake US in metro rail network length within two years: Govt','infrastructure','2026-09-05','indore','Indore','Madhya Pradesh',75.8631,22.717,'Business Standard (Industry)','https://www.business-standard.com/industry/news/india-may-overtake-us-in-metro-rail-network-length-within-two-years-govt-126090500842_1.html','India is likely to overtake the United States of America in terms of metro rail network length in the next two years, Union Housing and Urban Affairs Minister Manohar Lal said on Saturday after inaugurating the extended route of the metro rail service in Indore. "The US has a metro rail network of 1,386 km. With the extended Indore line, India''s metro rail network has reached 1,170 km," he said no','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('find-space-1:aHR0cHM6Ly9uZXdzLmdvb2dsZS5j','ISRO to launch two satellites tonight from its spaceport in Sriharikota to demonstrate docking and undocking of spacecraft in orbit | Akashvani News','space','2026-09-05','sriharikota','Sriharikota','Andhra Pradesh',80.23,13.72,'News On AIR','https://news.google.com/rss/articles/CBMi1wFBVV95cUxNakw1aGtjQ05FV3h1TUJHMEdhODBVcnVXdFBsUWVYUE9zUVlMNGVmdUlySnV6bm1uXzlYQV9GbzNqUG03VkIwZjhycjBzNHg5UXJzTGd6aTFRMHRJX3lwZy1VMHFDUDV6NFVPclNKRmcxaG0wOTNhRFZEWU44VDJRa3JCd2J0ano0eEw0dlE5dHk4Z0x5cE00WFNxTGt3VWNUT3Vyek9Zc0NPM19nb2QzaklKZDVkS3FFOW1RdE05dVl0Vm5oLTR3TERhRVdyN2ltMFMxaXhnQQ?oc=5','<a href="https://news.google.com/rss/articles/CBMi1wFBVV95cUxNakw1aGtjQ05FV3h1TUJHMEdhODBVcnVXdFBsUWVYUE9zUVlMNGVmdUlySnV6bm1uXzlYQV9GbzNqUG03VkIwZjhycjBzNHg5UXJzTGd6aTFRMHRJX3lwZy1VMHFDUDV6NFVPclNKRmcxaG0wOTNhRFZEWU44VDJRa3JCd2J0ano0eEw0dlE5dHk4Z0x5cE00WFNxTGt3VWNUT3Vyek9Zc0NPM19nb2QzaklKZDVkS3FFOW1RdE05dVl0Vm5oLTR3TERhRVdyN2ltMFMxaXhnQQ?oc=5" target="_blank">ISRO to launch two satellites tonight','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('find-startups-1:aHR0cHM6Ly9uZXdzLmdvb2dsZS5j','Bengaluru Sales Intelligence Startup Overlayy Acquired by AI-Native Revenue Platform Monaco','startups','2026-09-05','bengaluru','Bengaluru','Karnataka',77.5581,12.9719,'Indian Startup Times','https://news.google.com/rss/articles/CBMizwFBVV95cUxNR3VUelM4OWNMekU0T0lCaW0zWTl4akVGcTdtMXNReXVLQ1Zud21sZVotYkwydWZUeWZrRjc0WUZ3TFhpMDhuZWNCaDlvdm9LSEtLdkxRNnUyOXdncnR3SXNpTEJSb1E2ZW05amtQZUFFM1pSbmdGNjJ2Tktnd0VPV2VKS0tVbnAzb2NPam1wcXlxWml5Wkwxcjl0cWRrUWRNTHh5ek45MV9nazNMZGM4RVdnY0V5UW9tUHgwVkxFU2s4R3g3SHZVUzNfMTd4LTA?oc=5','<a href="https://news.google.com/rss/articles/CBMizwFBVV95cUxNR3VUelM4OWNMekU0T0lCaW0zWTl4akVGcTdtMXNReXVLQ1Zud21sZVotYkwydWZUeWZrRjc0WUZ3TFhpMDhuZWNCaDlvdm9LSEtLdkxRNnUyOXdncnR3SXNpTEJSb1E2ZW05amtQZUFFM1pSbmdGNjJ2Tktnd0VPV2VKS0tVbnAzb2NPam1wcXlxWml5Wkwxcjl0cWRrUWRNTHh5ek45MV9nazNMZGM4RVdnY0V5UW9tUHgwVkxFU2s4R3g3SHZVUzNfMTd4LTA?oc=5" target="_blank">Bengaluru Sales Intelligence Startup Overlayy Ac','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
-INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('metrorailnews:aHR0cHM6Ly9tZXRyb3JhaWxuZXdz','Indore Metro Launches First TBM ‘Narmada’ for Underground Construction','roads-airports','2026-09-05','indore','Indore','Madhya Pradesh',75.8631,22.717,'Metro Rail News','https://metrorailnews.in/indore-metro-tbm-narmada-underground-tunnel/','INDORE (Metro Rail News): Indore Metro has entered a new stage of construction with the launch of its first Tunnel Boring Machine (TBM), ‘Narmada’. The 410-tonne machine will build the underground tunnel between Airport and Bada Ganpati, marking the start of mechanised tunnelling work on the project. The Madhya Pradesh Metro Rail Corporation Limited (MPMRCL) […]','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
+INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('metrorailnews:aHR0cHM6Ly9tZXRyb3JhaWxuZXdz','East Central Railway Invites ₹575.14 Cr Tender for Bakhtiyarpur-Rajgir-Tilaiya Line Doubling','infrastructure','2026-09-05','bihar','Bihar','Bihar',85.31,25.1,'Metro Rail News','https://metrorailnews.in/railway-bihar-doubling-tender-575-crore/','BIHAR (Metro Rail News): East Central Railway has invited bids for a ₹575.14 crore railway doubling package covering 26.292 km between Karnauti and Bihar Sharif in Bihar. The EPC contract forms part of the ongoing doubling of the Bakhtiyarpur-Rajgir-Tilaiya railway section. The selected contractor will execute civil, track, station and railway systems works. Tender Details […]','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('etmanufacturing:aHR0cHM6Ly9tYW51ZmFjdHVyaW5n','TCS arm HyperVault to invest ₹70,000 crore in 1 GW AI data centre campus in Hyderabad','energy','2026-09-05','hyderabad','Hyderabad','Telangana',78.478,17.4019,'ET Manufacturing','https://manufacturing.economictimes.indiatimes.com/news/hi-tech/tcs-arm-hypervault-to-invest-70000-crore-in-1-gw-ai-data-centre-campus-in-hyderabad/133798425','The campus will be purpose-built for frontier AI companies and hyperscalers, supporting high-density GPU deployments for AI training, inference and advanced computing workloads.','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('zeenews:aHR0cHM6Ly96ZWVuZXdzLmluZGlh','Proud day for India: ISRO`s `Naughty Boy` rocket puts 2,367 kg `Eye In The Sky` into space - here`s what it will do for us','space','2026-09-04','sriharikota','Sriharikota','Andhra Pradesh',80.23,13.72,'Zee News','https://zeenews.india.com/india/science/isro-eos-05-eye-in-the-sky-gslv-f17-launch-india-3069885.html','ISRO successfully launches the EOS-05 Earth observation satellite on a GSLV-F17 rocket from Sriharikota.','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('idrw:aHR0cHM6Ly9pZHJ3Lm9yZy9nc2x2','GSLV-F17 has successfully accomplished its mission, placing EOS-05 into the intended orbit.','space','2026-09-04','sriharikota','Sriharikota','Andhra Pradesh',80.23,13.72,'IDRW','https://idrw.org/gslv-f17-has-successfully-accomplished-its-mission-placing-eos-05-into-the-intended-orbit/','This article was originally published on idrw.org. GSLV-F17 is the 19th flight of India’s Geosynchronous Satellite Launch Vehicle (GSLV) and the configuration of GSLV-F17 Payload... Read the full article on idrw.org: GSLV-F17 has successfully accomplished its mission, placing EOS-05 into the intended orbit.','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
@@ -19763,7 +19764,6 @@ INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,st
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('find-roads-airports-2:aHR0cHM6Ly9uZXdzLmdvb2dsZS5j','Noida International Airport Begins Operations','roads-airports','2026-09-04','jewar','Jewar','Uttar Pradesh',77.56,28.12,'safariindia.com','https://news.google.com/rss/articles/CBMiekFVX3lxTFB3VE1XLTFCZXUxVHd5UE9GX1lFenU5bC1SQ2FIN0xlSk9na0RVbW41Y2ZLR2lLZWxjQXhyc3NsVlNLalJRZDJpd1o1WkVURngxMjQ3SUktNnpsR0pURm83RHc5SmpIU1p1eTQxY2RCYXluLXV5eUZ6RGdR?oc=5','<a href="https://news.google.com/rss/articles/CBMiekFVX3lxTFB3VE1XLTFCZXUxVHd5UE9GX1lFenU5bC1SQ2FIN0xlSk9na0RVbW41Y2ZLR2lLZWxjQXhyc3NsVlNLalJRZDJpd1o1WkVURngxMjQ3SUktNnpsR0pURm83RHc5SmpIU1p1eTQxY2RCYXluLXV5eUZ6RGdR?oc=5" target="_blank">Noida International Airport Begins Operations</a>&nbsp;&nbsp;<font color="#6f6f6f">safariindia.com</font>','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('et-tech:aHR0cHM6Ly9lY29ub21pY3RpbWVz','Maldives gives Thilafushi contract to Chinese firm','trade-deals','2026-09-04','new-delhi','New Delhi','Delhi',77.2,28.6,'Economic Times (Technology)','https://economictimes.indiatimes.com/news/international/world-news/maldives-awards-contract-for-phase-1-of-thilafushi-port-to-a-chinese-company/articleshow/133776027.cms','PTI Maldives awards contract for Phase 1 of Thilafushi Port to a Chinese company New Delhi: The Maldives has reneged on its commitment to jointly develop the Thilafushi Port with India, signing a memorandum of understanding (MoU) with a Chinese company for development of the firs','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('find-energy-1:aHR0cHM6Ly9uZXdzLmdvb2dsZS5j','WeWork India Makes a Start With Plans For 10 MW Solar Project For Bengaluru Operations','energy','2026-09-04','bengaluru','Bengaluru','Karnataka',77.5581,12.9719,'Saur Energy','https://news.google.com/rss/articles/CBMivwFBVV95cUxNTE41VjNfQnpfdHB3ZDBVd2VoaVFWRWF2cXB0MkItZ2Rva1g3NEtHZ3RiemNYd0RZNnhmRTJDTHh4UzFROW41TzlwbzI2dWwybENwaDg3Ml9MUlNwVWZmRkJNdU9hOUlXQ2pUenhSN05fU3ZNQzVsZ3lCWkZJSmFmMjNwZTZIX2N1SENxM3RSd3NHQWJWZTU1NWxjaGxYdkk5WDdHakFZUHBaT2tKMkt0YV9yWmw2SEZWbG1XUVc2UQ?oc=5','<a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxNTE41VjNfQnpfdHB3ZDBVd2VoaVFWRWF2cXB0MkItZ2Rva1g3NEtHZ3RiemNYd0RZNnhmRTJDTHh4UzFROW41TzlwbzI2dWwybENwaDg3Ml9MUlNwVWZmRkJNdU9hOUlXQ2pUenhSN05fU3ZNQzVsZ3lCWkZJSmFmMjNwZTZIX2N1SENxM3RSd3NHQWJWZTU1NWxjaGxYdkk5WDdHakFZUHBaT2tKMkt0YV9yWmw2SEZWbG1XUVc2UQ?oc=5" target="_blank">WeWork India Makes a Start With Plans For 10 MW Solar Project For Ben','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
-INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('bs-companies:aHR0cHM6Ly93d3cuYnVzaW5lc3Mt','Zollner enters India with Avalon JV, to invest ₹1,000 crore in TN unit','manufacturing','2026-09-04','kanchipuram','Kanchipuram','Tamil Nadu',79.7167,12.8337,'Business Standard (Companies)','https://www.business-standard.com/companies/news/zollner-enters-india-with-avalon-jv-to-invest-1-000-crore-in-tn-unit-126090401175_1.html','European EMS major Zollner will initially own 51 per cent of the venture, which will manufacture high-precision electronics at a new facility in Kanchipuram','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('et-infra:aHR0cHM6Ly9lY29ub21pY3RpbWVz','CG Power and Industrial Solutions starts production at new Madhya Pradesh facility','manufacturing','2026-09-04','madhya-pradesh','Madhya Pradesh','Madhya Pradesh',78.66,22.97,'Economic Times (Transport)','https://economictimes.indiatimes.com/industry/energy/power/cg-power-and-industrial-solutions-starts-production-at-new-madhya-pradesh-facility/articleshow/133761098.cms','CG Power and Industrial Solutions announced the first power transformer rollout from its new Sehore facility. This facility is India''s largest single-location power transformer manufacturing plant. It can produce thirty-five power transformers monthly, ranging from 220 kV to 1,200 kV. The new plant will create over two thousand direct and indirect jobs in Sehore. Madhya Pradesh''s Chief Minister at','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('idrw:aHR0cHM6Ly9pZHJ3Lm9yZy9pYWYt','IAF Partners With IIT Bombay to Train Test Pilots and Flight Test Engineers at Master’s Level','defence','2026-09-03','mumbai','Mumbai','Maharashtra',72.855,19.0189,'IDRW','https://idrw.org/iaf-partners-with-iit-bombay-to-train-test-pilots-and-flight-test-engineers-at-masters-level/','This article was originally published on idrw.org. Indian Air Force and IIT Bombay signed a unique MoA on 2nd September, 2026. It has defined... Read the full article on idrw.org: IAF Partners With IIT Bombay to Train Test Pilots and Flight Test Engineers at Master’s Level','reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
 INSERT INTO bharat_tracker.events (id,title,category,date,place_id,place_name,state,lon,lat,outlet,url,summary,status) VALUES ('indiandefensenews:aHR0cHM6Ly93d3cuaW5kaWFuZGVm','Raghava Aerospace & Defence Facility Launched In Hyderabad To Boost Indigenous Manufacturing And Exports','manufacturing','2026-09-03','hyderabad','Hyderabad','Telangana',78.478,17.4019,'Indian Defence News','https://www.indiandefensenews.in/2026/09/raghava-aerospace-defence-facility.html',NULL,'reported') ON CONFLICT (id) DO UPDATE SET title=EXCLUDED.title,category=EXCLUDED.category,date=EXCLUDED.date,place_id=EXCLUDED.place_id,place_name=EXCLUDED.place_name,state=EXCLUDED.state,lon=EXCLUDED.lon,lat=EXCLUDED.lat,outlet=EXCLUDED.outlet,url=EXCLUDED.url,summary=EXCLUDED.summary,status=EXCLUDED.status;
