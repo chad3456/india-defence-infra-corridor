@@ -35,11 +35,6 @@ const H = 460;
 /** Keeps a mark at ±1 fully inside the frame instead of half-clipped by it. */
 const INSET = 9;
 
-/** Validated in both modes — see the header comment before changing either. */
-const GAINING_LIGHT = "#1d63a6";
-const LOSING_LIGHT = "#c9402f";
-const GAINING_DARK = "#5793e0";
-const LOSING_DARK = "#e8604f";
 
 function x(v: number, w: number) {
   const lo = PAD.left + INSET;
@@ -66,17 +61,13 @@ export default function QuadrantMatrix({
 
   return (
     <figure className="m-0">
-      {/* The colour pair is defined once per mode here and referenced by the
-          marks, so a mode switch cannot leave one mark on the wrong ramp. */}
+      {/* The pair now comes from tokens in globals.css, which already define
+          them per mode — so a mode switch cannot leave one mark on the wrong
+          ramp, and these were the last four colours on the site that a restyle
+          of that file could not reach. */}
       <style>{`
-        .qm-gaining { fill: ${GAINING_LIGHT}; }
-        .qm-losing  { fill: ${LOSING_LIGHT}; }
-        @media (prefers-color-scheme: dark) {
-          :root:not([data-theme="light"]) .qm-gaining { fill: ${GAINING_DARK}; }
-          :root:not([data-theme="light"]) .qm-losing  { fill: ${LOSING_DARK}; }
-        }
-        :root[data-theme="dark"] .qm-gaining { fill: ${GAINING_DARK}; }
-        :root[data-theme="dark"] .qm-losing  { fill: ${LOSING_DARK}; }
+        .qm-gaining { fill: var(--quadrant-gaining); }
+        .qm-losing  { fill: var(--quadrant-losing); }
       `}</style>
 
       <div className="overflow-x-auto">
