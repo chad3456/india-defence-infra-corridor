@@ -190,5 +190,9 @@ export function formatAxis(v: number): string {
   if (abs >= 1e3) return (v / 1e3).toFixed(1).replace(/\.0$/, "") + "k";
   if (abs >= 10) return v.toFixed(0);
   if (abs === 0) return "0";
+  // A count of eight satellites is "8", not "8.0". Only fall to a decimal when
+  // the value actually has one — an axis of whole numbers printed to one
+  // decimal place reads as a measurement precise to a tenth of a satellite.
+  if (Number.isInteger(v)) return String(v);
   return v.toFixed(1);
 }

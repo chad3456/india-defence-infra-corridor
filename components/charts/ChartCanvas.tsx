@@ -635,8 +635,20 @@ export default function ChartCanvas({
           {!isHorizontal &&
             periods.map((p, i) => {
               // Thin x labels when crowded so they never collide.
+              //
+              // Always drawing the last one is what produced "'2526" on a
+              // series ending in 2026: the final label landed on top of the
+              // regularly spaced one before it. So the last label either joins
+              // the sequence, when there is room, or replaces the tick nearest
+              // to it — never both.
               const step = Math.ceil(periods.length / 8);
-              if (i % step !== 0 && i !== periods.length - 1) return null;
+              const last = periods.length - 1;
+              const lastRegular = Math.floor(last / step) * step;
+              const roomForBoth = last - lastRegular >= Math.ceil(step / 2);
+              const show = i === last
+                ? true
+                : i % step === 0 && !(i === lastRegular && !roomForBoth);
+              if (!show) return null;
               const x = isBandKind
                 ? (bandScale(p) ?? 0) + bandScale.bandwidth() / 2
                 : (pointScale(p) ?? 0);
