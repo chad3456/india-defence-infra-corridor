@@ -1,0 +1,161 @@
+{
+  "probedAt": "2026-09-08T05:39:03.216Z",
+  "probes": [
+    {
+      "topic": "startups",
+      "what": "Startup India, recognition landing",
+      "url": "https://www.startupindia.gov.in/",
+      "ok": true,
+      "status": "200",
+      "bytes": 720039,
+      "statesNamed": 4,
+      "statewiseRows": 0,
+      "sampleRows": [],
+      "looksLikeShell": false,
+      "note": "200, but no statewise data found"
+    },
+    {
+      "topic": "startups",
+      "what": "DPIIT, department site",
+      "url": "https://dpiit.gov.in/",
+      "ok": true,
+      "status": "200",
+      "bytes": 6588,
+      "statesNamed": 0,
+      "statewiseRows": 0,
+      "sampleRows": [],
+      "looksLikeShell": true,
+      "note": "a shell: renders in a browser, carries no data in a fetch"
+    },
+    {
+      "topic": "startups",
+      "what": "Startup India, states ranking",
+      "url": "https://www.startupindia.gov.in/content/sih/en/state-startup-ranking-framework.html",
+      "ok": false,
+      "status": "HTTP 404"
+    },
+    {
+      "topic": "jan-dhan",
+      "what": "PMJDY statewise account statistics",
+      "url": "https://pmjdy.gov.in/statewise-statistics",
+      "ok": true,
+      "status": "200",
+      "bytes": 173369,
+      "statesNamed": 21,
+      "statewiseRows": 41,
+      "sampleRows": [
+        "2 | Andhra Pradesh | 12,617,958 | 4,713,062 | 17,331,020 | 6,910.18",
+        "4 | Assam | 23,431,254 | 2,673,607 | 26,104,861 | 7,435.71",
+        "5 | Bihar | 61,285,862 | 9,018,419 | 70,304,281 | 31,288.30"
+      ],
+      "looksLikeShell": false,
+      "note": "carries a statewise table in the bytes"
+    },
+    {
+      "topic": "jan-dhan",
+      "what": "PMJDY account statistics",
+      "url": "https://pmjdy.gov.in/account",
+      "ok": true,
+      "status": "200",
+      "bytes": 20076,
+      "statesNamed": 0,
+      "statewiseRows": 0,
+      "sampleRows": [],
+      "looksLikeShell": true,
+      "note": "a shell: renders in a browser, carries no data in a fetch"
+    },
+    {
+      "topic": "pm-kisan",
+      "what": "PM-KISAN beneficiary dashboard",
+      "url": "https://pmkisan.gov.in/Dashboard.aspx",
+      "ok": true,
+      "status": "200",
+      "bytes": 1398,
+      "statesNamed": 0,
+      "statewiseRows": 0,
+      "sampleRows": [],
+      "looksLikeShell": false,
+      "note": "200, but no statewise data found"
+    },
+    {
+      "topic": "mgnrega",
+      "what": "MGNREGA public reports",
+      "url": "https://nreganarep.nic.in/netnrega/statehome.aspx",
+      "ok": false,
+      "status": "fetch failed"
+    },
+    {
+      "topic": "ayushman",
+      "what": "PM-JAY public dashboard",
+      "url": "https://dashboard.pmjay.gov.in/",
+      "ok": false,
+      "status": "fetch failed"
+    },
+    {
+      "topic": "ujjwala",
+      "what": "PMUY connections released",
+      "url": "https://www.pmuy.gov.in/",
+      "ok": true,
+      "status": "200",
+      "bytes": 70721,
+      "statesNamed": 3,
+      "statewiseRows": 0,
+      "sampleRows": [],
+      "looksLikeShell": false,
+      "note": "200, but no statewise data found"
+    },
+    {
+      "topic": "housing",
+      "what": "PMAY-Gramin physical progress",
+      "url": "https://pmayg.nic.in/netiayHome/home.aspx",
+      "ok": false,
+      "status": "fetch failed"
+    },
+    {
+      "topic": "water",
+      "what": "Jal Jeevan Mission, statewise coverage",
+      "url": "https://ejalshakti.gov.in/jjmreport/JJMIndia.aspx",
+      "ok": true,
+      "status": "200",
+      "bytes": 163509,
+      "statesNamed": 2,
+      "statewiseRows": 0,
+      "sampleRows": [],
+      "looksLikeShell": false,
+      "note": "200, but no statewise data found"
+    },
+    {
+      "topic": "labour",
+      "what": "eShram registrations",
+      "url": "https://eshram.gov.in/",
+      "ok": true,
+      "status": "200",
+      "bytes": 8437,
+      "statesNamed": 0,
+      "statewiseRows": 0,
+      "sampleRows": [],
+      "looksLikeShell": false,
+      "note": "200, but no statewise data found"
+    },
+    {
+      "topic": "press",
+      "what": "PIB release archive",
+      "url": "https://pib.gov.in/allRel.aspx",
+      "ok": true,
+      "status": "200",
+      "bytes": 131925,
+      "statesNamed": 0,
+      "statewiseRows": 0,
+      "sampleRows": [],
+      "looksLikeShell": false,
+      "note": "200, but no statewise data found"
+    },
+    {
+      "topic": "press",
+      "what": "PIB Ministry of Commerce",
+      "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=1",
+      "ok": false,
+      "status": "HTTP 404"
+    }
+  ]
+}
