@@ -115,7 +115,12 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   const idx = (want: RegExp): number => headers.findIndex((h) => want.test(h));
   const cState = idx(/state|ut/i);
   const cRural = idx(/rural/i);
-  const cUrban = idx(/urban/i);
+  // "urban" is a substring of the rural column's own heading — the portal
+  // writes "Beneficiaries at rural/semi-urban centre bank branches" — so a
+  // plain /urban/ match returns the rural column and every state's rural
+  // figure is counted twice. The urban column is the next header naming urban
+  // that is not the rural one.
+  const cUrban = headers.findIndex((h, i) => i !== cRural && /urban/i.test(h));
   const cTotal = idx(/total/i);
   const cDeposit = idx(/deposit|balance/i);
 
@@ -159,7 +164,9 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
 
     // The table prints its own total, so the parse can be checked against it.
     // A column read one place off still yields a number; it does not yield a
-    // number that adds up.
+    // number that adds up. This is not hypothetical — the check caught exactly
+    // that on the first run, when the rural column was being read as both
+    // halves and every state came out at twice its rural figure.
     if (statedTotal !== null && Math.abs(statedTotal - sum) > Math.max(2, sum * 0.001)) {
       rejected.push({
         label: state,
