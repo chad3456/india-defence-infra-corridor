@@ -3,6 +3,7 @@ import { join } from "node:path";
 import type { NewsItem, PipelineRun } from "@/lib/types";
 import { ALL_SOURCES, OFFICIAL_SOURCES, PRESS_SOURCES } from "@/lib/sources";
 import { supabaseConfigured, fetchNews, fetchLastRun } from "@/lib/supabase";
+import LiveFeed from "@/components/live/LiveFeed";
 
 export const metadata = { title: "Live tracker" };
 
@@ -84,6 +85,15 @@ export default async function TrackerPage() {
           the primary release before any series changes. That separation is deliberate and is the
           main reason this site&apos;s numbers can be trusted.
         </p>
+      </section>
+
+      {/* The unchecked half, kept visually apart from the checked one. A reader
+          should never have to work out which of the two they are looking at. */}
+      <section className="mt-5">
+        <LiveFeed />
+      </section>
+
+      <section className="mt-5">
         <div className="mt-3 flex flex-wrap gap-1.5">
           {ALL_SOURCES.map((s) => (
             <span

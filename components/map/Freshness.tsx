@@ -43,17 +43,18 @@ export default function Freshness({ state }: { state: RefreshState | null }) {
       <p className="mt-1.5 text-[11px] leading-relaxed text-[color:var(--text-secondary)]">
         {state.stale ? (
           <>
-            <strong className="font-medium">This is behind.</strong> The ingest runs hourly with a
-            follow-up ten minutes later, and has not run for over {STALE_THRESHOLD_HOURS} hours, so
-            anything reported since then is missing. A quiet map right now means a stalled pipeline,
-            not a quiet day.
+            <strong className="font-medium">This is behind.</strong> The ingest runs every six
+            hours and has not run for over {STALE_THRESHOLD_HOURS} hours, so anything reported
+            since then is missing. A quiet map right now means a stalled pipeline, not a quiet
+            day. The live panel above is unaffected — it reads the feeds directly.
           </>
         ) : (
           <>
-            The ingest runs hourly, with one follow-up ten minutes after each run. It asked for
-            every half hour and GitHub would not honour that — measured gaps ran to twelve hours —
-            so this is near-live rather than live, and a pin lags the outlet that reported it by
-            about half an hour to an hour.
+            The ingest runs every six hours. It asked for every half hour and GitHub would not
+            honour that — measured gaps ran to twelve hours — so a pin here can lag the outlet
+            that reported it by most of a working day. That is the cost of the checking: these
+            events have been placed, categorised and matched against primary sources. For what is
+            on the wires this minute, unchecked, see the live panel above.
           </>
         )}
       </p>
