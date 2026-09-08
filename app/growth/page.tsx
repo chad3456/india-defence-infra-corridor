@@ -2,6 +2,7 @@ import Link from "next/link";
 import { loadPillars, loadSchemes, cumulativeByYear } from "@/lib/pillars";
 import LiteracyMap from "@/components/map/LiteracyMap";
 import ChartCanvas from "@/components/charts/ChartCanvas";
+import StatRow, { type Stat } from "@/components/ui/StatRow";
 
 /**
  * The growth story, in the four places it can actually be measured.
@@ -52,6 +53,48 @@ export default function GrowthPage() {
   const upiLatest = p.upiVolumeMn[p.upiVolumeMn.length - 1];
   const upiFirst = p.upiVolumeMn[0];
 
+  const latestCensus = p.censusYears[p.censusYears.length - 1] ?? "";
+  const litValues = p.literacyByState
+    .map((r) => r.byCensus[latestCensus])
+    .filter((v): v is number => v !== undefined);
+  const schemeAccounts = schemes.rows.reduce((s, r) => s + r.totalAccounts, 0);
+
+  /**
+   * Each tile carries the number and the thing it is most often used to claim
+   * but cannot. A figure without its qualification is the format this site
+   * exists to avoid.
+   */
+  const headline: Stat[] = [
+    ...(upiLatest ? [{
+      value: `${fmtBn(upiLatest.value)}`,
+      label: "UPI transactions",
+      meta: `in ${upiLatest.year}`,
+      caveat: "Transactions, not people. One person paying twice is two.",
+    }] : []),
+    ...(litValues.length > 0 ? [{
+      value: `${Math.min(...litValues).toFixed(0)}–${Math.max(...litValues).toFixed(0)}%`,
+      label: "Literacy, state spread",
+      meta: `census ${latestCensus}`,
+      caveat: "The 2021 census did not happen, so this is fifteen years old.",
+    }] : []),
+    ...(p.satellitesByYear.length > 0 ? [{
+      value: String(p.satellitesByYear.reduce((s, r) => s + r.value, 0)),
+      label: "Satellites launched",
+      meta: `since ${p.satellitesByYear[0]?.year}`,
+      caveat: "A count of launches. It says nothing about what any of them do.",
+    }] : []),
+    ...(schemes.present ? [{
+      value: `${(schemeAccounts / 1e7).toFixed(1)} cr`,
+      label: "Jan Dhan accounts",
+      meta: schemes.asOf ? `as on ${schemes.asOf}` : undefined,
+      caveat: "Accounts opened, not people served. A dormant one counts the same.",
+    }] : [{
+      value: `${since2014.length}`,
+      label: "Defence firms since 2014",
+      caveat: "From a list of notable firms, not a registry. Treat it as a floor.",
+    }]),
+  ];
+
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
       <header className="mb-10 border-b border-gridline pb-8">
@@ -65,6 +108,12 @@ export default function GrowthPage() {
           between a figure and the claim it gets used for is usually the whole argument.
         </p>
       </header>
+
+      {p.present && (
+        <section className="mb-12">
+          <StatRow stats={headline} />
+        </section>
+      )}
 
       {!p.present ? (
         <p className="rounded-lg border border-gridline bg-surface-2 p-5 text-sm text-ink-2">

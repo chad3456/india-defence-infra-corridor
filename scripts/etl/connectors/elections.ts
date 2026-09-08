@@ -97,6 +97,11 @@ const TOTAL_ROWS = new Set(["india", "total", "grand total", "all india"]);
 const norm = (s: string) =>
   s
     .toLowerCase()
+    // A leading "the" is decoration on a state name and nothing else. The Jan
+    // Dhan portal writes "The Dadra And Nagar Haveli And Daman And Diu", which
+    // without this fell past the entry that exists for exactly that row and
+    // was refused for the wrong reason.
+    .replace(/^\s*the\s+/, " ")
     .replace(/\((?:ut|union territory)\)/g, " ")
     .replace(/&/g, " and ")
     .replace(/[^a-z ]+/g, " ")

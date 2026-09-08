@@ -59,6 +59,14 @@ function testResolver(): void {
   const combined = resolveState("Dadra & Nagar Haveli and Daman & Diu (UT)");
   ok("a row covering two polygons is refused rather than assigned to one",
     combined.kind === "refused", `got ${combined.kind}`);
+  // The Jan Dhan portal writes the same territory with a leading "The", which
+  // must reach the same refusal and not a vaguer one.
+  const withThe = resolveState("The Dadra And Nagar Haveli And Daman And Diu");
+  ok("a leading \"The\" does not change which refusal is given",
+    withThe.kind === "refused" && /two polygons/.test(withThe.reason),
+    withThe.kind === "refused" ? withThe.reason : withThe.kind);
+  ok("a leading \"The\" on a plain state still resolves",
+    resolveState("The Punjab").kind === "state");
 
   ok("an unknown name is refused, not guessed",
     resolveState("Republic of Elbonia").kind === "refused");
