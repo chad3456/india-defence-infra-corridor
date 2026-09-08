@@ -1,0 +1,39 @@
+name: Ingest growth pillars
+
+# Literacy by state, the defence industrial base, satellite launches and UPI,
+# from the Wikipedia tables the probe confirmed. Weekly.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/connectors/pillars.ts"
+      - ".github/workflows/pillars-ingest.yml"
+  schedule:
+    - cron: "20 3 * * 1"
+
+permissions:
+  contents: write
+concurrency:
+  group: pillars-ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npm run pillars:ingest
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/pillars 2>/dev/null || true
+          if git diff --staged --quiet; then echo unchanged; exit 0; fi
+          git commit -m "chore(schemes): growth pillars $(date -u +'%Y-%m-%d')"
+          for i in 1 2 3 4; do git push && break; sleep $((2**i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true; done
