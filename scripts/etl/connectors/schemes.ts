@@ -28,6 +28,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getText } from "../lib/http";
 import { isEntryPoint } from "../lib/entry";
+import { resolveState } from "./elections";
 
 const ROOT = process.cwd();
 const OUT = join(ROOT, "data/schemes/jan-dhan.json");
@@ -84,13 +85,31 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   const asOf = /as\s+on\s+([0-9]{1,2}[./-][0-9]{1,2}[./-][0-9]{2,4}|[0-9]{1,2}\s+\w+\s+[0-9]{4})/i
     .exec(html)?.[1] ?? null;
 
-  const rowsHtml = [...html.matchAll(/<tr[\s\S]*?<\/tr>/gi)].map((m) => m[0]);
-  const parsed = rowsHtml.map(cellsOf).filter((c) => c.length >= 4);
-
-  // The header is the row naming a state column beside an account column.
-  const headerRow = parsed.find((c) =>
-    c.some((x) => /state|ut/i.test(x)) &&
-    c.some((x) => /rural|urban|beneficiar/i.test(x)));
+  // Rows are taken from within one table, not from the whole document.
+  //
+  // The first version collected every <tr> on the page, found a header row,
+  // and then iterated all of them. The page carries more than one table — a
+  // district-level one and a JavaScript template among them — so it produced
+  // 677 "states" including Chittoor and Gorakhpur, a row literally named
+  // `" + data[index].StateName + "`, and a national total of four and a half
+  // lakh accounts against a real figure in the tens of crore. Every number
+  // was a number. None of them was the answer.
+  const tables = [...html.matchAll(/<table[\s\S]*?<\/table>/gi)].map((m) => m[0]);
+  let parsed: string[][] = [];
+  let headerRow: string[] | undefined;
+  for (const table of tables) {
+    const rows = [...table.matchAll(/<tr[\s\S]*?<\/tr>/gi)]
+      .map((m) => cellsOf(m[0]))
+      .filter((c) => c.length >= 3);
+    const head = rows.find((c) =>
+      c.some((x) => /state/i.test(x)) &&
+      c.some((x) => /rural|urban|beneficiar/i.test(x)));
+    if (!head) continue;
+    // Prefer the table that actually names states. A template with the right
+    // headers and no real rows would otherwise win on header match alone.
+    const namesStates = rows.filter((c) => resolveState(c[head.indexOf(head.find((x) => /state/i.test(x))!)] ?? "").kind === "state").length;
+    if (namesStates >= 10 && rows.length > parsed.length) { parsed = rows; headerRow = head; }
+  }
   const headers = headerRow ?? [];
 
   const idx = (want: RegExp): number => headers.findIndex((h) => want.test(h));
@@ -117,11 +136,17 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   const rejected: Array<{ label: string; reason: string }> = [];
   for (const cells of parsed) {
     if (cells === headerRow) continue;
-    const state = (cells[cState] ?? "").replace(/\*+$/, "").trim();
-    if (state === "") continue;
-    // The portal ends with a total row, which is not a state and would sit at
-    // the top of every ranking.
-    if (/^(total|grand\s*total|all\s*india)$/i.test(state)) continue;
+    const raw = (cells[cState] ?? "").replace(/\*+$/, "").trim();
+    if (raw === "") continue;
+
+    // Every row has to name a state this project can put on a map. That is
+    // what separates the statewise table from the district table beside it:
+    // "Chittoor" is a real place with a real number and is not an answer to
+    // this question.
+    const r = resolveState(raw);
+    if (r.kind === "total") continue;
+    if (r.kind === "refused") { rejected.push({ label: raw, reason: r.reason }); continue; }
+    const state = r.state;
 
     const rural = num(cells[cRural] ?? "");
     const urban = num(cells[cUrban] ?? "");
@@ -148,6 +173,17 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
       totalAccounts: statedTotal ?? sum,
       croreDeposits: cDeposit >= 0 ? num(cells[cDeposit] ?? "") : null,
     });
+  }
+
+  // India has 36 states and union territories, and Jan Dhan runs to tens of
+  // crore of accounts. A parse well outside either is reading the wrong table,
+  // and should say so rather than publish.
+  const accountsTotal = rows.reduce((s, r) => s + r.totalAccounts, 0);
+  if (rows.length > 45) {
+    errors.push(`schemes: jan-dhan: ${rows.length} rows, more than India has states; wrong table`);
+  }
+  if (rows.length >= 10 && accountsTotal < 100_000_000) {
+    errors.push(`schemes: jan-dhan: ${accountsTotal.toLocaleString("en-IN")} accounts nationally, far below the known scale; wrong table or wrong column`);
   }
 
   const out: Output = {
