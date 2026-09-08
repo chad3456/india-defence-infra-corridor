@@ -1,0 +1,39 @@
+name: Ingest scheme reach
+
+# Jan Dhan accounts by state, from the one scheme portal that answers a fetch
+# with a table. Weekly: the portal updates on that cadence.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/connectors/schemes.ts"
+      - ".github/workflows/schemes-ingest.yml"
+  schedule:
+    - cron: "20 3 * * 1"
+
+permissions:
+  contents: write
+concurrency:
+  group: schemes-ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npm run schemes:ingest
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/schemes 2>/dev/null || true
+          if git diff --staged --quiet; then echo unchanged; exit 0; fi
+          git commit -m "chore(schemes): Jan Dhan statewise $(date -u +'%Y-%m-%d')"
+          for i in 1 2 3 4; do git push && break; sleep $((2**i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true; done
