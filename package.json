@@ -56,6 +56,7 @@
     "wdi:probe": "tsx scripts/etl/probe-wdi.ts",
     "stability:probe": "tsx scripts/etl/probe-stability.ts",
     "arsenal:probe": "tsx scripts/etl/probe-arsenal.ts",
+    "arsenal:ingest": "tsx scripts/etl/connectors/arsenal.ts",
     "stability:ingest": "tsx scripts/etl/connectors/stability.ts",
     "wdi:promote": "tsx scripts/docs/promote-wdi.ts",
     "who:probe": "tsx scripts/etl/probe-who.ts",
