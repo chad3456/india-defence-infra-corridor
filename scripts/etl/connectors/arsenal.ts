@@ -83,7 +83,7 @@ const SPINE: SpineSpec[] = [
     label: "Military spending, share of GDP", unit: "% of GDP", source: "sipri" },
   { id: "personnel", slug: "military-personnel", column: "Military personnel",
     label: "Armed forces personnel", unit: "people", source: "iiss-correlates" },
-  { id: "warheads", slug: "nuclear-warhead-stockpiles", column: "Nuclear weapons stockpile",
+  { id: "warheads", slug: "nuclear-warhead-stockpiles", column: "Number of nuclear warheads",
     label: "Nuclear warhead stockpile", unit: "warheads", source: "fas" },
 ];
 
@@ -138,22 +138,24 @@ async function loadSpine(spec: SpineSpec): Promise<CountryYear[] | null> {
    Layer three: the gazetteer the agent reads with
    ──────────────────────────────────────────────────────────────────────── */
 
-const WIKI_LISTS = [
-  { page: "List_of_missiles_by_country", kind: "mixed" },
-  { page: "List_of_intercontinental_ballistic_missiles", kind: "ICBM" },
-  { page: "List_of_cruise_missiles", kind: "cruise" },
-  { page: "List_of_surface-to-air_missiles", kind: "surface-to-air" },
-  { page: "List_of_anti-ship_missiles", kind: "anti-ship" },
-  { page: "Submarine-launched_ballistic_missile", kind: "SLBM" },
-  { page: "Hypersonic_weapon", kind: "hypersonic" },
-] as const;
+const WIKI_LISTS: Array<{ page: string; kind: string; countryFrom: "section" | "column" }> = [
+  // On this page the country IS the section heading, which is why the loader
+  // has to read sections at all.
+  { page: "List_of_missiles_by_country", kind: "mixed", countryFrom: "section" },
+  { page: "List_of_intercontinental_ballistic_missiles", kind: "ICBM", countryFrom: "column" },
+  { page: "List_of_cruise_missiles", kind: "cruise", countryFrom: "section" },
+  { page: "List_of_surface-to-air_missiles", kind: "surface-to-air", countryFrom: "section" },
+  { page: "List_of_anti-ship_missiles", kind: "anti-ship", countryFrom: "section" },
+  { page: "Submarine-launched_ballistic_missile", kind: "SLBM", countryFrom: "section" },
+  { page: "Hypersonic_weapon", kind: "hypersonic", countryFrom: "section" },
+];
 
 export interface SystemEntry {
   name: string;
   /** Lowercased, punctuation-flattened, for matching against prose. */
   key: string;
   kind: string;
-  /** Operator or country of origin, where the list states one. */
+  /** Operator or country of origin, where the page states one. */
   country: string | null;
   source: string;
 }
@@ -163,50 +165,118 @@ export interface SystemEntry {
  *
  * The gazetteer is used to find system names inside news headlines, so an
  * entry like "Trident" or "Arrow" would fire on stories about neither. Each of
- * these appeared as a real row in one of the lists; each is dropped from
- * matching rather than from the catalogue, so the system is still listed and
- * simply never claims a headline on its own.
+ * these is a real row in one of the lists; each is dropped from *matching*
+ * rather than from the catalogue, so the system is still listed and simply
+ * never claims a headline on its own.
  */
 const TOO_GENERIC = new Set([
   "arrow", "trident", "harpoon", "spike", "python", "javelin", "hawk", "eagle",
   "falcon", "lance", "sabre", "saber", "scout", "sea", "sky", "star", "storm",
   "condor", "crotale", "exocet", "hydra", "mica", "sword", "shield", "tiger",
   "atlas", "titan", "jupiter", "polaris", "typhoon", "vanguard", "meteor",
+  "list", "name", "type", "origin", "range", "status", "notes", "see also",
+  "overview", "history", "references", "external links", "gallery",
 ]);
 
 function systemKey(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 }
 
+/** Split wikitext into its own sections, so a heading can be read as data. */
+function sections(wikitext: string): Array<{ heading: string; body: string }> {
+  const out: Array<{ heading: string; body: string }> = [];
+  const re = /^={2,}\s*(.+?)\s*={2,}\s*$/gm;
+  let last = 0, heading = "";
+  for (const m of wikitext.matchAll(re)) {
+    const at = m.index ?? 0;
+    out.push({ heading, body: wikitext.slice(last, at) });
+    heading = m[1]!.replace(/\[\[|\]\]/g, "").trim();
+    last = at + m[0].length;
+  }
+  out.push({ heading, body: wikitext.slice(last) });
+  return out;
+}
+
+/**
+ * The display name out of a wiki link, or the leading plain text of a bullet.
+ *
+ * `[[R-36 (missile)|R-36]]` is R-36; `[[Iskander]]` is Iskander; a bullet with
+ * no link at all still often starts with the system's name before a dash or a
+ * bracket, and that prefix is taken.
+ */
+function bulletName(line: string): string | null {
+  const piped = line.match(/\[\[([^\]|]+)\|([^\]]+)\]\]/);
+  if (piped) return piped[2]!.trim();
+  const plainLink = line.match(/\[\[([^\]|]+)\]\]/);
+  if (plainLink) return plainLink[1]!.replace(/\s*\(.*?\)\s*$/, "").trim();
+  const bare = line
+    .replace(/^\*+\s*/, "")
+    .replace(/''+/g, "")
+    .split(/[—–\-:(,]/)[0]!
+    .trim();
+  return bare.length >= 3 && bare.length <= 40 ? bare : null;
+}
+
+/** A heading that names a country rather than a section of prose. */
+function headingIsCountry(h: string): boolean {
+  if (!h || h.length > 40) return false;
+  return !/^(see also|references|external links|notes|history|overview|gallery|further reading|bibliography|by type|comparison|list of)/i.test(h);
+}
+
 async function loadGazetteer(): Promise<SystemEntry[]> {
   const out = new Map<string, SystemEntry>();
-  for (const { page, kind } of WIKI_LISTS) {
+
+  const add = (name: string, kind: string, country: string | null, source: string) => {
+    const clean = name.replace(/\[.*?\]/g, "").replace(/''+/g, "").trim();
+    if (!clean || clean.length < 3 || clean.length > 48) return;
+    if (/^(name|total|notes?|see also|unknown|n\/a|tbd)$/i.test(clean)) return;
+    // A name that is only digits or only punctuation is a table artefact.
+    if (!/[a-z]/i.test(clean)) return;
+    const key = systemKey(clean);
+    if (!key || key.length < 3) return;
+    const prev = out.get(key);
+    if (!prev) out.set(key, { name: clean, key, kind, country, source });
+    else if (country && !prev.country) prev.country = country;
+  };
+
+  for (const { page, kind, countryFrom } of WIKI_LISTS) {
     const url = `${WIKI}?action=parse&page=${page}&prop=wikitext&formatversion=2&format=json`;
     const res = await getJson<{ parse?: { wikitext?: string } }>(url, { cacheMs: 24 * 3600_000 });
     const text = res.data?.parse?.wikitext;
     if (!res.ok || !text) { console.log(`  FAILED gazetteer ${page}: ${res.error}`); continue; }
 
-    for (const table of parseTables(text)) {
-      // Columns resolved by name from the table's own header, because these
-      // lists differ from one another and from themselves year to year.
-      const cName = columnIndex(table.headers, /^(name|missile|designation|system|type)/i);
-      const cCountry = columnIndex(table.headers, /(country|origin|operator|nation|state)/i);
-      if (cName < 0) continue;
-      for (const row of table.rows) {
-        const name = plain(row[cName] ?? "").replace(/\[.*?\]/g, "").trim();
-        if (!name || name.length < 3 || name.length > 48) continue;
-        if (/^(name|total|notes?|see also)$/i.test(name)) continue;
-        const key = systemKey(name);
-        if (!key || key.length < 3) continue;
-        const country = cCountry >= 0 ? (plain(row[cCountry] ?? "").trim() || null) : null;
-        if (!out.has(key)) {
-          out.set(key, { name, key, kind, country, source: page });
-        } else if (country && !out.get(key)!.country) {
-          out.get(key)!.country = country;
+    const before = out.size;
+    for (const sec of sections(text)) {
+      const sectionCountry =
+        countryFrom === "section" && headingIsCountry(sec.heading) ? sec.heading : null;
+
+      // Tables, where the page uses them.
+      for (const table of parseTables(sec.body)) {
+        const cName = columnIndex(table.headers, /^(name|missile|designation|system)/i);
+        const cCountry = columnIndex(table.headers, /(country|origin|operator|nation|state|user)/i);
+        if (cName < 0) continue;
+        for (const row of table.rows) {
+          const country = cCountry >= 0 ? (plain(row[cCountry] ?? "").trim() || null) : null;
+          add(plain(row[cName] ?? ""), kind, country ?? sectionCountry, page);
         }
       }
+
+      /*
+       * Bulleted lists, which is what most of these pages actually are.
+       *
+       * The first version read tables only and found 71 systems where the
+       * self-check wanted 200 — because "List of missiles by country" is a
+       * country heading followed by bullets, not a table, and Iskander and
+       * Minuteman III both live in bullets. Reading only the shape I expected
+       * would have shipped a gazetteer missing most of the world's missiles.
+       */
+      for (const line of sec.body.split("\n")) {
+        if (!/^\*+\s/.test(line)) continue;
+        const name = bulletName(line);
+        if (name) add(name, kind, sectionCountry, page);
+      }
     }
-    console.log(`  ok gazetteer ${page.padEnd(46)} running total ${out.size}`);
+    console.log(`  ok gazetteer ${page.padEnd(46)} +${out.size - before}  total ${out.size}`);
   }
   return [...out.values()];
 }
