@@ -19,6 +19,7 @@ const LINKS = [
   { href: "/global", label: "Global" },
   { href: "/made-in-india", label: "Made in India" },
   { href: "/defence-tracker", label: "Defence" },
+  { href: "/arsenal", label: "Arsenal" },
   { href: "/mobility", label: "Mobility" },
   { href: "/atlas", label: "Atlas" },
   { href: "/elections", label: "Elections" },

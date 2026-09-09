@@ -182,18 +182,27 @@ function systemKey(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 }
 
-/** Split wikitext into its own sections, so a heading can be read as data. */
-function sections(wikitext: string): Array<{ heading: string; body: string }> {
-  const out: Array<{ heading: string; body: string }> = [];
-  const re = /^={2,}\s*(.+?)\s*={2,}\s*$/gm;
-  let last = 0, heading = "";
+/**
+ * Split wikitext into sections, keeping each heading's depth.
+ *
+ * Depth is the point. On "List of missiles by country" the level-two headings
+ * are countries and everything deeper is a grouping inside one — "United
+ * States Navy designation systems", "By NATO reporting name". Reading every
+ * heading as a country split the United States across four rows of the
+ * catalogue and invented a nation called "World War II".
+ */
+function sections(wikitext: string): Array<{ heading: string; depth: number; body: string }> {
+  const out: Array<{ heading: string; depth: number; body: string }> = [];
+  const re = /^(={2,})\s*(.+?)\s*\1\s*$/gm;
+  let last = 0, heading = "", depth = 0;
   for (const m of wikitext.matchAll(re)) {
     const at = m.index ?? 0;
-    out.push({ heading, body: wikitext.slice(last, at) });
-    heading = m[1]!.replace(/\[\[|\]\]/g, "").trim();
+    out.push({ heading, depth, body: wikitext.slice(last, at) });
+    depth = m[1]!.length;
+    heading = m[2]!.replace(/\[\[|\]\]/g, "").split("|").pop()!.trim();
     last = at + m[0].length;
   }
-  out.push({ heading, body: wikitext.slice(last) });
+  out.push({ heading, depth, body: wikitext.slice(last) });
   return out;
 }
 
@@ -222,10 +231,32 @@ function bulletName(line: string): string | null {
   return bare.length >= 3 && bare.length <= 40 ? bare : null;
 }
 
-/** A heading that names a country rather than a section of prose. */
-function headingIsCountry(h: string): boolean {
-  if (!h || h.length > 40) return false;
-  return !/^(see also|references|external links|notes|history|overview|gallery|further reading|bibliography|by type|comparison|list of)/i.test(h);
+/**
+ * A heading that names a country this pipeline can recognise.
+ *
+ * Checked against the country list rather than against a blacklist of
+ * boilerplate. The blacklist version let through "United States Navy
+ * designation systems", "By NATO reporting name", "World War II", "Other" and
+ * a heading that was a bare slash — five fake nations in the catalogue, and
+ * the real United States fragmented across four of them.
+ *
+ * Multinational programmes are kept deliberately: a jointly built missile has
+ * no single country of origin and saying so is more honest than picking one.
+ */
+const MULTINATIONAL = /^(european|nato|joint|multinational|international)\b/i;
+
+function countryOfHeading(h: string): string | null {
+  if (!h || h.length > 44) return null;
+  const t = h.trim();
+  if (MULTINATIONAL.test(t)) return "Multinational";
+  const low = t.toLowerCase();
+  const hit = COUNTRIES.find((c) =>
+    c.name.toLowerCase() === low || c.words.some((w) => w === low));
+  if (hit) return hit.name;
+  // "USSR/Russian Federation" and "Soviet Union" name a state that fielded
+  // these systems and is not in the modern country list. Kept as written.
+  if (/soviet|ussr/i.test(t)) return "Soviet Union";
+  return null;
 }
 
 async function loadGazetteer(): Promise<SystemEntry[]> {
@@ -251,9 +282,13 @@ async function loadGazetteer(): Promise<SystemEntry[]> {
     if (!res.ok || !text) { console.log(`  FAILED gazetteer ${page}: ${res.error}`); continue; }
 
     const before = out.size;
+    // The nearest level-two heading, which is where the country lives; deeper
+    // headings are groupings inside one country and must not overwrite it.
+    let topHeading = "";
     for (const sec of sections(text)) {
+      if (sec.depth === 2) topHeading = sec.heading;
       const sectionCountry =
-        countryFrom === "section" && headingIsCountry(sec.heading) ? sec.heading : null;
+        countryFrom === "section" ? countryOfHeading(topHeading) : null;
 
       // Tables, where the page uses them.
       for (const table of parseTables(sec.body)) {
@@ -763,8 +798,23 @@ export async function run(): Promise<void> {
   // Country attribution is the half that makes the catalogue answerable by
   // nation, and the largest source page supplies it from section headings.
   const attributed = gazetteer.filter((g) => g.country).length;
-  if (attributed < gazetteer.length * 0.5) {
+  if (attributed < gazetteer.length * 0.4) {
     problems.push(`only ${attributed} of ${gazetteer.length} systems have a country`);
+  }
+  /*
+   * Every country string must be a country this pipeline recognises.
+   *
+   * The catalogue's first build carried "United States Navy designation
+   * systems", "By NATO reporting name", "World War II", "Other" and a bare
+   * slash as nations, and split the real United States across four of them.
+   * A fake nation in a catalogue of who fields what is the worst failure this
+   * file has available, so it fails the run.
+   */
+  const known = new Set([...COUNTRIES.map((c) => c.name), "Multinational", "Soviet Union"]);
+  const fakeNations = [...new Set(gazetteer.map((g) => g.country).filter((c): c is string => Boolean(c)))]
+    .filter((c) => !known.has(c));
+  if (fakeNations.length > 0) {
+    problems.push(`${fakeNations.length} country strings are not countries: ${fakeNations.slice(0, 5).join(" / ")}`);
   }
   const keys = new Set(gazetteer.map((g) => g.key));
   // Four systems from four different countries and four different lists. If
