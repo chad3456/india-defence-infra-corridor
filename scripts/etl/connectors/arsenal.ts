@@ -294,13 +294,34 @@ async function loadGazetteer(): Promise<SystemEntry[]> {
     if (!res.ok || !text) { console.log(`  FAILED gazetteer ${page}: ${res.error}`); continue; }
 
     const before = out.size;
-    // The nearest level-two heading, which is where the country lives; deeper
-    // headings are groupings inside one country and must not overwrite it.
-    let topHeading = "";
+    /*
+     * The nearest *ancestor heading that names a country*, not simply the
+     * nearest level-two one.
+     *
+     * Taking depth two flatly fixed the United States, which was fragmented
+     * across four of its own subsection headings, and broke India, which fell
+     * from 26 systems to 7: some pages nest countries one level down under a
+     * region ("== Asia ==" then "=== India ==="), so the country sat at depth
+     * three and the region resolved to nothing.
+     *
+     * Walking up the heading stack handles both shapes. "United States Navy
+     * designation systems" does not resolve, so its parent "United States"
+     * wins; "India" under "Asia" resolves at its own level before the region
+     * is ever consulted.
+     */
+    const stack: string[] = [];
     for (const sec of sections(text)) {
-      if (sec.depth === 2) topHeading = sec.heading;
-      const sectionCountry =
-        countryFrom === "section" ? resolveCountry(topHeading) : null;
+      if (sec.depth >= 2) {
+        stack.length = sec.depth;
+        stack[sec.depth] = sec.heading;
+      }
+      let sectionCountry: string | null = null;
+      if (countryFrom === "section") {
+        for (let d = stack.length - 1; d >= 2; d--) {
+          const c = stack[d] ? resolveCountry(stack[d]!) : null;
+          if (c) { sectionCountry = c; break; }
+        }
+      }
 
       // Tables, where the page uses them.
       for (const table of parseTables(sec.body)) {
