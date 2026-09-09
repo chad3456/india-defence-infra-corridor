@@ -62,16 +62,24 @@ interface Target {
 
 /** OWID slugs for the SIPRI series. Guessed, then checked — as ever. */
 const OWID_SLUGS = [
-  "military-expenditure-sipri",
+  // Confirmed in round one.
   "military-spending-sipri",
   "military-expenditure-share-gdp",
-  "military-expenditure-per-capita",
-  "arms-exports-sipri",
-  "arms-imports-sipri",
   "military-personnel",
   "nuclear-warhead-stockpiles",
-  "nuclear-warhead-inventories",
-  "nuclear-weapons-tests",
+  // Round two. Arms transfers are the series this whole tracker turns on and
+  // every guessed slug 404'd in round one, so the candidate set is widened
+  // rather than narrowed — a tracker of arms deals with no transfer values is
+  // a tracker of press releases.
+  "arms-exports", "arms-imports",
+  "arms-exports-constant-usd", "arms-imports-constant-usd",
+  "arms-exports-sipri-tiv", "arms-imports-sipri-tiv",
+  "transfers-of-major-conventional-weapons",
+  "value-of-arms-exports", "value-of-arms-imports",
+  "arms-trade-exports", "arms-trade-imports",
+  "military-expenditure-per-capita-sipri",
+  "share-of-military-expenditure-in-government-expenditure",
+  "nuclear-weapons-tests-by-country",
 ];
 
 /**
@@ -84,12 +92,17 @@ const OWID_SLUGS = [
 const WIKI_PAGES = [
   "List_of_missiles_by_country",
   "List_of_intercontinental_ballistic_missiles",
-  "List_of_submarine-launched_ballistic_missiles",
   "List_of_cruise_missiles",
   "List_of_surface-to-air_missiles",
   "List_of_anti-ship_missiles",
-  "List_of_hypersonic_missiles",
   "List_of_states_with_nuclear_weapons",
+  // Round one returned a 402-byte "missingtitle" error for these two, which is
+  // the API answering honestly that the page is at another name.
+  "List_of_submarine-launched_ballistic_missiles_by_country",
+  "Submarine-launched_ballistic_missile",
+  "Hypersonic_weapon",
+  "List_of_ballistic_missiles",
+  "List_of_anti-ballistic_missiles",
 ];
 
 const TARGETS: Target[] = [
@@ -136,7 +149,35 @@ const TARGETS: Target[] = [
     id: "nato-news",
     layer: "deals",
     what: "NATO newsroom feed",
-    url: "https://www.nato.int/cps/en/natohq/news.rss",
+    url: "https://www.nato.int/cps/en/natolive/rss_news.xml",
+    expect: /<rss|<item/i,
+  },
+  {
+    id: "navalnews",
+    layer: "deals",
+    what: "Naval News feed",
+    url: "https://www.navalnews.com/feed/",
+    expect: /<rss|<item/i,
+  },
+  {
+    id: "defenceblog",
+    layer: "deals",
+    what: "Defence Blog feed",
+    url: "https://defence-blog.com/feed/",
+    expect: /<rss|<item/i,
+  },
+  {
+    id: "eda-europa",
+    layer: "deals",
+    what: "European Defence Agency news",
+    url: "https://eda.europa.eu/rss/news",
+    expect: /<rss|<item/i,
+  },
+  {
+    id: "defenseone",
+    layer: "deals",
+    what: "Defense One feed",
+    url: "https://www.defenseone.com/rss/all/",
     expect: /<rss|<item/i,
   },
   {
@@ -171,14 +212,14 @@ const TARGETS: Target[] = [
     id: "janes",
     layer: "deals",
     what: "Janes news feed",
-    url: "https://www.janes.com/feeds/news",
+    url: "https://www.janes.com/rss/news.xml",
     expect: /<rss|<item/i,
   },
   {
     id: "armyrecognition",
     layer: "deals",
     what: "Army Recognition defence news feed",
-    url: "https://armyrecognition.com/rss/news.xml",
+    url: "https://armyrecognition.com/feed",
     expect: /<rss|<item/i,
   },
 
