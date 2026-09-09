@@ -22,7 +22,14 @@ export default function SystemCatalogue({
 }) {
   const [q, setQ] = useState("");
   const [kind, setKind] = useState("all");
-  const [open, setOpen] = useState<string | null>(groups[0]?.country ?? null);
+  /*
+   * Collapsed by default.
+   *
+   * Opening the first country meant opening the United States, whose 489
+   * systems pushed every other nation below the fold — the reader met a wall
+   * of chips instead of the list of nations the panel exists to show.
+   */
+  const [open, setOpen] = useState<string | null>(null);
 
   const shown = useMemo(() => {
     const needle = q.trim().toLowerCase();
