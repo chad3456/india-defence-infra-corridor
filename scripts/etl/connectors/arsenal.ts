@@ -424,19 +424,18 @@ const COUNTRIES: Array<{ iso3: string; name: string; words: string[] }> = [
  * dropped however well it matches everything else.
  */
 const NOT_PROCUREMENT =
-  /\b(treaty|arms control|non-proliferation|nonproliferation|disarmament|ceasefire|sanction|resolution|united nations|un general assembly|summit communiqu)/i;
+  /\b(treaty|arms control|non-proliferation|nonproliferation|disarmament|ceasefire|sanction|resolution|united nations|general assembly|communiqu|doubts over|diplomats say|calls for|urges|condemn)/i;
 
 /** What kind of event a headline describes. First match wins, most specific first. */
 const KINDS: Array<{ kind: DealEvent["kind"]; pattern: RegExp }> = [
   { kind: "test", pattern: /\b(test[- ]?fir|flight[- ]?test|successful(ly)? test|trial launch|test launch|conducted a test)\b/i },
   { kind: "order", pattern: /\b(contract|deal|order|procure|purchase|sign(ed|s)?|approv(ed|es|al)|clear(ed|s)|tender|awarded)\b/i },
   { kind: "delivery", pattern: /\b(deliver(ed|s|y)|handed over|hand-over|first batch|inducted|commission(ed|ing))\b/i },
-  { kind: "talks", pattern: /\b(talks|negotiat|in discussions|considering|may buy|weighs)\b/i },
 ];
 
 export interface DealEvent {
   id: string;
-  kind: "order" | "delivery" | "test" | "talks";
+  kind: "order" | "delivery" | "test";
   systems: string[];
   countries: string[];
   value: { amount: number; currency: string; asWritten: string } | null;
@@ -714,6 +713,18 @@ export async function run(): Promise<void> {
     const seen = new Set(events.map((e) => e.id));
     for (const e of prev.events ?? []) {
       if (seen.has(e.id) || e.date < horizon) continue;
+      /*
+       * The current rules, applied to old records.
+       *
+       * Without this an event stored under a looser rule outlives every fix:
+       * the arms-control story that prompted the NOT_PROCUREMENT refusal
+       * survived the run that added it, because it was carried forward rather
+       * than re-extracted. Carried events are re-checked against today's
+       * refusals, so tightening a rule cleans the file it was written for.
+       */
+      if (NOT_PROCUREMENT.test(e.headline)) continue;
+      if (!KINDS.some((k) => k.pattern.test(e.headline))) continue;
+      if (e.systems.length === 0 && e.countries.length === 0) continue;
       events.push(e);
       carried++;
     }
