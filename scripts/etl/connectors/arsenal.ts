@@ -52,7 +52,7 @@
  * the news layer with a corroboration grade attached rather than from SIPRI.
  * That is weaker for history and stronger for this month, and the page says so.
  */
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getText, getJson } from "../lib/http";
 import { isEntryPoint } from "../lib/entry";
@@ -205,10 +205,15 @@ function sections(wikitext: string): Array<{ heading: string; body: string }> {
  * bracket, and that prefix is taken.
  */
 function bulletName(line: string): string | null {
+  // A [[File:...|thumb|caption]] line is a picture, not a system. The first
+  // run catalogued "thumb|PDV Mk-2 Anti-satellite/ballistic missile" as a
+  // missile name because the piped-link branch happily took the caption.
+  if (/\[\[\s*(file|image|category)\s*:/i.test(line)) return null;
   const piped = line.match(/\[\[([^\]|]+)\|([^\]]+)\]\]/);
   if (piped) return piped[2]!.trim();
   const plainLink = line.match(/\[\[([^\]|]+)\]\]/);
   if (plainLink) return plainLink[1]!.replace(/\s*\(.*?\)\s*$/, "").trim();
+  if (/^\s*\*+\s*(thumb|left|right|\d+px)\b/i.test(line)) return null;
   const bare = line
     .replace(/^\*+\s*/, "")
     .replace(/''+/g, "")
@@ -285,7 +290,21 @@ async function loadGazetteer(): Promise<SystemEntry[]> {
    Layer two: the news agent
    ──────────────────────────────────────────────────────────────────────── */
 
-interface Feed { id: string; outlet: string; url: string; primary: boolean }
+interface Feed {
+  id: string;
+  outlet: string;
+  url: string;
+  primary: boolean;
+  /**
+   * The country a feed is inherently about, where it has one.
+   *
+   * A national ministry's defence releases are about that nation whether or
+   * not the headline names it, and PIB's twenty items placed nothing in the
+   * first run for exactly that reason — "Raksha Mantri reviews..." is an India
+   * story that never says India. This is stated per feed rather than inferred.
+   */
+  defaultCountry?: string;
+}
 
 /**
  * Publishers that answered the probe, and whether each is a primary source.
@@ -299,9 +318,11 @@ interface Feed { id: string; outlet: string; url: string; primary: boolean }
  * a site declining automated access and no scraper is written against it.
  */
 const FEEDS: Feed[] = [
-  { id: "ukmod", outlet: "UK Ministry of Defence", primary: true,
-    url: "https://www.gov.uk/api/content/government/organisations/ministry-of-defence" },
-  { id: "pib", outlet: "Press Information Bureau (India)", primary: true,
+  // The organisation endpoint carries the page, not its documents, and
+  // returned zero items on the first run. The search API returns the releases.
+  { id: "ukmod", outlet: "UK Ministry of Defence", primary: true, defaultCountry: "United Kingdom",
+    url: "https://www.gov.uk/api/search.json?filter_organisations=ministry-of-defence&count=50&order=-public_timestamp&fields=title,link,public_timestamp" },
+  { id: "pib", outlet: "Press Information Bureau (India)", primary: true, defaultCountry: "India",
     url: "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3" },
   { id: "defensenews", outlet: "Defense News", primary: false,
     url: "https://www.defensenews.com/arc/outboundfeeds/rss/?outputType=xml" },
@@ -324,10 +345,10 @@ const FEEDS: Feed[] = [
  */
 const COUNTRIES: Array<{ iso3: string; name: string; words: string[] }> = [
   { iso3: "IND", name: "India", words: ["india", "indian"] },
-  { iso3: "USA", name: "United States", words: ["united states", "u.s.", "us ", "american", "pentagon", "washington"] },
-  { iso3: "CHN", name: "China", words: ["china", "chinese", "beijing", "pla "] },
+  { iso3: "USA", name: "United States", words: ["united states", "u.s.", "us", "usa", "american", "pentagon", "washington"] },
+  { iso3: "CHN", name: "China", words: ["china", "chinese", "beijing", "pla"] },
   { iso3: "RUS", name: "Russia", words: ["russia", "russian", "moscow", "kremlin"] },
-  { iso3: "GBR", name: "United Kingdom", words: ["united kingdom", "britain", "british", "uk ", "royal navy", "raf "] },
+  { iso3: "GBR", name: "United Kingdom", words: ["united kingdom", "britain", "british", "uk", "royal navy", "raf"] },
   { iso3: "FRA", name: "France", words: ["france", "french"] },
   { iso3: "DEU", name: "Germany", words: ["germany", "german"] },
   { iso3: "JPN", name: "Japan", words: ["japan", "japanese"] },
@@ -336,7 +357,7 @@ const COUNTRIES: Array<{ iso3: string; name: string; words: string[] }> = [
   { iso3: "PAK", name: "Pakistan", words: ["pakistan", "pakistani", "islamabad"] },
   { iso3: "ISR", name: "Israel", words: ["israel", "israeli"] },
   { iso3: "IRN", name: "Iran", words: ["iran", "iranian", "tehran"] },
-  { iso3: "TUR", name: "Turkey", words: ["turkey", "turkish", "ankara"] },
+  { iso3: "TUR", name: "Turkey", words: ["turkey", "turkish", "ankara", "turkiye"] },
   { iso3: "SAU", name: "Saudi Arabia", words: ["saudi"] },
   { iso3: "ARE", name: "United Arab Emirates", words: ["emirati", "united arab emirates", "uae"] },
   { iso3: "AUS", name: "Australia", words: ["australia", "australian", "canberra"] },
@@ -347,13 +368,63 @@ const COUNTRIES: Array<{ iso3: string; name: string; words: string[] }> = [
   { iso3: "SWE", name: "Sweden", words: ["sweden", "swedish"] },
   { iso3: "NOR", name: "Norway", words: ["norway", "norwegian"] },
   { iso3: "NLD", name: "Netherlands", words: ["netherlands", "dutch"] },
-  { iso3: "CAN", name: "Canada", words: ["canada", "canadian"] },
+  { iso3: "CAN", name: "Canada", words: ["canada", "canadian", "ottawa"] },
   { iso3: "BRA", name: "Brazil", words: ["brazil", "brazilian"] },
   { iso3: "EGY", name: "Egypt", words: ["egypt", "egyptian"] },
   { iso3: "IDN", name: "Indonesia", words: ["indonesia", "indonesian"] },
   { iso3: "VNM", name: "Vietnam", words: ["vietnam", "vietnamese"] },
   { iso3: "TWN", name: "Taiwan", words: ["taiwan", "taiwanese", "taipei"] },
+  // Added after the first live run matched the seller and missed the buyer in
+  // two headlines out of seven — "Croatia buys ... from the US" placed the US
+  // and not Croatia, which is the wrong half of a procurement story.
+  { iso3: "HRV", name: "Croatia", words: ["croatia", "croatian"] },
+  { iso3: "GRC", name: "Greece", words: ["greece", "greek", "hellenic"] },
+  { iso3: "FIN", name: "Finland", words: ["finland", "finnish"] },
+  { iso3: "DNK", name: "Denmark", words: ["denmark", "danish"] },
+  { iso3: "CZE", name: "Czechia", words: ["czech", "czechia"] },
+  { iso3: "ROU", name: "Romania", words: ["romania", "romanian"] },
+  { iso3: "HUN", name: "Hungary", words: ["hungary", "hungarian"] },
+  { iso3: "SVK", name: "Slovakia", words: ["slovakia", "slovak"] },
+  { iso3: "BGR", name: "Bulgaria", words: ["bulgaria", "bulgarian"] },
+  { iso3: "PRT", name: "Portugal", words: ["portugal", "portuguese"] },
+  { iso3: "BEL", name: "Belgium", words: ["belgium", "belgian"] },
+  { iso3: "AUT", name: "Austria", words: ["austria", "austrian"] },
+  { iso3: "CHE", name: "Switzerland", words: ["switzerland", "swiss"] },
+  { iso3: "SRB", name: "Serbia", words: ["serbia", "serbian"] },
+  { iso3: "EST", name: "Estonia", words: ["estonia", "estonian"] },
+  { iso3: "LVA", name: "Latvia", words: ["latvia", "latvian"] },
+  { iso3: "LTU", name: "Lithuania", words: ["lithuania", "lithuanian"] },
+  { iso3: "QAT", name: "Qatar", words: ["qatar", "qatari"] },
+  { iso3: "KWT", name: "Kuwait", words: ["kuwait", "kuwaiti"] },
+  { iso3: "JOR", name: "Jordan", words: ["jordan", "jordanian"] },
+  { iso3: "MAR", name: "Morocco", words: ["morocco", "moroccan"] },
+  { iso3: "DZA", name: "Algeria", words: ["algeria", "algerian"] },
+  { iso3: "NGA", name: "Nigeria", words: ["nigeria", "nigerian"] },
+  { iso3: "ZAF", name: "South Africa", words: ["south africa", "south african"] },
+  { iso3: "BGD", name: "Bangladesh", words: ["bangladesh", "bangladeshi"] },
+  { iso3: "PHL", name: "Philippines", words: ["philippines", "philippine", "filipino", "manila"] },
+  { iso3: "THA", name: "Thailand", words: ["thailand", "thai"] },
+  { iso3: "MYS", name: "Malaysia", words: ["malaysia", "malaysian"] },
+  { iso3: "SGP", name: "Singapore", words: ["singapore", "singaporean"] },
+  { iso3: "NZL", name: "New Zealand", words: ["new zealand"] },
+  { iso3: "ARG", name: "Argentina", words: ["argentina", "argentine"] },
+  { iso3: "CHL", name: "Chile", words: ["chile", "chilean"] },
+  { iso3: "COL", name: "Colombia", words: ["colombia", "colombian"] },
+  { iso3: "MEX", name: "Mexico", words: ["mexico", "mexican"] },
+  { iso3: "KAZ", name: "Kazakhstan", words: ["kazakhstan", "kazakh"] },
+  { iso3: "BLR", name: "Belarus", words: ["belarus", "belarusian"] },
 ];
+
+/**
+ * Arms-control diplomacy is not procurement.
+ *
+ * The first run caught "Opposition by US and Russia raises doubts over
+ * autonomous weapons talks outcome" and filed it as an event. It is a treaty
+ * story: real news, wrong tracker. A headline matching any of these is
+ * dropped however well it matches everything else.
+ */
+const NOT_PROCUREMENT =
+  /\b(treaty|arms control|non-proliferation|nonproliferation|disarmament|ceasefire|sanction|resolution|united nations|un general assembly|summit communiqu)/i;
 
 /** What kind of event a headline describes. First match wins, most specific first. */
 const KINDS: Array<{ kind: DealEvent["kind"]; pattern: RegExp }> = [
@@ -446,8 +517,17 @@ function feedItems(body: string): Array<{ title: string; link: string; date: str
     // GOV.UK content API: documents hang off links.documents.
     try {
       const j = JSON.parse(body) as {
+        results?: Array<{ title?: string; link?: string; public_timestamp?: string }>;
         links?: { documents?: Array<{ title?: string; web_url?: string; public_updated_at?: string }> };
       };
+      for (const r of j.results ?? []) {
+        if (!r.title) continue;
+        out.push({
+          title: r.title,
+          link: r.link?.startsWith("http") ? r.link : `https://www.gov.uk${r.link ?? ""}`,
+          date: (r.public_timestamp ?? "").slice(0, 10) || new Date().toISOString().slice(0, 10),
+        });
+      }
       for (const d of j.links?.documents ?? []) {
         if (!d.title) continue;
         out.push({
@@ -469,6 +549,8 @@ function extractEvent(
   const text = item.title;
   const low = ` ${text.toLowerCase()} `;
 
+  if (NOT_PROCUREMENT.test(text)) return null;
+
   const kind = KINDS.find((k) => k.pattern.test(text))?.kind;
   if (!kind) return null;
 
@@ -479,7 +561,20 @@ function extractEvent(
     .filter((s) => new RegExp(`\\b${s.key.replace(/ /g, "[ -]?")}\\b`, "i").test(text))
     .map((s) => s.name);
 
-  const countries = COUNTRIES.filter((c) => c.words.some((w) => low.includes(w))).map((c) => c.name);
+  /*
+   * Word boundaries, not substrings.
+   *
+   * "us" as a bare substring matches bonus, versus, campus and Belarus, and
+   * the first run's country column could not be trusted because of it. Every
+   * word is matched with a boundary on both sides.
+   */
+  const countries = COUNTRIES
+    .filter((c) => c.words.some((w) =>
+      new RegExp(`(^|[^a-z])${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|[^a-z])`, "i").test(low)))
+    .map((c) => c.name);
+  if (feed.defaultCountry && !countries.includes(feed.defaultCountry)) {
+    countries.push(feed.defaultCountry);
+  }
 
   // An item that names neither a system nor a country is defence news the
   // agent cannot place, and placing it anyway is how a tracker fills up with
@@ -598,6 +693,36 @@ export async function run(): Promise<void> {
     feedStatus.push({ outlet: feed.outlet, ok: true, items: items.length, kept });
     console.log(`  ok ${feed.outlet.padEnd(34)} ${String(items.length).padStart(4)} items  ${kept} placed`);
   }
+  /*
+   * Carry forward what earlier runs found.
+   *
+   * Each feed holds ten to fifty recent items, so a run that only published
+   * what it saw would be a rolling window a few days deep and the tracker
+   * would forget every deal older than that. Events are merged with the
+   * committed file by their stable id, which also means corroboration can
+   * accumulate: an outlet that reports a contract three days after another
+   * one joins the same group rather than starting a new one.
+   *
+   * Two years is the horizon. Older events fall out because a tracker of
+   * current procurement is not an archive and the file has to stay a size the
+   * page can carry.
+   */
+  const horizon = new Date(Date.now() - 730 * 86400_000).toISOString().slice(0, 10);
+  let carried = 0;
+  try {
+    const prev = JSON.parse(await readFile(OUT, "utf8")) as { events?: DealEvent[] };
+    const seen = new Set(events.map((e) => e.id));
+    for (const e of prev.events ?? []) {
+      if (seen.has(e.id) || e.date < horizon) continue;
+      events.push(e);
+      carried++;
+    }
+  } catch {
+    // No previous file: this is the first run.
+  }
+  events.sort((a, b) => b.date.localeCompare(a.date));
+  console.log(`  ${carried} events carried forward from earlier runs`);
+
   const groups = linkAndGrade(events);
 
   console.log("\nLayer 1 — the annual spine");
@@ -618,6 +743,18 @@ export async function run(): Promise<void> {
   const problems: string[] = [];
 
   if (gazetteer.length < 200) problems.push(`gazetteer has ${gazetteer.length} systems, expected 200+`);
+  // The first run catalogued "thumb|PDV Mk-2 ..." — a wiki image caption read
+  // as a system name. Any survivor of that class is a parse leak.
+  const artefacts = gazetteer.filter((g) => /\b(thumb|file:|image:|px)\b/i.test(g.name));
+  if (artefacts.length > 0) {
+    problems.push(`${artefacts.length} gazetteer entries look like wiki markup: ${artefacts.slice(0, 3).map((a) => a.name).join(" / ")}`);
+  }
+  // Country attribution is the half that makes the catalogue answerable by
+  // nation, and the largest source page supplies it from section headings.
+  const attributed = gazetteer.filter((g) => g.country).length;
+  if (attributed < gazetteer.length * 0.5) {
+    problems.push(`only ${attributed} of ${gazetteer.length} systems have a country`);
+  }
   const keys = new Set(gazetteer.map((g) => g.key));
   // Four systems from four different countries and four different lists. If
   // the wikitext column resolution drifts, at least one of these disappears.
