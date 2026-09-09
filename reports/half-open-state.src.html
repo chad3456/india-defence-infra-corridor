@@ -186,7 +186,7 @@ figcaption .t { font-size: 1.05rem; font-weight: 500; }
 
 /* ── The ledger ───────────────────────────────────────────────────────── */
 .ledger { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); border-radius: 3px; background: var(--raised); overflow: hidden; }
-.ledger > div { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.15rem; }
+.ledger > div { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.15rem; align-content: start; }
 .ledger > div:first-child { border-right: 1px solid var(--rule-strong); }
 .ledger-head { display: flex; flex-direction: column; gap: 0.3rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--rule); }
 .case { display: flex; flex-direction: column; gap: 0.35rem; }
@@ -472,14 +472,14 @@ tbody td:first-child { font-family: Newsreader, Georgia, serif; font-size: 0.95r
       <div>
         <div class="ledger-head">
           <p class="eyebrow" style="color:var(--s2)">Followed by breakdown</p>
-          <p class="tiny">Mobilisation, then armed conflict or state failure</p>
+          <p class="tiny">Seven cases &mdash; mobilisation, then armed conflict or state failure</p>
         </div>
         <div id="ledger-bad" class="stack" style="gap:1.4rem"></div>
       </div>
       <div>
         <div class="ledger-head">
           <p class="eyebrow" style="color:var(--s1)">Followed by consolidation</p>
-          <p class="tiny">Mobilisation, then a durable transfer of power</p>
+          <p class="tiny">Seven cases &mdash; mobilisation, then a durable transfer of power</p>
         </div>
         <div id="ledger-good" class="stack" style="gap:1.4rem"></div>
       </div>
@@ -830,7 +830,9 @@ tbody td:first-child { font-family: Newsreader, Georgia, serif; font-size: 0.95r
       { i: "LBY", y: 2011, what: "Uprising, foreign intervention, and then no functioning central state to hand power to." },
       { i: "YEM", y: 2011, what: "Saleh removed by negotiated transition; the transition collapsed into a war that is still running." },
       { i: "VEN", y: 2014, what: "Sustained street mobilisation against an incumbent who did not leave, met with escalating repression." },
-      { i: "UKR", y: 2014, what: "Maidan removed a president; the state survived, but the country has been at war since." }
+      { i: "UKR", y: 2014, what: "Maidan removed a president; the state survived, but the country has been at war since." },
+      { i: "EGY", y: 2011, what: "Tahrir removed Mubarak and produced an elected government, then a coup in 2013. More closed now than before the square." },
+      { i: "SDN", y: 2019, what: "Protests removed Bashir after thirty years; the generals who replaced him turned on each other in 2023." }
     ],
     good: [
       { i: "POL", y: 1989, what: "Nine years of Solidarity, then a negotiated handover. Democracy score 0.19 in 1985, 0.88 by 2000." },
