@@ -221,8 +221,14 @@
     only half-applied. They read the token now — which is the whole point of
     having one.
   */
-  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  /*
+    Each reads the face next/font loaded, then falls back to the stack that was
+    here before. The fallback matters: if the font request is ever unavailable
+    the site degrades to what it looked like yesterday rather than to Times.
+  */
+  --font-sans: var(--font-sans-loaded), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-mono-loaded), ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  --font-display: var(--font-display-loaded), "Iowan Old Style", Georgia, serif;
 }
 
 /*
@@ -263,6 +269,14 @@
 .mono {
   font-family: var(--font-mono);
   font-feature-settings: "ss01";
+}
+
+/* Headlines and pull figures. Everything else stays in the sans. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.017em;
+  text-wrap: balance;
 }
 
 /* Section eyebrow used across the site. */
