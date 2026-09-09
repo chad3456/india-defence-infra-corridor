@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-09T17:15:25.323Z",
+ "builtAt": "2026-09-09T20:01:24.839Z",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
  "spineSpecs": [
@@ -209798,7 +209798,7 @@
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 2
+   "kept": 1
   },
   {
    "outlet": "Defense One",
@@ -209821,6 +209821,24 @@
  ],
  "events": [
   {
+   "id": "ev-ospi65",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Australia"
+   ],
+   "value": {
+    "amount": 950000000,
+    "currency": "USD",
+    "asWritten": "$950M"
+   },
+   "date": "2026-09-09",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/09/lockheed-martin-secures-950m-australian-air-battle-management-contract/",
+   "headline": "Lockheed Martin secures $950M Australian air battle management contract",
+   "primary": false
+  },
+  {
    "id": "ev-aiuph1",
    "kind": "order",
    "systems": [],
@@ -209832,21 +209850,6 @@
    "outlet": "Defence Blog",
    "url": "https://defence-blog.com/u-s-drone-maker-aevex-picks-up-another-kamikaze-drone-deal/",
    "headline": "U.S. drone maker AEVEX picks up another kamikaze drone deal",
-   "primary": false
-  },
-  {
-   "id": "ev-16x7jqf",
-   "kind": "order",
-   "systems": [],
-   "countries": [
-    "Poland",
-    "Canada"
-   ],
-   "value": null,
-   "date": "2026-09-08",
-   "outlet": "Breaking Defense",
-   "url": "https://breakingdefense.com/2026/09/poland-canada-seal-defense-cooperation-pact-set-to-finalize-drone-deal/",
-   "headline": "Poland, Canada seal defense cooperation pact, set to finalize drone deal",
    "primary": false
   },
   {
@@ -209862,6 +209865,21 @@
    "outlet": "Naval News",
    "url": "https://www.navalnews.com/naval-news/2026/09/greece-italy-ink-deal-two-fremm-frigates/",
    "headline": "Greece and Italy Ink Deal for Two FREMM Frigates",
+   "primary": false
+  },
+  {
+   "id": "ev-16x7jqf",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Poland",
+    "Canada"
+   ],
+   "value": null,
+   "date": "2026-09-08",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/09/poland-canada-seal-defense-cooperation-pact-set-to-finalize-drone-deal/",
+   "headline": "Poland, Canada seal defense cooperation pact, set to finalize drone deal",
    "primary": false
   },
   {
@@ -209916,6 +209934,43 @@
  ],
  "groups": [
   {
+   "key": "order||australia",
+   "systems": [],
+   "countries": [
+    "Australia"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-ospi65",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Australia"
+     ],
+     "value": {
+      "amount": 950000000,
+      "currency": "USD",
+      "asWritten": "$950M"
+     },
+     "date": "2026-09-09",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/09/lockheed-martin-secures-950m-australian-air-battle-management-contract/",
+     "headline": "Lockheed Martin secures $950M Australian air battle management contract",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Breaking Defense"
+   ],
+   "value": {
+    "amount": 950000000,
+    "currency": "USD",
+    "asWritten": "$950M"
+   },
+   "verdict": "a single report, uncorroborated"
+  },
+  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -209968,37 +210023,6 @@
    "verdict": "corroborated by independent outlets"
   },
   {
-   "key": "order||canada+poland",
-   "systems": [],
-   "countries": [
-    "Poland",
-    "Canada"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-16x7jqf",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Poland",
-      "Canada"
-     ],
-     "value": null,
-     "date": "2026-09-08",
-     "outlet": "Breaking Defense",
-     "url": "https://breakingdefense.com/2026/09/poland-canada-seal-defense-cooperation-pact-set-to-finalize-drone-deal/",
-     "headline": "Poland, Canada seal defense cooperation pact, set to finalize drone deal",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Breaking Defense"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
    "key": "order||greece+italy",
    "systems": [],
    "countries": [
@@ -210025,6 +210049,37 @@
    ],
    "outlets": [
     "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order||canada+poland",
+   "systems": [],
+   "countries": [
+    "Poland",
+    "Canada"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-16x7jqf",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Poland",
+      "Canada"
+     ],
+     "value": null,
+     "date": "2026-09-08",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/09/poland-canada-seal-defense-cooperation-pact-set-to-finalize-drone-deal/",
+     "headline": "Poland, Canada seal defense cooperation pact, set to finalize drone deal",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Breaking Defense"
    ],
    "value": null,
    "verdict": "a single report, uncorroborated"
