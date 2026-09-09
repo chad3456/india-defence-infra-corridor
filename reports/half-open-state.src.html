@@ -1,0 +1,1022 @@
+<title>The Half-Open State</title>
+
+<!--
+  A visual paper on mass mobilisation and state breakdown.
+
+  Commissioned as a "useful idiot index" ranking countries by how far activism
+  has captured them. That index is not in here and the first section says why.
+  What is in here is the question underneath it, asked properly: when does mass
+  mobilisation precede state breakdown, and when does it precede reform?
+
+  Every number is either cited to a named study or computed in front of the
+  reader from 423,271 country-year observations. The exhibits are numbered
+  because the argument refers back to them, not for decoration.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+/* ── Tokens ──────────────────────────────────────────────────────────────
+   Complete light palette on bare :root, so the un-stamped "system" state
+   resolves. Dark redefines only tokens, twice: once behind the media query
+   guarded against an explicit light choice, once behind the explicit stamp. */
+:root {
+  --ground: #F5F6F4;
+  --raised: #FFFFFF;
+  --sunken: #ECEEEA;
+  --ink: #191D1F;
+  --ink-2: #3D4548;
+  --muted: #6A7378;
+  --rule: #D6DAD5;
+  --rule-strong: #B6BCB6;
+
+  /* Validated: node validate_palette.js "#00897B,#C0432B,#4C5CB0,#9A6A00"
+     --mode light → all checks pass. */
+  --s1: #00897B;   /* consolidation, civic space */
+  --s2: #C0432B;   /* breakdown, conflict */
+  --s3: #4C5CB0;   /* income, third series */
+  --s4: #9A6A00;   /* fourth series */
+  --s1-wash: #00897B1F;
+  --s2-wash: #C0432B1F;
+
+  --measure: 34rem;
+  --shadow: 0 1px 2px #191D1F0A, 0 8px 24px #191D1F0A;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #14161A;
+    --raised: #1C1F24;
+    --sunken: #0F1114;
+    --ink: #E9EBE7;
+    --ink-2: #C2C7C4;
+    --muted: #8A928F;
+    --rule: #2C3035;
+    --rule-strong: #454B51;
+    /* Validated separately against the dark surface — not a flip of the above. */
+    --s1: #00A896;
+    --s2: #E4694A;
+    --s3: #7086D8;
+    --s4: #BE8A17;
+    --s1-wash: #00A89626;
+    --s2-wash: #E4694A26;
+    --shadow: 0 1px 2px #0006, 0 8px 24px #0004;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #14161A;
+  --raised: #1C1F24;
+  --sunken: #0F1114;
+  --ink: #E9EBE7;
+  --ink-2: #C2C7C4;
+  --muted: #8A928F;
+  --rule: #2C3035;
+  --rule-strong: #454B51;
+  --s1: #00A896;
+  --s2: #E4694A;
+  --s3: #7086D8;
+  --s4: #BE8A17;
+  --s1-wash: #00A89626;
+  --s2-wash: #E4694A26;
+  --shadow: 0 1px 2px #0006, 0 8px 24px #0004;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: Newsreader, "Iowan Old Style", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.62;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Layout: one measure for the argument, a wider band for exhibits. */
+.wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+.measure { max-width: var(--measure); }
+.stack { display: flex; flex-direction: column; }
+
+h1, h2, h3 { font-weight: 400; text-wrap: balance; margin: 0; line-height: 1.14; }
+h1 { font-size: clamp(2.6rem, 7vw, 4.6rem); letter-spacing: -0.022em; }
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.15rem); letter-spacing: -0.014em; }
+h3 { font-size: 1.16rem; font-weight: 500; letter-spacing: -0.006em; }
+p { margin: 0; }
+a { color: inherit; text-decoration-color: var(--rule-strong); text-underline-offset: 3px; }
+a:hover { text-decoration-color: currentColor; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--s1); outline-offset: 2px; border-radius: 2px;
+}
+
+.mono, .eyebrow, th, .num {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-variant-numeric: tabular-nums;
+}
+.eyebrow {
+  font-size: 0.66rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--muted); font-weight: 500;
+}
+.lede { font-size: 1.28rem; line-height: 1.5; color: var(--ink-2); font-weight: 300; }
+.small { font-size: 0.94rem; line-height: 1.55; color: var(--ink-2); }
+.tiny { font-size: 0.8rem; line-height: 1.5; color: var(--muted); }
+em.term { font-style: normal; font-weight: 500; }
+
+/* ── Masthead ─────────────────────────────────────────────────────────── */
+.masthead { padding: 4.5rem 0 2.5rem; border-bottom: 1px solid var(--rule); }
+.masthead h1 { margin: 1.1rem 0 0; }
+.byline {
+  margin-top: 2rem; padding-top: 1.1rem; border-top: 1px solid var(--rule);
+  display: grid; gap: 1.4rem 2.5rem; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+}
+.byline div { display: flex; flex-direction: column; gap: 0.2rem; }
+.byline .v { font-size: 1.32rem; font-weight: 500; letter-spacing: -0.01em; }
+
+/* ── Sections ─────────────────────────────────────────────────────────── */
+section { padding: 3.4rem 0; border-bottom: 1px solid var(--rule); }
+.section-head { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.7rem; }
+
+/* The refusal note. Bordered on one side only — it is an aside in the
+   argument, not another card in a deck of cards. */
+.note {
+  border-left: 3px solid var(--s2); padding: 0.1rem 0 0.1rem 1.3rem;
+  display: flex; flex-direction: column; gap: 0.9rem;
+}
+
+/* ── Exhibits ─────────────────────────────────────────────────────────── */
+figure {
+  margin: 0; background: var(--raised); border: 1px solid var(--rule);
+  border-radius: 3px; box-shadow: var(--shadow); overflow: hidden;
+}
+figcaption {
+  padding: 1.15rem 1.4rem; border-bottom: 1px solid var(--rule);
+  display: flex; flex-direction: column; gap: 0.35rem;
+}
+figcaption .t { font-size: 1.05rem; font-weight: 500; }
+.fig-body { padding: 1.4rem; overflow-x: auto; }
+.fig-foot {
+  padding: 0.85rem 1.4rem; border-top: 1px solid var(--rule);
+  background: var(--sunken); font-size: 0.78rem; color: var(--muted);
+  font-family: "IBM Plex Mono", ui-monospace, monospace; line-height: 1.5;
+}
+
+/* Legend — always present for 2+ series, never colour alone. */
+.legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.3rem; margin-bottom: 1.1rem; }
+.legend span { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.82rem; color: var(--ink-2); }
+.swatch { width: 11px; height: 11px; border-radius: 2px; flex: none; }
+
+/* ── Bar rows (Exhibits 1 and 3) ──────────────────────────────────────── */
+.bars { display: flex; flex-direction: column; gap: 1.25rem; min-width: 26rem; }
+.bar-group { display: grid; grid-template-columns: minmax(9rem, 13rem) 1fr; gap: 0.3rem 1.1rem; align-items: center; }
+.bar-group .lbl { font-size: 0.88rem; line-height: 1.3; color: var(--ink-2); grid-row: span 2; }
+.bar-line { display: flex; align-items: center; gap: 0.6rem; }
+.bar-track { flex: 1; height: 13px; background: var(--sunken); border-radius: 2px; position: relative; }
+.bar-fill { height: 100%; border-radius: 0 3px 3px 0; }
+.bar-val { font-size: 0.8rem; font-weight: 500; min-width: 3.4rem; }
+
+/* ── Band columns (Exhibit 2) ─────────────────────────────────────────── */
+.bands { display: flex; align-items: flex-end; gap: 2px; height: 190px; min-width: 26rem; }
+.band { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; height: 100%; cursor: default; }
+.band-col { border-radius: 3px 3px 0 0; min-height: 2px; transition: filter .12s; }
+.band:hover .band-col { filter: brightness(1.12); }
+.band-val { font-size: 0.82rem; font-weight: 500; text-align: center; }
+.band-axis { display: flex; gap: 2px; margin-top: 0.5rem; min-width: 26rem; }
+.band-axis div { flex: 1; text-align: center; font-size: 0.68rem; color: var(--muted); line-height: 1.35; }
+
+/* ── The ledger ───────────────────────────────────────────────────────── */
+.ledger { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); border-radius: 3px; background: var(--raised); overflow: hidden; }
+.ledger > div { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.15rem; }
+.ledger > div:first-child { border-right: 1px solid var(--rule-strong); }
+.ledger-head { display: flex; flex-direction: column; gap: 0.3rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--rule); }
+.case { display: flex; flex-direction: column; gap: 0.35rem; }
+.case .who { display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; }
+.case .yr { font-size: 0.74rem; color: var(--muted); font-family: "IBM Plex Mono", monospace; }
+.case .what { font-size: 0.88rem; line-height: 1.45; color: var(--ink-2); }
+.spark { display: block; }
+
+/* ── Country explorer ─────────────────────────────────────────────────── */
+.controls { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: flex-end; margin-bottom: 1.1rem; }
+.field { display: flex; flex-direction: column; gap: 0.3rem; }
+.field label { font-size: 0.68rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--muted); font-family: "IBM Plex Mono", monospace; }
+input[type="search"], select {
+  font: inherit; font-size: 0.9rem; padding: 0.42rem 0.6rem;
+  background: var(--ground); color: var(--ink);
+  border: 1px solid var(--rule-strong); border-radius: 2px;
+}
+input[type="search"] { min-width: 13rem; }
+.tbl-scroll { overflow-x: auto; max-height: 30rem; overflow-y: auto; border: 1px solid var(--rule); border-radius: 3px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.84rem; min-width: 44rem; }
+thead th {
+  position: sticky; top: 0; z-index: 2; background: var(--sunken);
+  text-align: right; font-weight: 500; font-size: 0.68rem; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--muted); padding: 0.6rem 0.7rem;
+  border-bottom: 1px solid var(--rule-strong); cursor: pointer; white-space: nowrap;
+}
+thead th:first-child, tbody td:first-child { text-align: left; }
+thead th[aria-sort="descending"], thead th[aria-sort="ascending"] { color: var(--ink); }
+tbody td { padding: 0.42rem 0.7rem; border-bottom: 1px solid var(--rule); text-align: right; }
+tbody tr:hover td { background: var(--sunken); }
+tbody td:first-child { font-family: Newsreader, Georgia, serif; font-size: 0.95rem; }
+.cell-bar { display: inline-flex; align-items: center; gap: 0.45rem; justify-content: flex-end; width: 100%; }
+.cell-bar i { display: block; height: 7px; border-radius: 1px; flex: none; }
+.flag {
+  display: inline-block; font-size: 0.64rem; letter-spacing: 0.05em; padding: 0.1rem 0.4rem;
+  border-radius: 2px; font-family: "IBM Plex Mono", monospace; white-space: nowrap;
+}
+.flag.war { background: var(--s2-wash); color: var(--s2); }
+.flag.calm { color: var(--muted); }
+
+/* ── Sources ──────────────────────────────────────────────────────────── */
+.srcs { display: grid; gap: 0.95rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+.src { display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.85rem; line-height: 1.45; }
+.src .k { font-family: "IBM Plex Mono", monospace; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+/* Tooltip, shared by every exhibit. */
+#tip {
+  position: fixed; z-index: 50; pointer-events: none; opacity: 0;
+  background: var(--raised); border: 1px solid var(--rule-strong); border-radius: 3px;
+  box-shadow: var(--shadow); padding: 0.55rem 0.7rem; max-width: 17rem;
+  font-size: 0.8rem; line-height: 1.45; transition: opacity .1s;
+}
+#tip .tt { font-weight: 500; margin-bottom: 0.15rem; }
+#tip .tv { font-family: "IBM Plex Mono", monospace; color: var(--ink-2); }
+
+@media (max-width: 44rem) {
+  body { font-size: 17px; }
+  .ledger { grid-template-columns: 1fr; }
+  .ledger > div:first-child { border-right: none; border-bottom: 1px solid var(--rule-strong); }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <!-- ── Masthead ────────────────────────────────────────────────────── -->
+  <header class="masthead">
+    <p class="eyebrow">Mass mobilisation and state breakdown &middot; a working paper</p>
+    <h1>The Half-Open State</h1>
+    <p class="lede measure" style="margin-top:1.5rem">
+      Protest does not break countries. Half-built institutions do. Across 176 countries
+      measured today, the states tearing themselves apart are not the ones with the most
+      activism &mdash; they are the ones with just enough freedom to organise and not enough
+      state to absorb it.
+    </p>
+    <div class="byline">
+      <div><span class="eyebrow">Observations read</span><span class="v mono" id="b-obs">&mdash;</span></div>
+      <div><span class="eyebrow">Country-years kept</span><span class="v mono" id="b-kept">&mdash;</span></div>
+      <div><span class="eyebrow">Countries</span><span class="v mono" id="b-countries">&mdash;</span></div>
+      <div><span class="eyebrow">Research groups</span><span class="v mono">6</span></div>
+    </div>
+  </header>
+
+  <!-- ── The refusal ─────────────────────────────────────────────────── -->
+  <section>
+    <div class="section-head measure">
+      <p class="eyebrow">Note on what was asked for</p>
+      <h2>There is no Useful Idiot Index in this paper</h2>
+    </div>
+    <div class="measure stack" style="gap:1.1rem">
+      <div class="note">
+        <p>
+          This was commissioned as a country ranking: a score for how far protest and activism
+          have captured each state. That score is not here, and it is worth being precise about
+          why, because the reason is not squeamishness.
+        </p>
+        <p>
+          A measurement needs three things. A definition somebody else published, so it means
+          the same thing next year. A dataset behind it, so it can be recomputed. And something
+          external to check it against, so a wrong one can be caught. A useful-idiot score has
+          none of the three. It would be an assertion wearing a decimal point, and it would be
+          pointed at named countries and named movements &mdash; which is a serious accusation
+          to generate from an algorithm invented for the purpose.
+        </p>
+      </div>
+      <p>
+        The question underneath it is real, researchable, and has a large empirical literature
+        that mostly disagrees with the premise. So that is what this paper does: it asks when
+        mass mobilisation is followed by state breakdown and when it is followed by reform, it
+        shows the cases that cut each way, and it ends with where every country actually stands
+        on things that are measured rather than on a score invented here.
+      </p>
+      <p>
+        One finding does support the intuition behind the request, and it is the paper's title.
+        There <em class="term">is</em> a danger zone. It is not the countries with the most
+        activism. It is the ones stuck halfway.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Exhibit 1 ───────────────────────────────────────────────────── -->
+  <section>
+    <div class="section-head measure">
+      <p class="eyebrow">Exhibit 1 &middot; What happens after a campaign</p>
+      <h2>The best-known dataset points the other way</h2>
+    </div>
+    <div class="measure stack" style="gap:1.1rem; margin-bottom:1.8rem">
+      <p>
+        Erica Chenoweth and Maria Stephan assembled every maximalist campaign between 1900 and
+        2006 that tried to overthrow a government or win territorial independence &mdash; 323 of
+        them &mdash; and coded whether each was primarily violent or nonviolent, and what
+        followed. It is the standard dataset in the field, and its results are not what the
+        collapse thesis predicts.
+      </p>
+    </div>
+    <figure>
+      <figcaption>
+        <span class="t">Outcomes after violent and nonviolent campaigns, 1900&ndash;2006</span>
+        <span class="tiny">Percentage of campaigns, from the NAVCO dataset (N = 323)</span>
+      </figcaption>
+      <div class="fig-body">
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--s1)"></i>Nonviolent campaigns</span>
+          <span><i class="swatch" style="background:var(--s2)"></i>Violent campaigns</span>
+        </div>
+        <div class="bars" id="ex1"></div>
+      </div>
+      <div class="fig-foot">
+        Chenoweth &amp; Stephan, <i>Why Civil Resistance Works</i> (Columbia UP, 2011). Relapse is
+        measured within ten years, democracy at five years after the campaign ends.
+      </div>
+    </figure>
+    <div class="measure stack" style="gap:1.1rem; margin-top:1.8rem">
+      <p>
+        Nonviolent campaigns succeeded roughly twice as often. Countries that went through one
+        were more than eight times as likely to be a democracy five years later, and
+        substantially less likely to fall back into civil war. On this evidence, mass
+        mobilisation is not what breaks a state &mdash; armed insurgency is, and the nonviolent
+        route is the one that tends to leave a functioning country behind.
+      </p>
+      <p>
+        The honest complication is that this is getting worse, not better. Chenoweth's later work
+        finds the success rate of nonviolent campaigns fell from about 65% in the 1990s to under
+        34% since 2010, while peak participation dropped from around 2% of the population to
+        1.3%. Governments learned. They now blame foreigners, cut the internet, keep journalists
+        out, and share suppression techniques with each other. That decline is real and it is a
+        genuine mark against the optimistic reading of Exhibit 1.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Exhibit 2 ───────────────────────────────────────────────────── -->
+  <section>
+    <div class="section-head measure">
+      <p class="eyebrow">Exhibit 2 &middot; Computed from the data below</p>
+      <h2>The danger is in the middle</h2>
+    </div>
+    <div class="measure stack" style="gap:1.1rem; margin-bottom:1.8rem">
+      <p>
+        In 2010 Jack Goldstone and colleagues published a forecasting model for the US Political
+        Instability Task Force. Using onsets between 1955 and 2003, it distinguished countries
+        that fell into instability from those that did not, two years ahead, at over 80%
+        accuracy. Its strongest single predictor was not poverty, ethnic division or protest. It
+        was regime type &mdash; specifically <em class="term">partial democracy with
+        factionalism</em>.
+      </p>
+      <p>
+        That model is fifteen years old. Here it is again, recomputed from scratch on the current
+        data: every country sorted by how open it is, and the share of each band currently in an
+        internal armed conflict.
+      </p>
+    </div>
+    <figure>
+      <figcaption>
+        <span class="t">Share of countries in internal armed conflict, by openness</span>
+        <span class="tiny">Latest year available per country. A country counts as in conflict if UCDP records an ongoing internal armed conflict or more than 25 conflict deaths.</span>
+      </figcaption>
+      <div class="fig-body">
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--s3)"></i>Banded by electoral democracy</span>
+          <span><i class="swatch" style="background:var(--s2)"></i>Banded by freedom of association</span>
+        </div>
+        <div id="ex2a" style="margin-bottom:2rem"></div>
+        <div id="ex2b"></div>
+      </div>
+      <div class="fig-foot" id="ex2foot"></div>
+    </figure>
+    <div class="measure stack" style="gap:1.1rem; margin-top:1.8rem">
+      <p>
+        Both curves are humped, and both peak in the middle. The most closed states are not the
+        most violent. The most open states are the least violent by a wide margin &mdash; among
+        the 75 countries with the freest association, 9% are at war with themselves; among the 15
+        stuck in the second band, 73% are.
+      </p>
+      <p>
+        This is the finding that supports the intuition behind the original request, and it is
+        worth stating in its strongest form: <em class="term">a country with real freedom to
+        organise and no institutions to route it through is the most dangerous configuration on
+        the board</em>. But note what it is not. The peak is not at the open end. Getting more
+        open is not what moves a country into the danger zone &mdash; it is what moves a country
+        out of it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Exhibit 3 ───────────────────────────────────────────────────── -->
+  <section>
+    <div class="section-head measure">
+      <p class="eyebrow">Exhibit 3 &middot; Computed from the data below</p>
+      <h2>What actually predicts a country tearing itself apart</h2>
+    </div>
+    <div class="measure stack" style="gap:1.1rem; margin-bottom:1.8rem">
+      <p>
+        In 2003 James Fearon and David Laitin tested the assumption that civil wars come from
+        grievance and ethnic division. They found they do not. What predicts civil war onset is
+        poverty, weak state administration, rough terrain and large population &mdash; conditions
+        that make insurgency <em class="term">practical</em>. After controlling for income,
+        ethnically diverse countries were no more likely to see civil violence than homogeneous
+        ones.
+      </p>
+      <p>
+        Their result reproduces on current data. Each bar is the correlation between one measure
+        and the log of conflict deaths per million people, across the countries that report both.
+      </p>
+    </div>
+    <figure>
+      <figcaption>
+        <span class="t">Correlation with conflict deaths per million</span>
+        <span class="tiny">Pearson r against log deaths per million, latest year per country (n = 167). All four are negative: more of each goes with fewer deaths.</span>
+      </figcaption>
+      <div class="fig-body"><div class="bars" id="ex3"></div></div>
+      <div class="fig-foot">
+        Computed from the country table below. Correlation is not causation and the direction of
+        travel here is genuinely ambiguous &mdash; war destroys income and institutions as surely
+        as their absence invites war.
+      </div>
+    </figure>
+    <div class="measure stack" style="gap:1.1rem; margin-top:1.8rem">
+      <p>
+        Income is the strongest predictor, then state capacity, then democracy. Freedom of
+        association &mdash; the room a country gives to exactly the activity the collapse thesis
+        blames &mdash; is the <em class="term">weakest</em> of the four, and its sign is still
+        negative. More room to organise goes with fewer people dying in internal wars, not more.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── The ledger ──────────────────────────────────────────────────── -->
+  <section>
+    <div class="section-head measure">
+      <p class="eyebrow">The case record</p>
+      <h2>Both sides of the ledger, same treatment</h2>
+    </div>
+    <div class="measure stack" style="gap:1.1rem; margin-bottom:1.8rem">
+      <p>
+        Averages hide the cases. Mass mobilisation genuinely has been followed by state collapse,
+        and any honest account has to carry those alongside the ones where it was followed by a
+        functioning democracy. Each line below plots V-Dem's electoral democracy index from 1960
+        to today, with the year of mobilisation marked.
+      </p>
+    </div>
+    <div class="ledger">
+      <div>
+        <div class="ledger-head">
+          <p class="eyebrow" style="color:var(--s2)">Followed by breakdown</p>
+          <p class="tiny">Mobilisation, then armed conflict or state failure</p>
+        </div>
+        <div id="ledger-bad" class="stack" style="gap:1.4rem"></div>
+      </div>
+      <div>
+        <div class="ledger-head">
+          <p class="eyebrow" style="color:var(--s1)">Followed by consolidation</p>
+          <p class="tiny">Mobilisation, then a durable transfer of power</p>
+        </div>
+        <div id="ledger-good" class="stack" style="gap:1.4rem"></div>
+      </div>
+    </div>
+    <div class="measure stack" style="gap:1.1rem; margin-top:1.8rem">
+      <p>
+        The pattern in the left column is not that the protests were unusually large or unusually
+        foreign. It is what the state did next. In Syria, police in Daraa arrested about fifteen
+        schoolboys in March 2011 for graffiti; four unarmed protesters were shot dead on 18
+        March; on 25 April the army began a ten-day siege of the city with tanks, helicopters and
+        some 6,000 troops, killing more than 240 people. Peaceful protest became armed insurgency
+        by September. Every step of that escalation was a decision taken by the state.
+      </p>
+      <p>
+        The right column had mobilisation too &mdash; often much larger. Poland's Solidarity ran
+        for nine years. What differed was that the state, eventually, negotiated. The variable
+        that separates the columns is not the presence or size of the movement. It is whether
+        there were institutions capable of absorbing it, which is precisely what Exhibit 2 shows.
+      </p>
+      <p>
+        Weimar Germany is the case most often cited for the collapse thesis, and it belongs in
+        the record with a correction. The violence that helped kill the republic was not civic
+        protest: it was organised party paramilitaries, the SA and the Rotfrontkämpferbund,
+        fighting each other with firearms. At least 105 people were killed in Prussia alone
+        during the June&ndash;July 1932 election campaign, 18 of them on one day in Altona. That
+        is armed factional militia, which the literature treats as a different phenomenon from
+        mass mobilisation &mdash; and the distinction is doing real work, not being pedantic.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Influence operations ────────────────────────────────────────── -->
+  <section>
+    <div class="section-head measure">
+      <p class="eyebrow">The measurable core of the idea</p>
+      <h2>Foreign manipulation is real, documented, and counted</h2>
+    </div>
+    <div class="measure stack" style="gap:1.1rem">
+      <p>
+        The "useful idiot" concept does point at something that exists. States really do
+        manufacture and steer protest abroad, and this part is not speculative &mdash; it is
+        catalogued. The Oxford Internet Institute's annual inventory found organised social media
+        manipulation by political actors in <em class="term">81 countries</em> in its 2020 report,
+        up from 70 the year before.
+      </p>
+      <p>
+        The clearest single documented case is small and specific. On 21 May 2016, a Facebook page
+        called "Heart of Texas" with over 250,000 followers advertised a "Stop Islamization of
+        Texas" rally outside the Islamic Da'wah Center in Houston. A second page, "United Muslims
+        of America," with over 325,000 followers, advertised a counter-demonstration at the same
+        address at the same hour. Both pages were run by the Internet Research Agency in St
+        Petersburg. Real Americans on both sides turned up and confronted each other, covered live
+        by local news. The US Senate Intelligence Committee laid the sequence out in its 2019
+        report.
+      </p>
+      <p>
+        That is the mechanism, demonstrated. Here is what it does not demonstrate. Nobody has
+        shown that foreign-amplified protest is what causes states to fail &mdash; the Houston
+        rally produced a shouting match, not a collapse. There is no dataset that codes movements
+        by degree of foreign backing, which means the step from "influence operations exist" to
+        "this movement is one" is currently unfalsifiable, and unfalsifiable accusations are
+        exactly what governments in the bottom bands of Exhibit 2 use to justify shutting down
+        domestic opposition. Chenoweth's own explanation for the falling success rate lists
+        <em class="term">blaming foreigners</em> as one of the techniques regimes learned.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Country explorer ────────────────────────────────────────────── -->
+  <section>
+    <div class="section-head measure">
+      <p class="eyebrow">Exhibit 4 &middot; The underlying table</p>
+      <h2>Where every country actually stands</h2>
+    </div>
+    <div class="measure stack" style="gap:1.1rem; margin-bottom:1.6rem">
+      <p>
+        Not a ranking, and not a score. These are six separately published measurements per
+        country, kept separate on purpose, because the composite is the thing that would be
+        invented rather than measured. Sort by any of them.
+      </p>
+    </div>
+    <div class="controls">
+      <div class="field">
+        <label for="q">Find a country</label>
+        <input type="search" id="q" placeholder="India, Syria, Poland&hellip;" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="reg">Region</label>
+        <select id="reg"><option value="">All regions</option></select>
+      </div>
+      <div class="field">
+        <label for="st">State</label>
+        <select id="st">
+          <option value="">All countries</option>
+          <option value="war">In internal conflict</option>
+          <option value="calm">Not in conflict</option>
+        </select>
+      </div>
+      <p class="tiny" style="margin-left:auto" id="count"></p>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr id="thead"></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <p class="tiny" style="margin-top:0.8rem">
+      Indices run 0 to 1. State capacity is a standardised score centred near zero. Conflict
+      deaths are per million people in the latest year recorded.
+    </p>
+  </section>
+
+  <!-- ── Limits ──────────────────────────────────────────────────────── -->
+  <section>
+    <div class="section-head measure">
+      <p class="eyebrow">Limits</p>
+      <h2>What this paper cannot tell you</h2>
+    </div>
+    <div class="measure stack" style="gap:1.1rem">
+      <p>
+        <em class="term">Exhibits 2 and 3 are cross-sectional.</em> They are a snapshot of where
+        countries sit now, not a study of what happened to them over time. Reverse causation is
+        not a technicality here, it is probably the dominant effect: civil war destroys democracy
+        and state capacity, so some of the correlation runs backwards from the direction the
+        argument wants. The band counts are also small &mdash; 15 countries in the peak
+        association band &mdash; and one or two reclassifications would move that column
+        noticeably.
+      </p>
+      <p>
+        <em class="term">The democracy indices are expert-coded judgements</em>, not counts of
+        anything. V-Dem aggregates thousands of country-expert ratings. They are the best
+        instrument available and they are contested, including for India, which V-Dem scores at
+        0.38 today against 0.74 in 2000 &mdash; a downgrade the Indian government rejects. The
+        table shows V-Dem's number because it is V-Dem's table, not because the question is
+        settled.
+      </p>
+      <p>
+        <em class="term">There is no protest-volume variable in here.</em> The Mass Mobilization
+        Project codes about 17,000 protest events across 162 countries and would be the right
+        instrument; it stops in 2020 and is not published in a form this page could read.
+        Everything above uses civic <em class="term">space</em> as a proxy for the room protest
+        has, which is a different thing from how much protest actually happens.
+      </p>
+      <p>
+        <em class="term">And the case record is selected.</em> Sixteen countries were chosen
+        before the data was pulled, from the cases the argument is about, so that the selection
+        could not be tuned afterwards to make a line look better. It is still sixteen out of
+        roughly two hundred.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Sources ─────────────────────────────────────────────────────── -->
+  <section style="border-bottom:none">
+    <div class="section-head"><p class="eyebrow">Sources</p><h2 class="measure">Everything above, traceable</h2></div>
+    <div class="srcs">
+      <div class="src"><span class="k">Campaign outcomes</span>
+        <span>Chenoweth &amp; Stephan, <i>Why Civil Resistance Works</i>, Columbia University Press, 2011 &mdash; NAVCO, N = 323 campaigns, 1900&ndash;2006.</span></div>
+      <div class="src"><span class="k">Declining success</span>
+        <span>Chenoweth, "The Future of Nonviolent Resistance," <i>Journal of Democracy</i>, 2020.</span></div>
+      <div class="src"><span class="k">Civil war onset</span>
+        <span>Fearon &amp; Laitin, "Ethnicity, Insurgency, and Civil War," <i>American Political Science Review</i> 97(1), 2003.</span></div>
+      <div class="src"><span class="k">Instability forecasting</span>
+        <span>Goldstone et al., "A Global Model for Forecasting Political Instability," <i>American Journal of Political Science</i> 54(1), 2010.</span></div>
+      <div class="src"><span class="k">Regime &amp; civic space</span>
+        <span>V-Dem Institute, University of Gothenburg &mdash; electoral democracy, freedom of association and expression, civil society participation, rule of law, political corruption.</span></div>
+      <div class="src"><span class="k">State capacity</span>
+        <span>Hanson &amp; Sigman state capacity index.</span></div>
+      <div class="src"><span class="k">Conflict</span>
+        <span>Uppsala Conflict Data Program / PRIO &mdash; deaths in armed conflicts, state-based conflict counts.</span></div>
+      <div class="src"><span class="k">Terrorism</span>
+        <span>Global Terrorism Database.</span></div>
+      <div class="src"><span class="k">Influence operations</span>
+        <span>Oxford Internet Institute, <i>Industrialized Disinformation: 2020 Global Inventory of Organized Social Media Manipulation</i>; US Senate Select Committee on Intelligence, Report on Russian Active Measures, Vol. 2, 2019.</span></div>
+      <div class="src"><span class="k">Delivery</span>
+        <span>All country-year series retrieved via Our World in Data, which republishes the above on a common country-year shape under CC BY 4.0.</span></div>
+    </div>
+    <p class="tiny" style="margin-top:2rem" id="foot"></p>
+  </section>
+</div>
+
+<div id="tip" role="status" aria-live="polite"></div>
+
+<script type="application/json" id="data">/*DATA*/</script>
+<script>
+(function () {
+  "use strict";
+  const D = JSON.parse(document.getElementById("data").textContent);
+  const fmt = (n, d) => n.toLocaleString("en", { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 });
+
+  document.getElementById("b-obs").textContent = fmt(D.observations.read);
+  document.getElementById("b-kept").textContent = fmt(D.observations.kept);
+  document.getElementById("b-countries").textContent = fmt(D.countryCount);
+  document.getElementById("foot").textContent =
+    "Built " + new Date(D.builtAt).toISOString().slice(0, 10) + " from " +
+    fmt(D.observations.read) + " country-year rows across " + D.indicators.length +
+    " series. No composite score is computed anywhere in this document.";
+
+  /* ── Shared tooltip ─────────────────────────────────────────────────
+     One hover surface for every exhibit, so a reader learns one
+     convention rather than three. */
+  const tip = document.getElementById("tip");
+  function showTip(e, title, value) {
+    tip.innerHTML = '<div class="tt"></div><div class="tv"></div>';
+    tip.querySelector(".tt").textContent = title;
+    tip.querySelector(".tv").textContent = value;
+    tip.style.opacity = "1";
+    const w = 220, pad = 14;
+    let x = e.clientX + pad, y = e.clientY + pad;
+    if (x + w > innerWidth) x = e.clientX - pad - w;
+    if (y + 90 > innerHeight) y = Math.max(8, e.clientY - pad - 90);
+    tip.style.left = x + "px";
+    tip.style.top = y + "px";
+  }
+  const hideTip = () => { tip.style.opacity = "0"; };
+  function hoverable(el, title, value) {
+    el.addEventListener("mousemove", (e) => showTip(e, title, value));
+    el.addEventListener("mouseleave", hideTip);
+  }
+
+  /* ── Exhibit 1: campaign outcomes ───────────────────────────────── */
+  const EX1 = [
+    { label: "Campaign achieved its aim", nv: 53, v: 26, note: "of campaigns succeeded" },
+    { label: "A democracy five years later", nv: 40, v: 5, note: "chance of democracy at 5 years" },
+    { label: "Back in civil war within ten years", nv: 28, v: 43, note: "relapse rate" }
+  ];
+  const ex1 = document.getElementById("ex1");
+  EX1.forEach((r) => {
+    const g = document.createElement("div");
+    g.className = "bar-group";
+    g.innerHTML = '<div class="lbl"></div>';
+    g.querySelector(".lbl").textContent = r.label;
+    [["Nonviolent", r.nv, "var(--s1)"], ["Violent", r.v, "var(--s2)"]].forEach(([name, val, col]) => {
+      const line = document.createElement("div");
+      line.className = "bar-line";
+      const track = document.createElement("div");
+      track.className = "bar-track";
+      const fill = document.createElement("div");
+      fill.className = "bar-fill";
+      fill.style.width = val + "%";
+      fill.style.background = col;
+      track.appendChild(fill);
+      const v = document.createElement("span");
+      v.className = "bar-val num";
+      // The two published as bounds are printed as bounds, not as points.
+      v.textContent = (r.label.indexOf("democracy") > -1 ? (name === "Nonviolent" ? ">" : "<") : "") + val + "%";
+      line.append(track, v);
+      hoverable(line, name + " campaigns", v.textContent + " " + r.note);
+      g.appendChild(line);
+    });
+    ex1.appendChild(g);
+  });
+
+  /* ── Exhibit 2: the inverted U ──────────────────────────────────────
+     Two bands charts, each scaled to a common 0-100 so the two are
+     directly comparable — the shape is the point, and rescaling one to
+     its own maximum would flatten the comparison. */
+  function bandChart(el, bands, colour, labelFor) {
+    const cols = document.createElement("div");
+    cols.className = "bands";
+    const axis = document.createElement("div");
+    axis.className = "band-axis";
+    const peak = bands.reduce((a, b) => (b.pct > a.pct ? b : a));
+    bands.forEach((b) => {
+      const wrap = document.createElement("div");
+      wrap.className = "band";
+      const val = document.createElement("div");
+      val.className = "band-val num";
+      val.textContent = Math.round(b.pct) + "%";
+      const col = document.createElement("div");
+      col.className = "band-col";
+      col.style.height = Math.max(2, (b.pct / 100) * 150) + "px";
+      col.style.background = colour;
+      // The peak is the finding, so it is the one mark that is not muted.
+      col.style.opacity = b === peak ? "1" : "0.42";
+      wrap.append(val, col);
+      hoverable(wrap, labelFor(b),
+        Math.round(b.pct) + "% in conflict — " + b.inConflict + " of " + b.n + " countries");
+      cols.appendChild(wrap);
+      const a = document.createElement("div");
+      a.textContent = b.lo.toFixed(2).replace(/0$/, "") + "–" + (b.hi > 1 ? "1.0" : b.hi.toFixed(2).replace(/0$/, ""));
+      axis.appendChild(a);
+    });
+    el.append(cols, axis);
+    const cap = document.createElement("p");
+    cap.className = "tiny";
+    cap.style.marginTop = "0.55rem";
+    cap.textContent = labelFor(null);
+    el.appendChild(cap);
+  }
+  bandChart(document.getElementById("ex2a"), D.demBands, "var(--s3)",
+    (b) => b ? "Electoral democracy " + b.lo + "–" + b.hi : "Electoral democracy index, closed states on the left");
+  bandChart(document.getElementById("ex2b"), D.assocBands, "var(--s2)",
+    (b) => b ? "Freedom of association " + b.lo + "–" + b.hi : "Freedom of association index, least free on the left");
+  document.getElementById("ex2foot").textContent =
+    "Computed from " + D.countryCount + " countries. Conflict from UCDP; openness from V-Dem. " +
+    "Band populations: democracy " + D.demBands.map((b) => b.n).join("/") +
+    ", association " + D.assocBands.map((b) => b.n).join("/") + ".";
+
+  /* ── Exhibit 3: correlations ────────────────────────────────────── */
+  const cs = D.countries.filter((c) => c.v.pop && c.v.wardeaths !== undefined);
+  const lg = (c) => Math.log10((c.v.wardeaths || 0) / (c.v.pop / 1e6) + 0.01);
+  function pearson(rows, get) {
+    const xs = rows.map(lg), ys = rows.map(get), n = rows.length;
+    const mx = xs.reduce((a, b) => a + b, 0) / n, my = ys.reduce((a, b) => a + b, 0) / n;
+    let sxy = 0, sxx = 0, syy = 0;
+    for (let i = 0; i < n; i++) { const a = xs[i] - mx, b = ys[i] - my; sxy += a * b; sxx += a * a; syy += b * b; }
+    return sxy / Math.sqrt(sxx * syy);
+  }
+  const EX3 = [
+    { label: "Income per person", key: "gdppc", get: (c) => Math.log10(c.v.gdppc), col: "var(--s3)" },
+    { label: "State capacity", key: "statecap", get: (c) => c.v.statecap, col: "var(--s4)" },
+    { label: "Electoral democracy", key: "elecdem", get: (c) => c.v.elecdem, col: "var(--s1)" },
+    { label: "Freedom of association", key: "assoc", get: (c) => c.v.assoc, col: "var(--s2)" }
+  ].map((s) => {
+    const rows = cs.filter((c) => c.v[s.key] !== undefined && c.v.gdppc !== undefined);
+    return Object.assign({}, s, { r: pearson(rows, s.get), n: rows.length });
+  });
+  const ex3 = document.getElementById("ex3");
+  EX3.forEach((s) => {
+    const g = document.createElement("div");
+    g.className = "bar-group";
+    g.style.gridTemplateColumns = "minmax(9rem,13rem) 1fr";
+    g.innerHTML = '<div class="lbl"></div>';
+    g.querySelector(".lbl").textContent = s.label;
+    const line = document.createElement("div");
+    line.className = "bar-line";
+    const track = document.createElement("div");
+    track.className = "bar-track";
+    const fill = document.createElement("div");
+    fill.className = "bar-fill";
+    fill.style.width = (Math.abs(s.r) / 0.5) * 100 + "%";
+    fill.style.background = s.col;
+    track.appendChild(fill);
+    const v = document.createElement("span");
+    v.className = "bar-val num";
+    v.textContent = s.r.toFixed(3);
+    line.append(track, v);
+    hoverable(line, s.label, "r = " + s.r.toFixed(3) + " against log conflict deaths per million, n = " + s.n);
+    g.appendChild(line);
+    ex3.appendChild(g);
+  });
+
+  /* ── The ledger ─────────────────────────────────────────────────── */
+  const CASES = {
+    bad: [
+      { i: "SYR", y: 2011, what: "Daraa protests met with a ten-day army siege. Armed insurgency by September; the deadliest year on record is 2014." },
+      { i: "LBY", y: 2011, what: "Uprising, foreign intervention, and then no functioning central state to hand power to." },
+      { i: "YEM", y: 2011, what: "Saleh removed by negotiated transition; the transition collapsed into a war that is still running." },
+      { i: "VEN", y: 2014, what: "Sustained street mobilisation against an incumbent who did not leave, met with escalating repression." },
+      { i: "UKR", y: 2014, what: "Maidan removed a president; the state survived, but the country has been at war since." }
+    ],
+    good: [
+      { i: "POL", y: 1989, what: "Nine years of Solidarity, then a negotiated handover. Democracy score 0.19 in 1985, 0.88 by 2000." },
+      { i: "ZAF", y: 1990, what: "Mass campaigns and negotiation to universal suffrage in 1994, without civil war." },
+      { i: "CHL", y: 1988, what: "A plebiscite campaign removed Pinochet without a shot fired." },
+      { i: "PHL", y: 1986, what: "People Power removed Marcos in four days; the armed forces split rather than fired." },
+      { i: "IDN", y: 1998, what: "Student mobilisation ended 31 years of Suharto; a functioning democracy followed." },
+      { i: "KOR", y: 1987, what: "The June Struggle forced direct presidential elections and held them." },
+      { i: "LKA", y: 2022, what: "The Aragalaya removed a president during an economic collapse; the constitutional order held." }
+    ]
+  };
+  const byIso = Object.fromEntries(D.countries.map((c) => [c.i, c]));
+
+  /* A 1960-today sparkline of the democracy index, with the mobilisation
+     year marked. Drawn to one shared 0-1 scale so the columns compare. */
+  function spark(iso, markYear, colour) {
+    const t = (D.trajectories[iso] || {}).elecdem;
+    const W = 200, H = 40, P = 3;
+    const ns = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(ns, "svg");
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    svg.setAttribute("class", "spark");
+    svg.setAttribute("width", "100%");
+    svg.setAttribute("height", H);
+    svg.setAttribute("role", "img");
+    if (!t || !t.length) return svg;
+    const y0 = 1960, y1 = 2025;
+    const px = (y) => P + ((y - y0) / (y1 - y0)) * (W - 2 * P);
+    const py = (v) => H - P - v * (H - 2 * P);
+    const base = document.createElementNS(ns, "line");
+    base.setAttribute("x1", P); base.setAttribute("x2", W - P);
+    base.setAttribute("y1", py(0)); base.setAttribute("y2", py(0));
+    base.setAttribute("stroke", "var(--rule)"); base.setAttribute("stroke-width", "1");
+    svg.appendChild(base);
+    const mark = document.createElementNS(ns, "line");
+    mark.setAttribute("x1", px(markYear)); mark.setAttribute("x2", px(markYear));
+    mark.setAttribute("y1", py(1)); mark.setAttribute("y2", py(0));
+    mark.setAttribute("stroke", "var(--rule-strong)");
+    mark.setAttribute("stroke-width", "1");
+    mark.setAttribute("stroke-dasharray", "2 2");
+    svg.appendChild(mark);
+    const path = document.createElementNS(ns, "path");
+    path.setAttribute("d", t.filter((p) => p[0] >= y0).map((p, i) => (i ? "L" : "M") + px(p[0]).toFixed(1) + " " + py(p[1]).toFixed(1)).join(" "));
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke", colour);
+    path.setAttribute("stroke-width", "2");
+    path.setAttribute("stroke-linejoin", "round");
+    svg.appendChild(path);
+    const last = t[t.length - 1];
+    const dot = document.createElementNS(ns, "circle");
+    dot.setAttribute("cx", px(last[0])); dot.setAttribute("cy", py(last[1])); dot.setAttribute("r", "2.6");
+    dot.setAttribute("fill", colour);
+    svg.appendChild(dot);
+    const atMark = t.reduce((a, p) => (Math.abs(p[0] - markYear) < Math.abs(a[0] - markYear) ? p : a), t[0]);
+    svg.setAttribute("aria-label",
+      "Electoral democracy index 1960 to " + last[0] + ": " + atMark[1] + " in " + markYear +
+      ", " + last[1] + " in " + last[0] + ".");
+    hoverable(svg, (byIso[iso] || { n: iso }).n,
+      "Democracy index " + atMark[1] + " in " + markYear + " → " + last[1] + " in " + last[0]);
+    return svg;
+  }
+
+  function renderLedger(id, list, colour) {
+    const host = document.getElementById(id);
+    list.forEach((c) => {
+      const d = document.createElement("div");
+      d.className = "case";
+      const who = document.createElement("div");
+      who.className = "who";
+      const h = document.createElement("h3");
+      h.textContent = (byIso[c.i] || { n: c.i }).n;
+      const y = document.createElement("span");
+      y.className = "yr";
+      y.textContent = c.y;
+      who.append(h, y);
+      const what = document.createElement("p");
+      what.className = "what";
+      what.textContent = c.what;
+      d.append(who, spark(c.i, c.y, colour), what);
+      host.appendChild(d);
+    });
+  }
+  renderLedger("ledger-bad", CASES.bad, "var(--s2)");
+  renderLedger("ledger-good", CASES.good, "var(--s1)");
+
+  /* ── Exhibit 4: the country table ───────────────────────────────── */
+  const COLS = [
+    { k: "n", t: "Country", num: false },
+    { k: "elecdem", t: "Democracy", max: 1 },
+    { k: "assoc", t: "Association", max: 1 },
+    { k: "rulelaw", t: "Rule of law", max: 1 },
+    { k: "statecap", t: "State capacity", max: 2.2, min: -2.2 },
+    { k: "dpm", t: "Deaths / mn", max: null },
+    { k: "war", t: "Status", num: false }
+  ];
+  const rows = D.countries.map((c) => Object.assign({}, c, {
+    dpm: c.v.pop ? (c.v.wardeaths || 0) / (c.v.pop / 1e6) : null,
+    war: ((c.v.intrastate || 0) > 0 || (c.v.wardeaths || 0) > 25)
+  }));
+  const regions = [...new Set(rows.map((r) => r.r).filter(Boolean))].sort();
+  const regSel = document.getElementById("reg");
+  regions.forEach((r) => { const o = document.createElement("option"); o.value = r; o.textContent = r; regSel.appendChild(o); });
+
+  let sortKey = "elecdem", sortDir = -1;
+  const thead = document.getElementById("thead");
+  COLS.forEach((col) => {
+    const th = document.createElement("th");
+    th.textContent = col.t;
+    th.tabIndex = 0;
+    const apply = () => {
+      if (sortKey === col.k) sortDir = -sortDir; else { sortKey = col.k; sortDir = col.k === "n" ? 1 : -1; }
+      draw();
+    };
+    th.addEventListener("click", apply);
+    th.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); apply(); } });
+    thead.appendChild(th);
+  });
+
+  function cellBar(v, col) {
+    const wrapEl = document.createElement("div");
+    wrapEl.className = "cell-bar";
+    const num = document.createElement("span");
+    num.className = "num";
+    const bar = document.createElement("i");
+    if (v === undefined || v === null) { num.textContent = "—"; wrapEl.appendChild(num); return wrapEl; }
+    const min = col.min || 0, max = col.max;
+    const frac = Math.max(0, Math.min(1, (v - min) / (max - min)));
+    bar.style.width = Math.max(1, frac * 44) + "px";
+    bar.style.background = "var(--s3)";
+    bar.style.opacity = 0.3 + frac * 0.7;
+    num.textContent = col.k === "statecap" ? v.toFixed(2) : v.toFixed(2);
+    wrapEl.append(bar, num);
+    return wrapEl;
+  }
+
+  function draw() {
+    const q = document.getElementById("q").value.trim().toLowerCase();
+    const reg = regSel.value, st = document.getElementById("st").value;
+    let list = rows.filter((r) => {
+      if (q && r.n.toLowerCase().indexOf(q) === -1 && r.i.toLowerCase().indexOf(q) === -1) return false;
+      if (reg && r.r !== reg) return false;
+      if (st === "war" && !r.war) return false;
+      if (st === "calm" && r.war) return false;
+      return true;
+    });
+    list.sort((a, b) => {
+      if (sortKey === "n") return sortDir * a.n.localeCompare(b.n);
+      if (sortKey === "war") return sortDir * ((a.war ? 1 : 0) - (b.war ? 1 : 0));
+      const av = sortKey === "dpm" ? a.dpm : a.v[sortKey];
+      const bv = sortKey === "dpm" ? b.dpm : b.v[sortKey];
+      if (av === undefined || av === null) return 1;
+      if (bv === undefined || bv === null) return -1;
+      return sortDir * (av - bv);
+    });
+    [...thead.children].forEach((th, i) => {
+      th.setAttribute("aria-sort", COLS[i].k === sortKey ? (sortDir < 0 ? "descending" : "ascending") : "none");
+    });
+    const tb = document.getElementById("tbody");
+    tb.textContent = "";
+    list.forEach((r) => {
+      const tr = document.createElement("tr");
+      COLS.forEach((col) => {
+        const td = document.createElement("td");
+        if (col.k === "n") {
+          td.textContent = r.n;
+        } else if (col.k === "war") {
+          const f = document.createElement("span");
+          f.className = "flag " + (r.war ? "war" : "calm");
+          f.textContent = r.war ? "in conflict" : "—";
+          td.appendChild(f);
+        } else if (col.k === "dpm") {
+          const s = document.createElement("span");
+          s.className = "num";
+          s.textContent = r.dpm === null ? "—" : r.dpm < 0.01 ? "0" : r.dpm < 10 ? r.dpm.toFixed(2) : Math.round(r.dpm).toLocaleString();
+          td.appendChild(s);
+        } else {
+          td.appendChild(cellBar(r.v[col.k], col));
+        }
+        tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+    document.getElementById("count").textContent =
+      list.length + " of " + rows.length + " countries";
+  }
+  ["q", "reg", "st"].forEach((id) => document.getElementById(id).addEventListener("input", draw));
+  draw();
+})();
+</script>

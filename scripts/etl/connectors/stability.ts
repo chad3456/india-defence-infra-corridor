@@ -132,11 +132,17 @@ const SPECS: Spec[] = [
  * mobilisation was followed by state breakdown, seven where it was followed by
  * a consolidated democracy, and India, which is the subject of the rest of
  * this site.
+ *
+ * Egypt and Sudan were added on the second pass, after the first draft of the
+ * report listed five breakdown cases against seven consolidations. That
+ * imbalance was not a finding, it was a gap in the list — both are textbook
+ * sequences of mass mobilisation followed by state failure, and leaving them
+ * out quietly flattered the optimistic column.
  */
 const TRAJECTORY = [
-  "SYR", "LBY", "YEM", "VEN", "UKR",           // mobilisation then breakdown
+  "SYR", "LBY", "YEM", "VEN", "UKR", "EGY", "SDN",        // mobilisation then breakdown
   "POL", "ZAF", "CHL", "PHL", "TUN", "IDN", "KOR", "LKA", // then consolidation
-  "IND", "USA", "FRA",                          // context and comparison
+  "IND", "USA", "FRA",                                    // context and comparison
 ];
 
 const TRAJECTORY_INDICATORS = ["elecdem", "assoc", "statecap", "wardeaths"];
