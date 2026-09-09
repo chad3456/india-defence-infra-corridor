@@ -1,18 +1,7 @@
 {
-  "probedAt": "2026-09-09T16:51:49.459Z",
+  "probedAt": "2026-09-09T16:53:48.090Z",
   "note": "Reachability only. No series are published from this file.",
   "findings": [
-    {
-      "id": "owid-military-expenditure-sipri",
-      "layer": "spine",
-      "what": "Our World in Data (SIPRI): military-expenditure-sipri",
-      "url": "https://ourworldindata.org/grapher/military-expenditure-sipri.csv",
-      "ok": false,
-      "status": "HTTP 404",
-      "looksRight": null,
-      "bytes": null,
-      "head": null
-    },
     {
       "id": "owid-military-spending-sipri",
       "layer": "spine",
@@ -34,39 +23,6 @@
       "looksRight": true,
       "bytes": 302621,
       "head": "Entity,Code,Year,Military expenditure (% of GDP),World region according to OWID Afghanistan,AFG,1970,1.6296061,Asia Afghanistan,AFG,1973,1.8689103,Asia Afghanistan,AFG,1974,1.6108247,Asia Afghanistan,AFG,1975,1.7220657,Asia Afghanistan,AFG,"
-    },
-    {
-      "id": "owid-military-expenditure-per-capita",
-      "layer": "spine",
-      "what": "Our World in Data (SIPRI): military-expenditure-per-capita",
-      "url": "https://ourworldindata.org/grapher/military-expenditure-per-capita.csv",
-      "ok": false,
-      "status": "HTTP 404",
-      "looksRight": null,
-      "bytes": null,
-      "head": null
-    },
-    {
-      "id": "owid-arms-exports-sipri",
-      "layer": "spine",
-      "what": "Our World in Data (SIPRI): arms-exports-sipri",
-      "url": "https://ourworldindata.org/grapher/arms-exports-sipri.csv",
-      "ok": false,
-      "status": "HTTP 404",
-      "looksRight": null,
-      "bytes": null,
-      "head": null
-    },
-    {
-      "id": "owid-arms-imports-sipri",
-      "layer": "spine",
-      "what": "Our World in Data (SIPRI): arms-imports-sipri",
-      "url": "https://ourworldindata.org/grapher/arms-imports-sipri.csv",
-      "ok": false,
-      "status": "HTTP 404",
-      "looksRight": null,
-      "bytes": null,
-      "head": null
     },
     {
       "id": "owid-military-personnel",
@@ -91,21 +47,153 @@
       "head": "Entity,Code,Year,Number of nuclear warheads China,CHN,1945,0 China,CHN,1946,0 China,CHN,1947,0 China,CHN,1948,0 China,CHN,1949,0 China,CHN,1950,0 China,CHN,1951,0 China,CHN,1952,0 China,CHN,1953,0 China,CHN,1954,0 China,CHN,1955,0 China,CHN"
     },
     {
-      "id": "owid-nuclear-warhead-inventories",
+      "id": "owid-arms-exports",
       "layer": "spine",
-      "what": "Our World in Data (SIPRI): nuclear-warhead-inventories",
-      "url": "https://ourworldindata.org/grapher/nuclear-warhead-inventories.csv",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 386,
-      "head": "Entity,Code,Year,Deployed strategic warheads,Deployed nonstrategic warheads,Nondeployed warheads,Retired warheads China,CHN,2026,34,0,586,0 France,FRA,2026,280,0,10,80 India,IND,2026,0,0,178,0 Israel,ISR,2026,0,0,90,0 North Korea,PRK,2026,0"
+      "what": "Our World in Data (SIPRI): arms-exports",
+      "url": "https://ourworldindata.org/grapher/arms-exports.csv",
+      "ok": false,
+      "status": "HTTP 404",
+      "looksRight": null,
+      "bytes": null,
+      "head": null
     },
     {
-      "id": "owid-nuclear-weapons-tests",
+      "id": "owid-arms-imports",
       "layer": "spine",
-      "what": "Our World in Data (SIPRI): nuclear-weapons-tests",
-      "url": "https://ourworldindata.org/grapher/nuclear-weapons-tests.csv",
+      "what": "Our World in Data (SIPRI): arms-imports",
+      "url": "https://ourworldindata.org/grapher/arms-imports.csv",
+      "ok": false,
+      "status": "HTTP 404",
+      "looksRight": null,
+      "bytes": null,
+      "head": null
+    },
+    {
+      "id": "owid-arms-exports-constant-usd",
+      "layer": "spine",
+      "what": "Our World in Data (SIPRI): arms-exports-constant-usd",
+      "url": "https://ourworldindata.org/grapher/arms-exports-constant-usd.csv",
+      "ok": false,
+      "status": "HTTP 404",
+      "looksRight": null,
+      "bytes": null,
+      "head": null
+    },
+    {
+      "id": "owid-arms-imports-constant-usd",
+      "layer": "spine",
+      "what": "Our World in Data (SIPRI): arms-imports-constant-usd",
+      "url": "https://ourworldindata.org/grapher/arms-imports-constant-usd.csv",
+      "ok": false,
+      "status": "HTTP 404",
+      "looksRight": null,
+      "bytes": null,
+      "head": null
+    },
+    {
+      "id": "owid-arms-exports-sipri-tiv",
+      "layer": "spine",
+      "what": "Our World in Data (SIPRI): arms-exports-sipri-tiv",
+      "url": "https://ourworldindata.org/grapher/arms-exports-sipri-tiv.csv",
+      "ok": false,
+      "status": "HTTP 404",
+      "looksRight": null,
+      "bytes": null,
+      "head": null
+    },
+    {
+      "id": "owid-arms-imports-sipri-tiv",
+      "layer": "spine",
+      "what": "Our World in Data (SIPRI): arms-imports-sipri-tiv",
+      "url": "https://ourworldindata.org/grapher/arms-imports-sipri-tiv.csv",
+      "ok": false,
+      "status": "HTTP 404",
+      "looksRight": null,
+      "bytes": null,
+      "head": null
+    },
+    {
+      "id": "owid-transfers-of-major-conventional-weapons",
+      "layer": "spine",
+      "what": "Our World in Data (SIPRI): transfers-of-major-conventional-weapons",
+      "url": "https://ourworldindata.org/grapher/transfers-of-major-conventional-weapons.csv",
+      "ok": false,
+      "status": "HTTP 404",
+      "looksRight": null,
+      "bytes": null,
+      "head": null
+    },
+    {
+      "id": "owid-value-of-arms-exports",
+      "layer": "spine",
+      "what": "Our World in Data (SIPRI): value-of-arms-exports",
+      "url": "https://ourworldindata.org/grapher/value-of-arms-exports.csv",
+      "ok": false,
+      "status": "HTTP 404",
+      "looksRight": null,
+      "bytes": null,
+      "head": null
+    },
+    {
+      "id": "owid-value-of-arms-imports",
+      "layer": "spine",
+      "what": "Our World in Data (SIPRI): value-of-arms-imports",
+      "url": "https://ourworldindata.org/grapher/value-of-arms-imports.csv",
+      "ok": false,
+      "status": "HTTP 404",
+      "looksRight": null,
+      "bytes": null,
+      "head": null
+    },
+    {
+      "id": "owid-arms-trade-exports",
+      "layer": "spine",
+      "what": "Our World in Data (SIPRI): arms-trade-exports",
+      "url": "https://ourworldindata.org/grapher/arms-trade-exports.csv",
+      "ok": false,
+      "status": "HTTP 404",
+      "looksRight": null,
+      "bytes": null,
+      "head": null
+    },
+    {
+      "id": "owid-arms-trade-imports",
+      "layer": "spine",
+      "what": "Our World in Data (SIPRI): arms-trade-imports",
+      "url": "https://ourworldindata.org/grapher/arms-trade-imports.csv",
+      "ok": false,
+      "status": "HTTP 404",
+      "looksRight": null,
+      "bytes": null,
+      "head": null
+    },
+    {
+      "id": "owid-military-expenditure-per-capita-sipri",
+      "layer": "spine",
+      "what": "Our World in Data (SIPRI): military-expenditure-per-capita-sipri",
+      "url": "https://ourworldindata.org/grapher/military-expenditure-per-capita-sipri.csv",
+      "ok": false,
+      "status": "HTTP 404",
+      "looksRight": null,
+      "bytes": null,
+      "head": null
+    },
+    {
+      "id": "owid-share-of-military-expenditure-in-government-expenditure",
+      "layer": "spine",
+      "what": "Our World in Data (SIPRI): share-of-military-expenditure-in-government-expenditure",
+      "url": "https://ourworldindata.org/grapher/share-of-military-expenditure-in-government-expenditure.csv",
+      "ok": false,
+      "status": "HTTP 404",
+      "looksRight": null,
+      "bytes": null,
+      "head": null
+    },
+    {
+      "id": "owid-nuclear-weapons-tests-by-country",
+      "layer": "spine",
+      "what": "Our World in Data (SIPRI): nuclear-weapons-tests-by-country",
+      "url": "https://ourworldindata.org/grapher/nuclear-weapons-tests-by-country.csv",
       "ok": false,
       "status": "HTTP 404",
       "looksRight": null,
@@ -161,12 +249,56 @@
       "id": "nato-news",
       "layer": "deals",
       "what": "NATO newsroom feed",
-      "url": "https://www.nato.int/cps/en/natohq/news.rss",
+      "url": "https://www.nato.int/cps/en/natolive/rss_news.xml",
       "ok": false,
       "status": "HTTP 404",
       "looksRight": null,
       "bytes": null,
       "head": null
+    },
+    {
+      "id": "navalnews",
+      "layer": "deals",
+      "what": "Naval News feed",
+      "url": "https://www.navalnews.com/feed/",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 99632,
+      "head": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><rss version=\"2.0\" xmlns:content=\"http://purl.org/rss/1.0/modules/content/\" xmlns:wfw=\"http://wellformedweb.org/CommentAPI/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:atom=\"http://www.w3.org"
+    },
+    {
+      "id": "defenceblog",
+      "layer": "deals",
+      "what": "Defence Blog feed",
+      "url": "https://defence-blog.com/feed/",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 21234,
+      "head": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><rss version=\"2.0\" xmlns:content=\"http://purl.org/rss/1.0/modules/content/\" xmlns:wfw=\"http://wellformedweb.org/CommentAPI/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:atom=\"http://www.w3.org"
+    },
+    {
+      "id": "eda-europa",
+      "layer": "deals",
+      "what": "European Defence Agency news",
+      "url": "https://eda.europa.eu/rss/news",
+      "ok": false,
+      "status": "HTTP 404",
+      "looksRight": null,
+      "bytes": null,
+      "head": null
+    },
+    {
+      "id": "defenseone",
+      "layer": "deals",
+      "what": "Defense One feed",
+      "url": "https://www.defenseone.com/rss/all/",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 138626,
+      "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?> <rss xmlns:nb=\"https://www.newsbreak.com/\" xmlns:media=\"http://search.yahoo.com/mrss/\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:content=\"http://purl.org/rss/1.0/modules/content/\" version=\"2.0\" xm"
     },
     {
       "id": "ukmod",
@@ -216,7 +348,7 @@
       "id": "janes",
       "layer": "deals",
       "what": "Janes news feed",
-      "url": "https://www.janes.com/feeds/news",
+      "url": "https://www.janes.com/rss/news.xml",
       "ok": false,
       "status": "HTTP 404",
       "looksRight": null,
@@ -227,7 +359,7 @@
       "id": "armyrecognition",
       "layer": "deals",
       "what": "Army Recognition defence news feed",
-      "url": "https://armyrecognition.com/rss/news.xml",
+      "url": "https://armyrecognition.com/feed",
       "ok": false,
       "status": "HTTP 404",
       "looksRight": null,
@@ -255,17 +387,6 @@
       "looksRight": true,
       "bytes": 17970,
       "head": "{\"parse\":{\"title\":\"List of intercontinental ballistic missiles\",\"pageid\":26814110,\"wikitext\":\"{{Short description|none}}\\n{{see also|List of missiles}}\\n{{about|a list of [[intercontinental ballistic missile]]s developed by various countrie"
-    },
-    {
-      "id": "wiki-list-of-submarine-launched-ballistic-mis",
-      "layer": "inventory",
-      "what": "Wikipedia wikitext: List of submarine-launched ballistic missiles",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_submarine-launched_ballistic_missiles&prop=wikitext&formatversion=2&format=json",
-      "ok": true,
-      "status": "200",
-      "looksRight": false,
-      "bytes": 402,
-      "head": "{\"error\":{\"code\":\"missingtitle\",\"info\":\"The page you specified doesn't exist.\",\"docref\":\"See https://en.wikipedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius"
     },
     {
       "id": "wiki-list-of-cruise-missiles",
@@ -301,17 +422,6 @@
       "head": "{\"parse\":{\"title\":\"List of anti-ship missiles\",\"pageid\":13107862,\"wikitext\":\"{{Short description|Missile list}}\\n{{See also|Anti-ship missile#Comparison}}\\n{{Use dmy dates|date=August 2022}}\\nThis is a list of [[anti-ship missile]]s.\\n\\n==W"
     },
     {
-      "id": "wiki-list-of-hypersonic-missiles",
-      "layer": "inventory",
-      "what": "Wikipedia wikitext: List of hypersonic missiles",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_hypersonic_missiles&prop=wikitext&formatversion=2&format=json",
-      "ok": true,
-      "status": "200",
-      "looksRight": false,
-      "bytes": 402,
-      "head": "{\"error\":{\"code\":\"missingtitle\",\"info\":\"The page you specified doesn't exist.\",\"docref\":\"See https://en.wikipedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius"
-    },
-    {
       "id": "wiki-list-of-states-with-nuclear-weapons",
       "layer": "inventory",
       "what": "Wikipedia wikitext: List of states with nuclear weapons",
@@ -321,6 +431,61 @@
       "looksRight": true,
       "bytes": 107766,
       "head": "{\"parse\":{\"title\":\"List of states with nuclear weapons\",\"pageid\":400821,\"wikitext\":\"{{Short description|none}}\\n{{protection padlock|small=yes}}\\n{{Use dmy dates|date=March 2023}}\\n\\n[[File:Nuclear weapons states 2023.svg|thumb|500x500px|Ma"
+    },
+    {
+      "id": "wiki-list-of-submarine-launched-ballistic-mis",
+      "layer": "inventory",
+      "what": "Wikipedia wikitext: List of submarine-launched ballistic missiles by country",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_submarine-launched_ballistic_missiles_by_country&prop=wikitext&formatversion=2&format=json",
+      "ok": true,
+      "status": "200",
+      "looksRight": false,
+      "bytes": 402,
+      "head": "{\"error\":{\"code\":\"missingtitle\",\"info\":\"The page you specified doesn't exist.\",\"docref\":\"See https://en.wikipedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius"
+    },
+    {
+      "id": "wiki-submarine-launched-ballistic-missile",
+      "layer": "inventory",
+      "what": "Wikipedia wikitext: Submarine-launched ballistic missile",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Submarine-launched_ballistic_missile&prop=wikitext&formatversion=2&format=json",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 29313,
+      "head": "{\"parse\":{\"title\":\"Submarine-launched ballistic missile\",\"pageid\":53170,\"wikitext\":\"{{Short description|Sub-orbital missile mostly carrying nuclear weapons}}\\n{{Use dmy dates|date=January 2022}}\\n[[File:Trident II UGM-133A D5LE Missile from"
+    },
+    {
+      "id": "wiki-hypersonic-weapon",
+      "layer": "inventory",
+      "what": "Wikipedia wikitext: Hypersonic weapon",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Hypersonic_weapon&prop=wikitext&formatversion=2&format=json",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 16800,
+      "head": "{\"parse\":{\"title\":\"Hypersonic weapon\",\"pageid\":59574659,\"wikitext\":\"{{Short description|High-speed missiles and projectiles}}\\n{{About|the category of missiles|the music by Sam Fender|Hypersonic Missiles (album)|and|Hypersonic Missiles (son"
+    },
+    {
+      "id": "wiki-list-of-ballistic-missiles",
+      "layer": "inventory",
+      "what": "Wikipedia wikitext: List of ballistic missiles",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_ballistic_missiles&prop=wikitext&formatversion=2&format=json",
+      "ok": true,
+      "status": "200",
+      "looksRight": false,
+      "bytes": 402,
+      "head": "{\"error\":{\"code\":\"missingtitle\",\"info\":\"The page you specified doesn't exist.\",\"docref\":\"See https://en.wikipedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius"
+    },
+    {
+      "id": "wiki-list-of-anti-ballistic-missiles",
+      "layer": "inventory",
+      "what": "Wikipedia wikitext: List of anti-ballistic missiles",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_anti-ballistic_missiles&prop=wikitext&formatversion=2&format=json",
+      "ok": true,
+      "status": "200",
+      "looksRight": false,
+      "bytes": 402,
+      "head": "{\"error\":{\"code\":\"missingtitle\",\"info\":\"The page you specified doesn't exist.\",\"docref\":\"See https://en.wikipedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius"
     },
     {
       "id": "csis-missilethreat",
