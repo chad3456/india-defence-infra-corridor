@@ -245,10 +245,22 @@ function bulletName(line: string): string | null {
  */
 const MULTINATIONAL = /^(european|nato|joint|multinational|international)\b/i;
 
-function countryOfHeading(h: string): string | null {
+/**
+ * Armed groups that field missiles and are not states.
+ *
+ * They belong in a catalogue of who fields what — the Houthis and Hezbollah
+ * demonstrably operate these systems — and they do not belong in a column
+ * headed "country". They get their own bucket rather than being dropped,
+ * because dropping them would make the catalogue quietly wrong about who is
+ * shooting.
+ */
+const NON_STATE = /^(houthi|hezbollah|hamas|isis|islamic state|taliban|pij|palestinian islamic jihad)/i;
+
+function resolveCountry(h: string): string | null {
   if (!h || h.length > 44) return null;
   const t = h.trim();
   if (MULTINATIONAL.test(t)) return "Multinational";
+  if (NON_STATE.test(t)) return "Non-state actor";
   const low = t.toLowerCase();
   const hit = COUNTRIES.find((c) =>
     c.name.toLowerCase() === low || c.words.some((w) => w === low));
@@ -288,7 +300,7 @@ async function loadGazetteer(): Promise<SystemEntry[]> {
     for (const sec of sections(text)) {
       if (sec.depth === 2) topHeading = sec.heading;
       const sectionCountry =
-        countryFrom === "section" ? countryOfHeading(topHeading) : null;
+        countryFrom === "section" ? resolveCountry(topHeading) : null;
 
       // Tables, where the page uses them.
       for (const table of parseTables(sec.body)) {
@@ -296,8 +308,11 @@ async function loadGazetteer(): Promise<SystemEntry[]> {
         const cCountry = columnIndex(table.headers, /(country|origin|operator|nation|state|user)/i);
         if (cName < 0) continue;
         for (const row of table.rows) {
-          const country = cCountry >= 0 ? (plain(row[cCountry] ?? "").trim() || null) : null;
-          add(plain(row[cName] ?? ""), kind, country ?? sectionCountry, page);
+          // Through the same resolver as headings. Raw column values put a
+          // nation called "/" in the catalogue, alongside Houthi movement and
+          // Hezbollah/Syria filed as countries.
+          const column = cCountry >= 0 ? resolveCountry(plain(row[cCountry] ?? "")) : null;
+          add(plain(row[cName] ?? ""), kind, column ?? sectionCountry, page);
         }
       }
 
@@ -810,7 +825,7 @@ export async function run(): Promise<void> {
    * A fake nation in a catalogue of who fields what is the worst failure this
    * file has available, so it fails the run.
    */
-  const known = new Set([...COUNTRIES.map((c) => c.name), "Multinational", "Soviet Union"]);
+  const known = new Set([...COUNTRIES.map((c) => c.name), "Multinational", "Soviet Union", "Non-state actor"]);
   const fakeNations = [...new Set(gazetteer.map((g) => g.country).filter((c): c is string => Boolean(c)))]
     .filter((c) => !known.has(c));
   if (fakeNations.length > 0) {
