@@ -76,6 +76,16 @@ interface Target {
   licence?: string;
 }
 
+/**
+ * Worldwide Governance Indicators, second attempt.
+ *
+ * Round one asked for PV.EST and friends off the default database and the API
+ * answered "The indicator was not found. It may have been deleted or
+ * archived." for all six. WGI is not in the WDI database — it is source 3 —
+ * so the same codes are retried scoped to it. Recording the failed form as
+ * well as the fixed one, because the next person to reach for WGI will make
+ * the same assumption.
+ */
 const WGI = [
   ["PV.EST", "Political Stability and Absence of Violence/Terrorism"],
   ["RL.EST", "Rule of Law"],
@@ -85,14 +95,67 @@ const WGI = [
   ["RQ.EST", "Regulatory Quality"],
 ] as const;
 
+/**
+ * Our World in Data grapher slugs, guessed and then checked.
+ *
+ * Round one proved the shape is exactly what this needs — Entity, Code, Year,
+ * value, region, one row per country-year, ISO3 already resolved, CC BY. What
+ * it did not prove is which slugs exist. A slug that 404s is survivable; a
+ * slug that quietly serves a *different* measure than its name suggests is
+ * not, so the report keeps each response's header row for reading.
+ *
+ * The list is chosen to cover both halves of the question. Regime quality and
+ * the space a country gives to dissent (democracy, civil liberties, freedom of
+ * association and assembly, civil society) on one side; breakdown and state
+ * capacity (conflict deaths, conflict counts, terrorism, rule of law,
+ * corruption, state fragility) on the other.
+ */
+const OWID_SLUGS = [
+  // Regime quality, V-Dem
+  "electoral-democracy-index", "liberal-democracy-index",
+  "participatory-democracy-index", "deliberative-democracy-index",
+  "egalitarian-democracy-index", "political-regime",
+  // The space for protest itself
+  "civil-liberties-index", "freedom-of-association-index",
+  "freedom-of-expression-index", "civil-society-participation-index",
+  "human-rights-index", "freedom-of-assembly-and-association-index",
+  // State capacity and its absence
+  "rule-of-law-index", "political-corruption-index",
+  "rigorous-and-impartial-public-administration",
+  "state-capacity-index", "political-stability-index",
+  "government-effectiveness-index", "control-of-corruption-index",
+  "regulatory-quality-index", "voice-and-accountability-index",
+  // Breakdown, by somebody else's definition
+  "deaths-in-armed-conflicts-by-conflict-type", "number-of-armed-conflicts",
+  "deaths-in-armed-conflicts", "terrorism-deaths",
+  "conflict-deaths-per-100000-people", "battle-related-deaths-per-100000",
+  "civil-war-deaths", "number-of-state-based-conflicts",
+  // Context a fair comparison needs
+  "gdp-per-capita-worldbank", "population", "share-of-population-in-extreme-poverty",
+  "life-expectancy", "urban-population-share",
+  // Protest and mobilisation, if OWID carries any
+  "protest-participation", "mass-mobilization-protests",
+  "share-of-people-who-attended-a-demonstration",
+];
+
 const TARGETS: Target[] = [
   // ── The spine: measured state capacity, every country, every year ──────
   ...WGI.map(([code, name]) => ({
-    id: `wgi-${code.toLowerCase().replace(".", "-")}`,
-    what: `WGI: ${name}`,
-    url: `https://api.worldbank.org/v2/country/all/indicator/${code}?format=json&per_page=20000&date=1996:2024`,
+    id: `wgi3-${code.toLowerCase().replace(".", "-")}`,
+    what: `WGI (source=3): ${name}`,
+    url: `https://api.worldbank.org/v2/country/all/indicator/${code}?format=json&per_page=100&source=3&date=2020:2023`,
     expect: /"indicator"/,
     claimedScale: "~200 countries x 1996-2023",
+    licence: "CC BY 4.0",
+  })),
+
+  ...OWID_SLUGS.map((slug) => ({
+    id: `owid-${slug}`,
+    what: `Our World in Data: ${slug}`,
+    url: `https://ourworldindata.org/grapher/${slug}.csv`,
+    // The header row must name the country-year shape, or it is not this
+    // dataset however healthy the 200 looked.
+    expect: /^Entity,Code,Year/,
     licence: "CC BY 4.0",
   })),
 
@@ -149,20 +212,6 @@ const TARGETS: Target[] = [
     expect: /Package:/,
     claimedScale: "~4,000 indicators, 202 countries, 1789-present",
     licence: "see V-Dem terms",
-  },
-  {
-    id: "owid-vdem",
-    what: "Our World in Data's cleaned V-Dem democracy index (CSV)",
-    url: "https://ourworldindata.org/grapher/electoral-democracy-index.csv",
-    expect: /Entity,Code,Year|electoral/i,
-    licence: "CC BY 4.0",
-  },
-  {
-    id: "owid-protest",
-    what: "Our World in Data grapher catalogue, for protest and conflict series",
-    url: "https://ourworldindata.org/grapher/political-regime.csv",
-    expect: /Entity,Code,Year/,
-    licence: "CC BY 4.0",
   },
   {
     id: "fragile-states",
