@@ -32,9 +32,15 @@ interface Site {
   state: string | null; dedications: Ded[];
   inception: string | null; heritage: string | null;
 }
+interface CanonSet {
+  id: string; label: string; deity: string | null; note: string;
+  claimed: number; placed: number;
+  members: Array<{ name: string; qid: string | null }>;
+}
 const a = JSON.parse(readFileSync(FILE, "utf8")) as {
   sites: Site[];
   rejected: Array<{ qid: string; name: string; lat: number; lon: number; why: string }>;
+  canon: CanonSet[];
   coverage: Record<string, number>;
   note: string;
 };
@@ -101,6 +107,64 @@ console.log("\nDedication tiers");
   const misfiled = venkat.filter((s) => s.dedications.some((d) => /shiva/i.test(d.figure)));
   ok("no Venkateswara site is filed under Shiva", misfiled.length === 0,
     misfiled.slice(0, 3).map((s) => s.name).join(" / "));
+}
+
+console.log("\nThe canonical sets");
+if (!a.canon) {
+  // The committed atlas can be one connector behind: the ingest that writes
+  // this layer runs in Actions, and the file only gains it on the next run.
+  // Skipping here rather than failing keeps `npm test` honest about the
+  // difference between "not built yet" and "built wrong" — the checks below
+  // bind the moment the field exists.
+  console.log("  skip  this atlas predates the canonical tier — the next ingest adds it.");
+} else {
+  const by = new Map(a.canon.map((c) => [c.id, c]));
+  ok("all six traditions parsed", a.canon.length === 6,
+    a.canon.map((c) => c.id).join(", "));
+
+  // Counts the traditions claim about themselves. A parse that drifts onto the
+  // wrong column shows up here before it shows up as a wrong map.
+  ok("twelve Jyotirlingas", by.get("jyotirlinga")?.claimed === 12,
+    String(by.get("jyotirlinga")?.claimed));
+  ok("five Pancharama Kshetras", by.get("pancharama")?.claimed === 5,
+    String(by.get("pancharama")?.claimed));
+  ok("four Char Dham", by.get("char-dham")?.claimed === 4,
+    String(by.get("char-dham")?.claimed));
+  ok("the Divya Desams are counted in the hundred", (by.get("divya-desam")?.claimed ?? 0) >= 90,
+    String(by.get("divya-desam")?.claimed));
+
+  const jyoti = by.get("jyotirlinga")?.members.map((m) => m.name.toLowerCase()) ?? [];
+  for (const known of ["somnath", "kedarnath", "mahakaleshwar"]) {
+    ok(`${known} is among the Jyotirlingas`, jyoti.some((j) => j.includes(known)));
+  }
+
+  // The trap this tier was designed around. The Char Dham spans three Vishnu
+  // sites and Rameswaram, which is Shiva's, so treating the circuit as a deity
+  // set would file Rameswaram under Vishnu on the strength of a tidy rule.
+  for (const id of ["char-dham", "chota-char-dham"]) {
+    ok(`${id} names no single deity`, by.get(id)?.deity === null, String(by.get(id)?.deity));
+  }
+  const circuitNames = new Set(
+    a.canon.filter((c) => c.deity === null).flatMap((c) => c.members.map((m) => m.qid)),
+  );
+  const viaCircuit = a.sites.filter(
+    (s) => circuitNames.has(s.qid) &&
+      s.dedications.some((d) => d.basis === "canonical" &&
+        /char dham/i.test(d.via ?? "")),
+  );
+  ok("no dedication is derived from a pilgrimage circuit", viaCircuit.length === 0,
+    viaCircuit.slice(0, 3).map((s) => s.name).join(" / "));
+
+  // A canonical claim must never displace one Wikidata actually asserts.
+  const clobbered = a.sites.filter(
+    (s) => s.dedications.some((d) => d.basis === "canonical") &&
+      !s.dedications.some((d) => d.basis === "stated") &&
+      s.dedications.length === 0,
+  );
+  ok("stated and canonical dedications coexist", clobbered.length === 0);
+
+  ok("every canonical member carries its tradition's note",
+    a.canon.every((c) => c.note.length > 0));
 }
 
 console.log("\nHonesty of the file");

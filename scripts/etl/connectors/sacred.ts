@@ -52,12 +52,14 @@ import { feature } from "topojson-client";
 import type { FeatureCollection, Geometry } from "geojson";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import { getText } from "../lib/http";
+import { parseTables, plain } from "../lib/wikitext";
 import { isEntryPoint } from "../lib/entry";
 
 const ROOT = process.cwd();
 const OUT = join(ROOT, "data", "sacred", "atlas.json");
 const STATE_FILE = join(ROOT, "data", "geo", "india-states.topo.json");
 const WDQS = "https://query.wikidata.org/sparql";
+const WIKI = "https://en.wikipedia.org/w/api.php";
 
 /** Page size for the spine. Small enough to finish, large enough to be four calls. */
 const PAGE = 1200;
@@ -182,6 +184,222 @@ function inIndia(lat: number, lon: number): boolean {
   return lat >= BOX.minLat && lat <= BOX.maxLat && lon >= BOX.minLon && lon <= BOX.maxLon;
 }
 
+/**
+ * The canonical sets, and the one thing this must not get wrong.
+ *
+ * These come from wikitext, and that was decided on evidence rather than
+ * taste. Wikidata models canon membership with P31/P361/P1269, so the first
+ * plan was to query it: resolve each group from its article title and ask for
+ * its members. The probe did exactly that and got ten members in total across
+ * all six traditions — one Jyotirlinga of twelve, two Divya Desams of a
+ * hundred and eight. The structured route is empty, so the articles it is.
+ *
+ * ── The mistake worth naming ─────────────────────────────────────────────
+ *
+ * It is tempting to treat every canonical set as a deity: twelve Jyotirlingas
+ * are Shiva's, a hundred and eight Divya Desams are Vishnu's, and so on. Two
+ * of these six are not deity sets at all. The Char Dham spans Badrinath and
+ * Dwarka and Puri, which are Vishnu's, and Rameswaram, which is Shiva's; the
+ * Chota Char Dham adds Yamunotri and Gangotri, which are river goddesses.
+ * They are pilgrimage circuits, and assigning either of them a single god
+ * would file Rameswaram under Vishnu on the strength of a tidy rule.
+ *
+ * So `deity` is nullable, and a set with none contributes membership without
+ * contributing a dedication. The count is checked too: a tradition whose
+ * article stops parsing should fail the run rather than quietly shrink.
+ */
+interface Tradition {
+  id: string;
+  page: string;
+  label: string;
+  /** The figure every member is dedicated to, or null when the set spans several. */
+  deity: string | null;
+  /** How many members the tradition itself claims. */
+  expect: { min: number; max: number };
+  note: string;
+}
+
+const TRADITIONS: Tradition[] = [
+  {
+    id: "jyotirlinga", page: "Jyotirlinga", label: "Jyotirlinga", deity: "Shiva",
+    expect: { min: 12, max: 12 },
+    note: "Twelve, on every reckoning.",
+  },
+  {
+    id: "divya-desam", page: "Divya Desam", label: "Divya Desam", deity: "Vishnu",
+    expect: { min: 90, max: 110 },
+    note: "108 shrines praised by the Alvars; two are not on earth, so a placeable count is lower.",
+  },
+  {
+    id: "shakta-pitha", page: "Shakta pithas", label: "Shakta Pitha", deity: "Shakti",
+    expect: { min: 30, max: 120 },
+    note: "51 in one reckoning and 108 in another, and the sites assigned differ between them.",
+  },
+  {
+    id: "pancharama", page: "Pancharama Kshetras", label: "Pancharama Kshetra", deity: "Shiva",
+    expect: { min: 5, max: 5 },
+    note: "Five, in coastal Andhra.",
+  },
+  {
+    id: "char-dham", page: "Char Dham", label: "Char Dham", deity: null,
+    expect: { min: 4, max: 4 },
+    note: "A circuit spanning three Vishnu sites and one of Shiva's, so it names no single god.",
+  },
+  {
+    id: "chota-char-dham", page: "Chota Char Dham", label: "Chota Char Dham", deity: null,
+    expect: { min: 4, max: 4 },
+    note: "Yamunotri and Gangotri are river goddesses; Kedarnath is Shiva's and Badrinath Vishnu's.",
+  },
+];
+
+export interface CanonMember {
+  /** The name as the tradition's own article writes it. */
+  name: string;
+  /** The atlas site it was matched to, if any. */
+  qid: string | null;
+}
+
+export interface CanonSet {
+  id: string;
+  label: string;
+  deity: string | null;
+  note: string;
+  claimed: number;
+  placed: number;
+  members: CanonMember[];
+}
+
+async function wikitext(page: string): Promise<string | null> {
+  const url = `${WIKI}?action=parse&page=${encodeURIComponent(page)}` +
+    "&redirects=1&prop=wikitext&formatversion=2&format=json";
+  const res = await getText(url, { cacheMs: 6 * 3600_000, retries: 2, timeoutMs: 45_000 });
+  if (!res.ok || !res.data) return null;
+  try {
+    const j = JSON.parse(res.data) as { parse?: { wikitext?: string } };
+    return j.parse?.wikitext ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * The display name out of a wiki link, or the leading plain text of a cell.
+ *
+ * `[[Somnath temple|Somnath]]` is Somnath. A bare `[[Kedarnath Temple]]` is
+ * Kedarnath Temple with any disambiguator dropped. A file or category link is
+ * a picture or a tag, never a site, and the arsenal catalogue learned that the
+ * hard way by listing a photo caption as a missile.
+ */
+function linkName(cell: string): string | null {
+  if (/\[\[\s*(file|image|category)\s*:/i.test(cell)) return null;
+  const piped = cell.match(/\[\[([^\]|]+)\|([^\]]+)\]\]/);
+  if (piped) return piped[2]!.trim();
+  const bare = cell.match(/\[\[([^\]|]+)\]\]/);
+  if (bare) return bare[1]!.replace(/\s*\(.*?\)\s*$/, "").trim();
+  const text = plain(cell).trim();
+  return text.length >= 3 && text.length <= 60 ? text : null;
+}
+
+/** Names for matching: lowercase, no punctuation, no "temple"/"shrine" suffix. */
+function matchKey(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/\(.*?\)/g, " ")
+    .replace(/\b(temple|templo|shrine|mandir|kovil|koil|kshetra|tirtha|dham|jyotirlinga)\b/g, " ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+/**
+ * Member names out of one tradition's article.
+ *
+ * Tables first, because these articles are mostly wikitables and a table gives
+ * a column that means something. The column is chosen by what its header says
+ * — the same discipline as everywhere else here, since a table that gains a
+ * column silently shifts every positional index. When no table yields enough,
+ * the article's bulleted lists are read instead, which is how the shorter
+ * pages are written.
+ */
+function canonNames(text: string, want: { min: number; max: number }): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  const add = (n: string | null): void => {
+    if (!n) return;
+    const k = matchKey(n);
+    if (!k || seen.has(k)) return;
+    seen.add(k);
+    out.push(n);
+  };
+
+  const NAME_COL = /^(name|temple|shrine|site|kshetra|pitha|peetha|deity name|dham|place|location)/i;
+  for (const t of parseTables(text)) {
+    let col = t.headers.findIndex((h) => NAME_COL.test(h.trim()));
+    // A table with no usable header still usually leads with the name.
+    if (col < 0 && t.headers.length === 0) col = 0;
+    if (col < 0) continue;
+    for (const row of t.rows) add(linkName(row[col] ?? ""));
+  }
+
+  if (out.length >= want.min) return out;
+
+  // Fall back to the bulleted lists, which is how the short articles are built.
+  for (const line of text.split("\n")) {
+    if (!/^\*+\s/.test(line)) continue;
+    add(linkName(line.replace(/^\*+\s*/, "")));
+  }
+  return out;
+}
+
+async function loadCanon(sites: Site[]): Promise<CanonSet[]> {
+  const byKey = new Map<string, Site>();
+  for (const s of sites) {
+    const k = matchKey(s.name);
+    if (k && !byKey.has(k)) byKey.set(k, s);
+  }
+
+  const out: CanonSet[] = [];
+  for (const t of TRADITIONS) {
+    const text = await wikitext(t.page);
+    if (!text) {
+      console.log(`  canon ${t.id}: article unavailable`);
+      continue;
+    }
+    const names = canonNames(text, t.expect);
+    if (names.length < t.expect.min || names.length > t.expect.max) {
+      throw new Error(
+        `${t.label}: parsed ${names.length} members, expected ${t.expect.min}` +
+        `${t.expect.max === t.expect.min ? "" : `-${t.expect.max}`}. ` +
+        "The article's layout has moved, or the wrong column is being read. " +
+        "A canon that silently shrinks is worse than one that fails.",
+      );
+    }
+
+    const members: CanonMember[] = names.map((name) => {
+      const hit = byKey.get(matchKey(name));
+      return { name, qid: hit?.qid ?? null };
+    });
+
+    // Membership becomes a dedication only where the tradition names one god.
+    if (t.deity) {
+      for (const m of members) {
+        if (!m.qid) continue;
+        const site = sites.find((s) => s.qid === m.qid);
+        if (!site) continue;
+        if (site.dedications.some((d) => d.basis === "canonical" && d.via === t.label)) continue;
+        site.dedications.push({ figure: t.deity, basis: "canonical", via: t.label });
+      }
+    }
+
+    const placed = members.filter((m) => m.qid).length;
+    console.log(`  canon ${t.id.padEnd(16)} ${names.length} named, ${placed} placed on the map`);
+    out.push({
+      id: t.id, label: t.label, deity: t.deity, note: t.note,
+      claimed: names.length, placed, members,
+    });
+  }
+  return out;
+}
+
 async function loadStates(): Promise<FeatureCollection<Geometry, { name: string | null }>> {
   const t = JSON.parse(await readFile(STATE_FILE, "utf8")) as
     Topology<{ india: GeometryCollection<{ name: string | null }> }>;
@@ -256,6 +474,11 @@ export async function run(): Promise<void> {
     if (her && !/^Q\d+$/.test(her) && !s.heritage) s.heritage = her;
   }
 
+  // ── The canonical tier ─────────────────────────────────────────────────
+  // After the stated tier, so a canonical dedication can never displace one
+  // Wikidata actually asserts — both are kept, each labelled with its basis.
+  const canon = await loadCanon([...byQid.values()]);
+
   const sites = [...byQid.values()].sort((a, b) => a.name.localeCompare(b.name));
 
   await mkdir(join(ROOT, "data", "sacred"), { recursive: true });
@@ -268,7 +491,12 @@ export async function run(): Promise<void> {
       "this map is a thinner region of the database, not of India.",
     coverage: {
       mapped: sites.length,
-      withStatedDedication: sites.filter((s) => s.dedications.length > 0).length,
+      withStatedDedication: sites.filter(
+        (s) => s.dedications.some((d) => d.basis === "stated"),
+      ).length,
+      withCanonicalDedication: sites.filter(
+        (s) => s.dedications.some((d) => d.basis === "canonical"),
+      ).length,
       withInception: sites.filter((s) => s.inception).length,
       withHeritage: sites.filter((s) => s.heritage).length,
       withState: sites.filter((s) => s.state).length,
@@ -281,6 +509,7 @@ export async function run(): Promise<void> {
      * map look cleaner than its inputs are.
      */
     rejected,
+    canon,
     sites,
   }, null, 2) + "\n", "utf8");
 
