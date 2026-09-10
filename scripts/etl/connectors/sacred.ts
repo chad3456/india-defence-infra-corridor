@@ -831,25 +831,61 @@ function percentOf(cell: string): number | null {
   return Number.isFinite(v) && v >= 0 && v <= 100 ? v : null;
 }
 
-async function loadCensus(): Promise<CensusLayer | null> {
-  const PAGE = "Jammu and Kashmir (union territory)";
-  const REFUSAL =
-    "No population series for Kashmir before the colonial censuses is published here. " +
-    "The Rajatarangini is a dynastic chronicle, not an enumeration; the first count worth " +
-    "the name is 1873 and the first comparable one 1891.";
+/**
+ * Candidate articles, in the order they are worth trying.
+ *
+ * The first attempt read "Jammu and Kashmir (union territory)" and found
+ * nothing, and the diagnosis it wrote into the atlas said why: that article
+ * has exactly two wikitables, one of administrative divisions and one of
+ * constituencies. There is no religion-by-year table on it. Its demographics
+ * live in {{Bar box}} templates, which are not tables at all.
+ *
+ * That was a bad page choice, not a bad parser, so the page is chosen by
+ * evidence now instead of by my first guess. The article about the state that
+ * existed until 2019 is tried first, because a long series belongs to the
+ * entity that existed for its whole length.
+ */
+const CENSUS_PAGES = [
+  "Religion in Jammu and Kashmir",
+  "Jammu and Kashmir (state)",
+  "Jammu and Kashmir (union territory)",
+  "Kashmir",
+  "Kashmir Valley",
+];
 
-  const text = await wikitext(PAGE);
-  if (!text) {
-    console.log("  census: article unavailable");
-    return null;
+/**
+ * Shares out of {{Bar percent|Islam|green|68.31}} rows inside a {{Bar box}}.
+ *
+ * This is how Wikipedia states a single census's religious breakdown when it
+ * does not have a full historical table, and it is the shape the union
+ * territory article actually uses. One year, not a series — so the year comes
+ * from the box's own title and the caller decides whether one census is worth
+ * showing.
+ */
+function barBoxShares(text: string): CensusShare[] {
+  const out: CensusShare[] = [];
+  for (const box of text.matchAll(/\{\{\s*Bar box[\s\S]*?\n\}\}/gi)) {
+    const body = box[0];
+    if (!/religio|hindu|muslim|islam/i.test(body)) continue;
+    const year = Number(body.match(/title\s*=[^\n]*?\b(18\d{2}|19\d{2}|20\d{2})\b/i)?.[1] ?? 0);
+    if (!year) continue;
+    for (const bar of body.matchAll(/\{\{\s*Bar percent\s*\|([^|}]+)\|[^|}]*\|\s*([\d.]+)/gi)) {
+      const group = plain(bar[1] ?? "").trim();
+      const pct = Number(bar[2]);
+      if (!RELIGION.test(group) || !Number.isFinite(pct)) continue;
+      out.push({ year, group, percent: pct });
+    }
+    if (out.length > 0) return out;
   }
+  return out;
+}
 
+/** A religion-by-year wikitable, if the article has one. */
+function tableShares(text: string): CensusShare[] {
   const shares: CensusShare[] = [];
-  const problems: string[] = [];
-
   for (const t of parseTables(text)) {
-    // A religion-by-census-year table has a group column and year columns.
-    const groupCol = t.headers.findIndex((h) => /^(religion|community|group|religious)/i.test(h.trim()));
+    const groupCol = t.headers.findIndex((h) =>
+      /^(religion|community|group|religious|caste)/i.test(h.trim()));
     if (groupCol < 0) continue;
     const yearCols: Array<{ i: number; year: number }> = [];
     t.headers.forEach((h, i) => {
@@ -867,65 +903,66 @@ async function loadCensus(): Promise<CensusLayer | null> {
         shares.push({ year, group, percent: pct });
       }
     }
-    if (shares.length > 0) break;
+    if (shares.length > 0) return shares;
   }
+  return shares;
+}
 
-  if (shares.length === 0) {
-    // Say what was actually on the page, and say it in the file rather than
-    // only in a log. A parser that reports "not found" and nothing else costs
-    // a full round trip per guess about the article's shape; the canon layer
-    // burned three of those before it started printing what it had read.
-    //
-    // The log scrolls and the tail is not always reachable. The committed
-    // artifact is, so the diagnosis travels with the data.
-    const seen = parseTables(text).slice(0, 16).map((t) =>
-      t.headers.length > 0
-        ? `[${t.rows.length} rows] ${t.headers.slice(0, 10).join(" | ").slice(0, 200)}`
-        : `[${t.rows.length} rows, no headers] first row: ${(t.rows[0] ?? []).slice(0, 6).map((c) => plain(c).slice(0, 26)).join(" | ")}`,
+async function loadCensus(): Promise<CensusLayer | null> {
+  const REFUSAL =
+    "No population series for Kashmir before the colonial censuses is published here. " +
+    "The Rajatarangini is a dynastic chronicle, not an enumeration; the first count worth " +
+    "the name is 1873 and the first comparable one 1891.";
+
+  const tried: string[] = [];
+
+  for (const page of CENSUS_PAGES) {
+    const text = await wikitext(page);
+    if (!text) { tried.push(`${page}: unavailable`); continue; }
+
+    const shares = tableShares(text);
+    const source = shares.length > 0 ? shares : barBoxShares(text);
+    if (source.length === 0) {
+      tried.push(`${page}: no religion figures found in ${parseTables(text).length} tables or any bar box`);
+      continue;
+    }
+
+    // Do these behave like shares? A column that does not sum to about a
+    // hundred is not a set of percentages, whatever its header called it.
+    const byYear = new Map<number, number>();
+    for (const s of source) byYear.set(s.year, (byYear.get(s.year) ?? 0) + s.percent);
+    const wrong = [...byYear.entries()].filter(([, sum]) => sum < 95 || sum > 105);
+    if (wrong.length > 0) {
+      tried.push(
+        `${page}: shares for ${wrong.map(([y, v]) => `${y} (${v.toFixed(1)}%)`).join(", ")} ` +
+        "do not sum to about a hundred",
+      );
+      continue;
+    }
+
+    const earliest = Math.min(...byYear.keys());
+    if (earliest < 1865) {
+      tried.push(`${page}: carries a year before the first Kashmir census (${earliest})`);
+      continue;
+    }
+
+    console.log(
+      `  census: ${source.length} shares across ${byYear.size} censuses from "${page}" ` +
+      `(${[...byYear.keys()].sort((a, b) => a - b).join(", ")})`,
     );
-    console.log(`  census: no religion-by-year table found among ${seen.length} tables`);
-    for (const line of seen) console.log(`      ${line}`);
     return {
-      region: "Jammu and Kashmir", source: "Wikipedia", page: PAGE,
-      startsAt: 0, shares: [], refusal: REFUSAL,
-      problems: [
-        "no religion-by-year table matched the expected headers",
-        ...seen.map((x) => `saw ${x}`),
-      ],
+      region: "Jammu and Kashmir", source: "Wikipedia", page,
+      startsAt: earliest, shares: source, refusal: REFUSAL,
+      ...(tried.length > 0 ? { problems: tried.map((t) => `tried first — ${t}`) } : {}),
     };
   }
 
-  // Do these behave like shares? A column that does not sum to about a hundred
-  // is not a set of percentages, whatever the header called it.
-  const byYear = new Map<number, number>();
-  for (const s of shares) byYear.set(s.year, (byYear.get(s.year) ?? 0) + s.percent);
-  const wrong = [...byYear.entries()].filter(([, sum]) => sum < 95 || sum > 105);
-  if (wrong.length > 0) {
-    problems.push(
-      `the shares for ${wrong.map(([y, sum]) => `${y} (${sum.toFixed(1)}%)`).join(", ")} ` +
-      "do not sum to about a hundred, so this table is not what it appeared to be",
-    );
-  }
-  const earliest = Math.min(...byYear.keys());
-  if (earliest < 1865) {
-    problems.push(`a year before the first Kashmir census appears: ${earliest}`);
-  }
-
-  if (problems.length > 0) {
-    console.log(`  census: ${problems.join("; ")}`);
-    return {
-      region: "Jammu and Kashmir", source: "Wikipedia", page: PAGE,
-      startsAt: earliest, shares: [], refusal: REFUSAL, problems,
-    };
-  }
-
-  console.log(
-    `  census: ${shares.length} shares across ${byYear.size} censuses ` +
-    `(${[...byYear.keys()].sort((a, b) => a - b).join(", ")})`,
-  );
+  console.log("  census: no candidate article carried a usable religion breakdown");
+  for (const t of tried) console.log(`      ${t}`);
   return {
-    region: "Jammu and Kashmir", source: "Wikipedia", page: PAGE,
-    startsAt: earliest, shares, refusal: REFUSAL,
+    region: "Jammu and Kashmir", source: "Wikipedia", page: CENSUS_PAGES[0]!,
+    startsAt: 0, shares: [], refusal: REFUSAL,
+    problems: tried,
   };
 }
 

@@ -457,10 +457,19 @@ export default function SacredPage() {
           <div className="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
             <div className="space-y-4 text-[14px] leading-[1.75] text-[color:var(--text-secondary)]">
               <p>
-                The series begins at {census.startsAt}. Not because earlier centuries are
-                uninteresting, but because earlier centuries were not counted. The first
-                enumeration of Kashmir worth the name is 1873 and the first comparable one
-                1891; before that there are chronicles, and a chronicle is not a census.
+                {censusRows.length === 1 ? (
+                  <>
+                    One census, {census.startsAt}. The record here does not yet give a
+                    comparable series, and a single reading is shown as a single reading
+                    rather than dressed as a trend.
+                  </>
+                ) : (
+                  <>The series begins at {census.startsAt}.</>
+                )}{" "}
+                Not because earlier centuries are uninteresting, but because earlier
+                centuries were not counted. The first enumeration of Kashmir worth the name
+                is 1873 and the first comparable one 1891; before that there are chronicles,
+                and a chronicle is not a census.
               </p>
               <p>
                 These figures are read out of the cited article&rsquo;s own table, not
@@ -504,9 +513,10 @@ export default function SacredPage() {
                 </div>
               ))}
               <p className="pt-1 text-[11px] leading-relaxed text-[color:var(--text-muted)]">
-                Source: {census.source}, &ldquo;{census.page}&rdquo;. Bands are ordered by
-                size at the most recent census and keep that order across every year, so a
-                change in the bar is a change in the figures rather than a reshuffle.
+                Source: {census.source}, &ldquo;{census.page}&rdquo;.
+                {censusRows.length > 1
+                  ? " Bands are ordered by size at the most recent census and keep that order across every year, so a change in the bar is a change in the figures rather than a reshuffle."
+                  : " Bands are ordered by size."}
               </p>
             </div>
           </div>
