@@ -302,9 +302,19 @@ function linkName(cell: string): string | null {
   return text.length >= 3 && text.length <= 60 ? text : null;
 }
 
-/** Names for matching: lowercase, no punctuation, no "temple"/"shrine" suffix. */
+/**
+ * Names for matching: unaccented, lowercase, without the generic words.
+ *
+ * The NFD normalisation is not decoration. Wikipedia writes the Jyotirlinga as
+ * "Mallikārjuna" and Wikidata writes the temple as "Mallikarjuna", and without
+ * stripping the combining macron the key became "mallik rjuna" — the ā fell to
+ * the punctuation filter and took the word apart. One of the twelve most
+ * famous temples in India failed to match itself over a diacritic.
+ */
 function matchKey(name: string): string {
   return name
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
     .replace(/\(.*?\)/g, " ")
     .replace(/\b(temple|templo|shrine|mandir|kovil|koil|kshetra|tirtha|dham|jyotirlinga)\b/g, " ")
@@ -358,7 +368,11 @@ function canonNames(text: string, want: { min: number; max: number }): string[] 
   // Every table that has a column plausibly naming a site.
   const candidates: string[][] = [];
   for (const t of parseTables(text)) {
-    const col = t.headers.findIndex((h) => NAME_COL.test(h));
+    let col = t.headers.findIndex((h) => NAME_COL.test(h));
+    // A table with no header row at all still leads with the name, and
+    // dropping that case took the Pancharama Kshetras and both Char Dhams
+    // from five, four and four to nothing.
+    if (col < 0 && t.headers.length === 0) col = 0;
     if (col < 0) continue;
     const names = fromRows(t.rows, col);
     if (names.length > 0) candidates.push(names);
@@ -406,6 +420,27 @@ async function loadCanon(sites: Site[]): Promise<CanonSet[]> {
     const k = matchKey(s.name);
     if (k && !byKey.has(k)) byKey.set(k, s);
   }
+  const keys = [...byKey.keys()];
+
+  /**
+   * Exact key first; then a containment match, but only when it is unique.
+   *
+   * Wikipedia calls the Jyotirlinga "Vishwanath" and Wikidata calls the temple
+   * "Kashi Vishwanath Temple", so an exact key misses. Containment would fix
+   * it — and would also match the four other Vishwanath temples in the atlas,
+   * any one of which it might pick. So a containment hit counts only when
+   * exactly one site's key contains the name, which is the difference between
+   * resolving an ambiguity and guessing at one.
+   */
+  const find = (name: string): Site | null => {
+    const k = matchKey(name);
+    if (!k) return null;
+    const exact = byKey.get(k);
+    if (exact) return exact;
+    if (k.length < 6) return null;
+    const near = keys.filter((x) => x.includes(k));
+    return near.length === 1 ? byKey.get(near[0]!) ?? null : null;
+  };
 
   const out: CanonSet[] = [];
   for (const t of TRADITIONS) {
@@ -416,7 +451,7 @@ async function loadCanon(sites: Site[]): Promise<CanonSet[]> {
     }
     const names = canonNames(text, t.expect);
     const members: CanonMember[] = names.map((name) => {
-      const hit = byKey.get(matchKey(name));
+      const hit = find(name);
       return { name, qid: hit?.qid ?? null };
     });
 
@@ -431,14 +466,22 @@ async function loadCanon(sites: Site[]): Promise<CanonSet[]> {
         `${t.expect.max === t.expect.min ? "" : `–${t.expect.max}`}`,
       );
     }
-    // A count can be right for the wrong reason. Twelve names that match one
-    // temple between them is not twelve Jyotirlingas; it is twelve of
-    // something else that happened to number twelve.
-    const hitRate = names.length === 0 ? 0 : members.filter((m) => m.qid).length / names.length;
-    if (names.length >= t.expect.min && hitRate < 0.25) {
+    // A count can be right for the wrong reason, so a set that matches almost
+    // nothing is suspect. But "almost nothing" has to mean almost nothing.
+    //
+    // The first threshold was a quarter, and it failed the Divya Desams for
+    // placing 9 of 110 — which is not a parse fault at all. The names it read
+    // were right: Thirukoḻi, Thirukkarambanoor, Thiruppullamboothangudi. Those
+    // shrines are simply not in Wikidata with coordinates. Low placement in a
+    // Tamil Vaishnava canon is a fact about the database, exactly like the rest
+    // of this page, and flagging it as an error would have hidden a true
+    // finding behind a false alarm.
+    const placedNow = members.filter((m) => m.qid).length;
+    const hitRate = names.length === 0 ? 0 : placedNow / names.length;
+    if (names.length >= t.expect.min && hitRate < 0.05) {
       problems.push(
-        `only ${members.filter((m) => m.qid).length} of ${names.length} names match any ` +
-        "mapped site, which suggests the parse is reading the wrong part of the article",
+        `only ${placedNow} of ${names.length} names match any mapped site, which is low ` +
+        "enough to suggest the parse is reading the wrong part of the article",
       );
     }
 
@@ -467,6 +510,130 @@ async function loadCanon(sites: Site[]): Promise<CanonSet[]> {
       claimed: names.length, placed, members,
       ...(problems.length > 0 ? { problems } : {}),
     });
+  }
+  return out;
+}
+
+/**
+ * Place-names, and the rule that no etymology here is mine.
+ *
+ * The request started from a real example: Varahamula becoming Baramulla. That
+ * is checkable philology — Stein's geographical index to Kalhana's
+ * Rajatarangini matches Sanskrit place-names to their nineteenth-century
+ * forms, and the record of a name survives in Kashmir where no population
+ * count does.
+ *
+ * It is also the easiest thing on this whole page to get quietly wrong, because
+ * an etymology is a sentence and a sentence is easy to write. So the pairing
+ * below is the only thing this file contributes: a hypothesis that this modern
+ * name descends from that older one. The connector then goes to the article
+ * and looks for a sentence that says so, stores that sentence verbatim as the
+ * evidence, and *drops the pair if it cannot find one*. An unverified pair is
+ * recorded as unverified rather than published as a fact.
+ *
+ * ── Two different things, kept apart ─────────────────────────────────────
+ *
+ * Varahamula to Baramulla is centuries of ordinary phonetic change, undated
+ * and gradual, with no author. Bombay to Mumbai is an administrative act with
+ * a year attached. Both are "renaming" in loose speech and they are not the
+ * same phenomenon, and a list that ran them together would suggest the first
+ * was a policy and the second an evolution.
+ */
+type NameKind = "phonetic" | "official";
+
+interface NamePair {
+  modern: string;
+  older: string;
+  /** The article that should carry the claim. */
+  page: string;
+  kind: NameKind;
+  region: string;
+  /** What the older form is usually said to mean. Checked, not asserted. */
+  gloss?: string;
+  year?: number;
+}
+
+const NAME_PAIRS: NamePair[] = [
+  // Kashmir. The layer the request actually asked for.
+  {
+    modern: "Baramulla", older: "Varahamula", page: "Baramulla",
+    kind: "phonetic", region: "Kashmir", gloss: "the boar's molar",
+  },
+  {
+    modern: "Srinagar", older: "Pravarasenapura", page: "Srinagar",
+    kind: "phonetic", region: "Kashmir",
+  },
+  {
+    modern: "Kashmir", older: "Kashyapamar", page: "Kashyapa",
+    kind: "phonetic", region: "Kashmir", gloss: "the land drained by Kashyapa",
+  },
+  {
+    modern: "Anantnag", older: "Islamabad", page: "Anantnag",
+    kind: "official", region: "Kashmir",
+  },
+  // Official renamings, which are acts with dates rather than drift.
+  { modern: "Mumbai", older: "Bombay", page: "Mumbai", kind: "official", region: "Maharashtra", year: 1995 },
+  { modern: "Chennai", older: "Madras", page: "Chennai", kind: "official", region: "Tamil Nadu", year: 1996 },
+  { modern: "Kolkata", older: "Calcutta", page: "Kolkata", kind: "official", region: "West Bengal", year: 2001 },
+  { modern: "Bengaluru", older: "Bangalore", page: "Bengaluru", kind: "official", region: "Karnataka", year: 2014 },
+  { modern: "Varanasi", older: "Banaras", page: "Varanasi", kind: "phonetic", region: "Uttar Pradesh" },
+  { modern: "Prayagraj", older: "Allahabad", page: "Prayagraj", kind: "official", region: "Uttar Pradesh", year: 2018 },
+  { modern: "Thiruvananthapuram", older: "Trivandrum", page: "Thiruvananthapuram", kind: "official", region: "Kerala", year: 1991 },
+  { modern: "Puducherry", older: "Pondicherry", page: "Puducherry", kind: "official", region: "Puducherry", year: 2006 },
+];
+
+export interface Toponym extends NamePair {
+  /** The sentence in the article that carries the claim, or null if none does. */
+  evidence: string | null;
+  verified: boolean;
+}
+
+/**
+ * The sentence in an article that mentions a given form.
+ *
+ * Wikitext, cleaned and cut at sentence boundaries. A sentence is the right
+ * unit: shorter and the quote loses the claim, longer and it stops being a
+ * quotation and starts being a paragraph the reader has to take on trust.
+ */
+function sentenceAbout(text: string, term: string): string | null {
+  const body = plain(
+    text
+      .replace(/\{\{[^{}]*\}\}/g, " ")
+      .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2")
+      .replace(/\[\[([^\]]+)\]\]/g, "$1"),
+  ).replace(/\s+/g, " ");
+
+  const needle = term.toLowerCase();
+  for (const raw of body.split(/(?<=[.!?])\s+/)) {
+    const sentence = raw.trim();
+    if (sentence.length < 20 || sentence.length > 400) continue;
+    if (!sentence.toLowerCase().includes(needle)) continue;
+    // A bare mention in a list of districts is not an etymology.
+    if (!/\b(name|named|known|called|derive|derived|from|meaning|means|renamed|literally|Sanskrit|corruption)\b/i.test(sentence)) {
+      continue;
+    }
+    return sentence;
+  }
+  return null;
+}
+
+async function loadToponyms(): Promise<Toponym[]> {
+  const out: Toponym[] = [];
+  for (const pair of NAME_PAIRS) {
+    const text = await wikitext(pair.page);
+    const evidence = text ? sentenceAbout(text, pair.older) : null;
+    out.push({ ...pair, evidence, verified: evidence !== null });
+    console.log(
+      `  name  ${pair.modern.padEnd(20)} ← ${pair.older.padEnd(16)} ` +
+      (evidence ? "verified" : "NO SENTENCE FOUND"),
+    );
+  }
+  const bad = out.filter((t) => !t.verified);
+  if (bad.length > out.length / 3) {
+    throw new Error(
+      `${bad.length} of ${out.length} place-name pairs found no supporting sentence. ` +
+      "That is too many to be individual article edits — the sentence matcher is broken.",
+    );
   }
   return out;
 }
@@ -550,6 +717,9 @@ export async function run(): Promise<void> {
   // Wikidata actually asserts — both are kept, each labelled with its basis.
   const canon = await loadCanon([...byQid.values()]);
 
+  // ── Place-names ────────────────────────────────────────────────────────
+  const toponyms = await loadToponyms();
+
   const sites = [...byQid.values()].sort((a, b) => a.name.localeCompare(b.name));
 
   await mkdir(join(ROOT, "data", "sacred"), { recursive: true });
@@ -581,6 +751,7 @@ export async function run(): Promise<void> {
      */
     rejected,
     canon,
+    toponyms,
     sites,
   }, null, 2) + "\n", "utf8");
 
