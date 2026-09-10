@@ -267,6 +267,8 @@ export interface CanonSet {
   claimed: number;
   placed: number;
   members: CanonMember[];
+  /** Why this tradition's parse is not to be trusted, when it is not. */
+  problems?: string[];
 }
 
 async function wikitext(page: string): Promise<string | null> {
@@ -313,39 +315,87 @@ function matchKey(name: string): string {
 /**
  * Member names out of one tradition's article.
  *
- * Tables first, because these articles are mostly wikitables and a table gives
- * a column that means something. The column is chosen by what its header says
- * — the same discipline as everywhere else here, since a table that gains a
- * column silently shifts every positional index. When no table yields enough,
- * the article's bulleted lists are read instead, which is how the shorter
- * pages are written.
+ * The first version unioned the names from every table on the page and fell
+ * back to every bullet in the article. It produced counts that looked right
+ * and content that was not: twelve names for the Jyotirlingas, of which one
+ * matched a real temple, and nine for the Char Dham, which has four. A count
+ * can be correct for the wrong reason, and on a page like this the wrong
+ * reason is usually a navbox.
+ *
+ * So this picks *one* table — the one whose row count sits closest to what the
+ * tradition claims about itself — rather than pooling all of them. An article
+ * about the Char Dham that also tabulates the Chota Char Dham has two
+ * plausible tables, and the right answer is to choose, not to add.
+ *
+ * The name column is resolved by what its header says, never by position, and
+ * the header vocabulary has to include what these articles actually use:
+ * "Jyotirlinga", "Divya Desam", "Peetham", "Abode" and the rest are names of
+ * sites in exactly the way "Name" is.
  */
+const NAME_COL =
+  /^\s*(name|temple|shrine|site|kshetra|kshetram|pitha|peetha|peetham|dham|abode|place|location|jyotirlinga|linga|desam|divya|deity|sthala|tirtha)/i;
+
+/** Bullets that are navigation rather than content. */
+const NOT_CONTENT = /^(see also|references|external links|further reading|notes|bibliography)/i;
+
 function canonNames(text: string, want: { min: number; max: number }): string[] {
-  const seen = new Set<string>();
-  const out: string[] = [];
-  const add = (n: string | null): void => {
-    if (!n) return;
-    const k = matchKey(n);
-    if (!k || seen.has(k)) return;
-    seen.add(k);
-    out.push(n);
+  const target = (want.min + want.max) / 2;
+
+  const fromRows = (rows: string[][], col: number): string[] => {
+    const seen = new Set<string>();
+    const out: string[] = [];
+    for (const row of rows) {
+      const n = linkName(row[col] ?? "");
+      if (!n) continue;
+      const k = matchKey(n);
+      if (!k || seen.has(k)) continue;
+      seen.add(k);
+      out.push(n);
+    }
+    return out;
   };
 
-  const NAME_COL = /^(name|temple|shrine|site|kshetra|pitha|peetha|deity name|dham|place|location)/i;
+  // Every table that has a column plausibly naming a site.
+  const candidates: string[][] = [];
   for (const t of parseTables(text)) {
-    let col = t.headers.findIndex((h) => NAME_COL.test(h.trim()));
-    // A table with no usable header still usually leads with the name.
-    if (col < 0 && t.headers.length === 0) col = 0;
+    const col = t.headers.findIndex((h) => NAME_COL.test(h));
     if (col < 0) continue;
-    for (const row of t.rows) add(linkName(row[col] ?? ""));
+    const names = fromRows(t.rows, col);
+    if (names.length > 0) candidates.push(names);
   }
 
-  if (out.length >= want.min) return out;
+  if (candidates.length > 0) {
+    // Closest to the claimed size, with the larger table breaking a tie: a
+    // page's main list is rarely the smallest thing on it.
+    candidates.sort((a, b) =>
+      Math.abs(a.length - target) - Math.abs(b.length - target) || b.length - a.length);
+    const best = candidates[0]!;
+    if (best.length >= want.min && best.length <= want.max) return best;
+  }
 
-  // Fall back to the bulleted lists, which is how the short articles are built.
+  // No table fits. Read the article's bulleted lists, skipping the sections
+  // that are navigation rather than content.
+  const seen = new Set<string>();
+  const out: string[] = [];
+  let skipping = false;
   for (const line of text.split("\n")) {
+    const head = line.match(/^==+\s*(.+?)\s*==+\s*$/);
+    if (head) { skipping = NOT_CONTENT.test(head[1] ?? ""); continue; }
+    if (skipping) continue;
     if (!/^\*+\s/.test(line)) continue;
-    add(linkName(line.replace(/^\*+\s*/, "")));
+    // A bullet with no wiki link is prose, not a member of a list of places.
+    if (!/\[\[/.test(line)) continue;
+    const n = linkName(line.replace(/^\*+\s*/, ""));
+    if (!n) continue;
+    const k = matchKey(n);
+    if (!k || seen.has(k)) continue;
+    seen.add(k);
+    out.push(n);
+  }
+  // Prefer the best table over a bullet scrape that is no closer to the claim.
+  if (candidates.length > 0) {
+    const best = candidates[0]!;
+    if (Math.abs(best.length - target) <= Math.abs(out.length - target)) return best;
   }
   return out;
 }
@@ -365,19 +415,32 @@ async function loadCanon(sites: Site[]): Promise<CanonSet[]> {
       continue;
     }
     const names = canonNames(text, t.expect);
-    if (names.length < t.expect.min || names.length > t.expect.max) {
-      throw new Error(
-        `${t.label}: parsed ${names.length} members, expected ${t.expect.min}` +
-        `${t.expect.max === t.expect.min ? "" : `-${t.expect.max}`}. ` +
-        "The article's layout has moved, or the wrong column is being read. " +
-        "A canon that silently shrinks is worse than one that fails.",
-      );
-    }
-
     const members: CanonMember[] = names.map((name) => {
       const hit = byKey.get(matchKey(name));
       return { name, qid: hit?.qid ?? null };
     });
+
+    // Problems are recorded, not thrown. Throwing on the first bad tradition
+    // reported one fault per run and hid the other five, and it discarded the
+    // parsed names — which are the only thing that says *why* a parse is
+    // wrong. The run still fails, at the end, once everything is on the record.
+    const problems: string[] = [];
+    if (names.length < t.expect.min || names.length > t.expect.max) {
+      problems.push(
+        `parsed ${names.length} members, expected ${t.expect.min}` +
+        `${t.expect.max === t.expect.min ? "" : `–${t.expect.max}`}`,
+      );
+    }
+    // A count can be right for the wrong reason. Twelve names that match one
+    // temple between them is not twelve Jyotirlingas; it is twelve of
+    // something else that happened to number twelve.
+    const hitRate = names.length === 0 ? 0 : members.filter((m) => m.qid).length / names.length;
+    if (names.length >= t.expect.min && hitRate < 0.25) {
+      problems.push(
+        `only ${members.filter((m) => m.qid).length} of ${names.length} names match any ` +
+        "mapped site, which suggests the parse is reading the wrong part of the article",
+      );
+    }
 
     // Membership becomes a dedication only where the tradition names one god.
     if (t.deity) {
@@ -391,10 +454,18 @@ async function loadCanon(sites: Site[]): Promise<CanonSet[]> {
     }
 
     const placed = members.filter((m) => m.qid).length;
-    console.log(`  canon ${t.id.padEnd(16)} ${names.length} named, ${placed} placed on the map`);
+    console.log(
+      `  canon ${t.id.padEnd(16)} ${String(names.length).padStart(3)} named, ` +
+      `${String(placed).padStart(3)} placed` +
+      (problems.length > 0 ? `   ⚠ ${problems.join("; ")}` : ""),
+    );
+    // The names themselves, because a count never says what went wrong.
+    console.log(`      ${names.slice(0, 14).join(" · ")}${names.length > 14 ? " · …" : ""}`);
+
     out.push({
       id: t.id, label: t.label, deity: t.deity, note: t.note,
       claimed: names.length, placed, members,
+      ...(problems.length > 0 ? { problems } : {}),
     });
   }
   return out;
@@ -514,6 +585,16 @@ export async function run(): Promise<void> {
   }, null, 2) + "\n", "utf8");
 
   console.log(`\nwrote ${sites.length} sites to ${OUT}`);
+
+  const broken = canon.filter((c) => c.problems && c.problems.length > 0);
+  if (broken.length > 0) {
+    console.error("\nCanonical sets that did not parse cleanly:");
+    for (const c of broken) console.error(`  ${c.label}: ${c.problems!.join("; ")}`);
+    throw new Error(
+      `${broken.length} of ${canon.length} traditions failed their own count or match check. ` +
+      "The atlas above was written so the parsed names can be read, but it is not fit to ship.",
+    );
+  }
 }
 
 if (isEntryPoint(import.meta.url)) {
