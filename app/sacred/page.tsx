@@ -2,6 +2,7 @@ import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import SacredMap from "@/components/map/SacredMap";
 import { loadAtlas, byState, byHeritage, byFigure, byCentury } from "@/lib/sacred";
+import type { CanonSet, Toponym } from "@/lib/sacred";
 
 /**
  * India's sacred landscape, and an argument about what a map of it can say.
@@ -127,6 +128,10 @@ export default function SacredPage() {
   const heritage = byHeritage(sites);
   const stated = byFigure(sites, "stated");
   const centuries = byCentury(sites);
+  // Both arrive with the ingest that builds them; an older atlas simply has
+  // neither, and the sections are absent rather than empty.
+  const canon: CanonSet[] | undefined = atlas.canon;
+  const toponyms: Toponym[] | undefined = atlas.toponyms;
 
   const topTwo = states.slice(0, 2);
   const topTwoShare = topTwo.reduce((a, s) => a + s.n, 0);
@@ -315,6 +320,124 @@ export default function SacredPage() {
           </div>
         </div>
       </Section>
+
+      {canon && canon.length > 0 && (
+        <Section eyebrow="Canon" title="What the traditions say about themselves">
+          <p className="mb-6 max-w-[68ch] text-[14px] leading-[1.75] text-[color:var(--text-secondary)]">
+            A tradition naming its own sites is a different kind of evidence from a
+            database field, and a better one for a question about tradition. These lists
+            come from each tradition&rsquo;s own article. Two of them are not deity sets
+            at all — the Char Dham spans three of Vishnu&rsquo;s sites and one of
+            Shiva&rsquo;s, so it names no single god and contributes no dedication here.
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {canon.map((c) => (
+              <div key={c.id} className="rounded-lg border bg-[var(--surface-1)] p-4">
+                <div className="flex items-baseline justify-between gap-2">
+                  <h3 className="text-[13px] font-semibold">{c.label}</h3>
+                  <span className="eyebrow shrink-0">
+                    {c.deity ?? "a circuit"}
+                  </span>
+                </div>
+                <p className="mono mt-2.5 text-[19px] leading-none tabular-nums">
+                  {n(c.placed)}
+                  <span className="text-[13px] text-[color:var(--text-muted)]">
+                    {" "}of {n(c.claimed)} placed
+                  </span>
+                </p>
+                <p className="mt-2.5 text-[11.5px] leading-relaxed text-[color:var(--text-secondary)]">
+                  {c.note}
+                </p>
+                {c.placed < c.claimed && (
+                  <p className="mt-2 text-[11px] leading-relaxed text-[color:var(--text-muted)]">
+                    {n(c.claimed - c.placed)} of its sites are not in Wikidata with
+                    coordinates, or are named there in a way this could not match without
+                    guessing between candidates.
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {toponyms && toponyms.length > 0 && (
+        <Section eyebrow="Names" title="Varahamula, and what a place-name records">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+            <div className="space-y-4 text-[14px] leading-[1.75] text-[color:var(--text-secondary)]">
+              <p>
+                Where no count survives, a name sometimes does. Kalhana&rsquo;s{" "}
+                <em>Rajatarangini</em> and Stein&rsquo;s geographical index to it match
+                Sanskrit place-names in Kashmir to their nineteenth-century forms, and
+                that record is checkable in a way that a reconstructed population is not.
+              </p>
+              <p>
+                Two different things sit in this table and they are marked apart. A
+                phonetic change is centuries of ordinary drift with no author and no
+                date. An official renaming is an administrative act with a year attached.
+                Calling both &ldquo;renaming&rdquo; would suggest the first was a policy
+                and the second an evolution.
+              </p>
+              <p>
+                No etymology here is asserted by this site. Each row is a claim found in
+                the cited article, quoted as it stands; a pairing that no article
+                supports is not published.
+              </p>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[30rem] border-collapse text-left">
+                <thead>
+                  <tr className="border-b">
+                    <th className="eyebrow pb-2 pr-3">Now</th>
+                    <th className="eyebrow pb-2 pr-3">Earlier</th>
+                    <th className="eyebrow pb-2">Change</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {toponyms.filter((t) => t.verified).map((t) => (
+                    <tr key={`${t.modern}-${t.older}`} className="border-b align-top">
+                      <td className="py-2.5 pr-3 text-[13px] font-medium">{t.modern}</td>
+                      <td className="py-2.5 pr-3 text-[13px]">{t.older}</td>
+                      <td className="py-2.5 text-[12px] text-[color:var(--text-secondary)]">
+                        {t.kind === "official"
+                          ? `Renamed${t.year ? ` in ${t.year}` : ""}`
+                          : "Phonetic drift"}
+                        <span className="text-[color:var(--text-muted)]"> · {t.region}</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="mt-8 space-y-3">
+            {toponyms.filter((t) => t.verified && t.region === "Kashmir").map((t) => (
+              <figure key={t.modern} className="rounded-lg border bg-[var(--surface-1)] p-4">
+                <figcaption className="eyebrow mb-2">
+                  {t.modern} ← {t.older}
+                </figcaption>
+                <blockquote className="text-[13px] leading-[1.7] text-[color:var(--text-secondary)]">
+                  &ldquo;{t.evidence}&rdquo;
+                </blockquote>
+                <p className="mt-2 text-[11px] text-[color:var(--text-muted)]">
+                  Wikipedia, &ldquo;{t.page.replace(/_/g, " ")}&rdquo;
+                </p>
+              </figure>
+            ))}
+          </div>
+
+          {toponyms.some((t) => !t.verified) && (
+            <p className="mt-5 text-[12px] leading-relaxed text-[color:var(--text-muted)]">
+              {n(toponyms.filter((t) => !t.verified).length)} pairing
+              {toponyms.filter((t) => !t.verified).length === 1 ? " is" : "s are"} held back:
+              the article cited for{" "}
+              {toponyms.filter((t) => !t.verified).map((t) => t.modern).join(", ")} carries
+              no sentence supporting the older form, so nothing is claimed for it here.
+            </p>
+          )}
+        </Section>
+      )}
 
       <Section eyebrow="Refusals" title="What this page will not show you">
         <div className="grid gap-6 sm:grid-cols-2">

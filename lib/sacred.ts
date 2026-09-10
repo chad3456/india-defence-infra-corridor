@@ -27,6 +27,35 @@ export interface Site {
   heritage: string | null;
 }
 
+export interface CanonMember { name: string; qid: string | null }
+
+export interface CanonSet {
+  id: string;
+  label: string;
+  /** Null where the tradition is a circuit rather than a dedication. */
+  deity: string | null;
+  note: string;
+  /** How many members the tradition's own list names. */
+  claimed: number;
+  /** How many of those this atlas can place on the map. */
+  placed: number;
+  members: CanonMember[];
+  problems?: string[];
+}
+
+export interface Toponym {
+  modern: string;
+  older: string;
+  page: string;
+  kind: "phonetic" | "official";
+  region: string;
+  gloss?: string;
+  year?: number;
+  /** The sentence in the cited article that carries the claim. */
+  evidence: string | null;
+  verified: boolean;
+}
+
 export interface Rejected {
   qid: string; name: string; lat: number; lon: number; why: string;
 }
@@ -38,12 +67,16 @@ export interface Atlas {
   coverage: {
     mapped: number;
     withStatedDedication: number;
+    withCanonicalDedication?: number;
     withInception: number;
     withHeritage: number;
     withState: number;
     rejected: number;
   };
   rejected: Rejected[];
+  /** Present only once the ingest that builds it has run. */
+  canon?: CanonSet[];
+  toponyms?: Toponym[];
   sites: Site[];
 }
 
