@@ -85,12 +85,24 @@ interface Target {
   note?: string;
 }
 
-/** How many Hindu temples in India Wikidata actually holds, with and without coordinates. */
-const SPARQL_COUNT = `
-SELECT (COUNT(DISTINCT ?item) AS ?all) (COUNT(DISTINCT ?withCoord) AS ?mapped) WHERE {
-  ?item wdt:P31/wdt:P279* wd:Q842402 .
-  ?item wdt:P17 wd:Q668 .
-  OPTIONAL { ?item wdt:P625 ?c . BIND(?item AS ?withCoord) }
+/**
+ * How many Hindu temples in India Wikidata holds, and how many are mapped.
+ *
+ * Two plain counts rather than one clever one. The first attempt asked for
+ * both in a single query with `OPTIONAL { ... BIND(?item AS ?withCoord) }`,
+ * which makes the endpoint materialise the optional join before aggregating;
+ * it ran past every timeout the probe would give it and past the job's own,
+ * and took the report down with it. Two full scans that each finish beat one
+ * that does not.
+ */
+const SPARQL_COUNT_ALL = `
+SELECT (COUNT(DISTINCT ?item) AS ?n) WHERE {
+  ?item wdt:P31/wdt:P279* wd:Q842402 ; wdt:P17 wd:Q668 .
+}`;
+
+const SPARQL_COUNT_MAPPED = `
+SELECT (COUNT(DISTINCT ?item) AS ?n) WHERE {
+  ?item wdt:P31/wdt:P279* wd:Q842402 ; wdt:P17 wd:Q668 ; wdt:P625 ?c .
 }`;
 
 /** P825 "dedicated to" — the property that actually names the god. */
@@ -150,18 +162,28 @@ ORDER BY ?item
 LIMIT 500
 OFFSET 3000`;
 
+/**
+ * Decisive first, expensive last.
+ *
+ * The probe writes its report after every target, so the order of this list is
+ * the order in which answers become durable. The two questions that decide the
+ * design — does P825 carry a real deity distribution, and does OFFSET reach
+ * past 3,000 — go first, so a run killed by the job timeout still leaves them
+ * on disk. The full-scan counts, which are nice to know and slow to get, go
+ * last where losing them costs nothing.
+ */
 const SPARQL: Array<{ id: string; what: string; q: string; note?: string }> = [
-  {
-    id: "wdqs-count",
-    what: "How many Hindu temples in India Wikidata holds, and how many are mapped",
-    q: SPARQL_COUNT,
-    note: "The first round returned exactly 3,000 rows, which is the LIMIT and therefore not a count.",
-  },
   {
     id: "wdqs-dedicated",
     what: "P825 'dedicated to' — the deity distribution",
     q: SPARQL_DEDICATED,
     note: "The axis the page needs. P140 gave eight values for the whole country.",
+  },
+  {
+    id: "wdqs-page",
+    what: "OFFSET paging past the 3,000 the first round could see",
+    q: SPARQL_PAGE,
+    note: "If this returns rows, the whole set is reachable in pages.",
   },
   {
     id: "wdqs-religion",
@@ -176,10 +198,15 @@ const SPARQL: Array<{ id: string; what: string; q: string; note?: string }> = [
     note: "Lets the evidence set the scope instead of my memory of it.",
   },
   {
-    id: "wdqs-page",
-    what: "OFFSET paging past the 3,000 the first round could see",
-    q: SPARQL_PAGE,
-    note: "If this returns rows, the whole set is reachable in pages.",
+    id: "wdqs-count-all",
+    what: "How many Hindu temples in India Wikidata holds",
+    q: SPARQL_COUNT_ALL,
+    note: "The first round returned exactly 3,000 rows, which is the LIMIT and therefore not a count.",
+  },
+  {
+    id: "wdqs-count-mapped",
+    what: "How many of them carry coordinates",
+    q: SPARQL_COUNT_MAPPED,
   },
 ];
 
@@ -306,9 +333,15 @@ function flatten(body: string, take: number): { rows: number; sample: Array<Reco
 export async function run(): Promise<void> {
   const findings: Finding[] = [];
   for (const t of TARGETS) {
-    // WDQS wants a real accept header and is slow on the paging query.
+    // WDQS enforces its own 60-second query limit, so a client timeout above
+    // that only buys time to be told no more slowly, and two retries on a
+    // query the endpoint will never finish is four and a half wasted minutes
+    // out of a twenty-minute job. One retry, and give up just past where the
+    // endpoint itself gives up.
     const res = await getText(t.url, {
-      cacheMs: 0, retries: 2, timeoutMs: 90_000,
+      cacheMs: 0,
+      retries: t.layer === "sites" ? 1 : 2,
+      timeoutMs: t.layer === "sites" ? 70_000 : 45_000,
       ...(t.layer === "sites" ? { accept: "application/sparql-results+json" } : {}),
     });
     const body = res.data ?? "";
