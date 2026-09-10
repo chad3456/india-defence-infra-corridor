@@ -160,6 +160,28 @@ function parsePoint(wkt: string): { lat: number; lon: number } | null {
   return { lat, lon };
 }
 
+/**
+ * India's bounding box, generously drawn.
+ *
+ * Not a border and not used as one — a site inside this box is still placed by
+ * polygon, and this only decides whether the coordinates are worth believing.
+ * Two sites in the first live run were not: a Venkatachalapathy temple whose
+ * latitude is correct for Tamil Nadu and whose longitude puts it in the Gulf
+ * of Thailand, and a Sri Muthumariyamman temple sitting in Liverpool — a real
+ * Tamil temple in England, carrying "country: India" on Wikidata.
+ *
+ * Both are upstream errors, and neither should fail a build forever. They are
+ * dropped and counted instead. The count is the safeguard: WKT writes
+ * longitude first, so a positional misread would put every site in the Indian
+ * Ocean and reject nearly all of them, which is loud in a way that a silent
+ * filter would not be.
+ */
+const BOX = { minLat: 6, maxLat: 37.6, minLon: 67, maxLon: 97.5 };
+
+function inIndia(lat: number, lon: number): boolean {
+  return lat >= BOX.minLat && lat <= BOX.maxLat && lon >= BOX.minLon && lon <= BOX.maxLon;
+}
+
 async function loadStates(): Promise<FeatureCollection<Geometry, { name: string | null }>> {
   const t = JSON.parse(await readFile(STATE_FILE, "utf8")) as
     Topology<{ india: GeometryCollection<{ name: string | null }> }>;
@@ -171,6 +193,7 @@ export async function run(): Promise<void> {
 
   // ── The spine, in pages ────────────────────────────────────────────────
   const byQid = new Map<string, Site>();
+  const rejected: Array<{ qid: string; name: string; lat: number; lon: number; why: string }> = [];
   for (let page = 0; page < MAX_PAGES; page++) {
     const rows = await sparql(spineQuery(page * PAGE), `spine page ${page + 1}`);
     if (rows === null) break;
@@ -183,6 +206,10 @@ export async function run(): Promise<void> {
       // A label that is still a Q-id means Wikidata has no English label; the
       // item is real but unnameable on a page, so it is not mapped.
       if (/^Q\d+$/.test(name)) continue;
+      if (!inIndia(p.lat, p.lon)) {
+        rejected.push({ qid, name, lat: p.lat, lon: p.lon, why: "coordinates fall outside India" });
+        continue;
+      }
       const st = states.features.find((f) => geoContains(f, [p.lon, p.lat]));
       byQid.set(qid, {
         qid, name, lat: p.lat, lon: p.lon,
@@ -194,7 +221,16 @@ export async function run(): Promise<void> {
     }
     if (rows.length < PAGE) break;
   }
-  console.log(`spine: ${byQid.size} mapped sites`);
+  console.log(`spine: ${byQid.size} mapped sites, ${rejected.length} rejected`);
+  for (const r of rejected) console.log(`    rejected  ${r.name}  ${r.lat},${r.lon}`);
+  // A handful is upstream noise. A third of the map is a bug in this file.
+  if (rejected.length > byQid.size * 0.02) {
+    throw new Error(
+      `${rejected.length} of ${rejected.length + byQid.size} sites fell outside India. ` +
+      "That is too many to be upstream typos — check that Point() is being read " +
+      "longitude-first before trusting any of this.",
+    );
+  }
 
   // ── Stated dedications ─────────────────────────────────────────────────
   const ded = await sparql(DEDICATION_QUERY, "dedications");
@@ -236,7 +272,15 @@ export async function run(): Promise<void> {
       withInception: sites.filter((s) => s.inception).length,
       withHeritage: sites.filter((s) => s.heritage).length,
       withState: sites.filter((s) => s.state).length,
+      rejected: rejected.length,
     },
+    /**
+     * Sites Wikidata places outside India while calling them Indian. Kept in
+     * the file rather than dropped in silence: they are a small, checkable
+     * statement about the source's accuracy, and hiding them would make this
+     * map look cleaner than its inputs are.
+     */
+    rejected,
     sites,
   }, null, 2) + "\n", "utf8");
 

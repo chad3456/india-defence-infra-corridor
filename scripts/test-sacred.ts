@@ -34,6 +34,7 @@ interface Site {
 }
 const a = JSON.parse(readFileSync(FILE, "utf8")) as {
   sites: Site[];
+  rejected: Array<{ qid: string; name: string; lat: number; lon: number; why: string }>;
   coverage: Record<string, number>;
   note: string;
 };
@@ -52,8 +53,18 @@ ok("every site has a Q-id", a.sites.every((s) => /^Q\d+$/.test(s.qid)));
   const outside = a.sites.filter(
     (s) => s.lat < 6 || s.lat > 37.6 || s.lon < 67 || s.lon > 97.5,
   );
-  ok("every site is inside India's bounding box", outside.length === 0,
+  ok("every mapped site is inside India's bounding box", outside.length === 0,
     outside.slice(0, 3).map((s) => `${s.name} ${s.lat},${s.lon}`).join(" / "));
+
+  // The connector drops sites whose coordinates put them elsewhere, and two
+  // real ones did on the first live run: a temple whose longitude lands in the
+  // Gulf of Thailand, and a Tamil temple in Liverpool tagged "country: India".
+  // A handful is upstream noise; a flood means Point() is being read the wrong
+  // way round, so the count is checked and not just the survivors.
+  const total = a.sites.length + a.rejected.length;
+  ok("rejections stay at the level of upstream typos, not a coordinate swap",
+    a.rejected.length <= total * 0.02, `${a.rejected.length} of ${total}`);
+  ok("every rejection says why", a.rejected.every((r) => r.why.length > 0));
 }
 {
   const placed = a.sites.filter((s) => s.state).length;
