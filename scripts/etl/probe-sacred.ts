@@ -141,6 +141,36 @@ LIMIT 80`;
  * ever grows past a few per cent of the corpus, the deity axis can stop
  * leaning on inference.
  */
+/**
+ * Canon membership, asked structurally rather than read out of prose.
+ *
+ * The obvious way to find the twelve Jyotirlingas is to parse the Jyotirlinga
+ * article. That means guessing at a table layout that can change under you,
+ * and it cannot tell a link in a list of members from a link in a sentence
+ * about something else.
+ *
+ * Wikidata models these as groups: a member temple points at the group with
+ * P31 (instance of), P361 (part of) or P1269 (facet of). Resolving the group
+ * from its Wikipedia article title and then asking for its members gives a
+ * membership list that is a statement rather than an inference — and one that
+ * carries coordinates, which is what puts a canonical site on the map.
+ *
+ * If this comes back thin, the canonical tier gets built from wikitext after
+ * all, and this probe is how that decision gets made on evidence.
+ */
+const SPARQL_CANON = `
+SELECT ?grpLabel ?itemLabel ?coord WHERE {
+  VALUES ?title {
+    "Jyotirlinga"@en "Shakta pithas"@en "Char Dham"@en
+    "Chota Char Dham"@en "Divya Desam"@en "Pancharama Kshetras"@en
+  }
+  ?article schema:about ?grp ; schema:isPartOf <https://en.wikipedia.org/> ; schema:name ?title .
+  ?item (wdt:P31|wdt:P361|wdt:P1269) ?grp .
+  OPTIONAL { ?item wdt:P625 ?coord . }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+LIMIT 500`;
+
 const SPARQL: Array<{ id: string; what: string; q: string; note?: string }> = [
   {
     id: "wdqs-dedicated",
@@ -150,6 +180,12 @@ const SPARQL: Array<{ id: string; what: string; q: string; note?: string }> = [
       "Watched for growth. At roughly 600 of 16,042 the stated tier is too " +
       "thin to carry the deity axis by itself, which is why the canonical " +
       "tier exists at all.",
+  },
+  {
+    id: "wdqs-canon",
+    what: "Members of the canonical sets, resolved from their article titles",
+    q: SPARQL_CANON,
+    note: "Decides whether the canonical tier is a Wikidata query or a wikitext parse.",
   },
 ];
 
@@ -182,11 +218,20 @@ const WIKI_PAGES: Array<{ page: string; layer: Target["layer"]; look?: string[];
     look: ["Varahamula", "Varaha", "boar"],
     note: "The user's own example. A 200 here is not evidence the article says Varahamula.",
   },
-  { page: "Kashmir_Valley", layer: "names", look: ["Kashyapa", "Satisar"] },
-  { page: "Anantnag", layer: "names", look: ["Islamabad", "Anantnaag", "spring"] },
+  // The Kashmir Valley article carries neither Kashyapa nor Satisar — checked,
+  // 13 KB, both absent. The lake-drained-by-Kashyapa tradition is the user's
+  // own starting point, so it is chased to the articles that would hold it
+  // rather than quietly dropped.
+  { page: "Kashmir", layer: "names", look: ["Kashyapa", "Kashyapamar", "Satisar"] },
+  { page: "Kashyapa", layer: "names", look: ["Kashmir", "sage"] },
+  { page: "Nilamata_Purana", layer: "names", look: ["Kashmir", "Satisar", "lake"] },
+  { page: "Anantnag", layer: "names", look: ["Islamabad", "spring"] },
   { page: "Srinagar", layer: "names", look: ["Pravarasena", "Sri", "Ashoka"] },
   { page: "Martand_Sun_Temple", layer: "names", look: ["Lalitaditya", "8th century"] },
-  { page: "Kashmiri_Hindus", layer: "census", look: ["1941", "census", "1990"] },
+  // Kashmiri Hindus carries no 1941 figure — checked. The censuses themselves
+  // do, and they are where this has to come from.
+  { page: "Kashmiri_Hindus", layer: "census", look: ["census", "1990"] },
+  { page: "1941_census_of_India", layer: "census", look: ["Kashmir", "religion"] },
   {
     page: "Census_in_British_India", layer: "census",
     look: ["1871", "1881", "1891", "1901", "1941"],
@@ -218,6 +263,15 @@ const TARGETS: Target[] = [
     expect: /"wikitext"/,
     ...(w.look ? { look: w.look } : {}),
     ...(w.note ? { note: w.note } : {}),
+  })),
+  ...["Andhra_Pradesh", "Tamil_Nadu", "Uttar_Pradesh", "Jammu_and_Kashmir"].map((st): Target => ({
+    id: `wiki-mni-${st.toLowerCase().replace(/_/g, "-")}`,
+    layer: "evidence" as const,
+    what: `Monuments of National Importance in ${st.replace(/_/g, " ")}`,
+    url: `${WIKI}?action=parse&page=List_of_Monuments_of_National_Importance_in_${st}&redirects=1&prop=wikitext&formatversion=2&format=json`,
+    expect: /"wikitext"/,
+    look: ["Temple", "N-"],
+    note: "The ASI's own site returned 8.4 MB carrying no state names, which is a rendered app, not a table.",
   })),
   {
     id: "asi-monuments",
@@ -289,7 +343,10 @@ export async function run(): Promise<void> {
     });
     const body = res.data ?? "";
 
-    const flat = res.ok && t.layer === "sites" ? flatten(body, 40) : null;
+    // The canon query's value is in the membership itself, not a taste of it,
+    // so it gets a much larger sample than the distribution queries need.
+    const take = t.id === "wdqs-canon" ? 400 : 40;
+    const flat = res.ok && t.layer === "sites" ? flatten(body, take) : null;
     const look = res.ok && t.look
       ? {
           found: t.look.filter((w) => body.toLowerCase().includes(w.toLowerCase())),
