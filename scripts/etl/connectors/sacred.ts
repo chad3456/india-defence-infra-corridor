@@ -841,9 +841,29 @@ function percentOf(cell: string): number | null {
  * live in {{Bar box}} templates, which are not tables at all.
  *
  * That was a bad page choice, not a bad parser, so the page is chosen by
- * evidence now instead of by my first guess. The article about the state that
- * existed until 2019 is tried first, because a long series belongs to the
- * entity that existed for its whole length.
+ * evidence now instead of by my first guess.
+ *
+ * ── Where this stopped, and why ──────────────────────────────────────────
+ *
+ * All five candidates were tried and none yielded a publishable series. The
+ * diagnosis is recorded in the atlas and it is worth reading before anyone
+ * extends this:
+ *
+ *   "Religion in Jammu and Kashmir" and "Jammu and Kashmir (state)" both
+ *   redirect to administrative articles whose only tables are districts and
+ *   constituencies.
+ *
+ *   The "Kashmir" article does carry the figures — a twelve-row table opening
+ *   "Islam | 2,154,695 | 2,398,320 | 2,548,514 | 2,817,636" — but its header
+ *   row parses as empty, so nothing in the record maps a column to a census
+ *   year, and the values are counts rather than shares.
+ *
+ * Reading that table would mean deciding which year each column belongs to.
+ * On Kashmir's religious demography that is not a tolerable guess, so the
+ * layer publishes nothing and the page states the refusal instead. Extending
+ * this means parsing that table's raw wikitext header tiers, deliberately,
+ * with the year mapping checked against a published total — not widening the
+ * regex until something matches.
  */
 const CENSUS_PAGES = [
   "Religion in Jammu and Kashmir",

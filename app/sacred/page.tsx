@@ -526,15 +526,22 @@ export default function SacredPage() {
       <Section eyebrow="Refusals" title="What this page will not show you">
         <div className="grid gap-6 sm:grid-cols-2">
           <div className="rounded-lg border bg-[var(--surface-1)] p-5">
-            <h3 className="text-[13px] font-semibold">Kashmir&rsquo;s demography before the censuses</h3>
+            <h3 className="text-[13px] font-semibold">Kashmir&rsquo;s demographic ratio</h3>
             <p className="mt-2 text-[13px] leading-[1.7] text-[color:var(--text-secondary)]">
               There is no population count for Kashmir from the 1200s, or from any century
               before the colonial enumerations. Kalhana&rsquo;s <em>Rajatarangini</em> is a
               dynastic chronicle, not a census; it names kings and campaigns, not households.
-              The first count worth the name is 1873 and the first comparable one 1891. A ratio
-              drawn back to the age of Kashyapa would be a reconstruction presented as a
-              measurement, on the most contested demographic question in the country. Where
-              counting starts, this will start.
+              The first count worth the name is 1873 and the first comparable one 1891.
+            </p>
+            <p className="mt-3 text-[13px] leading-[1.7] text-[color:var(--text-secondary)]">
+              The series <em>after</em> 1891 is not published here either, and the reason is
+              worth stating plainly. The open articles do carry the figures — one table lists
+              Islam at 2,154,695 rising across four later columns — but its header row is
+              empty in the source, so nothing in the record says which column is which census.
+              The numbers are counts, not shares. Publishing them would mean deciding for
+              myself which year each column belongs to. On the most contested demographic
+              question in the country, that is a guess wearing the clothes of a measurement,
+              and this page would rather show nothing than do it.
             </p>
           </div>
           <div className="rounded-lg border bg-[var(--surface-1)] p-5">
