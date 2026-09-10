@@ -1,41 +1,52 @@
 /**
  * What the open record holds about India's sacred geography.
  *
- * `npm run sacred:probe`. Four layers, because this subject fails in four
+ * `npm run sacred:probe`. Five layers, because this subject fails in five
  * different ways and lumping them together is how a cultural map turns into an
  * assertion with coordinates on it.
  *
- * ── Layer one: sites, with coordinates and a deity ───────────────────────
+ * ── Layer one: sites, with coordinates and a dedication ──────────────────
  *
- * Wikidata is the right instrument. It carries the temple, its coordinates,
- * the deity it is dedicated to, its heritage designation and often an
- * inception date, as separate statements that can be queried rather than read
- * out of prose. A SPARQL endpoint answering is the difference between mapping
- * a few dozen famous sites and mapping a few thousand.
+ * Wikidata is the right instrument: it carries the temple, its coordinates,
+ * the figure it is dedicated to and its heritage designation as separate
+ * statements that can be queried rather than read out of prose.
+ *
+ * The first round asked for the deity with P140 and got eight distinct values
+ * for the whole country. P140 is "religion or worldview", and on a temple it
+ * usually resolves to Hinduism — the religion, not the god. The property that
+ * actually carries "this temple is Shiva's" is P825, "dedicated to". This
+ * round asks both and records what each returns, because a deity axis built on
+ * the wrong property would have been eight slices wide and looked deliberate.
+ *
+ * The temples query also came back at exactly 3,000 rows, which is the LIMIT
+ * and therefore not an answer. This round counts first.
  *
  * ── Layer two: the canonical sets ────────────────────────────────────────
  *
- * The twelve Jyotirlingas, the Shakti Pithas, the Char Dham. These are
- * traditions, not archaeology, and their lists differ between texts — the
- * Shakti Pitha count is 51 in one reckoning, 108 in another, and the sites
- * assigned differ too. That disagreement is itself the interesting thing and
- * the tracker should carry it rather than pick a number.
+ * The twelve Jyotirlingas, the Shakta Pithas, the Char Dham, the 108 Divya
+ * Desams. These are traditions, not archaeology, and their lists differ
+ * between texts — the Pitha count is 51 in one reckoning, 108 in another, and
+ * the sites assigned differ too. That disagreement is the interesting thing
+ * and the tracker should carry it rather than pick a number.
  *
  * ── Layer three: the evidence ────────────────────────────────────────────
  *
- * The Archaeological Survey of India's list of Monuments of National
- * Importance is the closest thing to an evidentiary floor: a site on it has
- * been surveyed, dated and protected by a state body. A site attested only in
- * a Purana is a different kind of claim, and a page that draws both as the
- * same dot is making an argument it has not declared.
+ * The ASI's Monuments of National Importance is the closest thing to an
+ * evidentiary floor: a site on it has been surveyed, dated and protected by a
+ * state body. A site attested only in a Purana is a different kind of claim,
+ * and a page that draws both as the same dot is making an argument it has not
+ * declared.
  *
  * ── Layer four: names, and what they record ──────────────────────────────
  *
  * This is where the user's own example lives — Varahamula becoming Baramulla.
- * Toponymy is real, checkable philology: Stein's translation of Kalhana's
+ * Toponymy is checkable philology: Stein's translation of Kalhana's
  * Rajatarangini carries a geographical index matching Sanskrit place-names to
  * their nineteenth-century forms, and that mapping is evidence of continuity
- * and change that survives where no census does.
+ * where no census survives. So this round does not merely ask whether the
+ * pages load — it asks whether the specific etymologies are actually written
+ * in them, by looking for the words. A 200 status on the Baramulla article is
+ * not evidence that the article says Varahamula.
  *
  * ── What this probe will not go looking for ──────────────────────────────
  *
@@ -63,86 +74,179 @@ interface Target {
   what: string;
   url: string;
   expect: RegExp;
+  /**
+   * Words that must appear in the body for this target to be worth anything.
+   *
+   * The point of the layer-four targets is a specific etymology, not a page.
+   * Recording which of these were found is the difference between "the article
+   * loaded" and "the article carries the claim I intend to cite".
+   */
+  look?: string[];
   note?: string;
 }
 
+/** How many Hindu temples in India Wikidata actually holds, with and without coordinates. */
+const SPARQL_COUNT = `
+SELECT (COUNT(DISTINCT ?item) AS ?all) (COUNT(DISTINCT ?withCoord) AS ?mapped) WHERE {
+  ?item wdt:P31/wdt:P279* wd:Q842402 .
+  ?item wdt:P17 wd:Q668 .
+  OPTIONAL { ?item wdt:P625 ?c . BIND(?item AS ?withCoord) }
+}`;
+
+/** P825 "dedicated to" — the property that actually names the god. */
+const SPARQL_DEDICATED = `
+SELECT ?d ?dLabel (COUNT(DISTINCT ?item) AS ?n) WHERE {
+  ?item wdt:P31/wdt:P279* wd:Q842402 .
+  ?item wdt:P17 wd:Q668 .
+  ?item wdt:P825 ?d .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+GROUP BY ?d ?dLabel
+ORDER BY DESC(?n)
+LIMIT 80`;
+
+/** P140 for comparison, to show on the record why it was the wrong axis. */
+const SPARQL_RELIGION = `
+SELECT ?d ?dLabel (COUNT(DISTINCT ?item) AS ?n) WHERE {
+  ?item wdt:P31/wdt:P279* wd:Q842402 .
+  ?item wdt:P17 wd:Q668 .
+  ?item wdt:P140 ?d .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+GROUP BY ?d ?dLabel
+ORDER BY DESC(?n)
+LIMIT 80`;
+
 /**
- * Hindu temples in India with coordinates, and a deity where one is stated.
+ * Every class of place of worship in India that carries coordinates.
  *
- * Deliberately broad: P31/P279* wd:Q842402 (Hindu temple) rather than a
- * hand-listed set, so the query returns what Wikidata actually holds instead
- * of what I remembered to ask for. Capped, because an uncapped query against a
- * public endpoint is how a public endpoint stops answering.
+ * "Cultural landscape" is broader than Hindu temples, and asking the endpoint
+ * which classes it actually populates is how the scope gets set by the data
+ * rather than by what I happened to remember — mosques, gurdwaras, churches,
+ * Jain and Buddhist sites included or excluded on evidence.
  */
-const SPARQL_TEMPLES = `
-SELECT ?item ?itemLabel ?coord ?deityLabel ?stateLabel ?inception ?heritageLabel WHERE {
+const SPARQL_CLASSES = `
+SELECT ?cls ?clsLabel (COUNT(DISTINCT ?item) AS ?n) WHERE {
+  ?item wdt:P17 wd:Q668 ; wdt:P625 ?c ; wdt:P31 ?cls .
+  ?cls wdt:P279* wd:Q1370598 .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+GROUP BY ?cls ?clsLabel
+ORDER BY DESC(?n)
+LIMIT 80`;
+
+/** A page of the real payload, to confirm OFFSET paging works before relying on it. */
+const SPARQL_PAGE = `
+SELECT ?item ?itemLabel ?coord ?dedLabel ?inception ?heritageLabel WHERE {
   ?item wdt:P31/wdt:P279* wd:Q842402 .
   ?item wdt:P17 wd:Q668 .
   ?item wdt:P625 ?coord .
-  OPTIONAL { ?item wdt:P140 ?deity . }
-  OPTIONAL { ?item wdt:P131 ?state . }
+  OPTIONAL { ?item wdt:P825 ?ded . }
   OPTIONAL { ?item wdt:P571 ?inception . }
   OPTIONAL { ?item wdt:P1435 ?heritage . }
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 }
-LIMIT 3000`;
+ORDER BY ?item
+LIMIT 500
+OFFSET 3000`;
 
-/** Sites carrying a named principal deity, which is the axis the page needs. */
-const SPARQL_DEITIES = `
-SELECT ?deity ?deityLabel (COUNT(DISTINCT ?item) AS ?n) WHERE {
-  ?item wdt:P31/wdt:P279* wd:Q842402 .
-  ?item wdt:P17 wd:Q668 .
-  ?item wdt:P140 ?deity .
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-}
-GROUP BY ?deity ?deityLabel
-ORDER BY DESC(?n)
-LIMIT 200`;
+const SPARQL: Array<{ id: string; what: string; q: string; note?: string }> = [
+  {
+    id: "wdqs-count",
+    what: "How many Hindu temples in India Wikidata holds, and how many are mapped",
+    q: SPARQL_COUNT,
+    note: "The first round returned exactly 3,000 rows, which is the LIMIT and therefore not a count.",
+  },
+  {
+    id: "wdqs-dedicated",
+    what: "P825 'dedicated to' — the deity distribution",
+    q: SPARQL_DEDICATED,
+    note: "The axis the page needs. P140 gave eight values for the whole country.",
+  },
+  {
+    id: "wdqs-religion",
+    what: "P140 'religion or worldview' — for comparison",
+    q: SPARQL_RELIGION,
+    note: "Kept on the record to show why this was the wrong property, not to use.",
+  },
+  {
+    id: "wdqs-classes",
+    what: "Every class of place of worship in India carrying coordinates",
+    q: SPARQL_CLASSES,
+    note: "Lets the evidence set the scope instead of my memory of it.",
+  },
+  {
+    id: "wdqs-page",
+    what: "OFFSET paging past the 3,000 the first round could see",
+    q: SPARQL_PAGE,
+    note: "If this returns rows, the whole set is reachable in pages.",
+  },
+];
 
-const WIKI_PAGES: Array<{ page: string; layer: Target["layer"]; note?: string }> = [
-  { page: "Jyotirlinga", layer: "canon", note: "The twelve, and the variant lists." },
-  { page: "Shakti_Pitha", layer: "canon", note: "51 or 108 depending on the text — the disagreement is the point." },
-  { page: "Char_Dham", layer: "canon" },
-  { page: "Chota_Char_Dham", layer: "canon" },
-  { page: "Divya_Desam", layer: "canon", note: "108 Vishnu sites of the Alvars." },
-  { page: "Pancharama_Kshetras", layer: "canon" },
-  { page: "List_of_Monuments_of_National_Importance_in_India", layer: "evidence" },
-  { page: "Archaeological_Survey_of_India", layer: "evidence" },
-  // Layer four. Stein's index is the scholarly spine for Kashmiri toponymy.
-  { page: "Rajatarangini", layer: "names" },
-  { page: "List_of_renamed_places_in_India", layer: "names" },
-  { page: "Baramulla", layer: "names", note: "Varahamula. The user's own example, and a checkable one." },
-  { page: "Kashmir_Valley", layer: "names" },
-  { page: "Anantnag", layer: "names" },
-  { page: "Srinagar", layer: "names" },
-  // Census. Where counting actually starts.
-  { page: "Demographics_of_Jammu_and_Kashmir", layer: "census" },
-  { page: "1941_Census_of_India", layer: "census" },
-  { page: "Census_of_India", layer: "census" },
+const WIKI_PAGES: Array<{ page: string; layer: Target["layer"]; look?: string[]; note?: string }> = [
+  { page: "Jyotirlinga", layer: "canon", look: ["Somnath", "Kedarnath", "Mahakaleshwar"] },
+  {
+    page: "Shakta_pithas", layer: "canon",
+    look: ["51", "108", "Daksha"],
+    note: "Redirected from Shakti Pitha on the first round. 51 or 108 depending on the text.",
+  },
+  { page: "Char_Dham", layer: "canon", look: ["Badrinath", "Dwarka", "Puri", "Rameswaram"] },
+  { page: "Chota_Char_Dham", layer: "canon", look: ["Yamunotri", "Gangotri"] },
+  { page: "Divya_Desam", layer: "canon", look: ["108", "Alvar"] },
+  { page: "Pancharama_Kshetras", layer: "canon", look: ["Amararama", "Draksharama"] },
+  {
+    page: "Monuments_of_National_Importance", layer: "evidence",
+    look: ["3,6", "Archaeological Survey"],
+    note: "Redirect target of the list page. The evidentiary floor.",
+  },
+  { page: "Archaeological_Survey_of_India", layer: "evidence", look: ["1861", "Cunningham"] },
+  // Layer four. The pages must carry the etymologies, not merely exist.
+  {
+    page: "Rajatarangini", layer: "names",
+    look: ["Kalhana", "Stein", "1148", "1149"],
+    note: "Stein's index is the scholarly spine for Kashmiri toponymy.",
+  },
+  { page: "List_of_renamed_places_in_India", layer: "names", look: ["Renamed", "Bombay", "Mumbai"] },
+  {
+    page: "Baramulla", layer: "names",
+    look: ["Varahamula", "Varaha", "boar"],
+    note: "The user's own example. A 200 here is not evidence the article says Varahamula.",
+  },
+  { page: "Kashmir_Valley", layer: "names", look: ["Kashyapa", "Satisar"] },
+  { page: "Anantnag", layer: "names", look: ["Islamabad", "Anantnaag", "spring"] },
+  { page: "Srinagar", layer: "names", look: ["Pravarasena", "Sri", "Ashoka"] },
+  { page: "Martand_Sun_Temple", layer: "names", look: ["Lalitaditya", "8th century"] },
+  { page: "Kashmiri_Hindus", layer: "census", look: ["1941", "census", "1990"] },
+  {
+    page: "Census_in_British_India", layer: "census",
+    look: ["1871", "1881", "1891", "1901", "1941"],
+    note: "Redirect target of 1941 Census of India. Where counting starts.",
+  },
+  {
+    page: "Jammu_and_Kashmir_(union_territory)", layer: "census",
+    look: ["Demographics", "Census", "2011"],
+    note: "Redirect target of Demographics of Jammu and Kashmir.",
+  },
 ];
 
 const TARGETS: Target[] = [
-  {
-    id: "wdqs-temples",
+  ...SPARQL.map((s): Target => ({
+    id: s.id,
     layer: "sites",
-    what: "Wikidata SPARQL: Hindu temples in India with coordinates",
-    url: `${WDQS}?format=json&query=${encodeURIComponent(SPARQL_TEMPLES)}`,
+    what: `Wikidata SPARQL: ${s.what}`,
+    url: `${WDQS}?format=json&query=${encodeURIComponent(s.q)}`,
     expect: /"bindings"/,
-    note: "The instrument that decides whether this is a map of thousands or of a famous few.",
-  },
-  {
-    id: "wdqs-deities",
-    layer: "sites",
-    what: "Wikidata SPARQL: which deities carry the most sites",
-    url: `${WDQS}?format=json&query=${encodeURIComponent(SPARQL_DEITIES)}`,
-    expect: /"bindings"/,
-  },
+    ...(s.note ? { note: s.note } : {}),
+  })),
   ...WIKI_PAGES.map((w): Target => ({
-    id: `wiki-${w.page.toLowerCase().replace(/_/g, "-").slice(0, 44)}`,
+    id: `wiki-${w.page.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 44)}`,
     layer: w.layer,
     what: `Wikipedia wikitext: ${w.page.replace(/_/g, " ")}`,
-    url: `${WIKI}?action=parse&page=${w.page}&prop=wikitext&formatversion=2&format=json`,
+    // redirects=1 because four of the first round's targets were redirects and
+    // the API returned the redirect line instead of the article.
+    url: `${WIKI}?action=parse&page=${w.page}&redirects=1&prop=wikitext&formatversion=2&format=json`,
     expect: /"wikitext"/,
+    ...(w.look ? { look: w.look } : {}),
     ...(w.note ? { note: w.note } : {}),
   })),
   {
@@ -151,6 +255,8 @@ const TARGETS: Target[] = [
     what: "Archaeological Survey of India, alphabetical monument list",
     url: "https://asi.nic.in/monuments/",
     expect: /monument/i,
+    look: ["Temple", "Circle", "Andhra"],
+    note: "8.4 MB of HTML on the first round. Reachable; the question is whether it is a table.",
   },
   {
     id: "census-india",
@@ -158,6 +264,7 @@ const TARGETS: Target[] = [
     what: "Census of India portal",
     url: "https://censusindia.gov.in/census.website/",
     expect: /census/i,
+    note: "Failed outright on the first round.",
   },
 ];
 
@@ -165,48 +272,78 @@ interface Finding {
   id: string; layer: string; what: string; url: string;
   ok: boolean; status: string; looksRight: boolean | null;
   bytes: number | null; head: string | null;
-  /** For the SPARQL targets: how many rows came back. */
+  /** For SPARQL: how many rows, and the first of them flattened to label/value pairs. */
   rows?: number;
+  sample?: Array<Record<string, string>>;
+  /** For targets carrying `look`: which words were actually in the body. */
+  found?: string[];
+  missing?: string[];
   note?: string;
+}
+
+/** SPARQL bindings, flattened to plain strings so the report is readable. */
+function flatten(body: string, take: number): { rows: number; sample: Array<Record<string, string>> } | null {
+  try {
+    const j = JSON.parse(body) as {
+      results?: { bindings?: Array<Record<string, { value?: string }>> };
+    };
+    const b = j.results?.bindings ?? [];
+    const sample = b.slice(0, take).map((row) => {
+      const out: Record<string, string> = {};
+      for (const [k, v] of Object.entries(row)) {
+        const s = v?.value ?? "";
+        // Entity URIs say nothing a label does not; keep the Q-id only.
+        out[k] = s.replace(/^https?:\/\/www\.wikidata\.org\/entity\//, "");
+      }
+      return out;
+    });
+    return { rows: b.length, sample };
+  } catch {
+    return null;
+  }
 }
 
 export async function run(): Promise<void> {
   const findings: Finding[] = [];
   for (const t of TARGETS) {
-    // WDQS wants a user agent and is slow on a 3,000-row query.
+    // WDQS wants a real accept header and is slow on the paging query.
     const res = await getText(t.url, {
       cacheMs: 0, retries: 2, timeoutMs: 90_000,
       ...(t.layer === "sites" ? { accept: "application/sparql-results+json" } : {}),
     });
     const body = res.data ?? "";
-    let rows: number | undefined;
-    if (res.ok && t.layer === "sites") {
-      try {
-        const j = JSON.parse(body) as { results?: { bindings?: unknown[] } };
-        rows = j.results?.bindings?.length ?? 0;
-      } catch { rows = undefined; }
-    }
+
+    const flat = res.ok && t.layer === "sites" ? flatten(body, 40) : null;
+    const look = res.ok && t.look
+      ? {
+          found: t.look.filter((w) => body.toLowerCase().includes(w.toLowerCase())),
+          missing: t.look.filter((w) => !body.toLowerCase().includes(w.toLowerCase())),
+        }
+      : null;
+
     const f: Finding = {
       id: t.id, layer: t.layer, what: t.what, url: t.url.slice(0, 120),
       ok: res.ok,
       status: res.ok ? "200" : (res.error ?? "failed"),
       looksRight: res.ok ? t.expect.test(body) : null,
       bytes: res.ok ? body.length : null,
-      head: res.ok ? body.slice(0, 200).replace(/\s+/g, " ").trim() : null,
-      ...(rows !== undefined ? { rows } : {}),
+      head: res.ok && !flat ? body.slice(0, 200).replace(/\s+/g, " ").trim() : null,
+      ...(flat ? { rows: flat.rows, sample: flat.sample } : {}),
+      ...(look ? { found: look.found, missing: look.missing } : {}),
       ...(t.note ? { note: t.note } : {}),
     };
     findings.push(f);
     console.log(
       `  ${(!f.ok ? "dead" : f.looksRight ? "ok" : "200/shape").padEnd(11)} ` +
-      `${t.layer.padEnd(9)} ${f.id.padEnd(46)} ${f.bytes ?? 0}` +
-      `${rows !== undefined ? `  ${rows} rows` : ""}`,
+      `${t.layer.padEnd(9)} ${f.id.padEnd(42)} ${f.bytes ?? 0}` +
+      `${flat ? `  ${flat.rows} rows` : ""}` +
+      `${look ? `  found ${look.found.length}/${t.look!.length}` : ""}`,
     );
 
     await mkdir(join(ROOT, "data", "live"), { recursive: true });
     await writeFile(OUT, JSON.stringify({
       probedAt: new Date().toISOString(),
-      note: "Reachability only. No series are published from this file.",
+      note: "Reachability and shape only. No series are published from this file.",
       scope:
         "Sacred geography as an evidenced record: sites with coordinates, the canonical " +
         "lists and their disagreements, what has been archaeologically surveyed, and the " +
@@ -223,6 +360,11 @@ export async function run(): Promise<void> {
     const l = findings.filter((f) => f.layer === layer);
     if (l.length === 0) continue;
     console.log(`\n${layer}: ${l.filter((f) => f.ok && f.looksRight).length} of ${l.length} usable`);
+  }
+  const short = findings.filter((f) => (f.missing?.length ?? 0) > 0);
+  if (short.length > 0) {
+    console.log("\nPages that loaded but did not carry what they were asked for:");
+    for (const f of short) console.log(`  ${f.id.padEnd(42)} missing ${f.missing!.join(", ")}`);
   }
 }
 
