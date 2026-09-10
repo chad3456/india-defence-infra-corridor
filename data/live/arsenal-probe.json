@@ -1,6 +1,8 @@
 {
-  "probedAt": "2026-09-09T16:53:48.090Z",
+  "probedAt": "2026-09-10T05:48:01.185Z",
   "note": "Reachability only. No series are published from this file.",
+  "brightData": "not configured",
+  "robotsPolicy": "Hosts that answered 401 or 403 were re-checked against their own robots.txt. An unblocked fetch is attempted only where robots.txt permits the path for generic clients.",
   "findings": [
     {
       "id": "owid-military-spending-sipri",
@@ -232,7 +234,9 @@
       "looksRight": null,
       "bytes": null,
       "head": null,
-      "note": "One dated release per sale, naming buyer, system and a dollar ceiling."
+      "note": "One dated release per sale, naming buyer, system and a dollar ceiling.",
+      "robots": "permits",
+      "unblocked": "no-key"
     },
     {
       "id": "dsca-rss",
@@ -243,7 +247,9 @@
       "status": "HTTP 403",
       "looksRight": null,
       "bytes": null,
-      "head": null
+      "head": null,
+      "robots": "permits",
+      "unblocked": "no-key"
     },
     {
       "id": "nato-news",
@@ -275,7 +281,7 @@
       "ok": true,
       "status": "200",
       "looksRight": true,
-      "bytes": 21234,
+      "bytes": 21117,
       "head": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><rss version=\"2.0\" xmlns:content=\"http://purl.org/rss/1.0/modules/content/\" xmlns:wfw=\"http://wellformedweb.org/CommentAPI/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:atom=\"http://www.w3.org"
     },
     {
@@ -297,7 +303,7 @@
       "ok": true,
       "status": "200",
       "looksRight": true,
-      "bytes": 138626,
+      "bytes": 140223,
       "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?> <rss xmlns:nb=\"https://www.newsbreak.com/\" xmlns:media=\"http://search.yahoo.com/mrss/\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:content=\"http://purl.org/rss/1.0/modules/content/\" version=\"2.0\" xm"
     },
     {
@@ -319,8 +325,8 @@
       "ok": true,
       "status": "200",
       "looksRight": true,
-      "bytes": 4636,
-      "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?><rss version=\"2.0\"><channel><title>Press Information Bureau </title><description>Press Information Bureau</description><copyright>Copyright 2009 - 2020 . All rights reserved.</copyright><item><title>भूम"
+      "bytes": 4599,
+      "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?><rss version=\"2.0\"><channel><title>Press Information Bureau </title><description>Press Information Bureau</description><copyright>Copyright 2009 - 2020 . All rights reserved.</copyright><item><title>भार"
     },
     {
       "id": "defensenews",
@@ -330,7 +336,7 @@
       "ok": true,
       "status": "200",
       "looksRight": true,
-      "bytes": 139628,
+      "bytes": 129072,
       "head": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><rss xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:content=\"http://purl.org/rss/1.0/modules/content/\" xmlns:news=\"http://www.pugpig.com/news\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:sy=\"http:"
     },
     {
@@ -341,7 +347,7 @@
       "ok": true,
       "status": "200",
       "looksRight": true,
-      "bytes": 35319,
+      "bytes": 35208,
       "head": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><rss version=\"2.0\" xmlns:content=\"http://purl.org/rss/1.0/modules/content/\" xmlns:wfw=\"http://wellformedweb.org/CommentAPI/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:atom=\"http://www.w3.org"
     },
     {
@@ -507,7 +513,9 @@
       "status": "HTTP 403",
       "looksRight": null,
       "bytes": null,
-      "head": null
+      "head": null,
+      "robots": "permits",
+      "unblocked": "no-key"
     },
     {
       "id": "fas-nuclear",
