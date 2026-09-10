@@ -41,6 +41,10 @@ const a = JSON.parse(readFileSync(FILE, "utf8")) as {
   sites: Site[];
   rejected: Array<{ qid: string; name: string; lat: number; lon: number; why: string }>;
   canon: CanonSet[];
+  census?: {
+    startsAt: number; refusal: string; problems?: string[];
+    shares: Array<{ year: number; group: string; percent: number }>;
+  } | null;
   coverage: Record<string, number>;
   note: string;
 };
@@ -165,6 +169,31 @@ if (!a.canon) {
 
   ok("every canonical member carries its tradition's note",
     a.canon.every((c) => c.note.length > 0));
+}
+
+console.log("\nWhere counting starts");
+if (!a.census) {
+  console.log("  skip  this atlas predates the census layer — the next ingest adds it.");
+} else if (a.census.shares.length === 0) {
+  ok("a census layer with no shares says why", (a.census.problems?.length ?? 0) > 0);
+} else {
+  // The refusal this page is built around. A figure earlier than the first
+  // Kashmir census would mean a chronicle had been read as an enumeration.
+  ok("no share predates the first Kashmir census",
+    a.census.shares.every((s) => s.year >= 1865),
+    String(Math.min(...a.census.shares.map((s) => s.year))));
+
+  ok("every share is a percentage",
+    a.census.shares.every((s) => s.percent >= 0 && s.percent <= 100));
+
+  const byYear = new Map<number, number>();
+  for (const s of a.census.shares) byYear.set(s.year, (byYear.get(s.year) ?? 0) + s.percent);
+  const off = [...byYear.entries()].filter(([, v]) => v < 95 || v > 105);
+  ok("each census year's shares sum to about a hundred", off.length === 0,
+    off.map(([y, v]) => `${y}=${v.toFixed(1)}`).join(", "));
+
+  ok("the refusal about pre-census Kashmir travels with the data",
+    /Rajatarangini|chronicle/i.test(a.census.refusal));
 }
 
 console.log("\nHonesty of the file");

@@ -56,6 +56,18 @@ export interface Toponym {
   verified: boolean;
 }
 
+export interface CensusShare { year: number; group: string; percent: number }
+
+export interface CensusLayer {
+  region: string;
+  source: string;
+  page: string;
+  startsAt: number;
+  shares: CensusShare[];
+  refusal: string;
+  problems?: string[];
+}
+
 export interface Rejected {
   qid: string; name: string; lat: number; lon: number; why: string;
 }
@@ -77,6 +89,7 @@ export interface Atlas {
   /** Present only once the ingest that builds it has run. */
   canon?: CanonSet[];
   toponyms?: Toponym[];
+  census?: CensusLayer | null;
   sites: Site[];
 }
 
@@ -149,4 +162,34 @@ function ordinal(n: number): string {
   if (t >= 11 && t <= 13) return `${n}th`;
   const s = ["th", "st", "nd", "rd"][n % 10] ?? "th";
   return `${n}${s}`;
+}
+
+/**
+ * Census shares as one row per year, groups ordered by their latest size.
+ *
+ * Ordering by the most recent census rather than alphabetically keeps the
+ * largest group in the same place across every year, which is what makes a
+ * stacked row readable as a change over time rather than as a reshuffle.
+ */
+export function censusByYear(shares: CensusShare[]): Array<{
+  year: number;
+  parts: Array<{ group: string; percent: number }>;
+}> {
+  const years = [...new Set(shares.map((s) => s.year))].sort((a, b) => a - b);
+  const latest = years[years.length - 1];
+  const order = shares
+    .filter((s) => s.year === latest)
+    .sort((a, b) => b.percent - a.percent)
+    .map((s) => s.group);
+
+  return years.map((year) => ({
+    year,
+    parts: shares
+      .filter((s) => s.year === year)
+      .sort((a, b) => {
+        const ia = order.indexOf(a.group), ib = order.indexOf(b.group);
+        return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+      })
+      .map((s) => ({ group: s.group, percent: s.percent })),
+  }));
 }

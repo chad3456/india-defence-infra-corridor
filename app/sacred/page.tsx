@@ -1,8 +1,8 @@
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import SacredMap from "@/components/map/SacredMap";
-import { loadAtlas, byState, byHeritage, byFigure, byCentury } from "@/lib/sacred";
-import type { CanonSet, Toponym } from "@/lib/sacred";
+import { loadAtlas, byState, byHeritage, byFigure, byCentury, censusByYear } from "@/lib/sacred";
+import type { CanonSet, Toponym, CensusLayer } from "@/lib/sacred";
 
 /**
  * India's sacred landscape, and an argument about what a map of it can say.
@@ -132,6 +132,8 @@ export default function SacredPage() {
   // neither, and the sections are absent rather than empty.
   const canon: CanonSet[] | undefined = atlas.canon;
   const toponyms: Toponym[] | undefined = atlas.toponyms;
+  const census: CensusLayer | null | undefined = atlas.census;
+  const censusRows = census && census.shares.length > 0 ? censusByYear(census.shares) : [];
 
   const topTwo = states.slice(0, 2);
   const topTwoShare = topTwo.reduce((a, s) => a + s.n, 0);
@@ -447,6 +449,67 @@ export default function SacredPage() {
               no sentence supporting the older form, so nothing is claimed for it here.
             </p>
           )}
+        </Section>
+      )}
+
+      {censusRows.length > 0 && census && (
+        <Section eyebrow="Counting" title="Kashmir&rsquo;s demography, from where counting starts">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+            <div className="space-y-4 text-[14px] leading-[1.75] text-[color:var(--text-secondary)]">
+              <p>
+                The series begins at {census.startsAt}. Not because earlier centuries are
+                uninteresting, but because earlier centuries were not counted. The first
+                enumeration of Kashmir worth the name is 1873 and the first comparable one
+                1891; before that there are chronicles, and a chronicle is not a census.
+              </p>
+              <p>
+                These figures are read out of the cited article&rsquo;s own table, not
+                written from memory. On this subject a misremembered percentage point is
+                not a rounding error. Every column was checked to sum to about a hundred
+                before any of it was published, and the layer is dropped whole rather than
+                shown in part if it fails that.
+              </p>
+              <p className="text-[13px] text-[color:var(--text-muted)]">
+                Territory covered by the census changes across this period — princely
+                state, state, and since 2019 a union territory with Ladakh separated out —
+                so the rows are not strictly like for like, and the boundary matters as
+                much as the ratio.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              {censusRows.map((row) => (
+                <div key={row.year}>
+                  <div className="mb-1 flex items-baseline justify-between">
+                    <span className="mono text-[12.5px] tabular-nums">{row.year}</span>
+                    <span className="text-[11px] text-[color:var(--text-muted)]">
+                      {row.parts.slice(0, 2).map((p) => `${p.group} ${p.percent.toFixed(1)}%`).join(" · ")}
+                    </span>
+                  </div>
+                  <div className="flex h-[16px] w-full overflow-hidden rounded-sm">
+                    {row.parts.map((p, i) => (
+                      <span
+                        key={p.group}
+                        title={`${p.group}: ${p.percent.toFixed(2)}%`}
+                        style={{
+                          width: `${p.percent}%`,
+                          background: [
+                            "var(--series-1)", "var(--series-2)", "var(--series-3)",
+                            "var(--series-4)", "var(--text-muted)",
+                          ][i % 5],
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
+              <p className="pt-1 text-[11px] leading-relaxed text-[color:var(--text-muted)]">
+                Source: {census.source}, &ldquo;{census.page}&rdquo;. Bands are ordered by
+                size at the most recent census and keep that order across every year, so a
+                change in the bar is a change in the figures rather than a reshuffle.
+              </p>
+            </div>
+          </div>
         </Section>
       )}
 

@@ -781,6 +781,134 @@ async function loadToponyms(): Promise<Toponym[]> {
   return out;
 }
 
+/**
+ * Where counting actually starts.
+ *
+ * The request asked for Kashmir's demographic ratio "since the 1200s". There
+ * is no such series and there cannot be one. Kalhana's Rajatarangini is a
+ * dynastic chronicle — it names kings, campaigns and famines, not households.
+ * The first enumeration of Kashmir worth the name is the 1873 census and the
+ * first comparable one 1891. Anything drawn earlier would be a reconstruction
+ * presented as a measurement, on the most contested demographic question in
+ * the country.
+ *
+ * ── Parsed, never recalled ───────────────────────────────────────────────
+ *
+ * The figures below are read out of the article's own table. Writing them from
+ * memory would be faster and would be precisely the failure this whole page
+ * argues against: a confident number with no chain back to a source. On this
+ * subject a misremembered percentage point is not a rounding error, it is
+ * ammunition.
+ *
+ * So the table is located by its headers, every value is range-checked, and
+ * the layer is dropped whole if the shares do not behave like shares. An
+ * absent series here is a much better outcome than a wrong one.
+ */
+export interface CensusShare {
+  year: number;
+  group: string;
+  percent: number;
+}
+
+export interface CensusLayer {
+  region: string;
+  source: string;
+  page: string;
+  startsAt: number;
+  shares: CensusShare[];
+  refusal: string;
+  problems?: string[];
+}
+
+const RELIGION = /^(hindu|muslim|islam|sikh|buddhis|christian|jain|other|not stated|no religion)/i;
+
+/** "68.31%", "68.31", "1,234" -> 68.31 / 1234. */
+function percentOf(cell: string): number | null {
+  const t = plain(cell).replace(/,/g, "");
+  const m = t.match(/(\d{1,3}(?:\.\d+)?)\s*%/) ?? t.match(/^\s*(\d{1,3}(?:\.\d+)?)\s*$/);
+  if (!m) return null;
+  const v = Number(m[1]);
+  return Number.isFinite(v) && v >= 0 && v <= 100 ? v : null;
+}
+
+async function loadCensus(): Promise<CensusLayer | null> {
+  const PAGE = "Jammu and Kashmir (union territory)";
+  const REFUSAL =
+    "No population series for Kashmir before the colonial censuses is published here. " +
+    "The Rajatarangini is a dynastic chronicle, not an enumeration; the first count worth " +
+    "the name is 1873 and the first comparable one 1891.";
+
+  const text = await wikitext(PAGE);
+  if (!text) {
+    console.log("  census: article unavailable");
+    return null;
+  }
+
+  const shares: CensusShare[] = [];
+  const problems: string[] = [];
+
+  for (const t of parseTables(text)) {
+    // A religion-by-census-year table has a group column and year columns.
+    const groupCol = t.headers.findIndex((h) => /^(religion|community|group|religious)/i.test(h.trim()));
+    if (groupCol < 0) continue;
+    const yearCols: Array<{ i: number; year: number }> = [];
+    t.headers.forEach((h, i) => {
+      const m = h.match(/\b(18\d{2}|19\d{2}|20\d{2})\b/);
+      if (m && i !== groupCol) yearCols.push({ i, year: Number(m[1]) });
+    });
+    if (yearCols.length === 0) continue;
+
+    for (const row of t.rows) {
+      const group = plain(row[groupCol] ?? "").trim();
+      if (!RELIGION.test(group)) continue;
+      for (const { i, year } of yearCols) {
+        const pct = percentOf(row[i] ?? "");
+        if (pct === null) continue;
+        shares.push({ year, group, percent: pct });
+      }
+    }
+    if (shares.length > 0) break;
+  }
+
+  if (shares.length === 0) {
+    console.log("  census: no religion-by-year table found in the article");
+    return null;
+  }
+
+  // Do these behave like shares? A column that does not sum to about a hundred
+  // is not a set of percentages, whatever the header called it.
+  const byYear = new Map<number, number>();
+  for (const s of shares) byYear.set(s.year, (byYear.get(s.year) ?? 0) + s.percent);
+  const wrong = [...byYear.entries()].filter(([, sum]) => sum < 95 || sum > 105);
+  if (wrong.length > 0) {
+    problems.push(
+      `the shares for ${wrong.map(([y, sum]) => `${y} (${sum.toFixed(1)}%)`).join(", ")} ` +
+      "do not sum to about a hundred, so this table is not what it appeared to be",
+    );
+  }
+  const earliest = Math.min(...byYear.keys());
+  if (earliest < 1865) {
+    problems.push(`a year before the first Kashmir census appears: ${earliest}`);
+  }
+
+  if (problems.length > 0) {
+    console.log(`  census: ${problems.join("; ")}`);
+    return {
+      region: "Jammu and Kashmir", source: "Wikipedia", page: PAGE,
+      startsAt: earliest, shares: [], refusal: REFUSAL, problems,
+    };
+  }
+
+  console.log(
+    `  census: ${shares.length} shares across ${byYear.size} censuses ` +
+    `(${[...byYear.keys()].sort((a, b) => a - b).join(", ")})`,
+  );
+  return {
+    region: "Jammu and Kashmir", source: "Wikipedia", page: PAGE,
+    startsAt: earliest, shares, refusal: REFUSAL,
+  };
+}
+
 async function loadStates(): Promise<FeatureCollection<Geometry, { name: string | null }>> {
   const t = JSON.parse(await readFile(STATE_FILE, "utf8")) as
     Topology<{ india: GeometryCollection<{ name: string | null }> }>;
@@ -863,6 +991,9 @@ export async function run(): Promise<void> {
   // ── Place-names ────────────────────────────────────────────────────────
   const toponyms = await loadToponyms();
 
+  // ── Where counting starts ──────────────────────────────────────────────
+  const census = await loadCensus();
+
   const sites = [...byQid.values()].sort((a, b) => a.name.localeCompare(b.name));
 
   await mkdir(join(ROOT, "data", "sacred"), { recursive: true });
@@ -895,6 +1026,7 @@ export async function run(): Promise<void> {
     rejected,
     canon,
     toponyms,
+    census,
     sites,
   }, null, 2) + "\n", "utf8");
 
