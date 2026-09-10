@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-10T10:02:50.110Z",
+ "builtAt": "2026-09-10T20:01:13.569Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -209795,14 +209795,14 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 2,
+   "kept": 1,
    "via": "direct"
   },
   {
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 1,
+   "kept": 3,
    "via": "direct"
   },
   {
@@ -209823,11 +209823,39 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 3,
+   "kept": 0,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-1ypt0ti",
+   "kind": "delivery",
+   "systems": [],
+   "countries": [
+    "United Arab Emirates"
+   ],
+   "value": null,
+   "date": "2026-09-10",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/09/emirati-edge-group-delivers-six-unmanned-helicopters-to-angolan-navy/",
+   "headline": "Emirati EDGE Group delivers six unmanned helicopters to Angolan navy",
+   "primary": false
+  },
+  {
+   "id": "ev-tfnjeh",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Netherlands"
+   ],
+   "value": null,
+   "date": "2026-09-10",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/09/netherlands-to-purchase-its-own-globaleye-aircraft-on-top-of-natos-order/",
+   "headline": "Netherlands to purchase its own GlobalEye aircraft, on top of NATO’s order",
+   "primary": false
+  },
   {
    "id": "ev-10yifbd",
    "kind": "order",
@@ -209987,6 +210015,64 @@
   }
  ],
  "groups": [
+  {
+   "key": "delivery||united arab emirates",
+   "systems": [],
+   "countries": [
+    "United Arab Emirates"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-1ypt0ti",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "United Arab Emirates"
+     ],
+     "value": null,
+     "date": "2026-09-10",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/09/emirati-edge-group-delivers-six-unmanned-helicopters-to-angolan-navy/",
+     "headline": "Emirati EDGE Group delivers six unmanned helicopters to Angolan navy",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Breaking Defense"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order||netherlands",
+   "systems": [],
+   "countries": [
+    "Netherlands"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-tfnjeh",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Netherlands"
+     ],
+     "value": null,
+     "date": "2026-09-10",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/09/netherlands-to-purchase-its-own-globaleye-aircraft-on-top-of-natos-order/",
+     "headline": "Netherlands to purchase its own GlobalEye aircraft, on top of NATO’s order",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Breaking Defense"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||united states",
    "systems": [],
