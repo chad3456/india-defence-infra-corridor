@@ -871,17 +871,28 @@ async function loadCensus(): Promise<CensusLayer | null> {
   }
 
   if (shares.length === 0) {
-    // Say what was actually on the page. A parser that reports "not found"
-    // and nothing else costs a full round trip per guess, and the canon layer
-    // took three of those before it started printing what it had read.
-    console.log("  census: no religion-by-year table found. Tables on the page:");
-    for (const t of parseTables(text).slice(0, 14)) {
-      console.log(
-        `      [${t.rows.length} rows] ${t.headers.slice(0, 10).join(" | ").slice(0, 190)}` +
-        (t.headers.length === 0 ? `(no headers) first row: ${(t.rows[0] ?? []).slice(0, 6).map((c) => plain(c).slice(0, 22)).join(" | ")}` : ""),
-      );
-    }
-    return null;
+    // Say what was actually on the page, and say it in the file rather than
+    // only in a log. A parser that reports "not found" and nothing else costs
+    // a full round trip per guess about the article's shape; the canon layer
+    // burned three of those before it started printing what it had read.
+    //
+    // The log scrolls and the tail is not always reachable. The committed
+    // artifact is, so the diagnosis travels with the data.
+    const seen = parseTables(text).slice(0, 16).map((t) =>
+      t.headers.length > 0
+        ? `[${t.rows.length} rows] ${t.headers.slice(0, 10).join(" | ").slice(0, 200)}`
+        : `[${t.rows.length} rows, no headers] first row: ${(t.rows[0] ?? []).slice(0, 6).map((c) => plain(c).slice(0, 26)).join(" | ")}`,
+    );
+    console.log(`  census: no religion-by-year table found among ${seen.length} tables`);
+    for (const line of seen) console.log(`      ${line}`);
+    return {
+      region: "Jammu and Kashmir", source: "Wikipedia", page: PAGE,
+      startsAt: 0, shares: [], refusal: REFUSAL,
+      problems: [
+        "no religion-by-year table matched the expected headers",
+        ...seen.map((x) => `saw ${x}`),
+      ],
+    };
   }
 
   // Do these behave like shares? A column that does not sum to about a hundred
