@@ -210,8 +210,8 @@ export default function SacredPage() {
         </div>
       </Section>
 
-      <Section eyebrow="The map" title="Every site the record places">
-        <SacredMap sites={sites} />
+      <Section eyebrow="The map" title="Every site the record places, and the famous few">
+        <SacredMap sites={sites} canon={canon ?? []} />
       </Section>
 
       <Section eyebrow="Dedication" title="Who the temples are for, and how well we know">
