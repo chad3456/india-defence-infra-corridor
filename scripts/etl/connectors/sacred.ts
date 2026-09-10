@@ -923,7 +923,16 @@ async function loadCensus(): Promise<CensusLayer | null> {
     const shares = tableShares(text);
     const source = shares.length > 0 ? shares : barBoxShares(text);
     if (source.length === 0) {
-      tried.push(`${page}: no religion figures found in ${parseTables(text).length} tables or any bar box`);
+      // Record the shape, not just the count. The previous round said "no
+      // religion figures found in 2 tables" and that was one round trip spent
+      // learning nothing: a table can be missed because its header is worded
+      // differently, or because the religions are columns and the years are
+      // rows. Headers and a first row distinguish those; a count does not.
+      const shapes = parseTables(text).slice(0, 6).map((t, i) =>
+        `t${i}[${t.rows.length}r] hdr: ${t.headers.slice(0, 12).join(" ¦ ").slice(0, 170) || "(none)"}` +
+        ` — row0: ${(t.rows[0] ?? []).slice(0, 8).map((c) => plain(c).slice(0, 18)).join(" ¦ ").slice(0, 150)}`,
+      );
+      tried.push(`${page}: no religion figures found. ${shapes.join("  ||  ") || "no tables"}`);
       continue;
     }
 
