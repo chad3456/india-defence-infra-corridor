@@ -109,7 +109,7 @@ export default function DefenceTrackerPage() {
     <div className="max-w-[1180px]">
       <section className="border-b pb-5">
         <p className="eyebrow">defence tracker</p>
-        <h1 className="mt-2 text-[24px] font-semibold tracking-tight">
+        <h1 className="display mt-4 max-w-[22ch] text-[32px] leading-[1.07] sm:text-[42px]">
           Terrorism, insurgency and the counter-insurgency record
         </h1>
         <p className="mt-2 max-w-[720px] text-[13px] leading-relaxed text-[color:var(--text-secondary)]">
@@ -161,7 +161,7 @@ export default function DefenceTrackerPage() {
       {/* ---------------- The map ---------------- */}
       <section id="map" className="mt-10">
         <div className="border-b pb-2">
-          <h2 className="text-[15px] font-semibold tracking-tight">Where it happened</h2>
+          <h2 className="display text-[21px] leading-tight">Where it happened</h2>
         </div>
         <p className="mt-3 max-w-[760px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
           The same {ROWS.length} state-year rows behind every left-wing-extremism chart on this
@@ -189,7 +189,7 @@ export default function DefenceTrackerPage() {
         return (
           <section key={section.id} id={section.id} className="mt-10">
             <div className="flex flex-wrap items-baseline justify-between gap-2 border-b pb-2">
-              <h2 className="text-[15px] font-semibold tracking-tight">{section.title}</h2>
+              <h2 className="display text-[21px] leading-tight">{section.title}</h2>
               <p className="tnum text-[11px] text-[color:var(--text-muted)]">
                 {live} of {charts.length} live
               </p>
@@ -232,7 +232,7 @@ export default function DefenceTrackerPage() {
       })}
 
       <section className="mt-10 border-t pt-5">
-        <h2 className="text-[15px] font-semibold tracking-tight">Where these numbers come from</h2>
+        <h2 className="display text-[21px] leading-tight">Where these numbers come from</h2>
         <p className="mt-2 max-w-[720px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
           Fatality counts come from the SATP datasheets, which are a compilation rather than a
           register — nothing sourced from them is graded above medium confidence. Incident counts,

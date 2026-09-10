@@ -30,7 +30,7 @@ export default function DataSourcesPage() {
     <div className="max-w-[820px]">
       <section className="border-b pb-5">
         <p className="eyebrow">data sources</p>
-        <h1 className="mt-2 text-[24px] font-semibold tracking-tight">
+        <h1 className="display mt-4 max-w-[22ch] text-[32px] leading-[1.07] sm:text-[42px]">
           {doc.frontmatter.title ?? "Data sources"}
         </h1>
         {doc.frontmatter.description && (

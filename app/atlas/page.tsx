@@ -34,7 +34,7 @@ export default function AtlasPage() {
     <main className="mx-auto max-w-6xl px-4 py-10">
       <header className="mb-8">
         <p className="text-[11px] uppercase tracking-[0.14em] text-ink-muted">Atlas</p>
-        <h1 className="mt-2 max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-ink">
+        <h1 className="display mt-4 max-w-[22ch] text-[32px] leading-[1.07] text-ink sm:text-[42px]">
           Things nobody counts
         </h1>
         <p className="mt-4 max-w-2xl text-ink-2">

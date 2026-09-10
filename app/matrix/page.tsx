@@ -38,7 +38,7 @@ export default async function MatrixPage({
     <div className="max-w-[1180px]">
       <section className="border-b pb-5">
         <p className="eyebrow">development matrix</p>
-        <h1 className="mt-2 text-[24px] font-semibold tracking-tight">
+        <h1 className="display mt-4 max-w-[22ch] text-[32px] leading-[1.07] sm:text-[42px]">
           Standing against momentum
         </h1>
         <p className="mt-2 max-w-[760px] text-[13px] leading-relaxed text-[color:var(--text-secondary)]">
@@ -89,7 +89,7 @@ export default async function MatrixPage({
       </section>
 
       <section className="mt-10 border-t pt-5">
-        <h2 className="text-[15px] font-semibold tracking-tight">How a series is placed</h2>
+        <h2 className="display text-[21px] leading-tight">How a series is placed</h2>
         <p className="mt-2 max-w-[760px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
           Standing is the gap between India&rsquo;s latest value and the median comparator, as a
           share of that median. Momentum is the total change from the first year to the latest, as a
@@ -131,7 +131,7 @@ export default async function MatrixPage({
       </section>
 
       <section className="mt-8 border-t pt-5">
-        <h2 className="text-[15px] font-semibold tracking-tight">The four quadrants</h2>
+        <h2 className="display text-[21px] leading-tight">The four quadrants</h2>
         <dl className="mt-3 grid gap-3 sm:grid-cols-2">
           {QUADRANTS.map((q) => (
             <div key={q.id}>

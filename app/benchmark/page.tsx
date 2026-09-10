@@ -19,7 +19,7 @@ export default function BenchmarkPage() {
     <div>
       <section className="border-b pb-6">
         <p className="eyebrow">assessment</p>
-        <h1 className="mt-2 max-w-[680px] text-[24px] font-semibold leading-tight tracking-tight">
+        <h1 className="display mt-4 max-w-[22ch] text-[32px] leading-[1.07] sm:text-[42px]">
           How good is this, actually?
         </h1>
         <div className="mt-3 max-w-[640px] space-y-2.5 text-[12px] leading-relaxed text-[color:var(--text-secondary)]">

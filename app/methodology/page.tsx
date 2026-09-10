@@ -18,7 +18,7 @@ export default function MethodologyPage() {
     <div className="max-w-[720px]">
       <section className="border-b pb-5">
         <p className="eyebrow">methodology</p>
-        <h1 className="mt-2 text-[24px] font-semibold tracking-tight">
+        <h1 className="display mt-4 max-w-[22ch] text-[32px] leading-[1.07] sm:text-[42px]">
           How these numbers were built, and where they are weak
         </h1>
         <p className="mt-2 text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
@@ -29,7 +29,7 @@ export default function MethodologyPage() {
 
       <div className="space-y-8 py-7 text-[13px] leading-relaxed">
         <section>
-          <h2 className="text-[15px] font-semibold tracking-tight">The core rule</h2>
+          <h2 className="display text-[21px] leading-tight">The core rule</h2>
           <p className="mt-2 text-[color:var(--text-secondary)]">
             Every number rendered on this site must be traceable to a named source with a URL and a
             verification date. This is enforced mechanically, not by good intentions:{" "}
@@ -40,7 +40,7 @@ export default function MethodologyPage() {
         </section>
 
         <section>
-          <h2 className="text-[15px] font-semibold tracking-tight">Gaps stay gaps</h2>
+          <h2 className="display text-[21px] leading-tight">Gaps stay gaps</h2>
           <p className="mt-2 text-[color:var(--text-secondary)]">
             Where a figure could not be located, the period is stored as{" "}
             <span className="mono text-[11px]">null</span> and the chart shows a break in the line.
@@ -52,7 +52,7 @@ export default function MethodologyPage() {
         </section>
 
         <section>
-          <h2 className="text-[15px] font-semibold tracking-tight">Confidence grades</h2>
+          <h2 className="display text-[21px] leading-tight">Confidence grades</h2>
           <p className="mt-2 text-[color:var(--text-secondary)]">
             Confidence describes the <em>number</em>, not the prestige of the publisher.
           </p>
@@ -100,7 +100,7 @@ export default function MethodologyPage() {
         </section>
 
         <section>
-          <h2 className="text-[15px] font-semibold tracking-tight">Source tiers</h2>
+          <h2 className="display text-[21px] leading-tight">Source tiers</h2>
           <p className="mt-2 text-[color:var(--text-secondary)]">
             Tier 1 is the primary record holder for that quantity — a PIB release, a ministry
             document, a SIPRI fact sheet. Tier 2 is a credible secondary compiler. Tier 3 is a press
@@ -110,7 +110,7 @@ export default function MethodologyPage() {
         </section>
 
         <section>
-          <h2 className="text-[15px] font-semibold tracking-tight">Derived charts are labelled</h2>
+          <h2 className="display text-[21px] leading-tight">Derived charts are labelled</h2>
           <p className="mt-2 text-[color:var(--text-secondary)]">
             Year-on-year, indexed, growth-rate and share views are computed here from the stored
             series, and every one says so beneath its title. Derived views are only generated where
@@ -123,7 +123,7 @@ export default function MethodologyPage() {
         </section>
 
         <section>
-          <h2 className="text-[15px] font-semibold tracking-tight">
+          <h2 className="display text-[21px] leading-tight">
             The two constructed indices
           </h2>
           <p className="mt-2 text-[color:var(--text-secondary)]">
@@ -210,7 +210,7 @@ export default function MethodologyPage() {
         </section>
 
         <section>
-          <h2 className="text-[15px] font-semibold tracking-tight">Known weaknesses</h2>
+          <h2 className="display text-[21px] leading-tight">Known weaknesses</h2>
           <ul className="mt-2 space-y-2 text-[color:var(--text-secondary)]">
             <li>
               <strong className="text-[color:var(--text-primary)]">Nominal rupees.</strong> Indian
@@ -249,7 +249,7 @@ export default function MethodologyPage() {
         </section>
 
         <section>
-          <h2 className="text-[15px] font-semibold tracking-tight">The pipeline</h2>
+          <h2 className="display text-[21px] leading-tight">The pipeline</h2>
           <p className="mt-2 text-[color:var(--text-secondary)]">
             Two connectors run on a schedule. The World Bank connector pulls full 2001-present
             history for 66 indicators across India and five comparator countries, rewriting each
@@ -266,7 +266,7 @@ export default function MethodologyPage() {
         </section>
 
         <section>
-          <h2 className="text-[15px] font-semibold tracking-tight">What this site is not</h2>
+          <h2 className="display text-[21px] leading-tight">What this site is not</h2>
           <p className="mt-2 text-[color:var(--text-secondary)]">
             Not affiliated with any government body, party or contractor. The{" "}
             <Link href="/benchmark" className="link-underline">

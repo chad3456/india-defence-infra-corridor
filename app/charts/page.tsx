@@ -99,7 +99,7 @@ export default async function ChartsPage({
     <div>
       <section className="border-b pb-5">
         <p className="eyebrow">chart gallery</p>
-        <h1 className="mt-2 text-[24px] font-semibold tracking-tight">
+        <h1 className="display mt-4 max-w-[22ch] text-[32px] leading-[1.07] sm:text-[42px]">
           {stats.total} charts, {stats.live} live
         </h1>
         <p className="mt-2 max-w-[600px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">

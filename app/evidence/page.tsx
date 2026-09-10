@@ -68,7 +68,7 @@ export default function EvidencePage() {
     <div className="max-w-[1180px]">
       <section className="border-b pb-5">
         <p className="eyebrow">evidence</p>
-        <h1 className="mt-2 text-[24px] font-semibold tracking-tight">
+        <h1 className="display mt-4 max-w-[22ch] text-[32px] leading-[1.07] sm:text-[42px]">
           How well we know what we publish
         </h1>
         <p className="mt-2 max-w-[760px] text-[13px] leading-relaxed text-[color:var(--text-secondary)]">
@@ -439,7 +439,7 @@ export default function EvidencePage() {
       {/* ---------------------------------------------------------- */}
 
       <section className="mt-9 border-t pt-5">
-        <h2 className="text-[15px] font-semibold tracking-tight">The rule that produced each grade</h2>
+        <h2 className="display text-[21px] leading-tight">The rule that produced each grade</h2>
         <p className="mt-2 max-w-[760px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
           Nothing on this page is graded by hand. The list below runs in order and the first match
           wins, against provenance, source tier and whether the series carries any value at all —

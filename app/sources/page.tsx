@@ -35,7 +35,7 @@ export default function SourcesPage() {
     <div className="max-w-[820px]">
       <section className="border-b pb-5">
         <p className="eyebrow">source register</p>
-        <h1 className="mt-2 text-[24px] font-semibold tracking-tight">
+        <h1 className="display mt-4 max-w-[22ch] text-[32px] leading-[1.07] sm:text-[42px]">
           Every source behind every number
         </h1>
         <p className="mt-2 text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
@@ -53,7 +53,7 @@ export default function SourcesPage() {
       {byTier.map(({ tier, items }) => (
         <section key={tier} className="py-6">
           <div className="mb-3 flex items-baseline gap-2">
-            <h2 className="text-[15px] font-semibold tracking-tight">Tier {tier}</h2>
+            <h2 className="display text-[21px] leading-tight">Tier {tier}</h2>
             <span className="eyebrow">{TIER_LABEL[tier]}</span>
             <span className="tnum ml-auto text-[11px] text-[color:var(--text-muted)]">
               {items.length}

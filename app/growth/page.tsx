@@ -99,7 +99,7 @@ export default function GrowthPage() {
     <main className="mx-auto max-w-6xl px-4 py-10">
       <header className="mb-10 border-b border-gridline pb-8">
         <p className="text-[11px] uppercase tracking-[0.14em] text-ink-muted">Growth</p>
-        <h1 className="mt-2 max-w-3xl text-4xl font-semibold leading-[1.1] tracking-tight text-ink">
+        <h1 className="display mt-4 max-w-[22ch] text-[32px] leading-[1.07] text-ink sm:text-[42px]">
           The growth story, in the four places it can be counted
         </h1>
         <p className="mt-4 max-w-2xl text-ink-2">
@@ -223,11 +223,15 @@ export default function GrowthPage() {
                 <p className="mb-2 text-[11px] uppercase tracking-wide text-ink-muted">
                   Founded 2014 or later
                 </p>
+                {/* min-w-0 on each grid item and on its flex row: both default
+                    to min-width:auto, so a long unbreakable firm name widened
+                    the track past a 390px viewport and the truncate never got
+                    a chance to fire. */}
                 <ul className="grid gap-1.5 sm:grid-cols-2 lg:grid-cols-3">
                   {since2014.sort((a, b) => (b.founded ?? 0) - (a.founded ?? 0)).map((c) => (
                     <li key={c.name}
-                      className="rounded border border-gridline bg-surface-1 px-3 py-2">
-                      <span className="flex items-baseline justify-between gap-2">
+                      className="min-w-0 rounded border border-gridline bg-surface-1 px-3 py-2">
+                      <span className="flex min-w-0 items-baseline justify-between gap-2">
                         <span className="min-w-0 truncate text-sm text-ink">{c.name}</span>
                         <span className="shrink-0 font-mono text-xs tabular-nums text-ink-muted">
                           {c.founded}

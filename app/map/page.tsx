@@ -34,7 +34,7 @@ export default async function MapPage() {
     <div>
       <section className="border-b pb-5">
         <p className="eyebrow">geography</p>
-        <h1 className="mt-2 text-[24px] font-semibold tracking-tight">
+        <h1 className="display mt-4 max-w-[22ch] text-[32px] leading-[1.07] sm:text-[42px]">
           Where development actually landed
         </h1>
         <p className="mt-2 max-w-[660px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
@@ -48,7 +48,7 @@ export default async function MapPage() {
       {/* Development events */}
       <section className="border-b py-6">
         <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
-          <h2 className="text-[15px] font-semibold tracking-tight">What moved, and where</h2>
+          <h2 className="display text-[21px] leading-tight">What moved, and where</h2>
           <span className="eyebrow">
             {latest ? `latest event ${latest}` : "awaiting first ingest"}
           </span>
@@ -69,7 +69,7 @@ export default async function MapPage() {
 
       {/* Corridor timelapse */}
       <section className="py-6">
-        <h2 className="text-[15px] font-semibold tracking-tight">Expressway corridors, 2001–2026</h2>
+        <h2 className="display text-[21px] leading-tight">Expressway corridors, 2001–2026</h2>
         <p className="mt-1.5 mb-4 max-w-[640px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
           Drag the year or press play to watch India&apos;s access-controlled network appear. In
           2001 there was effectively nothing — the Mumbai–Pune Expressway opened in 2002 and
@@ -79,7 +79,7 @@ export default async function MapPage() {
       </section>
 
       <section className="border-t py-6">
-        <h2 className="text-[15px] font-semibold tracking-tight">The same story as data</h2>
+        <h2 className="display text-[21px] leading-tight">The same story as data</h2>
         <p className="mt-1.5 mb-4 max-w-[560px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
           The map shows only the flagship expressways with verifiable opening years. These charts
           carry the full national picture, including the part the map cannot show: annual
