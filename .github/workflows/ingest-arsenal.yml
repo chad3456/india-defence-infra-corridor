@@ -41,7 +41,10 @@ jobs:
 
       - run: npm ci
 
-      - name: Probe
+      - name: Ingest
+        env:
+          BRIGHTDATA_API_KEY: ${{ secrets.BRIGHTDATA_API_KEY }}
+          BRIGHTDATA_ZONE: ${{ secrets.BRIGHTDATA_ZONE }}
         run: npm run arsenal:ingest
 
       # Always: the probe writes after every target, so a run killed by the

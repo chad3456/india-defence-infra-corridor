@@ -58,7 +58,8 @@ export interface Arsenal {
   spineSpecs: SpineSpec[];
   spine: Record<string, CountryYear[]>;
   gazetteer: SystemEntry[];
-  feeds: Array<{ outlet: string; ok: boolean; items: number; kept: number }>;
+  egress?: string;
+  feeds: Array<{ outlet: string; ok: boolean; items: number; kept: number; via?: string }>;
   events: DealEvent[];
   groups: EventGroup[];
 }

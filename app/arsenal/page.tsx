@@ -349,6 +349,11 @@ export default function ArsenalPage() {
                 than rolling forward — and carried records are re-checked against the current
                 refusals, so a tightened rule cleans the file behind it.
               </li>
+              {a.egress && (
+                <li className="text-[11.5px] leading-relaxed text-[color:var(--text-muted)]">
+                  {a.egress}
+                </li>
+              )}
             </ul>
           </div>
         </div>

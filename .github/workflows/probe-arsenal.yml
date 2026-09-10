@@ -38,6 +38,11 @@ jobs:
       - run: npm ci
 
       - name: Probe
+        env:
+          # Optional. Absent is a normal state: the probe records "not
+          # configured" and every direct fetch behaves exactly as before.
+          BRIGHTDATA_API_KEY: ${{ secrets.BRIGHTDATA_API_KEY }}
+          BRIGHTDATA_ZONE: ${{ secrets.BRIGHTDATA_ZONE }}
         run: npm run arsenal:probe
 
       # Always: the probe writes after every target, so a run killed by the

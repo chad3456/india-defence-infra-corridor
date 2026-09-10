@@ -46,6 +46,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getText } from "./lib/http";
+import { allowedByRobots, brightDataConfigured, getViaBrightData } from "./lib/brightdata";
 import { isEntryPoint } from "./lib/entry";
 
 const ROOT = process.cwd();
@@ -257,6 +258,10 @@ const TARGETS: Target[] = [
 interface Finding {
   id: string;
   layer: string;
+  /** For hosts that refused: what their own robots.txt says, and whether an
+   *  unblocked fetch was permitted and worked. Recorded, not assumed. */
+  robots?: "permits" | "disallows" | "unknown";
+  unblocked?: "worked" | "refused-by-robots" | "failed" | "no-key";
   what: string;
   url: string;
   ok: boolean;
@@ -284,10 +289,38 @@ export async function run(): Promise<void> {
       head: res.ok ? body.slice(0, 240).replace(/\s+/g, " ").trim() : null,
       ...(t.note ? { note: t.note } : {}),
     };
+    /*
+     * For anything that refused, ask the publisher before asking Bright Data.
+     *
+     * The 403s in this probe are the reason an unblocker was requested at all,
+     * and they are not all the same thing: a blanket rule against datacenter
+     * addresses is infrastructure, and a robots.txt Disallow is a policy.
+     * Reading the policy first, and recording it in the report, is what keeps
+     * the difference from being decided by whoever is in a hurry.
+     */
+    if (!f.ok && /HTTP 40[13]/.test(f.status)) {
+      const permitted = await allowedByRobots(t.url);
+      f.robots = permitted ? "permits" : "disallows";
+      if (!permitted) {
+        f.unblocked = "refused-by-robots";
+      } else if (!brightDataConfigured()) {
+        f.unblocked = "no-key";
+      } else {
+        const via = await getViaBrightData(t.url, { timeoutMs: 60_000 });
+        f.unblocked = via.ok ? "worked" : "failed";
+        if (via.ok && via.data) {
+          f.bytes = via.data.length;
+          f.looksRight = t.expect.test(via.data);
+          f.head = via.data.slice(0, 240).replace(/\s+/g, " ").trim();
+        }
+      }
+    }
+
     findings.push(f);
     console.log(
       `  ${(!f.ok ? "dead" : f.looksRight ? "ok" : "200/shape").padEnd(11)} ` +
-      `${t.layer.padEnd(9)} ${f.id.padEnd(42)} ${f.bytes ?? 0}`,
+      `${t.layer.padEnd(9)} ${f.id.padEnd(42)} ${f.bytes ?? 0}` +
+      `${f.robots ? `  robots:${f.robots} unblocked:${f.unblocked}` : ""}`,
     );
 
     // Written after every target: a run killed by the job timeout still keeps
@@ -296,6 +329,10 @@ export async function run(): Promise<void> {
     await writeFile(OUT, JSON.stringify({
       probedAt: new Date().toISOString(),
       note: "Reachability only. No series are published from this file.",
+      brightData: brightDataConfigured() ? "configured" : "not configured",
+      robotsPolicy:
+        "Hosts that answered 401 or 403 were re-checked against their own robots.txt. " +
+        "An unblocked fetch is attempted only where robots.txt permits the path for generic clients.",
       findings,
     }, null, 2) + "\n", "utf8");
   }

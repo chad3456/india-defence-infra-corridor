@@ -55,6 +55,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getText, getJson } from "../lib/http";
+import { getTextUnblocked, brightDataConfigured } from "../lib/brightdata";
 import { isEntryPoint } from "../lib/entry";
 import { parseTables, plain, columnIndex } from "../lib/wikitext";
 
@@ -746,12 +747,15 @@ export async function run(): Promise<void> {
 
   console.log("\nLayer 2 — reading the feeds");
   const events: DealEvent[] = [];
-  const feedStatus: Array<{ outlet: string; ok: boolean; items: number; kept: number }> = [];
+  const feedStatus: Array<{ outlet: string; ok: boolean; items: number; kept: number; via: string }> = [];
   for (const feed of FEEDS) {
-    const res = await getText(feed.url, { cacheMs: 30 * 60_000, timeoutMs: 45_000 });
+    // Direct first, then the unblocker if one is configured and the
+    // publisher's robots.txt permits the path. With no key this is a plain
+    // fetch and behaves exactly as it did before.
+    const res = await getTextUnblocked(feed.url, { cacheMs: 30 * 60_000, timeoutMs: 45_000 });
     if (!res.ok || !res.data) {
-      console.log(`  FAILED ${feed.outlet}: ${res.error}`);
-      feedStatus.push({ outlet: feed.outlet, ok: false, items: 0, kept: 0 });
+      console.log(`  FAILED ${feed.outlet}: ${res.error} (${res.via})`);
+      feedStatus.push({ outlet: feed.outlet, ok: false, items: 0, kept: 0, via: res.via });
       continue;
     }
     const items = feedItems(res.data);
@@ -760,8 +764,8 @@ export async function run(): Promise<void> {
       const e = extractEvent(it, feed, gazetteer);
       if (e) { events.push(e); kept++; }
     }
-    feedStatus.push({ outlet: feed.outlet, ok: true, items: items.length, kept });
-    console.log(`  ok ${feed.outlet.padEnd(34)} ${String(items.length).padStart(4)} items  ${kept} placed`);
+    feedStatus.push({ outlet: feed.outlet, ok: true, items: items.length, kept, via: res.via });
+    console.log(`  ok ${feed.outlet.padEnd(34)} ${String(items.length).padStart(4)} items  ${kept} placed  via ${res.via}`);
   }
   /*
    * Carry forward what earlier runs found.
@@ -903,6 +907,9 @@ export async function run(): Promise<void> {
   await mkdir(join(ROOT, "data", "global"), { recursive: true });
   await writeFile(OUT, JSON.stringify({
     builtAt: new Date().toISOString(),
+    egress: brightDataConfigured()
+      ? "Direct fetch, with Bright Data as a fallback for hosts that refuse one and whose robots.txt permits the path."
+      : "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
     note:
       "Publicly announced procurement and publicly catalogued inventories. Not an order of " +
       "battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
