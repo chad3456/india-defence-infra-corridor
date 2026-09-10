@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-09-10T06:53:38.502Z",
+  "probedAt": "2026-09-10T06:55:34.218Z",
   "note": "Reachability and shape only. No series are published from this file.",
   "scope": "Sacred geography as an evidenced record: sites with coordinates, the canonical lists and their disagreements, what has been archaeologically surveyed, and the toponymy that records continuity where no count survives.",
   "refusal": "No population series for Kashmir before the colonial censuses is sought or will be published. The Rajatarangini is a dynastic chronicle, not an enumeration; the first count worth the name is 1873 and the first comparable one 1891.",
@@ -82,6 +82,11 @@
           "n": "2"
         },
         {
+          "d": "Q3350517",
+          "dLabel": "Bhadrakali",
+          "n": "2"
+        },
+        {
           "d": "Q696702",
           "dLabel": "Vamana",
           "n": "2"
@@ -89,11 +94,6 @@
         {
           "d": "Q2033068",
           "dLabel": "Radha Krishna",
-          "n": "2"
-        },
-        {
-          "d": "Q3350517",
-          "dLabel": "Bhadrakali",
           "n": "2"
         },
         {
@@ -182,16 +182,6 @@
           "n": "1"
         },
         {
-          "d": "Q1106783",
-          "dLabel": "Karni Mata",
-          "n": "1"
-        },
-        {
-          "d": "Q135070736",
-          "dLabel": "Bagheswari",
-          "n": "1"
-        },
-        {
           "d": "Q825682",
           "dLabel": "Parashurama",
           "n": "1"
@@ -212,12 +202,87 @@
           "n": "1"
         },
         {
-          "d": "Q2477202",
-          "dLabel": "Ayyappan",
+          "d": "Q135070736",
+          "dLabel": "Bagheswari",
+          "n": "1"
+        },
+        {
+          "d": "Q60740284",
+          "dLabel": "Tamil Thai",
+          "n": "1"
+        },
+        {
+          "d": "Q7918105",
+          "dLabel": "Veer Mhaskoba",
           "n": "1"
         }
       ],
       "note": "Watched for growth. At roughly 600 of 16,042 the stated tier is too thin to carry the deity axis by itself, which is why the canonical tier exists at all."
+    },
+    {
+      "id": "wdqs-canon",
+      "layer": "sites",
+      "what": "Wikidata SPARQL: Members of the canonical sets, resolved from their article titles",
+      "url": "https://query.wikidata.org/sparql?format=json&query=%0ASELECT%20%3FgrpLabel%20%3FitemLabel%20%3Fcoord%20WHERE%20%7B%0A%2",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 4401,
+      "head": null,
+      "rows": 10,
+      "sample": [
+        {
+          "coord": "Point(88.198069444 23.709166666)",
+          "grpLabel": "Shakti Pitha",
+          "itemLabel": "Juranpur Satipith"
+        },
+        {
+          "coord": "Point(78.134836111 15.877202777)",
+          "grpLabel": "Shakti Pitha",
+          "itemLabel": "Alampur Jogulamba Devi"
+        },
+        {
+          "coord": "Point(69.0869 22.3359)",
+          "grpLabel": "Jyotirlinga",
+          "itemLabel": "Nageshvara Jyotirlinga"
+        },
+        {
+          "coord": "Point(78.6901 10.8621)",
+          "grpLabel": "108 Divya desams",
+          "itemLabel": "Ranganathaswamy Temple, Srirangam"
+        },
+        {
+          "coord": "Point(80.358946 16.58099)",
+          "grpLabel": "Pancharama Kshetras",
+          "itemLabel": "Amararama"
+        },
+        {
+          "coord": "Point(81.7333 16.5333)",
+          "grpLabel": "Pancharama Kshetras",
+          "itemLabel": "Ksheerarama"
+        },
+        {
+          "coord": "Point(81.53508611 16.54126667)",
+          "grpLabel": "Pancharama Kshetras",
+          "itemLabel": "Somarama"
+        },
+        {
+          "coord": "Point(79.297857 14.878847)",
+          "grpLabel": "108 Divya desams",
+          "itemLabel": "Sri Ranganathaswamy Temple"
+        },
+        {
+          "coord": "Point(82.1695 17.0531)",
+          "grpLabel": "Pancharama Kshetras",
+          "itemLabel": "Kumararama"
+        },
+        {
+          "coord": "Point(82.06347109 16.79278815)",
+          "grpLabel": "Pancharama Kshetras",
+          "itemLabel": "Bhimeswara temple"
+        }
+      ],
+      "note": "Decides whether the canonical tier is a Wikidata query or a wikitext parse."
     },
     {
       "id": "wiki-jyotirlinga",
@@ -409,20 +474,55 @@
       "note": "The user's own example. A 200 here is not evidence the article says Varahamula."
     },
     {
-      "id": "wiki-kashmir-valley",
+      "id": "wiki-kashmir",
       "layer": "names",
-      "what": "Wikipedia wikitext: Kashmir Valley",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Kashmir_Valley&redirects=1&prop=wikitext&formatversion=2&format=jso",
+      "what": "Wikipedia wikitext: Kashmir",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Kashmir&redirects=1&prop=wikitext&formatversion=2&format=json",
       "ok": true,
       "status": "200",
       "looksRight": true,
-      "bytes": 13689,
-      "head": "{\"parse\":{\"title\":\"Kashmir Valley\",\"pageid\":1935660,\"redirects\":[],\"wikitext\":\"{{Short description|Valley in Jammu & Kashmir, India}}\\n{{About|the geographic area|the administrative division governing",
-      "found": [],
+      "bytes": 86776,
+      "head": "{\"parse\":{\"title\":\"Kashmir\",\"pageid\":17337,\"redirects\":[],\"wikitext\":\"{{Short description|Region in South Asia}}\\n{{Other uses|Kashmir (disambiguation)|Kasmir (disambiguation)}}\\n{{Distinguish|Kashmar",
+      "found": [
+        "Kashyapa"
+      ],
       "missing": [
-        "Kashyapa",
+        "Kashyapamar",
         "Satisar"
       ]
+    },
+    {
+      "id": "wiki-kashyapa",
+      "layer": "names",
+      "what": "Wikipedia wikitext: Kashyapa",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Kashyapa&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 25057,
+      "head": "{\"parse\":{\"title\":\"Kashyapa\",\"pageid\":28030997,\"redirects\":[],\"wikitext\":\"{{Short description|Vedic sage}}\\n{{about||the disciple of the Buddha|Mahākāśyapa|the early Buddha|Kassapa Buddha|the king of",
+      "found": [
+        "Kashmir",
+        "sage"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-nilamata-purana",
+      "layer": "names",
+      "what": "Wikipedia wikitext: Nilamata Purana",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Nilamata_Purana&redirects=1&prop=wikitext&formatversion=2&format=js",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 10725,
+      "head": "{\"parse\":{\"title\":\"Nilamata Purana\",\"pageid\":45412159,\"redirects\":[],\"wikitext\":\"{{Short description|Ancient text from Kashmir}}\\n{{more footnotes|date=June 2024}}\\n{{Use Pakistani English|date=June 2",
+      "found": [
+        "Kashmir",
+        "Satisar",
+        "lake"
+      ],
+      "missing": []
     },
     {
       "id": "wiki-anantnag",
@@ -438,9 +538,7 @@
         "Islamabad",
         "spring"
       ],
-      "missing": [
-        "Anantnaag"
-      ]
+      "missing": []
     },
     {
       "id": "wiki-srinagar",
@@ -489,9 +587,23 @@
         "census",
         "1990"
       ],
-      "missing": [
-        "1941"
-      ]
+      "missing": []
+    },
+    {
+      "id": "wiki-1941-census-of-india",
+      "layer": "census",
+      "what": "Wikipedia wikitext: 1941 census of India",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=1941_census_of_India&redirects=1&prop=wikitext&formatversion=2&form",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 56943,
+      "head": "{\"parse\":{\"title\":\"Census in British India\",\"pageid\":42338427,\"redirects\":[{\"from\":\"1941 census of India\",\"to\":\"Census in British India\"}],\"wikitext\":\"{{Short description|Census of India prior to inde",
+      "found": [
+        "Kashmir",
+        "religion"
+      ],
+      "missing": []
     },
     {
       "id": "wiki-census-in-british-india",
@@ -530,6 +642,75 @@
       ],
       "missing": [],
       "note": "Redirect target of Demographics of Jammu and Kashmir."
+    },
+    {
+      "id": "wiki-mni-andhra-pradesh",
+      "layer": "evidence",
+      "what": "Monuments of National Importance in Andhra Pradesh",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_Monuments_of_National_Importance_in_Andhra_Pradesh&redirect",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 44630,
+      "head": "{\"parse\":{\"title\":\"List of Monuments of National Importance in Andhra Pradesh\",\"pageid\":36183632,\"redirects\":[],\"wikitext\":\"{{Short description|none}}\\n{{Use dmy dates|date=June 2019}}\\n{{Use Indian E",
+      "found": [
+        "Temple",
+        "N-"
+      ],
+      "missing": [],
+      "note": "The ASI's own site returned 8.4 MB carrying no state names, which is a rendered app, not a table."
+    },
+    {
+      "id": "wiki-mni-tamil-nadu",
+      "layer": "evidence",
+      "what": "Monuments of National Importance in Tamil Nadu",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_Monuments_of_National_Importance_in_Tamil_Nadu&redirects=1&",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 2664,
+      "head": "{\"parse\":{\"title\":\"List of Monuments of National Importance in Tamil Nadu\",\"pageid\":36938775,\"redirects\":[],\"wikitext\":\"{{Short description|none}}\\n{{Use dmy dates|date=July 2020}}\\n{{Use Indian Engli",
+      "found": [
+        "N-"
+      ],
+      "missing": [
+        "Temple"
+      ],
+      "note": "The ASI's own site returned 8.4 MB carrying no state names, which is a rendered app, not a table."
+    },
+    {
+      "id": "wiki-mni-uttar-pradesh",
+      "layer": "evidence",
+      "what": "Monuments of National Importance in Uttar Pradesh",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_Monuments_of_National_Importance_in_Uttar_Pradesh&redirects",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 2349,
+      "head": "{\"parse\":{\"title\":\"List of Monuments of National Importance in Uttar Pradesh\",\"pageid\":36939914,\"redirects\":[],\"wikitext\":\"{{Short description|none}}\\n{{Use dmy dates|date=March 2019}}\\n{{Use Indian E",
+      "found": [],
+      "missing": [
+        "Temple",
+        "N-"
+      ],
+      "note": "The ASI's own site returned 8.4 MB carrying no state names, which is a rendered app, not a table."
+    },
+    {
+      "id": "wiki-mni-jammu-and-kashmir",
+      "layer": "evidence",
+      "what": "Monuments of National Importance in Jammu and Kashmir",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_Monuments_of_National_Importance_in_Jammu_and_Kashmir&redir",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 17912,
+      "head": "{\"parse\":{\"title\":\"List of Monuments of National Importance in Jammu and Kashmir\",\"pageid\":36185515,\"redirects\":[],\"wikitext\":\"{{Short description|none}}\\nThis is a list of [[Monument of National Impo",
+      "found": [
+        "Temple",
+        "N-"
+      ],
+      "missing": [],
+      "note": "The ASI's own site returned 8.4 MB carrying no state names, which is a rendered app, not a table."
     },
     {
       "id": "asi-monuments",
