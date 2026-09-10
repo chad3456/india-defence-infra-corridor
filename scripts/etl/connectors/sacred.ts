@@ -871,7 +871,16 @@ async function loadCensus(): Promise<CensusLayer | null> {
   }
 
   if (shares.length === 0) {
-    console.log("  census: no religion-by-year table found in the article");
+    // Say what was actually on the page. A parser that reports "not found"
+    // and nothing else costs a full round trip per guess, and the canon layer
+    // took three of those before it started printing what it had read.
+    console.log("  census: no religion-by-year table found. Tables on the page:");
+    for (const t of parseTables(text).slice(0, 14)) {
+      console.log(
+        `      [${t.rows.length} rows] ${t.headers.slice(0, 10).join(" | ").slice(0, 190)}` +
+        (t.headers.length === 0 ? `(no headers) first row: ${(t.rows[0] ?? []).slice(0, 6).map((c) => plain(c).slice(0, 22)).join(" | ")}` : ""),
+      );
+    }
     return null;
   }
 
