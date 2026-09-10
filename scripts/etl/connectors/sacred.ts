@@ -216,6 +216,14 @@ interface Tradition {
   deity: string | null;
   /** How many members the tradition itself claims. */
   expect: { min: number; max: number };
+  /**
+   * Members the tradition is defined by, which any correct parse must find.
+   *
+   * A count says how many things were read, never what they were. These say
+   * what they were, which is the only check that would have caught a parse
+   * reading twelve entries of the wrong list.
+   */
+  mustInclude: string[];
   note: string;
 }
 
@@ -223,31 +231,37 @@ const TRADITIONS: Tradition[] = [
   {
     id: "jyotirlinga", page: "Jyotirlinga", label: "Jyotirlinga", deity: "Shiva",
     expect: { min: 12, max: 12 },
+    mustInclude: ["Somnath", "Kedarnath", "Mahakaleshwar"],
     note: "Twelve, on every reckoning.",
   },
   {
     id: "divya-desam", page: "Divya Desam", label: "Divya Desam", deity: "Vishnu",
     expect: { min: 90, max: 110 },
+    mustInclude: ["Srirangam"],
     note: "108 shrines praised by the Alvars; two are not on earth, so a placeable count is lower.",
   },
   {
     id: "shakta-pitha", page: "Shakta pithas", label: "Shakta Pitha", deity: "Shakti",
     expect: { min: 30, max: 120 },
+    mustInclude: ["Kamakhya"],
     note: "51 in one reckoning and 108 in another, and the sites assigned differ between them.",
   },
   {
     id: "pancharama", page: "Pancharama Kshetras", label: "Pancharama Kshetra", deity: "Shiva",
     expect: { min: 5, max: 5 },
+    mustInclude: ["Draksharama", "Amararama"],
     note: "Five, in coastal Andhra.",
   },
   {
     id: "char-dham", page: "Char Dham", label: "Char Dham", deity: null,
     expect: { min: 4, max: 4 },
+    mustInclude: ["Badrinath", "Rameswaram"],
     note: "A circuit spanning three Vishnu sites and one of Shiva's, so it names no single god.",
   },
   {
     id: "chota-char-dham", page: "Chota Char Dham", label: "Chota Char Dham", deity: null,
     expect: { min: 4, max: 4 },
+    mustInclude: ["Gangotri", "Yamunotri"],
     note: "Yamunotri and Gangotri are river goddesses; Kedarnath is Shiva's and Badrinath Vishnu's.",
   },
 ];
@@ -345,8 +359,17 @@ function matchKey(name: string): string {
 const NAME_COL =
   /^\s*(name|temple|shrine|site|kshetra|kshetram|pitha|peetha|peetham|dham|abode|place|location|jyotirlinga|linga|desam|divya|deity|sthala|tirtha)/i;
 
-/** Bullets that are navigation rather than content. */
+/** Bullets and headings that are navigation rather than content. */
 const NOT_CONTENT = /^(see also|references|external links|further reading|notes|bibliography)/i;
+
+/**
+ * Headings that structure an article rather than name one of its subjects.
+ *
+ * Needed because the heading fallback reads an article's sections as a member
+ * list, and every article also has an Etymology, a History and a Gallery.
+ */
+const GENERIC_HEADING =
+  /^(etymology|history|legend|mythology|significance|architecture|gallery|overview|background|description|origin|worship|festival|festivals|transport|transportation|how to reach|accessibility|in popular culture|literature|images|gallery|gallery of images|gallery of the|list|gallery and|climate|geography|gallery&)/i;
 
 function canonNames(text: string, want: { min: number; max: number }): string[] {
   const target = (want.min + want.max) / 2;
@@ -386,6 +409,44 @@ function canonNames(text: string, want: { min: number; max: number }): string[] 
     const best = candidates[0]!;
     if (best.length >= want.min && best.length <= want.max) return best;
   }
+
+  /**
+   * No table fits. Two other places these articles keep their member lists.
+   *
+   * The Pancharama Kshetras, the Char Dham and the Chota Char Dham all parsed
+   * to zero members with tables and bullets alone, because none of the three
+   * articles is built from either. They carry a {{Location map+}} with one
+   * marker per site, and they give each site its own section heading. Both are
+   * lists; neither is a list markup.
+   */
+  const fromMarkers: string[] = [];
+  {
+    const seenM = new Set<string>();
+    for (const m of text.matchAll(/\{\{\s*Location map~[^{}]*\}\}/gi)) {
+      const label = m[0].match(/\|\s*label\s*=\s*([^|}]+)/i)?.[1];
+      const n = label ? linkName(label) : null;
+      if (!n) continue;
+      const k = matchKey(n);
+      if (!k || seenM.has(k)) continue;
+      seenM.add(k);
+      fromMarkers.push(n);
+    }
+  }
+  if (fromMarkers.length >= want.min && fromMarkers.length <= want.max) return fromMarkers;
+
+  const fromHeadings: string[] = [];
+  {
+    const seenH = new Set<string>();
+    for (const m of text.matchAll(/^==+\s*(.+?)\s*==+\s*$/gm)) {
+      const h = (m[1] ?? "").replace(/\[\[|\]\]/g, "").split("|").pop()!.trim();
+      if (!h || NOT_CONTENT.test(h) || GENERIC_HEADING.test(h)) continue;
+      const k = matchKey(h);
+      if (!k || seenH.has(k)) continue;
+      seenH.add(k);
+      fromHeadings.push(h);
+    }
+  }
+  if (fromHeadings.length >= want.min && fromHeadings.length <= want.max) return fromHeadings;
 
   // No table fits. Read the article's bulleted lists, skipping the sections
   // that are navigation rather than content.
@@ -466,22 +527,27 @@ async function loadCanon(sites: Site[]): Promise<CanonSet[]> {
         `${t.expect.max === t.expect.min ? "" : `–${t.expect.max}`}`,
       );
     }
-    // A count can be right for the wrong reason, so a set that matches almost
-    // nothing is suspect. But "almost nothing" has to mean almost nothing.
+    // Does the list contain the sites this tradition is famous for?
     //
-    // The first threshold was a quarter, and it failed the Divya Desams for
-    // placing 9 of 110 — which is not a parse fault at all. The names it read
-    // were right: Thirukoḻi, Thirukkarambanoor, Thiruppullamboothangudi. Those
-    // shrines are simply not in Wikidata with coordinates. Low placement in a
-    // Tamil Vaishnava canon is a fact about the database, exactly like the rest
-    // of this page, and flagging it as an error would have hidden a true
-    // finding behind a false alarm.
-    const placedNow = members.filter((m) => m.qid).length;
-    const hitRate = names.length === 0 ? 0 : placedNow / names.length;
-    if (names.length >= t.expect.min && hitRate < 0.05) {
+    // This replaces a match-rate rule, which was the wrong instrument twice
+    // over. It flagged the Divya Desams for placing 9 of 110 and the Shakta
+    // Pithas for 2 of 56, and both parses were correct: Thirukoḻi and
+    // Thiruppullamboothangudi and the Bengal pithas are simply not in Wikidata
+    // with coordinates. Low placement in those canons is a fact about the
+    // database, like everything else on this page, and calling it a fault
+    // buried two true findings under false alarms.
+    //
+    // Naming a few members each tradition must contain is precise where a rate
+    // was blunt. It catches the failure the rate was invented for — a parse
+    // that reads twelve of the wrong thing — without punishing a parse that
+    // reads the right thing about a thinly covered tradition.
+    const found = new Set(names.map((x) => matchKey(x)));
+    const absent = t.mustInclude.filter(
+      (want) => ![...found].some((k) => k.includes(matchKey(want))),
+    );
+    if (absent.length > 0) {
       problems.push(
-        `only ${placedNow} of ${names.length} names match any mapped site, which is low ` +
-        "enough to suggest the parse is reading the wrong part of the article",
+        `the list does not contain ${absent.join(", ")}, which this tradition is defined by`,
       );
     }
 
