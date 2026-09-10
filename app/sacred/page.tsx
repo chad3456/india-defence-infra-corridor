@@ -340,21 +340,32 @@ export default function SacredPage() {
                   </span>
                 </div>
                 <p className="mono mt-2.5 text-[19px] leading-none tabular-nums">
-                  {n(c.placed)}
-                  <span className="text-[13px] text-[color:var(--text-muted)]">
-                    {" "}of {n(c.claimed)} placed
-                  </span>
+                  {c.problems && c.problems.length > 0 ? (
+                    <span className="text-[15px] text-[color:var(--text-muted)]">not read</span>
+                  ) : (
+                    <>
+                      {n(c.placed)}
+                      <span className="text-[13px] text-[color:var(--text-muted)]">
+                        {" "}of {n(c.claimed)} placed
+                      </span>
+                    </>
+                  )}
                 </p>
                 <p className="mt-2.5 text-[11.5px] leading-relaxed text-[color:var(--text-secondary)]">
                   {c.note}
                 </p>
-                {c.placed < c.claimed && (
+                {c.problems && c.problems.length > 0 ? (
+                  <p className="mt-2 text-[11px] leading-relaxed text-[color:var(--status-serious)]">
+                    This tradition&rsquo;s list could not be read from its article, so
+                    nothing here is drawn from it: {c.problems.join("; ")}.
+                  </p>
+                ) : c.placed < c.claimed ? (
                   <p className="mt-2 text-[11px] leading-relaxed text-[color:var(--text-muted)]">
                     {n(c.claimed - c.placed)} of its sites are not in Wikidata with
                     coordinates, or are named there in a way this could not match without
                     guessing between candidates.
                   </p>
-                )}
+                ) : null}
               </div>
             ))}
           </div>
