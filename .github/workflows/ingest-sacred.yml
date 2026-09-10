@@ -1,0 +1,66 @@
+name: Ingest sacred atlas
+
+# Builds data/sacred/atlas.json from Wikidata and commits it.
+#
+# Runs here because the editing sandbox cannot reach query.wikidata.org — the
+# egress proxy answers 403 to CONNECT — so the only place this can be built is
+# somewhere with a real network.
+#
+# Weekly. Wikidata gains temples steadily and loses them rarely; nothing on
+# this map moves fast enough to justify a daily hammering of a public endpoint
+# that costs someone else money to run.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "40 4 * * 1"
+  push:
+    paths:
+      - "scripts/etl/connectors/sacred.ts"
+      - ".github/workflows/ingest-sacred.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ingest-sacred
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Ingest
+        run: npm run sacred:ingest
+
+      # The committed file is what the page reads, so it is checked before it
+      # is committed rather than after it has already shipped.
+      - name: Check the atlas
+        run: npm run test:sacred
+
+      - name: Commit the atlas
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/sacred/atlas.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "Atlas unchanged."
+            exit 0
+          fi
+          git commit -m "chore(sacred): atlas refresh $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do
+            git push && break
+            echo "push failed, retrying in $((2**i))s"
+            sleep $((2**i))
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          done
