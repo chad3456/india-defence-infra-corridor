@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-10T12:36:38.679Z",
+  "builtAt": "2026-09-10T12:39:02.992Z",
   "source": "Wikidata, via the public SPARQL endpoint (CC0).",
   "note": "Sites are those Wikidata holds as Hindu temples in India carrying coordinates. Wikidata's coverage is uneven by state and by tradition, so a thinner region on this map is a thinner region of the database, not of India.",
   "coverage": {
@@ -991,7 +991,19 @@
       "verified": false
     }
   ],
-  "census": null,
+  "census": {
+    "region": "Jammu and Kashmir",
+    "source": "Wikipedia",
+    "page": "Jammu and Kashmir (union territory)",
+    "startsAt": 0,
+    "shares": [],
+    "refusal": "No population series for Kashmir before the colonial censuses is published here. The Rajatarangini is a dynastic chronicle, not an enumeration; the first count worth the name is 1873 and the first comparable one 1891.",
+    "problems": [
+      "no religion-by-year table matched the expected headers",
+      "saw [22 rows] | Division | | Name | | Headquarters | | Area (km2) | | Area (sq miles) | | Rural Area (km2) | | Urban Area (km2) | | Ref",
+      "saw [5 rows] Constituency No. | Constituency | Reserved for (SC/ST/None)"
+    ]
+  },
   "sites": [
     {
       "qid": "Q31700981",
