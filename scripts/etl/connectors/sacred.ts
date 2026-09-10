@@ -312,7 +312,14 @@ function linkName(cell: string): string | null {
   if (piped) return piped[2]!.trim();
   const bare = cell.match(/\[\[([^\]|]+)\]\]/);
   if (bare) return bare[1]!.replace(/\s*\(.*?\)\s*$/, "").trim();
-  const text = plain(cell).trim();
+  // A cell holding several links, or a heading with an unbalanced one, leaves
+  // markup behind: the Char Dham list arrived with "[[Puri (city)" as a
+  // member. Strip the brackets and any trailing disambiguator rather than
+  // publishing wikitext as a place-name.
+  const text = plain(cell)
+    .replace(/\[\[|\]\]/g, "")
+    .replace(/\s*\(.*?\)\s*$/, "")
+    .trim();
   return text.length >= 3 && text.length <= 60 ? text : null;
 }
 
@@ -371,8 +378,32 @@ const NOT_CONTENT = /^(see also|references|external links|further reading|notes|
 const GENERIC_HEADING =
   /^(etymology|history|legend|mythology|significance|architecture|gallery|overview|background|description|origin|worship|festival|festivals|transport|transportation|how to reach|accessibility|in popular culture|literature|images|gallery|gallery of images|gallery of the|list|gallery and|climate|geography|gallery&)/i;
 
-function canonNames(text: string, want: { min: number; max: number }): string[] {
+function canonNames(
+  text: string,
+  want: { min: number; max: number },
+  mustInclude: string[],
+): string[] {
   const target = (want.min + want.max) / 2;
+
+  /**
+   * Does this candidate list look like the tradition, rather than merely the
+   * right length?
+   *
+   * The Chota Char Dham article yielded "Administration · Recent development ·
+   * Incidents · Pilgrimage" — four names, exactly the four the tradition
+   * claims, and not one of them a place. Every count-based check passed it.
+   *
+   * So the defining members are consulted *while choosing a source*, not only
+   * after one has been chosen. A source that does not name Gangotri is not the
+   * Chota Char Dham, however many entries it has, and the next source is tried
+   * instead.
+   */
+  const looksRight = (names: string[]): boolean => {
+    if (names.length < want.min || names.length > want.max) return false;
+    if (mustInclude.length === 0) return true;
+    const keys = names.map((x) => matchKey(x));
+    return mustInclude.every((w) => keys.some((k) => k.includes(matchKey(w))));
+  };
 
   const fromRows = (rows: string[][], col: number): string[] => {
     const seen = new Set<string>();
@@ -406,8 +437,8 @@ function canonNames(text: string, want: { min: number; max: number }): string[] 
     // page's main list is rarely the smallest thing on it.
     candidates.sort((a, b) =>
       Math.abs(a.length - target) - Math.abs(b.length - target) || b.length - a.length);
-    const best = candidates[0]!;
-    if (best.length >= want.min && best.length <= want.max) return best;
+    const fit = candidates.find(looksRight);
+    if (fit) return fit;
   }
 
   /**
@@ -432,7 +463,7 @@ function canonNames(text: string, want: { min: number; max: number }): string[] 
       fromMarkers.push(n);
     }
   }
-  if (fromMarkers.length >= want.min && fromMarkers.length <= want.max) return fromMarkers;
+  if (looksRight(fromMarkers)) return fromMarkers;
 
   const fromHeadings: string[] = [];
   {
@@ -446,7 +477,7 @@ function canonNames(text: string, want: { min: number; max: number }): string[] 
       fromHeadings.push(h);
     }
   }
-  if (fromHeadings.length >= want.min && fromHeadings.length <= want.max) return fromHeadings;
+  if (looksRight(fromHeadings)) return fromHeadings;
 
   // No table fits. Read the article's bulleted lists, skipping the sections
   // that are navigation rather than content.
@@ -467,12 +498,16 @@ function canonNames(text: string, want: { min: number; max: number }): string[] 
     seen.add(k);
     out.push(n);
   }
-  // Prefer the best table over a bullet scrape that is no closer to the claim.
-  if (candidates.length > 0) {
-    const best = candidates[0]!;
-    if (Math.abs(best.length - target) <= Math.abs(out.length - target)) return best;
-  }
-  return out;
+  if (looksRight(out)) return out;
+
+  // Nothing satisfied the tradition's own defining members. Return the closest
+  // by size so the failure is legible in the log — the caller records it as a
+  // fault either way, and a wrong list that can be read beats an empty one
+  // that cannot be diagnosed.
+  const all = [...candidates, fromMarkers, fromHeadings, out].filter((x) => x.length > 0);
+  if (all.length === 0) return [];
+  all.sort((a, b) => Math.abs(a.length - target) - Math.abs(b.length - target));
+  return all[0]!;
 }
 
 async function loadCanon(sites: Site[]): Promise<CanonSet[]> {
@@ -499,7 +534,15 @@ async function loadCanon(sites: Site[]): Promise<CanonSet[]> {
     const exact = byKey.get(k);
     if (exact) return exact;
     if (k.length < 6) return null;
-    const near = keys.filter((x) => x.includes(k));
+
+    // The Pancharama article writes the Telugu nominative — Amararamam,
+    // Draksharamam — and Wikidata writes Amararama. All five sites failed to
+    // place over one trailing consonant, so a final "m" is tried both ways.
+    const stem = k.endsWith("m") ? k.slice(0, -1) : `${k}m`;
+    const byStem = byKey.get(stem);
+    if (byStem) return byStem;
+
+    const near = keys.filter((x) => x.includes(k) || x.includes(stem));
     return near.length === 1 ? byKey.get(near[0]!) ?? null : null;
   };
 
@@ -510,7 +553,7 @@ async function loadCanon(sites: Site[]): Promise<CanonSet[]> {
       console.log(`  canon ${t.id}: article unavailable`);
       continue;
     }
-    const names = canonNames(text, t.expect);
+    const names = canonNames(text, t.expect, t.mustInclude);
     const members: CanonMember[] = names.map((name) => {
       const hit = find(name);
       return { name, qid: hit?.qid ?? null };
