@@ -1,5 +1,6 @@
 {
- "builtAt": "2026-09-09T20:01:24.839Z",
+ "builtAt": "2026-09-10T05:47:47.133Z",
+ "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
  "spineSpecs": [
@@ -209780,43 +209781,50 @@
    "outlet": "UK Ministry of Defence",
    "ok": true,
    "items": 50,
-   "kept": 0
+   "kept": 0,
+   "via": "direct"
   },
   {
    "outlet": "Press Information Bureau (India)",
    "ok": true,
    "items": 20,
-   "kept": 0
+   "kept": 0,
+   "via": "direct"
   },
   {
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 2
+   "kept": 2,
+   "via": "direct"
   },
   {
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 1
+   "kept": 1,
+   "via": "direct"
   },
   {
    "outlet": "Defense One",
    "ok": true,
    "items": 21,
-   "kept": 0
+   "kept": 0,
+   "via": "direct"
   },
   {
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 1
+   "kept": 1,
+   "via": "direct"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 1
+   "kept": 2,
+   "via": "direct"
   }
  ],
  "events": [
@@ -209836,6 +209844,20 @@
    "outlet": "Breaking Defense",
    "url": "https://breakingdefense.com/2026/09/lockheed-martin-secures-950m-australian-air-battle-management-contract/",
    "headline": "Lockheed Martin secures $950M Australian air battle management contract",
+   "primary": false
+  },
+  {
+   "id": "ev-fx7svc",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Poland"
+   ],
+   "value": null,
+   "date": "2026-09-09",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/polands-abrams-tank-order-nears-the-finish-line/",
+   "headline": "Poland&#8217;s Abrams tank order nears the finish line",
    "primary": false
   },
   {
@@ -209968,6 +209990,35 @@
     "currency": "USD",
     "asWritten": "$950M"
    },
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order||poland",
+   "systems": [],
+   "countries": [
+    "Poland"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-fx7svc",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Poland"
+     ],
+     "value": null,
+     "date": "2026-09-09",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/polands-abrams-tank-order-nears-the-finish-line/",
+     "headline": "Poland&#8217;s Abrams tank order nears the finish line",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
    "verdict": "a single report, uncorroborated"
   },
   {
