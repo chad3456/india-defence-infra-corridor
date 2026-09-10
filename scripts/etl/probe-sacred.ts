@@ -101,16 +101,6 @@ interface Target {
  * better than one that might not, and the split lets a count fail without
  * taking its sibling with it. But it was not a fix for a hang.
  */
-const SPARQL_COUNT_ALL = `
-SELECT (COUNT(DISTINCT ?item) AS ?n) WHERE {
-  ?item wdt:P31/wdt:P279* wd:Q842402 ; wdt:P17 wd:Q668 .
-}`;
-
-const SPARQL_COUNT_MAPPED = `
-SELECT (COUNT(DISTINCT ?item) AS ?n) WHERE {
-  ?item wdt:P31/wdt:P279* wd:Q842402 ; wdt:P17 wd:Q668 ; wdt:P625 ?c .
-}`;
-
 /** P825 "dedicated to" — the property that actually names the god. */
 const SPARQL_DEDICATED = `
 SELECT ?d ?dLabel (COUNT(DISTINCT ?item) AS ?n) WHERE {
@@ -124,17 +114,6 @@ ORDER BY DESC(?n)
 LIMIT 80`;
 
 /** P140 for comparison, to show on the record why it was the wrong axis. */
-const SPARQL_RELIGION = `
-SELECT ?d ?dLabel (COUNT(DISTINCT ?item) AS ?n) WHERE {
-  ?item wdt:P31/wdt:P279* wd:Q842402 .
-  ?item wdt:P17 wd:Q668 .
-  ?item wdt:P140 ?d .
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-}
-GROUP BY ?d ?dLabel
-ORDER BY DESC(?n)
-LIMIT 80`;
-
 /**
  * Every class of place of worship in India that carries coordinates.
  *
@@ -143,76 +122,34 @@ LIMIT 80`;
  * rather than by what I happened to remember — mosques, gurdwaras, churches,
  * Jain and Buddhist sites included or excluded on evidence.
  */
-const SPARQL_CLASSES = `
-SELECT ?cls ?clsLabel (COUNT(DISTINCT ?item) AS ?n) WHERE {
-  ?item wdt:P17 wd:Q668 ; wdt:P625 ?c ; wdt:P31 ?cls .
-  ?cls wdt:P279* wd:Q1370598 .
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-}
-GROUP BY ?cls ?clsLabel
-ORDER BY DESC(?n)
-LIMIT 80`;
-
 /** A page of the real payload, to confirm OFFSET paging works before relying on it. */
-const SPARQL_PAGE = `
-SELECT ?item ?itemLabel ?coord ?dedLabel ?inception ?heritageLabel WHERE {
-  ?item wdt:P31/wdt:P279* wd:Q842402 .
-  ?item wdt:P17 wd:Q668 .
-  ?item wdt:P625 ?coord .
-  OPTIONAL { ?item wdt:P825 ?ded . }
-  OPTIONAL { ?item wdt:P571 ?inception . }
-  OPTIONAL { ?item wdt:P1435 ?heritage . }
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-}
-ORDER BY ?item
-LIMIT 500
-OFFSET 3000`;
-
 /**
- * Decisive first, expensive last.
+ * What is left to ask Wikidata.
  *
- * The probe writes its report after every target, so the order of this list is
- * the order in which answers become durable. The two questions that decide the
- * design — does P825 carry a real deity distribution, and does OFFSET reach
- * past 3,000 — go first, so a run killed by the job timeout still leaves them
- * on disk. The full-scan counts, which are nice to know and slow to get, go
- * last where losing them costs nothing.
+ * Four of the five queries this list carried have been answered, and their
+ * answers are now the connector's design rather than open questions:
+ *
+ *   16,042 Hindu temples in India, 3,492 of them carrying coordinates.
+ *   OFFSET paging reaches all of them; the live ingest builds 3,468.
+ *   P825 "dedicated to" covers about 600 sites across 57 figures.
+ *   P140 covers 73, and returns the religion rather than the god.
+ *
+ * Re-running full-table scans to be told the same thing again costs a public
+ * endpoint real money and this job real minutes. Only the dedication
+ * distribution stays, because it is cheap and because it is the one figure
+ * whose drift would change what the page is allowed to claim: if P825 coverage
+ * ever grows past a few per cent of the corpus, the deity axis can stop
+ * leaning on inference.
  */
 const SPARQL: Array<{ id: string; what: string; q: string; note?: string }> = [
   {
     id: "wdqs-dedicated",
     what: "P825 'dedicated to' — the deity distribution",
     q: SPARQL_DEDICATED,
-    note: "The axis the page needs. P140 gave eight values for the whole country.",
-  },
-  {
-    id: "wdqs-page",
-    what: "OFFSET paging past the 3,000 the first round could see",
-    q: SPARQL_PAGE,
-    note: "If this returns rows, the whole set is reachable in pages.",
-  },
-  {
-    id: "wdqs-religion",
-    what: "P140 'religion or worldview' — for comparison",
-    q: SPARQL_RELIGION,
-    note: "Kept on the record to show why this was the wrong property, not to use.",
-  },
-  {
-    id: "wdqs-classes",
-    what: "Every class of place of worship in India carrying coordinates",
-    q: SPARQL_CLASSES,
-    note: "Lets the evidence set the scope instead of my memory of it.",
-  },
-  {
-    id: "wdqs-count-all",
-    what: "How many Hindu temples in India Wikidata holds",
-    q: SPARQL_COUNT_ALL,
-    note: "The first round returned exactly 3,000 rows, which is the LIMIT and therefore not a count.",
-  },
-  {
-    id: "wdqs-count-mapped",
-    what: "How many of them carry coordinates",
-    q: SPARQL_COUNT_MAPPED,
+    note:
+      "Watched for growth. At roughly 600 of 16,042 the stated tier is too " +
+      "thin to carry the deity axis by itself, which is why the canonical " +
+      "tier exists at all.",
   },
 ];
 
