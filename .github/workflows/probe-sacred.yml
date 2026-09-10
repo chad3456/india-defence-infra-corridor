@@ -52,20 +52,15 @@ jobs:
 
       # Always: the probe writes after every target, so a run killed by the
       # SPARQL timeout still leaves the findings it did collect.
+      #
+      # The commit goes through a script rather than inline git because the
+      # inline version lost a report: two runs rewrote the same generated file,
+      # the fallback `git pull --rebase` hit a content conflict, and every
+      # retry then failed against a detached HEAD with unmerged paths while the
+      # loop reported success.
       - name: Commit the probe report
         if: always()
-        run: |
-          git config user.name  "bharat-tracker-bot"
-          git config user.email "actions@github.com"
-          git add data/live/sacred-probe.json 2>/dev/null || true
-          if git diff --staged --quiet; then
-            echo "Probe report unchanged."
-            exit 0
-          fi
-          git commit -m "chore(sources): sacred geography probe $(date -u +'%Y-%m-%d %H:%M')"
-          for i in 1 2 3 4; do
-            git push && break
-            echo "push failed, retrying in $((2**i))s"
-            sleep $((2**i))
-            git pull --rebase origin "${GITHUB_REF_NAME}" || true
-          done
+        run: >
+          .github/scripts/commit-generated.sh
+          data/live/sacred-probe.json
+          "chore(sources): sacred geography probe $(date -u +'%Y-%m-%d %H:%M')"

@@ -90,10 +90,16 @@ interface Target {
  *
  * Two plain counts rather than one clever one. The first attempt asked for
  * both in a single query with `OPTIONAL { ... BIND(?item AS ?withCoord) }`,
- * which makes the endpoint materialise the optional join before aggregating;
- * it ran past every timeout the probe would give it and past the job's own,
- * and took the report down with it. Two full scans that each finish beat one
- * that does not.
+ * which makes the endpoint materialise the optional join before aggregating.
+ *
+ * An earlier version of this comment said that query hung and destroyed the
+ * report. It did neither. It answered — 16,042 temples, 3,492 of them mapped —
+ * in a little over two minutes, and the run ended because a push of mine
+ * cancelled it under the workflow's cancel-in-progress. I had misread the
+ * elapsed time and diagnosed a hang that never happened. The split survives
+ * that correction on its own merits: two scans that each finish are still
+ * better than one that might not, and the split lets a count fail without
+ * taking its sibling with it. But it was not a fix for a hang.
  */
 const SPARQL_COUNT_ALL = `
 SELECT (COUNT(DISTINCT ?item) AS ?n) WHERE {

@@ -49,18 +49,7 @@ jobs:
         run: npm run test:sacred
 
       - name: Commit the atlas
-        run: |
-          git config user.name  "bharat-tracker-bot"
-          git config user.email "actions@github.com"
-          git add data/sacred/atlas.json 2>/dev/null || true
-          if git diff --staged --quiet; then
-            echo "Atlas unchanged."
-            exit 0
-          fi
-          git commit -m "chore(sacred): atlas refresh $(date -u +'%Y-%m-%d %H:%M')"
-          for i in 1 2 3 4; do
-            git push && break
-            echo "push failed, retrying in $((2**i))s"
-            sleep $((2**i))
-            git pull --rebase origin "${GITHUB_REF_NAME}" || true
-          done
+        run: >
+          .github/scripts/commit-generated.sh
+          data/sacred/atlas.json
+          "chore(sacred): atlas refresh $(date -u +'%Y-%m-%d %H:%M')"
