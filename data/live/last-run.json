@@ -1,7 +1,7 @@
 {
-  "id": "run-1789019403327",
-  "startedAt": "2026-09-10T05:47:39.560Z",
-  "finishedAt": "2026-09-10T05:50:03.327Z",
+  "id": "run-1789023740461",
+  "startedAt": "2026-09-10T06:59:33.087Z",
+  "finishedAt": "2026-09-10T07:02:20.461Z",
   "status": "partial",
   "connectorsRun": 9,
   "connectorsFailed": 0,
@@ -12,6 +12,7 @@
     "satp: terror: https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir -> HTTP 403",
     "satp: terror: no candidate URL yielded a full table; keeping previous data",
     "trai: fetch or parse failed: fetch failed",
+    "ingest: IDRW: HTTP 415",
     "ingest: The Tribune: HTTP 403",
     "ingest: Deccan Herald: HTTP 404",
     "ingest: The New Indian Express: HTTP 404",
@@ -28,7 +29,7 @@
     "ingest: Defence Aviation Post: HTTP 404",
     "ingest: Daily Excelsior: HTTP 403",
     "ingest: Search: pipelines — gas pipeline India commissioned: feed had no items",
-    "ingest funnel: 1862 items -> 620 candidates -> 67 events (lost: 268 no sector, 182 not an action, 103 no place)",
+    "ingest funnel: 1838 items -> 620 candidates -> 78 events (lost: 257 no sector, 181 not an action, 104 no place)",
     "x: X_BEARER_TOKEN not set — reading X is paid per post since February 2026, so this connector is inactive. Official announcements still arrive via the PIB, PMO and ministry feeds at no cost."
   ]
 }
