@@ -1,28 +1,9 @@
 {
-  "probedAt": "2026-09-10T06:37:30.822Z",
+  "probedAt": "2026-09-10T06:51:43.353Z",
   "note": "Reachability and shape only. No series are published from this file.",
   "scope": "Sacred geography as an evidenced record: sites with coordinates, the canonical lists and their disagreements, what has been archaeologically surveyed, and the toponymy that records continuity where no count survives.",
   "refusal": "No population series for Kashmir before the colonial censuses is sought or will be published. The Rajatarangini is a dynastic chronicle, not an enumeration; the first count worth the name is 1873 and the first comparable one 1891.",
   "findings": [
-    {
-      "id": "wdqs-count",
-      "layer": "sites",
-      "what": "Wikidata SPARQL: How many Hindu temples in India Wikidata holds, and how many are mapped",
-      "url": "https://query.wikidata.org/sparql?format=json&query=%0ASELECT%20(COUNT(DISTINCT%20%3Fitem)%20AS%20%3Fall)%20(COUNT(DISTI",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 392,
-      "head": null,
-      "rows": 1,
-      "sample": [
-        {
-          "all": "16042",
-          "mapped": "3492"
-        }
-      ],
-      "note": "The first round returned exactly 3,000 rows, which is the LIMIT and therefore not a count."
-    },
     {
       "id": "wdqs-dedicated",
       "layer": "sites",
@@ -101,6 +82,11 @@
           "n": "2"
         },
         {
+          "d": "Q3350517",
+          "dLabel": "Bhadrakali",
+          "n": "2"
+        },
+        {
           "d": "Q696702",
           "dLabel": "Vamana",
           "n": "2"
@@ -116,6 +102,11 @@
           "n": "2"
         },
         {
+          "d": "Q188618",
+          "dLabel": "Hanuman",
+          "n": "2"
+        },
+        {
           "d": "Q494511",
           "dLabel": "Devi",
           "n": "2"
@@ -128,16 +119,6 @@
         {
           "d": "Q16136808",
           "dLabel": "Ghantakarnan",
-          "n": "2"
-        },
-        {
-          "d": "Q188618",
-          "dLabel": "Hanuman",
-          "n": "2"
-        },
-        {
-          "d": "Q3350517",
-          "dLabel": "Bhadrakali",
           "n": "2"
         },
         {
@@ -171,6 +152,21 @@
           "n": "1"
         },
         {
+          "d": "Q1106783",
+          "dLabel": "Karni Mata",
+          "n": "1"
+        },
+        {
+          "d": "Q135070736",
+          "dLabel": "Bagheswari",
+          "n": "1"
+        },
+        {
+          "d": "Q7918105",
+          "dLabel": "Veer Mhaskoba",
+          "n": "1"
+        },
+        {
           "d": "Q126367448",
           "dLabel": "Lankeswari",
           "n": "1"
@@ -201,16 +197,6 @@
           "n": "1"
         },
         {
-          "d": "Q60740284",
-          "dLabel": "Tamil Thai",
-          "n": "1"
-        },
-        {
-          "d": "Q7918105",
-          "dLabel": "Veer Mhaskoba",
-          "n": "1"
-        },
-        {
           "d": "Q825682",
           "dLabel": "Parashurama",
           "n": "1"
@@ -229,14 +215,240 @@
           "d": "Q63255134",
           "dLabel": "Bhagavati",
           "n": "1"
-        },
-        {
-          "d": "Q7923793",
-          "dLabel": "Vettakkorumakan",
-          "n": "1"
         }
       ],
       "note": "The axis the page needs. P140 gave eight values for the whole country."
+    },
+    {
+      "id": "wdqs-page",
+      "layer": "sites",
+      "what": "Wikidata SPARQL: OFFSET paging past the 3,000 the first round could see",
+      "url": "https://query.wikidata.org/sparql?format=json&query=%0ASELECT%20%3Fitem%20%3FitemLabel%20%3Fcoord%20%3FdedLabel%20%3Finc",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 249940,
+      "head": null,
+      "rows": 500,
+      "sample": [
+        {
+          "item": "Q7426508",
+          "coord": "Point(79.73333333 11.23333333)",
+          "itemLabel": "Sattainathar Temple, Sirkazhi"
+        },
+        {
+          "item": "Q7426892",
+          "coord": "Point(79.54583 11.548419)",
+          "itemLabel": "Satyagnana Sabha, Vadalur"
+        },
+        {
+          "item": "Q7447164",
+          "coord": "Point(86.435778 20.27143)",
+          "itemLabel": "Sekhareswar Temple"
+        },
+        {
+          "item": "Q7449708",
+          "coord": "Point(78.955833333 10.881666666)",
+          "itemLabel": "Semmeninathar Karumbeswarar Temple"
+        },
+        {
+          "item": "Q7455499",
+          "coord": "Point(79.588888888 10.965)",
+          "itemLabel": "Serugudi Sukshmapureeswarar Temple"
+        },
+        {
+          "item": "Q7456662",
+          "coord": "Point(80.1675 13.03)",
+          "itemLabel": "Sethu Kshetram"
+        },
+        {
+          "item": "Q7488626",
+          "coord": "Point(77.18655 28.4904)",
+          "itemLabel": "Shani Dham Temple"
+        },
+        {
+          "item": "Q7488715",
+          "coord": "Point(74.84361111 34.07888889)",
+          "itemLabel": "Shankaracharya Temple, Srinagar",
+          "heritageLabel": "Monument of National Importance",
+          "dedLabel": "Shiva"
+        },
+        {
+          "item": "Q7488717",
+          "coord": "Point(74.556916666 34.157777777)",
+          "itemLabel": "Shankaragaurishvara Temple, Pattan",
+          "heritageLabel": "Monument of National Importance",
+          "dedLabel": "Shiva"
+        },
+        {
+          "item": "Q7489027",
+          "coord": "Point(73.925 15.634444444)",
+          "itemLabel": "Shantadurga Kalangutkarin Temple"
+        },
+        {
+          "item": "Q7490502",
+          "coord": "Point(73.9025 15.63833333)",
+          "itemLabel": "Sharvani Devasthan",
+          "dedLabel": "Shiva"
+        },
+        {
+          "item": "Q7494207",
+          "coord": "Point(77.434166666 8.193333333)",
+          "itemLabel": "Shenbagavalli Amman Temple, Payanam"
+        },
+        {
+          "item": "Q7497295",
+          "coord": "Point(73.89731 18.49154)",
+          "itemLabel": "Shinde Chhatri",
+          "heritageLabel": "PMC Heritage Grade I"
+        },
+        {
+          "item": "Q7499156",
+          "coord": "Point(85.133333333 25.622222222)",
+          "itemLabel": "Shitla Mata Temple, Patna"
+        },
+        {
+          "item": "Q7499202",
+          "coord": "Point(73.17664275 19.1986181)",
+          "itemLabel": "Shiv Mandir, Ambarnath",
+          "heritageLabel": "Monument of National Importance",
+          "dedLabel": "Shiva"
+        },
+        {
+          "item": "Q7499404",
+          "coord": "Point(74.6 33.17)",
+          "itemLabel": "Shivkhori",
+          "dedLabel": "Shiva"
+        },
+        {
+          "item": "Q7503473",
+          "coord": "Point(73.98333333 15.53333333)",
+          "itemLabel": "Shree Betal temple"
+        },
+        {
+          "item": "Q7503489",
+          "coord": "Point(93.9485 24.7978)",
+          "itemLabel": "Shree Govindajee Temps"
+        },
+        {
+          "item": "Q7503501",
+          "coord": "Point(74.279627 19.108737)",
+          "itemLabel": "Shree Kshetra Korthan Khandoba Devastan"
+        },
+        {
+          "item": "Q7503537",
+          "coord": "Point(74.81 12.96391667)",
+          "itemLabel": "Shree Vishnumurthy Temple"
+        },
+        {
+          "item": "Q7503540",
+          "coord": "Point(72.830833333 19.223055555)",
+          "itemLabel": "Shree Balaji Mandir"
+        },
+        {
+          "item": "Q7503745",
+          "coord": "Point(77.769525 27.812994444)",
+          "itemLabel": "Shri Alkheswar Mahadev Mandir"
+        },
+        {
+          "item": "Q7503796",
+          "coord": "Point(73.63694444 16.00305556)",
+          "itemLabel": "Shri Kaleshwar Mandir"
+        },
+        {
+          "item": "Q7503802",
+          "coord": "Point(74.27972222 14.72333333)",
+          "itemLabel": "Shri Katyayani Baneshwar Temple, Aversa"
+        },
+        {
+          "item": "Q7503803",
+          "coord": "Point(75.4372723 26.3781443)",
+          "itemLabel": "Shri Kalyan Temple"
+        },
+        {
+          "item": "Q7503824",
+          "coord": "Point(76.82694444 30.76527778)",
+          "itemLabel": "Shri Mansa Mata Mandir Hasampur"
+        },
+        {
+          "item": "Q7503874",
+          "coord": "Point(69.664444444 23.246111111)",
+          "itemLabel": "Shri Swaminarayan Mandir, Bhuj"
+        },
+        {
+          "item": "Q7503888",
+          "coord": "Point(71.57483 21.96663)",
+          "itemLabel": "Shri Swaminarayan Mandir, Gadhada"
+        },
+        {
+          "item": "Q7503898",
+          "coord": "Point(72.83021667 18.953975)",
+          "itemLabel": "Shri Swaminarayan Mandir, Mumbai"
+        },
+        {
+          "item": "Q7503911",
+          "coord": "Point(72.873888888 22.591388888)",
+          "itemLabel": "Shri Swaminarayan Mandir, Vadtal"
+        },
+        {
+          "item": "Q7503920",
+          "coord": "Point(75.03675 12.87038889)",
+          "itemLabel": "Shri Vinayaka Shankaranarayana Durgamba Temple"
+        },
+        {
+          "item": "Q7504030",
+          "coord": "Point(73.8150981 24.9289935)",
+          "itemLabel": "Shrinathji Temple",
+          "inception": "1672-01-01T00:00:00Z"
+        },
+        {
+          "item": "Q7504115",
+          "coord": "Point(75.252 13.418)",
+          "itemLabel": "Shringeri Sharadamba Temple"
+        },
+        {
+          "item": "Q7505921",
+          "coord": "Point(76.728 24.009)",
+          "itemLabel": "Shyam Kaka Temple"
+        },
+        {
+          "item": "Q7506933",
+          "coord": "Point(94.633120149 26.988764948)",
+          "itemLabel": "Sivasagar Sivadol",
+          "heritageLabel": "Monument of National Importance",
+          "dedLabel": "Shiva",
+          "inception": "1734-01-01T00:00:00Z"
+        },
+        {
+          "item": "Q7508072",
+          "coord": "Point(84.737952 19.232306)",
+          "itemLabel": "Siddha Vinayaka"
+        },
+        {
+          "item": "Q7508080",
+          "coord": "Point(74.7875 17.63111111)",
+          "itemLabel": "Siddhanath Temple, Mhaswad",
+          "dedLabel": "Shiva"
+        },
+        {
+          "item": "Q7508151",
+          "coord": "Point(76.82 18.24)",
+          "itemLabel": "Siddheshwar & Ratneshwar Temple"
+        },
+        {
+          "item": "Q7508161",
+          "coord": "Point(75.41083333 14.79055556)",
+          "itemLabel": "Siddhesvara Temple",
+          "heritageLabel": "Monument of National Importance",
+          "dedLabel": "Shiva"
+        },
+        {
+          "item": "Q7508175",
+          "coord": "Point(73.22166667 19.30055556)",
+          "itemLabel": "Siddhivinayak Mahaganapati Temple"
+        }
+      ],
+      "note": "If this returns rows, the whole set is reachable in pages."
     },
     {
       "id": "wdqs-religion",
@@ -292,6 +504,396 @@
         }
       ],
       "note": "Kept on the record to show why this was the wrong property, not to use."
+    },
+    {
+      "id": "wdqs-classes",
+      "layer": "sites",
+      "what": "Wikidata SPARQL: Every class of place of worship in India carrying coordinates",
+      "url": "https://query.wikidata.org/sparql?format=json&query=%0ASELECT%20%3Fcls%20%3FclsLabel%20(COUNT(DISTINCT%20%3Fitem)%20AS%2",
+      "ok": false,
+      "status": "HTTP 504",
+      "looksRight": null,
+      "bytes": null,
+      "head": null,
+      "note": "Lets the evidence set the scope instead of my memory of it."
+    },
+    {
+      "id": "wdqs-count-all",
+      "layer": "sites",
+      "what": "Wikidata SPARQL: How many Hindu temples in India Wikidata holds",
+      "url": "https://query.wikidata.org/sparql?format=json&query=%0ASELECT%20(COUNT(DISTINCT%20%3Fitem)%20AS%20%3Fn)%20WHERE%20%7B%0A",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 232,
+      "head": null,
+      "rows": 1,
+      "sample": [
+        {
+          "n": "16042"
+        }
+      ],
+      "note": "The first round returned exactly 3,000 rows, which is the LIMIT and therefore not a count."
+    },
+    {
+      "id": "wdqs-count-mapped",
+      "layer": "sites",
+      "what": "Wikidata SPARQL: How many of them carry coordinates",
+      "url": "https://query.wikidata.org/sparql?format=json&query=%0ASELECT%20(COUNT(DISTINCT%20%3Fitem)%20AS%20%3Fn)%20WHERE%20%7B%0A",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 231,
+      "head": null,
+      "rows": 1,
+      "sample": [
+        {
+          "n": "3492"
+        }
+      ]
+    },
+    {
+      "id": "wiki-jyotirlinga",
+      "layer": "canon",
+      "what": "Wikipedia wikitext: Jyotirlinga",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Jyotirlinga&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 22626,
+      "head": "{\"parse\":{\"title\":\"Jyotirlinga\",\"pageid\":30873974,\"redirects\":[],\"wikitext\":\"{{short description|Devotional representation of the Hindu deity Shiva}}\\n{{Hinduism}}\\n{{EngvarB|date=October 2019}}\\n{{Us",
+      "found": [
+        "Somnath",
+        "Kedarnath",
+        "Mahakaleshwar"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-shakta-pithas",
+      "layer": "canon",
+      "what": "Wikipedia wikitext: Shakta pithas",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Shakta_pithas&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 50689,
+      "head": "{\"parse\":{\"title\":\"Shakta pithas\",\"pageid\":2243963,\"redirects\":[],\"wikitext\":\"{{Short description|Shrines in Shaktism, goddess-focused Hinduism}}\\n{{Multiple issues|\\n{{More citations needed|date=Nove",
+      "found": [
+        "51",
+        "108",
+        "Daksha"
+      ],
+      "missing": [],
+      "note": "Redirected from Shakti Pitha on the first round. 51 or 108 depending on the text."
+    },
+    {
+      "id": "wiki-char-dham",
+      "layer": "canon",
+      "what": "Wikipedia wikitext: Char Dham",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Char_Dham&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 16381,
+      "head": "{\"parse\":{\"title\":\"Char Dham\",\"pageid\":22157302,\"redirects\":[],\"wikitext\":\"{{Short description|Four Hindu pilgrimage sites in India}}\\n{{for-multi|the religious sites in Nepal|Char Dham, Nepal|the Him",
+      "found": [
+        "Badrinath",
+        "Dwarka",
+        "Puri",
+        "Rameswaram"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-chota-char-dham",
+      "layer": "canon",
+      "what": "Wikipedia wikitext: Chota Char Dham",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Chota_Char_Dham&redirects=1&prop=wikitext&formatversion=2&format=js",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 16413,
+      "head": "{\"parse\":{\"title\":\"Chota Char Dham\",\"pageid\":1627413,\"redirects\":[],\"wikitext\":\"{{short description|Hindu pilgrimage circuit of four sites in India}}\\n{{for|the pilgrimage circuit of Badrinath, Ramesw",
+      "found": [
+        "Yamunotri",
+        "Gangotri"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-divya-desam",
+      "layer": "canon",
+      "what": "Wikipedia wikitext: Divya Desam",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Divya_Desam&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 90462,
+      "head": "{\"parse\":{\"title\":\"Divya Desam\",\"pageid\":3091793,\"redirects\":[],\"wikitext\":\"[[File:Sri Ranganathaswamy Temple, dedicated to Vishnu, in Srirangam, near Tiruchirappali (41) (37512491591).jpg|thumb|231x2",
+      "found": [
+        "108",
+        "Alvar"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-pancharama-kshetras",
+      "layer": "canon",
+      "what": "Wikipedia wikitext: Pancharama Kshetras",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Pancharama_Kshetras&redirects=1&prop=wikitext&formatversion=2&forma",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 14799,
+      "head": "{\"parse\":{\"title\":\"Pancharama Kshetras\",\"pageid\":4519784,\"redirects\":[],\"wikitext\":\"{{Short description|Ancient Indian Hindu temples}}\\n{{Location map+ |India Andhra Pradesh|width=325|float=right|capt",
+      "found": [
+        "Amararama",
+        "Draksharama"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-monuments-of-national-importance",
+      "layer": "evidence",
+      "what": "Wikipedia wikitext: Monuments of National Importance",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Monuments_of_National_Importance&redirects=1&prop=wikitext&formatve",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 6692,
+      "head": "{\"parse\":{\"title\":\"Monuments of National Importance\",\"pageid\":36945793,\"redirects\":[],\"wikitext\":\"{{short description|none}}\\n{{Culture of India}}\\nThis article contains lists of '''Monuments of Natio",
+      "found": [
+        "3,6",
+        "Archaeological Survey"
+      ],
+      "missing": [],
+      "note": "Redirect target of the list page. The evidentiary floor."
+    },
+    {
+      "id": "wiki-archaeological-survey-of-india",
+      "layer": "evidence",
+      "what": "Wikipedia wikitext: Archaeological Survey of India",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Archaeological_Survey_of_India&redirects=1&prop=wikitext&formatvers",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 36906,
+      "head": "{\"parse\":{\"title\":\"Archaeological Survey of India\",\"pageid\":2142513,\"redirects\":[],\"wikitext\":\"{{short description|Indian agency responsible for archaeological studies and preservation}}\\n{{Use dmy da",
+      "found": [
+        "1861",
+        "Cunningham"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-rajatarangini",
+      "layer": "names",
+      "what": "Wikipedia wikitext: Rajatarangini",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Rajatarangini&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 40569,
+      "head": "{\"parse\":{\"title\":\"Rajatarangini\",\"pageid\":2452810,\"redirects\":[],\"wikitext\":\"{{short description|History book of Kashmir by Kalhana}}\\n{{Italic title}}\\n{{Use dmy dates|date=May 2018}}\\n{{Infobox boo",
+      "found": [
+        "Kalhana",
+        "Stein",
+        "1148"
+      ],
+      "missing": [
+        "1149"
+      ],
+      "note": "Stein's index is the scholarly spine for Kashmiri toponymy."
+    },
+    {
+      "id": "wiki-list-of-renamed-places-in-india",
+      "layer": "names",
+      "what": "Wikipedia wikitext: List of renamed places in India",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_renamed_places_in_India&redirects=1&prop=wikitext&formatver",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 32918,
+      "head": "{\"parse\":{\"title\":\"List of renamed places in India\",\"pageid\":5991461,\"redirects\":[],\"wikitext\":\"{{Short description|none}}\\n{{pp-move}}\\n{{Use Indian English|date=July 2022}}\\n{{Use dmy dates|date=Nov",
+      "found": [
+        "Renamed",
+        "Bombay",
+        "Mumbai"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-baramulla",
+      "layer": "names",
+      "what": "Wikipedia wikitext: Baramulla",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Baramulla&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 52371,
+      "head": "{\"parse\":{\"title\":\"Baramulla\",\"pageid\":3401748,\"redirects\":[],\"wikitext\":\"{{Short description| District in Jammu & Kashmir, India}}\\n{{About|the municipality in India|its namesake district|Baramulla d",
+      "found": [
+        "Varahamula",
+        "Varaha",
+        "boar"
+      ],
+      "missing": [],
+      "note": "The user's own example. A 200 here is not evidence the article says Varahamula."
+    },
+    {
+      "id": "wiki-kashmir-valley",
+      "layer": "names",
+      "what": "Wikipedia wikitext: Kashmir Valley",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Kashmir_Valley&redirects=1&prop=wikitext&formatversion=2&format=jso",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 13689,
+      "head": "{\"parse\":{\"title\":\"Kashmir Valley\",\"pageid\":1935660,\"redirects\":[],\"wikitext\":\"{{Short description|Valley in Jammu & Kashmir, India}}\\n{{About|the geographic area|the administrative division governing",
+      "found": [],
+      "missing": [
+        "Kashyapa",
+        "Satisar"
+      ]
+    },
+    {
+      "id": "wiki-anantnag",
+      "layer": "names",
+      "what": "Wikipedia wikitext: Anantnag",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Anantnag&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 26558,
+      "head": "{\"parse\":{\"title\":\"Anantnag\",\"pageid\":4906655,\"redirects\":[],\"wikitext\":\"{{For|the Indian actor|Anant Nag}}\\n{{pp-extended|small=yes}}\\n{{Use dmy dates|date=May 2026}}\\n{{Infobox settlement\\n| name",
+      "found": [
+        "Islamabad",
+        "spring"
+      ],
+      "missing": [
+        "Anantnaag"
+      ]
+    },
+    {
+      "id": "wiki-srinagar",
+      "layer": "names",
+      "what": "Wikipedia wikitext: Srinagar",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Srinagar&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 99364,
+      "head": "{\"parse\":{\"title\":\"Srinagar\",\"pageid\":294148,\"redirects\":[],\"wikitext\":\"{{Short description|City in Indian-administered Jammu and Kashmir}}\\n{{other uses}}\\n{{Use Indian English|date=July 2026}}\\n{{Us",
+      "found": [
+        "Pravarasena",
+        "Sri",
+        "Ashoka"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-martand-sun-temple",
+      "layer": "names",
+      "what": "Wikipedia wikitext: Martand Sun Temple",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Martand_Sun_Temple&redirects=1&prop=wikitext&formatversion=2&format",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 14951,
+      "head": "{\"parse\":{\"title\":\"Martand Sun Temple\",\"pageid\":35470219,\"redirects\":[],\"wikitext\":\"{{Short description|Hindu temple in Jammu and Kashmir, India}}\\n{{Use dmy dates|date=April 2024}}\\n{{Use Indian Engl",
+      "found": [
+        "Lalitaditya",
+        "8th century"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-kashmiri-hindus",
+      "layer": "census",
+      "what": "Wikipedia wikitext: Kashmiri Hindus",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Kashmiri_Hindus&redirects=1&prop=wikitext&formatversion=2&format=js",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 18497,
+      "head": "{\"parse\":{\"title\":\"Kashmiri Hindus\",\"pageid\":39051255,\"redirects\":[],\"wikitext\":\"{{Short description|Ethnic Kashmiris who adhere to Hinduism and are native to the Kashmir Valley}}\\n{{Use dmy dates|dat",
+      "found": [
+        "census",
+        "1990"
+      ],
+      "missing": [
+        "1941"
+      ]
+    },
+    {
+      "id": "wiki-census-in-british-india",
+      "layer": "census",
+      "what": "Wikipedia wikitext: Census in British India",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Census_in_British_India&redirects=1&prop=wikitext&formatversion=2&f",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 56881,
+      "head": "{\"parse\":{\"title\":\"Census in British India\",\"pageid\":42338427,\"redirects\":[],\"wikitext\":\"{{Short description|Census of India prior to independence}}\\n{{use dmy dates|date=April 2015}}\\n[[File:Census o",
+      "found": [
+        "1871",
+        "1881",
+        "1891",
+        "1901",
+        "1941"
+      ],
+      "missing": [],
+      "note": "Redirect target of 1941 Census of India. Where counting starts."
+    },
+    {
+      "id": "wiki-jammu-and-kashmir-union-territory-",
+      "layer": "census",
+      "what": "Wikipedia wikitext: Jammu and Kashmir (union territory)",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Jammu_and_Kashmir_(union_territory)&redirects=1&prop=wikitext&forma",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 148775,
+      "head": "{\"parse\":{\"title\":\"Jammu and Kashmir (union territory)\",\"pageid\":61449812,\"redirects\":[],\"wikitext\":\"{{Short description| Region administered by India}}\\n{{About|the region administered by India as a",
+      "found": [
+        "Demographics",
+        "Census",
+        "2011"
+      ],
+      "missing": [],
+      "note": "Redirect target of Demographics of Jammu and Kashmir."
+    },
+    {
+      "id": "asi-monuments",
+      "layer": "evidence",
+      "what": "Archaeological Survey of India, alphabetical monument list",
+      "url": "https://asi.nic.in/monuments/",
+      "ok": true,
+      "status": "200",
+      "looksRight": true,
+      "bytes": 8444474,
+      "head": "<!DOCTYPE html> <html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"zxx\"> <head> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initi",
+      "found": [
+        "Temple",
+        "Circle"
+      ],
+      "missing": [
+        "Andhra"
+      ],
+      "note": "8.4 MB of HTML on the first round. Reachable; the question is whether it is a table."
+    },
+    {
+      "id": "census-india",
+      "layer": "census",
+      "what": "Census of India portal",
+      "url": "https://censusindia.gov.in/census.website/",
+      "ok": false,
+      "status": "fetch failed",
+      "looksRight": null,
+      "bytes": null,
+      "head": null,
+      "note": "Failed outright on the first round."
     }
   ]
 }
