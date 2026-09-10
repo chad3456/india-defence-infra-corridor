@@ -46,6 +46,7 @@ const GROUPS: Group[] = [
       { href: "/defence-tracker", label: "Defence", blurb: "Exports, production, corridors, insurgency" },
       { href: "/mobility", label: "Mobility", blurb: "Rail, metro, highways, airports" },
       { href: "/atlas", label: "Atlas", blurb: "The statewise picture" },
+      { href: "/sacred", label: "Sacred landscape", blurb: "Temples, deities, heritage and place-names" },
       { href: "/elections", label: "Elections", blurb: "Turnout and voting patterns by state" },
       { href: "/map", label: "Map", blurb: "Corridors and the highway timelapse" },
     ],
