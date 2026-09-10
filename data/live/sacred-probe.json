@@ -1,246 +1,297 @@
 {
-  "probedAt": "2026-09-10T06:34:32.735Z",
-  "note": "Reachability only. No series are published from this file.",
+  "probedAt": "2026-09-10T06:37:30.822Z",
+  "note": "Reachability and shape only. No series are published from this file.",
   "scope": "Sacred geography as an evidenced record: sites with coordinates, the canonical lists and their disagreements, what has been archaeologically surveyed, and the toponymy that records continuity where no count survives.",
   "refusal": "No population series for Kashmir before the colonial censuses is sought or will be published. The Rajatarangini is a dynastic chronicle, not an enumeration; the first count worth the name is 1873 and the first comparable one 1891.",
   "findings": [
     {
-      "id": "wdqs-temples",
+      "id": "wdqs-count",
       "layer": "sites",
-      "what": "Wikidata SPARQL: Hindu temples in India with coordinates",
-      "url": "https://query.wikidata.org/sparql?format=json&query=%0ASELECT%20%3Fitem%20%3FitemLabel%20%3Fcoord%20%3FdeityLabel%20%3Fs",
+      "what": "Wikidata SPARQL: How many Hindu temples in India Wikidata holds, and how many are mapped",
+      "url": "https://query.wikidata.org/sparql?format=json&query=%0ASELECT%20(COUNT(DISTINCT%20%3Fitem)%20AS%20%3Fall)%20(COUNT(DISTI",
       "ok": true,
       "status": "200",
       "looksRight": true,
-      "bytes": 1673966,
-      "head": "{ \"head\" : { \"vars\" : [ \"item\", \"itemLabel\", \"coord\", \"deityLabel\", \"stateLabel\", \"inception\", \"heritageLabel\" ] }, \"results\" : { \"bindings\" : [ { \"item\" : { \"type\" : \"uri\"",
-      "rows": 3000,
-      "note": "The instrument that decides whether this is a map of thousands or of a famous few."
+      "bytes": 392,
+      "head": null,
+      "rows": 1,
+      "sample": [
+        {
+          "all": "16042",
+          "mapped": "3492"
+        }
+      ],
+      "note": "The first round returned exactly 3,000 rows, which is the LIMIT and therefore not a count."
     },
     {
-      "id": "wdqs-deities",
+      "id": "wdqs-dedicated",
       "layer": "sites",
-      "what": "Wikidata SPARQL: which deities carry the most sites",
-      "url": "https://query.wikidata.org/sparql?format=json&query=%0ASELECT%20%3Fdeity%20%3FdeityLabel%20(COUNT(DISTINCT%20%3Fitem)%20",
+      "what": "Wikidata SPARQL: P825 'dedicated to' — the deity distribution",
+      "url": "https://query.wikidata.org/sparql?format=json&query=%0ASELECT%20%3Fd%20%3FdLabel%20(COUNT(DISTINCT%20%3Fitem)%20AS%20%3F",
       "ok": true,
       "status": "200",
       "looksRight": true,
-      "bytes": 3105,
-      "head": "{ \"head\" : { \"vars\" : [ \"deity\", \"deityLabel\", \"n\" ] }, \"results\" : { \"bindings\" : [ { \"deity\" : { \"type\" : \"uri\", \"value\" : \"http://www.wikidata.org/entity/Q9089\"",
-      "rows": 8
+      "bytes": 20936,
+      "head": null,
+      "rows": 57,
+      "sample": [
+        {
+          "d": "Q11378",
+          "dLabel": "Shiva",
+          "n": "479"
+        },
+        {
+          "d": "Q132127",
+          "dLabel": "Kālī",
+          "n": "12"
+        },
+        {
+          "d": "Q11380",
+          "dLabel": "Vishnu",
+          "n": "9"
+        },
+        {
+          "d": "Q1579",
+          "dLabel": "Ganesha",
+          "n": "8"
+        },
+        {
+          "d": "Q42891",
+          "dLabel": "Krishna",
+          "n": "7"
+        },
+        {
+          "d": "Q382973",
+          "dLabel": "Durga",
+          "n": "6"
+        },
+        {
+          "d": "Q25087",
+          "dLabel": "Kātyāyanī",
+          "n": "4"
+        },
+        {
+          "d": "Q170485",
+          "dLabel": "Parvati",
+          "n": "3"
+        },
+        {
+          "d": "Q237543",
+          "dLabel": "Narasimha",
+          "n": "3"
+        },
+        {
+          "d": "Q160213",
+          "dLabel": "Rama",
+          "n": "3"
+        },
+        {
+          "d": "Q202011",
+          "dLabel": "Dhanvantari",
+          "n": "3"
+        },
+        {
+          "d": "Q25588583",
+          "dLabel": "Madan Mohan",
+          "n": "2"
+        },
+        {
+          "d": "Q2088394",
+          "dLabel": "Chandi",
+          "n": "2"
+        },
+        {
+          "d": "Q696702",
+          "dLabel": "Vamana",
+          "n": "2"
+        },
+        {
+          "d": "Q2033068",
+          "dLabel": "Radha Krishna",
+          "n": "2"
+        },
+        {
+          "d": "Q204418",
+          "dLabel": "Surya",
+          "n": "2"
+        },
+        {
+          "d": "Q494511",
+          "dLabel": "Devi",
+          "n": "2"
+        },
+        {
+          "d": "Q380817",
+          "dLabel": "Kartikeya",
+          "n": "2"
+        },
+        {
+          "d": "Q16136808",
+          "dLabel": "Ghantakarnan",
+          "n": "2"
+        },
+        {
+          "d": "Q188618",
+          "dLabel": "Hanuman",
+          "n": "2"
+        },
+        {
+          "d": "Q3350517",
+          "dLabel": "Bhadrakali",
+          "n": "2"
+        },
+        {
+          "d": "Q26156464",
+          "dLabel": "Dakshina Kali",
+          "n": "1"
+        },
+        {
+          "d": "Q100877925",
+          "dLabel": "Vaishno Devi",
+          "n": "1"
+        },
+        {
+          "d": "Q511056",
+          "dLabel": "solar deity",
+          "n": "1"
+        },
+        {
+          "d": "Q1370311",
+          "dLabel": "Jagannath",
+          "n": "1"
+        },
+        {
+          "d": "Q123018476",
+          "dLabel": "Angala Devi",
+          "n": "1"
+        },
+        {
+          "d": "Q983584",
+          "dLabel": "Gorakhnath",
+          "n": "1"
+        },
+        {
+          "d": "Q126367448",
+          "dLabel": "Lankeswari",
+          "n": "1"
+        },
+        {
+          "d": "Q6749617",
+          "dLabel": "Manikeswari",
+          "n": "1"
+        },
+        {
+          "d": "Q1518806",
+          "dLabel": "Manasā",
+          "n": "1"
+        },
+        {
+          "d": "Q6950644",
+          "dLabel": "Mārtanda",
+          "n": "1"
+        },
+        {
+          "d": "Q3363102",
+          "dLabel": "Para Brahman",
+          "n": "1"
+        },
+        {
+          "d": "Q931506",
+          "dLabel": "Swaminarayan",
+          "n": "1"
+        },
+        {
+          "d": "Q60740284",
+          "dLabel": "Tamil Thai",
+          "n": "1"
+        },
+        {
+          "d": "Q7918105",
+          "dLabel": "Veer Mhaskoba",
+          "n": "1"
+        },
+        {
+          "d": "Q825682",
+          "dLabel": "Parashurama",
+          "n": "1"
+        },
+        {
+          "d": "Q2672099",
+          "dLabel": "Virabhadra",
+          "n": "1"
+        },
+        {
+          "d": "Q2668647",
+          "dLabel": "Venkateswara",
+          "n": "1"
+        },
+        {
+          "d": "Q63255134",
+          "dLabel": "Bhagavati",
+          "n": "1"
+        },
+        {
+          "d": "Q7923793",
+          "dLabel": "Vettakkorumakan",
+          "n": "1"
+        }
+      ],
+      "note": "The axis the page needs. P140 gave eight values for the whole country."
     },
     {
-      "id": "wiki-jyotirlinga",
-      "layer": "canon",
-      "what": "Wikipedia wikitext: Jyotirlinga",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Jyotirlinga&prop=wikitext&formatversion=2&format=json",
+      "id": "wdqs-religion",
+      "layer": "sites",
+      "what": "Wikidata SPARQL: P140 'religion or worldview' — for comparison",
+      "url": "https://query.wikidata.org/sparql?format=json&query=%0ASELECT%20%3Fd%20%3FdLabel%20(COUNT(DISTINCT%20%3Fitem)%20AS%20%3F",
       "ok": true,
       "status": "200",
       "looksRight": true,
-      "bytes": 22611,
-      "head": "{\"parse\":{\"title\":\"Jyotirlinga\",\"pageid\":30873974,\"wikitext\":\"{{short description|Devotional representation of the Hindu deity Shiva}}\\n{{Hinduism}}\\n{{EngvarB|date=October 2019}}\\n{{Use dmy dates|dat",
-      "note": "The twelve, and the variant lists."
-    },
-    {
-      "id": "wiki-shakti-pitha",
-      "layer": "canon",
-      "what": "Wikipedia wikitext: Shakti Pitha",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Shakti_Pitha&prop=wikitext&formatversion=2&format=json",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 144,
-      "head": "{\"parse\":{\"title\":\"Shakti Pitha\",\"pageid\":76558551,\"wikitext\":\"#REDIRECT [[Shakta pithas]]\\n\\n{{Redirect category shell|\\n{{R from move}}\\n}}\"}}",
-      "note": "51 or 108 depending on the text — the disagreement is the point."
-    },
-    {
-      "id": "wiki-char-dham",
-      "layer": "canon",
-      "what": "Wikipedia wikitext: Char Dham",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Char_Dham&prop=wikitext&formatversion=2&format=json",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 16366,
-      "head": "{\"parse\":{\"title\":\"Char Dham\",\"pageid\":22157302,\"wikitext\":\"{{Short description|Four Hindu pilgrimage sites in India}}\\n{{for-multi|the religious sites in Nepal|Char Dham, Nepal|the Himalayan pilgrima"
-    },
-    {
-      "id": "wiki-chota-char-dham",
-      "layer": "canon",
-      "what": "Wikipedia wikitext: Chota Char Dham",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Chota_Char_Dham&prop=wikitext&formatversion=2&format=json",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 16398,
-      "head": "{\"parse\":{\"title\":\"Chota Char Dham\",\"pageid\":1627413,\"wikitext\":\"{{short description|Hindu pilgrimage circuit of four sites in India}}\\n{{for|the pilgrimage circuit of Badrinath, Rameswaram, Dwarka an"
-    },
-    {
-      "id": "wiki-divya-desam",
-      "layer": "canon",
-      "what": "Wikipedia wikitext: Divya Desam",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Divya_Desam&prop=wikitext&formatversion=2&format=json",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 90447,
-      "head": "{\"parse\":{\"title\":\"Divya Desam\",\"pageid\":3091793,\"wikitext\":\"[[File:Sri Ranganathaswamy Temple, dedicated to Vishnu, in Srirangam, near Tiruchirappali (41) (37512491591).jpg|thumb|231x231px|The Rangan",
-      "note": "108 Vishnu sites of the Alvars."
-    },
-    {
-      "id": "wiki-pancharama-kshetras",
-      "layer": "canon",
-      "what": "Wikipedia wikitext: Pancharama Kshetras",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Pancharama_Kshetras&prop=wikitext&formatversion=2&format=json",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 14784,
-      "head": "{\"parse\":{\"title\":\"Pancharama Kshetras\",\"pageid\":4519784,\"wikitext\":\"{{Short description|Ancient Indian Hindu temples}}\\n{{Location map+ |India Andhra Pradesh|width=325|float=right|caption=Locations o"
-    },
-    {
-      "id": "wiki-list-of-monuments-of-national-importance-in-",
-      "layer": "evidence",
-      "what": "Wikipedia wikitext: List of Monuments of National Importance in India",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_Monuments_of_National_Importance_in_India&prop=wikitext&for",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 149,
-      "head": "{\"parse\":{\"title\":\"List of Monuments of National Importance in India\",\"pageid\":36945831,\"wikitext\":\"#REDIRECT [[Monuments of National Importance]]\"}}"
-    },
-    {
-      "id": "wiki-archaeological-survey-of-india",
-      "layer": "evidence",
-      "what": "Wikipedia wikitext: Archaeological Survey of India",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Archaeological_Survey_of_India&prop=wikitext&formatversion=2&format",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 36891,
-      "head": "{\"parse\":{\"title\":\"Archaeological Survey of India\",\"pageid\":2142513,\"wikitext\":\"{{short description|Indian agency responsible for archaeological studies and preservation}}\\n{{Use dmy dates|date=Octobe"
-    },
-    {
-      "id": "wiki-rajatarangini",
-      "layer": "names",
-      "what": "Wikipedia wikitext: Rajatarangini",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Rajatarangini&prop=wikitext&formatversion=2&format=json",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 40554,
-      "head": "{\"parse\":{\"title\":\"Rajatarangini\",\"pageid\":2452810,\"wikitext\":\"{{short description|History book of Kashmir by Kalhana}}\\n{{Italic title}}\\n{{Use dmy dates|date=May 2018}}\\n{{Infobox book\\n| author"
-    },
-    {
-      "id": "wiki-list-of-renamed-places-in-india",
-      "layer": "names",
-      "what": "Wikipedia wikitext: List of renamed places in India",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_renamed_places_in_India&prop=wikitext&formatversion=2&forma",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 32903,
-      "head": "{\"parse\":{\"title\":\"List of renamed places in India\",\"pageid\":5991461,\"wikitext\":\"{{Short description|none}}\\n{{pp-move}}\\n{{Use Indian English|date=July 2022}}\\n{{Use dmy dates|date=November 2022}}\\n\\"
-    },
-    {
-      "id": "wiki-baramulla",
-      "layer": "names",
-      "what": "Wikipedia wikitext: Baramulla",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Baramulla&prop=wikitext&formatversion=2&format=json",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 52356,
-      "head": "{\"parse\":{\"title\":\"Baramulla\",\"pageid\":3401748,\"wikitext\":\"{{Short description| District in Jammu & Kashmir, India}}\\n{{About|the municipality in India|its namesake district|Baramulla district}}\\n{{Us",
-      "note": "Varahamula. The user's own example, and a checkable one."
-    },
-    {
-      "id": "wiki-kashmir-valley",
-      "layer": "names",
-      "what": "Wikipedia wikitext: Kashmir Valley",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Kashmir_Valley&prop=wikitext&formatversion=2&format=json",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 13674,
-      "head": "{\"parse\":{\"title\":\"Kashmir Valley\",\"pageid\":1935660,\"wikitext\":\"{{Short description|Valley in Jammu & Kashmir, India}}\\n{{About|the geographic area|the administrative division governing the area|Kashm"
-    },
-    {
-      "id": "wiki-anantnag",
-      "layer": "names",
-      "what": "Wikipedia wikitext: Anantnag",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Anantnag&prop=wikitext&formatversion=2&format=json",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 26543,
-      "head": "{\"parse\":{\"title\":\"Anantnag\",\"pageid\":4906655,\"wikitext\":\"{{For|the Indian actor|Anant Nag}}\\n{{pp-extended|small=yes}}\\n{{Use dmy dates|date=May 2026}}\\n{{Infobox settlement\\n| name = A"
-    },
-    {
-      "id": "wiki-srinagar",
-      "layer": "names",
-      "what": "Wikipedia wikitext: Srinagar",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Srinagar&prop=wikitext&formatversion=2&format=json",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 99349,
-      "head": "{\"parse\":{\"title\":\"Srinagar\",\"pageid\":294148,\"wikitext\":\"{{Short description|City in Indian-administered Jammu and Kashmir}}\\n{{other uses}}\\n{{Use Indian English|date=July 2026}}\\n{{Use dmy dates|dat"
-    },
-    {
-      "id": "wiki-demographics-of-jammu-and-kashmir",
-      "layer": "census",
-      "what": "Wikipedia wikitext: Demographics of Jammu and Kashmir",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Demographics_of_Jammu_and_Kashmir&prop=wikitext&formatversion=2&for",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 149,
-      "head": "{\"parse\":{\"title\":\"Demographics of Jammu and Kashmir\",\"pageid\":31731964,\"wikitext\":\"#REDIRECT [[Jammu and Kashmir (union territory)#Demographics]]\"}}"
-    },
-    {
-      "id": "wiki-1941-census-of-india",
-      "layer": "census",
-      "what": "Wikipedia wikitext: 1941 Census of India",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=1941_Census_of_India&prop=wikitext&formatversion=2&format=json",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 111,
-      "head": "{\"parse\":{\"title\":\"1941 Census of India\",\"pageid\":65638753,\"wikitext\":\"#REDIRECT [[Census in British India]]\"}}"
-    },
-    {
-      "id": "wiki-census-of-india",
-      "layer": "census",
-      "what": "Wikipedia wikitext: Census of India",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Census_of_India&prop=wikitext&formatversion=2&format=json",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 4887,
-      "head": "{\"parse\":{\"title\":\"Census of India\",\"pageid\":4330279,\"wikitext\":\"{{short description|Decennial census mandated by the 1948 Census of India Act}}\\n{{Infobox recurring event\\n| name = Census of"
-    },
-    {
-      "id": "asi-monuments",
-      "layer": "evidence",
-      "what": "Archaeological Survey of India, alphabetical monument list",
-      "url": "https://asi.nic.in/monuments/",
-      "ok": true,
-      "status": "200",
-      "looksRight": true,
-      "bytes": 8444474,
-      "head": "<!DOCTYPE html> <html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"zxx\"> <head> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initi"
-    },
-    {
-      "id": "census-india",
-      "layer": "census",
-      "what": "Census of India portal",
-      "url": "https://censusindia.gov.in/census.website/",
-      "ok": false,
-      "status": "fetch failed",
-      "looksRight": null,
-      "bytes": null,
-      "head": null
+      "bytes": 3033,
+      "head": null,
+      "rows": 8,
+      "sample": [
+        {
+          "d": "Q9089",
+          "dLabel": "Hinduism",
+          "n": "52"
+        },
+        {
+          "d": "Q45584",
+          "dLabel": "Vaishnavism",
+          "n": "8"
+        },
+        {
+          "d": "Q234953",
+          "dLabel": "Shaivism",
+          "n": "7"
+        },
+        {
+          "d": "Q1144575",
+          "dLabel": "Gaudiya Vaishnavism",
+          "n": "3"
+        },
+        {
+          "d": "Q849345",
+          "dLabel": "Shaktism",
+          "n": "1"
+        },
+        {
+          "d": "Q4387995",
+          "dLabel": "Radha Vallabh Sampradaya",
+          "n": "1"
+        },
+        {
+          "d": "Q9232",
+          "dLabel": "Jainism",
+          "n": "1"
+        },
+        {
+          "d": "Q1579",
+          "dLabel": "Ganesha",
+          "n": "1"
+        }
+      ],
+      "note": "Kept on the record to show why this was the wrong property, not to use."
     }
   ]
 }
