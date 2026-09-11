@@ -1,0 +1,60 @@
+name: Ingest temple footfall
+
+# Builds data/sacred/footfall.json from Wikipedia and commits it.
+#
+# The temple trusts publish their own counts and none of them put a number in
+# reachable HTML — the probe found all five alive and all five silent. So the
+# figures come from Wikipedia, where they are findable and cited, and every one
+# travels with the sentence it was read out of.
+#
+# Runs here because the editing sandbox cannot reach query.wikidata.org — the
+# egress proxy answers 403 to CONNECT — so the only place this can be built is
+# somewhere with a real network.
+#
+# Weekly. Wikidata gains temples steadily and loses them rarely; nothing on
+# this map moves fast enough to justify a daily hammering of a public endpoint
+# that costs someone else money to run.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "50 4 * * 1"
+  push:
+    paths:
+      - "scripts/etl/connectors/footfall.ts"
+      - ".github/workflows/ingest-footfall.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ingest-footfall
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Ingest
+        run: npm run footfall:ingest
+
+      # The committed file is what the page reads, so it is checked before it
+      # is committed rather than after it has already shipped.
+      - name: Check the figures
+        run: npm run test:footfall
+
+      - name: Commit the figures
+        run: >
+          .github/scripts/commit-generated.sh
+          data/sacred/footfall.json
+          "chore(sacred): footfall refresh $(date -u +'%Y-%m-%d %H:%M')"
