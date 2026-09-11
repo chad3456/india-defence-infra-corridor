@@ -193,3 +193,22 @@ export function censusByYear(shares: CensusShare[]): Array<{
       .map((s) => ({ group: s.group, percent: s.percent })),
   }));
 }
+
+export interface FootfallRow {
+  name: string;
+  state: string;
+  page: string;
+  value: number;
+  period: "day" | "year";
+  quote: string;
+}
+
+export interface Footfall {
+  builtAt: string;
+  source: string;
+  note: string;
+  incomparable: string;
+  coverage: string;
+  silent: string[];
+  rows: FootfallRow[];
+}

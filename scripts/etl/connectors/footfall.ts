@@ -52,7 +52,7 @@ const WIKI = "https://en.wikipedia.org/w/api.php";
 const TEMPLES: Array<{ page: string; name: string; state: string }> = [
   { page: "Tirumala_Venkateswara_Temple", name: "Tirumala Venkateswara", state: "Andhra Pradesh" },
   { page: "Vaishno_Devi", name: "Vaishno Devi", state: "Jammu & Kashmir" },
-  { page: "Shirdi_Sai_Baba_Temple", name: "Shirdi Sai Baba", state: "Maharashtra" },
+  { page: "Shirdi", name: "Shirdi Sai Baba", state: "Maharashtra" },
   { page: "Siddhivinayak_Temple", name: "Siddhivinayak", state: "Maharashtra" },
   { page: "Somnath_temple", name: "Somnath", state: "Gujarat" },
   { page: "Kashi_Vishwanath_Temple", name: "Kashi Vishwanath", state: "Uttar Pradesh" },
@@ -178,6 +178,25 @@ async function wikitext(page: string): Promise<string | null> {
   }
 }
 
+/**
+ * What the eighteen silences turned out to be.
+ *
+ * Recorded here because the answer is the finding, not a step toward one. Of
+ * twenty of the most visited temples in the country, two carry a footfall
+ * figure whose period their article states. The rest are not near-misses:
+ *
+ *   Srirangam's nearest sentence is "some 13,000 Sri Vaishnavas devotees of
+ *   Srirangam, died in the fierce battle" — a massacre, which a looser
+ *   extractor would have published as attendance.
+ *   Vaishno Devi's is the shrine's annual income, not its visitors.
+ *   Lingaraja's is one Shivaratri, which is a festival day and not a rate.
+ *   Meenakshi's is "four most important of the 68 pilgrimage places".
+ *   Four articles contain no sentence with both a number and a visitor word.
+ *
+ * So the strictness is doing the work it was built for, and the conclusion is
+ * that Wikipedia does not carry comparable footfall for Indian temples. That
+ * is worth publishing as a result.
+ */
 export async function run(): Promise<void> {
   const rows: FootfallRow[] = [];
   const silent: string[] = [];
@@ -220,10 +239,11 @@ export async function run(): Promise<void> {
       "government statistic behind it, and the sentence is quoted here so the reading can " +
       "be checked against the claim.",
     incomparable:
-      "Daily and annual figures are never converted into each other. Tirumala reports about " +
-      "sixty thousand pilgrims a day and Vaishno Devi millions a year; dividing the second " +
-      "by 365 would invent a daily average nobody measured, across festivals that move the " +
-      "real number by an order of magnitude. The two are shown apart.",
+      "Daily and annual figures are never converted into each other, and the two that came " +
+      "back are one of each: Kashi Vishwanath at 45,000 a day, Tirumala at 24 million a " +
+      "year. Dividing the second by 365 would invent a daily average nobody measured, " +
+      "across festivals that move the real number by an order of magnitude. They are shown " +
+      "apart, and are not ranked against each other.",
     coverage:
       `${rows.length} of ${TEMPLES.length} temples asked carry a figure whose period the ` +
       "article states. The rest are absent rather than estimated.",

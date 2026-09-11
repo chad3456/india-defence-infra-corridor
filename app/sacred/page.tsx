@@ -2,7 +2,8 @@ import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import SacredMap from "@/components/map/SacredMap";
 import { loadAtlas, byState, byHeritage, byFigure, byCentury, censusByYear } from "@/lib/sacred";
-import type { CanonSet, Toponym, CensusLayer } from "@/lib/sacred";
+import { loadFootfall } from "@/lib/footfall";
+import type { CanonSet, Toponym, CensusLayer, Footfall } from "@/lib/sacred";
 
 /**
  * India's sacred landscape, and an argument about what a map of it can say.
@@ -133,6 +134,7 @@ export default function SacredPage() {
   const canon: CanonSet[] | undefined = atlas.canon;
   const toponyms: Toponym[] | undefined = atlas.toponyms;
   const census: CensusLayer | null | undefined = atlas.census;
+  const footfall = loadFootfall();
   const censusRows = census && census.shares.length > 0 ? censusByYear(census.shares) : [];
 
   const topTwo = states.slice(0, 2);
@@ -522,6 +524,70 @@ export default function SacredPage() {
           </div>
         </Section>
       )}
+
+      <Section eyebrow="Visitors" title="Almost nobody publishes a number you can compare">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+          <div className="space-y-4 text-[14px] leading-[1.75] text-[color:var(--text-secondary)]">
+            <p>
+              Twenty of the most visited temples in India were asked for a footfall figure.
+              Two gave one whose period their own source states. That is the finding, not a
+              step toward one.
+            </p>
+            <p>
+              The trusts do count — Tirumala, Vaishno Devi, Shirdi, Siddhivinayak and
+              Somnath each administer a shrine and publish its numbers — and all five put
+              them behind client-side rendering or inside annual-report PDFs, so nothing
+              machine-readable comes back. The Archaeological Survey ticket-counts what it
+              protects, and its own site returns a rendered application rather than a table.
+              What remains is Wikipedia, which is where such a number is findable rather
+              than where it originates.
+            </p>
+            <p>
+              The other eighteen are not near-misses. Srirangam&rsquo;s closest sentence
+              counts 13,000 devotees who <em>died in a battle</em>. Vaishno Devi&rsquo;s is
+              the shrine&rsquo;s annual income. Lingaraja&rsquo;s is a single
+              Shivaratri — a festival day, not a rate. A looser reading would have published
+              all three as attendance.
+            </p>
+            <p className="text-[13px] text-[color:var(--text-muted)]">
+              The two that did come back are one of each kind — Kashi Vishwanath daily,
+              Tirumala annual — which is the whole problem in miniature. They are shown
+              apart and never ranked against one another.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="eyebrow mb-3">The two figures, kept apart</h3>
+            <div className="space-y-3">
+              {footfall.rows.map((r) => (
+                <figure key={r.name} className="rounded-lg border bg-[var(--surface-1)] p-4">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <figcaption className="text-[13px] font-semibold">{r.name}</figcaption>
+                    <span className="eyebrow shrink-0">{r.state}</span>
+                  </div>
+                  <p className="mono mt-2 text-[22px] leading-none tabular-nums">
+                    {r.value.toLocaleString("en-IN")}
+                    <span className="text-[13px] text-[color:var(--text-muted)]">
+                      {" "}per {r.period}
+                    </span>
+                  </p>
+                  <blockquote className="mt-3 text-[11.5px] leading-relaxed text-[color:var(--text-secondary)]">
+                    &ldquo;{r.quote}&rdquo;
+                  </blockquote>
+                  <p className="mt-1.5 text-[10.5px] text-[color:var(--text-muted)]">
+                    Wikipedia, &ldquo;{r.page.replace(/_/g, " ")}&rdquo;
+                  </p>
+                </figure>
+              ))}
+            </div>
+            <p className="mt-3 text-[11px] leading-relaxed text-[color:var(--text-muted)]">
+              One is annual and one is daily, and they are not divided into each other. A
+              year over 365 invents an average nobody measured, across festivals that move
+              the real number by an order of magnitude. {footfall.coverage}
+            </p>
+          </div>
+        </div>
+      </Section>
 
       <Section eyebrow="Refusals" title="What this page will not show you">
         <div className="grid gap-6 sm:grid-cols-2">
