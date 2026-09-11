@@ -1,0 +1,233 @@
+{
+  "probedAt": "2026-09-11T05:28:33.088Z",
+  "note": "Reachability only. No figures are published from this file.",
+  "question": "Which temples publish a visitor count that a script can read, and from whom?",
+  "refusal": "Whatever this finds will cover tens of temples, not the 3,466 on the map. A visitor field populated for Tirumala and empty everywhere else is not a variable, it is a list of famous places wearing a quantitative costume. The page will say how many temples publish a count, and name them, rather than implying a national figure.",
+  "findings": [
+    {
+      "id": "ttd-tirumala",
+      "kind": "trust",
+      "what": "Tirumala Tirupati Devasthanams",
+      "url": "https://www.tirumala.org/",
+      "ok": true,
+      "status": "200",
+      "bytes": 228149,
+      "found": [
+        "darshan",
+        "pilgrim"
+      ],
+      "missing": [],
+      "note": "Publishes daily pilgrim and laddu counts. The largest footfall in the country."
+    },
+    {
+      "id": "vaishno-devi",
+      "kind": "trust",
+      "what": "Shri Mata Vaishno Devi Shrine Board",
+      "url": "https://www.maavaishnodevi.org/",
+      "ok": true,
+      "status": "200",
+      "bytes": 99863,
+      "found": [
+        "yatra",
+        "pilgrim"
+      ],
+      "missing": [],
+      "note": "Publishes annual yatra figures going back decades."
+    },
+    {
+      "id": "shirdi-sai",
+      "kind": "trust",
+      "what": "Shri Saibaba Sansthan Trust, Shirdi",
+      "url": "https://www.sai.org.in/",
+      "ok": true,
+      "status": "200",
+      "bytes": 105389,
+      "found": [
+        "darshan",
+        "devotee"
+      ],
+      "missing": []
+    },
+    {
+      "id": "siddhivinayak",
+      "kind": "trust",
+      "what": "Shree Siddhivinayak Ganapati Temple Trust",
+      "url": "https://www.siddhivinayak.org/",
+      "ok": true,
+      "status": "200",
+      "bytes": 106673,
+      "found": [
+        "darshan"
+      ],
+      "missing": []
+    },
+    {
+      "id": "somnath-trust",
+      "kind": "trust",
+      "what": "Shree Somnath Trust",
+      "url": "https://somnath.org/",
+      "ok": true,
+      "status": "200",
+      "bytes": 86336,
+      "found": [
+        "darshan"
+      ],
+      "missing": [
+        "visitor"
+      ]
+    },
+    {
+      "id": "ogd-asi-visitors",
+      "kind": "state",
+      "what": "data.gov.in: ASI monument-wise visitor statistics",
+      "url": "https://api.data.gov.in/catalog?format=json&filters%5Btitle%5D=monument&api-key=",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null,
+      "note": "Needs an API key this project does not have. A 403 here is an answer, not a failure."
+    },
+    {
+      "id": "tourism-stats",
+      "kind": "state",
+      "what": "Ministry of Tourism, India Tourism Statistics",
+      "url": "https://tourism.gov.in/market-research-and-statistics",
+      "ok": true,
+      "status": "200",
+      "bytes": 7296,
+      "found": [],
+      "missing": [
+        "statistic"
+      ],
+      "note": "Monument-wise domestic and foreign footfall, published annually as a PDF."
+    },
+    {
+      "id": "asi-ticketed",
+      "kind": "state",
+      "what": "ASI list of ticketed monuments",
+      "url": "https://asi.nic.in/ticketed-monuments/",
+      "ok": true,
+      "status": "200",
+      "bytes": 8444602,
+      "found": [
+        "monument"
+      ],
+      "missing": [],
+      "note": "The ASI's own site returned a rendered application last time it was asked for a table."
+    },
+    {
+      "id": "wiki-tirumala-venkateswara-temple",
+      "kind": "wiki",
+      "what": "Wikipedia: Tirumala Venkateswara Temple",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Tirumala_Venkateswara_Temple&redirects=1&prop=wikitext&fo",
+      "ok": true,
+      "status": "200",
+      "bytes": 91386,
+      "found": [
+        "pilgrims",
+        "visitors",
+        "daily"
+      ],
+      "missing": [],
+      "numbers": [
+        "60,000 devotees",
+        "2024, visitors",
+        "7.83 Lakh devotees"
+      ],
+      "note": "If the footfall is cited here, the citation names the primary source."
+    },
+    {
+      "id": "wiki-vaishno-devi",
+      "kind": "wiki",
+      "what": "Wikipedia: Vaishno Devi",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Vaishno_Devi&redirects=1&prop=wikitext&formatversion=2&fo",
+      "ok": true,
+      "status": "200",
+      "bytes": 21238,
+      "found": [
+        "pilgrims",
+        "yatra",
+        "million"
+      ],
+      "missing": [],
+      "numbers": [
+        "8.5 pilgrims"
+      ]
+    },
+    {
+      "id": "wiki-kashi-vishwanath-temple",
+      "kind": "wiki",
+      "what": "Wikipedia: Kashi Vishwanath Temple",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Kashi_Vishwanath_Temple&redirects=1&prop=wikitext&formatv",
+      "ok": true,
+      "status": "200",
+      "bytes": 38930,
+      "found": [
+        "pilgrims",
+        "visitors",
+        "crore"
+      ],
+      "missing": [],
+      "numbers": [
+        "45,000 pilgrims"
+      ]
+    },
+    {
+      "id": "wiki-meenakshi-temple",
+      "kind": "wiki",
+      "what": "Wikipedia: Meenakshi Temple",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Meenakshi_Temple&redirects=1&prop=wikitext&formatversion=",
+      "ok": true,
+      "status": "200",
+      "bytes": 77297,
+      "found": [
+        "visitors",
+        "pilgrims",
+        "daily"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-jagannath-temple-puri",
+      "kind": "wiki",
+      "what": "Wikipedia: Jagannath Temple, Puri",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Jagannath_Temple%2C_Puri&redirects=1&prop=wikitext&format",
+      "ok": true,
+      "status": "200",
+      "bytes": 74489,
+      "found": [
+        "pilgrims",
+        "visitors"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-golden-temple",
+      "kind": "wiki",
+      "what": "Wikipedia: Golden Temple",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Golden_Temple&redirects=1&prop=wikitext&formatversion=2&f",
+      "ok": true,
+      "status": "200",
+      "bytes": 127450,
+      "found": [
+        "visitors",
+        "pilgrims",
+        "daily"
+      ],
+      "missing": [],
+      "note": "Not a Hindu temple; included because it is among the most visited religious sites in India and tests the method."
+    },
+    {
+      "id": "wiki-list-of-hindu-temples-in-india",
+      "kind": "wiki",
+      "what": "Wikipedia: List of Hindu temples in India",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_Hindu_temples_in_India&redirects=1&prop=wikitext&",
+      "ok": true,
+      "status": "200",
+      "bytes": 50402,
+      "found": [
+        "temple"
+      ],
+      "missing": []
+    }
+  ]
+}
