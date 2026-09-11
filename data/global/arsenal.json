@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-10T20:01:13.569Z",
+ "builtAt": "2026-09-11T10:00:16.006Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -209808,7 +209808,7 @@
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 22,
+   "items": 23,
    "kept": 0,
    "via": "direct"
   },
@@ -209816,18 +209816,33 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-18d9cmc",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "South Korea",
+    "Croatia"
+   ],
+   "value": null,
+   "date": "2026-09-11",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/croatia-signs-deal-for-18-rocket-launchers-from-south-korea/",
+   "headline": "Croatia signs deal for 18 rocket launchers from South Korea",
+   "primary": false
+  },
   {
    "id": "ev-1ypt0ti",
    "kind": "delivery",
@@ -210015,6 +210030,37 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||croatia+south korea",
+   "systems": [],
+   "countries": [
+    "South Korea",
+    "Croatia"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-18d9cmc",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "South Korea",
+      "Croatia"
+     ],
+     "value": null,
+     "date": "2026-09-11",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/croatia-signs-deal-for-18-rocket-launchers-from-south-korea/",
+     "headline": "Croatia signs deal for 18 rocket launchers from South Korea",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "delivery||united arab emirates",
    "systems": [],
