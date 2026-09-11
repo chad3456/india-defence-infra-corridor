@@ -135,6 +135,28 @@ function readFootfall(text: string): Reading | null {
   return null;
 }
 
+/**
+ * The closest thing to a footfall claim in an article that yielded none.
+ *
+ * Recorded so a failure can be diagnosed from the committed file rather than
+ * from another run. Most of these will show the phrasing the extractor missed;
+ * some will show that the article simply never gives a number.
+ */
+function nearestClaim(text: string): string | null {
+  const body = plain(
+    text.replace(/<ref[^>]*>[\s\S]*?<\/ref>/gi, " ").replace(/\{\{[^{}]*\}\}/g, " ")
+      .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2").replace(/\[\[([^\]]+)\]\]/g, "$1"),
+  ).replace(/\s+/g, " ");
+  for (const raw of body.split(/(?<=[.!?])\s+/)) {
+    const s = raw.trim();
+    if (s.length < 25 || s.length > 300) continue;
+    if (!/(pilgrim|visitor|devotee|footfall|attend)/i.test(s)) continue;
+    if (!/\d/.test(s)) continue;
+    return s;
+  }
+  return null;
+}
+
 export interface FootfallRow {
   name: string;
   state: string;
@@ -164,7 +186,16 @@ export async function run(): Promise<void> {
     const text = await wikitext(t.page);
     if (!text) { silent.push(`${t.name} (article unavailable)`); continue; }
     const r = readFootfall(text);
-    if (!r) { silent.push(t.name); console.log(`  ${t.name.padEnd(30)} no figure with a stated period`); continue; }
+    if (!r) {
+      // Say what the article does contain. "No figure with a stated period"
+      // cost a full round trip on eighteen temples and explained none of them;
+      // the canon layer learned the same lesson three times before it started
+      // printing what it had read.
+      const near = nearestClaim(text);
+      silent.push(near ? `${t.name} — ${near}` : `${t.name} — no sentence with a number and a visitor word`);
+      console.log(`  ${t.name.padEnd(30)} no usable figure${near ? `  ::  ${near.slice(0, 110)}` : ""}`);
+      continue;
+    }
     rows.push({ name: t.name, state: t.state, page: t.page, ...r });
     console.log(`  ${t.name.padEnd(30)} ${r.value.toLocaleString("en-IN")} per ${r.period}`);
   }
