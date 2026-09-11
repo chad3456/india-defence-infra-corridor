@@ -1,0 +1,66 @@
+name: Probe temple footfall sources
+
+# Asks Wikidata, Wikipedia, the ASI and the Census what they will actually
+# answer about India's temples, canonical pilgrimage sets, surveyed monuments
+# and place-name history. Records what each host said and commits the report.
+# Publishes no series.
+#
+# It runs here because the editing sandbox cannot reach these hosts — the
+# egress proxy answers 403 to CONNECT for nearly everything — so reachability
+# has to be established somewhere that can reach them.
+#
+# The one number that decides the shape of the whole feature is the row count
+# from the Wikidata SPARQL query: a few thousand sites with coordinates and a
+# stated deity is a map; a few dozen is a list of famous places.
+#
+# Manual and on-change only.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-footfall.ts"
+      - ".github/workflows/probe-footfall.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-footfall
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Probe
+        env:
+          # Optional. Absent is a normal state: every fetch stays direct.
+          BRIGHTDATA_API_KEY: ${{ secrets.BRIGHTDATA_API_KEY }}
+          BRIGHTDATA_ZONE: ${{ secrets.BRIGHTDATA_ZONE }}
+        run: npm run footfall:probe
+
+      # Always: the probe writes after every target, so a run killed by the
+      # SPARQL timeout still leaves the findings it did collect.
+      #
+      # The commit goes through a script rather than inline git because the
+      # inline version lost a report: two runs rewrote the same generated file,
+      # the fallback `git pull --rebase` hit a content conflict, and every
+      # retry then failed against a detached HEAD with unmerged paths while the
+      # loop reported success.
+      - name: Commit the probe report
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/live/footfall-probe.json
+          "chore(sources): temple footfall probe $(date -u +'%Y-%m-%d %H:%M')"
