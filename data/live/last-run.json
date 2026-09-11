@@ -1,17 +1,16 @@
 {
-  "id": "run-1789102864198",
-  "startedAt": "2026-09-11T04:45:55.247Z",
-  "finishedAt": "2026-09-11T05:01:04.198Z",
+  "id": "run-1789103408671",
+  "startedAt": "2026-09-11T05:07:14.370Z",
+  "finishedAt": "2026-09-11T05:10:08.671Z",
   "status": "partial",
   "connectorsRun": 9,
   "connectorsFailed": 0,
-  "seriesUpdated": 347,
+  "seriesUpdated": 726,
   "messages": [
-    "worldbank: NY.GDP.PCAP.CD: This operation was aborted",
-    "worldbank: stopped after 313 of 690 indicators — run budget spent; the rest keep their stored values",
+    "worldbank: SL.EMP.OWAC.FE.ZS: no Indian observations",
+    "worldbank: SL.EMP.OWAC.MA.ZS: no Indian observations",
     "satp: terror: https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir -> HTTP 403",
     "satp: terror: no candidate URL yielded a full table; keeping previous data",
-    "trai: fetch or parse failed: fetch failed",
     "ingest: The Tribune: HTTP 403",
     "ingest: Deccan Herald: HTTP 404",
     "ingest: The New Indian Express: HTTP 404",
@@ -24,13 +23,12 @@
     "ingest: Outlook India: HTTP 404",
     "ingest: Scroll.in: response was not a feed (blocked or interstitial)",
     "ingest: The Wire: response was not a feed (blocked or interstitial)",
-    "ingest: Moneycontrol: response was not a feed (blocked or interstitial)",
     "ingest: IndiaSpend: HTTP 404",
     "ingest: FORCE Magazine: HTTP 404",
     "ingest: Defence Aviation Post: HTTP 404",
     "ingest: Daily Excelsior: HTTP 403",
     "ingest: Search: pipelines — gas pipeline India commissioned: feed had no items",
-    "ingest funnel: 1835 items -> 595 candidates -> 74 events (lost: 223 no sector, 189 not an action, 109 no place)",
+    "ingest funnel: 1849 items -> 589 candidates -> 67 events (lost: 223 no sector, 189 not an action, 110 no place)",
     "x: X_BEARER_TOKEN not set — reading X is paid per post since February 2026, so this connector is inactive. Official announcements still arrive via the PIB, PMO and ministry feeds at no cost."
   ]
 }
