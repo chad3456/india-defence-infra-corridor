@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-11T20:02:13.090Z",
+ "builtAt": "2026-09-12T09:34:51.767Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -209823,11 +209823,25 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-1osprnc",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-09-12",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/u-s-armys-top-ammo-supplier-lands-another-big-contract/",
+   "headline": "U.S. Army&#8217;s top ammo supplier lands another big contract",
+   "primary": false
+  },
   {
    "id": "ev-18d9cmc",
    "kind": "order",
@@ -210031,6 +210045,100 @@
  ],
  "groups": [
   {
+   "key": "order||united states",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1osprnc",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-12",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-armys-top-ammo-supplier-lands-another-big-contract/",
+     "headline": "U.S. Army&#8217;s top ammo supplier lands another big contract",
+     "primary": false
+    },
+    {
+     "id": "ev-10yifbd",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-10",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/rheinmetall-gets-new-deal-for-u-s-marine-corps-robot-vehicles/",
+     "headline": "Rheinmetall gets new deal for U.S. Marine Corps robot vehicles",
+     "primary": false
+    },
+    {
+     "id": "ev-1i296l6",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 149000000,
+      "currency": "USD",
+      "asWritten": "$149M"
+     },
+     "date": "2026-09-10",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-air-force-signs-149m-deal-to-keep-its-bunker-busters-in-production/",
+     "headline": "U.S. Air Force signs $149M deal to keep its bunker busters in production",
+     "primary": false
+    },
+    {
+     "id": "ev-aiuph1",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-09",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-drone-maker-aevex-picks-up-another-kamikaze-drone-deal/",
+     "headline": "U.S. drone maker AEVEX picks up another kamikaze drone deal",
+     "primary": false
+    },
+    {
+     "id": "ev-1x20gh",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 465000000,
+      "currency": "USD",
+      "asWritten": "$465M"
+     },
+     "date": "2026-09-03",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/industry/techwatch/2026/09/03/us-army-launches-laser-production-with-465m-contract-award/",
+     "headline": "US Army launches laser production with $465M contract award",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog",
+    "Defense News"
+   ],
+   "value": null,
+   "verdict": "outlets disagree on the value"
+  },
+  {
    "key": "order||croatia+south korea",
    "systems": [],
    "countries": [
@@ -210118,86 +210226,6 @@
    ],
    "value": null,
    "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order||united states",
-   "systems": [],
-   "countries": [
-    "United States"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-10yifbd",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States"
-     ],
-     "value": null,
-     "date": "2026-09-10",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/rheinmetall-gets-new-deal-for-u-s-marine-corps-robot-vehicles/",
-     "headline": "Rheinmetall gets new deal for U.S. Marine Corps robot vehicles",
-     "primary": false
-    },
-    {
-     "id": "ev-1i296l6",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States"
-     ],
-     "value": {
-      "amount": 149000000,
-      "currency": "USD",
-      "asWritten": "$149M"
-     },
-     "date": "2026-09-10",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/u-s-air-force-signs-149m-deal-to-keep-its-bunker-busters-in-production/",
-     "headline": "U.S. Air Force signs $149M deal to keep its bunker busters in production",
-     "primary": false
-    },
-    {
-     "id": "ev-aiuph1",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States"
-     ],
-     "value": null,
-     "date": "2026-09-09",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/u-s-drone-maker-aevex-picks-up-another-kamikaze-drone-deal/",
-     "headline": "U.S. drone maker AEVEX picks up another kamikaze drone deal",
-     "primary": false
-    },
-    {
-     "id": "ev-1x20gh",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States"
-     ],
-     "value": {
-      "amount": 465000000,
-      "currency": "USD",
-      "asWritten": "$465M"
-     },
-     "date": "2026-09-03",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/industry/techwatch/2026/09/03/us-army-launches-laser-production-with-465m-contract-award/",
-     "headline": "US Army launches laser production with $465M contract award",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defence Blog",
-    "Defense News"
-   ],
-   "value": null,
-   "verdict": "outlets disagree on the value"
   },
   {
    "key": "order||australia",
