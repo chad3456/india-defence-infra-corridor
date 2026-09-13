@@ -1,0 +1,335 @@
+{
+  "probedAt": "2026-09-13T11:34:09.292Z",
+  "question": "Which departments will tell a script what India notified — the outlay, the date, the list length — and in what shape?",
+  "note": "Reachability and shape only. No figure is recorded from any page, including the ones that carry the figures this layer needs.",
+  "refusal": "Money-shaped mentions are counted, never read. A scheme outlay copied into this file would be a number with a filename beside it instead of a source, which is the exact failure lib/policy-measures.ts is built to prevent. Extraction is a separate connector and it must store the sentence.",
+  "knownLimits": [
+    "PIB has no keyword search that answers a GET. Releases are addressed by numeric PRID and the search is a POST form, so the PIB targets confirm reachability and nothing else.",
+    "Several ministry scheme paths here are guesses. A 404 tells the next run to crawl the schemes index; nothing downstream assumes a guessed path resolves.",
+    "A reachable page is not an answering page. Look at found/missing and the shape block before believing a target is usable."
+  ],
+  "findings": [
+    {
+      "id": "meity-home",
+      "kind": "ministry",
+      "what": "Ministry of Electronics and Information Technology",
+      "url": "https://www.meity.gov.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "The root, probed first so a dead scheme path can be told apart from a dead ministry."
+    },
+    {
+      "id": "meity-schemes",
+      "kind": "ministry",
+      "what": "MeitY schemes index",
+      "url": "https://www.meity.gov.in/schemes",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "pli-large-scale-electronics",
+        "pli-it-hardware",
+        "specs",
+        "semicon-india",
+        "electronics-qco"
+      ],
+      "note": "If any single page settles the electronics outlays, it is this one. Everything else here is a fallback for it."
+    },
+    {
+      "id": "meity-pli-lsem",
+      "kind": "ministry",
+      "what": "MeitY: large-scale electronics manufacturing group",
+      "url": "https://www.meity.gov.in/ministry/our-groups/electronics-system-design-manufacturing-esdm",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "pli-large-scale-electronics"
+      ],
+      "note": "Path taken from the ministry's own group naming. A 404 sends the next run to the schemes index."
+    },
+    {
+      "id": "meity-pli-ithw",
+      "kind": "ministry",
+      "what": "MeitY: production-linked incentive for IT hardware",
+      "url": "https://www.meity.gov.in/pli-scheme-it-hardware",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "pli-it-hardware"
+      ],
+      "note": "Two versions of this scheme exist and the second replaced the first. Whatever answers must date itself or it cannot fill either slot."
+    },
+    {
+      "id": "meity-specs",
+      "kind": "ministry",
+      "what": "MeitY: scheme for electronic components and semiconductors",
+      "url": "https://www.meity.gov.in/specs",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "specs"
+      ]
+    },
+    {
+      "id": "meity-pmp",
+      "kind": "ministry",
+      "what": "MeitY: phased manufacturing programme",
+      "url": "https://www.meity.gov.in/phased-manufacturing-programme",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "pmp-mobile-handsets"
+      ],
+      "note": "What is wanted here is a table — parts, duty, year — not a headline figure. A page that carries the schedule as a PDF is a success."
+    },
+    {
+      "id": "ism-home",
+      "kind": "portal",
+      "what": "India Semiconductor Mission",
+      "url": "https://ism.gov.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "semicon-india"
+      ],
+      "note": "probe-semiconductor.ts asks this host about approved projects. This asks it about the programme's outlay and its sanction date."
+    },
+    {
+      "id": "bis-crs",
+      "kind": "portal",
+      "what": "BIS compulsory registration scheme portal",
+      "url": "https://www.crsbis.in/BIS/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "electronics-qco"
+      ],
+      "note": "The count that matters is how many product categories are notified, and it is a list length rather than a headline."
+    },
+    {
+      "id": "cbic-tariff",
+      "kind": "ministry",
+      "what": "Central Board of Indirect Taxes and Customs",
+      "url": "https://www.cbic.gov.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "ict-customs-duty",
+        "pmp-mobile-handsets"
+      ],
+      "note": "Duty rates change every budget. Any rate read from here is worthless without the year it applies to."
+    },
+    {
+      "id": "indiabudget",
+      "kind": "ministry",
+      "what": "Union Budget documents",
+      "url": "https://www.indiabudget.gov.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "ict-customs-duty",
+        "defence-capital-earmark",
+        "pmp-mobile-handsets"
+      ],
+      "note": "The domestic earmark in defence capital acquisition is a budget line, which makes it the most legible figure in this whole layer."
+    },
+    {
+      "id": "ddp-home",
+      "kind": "ministry",
+      "what": "Department of Defence Production",
+      "url": "https://www.ddpmod.gov.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "idex",
+        "defence-offsets",
+        "srijan"
+      ]
+    },
+    {
+      "id": "ddp-indigenisation",
+      "kind": "ministry",
+      "what": "DDP: indigenisation and the positive indigenisation lists",
+      "url": "https://www.ddpmod.gov.in/indigenisation",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "pil-services-1",
+        "pil-services-2",
+        "pil-services-3",
+        "pil-services-4",
+        "pil-services-5",
+        "pil-dpsu"
+      ],
+      "note": "The single most important target in this file. Five services lists and an unknown number of component lists, each with a date, a length and a staggered embargo schedule."
+    },
+    {
+      "id": "ddp-corridors",
+      "kind": "ministry",
+      "what": "DDP: defence industrial corridors",
+      "url": "https://www.ddpmod.gov.in/defence-industrial-corridors",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "corridor-up",
+        "corridor-tn"
+      ],
+      "note": "Wanted here: the designation year and the node count. The investment figures already exist as sourced series and must not be duplicated."
+    },
+    {
+      "id": "srijan-portal",
+      "kind": "portal",
+      "what": "SRIJAN defence indigenisation portal",
+      "url": "https://srijandefence.gov.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "srijan",
+        "pil-dpsu"
+      ],
+      "note": "A public list of what the defence manufacturers still import — a rarer thing than the lists of what they no longer may."
+    },
+    {
+      "id": "idex-home",
+      "kind": "portal",
+      "what": "Innovations for Defence Excellence",
+      "url": "https://idex.gov.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "idex"
+      ],
+      "note": "Expect activity counts — challenges, startups, grants. The figure that would be a finding is contracts awarded, and it is usually not published."
+    },
+    {
+      "id": "mod-home",
+      "kind": "ministry",
+      "what": "Ministry of Defence",
+      "url": "https://www.mod.gov.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null
+    },
+    {
+      "id": "mod-dap",
+      "kind": "ministry",
+      "what": "MoD: Defence Acquisition Procedure",
+      "url": "https://www.mod.gov.in/documents/defence-acquisition-procedure",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "dap-2020",
+        "defence-offsets"
+      ],
+      "note": "The procedure is a long PDF. The probe wants the link, not the document — the offset threshold and the indigenous-content floors are inside it and need a page read."
+    },
+    {
+      "id": "mod-annual-report",
+      "kind": "ministry",
+      "what": "MoD annual reports",
+      "url": "https://www.mod.gov.in/documents/annual-report",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "pil-services-1",
+        "pil-dpsu",
+        "idex",
+        "dap-2020",
+        "defence-capital-earmark",
+        "srijan"
+      ],
+      "note": "The annual report is the one document that restates every defence measure in one place with a year attached. If it is reachable as a PDF, it is the best target in this file."
+    },
+    {
+      "id": "cag-reports",
+      "kind": "audit",
+      "what": "Comptroller and Auditor General audit reports",
+      "url": "https://cag.gov.in/en/audit-report",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "defence-offsets"
+      ],
+      "note": "Offsets contracted and offsets discharged are different numbers. Only the auditor publishes the second, which is why an audit site is in a probe about policy."
+    },
+    {
+      "id": "dpiit-fdi-policy",
+      "kind": "ministry",
+      "what": "DPIIT consolidated foreign direct investment policy",
+      "url": "https://dpiit.gov.in/foreign-direct-investment/foreign-direct-investment-policy",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "defence-fdi-cap"
+      ]
+    },
+    {
+      "id": "upeida-corridor",
+      "kind": "state",
+      "what": "Uttar Pradesh Expressways Industrial Development Authority",
+      "url": "https://upeida.up.gov.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "corridor-up"
+      ],
+      "note": "The UP corridor is administered by the state, so the node-level detail lives here rather than with the ministry."
+    },
+    {
+      "id": "tidco-corridor",
+      "kind": "state",
+      "what": "Tamil Nadu Industrial Development Corporation",
+      "url": "https://www.tidco.com/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "corridor-tn"
+      ]
+    },
+    {
+      "id": "mnre-schemes",
+      "kind": "ministry",
+      "what": "Ministry of New and Renewable Energy",
+      "url": "https://mnre.gov.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "pli-solar-modules"
+      ],
+      "note": "Carried because solar is the control case: the same instrument, and a trade line that did not do what the story says."
+    },
+    {
+      "id": "heavyindustries-schemes",
+      "kind": "ministry",
+      "what": "Ministry of Heavy Industries",
+      "url": "https://heavyindustries.gov.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "answers": [
+        "pli-acc-battery"
+      ]
+    }
+  ]
+}
