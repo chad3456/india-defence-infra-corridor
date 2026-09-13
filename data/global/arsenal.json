@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-12T19:38:26.864Z",
+ "builtAt": "2026-09-13T10:37:10.586Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -209787,7 +209787,7 @@
   {
    "outlet": "Press Information Bureau (India)",
    "ok": true,
-   "items": 0,
+   "items": 20,
    "kept": 0,
    "via": "direct"
   },
@@ -209823,11 +209823,30 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-1vxxac8",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Argentina"
+   ],
+   "value": {
+    "amount": 140000000,
+    "currency": "USD",
+    "asWritten": "$140 million"
+   },
+   "date": "2026-09-13",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/us-approves-140-million-black-hawk-helicopter-sale-to-argentina/",
+   "headline": "US approves $140 million Black Hawk helicopter sale to Argentina",
+   "primary": false
+  },
   {
    "id": "ev-1osprnc",
    "kind": "order",
@@ -210044,6 +210063,45 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||argentina+united states",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Argentina"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1vxxac8",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Argentina"
+     ],
+     "value": {
+      "amount": 140000000,
+      "currency": "USD",
+      "asWritten": "$140 million"
+     },
+     "date": "2026-09-13",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/us-approves-140-million-black-hawk-helicopter-sale-to-argentina/",
+     "headline": "US approves $140 million Black Hawk helicopter sale to Argentina",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": {
+    "amount": 140000000,
+    "currency": "USD",
+    "asWritten": "$140 million"
+   },
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||united states",
    "systems": [],
