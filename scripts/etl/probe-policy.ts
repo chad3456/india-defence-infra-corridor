@@ -425,7 +425,7 @@ export async function run(): Promise<void> {
     findings.push(f);
 
     console.log(
-      `  ${(f.ok ? "ok" : "dead").padEnd(5)} ${t.kind.padEnd(9)} ${f.id.padEnd(34)} ` +
+      `  ${(f.ok ? "ok" : "dead").padEnd(5)} ${t.kind.padEnd(9)} ${f.id.padEnd(42)} ` +
       `${String(f.bytes ?? 0).padStart(7)}` +
       (shape
         ? `  tables:${shape.tables} money:${shape.moneyMentions} pdfs:${shape.pdfLinks}` +

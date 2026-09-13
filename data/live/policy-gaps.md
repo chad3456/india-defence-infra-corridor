@@ -15,6 +15,12 @@ Run `npm run policy:probe` to find out which of the sources below will answer a
 script at all. It writes `data/live/policy-probe.json` and it extracts nothing —
 it counts money-shaped mentions without reading them, for the same reason.
 
+**It has not yet been run against the real internet.** The sandbox this layer
+was written in answers 403 to every host, so a run there produces a file in
+which all 33 targets are dead, which says nothing about the ministries. That
+output was discarded rather than committed. The first meaningful run has to
+happen in CI, and its result is the input to everything below.
+
 ## How to read an entry
 
 Each measure lists its slots. A slot is a question with a unit, a plausibility
