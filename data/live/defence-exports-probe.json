@@ -1,0 +1,248 @@
+{
+  "probedAt": "2026-09-13T11:30:51.696Z",
+  "note": "Reachability and shape only. No figure is published from this file and nothing on the site reads it. The `claimsNearby` strings are quotations of what a page says, recorded so a later extractor knows what phrasing it will meet.",
+  "question": "Which publisher of India's defence export value and its destination-country spread answers a script, and in what shape — HTML with the number in it, a PDF, a rendered application, a query form, or a refusal?",
+  "whyNotTrade": "The HS6 customs files carry no partner dimension: the upstream ingest pins partner to World because not pinning it splits every commodity into 215 rows. Country spread is not difficult in that dataset, it is absent. And the MoD headline counts contract value including services and offsets, which never cross a customs border at all.",
+  "priorFailure": "Fourteen Our World in Data arms-transfer slugs were probed across two earlier rounds and every one returned 404. Only one OWID slug here is a candidate pair; the third is a control on a slug known to work, so that a 404 can be told apart from an unreachable host. Nothing is assumed about any OWID arms URL.",
+  "refusal": "Until one of these answers with a figure and a citation, this project states no defence export value and no country count. The widely repeated numbers are exactly the ones a model can recite from memory and get subtly wrong, and a wrong figure with a confident citation is worse than an admitted gap.",
+  "unitsTrap": "SIPRI publishes TIV, a volume index designed for comparing transfer volumes over time. It is not money and must never be placed in the same column as a rupee or dollar contract value.",
+  "egress": "Every target failed, including Wikipedia and the OWID control slug that are known to work. That is a blocked egress, not twenty-two dead publishers. Nothing about any individual source can be concluded from this run; it must be repeated from GitHub Actions before any finding here is acted on.",
+  "findings": [
+    {
+      "id": "ddp-home",
+      "kind": "mod",
+      "what": "Department of Defence Production, Ministry of Defence",
+      "wants": "headline",
+      "url": "https://www.ddpmod.gov.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "DDP is the office that compiles the export authorisation figures the MoD then announces. If any Indian site carries the series in machine-readable form it is this one."
+    },
+    {
+      "id": "ddp-exports",
+      "kind": "mod",
+      "what": "DDP: defence exports section",
+      "wants": "both",
+      "url": "https://www.ddpmod.gov.in/defence-exports",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "A guessed path off the DDP root. If it 404s, the root's own links are the map; that is what the linked-page harvest below is for."
+    },
+    {
+      "id": "defence-exim",
+      "kind": "portal",
+      "what": "Defence Export Portal (defenceexim.gov.in)",
+      "wants": "spread",
+      "url": "https://defenceexim.gov.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "The export authorisation portal. Authorisations are issued per destination, so this is the only Indian system that could in principle hold the country spread as data rather than as a sentence in a press release."
+    },
+    {
+      "id": "mod-home",
+      "kind": "mod",
+      "what": "Ministry of Defence",
+      "wants": "headline",
+      "url": "https://www.mod.gov.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null
+    },
+    {
+      "id": "mod-annual-reports",
+      "kind": "mod",
+      "what": "MoD annual reports index",
+      "wants": "both",
+      "url": "https://www.mod.gov.in/documents/annual-report",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "The annual report is the authoritative narrative source and carries both the export value and, in some years, a destination-country count. It is a PDF, which this project has a table reader for and trusts least."
+    },
+    {
+      "id": "pib-mod-feed",
+      "kind": "pib",
+      "what": "PIB RSS: Ministry of Defence releases",
+      "wants": "headline",
+      "url": "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "PIB rejected all sixteen ministry feeds with a 403 on this project's first live run until the fetch helper learned to retry as a browser. A 403 that survives that retry is a genuine refusal, not a user-agent problem."
+    },
+    {
+      "id": "pib-search-exports",
+      "kind": "pib",
+      "what": "PIB release archive, Ministry of Defence",
+      "wants": "both",
+      "url": "https://pib.gov.in/allRel.aspx",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "The annual export figure is announced as a PIB release, usually at the start of the financial year. If the archive is queryable by ministry and date the series is reconstructible release by release, each one citable on its own."
+    },
+    {
+      "id": "sipri-armstransfers",
+      "kind": "sipri",
+      "what": "SIPRI Arms Transfers Database (landing page)",
+      "wants": "spread",
+      "url": "https://www.sipri.org/databases/armstransfers",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "SIPRI's transfer register is the only independent source for who received what from India. Its values are TIV, a volume index, NOT money — a TIV total placed beside a rupee export figure would be a category error, and the page must never do that."
+    },
+    {
+      "id": "sipri-trade-register",
+      "kind": "sipri",
+      "what": "SIPRI arms trade register query form",
+      "wants": "spread",
+      "url": "https://armstrade.sipri.org/armstrade/page/trade_register.php",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "The arsenal layer already established that this sits behind a query form rather than a downloadable file. Re-probed to record whether the form endpoint answers a plain GET at all, which decides whether a connector is possible or the whole avenue is shut."
+    },
+    {
+      "id": "sipri-export-values",
+      "kind": "sipri",
+      "what": "SIPRI TIV export values by supplier",
+      "wants": "spread",
+      "url": "https://armstrade.sipri.org/armstrade/html/export_values.php",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null
+    },
+    {
+      "id": "owid-control-milex",
+      "kind": "owid",
+      "what": "OWID CONTROL: military-spending-sipri (known to work)",
+      "wants": "method",
+      "url": "https://ourworldindata.org/grapher/military-spending-sipri.csv",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "Not wanted for its data — the arsenal spine already carries it. It is here so that a 404 on the two candidates below can be read as 'that slug does not exist' rather than 'OWID is unreachable'. Fourteen arms slugs were probed blind before and the difference was never established."
+    },
+    {
+      "id": "owid-arms-exports",
+      "kind": "owid",
+      "what": "OWID candidate: arms-exports-sipri",
+      "wants": "spread",
+      "url": "https://ourworldindata.org/grapher/arms-exports-sipri.csv",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "A candidate, not a known URL. Fourteen siblings of this slug have already 404'd."
+    },
+    {
+      "id": "owid-arms-imports",
+      "kind": "owid",
+      "what": "OWID candidate: arms-imports-sipri",
+      "wants": "spread",
+      "url": "https://ourworldindata.org/grapher/arms-imports-sipri.csv",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "Same caveat. Recorded as a candidate so the next round does not re-guess it."
+    },
+    {
+      "id": "hal",
+      "kind": "dpsu",
+      "what": "Hindustan Aeronautics Limited",
+      "wants": "headline",
+      "url": "https://hal-india.co.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "A listed company files audited revenue with an export split. That is a different and in some ways harder number than MoD's — it is company revenue, not national exports — and the two must never be added together or substituted for each other."
+    },
+    {
+      "id": "bel",
+      "kind": "dpsu",
+      "what": "Bharat Electronics Limited",
+      "wants": "headline",
+      "url": "https://bel-india.in/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null
+    },
+    {
+      "id": "brahmos",
+      "kind": "dpsu",
+      "what": "BrahMos Aerospace",
+      "wants": "spread",
+      "url": "https://www.brahmos.com/",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "The single export that changed the country-spread story. Whether the company says anything a script can read is worth knowing; it is also exactly the sort of page that turns out to be a rendered application."
+    },
+    {
+      "id": "wiki-defence-industry-of-india",
+      "kind": "wiki",
+      "what": "Wikipedia: Defence industry of India",
+      "wants": "both",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Defence_industry_of_India&redirects=1&prop=wikitext&formatversion=2&format=js",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "Carries a figure with a citation behind it. An index of where the number lives, never the number's source."
+    },
+    {
+      "id": "wiki-defence-research-and-development-organisatio",
+      "kind": "wiki",
+      "what": "Wikipedia: Defence Research and Development Organisation",
+      "wants": "headline",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Defence_Research_and_Development_Organisation&redirects=1&prop=wikitext&forma",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null
+    },
+    {
+      "id": "wiki-hindustan-aeronautics-limited",
+      "kind": "wiki",
+      "what": "Wikipedia: Hindustan Aeronautics Limited",
+      "wants": "headline",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Hindustan_Aeronautics_Limited&redirects=1&prop=wikitext&formatversion=2&forma",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null
+    },
+    {
+      "id": "wiki-brahmos",
+      "kind": "wiki",
+      "what": "Wikipedia: BrahMos",
+      "wants": "spread",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=BrahMos&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "Export customers are named in prose here. A country list assembled from prose is a list of what Wikipedia mentions, not of where India exports."
+    },
+    {
+      "id": "wiki-list-of-countries-by-arms-exports",
+      "kind": "wiki",
+      "what": "Wikipedia: List of countries by arms exports",
+      "wants": "spread",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_countries_by_arms_exports&redirects=1&prop=wikitext&formatversion=2&f",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null,
+      "note": "SIPRI-derived and therefore in TIV. Useful for rank, unusable as money."
+    },
+    {
+      "id": "wiki-arms-industry",
+      "kind": "wiki",
+      "what": "Wikipedia: Arms industry",
+      "wants": "method",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Arms_industry&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null
+    }
+  ]
+}

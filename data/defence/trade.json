@@ -1,0 +1,2440 @@
+{
+  "builtAt": "2026-09-13T11:29:31.229Z",
+  "source": "UN Comtrade, India as reporter, annual HS6 imports and exports in current US dollars, as ingested into data/trade/hs6-YYYY.json. Computed offline from those files; this connector makes no network call.",
+  "classification": "https://comtradeapi.un.org/files/v1/app/reference/HS.json",
+  "caveat": "HS chapter 93 is titled 'arms and ammunition' and is NOT India's defence trade. Its largest Indian lines are sporting shotguns, target rifles, air guns and shotgun cartridges; the one heading the classification itself calls military, 9301, is a rounding error beside them. Meanwhile combat aircraft are chapter 88, warships 8906, armoured vehicles 8710, and radar, avionics and electronic warfare are pooled with their civil equivalents in chapters 85 and 90. Missiles have no heading of their own. Chapter 93 is a floor and a poor proxy, and is labelled as exactly that everywhere it is shown.",
+  "cannotSay": [
+    "India's official defence export figure. That is a Ministry of Defence measure of contract value, covering services, offsets and platforms that never cross a customs border, and it cannot be reconstructed from HS data at any level of effort.",
+    "How many countries India exports defence equipment to. These files carry no partner dimension at all — the ingest pins partner to World to avoid a 215-fold row explosion — so destination spread is not merely hard here, it is absent.",
+    "Military versus civil within any chapter-88 or chapter-89 line. The classification does not make that distinction and no amount of arithmetic will recover it.",
+    "Missile exports. BrahMos and Akash have no HS heading; depending on the declarant they land in 9306, 8802, 8526 or nowhere separately visible.",
+    "Whether a code absent from a year means no trade, a code not yet in force, or a reporting gap. The ingest drops rows that are zero on both flows, so the three are indistinguishable downstream.",
+    "Anything about years that were not sampled. Eleven years are on disk out of the period the site covers; the gaps are gaps, not flat lines."
+  ],
+  "years": [
+    2002,
+    2003,
+    2004,
+    2008,
+    2012,
+    2013,
+    2017,
+    2018,
+    2022,
+    2023,
+    2024
+  ],
+  "denominators": [
+    {
+      "year": 2002,
+      "imports": 57453468568,
+      "exports": 50097958259,
+      "codesReported": 5007
+    },
+    {
+      "year": 2003,
+      "imports": 72430524377,
+      "exports": 59360659115,
+      "codesReported": 5105
+    },
+    {
+      "year": 2004,
+      "imports": 98981129490,
+      "exports": 75904200341,
+      "codesReported": 5111
+    },
+    {
+      "year": 2008,
+      "imports": 315712105580,
+      "exports": 181860898312,
+      "codesReported": 5102
+    },
+    {
+      "year": 2012,
+      "imports": 488976378493,
+      "exports": 289564769465,
+      "codesReported": 4934
+    },
+    {
+      "year": 2013,
+      "imports": 466045567278,
+      "exports": 336611388782,
+      "codesReported": 5005
+    },
+    {
+      "year": 2017,
+      "imports": 444052353836.3285,
+      "exports": 294364490162.5458,
+      "codesReported": 5147
+    },
+    {
+      "year": 2018,
+      "imports": 507615733027.0704,
+      "exports": 322492099897.0539,
+      "codesReported": 5163
+    },
+    {
+      "year": 2022,
+      "imports": 732565993392.9406,
+      "exports": 452684213646.73615,
+      "codesReported": 5366
+    },
+    {
+      "year": 2023,
+      "imports": 672140129635.894,
+      "exports": 431411977211.31055,
+      "codesReported": 5359
+    },
+    {
+      "year": 2024,
+      "imports": 697745120144.9833,
+      "exports": 434435484213.92175,
+      "codesReported": 5349
+    }
+  ],
+  "groups": [
+    {
+      "id": "ch93-arms",
+      "label": "Arms and ammunition (HS chapter 93, in full)",
+      "codeRange": "All of chapter 93: 9301–9307",
+      "military": "mixed",
+      "captures": "Everything customs files as arms: military weapons and their parts, revolvers and pistols, sporting and hunting shotguns and rifles, air and spring guns, all ammunition including shotgun cartridges, and swords, bayonets and scabbards. In India's recent years the chapter is mostly one line, 930690 'ammunition n.e.c.', which pools artillery shells with air-gun pellets and is gradeable as neither.",
+      "misses": "Nearly all of India's actual defence trade. No aircraft, no ships, no armoured vehicles, no radar or avionics, no missiles as such, no aerostructures or components. This is a floor and a poor proxy, not a measure of the defence industry.",
+      "codes": [
+        {
+          "code": "930100",
+          "name": "Military weapons, other than revolvers, pistols and the arms of heading No. 93.07."
+        },
+        {
+          "code": "930110",
+          "name": "Military weapons; artillery weapons (e.g. guns, howitzers, and mortars)"
+        },
+        {
+          "code": "930111",
+          "name": "--  Self-propelled"
+        },
+        {
+          "code": "930119",
+          "name": "--  Other"
+        },
+        {
+          "code": "930120",
+          "name": "Military weapons; rocket launchers, flame-throwers, grenade launchers, torpedo tubes and similar projectors"
+        },
+        {
+          "code": "930190",
+          "name": "Military weapons; other than revolvers, pistols, and arms of heading 9307, n.e.c. in heading 9301"
+        },
+        {
+          "code": "930200",
+          "name": "Revolvers and pistols; other than those of heading no. 9303 or 9304"
+        },
+        {
+          "code": "930310",
+          "name": "Firearms; muzzle-loading"
+        },
+        {
+          "code": "930320",
+          "name": "Firearms; sporting, hunting or target-shooting shotguns, including combination shotgun-rifles"
+        },
+        {
+          "code": "930330",
+          "name": "Firearms; sporting, hunting or target-shooting rifles n.e.c. in heading no. 9303"
+        },
+        {
+          "code": "930390",
+          "name": "Firearms; n.e.c. in heading no. 9303"
+        },
+        {
+          "code": "930400",
+          "name": "Firearms; (e.g. spring, air or gas guns and pistols, truncheons), excluding those of heading no. 9307"
+        },
+        {
+          "code": "930510",
+          "name": "Firearms; parts and accessories, of revolvers or pistols"
+        },
+        {
+          "code": "930520",
+          "name": "Firearms; parts and accessories, of shotguns or rifles of heading 9303"
+        },
+        {
+          "code": "930521",
+          "name": "--  Shotgun barrels"
+        },
+        {
+          "code": "930529",
+          "name": "--  Other"
+        },
+        {
+          "code": "930590",
+          "name": "Other"
+        },
+        {
+          "code": "930591",
+          "name": "Firearms; parts and accessories, of military weapons of heading 9301"
+        },
+        {
+          "code": "930599",
+          "name": "Firearms; parts and accessories, of firearms other than the military weapons of heading 9301"
+        },
+        {
+          "code": "930610",
+          "name": "- cartridges for riveting or similar tools or for captive-bolt humane killers and parts thereof"
+        },
+        {
+          "code": "930621",
+          "name": "Ammunition; shotgun cartridges"
+        },
+        {
+          "code": "930629",
+          "name": "Ammunition; parts of shotgun cartridges"
+        },
+        {
+          "code": "930630",
+          "name": "Ammunition; cartridges and parts thereof n.e.c. in heading no. 9306"
+        },
+        {
+          "code": "930690",
+          "name": "Ammunition; n.e.c. in chapter 93"
+        },
+        {
+          "code": "930700",
+          "name": "Arms; swords, cutlasses, bayonets, lances and the like, parts thereof and scabbards and sheaths therefor"
+        }
+      ],
+      "years": [
+        {
+          "year": 2002,
+          "reported": true,
+          "imports": 1454953,
+          "exports": 2393128,
+          "balance": -938175,
+          "codesPresent": [
+            "930100",
+            "930310",
+            "930320",
+            "930330",
+            "930390",
+            "930400",
+            "930510",
+            "930529",
+            "930590",
+            "930610",
+            "930621",
+            "930629",
+            "930630",
+            "930690",
+            "930700"
+          ],
+          "codesAbsent": [
+            "930110",
+            "930111",
+            "930119",
+            "930120",
+            "930190",
+            "930200",
+            "930520",
+            "930521",
+            "930591",
+            "930599"
+          ]
+        },
+        {
+          "year": 2003,
+          "reported": true,
+          "imports": 3588760,
+          "exports": 3177729,
+          "balance": 411031,
+          "codesPresent": [
+            "930119",
+            "930200",
+            "930310",
+            "930320",
+            "930330",
+            "930390",
+            "930400",
+            "930510",
+            "930529",
+            "930599",
+            "930610",
+            "930621",
+            "930629",
+            "930630",
+            "930690",
+            "930700"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930110",
+            "930111",
+            "930120",
+            "930190",
+            "930520",
+            "930521",
+            "930590",
+            "930591"
+          ]
+        },
+        {
+          "year": 2004,
+          "reported": true,
+          "imports": 2868443,
+          "exports": 2336099,
+          "balance": 532344,
+          "codesPresent": [
+            "930119",
+            "930200",
+            "930310",
+            "930320",
+            "930330",
+            "930390",
+            "930400",
+            "930510",
+            "930521",
+            "930529",
+            "930599",
+            "930621",
+            "930629",
+            "930630",
+            "930690",
+            "930700"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930110",
+            "930111",
+            "930120",
+            "930190",
+            "930520",
+            "930590",
+            "930591",
+            "930610"
+          ]
+        },
+        {
+          "year": 2008,
+          "reported": true,
+          "imports": 15820701,
+          "exports": 10968890,
+          "balance": 4851811,
+          "codesPresent": [
+            "930111",
+            "930119",
+            "930120",
+            "930190",
+            "930200",
+            "930320",
+            "930330",
+            "930390",
+            "930400",
+            "930510",
+            "930521",
+            "930529",
+            "930591",
+            "930599",
+            "930621",
+            "930629",
+            "930630",
+            "930690",
+            "930700"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930110",
+            "930310",
+            "930520",
+            "930590",
+            "930610"
+          ]
+        },
+        {
+          "year": 2012,
+          "reported": true,
+          "imports": 48675789,
+          "exports": 34937995,
+          "balance": 13737794,
+          "codesPresent": [
+            "930190",
+            "930200",
+            "930310",
+            "930320",
+            "930330",
+            "930390",
+            "930400",
+            "930510",
+            "930521",
+            "930529",
+            "930591",
+            "930599",
+            "930621",
+            "930629",
+            "930630",
+            "930690",
+            "930700"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930110",
+            "930111",
+            "930119",
+            "930120",
+            "930520",
+            "930590",
+            "930610"
+          ]
+        },
+        {
+          "year": 2013,
+          "reported": true,
+          "imports": 53884949,
+          "exports": 63724127,
+          "balance": -9839178,
+          "codesPresent": [
+            "930190",
+            "930200",
+            "930310",
+            "930320",
+            "930330",
+            "930390",
+            "930400",
+            "930510",
+            "930520",
+            "930591",
+            "930599",
+            "930621",
+            "930629",
+            "930630",
+            "930690",
+            "930700"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930110",
+            "930111",
+            "930119",
+            "930120",
+            "930521",
+            "930529",
+            "930590",
+            "930610"
+          ]
+        },
+        {
+          "year": 2017,
+          "reported": true,
+          "imports": 34890869.132,
+          "exports": 92333288.716,
+          "balance": -57442419.58400001,
+          "codesPresent": [
+            "930110",
+            "930120",
+            "930190",
+            "930200",
+            "930310",
+            "930320",
+            "930330",
+            "930390",
+            "930400",
+            "930510",
+            "930520",
+            "930591",
+            "930599",
+            "930621",
+            "930629",
+            "930630",
+            "930690",
+            "930700"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930111",
+            "930119",
+            "930521",
+            "930529",
+            "930590",
+            "930610"
+          ]
+        },
+        {
+          "year": 2018,
+          "reported": true,
+          "imports": 60947477.921,
+          "exports": 117790615.56099999,
+          "balance": -56843137.63999999,
+          "codesPresent": [
+            "930110",
+            "930190",
+            "930200",
+            "930310",
+            "930320",
+            "930330",
+            "930390",
+            "930400",
+            "930510",
+            "930520",
+            "930591",
+            "930599",
+            "930621",
+            "930629",
+            "930630",
+            "930690",
+            "930700"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930111",
+            "930119",
+            "930120",
+            "930521",
+            "930529",
+            "930590",
+            "930610"
+          ]
+        },
+        {
+          "year": 2022,
+          "reported": true,
+          "imports": 118080742.51700002,
+          "exports": 252956102.27199998,
+          "balance": -134875359.75499997,
+          "codesPresent": [
+            "930110",
+            "930120",
+            "930200",
+            "930310",
+            "930320",
+            "930330",
+            "930390",
+            "930400",
+            "930510",
+            "930520",
+            "930591",
+            "930599",
+            "930621",
+            "930629",
+            "930630",
+            "930690",
+            "930700"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930111",
+            "930119",
+            "930190",
+            "930521",
+            "930529",
+            "930590",
+            "930610"
+          ]
+        },
+        {
+          "year": 2023,
+          "reported": true,
+          "imports": 167756945.834,
+          "exports": 358595128.545,
+          "balance": -190838182.71100003,
+          "codesPresent": [
+            "930200",
+            "930320",
+            "930330",
+            "930390",
+            "930400",
+            "930510",
+            "930520",
+            "930599",
+            "930621",
+            "930629",
+            "930630",
+            "930690",
+            "930700"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930110",
+            "930111",
+            "930119",
+            "930120",
+            "930190",
+            "930310",
+            "930521",
+            "930529",
+            "930590",
+            "930591",
+            "930610"
+          ]
+        },
+        {
+          "year": 2024,
+          "reported": true,
+          "imports": 191501475.685,
+          "exports": 490588885.759,
+          "balance": -299087410.074,
+          "codesPresent": [
+            "930110",
+            "930120",
+            "930200",
+            "930310",
+            "930320",
+            "930330",
+            "930390",
+            "930400",
+            "930510",
+            "930520",
+            "930591",
+            "930599",
+            "930621",
+            "930629",
+            "930630",
+            "930690",
+            "930700"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930111",
+            "930119",
+            "930190",
+            "930521",
+            "930529",
+            "930590",
+            "930610"
+          ]
+        }
+      ],
+      "composition": {
+        "year": 2024,
+        "lines": [
+          {
+            "code": "930690",
+            "name": "Ammunition; n.e.c. in chapter 93",
+            "imports": 142186838.945,
+            "exports": 337893307.205,
+            "shareOfGroupTurnover": 0.7038365783877373,
+            "groupTurnover": 682090361.444
+          },
+          {
+            "code": "930510",
+            "name": "Firearms; parts and accessories, of revolvers or pistols",
+            "imports": 50063.407,
+            "exports": 76030223.759,
+            "shareOfGroupTurnover": 0.1115398948094449,
+            "groupTurnover": 682090361.444
+          },
+          {
+            "code": "930599",
+            "name": "Firearms; parts and accessories, of firearms other than the military weapons of heading 9301",
+            "imports": 18827196.23,
+            "exports": 28609997.296,
+            "shareOfGroupTurnover": 0.06954678765079518,
+            "groupTurnover": 682090361.444
+          },
+          {
+            "code": "930621",
+            "name": "Ammunition; shotgun cartridges",
+            "imports": 10676865.665,
+            "exports": 10728768.394,
+            "shareOfGroupTurnover": 0.031382402199151165,
+            "groupTurnover": 682090361.444
+          },
+          {
+            "code": "930400",
+            "name": "Firearms; (e.g. spring, air or gas guns and pistols, truncheons), excluding those of heading no. 9307",
+            "imports": 10112994.253,
+            "exports": 999580.544,
+            "shareOfGroupTurnover": 0.016291939345799346,
+            "groupTurnover": 682090361.444
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch93-military-weapons",
+      "label": "Military weapons only (HS 9301 and 930591)",
+      "codeRange": "9301 (artillery, rocket launchers, other military weapons) and 930591 (their parts)",
+      "military": "military",
+      "captures": "The only lines in the whole HS that are defined as military by the classification itself: artillery pieces, rocket and grenade launchers, flame-throwers, torpedo tubes, other military weapons, and parts of them.",
+      "misses": "Ammunition for those weapons, which sits in 9306 alongside shotgun cartridges. And everything the weapon is mounted on, carried by or aimed with.",
+      "concordance": "930110 split into 930111/930119 under one HS vintage and reverted; 930100 was the single line in HS1996-era filings. No year here carries both a parent and its children.",
+      "subsetOf": "ch93-arms",
+      "codes": [
+        {
+          "code": "930100",
+          "name": "Military weapons, other than revolvers, pistols and the arms of heading No. 93.07."
+        },
+        {
+          "code": "930110",
+          "name": "Military weapons; artillery weapons (e.g. guns, howitzers, and mortars)"
+        },
+        {
+          "code": "930111",
+          "name": "--  Self-propelled"
+        },
+        {
+          "code": "930119",
+          "name": "--  Other"
+        },
+        {
+          "code": "930120",
+          "name": "Military weapons; rocket launchers, flame-throwers, grenade launchers, torpedo tubes and similar projectors"
+        },
+        {
+          "code": "930190",
+          "name": "Military weapons; other than revolvers, pistols, and arms of heading 9307, n.e.c. in heading 9301"
+        },
+        {
+          "code": "930591",
+          "name": "Firearms; parts and accessories, of military weapons of heading 9301"
+        }
+      ],
+      "years": [
+        {
+          "year": 2002,
+          "reported": true,
+          "imports": 0,
+          "exports": 6572,
+          "balance": -6572,
+          "codesPresent": [
+            "930100"
+          ],
+          "codesAbsent": [
+            "930110",
+            "930111",
+            "930119",
+            "930120",
+            "930190",
+            "930591"
+          ]
+        },
+        {
+          "year": 2003,
+          "reported": true,
+          "imports": 0,
+          "exports": 1790506,
+          "balance": -1790506,
+          "codesPresent": [
+            "930119"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930110",
+            "930111",
+            "930120",
+            "930190",
+            "930591"
+          ]
+        },
+        {
+          "year": 2004,
+          "reported": true,
+          "imports": 0,
+          "exports": 6539,
+          "balance": -6539,
+          "codesPresent": [
+            "930119"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930110",
+            "930111",
+            "930120",
+            "930190",
+            "930591"
+          ]
+        },
+        {
+          "year": 2008,
+          "reported": true,
+          "imports": 3235445,
+          "exports": 1253048,
+          "balance": 1982397,
+          "codesPresent": [
+            "930111",
+            "930119",
+            "930120",
+            "930190",
+            "930591"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930110"
+          ]
+        },
+        {
+          "year": 2012,
+          "reported": true,
+          "imports": 37003,
+          "exports": 11475354,
+          "balance": -11438351,
+          "codesPresent": [
+            "930190",
+            "930591"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930110",
+            "930111",
+            "930119",
+            "930120"
+          ]
+        },
+        {
+          "year": 2013,
+          "reported": true,
+          "imports": 19736,
+          "exports": 10244827,
+          "balance": -10225091,
+          "codesPresent": [
+            "930190",
+            "930591"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930110",
+            "930111",
+            "930119",
+            "930120"
+          ]
+        },
+        {
+          "year": 2017,
+          "reported": true,
+          "imports": 0,
+          "exports": 1333416.956,
+          "balance": -1333416.956,
+          "codesPresent": [
+            "930110",
+            "930120",
+            "930190",
+            "930591"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930111",
+            "930119"
+          ]
+        },
+        {
+          "year": 2018,
+          "reported": true,
+          "imports": 0,
+          "exports": 17214179.247,
+          "balance": -17214179.247,
+          "codesPresent": [
+            "930110",
+            "930190",
+            "930591"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930111",
+            "930119",
+            "930120"
+          ]
+        },
+        {
+          "year": 2022,
+          "reported": true,
+          "imports": 0,
+          "exports": 1106604.857,
+          "balance": -1106604.857,
+          "codesPresent": [
+            "930110",
+            "930120",
+            "930591"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930111",
+            "930119",
+            "930190"
+          ]
+        },
+        {
+          "year": 2023,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "930100",
+            "930110",
+            "930111",
+            "930119",
+            "930120",
+            "930190",
+            "930591"
+          ]
+        },
+        {
+          "year": 2024,
+          "reported": true,
+          "imports": 0,
+          "exports": 16335344.024,
+          "balance": -16335344.024,
+          "codesPresent": [
+            "930110",
+            "930120",
+            "930591"
+          ],
+          "codesAbsent": [
+            "930100",
+            "930111",
+            "930119",
+            "930190"
+          ]
+        }
+      ],
+      "composition": {
+        "year": 2024,
+        "lines": [
+          {
+            "code": "930120",
+            "name": "Military weapons; rocket launchers, flame-throwers, grenade launchers, torpedo tubes and similar projectors",
+            "imports": 0,
+            "exports": 8633097.064,
+            "shareOfGroupTurnover": 0.528491903893557,
+            "groupTurnover": 16335344.024
+          },
+          {
+            "code": "930110",
+            "name": "Military weapons; artillery weapons (e.g. guns, howitzers, and mortars)",
+            "imports": 0,
+            "exports": 6961223.245,
+            "shareOfGroupTurnover": 0.4261448815998318,
+            "groupTurnover": 16335344.024
+          },
+          {
+            "code": "930591",
+            "name": "Firearms; parts and accessories, of military weapons of heading 9301",
+            "imports": 0,
+            "exports": 741023.715,
+            "shareOfGroupTurnover": 0.04536321450661111,
+            "groupTurnover": 16335344.024
+          }
+        ]
+      }
+    },
+    {
+      "id": "armour-8710",
+      "label": "Tanks and armoured fighting vehicles (HS 8710)",
+      "codeRange": "871000, a single six-digit line",
+      "military": "military",
+      "captures": "Tanks and other motorised armoured fighting vehicles, with or without weapons fitted, and parts of such vehicles — so hulls and turrets count here too.",
+      "misses": "Soft-skinned and mine-protected vehicles that customs does not call armoured; they go to 8703/8704 with civilian cars and lorries. The line also carries no trade at all in the two most recent sampled years, which is a hole in the record and not a stoppage.",
+      "codes": [
+        {
+          "code": "871000",
+          "name": "Tanks and other armoured fighting vehicles; motorised, whether or not fitted with weapons, and parts of such vehicles"
+        }
+      ],
+      "years": [
+        {
+          "year": 2002,
+          "reported": true,
+          "imports": 0,
+          "exports": 220445,
+          "balance": -220445,
+          "codesPresent": [
+            "871000"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2003,
+          "reported": true,
+          "imports": 0,
+          "exports": 1160014,
+          "balance": -1160014,
+          "codesPresent": [
+            "871000"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2004,
+          "reported": true,
+          "imports": 0,
+          "exports": 2291952,
+          "balance": -2291952,
+          "codesPresent": [
+            "871000"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2008,
+          "reported": true,
+          "imports": 97985,
+          "exports": 32559695,
+          "balance": -32461710,
+          "codesPresent": [
+            "871000"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2012,
+          "reported": true,
+          "imports": 0,
+          "exports": 296877,
+          "balance": -296877,
+          "codesPresent": [
+            "871000"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2013,
+          "reported": true,
+          "imports": 0,
+          "exports": 74868870,
+          "balance": -74868870,
+          "codesPresent": [
+            "871000"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2017,
+          "reported": true,
+          "imports": 619951.255,
+          "exports": 51661516.566,
+          "balance": -51041565.311,
+          "codesPresent": [
+            "871000"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2018,
+          "reported": true,
+          "imports": 129352.473,
+          "exports": 1836145.197,
+          "balance": -1706792.724,
+          "codesPresent": [
+            "871000"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2022,
+          "reported": true,
+          "imports": 0,
+          "exports": 574.075,
+          "balance": -574.075,
+          "codesPresent": [
+            "871000"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2023,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "871000"
+          ]
+        },
+        {
+          "year": 2024,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "871000"
+          ]
+        }
+      ],
+      "composition": {
+        "year": 2022,
+        "lines": [
+          {
+            "code": "871000",
+            "name": "Tanks and other armoured fighting vehicles; motorised, whether or not fitted with weapons, and parts of such vehicles",
+            "imports": 0,
+            "exports": 574.075,
+            "shareOfGroupTurnover": 1,
+            "groupTurnover": 574.075
+          }
+        ]
+      }
+    },
+    {
+      "id": "aircraft-8802",
+      "label": "Aircraft: helicopters and aeroplanes (HS 8802, spacecraft removed)",
+      "codeRange": "880211, 880212, 880220, 880230, 880240 — heading 8802 less 880250/880260",
+      "military": "mixed",
+      "captures": "Every powered manned aircraft crossing the border, banded by weight: helicopters above and below two tonnes, and aeroplanes in three weight classes.",
+      "misses": "The distinction the reader wants. A Rafale, a 787 and a business jet over fifteen tonnes are the same line, 880240. Nothing in these files separates military from civil aircraft, and most of the value here is civil.",
+      "codes": [
+        {
+          "code": "880211",
+          "name": "Helicopters, except unmanned; of an unladen weight not exceeding 2000kg"
+        },
+        {
+          "code": "880212",
+          "name": "Helicopters, except unmanned; of an unladen weight exceeding 2000kg"
+        },
+        {
+          "code": "880220",
+          "name": "Aeroplanes and other aircraft, except unmanned; of an unladen weight not exceeding 2000kg"
+        },
+        {
+          "code": "880230",
+          "name": "Aeroplanes and other aircraft, except unmanned; of an unladen weight exceeding 2000kg but not exceeding 15,000kg"
+        },
+        {
+          "code": "880240",
+          "name": "Aeroplanes and other aircraft, except unmanned; of an unladen weight exceeding 15,000kg"
+        }
+      ],
+      "years": [
+        {
+          "year": 2002,
+          "reported": true,
+          "imports": 138190244,
+          "exports": 0,
+          "balance": 138190244,
+          "codesPresent": [
+            "880211",
+            "880212",
+            "880230",
+            "880240"
+          ],
+          "codesAbsent": [
+            "880220"
+          ]
+        },
+        {
+          "year": 2003,
+          "reported": true,
+          "imports": 662303235,
+          "exports": 7026915,
+          "balance": 655276320,
+          "codesPresent": [
+            "880211",
+            "880212",
+            "880220",
+            "880230",
+            "880240"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2004,
+          "reported": true,
+          "imports": 765562902,
+          "exports": 0,
+          "balance": 765562902,
+          "codesPresent": [
+            "880211",
+            "880212",
+            "880220",
+            "880230",
+            "880240"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2008,
+          "reported": true,
+          "imports": 11357205653,
+          "exports": 86164894,
+          "balance": 11271040759,
+          "codesPresent": [
+            "880211",
+            "880212",
+            "880220",
+            "880230",
+            "880240"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2012,
+          "reported": true,
+          "imports": 584049376,
+          "exports": 39945948,
+          "balance": 544103428,
+          "codesPresent": [
+            "880211",
+            "880212",
+            "880220",
+            "880230",
+            "880240"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2013,
+          "reported": true,
+          "imports": 1157400382,
+          "exports": 2553605045,
+          "balance": -1396204663,
+          "codesPresent": [
+            "880211",
+            "880212",
+            "880220",
+            "880230",
+            "880240"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2017,
+          "reported": true,
+          "imports": 2602810923.65,
+          "exports": 111221867.03299999,
+          "balance": 2491589056.617,
+          "codesPresent": [
+            "880211",
+            "880212",
+            "880220",
+            "880230",
+            "880240"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2018,
+          "reported": true,
+          "imports": 1027533603.466,
+          "exports": 240255379.963,
+          "balance": 787278223.503,
+          "codesPresent": [
+            "880211",
+            "880212",
+            "880220",
+            "880230",
+            "880240"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2022,
+          "reported": true,
+          "imports": 3027995705.503,
+          "exports": 95647574.387,
+          "balance": 2932348131.1159997,
+          "codesPresent": [
+            "880211",
+            "880212",
+            "880220",
+            "880230",
+            "880240"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2023,
+          "reported": true,
+          "imports": 9272527748.854,
+          "exports": 502434226.038,
+          "balance": 8770093522.816,
+          "codesPresent": [
+            "880211",
+            "880212",
+            "880220",
+            "880230",
+            "880240"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2024,
+          "reported": true,
+          "imports": 8975577182.18,
+          "exports": 5948348745.568001,
+          "balance": 3027228436.6119995,
+          "codesPresent": [
+            "880211",
+            "880212",
+            "880220",
+            "880230",
+            "880240"
+          ],
+          "codesAbsent": []
+        }
+      ],
+      "composition": {
+        "year": 2024,
+        "lines": [
+          {
+            "code": "880240",
+            "name": "Aeroplanes and other aircraft, except unmanned; of an unladen weight exceeding 15,000kg",
+            "imports": 8703625216.195,
+            "exports": 5937744759.626,
+            "shareOfGroupTurnover": 0.9810669154152228,
+            "groupTurnover": 14923925927.748001
+          },
+          {
+            "code": "880230",
+            "name": "Aeroplanes and other aircraft, except unmanned; of an unladen weight exceeding 2000kg but not exceeding 15,000kg",
+            "imports": 164423911.574,
+            "exports": 6988709.716,
+            "shareOfGroupTurnover": 0.011485759318283209,
+            "groupTurnover": 14923925927.748001
+          },
+          {
+            "code": "880212",
+            "name": "Helicopters, except unmanned; of an unladen weight exceeding 2000kg",
+            "imports": 48958785.462,
+            "exports": 1053699.926,
+            "shareOfGroupTurnover": 0.003351161459131338,
+            "groupTurnover": 14923925927.748001
+          },
+          {
+            "code": "880211",
+            "name": "Helicopters, except unmanned; of an unladen weight not exceeding 2000kg",
+            "imports": 32176036.837,
+            "exports": 139829.204,
+            "shareOfGroupTurnover": 0.002165372985463244,
+            "groupTurnover": 14923925927.748001
+          },
+          {
+            "code": "880220",
+            "name": "Aeroplanes and other aircraft, except unmanned; of an unladen weight not exceeding 2000kg",
+            "imports": 26393232.112,
+            "exports": 2421747.096,
+            "shareOfGroupTurnover": 0.001930790821899244,
+            "groupTurnover": 14923925927.748001
+          }
+        ]
+      }
+    },
+    {
+      "id": "spacecraft-8802",
+      "label": "Spacecraft and launch vehicles (HS 880250/880260)",
+      "codeRange": "880250 and 880260",
+      "military": "mixed",
+      "captures": "Satellites, suborbital and spacecraft launch vehicles. Kept as its own group so that the aircraft group plus this one adds back up to heading 8802.",
+      "misses": "Launch services, which are a service and never appear in merchandise trade at all. This is hardware crossing a border, not the commercial launch business.",
+      "codes": [
+        {
+          "code": "880250",
+          "name": "Spacecraft, satellites and spacecraft launch vehicles"
+        },
+        {
+          "code": "880260",
+          "name": "Spacecraft; (including satellites) and suborbital and spacecraft launch vehicles"
+        }
+      ],
+      "years": [
+        {
+          "year": 2002,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "880250",
+            "880260"
+          ]
+        },
+        {
+          "year": 2003,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "880250",
+            "880260"
+          ]
+        },
+        {
+          "year": 2004,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "880250",
+            "880260"
+          ]
+        },
+        {
+          "year": 2008,
+          "reported": true,
+          "imports": 8914042,
+          "exports": 32268547,
+          "balance": -23354505,
+          "codesPresent": [
+            "880260"
+          ],
+          "codesAbsent": [
+            "880250"
+          ]
+        },
+        {
+          "year": 2012,
+          "reported": true,
+          "imports": 194187088,
+          "exports": 960978,
+          "balance": 193226110,
+          "codesPresent": [
+            "880260"
+          ],
+          "codesAbsent": [
+            "880250"
+          ]
+        },
+        {
+          "year": 2013,
+          "reported": true,
+          "imports": 30969823,
+          "exports": 36651234,
+          "balance": -5681411,
+          "codesPresent": [
+            "880260"
+          ],
+          "codesAbsent": [
+            "880250"
+          ]
+        },
+        {
+          "year": 2017,
+          "reported": true,
+          "imports": 40859023.433,
+          "exports": 2683.035,
+          "balance": 40856340.398,
+          "codesPresent": [
+            "880260"
+          ],
+          "codesAbsent": [
+            "880250"
+          ]
+        },
+        {
+          "year": 2018,
+          "reported": true,
+          "imports": 71497521.621,
+          "exports": 1076200.771,
+          "balance": 70421320.85000001,
+          "codesPresent": [
+            "880260"
+          ],
+          "codesAbsent": [
+            "880250"
+          ]
+        },
+        {
+          "year": 2022,
+          "reported": true,
+          "imports": 124853206.766,
+          "exports": 27806536.12,
+          "balance": 97046670.646,
+          "codesPresent": [
+            "880260"
+          ],
+          "codesAbsent": [
+            "880250"
+          ]
+        },
+        {
+          "year": 2023,
+          "reported": true,
+          "imports": 257736443.399,
+          "exports": 650655.425,
+          "balance": 257085787.97399998,
+          "codesPresent": [
+            "880260"
+          ],
+          "codesAbsent": [
+            "880250"
+          ]
+        },
+        {
+          "year": 2024,
+          "reported": true,
+          "imports": 49459590.798,
+          "exports": 6723529.874,
+          "balance": 42736060.924,
+          "codesPresent": [
+            "880260"
+          ],
+          "codesAbsent": [
+            "880250"
+          ]
+        }
+      ],
+      "composition": {
+        "year": 2024,
+        "lines": [
+          {
+            "code": "880260",
+            "name": "Spacecraft; (including satellites) and suborbital and spacecraft launch vehicles",
+            "imports": 49459590.798,
+            "exports": 6723529.874,
+            "shareOfGroupTurnover": 1,
+            "groupTurnover": 56183120.672
+          }
+        ]
+      }
+    },
+    {
+      "id": "aircraft-parts",
+      "label": "Aircraft and spacecraft parts (HS 8803 to 2018, HS 8807 from 2022)",
+      "codeRange": "880310/320/330/390 in earlier vintages; 880710/720/730/790 from HS2022",
+      "military": "mixed",
+      "captures": "Propellers, rotors, undercarriages and the large residual 'other parts' line, which is where most aerostructure and component trade lands.",
+      "misses": "Any split between military and civil work. Fuselage sections for a civil airliner and for a transport aircraft are the same code. Engines are not here at all — aero engines are chapter 84 (8407/8411), pooled with every other turbine.",
+      "concordance": "HS2022 retired heading 8803 and moved aircraft parts to the new heading 8807. In these files 8803 is present through 2018 and 8807 from 2022, with no overlap. Read as two groups the series would appear to collapse to zero and recover — a renumbering mistaken for an industrial event. They are one group here.",
+      "codes": [
+        {
+          "code": "880310",
+          "name": "Aircraft and spacecraft; propellers and rotors and parts thereof"
+        },
+        {
+          "code": "880320",
+          "name": "Aircraft and spacecraft; under-carriages and parts thereof"
+        },
+        {
+          "code": "880330",
+          "name": "Aircraft and spacecraft; parts of aeroplanes or helicopters n.e.c. in heading no. 8803"
+        },
+        {
+          "code": "880390",
+          "name": "Aircraft and spacecraft; parts thereof n.e.c. in chapter 88"
+        },
+        {
+          "code": "880710",
+          "name": "Aircraft and spacecraft; propellers and rotors and parts thereof"
+        },
+        {
+          "code": "880720",
+          "name": "Aircraft and spacecraft; under-carriages and parts thereof"
+        },
+        {
+          "code": "880730",
+          "name": "Aircraft and spacecraft; parts of aeroplanes, helicopters or unmanned aircraft n.e.c. in heading no. 8807"
+        },
+        {
+          "code": "880790",
+          "name": "Aircraft and spacecraft; parts thereof n.e.c. in chapter 88"
+        }
+      ],
+      "years": [
+        {
+          "year": 2002,
+          "reported": true,
+          "imports": 257920370,
+          "exports": 89376743,
+          "balance": 168543627,
+          "codesPresent": [
+            "880310",
+            "880320",
+            "880330",
+            "880390"
+          ],
+          "codesAbsent": [
+            "880710",
+            "880720",
+            "880730",
+            "880790"
+          ]
+        },
+        {
+          "year": 2003,
+          "reported": true,
+          "imports": 427600445,
+          "exports": 67574756,
+          "balance": 360025689,
+          "codesPresent": [
+            "880310",
+            "880320",
+            "880330",
+            "880390"
+          ],
+          "codesAbsent": [
+            "880710",
+            "880720",
+            "880730",
+            "880790"
+          ]
+        },
+        {
+          "year": 2004,
+          "reported": true,
+          "imports": 395723777,
+          "exports": 53661071,
+          "balance": 342062706,
+          "codesPresent": [
+            "880310",
+            "880320",
+            "880330",
+            "880390"
+          ],
+          "codesAbsent": [
+            "880710",
+            "880720",
+            "880730",
+            "880790"
+          ]
+        },
+        {
+          "year": 2008,
+          "reported": true,
+          "imports": 781327994,
+          "exports": 1366118433,
+          "balance": -584790439,
+          "codesPresent": [
+            "880310",
+            "880320",
+            "880330",
+            "880390"
+          ],
+          "codesAbsent": [
+            "880710",
+            "880720",
+            "880730",
+            "880790"
+          ]
+        },
+        {
+          "year": 2012,
+          "reported": true,
+          "imports": 1249677019,
+          "exports": 1708346551,
+          "balance": -458669532,
+          "codesPresent": [
+            "880310",
+            "880320",
+            "880330",
+            "880390"
+          ],
+          "codesAbsent": [
+            "880710",
+            "880720",
+            "880730",
+            "880790"
+          ]
+        },
+        {
+          "year": 2013,
+          "reported": true,
+          "imports": 1352210152,
+          "exports": 1527033579,
+          "balance": -174823427,
+          "codesPresent": [
+            "880310",
+            "880320",
+            "880330",
+            "880390"
+          ],
+          "codesAbsent": [
+            "880710",
+            "880720",
+            "880730",
+            "880790"
+          ]
+        },
+        {
+          "year": 2017,
+          "reported": true,
+          "imports": 1472678486.573,
+          "exports": 2196522155.08,
+          "balance": -723843668.507,
+          "codesPresent": [
+            "880310",
+            "880320",
+            "880330",
+            "880390"
+          ],
+          "codesAbsent": [
+            "880710",
+            "880720",
+            "880730",
+            "880790"
+          ]
+        },
+        {
+          "year": 2018,
+          "reported": true,
+          "imports": 546466222.994,
+          "exports": 1785243469.587,
+          "balance": -1238777246.593,
+          "codesPresent": [
+            "880310",
+            "880320",
+            "880330",
+            "880390"
+          ],
+          "codesAbsent": [
+            "880710",
+            "880720",
+            "880730",
+            "880790"
+          ]
+        },
+        {
+          "year": 2022,
+          "reported": true,
+          "imports": 291449213.981,
+          "exports": 952859426.4070001,
+          "balance": -661410212.4260001,
+          "codesPresent": [
+            "880710",
+            "880720",
+            "880730",
+            "880790"
+          ],
+          "codesAbsent": [
+            "880310",
+            "880320",
+            "880330",
+            "880390"
+          ]
+        },
+        {
+          "year": 2023,
+          "reported": true,
+          "imports": 480089626.616,
+          "exports": 1417394223.876,
+          "balance": -937304597.26,
+          "codesPresent": [
+            "880710",
+            "880720",
+            "880730",
+            "880790"
+          ],
+          "codesAbsent": [
+            "880310",
+            "880320",
+            "880330",
+            "880390"
+          ]
+        },
+        {
+          "year": 2024,
+          "reported": true,
+          "imports": 561858172.289,
+          "exports": 1099517444.242,
+          "balance": -537659271.9530001,
+          "codesPresent": [
+            "880710",
+            "880720",
+            "880730",
+            "880790"
+          ],
+          "codesAbsent": [
+            "880310",
+            "880320",
+            "880330",
+            "880390"
+          ]
+        }
+      ],
+      "composition": {
+        "year": 2024,
+        "lines": [
+          {
+            "code": "880730",
+            "name": "Aircraft and spacecraft; parts of aeroplanes, helicopters or unmanned aircraft n.e.c. in heading no. 8807",
+            "imports": 401458554.847,
+            "exports": 866033359.146,
+            "shareOfGroupTurnover": 0.762917128060155,
+            "groupTurnover": 1661375616.5310001
+          },
+          {
+            "code": "880790",
+            "name": "Aircraft and spacecraft; parts thereof n.e.c. in chapter 88",
+            "imports": 76064515.744,
+            "exports": 185395714.417,
+            "shareOfGroupTurnover": 0.15737574787990236,
+            "groupTurnover": 1661375616.5310001
+          },
+          {
+            "code": "880720",
+            "name": "Aircraft and spacecraft; under-carriages and parts thereof",
+            "imports": 68919075.124,
+            "exports": 36820697.007,
+            "shareOfGroupTurnover": 0.0636459155165571,
+            "groupTurnover": 1661375616.5310001
+          },
+          {
+            "code": "880710",
+            "name": "Aircraft and spacecraft; propellers and rotors and parts thereof",
+            "imports": 15416026.574,
+            "exports": 11267673.672,
+            "shareOfGroupTurnover": 0.01606120854338547,
+            "groupTurnover": 1661375616.5310001
+          }
+        ]
+      }
+    },
+    {
+      "id": "unmanned-8806",
+      "label": "Unmanned aircraft (HS 8806, from HS2022 only)",
+      "codeRange": "880610 through 880699, banded by take-off weight and control mode",
+      "military": "mixed",
+      "captures": "Drones as hardware, split by whether they are remote-controlled and by take-off weight — 250g, 7kg, 25kg, 150kg and above.",
+      "misses": "Armed and unarmed are the same code at every weight. A hobby quadcopter and a MALE strike drone differ only by the weight band. Loitering munitions may be filed here or in chapter 93 depending on the declarant.",
+      "concordance": "Heading 8806 did not exist before HS2022. Its first year in these files is 2022, so there is no earlier series to compare against and none is implied.",
+      "codes": [
+        {
+          "code": "880610",
+          "name": "Unmanned aircraft; for carriage of passengers"
+        },
+        {
+          "code": "880621",
+          "name": "Unmanned aircraft; for remote-controlled flight only, for other than for carriage of passengers, with the maximum take-off weight of not more than 250g"
+        },
+        {
+          "code": "880622",
+          "name": "Unmanned aircraft; for remote-controlled flight only, for other than for carriage of passengers, with the maximum take-off weight of more than 250g but not more than 7kg"
+        },
+        {
+          "code": "880623",
+          "name": "Unmanned aircraft; for remote-controlled flight only, for other than for carriage of passengers, with the maximum take-off weight of more than 7kg but not more than 25kg"
+        },
+        {
+          "code": "880624",
+          "name": "Unmanned aircraft; for remote-controlled flight only, for other than for carriage of passengers, with the maximum take-off weight of more than 25kg but not more than 150kg"
+        },
+        {
+          "code": "880629",
+          "name": "Unmanned aircraft; for remote-controlled flight only, for other than for carriage of passengers, with the maximum take-off weight of more than 150kg"
+        },
+        {
+          "code": "880691",
+          "name": "Unmanned aircraft; for other than remote-controlled flight and other than for carriage of passengers with a maximum take-off weight not more than 250g"
+        },
+        {
+          "code": "880692",
+          "name": "Unmanned aircraft; for other than remote-controlled flight and other than for carriage of passengers with a maximum take-off weight more than 250g but not more than 7kg"
+        },
+        {
+          "code": "880693",
+          "name": "Unmanned aircraft; for other than remote-controlled flight and other than for carriage of passengers with a maximum take-off weight more than 7kg but not more than 25kg"
+        },
+        {
+          "code": "880694",
+          "name": "Unmanned aircraft; for other than remote-controlled flight and other than for carriage of passengers with a maximum take-off weight more than 25kg but not more than 150kg"
+        },
+        {
+          "code": "880699",
+          "name": "Unmanned aircraft; for other than remote-controlled flight and other than for carriage of passengers with a maximum take-off weight more than 150kg"
+        }
+      ],
+      "years": [
+        {
+          "year": 2002,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "880610",
+            "880621",
+            "880622",
+            "880623",
+            "880624",
+            "880629",
+            "880691",
+            "880692",
+            "880693",
+            "880694",
+            "880699"
+          ]
+        },
+        {
+          "year": 2003,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "880610",
+            "880621",
+            "880622",
+            "880623",
+            "880624",
+            "880629",
+            "880691",
+            "880692",
+            "880693",
+            "880694",
+            "880699"
+          ]
+        },
+        {
+          "year": 2004,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "880610",
+            "880621",
+            "880622",
+            "880623",
+            "880624",
+            "880629",
+            "880691",
+            "880692",
+            "880693",
+            "880694",
+            "880699"
+          ]
+        },
+        {
+          "year": 2008,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "880610",
+            "880621",
+            "880622",
+            "880623",
+            "880624",
+            "880629",
+            "880691",
+            "880692",
+            "880693",
+            "880694",
+            "880699"
+          ]
+        },
+        {
+          "year": 2012,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "880610",
+            "880621",
+            "880622",
+            "880623",
+            "880624",
+            "880629",
+            "880691",
+            "880692",
+            "880693",
+            "880694",
+            "880699"
+          ]
+        },
+        {
+          "year": 2013,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "880610",
+            "880621",
+            "880622",
+            "880623",
+            "880624",
+            "880629",
+            "880691",
+            "880692",
+            "880693",
+            "880694",
+            "880699"
+          ]
+        },
+        {
+          "year": 2017,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "880610",
+            "880621",
+            "880622",
+            "880623",
+            "880624",
+            "880629",
+            "880691",
+            "880692",
+            "880693",
+            "880694",
+            "880699"
+          ]
+        },
+        {
+          "year": 2018,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "880610",
+            "880621",
+            "880622",
+            "880623",
+            "880624",
+            "880629",
+            "880691",
+            "880692",
+            "880693",
+            "880694",
+            "880699"
+          ]
+        },
+        {
+          "year": 2022,
+          "reported": true,
+          "imports": 597902.4500000001,
+          "exports": 2774841.8890000004,
+          "balance": -2176939.4390000002,
+          "codesPresent": [
+            "880610",
+            "880621",
+            "880622",
+            "880623",
+            "880624",
+            "880629",
+            "880691",
+            "880692",
+            "880699"
+          ],
+          "codesAbsent": [
+            "880693",
+            "880694"
+          ]
+        },
+        {
+          "year": 2023,
+          "reported": true,
+          "imports": 2407203.752,
+          "exports": 1387675.317,
+          "balance": 1019528.4349999998,
+          "codesPresent": [
+            "880621",
+            "880622",
+            "880623",
+            "880624",
+            "880629",
+            "880692",
+            "880694",
+            "880699"
+          ],
+          "codesAbsent": [
+            "880610",
+            "880691",
+            "880693"
+          ]
+        },
+        {
+          "year": 2024,
+          "reported": true,
+          "imports": 4973926.018,
+          "exports": 824211.436,
+          "balance": 4149714.5820000004,
+          "codesPresent": [
+            "880621",
+            "880622",
+            "880624",
+            "880691",
+            "880692",
+            "880694",
+            "880699"
+          ],
+          "codesAbsent": [
+            "880610",
+            "880623",
+            "880629",
+            "880693"
+          ]
+        }
+      ],
+      "composition": {
+        "year": 2024,
+        "lines": [
+          {
+            "code": "880622",
+            "name": "Unmanned aircraft; for remote-controlled flight only, for other than for carriage of passengers, with the maximum take-off weight of more than 250g but not more than 7kg",
+            "imports": 4142849.718,
+            "exports": 308936.805,
+            "shareOfGroupTurnover": 0.7677959617754174,
+            "groupTurnover": 5798137.454
+          },
+          {
+            "code": "880692",
+            "name": "Unmanned aircraft; for other than remote-controlled flight and other than for carriage of passengers with a maximum take-off weight more than 250g but not more than 7kg",
+            "imports": 377652.019,
+            "exports": 491582.185,
+            "shareOfGroupTurnover": 0.1499161085600576,
+            "groupTurnover": 5798137.454
+          },
+          {
+            "code": "880699",
+            "name": "Unmanned aircraft; for other than remote-controlled flight and other than for carriage of passengers with a maximum take-off weight more than 150kg",
+            "imports": 429064.939,
+            "exports": 1292.503,
+            "shareOfGroupTurnover": 0.07422339422172658,
+            "groupTurnover": 5798137.454
+          },
+          {
+            "code": "880624",
+            "name": "Unmanned aircraft; for remote-controlled flight only, for other than for carriage of passengers, with the maximum take-off weight of more than 25kg but not more than 150kg",
+            "imports": 24359.342,
+            "exports": 0,
+            "shareOfGroupTurnover": 0.004201235688746057,
+            "groupTurnover": 5798137.454
+          },
+          {
+            "code": "880694",
+            "name": "Unmanned aircraft; for other than remote-controlled flight and other than for carriage of passengers with a maximum take-off weight more than 25kg but not more than 150kg",
+            "imports": 0,
+            "exports": 15722.544,
+            "shareOfGroupTurnover": 0.002711654238061118,
+            "groupTurnover": 5798137.454
+          }
+        ]
+      }
+    },
+    {
+      "id": "warships-890610",
+      "label": "Warships (HS 890610)",
+      "codeRange": "890610; plus 890600, the undivided heading, in the one year it was used",
+      "military": "military",
+      "captures": "Vessels the declarant filed as warships, and nothing else. In India's sampled years this line is close to empty: a few hundred thousand dollars in two of eleven years, against hundreds of millions on the non-warship vessel line beside it.",
+      "misses": "Essentially everything. Naval shipbuilding for the Indian Navy is domestic and never crosses a customs border, so it cannot appear in trade data by construction. Exported patrol vessels are frequently filed as 890690 or 8903/8904 rather than as warships. This line being near-empty is a fact about the classification, not about the shipyards.",
+      "concordance": "890600 was the undivided heading in the earliest sampled year and split into 890610 warships and 890690 other vessels thereafter. The undivided line is folded in here and flagged, because it cannot be apportioned between the two.",
+      "codes": [
+        {
+          "code": "890600",
+          "name": "Other vessels, including warships and lifeboats other than rowing boats."
+        },
+        {
+          "code": "890610",
+          "name": "Vessels; warships"
+        }
+      ],
+      "years": [
+        {
+          "year": 2002,
+          "reported": true,
+          "imports": 556219,
+          "exports": 5040,
+          "balance": 551179,
+          "codesPresent": [
+            "890600"
+          ],
+          "codesAbsent": [
+            "890610"
+          ]
+        },
+        {
+          "year": 2003,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "890600",
+            "890610"
+          ]
+        },
+        {
+          "year": 2004,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "890600",
+            "890610"
+          ]
+        },
+        {
+          "year": 2008,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "890600",
+            "890610"
+          ]
+        },
+        {
+          "year": 2012,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "890600",
+            "890610"
+          ]
+        },
+        {
+          "year": 2013,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "890600",
+            "890610"
+          ]
+        },
+        {
+          "year": 2017,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "890600",
+            "890610"
+          ]
+        },
+        {
+          "year": 2018,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "890600",
+            "890610"
+          ]
+        },
+        {
+          "year": 2022,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "890600",
+            "890610"
+          ]
+        },
+        {
+          "year": 2023,
+          "reported": true,
+          "imports": 0,
+          "exports": 57328.829,
+          "balance": -57328.829,
+          "codesPresent": [
+            "890610"
+          ],
+          "codesAbsent": [
+            "890600"
+          ]
+        },
+        {
+          "year": 2024,
+          "reported": true,
+          "imports": 0,
+          "exports": 47699.437,
+          "balance": -47699.437,
+          "codesPresent": [
+            "890610"
+          ],
+          "codesAbsent": [
+            "890600"
+          ]
+        }
+      ],
+      "composition": {
+        "year": 2024,
+        "lines": [
+          {
+            "code": "890610",
+            "name": "Vessels; warships",
+            "imports": 0,
+            "exports": 47699.437,
+            "shareOfGroupTurnover": 1,
+            "groupTurnover": 47699.437
+          }
+        ]
+      }
+    },
+    {
+      "id": "other-vessels-890690",
+      "label": "Other vessels, explicitly NOT warships (HS 890690)",
+      "codeRange": "890690",
+      "military": "civil-dominant",
+      "captures": "The residual vessel line: 'other, including lifeboats other than rowing boats, other than warships'. Rigs, tugs, supply boats, dredgers and any patrol craft the declarant did not call a warship.",
+      "misses": "Nothing is missing so much as too much is present. This group is published only because summing heading 8906 without it would be wrong in the other direction — it is a companion to the warship line, not a defence measure, and must never be charted as one.",
+      "codes": [
+        {
+          "code": "890690",
+          "name": "Vessels; other, including lifeboats other than rowing boats, other than warships"
+        }
+      ],
+      "years": [
+        {
+          "year": 2002,
+          "reported": false,
+          "imports": null,
+          "exports": null,
+          "balance": null,
+          "codesPresent": [],
+          "codesAbsent": [
+            "890690"
+          ]
+        },
+        {
+          "year": 2003,
+          "reported": true,
+          "imports": 11502774,
+          "exports": 0,
+          "balance": 11502774,
+          "codesPresent": [
+            "890690"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2004,
+          "reported": true,
+          "imports": 217734387,
+          "exports": 1917320,
+          "balance": 215817067,
+          "codesPresent": [
+            "890690"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2008,
+          "reported": true,
+          "imports": 58677321,
+          "exports": 75537143,
+          "balance": -16859822,
+          "codesPresent": [
+            "890690"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2012,
+          "reported": true,
+          "imports": 286612039,
+          "exports": 227139566,
+          "balance": 59472473,
+          "codesPresent": [
+            "890690"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2013,
+          "reported": true,
+          "imports": 535333947,
+          "exports": 514063866,
+          "balance": 21270081,
+          "codesPresent": [
+            "890690"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2017,
+          "reported": true,
+          "imports": 64218575.859,
+          "exports": 306467979.111,
+          "balance": -242249403.252,
+          "codesPresent": [
+            "890690"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2018,
+          "reported": true,
+          "imports": 33899718.809,
+          "exports": 415863165.307,
+          "balance": -381963446.49799997,
+          "codesPresent": [
+            "890690"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2022,
+          "reported": true,
+          "imports": 913192814.014,
+          "exports": 308509032.975,
+          "balance": 604683781.039,
+          "codesPresent": [
+            "890690"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2023,
+          "reported": true,
+          "imports": 340654762.157,
+          "exports": 790217123.578,
+          "balance": -449562361.42099994,
+          "codesPresent": [
+            "890690"
+          ],
+          "codesAbsent": []
+        },
+        {
+          "year": 2024,
+          "reported": true,
+          "imports": 293947496.621,
+          "exports": 318880045.078,
+          "balance": -24932548.457000017,
+          "codesPresent": [
+            "890690"
+          ],
+          "codesAbsent": []
+        }
+      ],
+      "composition": {
+        "year": 2024,
+        "lines": [
+          {
+            "code": "890690",
+            "name": "Vessels; other, including lifeboats other than rowing boats, other than warships",
+            "imports": 293947496.621,
+            "exports": 318880045.078,
+            "shareOfGroupTurnover": 1,
+            "groupTurnover": 612827541.699
+          }
+        ]
+      }
+    }
+  ],
+  "checks": [
+    "930100 never co-occurs with 930110/930111/930119/930120/930190 in any sampled year",
+    "930110 never co-occurs with 930111/930119 in any sampled year",
+    "930520 never co-occurs with 930521/930529 in any sampled year",
+    "930590 never co-occurs with 930591/930599 in any sampled year",
+    "890600 never co-occurs with 890610/890690 in any sampled year",
+    "880100 never co-occurs with 880110/880190 in any sampled year",
+    "880520 never co-occurs with 880521/880529 in any sampled year",
+    "ch93-military-weapons never exceeds ch93-arms in any sampled year"
+  ]
+}
