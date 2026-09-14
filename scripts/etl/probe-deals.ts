@@ -68,6 +68,28 @@
  *   government-issued contract announcements. Whether it can be addressed by
  *   GET at all decides whether the eventual ledger is built from the
  *   government's own releases or from an encyclopaedia's citations to them.
+ *
+ * ── Round three: sizing the crawl ───────────────────────────────────────
+ *
+ * Round two answered the question that mattered. PIB's day archive does take
+ * a GET — AllRelease.aspx with day, month and year — and returned 844 KB for
+ * a single day in June 2024. That is the ledger's source: dated, primary,
+ * issued by the government, one page per day, addressable back through the
+ * whole period.
+ *
+ * 844 KB a day is also the problem. Eleven years is four thousand requests and
+ * something over three gigabytes, which is not one job. So this round measures
+ * rather than guesses: how many release links a day page holds, how many of
+ * their titles read like a defence contract, and whether the same page can be
+ * asked for a whole month, or filtered to one ministry, at a fraction of the
+ * size. The answer sets the shape of the crawl — a matrix of eleven yearly
+ * jobs, or one job that reads a page a month.
+ *
+ * It also confirmed what the encyclopaedia is called. Four guessed titles were
+ * wrong and the search API named the real ones: "Rafale deal controversy",
+ * "Defence industry of India", "List of equipment of the Indian Army". And it
+ * closed the MoD out properly — mod.gov.in refused with and without the www,
+ * which is the host, not a typo.
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
@@ -149,6 +171,41 @@ const TARGETS: Target[] = [
     url: "https://mod.gov.in/",
     look: ["defence"],
     settles: "Whether last round's two failures were the host or the hostname.",
+  },
+
+  // ── Sizing the PIB crawl ──────────────────────────────────────────────
+  //
+  // One day is 844 KB and eleven years is four thousand of them. Before
+  // writing a crawler, find out whether the same archive answers a coarser
+  // question — a month at a time, or one ministry at a time — because the
+  // difference is between one job and a matrix of eleven.
+  {
+    id: "pib-month", kind: "pib",
+    what: "PIB archive, a month rather than a day",
+    url: "https://www.pib.gov.in/AllRelease.aspx?MenuId=3&day=0&month=6&year=2024",
+    look: ["release"],
+    settles: "Whether day=0 means the whole month, which would cut the crawl by thirty.",
+  },
+  {
+    id: "pib-ministry-filtered", kind: "pib",
+    what: "PIB archive, filtered to one ministry",
+    url: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=0&MinistryId=6&day=1&month=6&year=2024",
+    look: ["release"],
+    settles: "Whether the archive can be narrowed to Defence before it is downloaded.",
+  },
+  {
+    id: "pib-release-by-prid", kind: "pib",
+    what: "PIB, one release addressed by its id",
+    url: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2024184",
+    look: ["press"],
+    settles: "Whether a row in the ledger can carry a URL that resolves to its own release.",
+  },
+  {
+    id: "pib-day-2016", kind: "pib",
+    what: "PIB archive, a day in 2016",
+    url: "https://www.pib.gov.in/AllRelease.aspx?MenuId=3&day=23&month=9&year=2016",
+    look: ["release"],
+    settles: "Whether the archive reaches back to the start of the period at all.",
   },
 
   // ── PIB's back catalogue, which is the whole question ─────────────────
@@ -255,6 +312,9 @@ interface Finding {
   /** Items in a feed, and how many read like a contract announcement. */
   feedItems?: number;
   contractish?: number;
+  /** Release links on an archive page, and the defence-contract yield in them. */
+  releaseLinks?: number;
+  defenceLinks?: number;
   shape?: "html" | "js-app" | "pdf" | "xml-feed" | "json" | "empty";
   found?: string[]; missing?: string[];
   /** Whether a money-shaped figure appears at all — never which figure. */
@@ -305,6 +365,25 @@ function feedShape(body: string): { items: number; contractish: number } {
   return { items, contractish: titles.filter((t) => re.test(t)).length };
 }
 
+/**
+ * How many release links an archive page carries, and how many look like a
+ * defence contract announcement.
+ *
+ * Two counts and no titles. The yield is what sets the shape of the crawl: a
+ * day page holding four hundred links of which three are defence contracts is
+ * a different engineering problem from one holding twenty. Recording the
+ * titles themselves would put a hundred government headlines into a probe log
+ * with no citation attached to any of them, which is the thing this file
+ * exists not to do.
+ */
+function archiveYield(body: string): { links: number; defence: number } {
+  const anchors = [...body.matchAll(/<a\b[^>]*PRID=\d+[^>]*>([\s\S]*?)<\/a>/gi)]
+    .map((m) => (m[1] ?? "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim());
+  const re =
+    /\b(defence|defense|army|navy|air force|DRDO|HAL|BEL|contract|procure|acquisition)\b/i;
+  return { links: anchors.length, defence: anchors.filter((t) => re.test(t)).length };
+}
+
 function shapeOf(body: string, contentType: string): Finding["shape"] {
   if (body.length < 200) return "empty";
   if (/^%PDF/.test(body) || /application\/pdf/i.test(contentType)) return "pdf";
@@ -340,6 +419,9 @@ export async function run(): Promise<void> {
       ...(res.ok && /<item\b/i.test(body)
         ? { feedItems: feedShape(body).items, contractish: feedShape(body).contractish }
         : {}),
+      ...(res.ok && /PRID=\d/i.test(body)
+        ? { releaseLinks: archiveYield(body).links, defenceLinks: archiveYield(body).defence }
+        : {}),
     };
     findings.push(f);
     console.log(
@@ -347,6 +429,7 @@ export async function run(): Promise<void> {
       `${String(f.bytes ?? 0).padStart(8)}  ${f.shape ?? ""}` +
       `${f.moneyMentions ? `  ${f.moneyMentions} money mentions` : ""}` +
       `${f.feedItems ? `  ${f.feedItems} items, ${f.contractish} contract-ish` : ""}` +
+      `${f.releaseLinks ? `  ${f.releaseLinks} releases, ${f.defenceLinks} defence-ish` : ""}` +
       `${f.titles?.length ? `  → ${f.titles.join(" | ")}` : ""}`,
     );
 
@@ -365,8 +448,13 @@ export async function run(): Promise<void> {
           "The database and trade-register URLs returned the same landing page and neither " +
           "contained the word 'register'. SIPRI's data is behind a form, not a URL.",
         titles:
-          "Four of eight guessed article titles returned an error object. Titles are resolved " +
-          "through the search API in this round rather than guessed.",
+          "Four of eight guessed article titles returned an error object. The search API named " +
+          "the real ones: Rafale deal controversy, Defence industry of India, List of equipment " +
+          "of the Indian Army, BrahMos.",
+        pib:
+          "AllRelease.aspx answers a GET with day, month and year, and returned 844 KB for one " +
+          "day of June 2024. That is the ledger's source. The size is the open question this " +
+          "round measures.",
       },
       refusal:
         "No figure is recorded here, only whether a figure exists on the page. A probe log that " +
