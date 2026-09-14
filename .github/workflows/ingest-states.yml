@@ -1,0 +1,51 @@
+name: Build state population and area
+
+# The denominator. Without it every statewise count on this site ranks states
+# by size — Maharashtra has more railway stations than Sikkim, and that is not
+# a fact about transport.
+#
+# Runs here because en.wikipedia.org returns 000 from the editing sandbox.
+#
+# The parse is checked against facts any correct reading reproduces: Uttar
+# Pradesh most populous, Rajasthan largest by area, and a total near 1.21
+# billion. A parse that has taken the wrong column produces plausible numbers
+# in the right format and fails at least one of those.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Quarterly. The 2011 census does not change; the article's formatting does.
+    - cron: "30 5 1 */3 *"
+  push:
+    paths:
+      - "scripts/etl/connectors/state-stats.ts"
+      - ".github/workflows/ingest-states.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ingest-states
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Build
+        run: npm run states:build
+      # Always: faults are recorded in the file rather than thrown, so a parse
+      # that went wrong ships with its own diagnosis attached.
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/geo/state-stats.json
+          "chore(geo): state population and area $(date -u +'%Y-%m-%d %H:%M')"

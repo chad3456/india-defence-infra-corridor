@@ -149,7 +149,7 @@ function readModel(m: HfModel, author: string): Model {
  * silently shifts by one column — every value lands under the wrong header and
  * nothing looks wrong until someone checks a number by hand.
  */
-export function parseCsv(text: string): { header: string[]; rows: string[][] } {
+export function parseCsv(text: string): { header: string[]; rows: string[][]; dropped: number } {
   const rows: string[][] = [];
   let row: string[] = [];
   let field = "";
@@ -171,9 +171,12 @@ export function parseCsv(text: string): { header: string[]; rows: string[][] } {
   }
   if (field.length > 0 || row.length > 0) { row.push(field); rows.push(row); }
   const header = rows.shift() ?? [];
-  // A trailing newline leaves one empty row; a ragged row is a parse failure
-  // and is dropped rather than padded into alignment.
-  return { header, rows: rows.filter((r) => r.length === header.length) };
+  // A ragged row is a parse failure and is dropped rather than padded into
+  // alignment — padding would put every later value under the wrong header.
+  // The count is returned, because silently dropping rows is the same data
+  // loss as silently misaligning them, only harder to notice.
+  const kept = rows.filter((r) => r.length === header.length);
+  return { header, rows: kept, dropped: rows.length - kept.length };
 }
 
 /** First header whose name contains all of the given words, case-insensitively. */
@@ -214,20 +217,35 @@ export async function run(): Promise<void> {
   // are written into the output — a connector that hard-codes a column index
   // breaks silently when an upstream file gains a column.
   const epoch = await getText(EPOCH, { cacheMs: 24 * 3600_000, retries: 2, timeoutMs: 120_000 });
+  interface FrontierModel {
+    name: string;
+    /** As served: a multi-institution model lists every one, comma-joined. */
+    organisation: string;
+    /** The same, one country per organisation and in the same order. */
+    country: string;
+    /** Deduplicated countries, which is what a count of models per country needs. */
+    countries: string[];
+    published: string | null;
+    parameters: string | null;
+    trainingCompute: string | null;
+  }
   let frontier: {
     columns: string[];
     rowCount: number;
+    droppedRows: number;
     note: string;
-    models: Array<{
-      name: string; organisation: string; country: string; published: string | null;
-      parameters: string | null; trainingCompute: string | null;
-    }>;
-  } = { columns: [], rowCount: 0, note: "", models: [] };
+    byCountry: Array<{ country: string; models: number }>;
+    indiaModels: FrontierModel[];
+    models: FrontierModel[];
+  } = {
+    columns: [], rowCount: 0, droppedRows: 0, note: "",
+    byCountry: [], indiaModels: [], models: [],
+  };
 
   if (!epoch.ok || !epoch.data) {
     frontier.note = `Epoch AI's dataset did not answer: ${epoch.error ?? "no body"}`;
   } else {
-    const { header, rows } = parseCsv(epoch.data);
+    const { header, rows, dropped } = parseCsv(epoch.data);
     const iName = columnOf(header, "model");
     const iOrg = columnOf(header, "organization") >= 0
       ? columnOf(header, "organization") : columnOf(header, "organisation");
@@ -237,28 +255,60 @@ export async function run(): Promise<void> {
     const iParams = columnOf(header, "parameters");
     const iCompute = columnOf(header, "training", "compute");
 
-    frontier = {
-      columns: header,
-      rowCount: rows.length,
-      note:
-        "Epoch AI's notable AI models dataset, read as served. Column names are recorded above " +
-        "because they are read by name rather than by position: a connector that hard-codes an " +
-        "index breaks silently when the upstream file gains a column.",
-      models: rows
-        .map((r) => ({
+    const models: FrontierModel[] = rows
+      .map((r) => {
+        const country = iCountry >= 0 ? (r[iCountry] ?? "") : "";
+        return {
           name: iName >= 0 ? (r[iName] ?? "") : "",
           organisation: iOrg >= 0 ? (r[iOrg] ?? "") : "",
-          country: iCountry >= 0 ? (r[iCountry] ?? "") : "",
+          country,
+          /**
+           * A collaboration lists every institution and every country, comma-
+           * joined and in the same order — StarCoder names thirty-seven of
+           * them. Counting the raw string would make "United States of
+           * America,United States of America,Canada,…" its own country. Split,
+           * trim and deduplicate, so a model counts once per country.
+           */
+          countries: [...new Set(
+            country.split(",").map((c) => c.trim()).filter((c) => c.length > 0),
+          )],
           published: iDate >= 0 && r[iDate] ? r[iDate]! : null,
           parameters: iParams >= 0 && r[iParams] ? r[iParams]! : null,
           trainingCompute: iCompute >= 0 && r[iCompute] ? r[iCompute]! : null,
-        }))
-        .filter((m) => m.name.length > 0),
+        };
+      })
+      .filter((m) => m.name.length > 0);
+
+    const perCountry = new Map<string, number>();
+    for (const m of models) for (const c of m.countries) {
+      perCountry.set(c, (perCountry.get(c) ?? 0) + 1);
+    }
+
+    frontier = {
+      columns: header,
+      rowCount: models.length,
+      droppedRows: dropped,
+      note:
+        "Epoch AI's notable AI models dataset, read as served. Column names are recorded above " +
+        "because they are read by name rather than by position: a connector that hard-codes an " +
+        "index breaks silently when the upstream file gains a column. A model with several " +
+        "institutions counts once for each distinct country, so these columns overlap and do " +
+        "not sum to the row count.",
+      byCountry: [...perCountry.entries()]
+        .map(([country, n]) => ({ country, models: n }))
+        .sort((a, b) => b.models - a.models),
+      indiaModels: models.filter((m) => m.countries.includes("India")),
+      models,
     };
     console.log(
-      `\n  epoch: ${rows.length} rows, ${header.length} columns` +
-      `\n  columns: ${header.join(" | ").slice(0, 300)}`,
+      `\n  epoch: ${frontier.rowCount} models, ${header.length} columns` +
+      `${dropped > 0 ? `, ${dropped} ragged rows dropped` : ""}` +
+      `\n  India-affiliated: ${frontier.indiaModels.length}` +
+      `\n  top: ${frontier.byCountry.slice(0, 5).map((c) => `${c.country} ${c.models}`).join(", ")}`,
     );
+    if (dropped > frontier.rowCount * 0.02) {
+      console.warn(`  WARNING: ${dropped} rows did not parse. That is a reader fault, not a file fault.`);
+    }
   }
 
   // ── Roll-ups, all of them arithmetic on the rows above ────────────────

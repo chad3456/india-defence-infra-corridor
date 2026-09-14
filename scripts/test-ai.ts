@@ -18,7 +18,8 @@ function ok(name: string, cond: boolean, detail = ""): void {
 
 console.log("\nThe CSV reader");
 {
-  const { header, rows } = parseCsv('a,b,c\n1,2,3\n4,5,6\n');
+  const { header, rows, dropped } = parseCsv('a,b,c\n1,2,3\n4,5,6\n');
+  ok("a clean file drops nothing", dropped === 0, String(dropped));
   ok("reads a plain file", header.join("|") === "a|b|c" && rows.length === 2, JSON.stringify(rows));
   ok("a trailing newline is not a row", rows.length === 2);
 }
@@ -41,9 +42,12 @@ console.log("\nThe CSV reader");
 {
   // A ragged row is a parse failure. Padding it into alignment would put every
   // later value under the wrong header, which is the failure this guards.
-  const { rows } = parseCsv('a,b,c\n1,2\n3,4,5\n');
+  const { rows, dropped } = parseCsv('a,b,c\n1,2\n3,4,5\n');
   ok("a row with the wrong number of fields is dropped, not padded",
     rows.length === 1 && rows[0]![0] === "3", JSON.stringify(rows));
+  // Silently dropping rows is the same data loss as silently misaligning
+  // them, only harder to notice, so the count comes back with them.
+  ok("and the drop is counted", dropped === 1, String(dropped));
 }
 {
   ok("an empty file yields nothing", parseCsv("").rows.length === 0);
@@ -73,7 +77,12 @@ if (readersOnly) {
     labs: L[]; indianModelCount: number; indicModelCount: number; labCount: number;
     languagesCovered: Array<{ code: string; models: number }>;
     byYear: Array<{ year: number; models: number }>;
-    frontier: { columns: string[]; rowCount: number; models: Array<{ name: string }> };
+    frontier: {
+      columns: string[]; rowCount: number; droppedRows: number;
+      byCountry: Array<{ country: string; models: number }>;
+      indiaModels: Array<{ name: string; countries: string[] }>;
+      models: Array<{ name: string; countries: string[] }>;
+    };
     whatAnAuthorIs: string; noFunding: string; downloadsNote: string; controlsNote: string;
   };
 
@@ -122,6 +131,19 @@ if (readersOnly) {
     ok("the frontier dataset records its own column names",
       d.frontier.columns.length > 0, "read by name, not by position");
     ok("every frontier row has a model name", d.frontier.models.every((m) => m.name.length > 0));
+    ok("the reader dropped no more than a fiftieth of the rows",
+      d.frontier.droppedRows <= d.frontier.rowCount / 50,
+      `${d.frontier.droppedRows} dropped of ${d.frontier.rowCount}`);
+    // A collaboration lists every country comma-joined, and StarCoder names
+    // thirty-seven institutions. Counting the raw string would invent a
+    // country called "United States of America,United States of America,…".
+    ok("no country name is a comma-joined list",
+      d.frontier.byCountry.every((c) => !c.country.includes(",")),
+      d.frontier.byCountry.filter((c) => c.country.includes(",")).slice(0, 2)
+        .map((c) => c.country.slice(0, 50)).join(" / "));
+    ok("India's frontier rows all actually name India",
+      d.frontier.indiaModels.every((m) => m.countries.includes("India")));
+    console.log(`        ${d.frontier.indiaModels.length} of ${d.frontier.rowCount} notable models name India`);
   } else {
     console.log("  skip  the frontier dataset did not answer on this build.");
   }
