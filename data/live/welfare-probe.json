@@ -1,0 +1,236 @@
+{
+  "probedAt": "2026-09-14T16:07:44.535Z",
+  "question": "Which welfare schemes publish their own coverage, and at what grain — household, village, bare beneficiary count, or district aggregate?",
+  "refusal": "No coverage figure, beneficiary count or spend is recorded here. Only whether a source answers, in what shape, and how many rows it carries.",
+  "fourGrains": "Household, village, beneficiary count and district aggregate are four different things. A beneficiary count has no denominator and is not a penetration rate; supplying one is exactly the step where a tracker invents a number. A village percentage is of villages and not of people, and the two diverge sharply because villages differ in size by orders of magnitude. The eventual dataset keeps them in separate columns.",
+  "denominator": "Any village-grain percentage needs a count of villages per state. The Local Government Directory is the register the government itself uses, and it is probed here for that reason rather than for its own sake.",
+  "findings": [
+    {
+      "id": "myscheme-api",
+      "kind": "roster",
+      "what": "myScheme, the government's own scheme search API",
+      "url": "https://api.myscheme.gov.in/search/v4/schemes?lang=en&q=%5B%5D&keyword=&sort=&from=0&size=100",
+      "settles": "The roster itself: names, ministries, eligibility and tags for every central and state scheme the government publishes. If this answers, the hundred schemes are a query.",
+      "ok": false,
+      "status": "HTTP 401",
+      "bytes": null
+    },
+    {
+      "id": "myscheme-web",
+      "kind": "roster",
+      "what": "myScheme portal",
+      "url": "https://www.myscheme.gov.in/search",
+      "settles": "Where the API lives, if its path has moved.",
+      "ok": true,
+      "status": "200",
+      "bytes": 65429,
+      "shape": "html",
+      "found": [
+        "scheme"
+      ],
+      "missing": []
+    },
+    {
+      "id": "ogd-catalog",
+      "kind": "roster",
+      "what": "data.gov.in catalogue search",
+      "url": "https://www.data.gov.in/catalogs",
+      "settles": "Whether the open-data portal is browsable without the API key this project lacks.",
+      "ok": true,
+      "status": "200",
+      "bytes": 1002289,
+      "shape": "html",
+      "found": [
+        "catalog"
+      ],
+      "missing": []
+    },
+    {
+      "id": "ogd-api",
+      "kind": "roster",
+      "what": "data.gov.in resource API, unauthenticated",
+      "url": "https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?format=json&limit=5",
+      "settles": "What an unauthenticated call returns. The key has been asked for and not yet supplied, so the answer decides whether this route is open at all.",
+      "ok": false,
+      "status": "HTTP 400",
+      "bytes": null
+    },
+    {
+      "id": "jjm-india",
+      "kind": "household",
+      "what": "Jal Jeevan Mission, national dashboard",
+      "url": "https://ejalshakti.gov.in/jjmreport/JJMIndia.aspx",
+      "settles": "Tap connections per rural household by state and district — the clearest household-grain coverage series any Indian scheme publishes.",
+      "ok": true,
+      "status": "200",
+      "bytes": 163509,
+      "shape": "html",
+      "found": [
+        "household",
+        "tap"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 11
+      }
+    },
+    {
+      "id": "jjm-state",
+      "kind": "household",
+      "what": "Jal Jeevan Mission, one state",
+      "url": "https://ejalshakti.gov.in/jjmreport/JJMState.aspx?Rep=0&RP=Y&APP=NRDWP",
+      "settles": "Whether the district drill-down is addressable by GET.",
+      "ok": true,
+      "status": "200",
+      "bytes": 183838,
+      "shape": "html",
+      "counts": {
+        "tableRows": 9
+      }
+    },
+    {
+      "id": "pmayg-dash",
+      "kind": "household",
+      "what": "PMAY-Gramin, physical progress",
+      "url": "https://pmayg.nic.in/netiayHome/PBI/PBIReport.aspx",
+      "settles": "Rural houses sanctioned and completed by state — household grain, dated.",
+      "ok": false,
+      "status": "fetch failed",
+      "bytes": null
+    },
+    {
+      "id": "pmayg-home",
+      "kind": "household",
+      "what": "PMAY-Gramin portal",
+      "url": "https://pmayg.nic.in/netiay/home.aspx",
+      "settles": "Navigation, if the report path has moved.",
+      "ok": false,
+      "status": "fetch failed",
+      "bytes": null
+    },
+    {
+      "id": "mission-antyodaya",
+      "kind": "village",
+      "what": "Mission Antyodaya, village survey",
+      "url": "https://missionantyodaya.nic.in/",
+      "settles": "The only national survey that measures villages directly — infrastructure and service availability per village. If it is readable, 'penetration in villages' has a real source.",
+      "ok": false,
+      "status": "fetch failed",
+      "bytes": null
+    },
+    {
+      "id": "antyodaya-report",
+      "kind": "village",
+      "what": "Mission Antyodaya, report endpoint",
+      "url": "https://missionantyodaya.nic.in/ma2020/reports/reportlist.html",
+      "settles": "Whether the survey's own tables are addressable.",
+      "ok": false,
+      "status": "fetch failed",
+      "bytes": null
+    },
+    {
+      "id": "saubhagya",
+      "kind": "village",
+      "what": "Saubhagya, household electrification",
+      "url": "https://saubhagya.gov.in/",
+      "settles": "Village and household electrification, which the scheme declared complete in 2019.",
+      "ok": false,
+      "status": "fetch failed",
+      "bytes": null
+    },
+    {
+      "id": "sbm-gramin",
+      "kind": "village",
+      "what": "Swachh Bharat Mission Gramin",
+      "url": "https://sbm.gov.in/sbmdashboard/",
+      "settles": "ODF status by village, which is a village-grain claim by construction.",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "lgd-directory",
+      "kind": "village",
+      "what": "Local Government Directory",
+      "url": "https://lgdirectory.gov.in/",
+      "settles": "The denominator. Any village-grain percentage needs a count of villages per state, and this is the register the government uses for it.",
+      "ok": true,
+      "status": "200",
+      "bytes": 231057,
+      "shape": "html",
+      "found": [
+        "panchayat",
+        "village"
+      ],
+      "missing": []
+    },
+    {
+      "id": "pmkisan",
+      "kind": "beneficiary",
+      "what": "PM-KISAN dashboard",
+      "url": "https://pmkisan.gov.in/Dashboard.aspx",
+      "settles": "Beneficiaries paid by state — a count with no denominator, and it must stay one.",
+      "ok": true,
+      "status": "200",
+      "bytes": 1398,
+      "shape": "html",
+      "found": [],
+      "missing": [
+        "beneficiar"
+      ],
+      "counts": {
+        "tableRows": 0
+      }
+    },
+    {
+      "id": "ujjwala",
+      "kind": "beneficiary",
+      "what": "PM Ujjwala Yojana",
+      "url": "https://www.pmuy.gov.in/",
+      "settles": "LPG connections released, likewise a count rather than a rate.",
+      "ok": true,
+      "status": "200",
+      "bytes": 70721,
+      "shape": "html",
+      "found": [
+        "connection"
+      ],
+      "missing": []
+    },
+    {
+      "id": "nrega-report",
+      "kind": "beneficiary",
+      "what": "MGNREGA, public reports",
+      "url": "https://nreganarep.nic.in/netnrega/dynamic_work_details.aspx",
+      "settles": "Person-days and households employed, by state and district.",
+      "ok": false,
+      "status": "fetch failed",
+      "bytes": null
+    },
+    {
+      "id": "jan-dhan",
+      "kind": "beneficiary",
+      "what": "PM Jan Dhan Yojana progress",
+      "url": "https://pmjdy.gov.in/statewise-at-a-glance",
+      "settles": "Already ingested for one date; this checks whether the series can be extended.",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "wiki-schemes",
+      "kind": "wiki",
+      "what": "Wikipedia: list of Indian government schemes",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_schemes_of_the_government_of_India&redirects=1&prop=wikitext&formatversion=2&fo",
+      "settles": "A fallback roster if myScheme refuses, and a cross-check on it if it does not.",
+      "ok": true,
+      "status": "200",
+      "bytes": 111780,
+      "shape": "json",
+      "counts": {
+        "tableRows": 0,
+        "links": 309
+      }
+    }
+  ]
+}
