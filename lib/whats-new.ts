@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "schemes-2026-09",
+    title: "Welfare schemes",
+    blurb:
+      "Ninety-six central schemes by ministry and launch year — and the reason almost none of " +
+      "them publishes coverage a script can read.",
+    href: "/schemes",
+    since: "2026-09-14",
+  },
+  {
     id: "statewise-2026-09",
     title: "Transport by state",
     blurb:
