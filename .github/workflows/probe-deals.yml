@@ -1,0 +1,64 @@
+name: Probe defence deal sources
+
+# Asks PIB, the Ministry of Defence, SIPRI, Wikipedia and one vendor what they
+# will answer about defence contracts signed since 2014, and in what shape.
+# Records reachability, page shape and whether a money figure appears at all.
+# Publishes no contract, value or date.
+#
+# It runs here because the editing sandbox cannot reach these hosts — the
+# egress proxy answers 403 to CONNECT for nearly everything — so "pib.gov.in
+# refused" from a local run would be a fact about the sandbox, not about PIB.
+#
+# The number that decides the shape of the feature is how many of the
+# government sources answer in server-rendered HTML. If PIB and MoD are both
+# JavaScript applications, the ledger has to be assembled from Wikipedia's
+# citations to them rather than from the publishers directly, and that is a
+# weaker provenance that the page has to say out loud.
+#
+# Manual and on-change only.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-deals.ts"
+      - ".github/workflows/probe-deals.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-deals
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Probe
+        env:
+          # Optional. Absent is a normal state: every fetch stays direct.
+          BRIGHTDATA_API_KEY: ${{ secrets.BRIGHTDATA_API_KEY }}
+          BRIGHTDATA_ZONE: ${{ secrets.BRIGHTDATA_ZONE }}
+        run: npm run deals:probe
+
+      # Always: the probe writes after every target, so a run killed by a slow
+      # government host still leaves the findings it did collect. A job that
+      # throws before committing leaves only the symptom in a log; the artifact
+      # is the diagnosis.
+      - name: Commit the probe report
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/live/deals-probe.json
+          "chore(sources): defence deal probe $(date -u +'%Y-%m-%d %H:%M')"
