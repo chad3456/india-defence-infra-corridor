@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-14T16:09:17.131Z",
+  "builtAt": "2026-09-14T16:41:08.164Z",
   "note": "Named things per state, for the map to answer a click with. Each layer records how its rows reached a state and how many did not, because the join is where this kind of file goes wrong invisibly.",
   "refused": [
     {
@@ -23567,17 +23567,215 @@
       "blurb": "Every airport the mobility dataset holds a coordinate for, placed into the state whose polygon contains it. Named and located only — nothing here knows how busy any of them are, so this counts runways with a code, not traffic.",
       "join": "Point-in-polygon against the map's own topology. An airport in no polygon is listed unplaced, never assigned to a neighbour.",
       "source": "OurAirports, via the mobility connector.",
-      "total": 148,
-      "placed": 144,
-      "unplacedCount": 4,
+      "total": 159,
+      "placed": 154,
+      "unplacedCount": 5,
       "deduped": 0,
       "unplaced": [
+        "Car Nicobar Air Force Station (CBD)",
         "Veer Savarkar International Airport (IXZ)",
         "Agatti Airport (AGX)",
         "Diu Airport (DIU)",
         "Pondicherry Airport (PNY)"
       ],
       "byState": {
+        "Telangana": [
+          {
+            "name": "Basant Nagar Airstrip",
+            "why": "Scheduled-service airport, IATA RMD.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 18.7011,
+            "lon": 79.3932
+          },
+          {
+            "name": "Begumpet Airport",
+            "why": "Scheduled-service airport, IATA BPM.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 17.4541,
+            "lon": 78.4683
+          },
+          {
+            "name": "RGIA Phase II",
+            "why": "Scheduled-service airport, IATA HYD.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 17.2505,
+            "lon": 78.4194
+          },
+          {
+            "name": "Warangal Airport",
+            "why": "Scheduled-service airport, IATA WGC.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 17.9141,
+            "lon": 79.6036
+          }
+        ],
+        "Odisha": [
+          {
+            "name": "Biju Patnaik International Airport",
+            "why": "Scheduled-service airport, IATA BBI.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 20.2524,
+            "lon": 85.813
+          },
+          {
+            "name": "Jeypore",
+            "why": "Scheduled-service airport, IATA PYB.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 18.8813,
+            "lon": 82.5528
+          },
+          {
+            "name": "Rourkela Airport",
+            "why": "Scheduled-service airport, IATA RRK.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 22.2551,
+            "lon": 84.8155
+          },
+          {
+            "name": "Veer Surendra Sai Airport",
+            "why": "Scheduled-service airport, IATA JRG.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 21.9159,
+            "lon": 84.0505
+          }
+        ],
+        "Assam": [
+          {
+            "name": "Dibrugarh Mohanbari Airport",
+            "why": "Scheduled-service airport, IATA DIB.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 27.4855,
+            "lon": 95.0171
+          },
+          {
+            "name": "Dimapur Airport",
+            "why": "Scheduled-service airport, IATA DMU.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 25.8841,
+            "lon": 93.7713
+          },
+          {
+            "name": "Itanagar Holongi Airport",
+            "why": "Scheduled-service airport, IATA HGI.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 26.9698,
+            "lon": 93.6419
+          },
+          {
+            "name": "Jorhat Rowriah Airport",
+            "why": "Scheduled-service airport, IATA JRH.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 26.7294,
+            "lon": 94.1742
+          },
+          {
+            "name": "Lilabari Airport",
+            "why": "Scheduled-service airport, IATA IXI.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 27.2962,
+            "lon": 94.0979
+          },
+          {
+            "name": "Lokpriya Gopinath Bordoloi International Airport",
+            "why": "Scheduled-service airport, IATA GAU.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 26.1113,
+            "lon": 91.5853
+          },
+          {
+            "name": "Rupsi Airport",
+            "why": "Scheduled-service airport, IATA RUP.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 26.1413,
+            "lon": 89.9073
+          },
+          {
+            "name": "Silchar Airport",
+            "why": "Scheduled-service airport, IATA IXS.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 24.9125,
+            "lon": 92.9804
+          },
+          {
+            "name": "Tezpur Air Force Station",
+            "why": "Scheduled-service airport, IATA TEZ.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 26.7135,
+            "lon": 92.7843
+          }
+        ],
+        "Karnataka": [
+          {
+            "name": "Belgaum Airport",
+            "why": "Scheduled-service airport, IATA IXG.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 15.8597,
+            "lon": 74.6155
+          },
+          {
+            "name": "Bellary Airport",
+            "why": "Scheduled-service airport, IATA BEP.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 15.1622,
+            "lon": 76.882
+          },
+          {
+            "name": "Bidar Air Force Station",
+            "why": "Scheduled-service airport, IATA IXX.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 17.902,
+            "lon": 77.4733
+          },
+          {
+            "name": "Hubballi Airport",
+            "why": "Scheduled-service airport, IATA HBX.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 15.3605,
+            "lon": 75.078
+          },
+          {
+            "name": "Jindal Vijaynagar Airport",
+            "why": "Scheduled-service airport, IATA VDY.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 15.1751,
+            "lon": 76.6333
+          },
+          {
+            "name": "Kalaburagi Airport",
+            "why": "Scheduled-service airport, IATA GBI.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 17.3065,
+            "lon": 76.9649
+          },
+          {
+            "name": "Kempegowda International Airport",
+            "why": "Scheduled-service airport, IATA BLR.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 13.1976,
+            "lon": 77.7063
+          },
+          {
+            "name": "Mangalore International Airport",
+            "why": "Scheduled-service airport, IATA IXE.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 12.9549,
+            "lon": 74.8838
+          },
+          {
+            "name": "Mysore Mandakalli Airport",
+            "why": "Scheduled-service airport, IATA MYQ.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 12.2303,
+            "lon": 76.6516
+          },
+          {
+            "name": "Shivamogga Airport",
+            "why": "Scheduled-service airport, IATA RQY.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 13.8578,
+            "lon": 75.6194
+          }
+        ],
         "Punjab": [
           {
             "name": "Adampur Air Force Station",
@@ -23592,6 +23790,13 @@
             "basis": "OurAirports via the mobility connector: name, code and coordinate only",
             "lat": 30.2684,
             "lon": 74.7583
+          },
+          {
+            "name": "Chandigarh International Airport",
+            "why": "Scheduled-service airport, IATA IXC.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 30.6742,
+            "lon": 76.7895
           },
           {
             "name": "Sahnewal Airport - Ludhiana",
@@ -23803,83 +24008,18 @@
             "lon": 79.1107
           },
           {
+            "name": "Tiruchirapalli International Airport",
+            "why": "Scheduled-service airport, IATA TRZ.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 10.7634,
+            "lon": 78.7209
+          },
+          {
             "name": "Tuticorin Airport",
             "why": "Scheduled-service airport, IATA TCR.",
             "basis": "OurAirports via the mobility connector: name, code and coordinate only",
             "lat": 8.7264,
             "lon": 78.0276
-          }
-        ],
-        "Karnataka": [
-          {
-            "name": "Belgaum Airport",
-            "why": "Scheduled-service airport, IATA IXG.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 15.8597,
-            "lon": 74.6155
-          },
-          {
-            "name": "Bellary Airport",
-            "why": "Scheduled-service airport, IATA BEP.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 15.1622,
-            "lon": 76.882
-          },
-          {
-            "name": "Bidar Air Force Station",
-            "why": "Scheduled-service airport, IATA IXX.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 17.902,
-            "lon": 77.4733
-          },
-          {
-            "name": "Hubballi Airport",
-            "why": "Scheduled-service airport, IATA HBX.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 15.3605,
-            "lon": 75.078
-          },
-          {
-            "name": "Kalaburagi Airport",
-            "why": "Scheduled-service airport, IATA GBI.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 17.3065,
-            "lon": 76.9649
-          },
-          {
-            "name": "Kempegowda International Airport",
-            "why": "Scheduled-service airport, IATA BLR.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 13.1976,
-            "lon": 77.7063
-          },
-          {
-            "name": "Mangalore International Airport",
-            "why": "Scheduled-service airport, IATA IXE.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 12.9549,
-            "lon": 74.8838
-          },
-          {
-            "name": "Mysore Mandakalli Airport",
-            "why": "Scheduled-service airport, IATA MYQ.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 12.2303,
-            "lon": 76.6516
-          },
-          {
-            "name": "Shivamogga Airport",
-            "why": "Scheduled-service airport, IATA RQY.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 13.8578,
-            "lon": 75.6194
-          },
-          {
-            "name": "Vidyanagar Jindal Airport",
-            "why": "Scheduled-service airport, IATA VDY.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 15.1719,
-            "lon": 76.6367
           }
         ],
         "Uttar Pradesh": [
@@ -23998,6 +24138,13 @@
             "lon": 75.8191
           },
           {
+            "name": "Jaisalmer Civil Airport",
+            "why": "Scheduled-service airport, IATA JSA.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 26.8703,
+            "lon": 70.8565
+          },
+          {
             "name": "Jodhpur Airbase",
             "why": "Scheduled-service airport, IATA JDH.",
             "basis": "OurAirports via the mobility connector: name, code and coordinate only",
@@ -24017,6 +24164,13 @@
             "basis": "OurAirports via the mobility connector: name, code and coordinate only",
             "lat": 25.1603,
             "lon": 75.8455
+          },
+          {
+            "name": "Maharana Pratap Airport",
+            "why": "Scheduled-service airport, IATA UDR.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 24.6175,
+            "lon": 73.9
           }
         ],
         "Gujarat": [
@@ -24098,22 +24252,6 @@
             "lon": 73.2267
           }
         ],
-        "Telangana": [
-          {
-            "name": "Begumpet Airport",
-            "why": "Scheduled-service airport, IATA BPM.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 17.4541,
-            "lon": 78.4683
-          },
-          {
-            "name": "RGIA Phase II",
-            "why": "Scheduled-service airport, IATA HYD.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 17.2505,
-            "lon": 78.4194
-          }
-        ],
         "Madhya Pradesh": [
           {
             "name": "Chorhata Airport",
@@ -24163,6 +24301,13 @@
             "basis": "OurAirports via the mobility connector: name, code and coordinate only",
             "lat": 24.813,
             "lon": 79.9142
+          },
+          {
+            "name": "Raja Bhoj Airport",
+            "why": "Scheduled-service airport, IATA BHO.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 23.2902,
+            "lon": 77.3287
           },
           {
             "name": "Satna Airport",
@@ -24311,36 +24456,20 @@
             "basis": "OurAirports via the mobility connector: name, code and coordinate only",
             "lat": 13.6326,
             "lon": 79.5415
-          }
-        ],
-        "Odisha": [
-          {
-            "name": "Biju Patnaik International Airport",
-            "why": "Scheduled-service airport, IATA BBI.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 20.2524,
-            "lon": 85.813
           },
           {
-            "name": "Jeypore Airport",
-            "why": "Scheduled-service airport, IATA PYB.",
+            "name": "Uyyalawada Narasimha Reddy Airport ,   Kurnool",
+            "why": "Scheduled-service airport, IATA KJB.",
             "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 18.8795,
-            "lon": 82.5523
+            "lat": 15.7155,
+            "lon": 78.1685
           },
           {
-            "name": "Rourkela Airport",
-            "why": "Scheduled-service airport, IATA RRK.",
+            "name": "Vijayawada Airport",
+            "why": "Scheduled-service airport, IATA VGA.",
             "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 22.2551,
-            "lon": 84.8155
-          },
-          {
-            "name": "Veer Surendra Sai Airport",
-            "why": "Scheduled-service airport, IATA JRG.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 21.9159,
-            "lon": 84.0505
+            "lat": 16.5289,
+            "lon": 80.8045
           }
         ],
         "Goa": [
@@ -24426,71 +24555,6 @@
             "basis": "OurAirports via the mobility connector: name, code and coordinate only",
             "lat": 27.5884,
             "lon": 93.8286
-          }
-        ],
-        "Assam": [
-          {
-            "name": "DIB",
-            "why": "Scheduled-service airport, IATA DIB.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 27.4794,
-            "lon": 95.013
-          },
-          {
-            "name": "Dimapur Airport",
-            "why": "Scheduled-service airport, IATA DMU.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 25.8841,
-            "lon": 93.7713
-          },
-          {
-            "name": "Itanagar Holongi Airport",
-            "why": "Scheduled-service airport, IATA HGI.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 26.9698,
-            "lon": 93.6419
-          },
-          {
-            "name": "Jorhat Rowriah Airport",
-            "why": "Scheduled-service airport, IATA JRH.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 26.7294,
-            "lon": 94.1742
-          },
-          {
-            "name": "Lilabari Airport",
-            "why": "Scheduled-service airport, IATA IXI.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 27.2962,
-            "lon": 94.0979
-          },
-          {
-            "name": "Lokpriya Gopinath Bordoloi International Airport",
-            "why": "Scheduled-service airport, IATA GAU.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 26.1113,
-            "lon": 91.5853
-          },
-          {
-            "name": "Rupsi Airport",
-            "why": "Scheduled-service airport, IATA RUP.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 26.1413,
-            "lon": 89.9073
-          },
-          {
-            "name": "Silchar Airport",
-            "why": "Scheduled-service airport, IATA IXS.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 24.9125,
-            "lon": 92.9804
-          },
-          {
-            "name": "Tezpur Air Force Station",
-            "why": "Scheduled-service airport, IATA TEZ.",
-            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
-            "lat": 26.7135,
-            "lon": 92.7843
           }
         ],
         "Bihar": [
@@ -24642,6 +24706,15 @@
             "basis": "OurAirports via the mobility connector: name, code and coordinate only",
             "lat": 27.2327,
             "lon": 88.5885
+          }
+        ],
+        "NCT of Delhi": [
+          {
+            "name": "Indira Gandhi International Airport",
+            "why": "Scheduled-service airport, IATA DEL.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 28.5554,
+            "lon": 77.0971
           }
         ]
       }
