@@ -1,0 +1,384 @@
+{
+  "probedAt": "2026-09-14T16:09:25.524Z",
+  "question": "What can be sourced about LLM development, and about what Indian companies and labs are actually building?",
+  "refusal": "No download count, parameter count, benchmark score, valuation or funding figure is recorded here — only whether a source answers, in what shape, and how many rows it carries. A probe log that quotes a figure beside a URL is a number with a filename where a citation should be, and the next reader will treat it as sourced.",
+  "twoQuestions": "Model releases leave hard artifacts: an author, a date, a licence, a download count, served as JSON without a key. Startup funding does not: it comes from paywalled trackers and trade press. The eventual tracker must not present the second with the confidence of the first, so this probe keeps them in separate kinds and expects the business sources to refuse.",
+  "parameterCheck": "Any source taking a parameter is asked twice, for two different values, and the report says whether the answers differed. PIB's release archive returned 844 KB and a 200 for every date and turned out to ignore its query string entirely; a probe that asks once cannot tell that apart from an archive that works.",
+  "findings": [
+    {
+      "id": "hf-models-recent",
+      "kind": "huggingface",
+      "what": "Hugging Face, most-downloaded text-generation models",
+      "url": "https://huggingface.co/api/models?pipeline_tag=text-generation&sort=downloads&direction=-1&limit=100",
+      "settles": "Whether the model listing can be walked at all, and by which axes.",
+      "ok": true,
+      "status": "200",
+      "bytes": 53401,
+      "shape": "json",
+      "counts": {
+        "entries": 100,
+        "dated": 100
+      },
+      "parameterWorks": true,
+      "parameterNote": "4503 bytes apart, beyond a 116-byte tolerance"
+    },
+    {
+      "id": "hf-models-indic",
+      "kind": "huggingface",
+      "what": "Hugging Face, models tagged for Indian languages",
+      "url": "https://huggingface.co/api/models?filter=hi&sort=downloads&direction=-1&limit=100",
+      "settles": "Language coverage as a measurable thing rather than a claim.",
+      "ok": true,
+      "status": "200",
+      "bytes": 97962,
+      "shape": "json",
+      "counts": {
+        "entries": 100
+      },
+      "parameterWorks": true,
+      "parameterNote": "12963 bytes apart, beyond a 222-byte tolerance"
+    },
+    {
+      "id": "hf-datasets-ai4bharat",
+      "kind": "huggingface",
+      "what": "Hugging Face datasets by AI4Bharat",
+      "url": "https://huggingface.co/api/datasets?author=ai4bharat&limit=100",
+      "settles": "The corpus side: what Indian-language training data is public.",
+      "ok": true,
+      "status": "200",
+      "bytes": 87007,
+      "shape": "json",
+      "counts": {
+        "entries": 76
+      }
+    },
+    {
+      "id": "hf-sarvamai",
+      "kind": "huggingface",
+      "what": "Hugging Face models by sarvamai",
+      "url": "https://huggingface.co/api/models?author=sarvamai&limit=100&full=false&sort=downloads",
+      "settles": "Sarvam AI's published models. Each row carries an id, a creation date and a licence.",
+      "ok": true,
+      "status": "200",
+      "bytes": 22033,
+      "shape": "json",
+      "counts": {
+        "entries": 14,
+        "dated": 14
+      }
+    },
+    {
+      "id": "hf-ai4bharat",
+      "kind": "huggingface",
+      "what": "Hugging Face models by ai4bharat",
+      "url": "https://huggingface.co/api/models?author=ai4bharat&limit=100&full=false&sort=downloads",
+      "settles": "AI4Bharat's, the IIT Madras group behind IndicTrans and IndicBERT. Each row carries an id, a creation date and a licence.",
+      "ok": true,
+      "status": "200",
+      "bytes": 185205,
+      "shape": "json",
+      "counts": {
+        "entries": 100,
+        "dated": 100
+      }
+    },
+    {
+      "id": "hf-krutrim-ai-labs",
+      "kind": "huggingface",
+      "what": "Hugging Face models by krutrim-ai-labs",
+      "url": "https://huggingface.co/api/models?author=krutrim-ai-labs&limit=100&full=false&sort=downloads",
+      "settles": "Krutrim's, Ola's model group. Each row carries an id, a creation date and a licence.",
+      "ok": true,
+      "status": "200",
+      "bytes": 12144,
+      "shape": "json",
+      "counts": {
+        "entries": 9,
+        "dated": 9
+      }
+    },
+    {
+      "id": "hf-bharatgpt",
+      "kind": "huggingface",
+      "what": "Hugging Face models by BharatGPT",
+      "url": "https://huggingface.co/api/models?author=BharatGPT&limit=100&full=false&sort=downloads",
+      "settles": "Whether this name corresponds to a publishing author at all. Each row carries an id, a creation date and a licence.",
+      "ok": true,
+      "status": "200",
+      "bytes": 2,
+      "shape": "empty",
+      "counts": {
+        "entries": 0,
+        "dated": 0
+      }
+    },
+    {
+      "id": "hf-corover",
+      "kind": "huggingface",
+      "what": "Hugging Face models by CoRover",
+      "url": "https://huggingface.co/api/models?author=CoRover&limit=100&full=false&sort=downloads",
+      "settles": "BharatGPT's stated builder. Each row carries an id, a creation date and a licence.",
+      "ok": true,
+      "status": "200",
+      "bytes": 4088,
+      "shape": "json",
+      "counts": {
+        "entries": 4,
+        "dated": 4
+      }
+    },
+    {
+      "id": "hf-two",
+      "kind": "huggingface",
+      "what": "Hugging Face models by TWO",
+      "url": "https://huggingface.co/api/models?author=TWO&limit=100&full=false&sort=downloads",
+      "settles": "Two AI, publisher of SUTRA. Each row carries an id, a creation date and a licence.",
+      "ok": true,
+      "status": "200",
+      "bytes": 656,
+      "shape": "json",
+      "counts": {
+        "entries": 1,
+        "dated": 1
+      }
+    },
+    {
+      "id": "hf-tensoic",
+      "kind": "huggingface",
+      "what": "Hugging Face models by tensoic",
+      "url": "https://huggingface.co/api/models?author=tensoic&limit=100&full=false&sort=downloads",
+      "settles": "One of the smaller Indian groups, as a test of the long tail. Each row carries an id, a creation date and a licence.",
+      "ok": true,
+      "status": "200",
+      "bytes": 2,
+      "shape": "empty",
+      "counts": {
+        "entries": 0,
+        "dated": 0
+      }
+    },
+    {
+      "id": "hf-smallstepai",
+      "kind": "huggingface",
+      "what": "Hugging Face models by smallstepai",
+      "url": "https://huggingface.co/api/models?author=smallstepai&limit=100&full=false&sort=downloads",
+      "settles": "Another, for the same reason. Each row carries an id, a creation date and a licence.",
+      "ok": true,
+      "status": "200",
+      "bytes": 5142,
+      "shape": "json",
+      "counts": {
+        "entries": 5,
+        "dated": 5
+      }
+    },
+    {
+      "id": "hf-google",
+      "kind": "huggingface",
+      "what": "Hugging Face models by google",
+      "url": "https://huggingface.co/api/models?author=google&limit=100&full=false&sort=downloads",
+      "settles": "A control: a large publisher whose count we can sanity-check against. Each row carries an id, a creation date and a licence.",
+      "ok": true,
+      "status": "200",
+      "bytes": 113811,
+      "shape": "json",
+      "counts": {
+        "entries": 100,
+        "dated": 100
+      }
+    },
+    {
+      "id": "epoch-models",
+      "kind": "frontier",
+      "what": "Epoch AI, notable AI models dataset",
+      "url": "https://epoch.ai/data/notable_ai_models.csv",
+      "settles": "Training compute, parameters and release dates for notable models, curated with sources. The single best dataset for the development half if it is fetchable.",
+      "ok": true,
+      "status": "200",
+      "bytes": 2238958,
+      "shape": "csv",
+      "counts": {
+        "rows": 8406
+      }
+    },
+    {
+      "id": "epoch-api",
+      "kind": "frontier",
+      "what": "Epoch AI, data page",
+      "url": "https://epoch.ai/data/notable-ai-models",
+      "settles": "Where the CSV lives, if the direct link has moved.",
+      "ok": true,
+      "status": "200",
+      "bytes": 142078,
+      "shape": "html",
+      "found": [
+        "model",
+        "compute"
+      ],
+      "missing": []
+    },
+    {
+      "id": "arxiv-llm",
+      "kind": "frontier",
+      "what": "arXiv API, recent cs.CL submissions",
+      "url": "http://export.arxiv.org/api/query?search_query=cat:cs.CL&sortBy=submittedDate&sortOrder=descending&max_results=100",
+      "settles": "Publication volume as a proxy for research activity, by category and date.",
+      "ok": false,
+      "status": "HTTP 429",
+      "bytes": null
+    },
+    {
+      "id": "arxiv-india",
+      "kind": "frontier",
+      "what": "arXiv API, language-model papers naming Indian institutions",
+      "url": "http://export.arxiv.org/api/query?search_query=all:%22Indian%20Institute%20of%20Technology%22%20AND%20cat:cs.CL&max_results=100",
+      "settles": "Whether Indian research output is separable from the whole by a citable filter.",
+      "ok": false,
+      "status": "This operation was aborted",
+      "bytes": null
+    },
+    {
+      "id": "indiaai-home",
+      "kind": "india",
+      "what": "IndiaAI Mission",
+      "url": "https://indiaai.gov.in/",
+      "settles": "The government's own list of funded startups and compute allocations.",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null
+    },
+    {
+      "id": "indiaai-startups",
+      "kind": "india",
+      "what": "IndiaAI, startup listings",
+      "url": "https://indiaai.gov.in/ai-startups",
+      "settles": "A citable roster, if one is published rather than announced in a release.",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null
+    },
+    {
+      "id": "meity-ai",
+      "kind": "india",
+      "what": "MeitY, artificial intelligence",
+      "url": "https://www.meity.gov.in/artificial-intelligence",
+      "settles": "Policy documents and the compute tender record.",
+      "ok": true,
+      "status": "200",
+      "bytes": 3285,
+      "shape": "js-app",
+      "found": [],
+      "missing": [
+        "artificial intelligence"
+      ]
+    },
+    {
+      "id": "tracxn-ai",
+      "kind": "business",
+      "what": "Tracxn, Indian AI startups",
+      "url": "https://tracxn.com/d/explore/artificial-intelligence-startups-in-india/",
+      "settles": "Funding and headcount, if any of it is reachable without a subscription.",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null
+    },
+    {
+      "id": "crunchbase-api",
+      "kind": "business",
+      "what": "Crunchbase, public entry point",
+      "url": "https://api.crunchbase.com/api/v4/searches/organizations",
+      "settles": "The same, and whether it needs a key this project does not have.",
+      "ok": false,
+      "status": "HTTP 401",
+      "bytes": null
+    },
+    {
+      "id": "nasscom",
+      "kind": "business",
+      "what": "NASSCOM",
+      "url": "https://nasscom.in/",
+      "settles": "Industry aggregates, which are reported rather than primary.",
+      "ok": true,
+      "status": "200",
+      "bytes": 104439,
+      "shape": "html",
+      "found": [
+        "technology"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-list-of-large-language-model",
+      "kind": "wiki",
+      "what": "Wikipedia: List of large language models",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_large_language_models&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "settles": "A dated, sourced table of models — the cheapest possible spine for the development half.",
+      "ok": true,
+      "status": "200",
+      "bytes": 143117,
+      "shape": "json",
+      "found": [
+        "parameters",
+        "release"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 0,
+        "refs": 340
+      }
+    },
+    {
+      "id": "wiki-artificial-intelligence-in-i",
+      "kind": "wiki",
+      "what": "Wikipedia: Artificial intelligence in India",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Artificial_intelligence_in_India&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "settles": "Which Indian efforts are notable enough to have a citation trail at all.",
+      "ok": true,
+      "status": "200",
+      "bytes": 201985,
+      "shape": "json",
+      "found": [
+        "India"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 0,
+        "refs": 356
+      }
+    },
+    {
+      "id": "wiki-sarvam-ai",
+      "kind": "wiki",
+      "what": "Wikipedia: Sarvam AI",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Sarvam_AI&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "settles": "Whether the individual companies have articles worth reading for citations.",
+      "ok": true,
+      "status": "200",
+      "bytes": 17166,
+      "shape": "json",
+      "found": [],
+      "missing": [],
+      "counts": {
+        "tableRows": 0,
+        "refs": 37
+      }
+    },
+    {
+      "id": "wiki-krutrim",
+      "kind": "wiki",
+      "what": "Wikipedia: Krutrim",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Krutrim&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "settles": "The same, for Ola's model group.",
+      "ok": true,
+      "status": "200",
+      "bytes": 401,
+      "shape": "json",
+      "found": [],
+      "missing": [],
+      "counts": {
+        "tableRows": 0,
+        "refs": 0
+      }
+    }
+  ]
+}
