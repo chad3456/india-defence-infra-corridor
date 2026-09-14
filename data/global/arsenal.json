@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-13T19:47:15.447Z",
+ "builtAt": "2026-09-14T10:58:44.773Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -209816,7 +209816,7 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
@@ -209828,6 +209828,20 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-1e9tlba",
+   "kind": "delivery",
+   "systems": [],
+   "countries": [
+    "France"
+   ],
+   "value": null,
+   "date": "2026-09-14",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/09/french-navy-receives-first-two-albatros-maritime-surveillance-aircraft/",
+   "headline": "French DGA Delivers First Two Albatros Maritime Surveillance Aircraft to French Navy",
+   "primary": false
+  },
   {
    "id": "ev-1vxxac8",
    "kind": "order",
@@ -210063,6 +210077,35 @@
   }
  ],
  "groups": [
+  {
+   "key": "delivery||france",
+   "systems": [],
+   "countries": [
+    "France"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-1e9tlba",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "France"
+     ],
+     "value": null,
+     "date": "2026-09-14",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/french-navy-receives-first-two-albatros-maritime-surveillance-aircraft/",
+     "headline": "French DGA Delivers First Two Albatros Maritime Surveillance Aircraft to French Navy",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||argentina+united states",
    "systems": [],
