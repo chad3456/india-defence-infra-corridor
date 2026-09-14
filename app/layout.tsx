@@ -3,6 +3,7 @@ import { Spectral, Archivo, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
+import ToastHost from "@/components/ui/ToastHost";
 
 /*
   Three faces, one job each.
@@ -72,6 +73,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
+
+        {/* Announces a recently added page once, to readers who have been here
+            before. A first visit shows nothing — see lib/whats-new.ts. */}
+        <ToastHost />
       </body>
     </html>
   );

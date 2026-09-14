@@ -5,6 +5,10 @@ import { getSeries, latestPoint, firstPoint, DATA_COVERAGE, getAllSeries } from 
 import HeroGlobe, { type GlobeEvent } from "@/components/ui/HeroGlobe";
 import { getEvents } from "@/lib/events";
 import { refreshState } from "@/lib/freshness";
+import AsciiIndia from "@/components/ui/AsciiIndia";
+import NewBadge from "@/components/ui/NewBadge";
+import { loadGrid, layerSummaries, refusedLayers } from "@/lib/state-layers";
+import { WHATS_NEW } from "@/lib/whats-new";
 
 /**
  * The front page, as a publication rather than a dashboard.
@@ -98,6 +102,13 @@ export default function Home() {
     title: `${e.placeName ?? e.state ?? "India"} — ${e.date}`,
   }));
 
+  // The front-page map: the grid and a count per state, which is kilobytes.
+  // The names arrive from /api/state-layer when a reader clicks a state.
+  const asciiGrid = loadGrid();
+  const layers = layerSummaries();
+  const refused = refusedLayers();
+  const latestFeature = WHATS_NEW[0];
+
   const colophon = [
     { k: "Series", v: String(seriesCount) },
     { k: "Charts", v: String(stats.total) },
@@ -108,25 +119,88 @@ export default function Home() {
   return (
     <div>
       {/* ── Masthead ──────────────────────────────────────────────────── */}
-      <section className="pt-6 sm:pt-12">
-        <p className="eyebrow">India · since 2001 · every figure sourced</p>
+      {/*
+        The map is the masthead now.
 
-        <h1 className="display mt-5 max-w-[15ch] text-[44px] leading-[1.02] sm:text-[64px] lg:text-[78px]">
-          What India actually built
-        </h1>
-        <p className="display mt-1 max-w-[22ch] text-[28px] italic leading-[1.12] text-[color:var(--text-secondary)] sm:text-[36px] lg:text-[42px]">
-          measured against what was announced
-        </p>
+        What was here was a headline, a paragraph and a colophon, and then the
+        reader had to scroll past a lead figure and a spinning globe before
+        anything on the page would respond to them. All of it was true and
+        none of it was usable: a front page that only asserts is a poster.
 
-        <p className="mt-7 max-w-[52ch] text-[14px] leading-[1.7] text-[color:var(--text-secondary)]">
-          Defence, infrastructure, trade and manufacturing, drawn from named publishers and
-          nothing else. Every number carries its source, its verification date and a confidence
-          grade. Where the figures contradict the press release, the figures win — and where a
-          figure cannot carry the weight put on it, this site says so on the same line.
-        </p>
+        So the first thing on the page is the country, drawn in characters,
+        with three layers over it and a click that answers by name. A reader
+        who does nothing sees the shape of what this site holds. A reader who
+        clicks Kerala gets eight hundred and fifty-two temples with a line
+        each on what the record actually says about them.
 
-        {/* The colophon. A publication states its own scale before it argues. */}
-        <dl className="mt-9 grid max-w-[46rem] grid-cols-2 gap-px overflow-hidden rounded-md border bg-[var(--hairline)] sm:grid-cols-4">
+        The glass is over the Bay of Bengal on purpose. That empty right-hand
+        third of the frame is not composition — it is what fitting the island
+        territories into the picture leaves behind, and the panel is the one
+        thing that belongs in it.
+      */}
+      <section className="grid gap-8 pt-6 sm:pt-10 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:items-center lg:gap-12">
+        <div className="min-w-0">
+          <p className="eyebrow">India · since 2001 · every figure sourced</p>
+
+          <h1 className="display mt-4 max-w-[15ch] text-[42px] leading-[1.02] sm:text-[56px] lg:text-[60px]">
+            What India actually built
+          </h1>
+          <p className="display mt-1 max-w-[22ch] text-[26px] italic leading-[1.12] text-[color:var(--text-secondary)] sm:text-[32px]">
+            measured against what was announced
+          </p>
+
+          <p className="mt-5 max-w-[48ch] text-[13.5px] leading-[1.7] text-[color:var(--text-secondary)]">
+            Defence, infrastructure, trade and manufacturing, drawn from named publishers and
+            nothing else. Every number carries its source, its verification date and a confidence
+            grade. Where the figures contradict the press release, the figures win — and where a
+            figure cannot carry the weight put on it, this site says so on the same line.
+          </p>
+
+          <div className="mt-6 flex flex-wrap gap-2">
+            <Link
+              href="/charts"
+              className="rounded-md border border-[color:var(--baseline)] px-3.5 py-2 text-[12.5px] font-medium transition-colors hover:bg-[var(--surface-2)]"
+            >
+              Browse all {stats.total} charts
+            </Link>
+            <Link
+              href="/benchmark"
+              className="rounded-md border px-3.5 py-2 text-[12.5px] transition-colors hover:bg-[var(--surface-2)]"
+            >
+              Honest global assessment
+            </Link>
+          </div>
+        </div>
+
+        <div className="min-w-0">
+          {asciiGrid && layers.length > 0 ? (
+            <>
+              <div className="mb-3 flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+                <h2 className="display text-[20px] leading-tight">
+                  Click a state
+                  {latestFeature && <NewBadge feature={latestFeature} />}
+                </h2>
+                <p className="text-[12px] text-[color:var(--text-muted)]">
+                  Point-in-polygon against the topology the map page draws.
+                </p>
+              </div>
+              <AsciiIndia grid={asciiGrid} layers={layers} refused={refused} />
+            </>
+          ) : (
+            /* The generated grid is missing. Say so rather than rendering a
+               blank rectangle where a map was — a silent hole is the one
+               failure mode a map has that a table does not. */
+            <p className="text-[12.5px] text-[color:var(--text-muted)]">
+              The state map is not built in this deployment. Run <span className="mono">npm run
+              geo:ascii</span> and <span className="mono">npm run geo:layers</span> to generate it.
+            </p>
+          )}
+        </div>
+      </section>
+
+      {/* The colophon. A publication states its own scale before it argues. */}
+      <section className="mt-12">
+        <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-md border bg-[var(--hairline)] sm:grid-cols-4">
           {colophon.map((c) => (
             <div key={c.k} className="bg-[var(--surface-1)] px-4 py-3.5">
               <dt className="eyebrow">{c.k}</dt>

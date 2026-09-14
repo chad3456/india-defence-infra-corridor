@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import NewBadge from "./NewBadge";
 
 /**
  * Fifteen destinations, grouped into four.
@@ -148,6 +149,7 @@ export default function Nav() {
                       style={{ background: pathname === it.href ? "var(--surface-2)" : undefined }}
                     >
                       {it.label}
+                      <NewBadge href={it.href} />
                     </Link>
                   ))}
                 </div>
@@ -194,7 +196,10 @@ export default function Nav() {
                           background: pathname === it.href ? "var(--surface-2)" : undefined,
                         }}
                       >
-                        <span className="text-[12.5px] font-medium leading-snug">{it.label}</span>
+                        <span className="text-[12.5px] font-medium leading-snug">
+                          {it.label}
+                          <NewBadge href={it.href} />
+                        </span>
                         <span className="text-[11px] leading-snug text-[color:var(--text-muted)]">
                           {it.blurb}
                         </span>

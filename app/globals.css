@@ -44,6 +44,24 @@
   --seq-550: #1c5cab;
   --seq-700: #0d366b;
 
+  /* ── The character map's ramp ──────────────────────────────────────────
+     Five rungs, not the ten the glyph ramp has, because the glyph carries the
+     fine gradation and the colour only has to carry the direction.
+
+     Why it is not just --seq-*: that ramp runs from a very pale blue, and the
+     front-page map paints a state at every rung. A state at #cde2fb on this
+     ground is 1.3:1 — invisible, and invisible reads as "no data" rather than
+     as "few". So this is the legible half of the same hue family: every rung
+     is at least 3:1 against the surface (3.54, 4.30, 6.46, 7.89, 11.64) and
+     lightness descends monotonically (.239 .188 .108 .080 .038), which is what
+     a sequential ramp has to do and what the categorical palette checker does
+     not test for. Measured, not eyeballed. */
+  --ascii-1: #3987e5;
+  --ascii-2: #2a78d6;
+  --ascii-3: #1c5cab;
+  --ascii-4: #184f95;
+  --ascii-5: #0d366b;
+
   /* Ordinal ramp — discrete ordered rungs, validated with --ordinal in both
      modes. Distinct from the sequential scale above: an ordinal step must stay
      readable against the surface, so the pale end starts at step 250 on light
@@ -134,6 +152,16 @@
     --seq-550: #6da7ec;
     --seq-700: #cde2fb;
 
+    /* Inverted, by the same rule: every rung at least 3:1 against the dark
+       ground (4.40, 5.34, 6.51, 9.21, 14.69), lightness ascending
+       (.188 .239 .302 .448 .743). The light ramp's floor, #0d366b, is 1.6:1
+       here — a state painted in it would simply not be on the map. */
+    --ascii-1: #2a78d6;
+    --ascii-2: #3987e5;
+    --ascii-3: #5598e7;
+    --ascii-4: #86b6ef;
+    --ascii-5: #cde2fb;
+
     --rung-1: #cde2fb;
     --rung-2: #9ec5f4;
     --rung-3: #5598e7;
@@ -185,6 +213,14 @@
   --seq-400: #2a78d6;
   --seq-550: #6da7ec;
   --seq-700: #cde2fb;
+
+  /* Same inverted ramp as the media-query block above — the explicit choice
+     has to win in both directions. */
+  --ascii-1: #2a78d6;
+  --ascii-2: #3987e5;
+  --ascii-3: #5598e7;
+  --ascii-4: #86b6ef;
+  --ascii-5: #cde2fb;
 
   --rung-1: #cde2fb;
   --rung-2: #9ec5f4;
@@ -321,4 +357,74 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ── The "recently added" toast ──────────────────────────────────────────
+   Entrance only, and skipped entirely under reduced motion: a card sliding
+   in beside the paragraph someone is reading is exactly what that setting is
+   asking not to happen. The leaving state is a class rather than a timeout in
+   the component so the two never drift apart. */
+.toast {
+  animation: toast-in 0.22s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+.toast[data-leaving] {
+  animation: toast-out 0.18s ease-in both;
+}
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.985); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes toast-out {
+  from { opacity: 1; transform: none; }
+  to   { opacity: 0; transform: translateY(6px) scale(0.985); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .toast, .toast[data-leaving] { animation: none; }
+  .toast[data-leaving] { opacity: 0; }
+}
+
+/* ── Glass ───────────────────────────────────────────────────────────────
+   One surface treatment, used by the front-page map's panel and chips and by
+   the toast. Three things make it read as glass rather than as a grey box:
+   something behind it to refract (.ascii-wash), a blur that also lifts
+   saturation, and a one-pixel highlight along the top edge where light would
+   catch a real one.
+
+   `color-mix` against the theme's own surface rather than a fixed rgba, so it
+   inverts with the theme instead of staying milky-white on a dark page.
+
+   The fallback matters. Safari and Firefox both ship backdrop-filter now, but
+   it is disabled by some privacy settings and unavailable in a print, and a
+   transparent panel over a busy map with no blur is unreadable rather than
+   merely plainer. So the @supports guard raises the opacity when the blur is
+   absent, which is the same look minus the refraction. */
+.glass {
+  border: 1px solid color-mix(in srgb, var(--text-primary) 11%, transparent);
+  background: color-mix(in srgb, var(--surface-1) 96%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--surface-1) 70%, transparent),
+    0 6px 22px -12px color-mix(in srgb, var(--text-primary) 40%, transparent);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass {
+    background: color-mix(in srgb, var(--surface-1) 74%, transparent);
+    backdrop-filter: blur(16px) saturate(1.45);
+    -webkit-backdrop-filter: blur(16px) saturate(1.45);
+  }
+}
+
+/* The wash the glass has to refract. Two of the sequential ramp's own colours
+   at low alpha — it is the palette the map is drawn in, not a new one. */
+.ascii-wash {
+  position: absolute;
+  inset: -6% -4%;
+  pointer-events: none;
+  border-radius: 18px;
+  background:
+    radial-gradient(52% 46% at 26% 26%, color-mix(in srgb, var(--seq-400) 26%, transparent), transparent 70%),
+    radial-gradient(46% 50% at 74% 72%, color-mix(in srgb, var(--series-2) 15%, transparent), transparent 72%);
+}
+@media print {
+  .ascii-wash { display: none; }
+  .glass { background: var(--surface-1); backdrop-filter: none; }
 }
