@@ -12,7 +12,7 @@
  */
 import { existsSync, readFileSync } from "node:fs";
 import {
-  classify, dateOf, moneyIn, pridsIn, isDefenceAcquisition, distinctValues,
+  classify, dateOf, moneyIn, pridsIn, isDefenceAcquisition, distinctValues, textOf,
 } from "./etl/connectors/defence-deals";
 
 let bad = 0;
@@ -152,6 +152,24 @@ console.log("\nReading a figure only where it is a cost");
   ok("and the row is ambiguous", distinctValues(moneyIn(two)) > 1);
   const same = "The cost is Rs 5,000 crore. The value of Rs 5,000 crore was approved.";
   ok("the same figure stated twice is not ambiguous", distinctValues(moneyIn(same)) === 1);
+}
+
+console.log("\nPIB's page chrome is not evidence");
+{
+  const html =
+    "<div><h2>Press Release Page | Press Information Bureau Ministry of Defence " +
+    "MoD inks Rs 975 crore contracts for TRAWL Assembly</h2>" +
+    "<p>Posted On: 21 APR 2026 4:25PM by PIB Delhi</p>" +
+    "<p>azadi ka amrit mahotsav</p></div>";
+  const body = textOf(html);
+  ok("the site's own navigation is dropped", !/Press Release Page/i.test(body), body.slice(0, 90));
+  ok("the campaign slogan is dropped", !/amrit mahotsav/i.test(body));
+  // Without a break here the headline, the date stamp and the first paragraph
+  // are one "sentence", and the evidence quote under a figure opened with the
+  // site's navigation.
+  ok("the headline is its own sentence", body.split(/(?<=[.!?])\s+/)[0]!.includes("TRAWL"),
+    JSON.stringify(body.split(/(?<=[.!?])\s+/)[0]));
+  ok("and the date stamp still reads", dateOf(body) === "2026-04-21", String(dateOf(body)));
 }
 
 console.log("\nDates are read, never inferred");

@@ -167,7 +167,18 @@ export function pridsIn(text: string): string[] {
   return [...out];
 }
 
-/** Visible text of an HTML page, with scripts and styles removed. */
+/**
+ * Visible text of an HTML page, with the chrome removed and the headline
+ * given a sentence boundary.
+ *
+ * Both of those matter downstream. PIB puts "Press Release Page | Press
+ * Information Bureau Ministry of Defence" in front of every headline and no
+ * full stop after it, so a sentence splitter returns the chrome and the
+ * headline and the first paragraph as one string — and the evidence quote
+ * under a figure opened with the site's own navigation. Dropping the chrome
+ * and breaking before the "Posted On:" stamp makes the headline its own
+ * sentence, which is what it is.
+ */
 export function textOf(html: string): string {
   return html
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
@@ -177,7 +188,11 @@ export function textOf(html: string): string {
     .replace(/&amp;/gi, "&")
     .replace(/&#39;|&rsquo;/gi, "'")
     .replace(/&quot;|&ldquo;|&rdquo;/gi, '"')
+    .replace(/Press Release Page\s*\|\s*Press Information Bureau/gi, " ")
+    .replace(/azadi\s*ka\s*amrit\s*mahotsav/gi, " ")
+    .replace(/\s*(Posted On\s*:)/gi, ". $1")
     .replace(/\s+/g, " ")
+    .replace(/^\s*\.\s*/, "")
     .trim();
 }
 
