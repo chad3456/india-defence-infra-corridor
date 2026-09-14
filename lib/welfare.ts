@@ -114,9 +114,23 @@ const MINISTRY: Record<string, string> = {
   "DPIIT (MoCI)": "Commerce & Industry (DPIIT)", MeitY: "Electronics & IT",
 };
 
-/** The ministry's full name where it is known, and the abbreviation where not. */
+/**
+ * The ministry's full name where it is known, and the abbreviation where not.
+ *
+ * Comma-separated lists are expanded part by part, because a scheme run
+ * jointly is a real category and "MoF, MoSJE" tells a reader nothing. "List"
+ * is the article's own section heading leaking through where a row had no
+ * ministry cell, and it is relabelled rather than shown as if a ministry of
+ * that name existed.
+ */
 export function ministryName(sector: string | null): string {
-  if (!sector) return "unfiled";
+  if (!sector || sector === "List") return "not stated in the source";
+  if (sector.includes(",")) {
+    return sector.split(",").map((part) => {
+      const k = part.trim();
+      return MINISTRY[k] ?? k;
+    }).join(" + ");
+  }
   return MINISTRY[sector] ?? sector;
 }
 
