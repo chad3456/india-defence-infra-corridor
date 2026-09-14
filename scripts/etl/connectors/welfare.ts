@@ -47,6 +47,9 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getText } from "../lib/http";
 import { isEntryPoint } from "../lib/entry";
+// The wikitable reader lives in state-stats and is pinned by test:states. A
+// second copy here would be a second set of column-alignment bugs.
+import { parseTables, columnMatching, cleanCell } from "./state-stats";
 
 const ROOT = process.cwd();
 const OUT = join(ROOT, "data", "schemes", "welfare.json");
@@ -117,9 +120,13 @@ async function wikitext(page: string): Promise<string | null> {
  * parentheses. It is never inferred from the article title or from anything
  * else, because a wrong year here is indistinguishable from a right one.
  */
-export function readSchemes(text: string): { schemes: Scheme[]; headings: string[] } {
+export function readSchemes(
+  text: string,
+): { schemes: Scheme[]; headings: string[]; tableHeaders: string[][] } {
   const out: Scheme[] = [];
   const headings: string[] = [];
+  /** Every table header found, so a column that does not match is visible. */
+  const tableHeaders: string[][] = [];
   const seen = new Set<string>();
   let sector: string | null = null;
 
@@ -162,48 +169,50 @@ export function readSchemes(text: string): { schemes: Scheme[]; headings: string
   }
   // ── Tables, which is where the central schemes actually are ──────────
   //
-  // The first run read twenty-nine schemes, every one of them from a bulleted
-  // list under a state heading, and none from the "== List ==" section at the
-  // top of the article. That section is a wikitable, and a parser that reads
-  // only bullets walks straight past it — so the central schemes, which are
-  // the ones the ask is about, were entirely missing while the output looked
-  // like a plausible short roster.
+  // Two rounds of getting this wrong. Reading only bullets missed the central
+  // schemes entirely — they are a wikitable under "== List ==" — and then
+  // taking "the first cell with a wikilink" out of each row read the
+  // *ministry* column instead of the scheme, so the roster filled up with
+  // MoMSME, MoHUA and MoWCD. Neither failure looked like a failure: both
+  // produced a list of plausible links.
+  //
+  // The column is chosen by its header now, using the same reader state-stats
+  // uses and test:states pins. Where no header matches, the row is skipped
+  // rather than guessed at — a roster of ministries is worse than a short one.
   let tableSector: string | null = null;
   for (const chunk of text.split(/\n(?==)/)) {
     const head = /^(={2,4})\s*(.+?)\s*\1\s*$/m.exec(chunk);
     if (head) tableSector = (head[2] ?? "").replace(/\[\[|\]\]/g, "").trim();
     if (!/\{\|/.test(chunk)) continue;
-    for (const block of chunk.split(/\{\|/).slice(1)) {
-      const table = block.split(/\n\|\}/)[0] ?? "";
-      for (const rawRow of table.split(/\n\|-/).slice(1)) {
-        const cells: string[] = [];
-        for (const line of rawRow.split("\n")) {
-          if (!/^\s*[|!]/.test(line)) continue;
-          if (/^\s*\|\+/.test(line) || /^\s*!/.test(line)) continue;
-          const body = line.replace(/^\s*\|+\s*/, "");
-          for (const cell of body.split(/\s*\|\|\s*/)) cells.push(cell.trim());
-        }
-        if (cells.length === 0) continue;
-        // The scheme is the first cell carrying a wikilink; later cells are
-        // the ministry, the launch date and the outlay.
-        const cell = cells.find((c) => /\[\[/.test(c));
-        if (!cell) continue;
+
+    for (const table of parseTables(chunk)) {
+      tableHeaders.push(table.header.slice(0, 10));
+      const nameCol = columnMatching(table.header, /scheme|programme|program|yojana|name|mission/i,
+        /ministry|department|nodal/i);
+      if (!nameCol) continue;
+      const yearCol = columnMatching(table.header, /launch|year|started|inception|date/i);
+      const ministryCol = columnMatching(table.header, /ministry|department|nodal/i);
+
+      for (const cells of table.rows) {
+        const cell = cells[nameCol.index] ?? "";
         const link = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/.exec(cell);
-        if (!link) continue;
-        const article = (link[1] ?? "").split("#")[0]?.trim() ?? "";
-        const name = (link[2] ?? link[1] ?? "").trim();
+        const name = link ? (link[2] ?? link[1] ?? "").trim() : cleanCell(cell);
+        const article = link ? ((link[1] ?? "").split("#")[0]?.trim() ?? "") : "";
         if (!name || /^(file|image|category):/i.test(article)) continue;
         if (name.length < 4 || name.length > 90) continue;
         const key = name.toLowerCase();
         if (seen.has(key)) continue;
         seen.add(key);
-        // A year anywhere else in the row, taken only from a cell that is not
-        // the name — a scheme called "Mission 2047" must not date itself.
-        const rest = cells.filter((c) => c !== cell).join(" ");
-        const year = /\b((?:19|20)\d{2})\b/.exec(rest.replace(/\[\[[^\]]*\]\]/g, ""));
+
+        // The launch year comes from the column that says it is one, never
+        // from a year that happens to appear elsewhere in the row.
+        const yearCell = yearCol ? (cells[yearCol.index] ?? "") : "";
+        const year = /\b((?:19|20)\d{2})\b/.exec(cleanCell(yearCell));
+        const ministry = ministryCol ? cleanCell(cells[ministryCol.index] ?? "") : "";
+
         out.push({
           name,
-          sector: tableSector,
+          sector: ministry || tableSector,
           launched: year ? Number(year[1]) : null,
           article: article || null,
         });
@@ -211,7 +220,7 @@ export function readSchemes(text: string): { schemes: Scheme[]; headings: string
     }
   }
 
-  return { schemes: out, headings };
+  return { schemes: out, headings, tableHeaders };
 }
 
 /**
@@ -333,7 +342,9 @@ export async function run(): Promise<void> {
    * ministry-grouped list of central schemes I assumed, and guessing again
    * from here costs another CI round trip. The headings say what it is.
    */
-  const parsedList = listText ? readSchemes(listText) : { schemes: [], headings: [] };
+  const parsedList = listText
+    ? readSchemes(listText)
+    : { schemes: [], headings: [], tableHeaders: [] };
   const schemes = parsedList.schemes;
   const headings = parsedList.headings;
   for (const h of headings) console.log(`    heading: ${h}`);
@@ -456,6 +467,7 @@ export async function run(): Promise<void> {
       .sort((a, b) => b.schemes - a.schemes),
     jjmShape,
     listHeadings: headings,
+    listTableHeaders: parsedList.tableHeaders,
     refused,
     schemes,
     coverage,
