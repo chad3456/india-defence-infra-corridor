@@ -1,0 +1,64 @@
+name: Build the defence deals ledger
+
+# Reads Indian defence contract announcements from PIB, one release at a time,
+# fetched by its own release id. Wikipedia is used only to discover which ids
+# exist — a citation is a pointer, not a claim — so nothing an encyclopaedia
+# says about a contract reaches the data.
+#
+# It runs here because pib.gov.in is unreachable from the editing sandbox, and
+# because the run is several hundred fetches of ~78 KB each.
+#
+# The probe that produced this design is in scripts/etl/probe-deals.ts, and its
+# second round was wrong: AllRelease.aspx answered a GET with 844 KB and a 200,
+# and turned out to ignore its query string entirely and serve the same page
+# for every date. Only asking for three different dates and comparing the byte
+# counts caught it. Hence the id-by-id approach.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Weekly. New releases appear continuously; new citations to them do not.
+    - cron: "40 4 * * 2"
+  push:
+    paths:
+      - "scripts/etl/connectors/defence-deals.ts"
+      - ".github/workflows/ingest-deals.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ingest-deals
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Check the readers before they meet a network
+        run: npm run test:deals
+
+      - name: Build
+        env:
+          BRIGHTDATA_API_KEY: ${{ secrets.BRIGHTDATA_API_KEY }}
+          BRIGHTDATA_ZONE: ${{ secrets.BRIGHTDATA_ZONE }}
+        run: npm run deals:build
+
+      # Always: the connector writes every twenty releases, so a run that hits
+      # the timeout still leaves what it read.
+      - name: Commit the ledger
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/defence/deals.json
+          "chore(defence): deals ledger $(date -u +'%Y-%m-%d %H:%M')"

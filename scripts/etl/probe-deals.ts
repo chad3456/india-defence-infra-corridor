@@ -452,9 +452,16 @@ export async function run(): Promise<void> {
           "the real ones: Rafale deal controversy, Defence industry of India, List of equipment " +
           "of the Indian Army, BrahMos.",
         pib:
-          "AllRelease.aspx answers a GET with day, month and year, and returned 844 KB for one " +
-          "day of June 2024. That is the ledger's source. The size is the open question this " +
-          "round measures.",
+          "CORRECTED. Round two reported that AllRelease.aspx answers a GET with a day, a month " +
+          "and a year. It does not. Round three asked it for three different dates, one of them " +
+          "in 2016, and got 844,412, 844,413 and 844,416 bytes with 525 links each: the page " +
+          "ignores its query string and serves the same default view every time. A reachability " +
+          "probe cannot catch that, because each individual answer is a genuine 200 with a " +
+          "plausible payload. Only asking twice and comparing does.",
+        pibWhatWorks:
+          "PressReleasePage.aspx?PRID=<id> returns one release, 78 KB, the real thing. " +
+          "Individual releases are addressable; the index over them is not. So the ledger is " +
+          "built id by id, with Wikipedia's citations supplying the ids.",
       },
       refusal:
         "No figure is recorded here, only whether a figure exists on the page. A probe log that " +
