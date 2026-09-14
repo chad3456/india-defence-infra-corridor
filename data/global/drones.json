@@ -1,57 +1,266 @@
 {
-  "builtAt": "2026-09-14T08:55:58.439Z",
+  "builtAt": "2026-09-14T09:04:08.384Z",
   "source": "English Wikipedia, the Operators section of each type's article.",
   "note": "Which countries are publicly recorded as operating each type. Not an inventory — no airframe counts, and no statement of whether a given operator arms them. Not a record of combat use, which is a separate and harder claim.",
   "gap": "Incomplete by construction. Classified and small-batch transfers do not reach an encyclopaedia, and an article's Operators section is edited unevenly, so an absent country means nobody wrote it down rather than that nobody flies it.",
   "originNote": "Each type's country of origin is stated in this file rather than parsed. It is the one fact about these aircraft that is neither disputed nor dependent on an article's section layout; everything else on a row is read from the page.",
   "readCount": 16,
   "faults": [
-    "the TB2's operators do not include Türkiye, which builds and flies it",
-    "the MQ-9's operators do not include the United States"
+    "the MQ-9 Reaper's operators do not include United States of America, which builds and flies it"
   ],
   "typeCount": 18,
-  "countryCount": 41,
+  "countryCount": 65,
   "types": [
     {
       "page": "Bayraktar_TB2",
       "name": "Bayraktar TB2",
       "origin": "Türkiye",
       "klass": "combat",
-      "operators": [],
+      "originCountry": "Turkey",
+      "operators": [
+        {
+          "country": "Turkey",
+          "asWritten": "'''{{flag|Turkey}} [2014]<ref name=\":4\">{{cite web |last=Oryx |title=An International Expo"
+        },
+        {
+          "country": "Qatar",
+          "asWritten": "'''{{flag|Qatar}} [2019]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Libya",
+          "asWritten": "'''{{flag|Libya}} [2019]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Ukraine",
+          "asWritten": "'''{{flag|Ukraine}} [2019]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Azerbaijan",
+          "asWritten": "'''{{flag|Azerbaijan}} [2020]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Turkmenistan",
+          "asWritten": "'''{{flag|Turkmenistan}} [2021]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Morocco",
+          "asWritten": "'''{{flag|Morocco}} [2021]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Ethiopia",
+          "asWritten": "'''{{flag|Ethiopia}} [2021]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Kyrgyzstan",
+          "asWritten": "'''{{flag|Kyrgyzstan}} [2021]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Somalia",
+          "asWritten": "'''{{flag|Somalia}} [2021]<ref>{{cite web |last=Straturka |date=2021-12-10 |title=Somalia"
+        },
+        {
+          "country": "Pakistan",
+          "asWritten": "'''{{flag|Pakistan}} [2022]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Djibouti",
+          "asWritten": "'''{{Flag|Djibouti}} [2022]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Burkina Faso",
+          "asWritten": "'''{{flag|Burkina Faso}} [2022]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Rwanda",
+          "asWritten": "'''{{flag|Rwanda}} [2022]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Togo",
+          "asWritten": "'''{{flag|Togo}} [2022]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Tunisia",
+          "asWritten": "'''{{flag|Tunisia}} [2022]<ref name=\"BBC News\">{{cite news | url=https://www.bbc.com/news/"
+        },
+        {
+          "country": "Niger",
+          "asWritten": "'''{{flag|Niger}} [2022]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Nigeria",
+          "asWritten": "'''{{flag|Nigeria}} [2022]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Poland",
+          "asWritten": "'''{{flag|Poland}} [2022]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Mali",
+          "asWritten": "'''{{flag|Mali}} [2022]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "United Arab Emirates",
+          "asWritten": "'''{{flag|United Arab Emirates}} [2022]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Bangladesh",
+          "asWritten": "'''{{flag|Bangladesh}} [2023]'''<ref>{{cite news |last1=Saballa |first1=Joe |title=Banglad"
+        },
+        {
+          "country": "Kosovo",
+          "asWritten": "'''{{flag|Kosovo}} [2023]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Romania",
+          "asWritten": "'''{{Flag|Romania}} [2023]<ref name=\"1Dec\" />'''"
+        },
+        {
+          "country": "Albania",
+          "asWritten": "'''{{flag|Albania}} [2024]<ref name=\"EuronewsAlbania\"/>'''"
+        },
+        {
+          "country": "Kenya",
+          "asWritten": "'''{{flag|Kenya}} [2024]'''"
+        },
+        {
+          "country": "Kuwait",
+          "asWritten": "'''{{flag|Kuwait}} [2025]'''"
+        },
+        {
+          "country": "Croatia",
+          "asWritten": "'''{{flag|Croatia}} [2025]'''"
+        },
+        {
+          "country": "Iraq",
+          "asWritten": "'''{{flag|Iraq}} [Unknown]<ref name=\":4\" />'''"
+        },
+        {
+          "country": "Japan",
+          "asWritten": "'''{{Flag|Japan}} [Unknown]'''"
+        }
+      ],
       "nonState": [],
       "read": true,
-      "method": "templates",
-      "statedReach": "Thank you.--> As of September 2023, the Bayraktar TB2 has been exported to 31 countries. Some of these countries are unknown.",
-      "sample": [
-        "[[File:Bayraktar TB2 operators.svg|thumb|300px|{{legend|#0066ffff|Current operators}}{{legend|#00ffffff|Future operators",
-        "<!--READ FIRST: This section is for cited entries only. Please do not add entries into this list without a citation from",
-        "As of September 2023, the Bayraktar TB2 has been exported to 31 countries.<ref>{{Cite web |date=15 September 2023 |title"
-      ]
+      "method": "list",
+      "unresolved": [
+        "Elazığ",
+        "Kosovo Security Force",
+        "Kuçovë Aerodrome",
+        "Maldives",
+        "Maldives National Defence Force",
+        "Bosnia"
+      ],
+      "statedReach": "Thank you.--> As of September 2023, the Bayraktar TB2 has been exported to 31 countries. Some of these countries are unknown."
     },
     {
       "page": "Bayraktar_Akıncı",
       "name": "Bayraktar Akıncı",
       "origin": "Türkiye",
       "klass": "combat",
-      "operators": [],
+      "originCountry": "Turkey",
+      "operators": [
+        {
+          "country": "Turkey",
+          "asWritten": "{{flag|Turkey}}"
+        },
+        {
+          "country": "Azerbaijan",
+          "asWritten": "{{flag|Azerbaijan}}"
+        },
+        {
+          "country": "Burkina Faso",
+          "asWritten": "{{flag|Burkina Faso}}"
+        },
+        {
+          "country": "Ethiopia",
+          "asWritten": "{{flag|Ethiopia}}"
+        },
+        {
+          "country": "Libya",
+          "asWritten": "{{flag|Libya}}"
+        },
+        {
+          "country": "Pakistan",
+          "asWritten": "{{flag|Pakistan}}"
+        },
+        {
+          "country": "Somalia",
+          "asWritten": "{{flag|Somalia}}"
+        },
+        {
+          "country": "United Arab Emirates",
+          "asWritten": "{{flag|United Arab Emirates}}"
+        },
+        {
+          "country": "Saudi Arabia",
+          "asWritten": "{{flag|Saudi Arabia}}"
+        },
+        {
+          "country": "Sudan",
+          "asWritten": "{{flag|Sudan}}"
+        },
+        {
+          "country": "Mali",
+          "asWritten": "{{flag|Mali}}"
+        },
+        {
+          "country": "Indonesia",
+          "asWritten": "{{flag|Indonesia}}"
+        },
+        {
+          "country": "Kyrgyzstan",
+          "asWritten": "{{flag|Kyrgyzstan}}"
+        }
+      ],
       "nonState": [],
       "read": true,
-      "method": "templates",
-      "sample": [
-        "[[File:Bayraktar Akıncı TurkishArmy Teknofest2021 (1).jpg|thumb|Tailfin of the Bayraktar Akinci at Teknofest 2021]]"
-      ]
+      "method": "templates"
     },
     {
       "page": "TAI_Anka",
       "name": "TAI Anka",
       "origin": "Türkiye",
       "klass": "combat",
-      "operators": [],
+      "originCountry": "Turkey",
+      "operators": [
+        {
+          "country": "Algeria",
+          "asWritten": ";{{flag|Algeria}}"
+        },
+        {
+          "country": "Indonesia",
+          "asWritten": ";{{flag|Indonesia}}"
+        },
+        {
+          "country": "Malaysia",
+          "asWritten": ";{{flag|Malaysia}}"
+        },
+        {
+          "country": "Kazakhstan",
+          "asWritten": ";{{flag|Kazakhstan}}"
+        },
+        {
+          "country": "Pakistan",
+          "asWritten": ";{{flag|Pakistan}}"
+        },
+        {
+          "country": "Tunisia",
+          "asWritten": ";{{flag|Tunisia}}"
+        },
+        {
+          "country": "Turkey",
+          "asWritten": ";{{flag|Turkey}}"
+        },
+        {
+          "country": "Uzbekistan",
+          "asWritten": ";{{flag|Uzbekistan}}"
+        }
+      ],
       "nonState": [],
       "read": true,
-      "method": "templates",
-      "sample": [
-        "[[File:TAI Anka Users.png|thumb|Map with users of the Anka in blue]]<!--READ FIRST: This section is for cited entries on"
+      "method": "list",
+      "unresolved": [
+        "Kamra, Pakistan"
       ]
     },
     {
@@ -59,17 +268,26 @@
       "name": "MQ-9 Reaper",
       "origin": "United States",
       "klass": "combat",
+      "originCountry": "United States of America",
       "operators": [],
       "nonState": [],
       "read": true,
       "method": "templates",
-      "sample": []
+      "sample": [
+        "==== Colombia ====",
+        "Following the first visit of Colombian Defense Minister [[Jorge Eduardo Mora]] to Washington D.C., in August 2026, it wa",
+        "==== Finland ====",
+        "In Autumn 2021, [[Finnish Defence Forces]] took part in test flights with the MQ-9.<ref>{{Cite web |url=https://puolustu",
+        "==== Greece ====",
+        "The [[Hellenic Air Force]] is in discussions for the acquisition of at least three MQ-9 SeaGuardians.<ref>{{Cite web |ti"
+      ]
     },
     {
       "page": "General_Atomics_MQ-1_Predator",
       "name": "MQ-1 Predator",
       "origin": "United States",
       "klass": "combat",
+      "originCountry": "United States of America",
       "operators": [
         {
           "country": "Morocco",
@@ -82,13 +300,20 @@
         {
           "country": "United States of America",
           "asWritten": ";{{USA}}"
+        },
+        {
+          "country": "Italy",
+          "asWritten": ";{{ITA}}"
         }
       ],
       "nonState": [],
       "read": true,
       "method": "list",
       "unresolved": [
-        "Naval Air Warfare Center"
+        "Naval Air Warfare Center",
+        "Key Publishing",
+        "Central Intelligence Agency",
+        "Special Operations Group (CIA)"
       ]
     },
     {
@@ -96,6 +321,7 @@
       "name": "Wing Loong",
       "origin": "China",
       "klass": "combat",
+      "originCountry": "China",
       "operators": [
         {
           "country": "China",
@@ -155,6 +381,7 @@
       "name": "Wing Loong II",
       "origin": "China",
       "klass": "combat",
+      "originCountry": "China",
       "operators": [
         {
           "country": "Algeria",
@@ -212,17 +439,85 @@
       "name": "CASC Rainbow (CH series)",
       "origin": "China",
       "klass": "combat",
-      "operators": [],
+      "originCountry": "China",
+      "operators": [
+        {
+          "country": "Armenia",
+          "asWritten": ";{{flag|Armenia}}"
+        },
+        {
+          "country": "Algeria",
+          "asWritten": ";{{flag|Algeria}}"
+        },
+        {
+          "country": "China",
+          "asWritten": ";{{flag|China}}"
+        },
+        {
+          "country": "Ethiopia",
+          "asWritten": ";{{flag|Ethiopia}}"
+        },
+        {
+          "country": "Indonesia",
+          "asWritten": ";{{flag|Indonesia}}"
+        },
+        {
+          "country": "Iraq",
+          "asWritten": ";{{flag|Iraq}}"
+        },
+        {
+          "country": "Myanmar",
+          "asWritten": ";{{flag|Myanmar}}"
+        },
+        {
+          "country": "Nigeria",
+          "asWritten": "; {{flag|Nigeria}}"
+        },
+        {
+          "country": "Pakistan",
+          "asWritten": "; {{flag|Pakistan}}"
+        },
+        {
+          "country": "Saudi Arabia",
+          "asWritten": "; {{flag|Saudi Arabia}}"
+        },
+        {
+          "country": "Serbia",
+          "asWritten": ";{{flag|Serbia}}"
+        },
+        {
+          "country": "Sudan",
+          "asWritten": "; {{flag|Sudan}}"
+        },
+        {
+          "country": "Turkmenistan",
+          "asWritten": "; {{flag|Turkmenistan}}"
+        },
+        {
+          "country": "United Arab Emirates",
+          "asWritten": "; {{flag|United Arab Emirates}}"
+        },
+        {
+          "country": "Zambia",
+          "asWritten": "; {{flag|Zambia}}"
+        }
+      ],
       "nonState": [],
       "read": true,
-      "method": "templates",
-      "sample": []
+      "method": "list",
+      "unresolved": [
+        "Democratic Republic of Congo",
+        "Ethiopian National Defense Force",
+        "Zambian Defence Force",
+        "JOR"
+      ]
     },
     {
       "page": "IAI_Heron",
       "name": "IAI Heron",
       "origin": "Israel",
       "klass": "reconnaissance",
+      "originCountry": "Israel",
       "operators": [
         {
           "country": "Morocco",
@@ -263,6 +558,10 @@
         {
           "country": "United States of America",
           "asWritten": "{{flag|United States}}"
+        },
+        {
+          "country": "Australia",
+          "asWritten": "{{flag|Australia}}"
         }
       ],
       "nonState": [],
@@ -277,6 +576,7 @@
       "name": "Elbit Hermes 900",
       "origin": "Israel",
       "klass": "reconnaissance",
+      "originCountry": "Israel",
       "operators": [
         {
           "country": "Azerbaijan",
@@ -333,6 +633,7 @@
       "name": "IAI Harop",
       "origin": "Israel",
       "klass": "loitering munition",
+      "originCountry": "Israel",
       "operators": [
         {
           "country": "Azerbaijan",
@@ -368,17 +669,64 @@
       "name": "IAI Searcher",
       "origin": "Israel",
       "klass": "reconnaissance",
-      "operators": [],
-      "nonState": [],
+      "originCountry": "Israel",
+      "operators": [
+        {
+          "country": "Azerbaijan",
+          "asWritten": "{{AZE}}<ref>{{cite web |url=http://news.az/articles/politics/57003 |title=List of ammuniti"
+        },
+        {
+          "country": "Canada",
+          "asWritten": "{{CAN}}"
+        },
+        {
+          "country": "Cyprus",
+          "asWritten": "{{CYP}}<ref>{{cite web|url=http://www.europarl.europa.eu/committees/en/studiesdownload.htm"
+        },
+        {
+          "country": "Ecuador",
+          "asWritten": "{{ECU}}"
+        },
+        {
+          "country": "India",
+          "asWritten": "{{IND}}: Total 108 received including those of the Navy.<ref>{{Cite news |last=Mallapur |f"
+        },
+        {
+          "country": "Indonesia",
+          "asWritten": "{{IDN}}"
+        },
+        {
+          "country": "Israel",
+          "asWritten": "{{ISR}}"
+        },
+        {
+          "country": "Russia",
+          "asWritten": "{{RUS}}:  as ''{{vanchor|Forpost}}'' (Форпост) licensed copy<ref>{{cite web|url=http://www"
+        },
+        {
+          "country": "Spain",
+          "asWritten": "{{ESP}}: To be replaced by [[Airbus]] Sirtap UAS.<ref>{{Cite news |last=Martin |first=Tim"
+        },
+        {
+          "country": "Thailand",
+          "asWritten": "{{THA}}<ref>{{cite web |url=http://www.thaifighterclub.org/webboard.php?action=detailQuest"
+        }
+      ],
+      "nonState": [
+        "{{SYR}} (operated as ''Forpost-R'' UCAV)<ref>[ht"
+      ],
       "read": true,
-      "method": "templates",
-      "sample": []
+      "method": "list",
+      "unresolved": [
+        "Singapore"
+      ]
     },
     {
       "page": "HESA_Shahed_136",
       "name": "Shahed-136",
       "origin": "Iran",
       "klass": "loitering munition",
+      "originCountry": "Iran",
       "operators": [
         {
           "country": "Russia",
@@ -397,6 +745,7 @@
       "name": "Mohajer-6",
       "origin": "Iran",
       "klass": "combat",
+      "originCountry": "Iran",
       "operators": [
         {
           "country": "Ethiopia",
@@ -421,6 +770,10 @@
         {
           "country": "Venezuela",
           "asWritten": "{{flag|Venezuela}}: It was reported in November 2020 that technology transfer was likely d"
+        },
+        {
+          "country": "Syria",
+          "asWritten": "{{flag|Syria}}:"
         }
       ],
       "nonState": [],
@@ -432,6 +785,7 @@
       "name": "Orlan-10",
       "origin": "Russia",
       "klass": "reconnaissance",
+      "originCountry": "Russia",
       "operators": [
         {
           "country": "Armenia",
@@ -483,6 +837,7 @@
       "name": "Kronshtadt Orion",
       "origin": "Russia",
       "klass": "combat",
+      "originCountry": "Russia",
       "operators": [],
       "nonState": [],
       "read": false,
@@ -493,6 +848,7 @@
       "name": "DRDO Rustom / TAPAS",
       "origin": "India",
       "klass": "reconnaissance",
+      "originCountry": "India",
       "operators": [],
       "nonState": [],
       "read": false,
@@ -503,17 +859,50 @@
       "name": "Bayraktar Mini",
       "origin": "Türkiye",
       "klass": "reconnaissance",
-      "operators": [],
+      "originCountry": "Turkey",
+      "operators": [
+        {
+          "country": "Turkey",
+          "asWritten": "{{TUR}} [2007]<ref name=\":0\">{{Cite web |last=Oryx |title=An International Export Success:"
+        },
+        {
+          "country": "Qatar",
+          "asWritten": "{{QAT}} [2012]<ref name=\":0\" />"
+        },
+        {
+          "country": "Libya",
+          "asWritten": "{{LBY}} [2020]<ref name=\":0\" />"
+        },
+        {
+          "country": "Ukraine",
+          "asWritten": "{{UKR}} [2022]<ref name=\":0\" />"
+        }
+      ],
       "nonState": [],
       "read": true,
-      "method": "templates",
-      "sample": []
+      "method": "list"
     }
   ],
   "countries": [
     {
+      "country": "Azerbaijan",
+      "types": [
+        "Bayraktar TB2",
+        "Bayraktar Akıncı",
+        "IAI Heron",
+        "Elbit Hermes 900",
+        "IAI Harop",
+        "IAI Searcher"
+      ],
+      "origins": [
+        "Türkiye",
+        "Israel"
+      ]
+    },
+    {
       "country": "Morocco",
       "types": [
+        "Bayraktar TB2",
         "MQ-1 Predator",
         "Wing Loong",
         "Wing Loong II",
@@ -521,20 +910,110 @@
         "IAI Harop"
       ],
       "origins": [
+        "Türkiye",
         "United States",
         "China",
         "Israel"
       ]
     },
     {
-      "country": "United Arab Emirates",
+      "country": "Pakistan",
       "types": [
-        "MQ-1 Predator",
+        "Bayraktar TB2",
+        "Bayraktar Akıncı",
+        "TAI Anka",
         "Wing Loong",
-        "Wing Loong II"
+        "Wing Loong II",
+        "CASC Rainbow (CH series)"
       ],
       "origins": [
+        "Türkiye",
+        "China"
+      ]
+    },
+    {
+      "country": "United Arab Emirates",
+      "types": [
+        "Bayraktar TB2",
+        "Bayraktar Akıncı",
+        "MQ-1 Predator",
+        "Wing Loong",
+        "Wing Loong II",
+        "CASC Rainbow (CH series)"
+      ],
+      "origins": [
+        "Türkiye",
         "United States",
+        "China"
+      ]
+    },
+    {
+      "country": "Turkey",
+      "types": [
+        "Bayraktar TB2",
+        "Bayraktar Akıncı",
+        "TAI Anka",
+        "IAI Heron",
+        "Bayraktar Mini"
+      ],
+      "origins": [
+        "Türkiye",
+        "Israel"
+      ]
+    },
+    {
+      "country": "Ethiopia",
+      "types": [
+        "Bayraktar TB2",
+        "Bayraktar Akıncı",
+        "Wing Loong",
+        "CASC Rainbow (CH series)",
+        "Mohajer-6"
+      ],
+      "origins": [
+        "Türkiye",
+        "China",
+        "Iran"
+      ]
+    },
+    {
+      "country": "Indonesia",
+      "types": [
+        "Bayraktar Akıncı",
+        "TAI Anka",
+        "Wing Loong",
+        "CASC Rainbow (CH series)",
+        "IAI Searcher"
+      ],
+      "origins": [
+        "Türkiye",
+        "China",
+        "Israel"
+      ]
+    },
+    {
+      "country": "Libya",
+      "types": [
+        "Bayraktar TB2",
+        "Bayraktar Akıncı",
+        "Wing Loong II",
+        "Bayraktar Mini"
+      ],
+      "origins": [
+        "Türkiye",
+        "China"
+      ]
+    },
+    {
+      "country": "Nigeria",
+      "types": [
+        "Bayraktar TB2",
+        "Wing Loong",
+        "Wing Loong II",
+        "CASC Rainbow (CH series)"
+      ],
+      "origins": [
+        "Türkiye",
         "China"
       ]
     },
@@ -543,6 +1022,7 @@
       "types": [
         "Wing Loong",
         "Wing Loong II",
+        "CASC Rainbow (CH series)",
         "Orlan-10"
       ],
       "origins": [
@@ -551,22 +1031,12 @@
       ]
     },
     {
-      "country": "Azerbaijan",
-      "types": [
-        "IAI Heron",
-        "Elbit Hermes 900",
-        "IAI Harop"
-      ],
-      "origins": [
-        "Israel"
-      ]
-    },
-    {
       "country": "India",
       "types": [
         "IAI Heron",
         "Elbit Hermes 900",
-        "IAI Harop"
+        "IAI Harop",
+        "IAI Searcher"
       ],
       "origins": [
         "Israel"
@@ -577,7 +1047,8 @@
       "types": [
         "IAI Heron",
         "Elbit Hermes 900",
-        "IAI Harop"
+        "IAI Harop",
+        "IAI Searcher"
       ],
       "origins": [
         "Israel"
@@ -586,13 +1057,210 @@
     {
       "country": "Russia",
       "types": [
+        "IAI Searcher",
         "Shahed-136",
         "Mohajer-6",
         "Orlan-10"
       ],
       "origins": [
+        "Israel",
         "Iran",
         "Russia"
+      ]
+    },
+    {
+      "country": "Kyrgyzstan",
+      "types": [
+        "Bayraktar TB2",
+        "Bayraktar Akıncı",
+        "Orlan-10"
+      ],
+      "origins": [
+        "Türkiye",
+        "Russia"
+      ]
+    },
+    {
+      "country": "Somalia",
+      "types": [
+        "Bayraktar TB2",
+        "Bayraktar Akıncı",
+        "Wing Loong II"
+      ],
+      "origins": [
+        "Türkiye",
+        "China"
+      ]
+    },
+    {
+      "country": "Iraq",
+      "types": [
+        "Bayraktar TB2",
+        "CASC Rainbow (CH series)",
+        "Mohajer-6"
+      ],
+      "origins": [
+        "Türkiye",
+        "China",
+        "Iran"
+      ]
+    },
+    {
+      "country": "Saudi Arabia",
+      "types": [
+        "Bayraktar Akıncı",
+        "Wing Loong",
+        "CASC Rainbow (CH series)"
+      ],
+      "origins": [
+        "Türkiye",
+        "China"
+      ]
+    },
+    {
+      "country": "Sudan",
+      "types": [
+        "Bayraktar Akıncı",
+        "CASC Rainbow (CH series)",
+        "Mohajer-6"
+      ],
+      "origins": [
+        "Türkiye",
+        "China",
+        "Iran"
+      ]
+    },
+    {
+      "country": "Algeria",
+      "types": [
+        "TAI Anka",
+        "Wing Loong II",
+        "CASC Rainbow (CH series)"
+      ],
+      "origins": [
+        "Türkiye",
+        "China"
+      ]
+    },
+    {
+      "country": "Kazakhstan",
+      "types": [
+        "TAI Anka",
+        "Wing Loong",
+        "Orlan-10"
+      ],
+      "origins": [
+        "Türkiye",
+        "China",
+        "Russia"
+      ]
+    },
+    {
+      "country": "Uzbekistan",
+      "types": [
+        "TAI Anka",
+        "Wing Loong",
+        "Orlan-10"
+      ],
+      "origins": [
+        "Türkiye",
+        "China",
+        "Russia"
+      ]
+    },
+    {
+      "country": "Serbia",
+      "types": [
+        "Wing Loong",
+        "CASC Rainbow (CH series)",
+        "Elbit Hermes 900"
+      ],
+      "origins": [
+        "China",
+        "Israel"
+      ]
+    },
+    {
+      "country": "Canada",
+      "types": [
+        "IAI Heron",
+        "Elbit Hermes 900",
+        "IAI Searcher"
+      ],
+      "origins": [
+        "Israel"
+      ]
+    },
+    {
+      "country": "Qatar",
+      "types": [
+        "Bayraktar TB2",
+        "Bayraktar Mini"
+      ],
+      "origins": [
+        "Türkiye"
+      ]
+    },
+    {
+      "country": "Ukraine",
+      "types": [
+        "Bayraktar TB2",
+        "Bayraktar Mini"
+      ],
+      "origins": [
+        "Türkiye"
+      ]
+    },
+    {
+      "country": "Turkmenistan",
+      "types": [
+        "Bayraktar TB2",
+        "CASC Rainbow (CH series)"
+      ],
+      "origins": [
+        "Türkiye",
+        "China"
+      ]
+    },
+    {
+      "country": "Burkina Faso",
+      "types": [
+        "Bayraktar TB2",
+        "Bayraktar Akıncı"
+      ],
+      "origins": [
+        "Türkiye"
+      ]
+    },
+    {
+      "country": "Tunisia",
+      "types": [
+        "Bayraktar TB2",
+        "TAI Anka"
+      ],
+      "origins": [
+        "Türkiye"
+      ]
+    },
+    {
+      "country": "Mali",
+      "types": [
+        "Bayraktar TB2",
+        "Bayraktar Akıncı"
+      ],
+      "origins": [
+        "Türkiye"
+      ]
+    },
+    {
+      "country": "Bangladesh",
+      "types": [
+        "Bayraktar TB2",
+        "Wing Loong II"
+      ],
+      "origins": [
+        "Türkiye",
+        "China"
       ]
     },
     {
@@ -617,20 +1285,9 @@
       ]
     },
     {
-      "country": "Ethiopia",
+      "country": "Armenia",
       "types": [
-        "Wing Loong",
-        "Mohajer-6"
-      ],
-      "origins": [
-        "China",
-        "Iran"
-      ]
-    },
-    {
-      "country": "Kazakhstan",
-      "types": [
-        "Wing Loong",
+        "CASC Rainbow (CH series)",
         "Orlan-10"
       ],
       "origins": [
@@ -639,40 +1296,9 @@
       ]
     },
     {
-      "country": "Nigeria",
+      "country": "Myanmar",
       "types": [
-        "Wing Loong",
-        "Wing Loong II"
-      ],
-      "origins": [
-        "China"
-      ]
-    },
-    {
-      "country": "Pakistan",
-      "types": [
-        "Wing Loong",
-        "Wing Loong II"
-      ],
-      "origins": [
-        "China"
-      ]
-    },
-    {
-      "country": "Serbia",
-      "types": [
-        "Wing Loong",
-        "Elbit Hermes 900"
-      ],
-      "origins": [
-        "China",
-        "Israel"
-      ]
-    },
-    {
-      "country": "Uzbekistan",
-      "types": [
-        "Wing Loong",
+        "CASC Rainbow (CH series)",
         "Orlan-10"
       ],
       "origins": [
@@ -691,10 +1317,20 @@
       ]
     },
     {
-      "country": "Canada",
+      "country": "Ecuador",
       "types": [
         "IAI Heron",
-        "Elbit Hermes 900"
+        "IAI Searcher"
+      ],
+      "origins": [
+        "Israel"
+      ]
+    },
+    {
+      "country": "Thailand",
+      "types": [
+        "Elbit Hermes 900",
+        "IAI Searcher"
       ],
       "origins": [
         "Israel"
@@ -712,57 +1348,140 @@
       ]
     },
     {
-      "country": "Indonesia",
+      "country": "Syria",
       "types": [
-        "Wing Loong"
+        "Mohajer-6",
+        "Orlan-10"
       ],
       "origins": [
-        "China"
+        "Iran",
+        "Russia"
       ]
     },
     {
-      "country": "Saudi Arabia",
+      "country": "Djibouti",
       "types": [
-        "Wing Loong"
+        "Bayraktar TB2"
       ],
       "origins": [
-        "China"
+        "Türkiye"
       ]
     },
     {
-      "country": "Algeria",
+      "country": "Rwanda",
       "types": [
-        "Wing Loong II"
+        "Bayraktar TB2"
       ],
       "origins": [
-        "China"
+        "Türkiye"
       ]
     },
     {
-      "country": "Bangladesh",
+      "country": "Togo",
       "types": [
-        "Wing Loong II"
+        "Bayraktar TB2"
       ],
       "origins": [
-        "China"
+        "Türkiye"
       ]
     },
     {
-      "country": "Libya",
+      "country": "Niger",
       "types": [
-        "Wing Loong II"
+        "Bayraktar TB2"
       ],
       "origins": [
-        "China"
+        "Türkiye"
       ]
     },
     {
-      "country": "Somalia",
+      "country": "Poland",
       "types": [
-        "Wing Loong II"
+        "Bayraktar TB2"
       ],
       "origins": [
-        "China"
+        "Türkiye"
+      ]
+    },
+    {
+      "country": "Kosovo",
+      "types": [
+        "Bayraktar TB2"
+      ],
+      "origins": [
+        "Türkiye"
+      ]
+    },
+    {
+      "country": "Romania",
+      "types": [
+        "Bayraktar TB2"
+      ],
+      "origins": [
+        "Türkiye"
+      ]
+    },
+    {
+      "country": "Albania",
+      "types": [
+        "Bayraktar TB2"
+      ],
+      "origins": [
+        "Türkiye"
+      ]
+    },
+    {
+      "country": "Kenya",
+      "types": [
+        "Bayraktar TB2"
+      ],
+      "origins": [
+        "Türkiye"
+      ]
+    },
+    {
+      "country": "Kuwait",
+      "types": [
+        "Bayraktar TB2"
+      ],
+      "origins": [
+        "Türkiye"
+      ]
+    },
+    {
+      "country": "Croatia",
+      "types": [
+        "Bayraktar TB2"
+      ],
+      "origins": [
+        "Türkiye"
+      ]
+    },
+    {
+      "country": "Japan",
+      "types": [
+        "Bayraktar TB2"
+      ],
+      "origins": [
+        "Türkiye"
+      ]
+    },
+    {
+      "country": "Malaysia",
+      "types": [
+        "TAI Anka"
+      ],
+      "origins": [
+        "Türkiye"
+      ]
+    },
+    {
+      "country": "Italy",
+      "types": [
+        "MQ-1 Predator"
+      ],
+      "origins": [
+        "United States"
       ]
     },
     {
@@ -775,12 +1494,12 @@
       ]
     },
     {
-      "country": "Ecuador",
+      "country": "Zambia",
       "types": [
-        "IAI Heron"
+        "CASC Rainbow (CH series)"
       ],
       "origins": [
-        "Israel"
+        "China"
       ]
     },
     {
@@ -793,7 +1512,7 @@
       ]
     },
     {
-      "country": "Turkey",
+      "country": "Australia",
       "types": [
         "IAI Heron"
       ],
@@ -820,15 +1539,6 @@
       ]
     },
     {
-      "country": "Thailand",
-      "types": [
-        "Elbit Hermes 900"
-      ],
-      "origins": [
-        "Israel"
-      ]
-    },
-    {
       "country": "Netherlands",
       "types": [
         "IAI Harop"
@@ -847,39 +1557,30 @@
       ]
     },
     {
+      "country": "Cyprus",
+      "types": [
+        "IAI Searcher"
+      ],
+      "origins": [
+        "Israel"
+      ]
+    },
+    {
+      "country": "Spain",
+      "types": [
+        "IAI Searcher"
+      ],
+      "origins": [
+        "Israel"
+      ]
+    },
+    {
       "country": "Iran",
       "types": [
         "Mohajer-6"
       ],
       "origins": [
         "Iran"
-      ]
-    },
-    {
-      "country": "Iraq",
-      "types": [
-        "Mohajer-6"
-      ],
-      "origins": [
-        "Iran"
-      ]
-    },
-    {
-      "country": "Sudan",
-      "types": [
-        "Mohajer-6"
-      ],
-      "origins": [
-        "Iran"
-      ]
-    },
-    {
-      "country": "Armenia",
-      "types": [
-        "Orlan-10"
-      ],
-      "origins": [
-        "Russia"
       ]
     },
     {
@@ -890,76 +1591,106 @@
       "origins": [
         "Russia"
       ]
-    },
-    {
-      "country": "Kyrgyzstan",
-      "types": [
-        "Orlan-10"
-      ],
-      "origins": [
-        "Russia"
-      ]
-    },
-    {
-      "country": "Myanmar",
-      "types": [
-        "Orlan-10"
-      ],
-      "origins": [
-        "Russia"
-      ]
-    },
-    {
-      "country": "Syria",
-      "types": [
-        "Orlan-10"
-      ],
-      "origins": [
-        "Russia"
-      ]
     }
   ],
   "suppliers": [
     {
+      "origin": "Türkiye",
+      "originCountry": "Turkey",
+      "operators": 37,
+      "countries": [
+        "Albania",
+        "Algeria",
+        "Azerbaijan",
+        "Bangladesh",
+        "Burkina Faso",
+        "Croatia",
+        "Djibouti",
+        "Ethiopia",
+        "Indonesia",
+        "Iraq",
+        "Japan",
+        "Kazakhstan",
+        "Kenya",
+        "Kosovo",
+        "Kuwait",
+        "Kyrgyzstan",
+        "Libya",
+        "Malaysia",
+        "Mali",
+        "Morocco",
+        "Niger",
+        "Nigeria",
+        "Pakistan",
+        "Poland",
+        "Qatar",
+        "Romania",
+        "Rwanda",
+        "Saudi Arabia",
+        "Somalia",
+        "Sudan",
+        "Togo",
+        "Tunisia",
+        "Turkey",
+        "Turkmenistan",
+        "Ukraine",
+        "United Arab Emirates",
+        "Uzbekistan"
+      ]
+    },
+    {
       "origin": "China",
-      "operators": 17,
+      "originCountry": "China",
+      "operators": 23,
       "countries": [
         "Algeria",
+        "Armenia",
         "Bangladesh",
         "China",
         "Côte d'Ivoire",
         "Egypt",
         "Ethiopia",
         "Indonesia",
+        "Iraq",
         "Kazakhstan",
         "Libya",
         "Morocco",
+        "Myanmar",
         "Nigeria",
         "Pakistan",
         "Saudi Arabia",
         "Serbia",
         "Somalia",
+        "Sudan",
+        "Turkmenistan",
         "United Arab Emirates",
-        "Uzbekistan"
+        "Uzbekistan",
+        "Zambia"
       ]
     },
     {
       "origin": "Israel",
-      "operators": 16,
+      "originCountry": "Israel",
+      "operators": 21,
       "countries": [
+        "Australia",
         "Azerbaijan",
         "Brazil",
         "Canada",
         "Colombia",
+        "Cyprus",
         "Ecuador",
         "India",
+        "Indonesia",
         "Israel",
         "Mexico",
         "Morocco",
         "Netherlands",
         "North Korea",
+        "Russia",
         "Serbia",
         "South Korea",
+        "Spain",
         "Thailand",
         "Turkey",
         "United States of America"
@@ -967,6 +1698,7 @@
     },
     {
       "origin": "Russia",
+      "originCountry": "Russia",
       "operators": 10,
       "countries": [
         "Armenia",
@@ -983,32 +1715,32 @@
     },
     {
       "origin": "Iran",
-      "operators": 6,
+      "originCountry": "Iran",
+      "operators": 7,
       "countries": [
         "Ethiopia",
         "Iran",
         "Iraq",
         "Russia",
         "Sudan",
+        "Syria",
         "Venezuela"
       ]
     },
     {
       "origin": "United States",
-      "operators": 3,
+      "originCountry": "United States of America",
+      "operators": 4,
       "countries": [
+        "Italy",
         "Morocco",
         "United Arab Emirates",
         "United States of America"
       ]
     },
     {
-      "origin": "Türkiye",
-      "operators": 0,
-      "countries": []
-    },
-    {
       "origin": "India",
+      "originCountry": "India",
       "operators": 0,
       "countries": []
     }
