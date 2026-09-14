@@ -120,43 +120,77 @@ export function readNumber(cell: string): number | null {
 
 interface Row { state: string; population: number | null; area: number | null }
 
+export interface Table { header: string[]; rows: string[][] }
+
 /**
- * Every data row of every wikitable on the page, as arrays of cells.
+ * Every wikitable on the page, with its header row kept.
  *
- * Deliberately not "the first table": these pages carry several, and which one
- * is first changes when someone adds an infobox. Reading all of them and
- * letting the name match decide which rows are usable is stable against that.
+ * The header is the point. The first version of this read "the first number
+ * above a floor" out of each row, which is a guess about column order dressed
+ * as a rule — and it silently read a column of 2025 *projections* as if they
+ * were the 2011 census, because both are populations and both are large. Only
+ * the named-fact check caught it: the total came to 1.40 billion against a
+ * census that counted 1.21.
+ *
+ * Reading the header means the connector knows which column it took and can
+ * say so, rather than this file asserting a basis it never verified.
  */
-function tableRows(text: string): string[][] {
-  const out: string[][] = [];
+export function parseTables(text: string): Table[] {
+  const out: Table[] = [];
   for (const block of text.split(/\{\|/).slice(1)) {
     const table = block.split(/\n\|\}/)[0] ?? "";
-    for (const raw of table.split(/\n\|-/).slice(1)) {
+    const chunks = table.split(/\n\|-/);
+    const rows: string[][] = [];
+    let header: string[] = [];
+    for (const [i, raw] of chunks.entries()) {
       const cells: string[] = [];
+      let isHeader = false;
       for (const line of raw.split("\n")) {
         if (!/^\s*[|!]/.test(line)) continue;
+        if (/^\s*!/.test(line)) isHeader = true;
         const body = line.replace(/^\s*[|!]+\s*/, "");
-        // "a || b || c" is three cells on one line.
-        for (const cell of body.split(/\s*\|\|\s*/)) cells.push(cell.trim());
+        // "a || b || c" and "a !! b !! c" are three cells on one line.
+        for (const cell of body.split(/\s*(?:\|\||!!)\s*/)) cells.push(cleanCell(cell));
       }
-      if (cells.length >= 2) out.push(cells);
+      if (cells.length < 2) continue;
+      if (isHeader && header.length === 0) { header = cells; continue; }
+      if (i === 0 && header.length === 0) { header = cells; continue; }
+      rows.push(cells);
     }
+    if (rows.length > 0) out.push({ header, rows });
   }
   return out;
 }
 
+/** Wikitext markup stripped from one cell, leaving the text a reader sees. */
+export function cleanCell(cell: string): string {
+  return cell
+    .replace(/<ref[\s\S]*?(?:\/>|<\/ref>)/gi, "")
+    .replace(/\{\{[Ss]ort\|[^|}]*\|([^}]*)\}\}/g, "$1")
+    .replace(/\{\{[^{}]*\}\}/g, "")
+    .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2")
+    .replace(/\[\[|\]\]/g, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s*(?:style|align|colspan|rowspan|scope|class)\s*=\s*"[^"]*"\s*\|?/gi, "")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 /**
- * The first cell that parses as a number in a plausible range.
+ * The index of the column whose header matches, and the header's own words.
  *
- * Both tables put a rank in an early column and the figure after it, and the
- * rank is a small integer. Taking "the second cell" would read the rank as the
- * population for any table that gains a column; taking the first number above
- * a floor cannot.
+ * Returned together so the output can print the basis rather than assert one:
+ * "Population (2025 est.)" is a different claim from "Population (2011
+ * census)" and this connector must not flatten them into "population".
  */
-function firstNumberAbove(cells: string[], floor: number): number | null {
-  for (const c of cells) {
-    const n = readNumber(c);
-    if (n !== null && n >= floor) return n;
+export function columnMatching(
+  header: string[], want: RegExp, avoid?: RegExp,
+): { index: number; label: string } | null {
+  for (const [i, h] of header.entries()) {
+    if (!want.test(h)) continue;
+    if (avoid && avoid.test(h)) continue;
+    return { index: i, label: h };
   }
   return null;
 }
@@ -172,36 +206,73 @@ export async function run(): Promise<void> {
   const rows = new Map<string, Row>();
   const unmatched: string[] = [];
   const faults: string[] = [];
+  let populationBasis = "unknown";
+  let areaBasis = "unknown";
+
+  /**
+   * Read one measure out of whichever table on the page actually carries it.
+   *
+   * The table is chosen by whether its header has a matching column and its
+   * rows name states this map can draw — not by position, because these
+   * articles carry several tables and which one comes first changes whenever
+   * somebody adds an infobox.
+   */
+  function harvest(
+    text: string, want: RegExp, avoid: RegExp | undefined, floor: number,
+    set: (state: string, value: number) => void,
+  ): string {
+    let basis = "unknown";
+    let best = 0;
+    for (const table of parseTables(text)) {
+      const col = columnMatching(table.header, want, avoid);
+      if (!col) continue;
+      let hits = 0;
+      const staged: Array<[string, number]> = [];
+      for (const cells of table.rows) {
+        const state = mapName(cells[0] ?? "", known) ?? mapName(cells[1] ?? "", known);
+        if (!state) {
+          const label = (cells[0] ?? "").slice(0, 40);
+          if (label && unmatched.length < 30 && !/^\d+$/.test(label)) unmatched.push(label);
+          continue;
+        }
+        const value = readNumber(cells[col.index] ?? "");
+        if (value === null || value < floor) continue;
+        staged.push([state, value]);
+        hits++;
+      }
+      // The table that places the most states wins; a navbox with two rows
+      // should not beat the real one because it happened to come first.
+      if (hits > best) {
+        best = hits;
+        basis = col.label;
+        for (const [state, value] of staged) set(state, value);
+      }
+    }
+    return basis;
+  }
 
   const popText = await wikitext(POP_PAGE);
   if (!popText) faults.push("the population page did not answer");
   else {
-    for (const cells of tableRows(popText)) {
-      const state = mapName(cells[0] ?? "", known) ?? mapName(cells[1] ?? "", known);
-      if (!state) {
-        const label = (cells[0] ?? "").slice(0, 40);
-        if (label && unmatched.length < 30 && !/^\d+$/.test(label)) unmatched.push(label);
-        continue;
-      }
-      // A state's population is at least a hundred thousand; a rank is not.
-      const population = firstNumberAbove(cells.slice(1), 100_000);
-      const prior = rows.get(state) ?? { state, population: null, area: null };
-      rows.set(state, { ...prior, population: prior.population ?? population });
-    }
+    populationBasis = harvest(
+      popText, /population/i, /density|rank|decadal|growth|percent|share/i, 100_000,
+      (state, value) => {
+        const prior = rows.get(state) ?? { state, population: null, area: null };
+        rows.set(state, { ...prior, population: prior.population ?? value });
+      },
+    );
   }
 
   const areaText = await wikitext(AREA_PAGE);
   if (!areaText) faults.push("the area page did not answer");
   else {
-    for (const cells of tableRows(areaText)) {
-      const state = mapName(cells[0] ?? "", known) ?? mapName(cells[1] ?? "", known);
-      if (!state) continue;
-      // Lakshadweep is 32 km²; a rank is smaller still, so the floor is low
-      // and the rank column is skipped by starting after the name instead.
-      const area = firstNumberAbove(cells.slice(1), 30);
-      const prior = rows.get(state) ?? { state, population: null, area: null };
-      rows.set(state, { ...prior, area: prior.area ?? area });
-    }
+    areaBasis = harvest(
+      areaText, /area/i, /rank|percent|share|water/i, 30,
+      (state, value) => {
+        const prior = rows.get(state) ?? { state, population: null, area: null };
+        rows.set(state, { ...prior, area: prior.area ?? value });
+      },
+    );
   }
 
   const list = [...rows.values()].sort((a, b) => (b.population ?? 0) - (a.population ?? 0));
@@ -218,8 +289,23 @@ export async function run(): Promise<void> {
     faults.push(`the most populous state parsed as ${top?.state ?? "nothing"}, not Uttar Pradesh`);
   }
   const total = list.reduce((n, r) => n + (r.population ?? 0), 0);
-  if (total < 1.15e9 || total > 1.30e9) {
-    faults.push(`the populations sum to ${total.toLocaleString("en-IN")}, not near 1.21 billion`);
+  /**
+   * India's population, wide enough for either basis and narrow enough to
+   * catch a wrong column.
+   *
+   * The first version of this check demanded 1.21 billion, the 2011 census
+   * count, and failed — correctly — because the article now publishes 2025
+   * projections. That was the check doing its job: the numbers were plausible,
+   * the format was right, and nothing else would have noticed. The range now
+   * spans census to projection, and `populationBasis` records which one the
+   * column header actually said, so the page states the basis instead of this
+   * file assuming one.
+   */
+  if (total < 1.15e9 || total > 1.55e9) {
+    faults.push(
+      `the populations sum to ${total.toLocaleString("en-IN")}, outside 1.15–1.55 billion — ` +
+      "too far from any published figure for India to be the right column",
+    );
   }
   const biggest = [...list].sort((a, b) => (b.area ?? 0) - (a.area ?? 0))[0];
   if (biggest && biggest.state !== "Rajasthan") {
@@ -234,17 +320,21 @@ export async function run(): Promise<void> {
   await writeFile(OUT, JSON.stringify({
     builtAt: new Date().toISOString(),
     source: `English Wikipedia: ${POP_PAGE.replace(/_/g, " ")} and ${AREA_PAGE.replace(/_/g, " ")}, which cite the Census of India.`,
-    censusYear: 2011,
+    populationBasis,
+    areaBasis,
+    basisNote:
+      "populationBasis and areaBasis are the column headings these figures were actually read " +
+      "from, and they are recorded rather than assumed. The first version of this connector " +
+      "declared the populations to be the 2011 census and was wrong: the article publishes " +
+      "projections, and the totals came to 1.40 billion against a census that counted 1.21. Any " +
+      "page using these must print the basis beside the rate.",
     staleness:
-      "These populations are from the 2011 census, the last one India completed. The 2021 census " +
-      "was postponed and has not been held, so every per-capita figure computed from this " +
-      "divides a current count by a fifteen-year-old denominator. The error is not uniform: the " +
-      "states that have grown fastest since are the most overstated by it. Any rate built on " +
-      "this must print the denominator's year on the same line.",
-    noProjections:
-      "Population projections exist and are deliberately not used. They are a model's output, " +
-      "they disagree with one another, and substituting one for a count would make these numbers " +
-      "unreproducible against any published source.",
+      "India's last completed census was 2011; the 2021 census was postponed and has not been " +
+      "held. So a figure here is either a fifteen-year-old count or a projection from one, and " +
+      "neither is a current measurement. Projections are a model's output and disagree with one " +
+      "another, so a rate built on them is reproducible only against this exact source on this " +
+      "exact date — which is why the basis travels with the number.",
+
     vocabulary:
       "State names are the map's own spellings, which are what a join will be asked for. A name " +
       "that does not match the topology is recorded as unmatched rather than aliased to " +
@@ -258,6 +348,8 @@ export async function run(): Promise<void> {
   }, null, 2) + "\n", "utf8");
 
   console.log(`  ${list.length} states · ${withPop} with a population · ${withArea} with an area`);
+  console.log(`  population column: "${populationBasis}"`);
+  console.log(`  area column:       "${areaBasis}"`);
   console.log(`  total ${total.toLocaleString("en-IN")}`);
   for (const f of faults) console.warn(`  FAULT: ${f}`);
   if (unmatched.length > 0) console.log(`  unmatched labels: ${unmatched.slice(0, 8).join(" / ")}`);

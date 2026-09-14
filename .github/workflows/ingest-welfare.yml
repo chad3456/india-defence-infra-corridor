@@ -1,0 +1,45 @@
+name: Build the welfare scheme record
+
+# The roster from Wikipedia's list of central schemes, and coverage from the
+# few scheme dashboards that still answer a script.
+#
+# The coverage column is nearly empty and that is the finding, not unfinished
+# work: PMAY-Gramin, Mission Antyodaya, Saubhagya and the MGNREGA report server
+# all refused the probe at the connection, Swachh Bharat returned 404, PM-KISAN
+# served a stub, and the government's own myScheme directory answered 401.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "50 5 * * 4"
+  push:
+    paths:
+      - "scripts/etl/connectors/welfare.ts"
+      - ".github/workflows/ingest-welfare.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ingest-welfare
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Build
+        run: npm run welfare:build
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/schemes/welfare.json
+          "chore(schemes): welfare record $(date -u +'%Y-%m-%d %H:%M')"
