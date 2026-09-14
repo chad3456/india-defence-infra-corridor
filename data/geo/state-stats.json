@@ -1,198 +1,25 @@
 {
-  "builtAt": "2026-09-14T16:18:11.236Z",
+  "builtAt": "2026-09-14T16:25:04.027Z",
   "source": "English Wikipedia: List of states and union territories of India by population and List of states and union territories of India by area, which cite the Census of India.",
-  "censusYear": 2011,
-  "staleness": "These populations are from the 2011 census, the last one India completed. The 2021 census was postponed and has not been held, so every per-capita figure computed from this divides a current count by a fifteen-year-old denominator. The error is not uniform: the states that have grown fastest since are the most overstated by it. Any rate built on this must print the denominator's year on the same line.",
-  "noProjections": "Population projections exist and are deliberately not used. They are a model's output, they disagree with one another, and substituting one for a count would make these numbers unreproducible against any published source.",
+  "populationBasis": "unknown",
+  "areaBasis": "unknown",
+  "basisNote": "populationBasis and areaBasis are the column headings these figures were actually read from, and they are recorded rather than assumed. The first version of this connector declared the populations to be the 2011 census and was wrong: the article publishes projections, and the totals came to 1.40 billion against a census that counted 1.21. Any page using these must print the basis beside the rate.",
+  "staleness": "India's last completed census was 2011; the 2021 census was postponed and has not been held. So a figure here is either a fifteen-year-old count or a projection from one, and neither is a current measurement. Projections are a model's output and disagree with one another, so a rate built on them is reproducible only against this exact source on this exact date — which is why the basis travels with the number.",
   "vocabulary": "State names are the map's own spellings, which are what a join will be asked for. A name that does not match the topology is recorded as unmatched rather than aliased to something close, because a wrong alias deletes a state instead of failing.",
   "faults": [
-    "the populations sum to 1,40,25,40,624, not near 1.21 billion",
-    "the largest state by area parsed as Jammu & Kashmir, not Rajasthan",
-    "only 1 states got an area"
+    "the most populous state parsed as nothing, not Uttar Pradesh",
+    "the populations sum to 0, outside 1.15–1.55 billion — too far from any published figure for India to be the right column",
+    "only 0 states got a population",
+    "only 0 states got an area"
   ],
   "unmatched": [
     "Nos.",
     "35 (UT7)",
+    "Total",
     "Total"
   ],
-  "withPopulation": 34,
-  "withArea": 1,
-  "totalPopulation": 1402540624,
-  "states": [
-    {
-      "state": "Uttar Pradesh",
-      "population": 241066874,
-      "area": null
-    },
-    {
-      "state": "Bihar",
-      "population": 128592000,
-      "area": null
-    },
-    {
-      "state": "Maharashtra",
-      "population": 127528000,
-      "area": null
-    },
-    {
-      "state": "West Bengal",
-      "population": 99563000,
-      "area": null
-    },
-    {
-      "state": "Madhya Pradesh",
-      "population": 87610000,
-      "area": null
-    },
-    {
-      "state": "Rajasthan",
-      "population": 81897000,
-      "area": null
-    },
-    {
-      "state": "Tamil Nadu",
-      "population": 77089000,
-      "area": null
-    },
-    {
-      "state": "Gujarat",
-      "population": 72367000,
-      "area": null
-    },
-    {
-      "state": "Karnataka",
-      "population": 68115000,
-      "area": null
-    },
-    {
-      "state": "Andhra Pradesh",
-      "population": 53340000,
-      "area": null
-    },
-    {
-      "state": "Odisha",
-      "population": 46566000,
-      "area": null
-    },
-    {
-      "state": "Jharkhand",
-      "population": 39963000,
-      "area": null
-    },
-    {
-      "state": "Telangana",
-      "population": 38272000,
-      "area": null
-    },
-    {
-      "state": "Assam",
-      "population": 36047000,
-      "area": null
-    },
-    {
-      "state": "Kerala",
-      "population": 35920000,
-      "area": null
-    },
-    {
-      "state": "Punjab",
-      "population": 30926000,
-      "area": null
-    },
-    {
-      "state": "Haryana",
-      "population": 30573000,
-      "area": null
-    },
-    {
-      "state": "Chhattisgarh",
-      "population": 30524000,
-      "area": null
-    },
-    {
-      "state": "NCT of Delhi",
-      "population": 21752000,
-      "area": null
-    },
-    {
-      "state": "Jammu & Kashmir",
-      "population": 13701000,
-      "area": 1947
-    },
-    {
-      "state": "Uttarakhand",
-      "population": 11755000,
-      "area": null
-    },
-    {
-      "state": "Himachal Pradesh",
-      "population": 7505000,
-      "area": null
-    },
-    {
-      "state": "Tripura",
-      "population": 4184000,
-      "area": null
-    },
-    {
-      "state": "Meghalaya",
-      "population": 3379000,
-      "area": null
-    },
-    {
-      "state": "Manipur",
-      "population": 3253000,
-      "area": null
-    },
-    {
-      "state": "Nagaland",
-      "population": 2253000,
-      "area": null
-    },
-    {
-      "state": "Goa",
-      "population": 1583000,
-      "area": null
-    },
-    {
-      "state": "Arunanchal Pradesh",
-      "population": 1576000,
-      "area": null
-    },
-    {
-      "state": "Puducherry",
-      "population": 1391163,
-      "area": null
-    },
-    {
-      "state": "Mizoram",
-      "population": 1250000,
-      "area": null
-    },
-    {
-      "state": "Chandigarh",
-      "population": 1243000,
-      "area": null
-    },
-    {
-      "state": "Sikkim",
-      "population": 695000,
-      "area": null
-    },
-    {
-      "state": "Dadara & Nagar Havelli",
-      "population": 657587,
-      "area": null
-    },
-    {
-      "state": "Andaman & Nicobar Island",
-      "population": 404000,
-      "area": null
-    },
-    {
-      "state": "Lakshadweep",
-      "population": null,
-      "area": null
-    }
-  ]
+  "withPopulation": 0,
+  "withArea": 0,
+  "totalPopulation": 0,
+  "states": []
 }
