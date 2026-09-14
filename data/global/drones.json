@@ -1,17 +1,15 @@
 {
-  "builtAt": "2026-09-14T09:31:55.749Z",
+  "builtAt": "2026-09-14T09:34:58.354Z",
   "source": "English Wikipedia, the Operators section of each type's article.",
   "note": "Which countries are publicly recorded as operating each type. Not an inventory — no airframe counts, and no statement of whether a given operator arms them. Not a record of combat use, which is a separate and harder claim.",
   "gap": "Incomplete by construction. Classified and small-batch transfers do not reach an encyclopaedia, and an article's Operators section is edited unevenly, so an absent country means nobody wrote it down rather than that nobody flies it.",
   "originNote": "Each type's country of origin is stated in this file rather than parsed. It is the one fact about these aircraft that is neither disputed nor dependent on an article's section layout; everything else on a row is read from the page.",
   "readCount": 16,
-  "faults": [
-    "the MQ-9 Reaper's operators do not include United States of America, which builds and flies it"
-  ],
+  "faults": [],
   "provisionalRows": 2,
   "viaNote": "An operator row carries `via` when it was read from a named subsection. Rows under a Former or Potential heading are counted in provisionalRows and are not a claim that the state operates the type today.",
   "typeCount": 18,
-  "countryCount": 67,
+  "countryCount": 70,
   "types": [
     {
       "page": "Bayraktar_TB2",
@@ -311,21 +309,73 @@
       "originCountry": "United States of America",
       "operators": [
         {
-          "country": "Colombia",
-          "asWritten": "==== Colombia ===="
+          "country": "Belgium",
+          "asWritten": ";{{Flagu|Belgium}}"
         },
         {
-          "country": "Finland",
-          "asWritten": "==== Finland ===="
+          "country": "Canada",
+          "asWritten": ";{{Flagu|Canada}}"
         },
         {
-          "country": "Greece",
-          "asWritten": "==== Greece ===="
+          "country": "Denmark",
+          "asWritten": ";{{Flagu|Denmark}}"
+        },
+        {
+          "country": "France",
+          "asWritten": ";{{Flagu|France}}"
+        },
+        {
+          "country": "India",
+          "asWritten": ";{{Flagu|India}}"
+        },
+        {
+          "country": "Italy",
+          "asWritten": ";{{Flagu|Italy}}"
+        },
+        {
+          "country": "Japan",
+          "asWritten": ";{{Flagu|Japan}}"
+        },
+        {
+          "country": "Morocco",
+          "asWritten": ";{{Flagu|Morocco}}"
+        },
+        {
+          "country": "Netherlands",
+          "asWritten": ";{{Flagu|Netherlands}}"
+        },
+        {
+          "country": "Poland",
+          "asWritten": ";{{Flagu|Poland}}"
+        },
+        {
+          "country": "Spain",
+          "asWritten": ";{{Flagu|Spain}}"
+        },
+        {
+          "country": "Taiwan",
+          "asWritten": ";{{Flagu|Taiwan}}"
+        },
+        {
+          "country": "United Kingdom",
+          "asWritten": ";{{Flagu|United Kingdom}}"
+        },
+        {
+          "country": "United States of America",
+          "asWritten": ";{{Flagu|United States}}"
         }
       ],
       "nonState": [],
       "read": true,
-      "method": "headings"
+      "method": "list",
+      "unresolved": [
+        "INS Rajali",
+        "Amendola Air Base",
+        "Naval Air Station Sigonella",
+        "Leeuwarden Air Base",
+        "Badajoz Airport",
+        "RAF Waddington"
+      ]
     },
     {
       "page": "General_Atomics_MQ-1_Predator",
@@ -961,6 +1011,24 @@
   ],
   "countries": [
     {
+      "country": "Morocco",
+      "types": [
+        "Bayraktar TB2",
+        "MQ-9 Reaper",
+        "MQ-1 Predator",
+        "Wing Loong",
+        "Wing Loong II",
+        "IAI Heron",
+        "IAI Harop"
+      ],
+      "origins": [
+        "Türkiye",
+        "United States",
+        "China",
+        "Israel"
+      ]
+    },
+    {
       "country": "Azerbaijan",
       "types": [
         "Bayraktar TB2",
@@ -972,23 +1040,6 @@
       ],
       "origins": [
         "Türkiye",
-        "Israel"
-      ]
-    },
-    {
-      "country": "Morocco",
-      "types": [
-        "Bayraktar TB2",
-        "MQ-1 Predator",
-        "Wing Loong",
-        "Wing Loong II",
-        "IAI Heron",
-        "IAI Harop"
-      ],
-      "origins": [
-        "Türkiye",
-        "United States",
-        "China",
         "Israel"
       ]
     },
@@ -1068,6 +1119,20 @@
       ]
     },
     {
+      "country": "India",
+      "types": [
+        "MQ-9 Reaper",
+        "IAI Heron",
+        "Elbit Hermes 900",
+        "IAI Harop",
+        "IAI Searcher"
+      ],
+      "origins": [
+        "United States",
+        "Israel"
+      ]
+    },
+    {
       "country": "Libya",
       "types": [
         "Bayraktar TB2",
@@ -1094,6 +1159,19 @@
       ]
     },
     {
+      "country": "Canada",
+      "types": [
+        "MQ-9 Reaper",
+        "IAI Heron",
+        "Elbit Hermes 900",
+        "IAI Searcher"
+      ],
+      "origins": [
+        "United States",
+        "Israel"
+      ]
+    },
+    {
       "country": "China",
       "types": [
         "Wing Loong",
@@ -1104,18 +1182,6 @@
       "origins": [
         "China",
         "Russia"
-      ]
-    },
-    {
-      "country": "India",
-      "types": [
-        "IAI Heron",
-        "Elbit Hermes 900",
-        "IAI Harop",
-        "IAI Searcher"
-      ],
-      "origins": [
-        "Israel"
       ]
     },
     {
@@ -1245,6 +1311,18 @@
       ]
     },
     {
+      "country": "United States of America",
+      "types": [
+        "MQ-9 Reaper",
+        "MQ-1 Predator",
+        "IAI Heron"
+      ],
+      "origins": [
+        "United States",
+        "Israel"
+      ]
+    },
+    {
       "country": "Serbia",
       "types": [
         "Wing Loong",
@@ -1253,17 +1331,6 @@
       ],
       "origins": [
         "China",
-        "Israel"
-      ]
-    },
-    {
-      "country": "Canada",
-      "types": [
-        "IAI Heron",
-        "Elbit Hermes 900",
-        "IAI Searcher"
-      ],
-      "origins": [
         "Israel"
       ]
     },
@@ -1319,6 +1386,17 @@
       ]
     },
     {
+      "country": "Poland",
+      "types": [
+        "Bayraktar TB2",
+        "MQ-9 Reaper"
+      ],
+      "origins": [
+        "Türkiye",
+        "United States"
+      ]
+    },
+    {
       "country": "Mali",
       "types": [
         "Bayraktar TB2",
@@ -1340,10 +1418,31 @@
       ]
     },
     {
-      "country": "Colombia",
+      "country": "Japan",
+      "types": [
+        "Bayraktar TB2",
+        "MQ-9 Reaper"
+      ],
+      "origins": [
+        "Türkiye",
+        "United States"
+      ]
+    },
+    {
+      "country": "Italy",
       "types": [
         "MQ-9 Reaper",
-        "Elbit Hermes 900"
+        "MQ-1 Predator"
+      ],
+      "origins": [
+        "United States"
+      ]
+    },
+    {
+      "country": "Netherlands",
+      "types": [
+        "MQ-9 Reaper",
+        "IAI Harop"
       ],
       "origins": [
         "United States",
@@ -1351,10 +1450,10 @@
       ]
     },
     {
-      "country": "United States of America",
+      "country": "Spain",
       "types": [
-        "MQ-1 Predator",
-        "IAI Heron"
+        "MQ-9 Reaper",
+        "IAI Searcher"
       ],
       "origins": [
         "United States",
@@ -1482,15 +1581,6 @@
       ]
     },
     {
-      "country": "Poland",
-      "types": [
-        "Bayraktar TB2"
-      ],
-      "origins": [
-        "Türkiye"
-      ]
-    },
-    {
       "country": "Kosovo",
       "types": [
         "Bayraktar TB2"
@@ -1545,15 +1635,6 @@
       ]
     },
     {
-      "country": "Japan",
-      "types": [
-        "Bayraktar TB2"
-      ],
-      "origins": [
-        "Türkiye"
-      ]
-    },
-    {
       "country": "Malaysia",
       "types": [
         "TAI Anka"
@@ -1563,7 +1644,7 @@
       ]
     },
     {
-      "country": "Finland",
+      "country": "Belgium",
       "types": [
         "MQ-9 Reaper"
       ],
@@ -1572,7 +1653,7 @@
       ]
     },
     {
-      "country": "Greece",
+      "country": "Denmark",
       "types": [
         "MQ-9 Reaper"
       ],
@@ -1581,9 +1662,27 @@
       ]
     },
     {
-      "country": "Italy",
+      "country": "France",
       "types": [
-        "MQ-1 Predator"
+        "MQ-9 Reaper"
+      ],
+      "origins": [
+        "United States"
+      ]
+    },
+    {
+      "country": "Taiwan",
+      "types": [
+        "MQ-9 Reaper"
+      ],
+      "origins": [
+        "United States"
+      ]
+    },
+    {
+      "country": "United Kingdom",
+      "types": [
+        "MQ-9 Reaper"
       ],
       "origins": [
         "United States"
@@ -1626,7 +1725,7 @@
       ]
     },
     {
-      "country": "Mexico",
+      "country": "Colombia",
       "types": [
         "Elbit Hermes 900"
       ],
@@ -1635,9 +1734,9 @@
       ]
     },
     {
-      "country": "Netherlands",
+      "country": "Mexico",
       "types": [
-        "IAI Harop"
+        "Elbit Hermes 900"
       ],
       "origins": [
         "Israel"
@@ -1654,15 +1753,6 @@
     },
     {
       "country": "Cyprus",
-      "types": [
-        "IAI Searcher"
-      ],
-      "origins": [
-        "Israel"
-      ]
-    },
-    {
-      "country": "Spain",
       "types": [
         "IAI Searcher"
       ],
@@ -1793,6 +1883,28 @@
       ]
     },
     {
+      "origin": "United States",
+      "originCountry": "United States of America",
+      "operators": 15,
+      "countries": [
+        "Belgium",
+        "Canada",
+        "Denmark",
+        "France",
+        "India",
+        "Italy",
+        "Japan",
+        "Morocco",
+        "Netherlands",
+        "Poland",
+        "Spain",
+        "Taiwan",
+        "United Arab Emirates",
+        "United Kingdom",
+        "United States of America"
+      ]
+    },
+    {
       "origin": "Russia",
       "originCountry": "Russia",
       "operators": 10,
@@ -1807,20 +1919,6 @@
         "Syria",
         "Uzbekistan",
         "Venezuela"
-      ]
-    },
-    {
-      "origin": "United States",
-      "originCountry": "United States of America",
-      "operators": 7,
-      "countries": [
-        "Colombia",
-        "Finland",
-        "Greece",
-        "Italy",
-        "Morocco",
-        "United Arab Emirates",
-        "United States of America"
       ]
     },
     {
