@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "deals-2026-09",
+    title: "Defence deals, read from the releases",
+    blurb:
+      "Indian defence acquisition announcements taken from the government's own press releases, " +
+      "with contracts, cabinet clearances, acceptances of necessity and deliveries counted apart.",
+    href: "/deals",
+    since: "2026-09-14",
+  },
+  {
     id: "state-explorer-2026-09",
     title: "Click any state on the front page",
     blurb:

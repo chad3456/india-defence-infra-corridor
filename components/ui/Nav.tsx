@@ -45,6 +45,7 @@ const GROUPS: Group[] = [
       { href: "/everyday", label: "Everyday", blurb: "A hundred numbers anyone can read" },
       { href: "/made-in-india", label: "Made in India", blurb: "What is actually built here, by product" },
       { href: "/defence-tracker", label: "Defence", blurb: "Exports, production, corridors, insurgency" },
+      { href: "/deals", label: "Defence deals", blurb: "Contracts, clearances and what each one actually is" },
       { href: "/mobility", label: "Mobility", blurb: "Rail, metro, highways, airports" },
       { href: "/atlas", label: "Atlas", blurb: "The statewise picture" },
       { href: "/sacred", label: "Sacred landscape", blurb: "Temples, deities, heritage and place-names" },
