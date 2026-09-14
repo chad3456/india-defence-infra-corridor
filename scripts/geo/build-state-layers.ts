@@ -40,7 +40,17 @@ import type { Topology, GeometryCollection } from "topojson-specification";
 import topo from "../../data/geo/india-states.topo.json";
 
 const ROOT = process.cwd();
-const OUT = join(ROOT, "data", "geo", "state-layers.json");
+const OUT = outPath(join(ROOT, "data", "geo", "state-layers.json"));
+/**
+ * Where to write. `--out <path>` exists so the check can regenerate into a
+ * scratch file and diff, instead of overwriting the committed one and leaving
+ * the working tree dirty every time the tests run.
+ */
+function outPath(fallback: string): string {
+  const i = process.argv.indexOf("--out");
+  return i >= 0 && process.argv[i + 1] ? process.argv[i + 1]! : fallback;
+}
+
 
 interface StateProps { name: string | null }
 interface Item {

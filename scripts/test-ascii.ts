@@ -11,7 +11,9 @@
  * wrong cells passes every structural check there is.
  */
 import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 
 let bad = 0;
 function ok(name: string, cond: boolean, detail = ""): void {
@@ -135,16 +137,24 @@ console.log("\nRegenerating from the topology reproduces both files");
   // `builtAt` is the one field that differs by construction.
   const strip = (s: string): string =>
     s.replace(/"builtAt": "[^"]*"/, '"builtAt": ""');
-  const before = { grid: strip(readFileSync(GRID, "utf8")), layers: strip(readFileSync(LAYERS, "utf8")) };
+  // Into a scratch directory, not over the committed files. The first version
+  // regenerated in place, so running the tests left two modified files in the
+  // working tree and the next push refused.
+  const tmp = mkdtempSync(join(tmpdir(), "ascii-check-"));
   try {
-    execFileSync("npx", ["tsx", "scripts/geo/build-ascii-india.ts"], { stdio: "pipe" });
-    execFileSync("npx", ["tsx", "scripts/geo/build-state-layers.ts"], { stdio: "pipe" });
+    execFileSync("npx", ["tsx", "scripts/geo/build-ascii-india.ts", "--out", join(tmp, "grid.json")],
+      { stdio: "pipe" });
+    execFileSync("npx", ["tsx", "scripts/geo/build-state-layers.ts", "--out", join(tmp, "layers.json")],
+      { stdio: "pipe" });
+    ok("the grid is byte-identical after a rebuild",
+      strip(readFileSync(join(tmp, "grid.json"), "utf8")) === strip(readFileSync(GRID, "utf8")));
+    ok("the layers are byte-identical after a rebuild",
+      strip(readFileSync(join(tmp, "layers.json"), "utf8")) === strip(readFileSync(LAYERS, "utf8")));
   } catch (err) {
-    ok("the builders run", false, String(err).slice(0, 160));
+    ok("the builders run", false, String(err).slice(0, 200));
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
   }
-  ok("the grid is byte-identical after a rebuild", strip(readFileSync(GRID, "utf8")) === before.grid);
-  ok("the layers are byte-identical after a rebuild",
-    strip(readFileSync(LAYERS, "utf8")) === before.layers);
 }
 
 console.log(bad === 0 ? "\nAll map checks passed.\n" : `\n${bad} check(s) failed.\n`);

@@ -39,7 +39,17 @@ import type { Feature, FeatureCollection, Geometry } from "geojson";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import topo from "../../data/geo/india-states.topo.json";
 
-const OUT = join(process.cwd(), "data", "geo", "ascii-india.json");
+const OUT = outPath(join(process.cwd(), "data", "geo", "ascii-india.json"));
+/**
+ * Where to write. `--out <path>` exists so the check can regenerate into a
+ * scratch file and diff, instead of overwriting the committed one and leaving
+ * the working tree dirty every time the tests run.
+ */
+function outPath(fallback: string): string {
+  const i = process.argv.indexOf("--out");
+  return i >= 0 && process.argv[i + 1] ? process.argv[i + 1]! : fallback;
+}
+
 
 /**
  * Columns, and how much taller a character cell is than it is wide.
