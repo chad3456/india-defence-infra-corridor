@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-14T16:33:45.843Z",
+  "builtAt": "2026-09-14T16:35:38.705Z",
   "source": "English Wikipedia: List of states and union territories of India by population and List of states and union territories of India by area, which cite the Census of India.",
   "populationBasis": "Population (2024)",
   "censusBasis": "Population (2011)",
@@ -12,6 +12,17 @@
     "Uttar Pradesh's census population parsed as 2,40,928, not near 199.8 million — the column has moved",
     "only 7 states got an area"
   ],
+  "suppressed": [
+    {
+      "measure": "censusPopulation",
+      "why": "The column reads each state's area rather than its population — Uttar Pradesh at 240,928 and Madhya Pradesh at 308,252, both square-kilometre figures, consistently one column to the right of where the header says. Suppressed rather than shipped: a wrong denominator is worse than none, because every rate built on it looks calculated."
+    },
+    {
+      "measure": "area",
+      "why": "Only 7 of 34 states parsed an area and the largest came out as Maharashtra rather than Rajasthan. Too thin and too wrong to publish."
+    }
+  ],
+  "suppressionRule": "A measure whose named-fact check fails is removed from every row rather than shipped with a warning beside it. A warning in a file is read by whoever opens the file; a wrong number is read by everyone who opens the page.",
   "tablesSeen": [
     {
       "page": "population",
@@ -136,14 +147,14 @@
     "Total"
   ],
   "withPopulation": 34,
-  "withCensusPopulation": 13,
-  "withArea": 7,
+  "withCensusPopulation": 0,
+  "withArea": 0,
   "totalPopulation": 1402540624,
   "states": [
     {
       "state": "Uttar Pradesh",
       "population": 241066874,
-      "censusPopulation": 240928,
+      "censusPopulation": null,
       "area": null
     },
     {
@@ -155,8 +166,8 @@
     {
       "state": "Maharashtra",
       "population": 127528000,
-      "censusPopulation": 112374333,
-      "area": 307713
+      "censusPopulation": null,
+      "area": null
     },
     {
       "state": "West Bengal",
@@ -167,7 +178,7 @@
     {
       "state": "Madhya Pradesh",
       "population": 87610000,
-      "censusPopulation": 308252,
+      "censusPopulation": null,
       "area": null
     },
     {
@@ -179,38 +190,38 @@
     {
       "state": "Tamil Nadu",
       "population": 77089000,
-      "censusPopulation": 130058,
+      "censusPopulation": null,
       "area": null
     },
     {
       "state": "Gujarat",
       "population": 72367000,
-      "censusPopulation": 196024,
+      "censusPopulation": null,
       "area": null
     },
     {
       "state": "Karnataka",
       "population": 68115000,
-      "censusPopulation": 61095297,
-      "area": 191791
+      "censusPopulation": null,
+      "area": null
     },
     {
       "state": "Andhra Pradesh",
       "population": 53340000,
-      "censusPopulation": 49506799,
-      "area": 162975
+      "censusPopulation": null,
+      "area": null
     },
     {
       "state": "Odisha",
       "population": 46566000,
-      "censusPopulation": 155707,
+      "censusPopulation": null,
       "area": null
     },
     {
       "state": "Jharkhand",
       "population": 39963000,
-      "censusPopulation": 32988134,
-      "area": 79714
+      "censusPopulation": null,
+      "area": null
     },
     {
       "state": "Telangana",
@@ -233,19 +244,19 @@
     {
       "state": "Punjab",
       "population": 30926000,
-      "censusPopulation": 27743338,
-      "area": 50362
+      "censusPopulation": null,
+      "area": null
     },
     {
       "state": "Haryana",
       "population": 30573000,
-      "censusPopulation": 25351462,
-      "area": 44212
+      "censusPopulation": null,
+      "area": null
     },
     {
       "state": "Chhattisgarh",
       "population": 30524000,
-      "censusPopulation": 135194,
+      "censusPopulation": null,
       "area": null
     },
     {
@@ -299,8 +310,8 @@
     {
       "state": "Goa",
       "population": 1583000,
-      "censusPopulation": 1458545,
-      "area": 3702
+      "censusPopulation": null,
+      "area": null
     },
     {
       "state": "Arunanchal Pradesh",
