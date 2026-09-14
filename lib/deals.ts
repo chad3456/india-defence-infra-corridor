@@ -13,7 +13,9 @@ export * from "./deals-shared";
 const EMPTY: Deals = {
   present: false, builtAt: null,
   source: "", discovery: "", coverageWarning: "", fourMeasures: "", valueNote: "",
+  eventNote: "",
   articlesRead: [], articlesMissing: [], citedIds: 0, fetched: 0, dead: 0, notDefence: 0,
+  notAnEvent: 0,
   withDate: 0, withValue: 0, ambiguous: 0, byMeasure: {}, deals: [],
 };
 

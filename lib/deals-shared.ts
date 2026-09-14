@@ -40,6 +40,9 @@ export interface Deals {
   fetched: number;
   dead: number;
   notDefence: number;
+  /** Releases whose own headline named none of the four events. */
+  notAnEvent: number;
+  eventNote: string;
   withDate: number;
   withValue: number;
   ambiguous: number;

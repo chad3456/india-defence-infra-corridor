@@ -197,6 +197,11 @@ export default function DealsPage() {
         <p className="mt-3 max-w-[58ch] text-[13.5px] leading-[1.7] text-[color:var(--text-secondary)]">
           {d.valueNote}
         </p>
+        {d.eventNote && (
+          <p className="mt-3 max-w-[58ch] text-[13px] leading-[1.7] text-[color:var(--text-muted)]">
+            {d.eventNote}
+          </p>
+        )}
 
         <ul className="mt-7 m-0 list-none space-y-0 p-0">
           {dated.map((x) => (
@@ -291,8 +296,9 @@ export default function DealsPage() {
         <p className="mt-6 text-[12px] leading-[1.6] text-[color:var(--text-muted)]">
           Discovery read {d.articlesRead.length} article
           {d.articlesRead.length === 1 ? "" : "s"} and found {d.citedIds} release id
-          {d.citedIds === 1 ? "" : "s"}. Of those, {d.fetched} answered, {d.dead} did not, and{" "}
-          {d.notDefence} were not defence acquisitions.
+          {d.citedIds === 1 ? "" : "s"}. Of those, {d.fetched} answered and {d.dead} did not;{" "}
+          {d.notDefence} were not defence acquisitions and {d.notAnEvent} announced no event this
+          reader recognises.
           {d.articlesMissing.length > 0 && <> {d.articlesMissing.length} article
             {d.articlesMissing.length === 1 ? "" : "s"} could not be read at all.</>}
           {d.builtAt && <> Built {d.builtAt.slice(0, 10)}.</>}

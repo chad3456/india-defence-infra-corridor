@@ -53,6 +53,27 @@ console.log("\nTelling the four measures apart");
     const got = classify(text);
     ok(`"${text.slice(0, 44)}…" is ${want}`, got.measure === want, `got ${got.measure}`);
   }
+  // Real PIB headlines, verbatim, including every one that the body-based
+  // classifier got wrong. These are the cases; everything else is theory.
+  const real: Array<[string, string]> = [
+    ["contract", "MoD inks two contracts worth Rs 62,700 crore with HAL for supply of 156 LCH, Prachand"],
+    ["contract", "Further boost to \u2018Make in India\u2019; MoD signs contracts worth Rs 2580 Cr with Indian Companies"],
+    ["contract", "MoD places supply order for 118 Main Battle Tanks Arjun Mk-1A for Indian Army"],
+    ["acceptance-of-necessity", "DAC clears proposals worth Rs 2.38 lakh crore to augment defence capabilities"],
+    ["clearance", "Union Cabinet approves procurement of 70 HTT-40 Basic Trainer Aircraft from HAL"],
+    ["delivery", "DELIVERY OF INDIGENOUS AIRCRAFT CARRIER (IAC) 'VIKRANT'"],
+    ["unclassified", "VICE ADMIRAL AJAY KOCHHAR, PVSM, AVSM, NM, ASSUMES CHARGE AS THE 48TH VICE CHIEF OF THE NAVAL STAFF"],
+    ["unclassified", "28th EDITION OF SINGAPORE-INDIA MARITIME BILATERAL EXERCISE \u2018SIMBEX\u2019"],
+    ["unclassified", "Defence gets Rs 5.94 lakh crore in Budget 2023-24, a jump of 13% over previous year"],
+    ["unclassified", "MINISTRY OF DEFENCE - YEAR END REVIEW 2023"],
+    ["unclassified", "Information Relating to Inter-Governmental Agreement on Rafale"],
+    ["unclassified", "COMMENCEMENT OF SEA TRIALS OF INDIGENOUS AIRCRAFT CARRIER (IAC(P71)) \u2018VIKRANT\u2019"],
+  ];
+  for (const [want, headline] of real) {
+    const got = classify(headline);
+    ok(`headline: "${headline.slice(0, 46)}…" is ${want}`, got.measure === want, `got ${got.measure}`);
+  }
+
   // An AoN that also uses the word "contract" must stay an AoN. This is the
   // conflation the whole four-measure split exists to prevent, and it is one
   // ordering mistake away at all times.
@@ -75,6 +96,26 @@ console.log("\nReading a figure only where it is a cost");
   ok("keeps the sentence it was read from", (m[0]?.sentence ?? "").includes("Bharat Electronics"));
   ok("records the unit as written, unconverted", m[0]?.unit === "crore");
   ok("records the currency", m[0]?.currency === "INR");
+}
+{
+  // "Rs 1.45 lakh crore" is one and a half trillion rupees. A unit pattern
+  // that matches "lakh" before "lakh crore" reads it as a hundred thousand —
+  // wrong by a factor of ten million, and ordinary-looking in a table.
+  const dac = "DAC cleared proposals worth Rs 2.38 lakh crore to augment capabilities.";
+  const m = moneyIn(dac);
+  ok("reads 'lakh crore' as one unit", m[0]?.unit === "lakh crore", JSON.stringify(m));
+  ok("and keeps the amount as written", m[0]?.amount === "2.38", JSON.stringify(m));
+  const cr = moneyIn("MoD signed contracts worth Rs 2580 Cr with Indian companies.");
+  ok("reads PIB's abbreviated 'Cr' as crore", cr[0]?.unit === "crore", JSON.stringify(cr));
+}
+{
+  // PIB serves the body more than once per page, so the same figure arrived
+  // six and twelve times per release and the row read as a dozen claims.
+  const repeated =
+    "The contract is worth Rs 7,523 crore. The contract is worth Rs 7,523 crore. " +
+    "The contract is worth Rs 7,523 crore.";
+  ok("a figure repeated on the page is recorded once", moneyIn(repeated).length === 1,
+    String(moneyIn(repeated).length));
 }
 {
   const usd = "The deal is valued at US$ 3.1 billion for 31 aircraft.";
@@ -132,7 +173,7 @@ if (!existsSync(FILE)) {
   }
   const d = JSON.parse(readFileSync(FILE, "utf8")) as {
     deals: D[]; coverageWarning: string; fourMeasures: string; valueNote: string; discovery: string;
-    withValue: number; ambiguous: number; withDate: number;
+    eventNote: string; withValue: number; ambiguous: number; withDate: number; notAnEvent: number;
   };
   ok("every row's URL resolves to its own release id",
     d.deals.every((x) => x.url.endsWith(`PRID=${x.prid}`)));
@@ -140,8 +181,16 @@ if (!existsSync(FILE)) {
     d.deals.every((x) => x.money.every((m) => m.sentence.includes(m.amount))));
   ok("the ambiguous flag matches the rows that carry two figures",
     d.deals.filter((x) => x.ambiguousValue).length === d.ambiguous);
-  ok("every classified row records the cue that classified it",
-    d.deals.every((x) => x.measure === "unclassified" || x.measureCue.length > 0));
+  ok("every row records the cue that classified it", d.deals.every((x) => x.measureCue.length > 0));
+  // Nothing unclassified may reach the file at all: a release whose headline
+  // names no event is counted as one and dropped, not filed under a measure.
+  ok("no unclassified row is in the ledger",
+    d.deals.every((x) => x.measure !== "unclassified"),
+    d.deals.filter((x) => x.measure === "unclassified").length + " present");
+  ok("no figure is recorded twice in one row",
+    d.deals.every((x) =>
+      new Set(x.money.map((m) => `${m.amount}|${m.sentence.slice(0, 20)}`)).size === x.money.length));
+  ok("says why the headline decides", /headline states the event/i.test(d.eventNote));
   ok("the counts in the header match the rows",
     d.withValue === d.deals.filter((x) => x.money.length > 0).length &&
     d.withDate === d.deals.filter((x) => x.date).length);

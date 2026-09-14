@@ -90,6 +90,25 @@ const INDEX_ARTICLES = [
   "Tejas (aircraft)",
   "Arjun (tank)",
   "INS Vikrant (2013)",
+  // Widened after the first run. The headline filter is strict enough that
+  // precision is no longer the constraint; coverage is, and coverage here is
+  // simply how many articles were read for citations.
+  "Defence budget of India",
+  "Atmanirbhar Bharat",
+  "Indian Coast Guard",
+  "Akash (missile)",
+  "Pinaka multi-barrel rocket launcher",
+  "HAL Prachand",
+  "Bharat Dynamics",
+  "Garden Reach Shipbuilders & Engineers",
+  "Cochin Shipyard",
+  "Arihant-class submarine",
+  "Project 75I-class submarine",
+  "Bharat Earth Movers",
+  "Ordnance Factory Board",
+  "Agni (missile)",
+  "Indian Army",
+  "Defence Space Agency",
 ];
 
 /** How many releases to fetch in one run. Each is ~78 KB. */
@@ -209,10 +228,14 @@ export function ministryOf(text: string): string | null {
  */
 export function classify(text: string): { measure: Measure; cue: string } {
   const rules: Array<[Measure, RegExp]> = [
-    ["acceptance-of-necessity", /\bAcceptance of Necessity\b|\bAoN\b/i],
-    ["clearance", /Cabinet Committee on Security\b|\bCCS\b\s+(?:has\s+)?(?:approved|cleared)/i],
-    ["contract", /\b(?:sign(?:s|ed|ing)?|ink(?:s|ed)?|conclude[ds]?|award(?:s|ed)?)\b[^.]{0,80}\b(?:contract|agreement|MoU|order)\b/i],
-    ["delivery", /\b(?:deliver(?:s|ed|y)|hand(?:s|ed)\s+over|induct(?:s|ed|ion)|commission(?:s|ed))\b/i],
+    ["acceptance-of-necessity",
+      /\bAcceptance of Necessity\b|\bAoN\b|\bDefence Acquisition Council\b|\bDAC\b\s+(?:approves?|clears?|accords?)/i],
+    ["clearance",
+      /\bCabinet Committee on Security\b|\bCCS\b\s+(?:has\s+)?(?:approved|cleared)|\b(?:Union\s+)?Cabinet\b[^.]{0,40}\bapprove/i],
+    ["contract",
+      /\b(?:sign(?:s|ed|ing)?|ink(?:s|ed)?|conclude[ds]?|award(?:s|ed)?|place[sd]?|issue[sd]?)\b[^.]{0,80}\b(?:contracts?|agreements?|MoU|(?:supply\s+)?orders?)\b/i],
+    ["delivery",
+      /\b(?:deliver(?:s|ed|y)|hand(?:s|ed)\s+over|induct(?:s|ed|ion)|commission(?:s|ed))\b/i],
   ];
   for (const [measure, re] of rules) {
     const m = re.exec(text);
@@ -233,18 +256,41 @@ const COSTY = /\b(cost|costing|value|valued|worth|amount|approximately|price)\b/
 
 export function moneyIn(text: string): Money[] {
   const out: Money[] = [];
+  const seen = new Set<string>();
   for (const raw of text.split(/(?<=[.!?])\s+/)) {
     if (!COSTY.test(raw)) continue;
+    /**
+     * "lakh crore" is one unit, not a lakh.
+     *
+     * The DAC's releases are full of "Rs 1.45 lakh crore". A unit pattern that
+     * tries `lakh` before `lakh crore` reads that as 1.45 lakh — a hundred
+     * thousand rupees where the release means one and a half trillion, off by
+     * a factor of ten million, and looking entirely ordinary in a table. The
+     * compound alternatives come first for that reason. "Cr" is here because
+     * PIB writes it: "contracts worth Rs 2580 Cr".
+     */
     const re =
-      /(₹|Rs\.?|INR|US\s?\$|\$)\s?([\d][\d,]*(?:\.\d+)?)\s*(crore|crores|lakh|lakhs|billion|million|bn|mn)?/gi;
+      /(₹|Rs\.?|INR|US\s?\$|\$)\s?([\d][\d,]*(?:\.\d+)?)\s*(lakh\s+crores?|thousand\s+crores?|crores?|lakhs?|billion|million|bn|mn|cr\.?)?\b/gi;
     for (const m of raw.matchAll(re)) {
       const sym = (m[1] ?? "").toUpperCase();
-      out.push({
+      const unit = (m[3] ?? "").toLowerCase()
+        .replace(/\.$/, "").replace(/\s+/g, " ").replace(/s\b/g, "")
+        .replace(/^cr$/, "crore");
+      const money: Money = {
         amount: m[2] ?? "",
         currency: sym.includes("$") || sym === "USD" ? "USD" : "INR",
-        unit: (m[3] ?? "").toLowerCase().replace(/s$/, ""),
+        unit,
         sentence: raw.slice(0, 300).trim(),
-      });
+      };
+      // PIB serves the body more than once per page — in the article, in a
+      // meta description, in a print block — so the same figure arrived six
+      // and twelve times per release and the row read as a dozen separate
+      // claims. One entry per distinct figure; the sentence is the first one
+      // it was seen in.
+      const key = `${money.amount}|${money.currency}|${money.unit}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(money);
     }
   }
   return out;
@@ -293,7 +339,7 @@ export async function run(): Promise<void> {
 
   // ── Reading the releases themselves ───────────────────────────────────
   const deals: Deal[] = [];
-  let fetched = 0, dead = 0, notDefence = 0;
+  let fetched = 0, dead = 0, notDefence = 0, notAnEvent = 0;
 
   for (const prid of prids.slice(0, MAX_RELEASES)) {
     const res = await getText(`${PIB}${prid}`, { cacheMs: 30 * 24 * 3600_000, retries: 1, timeoutMs: 45_000 });
@@ -303,7 +349,24 @@ export async function run(): Promise<void> {
     const body = textOf(html);
     if (!isDefenceAcquisition(body)) { notDefence++; continue; }
 
-    const { measure, cue } = classify(body);
+    /**
+     * Classified from the headline, and dropped when the headline says nothing.
+     *
+     * Classifying from the body put "VICE ADMIRAL AJAY KOCHHAR ASSUMES CHARGE"
+     * in the ledger as a delivery, because a flag officer's biography mentions
+     * ships he commissioned. It also admitted a budget statement, a naval
+     * exercise, a year-end review and a parliamentary answer about Rafale —
+     * thirteen rows of thirty-six, every one of them a plausible-looking entry
+     * in a defence deals table.
+     *
+     * A PIB headline is declarative and states the event: "MoD inks two
+     * contracts worth Rs 62,700 crore with HAL", "DAC clears proposals worth
+     * Rs 2.38 lakh crore". So the headline decides, and a release whose
+     * headline names none of the four events is counted as not-an-event rather
+     * than filed under whichever measure its body happened to mention.
+     */
+    const { measure, cue } = classify(titleOf(html));
+    if (measure === "unclassified") { notAnEvent++; continue; }
     const money = moneyIn(body);
     deals.push({
       prid,
@@ -329,7 +392,7 @@ export async function run(): Promise<void> {
     return {
       articlesRead, articlesMissing,
       citedIds: prids.length,
-      fetched, dead, notDefence,
+      fetched, dead, notDefence, notAnEvent,
       withDate: deals.filter((d) => d.date).length,
       withValue: deals.filter((d) => d.money.length > 0).length,
       ambiguous: deals.filter((d) => d.ambiguousValue).length,
@@ -342,7 +405,7 @@ export async function run(): Promise<void> {
   const m = meta();
   console.log(
     `\n${deals.length} defence acquisition releases from ${fetched} fetched ` +
-    `(${notDefence} were not acquisitions, ${dead} did not answer)`,
+    `(${notDefence} were not acquisitions, ${notAnEvent} announced no event, ${dead} did not answer)`,
   );
   console.log(`  dated: ${m.withDate}   with a stated figure: ${m.withValue}   ambiguous: ${m.ambiguous}`);
   for (const [k, v] of Object.entries(m.byMeasure)) console.log(`  ${k.padEnd(24)} ${v}`);
@@ -368,6 +431,12 @@ async function save(deals: Deal[], meta: Record<string, unknown>): Promise<void>
       "A CCS clearance, a DAC Acceptance of Necessity, a signed contract and a delivery are " +
       "four different events. An AoN is permission to begin procuring and many never become " +
       "contracts. Every row carries which of the four it is and no total crosses them.",
+    eventNote:
+      "A release is in this file only when its own headline names one of the four events. " +
+      "Classifying from the body admitted a flag officer's appointment as a delivery, because " +
+      "his biography mentions ships he commissioned — along with a budget statement, a naval " +
+      "exercise and a parliamentary answer. A PIB headline states the event; the body mentions " +
+      "everything.",
     valueNote:
       "A figure is recorded only from a sentence that also names a cost, and that sentence is " +
       "kept beside it. Units are as written and never converted — the conversion is where a " +
