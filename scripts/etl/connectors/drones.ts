@@ -34,6 +34,46 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getText } from "../lib/http";
 import { isEntryPoint } from "../lib/entry";
+import atlas from "world-atlas/countries-110m.json";
+
+/**
+ * The country vocabulary, taken from the map this data will be drawn on.
+ *
+ * A blocklist of words that are not countries was the wrong instrument, and
+ * the evidence was unambiguous: matching the parsed names against the world
+ * atlas found eight non-countries among forty-nine — "Ilham Aliyev", "Naval
+ * Air Warfare Center", "Porbandar", "exclusive economic zone", two air forces
+ * whose singular "Force" slipped a rule written for "forces". Every one would
+ * have rendered as a plausible row and none as an error.
+ *
+ * So the atlas is the vocabulary now. A name that does not resolve to a
+ * country the map can draw is not an operator, whatever it looks like. This is
+ * a hard external check rather than a list of things I thought to exclude, and
+ * it cannot be defeated by a phrasing I failed to anticipate.
+ */
+const ATLAS_NAMES: Set<string> = new Set(
+  (atlas as unknown as { objects: { countries: { geometries: Array<{ properties: { name: string } }> } } })
+    .objects.countries.geometries.map((g) => g.properties.name),
+);
+
+/** Names this project writes differently from the atlas. */
+const TO_ATLAS: Record<string, string> = {
+  "Türkiye": "Turkey",
+  "United States": "United States of America",
+  "Czech Republic": "Czechia",
+  "Serbia": "Republic of Serbia",
+  "North Macedonia": "Macedonia",
+  "Bosnia and Herzegovina": "Bosnia and Herz.",
+  "South Sudan": "S. Sudan",
+  "Dominican Republic": "Dominican Rep.",
+};
+
+/** The atlas name for a parsed operator, or null when it is not a country. */
+function resolveCountry(name: string): string | null {
+  const direct = TO_ATLAS[name] ?? name;
+  if (ATLAS_NAMES.has(direct)) return direct;
+  return null;
+}
 
 const ROOT = process.cwd();
 const OUT = join(ROOT, "data", "global", "drones.json");
@@ -189,6 +229,14 @@ export interface DroneType extends Type {
   method?: "list" | "templates";
   /** The article counting its own operators, where it does. */
   statedReach?: string;
+  /**
+   * Names the parser read that are not countries the map can draw.
+   *
+   * Kept rather than discarded: they are the record of what the looser reads
+   * pick up, and the list is how anyone checks whether the vocabulary is doing
+   * its job or silently eating real operators.
+   */
+  unresolved?: string[];
 }
 
 async function wikitext(page: string): Promise<string | null> {
@@ -341,6 +389,7 @@ export async function run(): Promise<void> {
     const seen = new Set<string>();
     const operators: Operator[] = [];
     const nonState: string[] = [];
+    const unresolved: string[] = [];
     let method: "list" | "templates" = "list";
     for (const line of section.split("\n")) {
       if (NON_STATE.test(line)) {
@@ -348,8 +397,11 @@ export async function run(): Promise<void> {
         if (who && !nonState.includes(who)) nonState.push(who);
         continue;
       }
-      const c = countryOf(line);
-      if (!c || seen.has(c)) continue;
+      const parsed = countryOf(line);
+      if (!parsed) continue;
+      const c = resolveCountry(parsed);
+      if (!c) { if (!unresolved.includes(parsed)) unresolved.push(parsed); continue; }
+      if (seen.has(c)) continue;
       seen.add(c);
       operators.push({ country: c, asWritten: line.replace(/^\*+\s*/, "").slice(0, 90).trim() });
     }
@@ -393,10 +445,11 @@ export async function run(): Promise<void> {
         const key = raw.toLowerCase().replace(/\s*\(.*?\)\s*$/, "").trim();
         if (!key || NOT_A_COUNTRY.test(key) || NON_STATE.test(key)) continue;
         const name = ALIAS[key] ?? raw;
-        if (/\d/.test(name) || name.length > 32 || name.split(/\s+/).length > 4) continue;
-        if (seen.has(name)) continue;
-        seen.add(name);
-        operators.push({ country: name, asWritten: cell.slice(0, 80).trim() });
+        const resolved = resolveCountry(ALIAS[key] ?? raw);
+        if (!resolved) { if (!unresolved.includes(raw)) unresolved.push(raw); continue; }
+        if (seen.has(resolved)) continue;
+        seen.add(resolved);
+        operators.push({ country: resolved, asWritten: cell.slice(0, 80).trim() });
       }
     }
 
@@ -412,15 +465,17 @@ export async function run(): Promise<void> {
         const key = raw.toLowerCase().replace(/\s*\(.*?\)\s*$/, "").trim();
         if (!key || NOT_A_COUNTRY.test(key) || NON_STATE.test(key)) continue;
         const name = ALIAS[key] ?? raw;
-        if (/\d/.test(name) || name.length > 32 || name.split(/\s+/).length > 4) continue;
-        if (seen.has(name)) continue;
-        seen.add(name);
-        operators.push({ country: name, asWritten: `{{flag|${raw}}}` });
+        const resolved = resolveCountry(ALIAS[key] ?? raw);
+        if (!resolved) { if (!unresolved.includes(raw)) unresolved.push(raw); continue; }
+        if (seen.has(resolved)) continue;
+        seen.add(resolved);
+        operators.push({ country: resolved, asWritten: `{{flag|${raw}}}` });
       }
     }
 
     types.push({
       ...t, operators, nonState, read: true, method,
+      ...(unresolved.length > 0 ? { unresolved } : {}),
       ...(statedReach(section) ? { statedReach: statedReach(section)! } : {}),
       // The first lines of the section as they actually are. The previous
       // round returned nought operators per type and the log said only that;

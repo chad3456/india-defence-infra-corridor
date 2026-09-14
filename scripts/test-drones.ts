@@ -24,7 +24,7 @@ interface Op { country: string; asWritten: string }
 interface Type {
   page: string; name: string; origin: string; klass: string;
   operators: Op[]; nonState: string[]; read: boolean; note?: string;
-  method?: "list" | "templates"; statedReach?: string;
+  method?: "list" | "templates"; statedReach?: string; unresolved?: string[];
 }
 const d = JSON.parse(readFileSync(FILE, "utf8")) as {
   types: Type[];
@@ -73,6 +73,20 @@ console.log("\nCountries counted once");
     /\b(houthi|hezbollah|hamas|wagner|isis|taliban)\b/i.test(c.country));
   ok("no non-state group is counted as a country", nonState.length === 0,
     nonState.map((c) => c.country).join(" / "));
+}
+{
+  // Every operator must be a country the world map can actually draw. This
+  // replaced a blocklist that had let through a person (Ilham Aliyev), a naval
+  // research centre, an Indian port and the phrase "exclusive economic zone" —
+  // eight non-countries in forty-nine, every one of which would have rendered
+  // as a plausible row.
+  const atlasModule = require("world-atlas/countries-110m.json") as {
+    objects: { countries: { geometries: Array<{ properties: { name: string } }> } };
+  };
+  const names = new Set(atlasModule.objects.countries.geometries.map((g) => g.properties.name));
+  const undrawable = d.countries.filter((c) => !names.has(c.country));
+  ok("every operator resolves to a country on the world map", undrawable.length === 0,
+    undrawable.slice(0, 4).map((c) => c.country).join(" / "));
 }
 
 console.log("\nFacts a correct parse must contain");
