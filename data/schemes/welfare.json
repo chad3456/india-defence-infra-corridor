@@ -1,11 +1,11 @@
 {
-  "builtAt": "2026-09-14T16:33:51.720Z",
+  "builtAt": "2026-09-14T16:36:40.492Z",
   "rosterSource": "English Wikipedia: List of schemes of the government of India",
   "rosterAttempts": [
     {
       "page": "List_of_schemes_of_the_government_of_India",
       "bytes": 110625,
-      "schemes": 63,
+      "schemes": 128,
       "headings": [
         "== List",
         "== Evaluations",
@@ -50,26 +50,78 @@
   "coverageNote": "The roster is long and the coverage column is nearly empty, and that is the finding rather than unfinished work. Fourteen scheme dashboards were asked what they would give a script. Most gave nothing: PMAY-Gramin, Mission Antyodaya, Saubhagya and the MGNREGA report server refused at the connection, Swachh Bharat returned 404, PM-KISAN served a stub, and the government's own myScheme directory answered 401.",
   "fourGrains": "Household, village, beneficiary count and state aggregate are four different things and share no column here. A beneficiary count has no denominator and is not a penetration rate; supplying one is exactly where a tracker invents a number. A village percentage is of villages and not of people, and the two diverge sharply because villages differ in size by orders of magnitude.",
   "launchYearNote": "A launch year is recorded only where the list states one in the entry itself. It is never inferred from an article title or a date mentioned nearby, because a wrong year here is indistinguishable from a right one.",
-  "schemeCount": 63,
-  "sectorCount": 8,
+  "schemeCount": 128,
+  "sectorCount": 46,
   "coverageRows": 0,
   "schemesWithCoverage": 0,
   "bySector": [
     {
-      "sector": "List",
-      "schemes": 35
-    },
-    {
       "sector": "Telangana",
       "schemes": 12
+    },
+    {
+      "sector": "MoRD",
+      "schemes": 9
+    },
+    {
+      "sector": "MoF",
+      "schemes": 8
+    },
+    {
+      "sector": "MoWCD",
+      "schemes": 8
+    },
+    {
+      "sector": "MoST",
+      "schemes": 7
     },
     {
       "sector": "Madhya Pradesh",
       "schemes": 6
     },
     {
+      "sector": "MoE",
+      "schemes": 5
+    },
+    {
+      "sector": "MoHFW",
+      "schemes": 5
+    },
+    {
+      "sector": "List",
+      "schemes": 4
+    },
+    {
       "sector": "Tamil Nadu",
       "schemes": 4
+    },
+    {
+      "sector": "MoHUA",
+      "schemes": 4
+    },
+    {
+      "sector": "MoJS",
+      "schemes": 4
+    },
+    {
+      "sector": "MoA",
+      "schemes": 4
+    },
+    {
+      "sector": "MoLE",
+      "schemes": 3
+    },
+    {
+      "sector": "MoP",
+      "schemes": 3
+    },
+    {
+      "sector": "Multiple",
+      "schemes": 3
+    },
+    {
+      "sector": "MoUD",
+      "schemes": 3
     },
     {
       "sector": "Karnataka",
@@ -80,11 +132,111 @@
       "schemes": 2
     },
     {
+      "sector": "MoMSME",
+      "schemes": 2
+    },
+    {
+      "sector": "MoAFW",
+      "schemes": 2
+    },
+    {
+      "sector": "MoYAS",
+      "schemes": 2
+    },
+    {
+      "sector": "MoCF",
+      "schemes": 2
+    },
+    {
+      "sector": "MoCAFPD",
+      "schemes": 2
+    },
+    {
       "sector": "Odisha",
       "schemes": 1
     },
     {
       "sector": "West Bengal",
+      "schemes": 1
+    },
+    {
+      "sector": "MoR",
+      "schemes": 1
+    },
+    {
+      "sector": "MoD",
+      "schemes": 1
+    },
+    {
+      "sector": "12 ministries",
+      "schemes": 1
+    },
+    {
+      "sector": "MoFAHD",
+      "schemes": 1
+    },
+    {
+      "sector": "MoMA",
+      "schemes": 1
+    },
+    {
+      "sector": "MoPR",
+      "schemes": 1
+    },
+    {
+      "sector": "MoP&NG",
+      "schemes": 1
+    },
+    {
+      "sector": "MoCA",
+      "schemes": 1
+    },
+    {
+      "sector": "MoF, MoSJE",
+      "schemes": 1
+    },
+    {
+      "sector": "DPIIT (MoCI)",
+      "schemes": 1
+    },
+    {
+      "sector": "MeitY, MoF",
+      "schemes": 1
+    },
+    {
+      "sector": "MoSD&E",
+      "schemes": 1
+    },
+    {
+      "sector": "MoDWS, MoHUA",
+      "schemes": 1
+    },
+    {
+      "sector": "MoWR",
+      "schemes": 1
+    },
+    {
+      "sector": "MoRTH",
+      "schemes": 1
+    },
+    {
+      "sector": "MoHRD",
+      "schemes": 1
+    },
+    {
+      "sector": "MoSJE",
+      "schemes": 1
+    },
+    {
+      "sector": "MoSPI",
+      "schemes": 1
+    },
+    {
+      "sector": "MoTA",
+      "schemes": 1
+    },
+    {
+      "sector": "MoLJ",
       "schemes": 1
     }
   ],
@@ -126,6 +278,16 @@
     "== References",
     "== Further reading",
     "== External links"
+  ],
+  "listTableHeaders": [
+    [
+      "Scheme{{NoteTag|content=Can be labelled as a scheme (), mission, campaign (), programme (), project or plan. There is no textbook clarity on the differentiation between the labels including hierarchy.}}",
+      "CS/CSS",
+      "width=\"70px\" — | Lead Ministry",
+      "Year of Launch",
+      "Sector",
+      "Summary"
+    ]
   ],
   "refused": [
     {
@@ -337,208 +499,598 @@
       "article": "Free laptop distribution scheme of the Uttar Pradesh government"
     },
     {
-      "name": "MoMSME",
+      "name": "One Nation One Subscription",
+      "sector": "MoE",
+      "launched": 2025,
+      "article": null
+    },
+    {
+      "name": "PM Vishwakarma",
+      "sector": "MoMSME",
+      "launched": 2023,
+      "article": null
+    },
+    {
+      "name": "Amrit Bharat Station Scheme",
+      "sector": "MoR",
+      "launched": 2023,
+      "article": null
+    },
+    {
+      "name": "PM eBus Seva",
+      "sector": "MoHUA",
+      "launched": 2023,
+      "article": null
+    },
+    {
+      "name": "[https://www.myscheme.gov.in/schemes/mssc Mahila Samman Savings Certificate (MSSC)]",
       "sector": "List",
       "launched": 2023,
-      "article": "Ministry of Micro, Small and Medium Enterprises"
+      "article": null
     },
     {
-      "name": "MoHUA",
-      "sector": "List",
-      "launched": 2023,
-      "article": "Ministry of Housing and Urban Affairs"
+      "name": "Agnipath Scheme",
+      "sector": "MoD",
+      "launched": 2022,
+      "article": null
     },
     {
-      "name": "MoWCD",
-      "sector": "List",
-      "launched": 2021,
-      "article": "Ministry of Women and Child Development"
-    },
-    {
-      "name": "MoFAHD",
-      "sector": "List",
+      "name": "PM SVANidhi",
+      "sector": "MoHUA",
       "launched": 2020,
-      "article": "Ministry of Fisheries, Animal Husbandry and Dairying"
+      "article": null
     },
     {
-      "name": "MoJS",
-      "sector": "List",
+      "name": "Strengthening Teaching-Learning and Results for States (STARS)",
+      "sector": "MoE",
+      "launched": 2020,
+      "article": null
+    },
+    {
+      "name": "Garib Kalyan Rojgar Abhiyaan (Poor Welfare Employment Campaign)",
+      "sector": "12 ministries",
+      "launched": 2020,
+      "article": null
+    },
+    {
+      "name": "PM Matsya Sampada Yojana (PMMSY, PM Fish Resources Scheme)",
+      "sector": "MoFAHD",
+      "launched": 2020,
+      "article": null
+    },
+    {
+      "name": "PM Kisan Samman Nidhi (PM KISAN, PM Farmer's Tribute Fund)",
+      "sector": "MoF",
       "launched": 2019,
-      "article": "Ministry of Jal Shakti"
+      "article": null
     },
     {
-      "name": "MoNRE",
-      "sector": "List",
+      "name": "Jal Jeevan Mission (Water Life Mission)",
+      "sector": "MoJS",
       "launched": 2019,
-      "article": "Ministry of New and Renewable Energy"
+      "article": null
     },
     {
-      "name": "MoLE",
-      "sector": "List",
+      "name": "Atal Bhujal Yojana (Atal Jal, Atal Groundwater Scheme)",
+      "sector": "MoJS",
       "launched": 2019,
-      "article": "Ministry of Labour and Employment (India)"
+      "article": null
     },
     {
-      "name": "MoAFW",
-      "sector": "List",
+      "name": "PM Shram Yogi Mandhan (PM SYM)",
+      "sector": "MoLE",
+      "launched": 2019,
+      "article": null
+    },
+    {
+      "name": "PM Annadata Aay Sanrakshan Abhiyan (PM AASHA, Farmer Income Protection Scheme)",
+      "sector": "MoAFW",
       "launched": 2018,
-      "article": "Ministry of Agriculture and Farmers' Welfare"
+      "article": null
     },
     {
-      "name": "MoHFW",
-      "sector": "List",
+      "name": "Samagra Shiksha (National Education Mission)",
+      "sector": "MoE",
       "launched": 2018,
-      "article": "Ministry of Health and Family Welfare (India)"
+      "article": null
     },
     {
-      "name": "MoMA",
-      "sector": "List",
+      "name": "PM Jan Vikas Karyakaram (PMJVK, PM People Progress Programme)",
+      "sector": "MoMA",
       "launched": 2018,
-      "article": "Ministry of Minority Affairs"
+      "article": null
     },
     {
-      "name": "MoPR",
-      "sector": "List",
+      "name": "Rashtriya Gram Swaraj Abhiyan (RGSA, National Village Swaraj Campaign)",
+      "sector": "MoPR",
       "launched": 2018,
-      "article": "Ministry of Panchayati Raj"
+      "article": null
     },
     {
-      "name": "Institutes of Eminence",
-      "sector": "List",
+      "name": "World Class Institutions Scheme",
+      "sector": "MoE",
       "launched": 2017,
-      "article": "Institutes of Eminence"
+      "article": null
     },
     {
-      "name": "MoYAS",
-      "sector": "List",
+      "name": "Khelo India – National Programme for Development of Sports",
+      "sector": "MoYAS",
       "launched": 2017,
-      "article": "Ministry of Youth Affairs and Sports"
+      "article": null
     },
     {
-      "name": "MoP&NG",
-      "sector": "List",
+      "name": "Saubhagya Yojana",
+      "sector": "MoP",
+      "launched": 2017,
+      "article": null
+    },
+    {
+      "name": "Krishonnati Yojana",
+      "sector": "MoAFW",
+      "launched": 2017,
+      "article": null
+    },
+    {
+      "name": "PM Matritva Vandana Yojana (PM Maternity Support Scheme)",
+      "sector": "MoWCD",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Digital Payment Infrastructure",
+      "sector": "Multiple",
       "launched": 2016,
-      "article": "Ministry of Petroleum and Natural Gas"
+      "article": null
     },
     {
-      "name": "MoCA",
-      "sector": "List",
+      "name": "PM Ujjwala Yojana (PM Lighting Scheme)",
+      "sector": "MoP&NG",
       "launched": 2016,
-      "article": "Ministry of Civil Aviation (India)"
+      "article": null
     },
     {
-      "name": "DPIIT",
-      "sector": "List",
+      "name": "UDAN",
+      "sector": "MoCA",
       "launched": 2016,
-      "article": "Department for Promotion of Industry and Internal Trade"
+      "article": null
     },
     {
-      "name": "Rashtriya Krishi Vikas Yojna",
-      "sector": "List",
-      "launched": 2015,
-      "article": "Rashtriya Krishi Vikas Yojana"
-    },
-    {
-      "name": "MeitY",
-      "sector": "List",
-      "launched": 2015,
-      "article": "Ministry of Electronics and Information Technology"
-    },
-    {
-      "name": "MoHI",
-      "sector": "List",
-      "launched": 2015,
-      "article": "Ministry of Heavy Industries"
-    },
-    {
-      "name": "MoRD",
-      "sector": "List",
+      "name": "PM Fasal Bima Yojana (PM Crop Insurance Scheme)",
+      "sector": "Multiple",
       "launched": 2016,
-      "article": "Ministry of Rural Development (India)"
+      "article": null
     },
     {
-      "name": "MoSD&E",
-      "sector": "List",
+      "name": "Stand-Up India",
+      "sector": "MoF, MoSJE",
+      "launched": 2016,
+      "article": null
+    },
+    {
+      "name": "National Hydrology Project",
+      "sector": "MoJS",
+      "launched": 2016,
+      "article": null
+    },
+    {
+      "name": ":simple:Startup_India|Start-Up India [simple]",
+      "sector": "DPIIT (MoCI)",
+      "launched": 2016,
+      "article": null
+    },
+    {
+      "name": "PM Krishi Sinchai Yojana (PMKSY, PM Agriculture Irrigation Scheme)",
+      "sector": "Multiple",
       "launched": 2015,
-      "article": "Ministry of Skill Development and Entrepreneurship"
+      "article": null
     },
     {
-      "name": "MoUD",
-      "sector": "List",
+      "name": "PM Mudra Yojana (PM Micro Units Development and Refinance Agency Scheme)",
+      "sector": "MoF",
       "launched": 2015,
-      "article": "Ministry of Housing and Urban Affairs"
+      "article": null
     },
     {
-      "name": "MoCF",
-      "sector": "List",
+      "name": "Smart Cities Mission",
+      "sector": "MoHUA",
       "launched": 2015,
-      "article": "Ministry of Chemicals and Fertilizers"
+      "article": null
     },
     {
-      "name": "MoDWS",
-      "sector": "List",
+      "name": "Digital India",
+      "sector": "MeitY, MoF",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "PM Gramin Awas Yojana (PMAY-G, PM Rural Housing Scheme)",
+      "sector": "MoRD",
+      "launched": 2016,
+      "article": null
+    },
+    {
+      "name": "PM Awaas Yojana - (Urban) (PMAY-R, PM Housing Scheme Urban)",
+      "sector": "MoHUA",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Atal Pension Yojana (Atal Pension Scheme)",
+      "sector": "MoF",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "PM Suraksha Bima Yojana (PMSBY, PM Safety Insurance Scheme)",
+      "sector": "MoF",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "PM Jeevan Jyoti Bima Yojana (PMJJBY, () PM Life Light Insurance Scheme)",
+      "sector": "MoF",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Unnat Jyoti by Affordable LEDs for All (UJALA)",
+      "sector": "MoP",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "PM Kaushal Vikas Yojna (PM Skill Development Scheme)",
+      "sector": "MoSD&E",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Heritage City Development and Augmentation Yojana (HRIDAY)",
+      "sector": "MoUD",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Sukanya Samridhi Yojana (Girl Child Prosperity Scheme)",
+      "sector": "MoWCD",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "PM Bhartiya Jan Aushadhi Kendra (PM Indian Public Medicine Scheme, PMBJK)",
+      "sector": "MoCF",
+      "launched": 2015,
+      "article": null
+    },
+    {
+      "name": "Deendayal Antyodaya Yojana",
+      "sector": "MoRD",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "National Career Service (NCS)",
+      "sector": "MoLE",
+      "launched": 2015,
+      "article": null
+    },
+    {
+      "name": "Deendayal Upadhyaya Gram Jyoti Yojana",
+      "sector": "MoP",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Atal Mission for Rejuvenation and Urban Transformation (AMRUT)",
+      "sector": "MoUD",
+      "launched": 2015,
+      "article": null
+    },
+    {
+      "name": "Swachh Bharat Abhiyan (Clean India Mission)",
+      "sector": "MoDWS, MoHUA",
       "launched": 2014,
-      "article": "Ministry of Drinking Water and Sanitation"
+      "article": null
     },
     {
-      "name": "MoWR",
-      "sector": "List",
+      "name": "PM Jan Dhan Yojana (PM's People's Wealth Scheme)",
+      "sector": "MoF",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Namami Gange Programme",
+      "sector": "MoWR",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Rajiv Gandhi Scheme for Empowerment of Adolescent Boys (Saksham)",
+      "sector": "MoWCD",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Sansad Adarsh Gram Yojana (SAGY, Saanjhi, Member of Parliament Model Village Scheme)",
+      "sector": "MoRD",
       "launched": 2014,
-      "article": "Ministry of Water Resources, River Development and Ganga Rejuvenation"
+      "article": null
     },
     {
-      "name": "MoST",
+      "name": "Rashtriya Uchchatar Shiksha Abhiyan (National Higher Education Mission)",
+      "sector": "MoE",
+      "launched": 2013,
+      "article": null
+    },
+    {
+      "name": "One Stop Crisis Centre (Sakhi)",
+      "sector": "MoWCD",
+      "launched": 2013,
+      "article": null
+    },
+    {
+      "name": "Direct Benefit Transfer (DBT)",
       "sector": "List",
+      "launched": 2013,
+      "article": null
+    },
+    {
+      "name": "Scheme for Adolescent Girls (SAG, Adolescent Girls (AG) Scheme)",
+      "sector": "MoWCD",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "PM Adarsh Gram Yojana (PM Model Village Scheme)",
+      "sector": "MoRD",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Promotion of University Research and Scientific Excellence (PURSE)",
+      "sector": "MoST",
       "launched": 2009,
-      "article": "Ministry of Science and Technology (India)"
+      "article": null
     },
     {
-      "name": "MoRTH",
-      "sector": "List",
+      "name": "Clean Energy Research Initiative (CERI)",
+      "sector": "MoST",
+      "launched": 2009,
+      "article": null
+    },
+    {
+      "name": "Innovation in Science Pursuit for Inspired Research Programme (INSPIRE Programme)",
+      "sector": "MoST",
+      "launched": 2008,
+      "article": null
+    },
+    {
+      "name": "Cognitive Science Research Initiative (CSRI)",
+      "sector": "MoST",
+      "launched": 2008,
+      "article": null
+    },
+    {
+      "name": "Rashtriya Swasthya Bima Yojana (RSBY, National Health Insurance Programme)",
+      "sector": "MoHFW",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "National Action Plan for Climate Change (NAPCC)",
+      "sector": "MoST",
+      "launched": 2008,
+      "article": null
+    },
+    {
+      "name": "PM's Employment Generation Programme (PMEGP)",
+      "sector": "MoMSME",
+      "launched": 2008,
+      "article": null
+    },
+    {
+      "name": "Gramin Bhandaran Yojana (Rural Godown Scheme)",
+      "sector": "MoA",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Rashtriya Krishi Vikas Yojana (RKVY, National Agriculture Development Programme)",
+      "sector": "MoA",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "National Mission on Nano Science and Technology",
+      "sector": "MoST",
+      "launched": 2007,
+      "article": null
+    },
+    {
+      "name": "Mahatma Gandhi National Rural Employment Guarantee Act (MG-NREGA)",
+      "sector": "MoRD",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Pooled Finance Development Fund Scheme (PFDF)",
+      "sector": "MoUD",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "National Creche Scheme",
+      "sector": "MoWCD",
+      "launched": 2006,
+      "article": null
+    },
+    {
+      "name": "Janani Suraksha Yojana (Maternity Safety Scheme)",
+      "sector": "MoHFW",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "National Health Mission",
+      "sector": "MoHFW",
       "launched": 2005,
-      "article": "Ministry of Road Transport and Highways"
+      "article": null
     },
     {
-      "name": "MoHRD",
-      "sector": "List",
-      "launched": 2004,
-      "article": "Ministry of Human Resource Development (India)"
+      "name": "Livestock Insurance Scheme",
+      "sector": "MoA",
+      "launched": 2005,
+      "article": null
     },
     {
-      "name": "MoSJE",
-      "sector": "List",
+      "name": "Special Accelerated Road Development Programme (SARDP-NE)",
+      "sector": "MoRTH",
+      "launched": 2005,
+      "article": null
+    },
+    {
+      "name": "Kasturba Gandhi Balika Vidyalaya (Kasturba Gandhi Girls School)",
+      "sector": "MoHRD",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "National Pension System",
+      "sector": "MoF",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Deendayal Disabled Rehabilitation Scheme",
+      "sector": "MoSJE",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "PM Swasthya Suraksha Yojana (PMSSY, PM Health Protection Scheme)",
+      "sector": "MoHFW",
       "launched": 2003,
-      "article": "Ministry of Social Justice and Empowerment (India)"
+      "article": null
     },
     {
-      "name": "AIIMS",
-      "sector": "List",
-      "launched": 2003,
-      "article": "All India Institutes of Medical Sciences"
+      "name": "Sampoorna Grameen Rozgar Yojana (Universal Rural Employment Scheme)",
+      "sector": "MoRD",
+      "launched": null,
+      "article": null
     },
     {
-      "name": "MoCAFPD",
-      "sector": "List",
-      "launched": 2000,
-      "article": "Ministry of Consumer Affairs, Food and Public Distribution"
+      "name": "Swadhar Greh Scheme",
+      "sector": "MoWCD",
+      "launched": 2001,
+      "article": null
     },
     {
-      "name": "MoSPI",
-      "sector": "List",
-      "launched": 1993,
-      "article": "Ministry of Statistics and Programme Implementation (India)"
+      "name": "PM Gram Sadak Yojana (PMGSY, PM Village Road Scheme)",
+      "sector": "MoRD",
+      "launched": null,
+      "article": null
     },
     {
-      "name": "MoTA",
-      "sector": "List",
+      "name": "Antyodaya Anna Yojana (AAY, Antyodaya Food Scheme)",
+      "sector": "MoCAFPD",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Kishore Vaigyanik Protsahan Yojana (Young Scientist Incentive Plan)",
+      "sector": "MoST",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "National Social Assistance Programme",
+      "sector": "MoRD",
+      "launched": 1995,
+      "article": null
+    },
+    {
+      "name": "Members of Parliament Local Area Development Scheme (MPLADS)",
+      "sector": "MoSPI",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "National Scheme on Welfare of Fishermen",
+      "sector": "MoA",
+      "launched": 1992,
+      "article": null
+    },
+    {
+      "name": "National Social Assistance Scheme",
+      "sector": "MoRD",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Eklavya Model Residential School (EMRS)",
+      "sector": "MoTA",
       "launched": 1997,
-      "article": "Ministry of Tribal Affairs"
+      "article": null
     },
     {
-      "name": "MoLJ",
-      "sector": "List",
+      "name": "National Tuberculosis Elimination Program (NTEP)",
+      "sector": "MoHFW",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Voluntary Disclosure of Income Scheme",
+      "sector": "MoF",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Infrastructure Facilities for Judiciary",
+      "sector": "MoLJ",
       "launched": 1993,
-      "article": "Ministry of Law and Justice (India)"
+      "article": null
+    },
+    {
+      "name": "National Child Labour Projects (NCLP)",
+      "sector": "MoLE",
+      "launched": 1987,
+      "article": null
+    },
+    {
+      "name": "Interlinking of Rivers Project (ILR, NPP, National Perspective Plan)",
+      "sector": "MoJS",
+      "launched": 1980,
+      "article": null
+    },
+    {
+      "name": "Urea subsidy",
+      "sector": "MoCF",
+      "launched": 1977,
+      "article": null
+    },
+    {
+      "name": "Integrated Child Development Services",
+      "sector": "MoWCD",
+      "launched": null,
+      "article": null
+    },
+    {
+      "name": "Food subsidy",
+      "sector": "MoCAFPD",
+      "launched": 1972,
+      "article": null
+    },
+    {
+      "name": "National Service Scheme",
+      "sector": "MoYAS",
+      "launched": 1969,
+      "article": null
+    },
+    {
+      "name": "Kerosene subsidy",
+      "sector": "List",
+      "launched": 1956,
+      "article": null
     }
   ],
   "coverage": []
