@@ -162,9 +162,26 @@ console.log("\nThe defence filter needs both halves");
     !isDefenceAcquisition("Ministry of Railways signs contract for 200 coaches"));
 }
 
+/**
+ * `--readers-only` skips the checks on the built file.
+ *
+ * The ingest workflow runs this before the build, so a broken reader fails in
+ * twenty seconds rather than after five hundred fetches. But the committed
+ * ledger at that moment is the *old* one, and gating the build on the old
+ * artifact is how a fix gets blocked by the very thing it fixes — which is
+ * exactly what happened: the run that would have rebuilt the ledger failed on
+ * three checks against the ledger it was about to replace.
+ *
+ * So the pre-build gate is the readers alone, and the file's own checks run
+ * after the build, against the file the build just wrote.
+ */
+const readersOnly = process.argv.includes("--readers-only");
+
 console.log("\nThe built file, if it exists");
 const FILE = "data/defence/deals.json";
-if (!existsSync(FILE)) {
+if (readersOnly) {
+  console.log("  skip  --readers-only: the file is checked after the build, not before it.");
+} else if (!existsSync(FILE)) {
   console.log("  skip  not built yet — the connector runs in Actions.");
 } else {
   interface D {

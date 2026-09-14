@@ -45,8 +45,11 @@ jobs:
 
       - run: npm ci
 
+      # The readers only. The committed ledger at this point is the one the
+      # build is about to replace, and gating the build on it is how a fix gets
+      # blocked by the thing it fixes — which is what happened on run 2.
       - name: Check the readers before they meet a network
-        run: npm run test:deals
+        run: npm run test:deals -- --readers-only
 
       - name: Build
         env:
@@ -54,11 +57,16 @@ jobs:
           BRIGHTDATA_ZONE: ${{ secrets.BRIGHTDATA_ZONE }}
         run: npm run deals:build
 
-      # Always: the connector writes every twenty releases, so a run that hits
-      # the timeout still leaves what it read.
+      # Always, and before the check on the built file. A job that throws
+      # before committing leaves only a symptom in a log; the artifact is the
+      # diagnosis, and a ledger that fails a check is exactly the one worth
+      # having on disk to look at.
       - name: Commit the ledger
         if: always()
         run: >
           .github/scripts/commit-generated.sh
           data/defence/deals.json
           "chore(defence): deals ledger $(date -u +'%Y-%m-%d %H:%M')"
+
+      - name: Check the ledger that was just written
+        run: npm run test:deals
