@@ -1,7 +1,7 @@
 {
-  "builtAt": "2026-09-14T16:30:05.254Z",
+  "builtAt": "2026-09-14T16:33:45.843Z",
   "source": "English Wikipedia: List of states and union territories of India by population and List of states and union territories of India by area, which cite the Census of India.",
-  "populationBasis": "rowspan=2|Population (2024)",
+  "populationBasis": "Population (2024)",
   "censusBasis": "Population (2011)",
   "areaBasis": "Area (km 2 )",
   "basisNote": "populationBasis and areaBasis are the column headings these figures were actually read from, and they are recorded rather than assumed. The first version of this connector declared the populations to be the 2011 census and was wrong: the article publishes projections, and the totals came to 1.40 billion against a census that counted 1.21. Any page using these must print the basis beside the rate.",
@@ -9,17 +9,18 @@
   "vocabulary": "State names are the map's own spellings, which are what a join will be asked for. A name that does not match the topology is recorded as unmatched rather than aliased to something close, because a wrong alias deletes a state instead of failing.",
   "faults": [
     "the largest state by area parsed as Maharashtra, not Rajasthan",
+    "Uttar Pradesh's census population parsed as 2,40,928, not near 199.8 million — the column has moved",
     "only 7 states got an area"
   ],
   "tablesSeen": [
     {
       "page": "population",
       "header": [
-        "rowspan=2|Rank",
-        "rowspan=2|State or",
-        "rowspan=2|Population (2024)",
-        "rowspan=2|% India (2024)",
-        "rowspan=2|Density 2024",
+        "Rank",
+        "State or",
+        "Population (2024)",
+        "% India (2024)",
+        "Density 2024",
         "2023 Population estimate",
         "2011 Census Population",
         "Growth (2001–2012)",
