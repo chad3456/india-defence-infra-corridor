@@ -1,0 +1,53 @@
+name: Probe welfare sources
+
+# Asks which publishers answer a script, in what shape, and whether a page that
+# takes a parameter actually honours it. Publishes no figure of any kind.
+#
+# It runs here because the editing sandbox reaches almost nothing: api.github.com
+# answers and huggingface.co, data.gov.in and every government host return 000.
+# "Refused" from a local run would be a fact about the sandbox, not the source.
+#
+# Manual and on-change only.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-welfare.ts"
+      - "scripts/etl/lib/probe-run.ts"
+      - "scripts/etl/lib/probe-shape.ts"
+      - ".github/workflows/probe-welfare.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-welfare
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Probe
+        env:
+          BRIGHTDATA_API_KEY: ${{ secrets.BRIGHTDATA_API_KEY }}
+          BRIGHTDATA_ZONE: ${{ secrets.BRIGHTDATA_ZONE }}
+        run: npm run welfare:probe
+
+      # Always: the runner writes after every target, so a run killed by a slow
+      # government host still leaves the findings it did collect. The artifact
+      # is the diagnosis; a job that throws before committing leaves only a log.
+      - name: Commit the probe report
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/live/welfare-probe.json
+          "chore(sources): welfare probe $(date -u +'%Y-%m-%d %H:%M')"
