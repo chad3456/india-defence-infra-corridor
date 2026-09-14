@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-14T08:11:18.039Z",
+  "builtAt": "2026-09-14T08:13:01.263Z",
   "source": "English Wikipedia, the Operators section of each type's article.",
   "note": "Which countries are publicly recorded as operating each type. Not an inventory — no airframe counts, and no statement of whether a given operator arms them. Not a record of combat use, which is a separate and harder claim.",
   "gap": "Incomplete by construction. Classified and small-batch transfers do not reach an encyclopaedia, and an article's Operators section is edited unevenly, so an absent country means nobody wrote it down rather than that nobody flies it.",
@@ -10,7 +10,7 @@
     "the MQ-9's operators do not include the United States"
   ],
   "typeCount": 18,
-  "countryCount": 49,
+  "countryCount": 40,
   "types": [
     {
       "page": "Bayraktar_TB2",
@@ -80,17 +80,16 @@
           "asWritten": ";{{ARE}}"
         },
         {
-          "country": "United States",
+          "country": "United States of America",
           "asWritten": ";{{USA}}"
-        },
-        {
-          "country": "Naval Air Warfare Center",
-          "asWritten": "United States Navy [[Naval Air Warfare Center|Naval Air Warfare Center Weapon Division]] r"
         }
       ],
       "nonState": [],
       "read": true,
-      "method": "list"
+      "method": "list",
+      "unresolved": [
+        "Naval Air Warfare Center"
+      ]
     },
     {
       "page": "CAIG_Wing_Loong",
@@ -135,10 +134,6 @@
           "asWritten": "{{flag|Saudi Arabia}} — Exported to in 2014<ref name=\"JanesKazakhstan\"/>"
         },
         {
-          "country": "Serbia",
-          "asWritten": "{{flag|Serbia}} — Purchased 9<ref name=\"Deliveries2021\"/>"
-        },
-        {
           "country": "United Arab Emirates",
           "asWritten": "{{flag|United Arab Emirates}} — Exported to in 2011,<ref name=\"JanesKazakhstan\"/><ref name"
         },
@@ -149,7 +144,10 @@
       ],
       "nonState": [],
       "read": true,
-      "method": "list"
+      "method": "list",
+      "unresolved": [
+        "Serbia"
+      ]
     },
     {
       "page": "CAIG_Wing_Loong_II",
@@ -226,10 +224,6 @@
       "klass": "reconnaissance",
       "operators": [
         {
-          "country": "Israeli Defence Force",
-          "asWritten": "[[Israeli Defence Force]] – at least 1<ref>{{cite web |url=http://www.iai.co.il/32540-3333"
-        },
-        {
           "country": "Morocco",
           "asWritten": "{{flag|Morocco}}"
         },
@@ -262,17 +256,20 @@
           "asWritten": "{{flag|South Korea}}"
         },
         {
-          "country": "Türkiye",
+          "country": "Turkey",
           "asWritten": "{{flag|Türkiye}}"
         },
         {
-          "country": "United States",
+          "country": "United States of America",
           "asWritten": "{{flag|United States}}"
         }
       ],
       "nonState": [],
       "read": true,
-      "method": "templates"
+      "method": "templates",
+      "unresolved": [
+        "Israeli Defence Force"
+      ]
     },
     {
       "page": "Elbit_Hermes_900",
@@ -283,10 +280,6 @@
         {
           "country": "Azerbaijan",
           "asWritten": "{{AZE}}"
-        },
-        {
-          "country": "Ilham Aliyev",
-          "asWritten": ": Two Hermes 900s were delivered in 2017.<ref>{{cite web |title=Trade Registers |url=https"
         },
         {
           "country": "Brazil",
@@ -301,24 +294,8 @@
           "asWritten": "{{COL}}"
         },
         {
-          "country": "Colombian Aerospace Force",
-          "asWritten": ": In August 2012, Elbit won a multi-million-dollar contract to supply a mixed fleet of Her"
-        },
-        {
-          "country": "European Maritime Safety Agency",
-          "asWritten": ": In September 2018, the Portuguese company Centro de Engenharia e Desenvolvimento was con"
-        },
-        {
           "country": "India",
           "asWritten": "{{IND}}"
-        },
-        {
-          "country": "Porbandar",
-          "asWritten": ":On 14 Jan 2025 an Indian Navy Hermes 900 crashed near [[Porbandar]], [[Gujarat]] during f"
-        },
-        {
-          "country": "exclusive economic zone",
-          "asWritten": ": Iceland uses the Hermes 900 UAV to monitor its [[exclusive economic zone]].<ref>{{cite w"
         },
         {
           "country": "Israel",
@@ -329,10 +306,6 @@
           "asWritten": "{{MEX}}"
         },
         {
-          "country": "Serbia",
-          "asWritten": "{{SRB}}"
-        },
-        {
           "country": "Thailand",
           "asWritten": "{{THA}}"
         }
@@ -341,7 +314,15 @@
         ":Indian variant is to be designated as Adani Dri"
       ],
       "read": true,
-      "method": "list"
+      "method": "list",
+      "unresolved": [
+        "Ilham Aliyev",
+        "Colombian Aerospace Force",
+        "European Maritime Safety Agency",
+        "Porbandar",
+        "exclusive economic zone",
+        "Serbia"
+      ]
     },
     {
       "page": "IAI_Harop",
@@ -398,15 +379,14 @@
         {
           "country": "Russia",
           "asWritten": "{{RUS}}<ref name=\"defex\" />"
-        },
-        {
-          "country": "Islamic Resistance in Iraq",
-          "asWritten": "[[Islamic Resistance in Iraq]]<ref>{{Cite web |title=Tripling of Iraqi Militia Claimed Att"
         }
       ],
       "nonState": [],
       "read": true,
-      "method": "templates"
+      "method": "templates",
+      "unresolved": [
+        "Islamic Resistance in Iraq"
+      ]
     },
     {
       "page": "Mohajer-6",
@@ -612,7 +592,7 @@
       ]
     },
     {
-      "country": "United States",
+      "country": "United States of America",
       "types": [
         "MQ-1 Predator",
         "IAI Heron"
@@ -675,17 +655,6 @@
       ]
     },
     {
-      "country": "Serbia",
-      "types": [
-        "Wing Loong",
-        "Elbit Hermes 900"
-      ],
-      "origins": [
-        "China",
-        "Israel"
-      ]
-    },
-    {
       "country": "Uzbekistan",
       "types": [
         "Wing Loong",
@@ -725,15 +694,6 @@
       "origins": [
         "Iran",
         "Russia"
-      ]
-    },
-    {
-      "country": "Naval Air Warfare Center",
-      "types": [
-        "MQ-1 Predator"
-      ],
-      "origins": [
-        "United States"
       ]
     },
     {
@@ -800,15 +760,6 @@
       ]
     },
     {
-      "country": "Israeli Defence Force",
-      "types": [
-        "IAI Heron"
-      ],
-      "origins": [
-        "Israel"
-      ]
-    },
-    {
       "country": "Ecuador",
       "types": [
         "IAI Heron"
@@ -827,7 +778,7 @@
       ]
     },
     {
-      "country": "Türkiye",
+      "country": "Turkey",
       "types": [
         "IAI Heron"
       ],
@@ -836,52 +787,7 @@
       ]
     },
     {
-      "country": "Ilham Aliyev",
-      "types": [
-        "Elbit Hermes 900"
-      ],
-      "origins": [
-        "Israel"
-      ]
-    },
-    {
       "country": "Colombia",
-      "types": [
-        "Elbit Hermes 900"
-      ],
-      "origins": [
-        "Israel"
-      ]
-    },
-    {
-      "country": "Colombian Aerospace Force",
-      "types": [
-        "Elbit Hermes 900"
-      ],
-      "origins": [
-        "Israel"
-      ]
-    },
-    {
-      "country": "European Maritime Safety Agency",
-      "types": [
-        "Elbit Hermes 900"
-      ],
-      "origins": [
-        "Israel"
-      ]
-    },
-    {
-      "country": "Porbandar",
-      "types": [
-        "Elbit Hermes 900"
-      ],
-      "origins": [
-        "Israel"
-      ]
-    },
-    {
-      "country": "exclusive economic zone",
       "types": [
         "Elbit Hermes 900"
       ],
@@ -923,15 +829,6 @@
       ],
       "origins": [
         "Israel"
-      ]
-    },
-    {
-      "country": "Islamic Resistance in Iraq",
-      "types": [
-        "Shahed-136"
-      ],
-      "origins": [
-        "Iran"
       ]
     },
     {
@@ -1009,36 +906,8 @@
   ],
   "suppliers": [
     {
-      "origin": "Israel",
-      "operators": 22,
-      "countries": [
-        "Azerbaijan",
-        "Brazil",
-        "Canada",
-        "Colombia",
-        "Colombian Aerospace Force",
-        "Ecuador",
-        "European Maritime Safety Agency",
-        "Ilham Aliyev",
-        "India",
-        "Israel",
-        "Israeli Defence Force",
-        "Mexico",
-        "Morocco",
-        "Netherlands",
-        "North Korea",
-        "Porbandar",
-        "Serbia",
-        "South Korea",
-        "Thailand",
-        "Türkiye",
-        "United States",
-        "exclusive economic zone"
-      ]
-    },
-    {
       "origin": "China",
-      "operators": 17,
+      "operators": 16,
       "countries": [
         "Algeria",
         "Bangladesh",
@@ -1053,10 +922,30 @@
         "Nigeria",
         "Pakistan",
         "Saudi Arabia",
-        "Serbia",
         "Somalia",
         "United Arab Emirates",
         "Uzbekistan"
+      ]
+    },
+    {
+      "origin": "Israel",
+      "operators": 15,
+      "countries": [
+        "Azerbaijan",
+        "Brazil",
+        "Canada",
+        "Colombia",
+        "Ecuador",
+        "India",
+        "Israel",
+        "Mexico",
+        "Morocco",
+        "Netherlands",
+        "North Korea",
+        "South Korea",
+        "Thailand",
+        "Turkey",
+        "United States of America"
       ]
     },
     {
@@ -1077,12 +966,11 @@
     },
     {
       "origin": "Iran",
-      "operators": 7,
+      "operators": 6,
       "countries": [
         "Ethiopia",
         "Iran",
         "Iraq",
-        "Islamic Resistance in Iraq",
         "Russia",
         "Sudan",
         "Venezuela"
@@ -1090,12 +978,11 @@
     },
     {
       "origin": "United States",
-      "operators": 4,
+      "operators": 3,
       "countries": [
         "Morocco",
-        "Naval Air Warfare Center",
         "United Arab Emirates",
-        "United States"
+        "United States of America"
       ]
     },
     {
