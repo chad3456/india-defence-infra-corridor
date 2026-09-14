@@ -240,10 +240,25 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   await writeList("vande-bharat.json", vande, "Vande Bharat routes", errors, log);
 
   // ── airports with IATA codes ──────────────────────────────────────
+  /**
+   * Nodes, ways *and* relations.
+   *
+   * Without the relation clause this query missed Indira Gandhi International
+   * — India's busiest airport, mapped as a multipolygon relation — so the
+   * dataset held 148 airports and not the one everybody would look for first.
+   * The statewise page duly reported that the National Capital Territory has
+   * no airport, which is the kind of visible wrongness that makes a reader
+   * disbelieve the other thirty-four rows too.
+   *
+   * Nothing flagged it: 148 is a plausible number, every row in it was real,
+   * and no structural check can know which airport is missing. Only naming one
+   * can, which is what test:mobility now does.
+   */
   const apEls = await ask(
     '[out:json][timeout:180];area["ISO3166-1"="IN"][admin_level=2]->.in;' +
-    'node["aeroway"="aerodrome"]["iata"](area.in);' +
-    'way["aeroway"="aerodrome"]["iata"](area.in);out tags center;',
+    '(node["aeroway"="aerodrome"]["iata"](area.in);' +
+    'way["aeroway"="aerodrome"]["iata"](area.in);' +
+    'relation["aeroway"="aerodrome"]["iata"](area.in););out tags center;',
     "airports", log,
   );
   const airports: Airport[] = [];
