@@ -254,11 +254,23 @@ export function classify(text: string): { measure: Measure; cue: string } {
  */
 const COSTY = /\b(cost|costing|value|valued|worth|amount|approximately|price)\b/i;
 
+/**
+ * Sentences that state a threshold rather than a price.
+ *
+ * A DAC release about delegated financial powers says "for all procurement
+ * cases up to Rs 300 crore" — a cost sentence by any word test, and not a
+ * figure about any deal. Two of those landed in the ledger beside a real
+ * ₹2.23 lakh crore approval, where they read as smaller contracts in the same
+ * announcement.
+ */
+const THRESHOLD = /\b(up to|upto|above|below|exceeding|not exceeding|limit|ceiling|delegat|powers of|per case|and above)\b/i;
+
 export function moneyIn(text: string): Money[] {
   const out: Money[] = [];
-  const seen = new Set<string>();
+  const seen = new Map<string, number>();
   for (const raw of text.split(/(?<=[.!?])\s+/)) {
     if (!COSTY.test(raw)) continue;
+    if (THRESHOLD.test(raw)) continue;
     /**
      * "lakh crore" is one unit, not a lakh.
      *
@@ -276,20 +288,43 @@ export function moneyIn(text: string): Money[] {
       const unit = (m[3] ?? "").toLowerCase()
         .replace(/\.$/, "").replace(/\s+/g, " ").replace(/s\b/g, "")
         .replace(/^cr$/, "crore");
+      /**
+       * The evidence is a window around the figure, not the first 300
+       * characters of whatever the splitter called a sentence.
+       *
+       * PIB pages open with an unbroken run of navigation and headline
+       * carrying no full stop, so the "sentence" holding a figure could be
+       * thousands of characters long and a 300-character slice of it
+       * routinely did not contain the figure at all. An evidence field that
+       * does not contain the thing it is evidence for is worse than none: it
+       * looks like a citation.
+       */
+      const at = m.index ?? 0;
+      const window = raw.slice(Math.max(0, at - 150), at + 150).trim();
       const money: Money = {
         amount: m[2] ?? "",
         currency: sym.includes("$") || sym === "USD" ? "USD" : "INR",
         unit,
-        sentence: raw.slice(0, 300).trim(),
+        sentence: (window.length < raw.length ? `…${window}…` : window),
       };
       // PIB serves the body more than once per page — in the article, in a
       // meta description, in a print block — so the same figure arrived six
       // and twelve times per release and the row read as a dozen separate
-      // claims. One entry per distinct figure; the sentence is the first one
-      // it was seen in.
-      const key = `${money.amount}|${money.currency}|${money.unit}`;
-      if (seen.has(key)) continue;
-      seen.add(key);
+      // claims.
+      //
+      // The key deliberately excludes the unit. The same figure often appears
+      // once spelled out and once bare — "Rs 2.23 lakh crore" in the headline
+      // and "Rs 2.23" where the unit fell outside the window — and keying on
+      // the unit let both through as two claims. Amount and currency identify
+      // the figure; the entry that carries a unit wins, because it is the
+      // more complete reading of the same fact.
+      const key = `${money.amount}|${money.currency}`;
+      const prior = seen.get(key);
+      if (prior !== undefined) {
+        if (money.unit && !out[prior]!.unit) out[prior] = money;
+        continue;
+      }
+      seen.set(key, out.length);
       out.push(money);
     }
   }

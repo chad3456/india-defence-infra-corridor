@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "drones-2026-09",
+    title: "How the world uses military drones",
+    blurb:
+      "Eighteen types and the countries recorded as operating each, mapped by supplier — with " +
+      "the reach of each producer set beside what an operator list cannot tell you.",
+    href: "/drones",
+    since: "2026-09-14",
+  },
+  {
     id: "deals-2026-09",
     title: "Defence deals, read from the releases",
     blurb:

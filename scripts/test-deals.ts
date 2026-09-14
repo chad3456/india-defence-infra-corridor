@@ -94,6 +94,9 @@ console.log("\nReading a figure only where it is a cost");
   ok("takes the figure from the cost sentence, not the first on the page",
     m.length === 1 && m[0]!.amount === "3,172", JSON.stringify(m));
   ok("keeps the sentence it was read from", (m[0]?.sentence ?? "").includes("Bharat Electronics"));
+  // An evidence field that does not contain the figure it evidences is worse
+  // than none: it looks like a citation. Six rows had one.
+  ok("the evidence contains the figure", (m[0]?.sentence ?? "").includes(m[0]?.amount ?? "x"));
   ok("records the unit as written, unconverted", m[0]?.unit === "crore");
   ok("records the currency", m[0]?.currency === "INR");
 }
@@ -107,6 +110,25 @@ console.log("\nReading a figure only where it is a cost");
   ok("and keeps the amount as written", m[0]?.amount === "2.38", JSON.stringify(m));
   const cr = moneyIn("MoD signed contracts worth Rs 2580 Cr with Indian companies.");
   ok("reads PIB's abbreviated 'Cr' as crore", cr[0]?.unit === "crore", JSON.stringify(cr));
+}
+{
+  // A DAC release about delegated financial powers says "for all procurement
+  // cases up to Rs 300 crore". That is a cost sentence by any word test and a
+  // figure about no deal at all; two landed beside a real Rs 2.23 lakh crore
+  // approval, reading as smaller contracts in the same announcement.
+  const thresh =
+    "The DAC approved proposals worth Rs 2.23 lakh crore. " +
+    "For all procurement cases up to Rs 300 crore the powers are delegated to the Service.";
+  const m = moneyIn(thresh);
+  ok("a threshold is not a price", m.length === 1 && m[0]!.amount === "2.23", JSON.stringify(m));
+}
+{
+  // The same figure appears once with its unit and once without, because the
+  // unit fell outside the evidence window. That is one fact, not two.
+  const twice = "The cost is Rs 2.23 lakh crore. The approved value of Rs 2.23 was confirmed.";
+  const m = moneyIn(twice);
+  ok("a figure seen with and without its unit is one figure", m.length === 1, JSON.stringify(m));
+  ok("and the reading that carries the unit is the one kept", m[0]?.unit === "lakh crore");
 }
 {
   // PIB serves the body more than once per page, so the same figure arrived
@@ -186,7 +208,7 @@ if (readersOnly) {
 } else {
   interface D {
     prid: string; url: string; measure: string; measureCue: string;
-    money: Array<{ amount: string; sentence: string }>; ambiguousValue: boolean; date: string | null;
+    money: Array<{ amount: string; currency: string; sentence: string }>; ambiguousValue: boolean; date: string | null;
   }
   const d = JSON.parse(readFileSync(FILE, "utf8")) as {
     deals: D[]; coverageWarning: string; fourMeasures: string; valueNote: string; discovery: string;
@@ -194,8 +216,9 @@ if (readersOnly) {
   };
   ok("every row's URL resolves to its own release id",
     d.deals.every((x) => x.url.endsWith(`PRID=${x.prid}`)));
-  ok("every figure carries the sentence it was read from",
-    d.deals.every((x) => x.money.every((m) => m.sentence.includes(m.amount))));
+  ok("every figure carries an evidence window containing it",
+    d.deals.every((x) => x.money.every((m) => m.sentence.includes(m.amount))),
+    d.deals.flatMap((x) => x.money).filter((m) => !m.sentence.includes(m.amount)).length + " without");
   ok("the ambiguous flag matches the rows that carry two figures",
     d.deals.filter((x) => x.ambiguousValue).length === d.ambiguous);
   ok("every row records the cue that classified it", d.deals.every((x) => x.measureCue.length > 0));
@@ -206,7 +229,7 @@ if (readersOnly) {
     d.deals.filter((x) => x.measure === "unclassified").length + " present");
   ok("no figure is recorded twice in one row",
     d.deals.every((x) =>
-      new Set(x.money.map((m) => `${m.amount}|${m.sentence.slice(0, 20)}`)).size === x.money.length));
+      new Set(x.money.map((m) => `${m.amount}|${m.currency}`)).size === x.money.length));
   ok("says why the headline decides", /headline states the event/i.test(d.eventNote));
   ok("the counts in the header match the rows",
     d.withValue === d.deals.filter((x) => x.money.length > 0).length &&

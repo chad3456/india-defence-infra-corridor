@@ -62,6 +62,26 @@
   --ascii-4: #184f95;
   --ascii-5: #0d366b;
 
+  /* ── Drone suppliers ───────────────────────────────────────────────────
+     Seven producing countries, one colour each, assigned in this fixed order
+     and never by rank — the palette was validated as a sequence, and adjacent
+     pairs are what the colour-vision check tests, so reordering the
+     assignment would silently invalidate it.
+
+     node scripts/validate_palette.js on this exact string, light mode,
+     surface #fcfcfb: all seven inside the lightness band, all above the
+     chroma floor, all at least 3:1 against the surface, worst adjacent pair
+     ΔE 12.4 under protanopia and 15.5 with normal vision. Red and green are
+     deliberately not adjacent: that pairing failed deutan at ΔE 5.7 in the
+     first ordering tried. */
+  --sup-1: #c4361b;
+  --sup-2: #0a8f9e;
+  --sup-3: #b8860b;
+  --sup-4: #1f6fd0;
+  --sup-5: #2f8f4e;
+  --sup-6: #8a4fc4;
+  --sup-7: #c02f7a;
+
   /* Ordinal ramp — discrete ordered rungs, validated with --ordinal in both
      modes. Distinct from the sequential scale above: an ordinal step must stay
      readable against the surface, so the pale end starts at step 250 on light
@@ -161,6 +181,27 @@
     --ascii-3: #5598e7;
     --ascii-4: #86b6ef;
     --ascii-5: #cde2fb;
+
+  /* The dark seven again, so an explicit theme choice wins in both directions. */
+  --sup-1: #dd5c3e;
+  --sup-2: #1f9dab;
+  --sup-3: #b58a1c;
+  --sup-4: #4487dd;
+  --sup-5: #38a662;
+  --sup-6: #9a6bd9;
+  --sup-7: #d85590;
+
+    /* The same seven, lifted into the dark band and revalidated there rather
+       than assumed: L 0.48–0.67 throughout, worst adjacent pair ΔE 11.6
+       protan and 15.3 normal. The light values sit below the band on this
+       ground and the amber needed a separate pass to get inside it. */
+    --sup-1: #dd5c3e;
+    --sup-2: #1f9dab;
+    --sup-3: #b58a1c;
+    --sup-4: #4487dd;
+    --sup-5: #38a662;
+    --sup-6: #9a6bd9;
+    --sup-7: #d85590;
 
     --rung-1: #cde2fb;
     --rung-2: #9ec5f4;

@@ -60,6 +60,7 @@ const GROUPS: Group[] = [
     items: [
       { href: "/global", label: "Global economy", blurb: "India against the economies it is compared with" },
       { href: "/arsenal", label: "Arsenal", blurb: "Missiles by nation, and who is buying what" },
+      { href: "/drones", label: "Military drones", blurb: "Who flies what, and which producer reaches furthest" },
       { href: "/benchmark", label: "Benchmark", blurb: "The honest global assessment" },
     ],
   },

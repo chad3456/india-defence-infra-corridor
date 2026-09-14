@@ -106,3 +106,54 @@ export function byClass(d: Drones): Array<{ klass: string; countries: number; ty
 export function unread(d: Drones): DroneType[] {
   return d.types.filter((t) => t.operators.length === 0);
 }
+
+/**
+ * One colour per producing country, in a fixed order that must not be sorted.
+ *
+ * The palette was validated as a sequence — the colour-vision check tests
+ * adjacent pairs, and the first ordering tried failed deutan at ΔE 5.7 because
+ * red sat next to green. Assigning by rank, or by whatever order the data
+ * happens to arrive in, would quietly undo that. So the order is declared here
+ * and the map reads it.
+ *
+ * "Mixed" is achromatic on purpose. It is not an eighth supplier; it is the
+ * absence of a leading one, and giving it a hue would put it in the same
+ * visual class as the seven.
+ */
+export const SUPPLIER_ORDER = [
+  "Türkiye", "United States", "China", "Israel", "Iran", "Russia", "India",
+] as const;
+
+export function supplierColour(origin: string): string {
+  const i = SUPPLIER_ORDER.indexOf(origin as (typeof SUPPLIER_ORDER)[number]);
+  return i >= 0 ? `var(--sup-${i + 1})` : "var(--text-muted)";
+}
+
+/**
+ * A country's leading supplier and how clear-cut it is.
+ *
+ * Returns the count as well as the name, because "four of five types from one
+ * supplier" and "two of three" are different facts and the panel should be
+ * able to say which. A tie is "mixed" rather than a coin flip.
+ */
+export function leadSupplier(
+  types: string[], all: DroneType[],
+): { origin: string; of: number; total: number } {
+  const counts = new Map<string, number>();
+  for (const t of types) {
+    const type = all.find((x) => x.name === t);
+    if (!type) continue;
+    counts.set(type.origin, (counts.get(type.origin) ?? 0) + 1);
+  }
+  const ranked = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+  const total = [...counts.values()].reduce((a, b) => a + b, 0);
+  const top = ranked[0];
+  if (!top) return { origin: "mixed", of: 0, total: 0 };
+  if (ranked.length > 1 && ranked[1]![1] === top[1]) return { origin: "mixed", of: top[1], total };
+  return { origin: top[0], of: top[1], total };
+}
+
+/** Operator rows read from a Former or Potential subsection, per type. */
+export function provisionalOf(t: DroneType): number {
+  return t.operators.filter((o) => o.via && /\b(former|potential|prospective)\b/i.test(o.via)).length;
+}
