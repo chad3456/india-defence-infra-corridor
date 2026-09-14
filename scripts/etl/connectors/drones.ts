@@ -153,6 +153,8 @@ export interface DroneType extends Type {
   /** Absent when the article has no Operators section this could find. */
   read: boolean;
   note?: string;
+  /** Raw section lines, kept only when nothing was read from them. */
+  sample?: string[];
 }
 
 async function wikitext(page: string): Promise<string | null> {
@@ -187,17 +189,77 @@ function operatorsSection(text: string): string | null {
   return next ? rest.slice(0, next.index) : rest;
 }
 
-/** The country a bullet names, or null when it names something else. */
+/**
+ * ISO codes used as bare templates in Operators lists.
+ *
+ * `{{TUR}}` and `{{UKR}}` render as a flag and a country name, and on aircraft
+ * articles they are as common as spelled-out names. Only codes that plausibly
+ * appear as operators of these types are listed; an unknown code is skipped
+ * rather than guessed, because a wrong expansion here silently relabels a
+ * country on the map.
+ */
+const ISO_TEMPLATE: Record<string, string> = {
+  TUR: "Türkiye", UKR: "Ukraine", AZE: "Azerbaijan", QAT: "Qatar", LBY: "Libya",
+  ETH: "Ethiopia", MAR: "Morocco", TKM: "Turkmenistan", KGZ: "Kyrgyzstan",
+  PAK: "Pakistan", IND: "India", ISR: "Israel", IRN: "Iran", RUS: "Russia",
+  CHN: "China", USA: "United States", GBR: "United Kingdom", FRA: "France",
+  ITA: "Italy", ESP: "Spain", NLD: "Netherlands", DEU: "Germany", POL: "Poland",
+  ROU: "Romania", GRC: "Greece", HRV: "Croatia", ALB: "Albania", KOS: "Kosovo",
+  SAU: "Saudi Arabia", ARE: "United Arab Emirates", EGY: "Egypt", DZA: "Algeria",
+  TUN: "Tunisia", NGA: "Nigeria", MLI: "Mali", NER: "Niger", TCD: "Chad",
+  BFA: "Burkina Faso", SOM: "Somalia", AGO: "Angola", RWA: "Rwanda",
+  KAZ: "Kazakhstan", UZB: "Uzbekistan", AFG: "Afghanistan", IRQ: "Iraq",
+  JOR: "Jordan", KWT: "Kuwait", OMN: "Oman", BHR: "Bahrain", YEM: "Yemen",
+  SRB: "Serbia", BGR: "Bulgaria", AUS: "Australia", CAN: "Canada", JPN: "Japan",
+  KOR: "South Korea", PRK: "North Korea", VNM: "Vietnam", IDN: "Indonesia",
+  MYS: "Malaysia", THA: "Thailand", PHL: "Philippines", MMR: "Myanmar",
+  BGD: "Bangladesh", LKA: "Sri Lanka", NPL: "Nepal", BRA: "Brazil",
+  ARG: "Argentina", MEX: "Mexico", COL: "Colombia", VEN: "Venezuela",
+  ZAF: "South Africa", SDN: "Sudan", SSD: "South Sudan", BLR: "Belarus",
+  ARM: "Armenia", GEO: "Georgia", MDA: "Moldova", CZE: "Czech Republic",
+  SVK: "Slovakia", HUN: "Hungary", AUT: "Austria", CHE: "Switzerland",
+  SWE: "Sweden", NOR: "Norway", FIN: "Finland", DNK: "Denmark", BEL: "Belgium",
+  PRT: "Portugal", CYP: "Cyprus", SVN: "Slovenia", MKD: "North Macedonia",
+  MNE: "Montenegro", BIH: "Bosnia and Herzegovina", EST: "Estonia",
+  LVA: "Latvia", LTU: "Lithuania", NZL: "New Zealand", TWN: "Taiwan",
+  SGP: "Singapore", ECU: "Ecuador", PER: "Peru", CHL: "Chile",
+};
+
+/**
+ * The country a line names, or null when it names something else.
+ *
+ * The first version read wiki links only and returned nought or one operator
+ * for every type — the self-check caught it before anything shipped. Operators
+ * sections on aircraft articles are not lists of links: they are flag
+ * templates, `{{flag|Azerbaijan}}` or a bare `{{TUR}}`, usually on a
+ * definition-list line with the air force beneath as a sub-bullet. Reading
+ * links alone finds the services and misses every state.
+ *
+ * Three forms are read, in the order they are trustworthy: an explicit flag
+ * template, an ISO code template, then a plain link.
+ */
 function countryOf(line: string): string | null {
-  if (!/^\*+\s/.test(line)) return null;
-  const body = line.replace(/^\*+\s*/, "");
+  // Definition-list lines (";") carry the country; sub-bullets (":*") carry
+  // the service under it. Both plain "*" bullets and ";" lines are candidates.
+  if (!/^\s*[;*:]/.test(line)) return null;
+  const body = line.replace(/^\s*[;*:]+\s*/, "");
   if (/\[\[\s*(file|image|category)\s*:/i.test(body)) return null;
 
-  // The first wiki link on the bullet is the operator; flag templates and
-  // service names follow it.
-  const piped = body.match(/\[\[([^\]|]+)\|([^\]]+)\]\]/);
-  const bare = body.match(/\[\[([^\]]+)\]\]/);
-  const raw = (piped?.[1] ?? bare?.[1] ?? "").split("#")[0]?.trim() ?? "";
+  let raw = "";
+  const flag = body.match(/\{\{\s*(?:flag|flagcountry|flagu|flagicon|flaglink|flagdeco)\s*\|\s*([^|}]+)/i);
+  if (flag) {
+    raw = (flag[1] ?? "").trim();
+  } else {
+    const iso = body.match(/\{\{\s*([A-Z]{3})\s*\}\}/);
+    if (iso) {
+      const hit = ISO_TEMPLATE[iso[1] ?? ""];
+      if (!hit) return null;
+      return hit;
+    }
+    const piped = body.match(/\[\[([^\]|]+)\|([^\]]+)\]\]/);
+    const bare = body.match(/\[\[([^\]]+)\]\]/);
+    raw = (piped?.[1] ?? bare?.[1] ?? "").split("#")[0]?.trim() ?? "";
+  }
   if (!raw) return null;
 
   const key = raw.toLowerCase().replace(/\s*\(.*?\)\s*$/, "").trim();
@@ -242,7 +304,15 @@ export async function run(): Promise<void> {
       operators.push({ country: c, asWritten: line.replace(/^\*+\s*/, "").slice(0, 90).trim() });
     }
 
-    types.push({ ...t, operators, nonState, read: true });
+    types.push({
+      ...t, operators, nonState, read: true,
+      // The first lines of the section as they actually are. The previous
+      // round returned nought operators per type and the log said only that;
+      // the markup is what explains it, so the markup travels with the data.
+      ...(operators.length === 0
+        ? { sample: section.split("\n").filter((l) => l.trim()).slice(0, 8).map((l) => l.slice(0, 120)) }
+        : {}),
+    });
     console.log(
       `  ${t.name.padEnd(26)} ${String(operators.length).padStart(3)} operators` +
       `${nonState.length > 0 ? `, ${nonState.length} non-state` : ""}`,
@@ -275,20 +345,6 @@ export async function run(): Promise<void> {
     .map(([origin, set]) => ({ origin, operators: set.size, countries: [...set].sort() }))
     .sort((a, b) => b.operators - a.operators);
 
-  // Self-checks. These name specific facts rather than shapes, because a
-  // parser that returns plausible-looking rubbish passes every shape check.
-  const tb2 = types.find((t) => t.name === "Bayraktar TB2");
-  if (tb2?.read && !tb2.operators.some((o) => o.country === "Türkiye")) {
-    throw new Error("the TB2's operators do not include Türkiye, which builds and flies it");
-  }
-  const reaper = types.find((t) => t.name === "MQ-9 Reaper");
-  if (reaper?.read && !reaper.operators.some((o) => o.country === "United States")) {
-    throw new Error("the MQ-9's operators do not include the United States");
-  }
-  if (countries.length < 20) {
-    throw new Error(`only ${countries.length} operator countries found; these types reach far more`);
-  }
-
   await mkdir(join(ROOT, "data", "global"), { recursive: true });
   await writeFile(OUT, JSON.stringify({
     builtAt: new Date().toISOString(),
@@ -312,6 +368,25 @@ export async function run(): Promise<void> {
     countries,
     suppliers,
   }, null, 2) + "\n", "utf8");
+
+  // Self-checks. These name specific facts rather than shapes, because a
+  // parser that returns plausible-looking rubbish passes every shape check.
+  //
+  // They run after the file is written, not before. The first round threw on
+  // the TB2 check and the output was discarded, so the only evidence of what
+  // went wrong was a log line saying "0 operators" — which is the symptom, not
+  // the cause. Now the markup is on disk either way.
+  const tb2 = types.find((t) => t.name === "Bayraktar TB2");
+  if (tb2?.read && !tb2.operators.some((o) => o.country === "Türkiye")) {
+    throw new Error("the TB2's operators do not include Türkiye, which builds and flies it");
+  }
+  const reaper = types.find((t) => t.name === "MQ-9 Reaper");
+  if (reaper?.read && !reaper.operators.some((o) => o.country === "United States")) {
+    throw new Error("the MQ-9's operators do not include the United States");
+  }
+  if (countries.length < 20) {
+    throw new Error(`only ${countries.length} operator countries found; these types reach far more`);
+  }
 
   console.log(
     `\n${readCount} of ${types.length} types read · ${countries.length} operator countries · ` +
