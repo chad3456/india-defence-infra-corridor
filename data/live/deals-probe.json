@@ -1,12 +1,13 @@
 {
-  "probedAt": "2026-09-14T09:36:43.585Z",
+  "probedAt": "2026-09-14T09:42:01.115Z",
   "note": "Reachability and shape only. No contract, value or date is published from this file.",
   "question": "Which publishers hold India's defence contracts since 2014, and can a script read them?",
   "settled": {
     "mod": "mod.gov.in refused at the connection on two URLs, which is a refusal rather than a 404. Its annual reports, and the contracts-concluded appendix in them, are not reachable from this pipeline.",
     "sipri": "The database and trade-register URLs returned the same landing page and neither contained the word 'register'. SIPRI's data is behind a form, not a URL.",
     "titles": "Four of eight guessed article titles returned an error object. The search API named the real ones: Rafale deal controversy, Defence industry of India, List of equipment of the Indian Army, BrahMos.",
-    "pib": "AllRelease.aspx answers a GET with day, month and year, and returned 844 KB for one day of June 2024. That is the ledger's source. The size is the open question this round measures."
+    "pib": "CORRECTED. Round two reported that AllRelease.aspx answers a GET with a day, a month and a year. It does not. Round three asked it for three different dates, one of them in 2016, and got 844,412, 844,413 and 844,416 bytes with 525 links each: the page ignores its query string and serves the same default view every time. A reachability probe cannot catch that, because each individual answer is a genuine 200 with a plausible payload. Only asking twice and comparing does.",
+    "pibWhatWorks": "PressReleasePage.aspx?PRID=<id> returns one release, 78 KB, the real thing. Individual releases are addressable; the index over them is not. So the ledger is built id by id, with Wikipedia's citations supplying the ids."
   },
   "refusal": "No figure is recorded here, only whether a figure exists on the page. A probe log that quotes a contract value beside a URL is a number with a filename where a citation should be, and it will be treated as sourced by the next person who reads it.",
   "fourMeasures": "A CCS clearance, a DAC Acceptance of Necessity, a signed contract and a SIPRI delivery are four different events. An AoN is permission to begin procuring and many never become contracts, so a ledger that adds them together overstates itself badly. The eventual dataset must keep them in separate columns.",
@@ -41,9 +42,9 @@
       "settles": "The back catalogue, if it can be addressed by date rather than by PRID.",
       "ok": true,
       "status": "200",
-      "bytes": 141479,
+      "bytes": 141483,
       "shape": "html",
-      "moneyMentions": 13,
+      "moneyMentions": 6,
       "found": [
         "release"
       ],
@@ -96,7 +97,7 @@
       "settles": "Whether day=0 means the whole month, which would cut the crawl by thirty.",
       "ok": true,
       "status": "200",
-      "bytes": 844412,
+      "bytes": 844415,
       "shape": "html",
       "moneyMentions": 94,
       "found": [
@@ -114,7 +115,7 @@
       "settles": "Whether the archive can be narrowed to Defence before it is downloaded.",
       "ok": true,
       "status": "200",
-      "bytes": 5211,
+      "bytes": 5214,
       "shape": "html",
       "moneyMentions": 0,
       "found": [],
@@ -130,9 +131,9 @@
       "settles": "Whether a row in the ledger can carry a URL that resolves to its own release.",
       "ok": true,
       "status": "200",
-      "bytes": 78311,
+      "bytes": 78314,
       "shape": "html",
-      "moneyMentions": 1,
+      "moneyMentions": 3,
       "found": [
         "press"
       ],
@@ -148,9 +149,9 @@
       "settles": "Whether the archive reaches back to the start of the period at all.",
       "ok": true,
       "status": "200",
-      "bytes": 844413,
+      "bytes": 844416,
       "shape": "html",
-      "moneyMentions": 95,
+      "moneyMentions": 101,
       "found": [
         "release"
       ],
@@ -168,7 +169,7 @@
       "status": "200",
       "bytes": 844416,
       "shape": "html",
-      "moneyMentions": 94,
+      "moneyMentions": 106,
       "found": [
         "release"
       ],
@@ -220,9 +221,9 @@
       "settles": "Whether the unfiltered list is reachable and paginated by GET.",
       "ok": true,
       "status": "200",
-      "bytes": 134506,
+      "bytes": 134509,
       "shape": "html",
-      "moneyMentions": 7,
+      "moneyMentions": 9,
       "found": [
         "release"
       ],
@@ -271,7 +272,7 @@
       "settles": "Which types are on order, as an index of what to look up.",
       "ok": true,
       "status": "200",
-      "bytes": 401,
+      "bytes": 402,
       "shape": "json",
       "moneyMentions": 0,
       "found": [],
@@ -288,7 +289,7 @@
       "settles": "What an AoN is, and why it is not a contract.",
       "ok": true,
       "status": "200",
-      "bytes": 401,
+      "bytes": 402,
       "shape": "json",
       "moneyMentions": 0,
       "found": [],
@@ -322,7 +323,7 @@
       "settles": "One well-documented contract, as a shape test for the others.",
       "ok": true,
       "status": "200",
-      "bytes": 401,
+      "bytes": 402,
       "shape": "json",
       "moneyMentions": 0,
       "found": [],
@@ -416,13 +417,13 @@
       "settles": "The best-documented single contract of the period, under whatever title it has.",
       "ok": true,
       "status": "200",
-      "bytes": 1481,
+      "bytes": 1487,
       "shape": "json",
       "moneyMentions": 0,
       "titles": [
         "Dassault Rafale",
-        "HAL TEDBF",
-        "Boeing F/A-18E/F Super Hornet"
+        "Indian MRCA competition",
+        "Rafale deal controversy"
       ]
     },
     {
@@ -454,9 +455,9 @@
       "shape": "json",
       "moneyMentions": 0,
       "titles": [
-        "Chief of Defence Staff (India)",
         "Government procurement",
-        "Defence industry of India"
+        "Defence industry of India",
+        "Chief of Defence Staff (India)"
       ]
     },
     {
@@ -484,13 +485,13 @@
       "settles": "The clearest Indian defence export contract of the period.",
       "ok": true,
       "status": "200",
-      "bytes": 1513,
+      "bytes": 1454,
       "shape": "json",
       "moneyMentions": 0,
       "titles": [
         "BrahMos",
-        "HAL Tejas",
-        "List of equipment of the Philippine Marine Corps"
+        "Indian Armed Forces",
+        "HAL Tejas"
       ]
     },
     {
