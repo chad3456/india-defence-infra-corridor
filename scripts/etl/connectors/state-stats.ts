@@ -118,7 +118,14 @@ export function readNumber(cell: string): number | null {
   return Number.isFinite(n) ? n : null;
 }
 
-interface Row { state: string; population: number | null; area: number | null }
+interface Row {
+  state: string;
+  /** The population article's figure, which is currently a dated estimate. */
+  population: number | null;
+  /** A census count where a column names one. Fixed, and reproducible. */
+  censusPopulation: number | null;
+  area: number | null;
+}
 
 export interface Table { header: string[]; rows: string[][] }
 
@@ -147,6 +154,12 @@ export function parseTables(text: string): Table[] {
       let isHeader = false;
       for (const line of raw.split("\n")) {
         if (!/^\s*[|!]/.test(line)) continue;
+        // "|+" is the table's caption, not a row. Reading it as one made the
+        // caption the header — "+List of states and union territories of India
+        // by population (Population number as of Oct 31st, 2024…)" — which
+        // matched nothing, so every column lookup failed and the connector
+        // produced zero states while reporting the page as answered.
+        if (/^\s*\|\+/.test(line)) continue;
         if (/^\s*!/.test(line)) isHeader = true;
         const body = line.replace(/^\s*[|!]+\s*/, "");
         // "a || b || c" and "a !! b !! c" are three cells on one line.
@@ -207,6 +220,7 @@ export async function run(): Promise<void> {
   const unmatched: string[] = [];
   const faults: string[] = [];
   let populationBasis = "unknown";
+  let censusBasis = "unknown";
   let areaBasis = "unknown";
   /**
    * Every table the parser found, with its header and row count.
@@ -267,15 +281,20 @@ export async function run(): Promise<void> {
     return basis;
   }
 
+  const set = (key: "population" | "censusPopulation" | "area") =>
+    (state: string, value: number): void => {
+      const prior = rows.get(state) ?? {
+        state, population: null, censusPopulation: null, area: null,
+      };
+      rows.set(state, { ...prior, [key]: prior[key] ?? value });
+    };
+
   const popText = await wikitext(POP_PAGE);
   if (!popText) faults.push("the population page did not answer");
   else {
     populationBasis = harvest(
-      popText, "population", /population/i, /density|rank|decadal|growth|percent|share/i, 100_000,
-      (state, value) => {
-        const prior = rows.get(state) ?? { state, population: null, area: null };
-        rows.set(state, { ...prior, population: prior.population ?? value });
-      },
+      popText, "population", /population/i, /density|rank|decadal|growth|percent|share|rural|urban/i,
+      100_000, set("population"),
     );
   }
 
@@ -283,11 +302,21 @@ export async function run(): Promise<void> {
   if (!areaText) faults.push("the area page did not answer");
   else {
     areaBasis = harvest(
-      areaText, "area", /area/i, /rank|percent|share|water/i, 30,
-      (state, value) => {
-        const prior = rows.get(state) ?? { state, population: null, area: null };
-        rows.set(state, { ...prior, area: prior.area ?? value });
-      },
+      areaText, "area", /area/i, /rank|percent|share|water/i, 30, set("area"),
+    );
+    /**
+     * The census column, which the area page happens to carry.
+     *
+     * Worth taking separately because it is the reproducible one: "Population
+     * (2011)" is a count anybody can check against the census, while the
+     * population article now publishes an estimate dated to a particular day
+     * in 2024 that will be a different number next month. The page can then
+     * offer a rate against a fixed count and a rate against a current
+     * estimate, each labelled, instead of this file choosing for it.
+     */
+    censusBasis = harvest(
+      areaText, "census", /population/i, /density|rank|percent|share|rural|urban/i,
+      100_000, set("censusPopulation"),
     );
   }
 
@@ -328,6 +357,7 @@ export async function run(): Promise<void> {
     faults.push(`the largest state by area parsed as ${biggest.state}, not Rajasthan`);
   }
   const withPop = list.filter((r) => r.population !== null).length;
+  const withCensus = list.filter((r) => r.censusPopulation !== null).length;
   const withArea = list.filter((r) => r.area !== null).length;
   if (withPop < 28) faults.push(`only ${withPop} states got a population`);
   if (withArea < 28) faults.push(`only ${withArea} states got an area`);
@@ -337,6 +367,7 @@ export async function run(): Promise<void> {
     builtAt: new Date().toISOString(),
     source: `English Wikipedia: ${POP_PAGE.replace(/_/g, " ")} and ${AREA_PAGE.replace(/_/g, " ")}, which cite the Census of India.`,
     populationBasis,
+    censusBasis,
     areaBasis,
     basisNote:
       "populationBasis and areaBasis are the column headings these figures were actually read " +
@@ -359,6 +390,7 @@ export async function run(): Promise<void> {
     tablesSeen,
     unmatched,
     withPopulation: withPop,
+    withCensusPopulation: withCensus,
     withArea,
     totalPopulation: total,
     states: list,
@@ -366,6 +398,7 @@ export async function run(): Promise<void> {
 
   console.log(`  ${list.length} states · ${withPop} with a population · ${withArea} with an area`);
   console.log(`  population column: "${populationBasis}"`);
+  console.log(`  census column:     "${censusBasis}" (${withCensus} states)`);
   console.log(`  area column:       "${areaBasis}"`);
   for (const t of tablesSeen) {
     console.log(`  [${t.page}] ${t.rows} rows · header: ${t.header.join(" | ").slice(0, 150)}`);

@@ -160,6 +160,57 @@ export function readSchemes(text: string): { schemes: Scheme[]; headings: string
       article: article || null,
     });
   }
+  // ── Tables, which is where the central schemes actually are ──────────
+  //
+  // The first run read twenty-nine schemes, every one of them from a bulleted
+  // list under a state heading, and none from the "== List ==" section at the
+  // top of the article. That section is a wikitable, and a parser that reads
+  // only bullets walks straight past it — so the central schemes, which are
+  // the ones the ask is about, were entirely missing while the output looked
+  // like a plausible short roster.
+  let tableSector: string | null = null;
+  for (const chunk of text.split(/\n(?==)/)) {
+    const head = /^(={2,4})\s*(.+?)\s*\1\s*$/m.exec(chunk);
+    if (head) tableSector = (head[2] ?? "").replace(/\[\[|\]\]/g, "").trim();
+    if (!/\{\|/.test(chunk)) continue;
+    for (const block of chunk.split(/\{\|/).slice(1)) {
+      const table = block.split(/\n\|\}/)[0] ?? "";
+      for (const rawRow of table.split(/\n\|-/).slice(1)) {
+        const cells: string[] = [];
+        for (const line of rawRow.split("\n")) {
+          if (!/^\s*[|!]/.test(line)) continue;
+          if (/^\s*\|\+/.test(line) || /^\s*!/.test(line)) continue;
+          const body = line.replace(/^\s*\|+\s*/, "");
+          for (const cell of body.split(/\s*\|\|\s*/)) cells.push(cell.trim());
+        }
+        if (cells.length === 0) continue;
+        // The scheme is the first cell carrying a wikilink; later cells are
+        // the ministry, the launch date and the outlay.
+        const cell = cells.find((c) => /\[\[/.test(c));
+        if (!cell) continue;
+        const link = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/.exec(cell);
+        if (!link) continue;
+        const article = (link[1] ?? "").split("#")[0]?.trim() ?? "";
+        const name = (link[2] ?? link[1] ?? "").trim();
+        if (!name || /^(file|image|category):/i.test(article)) continue;
+        if (name.length < 4 || name.length > 90) continue;
+        const key = name.toLowerCase();
+        if (seen.has(key)) continue;
+        seen.add(key);
+        // A year anywhere else in the row, taken only from a cell that is not
+        // the name — a scheme called "Mission 2047" must not date itself.
+        const rest = cells.filter((c) => c !== cell).join(" ");
+        const year = /\b((?:19|20)\d{2})\b/.exec(rest.replace(/\[\[[^\]]*\]\]/g, ""));
+        out.push({
+          name,
+          sector: tableSector,
+          launched: year ? Number(year[1]) : null,
+          article: article || null,
+        });
+      }
+    }
+  }
+
   return { schemes: out, headings };
 }
 
@@ -297,7 +348,27 @@ export async function run(): Promise<void> {
   } = { sampleRow: null, rowsSeen: 0, firstCells: [], shell: null };
 
   const jjmUrl = "https://ejalshakti.gov.in/jjmreport/JJMIndia.aspx";
-  const jjm = await getText(jjmUrl, { cacheMs: 6 * 3600_000, retries: 2, timeoutMs: 60_000 });
+  let jjm = await getText(jjmUrl, { cacheMs: 6 * 3600_000, retries: 2, timeoutMs: 60_000 });
+  let jjmFrom = jjmUrl;
+
+  /**
+   * The dashboard's six rows were six copies of the header.
+   *
+   * The page carries an iframe and the grid is inside it, which the shell
+   * check said outright — so the outer page was never going to yield a state.
+   * Following the frame is one more fetch and the difference between a
+   * coverage column with thirty-six rows in it and one with none.
+   */
+  if (jjm.ok && jjm.data && /<iframe/i.test(jjm.data)) {
+    const src = /<iframe[^>]*\ssrc\s*=\s*["']([^"']+)["']/i.exec(jjm.data)?.[1];
+    if (src) {
+      const abs = src.startsWith("http") ? src : new URL(src, jjmUrl).toString();
+      const inner = await getText(abs, { cacheMs: 6 * 3600_000, retries: 2, timeoutMs: 60_000 });
+      if (inner.ok && inner.data) { jjm = inner; jjmFrom = abs; }
+      console.log(`    followed the iframe to ${abs} — ${inner.ok ? "answered" : inner.error}`);
+    }
+  }
+
   if (!jjm.ok || !jjm.data) {
     refused.push({ source: "Jal Jeevan Mission", why: jjm.error ?? "no body" });
   } else {
@@ -315,7 +386,7 @@ export async function run(): Promise<void> {
         value: r.withTap,
         of: r.households,
         asOf: null,
-        source: jjmUrl,
+        source: jjmFrom,
       });
     }
     console.log(`  Jal Jeevan Mission: ${parsed.rows.length} states from ${parsed.rowsSeen} table rows`);
