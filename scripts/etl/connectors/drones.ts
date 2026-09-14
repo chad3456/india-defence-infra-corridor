@@ -150,7 +150,15 @@ const NON_STATE =
  */
 function statedReach(section: string): string | null {
   for (const raw of section.split(/(?<=[.!?])\s+/)) {
-    const line = raw.replace(/<!--[\s\S]*?-->/g, "").replace(/\[\[|\]\]/g, "").trim();
+    // Refs first: a citation template inflates the sentence past the length
+    // cap, which is why the TB2's own "exported to 31 countries" was missed.
+    const line = raw
+      .replace(/<ref[^>]*>[\s\S]*?<\/ref>/gi, "")
+      .replace(/<ref[^>]*\/>/gi, "")
+      .replace(/\{\{[^{}]*\}\}/g, "")
+      .replace(/<!--[\s\S]*?-->/g, "")
+      .replace(/\[\[|\]\]/g, "")
+      .trim();
     if (line.length < 25 || line.length > 240) continue;
     if (!/\b\d{1,3}\s+(?:countries|operators|states|nations)\b/i.test(line)) continue;
     if (!/export|operat|deliver|sold|serve/i.test(line)) continue;
@@ -362,6 +370,36 @@ export async function run(): Promise<void> {
      * operates the type that is a fair reading, and which method produced a
      * row is recorded so the page can say so.
      */
+    /**
+     * Wikitable rows, where the country is a plain link in the first cell.
+     *
+     * The template scan fixed the Heron and the Shahed and left the TB2 at
+     * nothing, which narrowed it further: those tables do not use flag
+     * templates at all. A row is "|-" followed by cells starting with "|", and
+     * the country is in the first one. Only the first cell is read, because
+     * later columns hold quantities, dates and notes that would each look like
+     * a country to a looser rule.
+     */
+    if (operators.length < 3) {
+      method = "templates";
+      for (const row of section.split(/^\s*\|-/m).slice(1)) {
+        const firstCell = row.split("\n").find((l) => /^\s*[|!]/.test(l));
+        if (!firstCell) continue;
+        const cell = firstCell.replace(/^\s*[|!]+\s*/, "").split("||")[0] ?? "";
+        const link = cell.match(/\[\[([^\]|]+)(?:\|[^\]]*)?\]\]/);
+        const flag = cell.match(/\{\{\s*(?:flag|flagicon|flagcountry|flagdeco)\s*\|\s*([^|}]+)/i);
+        const raw = (flag?.[1] ?? link?.[1] ?? "").split("#")[0]?.trim() ?? "";
+        if (!raw) continue;
+        const key = raw.toLowerCase().replace(/\s*\(.*?\)\s*$/, "").trim();
+        if (!key || NOT_A_COUNTRY.test(key) || NON_STATE.test(key)) continue;
+        const name = ALIAS[key] ?? raw;
+        if (/\d/.test(name) || name.length > 32 || name.split(/\s+/).length > 4) continue;
+        if (seen.has(name)) continue;
+        seen.add(name);
+        operators.push({ country: name, asWritten: cell.slice(0, 80).trim() });
+      }
+    }
+
     if (operators.length < 3) {
       method = "templates";
       const scan = [
