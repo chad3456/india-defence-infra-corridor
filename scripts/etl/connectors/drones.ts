@@ -61,12 +61,32 @@ const TO_ATLAS: Record<string, string> = {
   "Türkiye": "Turkey",
   "United States": "United States of America",
   "Czech Republic": "Czechia",
-  "Serbia": "Republic of Serbia",
   "North Macedonia": "Macedonia",
   "Bosnia and Herzegovina": "Bosnia and Herz.",
   "South Sudan": "S. Sudan",
   "Dominican Republic": "Dominican Rep.",
 };
+
+/**
+ * Every alias must point at a name the atlas actually has.
+ *
+ * "Serbia" was mapped to "Republic of Serbia", which the atlas does not use —
+ * it has plain "Serbia" — so the alias took a valid country and redirected it
+ * to nothing, dropping it from the map. A wrong alias is worse than a missing
+ * one: a missing alias leaves a country unresolved and visible in that list,
+ * while a wrong one deletes a country that was resolving correctly before.
+ *
+ * So the table is checked against the vocabulary at load. This is a table of
+ * eight entries and it already contained one error.
+ */
+for (const [from, to] of Object.entries(TO_ATLAS)) {
+  if (!ATLAS_NAMES.has(to)) {
+    throw new Error(
+      `alias "${from}" points at "${to}", which is not a country in the atlas. ` +
+      "A wrong alias silently deletes a country rather than failing.",
+    );
+  }
+}
 
 /** The atlas name for a parsed operator, or null when it is not a country. */
 function resolveCountry(name: string): string | null {
