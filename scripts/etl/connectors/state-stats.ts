@@ -208,6 +208,16 @@ export async function run(): Promise<void> {
   const faults: string[] = [];
   let populationBasis = "unknown";
   let areaBasis = "unknown";
+  /**
+   * Every table the parser found, with its header and row count.
+   *
+   * Written into the output because guessing an article's structure from here
+   * costs a CI round trip per guess, and I have now spent two of them. A
+   * connector that reports what it actually saw turns the next guess into a
+   * reading. This is the same reason the Epoch connector records its column
+   * names.
+   */
+  const tablesSeen: Array<{ page: string; header: string[]; rows: number; firstRow: string[] }> = [];
 
   /**
    * Read one measure out of whichever table on the page actually carries it.
@@ -218,12 +228,18 @@ export async function run(): Promise<void> {
    * somebody adds an infobox.
    */
   function harvest(
-    text: string, want: RegExp, avoid: RegExp | undefined, floor: number,
+    text: string, label: string, want: RegExp, avoid: RegExp | undefined, floor: number,
     set: (state: string, value: number) => void,
   ): string {
     let basis = "unknown";
     let best = 0;
     for (const table of parseTables(text)) {
+      if (tablesSeen.length < 24) {
+        tablesSeen.push({
+          page: label, header: table.header.slice(0, 10), rows: table.rows.length,
+          firstRow: (table.rows[0] ?? []).slice(0, 10),
+        });
+      }
       const col = columnMatching(table.header, want, avoid);
       if (!col) continue;
       let hits = 0;
@@ -255,7 +271,7 @@ export async function run(): Promise<void> {
   if (!popText) faults.push("the population page did not answer");
   else {
     populationBasis = harvest(
-      popText, /population/i, /density|rank|decadal|growth|percent|share/i, 100_000,
+      popText, "population", /population/i, /density|rank|decadal|growth|percent|share/i, 100_000,
       (state, value) => {
         const prior = rows.get(state) ?? { state, population: null, area: null };
         rows.set(state, { ...prior, population: prior.population ?? value });
@@ -267,7 +283,7 @@ export async function run(): Promise<void> {
   if (!areaText) faults.push("the area page did not answer");
   else {
     areaBasis = harvest(
-      areaText, /area/i, /rank|percent|share|water/i, 30,
+      areaText, "area", /area/i, /rank|percent|share|water/i, 30,
       (state, value) => {
         const prior = rows.get(state) ?? { state, population: null, area: null };
         rows.set(state, { ...prior, area: prior.area ?? value });
@@ -340,6 +356,7 @@ export async function run(): Promise<void> {
       "that does not match the topology is recorded as unmatched rather than aliased to " +
       "something close, because a wrong alias deletes a state instead of failing.",
     faults,
+    tablesSeen,
     unmatched,
     withPopulation: withPop,
     withArea,
@@ -350,6 +367,10 @@ export async function run(): Promise<void> {
   console.log(`  ${list.length} states · ${withPop} with a population · ${withArea} with an area`);
   console.log(`  population column: "${populationBasis}"`);
   console.log(`  area column:       "${areaBasis}"`);
+  for (const t of tablesSeen) {
+    console.log(`  [${t.page}] ${t.rows} rows · header: ${t.header.join(" | ").slice(0, 150)}`);
+    if (t.header.length === 0) console.log(`      first row: ${t.firstRow.join(" | ").slice(0, 150)}`);
+  }
   console.log(`  total ${total.toLocaleString("en-IN")}`);
   for (const f of faults) console.warn(`  FAULT: ${f}`);
   if (unmatched.length > 0) console.log(`  unmatched labels: ${unmatched.slice(0, 8).join(" / ")}`);

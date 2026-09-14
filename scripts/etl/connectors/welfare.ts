@@ -51,7 +51,22 @@ import { isEntryPoint } from "../lib/entry";
 const ROOT = process.cwd();
 const OUT = join(ROOT, "data", "schemes", "welfare.json");
 const WIKI = "https://en.wikipedia.org/w/api.php";
-const LIST_PAGE = "List_of_schemes_of_the_government_of_India";
+/**
+ * Candidate roster articles, tried in order until one carries enough schemes.
+ *
+ * The first run used only the first of these and read twenty-nine schemes
+ * filed under sectors called "Telangana" and "Madhya Pradesh" — so that page
+ * is a list of *state* schemes, not the ministry-grouped list of central ones
+ * this needed. Rather than guess again at a cost of one CI round trip per
+ * guess, every plausible title is tried and the one that yields most wins,
+ * with the headings of each recorded so the choice is checkable.
+ */
+const LIST_PAGES = [
+  "List_of_schemes_of_the_government_of_India",
+  "List_of_Government_schemes_in_India",
+  "Welfare_schemes_of_the_Government_of_India",
+  "Category:Government_schemes_in_India",
+];
 
 export type Grain = "household" | "village" | "beneficiary-count" | "state-aggregate";
 
@@ -102,8 +117,9 @@ async function wikitext(page: string): Promise<string | null> {
  * parentheses. It is never inferred from the article title or from anything
  * else, because a wrong year here is indistinguishable from a right one.
  */
-export function readSchemes(text: string): Scheme[] {
+export function readSchemes(text: string): { schemes: Scheme[]; headings: string[] } {
   const out: Scheme[] = [];
+  const headings: string[] = [];
   const seen = new Set<string>();
   let sector: string | null = null;
 
@@ -113,6 +129,7 @@ export function readSchemes(text: string): Scheme[] {
       const label = (head[2] ?? "").replace(/\[\[|\]\]/g, "").trim();
       // "See also", "References" and friends are not sectors, and everything
       // filed under them is navigation rather than a scheme.
+      if (headings.length < 60) headings.push(`${"=".repeat((head[1] ?? "==").length)} ${label}`);
       sector = /^(see also|references|external links|notes|further reading|bibliography)$/i
         .test(label) ? null : label;
       continue;
@@ -143,7 +160,7 @@ export function readSchemes(text: string): Scheme[] {
       article: article || null,
     });
   }
-  return out;
+  return { schemes: out, headings };
 }
 
 /**
@@ -163,11 +180,21 @@ export function readJjm(html: string, known: Set<string>): {
   rows: Array<{ state: string; households: number; withTap: number }>;
   sampleRow: string[] | null;
   rowsSeen: number;
+  /** Every row's first cell, so a run that finds no states shows what it saw. */
+  firstCells: string[];
+  /** Whether the page is a frameset or a postback shell rather than a table. */
+  shell: string | null;
 } {
   const text = html.replace(/<script[\s\S]*?<\/script>/gi, " ");
   const rows: Array<{ state: string; households: number; withTap: number }> = [];
   let sampleRow: string[] | null = null;
   let rowsSeen = 0;
+  const firstCells: string[] = [];
+  const shell = /<iframe/i.test(html)
+    ? "the page carries an iframe — the table is probably loaded into it"
+    : /__VIEWSTATE/i.test(html) && rowsOf(html) < 10
+      ? "an ASP.NET postback shell: the grid is populated by a POST this connector does not make"
+      : null;
 
   for (const tr of text.split(/<tr[^>]*>/i).slice(1)) {
     const cells = [...tr.matchAll(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi)]
@@ -176,6 +203,7 @@ export function readJjm(html: string, known: Set<string>): {
     if (cells.length < 3) continue;
     rowsSeen++;
     if (!sampleRow) sampleRow = cells.slice(0, 8);
+    if (firstCells.length < 40 && cells[0]) firstCells.push(cells[0].slice(0, 40));
 
     const name = normaliseState(cells.find((c) => /[A-Za-z]{4}/.test(c)) ?? "", known);
     if (!name) continue;
@@ -191,7 +219,12 @@ export function readJjm(html: string, known: Set<string>): {
     const [a, b] = [numbers[0]!, numbers[1]!];
     rows.push({ state: name, households: Math.max(a, b), withTap: Math.min(a, b) });
   }
-  return { rows, sampleRow, rowsSeen };
+  return { rows, sampleRow, rowsSeen, firstCells, shell };
+}
+
+/** Cheap count of table rows, for the shell check above. */
+function rowsOf(html: string): number {
+  return (html.match(/<tr[^>]*>/gi) ?? []).length;
 }
 
 /** The map's spelling of a state, or null. The map is the vocabulary. */
@@ -226,15 +259,42 @@ export async function run(): Promise<void> {
   const known = new Set(Object.values(topo.symbols));
 
   // ── The roster ────────────────────────────────────────────────────────
-  const listText = await wikitext(LIST_PAGE);
-  const schemes = listText ? readSchemes(listText) : [];
+  let listText: string | null = null;
+  let listPage = "";
+  const attempts: Array<{ page: string; bytes: number; schemes: number; headings: string[] }> = [];
+  for (const page of LIST_PAGES) {
+    const text = await wikitext(page);
+    if (!text) { attempts.push({ page, bytes: 0, schemes: 0, headings: [] }); continue; }
+    const got = readSchemes(text);
+    attempts.push({
+      page, bytes: text.length, schemes: got.schemes.length, headings: got.headings.slice(0, 40),
+    });
+    console.log(`  ${page.padEnd(48)} ${text.length} bytes, ${got.schemes.length} schemes`);
+    if (got.schemes.length > (listText ? readSchemes(listText).schemes.length : 0)) {
+      listText = text; listPage = page;
+    }
+  }
+  /**
+   * The headings the article actually has, recorded in the output.
+   *
+   * The first run read 29 schemes and filed them under sectors called
+   * "Telangana", "Madhya Pradesh" and "Karnataka" — so this page is not the
+   * ministry-grouped list of central schemes I assumed, and guessing again
+   * from here costs another CI round trip. The headings say what it is.
+   */
+  const parsedList = listText ? readSchemes(listText) : { schemes: [], headings: [] };
+  const schemes = parsedList.schemes;
+  const headings = parsedList.headings;
+  for (const h of headings) console.log(`    heading: ${h}`);
   const sectors = [...new Set(schemes.map((s) => s.sector).filter((x): x is string => Boolean(x)))];
   console.log(`  roster: ${schemes.length} schemes across ${sectors.length} sectors`);
 
   // ── Coverage, from the sources that still answer ──────────────────────
   const coverage: CoverageRow[] = [];
   const refused: Array<{ source: string; why: string }> = [];
-  let jjmShape: { sampleRow: string[] | null; rowsSeen: number } = { sampleRow: null, rowsSeen: 0 };
+  let jjmShape: {
+    sampleRow: string[] | null; rowsSeen: number; firstCells: string[]; shell: string | null;
+  } = { sampleRow: null, rowsSeen: 0, firstCells: [], shell: null };
 
   const jjmUrl = "https://ejalshakti.gov.in/jjmreport/JJMIndia.aspx";
   const jjm = await getText(jjmUrl, { cacheMs: 6 * 3600_000, retries: 2, timeoutMs: 60_000 });
@@ -242,7 +302,10 @@ export async function run(): Promise<void> {
     refused.push({ source: "Jal Jeevan Mission", why: jjm.error ?? "no body" });
   } else {
     const parsed = readJjm(jjm.data, known);
-    jjmShape = { sampleRow: parsed.sampleRow, rowsSeen: parsed.rowsSeen };
+    jjmShape = {
+      sampleRow: parsed.sampleRow, rowsSeen: parsed.rowsSeen,
+      firstCells: parsed.firstCells, shell: parsed.shell,
+    };
     for (const r of parsed.rows) {
       coverage.push({
         scheme: "Jal Jeevan Mission",
@@ -256,6 +319,8 @@ export async function run(): Promise<void> {
       });
     }
     console.log(`  Jal Jeevan Mission: ${parsed.rows.length} states from ${parsed.rowsSeen} table rows`);
+    if (parsed.shell) console.log(`    ${parsed.shell}`);
+    console.log(`    first cells: ${parsed.firstCells.slice(0, 12).join(" / ")}`);
   }
 
   // The rest, recorded as refusals rather than omitted. A welfare tracker with
@@ -283,7 +348,10 @@ export async function run(): Promise<void> {
   await mkdir(join(ROOT, "data", "schemes"), { recursive: true });
   await writeFile(OUT, JSON.stringify({
     builtAt: new Date().toISOString(),
-    rosterSource: `English Wikipedia: ${LIST_PAGE.replace(/_/g, " ")}`,
+    rosterSource: listPage
+      ? `English Wikipedia: ${listPage.replace(/_/g, " ")}`
+      : "no candidate roster article answered",
+    rosterAttempts: attempts,
     coverageNote:
       "The roster is long and the coverage column is nearly empty, and that is the finding " +
       "rather than unfinished work. Fourteen scheme dashboards were asked what they would give " +
@@ -307,6 +375,7 @@ export async function run(): Promise<void> {
     bySector: [...bySector.entries()].map(([sector, n]) => ({ sector, schemes: n }))
       .sort((a, b) => b.schemes - a.schemes),
     jjmShape,
+    listHeadings: headings,
     refused,
     schemes,
     coverage,
