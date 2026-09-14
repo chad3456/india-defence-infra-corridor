@@ -120,6 +120,7 @@ const TARGETS: Target[] = [
     id: "wiki-busiest", kind: "air",
     what: "Wikipedia: busiest airports in India",
     url: `${WIKI}?action=parse&page=${encodeURIComponent("List_of_busiest_airports_in_India")}&redirects=1&prop=wikitext&formatversion=2&format=json`,
+    decode: "parse.wikitext",
     count: { tableRows: /^\s*\|-/gm, refs: /<ref/gi },
     settles:
       "A dated, sourced table with AAI as its citation. Weaker provenance than AAI directly and " +
@@ -140,6 +141,7 @@ const TARGETS: Target[] = [
     id: "wiki-metro", kind: "transport",
     what: "Wikipedia: urban rail transit in India",
     url: `${WIKI}?action=parse&page=${encodeURIComponent("Urban_rail_transit_in_India")}&redirects=1&prop=wikitext&formatversion=2&format=json`,
+    decode: "parse.wikitext",
     count: { tableRows: /^\s*\|-/gm },
     settles: "Systems, lengths and opening dates — a cross-check on what OSM has tagged.",
   },
@@ -147,6 +149,7 @@ const TARGETS: Target[] = [
     id: "wiki-state-pop", kind: "transport",
     what: "Wikipedia: Indian states by population",
     url: `${WIKI}?action=parse&page=${encodeURIComponent("List_of_states_and_union_territories_of_India_by_population")}&redirects=1&prop=wikitext&formatversion=2&format=json`,
+    decode: "parse.wikitext",
     count: { tableRows: /^\s*\|-/gm },
     settles:
       "The denominator. Metro kilometres without population ranks states by size, not by " +
@@ -156,6 +159,7 @@ const TARGETS: Target[] = [
     id: "wiki-state-area", kind: "transport",
     what: "Wikipedia: Indian states by area",
     url: `${WIKI}?action=parse&page=${encodeURIComponent("List_of_states_and_union_territories_of_India_by_area")}&redirects=1&prop=wikitext&formatversion=2&format=json`,
+    decode: "parse.wikitext",
     count: { tableRows: /^\s*\|-/gm },
     settles: "The other denominator: service per square kilometre is a different claim from per person.",
   },

@@ -24,6 +24,19 @@ export interface Target {
   /** Named counts: how many times each pattern matches. Counts, never matches. */
   count?: Record<string, RegExp>;
   /**
+   * Count against a string nested inside the JSON response, not the raw body.
+   *
+   * MediaWiki serves wikitext as a JSON string value, so every real newline in
+   * it is the two characters backslash and n. A pattern anchored with `^` in
+   * multiline mode can never match, and the first run of this probe duly
+   * reported zero table rows for "List of large language models" — a page
+   * that is almost entirely tables. The count was an artefact of the encoding
+   * and would have been read as a finding about the source.
+   *
+   * Dotted path into the parsed body, e.g. "parse.wikitext".
+   */
+  decode?: string;
+  /**
    * A second URL differing only in its parameters.
    *
    * If the two responses come back the same, the parameter is decorative and
@@ -78,8 +91,21 @@ export async function runProbe(
         f.missing = t.look.filter((w) => !low.includes(w.toLowerCase()));
       }
       if (t.count) {
+        let subject = body;
+        if (t.decode) {
+          try {
+            let cur: unknown = JSON.parse(body);
+            for (const key of t.decode.split(".")) {
+              cur = (cur as Record<string, unknown> | undefined)?.[key];
+            }
+            if (typeof cur === "string") subject = cur;
+            else f.note = `decode path "${t.decode}" did not reach a string; counted the raw body`;
+          } catch {
+            f.note = "the body is not JSON; counted it raw";
+          }
+        }
         f.counts = Object.fromEntries(
-          Object.entries(t.count).map(([k, re]) => [k, countOf(body, re)]),
+          Object.entries(t.count).map(([k, re]) => [k, countOf(subject, re)]),
         );
       }
       if (t.paired) {

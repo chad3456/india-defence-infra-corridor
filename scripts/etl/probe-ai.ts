@@ -48,7 +48,8 @@ const wikiPage = (page: string, settles: string, look: string[] = []): Target =>
   what: `Wikipedia: ${page.replace(/_/g, " ")}`,
   url: `${WIKI}?action=parse&page=${encodeURIComponent(page)}&redirects=1&prop=wikitext&formatversion=2&format=json`,
   look,
-  count: { tableRows: /^\s*\|-/gm, refs: /<ref/gi },
+  decode: "parse.wikitext",
+    count: { tableRows: /^\s*\|-/gm, refs: /<ref/gi },
   settles,
 });
 

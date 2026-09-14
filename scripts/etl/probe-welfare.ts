@@ -195,6 +195,7 @@ const TARGETS: Target[] = [
     id: "wiki-schemes", kind: "wiki",
     what: "Wikipedia: list of Indian government schemes",
     url: `${WIKI}?action=parse&page=${encodeURIComponent("List_of_schemes_of_the_government_of_India")}&redirects=1&prop=wikitext&formatversion=2&format=json`,
+    decode: "parse.wikitext",
     count: { tableRows: /^\s*\|-/gm, links: /\[\[/g },
     settles: "A fallback roster if myScheme refuses, and a cross-check on it if it does not.",
   },

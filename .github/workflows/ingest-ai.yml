@@ -1,0 +1,65 @@
+name: Build the AI model record
+
+# Reads what Indian labs have published from the Hugging Face API, and the
+# frontier record from Epoch AI's notable-models dataset.
+#
+# It runs here because huggingface.co returns 000 from the editing sandbox —
+# every host does except api.github.com — so "unreachable" from a local run
+# would be a fact about the sandbox rather than about the API.
+#
+# There are no funding figures in this pipeline and there will not be: Tracxn
+# refused the probe with a 403 and Crunchbase with a 401, and the rest of that
+# record is trade press repeating founders' own numbers.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Weekly. Model releases are continuous; a daily rebuild would be churn.
+    - cron: "10 6 * * 3"
+  push:
+    paths:
+      - "scripts/etl/connectors/ai-models.ts"
+      - ".github/workflows/ingest-ai.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ingest-ai
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+
+      # The CSV reader only. The committed record at this point is the one the
+      # build is about to replace, and gating the build on it is how a fix gets
+      # blocked by the thing it fixes.
+      - name: Check the readers before they meet a network
+        run: npm run test:ai -- --readers-only
+
+      - name: Build
+        env:
+          BRIGHTDATA_API_KEY: ${{ secrets.BRIGHTDATA_API_KEY }}
+          BRIGHTDATA_ZONE: ${{ secrets.BRIGHTDATA_ZONE }}
+        run: npm run ai:build
+
+      # Always, and before the check on the built file: a record that fails a
+      # check is exactly the one worth having on disk to look at.
+      - name: Commit the record
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/ai/models.json
+          "chore(ai): model record $(date -u +'%Y-%m-%d %H:%M')"
+
+      - name: Check the record that was just written
+        run: npm run test:ai
