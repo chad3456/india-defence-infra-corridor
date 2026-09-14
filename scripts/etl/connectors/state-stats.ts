@@ -394,6 +394,45 @@ export async function run(): Promise<void> {
   if (withPop < 28) faults.push(`only ${withPop} states got a population`);
   if (withArea < 28) faults.push(`only ${withArea} states got an area`);
 
+  /**
+   * A measure that fails its own named check is not published.
+   *
+   * This is the rule that should have existed from the first build. The census
+   * column has now survived three attempts to align it and still reads Uttar
+   * Pradesh at 240,928 and Madhya Pradesh at 308,252 — each state's area in
+   * square kilometres, consistently one column to the right. I do not know why
+   * from here, and the point is that it does not matter: a denominator that is
+   * wrong by a factor of eight hundred is worse than no denominator, because
+   * every rate built on it looks calculated.
+   *
+   * So the column is suppressed rather than shipped with a warning attached.
+   * A warning in a file is read by whoever opens the file; a wrong number is
+   * read by everyone who opens the page.
+   */
+  const suppressed: Array<{ measure: string; why: string }> = [];
+  const censusBad = faults.some((f) => f.includes("census population parsed as"));
+  const areaBad = faults.some((f) => f.includes("largest state by area")) || withArea < 20;
+  if (censusBad) {
+    suppressed.push({
+      measure: "censusPopulation",
+      why:
+        "The column reads each state's area rather than its population — Uttar Pradesh at " +
+        "240,928 and Madhya Pradesh at 308,252, both square-kilometre figures, consistently one " +
+        "column to the right of where the header says. Suppressed rather than shipped: a wrong " +
+        "denominator is worse than none, because every rate built on it looks calculated.",
+    });
+    for (const r of list) r.censusPopulation = null;
+  }
+  if (areaBad) {
+    suppressed.push({
+      measure: "area",
+      why:
+        `Only ${withArea} of ${list.length} states parsed an area and the largest came out as ` +
+        `${biggest?.state ?? "nothing"} rather than Rajasthan. Too thin and too wrong to publish.`,
+    });
+    for (const r of list) r.area = null;
+  }
+
   await mkdir(join(ROOT, "data", "geo"), { recursive: true });
   await writeFile(OUT, JSON.stringify({
     builtAt: new Date().toISOString(),
@@ -419,11 +458,16 @@ export async function run(): Promise<void> {
       "that does not match the topology is recorded as unmatched rather than aliased to " +
       "something close, because a wrong alias deletes a state instead of failing.",
     faults,
+    suppressed,
+    suppressionRule:
+      "A measure whose named-fact check fails is removed from every row rather than shipped with " +
+      "a warning beside it. A warning in a file is read by whoever opens the file; a wrong " +
+      "number is read by everyone who opens the page.",
     tablesSeen,
     unmatched,
     withPopulation: withPop,
-    withCensusPopulation: withCensus,
-    withArea,
+    withCensusPopulation: list.filter((r) => r.censusPopulation !== null).length,
+    withArea: list.filter((r) => r.area !== null).length,
     totalPopulation: total,
     states: list,
   }, null, 2) + "\n", "utf8");
@@ -438,6 +482,7 @@ export async function run(): Promise<void> {
   }
   console.log(`  total ${total.toLocaleString("en-IN")}`);
   for (const f of faults) console.warn(`  FAULT: ${f}`);
+  for (const sup of suppressed) console.warn(`  SUPPRESSED ${sup.measure}: ${sup.why.slice(0, 120)}`);
   if (unmatched.length > 0) console.log(`  unmatched labels: ${unmatched.slice(0, 8).join(" / ")}`);
 }
 

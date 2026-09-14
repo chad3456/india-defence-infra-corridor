@@ -94,6 +94,16 @@ export default function StatewisePage() {
             <p className="mt-3 max-w-[66ch] text-[13px] leading-[1.7] text-[color:var(--text-secondary)]">
               {stats.staleness}
             </p>
+            {stats.suppressed.length > 0 && (
+              <div className="mt-4 border-l-2 border-[color:var(--status-warning)] pl-3.5">
+                <p className="eyebrow">removed rather than shown</p>
+                {stats.suppressed.map((sup) => (
+                  <p key={sup.measure} className="mt-1.5 max-w-[64ch] text-[12.5px] leading-[1.6] text-[color:var(--text-secondary)]">
+                    <span className="mono text-[11.5px]">{sup.measure}</span> — {sup.why}
+                  </p>
+                ))}
+              </div>
+            )}
           </>
         ) : (
           <p className="mt-2.5 max-w-[66ch] text-[13.5px] leading-[1.7]">

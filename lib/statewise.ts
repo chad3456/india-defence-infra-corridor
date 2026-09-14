@@ -36,13 +36,16 @@ export interface StateStats {
   basisNote: string;
   staleness: string;
   faults: string[];
+  /** Measures removed because they failed their own named-fact check. */
+  suppressed: Array<{ measure: string; why: string }>;
+  suppressionRule: string;
   states: StateStat[];
 }
 
 const EMPTY: StateStats = {
   present: false, builtAt: null, source: "",
   populationBasis: "unknown", areaBasis: "unknown", basisNote: "", staleness: "",
-  faults: [], states: [],
+  faults: [], suppressed: [], suppressionRule: "", states: [],
 };
 
 export function loadStateStats(): StateStats {
