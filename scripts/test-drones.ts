@@ -20,17 +20,18 @@ function ok(name: string, cond: boolean, detail = ""): void {
   console.log(`  ${cond ? "ok  " : "FAIL"} ${name}${cond ? "" : "  " + detail}`);
 }
 
-interface Op { country: string; asWritten: string }
+interface Op { country: string; asWritten: string; via?: string }
 interface Type {
   page: string; name: string; origin: string; originCountry?: string; klass: string;
   operators: Op[]; nonState: string[]; read: boolean; note?: string;
-  method?: "list" | "templates"; statedReach?: string; unresolved?: string[];
+  method?: "list" | "templates" | "headings"; statedReach?: string; unresolved?: string[];
 }
 const d = JSON.parse(readFileSync(FILE, "utf8")) as {
   types: Type[];
   countries: Array<{ country: string; types: string[]; origins: string[] }>;
   suppliers: Array<{ origin: string; originCountry?: string; operators: number; countries: string[] }>;
   readCount: number; typeCount: number; countryCount: number; faults: string[];
+  provisionalRows?: number; viaNote?: string;
   note: string; gap: string; originNote: string;
 };
 
@@ -126,6 +127,10 @@ ok("reaches at least twenty operator countries", d.countryCount >= 20, String(d.
     ok("every type says how its operators were found", withOps.every((t) => Boolean(t.method)));
     const loose = withOps.filter((t) => t.method === "templates");
     console.log(`        ${loose.length} of ${withOps.length} types read by template scan rather than list`);
+    const heads = withOps.filter((t) => t.method === "headings");
+    if (heads.length > 0) {
+      console.log(`        ${heads.length} read from country sub-headings: ${heads.map((t) => t.name).join(", ")}`);
+    }
   } else {
     console.log("  skip  this file predates the method field — the next ingest adds it.");
   }
@@ -154,6 +159,17 @@ ok("says an absent country means nobody wrote it down",
   /nobody wrote it down/i.test(d.gap));
 ok("says the origin field is stated rather than parsed",
   /stated in this file rather than parsed/i.test(d.originNote));
+if (d.viaNote !== undefined) {
+  // Reading whole sections brought in Former and Potential subsections. A
+  // file that carries those rows has to say so, and every such row has to be
+  // identifiable — otherwise "operates" quietly comes to mean "has discussed".
+  ok("says what a Former or Potential row means",
+    /not a claim that the state operates/i.test(d.viaNote));
+  const flagged = d.types.flatMap((t) => t.operators)
+    .filter((o) => o.via && /\b(former|potential|prospective)\b/i.test(o.via)).length;
+  ok("the provisional count matches the rows that carry a provisional group",
+    (d.provisionalRows ?? 0) === flagged, `${d.provisionalRows} vs ${flagged}`);
+}
 
 console.log(bad === 0 ? "\nAll drone checks passed.\n" : `\n${bad} check(s) failed.\n`);
 process.exit(bad === 0 ? 0 : 1);

@@ -243,6 +243,20 @@ export interface Operator {
   country: string;
   /** The bullet as written, so a reader can see what it was read from. */
   asWritten: string;
+  /**
+   * The subsection the row sat under: "Current operators", "Former
+   * operators", "Potential operators", or absent when the section is flat.
+   *
+   * This became necessary the moment the parser started reading subsections at
+   * all. Before that it stopped at the first "===" heading and only ever saw
+   * flat lists; now it reads the whole section, and the whole section on these
+   * articles routinely includes states that used to fly the type and states
+   * that are in discussions to buy one. Folding those in with current
+   * operators would inflate the map with a claim nobody made — the MQ-9's
+   * Greece entry says "is in discussions for the acquisition of at least
+   * three" — so the group travels with the row and the page can say which.
+   */
+  via?: string;
 }
 
 export interface DroneType extends Type {
@@ -271,7 +285,7 @@ export interface DroneType extends Type {
    * every flag template in the section. Recorded because the two are not
    * equally strong and a reader should be able to tell them apart.
    */
-  method?: "list" | "templates";
+  method?: "list" | "templates" | "headings";
   /** The article counting its own operators, where it does. */
   statedReach?: string;
   /**
@@ -448,8 +462,42 @@ export async function run(): Promise<void> {
     const operators: Operator[] = [];
     const nonState: string[] = [];
     const unresolved: string[] = [];
-    let method: "list" | "templates" = "list";
+    let method: "list" | "templates" | "headings" = "list";
+    /** The subsection currently in scope, e.g. "Former operators". */
+    let group: string | undefined;
+    let fromHeadings = 0;
+
+    const add = (parsed: string, asWritten: string): void => {
+      const c = resolveCountry(parsed);
+      if (!c) { if (!unresolved.includes(parsed)) unresolved.push(parsed); return; }
+      if (seen.has(c)) return;
+      seen.add(c);
+      operators.push({ country: c, asWritten, ...(group ? { via: group } : {}) });
+    };
+
     for (const line of section.split("\n")) {
+      /**
+       * A heading is either a country or the group the countries sit in.
+       *
+       * The MQ-9 is the case that forced this. Its Operators section is
+       * neither a list nor a table nor flag templates: it is a run of
+       * "==== Colombia ====" headings with a paragraph of prose under each.
+       * Every line-prefix and template rule in this file skips all of it, so
+       * the type that gave the connector its name check came back empty while
+       * fifteen other types read fine.
+       */
+      const head = /^(={3,})\s*(.+?)\s*\1\s*$/.exec(line);
+      if (head) {
+        const text = (head[2] ?? "").replace(/\[\[|\]\]/g, "").trim();
+        const asCountry = ALIAS[text.toLowerCase()] ?? text;
+        if (!NOT_A_COUNTRY.test(text) && resolveCountry(asCountry)) {
+          add(asCountry, line.trim());
+          fromHeadings++;
+        } else {
+          group = text;
+        }
+        continue;
+      }
       if (NON_STATE.test(line)) {
         const who = line.replace(/^\*+\s*/, "").replace(/\[\[|\]\]/g, "").slice(0, 48).trim();
         if (who && !nonState.includes(who)) nonState.push(who);
@@ -457,12 +505,11 @@ export async function run(): Promise<void> {
       }
       const parsed = countryOf(line);
       if (!parsed) continue;
-      const c = resolveCountry(parsed);
-      if (!c) { if (!unresolved.includes(parsed)) unresolved.push(parsed); continue; }
-      if (seen.has(c)) continue;
-      seen.add(c);
-      operators.push({ country: c, asWritten: line.replace(/^\*+\s*/, "").slice(0, 90).trim() });
+      add(parsed, line.replace(/^\*+\s*/, "").slice(0, 90).trim());
     }
+    // A section read entirely from its headings is a different kind of read
+    // from a bulleted list, and the difference stays on the record.
+    if (fromHeadings > 0 && fromHeadings === operators.length) method = "headings";
 
     /**
      * Tables, prose and image legends, when the list read comes back thin.
@@ -563,6 +610,21 @@ export async function run(): Promise<void> {
   }
   const countries = [...byCountry.values()].sort((a, b) => b.types.length - a.types.length);
 
+  /**
+   * Rows that are not a current operator, counted.
+   *
+   * Reading whole sections rather than stopping at the first subsection
+   * heading brought in "Former operators" and "Potential operators" along with
+   * the current ones. That is the right material to hold — a state that flew a
+   * type and stopped is a fact about proliferation — but it is not the same
+   * claim, and a country count that silently mixes the three overstates reach.
+   * So it is measured here and the note says what the number means.
+   */
+  const NOT_CURRENT = /\b(former|potential|prospective|cancelled|failed|rejected)\b/i;
+  const provisional = types.reduce(
+    (n, t) => n + t.operators.filter((o) => o.via && NOT_CURRENT.test(o.via)).length, 0,
+  );
+
   // Suppliers: how many operator countries each producing country reaches.
   const bySupplier = new Map<string, { atlas: string; set: Set<string> }>();
   for (const t of types) {
@@ -633,6 +695,19 @@ export async function run(): Promise<void> {
       "section layout; everything else on a row is read from the page.",
     readCount,
     faults,
+    /**
+     * Operator rows read from a "Former" or "Potential" subsection.
+     *
+     * Kept as its own number rather than filtered out: which states used to
+     * fly a type, and which are negotiating for one, are both worth holding.
+     * They are simply not the same claim as "operates", and each row carries
+     * the subsection it came from in its `via` field.
+     */
+    provisionalRows: provisional,
+    viaNote:
+      "An operator row carries `via` when it was read from a named subsection. Rows under a " +
+      "Former or Potential heading are counted in provisionalRows and are not a claim that the " +
+      "state operates the type today.",
     typeCount: types.length,
     countryCount: countries.length,
     types,

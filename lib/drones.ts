@@ -8,7 +8,12 @@ import raw from "@/data/global/drones.json";
  * suppliers is the interesting case and a map can only paint it one colour.
  */
 
-export interface Operator { country: string; asWritten: string }
+export interface Operator {
+  country: string;
+  asWritten: string;
+  /** The subsection it sat under — "Former operators", "Potential operators". */
+  via?: string;
+}
 
 export interface DroneType {
   page: string;
@@ -24,7 +29,7 @@ export interface DroneType {
   note?: string;
   sample?: string[];
   /** Whether operators came from list entries or a looser template scan. */
-  method?: "list" | "templates";
+  method?: "list" | "templates" | "headings";
   /** The article counting its own operators, where it does. */
   statedReach?: string;
 }
@@ -39,6 +44,9 @@ export interface Drones {
   typeCount: number;
   countryCount: number;
   faults: string[];
+  /** Rows read from a Former or Potential subsection. Absent on older files. */
+  provisionalRows?: number;
+  viaNote?: string;
   types: DroneType[];
   countries: Array<{ country: string; types: string[]; origins: string[] }>;
   suppliers: Array<{
