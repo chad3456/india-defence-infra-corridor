@@ -320,8 +320,23 @@ async function wikitext(page: string): Promise<string | null> {
  */
 function operatorsSection(text: string): string | null {
   const re = /^(={2,})\s*((?:current |former |potential )?operators?)\s*\1\s*$/gim;
-  const m = re.exec(text);
-  if (!m) return null;
+  /**
+   * The outermost operators heading, not the first one.
+   *
+   * `exec` returns the earliest match in document order, and on the MQ-9 that
+   * is "=== Potential operators ===" — the article has no plain "== Operators
+   * ==" above it, so the parser read the three states in discussions to buy
+   * one and none of the states that fly it. The read looked like a success:
+   * three operators, a plausible method, no fault except the one name check
+   * that happened to catch it.
+   *
+   * So every heading is collected and the shallowest wins, which is the one
+   * whose section contains the others. Among equals the earliest still wins.
+   */
+  const all = [...text.matchAll(re)];
+  if (all.length === 0) return null;
+  let m = all[0]!;
+  for (const c of all) if ((c[1] ?? "").length < (m[1] ?? "").length) m = c;
   const start = m.index + m[0].length;
   const depth = (m[1] ?? "==").length;
   const rest = text.slice(start);
