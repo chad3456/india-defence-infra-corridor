@@ -1,0 +1,276 @@
+{
+  "probedAt": "2026-09-14T09:04:30.147Z",
+  "note": "Reachability and shape only. No contract, value or date is published from this file.",
+  "question": "Which publishers hold India's defence contracts since 2014, and can a script read them?",
+  "refusal": "No figure is recorded here, only whether a figure exists on the page. A probe log that quotes a contract value beside a URL is a number with a filename where a citation should be, and it will be treated as sourced by the next person who reads it.",
+  "fourMeasures": "A CCS clearance, a DAC Acceptance of Necessity, a signed contract and a SIPRI delivery are four different events. An AoN is permission to begin procuring and many never become contracts, so a ledger that adds them together overstates itself badly. The eventual dataset must keep them in separate columns.",
+  "findings": [
+    {
+      "id": "pib-rss-mod",
+      "kind": "pib",
+      "what": "PIB RSS, Ministry of Defence",
+      "url": "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
+      "settles": "Contract signatures and CCS clearances, dated, but only the current window.",
+      "ok": true,
+      "status": "200",
+      "bytes": 4355,
+      "shape": "xml-feed",
+      "moneyMentions": 0,
+      "found": [
+        "item"
+      ],
+      "missing": [
+        "defence"
+      ]
+    },
+    {
+      "id": "pib-archive",
+      "kind": "pib",
+      "what": "PIB release archive",
+      "url": "https://www.pib.gov.in/allRel.aspx",
+      "settles": "The back catalogue, if it can be addressed by date rather than by PRID.",
+      "ok": true,
+      "status": "200",
+      "bytes": 140988,
+      "shape": "html",
+      "moneyMentions": 2,
+      "found": [
+        "release"
+      ],
+      "missing": []
+    },
+    {
+      "id": "ddp-home",
+      "kind": "mod",
+      "what": "Department of Defence Production",
+      "url": "https://ddpmod.gov.in/",
+      "settles": "Production value, indigenisation and the DPSU side of contracts.",
+      "ok": true,
+      "status": "200",
+      "bytes": 375302,
+      "shape": "html",
+      "moneyMentions": 5,
+      "found": [
+        "production",
+        "defence"
+      ],
+      "missing": []
+    },
+    {
+      "id": "ddp-exports",
+      "kind": "mod",
+      "what": "DDP, defence exports",
+      "url": "https://ddpmod.gov.in/defence-exports",
+      "settles": "Export authorisations and the destination spread the HS data cannot give.",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "mod-annual",
+      "kind": "mod",
+      "what": "MoD annual reports index",
+      "url": "https://www.mod.gov.in/en/documents/annual-report",
+      "settles": "Contracts concluded per year, in a PDF appendix.",
+      "ok": false,
+      "status": "fetch failed",
+      "bytes": null
+    },
+    {
+      "id": "mod-home",
+      "kind": "mod",
+      "what": "Ministry of Defence",
+      "url": "https://www.mod.gov.in/",
+      "settles": "Navigation to the acquisition and DAP documents.",
+      "ok": false,
+      "status": "fetch failed",
+      "bytes": null
+    },
+    {
+      "id": "sipri-transfers",
+      "kind": "sipri",
+      "what": "SIPRI arms transfers database",
+      "url": "https://www.sipri.org/databases/armstransfers",
+      "settles": "Deliveries by supplier and year — not contract values, and not signatures.",
+      "ok": true,
+      "status": "200",
+      "bytes": 60270,
+      "shape": "html",
+      "moneyMentions": 4,
+      "found": [
+        "transfer",
+        "arms"
+      ],
+      "missing": []
+    },
+    {
+      "id": "sipri-register",
+      "kind": "sipri",
+      "what": "SIPRI trade register",
+      "url": "https://armstrade.sipri.org/armstrade/page/trade_register.php",
+      "settles": "Ordered and delivered quantities per deal, the closest thing to a ledger.",
+      "ok": true,
+      "status": "200",
+      "bytes": 60270,
+      "shape": "html",
+      "moneyMentions": 4,
+      "found": [],
+      "missing": [
+        "register"
+      ]
+    },
+    {
+      "id": "wiki-list-of-military-equipment-of-the-indian",
+      "kind": "wiki",
+      "what": "Wikipedia: List of military equipment of the Indian Army",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_military_equipment_of_the_Indian_Army&redirects=1",
+      "settles": "Which types are on order, as an index of what to look up.",
+      "ok": true,
+      "status": "200",
+      "bytes": 401,
+      "shape": "json",
+      "moneyMentions": 0,
+      "found": [],
+      "missing": [
+        "procure",
+        "order"
+      ]
+    },
+    {
+      "id": "wiki-defence-acquisition-council",
+      "kind": "wiki",
+      "what": "Wikipedia: Defence Acquisition Council",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Defence_Acquisition_Council&redirects=1&prop=wikitext&for",
+      "settles": "What an AoN is, and why it is not a contract.",
+      "ok": true,
+      "status": "200",
+      "bytes": 401,
+      "shape": "json",
+      "moneyMentions": 0,
+      "found": [],
+      "missing": [
+        "Acceptance of Necessity",
+        "council"
+      ]
+    },
+    {
+      "id": "wiki-make-in-india",
+      "kind": "wiki",
+      "what": "Wikipedia: Make in India",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Make_in_India&redirects=1&prop=wikitext&formatversion=2&f",
+      "settles": "The policy frame the collaborations sit inside.",
+      "ok": true,
+      "status": "200",
+      "bytes": 52882,
+      "shape": "json",
+      "moneyMentions": 43,
+      "found": [
+        "defence",
+        "manufacturing"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-dassault-rafale-procurement-by-india",
+      "kind": "wiki",
+      "what": "Wikipedia: Dassault Rafale procurement by India",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Dassault_Rafale_procurement_by_India&redirects=1&prop=wik",
+      "settles": "One well-documented contract, as a shape test for the others.",
+      "ok": true,
+      "status": "200",
+      "bytes": 401,
+      "shape": "json",
+      "moneyMentions": 0,
+      "found": [],
+      "missing": [
+        "contract",
+        "2016"
+      ]
+    },
+    {
+      "id": "wiki-s-400-missile-system",
+      "kind": "wiki",
+      "what": "Wikipedia: S-400 missile system",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=S-400_missile_system&redirects=1&prop=wikitext&formatvers",
+      "settles": "A government-to-government deal with a disputed published value.",
+      "ok": true,
+      "status": "200",
+      "bytes": 171790,
+      "shape": "json",
+      "moneyMentions": 26,
+      "found": [
+        "India",
+        "contract"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-brahmos",
+      "kind": "wiki",
+      "what": "Wikipedia: BrahMos",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=BrahMos&redirects=1&prop=wikitext&formatversion=2&format=",
+      "settles": "The clearest Indian defence export contract of the period.",
+      "ok": true,
+      "status": "200",
+      "bytes": 212244,
+      "shape": "json",
+      "moneyMentions": 33,
+      "found": [
+        "Philippines",
+        "export",
+        "contract"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-indian-navy",
+      "kind": "wiki",
+      "what": "Wikipedia: Indian Navy",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Indian_Navy&redirects=1&prop=wikitext&formatversion=2&for",
+      "settles": "Domestic warship programmes, which are projects rather than purchases.",
+      "ok": true,
+      "status": "200",
+      "bytes": 217649,
+      "shape": "json",
+      "moneyMentions": 44,
+      "found": [
+        "indigenous",
+        "commissioned"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-hindustan-aeronautics-limited",
+      "kind": "wiki",
+      "what": "Wikipedia: Hindustan Aeronautics Limited",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Hindustan_Aeronautics_Limited&redirects=1&prop=wikitext&f",
+      "settles": "The largest DPSU's order book.",
+      "ok": true,
+      "status": "200",
+      "bytes": 70824,
+      "shape": "json",
+      "moneyMentions": 36,
+      "found": [
+        "contract",
+        "order"
+      ],
+      "missing": []
+    },
+    {
+      "id": "hal-home",
+      "kind": "vendor",
+      "what": "Hindustan Aeronautics Limited",
+      "url": "https://hal-india.co.in/",
+      "settles": "Order book announcements, if the site is not a rendered application.",
+      "ok": true,
+      "status": "200",
+      "bytes": 20023,
+      "shape": "html",
+      "moneyMentions": 0,
+      "found": [
+        "aeronautics"
+      ],
+      "missing": []
+    }
+  ]
+}
