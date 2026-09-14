@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "statewise-2026-09",
+    title: "Transport by state",
+    blurb:
+      "Airports, metro lines and railway stations per state — with the three measures that " +
+      "could not be sourced named rather than estimated.",
+    href: "/statewise",
+    since: "2026-09-14",
+  },
+  {
     id: "ai-2026-09",
     title: "AI in India",
     blurb:

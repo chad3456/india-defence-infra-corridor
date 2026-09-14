@@ -364,8 +364,17 @@ export async function run(): Promise<void> {
     if (src) {
       const abs = src.startsWith("http") ? src : new URL(src, jjmUrl).toString();
       const inner = await getText(abs, { cacheMs: 6 * 3600_000, retries: 2, timeoutMs: 60_000 });
-      if (inner.ok && inner.data) { jjm = inner; jjmFrom = abs; }
-      console.log(`    followed the iframe to ${abs} — ${inner.ok ? "answered" : inner.error}`);
+      // Only if it actually carries a table. The first attempt swapped in a
+      // frame with no rows at all, taking the outer page's six header copies
+      // down to nothing — a fetch that succeeded and made the result worse.
+      const innerRows = inner.data ? (inner.data.match(/<tr[^>]*>/gi) ?? []).length : 0;
+      if (inner.ok && inner.data && innerRows > (jjm.data?.match(/<tr[^>]*>/gi) ?? []).length) {
+        jjm = inner; jjmFrom = abs;
+      }
+      console.log(
+        `    followed the iframe to ${abs} — ${inner.ok ? `${innerRows} rows` : inner.error}` +
+        `${innerRows === 0 ? " (kept the outer page)" : ""}`,
+      );
     }
   }
 

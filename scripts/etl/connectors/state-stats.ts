@@ -177,7 +177,21 @@ export function parseTables(text: string): Table[] {
 
 /** Wikitext markup stripped from one cell, leaving the text a reader sees. */
 export function cleanCell(cell: string): string {
-  return cell
+  /**
+   * Wikitable cell attributes come before a single pipe: `style="…"|Statehood`.
+   *
+   * Stripping them by naming the attributes I expected left a bare `"` behind
+   * for every attribute I had not thought of, and that stray cell shifted the
+   * header one place against the rows. The result was Uttar Pradesh's 2011
+   * population reading 240,928 — which is its area in square kilometres, a
+   * number that is plausible, well-formed, and wrong by a factor of eight
+   * hundred. So the rule is structural instead: if a cell begins with
+   * something that looks like HTML attributes and then a pipe, everything up
+   * to that pipe is markup.
+   */
+  const attrs = /^\s*(?:[A-Za-z-]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s|]+)\s*)+\|(?!\|)/.exec(cell);
+  const body = attrs ? cell.slice(attrs[0].length) : cell;
+  return body
     .replace(/<ref[\s\S]*?(?:\/>|<\/ref>)/gi, "")
     .replace(/\{\{[Ss]ort\|[^|}]*\|([^}]*)\}\}/g, "$1")
     .replace(/\{\{[^{}]*\}\}/g, "")
@@ -355,6 +369,24 @@ export async function run(): Promise<void> {
   const biggest = [...list].sort((a, b) => (b.area ?? 0) - (a.area ?? 0))[0];
   if (biggest && biggest.state !== "Rajasthan") {
     faults.push(`the largest state by area parsed as ${biggest.state}, not Rajasthan`);
+  }
+  /**
+   * Uttar Pradesh counted 199,812,341 people in 2011 and covers 240,928 km².
+   *
+   * Both checks exist because the first version produced the second number as
+   * the first one — the header had shifted a column — and the area check
+   * alone did not catch it. A magnitude check on a figure everybody can look
+   * up is the cheapest guard there is against a column that has moved.
+   */
+  const up = list.find((r) => r.state === "Uttar Pradesh");
+  if (up?.censusPopulation != null && (up.censusPopulation < 1.8e8 || up.censusPopulation > 2.2e8)) {
+    faults.push(
+      `Uttar Pradesh's census population parsed as ${up.censusPopulation.toLocaleString("en-IN")}, ` +
+      "not near 199.8 million — the column has moved",
+    );
+  }
+  if (up?.area != null && (up.area < 2.2e5 || up.area > 2.6e5)) {
+    faults.push(`Uttar Pradesh's area parsed as ${up.area.toLocaleString("en-IN")}, not near 240,928 km²`);
   }
   const withPop = list.filter((r) => r.population !== null).length;
   const withCensus = list.filter((r) => r.censusPopulation !== null).length;
