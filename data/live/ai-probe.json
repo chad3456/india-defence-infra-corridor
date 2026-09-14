@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-09-14T16:09:25.524Z",
+  "probedAt": "2026-09-14T16:15:41.043Z",
   "question": "What can be sourced about LLM development, and about what Indian companies and labs are actually building?",
   "refusal": "No download count, parameter count, benchmark score, valuation or funding figure is recorded here — only whether a source answers, in what shape, and how many rows it carries. A probe log that quotes a figure beside a URL is a number with a filename where a citation should be, and the next reader will treat it as sourced.",
   "twoQuestions": "Model releases leave hard artifacts: an author, a date, a licence, a download count, served as JSON without a key. Startup funding does not: it comes from paywalled trackers and trade press. The eventual tracker must not present the second with the confidence of the first, so this probe keeps them in separate kinds and expects the business sources to refuse.",
@@ -20,7 +20,7 @@
         "dated": 100
       },
       "parameterWorks": true,
-      "parameterNote": "4503 bytes apart, beyond a 116-byte tolerance"
+      "parameterNote": "4456 bytes apart, beyond a 116-byte tolerance"
     },
     {
       "id": "hf-models-indic",
@@ -234,7 +234,7 @@
       "url": "http://export.arxiv.org/api/query?search_query=all:%22Indian%20Institute%20of%20Technology%22%20AND%20cat:cs.CL&max_results=100",
       "settles": "Whether Indian research output is separable from the whole by a citable filter.",
       "ok": false,
-      "status": "This operation was aborted",
+      "status": "HTTP 429",
       "bytes": null
     },
     {
@@ -323,7 +323,7 @@
       ],
       "missing": [],
       "counts": {
-        "tableRows": 0,
+        "tableRows": 187,
         "refs": 340
       }
     },
@@ -342,7 +342,7 @@
       ],
       "missing": [],
       "counts": {
-        "tableRows": 0,
+        "tableRows": 75,
         "refs": 356
       }
     },
@@ -359,7 +359,7 @@
       "found": [],
       "missing": [],
       "counts": {
-        "tableRows": 0,
+        "tableRows": 4,
         "refs": 37
       }
     },
@@ -375,6 +375,7 @@
       "shape": "json",
       "found": [],
       "missing": [],
+      "note": "decode path \"parse.wikitext\" did not reach a string; counted the raw body",
       "counts": {
         "tableRows": 0,
         "refs": 0
