@@ -95,6 +95,18 @@ function resolveCountry(name: string): string | null {
   return null;
 }
 
+/** The same, for a producing country, where failing to resolve is a bug. */
+function originCountryOf(origin: string): string {
+  const hit = resolveCountry(origin);
+  if (!hit) {
+    throw new Error(
+      `"${origin}" is listed as a type's country of origin but is not a country the atlas ` +
+      "can draw. A supplier the map cannot shade is a silent hole, not an error.",
+    );
+  }
+  return hit;
+}
+
 const ROOT = process.cwd();
 const OUT = join(ROOT, "data", "global", "drones.json");
 const WIKI = "https://en.wikipedia.org/w/api.php";
@@ -234,6 +246,19 @@ export interface Operator {
 }
 
 export interface DroneType extends Type {
+  /**
+   * The producing country under the map's own vocabulary.
+   *
+   * `origin` is written the way this project writes it — "Türkiye", "United
+   * States" — and the world atlas writes those "Turkey" and "United States of
+   * America". Every operator row is already resolved into atlas names, so
+   * without this the supplier and the operator of the same country are two
+   * different strings: a map asked to shade the producer finds nothing, and a
+   * self-check that looks for "Türkiye" among the TB2's operators fails on a
+   * parse that is entirely correct. This is the one field that lets the two
+   * vocabularies be compared.
+   */
+  originCountry: string;
   operators: Operator[];
   nonState: string[];
   /** Absent when the article has no Operators section this could find. */
@@ -285,9 +310,22 @@ function operatorsSection(text: string): string | null {
   if (!m) return null;
   const start = m.index + m[0].length;
   const depth = (m[1] ?? "==").length;
-  // Stop at the next heading of the same or shallower depth.
   const rest = text.slice(start);
-  const next = new RegExp(`^={2,${depth}}\\s*\\S`, "m").exec(rest);
+  /**
+   * Stop at the next heading of the same or shallower depth — and not at a
+   * deeper one.
+   *
+   * The first version wrote this as `^={2,depth}\s*\S`, which looks like it
+   * means "two to depth equals signs" and does not: against
+   * "=== Current operators ===" the `==` matches, `\s*` matches nothing, and
+   * the third `=` satisfies `\S`. So a subsection heading ended the parent
+   * section, and every article that files its operators under
+   * "=== Current operators ===" returned the three lines above that heading
+   * and nothing else. That was the TB2, both other Turkish types, the MQ-9,
+   * the CH series and the Searcher — six of eighteen, all of them empty, all
+   * of them reported as read. The lookahead is what makes the bound real.
+   */
+  const next = new RegExp(`^={2,${depth}}(?!=)\\s*\\S`, "m").exec(rest);
   return next ? rest.slice(0, next.index) : rest;
 }
 
@@ -380,7 +418,7 @@ export async function run(): Promise<void> {
   for (const t of TYPES) {
     const text = await wikitext(t.page);
     if (!text) {
-      types.push({ ...t, operators: [], nonState: [], read: false, note: "article unavailable" });
+      types.push({ ...t, originCountry: originCountryOf(t.origin), operators: [], nonState: [], read: false, note: "article unavailable" });
       console.log(`  ${t.name.padEnd(26)} article unavailable`);
       continue;
     }
@@ -401,7 +439,7 @@ export async function run(): Promise<void> {
     }
 
     if (!section) {
-      types.push({ ...t, operators: [], nonState: [], read: false, note: "no Operators section found" });
+      types.push({ ...t, originCountry: originCountryOf(t.origin), operators: [], nonState: [], read: false, note: "no Operators section found" });
       console.log(`  ${t.name.padEnd(26)} no Operators section`);
       continue;
     }
@@ -494,7 +532,7 @@ export async function run(): Promise<void> {
     }
 
     types.push({
-      ...t, operators, nonState, read: true, method,
+      ...t, originCountry: originCountryOf(t.origin), operators, nonState, read: true, method,
       ...(unresolved.length > 0 ? { unresolved } : {}),
       ...(statedReach(section) ? { statedReach: statedReach(section)! } : {}),
       // The first lines of the section as they actually are. The previous
@@ -526,14 +564,19 @@ export async function run(): Promise<void> {
   const countries = [...byCountry.values()].sort((a, b) => b.types.length - a.types.length);
 
   // Suppliers: how many operator countries each producing country reaches.
-  const bySupplier = new Map<string, Set<string>>();
+  const bySupplier = new Map<string, { atlas: string; set: Set<string> }>();
   for (const t of types) {
-    const s = bySupplier.get(t.origin) ?? new Set<string>();
-    for (const o of t.operators) s.add(o.country);
-    bySupplier.set(t.origin, s);
+    const e = bySupplier.get(t.origin) ?? { atlas: t.originCountry, set: new Set<string>() };
+    for (const o of t.operators) e.set.add(o.country);
+    bySupplier.set(t.origin, e);
   }
   const suppliers = [...bySupplier.entries()]
-    .map(([origin, set]) => ({ origin, operators: set.size, countries: [...set].sort() }))
+    .map(([origin, e]) => ({
+      origin,
+      originCountry: e.atlas,
+      operators: e.set.size,
+      countries: [...e.set].sort(),
+    }))
     .sort((a, b) => b.operators - a.operators);
 
   /**
@@ -549,13 +592,20 @@ export async function run(): Promise<void> {
    * article.
    */
   const faults: string[] = [];
-  const tb2 = types.find((t) => t.name === "Bayraktar TB2");
-  if (tb2?.read && !tb2.operators.some((o) => o.country === "Türkiye")) {
-    faults.push("the TB2's operators do not include Türkiye, which builds and flies it");
-  }
-  const reaper = types.find((t) => t.name === "MQ-9 Reaper");
-  if (reaper?.read && !reaper.operators.some((o) => o.country === "United States")) {
-    faults.push("the MQ-9's operators do not include the United States");
+  //
+  // Both of these are written against `originCountry` rather than a literal.
+  // The first version compared to "Türkiye" and "United States", which the
+  // resolver rewrites to "Turkey" and "United States of America" on the way
+  // into the file — so the check could never pass, and it reported a fault on
+  // a parse that was right. A self-check that names a fact has to name it in
+  // the vocabulary the file is written in.
+  for (const name of ["Bayraktar TB2", "MQ-9 Reaper"]) {
+    const t = types.find((x) => x.name === name);
+    if (!t?.read) continue;
+    if (t.operators.some((o) => o.country === t.originCountry)) continue;
+    faults.push(
+      `the ${name}'s operators do not include ${t.originCountry}, which builds and flies it`,
+    );
   }
   if (countries.length < 20) {
     faults.push(`only ${countries.length} operator countries found; these types reach far more`);

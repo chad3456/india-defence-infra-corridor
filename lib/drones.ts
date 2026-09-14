@@ -13,7 +13,10 @@ export interface Operator { country: string; asWritten: string }
 export interface DroneType {
   page: string;
   name: string;
+  /** The producer as this project writes it: "Türkiye", "United States". */
   origin: string;
+  /** The same producer as the world atlas writes it: "Turkey", "United States of America". */
+  originCountry?: string;
   klass: "combat" | "reconnaissance" | "loitering munition";
   operators: Operator[];
   nonState: string[];
@@ -38,7 +41,13 @@ export interface Drones {
   faults: string[];
   types: DroneType[];
   countries: Array<{ country: string; types: string[]; origins: string[] }>;
-  suppliers: Array<{ origin: string; operators: number; countries: string[] }>;
+  suppliers: Array<{
+    origin: string;
+    /** Absent on files built before the atlas spelling was recorded. */
+    originCountry?: string;
+    operators: number;
+    countries: string[];
+  }>;
 }
 
 export function loadDrones(): Drones {

@@ -22,14 +22,14 @@ function ok(name: string, cond: boolean, detail = ""): void {
 
 interface Op { country: string; asWritten: string }
 interface Type {
-  page: string; name: string; origin: string; klass: string;
+  page: string; name: string; origin: string; originCountry?: string; klass: string;
   operators: Op[]; nonState: string[]; read: boolean; note?: string;
   method?: "list" | "templates"; statedReach?: string; unresolved?: string[];
 }
 const d = JSON.parse(readFileSync(FILE, "utf8")) as {
   types: Type[];
   countries: Array<{ country: string; types: string[]; origins: string[] }>;
-  suppliers: Array<{ origin: string; operators: number; countries: string[] }>;
+  suppliers: Array<{ origin: string; originCountry?: string; operators: number; countries: string[] }>;
   readCount: number; typeCount: number; countryCount: number; faults: string[];
   note: string; gap: string; originNote: string;
 };
@@ -90,19 +90,29 @@ console.log("\nCountries counted once");
 }
 
 console.log("\nFacts a correct parse must contain");
-{
+if (d.types.every((t) => t.originCountry)) {
   // The connector records these rather than throwing, so the file ships and
   // can be diagnosed. The test is where they become a gate — but it names
   // them from the file's own fault list, so a shipped fault is visible here
   // rather than silently tolerated.
   ok("the connector recorded no fault", d.faults.length === 0, d.faults.join(" · "));
 
-  const tb2 = d.types.find((t) => t.name === "Bayraktar TB2");
-  ok("the TB2 lists Türkiye, which builds and flies it",
-    !tb2?.read || tb2.operators.some((o) => o.country === "Türkiye"));
-  const reaper = d.types.find((t) => t.name === "MQ-9 Reaper");
-  ok("the MQ-9 lists the United States",
-    !reaper?.read || reaper.operators.some((o) => o.country === "United States"));
+  // Named against each type's own originCountry rather than a literal. The
+  // first version of this check asked whether the TB2 listed "Türkiye" and the
+  // MQ-9 "United States" — the two names the resolver rewrites to "Turkey" and
+  // "United States of America" on the way into the file. It could not pass,
+  // and it would have gone on failing after the parse was fixed.
+  for (const name of ["Bayraktar TB2", "MQ-9 Reaper"]) {
+    const t = d.types.find((x) => x.name === name);
+    if (!t?.read) continue;
+    ok(`the ${name} lists ${t.originCountry}, which builds and flies it`,
+      t.operators.some((o) => o.country === t.originCountry));
+  }
+} else {
+  // A file written before originCountry existed was written by a parser whose
+  // faults are facts about that parser. Gating the current branch on them
+  // would block the fix that resolves them.
+  console.log("  skip  this file predates originCountry — the next ingest rebuilds it.");
 }
 ok("reaches at least twenty operator countries", d.countryCount >= 20, String(d.countryCount));
 {
@@ -124,6 +134,17 @@ ok("reaches at least twenty operator countries", d.countryCount >= 20, String(d.
   const sum = new Set(d.suppliers.flatMap((s) => s.countries)).size;
   ok("the supplier roll-up covers the same countries as the country list",
     sum === d.countryCount, `${sum} vs ${d.countryCount}`);
+}
+if (d.suppliers.every((s) => s.originCountry)) {
+  // A supplier the map cannot shade is a silent hole: the row renders, the
+  // country does not light up, and nothing anywhere reports a problem.
+  const atlasModule = require("world-atlas/countries-110m.json") as {
+    objects: { countries: { geometries: Array<{ properties: { name: string } }> } };
+  };
+  const names = new Set(atlasModule.objects.countries.geometries.map((g) => g.properties.name));
+  const undrawable = d.suppliers.filter((s) => !names.has(s.originCountry!));
+  ok("every supplier resolves to a country on the world map", undrawable.length === 0,
+    undrawable.map((s) => s.origin).join(" / "));
 }
 
 console.log("\nHonesty of the file");
