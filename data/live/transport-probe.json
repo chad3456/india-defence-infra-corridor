@@ -1,0 +1,196 @@
+{
+  "probedAt": "2026-09-14T16:08:32.366Z",
+  "question": "Which transport authority publishes a state breakdown a script can read — for vehicle registrations, air traffic, and public transport networks?",
+  "refusal": "No registration count, passenger figure or network length is recorded here. Only whether a source answers, in what shape, and how many rows it carries.",
+  "registrationsAreNotSales": "VAHAN counts registrations, not sales. A vehicle is registered where its buyer registers it, and fleet and lease vehicles are registered wherever road tax is lowest — so the small states that compete on that are systematically overstated. SIAM publishes real dispatches with no state dimension at all. The two must not be combined, and the eventual page must not call either one 'sales by state'.",
+  "accessibilityIsThreeThings": "Whether a service exists near someone, whether they can afford it, and whether a disabled person can board it. Only the first is measurable from anything probed here, and the page has to say which one it means rather than using the word unqualified.",
+  "denominators": "Any per-capita transport rate needs a population, and India's last full count is Census 2011. Fifteen-year-old denominators under current network figures are a real distortion and the page must state it rather than quietly dividing.",
+  "findings": [
+    {
+      "id": "vahan-dashboard",
+      "kind": "vehicles",
+      "what": "VAHAN dashboard",
+      "url": "https://vahan.parivahan.gov.in/vahan4dashboard/vahan/view/reportview.xhtml",
+      "settles": "Registrations by state, maker and fuel. The national register, and the only state-grain vehicle series that exists.",
+      "ok": false,
+      "status": "fetch failed",
+      "bytes": null
+    },
+    {
+      "id": "vahan-analytics",
+      "kind": "vehicles",
+      "what": "Parivahan analytics",
+      "url": "https://analytics.parivahan.gov.in/analytics/",
+      "settles": "The newer front end, if the old dashboard is a postback application.",
+      "ok": true,
+      "status": "200",
+      "bytes": 39770,
+      "shape": "html",
+      "found": [
+        "analytics"
+      ],
+      "missing": []
+    },
+    {
+      "id": "vahan-publicreport",
+      "kind": "vehicles",
+      "what": "VAHAN public report, with parameters",
+      "url": "https://vahan.parivahan.gov.in/vahan4dashboard/vahan/dashboardview.xhtml?stateCode=29",
+      "settles": "Whether a state can be selected in the URL. If two different state codes return the same page, the dashboard is a JSF application and its numbers are behind a postback.",
+      "ok": false,
+      "status": "fetch failed",
+      "bytes": null
+    },
+    {
+      "id": "siam-stats",
+      "kind": "vehicles",
+      "what": "SIAM, industry statistics",
+      "url": "https://www.siam.in/statistics.aspx?mpgid=8&pgidtrail=14",
+      "settles": "Actual dispatches, nationally and by segment. No state dimension — which is the finding, not a gap to be filled by mixing it with registrations.",
+      "ok": true,
+      "status": "200",
+      "bytes": 84809,
+      "shape": "html",
+      "found": [
+        "sales"
+      ],
+      "missing": [
+        "production"
+      ]
+    },
+    {
+      "id": "morth-yearbook",
+      "kind": "vehicles",
+      "what": "MoRTH, road transport yearbook",
+      "url": "https://morth.nic.in/road-transport-year-books",
+      "settles": "Registered vehicles on road by state, annually, in a PDF.",
+      "ok": true,
+      "status": "200",
+      "bytes": 40262,
+      "shape": "html",
+      "found": [
+        "transport"
+      ],
+      "missing": [
+        "year book"
+      ]
+    },
+    {
+      "id": "aai-traffic",
+      "kind": "air",
+      "what": "AAI traffic statistics",
+      "url": "https://www.aai.aero/en/business-opportunities/aai-traffic-news",
+      "settles": "Passengers, aircraft movements and freight per airport per month. Per-airport is a finer grain than the ask, and this project can sum it to states itself.",
+      "ok": false,
+      "status": "fetch failed",
+      "bytes": null
+    },
+    {
+      "id": "aai-annex",
+      "kind": "air",
+      "what": "AAI traffic, annexure listing",
+      "url": "https://www.aai.aero/sites/default/files/traffic-news/",
+      "settles": "Where the monthly workbooks actually sit, if they are directory-listed.",
+      "ok": false,
+      "status": "fetch failed",
+      "bytes": null
+    },
+    {
+      "id": "dgca-traffic",
+      "kind": "air",
+      "what": "DGCA monthly traffic reports",
+      "url": "https://www.dgca.gov.in/digigov-portal/?page=jsp/dgca/InventoryList/dataReports/aviationDataStatistics/airTransport/domesticTraffic/",
+      "settles": "Domestic passenger volume by carrier and route — a different cut of the same thing.",
+      "ok": true,
+      "status": "200",
+      "bytes": 190304,
+      "shape": "html",
+      "found": [
+        "traffic"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-busiest",
+      "kind": "air",
+      "what": "Wikipedia: busiest airports in India",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_busiest_airports_in_India&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "settles": "A dated, sourced table with AAI as its citation. Weaker provenance than AAI directly and far easier to read; worth knowing whether it exists before choosing.",
+      "ok": true,
+      "status": "200",
+      "bytes": 202988,
+      "shape": "json",
+      "counts": {
+        "tableRows": 0,
+        "refs": 28
+      }
+    },
+    {
+      "id": "overpass-status",
+      "kind": "transport",
+      "what": "Overpass API status",
+      "url": "https://overpass-api.de/api/status",
+      "settles": "Whether the OpenStreetMap query service answers. Bus routes, metro and rail are already ingested from it; extending to coverage needs the same door open.",
+      "ok": true,
+      "status": "200",
+      "bytes": 209,
+      "shape": "html",
+      "found": [
+        "available"
+      ],
+      "missing": []
+    },
+    {
+      "id": "wiki-metro",
+      "kind": "transport",
+      "what": "Wikipedia: urban rail transit in India",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Urban_rail_transit_in_India&redirects=1&prop=wikitext&formatversion=2&format=json",
+      "settles": "Systems, lengths and opening dates — a cross-check on what OSM has tagged.",
+      "ok": true,
+      "status": "200",
+      "bytes": 143153,
+      "shape": "json",
+      "counts": {
+        "tableRows": 0
+      }
+    },
+    {
+      "id": "wiki-state-pop",
+      "kind": "transport",
+      "what": "Wikipedia: Indian states by population",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_states_and_union_territories_of_India_by_population&redirects=1&prop=wikitext&f",
+      "settles": "The denominator. Metro kilometres without population ranks states by size, not by service — and the last full count is Census 2011, which is a finding in itself.",
+      "ok": true,
+      "status": "200",
+      "bytes": 23928,
+      "shape": "json",
+      "counts": {
+        "tableRows": 0
+      }
+    },
+    {
+      "id": "wiki-state-area",
+      "kind": "transport",
+      "what": "Wikipedia: Indian states by area",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_states_and_union_territories_of_India_by_area&redirects=1&prop=wikitext&formatv",
+      "settles": "The other denominator: service per square kilometre is a different claim from per person.",
+      "ok": true,
+      "status": "200",
+      "bytes": 59937,
+      "shape": "json",
+      "counts": {
+        "tableRows": 0
+      }
+    },
+    {
+      "id": "censusindia",
+      "kind": "transport",
+      "what": "Census of India",
+      "url": "https://censusindia.gov.in/census.website/",
+      "settles": "The primary population figures, if the site answers a script at all.",
+      "ok": false,
+      "status": "fetch failed",
+      "bytes": null
+    }
+  ]
+}
