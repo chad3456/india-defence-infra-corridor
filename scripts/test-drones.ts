@@ -152,6 +152,25 @@ if (d.suppliers.every((s) => s.originCountry)) {
     undrawable.map((s) => s.origin).join(" / "));
 }
 
+console.log("\nEvery producer has a colour of its own");
+{
+  // supplierColour falls back to the achromatic "mixed" swatch for an origin
+  // it does not know. That is the right fallback and a silent one: add a type
+  // from a new producer and it renders as "no single supplier leads" on the
+  // map, in the legend, and in the panel, with nothing anywhere reporting a
+  // problem. The order is also the thing the palette was validated in —
+  // adjacent pairs are what the colour-vision check tests — so it cannot be
+  // sorted, and a missing entry cannot be fixed by appending blindly either.
+  const ORDER = [
+    "Türkiye", "United States", "China", "Israel", "Iran", "Russia", "India",
+  ];
+  const origins = [...new Set(d.types.map((t) => t.origin))];
+  const uncoloured = origins.filter((o) => !ORDER.includes(o));
+  ok("every producing country in the data has a palette slot", uncoloured.length === 0,
+    `${uncoloured.join(", ")} would render as "mixed" with no error`);
+  ok("the palette has no more slots than the validated seven", ORDER.length === 7);
+}
+
 console.log("\nHonesty of the file");
 ok("says it is not an inventory", /not an inventory/i.test(d.note));
 ok("says it is not a record of combat use", /combat use/i.test(d.note));
