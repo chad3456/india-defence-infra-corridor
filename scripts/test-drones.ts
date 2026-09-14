@@ -29,7 +29,7 @@ const d = JSON.parse(readFileSync(FILE, "utf8")) as {
   types: Type[];
   countries: Array<{ country: string; types: string[]; origins: string[] }>;
   suppliers: Array<{ origin: string; operators: number; countries: string[] }>;
-  readCount: number; typeCount: number; countryCount: number;
+  readCount: number; typeCount: number; countryCount: number; faults: string[];
   note: string; gap: string; originNote: string;
 };
 
@@ -76,6 +76,12 @@ console.log("\nCountries counted once");
 
 console.log("\nFacts a correct parse must contain");
 {
+  // The connector records these rather than throwing, so the file ships and
+  // can be diagnosed. The test is where they become a gate — but it names
+  // them from the file's own fault list, so a shipped fault is visible here
+  // rather than silently tolerated.
+  ok("the connector recorded no fault", d.faults.length === 0, d.faults.join(" · "));
+
   const tb2 = d.types.find((t) => t.name === "Bayraktar TB2");
   ok("the TB2 lists Türkiye, which builds and flies it",
     !tb2?.read || tb2.operators.some((o) => o.country === "Türkiye"));

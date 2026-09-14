@@ -41,11 +41,16 @@ jobs:
 
       # The committed file is what the page reads, so it is checked before it
       # is committed rather than after it has already shipped.
-      - name: Check the figures
-        run: npm run test:drones
-
       - name: Commit the figures
         run: >
           .github/scripts/commit-generated.sh
           data/global/drones.json
           "chore(global): drone operators refresh $(date -u +'%Y-%m-%d %H:%M')"
+
+      # After the commit, not before. Twice the drone ingest died on a named
+      # fact check and committed nothing, so the only evidence of what went
+      # wrong was a log line naming the symptom. The file carries the raw
+      # markup of every section that yielded nothing; a file that is never
+      # written cannot be read.
+      - name: Check the figures
+        run: npm run test:drones

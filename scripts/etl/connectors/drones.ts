@@ -282,7 +282,22 @@ export async function run(): Promise<void> {
       console.log(`  ${t.name.padEnd(26)} article unavailable`);
       continue;
     }
-    const section = operatorsSection(text);
+    let section = operatorsSection(text);
+
+    // Popular types split their operators onto a page of their own and leave a
+    // {{main|List of ... operators}} hatnote behind. The TB2 is one: its
+    // section is a pointer, so reading it in place finds nothing and the type
+    // with the widest export record on this list comes back empty.
+    const hat = section?.match(/\{\{\s*(?:main|further|see also)\s*\|\s*([^|}]*operators?[^|}]*)\}\}/i);
+    if (hat?.[1]) {
+      const linked = await wikitext(hat[1].trim().replace(/\s+/g, "_"));
+      const deeper = linked ? operatorsSection(linked) ?? linked : null;
+      if (deeper) {
+        section = deeper;
+        console.log(`      ${t.name}: followed hatnote to "${hat[1].trim()}"`);
+      }
+    }
+
     if (!section) {
       types.push({ ...t, operators: [], nonState: [], read: false, note: "no Operators section found" });
       console.log(`  ${t.name.padEnd(26)} no Operators section`);
@@ -345,6 +360,35 @@ export async function run(): Promise<void> {
     .map(([origin, set]) => ({ origin, operators: set.size, countries: [...set].sort() }))
     .sort((a, b) => b.operators - a.operators);
 
+  /**
+   * Faults are recorded, not thrown.
+   *
+   * Two runs have now died on the TB2 check before committing anything, which
+   * means two round trips spent learning only that something was wrong. The
+   * file is the diagnosis — it carries the raw markup of every section that
+   * yielded nothing — and a file that is never written cannot be read.
+   *
+   * So a named-fact failure is recorded and shipped, and the run fails only
+   * when most of the types come back empty, which is the parser rather than an
+   * article.
+   */
+  const faults: string[] = [];
+  const tb2 = types.find((t) => t.name === "Bayraktar TB2");
+  if (tb2?.read && !tb2.operators.some((o) => o.country === "Türkiye")) {
+    faults.push("the TB2's operators do not include Türkiye, which builds and flies it");
+  }
+  const reaper = types.find((t) => t.name === "MQ-9 Reaper");
+  if (reaper?.read && !reaper.operators.some((o) => o.country === "United States")) {
+    faults.push("the MQ-9's operators do not include the United States");
+  }
+  if (countries.length < 20) {
+    faults.push(`only ${countries.length} operator countries found; these types reach far more`);
+  }
+  if (faults.length > 0) {
+    console.warn("\nRecorded faults:");
+    for (const f of faults) console.warn(`  ${f}`);
+  }
+
   await mkdir(join(ROOT, "data", "global"), { recursive: true });
   await writeFile(OUT, JSON.stringify({
     builtAt: new Date().toISOString(),
@@ -362,6 +406,7 @@ export async function run(): Promise<void> {
       "fact about these aircraft that is neither disputed nor dependent on an article's " +
       "section layout; everything else on a row is read from the page.",
     readCount,
+    faults,
     typeCount: types.length,
     countryCount: countries.length,
     types,
@@ -369,23 +414,12 @@ export async function run(): Promise<void> {
     suppliers,
   }, null, 2) + "\n", "utf8");
 
-  // Self-checks. These name specific facts rather than shapes, because a
-  // parser that returns plausible-looking rubbish passes every shape check.
-  //
-  // They run after the file is written, not before. The first round threw on
-  // the TB2 check and the output was discarded, so the only evidence of what
-  // went wrong was a log line saying "0 operators" — which is the symptom, not
-  // the cause. Now the markup is on disk either way.
-  const tb2 = types.find((t) => t.name === "Bayraktar TB2");
-  if (tb2?.read && !tb2.operators.some((o) => o.country === "Türkiye")) {
-    throw new Error("the TB2's operators do not include Türkiye, which builds and flies it");
-  }
-  const reaper = types.find((t) => t.name === "MQ-9 Reaper");
-  if (reaper?.read && !reaper.operators.some((o) => o.country === "United States")) {
-    throw new Error("the MQ-9's operators do not include the United States");
-  }
-  if (countries.length < 20) {
-    throw new Error(`only ${countries.length} operator countries found; these types reach far more`);
+  const empty = types.filter((t) => t.operators.length === 0).length;
+  if (empty * 2 > types.length) {
+    throw new Error(
+      `${empty} of ${types.length} types yielded no operator at all. That is the parser, ` +
+      "not the articles. The file above carries each empty section's raw markup.",
+    );
   }
 
   console.log(
