@@ -129,6 +129,56 @@ function pathOf(el: OverpassEl): Array<[number, number]> {
   return simplify(pts);
 }
 
+/**
+ * Write a generated list, unless doing so would replace real data with none.
+ *
+ * On 14 September a scheduled run returned no airports — Overpass timed out,
+ * or the query was throttled — and the connector wrote `[]` over a file that
+ * held 148 of them and committed it. Every downstream join silently became
+ * zero: the front page's airport layer went from 144 placed across 29 states
+ * to nothing, and nothing anywhere reported a problem, because an empty list
+ * is a perfectly valid list.
+ *
+ * The connector was already recording the failure — `errors.push("mobility: no
+ * airports returned")` has been in this file all along. Recording it was not
+ * enough, because the write happened anyway. "Record rather than throw" is the
+ * right rule for a *finding*; an empty response from an upstream API is not a
+ * finding about India's airports, it is a failed fetch, and the difference is
+ * whether the previous file is still true.
+ *
+ * So: an empty result never overwrites a non-empty file. The old data stays,
+ * the failure is recorded, and the run ends with an error the workflow can
+ * see. A shrink that is merely large is allowed through — Overpass genuinely
+ * returns fewer features some days — but it is logged, because a 90% drop is
+ * usually the same problem arriving more quietly.
+ */
+async function writeList<T>(
+  file: string, rows: T[], label: string, errors: string[], log: (s: string) => void,
+): Promise<void> {
+  const path = join(OUT_DIR, file);
+  let previous = 0;
+  try {
+    const old = JSON.parse(await readFile(path, "utf8")) as unknown;
+    if (Array.isArray(old)) previous = old.length;
+  } catch {
+    previous = 0;
+  }
+
+  if (rows.length === 0 && previous > 0) {
+    errors.push(
+      `mobility: ${label} came back empty while ${previous} are on disk — keeping the previous ` +
+      "file rather than overwriting good data with nothing",
+    );
+    log(`${label}: EMPTY response, kept the existing ${previous} rows`);
+    return;
+  }
+  if (previous > 0 && rows.length < previous * 0.5) {
+    log(`${label}: ${rows.length} written, down from ${previous} — a large drop, worth a look`);
+  }
+  await writeFile(path, JSON.stringify(rows), "utf8");
+  log(`${label} written: ${rows.length}`);
+}
+
 export async function run(opts: { onProgress?: (s: string) => void } = {}): Promise<{ errors: string[] }> {
   const log = opts.onProgress ?? (() => {});
   const errors: string[] = [];
@@ -172,8 +222,7 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
   }
   if (metro.length === 0) errors.push("mobility: no metro relations carried a usable alignment");
   else if (dropped > 0) log(`  ${dropped} metro relation(s) had no member geometry and were skipped`);
-  await writeFile(join(OUT_DIR, "metro.json"), JSON.stringify(metro), "utf8");
-  log(`metro lines written: ${metro.length}`);
+  await writeList("metro.json", metro, "metro lines", errors, log);
 
   // ── Vande Bharat: the named services ──────────────────────────────
   const vbEls = await ask(
@@ -188,8 +237,7 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
     vande.push({ id: el.id, name, from: t.from ?? null, to: t.to ?? null, path: pathOf(el) });
   }
   if (vande.length === 0) errors.push("mobility: no Vande Bharat relations returned");
-  await writeFile(join(OUT_DIR, "vande-bharat.json"), JSON.stringify(vande), "utf8");
-  log(`Vande Bharat routes written: ${vande.length}`);
+  await writeList("vande-bharat.json", vande, "Vande Bharat routes", errors, log);
 
   // ── airports with IATA codes ──────────────────────────────────────
   const apEls = await ask(
@@ -212,8 +260,7 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
     });
   }
   if (airports.length === 0) errors.push("mobility: no airports returned");
-  await writeFile(join(OUT_DIR, "airports.json"), JSON.stringify(airports), "utf8");
-  log(`airports written: ${airports.length}`);
+  await writeList("airports.json", airports, "airports", errors, log);
 
   // ── railway stations, so a route's endpoints can be placed ────────
   //
@@ -253,8 +300,7 @@ export async function run(opts: { onProgress?: (s: string) => void } = {}): Prom
     });
   }
   if (stations.length === 0) errors.push("mobility: no railway stations returned");
-  await writeFile(join(OUT_DIR, "stations.json"), JSON.stringify(stations), "utf8");
-  log(`railway stations written: ${stations.length}`);
+  await writeList("stations.json", stations, "railway stations", errors, log);
 
   // ── live flights: a snapshot, and labelled as one ─────────────────
   // Appended to a rolling file rather than replacing it, so the density map is

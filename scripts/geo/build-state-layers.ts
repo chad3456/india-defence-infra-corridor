@@ -242,8 +242,8 @@ function airportLayer(): Layer {
       // coordinate, and nothing about traffic, runway or status — so the line
       // says what is known rather than borrowing an importance from elsewhere.
       why: a.iata
-        ? `Scheduled-service airport, IATA ${a.iata}. Passenger and movement figures are not in this dataset.`
-        : "Airport with no IATA code in this dataset, which usually means it carries no scheduled service.",
+        ? `Scheduled-service airport, IATA ${a.iata}.`
+        : "No IATA code in this dataset, which usually means no scheduled service.",
       basis: "OurAirports via the mobility connector: name, code and coordinate only",
       lat: a.lat, lon: a.lon,
     });
@@ -254,8 +254,8 @@ function airportLayer(): Layer {
     label: "Airports",
     blurb:
       "Every airport the mobility dataset holds a coordinate for, placed into the state whose " +
-      "polygon contains it. Named and located only — this file knows nothing about how busy any " +
-      "of them are.",
+      "polygon contains it. Named and located only — nothing here knows how busy any of them " +
+      "are, so this counts runways with a code, not traffic.",
     join: "Point-in-polygon against the map's own topology. An airport in no polygon is listed unplaced, never assigned to a neighbour.",
     source: "OurAirports, via the mobility connector.",
     total: rows.length,
@@ -315,8 +315,64 @@ function metroLayer(): Layer {
   });
 }
 
+// ── Railway stations ───────────────────────────────────────────────────
+function stationLayer(): Layer {
+  interface S { name: string; code: string; lon: number; lat: number }
+  const rows = read<S[]>("data/mobility/stations.json");
+  const byState: Record<string, Item[]> = {};
+  const unplaced: string[] = [];
+  const seen = new Set<string>();
+  let deduped = 0;
+  for (const st of rows) {
+    const where = stateAt(st.lon, st.lat);
+    if (!where) {
+      if (unplaced.length < 40) unplaced.push(st.name);
+      continue;
+    }
+    // A code appears once per station, but the same station is sometimes
+    // tagged twice under slightly different names. The code is the identity.
+    const key = `${where}|${st.code || st.name}`;
+    if (seen.has(key)) { deduped++; continue; }
+    seen.add(key);
+    (byState[where] ??= []).push({
+      name: st.name,
+      // Deliberately thin. This dataset carries a name, a code and a
+      // coordinate, and nothing about how many trains stop or how many people
+      // pass through — so the line says what is known rather than borrowing an
+      // importance from somewhere else.
+      // A sentence that is identical on ten thousand rows is not per-row
+      // information — it is a property of the layer, and it lives in `blurb`.
+      // Repeating it here cost 800 KB of the same prose and told a reader
+      // nothing they could not have been told once.
+      why: st.code ? `Station code ${st.code}.` : "No station code in this dataset.",
+      basis: "OpenStreetMap: name, station code and coordinate only",
+      lat: st.lat, lon: st.lon,
+    });
+  }
+  for (const list of Object.values(byState)) list.sort((a, b) => a.name.localeCompare(b.name));
+  // unplacedCount counts every row that found no polygon, not the sample.
+  const placed = Object.values(byState).reduce((n, l) => n + l.length, 0);
+  return balanced({
+    id: "stations",
+    label: "Railway stations",
+    blurb:
+      "Every railway station the mobility dataset holds a coordinate for, placed into the state " +
+      "whose polygon contains it. Presence only — the source carries a name, a station code and " +
+      "a coordinate, and nothing about how many trains stop or how many people pass through, so " +
+      "a count of stations is a count of stations and not of service.",
+    join: "Point-in-polygon against the map's own topology. A station in no polygon is listed unplaced, never assigned to a neighbour.",
+    source: "OpenStreetMap, via the mobility connector.",
+    total: rows.length,
+    placed,
+    unplacedCount: rows.length - placed - deduped,
+    deduped,
+    unplaced,
+    byState,
+  });
+}
+
 async function run(): Promise<void> {
-  const layers = [sacredLayer(), airportLayer(), metroLayer()];
+  const layers = [sacredLayer(), airportLayer(), metroLayer(), stationLayer()];
 
   await writeFile(OUT, JSON.stringify({
     builtAt: new Date().toISOString(),
