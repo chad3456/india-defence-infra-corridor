@@ -1,11 +1,12 @@
 {
-  "probedAt": "2026-09-14T09:34:03.517Z",
+  "probedAt": "2026-09-14T09:36:43.585Z",
   "note": "Reachability and shape only. No contract, value or date is published from this file.",
   "question": "Which publishers hold India's defence contracts since 2014, and can a script read them?",
   "settled": {
     "mod": "mod.gov.in refused at the connection on two URLs, which is a refusal rather than a 404. Its annual reports, and the contracts-concluded appendix in them, are not reachable from this pipeline.",
     "sipri": "The database and trade-register URLs returned the same landing page and neither contained the word 'register'. SIPRI's data is behind a form, not a URL.",
-    "titles": "Four of eight guessed article titles returned an error object. Titles are resolved through the search API in this round rather than guessed."
+    "titles": "Four of eight guessed article titles returned an error object. The search API named the real ones: Rafale deal controversy, Defence industry of India, List of equipment of the Indian Army, BrahMos.",
+    "pib": "AllRelease.aspx answers a GET with day, month and year, and returned 844 KB for one day of June 2024. That is the ledger's source. The size is the open question this round measures."
   },
   "refusal": "No figure is recorded here, only whether a figure exists on the page. A probe log that quotes a contract value beside a URL is a number with a filename where a citation should be, and it will be treated as sourced by the next person who reads it.",
   "fourMeasures": "A CCS clearance, a DAC Acceptance of Necessity, a signed contract and a SIPRI delivery are four different events. An AoN is permission to begin procuring and many never become contracts, so a ledger that adds them together overstates itself badly. The eventual dataset must keep them in separate columns.",
@@ -28,7 +29,9 @@
         "defence"
       ],
       "feedItems": 20,
-      "contractish": 0
+      "contractish": 0,
+      "releaseLinks": 0,
+      "defenceLinks": 0
     },
     {
       "id": "pib-archive",
@@ -38,13 +41,15 @@
       "settles": "The back catalogue, if it can be addressed by date rather than by PRID.",
       "ok": true,
       "status": "200",
-      "bytes": 141480,
+      "bytes": 141479,
       "shape": "html",
       "moneyMentions": 13,
       "found": [
         "release"
       ],
-      "missing": []
+      "missing": [],
+      "releaseLinks": 9,
+      "defenceLinks": 0
     },
     {
       "id": "ddp-home",
@@ -84,6 +89,76 @@
       "bytes": null
     },
     {
+      "id": "pib-month",
+      "kind": "pib",
+      "what": "PIB archive, a month rather than a day",
+      "url": "https://www.pib.gov.in/AllRelease.aspx?MenuId=3&day=0&month=6&year=2024",
+      "settles": "Whether day=0 means the whole month, which would cut the crawl by thirty.",
+      "ok": true,
+      "status": "200",
+      "bytes": 844412,
+      "shape": "html",
+      "moneyMentions": 94,
+      "found": [
+        "release"
+      ],
+      "missing": [],
+      "releaseLinks": 525,
+      "defenceLinks": 0
+    },
+    {
+      "id": "pib-ministry-filtered",
+      "kind": "pib",
+      "what": "PIB archive, filtered to one ministry",
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=0&MinistryId=6&day=1&month=6&year=2024",
+      "settles": "Whether the archive can be narrowed to Defence before it is downloaded.",
+      "ok": true,
+      "status": "200",
+      "bytes": 5211,
+      "shape": "html",
+      "moneyMentions": 0,
+      "found": [],
+      "missing": [
+        "release"
+      ]
+    },
+    {
+      "id": "pib-release-by-prid",
+      "kind": "pib",
+      "what": "PIB, one release addressed by its id",
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2024184",
+      "settles": "Whether a row in the ledger can carry a URL that resolves to its own release.",
+      "ok": true,
+      "status": "200",
+      "bytes": 78311,
+      "shape": "html",
+      "moneyMentions": 1,
+      "found": [
+        "press"
+      ],
+      "missing": [],
+      "releaseLinks": 18,
+      "defenceLinks": 0
+    },
+    {
+      "id": "pib-day-2016",
+      "kind": "pib",
+      "what": "PIB archive, a day in 2016",
+      "url": "https://www.pib.gov.in/AllRelease.aspx?MenuId=3&day=23&month=9&year=2016",
+      "settles": "Whether the archive reaches back to the start of the period at all.",
+      "ok": true,
+      "status": "200",
+      "bytes": 844413,
+      "shape": "html",
+      "moneyMentions": 95,
+      "found": [
+        "release"
+      ],
+      "missing": [],
+      "releaseLinks": 525,
+      "defenceLinks": 0
+    },
+    {
       "id": "pib-day",
       "kind": "pib",
       "what": "PIB releases for one day, by query string",
@@ -91,13 +166,15 @@
       "settles": "Whether the archive is addressable by date rather than by postback.",
       "ok": true,
       "status": "200",
-      "bytes": 844415,
+      "bytes": 844416,
       "shape": "html",
       "moneyMentions": 94,
       "found": [
         "release"
       ],
-      "missing": []
+      "missing": [],
+      "releaseLinks": 525,
+      "defenceLinks": 0
     },
     {
       "id": "pib-ministry-feed",
@@ -115,7 +192,9 @@
       ],
       "missing": [],
       "feedItems": 20,
-      "contractish": 0
+      "contractish": 0,
+      "releaseLinks": 0,
+      "defenceLinks": 0
     },
     {
       "id": "pib-feed-alt",
@@ -141,13 +220,15 @@
       "settles": "Whether the unfiltered list is reachable and paginated by GET.",
       "ok": true,
       "status": "200",
-      "bytes": 132431,
+      "bytes": 134506,
       "shape": "html",
-      "moneyMentions": 6,
+      "moneyMentions": 7,
       "found": [
         "release"
       ],
-      "missing": []
+      "missing": [],
+      "releaseLinks": 12,
+      "defenceLinks": 0
     },
     {
       "id": "sipri-transfers",
@@ -265,7 +346,9 @@
         "India",
         "contract"
       ],
-      "missing": []
+      "missing": [],
+      "releaseLinks": 0,
+      "defenceLinks": 0
     },
     {
       "id": "wiki-brahmos",
@@ -283,7 +366,9 @@
         "export",
         "contract"
       ],
-      "missing": []
+      "missing": [],
+      "releaseLinks": 0,
+      "defenceLinks": 0
     },
     {
       "id": "wiki-indian-navy",
@@ -300,7 +385,9 @@
         "indigenous",
         "commissioned"
       ],
-      "missing": []
+      "missing": [],
+      "releaseLinks": 0,
+      "defenceLinks": 0
     },
     {
       "id": "wiki-hindustan-aeronautics-limited",
@@ -317,7 +404,9 @@
         "contract",
         "order"
       ],
-      "missing": []
+      "missing": [],
+      "releaseLinks": 0,
+      "defenceLinks": 0
     },
     {
       "id": "search-rafale-india-procurement-contract-20",
@@ -327,13 +416,13 @@
       "settles": "The best-documented single contract of the period, under whatever title it has.",
       "ok": true,
       "status": "200",
-      "bytes": 1455,
+      "bytes": 1481,
       "shape": "json",
       "moneyMentions": 0,
       "titles": [
         "Dassault Rafale",
-        "Boeing F/A-18E/F Super Hornet",
-        "Rafale deal controversy"
+        "HAL TEDBF",
+        "Boeing F/A-18E/F Super Hornet"
       ]
     },
     {
@@ -344,13 +433,13 @@
       "settles": "Where the AoN-versus-contract distinction is set out.",
       "ok": true,
       "status": "200",
-      "bytes": 1834,
+      "bytes": 1825,
       "shape": "json",
-      "moneyMentions": 2,
+      "moneyMentions": 1,
       "titles": [
         "DRDO Close Quarter Battle carbine",
         "GSAT-7C",
-        "Indian Navy amphibious vessel acquisition project"
+        "Vikram VT21"
       ]
     },
     {
@@ -395,12 +484,12 @@
       "settles": "The clearest Indian defence export contract of the period.",
       "ok": true,
       "status": "200",
-      "bytes": 1494,
+      "bytes": 1513,
       "shape": "json",
       "moneyMentions": 0,
       "titles": [
         "BrahMos",
-        "Indian Armed Forces",
+        "HAL Tejas",
         "List of equipment of the Philippine Marine Corps"
       ]
     },
