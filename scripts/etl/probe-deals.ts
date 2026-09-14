@@ -38,6 +38,36 @@
  *
  * Those four measure different things. The eventual ledger has to keep them
  * apart or it will silently add a clearance to a contract to a delivery.
+ *
+ * ── Round two, and what round one settled ───────────────────────────────
+ *
+ * The first run answered three things and raised four.
+ *
+ * Settled: mod.gov.in does not answer a script at all — two URLs, both "fetch
+ * failed", which is a refusal at the connection rather than a 404. The MoD
+ * annual reports are therefore not a source this pipeline can reach, and the
+ * contracts-concluded appendix with them. PIB's archive and the Department of
+ * Defence Production both return server-rendered HTML, so they are readable in
+ * principle. SIPRI returned the same sixty kilobytes for both the database and
+ * the trade-register URL and neither contained the word "register", so both
+ * are landing pages and the register itself is behind something else.
+ *
+ * Raised, and what this round asks:
+ *
+ *   Four of eight Wikipedia titles returned 401 bytes — an error object, not
+ *   an article. Guessing titles was the mistake; this round resolves them
+ *   through the search API and records what comes back, so the connector can
+ *   be written against titles that exist.
+ *
+ *   The MoD RSS feed answered but did not contain the word "defence", which
+ *   means the ModId was wrong. This round tries the plausible ones and counts
+ *   how many items in each look like a contract announcement — a count, so the
+ *   probe still publishes no headline.
+ *
+ *   PIB's back catalogue is the prize: a decade of dated, primary,
+ *   government-issued contract announcements. Whether it can be addressed by
+ *   GET at all decides whether the eventual ledger is built from the
+ *   government's own releases or from an encyclopaedia's citations to them.
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
@@ -67,6 +97,16 @@ const wikiPage = (page: string, look: string[], settles: string): Target => ({
   what: `Wikipedia: ${page.replace(/_/g, " ")}`,
   url: `${WIKI}?action=parse&page=${encodeURIComponent(page)}&redirects=1&prop=wikitext&formatversion=2&format=json`,
   look,
+  settles,
+});
+
+/** A MediaWiki search, which answers "what is this article actually called?" */
+const wikiSearch = (term: string, settles: string): Target => ({
+  id: `search-${term.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 36)}`,
+  kind: "wiki",
+  what: `Wikipedia search: ${term}`,
+  url: `${WIKI}?action=query&list=search&srsearch=${encodeURIComponent(term)}` +
+    "&srlimit=3&format=json&formatversion=2",
   settles,
 });
 
@@ -100,19 +140,50 @@ const TARGETS: Target[] = [
     look: ["export"],
     settles: "Export authorisations and the destination spread the HS data cannot give.",
   },
+  // mod.gov.in refused at the connection on two URLs last round. Retried once
+  // here, without the www, because "fetch failed" can be a hostname rather
+  // than a policy — and a source ruled out has to be ruled out correctly.
   {
-    id: "mod-annual", kind: "mod",
-    what: "MoD annual reports index",
-    url: "https://www.mod.gov.in/en/documents/annual-report",
-    look: ["annual", "report"],
-    settles: "Contracts concluded per year, in a PDF appendix.",
+    id: "mod-bare", kind: "mod",
+    what: "Ministry of Defence, without the www",
+    url: "https://mod.gov.in/",
+    look: ["defence"],
+    settles: "Whether last round's two failures were the host or the hostname.",
+  },
+
+  // ── PIB's back catalogue, which is the whole question ─────────────────
+  //
+  // A decade of dated, primary, government-issued contract announcements. If
+  // any of these answers a GET, the ledger is built from the government's own
+  // releases. If none does, it is built from an encyclopaedia's citations to
+  // them, which is a weaker provenance the page would have to state.
+  {
+    id: "pib-day", kind: "pib",
+    what: "PIB releases for one day, by query string",
+    url: "https://www.pib.gov.in/AllRelease.aspx?MenuId=3&day=1&month=6&year=2024",
+    look: ["release"],
+    settles: "Whether the archive is addressable by date rather than by postback.",
   },
   {
-    id: "mod-home", kind: "mod",
-    what: "Ministry of Defence",
-    url: "https://www.mod.gov.in/",
-    look: ["defence"],
-    settles: "Navigation to the acquisition and DAP documents.",
+    id: "pib-ministry-feed", kind: "pib",
+    what: "PIB RSS, ministry feed 3",
+    url: "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
+    look: ["item"],
+    settles: "Which ModId is actually the Ministry of Defence.",
+  },
+  {
+    id: "pib-feed-alt", kind: "pib",
+    what: "PIB RSS, alternate ministry id",
+    url: "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=32",
+    look: ["item"],
+    settles: "The same question, against the other plausible id.",
+  },
+  {
+    id: "pib-english-all", kind: "pib",
+    what: "PIB, all English releases",
+    url: "https://www.pib.gov.in/Allrel.aspx?reg=3&lang=1",
+    look: ["release"],
+    settles: "Whether the unfiltered list is reachable and paginated by GET.",
   },
 
   // ── SIPRI, which records deliveries rather than signatures ────────────
@@ -149,6 +220,23 @@ const TARGETS: Target[] = [
   wikiPage("Hindustan_Aeronautics_Limited", ["contract", "order"],
     "The largest DPSU's order book."),
 
+  // ── Titles, resolved rather than guessed ─────────────────────────────
+  //
+  // Four of eight guessed titles came back as a 401-byte error object last
+  // round. Guessing was the mistake: the search API says what an article is
+  // actually called, and a title is a pointer rather than a figure, so
+  // recording what it returns smuggles nothing into this file.
+  wikiSearch("Rafale India procurement contract 2016",
+    "The best-documented single contract of the period, under whatever title it has."),
+  wikiSearch("Defence Acquisition Council Acceptance of Necessity",
+    "Where the AoN-versus-contract distinction is set out."),
+  wikiSearch("India defence procurement 2014 2024",
+    "Whether any article aggregates the period at all, or only individual deals."),
+  wikiSearch("Indian Army equipment list",
+    "An index of types on order, as a list of things to look up."),
+  wikiSearch("India arms exports BrahMos Philippines contract",
+    "The clearest Indian defence export contract of the period."),
+
   // ── A vendor, to see whether industry sources are readable at all ─────
   {
     id: "hal-home", kind: "vendor",
@@ -162,6 +250,11 @@ const TARGETS: Target[] = [
 interface Finding {
   id: string; kind: Kind; what: string; url: string; settles: string;
   ok: boolean; status: string; bytes: number | null;
+  /** Article titles a search returned. A pointer, never a fact. */
+  titles?: string[];
+  /** Items in a feed, and how many read like a contract announcement. */
+  feedItems?: number;
+  contractish?: number;
   shape?: "html" | "js-app" | "pdf" | "xml-feed" | "json" | "empty";
   found?: string[]; missing?: string[];
   /** Whether a money-shaped figure appears at all — never which figure. */
@@ -180,6 +273,36 @@ interface Finding {
 function moneyMentions(body: string): number {
   const re = /(?:₹|Rs\.?|INR|US\$|\$)\s?[\d,]+(?:\.\d+)?\s*(?:crore|lakh|billion|million|bn|mn)?/gi;
   return [...body.matchAll(re)].length;
+}
+
+/**
+ * Titles a MediaWiki search returned, which is the only content this file
+ * copies out of a response — and deliberately so. A title is an address: it
+ * tells the connector where to look and asserts nothing about what is there.
+ */
+function searchTitles(body: string): string[] {
+  try {
+    const j = JSON.parse(body) as { query?: { search?: Array<{ title?: string }> } };
+    return (j.query?.search ?? []).map((r) => r.title ?? "").filter(Boolean);
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * How many items in a feed read like a contract announcement.
+ *
+ * A count, for the same reason moneyMentions is a count: the headline of a
+ * release naming a contractor and a figure is a fact with no citation attached
+ * once it is sitting in a JSON file, and the next reader will treat it as one.
+ * The count says the feed is the right feed. It cannot be mistaken for the
+ * reading.
+ */
+function feedShape(body: string): { items: number; contractish: number } {
+  const items = [...body.matchAll(/<item\b/gi)].length;
+  const titles = [...body.matchAll(/<title>([\s\S]*?)<\/title>/gi)].map((m) => m[1] ?? "");
+  const re = /\b(contract|agreement|MoU|procure|acquisition|signs?|signed|inducted|delivery)\b/i;
+  return { items, contractish: titles.filter((t) => re.test(t)).length };
 }
 
 function shapeOf(body: string, contentType: string): Finding["shape"] {
@@ -213,12 +336,18 @@ export async function run(): Promise<void> {
       bytes: res.ok ? body.length : null,
       ...(res.ok ? { shape: shapeOf(body, ""), moneyMentions: moneyMentions(body) } : {}),
       ...(look ? { found: look.found, missing: look.missing } : {}),
+      ...(res.ok && t.id.startsWith("search-") ? { titles: searchTitles(body) } : {}),
+      ...(res.ok && /<item\b/i.test(body)
+        ? { feedItems: feedShape(body).items, contractish: feedShape(body).contractish }
+        : {}),
     };
     findings.push(f);
     console.log(
       `  ${(f.ok ? "ok" : "dead").padEnd(5)} ${t.kind.padEnd(7)} ${f.id.padEnd(42)} ` +
       `${String(f.bytes ?? 0).padStart(8)}  ${f.shape ?? ""}` +
-      `${f.moneyMentions ? `  ${f.moneyMentions} money mentions` : ""}`,
+      `${f.moneyMentions ? `  ${f.moneyMentions} money mentions` : ""}` +
+      `${f.feedItems ? `  ${f.feedItems} items, ${f.contractish} contract-ish` : ""}` +
+      `${f.titles?.length ? `  → ${f.titles.join(" | ")}` : ""}`,
     );
 
     await mkdir(join(ROOT, "data", "live"), { recursive: true });
@@ -227,6 +356,18 @@ export async function run(): Promise<void> {
       note: "Reachability and shape only. No contract, value or date is published from this file.",
       question:
         "Which publishers hold India's defence contracts since 2014, and can a script read them?",
+      settled: {
+        mod:
+          "mod.gov.in refused at the connection on two URLs, which is a refusal rather than a " +
+          "404. Its annual reports, and the contracts-concluded appendix in them, are not " +
+          "reachable from this pipeline.",
+        sipri:
+          "The database and trade-register URLs returned the same landing page and neither " +
+          "contained the word 'register'. SIPRI's data is behind a form, not a URL.",
+        titles:
+          "Four of eight guessed article titles returned an error object. Titles are resolved " +
+          "through the search API in this round rather than guessed.",
+      },
       refusal:
         "No figure is recorded here, only whether a figure exists on the page. A probe log that " +
         "quotes a contract value beside a URL is a number with a filename where a citation " +
