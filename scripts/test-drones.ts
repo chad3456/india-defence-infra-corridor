@@ -24,6 +24,7 @@ interface Op { country: string; asWritten: string }
 interface Type {
   page: string; name: string; origin: string; klass: string;
   operators: Op[]; nonState: string[]; read: boolean; note?: string;
+  method?: "list" | "templates"; statedReach?: string;
 }
 const d = JSON.parse(readFileSync(FILE, "utf8")) as {
   types: Type[];
@@ -90,6 +91,15 @@ console.log("\nFacts a correct parse must contain");
     !reaper?.read || reaper.operators.some((o) => o.country === "United States"));
 }
 ok("reaches at least twenty operator countries", d.countryCount >= 20, String(d.countryCount));
+{
+  // A row found by scanning every flag template in a section is weaker
+  // evidence than one read from a list entry, and the difference has to stay
+  // visible rather than being averaged away.
+  const loose = d.types.filter((t) => t.method === "templates" && t.operators.length > 0);
+  ok("every type says how its operators were found",
+    d.types.filter((t) => t.operators.length > 0).every((t) => Boolean(t.method)));
+  console.log(`        ${loose.length} type(s) read by template scan rather than list`);
+}
 {
   const sum = new Set(d.suppliers.flatMap((s) => s.countries)).size;
   ok("the supplier roll-up covers the same countries as the country list",

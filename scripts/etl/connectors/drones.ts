@@ -141,6 +141,24 @@ const NOT_A_COUNTRY =
 const NON_STATE =
   /\b(houthi|hezbollah|hamas|wagner|pkk|isis|islamic state|taliban|polisario|rsf|rapid support)\b/i;
 
+/**
+ * A sentence in which the article counts its own operators.
+ *
+ * The TB2's section opens "As of September 2023, the Bayraktar TB2 has been
+ * exported to 31 countries" — a figure with a citation behind it, and a useful
+ * check on a parse that assembles its own count from a list.
+ */
+function statedReach(section: string): string | null {
+  for (const raw of section.split(/(?<=[.!?])\s+/)) {
+    const line = raw.replace(/<!--[\s\S]*?-->/g, "").replace(/\[\[|\]\]/g, "").trim();
+    if (line.length < 25 || line.length > 240) continue;
+    if (!/\b\d{1,3}\s+(?:countries|operators|states|nations)\b/i.test(line)) continue;
+    if (!/export|operat|deliver|sold|serve/i.test(line)) continue;
+    return line.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").slice(0, 220);
+  }
+  return null;
+}
+
 export interface Operator {
   country: string;
   /** The bullet as written, so a reader can see what it was read from. */
@@ -155,6 +173,14 @@ export interface DroneType extends Type {
   note?: string;
   /** Raw section lines, kept only when nothing was read from them. */
   sample?: string[];
+  /**
+   * How the operators were found: precise list parsing, or a looser scan of
+   * every flag template in the section. Recorded because the two are not
+   * equally strong and a reader should be able to tell them apart.
+   */
+  method?: "list" | "templates";
+  /** The article counting its own operators, where it does. */
+  statedReach?: string;
 }
 
 async function wikitext(page: string): Promise<string | null> {
@@ -307,6 +333,7 @@ export async function run(): Promise<void> {
     const seen = new Set<string>();
     const operators: Operator[] = [];
     const nonState: string[] = [];
+    let method: "list" | "templates" = "list";
     for (const line of section.split("\n")) {
       if (NON_STATE.test(line)) {
         const who = line.replace(/^\*+\s*/, "").replace(/\[\[|\]\]/g, "").slice(0, 48).trim();
@@ -319,8 +346,44 @@ export async function run(): Promise<void> {
       operators.push({ country: c, asWritten: line.replace(/^\*+\s*/, "").slice(0, 90).trim() });
     }
 
+    /**
+     * Tables, prose and image legends, when the list read comes back thin.
+     *
+     * The Turkish types and the MQ-9 opened their Operators section with a map
+     * image and a "READ FIRST" comment and then listed countries in a
+     * wikitable. A line-prefix parser skips every table row — they begin with
+     * a pipe — so the three widest-exported types on the list came back empty
+     * while the list-formatted ones read fine.
+     *
+     * So when the precise read finds almost nothing, every flag and ISO
+     * template in the section is scanned regardless of what line it sits on.
+     * That is looser: a country named in a sentence about exports counts the
+     * same as one in a table row. Inside a section whose entire subject is who
+     * operates the type that is a fair reading, and which method produced a
+     * row is recorded so the page can say so.
+     */
+    if (operators.length < 3) {
+      method = "templates";
+      const scan = [
+        ...section.matchAll(/\{\{\s*(?:flag|flagcountry|flagu|flagicon|flaglink|flagdeco)\s*\|\s*([^|}]+)/gi),
+      ].map((m) => (m[1] ?? "").trim());
+      const isos = [...section.matchAll(/\{\{\s*([A-Z]{3})\s*\}\}/g)]
+        .map((m) => ISO_TEMPLATE[m[1] ?? ""])
+        .filter((x): x is string => Boolean(x));
+      for (const raw of [...scan, ...isos]) {
+        const key = raw.toLowerCase().replace(/\s*\(.*?\)\s*$/, "").trim();
+        if (!key || NOT_A_COUNTRY.test(key) || NON_STATE.test(key)) continue;
+        const name = ALIAS[key] ?? raw;
+        if (/\d/.test(name) || name.length > 32 || name.split(/\s+/).length > 4) continue;
+        if (seen.has(name)) continue;
+        seen.add(name);
+        operators.push({ country: name, asWritten: `{{flag|${raw}}}` });
+      }
+    }
+
     types.push({
-      ...t, operators, nonState, read: true,
+      ...t, operators, nonState, read: true, method,
+      ...(statedReach(section) ? { statedReach: statedReach(section)! } : {}),
       // The first lines of the section as they actually are. The previous
       // round returned nought operators per type and the log said only that;
       // the markup is what explains it, so the markup travels with the data.
