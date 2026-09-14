@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "ai-2026-09",
+    title: "AI in India",
+    blurb:
+      "What Indian labs have actually published, read from the model registries — set against " +
+      "the frontier record, with no funding figures because none could be sourced.",
+    href: "/ai",
+    since: "2026-09-14",
+  },
+  {
     id: "drones-2026-09",
     title: "How the world uses military drones",
     blurb:
