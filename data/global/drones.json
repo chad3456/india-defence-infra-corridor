@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-14T08:06:36.094Z",
+  "builtAt": "2026-09-14T08:09:33.132Z",
   "source": "English Wikipedia, the Operators section of each type's article.",
   "note": "Which countries are publicly recorded as operating each type. Not an inventory — no airframe counts, and no statement of whether a given operator arms them. Not a record of combat use, which is a separate and harder claim.",
   "gap": "Incomplete by construction. Classified and small-batch transfers do not reach an encyclopaedia, and an article's Operators section is edited unevenly, so an absent country means nobody wrote it down rather than that nobody flies it.",
@@ -10,7 +10,7 @@
     "the MQ-9's operators do not include the United States"
   ],
   "typeCount": 18,
-  "countryCount": 46,
+  "countryCount": 49,
   "types": [
     {
       "page": "Bayraktar_TB2",
@@ -20,6 +20,7 @@
       "operators": [],
       "nonState": [],
       "read": true,
+      "method": "templates",
       "sample": [
         "[[File:Bayraktar TB2 operators.svg|thumb|300px|{{legend|#0066ffff|Current operators}}{{legend|#00ffffff|Future operators",
         "<!--READ FIRST: This section is for cited entries only. Please do not add entries into this list without a citation from",
@@ -34,6 +35,7 @@
       "operators": [],
       "nonState": [],
       "read": true,
+      "method": "templates",
       "sample": [
         "[[File:Bayraktar Akıncı TurkishArmy Teknofest2021 (1).jpg|thumb|Tailfin of the Bayraktar Akinci at Teknofest 2021]]"
       ]
@@ -46,6 +48,7 @@
       "operators": [],
       "nonState": [],
       "read": true,
+      "method": "templates",
       "sample": [
         "[[File:TAI Anka Users.png|thumb|Map with users of the Anka in blue]]<!--READ FIRST: This section is for cited entries on"
       ]
@@ -58,6 +61,7 @@
       "operators": [],
       "nonState": [],
       "read": true,
+      "method": "templates",
       "sample": []
     },
     {
@@ -84,7 +88,8 @@
         }
       ],
       "nonState": [],
-      "read": true
+      "read": true,
+      "method": "list"
     },
     {
       "page": "CAIG_Wing_Loong",
@@ -142,7 +147,8 @@
         }
       ],
       "nonState": [],
-      "read": true
+      "read": true,
+      "method": "list"
     },
     {
       "page": "CAIG_Wing_Loong_II",
@@ -198,7 +204,8 @@
       "nonState": [
         "{{flag|Saudi Arabia}} — In service with the Roya"
       ],
-      "read": true
+      "read": true,
+      "method": "list"
     },
     {
       "page": "CASC_Rainbow",
@@ -208,6 +215,7 @@
       "operators": [],
       "nonState": [],
       "read": true,
+      "method": "templates",
       "sample": []
     },
     {
@@ -219,10 +227,51 @@
         {
           "country": "Israeli Defence Force",
           "asWritten": "[[Israeli Defence Force]] – at least 1<ref>{{cite web |url=http://www.iai.co.il/32540-3333"
+        },
+        {
+          "country": "Morocco",
+          "asWritten": "{{flag|Morocco}}"
+        },
+        {
+          "country": "Azerbaijan",
+          "asWritten": "{{flag|Azerbaijan}}"
+        },
+        {
+          "country": "Brazil",
+          "asWritten": "{{flag|Brazil}}"
+        },
+        {
+          "country": "Canada",
+          "asWritten": "{{flag|Canada}}"
+        },
+        {
+          "country": "Ecuador",
+          "asWritten": "{{flag|Ecuador}}"
+        },
+        {
+          "country": "India",
+          "asWritten": "{{flag|India}}"
+        },
+        {
+          "country": "Israel",
+          "asWritten": "{{flag|Israel}}"
+        },
+        {
+          "country": "South Korea",
+          "asWritten": "{{flag|South Korea}}"
+        },
+        {
+          "country": "Türkiye",
+          "asWritten": "{{flag|Türkiye}}"
+        },
+        {
+          "country": "United States",
+          "asWritten": "{{flag|United States}}"
         }
       ],
       "nonState": [],
-      "read": true
+      "read": true,
+      "method": "templates"
     },
     {
       "page": "Elbit_Hermes_900",
@@ -290,7 +339,8 @@
       "nonState": [
         ":Indian variant is to be designated as Adani Dri"
       ],
-      "read": true
+      "read": true,
+      "method": "list"
     },
     {
       "page": "IAI_Harop",
@@ -324,7 +374,8 @@
         }
       ],
       "nonState": [],
-      "read": true
+      "read": true,
+      "method": "list"
     },
     {
       "page": "IAI_Searcher",
@@ -334,6 +385,7 @@
       "operators": [],
       "nonState": [],
       "read": true,
+      "method": "templates",
       "sample": []
     },
     {
@@ -352,7 +404,8 @@
         }
       ],
       "nonState": [],
-      "read": true
+      "read": true,
+      "method": "templates"
     },
     {
       "page": "Mohajer-6",
@@ -386,7 +439,8 @@
         }
       ],
       "nonState": [],
-      "read": true
+      "read": true,
+      "method": "list"
     },
     {
       "page": "Orlan-10",
@@ -436,7 +490,8 @@
         }
       ],
       "nonState": [],
-      "read": true
+      "read": true,
+      "method": "list"
     },
     {
       "page": "Kronshtadt_Orion",
@@ -466,6 +521,7 @@
       "operators": [],
       "nonState": [],
       "read": true,
+      "method": "templates",
       "sample": []
     }
   ],
@@ -476,6 +532,7 @@
         "MQ-1 Predator",
         "Wing Loong",
         "Wing Loong II",
+        "IAI Heron",
         "IAI Harop"
       ],
       "origins": [
@@ -509,6 +566,39 @@
       ]
     },
     {
+      "country": "Azerbaijan",
+      "types": [
+        "IAI Heron",
+        "Elbit Hermes 900",
+        "IAI Harop"
+      ],
+      "origins": [
+        "Israel"
+      ]
+    },
+    {
+      "country": "India",
+      "types": [
+        "IAI Heron",
+        "Elbit Hermes 900",
+        "IAI Harop"
+      ],
+      "origins": [
+        "Israel"
+      ]
+    },
+    {
+      "country": "Israel",
+      "types": [
+        "IAI Heron",
+        "Elbit Hermes 900",
+        "IAI Harop"
+      ],
+      "origins": [
+        "Israel"
+      ]
+    },
+    {
       "country": "Russia",
       "types": [
         "Shahed-136",
@@ -518,6 +608,17 @@
       "origins": [
         "Iran",
         "Russia"
+      ]
+    },
+    {
+      "country": "United States",
+      "types": [
+        "MQ-1 Predator",
+        "IAI Heron"
+      ],
+      "origins": [
+        "United States",
+        "Israel"
       ]
     },
     {
@@ -595,30 +696,20 @@
       ]
     },
     {
-      "country": "Azerbaijan",
+      "country": "Brazil",
       "types": [
-        "Elbit Hermes 900",
-        "IAI Harop"
+        "IAI Heron",
+        "Elbit Hermes 900"
       ],
       "origins": [
         "Israel"
       ]
     },
     {
-      "country": "India",
+      "country": "Canada",
       "types": [
-        "Elbit Hermes 900",
-        "IAI Harop"
-      ],
-      "origins": [
-        "Israel"
-      ]
-    },
-    {
-      "country": "Israel",
-      "types": [
-        "Elbit Hermes 900",
-        "IAI Harop"
+        "IAI Heron",
+        "Elbit Hermes 900"
       ],
       "origins": [
         "Israel"
@@ -633,15 +724,6 @@
       "origins": [
         "Iran",
         "Russia"
-      ]
-    },
-    {
-      "country": "United States",
-      "types": [
-        "MQ-1 Predator"
-      ],
-      "origins": [
-        "United States"
       ]
     },
     {
@@ -726,25 +808,34 @@
       ]
     },
     {
+      "country": "Ecuador",
+      "types": [
+        "IAI Heron"
+      ],
+      "origins": [
+        "Israel"
+      ]
+    },
+    {
+      "country": "South Korea",
+      "types": [
+        "IAI Heron"
+      ],
+      "origins": [
+        "Israel"
+      ]
+    },
+    {
+      "country": "Türkiye",
+      "types": [
+        "IAI Heron"
+      ],
+      "origins": [
+        "Israel"
+      ]
+    },
+    {
       "country": "Ilham Aliyev",
-      "types": [
-        "Elbit Hermes 900"
-      ],
-      "origins": [
-        "Israel"
-      ]
-    },
-    {
-      "country": "Brazil",
-      "types": [
-        "Elbit Hermes 900"
-      ],
-      "origins": [
-        "Israel"
-      ]
-    },
-    {
-      "country": "Canada",
       "types": [
         "Elbit Hermes 900"
       ],
@@ -918,13 +1009,14 @@
   "suppliers": [
     {
       "origin": "Israel",
-      "operators": 18,
+      "operators": 22,
       "countries": [
         "Azerbaijan",
         "Brazil",
         "Canada",
         "Colombia",
         "Colombian Aerospace Force",
+        "Ecuador",
         "European Maritime Safety Agency",
         "Ilham Aliyev",
         "India",
@@ -936,7 +1028,10 @@
         "North Korea",
         "Porbandar",
         "Serbia",
+        "South Korea",
         "Thailand",
+        "Türkiye",
+        "United States",
         "exclusive economic zone"
       ]
     },
