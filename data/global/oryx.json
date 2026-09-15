@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-15T18:06:14.487Z",
+  "builtAt": "2026-09-15T18:08:56.902Z",
   "source": "Oryx (oryxspioenkop.com), 'Attack On Europe: Documenting Equipment Losses During The 2022 Russian Invasion Of Ukraine' and its Ukrainian counterpart. One entry per individual vehicle, each linking to the photograph or video that confirms it.",
   "method": "Every section's parsed count is compared with the total the section heading states about itself. A section whose parse disagrees by more than one per cent is suppressed entirely rather than published with a warning: a parse that took the wrong bracket produces plausible numbers in the right format, and plausible-and-wrong is worse than absent. Evidence links are kept in full for the unmanned categories and the rest is aggregated to model and status.",
   "undercount": "This is an undercount by construction and cannot be anything else. A vehicle nobody photographed is not in it. The bias has one direction, which is what makes the list citable, and it is NOT symmetric between the two sides: they are photographed by different numbers of people, with different phones, under different rules about posting, and by forces with different incentives to publicise a loss. Comparing one side's total with the other's measures the photography as much as the war, and no chart built on this file may present the ratio between them as a loss exchange rate.",
@@ -40,10 +40,10 @@
   "counts": {
     "pages": 2,
     "sections": 46,
-    "sectionsAgreed": 12,
-    "sectionsSuppressed": 34,
-    "models": 332,
-    "losses": 4597,
+    "sectionsAgreed": 27,
+    "sectionsSuppressed": 19,
+    "models": 668,
+    "losses": 15781,
     "unmannedInstances": 25
   },
   "pages": [
@@ -95,17 +95,17 @@
             }
           },
           "parsed": {
-            "total": 4257,
+            "total": 4419,
             "byStatus": {
-              "destroyed": 3198,
-              "damaged": 156,
-              "abandoned": 389,
-              "captured": 514
+              "destroyed": 3306,
+              "damaged": 162,
+              "abandoned": 401,
+              "captured": 550
             },
             "models": 48
           },
-          "agrees": false,
-          "why": "parsed 4257 against a stated 4447 — 4.3% apart, so this section is suppressed"
+          "agrees": true,
+          "why": "parsed 4419 against a stated 4447"
         },
         {
           "heading": "Armoured Fighting Vehicles (2437, of which destroyed: 1996, damaged: 38, abandoned: 124, captured: 279)",
@@ -121,17 +121,17 @@
             }
           },
           "parsed": {
-            "total": 2342,
+            "total": 2410,
             "byStatus": {
-              "destroyed": 1916,
+              "destroyed": 1974,
               "damaged": 38,
-              "abandoned": 120,
-              "captured": 268
+              "abandoned": 124,
+              "captured": 274
             },
             "models": 35
           },
           "agrees": false,
-          "why": "parsed 2342 against a stated 2437 — 3.9% apart, so this section is suppressed"
+          "why": "parsed 2410 against a stated 2437 — 1.1% apart, so this section is suppressed"
         },
         {
           "heading": "Infantry Fighting Vehicles (6483, of which destroyed: 5214, damaged: 158, abandoned: 478, captured: 633)",
@@ -147,17 +147,17 @@
             }
           },
           "parsed": {
-            "total": 6123,
+            "total": 6376,
             "byStatus": {
-              "destroyed": 4924,
-              "damaged": 147,
-              "abandoned": 454,
-              "captured": 598
+              "destroyed": 5126,
+              "damaged": 151,
+              "abandoned": 472,
+              "captured": 627
             },
             "models": 24
           },
           "agrees": false,
-          "why": "parsed 6123 against a stated 6483 — 5.6% apart, so this section is suppressed"
+          "why": "parsed 6376 against a stated 6483 — 1.7% apart, so this section is suppressed"
         },
         {
           "heading": "Armoured Personnel Carriers (739, of which destroyed: 580, damaged: 18, abandoned: 44, captured: 97)",
@@ -173,17 +173,17 @@
             }
           },
           "parsed": {
-            "total": 723,
+            "total": 735,
             "byStatus": {
-              "destroyed": 571,
-              "damaged": 16,
+              "destroyed": 575,
+              "damaged": 18,
               "abandoned": 44,
-              "captured": 92
+              "captured": 98
             },
             "models": 16
           },
-          "agrees": false,
-          "why": "parsed 723 against a stated 739 — 2.2% apart, so this section is suppressed"
+          "agrees": true,
+          "why": "parsed 735 against a stated 739"
         },
         {
           "heading": "Mine-Resistant Ambush Protected (MRAP) Vehicles (64, of which destroyed: 48, damaged: 4, abandoned: 1, captured: 11)",
@@ -225,17 +225,17 @@
             }
           },
           "parsed": {
-            "total": 419,
+            "total": 435,
             "byStatus": {
-              "destroyed": 340,
-              "damaged": 16,
+              "destroyed": 352,
+              "damaged": 18,
               "abandoned": 13,
-              "captured": 50
+              "captured": 52
             },
             "models": 21
           },
-          "agrees": false,
-          "why": "parsed 419 against a stated 435 — 3.7% apart, so this section is suppressed"
+          "agrees": true,
+          "why": "parsed 435 against a stated 435"
         },
         {
           "heading": "Command Posts And Communications Stations (322, of which destroyed: 226, damaged: 5, abandoned: 4, captured: 87)",
@@ -251,17 +251,17 @@
             }
           },
           "parsed": {
-            "total": 316,
+            "total": 322,
             "byStatus": {
-              "destroyed": 220,
+              "destroyed": 224,
               "damaged": 5,
               "abandoned": 4,
-              "captured": 87
+              "captured": 89
             },
             "models": 51
           },
-          "agrees": false,
-          "why": "parsed 316 against a stated 322 — 1.9% apart, so this section is suppressed"
+          "agrees": true,
+          "why": "parsed 322 against a stated 322"
         },
         {
           "heading": "Engineering Vehicles And Equipment (732, of which destroyed: 460, damaged: 51, abandoned: 62, captured: 159)",
@@ -277,17 +277,17 @@
             }
           },
           "parsed": {
-            "total": 725,
+            "total": 731,
             "byStatus": {
-              "destroyed": 457,
+              "destroyed": 459,
               "damaged": 51,
-              "abandoned": 60,
-              "captured": 157
+              "abandoned": 62,
+              "captured": 159
             },
             "models": 77
           },
           "agrees": true,
-          "why": "parsed 725 against a stated 732"
+          "why": "parsed 731 against a stated 732"
         },
         {
           "heading": "Self-Propelled Anti-Tank Missile Systems (47, of which destroyed: 22, damaged: 1, abandoned: 4, captured: 20)",
@@ -303,17 +303,17 @@
             }
           },
           "parsed": {
-            "total": 45,
+            "total": 47,
             "byStatus": {
               "destroyed": 22,
               "damaged": 1,
-              "abandoned": 2,
+              "abandoned": 4,
               "captured": 20
             },
             "models": 4
           },
-          "agrees": false,
-          "why": "parsed 45 against a stated 47 — 4.3% apart, so this section is suppressed"
+          "agrees": true,
+          "why": "parsed 47 against a stated 47"
         },
         {
           "heading": "Artillery and Missile Support Vehicles And Equipment (181, of which destroyed: 117, damaged: 3, abandoned: 1, captured: 60)",
@@ -329,17 +329,17 @@
             }
           },
           "parsed": {
-            "total": 167,
+            "total": 181,
             "byStatus": {
-              "destroyed": 101,
+              "destroyed": 113,
               "damaged": 3,
               "abandoned": 4,
-              "captured": 59
+              "captured": 61
             },
             "models": 26
           },
-          "agrees": false,
-          "why": "parsed 167 against a stated 181 — 7.7% apart, so this section is suppressed"
+          "agrees": true,
+          "why": "parsed 181 against a stated 181"
         },
         {
           "heading": "Towed Artillery (609, of which destroyed: 397, damaged: 108, abandoned: 5, captured: 99)",
@@ -355,17 +355,17 @@
             }
           },
           "parsed": {
-            "total": 565,
+            "total": 592,
             "byStatus": {
-              "destroyed": 378,
-              "damaged": 102,
+              "destroyed": 390,
+              "damaged": 108,
               "abandoned": 5,
-              "captured": 80
+              "captured": 89
             },
             "models": 11
           },
           "agrees": false,
-          "why": "parsed 565 against a stated 609 — 7.2% apart, so this section is suppressed"
+          "why": "parsed 592 against a stated 609 — 2.8% apart, so this section is suppressed"
         },
         {
           "heading": "Self-Propelled Artillery (1055, of which destroyed: 886, damaged: 54, abandoned: 7, captured: 108)",
@@ -381,17 +381,17 @@
             }
           },
           "parsed": {
-            "total": 984,
+            "total": 1038,
             "byStatus": {
-              "destroyed": 825,
-              "damaged": 52,
+              "destroyed": 867,
+              "damaged": 54,
               "abandoned": 9,
-              "captured": 98
+              "captured": 108
             },
             "models": 14
           },
           "agrees": false,
-          "why": "parsed 984 against a stated 1055 — 6.7% apart, so this section is suppressed"
+          "why": "parsed 1038 against a stated 1055 — 1.6% apart, so this section is suppressed"
         },
         {
           "heading": "Rocket and Missile Artillery (637, of which destroyed: 533, damaged: 48, abandoned: 2, captured: 54)",
@@ -407,17 +407,17 @@
             }
           },
           "parsed": {
-            "total": 572,
+            "total": 610,
             "byStatus": {
-              "destroyed": 475,
-              "damaged": 42,
+              "destroyed": 503,
+              "damaged": 48,
               "abandoned": 3,
-              "captured": 52
+              "captured": 56
             },
             "models": 21
           },
           "agrees": false,
-          "why": "parsed 572 against a stated 637 — 10.2% apart, so this section is suppressed"
+          "why": "parsed 610 against a stated 637 — 4.2% apart, so this section is suppressed"
         },
         {
           "heading": "Anti-Aircraft Guns (71, of which destroyed: 51, damaged: 1, captured: 19)",
@@ -458,17 +458,17 @@
             }
           },
           "parsed": {
-            "total": 26,
+            "total": 27,
             "byStatus": {
               "destroyed": 12,
               "damaged": 3,
-              "abandoned": 4,
+              "abandoned": 5,
               "captured": 7
             },
             "models": 3
           },
           "agrees": false,
-          "why": "parsed 26 against a stated 29 — 10.3% apart, so this section is suppressed"
+          "why": "parsed 27 against a stated 29 — 6.9% apart, so this section is suppressed"
         },
         {
           "heading": "Surface-To-Air Missile Systems (439, of which destroyed: 335, damaged: 76, abandoned: 4, captured: 24)",
@@ -484,17 +484,17 @@
             }
           },
           "parsed": {
-            "total": 431,
+            "total": 439,
             "byStatus": {
-              "destroyed": 325,
+              "destroyed": 333,
               "damaged": 76,
               "abandoned": 6,
               "captured": 24
             },
             "models": 28
           },
-          "agrees": false,
-          "why": "parsed 431 against a stated 439 — 1.8% apart, so this section is suppressed"
+          "agrees": true,
+          "why": "parsed 439 against a stated 439"
         },
         {
           "heading": "Radars (140, of which destroyed: 87, damaged: 43, captured: 10)",
@@ -509,17 +509,17 @@
             }
           },
           "parsed": {
-            "total": 132,
+            "total": 138,
             "byStatus": {
-              "destroyed": 85,
-              "damaged": 37,
+              "destroyed": 87,
+              "damaged": 41,
               "abandoned": 0,
               "captured": 10
             },
-            "models": 42
+            "models": 43
           },
           "agrees": false,
-          "why": "parsed 132 against a stated 140 — 5.7% apart, so this section is suppressed"
+          "why": "parsed 138 against a stated 140 — 1.4% apart, so this section is suppressed"
         },
         {
           "heading": "Jammers And Deception Systems (107, of which destroyed: 82, damaged: 15, captured: 10)",
@@ -558,9 +558,9 @@
             }
           },
           "parsed": {
-            "total": 179,
+            "total": 173,
             "byStatus": {
-              "destroyed": 146,
+              "destroyed": 140,
               "damaged": 33,
               "abandoned": 0,
               "captured": 0
@@ -568,7 +568,7 @@
             "models": 25
           },
           "agrees": false,
-          "why": "parsed 179 against a stated 194 — 7.7% apart, so this section is suppressed"
+          "why": "parsed 173 against a stated 194 — 10.8% apart, so this section is suppressed"
         },
         {
           "heading": "Helicopters (181, of which destroyed: 142, damaged: 37, captured: 2)",
@@ -583,17 +583,17 @@
             }
           },
           "parsed": {
-            "total": 139,
+            "total": 161,
             "byStatus": {
-              "destroyed": 113,
-              "damaged": 21,
+              "destroyed": 127,
+              "damaged": 29,
               "abandoned": 3,
               "captured": 2
             },
             "models": 10
           },
           "agrees": false,
-          "why": "parsed 139 against a stated 181 — 23.2% apart, so this section is suppressed"
+          "why": "parsed 161 against a stated 181 — 11.0% apart, so this section is suppressed"
         },
         {
           "heading": "Unmanned Combat Aerial Vehicles (25, of which destroyed: 21, damaged: 1, captured: 3)",
@@ -632,17 +632,17 @@
             }
           },
           "parsed": {
-            "total": 38,
+            "total": 35,
             "byStatus": {
               "destroyed": 22,
-              "damaged": 16,
+              "damaged": 13,
               "abandoned": 0,
               "captured": 0
             },
-            "models": 24
+            "models": 23
           },
           "agrees": false,
-          "why": "parsed 38 against a stated 39 — 2.6% apart, so this section is suppressed"
+          "why": "parsed 35 against a stated 39 — 10.3% apart, so this section is suppressed"
         },
         {
           "heading": "Trucks and similar vehicles (4685, of which destroyed: 3955, damaged: 110, abandoned: 52, captured: 568)",
@@ -658,17 +658,17 @@
             }
           },
           "parsed": {
-            "total": 4194,
+            "total": 4505,
             "byStatus": {
-              "destroyed": 3531,
-              "damaged": 100,
-              "abandoned": 46,
-              "captured": 517
+              "destroyed": 3784,
+              "damaged": 106,
+              "abandoned": 52,
+              "captured": 563
             },
             "models": 73
           },
           "agrees": false,
-          "why": "parsed 4194 against a stated 4685 — 10.5% apart, so this section is suppressed"
+          "why": "parsed 4505 against a stated 4685 — 3.8% apart, so this section is suppressed"
         }
       ]
     },
@@ -720,17 +720,17 @@
             }
           },
           "parsed": {
-            "total": 1422,
+            "total": 1448,
             "byStatus": {
-              "destroyed": 1091,
+              "destroyed": 1107,
               "damaged": 87,
               "abandoned": 101,
-              "captured": 143
+              "captured": 153
             },
             "models": 31
           },
-          "agrees": false,
-          "why": "parsed 1422 against a stated 1462 — 2.7% apart, so this section is suppressed"
+          "agrees": true,
+          "why": "parsed 1448 against a stated 1462"
         },
         {
           "heading": "Armoured Fighting Vehicles (561, of which destroyed: 443, damaged: 17, abandoned: 15, captured: 86)",
@@ -746,17 +746,17 @@
             }
           },
           "parsed": {
-            "total": 538,
+            "total": 554,
             "byStatus": {
-              "destroyed": 428,
+              "destroyed": 440,
               "damaged": 17,
-              "abandoned": 13,
-              "captured": 80
+              "abandoned": 15,
+              "captured": 82
             },
             "models": 22
           },
           "agrees": false,
-          "why": "parsed 538 against a stated 561 — 4.1% apart, so this section is suppressed"
+          "why": "parsed 554 against a stated 561 — 1.2% apart, so this section is suppressed"
         },
         {
           "heading": "Infantry Fighting Vehicles (1617, of which destroyed: 1228, damaged: 72, abandoned: 146, captured: 171)",
@@ -772,17 +772,17 @@
             }
           },
           "parsed": {
-            "total": 1544,
+            "total": 1596,
             "byStatus": {
-              "destroyed": 1176,
-              "damaged": 64,
-              "abandoned": 137,
-              "captured": 167
+              "destroyed": 1212,
+              "damaged": 70,
+              "abandoned": 143,
+              "captured": 171
             },
             "models": 28
           },
           "agrees": false,
-          "why": "parsed 1544 against a stated 1617 — 4.5% apart, so this section is suppressed"
+          "why": "parsed 1596 against a stated 1617 — 1.3% apart, so this section is suppressed"
         },
         {
           "heading": "Armoured Personnel Carriers (1454, of which destroyed: 1093, damaged: 44, abandoned: 152, captured: 165)",
@@ -798,17 +798,17 @@
             }
           },
           "parsed": {
-            "total": 1422,
+            "total": 1446,
             "byStatus": {
-              "destroyed": 1080,
-              "damaged": 40,
-              "abandoned": 150,
-              "captured": 152
+              "destroyed": 1088,
+              "damaged": 44,
+              "abandoned": 152,
+              "captured": 162
             },
             "models": 35
           },
-          "agrees": false,
-          "why": "parsed 1422 against a stated 1454 — 2.2% apart, so this section is suppressed"
+          "agrees": true,
+          "why": "parsed 1446 against a stated 1454"
         },
         {
           "heading": "Mine-Resistant Ambush Protected (MRAP) Vehicles (1022, of which destroyed: 824, damaged: 46, abandoned: 84, captured: 68)",
@@ -824,17 +824,17 @@
             }
           },
           "parsed": {
-            "total": 1006,
+            "total": 1020,
             "byStatus": {
-              "destroyed": 810,
+              "destroyed": 822,
               "damaged": 46,
-              "abandoned": 82,
+              "abandoned": 84,
               "captured": 68
             },
             "models": 16
           },
-          "agrees": false,
-          "why": "parsed 1006 against a stated 1022 — 1.6% apart, so this section is suppressed"
+          "agrees": true,
+          "why": "parsed 1020 against a stated 1022"
         },
         {
           "heading": "Infantry Mobility Vehicles (2150, of which destroyed: 1775, damaged: 70, abandoned: 126, captured: 179)",
@@ -850,17 +850,17 @@
             }
           },
           "parsed": {
-            "total": 2136,
+            "total": 2148,
             "byStatus": {
-              "destroyed": 1766,
+              "destroyed": 1774,
               "damaged": 70,
               "abandoned": 126,
-              "captured": 174
+              "captured": 178
             },
             "models": 53
           },
           "agrees": true,
-          "why": "parsed 2136 against a stated 2150"
+          "why": "parsed 2148 against a stated 2150"
         },
         {
           "heading": "Command Posts And Communications Stations (101, of which destroyed: 76, damaged: 2, abandoned: 12, captured: 11)",
@@ -876,17 +876,17 @@
             }
           },
           "parsed": {
-            "total": 99,
+            "total": 101,
             "byStatus": {
-              "destroyed": 74,
+              "destroyed": 76,
               "damaged": 2,
               "abandoned": 12,
               "captured": 11
             },
-            "models": 15
+            "models": 16
           },
-          "agrees": false,
-          "why": "parsed 99 against a stated 101 — 2.0% apart, so this section is suppressed"
+          "agrees": true,
+          "why": "parsed 101 against a stated 101"
         },
         {
           "heading": "Engineering Vehicles And Equipment (299, of which destroyed: 205, damaged: 25, abandoned: 32, captured: 37)",
@@ -928,17 +928,17 @@
             }
           },
           "parsed": {
-            "total": 17,
+            "total": 19,
             "byStatus": {
-              "destroyed": 5,
+              "destroyed": 7,
               "damaged": 1,
               "abandoned": 1,
               "captured": 10
             },
             "models": 2
           },
-          "agrees": false,
-          "why": "parsed 17 against a stated 19 — 10.5% apart, so this section is suppressed"
+          "agrees": true,
+          "why": "parsed 19 against a stated 19"
         },
         {
           "heading": "Artillery and Missile Support Vehicles And Equipment (37, of which destroyed: 24, captured: 13)",
@@ -978,17 +978,17 @@
             }
           },
           "parsed": {
-            "total": 278,
+            "total": 294,
             "byStatus": {
-              "destroyed": 151,
+              "destroyed": 161,
               "damaged": 100,
-              "abandoned": 4,
+              "abandoned": 10,
               "captured": 23
             },
             "models": 17
           },
-          "agrees": false,
-          "why": "parsed 278 against a stated 296 — 6.1% apart, so this section is suppressed"
+          "agrees": true,
+          "why": "parsed 294 against a stated 296"
         },
         {
           "heading": "Self-Propelled Artillery (963, of which destroyed: 826, damaged: 110, abandoned: 1, captured: 26)",
@@ -1004,17 +1004,17 @@
             }
           },
           "parsed": {
-            "total": 954,
+            "total": 962,
             "byStatus": {
-              "destroyed": 820,
+              "destroyed": 826,
               "damaged": 109,
               "abandoned": 1,
-              "captured": 24
+              "captured": 26
             },
             "models": 26
           },
           "agrees": true,
-          "why": "parsed 954 against a stated 963"
+          "why": "parsed 962 against a stated 963"
         },
         {
           "heading": "Rocket and Missile Artillery (131, of which destroyed: 100, damaged: 22, captured: 9)",
@@ -1029,17 +1029,17 @@
             }
           },
           "parsed": {
-            "total": 125,
+            "total": 131,
             "byStatus": {
-              "destroyed": 96,
+              "destroyed": 100,
               "damaged": 22,
               "abandoned": 0,
-              "captured": 7
+              "captured": 9
             },
             "models": 14
           },
-          "agrees": false,
-          "why": "parsed 125 against a stated 131 — 4.6% apart, so this section is suppressed"
+          "agrees": true,
+          "why": "parsed 131 against a stated 131"
         },
         {
           "heading": "Anti-Aircraft Guns (8, of which destroyed: 1, captured: 7)",
@@ -1105,17 +1105,17 @@
             }
           },
           "parsed": {
-            "total": 165,
+            "total": 177,
             "byStatus": {
-              "destroyed": 138,
+              "destroyed": 150,
               "damaged": 20,
               "abandoned": 1,
               "captured": 6
             },
-            "models": 17
+            "models": 18
           },
           "agrees": false,
-          "why": "parsed 165 against a stated 179 — 7.8% apart, so this section is suppressed"
+          "why": "parsed 177 against a stated 179 — 1.1% apart, so this section is suppressed"
         },
         {
           "heading": "Radars And Communications Equipment (146, of which destroyed: 109, damaged: 22, abandoned: 1, captured: 14)",
@@ -1181,17 +1181,17 @@
             }
           },
           "parsed": {
-            "total": 119,
+            "total": 121,
             "byStatus": {
-              "destroyed": 113,
+              "destroyed": 115,
               "damaged": 5,
               "abandoned": 0,
               "captured": 1
             },
             "models": 11
           },
-          "agrees": false,
-          "why": "parsed 119 against a stated 121 — 1.7% apart, so this section is suppressed"
+          "agrees": true,
+          "why": "parsed 121 against a stated 121"
         },
         {
           "heading": "Helicopters (58, of which destroyed: 52, damaged: 3, captured: 3)",
@@ -1206,9 +1206,9 @@
             }
           },
           "parsed": {
-            "total": 50,
+            "total": 56,
             "byStatus": {
-              "destroyed": 45,
+              "destroyed": 51,
               "damaged": 4,
               "abandoned": 0,
               "captured": 1
@@ -1216,7 +1216,7 @@
             "models": 9
           },
           "agrees": false,
-          "why": "parsed 50 against a stated 58 — 13.8% apart, so this section is suppressed"
+          "why": "parsed 56 against a stated 58 — 3.4% apart, so this section is suppressed"
         },
         {
           "heading": "Unmanned Combat Aerial Vehicles (29, of which destroyed: 28, captured: 1)",
@@ -1281,17 +1281,17 @@
             }
           },
           "parsed": {
-            "total": 1299,
+            "total": 1357,
             "byStatus": {
-              "destroyed": 1072,
-              "damaged": 34,
+              "destroyed": 1110,
+              "damaged": 38,
               "abandoned": 19,
-              "captured": 174
+              "captured": 190
             },
             "models": 88
           },
           "agrees": false,
-          "why": "parsed 1299 against a stated 1384 — 6.1% apart, so this section is suppressed"
+          "why": "parsed 1357 against a stated 1384 — 2.0% apart, so this section is suppressed"
         }
       ]
     }
@@ -1325,6 +1325,710 @@
     }
   ],
   "tallies": [
+    {
+      "category": "Tanks",
+      "model": "T-54-3M",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Tanks",
+      "model": "T-54B",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 4
+    },
+    {
+      "category": "Tanks",
+      "model": "T-55A",
+      "counts": {
+        "destroyed": 10,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 11
+    },
+    {
+      "category": "Tanks",
+      "model": "T-55A Obr. 1974",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Tanks",
+      "model": "T-55A Obr. 1981",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Tanks",
+      "model": "Unknown T-54/55",
+      "counts": {
+        "destroyed": 6,
+        "damaged": 0,
+        "abandoned": 2,
+        "captured": 0
+      },
+      "total": 8
+    },
+    {
+      "category": "Tanks",
+      "model": "T-62 Obr. 1967",
+      "counts": {
+        "destroyed": 6,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 7
+    },
+    {
+      "category": "Tanks",
+      "model": "T-62 Obr. 1972",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 0
+      },
+      "total": 4
+    },
+    {
+      "category": "Tanks",
+      "model": "T-62 Obr. 1975",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Tanks",
+      "model": "T-62M",
+      "counts": {
+        "destroyed": 104,
+        "damaged": 8,
+        "abandoned": 8,
+        "captured": 34
+      },
+      "total": 154
+    },
+    {
+      "category": "Tanks",
+      "model": "T-62M Obr. 2022",
+      "counts": {
+        "destroyed": 59,
+        "damaged": 3,
+        "abandoned": 3,
+        "captured": 1
+      },
+      "total": 66
+    },
+    {
+      "category": "Tanks",
+      "model": "T-62MV",
+      "counts": {
+        "destroyed": 27,
+        "damaged": 1,
+        "abandoned": 3,
+        "captured": 10
+      },
+      "total": 41
+    },
+    {
+      "category": "Tanks",
+      "model": "T-62MV Obr. 2022",
+      "counts": {
+        "destroyed": 11,
+        "damaged": 1,
+        "abandoned": 1,
+        "captured": 0
+      },
+      "total": 13
+    },
+    {
+      "category": "Tanks",
+      "model": "Unknown T-62",
+      "counts": {
+        "destroyed": 51,
+        "damaged": 0,
+        "abandoned": 5,
+        "captured": 0
+      },
+      "total": 56
+    },
+    {
+      "category": "Tanks",
+      "model": "T-64A",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Tanks",
+      "model": "T-64BV",
+      "counts": {
+        "destroyed": 77,
+        "damaged": 10,
+        "abandoned": 6,
+        "captured": 4
+      },
+      "total": 97
+    },
+    {
+      "category": "Tanks",
+      "model": "T-64BVK",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 4
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72 'Ural'",
+      "counts": {
+        "destroyed": 5,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 0
+      },
+      "total": 6
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72A",
+      "counts": {
+        "destroyed": 32,
+        "damaged": 1,
+        "abandoned": 7,
+        "captured": 10
+      },
+      "total": 50
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72AV",
+      "counts": {
+        "destroyed": 21,
+        "damaged": 0,
+        "abandoned": 2,
+        "captured": 4
+      },
+      "total": 27
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72B(1)",
+      "counts": {
+        "destroyed": 262,
+        "damaged": 8,
+        "abandoned": 26,
+        "captured": 67
+      },
+      "total": 363
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72B Obr. 1989",
+      "counts": {
+        "destroyed": 73,
+        "damaged": 4,
+        "abandoned": 13,
+        "captured": 20
+      },
+      "total": 110
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72B Obr. 2022",
+      "counts": {
+        "destroyed": 168,
+        "damaged": 4,
+        "abandoned": 38,
+        "captured": 1
+      },
+      "total": 211
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72B1K",
+      "counts": {
+        "destroyed": 6,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 7
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72BA",
+      "counts": {
+        "destroyed": 14,
+        "damaged": 2,
+        "abandoned": 0,
+        "captured": 16
+      },
+      "total": 32
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72B3",
+      "counts": {
+        "destroyed": 250,
+        "damaged": 25,
+        "abandoned": 21,
+        "captured": 79
+      },
+      "total": 375
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72B3 Obr. 2014",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 2
+      },
+      "total": 5
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72B3 Obr. 2016",
+      "counts": {
+        "destroyed": 174,
+        "damaged": 6,
+        "abandoned": 11,
+        "captured": 104
+      },
+      "total": 295
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72B3 Obr. 2022",
+      "counts": {
+        "destroyed": 102,
+        "damaged": 4,
+        "abandoned": 10,
+        "captured": 6
+      },
+      "total": 122
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72B3 Obr. 2025",
+      "counts": {
+        "destroyed": 9,
+        "damaged": 0,
+        "abandoned": 3,
+        "captured": 0
+      },
+      "total": 12
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72B3A",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Tanks",
+      "model": "Unknown T-72",
+      "counts": {
+        "destroyed": 192,
+        "damaged": 16,
+        "abandoned": 14,
+        "captured": 3
+      },
+      "total": 225
+    },
+    {
+      "category": "Tanks",
+      "model": "T-80B",
+      "counts": {
+        "destroyed": 5,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 5
+    },
+    {
+      "category": "Tanks",
+      "model": "T-80BV",
+      "counts": {
+        "destroyed": 537,
+        "damaged": 19,
+        "abandoned": 73,
+        "captured": 74
+      },
+      "total": 703
+    },
+    {
+      "category": "Tanks",
+      "model": "T-80BV Obr. 2022",
+      "counts": {
+        "destroyed": 136,
+        "damaged": 0,
+        "abandoned": 12,
+        "captured": 0
+      },
+      "total": 148
+    },
+    {
+      "category": "Tanks",
+      "model": "T-80BVK",
+      "counts": {
+        "destroyed": 8,
+        "damaged": 2,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 11
+    },
+    {
+      "category": "Tanks",
+      "model": "T-80U",
+      "counts": {
+        "destroyed": 46,
+        "damaged": 1,
+        "abandoned": 8,
+        "captured": 46
+      },
+      "total": 101
+    },
+    {
+      "category": "Tanks",
+      "model": "T-80UK",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 1
+      },
+      "total": 2
+    },
+    {
+      "category": "Tanks",
+      "model": "T-80UE-1",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 4
+      },
+      "total": 8
+    },
+    {
+      "category": "Tanks",
+      "model": "T-80UM2",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Tanks",
+      "model": "T-80BVM",
+      "counts": {
+        "destroyed": 101,
+        "damaged": 6,
+        "abandoned": 11,
+        "captured": 32
+      },
+      "total": 150
+    },
+    {
+      "category": "Tanks",
+      "model": "T-80BVM Obr. 2022",
+      "counts": {
+        "destroyed": 97,
+        "damaged": 0,
+        "abandoned": 11,
+        "captured": 6
+      },
+      "total": 114
+    },
+    {
+      "category": "Tanks",
+      "model": "Unknown T-80",
+      "counts": {
+        "destroyed": 42,
+        "damaged": 2,
+        "abandoned": 7,
+        "captured": 2
+      },
+      "total": 53
+    },
+    {
+      "category": "Tanks",
+      "model": "T-90A",
+      "counts": {
+        "destroyed": 31,
+        "damaged": 0,
+        "abandoned": 4,
+        "captured": 11
+      },
+      "total": 46
+    },
+    {
+      "category": "Tanks",
+      "model": "T-90AK",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 2
+      },
+      "total": 2
+    },
+    {
+      "category": "Tanks",
+      "model": "T-90S",
+      "counts": {
+        "destroyed": 9,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 1
+      },
+      "total": 11
+    },
+    {
+      "category": "Tanks",
+      "model": "T-90M",
+      "counts": {
+        "destroyed": 106,
+        "damaged": 16,
+        "abandoned": 30,
+        "captured": 7
+      },
+      "total": 159
+    },
+    {
+      "category": "Tanks",
+      "model": "Unknown tank",
+      "counts": {
+        "destroyed": 500,
+        "damaged": 21,
+        "abandoned": 67,
+        "captured": 0
+      },
+      "total": 588
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-50",
+      "counts": {
+        "destroyed": 6,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 0
+      },
+      "total": 7
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-50 with BPU-1 turret",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 2,
+        "captured": 0
+      },
+      "total": 5
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-60PB",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-70",
+      "counts": {
+        "destroyed": 28,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 30
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-70M",
+      "counts": {
+        "destroyed": 27,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 28
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-80",
+      "counts": {
+        "destroyed": 218,
+        "damaged": 4,
+        "abandoned": 21,
+        "captured": 61
+      },
+      "total": 304
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-80 with 32G01 'Bumerang-Burevestnik'",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "Unknown BTR-70/80",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "Unknown BTR-80/82",
+      "counts": {
+        "destroyed": 83,
+        "damaged": 6,
+        "abandoned": 9,
+        "captured": 0
+      },
+      "total": 98
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "Remdiesel Z-STS Akhmat",
+      "counts": {
+        "destroyed": 80,
+        "damaged": 2,
+        "abandoned": 4,
+        "captured": 1
+      },
+      "total": 87
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "Ural-VV",
+      "counts": {
+        "destroyed": 5,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 6
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-D",
+      "counts": {
+        "destroyed": 74,
+        "damaged": 1,
+        "abandoned": 5,
+        "captured": 24
+      },
+      "total": 104
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-MDM Rakushka",
+      "counts": {
+        "destroyed": 41,
+        "damaged": 3,
+        "abandoned": 2,
+        "captured": 8
+      },
+      "total": 54
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "Plastun-SN",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BMO-T",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 4
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "VTS 'Ladoga' heavy command, staff and reconnaissance vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
     {
       "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
       "model": "KamAZ-63968 Typhoon",
@@ -1392,6 +2096,798 @@
       "total": 4
     },
     {
+      "category": "Infantry Mobility Vehicles",
+      "model": "BPM-97",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 3
+      },
+      "total": 3
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "KamAZ-43269 'Vystrel'",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "GAZ-233036 SPM-2 'Tigr'",
+      "counts": {
+        "destroyed": 5,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 6
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "GAZ-233014 'Tigr'",
+      "counts": {
+        "destroyed": 8,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 5
+      },
+      "total": 13
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "AMN-233114 'Tigr-M'",
+      "counts": {
+        "destroyed": 13,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 14
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "AMN-233114 'Tigr-M' with 'Arbalet-DM'",
+      "counts": {
+        "destroyed": 17,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 18
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "ASN-233115 'Tigr-M SpN'",
+      "counts": {
+        "destroyed": 184,
+        "damaged": 7,
+        "abandoned": 3,
+        "captured": 27
+      },
+      "total": 221
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "VPK-233136 SBM 'Tigr'",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 2
+      },
+      "total": 6
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "ASN-233115-0000010-10 Tigr-M SpN",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "AMN-590951 VPK Ural",
+      "counts": {
+        "destroyed": 59,
+        "damaged": 5,
+        "abandoned": 7,
+        "captured": 3
+      },
+      "total": 74
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "Iveco LMV Rys",
+      "counts": {
+        "destroyed": 26,
+        "damaged": 3,
+        "abandoned": 1,
+        "captured": 5
+      },
+      "total": 35
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "GAZ-39371 'Vodnik'",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 2
+      },
+      "total": 2
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "KamAZ-4386 ZASN-D 'Typhoon-VDV'",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "Asteis-7020 'Patrul' 4x4",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "Asteis-7020 'Patrul' 6x6",
+      "counts": {
+        "destroyed": 13,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 0
+      },
+      "total": 14
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "RIDA 'Buran ASV'",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 1
+      },
+      "total": 4
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "RIDA 'Buran 10' SpN",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "STS Sarmat-2",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "STS Sarmat-3",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 2,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 4
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "TS-3132 'Gusar'",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 5
+    },
+    {
+      "category": "Infantry Mobility Vehicles",
+      "model": "Unknown IMV",
+      "counts": {
+        "destroyed": 5,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 5
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "BMP-1KSh command and staff vehicle",
+      "counts": {
+        "destroyed": 10,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 5
+      },
+      "total": 15
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "BMD-1KSh-A command vehicle",
+      "counts": {
+        "destroyed": 8,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 4
+      },
+      "total": 12
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "BTR-60PU-12command vehicle",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-145BM command vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 2
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-145BM1 command vehicle",
+      "counts": {
+        "destroyed": 8,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 9
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "9S470M1 command vehicle for Buk-M1",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-145BMA command vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 2
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-142NSA command and signals vehicle",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-142N 'Deimos-N' command and staff vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-149MA1 command and staff vehicle",
+      "counts": {
+        "destroyed": 57,
+        "damaged": 2,
+        "abandoned": 4,
+        "captured": 29
+      },
+      "total": 92
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-149MA3 command and staff vehicle",
+      "counts": {
+        "destroyed": 18,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 24
+      },
+      "total": 42
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "APE-5 command post",
+      "counts": {
+        "destroyed": 6,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 6
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "MSh-5350.1 command vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 2
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "9S470M1 (or variant thereof) command post (for Buk-M1/2)",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 2
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "MP32M1 command vehicle (for 9S729M1 Slepok-1 MRLS fire control system)",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "Barnaul-T 9С932-1 automated system for air defence units",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 4
+      },
+      "total": 8
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "9S932-2 intelligence, control and command vehicle (for Barnaul-T)",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "Command vehicle for Podlet-K1 low-altitude S-band surveillance radar",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "55K6A command post for S-400",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-149AKSh-1 command and signals vehicle",
+      "counts": {
+        "destroyed": 20,
+        "damaged": 2,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 23
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-149BMRg command and signals vehicle",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 4
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-161 signals vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-166-0.5 signals vehicle",
+      "counts": {
+        "destroyed": 18,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 6
+      },
+      "total": 24
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "P-240 digital communications vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "P-260-U signals vehicle (for Redut-2US signal and communications system)",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-431AM antenna module for the Redut-2US communications system",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-419L1 communications station",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "MP-1IM signals vehicle",
+      "counts": {
+        "destroyed": 8,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 3
+      },
+      "total": 11
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "MP-2IM signals vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 2
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-439-MD2 SatCom Station",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-441 SatCom station",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "Auriga-1.2V portable satellite communications station",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 3
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-381T2M radio monitoring station from a modernised R-381TM Taran-M automatic signals intelligence complex",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 5
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-417(S) 'Baget(-S)' tropospheric radio relay station",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "Orlan-10 UAV control station",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "Lancet loitering munition launcher and control station",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "P-230T command vehicle",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "MPUS-K mobile command post",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-416GM radio relay station",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-412A 'Torf' tropospheric communication station",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-412AM 'Rezoner' tropospheric communication station",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-410-7.5 tropospheric radio relay communication station",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "AShT-4310 topographic command and staff vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "SA-14RM/SM encryption command post based on KamAZ 6x6",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "Command post for 51U6 'Kasta-2E1' surveillance radar",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "Command post for 35N6 'Kasta' surveillance radar",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "9S936 command and staff vehicle (for 9K515 'Tornado-S')",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "Unknown communications station based on the KamAZ 6x6",
+      "counts": {
+        "destroyed": 6,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 6
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "Unknown UAV control station",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "Unknown command vehicle based on AMN-233114 'Tigr-M'",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 4
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "Unknown communications or EW station",
+      "counts": {
+        "destroyed": 5,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 5
+    },
+    {
       "category": "Engineering Vehicles And Equipment",
       "model": "UR-67 mine clearing charge on BTR-D APC",
       "counts": {
@@ -1406,12 +2902,12 @@
       "category": "Engineering Vehicles And Equipment",
       "model": "UR-77 'Meteorit' mine clearing vehicle",
       "counts": {
-        "destroyed": 16,
+        "destroyed": 18,
         "damaged": 0,
         "abandoned": 1,
         "captured": 18
       },
-      "total": 35
+      "total": 37
     },
     {
       "category": "Engineering Vehicles And Equipment",
@@ -1519,9 +3015,9 @@
         "destroyed": 68,
         "damaged": 1,
         "abandoned": 20,
-        "captured": 16
+        "captured": 18
       },
-      "total": 105
+      "total": 107
     },
     {
       "category": "Engineering Vehicles And Equipment",
@@ -1727,10 +3223,10 @@
       "counts": {
         "destroyed": 2,
         "damaged": 0,
-        "abandoned": 5,
+        "abandoned": 7,
         "captured": 0
       },
-      "total": 7
+      "total": 9
     },
     {
       "category": "Engineering Vehicles And Equipment",
@@ -2239,6 +3735,336 @@
       "total": 3
     },
     {
+      "category": "Self-Propelled Anti-Tank Missile Systems",
+      "model": "9P148 Konkurs",
+      "counts": {
+        "destroyed": 5,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 5
+    },
+    {
+      "category": "Self-Propelled Anti-Tank Missile Systems",
+      "model": "9P149 Shturm-S",
+      "counts": {
+        "destroyed": 14,
+        "damaged": 1,
+        "abandoned": 4,
+        "captured": 20
+      },
+      "total": 39
+    },
+    {
+      "category": "Self-Propelled Anti-Tank Missile Systems",
+      "model": "9K132 Shturm-SM",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Self-Propelled Anti-Tank Missile Systems",
+      "model": "9P163M-1 Kornet-T",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "1V110 BM-21 Grad battery command vehicle",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 2
+      },
+      "total": 2
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "1V12(M) 'Mashina-S'/'Faltset' fire control system",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "1V13(M) battery fire control center",
+      "counts": {
+        "destroyed": 9,
+        "damaged": 0,
+        "abandoned": 2,
+        "captured": 14
+      },
+      "total": 25
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "1V14 battery command and forward observer vehicle",
+      "counts": {
+        "destroyed": 7,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 12
+      },
+      "total": 20
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "1V15M fire control and observation vehicle",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "1V16 battalion fire direction vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 2
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "1V18 'Klyon-1' artillery command and forward observer vehicle",
+      "counts": {
+        "destroyed": 6,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 6
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "1V119 artillery fire direction vehicle",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 8
+      },
+      "total": 12
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "1V1003 command and observation vehicle (for 1V198 artillery fire control system)",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 1
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "Unknown artillery command vehicle based on MT-LBu",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 1
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "9T243M transloader (for 9K317M 'Buk-M3')",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "9T452 transporter-loader (for BM-27 Uragan MRL)",
+      "counts": {
+        "destroyed": 39,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 12
+      },
+      "total": 51
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "TZM 9T234-2 transporter-loader (for BM-30 Smerch)",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "TZM-T reloader vehicle (for TOS-1A)",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 4
+      },
+      "total": 9
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "2F77M transloading vehicle for 2K22M Tunguska-M",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 1
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "9T217 transloader (for 9K33 Osa)",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 2
+      },
+      "total": 5
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "9T244 transloader (for 9A330/1 Tor)",
+      "counts": {
+        "destroyed": 6,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 2
+      },
+      "total": 9
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "9A85-2 transloader (for S-300V4)",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "Ural-532361-1012 missile transporter",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "BAZ-69092 (for S-400)",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 2,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 4
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "9T250 transloader (for 9K720 'Iskander')",
+      "counts": {
+        "destroyed": 5,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 5
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "9T248 life support vehicle (for 9K720 'Iskander')",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "Support vehicle for 1RL131 P-18 Terek early warning radar",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "1Zh3 PRP-3 'Val' artillery reconnaissance vehicle",
+      "counts": {
+        "destroyed": 7,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 7
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "1V125/145 PRP-4(M) 'Nard'/'Deyteriy' artillery reconnaissance vehicle",
+      "counts": {
+        "destroyed": 7,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 7
+    },
+    {
+      "category": "Artillery and Missile Support Vehicles And Equipment",
+      "model": "PRP-4A Argus artillery reconnaissance vehicle",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 1
+    },
+    {
       "category": "Anti-Aircraft Guns",
       "model": "23mm ZU-23-2",
       "counts": {
@@ -2340,6 +4166,314 @@
     {
       "category": "Anti-Aircraft Guns",
       "model": "KamAZ 6x6 with 57mm AZP S-60",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "9K33 Osa",
+      "counts": {
+        "destroyed": 27,
+        "damaged": 8,
+        "abandoned": 1,
+        "captured": 4
+      },
+      "total": 40
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "9K35 Strela-10",
+      "counts": {
+        "destroyed": 47,
+        "damaged": 5,
+        "abandoned": 2,
+        "captured": 4
+      },
+      "total": 58
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "9K334 Gibka-S",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "9A310M1-2 TELAR (for Buk-M1-2)",
+      "counts": {
+        "destroyed": 45,
+        "damaged": 9,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 54
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "9A39M1-2 TEL (for Buk-M1-2)",
+      "counts": {
+        "destroyed": 9,
+        "damaged": 2,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 11
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "9A316 TEL (for Buk-M2)",
+      "counts": {
+        "destroyed": 18,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 3
+      },
+      "total": 21
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "9A317 TELAR (for Buk-M2)",
+      "counts": {
+        "destroyed": 16,
+        "damaged": 2,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 19
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "9A317M TELAR (for Buk-M3)",
+      "counts": {
+        "destroyed": 14,
+        "damaged": 4,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 18
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "Unknown Buk M1-2/M2/M3 TEL(AR)",
+      "counts": {
+        "destroyed": 19,
+        "damaged": 6,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 25
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "9A330 TLAR (for 9K330 Tor)",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 2,
+        "abandoned": 0,
+        "captured": 7
+      },
+      "total": 11
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "9A331 TLAR (for 9K331 Tor-M1)",
+      "counts": {
+        "destroyed": 9,
+        "damaged": 3,
+        "abandoned": 1,
+        "captured": 1
+      },
+      "total": 14
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "9A331M TLAR (for 9K332 Tor-M2)",
+      "counts": {
+        "destroyed": 29,
+        "damaged": 21,
+        "abandoned": 1,
+        "captured": 2
+      },
+      "total": 53
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "9K331MDT TLAR Tor-M2DT",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "9A331MU TLAR for 9K331MU Tor-M1-2U (Tor-M2U)",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "Pongae M-2020",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "Unknown Tor TLAR",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 4,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 7
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "Pantsir-S1",
+      "counts": {
+        "destroyed": 42,
+        "damaged": 6,
+        "abandoned": 1,
+        "captured": 2
+      },
+      "total": 51
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "Pantsir-S1M",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "5P85SD/SM (launcher for S-300 PMU(-1))",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "9A83M2 TELAR (for S-300V4)",
+      "counts": {
+        "destroyed": 9,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 9
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "9A84-2 TEL (for S-300V4)",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "50P6E TEL (for S-350)",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "5P85T2 (launcher for S-400)",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "5P85SM2-01 (launcher for S-400)",
+      "counts": {
+        "destroyed": 25,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 26
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "51P6 TEL (launcher for 40R6 S-400 'Triumf')",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "Launcher for S-300 or S-400",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "Launcher for S-400",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 4
+    },
+    {
+      "category": "Surface-To-Air Missile Systems",
+      "model": "Unknown SAM system",
       "counts": {
         "destroyed": 1,
         "damaged": 0,
@@ -2690,6 +4824,908 @@
       "total": 1
     },
     {
+      "category": "Tanks",
+      "model": "M-55S",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 2,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 6
+    },
+    {
+      "category": "Tanks",
+      "model": "T-64A",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 2
+    },
+    {
+      "category": "Tanks",
+      "model": "T-64B",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 2
+      },
+      "total": 7
+    },
+    {
+      "category": "Tanks",
+      "model": "T-64BV",
+      "counts": {
+        "destroyed": 387,
+        "damaged": 31,
+        "abandoned": 22,
+        "captured": 55
+      },
+      "total": 495
+    },
+    {
+      "category": "Tanks",
+      "model": "T-64BV Zr. 2017",
+      "counts": {
+        "destroyed": 103,
+        "damaged": 5,
+        "abandoned": 9,
+        "captured": 34
+      },
+      "total": 151
+    },
+    {
+      "category": "Tanks",
+      "model": "T-64BVK",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 4
+    },
+    {
+      "category": "Tanks",
+      "model": "T-64B1M",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 7
+      },
+      "total": 10
+    },
+    {
+      "category": "Tanks",
+      "model": "T-64BM 'Bulat'",
+      "counts": {
+        "destroyed": 20,
+        "damaged": 3,
+        "abandoned": 1,
+        "captured": 3
+      },
+      "total": 27
+    },
+    {
+      "category": "Tanks",
+      "model": "T-64BM2 'Bulat'",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 4
+    },
+    {
+      "category": "Tanks",
+      "model": "Unknown T-64",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72 'Ural'",
+      "counts": {
+        "destroyed": 10,
+        "damaged": 1,
+        "abandoned": 1,
+        "captured": 1
+      },
+      "total": 13
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72M/M1(R)",
+      "counts": {
+        "destroyed": 99,
+        "damaged": 5,
+        "abandoned": 11,
+        "captured": 11
+      },
+      "total": 126
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72EA",
+      "counts": {
+        "destroyed": 33,
+        "damaged": 2,
+        "abandoned": 3,
+        "captured": 1
+      },
+      "total": 39
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72AV",
+      "counts": {
+        "destroyed": 62,
+        "damaged": 2,
+        "abandoned": 9,
+        "captured": 8
+      },
+      "total": 81
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72B(1)",
+      "counts": {
+        "destroyed": 52,
+        "damaged": 2,
+        "abandoned": 0,
+        "captured": 6
+      },
+      "total": 60
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72AMT",
+      "counts": {
+        "destroyed": 19,
+        "damaged": 1,
+        "abandoned": 3,
+        "captured": 7
+      },
+      "total": 30
+    },
+    {
+      "category": "Tanks",
+      "model": "T-72AMT Zr.2022",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Tanks",
+      "model": "PT-91 Twardy",
+      "counts": {
+        "destroyed": 8,
+        "damaged": 1,
+        "abandoned": 3,
+        "captured": 0
+      },
+      "total": 12
+    },
+    {
+      "category": "Tanks",
+      "model": "M-84A4 'Sniper'",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Tanks",
+      "model": "Unknown T-72",
+      "counts": {
+        "destroyed": 50,
+        "damaged": 2,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 52
+    },
+    {
+      "category": "Tanks",
+      "model": "T-80BV",
+      "counts": {
+        "destroyed": 72,
+        "damaged": 5,
+        "abandoned": 4,
+        "captured": 13
+      },
+      "total": 94
+    },
+    {
+      "category": "Tanks",
+      "model": "T-80UD",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Tanks",
+      "model": "T-80UD Bereza",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Tanks",
+      "model": "Unknown T-80",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Tanks",
+      "model": "Leopard 1A5",
+      "counts": {
+        "destroyed": 30,
+        "damaged": 3,
+        "abandoned": 4,
+        "captured": 0
+      },
+      "total": 37
+    },
+    {
+      "category": "Tanks",
+      "model": "Leopard 2A4",
+      "counts": {
+        "destroyed": 14,
+        "damaged": 6,
+        "abandoned": 6,
+        "captured": 2
+      },
+      "total": 28
+    },
+    {
+      "category": "Tanks",
+      "model": "Leopard 2A6",
+      "counts": {
+        "destroyed": 7,
+        "damaged": 4,
+        "abandoned": 1,
+        "captured": 1
+      },
+      "total": 13
+    },
+    {
+      "category": "Tanks",
+      "model": "Stridsvagn 122",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 2,
+        "abandoned": 6,
+        "captured": 0
+      },
+      "total": 9
+    },
+    {
+      "category": "Tanks",
+      "model": "Challenger 2",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Tanks",
+      "model": "M1A1 Abrams",
+      "counts": {
+        "destroyed": 12,
+        "damaged": 1,
+        "abandoned": 11,
+        "captured": 1
+      },
+      "total": 25
+    },
+    {
+      "category": "Tanks",
+      "model": "Unknown tank",
+      "counts": {
+        "destroyed": 98,
+        "damaged": 6,
+        "abandoned": 6,
+        "captured": 0
+      },
+      "total": 110
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-60PB",
+      "counts": {
+        "destroyed": 41,
+        "damaged": 1,
+        "abandoned": 1,
+        "captured": 11
+      },
+      "total": 54
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-60D",
+      "counts": {
+        "destroyed": 7,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 7
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-70",
+      "counts": {
+        "destroyed": 18,
+        "damaged": 4,
+        "abandoned": 0,
+        "captured": 12
+      },
+      "total": 34
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-70M",
+      "counts": {
+        "destroyed": 7,
+        "damaged": 0,
+        "abandoned": 2,
+        "captured": 1
+      },
+      "total": 10
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-7",
+      "counts": {
+        "destroyed": 22,
+        "damaged": 0,
+        "abandoned": 4,
+        "captured": 13
+      },
+      "total": 39
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-80",
+      "counts": {
+        "destroyed": 92,
+        "damaged": 1,
+        "abandoned": 2,
+        "captured": 30
+      },
+      "total": 125
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-80M",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 2
+      },
+      "total": 2
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BTR-D",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 1
+      },
+      "total": 3
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "GT-MU AFV converted to APC",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 1
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "Unknown BTR",
+      "counts": {
+        "destroyed": 8,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 8
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "Puma 4x4",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "Puma 6x6",
+      "counts": {
+        "destroyed": 9,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 0
+      },
+      "total": 10
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "YPR-765",
+      "counts": {
+        "destroyed": 108,
+        "damaged": 9,
+        "abandoned": 20,
+        "captured": 10
+      },
+      "total": 147
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "M113",
+      "counts": {
+        "destroyed": 392,
+        "damaged": 14,
+        "abandoned": 72,
+        "captured": 51
+      },
+      "total": 529
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "M113AS4",
+      "counts": {
+        "destroyed": 15,
+        "damaged": 0,
+        "abandoned": 3,
+        "captured": 1
+      },
+      "total": 19
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "M113G3DK/G4DK",
+      "counts": {
+        "destroyed": 5,
+        "damaged": 1,
+        "abandoned": 2,
+        "captured": 1
+      },
+      "total": 9
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "VCC-1",
+      "counts": {
+        "destroyed": 6,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 6
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "VCC-2",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "FV103 Spartan",
+      "counts": {
+        "destroyed": 34,
+        "damaged": 3,
+        "abandoned": 2,
+        "captured": 2
+      },
+      "total": 41
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "FV104 Samaritan",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 2
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "FV105 Sultan",
+      "counts": {
+        "destroyed": 5,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 5
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "FV107 Scimitar",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "FV432 Bulldog",
+      "counts": {
+        "destroyed": 6,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 4
+      },
+      "total": 10
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "VAB",
+      "counts": {
+        "destroyed": 94,
+        "damaged": 4,
+        "abandoned": 17,
+        "captured": 7
+      },
+      "total": 122
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "Sisu XA-185",
+      "counts": {
+        "destroyed": 21,
+        "damaged": 1,
+        "abandoned": 5,
+        "captured": 2
+      },
+      "total": 29
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "M1126 Stryker",
+      "counts": {
+        "destroyed": 92,
+        "damaged": 6,
+        "abandoned": 7,
+        "captured": 7
+      },
+      "total": 112
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "Bandvagn BvS 10",
+      "counts": {
+        "destroyed": 36,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 0
+      },
+      "total": 37
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "Bandvagn Bv 206",
+      "counts": {
+        "destroyed": 12,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 12
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "ACSV troop/cargo vehicle",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 5
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "M548 tracked cargo carrier",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "Patria 6x6",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "SIDAM 25 converted to APC",
+      "counts": {
+        "destroyed": 6,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 1
+      },
+      "total": 8
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "BOV APC",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 1
+      },
+      "total": 5
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "Pbv 302",
+      "counts": {
+        "destroyed": 35,
+        "damaged": 0,
+        "abandoned": 9,
+        "captured": 2
+      },
+      "total": 46
+    },
+    {
+      "category": "Armoured Personnel Carriers",
+      "model": "Roshel Senator Medevac",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "Vepr",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 1
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "KrAZ-MPV Shrek One",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 2
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "KrAZ-Forpost",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "Alvis 4 'Mamba'",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 4
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "Mastiff Protected Patrol",
+      "counts": {
+        "destroyed": 29,
+        "damaged": 5,
+        "abandoned": 6,
+        "captured": 3
+      },
+      "total": 43
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "Wolfhound Protected Patrol",
+      "counts": {
+        "destroyed": 7,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 8
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "Bushmaster Protected Mobility Vehicle",
+      "counts": {
+        "destroyed": 54,
+        "damaged": 5,
+        "abandoned": 0,
+        "captured": 3
+      },
+      "total": 62
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "International M1224 MaxxPro",
+      "counts": {
+        "destroyed": 353,
+        "damaged": 18,
+        "abandoned": 34,
+        "captured": 24
+      },
+      "total": 429
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "Oshkosh M-ATV",
+      "counts": {
+        "destroyed": 37,
+        "damaged": 3,
+        "abandoned": 7,
+        "captured": 5
+      },
+      "total": 52
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "BATT UMG",
+      "counts": {
+        "destroyed": 9,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 10
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "FFG MRAP",
+      "counts": {
+        "destroyed": 36,
+        "damaged": 0,
+        "abandoned": 3,
+        "captured": 2
+      },
+      "total": 41
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "ATF Dingo",
+      "counts": {
+        "destroyed": 13,
+        "damaged": 1,
+        "abandoned": 1,
+        "captured": 0
+      },
+      "total": 15
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "BMC Kirpi",
+      "counts": {
+        "destroyed": 114,
+        "damaged": 8,
+        "abandoned": 23,
+        "captured": 14
+      },
+      "total": 159
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "BMC Kirpi II",
+      "counts": {
+        "destroyed": 13,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 2
+      },
+      "total": 15
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "Roshel Senator MRAP",
+      "counts": {
+        "destroyed": 152,
+        "damaged": 3,
+        "abandoned": 10,
+        "captured": 12
+      },
+      "total": 177
+    },
+    {
+      "category": "Mine-Resistant Ambush Protected (MRAP) Vehicles",
+      "model": "Unknown MRAP",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
       "category": "Infantry Mobility Vehicles",
       "model": "KrAZ Cobra",
       "counts": {
@@ -2762,20 +5798,20 @@
         "destroyed": 22,
         "damaged": 3,
         "abandoned": 0,
-        "captured": 29
+        "captured": 31
       },
-      "total": 54
+      "total": 56
     },
     {
       "category": "Infantry Mobility Vehicles",
       "model": "Kozak-2",
       "counts": {
-        "destroyed": 60,
+        "destroyed": 62,
         "damaged": 0,
         "abandoned": 2,
         "captured": 21
       },
-      "total": 83
+      "total": 85
     },
     {
       "category": "Infantry Mobility Vehicles",
@@ -2847,12 +5883,12 @@
       "category": "Infantry Mobility Vehicles",
       "model": "M1114 and M1151 HMMWV",
       "counts": {
-        "destroyed": 218,
+        "destroyed": 222,
         "damaged": 17,
         "abandoned": 25,
-        "captured": 19
+        "captured": 21
       },
-      "total": 279
+      "total": 285
     },
     {
       "category": "Infantry Mobility Vehicles",
@@ -3265,12 +6301,188 @@
       "category": "Infantry Mobility Vehicles",
       "model": "Unknown IMV",
       "counts": {
-        "destroyed": 189,
+        "destroyed": 191,
         "damaged": 2,
         "abandoned": 11,
         "captured": 0
       },
-      "total": 202
+      "total": 204
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "BMP-1KSh command and staff vehicle",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 5
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "K1Sh1 command and staff vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 2
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-142N command and staff vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "BTR-70DI-02 'Svityaz' command and staff vehicle",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-145BM command vehicle",
+      "counts": {
+        "destroyed": 5,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 6
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "BTR-60PU-12 air defence command vehicle",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 3
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-409A radio station vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-405M radio station vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "R-845 radio station",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "ZiL-131-based KShM KUNG command vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "Radio relay station for the TB2 UCAV",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "Control station for the TB2 UCAV",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "1V119 'Reostat' artillery command vehicle",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "MSh-PSh command post",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 2,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "M577 command post",
+      "counts": {
+        "destroyed": 54,
+        "damaged": 0,
+        "abandoned": 12,
+        "captured": 6
+      },
+      "total": 72
+    },
+    {
+      "category": "Command Posts And Communications Stations",
+      "model": "SkyGuard Aspide control station",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
     },
     {
       "category": "Engineering Vehicles And Equipment",
@@ -3988,6 +7200,215 @@
       "total": 1
     },
     {
+      "category": "Self-Propelled Anti-Tank Missile Systems",
+      "model": "9P148 Konkurs ATGM carrier",
+      "counts": {
+        "destroyed": 6,
+        "damaged": 0,
+        "abandoned": 1,
+        "captured": 8
+      },
+      "total": 15
+    },
+    {
+      "category": "Self-Propelled Anti-Tank Missile Systems",
+      "model": "9P149 Shturm-S ATGM carrier",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 2
+      },
+      "total": 4
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "100mm BS-3 anti-tank gun",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 2
+      },
+      "total": 4
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "100mm MT-12 anti-tank gun",
+      "counts": {
+        "destroyed": 14,
+        "damaged": 6,
+        "abandoned": 0,
+        "captured": 11
+      },
+      "total": 31
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "105mm L119 howitzer",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 4,
+        "abandoned": 1,
+        "captured": 2
+      },
+      "total": 10
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "105mm OTO Melara Mod 56 pack howitzer",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "105mm M101 howitzer",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 5
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "120mm 2B16 Nona-K gun mortar",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "122mm D-30 howitzer",
+      "counts": {
+        "destroyed": 16,
+        "damaged": 10,
+        "abandoned": 0,
+        "captured": 2
+      },
+      "total": 28
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "130mm M-46 field gun",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "152mm D-20 gun-howitzer",
+      "counts": {
+        "destroyed": 13,
+        "damaged": 7,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 21
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "152mm 2A36 Giatsint-B field-gun",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 3,
+        "abandoned": 7,
+        "captured": 1
+      },
+      "total": 15
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "152mm 2A65 Msta-B howitzer",
+      "counts": {
+        "destroyed": 6,
+        "damaged": 2,
+        "abandoned": 2,
+        "captured": 2
+      },
+      "total": 12
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "155mm FH-70 howitzer",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 3,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 6
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "155mm TRF1 howitzer",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 2,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 4
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "155mm M777A2 howitzer",
+      "counts": {
+        "destroyed": 55,
+        "damaged": 46,
+        "abandoned": 0,
+        "captured": 2
+      },
+      "total": 103
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "155mm M114 howitzer",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "155mm 2P22 Bohdana",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 6,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 8
+    },
+    {
+      "category": "Towed Artillery",
+      "model": "Unknown towed artillery",
+      "counts": {
+        "destroyed": 30,
+        "damaged": 8,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 38
+    },
+    {
       "category": "Self-Propelled Artillery",
       "model": "120mm Bars-8MMK",
       "counts": {
@@ -4068,12 +7489,12 @@
       "category": "Self-Propelled Artillery",
       "model": "122mm 2S1 Gvozdika",
       "counts": {
-        "destroyed": 353,
+        "destroyed": 357,
         "damaged": 29,
         "abandoned": 0,
-        "captured": 12
+        "captured": 14
       },
-      "total": 394
+      "total": 400
     },
     {
       "category": "Self-Propelled Artillery",
@@ -4123,12 +7544,12 @@
       "category": "Self-Propelled Artillery",
       "model": "155mm M109A3/A4/A5/A6/L",
       "counts": {
-        "destroyed": 115,
+        "destroyed": 117,
         "damaged": 24,
         "abandoned": 0,
         "captured": 0
       },
-      "total": 139
+      "total": 141
     },
     {
       "category": "Self-Propelled Artillery",
@@ -4272,6 +7693,160 @@
         "captured": 0
       },
       "total": 59
+    },
+    {
+      "category": "Rocket and Missile Artillery",
+      "model": "80mm B-8 makeshift MRL",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Rocket and Missile Artillery",
+      "model": "122mm BM-21 Grad",
+      "counts": {
+        "destroyed": 72,
+        "damaged": 14,
+        "abandoned": 0,
+        "captured": 4
+      },
+      "total": 90
+    },
+    {
+      "category": "Rocket and Missile Artillery",
+      "model": "122mm 9P138 Grad-1",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Rocket and Missile Artillery",
+      "model": "122mm Bastion-1",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Rocket and Missile Artillery",
+      "model": "122mm MRLS on MAN platform",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Rocket and Missile Artillery",
+      "model": "122mm RAK-12",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Rocket and Missile Artillery",
+      "model": "220mm BM-27 Uragan",
+      "counts": {
+        "destroyed": 6,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 5
+      },
+      "total": 11
+    },
+    {
+      "category": "Rocket and Missile Artillery",
+      "model": "220mm Bureviy",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Rocket and Missile Artillery",
+      "model": "122mm RM-70",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 2,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 5
+    },
+    {
+      "category": "Rocket and Missile Artillery",
+      "model": "227mm M142 HIMARS",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 4,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 8
+    },
+    {
+      "category": "Rocket and Missile Artillery",
+      "model": "HMMWV with MRLS",
+      "counts": {
+        "destroyed": 3,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 3
+    },
+    {
+      "category": "Rocket and Missile Artillery",
+      "model": "122mm APRA-40",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
+    },
+    {
+      "category": "Rocket and Missile Artillery",
+      "model": "R-360 Neptune launcher",
+      "counts": {
+        "destroyed": 0,
+        "damaged": 1,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Rocket and Missile Artillery",
+      "model": "Unknown MRLS",
+      "counts": {
+        "destroyed": 4,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 4
     },
     {
       "category": "Anti-Aircraft Guns",
@@ -4976,6 +8551,127 @@
         "captured": 0
       },
       "total": 1
+    },
+    {
+      "category": "Aircraft",
+      "model": "MiG-29 fighter aircraft",
+      "counts": {
+        "destroyed": 36,
+        "damaged": 3,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 39
+    },
+    {
+      "category": "Aircraft",
+      "model": "Su-25 close air support aircraft",
+      "counts": {
+        "destroyed": 20,
+        "damaged": 2,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 22
+    },
+    {
+      "category": "Aircraft",
+      "model": "Su-27 fighter aircraft",
+      "counts": {
+        "destroyed": 20,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 20
+    },
+    {
+      "category": "Aircraft",
+      "model": "Su-24M strike aircraft",
+      "counts": {
+        "destroyed": 21,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 21
+    },
+    {
+      "category": "Aircraft",
+      "model": "Su-24MR tactical reconnaissance aircraft",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Aircraft",
+      "model": "F-16 fighter aircraft",
+      "counts": {
+        "destroyed": 5,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 5
+    },
+    {
+      "category": "Aircraft",
+      "model": "Mirage 2000-5F fighter aircraft",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Aircraft",
+      "model": "L-39 Albatros jet training aircraft",
+      "counts": {
+        "destroyed": 7,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 7
+    },
+    {
+      "category": "Aircraft",
+      "model": "Unknown fighter jet",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 1
+    },
+    {
+      "category": "Aircraft",
+      "model": "Il-76(MD) transport aircraft",
+      "counts": {
+        "destroyed": 1,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 1
+      },
+      "total": 2
+    },
+    {
+      "category": "Aircraft",
+      "model": "An-26 transport aircraft",
+      "counts": {
+        "destroyed": 2,
+        "damaged": 0,
+        "abandoned": 0,
+        "captured": 0
+      },
+      "total": 2
     }
   ],
   "unmannedInstances": [
