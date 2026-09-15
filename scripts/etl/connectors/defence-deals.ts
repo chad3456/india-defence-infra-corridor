@@ -109,6 +109,15 @@ const INDEX_ARTICLES = [
   "Agni (missile)",
   "Indian Army",
   "Defence Space Agency",
+  // Semiconductors. The same machinery — PIB releases discovered through an
+  // encyclopaedia's citations and then read from the government's own page —
+  // works for the fab approvals, and the Semicon India announcements are
+  // exactly the kind of figure that gets quoted from memory and wrongly.
+  "Semiconductor industry in India",
+  "India Semiconductor Mission",
+  "Micron Technology",
+  "Tata Electronics",
+  "Electronics industry in India",
 ];
 
 /** How many releases to fetch in one run. Each is ~78 KB. */
@@ -361,7 +370,8 @@ export function distinctValues(money: Money[]): number {
  * silently so the yield is visible.
  */
 export function isDefenceAcquisition(text: string): boolean {
-  const defence = /\bMinistry of Defence\b|\bDefence Ministry\b|\bDefence Acquisition\b|\bDRDO\b|\bHindustan Aeronautics\b|\bBharat Electronics\b|\bIndian (?:Army|Navy|Air Force)\b/i;
+  const defence =
+    /\bMinistry of Defence\b|\bDefence Ministry\b|\bDefence Acquisition\b|\bDRDO\b|\bHindustan Aeronautics\b|\bBharat Electronics\b|\bIndian (?:Army|Navy|Air Force)\b/i;
   const acquisition =
     /\b(contract|agreement|MoU|procurement|acquisition|Acceptance of Necessity|order worth|capital acquisition)\b/i;
   return defence.test(text) && acquisition.test(text);
