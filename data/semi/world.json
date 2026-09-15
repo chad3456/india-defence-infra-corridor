@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-15T11:35:39.467Z",
+  "builtAt": "2026-09-15T11:42:14.237Z",
   "source": "UN Comtrade preview API (https://comtradeapi.un.org/public/v1/preview/C/A/HS), reporter universe from https://comtradeapi.un.org/files/v1/app/reference/Reporters.json. Annual, HS as reported, nominal US$, not deflated.",
   "unit": "US$, nominal",
   "years": [
@@ -8,6 +8,43 @@
     2024
   ],
   "reporterUniverse": 254,
+  "notOneCountry": {
+    "97": {
+      "label": "European Union",
+      "kind": "aggregate",
+      "note": "An aggregate of member states that also report separately. Any ranking containing both double-counts."
+    },
+    "344": {
+      "label": "China, Hong Kong SAR",
+      "kind": "entrepot",
+      "note": "A trans-shipment port. Chips pass through and are counted both in and out; almost none are fabricated there."
+    },
+    "490": {
+      "label": "Other Asia, nes",
+      "kind": "unnamed",
+      "note": "Comtrade's code for Taiwan, which has no UN seat and therefore no name in these statistics. Overwhelmingly Taiwanese trade."
+    },
+    "837": {
+      "label": "Bunkers",
+      "kind": "aggregate",
+      "note": "Ship and aircraft stores, not a territory."
+    },
+    "838": {
+      "label": "Free Zones",
+      "kind": "aggregate",
+      "note": "Free-zone trade, not a territory."
+    },
+    "839": {
+      "label": "Special Categories",
+      "kind": "aggregate",
+      "note": "Unallocated, not a territory."
+    },
+    "899": {
+      "label": "Areas, nes",
+      "kind": "aggregate",
+      "note": "Unallocated residual."
+    }
+  },
   "batchSize": 120,
   "refusal": "No country's capability is inferred from these numbers beyond what crossing a border shows. A chip exported from a country was not necessarily fabricated there — packaging and test are counted identically to fabrication, and re-exports through trade hubs are counted as exports. That is exactly why HS 8486 (the tools) is carried alongside HS 8542 (the chips): the two rankings disagree, and where they disagree is the interesting part. No wafer capacity, fab count or process node appears here, because trade data cannot see any of them.",
   "caveats": [
@@ -16,74 +53,10 @@
     "2024 is provisional for many reporters and missing for some. A country's rank can move when it files."
   ],
   "diagnostics": {
-    "calls": 63,
-    "failed": 9,
+    "calls": 72,
+    "failed": 0,
     "duplicateRowsSummed": 0,
-    "failures": [
-      {
-        "what": "8542 India M 2024 by partner",
-        "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partner2Code=0&motCode=0&customsCode=C00&reporterCode=699&period=2024&cmdCode=8542&flowCode=M&partnerCode=all",
-        "ok": false,
-        "rows": 0,
-        "error": "HTTP 400"
-      },
-      {
-        "what": "8542 India M 2019 by partner",
-        "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partner2Code=0&motCode=0&customsCode=C00&reporterCode=699&period=2019&cmdCode=8542&flowCode=M&partnerCode=all",
-        "ok": false,
-        "rows": 0,
-        "error": "HTTP 400"
-      },
-      {
-        "what": "8542 India M 2014 by partner",
-        "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partner2Code=0&motCode=0&customsCode=C00&reporterCode=699&period=2014&cmdCode=8542&flowCode=M&partnerCode=all",
-        "ok": false,
-        "rows": 0,
-        "error": "HTTP 400"
-      },
-      {
-        "what": "8486 India M 2024 by partner",
-        "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partner2Code=0&motCode=0&customsCode=C00&reporterCode=699&period=2024&cmdCode=8486&flowCode=M&partnerCode=all",
-        "ok": false,
-        "rows": 0,
-        "error": "HTTP 400"
-      },
-      {
-        "what": "8486 India M 2019 by partner",
-        "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partner2Code=0&motCode=0&customsCode=C00&reporterCode=699&period=2019&cmdCode=8486&flowCode=M&partnerCode=all",
-        "ok": false,
-        "rows": 0,
-        "error": "HTTP 400"
-      },
-      {
-        "what": "8486 India M 2014 by partner",
-        "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partner2Code=0&motCode=0&customsCode=C00&reporterCode=699&period=2014&cmdCode=8486&flowCode=M&partnerCode=all",
-        "ok": false,
-        "rows": 0,
-        "error": "HTTP 400"
-      },
-      {
-        "what": "8541 India M 2024 by partner",
-        "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partner2Code=0&motCode=0&customsCode=C00&reporterCode=699&period=2024&cmdCode=8541&flowCode=M&partnerCode=all",
-        "ok": false,
-        "rows": 0,
-        "error": "HTTP 400"
-      },
-      {
-        "what": "8541 India M 2019 by partner",
-        "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partner2Code=0&motCode=0&customsCode=C00&reporterCode=699&period=2019&cmdCode=8541&flowCode=M&partnerCode=all",
-        "ok": false,
-        "rows": 0,
-        "error": "HTTP 400"
-      },
-      {
-        "what": "8541 India M 2014 by partner",
-        "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partner2Code=0&motCode=0&customsCode=C00&reporterCode=699&period=2014&cmdCode=8541&flowCode=M&partnerCode=all",
-        "ok": false,
-        "rows": 0,
-        "error": "HTTP 400"
-      }
-    ]
+    "failures": []
   },
   "lines": [
     {
@@ -4662,9 +4635,1066 @@
           "batchesFailed": 0
         }
       },
-      "indiaImportsBySource": [],
-      "indiaExportsByDestination": [],
-      "indiaPartnerYear": null
+      "indiaImportsBySource": [
+        {
+          "code": 156,
+          "name": "China",
+          "value": 10540142199.944
+        },
+        {
+          "code": 490,
+          "name": "Other Asia, nes",
+          "value": 6219505625.63
+        },
+        {
+          "code": 410,
+          "name": "Rep. of Korea",
+          "value": 3634538855.697
+        },
+        {
+          "code": 392,
+          "name": "Japan",
+          "value": 649285995.58
+        },
+        {
+          "code": 458,
+          "name": "Malaysia",
+          "value": 493103457.738
+        },
+        {
+          "code": 702,
+          "name": "Singapore",
+          "value": 452644889.579
+        },
+        {
+          "code": 484,
+          "name": "Mexico",
+          "value": 419492059.05
+        },
+        {
+          "code": 376,
+          "name": "Israel",
+          "value": 180704468.074
+        },
+        {
+          "code": 344,
+          "name": "China, Hong Kong SAR",
+          "value": 172636005.134
+        },
+        {
+          "code": 608,
+          "name": "Philippines",
+          "value": 164054037.167
+        },
+        {
+          "code": 764,
+          "name": "Thailand",
+          "value": 150353646.764
+        },
+        {
+          "code": 704,
+          "name": "Viet Nam",
+          "value": 123039915.505
+        },
+        {
+          "code": 842,
+          "name": "USA",
+          "value": 78129978.95
+        },
+        {
+          "code": 276,
+          "name": "Germany",
+          "value": 69993167.008
+        },
+        {
+          "code": 251,
+          "name": "France",
+          "value": 22476479.959
+        },
+        {
+          "code": 360,
+          "name": "Indonesia",
+          "value": 12183681.857
+        },
+        {
+          "code": 504,
+          "name": "Morocco",
+          "value": 7022302.799
+        },
+        {
+          "code": 144,
+          "name": "Sri Lanka",
+          "value": 5738679.549
+        },
+        {
+          "code": 470,
+          "name": "Malta",
+          "value": 5716098.213
+        },
+        {
+          "code": 826,
+          "name": "United Kingdom",
+          "value": 5679869.491
+        },
+        {
+          "code": 372,
+          "name": "Ireland",
+          "value": 3377191.322
+        },
+        {
+          "code": 784,
+          "name": "United Arab Emirates",
+          "value": 3347253.96
+        },
+        {
+          "code": 124,
+          "name": "Canada",
+          "value": 2885476.515
+        },
+        {
+          "code": 882,
+          "name": "Samoa",
+          "value": 2722883.039
+        },
+        {
+          "code": 348,
+          "name": "Hungary",
+          "value": 2683309.976
+        },
+        {
+          "code": 380,
+          "name": "Italy",
+          "value": 2480197.461
+        },
+        {
+          "code": 757,
+          "name": "Switzerland",
+          "value": 2464759.21
+        },
+        {
+          "code": 724,
+          "name": "Spain",
+          "value": 1884561.979
+        },
+        {
+          "code": 528,
+          "name": "Netherlands",
+          "value": 1833201.244
+        },
+        {
+          "code": 792,
+          "name": "Türkiye",
+          "value": 1798310.162
+        },
+        {
+          "code": 699,
+          "name": "India",
+          "value": 1778240.726
+        },
+        {
+          "code": 40,
+          "name": "Austria",
+          "value": 1446133.372
+        },
+        {
+          "code": 32,
+          "name": "Argentina",
+          "value": 1234541.178
+        },
+        {
+          "code": 112,
+          "name": "Belarus",
+          "value": 879705.816
+        },
+        {
+          "code": 191,
+          "name": "Croatia",
+          "value": 778589.759
+        },
+        {
+          "code": 620,
+          "name": "Portugal",
+          "value": 616666.65
+        },
+        {
+          "code": 616,
+          "name": "Poland",
+          "value": 601792.396
+        },
+        {
+          "code": 56,
+          "name": "Belgium",
+          "value": 587131.741
+        },
+        {
+          "code": 148,
+          "name": "Chad",
+          "value": 576164.025
+        },
+        {
+          "code": 188,
+          "name": "Costa Rica",
+          "value": 550890.088
+        },
+        {
+          "code": 579,
+          "name": "Norway",
+          "value": 468450.359
+        },
+        {
+          "code": 208,
+          "name": "Denmark",
+          "value": 455423.863
+        },
+        {
+          "code": 688,
+          "name": "Serbia",
+          "value": 372913.758
+        },
+        {
+          "code": 76,
+          "name": "Brazil",
+          "value": 327846.194
+        },
+        {
+          "code": 222,
+          "name": "El Salvador",
+          "value": 323188.911
+        },
+        {
+          "code": 203,
+          "name": "Czechia",
+          "value": 301229.134
+        },
+        {
+          "code": 116,
+          "name": "Cambodia",
+          "value": 264814.406
+        },
+        {
+          "code": 705,
+          "name": "Slovenia",
+          "value": 235432.675
+        },
+        {
+          "code": 246,
+          "name": "Finland",
+          "value": 235367.723
+        },
+        {
+          "code": 752,
+          "name": "Sweden",
+          "value": 212992.22
+        },
+        {
+          "code": 703,
+          "name": "Slovakia",
+          "value": 191222.391
+        },
+        {
+          "code": 170,
+          "name": "Colombia",
+          "value": 134485.763
+        },
+        {
+          "code": 818,
+          "name": "Egypt",
+          "value": 110534.146
+        },
+        {
+          "code": 804,
+          "name": "Ukraine",
+          "value": 101280.013
+        },
+        {
+          "code": 100,
+          "name": "Bulgaria",
+          "value": 95330.815
+        },
+        {
+          "code": 643,
+          "name": "Russian Federation",
+          "value": 67544.495
+        },
+        {
+          "code": 364,
+          "name": "Iran",
+          "value": 61020.345
+        },
+        {
+          "code": 642,
+          "name": "Romania",
+          "value": 58719.62
+        },
+        {
+          "code": 152,
+          "name": "Chile",
+          "value": 57214.882
+        },
+        {
+          "code": 36,
+          "name": "Australia",
+          "value": 55883.632
+        },
+        {
+          "code": 428,
+          "name": "Latvia",
+          "value": 43775.272
+        },
+        {
+          "code": 516,
+          "name": "Namibia",
+          "value": 39548.459
+        },
+        {
+          "code": 233,
+          "name": "Estonia",
+          "value": 39059.038
+        },
+        {
+          "code": 807,
+          "name": "North Macedonia",
+          "value": 39035.34
+        },
+        {
+          "code": 204,
+          "name": "Benin",
+          "value": 38080.186
+        },
+        {
+          "code": 408,
+          "name": "Dem. People's Rep. of Korea",
+          "value": 33555.595
+        },
+        {
+          "code": 682,
+          "name": "Saudi Arabia",
+          "value": 31331.341
+        },
+        {
+          "code": 710,
+          "name": "South Africa",
+          "value": 25859.914
+        },
+        {
+          "code": 454,
+          "name": "Malawi",
+          "value": 21470.816
+        },
+        {
+          "code": 612,
+          "name": "Pitcairn",
+          "value": 14645.146
+        },
+        {
+          "code": 678,
+          "name": "Sao Tome and Principe",
+          "value": 13545.498
+        },
+        {
+          "code": 748,
+          "name": "Eswatini",
+          "value": 9434.268
+        },
+        {
+          "code": 466,
+          "name": "Mali",
+          "value": 9398.839
+        },
+        {
+          "code": 104,
+          "name": "Myanmar",
+          "value": 5600.612
+        },
+        {
+          "code": 554,
+          "name": "New Zealand",
+          "value": 5388.319
+        },
+        {
+          "code": 440,
+          "name": "Lithuania",
+          "value": 5305.694
+        },
+        {
+          "code": 296,
+          "name": "Kiribati",
+          "value": 3447.393
+        },
+        {
+          "code": 268,
+          "name": "Georgia",
+          "value": 2666.573
+        },
+        {
+          "code": 340,
+          "name": "Honduras",
+          "value": 2567.78
+        },
+        {
+          "code": 788,
+          "name": "Tunisia",
+          "value": 1610.578
+        },
+        {
+          "code": 674,
+          "name": "San Marino",
+          "value": 1250.626
+        },
+        {
+          "code": 654,
+          "name": "Saint Helena",
+          "value": 746.591
+        },
+        {
+          "code": 300,
+          "name": "Greece",
+          "value": 627.149
+        },
+        {
+          "code": 862,
+          "name": "Venezuela",
+          "value": 313.051
+        }
+      ],
+      "indiaExportsByDestination": [
+        {
+          "code": 344,
+          "name": "China, Hong Kong SAR",
+          "value": 65133234.285
+        },
+        {
+          "code": 410,
+          "name": "Rep. of Korea",
+          "value": 60924423.763
+        },
+        {
+          "code": 704,
+          "name": "Viet Nam",
+          "value": 36251866.533
+        },
+        {
+          "code": 842,
+          "name": "USA",
+          "value": 21887556.304
+        },
+        {
+          "code": 784,
+          "name": "United Arab Emirates",
+          "value": 14380054.859
+        },
+        {
+          "code": 702,
+          "name": "Singapore",
+          "value": 10185682.921
+        },
+        {
+          "code": 156,
+          "name": "China",
+          "value": 9132890.331
+        },
+        {
+          "code": 643,
+          "name": "Russian Federation",
+          "value": 8629871.989
+        },
+        {
+          "code": 372,
+          "name": "Ireland",
+          "value": 4909228.677
+        },
+        {
+          "code": 490,
+          "name": "Other Asia, nes",
+          "value": 3813064.915
+        },
+        {
+          "code": 826,
+          "name": "United Kingdom",
+          "value": 3782784.097
+        },
+        {
+          "code": 484,
+          "name": "Mexico",
+          "value": 3391728.733
+        },
+        {
+          "code": 360,
+          "name": "Indonesia",
+          "value": 3100028.964
+        },
+        {
+          "code": 458,
+          "name": "Malaysia",
+          "value": 2811438.769
+        },
+        {
+          "code": 276,
+          "name": "Germany",
+          "value": 2687282.196
+        },
+        {
+          "code": 376,
+          "name": "Israel",
+          "value": 1823236.914
+        },
+        {
+          "code": 528,
+          "name": "Netherlands",
+          "value": 1781033.649
+        },
+        {
+          "code": 792,
+          "name": "Türkiye",
+          "value": 1415571.097
+        },
+        {
+          "code": 392,
+          "name": "Japan",
+          "value": 1091935.16
+        },
+        {
+          "code": 76,
+          "name": "Brazil",
+          "value": 892965.821
+        },
+        {
+          "code": 380,
+          "name": "Italy",
+          "value": 815118.894
+        },
+        {
+          "code": 246,
+          "name": "Finland",
+          "value": 802829.564
+        },
+        {
+          "code": 348,
+          "name": "Hungary",
+          "value": 767543.101
+        },
+        {
+          "code": 764,
+          "name": "Thailand",
+          "value": 756474.78
+        },
+        {
+          "code": 251,
+          "name": "France",
+          "value": 614415.439
+        },
+        {
+          "code": 620,
+          "name": "Portugal",
+          "value": 449817.532
+        },
+        {
+          "code": 682,
+          "name": "Saudi Arabia",
+          "value": 449657.848
+        },
+        {
+          "code": 566,
+          "name": "Nigeria",
+          "value": 441697.83
+        },
+        {
+          "code": 203,
+          "name": "Czechia",
+          "value": 366964.125
+        },
+        {
+          "code": 50,
+          "name": "Bangladesh",
+          "value": 346641.036
+        },
+        {
+          "code": 752,
+          "name": "Sweden",
+          "value": 300790.299
+        },
+        {
+          "code": 124,
+          "name": "Canada",
+          "value": 272379.077
+        },
+        {
+          "code": 642,
+          "name": "Romania",
+          "value": 230777.063
+        },
+        {
+          "code": 608,
+          "name": "Philippines",
+          "value": 220587.12
+        },
+        {
+          "code": 710,
+          "name": "South Africa",
+          "value": 180165.849
+        },
+        {
+          "code": 524,
+          "name": "Nepal",
+          "value": 179734.944
+        },
+        {
+          "code": 36,
+          "name": "Australia",
+          "value": 173146.007
+        },
+        {
+          "code": 724,
+          "name": "Spain",
+          "value": 168959.871
+        },
+        {
+          "code": 757,
+          "name": "Switzerland",
+          "value": 160660.222
+        },
+        {
+          "code": 616,
+          "name": "Poland",
+          "value": 155781.527
+        },
+        {
+          "code": 56,
+          "name": "Belgium",
+          "value": 150095.642
+        },
+        {
+          "code": 705,
+          "name": "Slovenia",
+          "value": 142180.09
+        },
+        {
+          "code": 233,
+          "name": "Estonia",
+          "value": 139634.843
+        },
+        {
+          "code": 100,
+          "name": "Bulgaria",
+          "value": 110219.989
+        },
+        {
+          "code": 144,
+          "name": "Sri Lanka",
+          "value": 88339.354
+        },
+        {
+          "code": 818,
+          "name": "Egypt",
+          "value": 70533.543
+        },
+        {
+          "code": 440,
+          "name": "Lithuania",
+          "value": 69639.705
+        },
+        {
+          "code": 180,
+          "name": "Dem. Rep. of the Congo",
+          "value": 68947.687
+        },
+        {
+          "code": 404,
+          "name": "Kenya",
+          "value": 68613.409
+        },
+        {
+          "code": 554,
+          "name": "New Zealand",
+          "value": 63669.821
+        },
+        {
+          "code": 703,
+          "name": "Slovakia",
+          "value": 61600.933
+        },
+        {
+          "code": 807,
+          "name": "North Macedonia",
+          "value": 59059.487
+        },
+        {
+          "code": 300,
+          "name": "Greece",
+          "value": 51062.157
+        },
+        {
+          "code": 170,
+          "name": "Colombia",
+          "value": 48662.592
+        },
+        {
+          "code": 48,
+          "name": "Bahrain",
+          "value": 47233.338
+        },
+        {
+          "code": 40,
+          "name": "Austria",
+          "value": 43435.535
+        },
+        {
+          "code": 64,
+          "name": "Bhutan",
+          "value": 40427.283
+        },
+        {
+          "code": 414,
+          "name": "Kuwait",
+          "value": 40065.401
+        },
+        {
+          "code": 242,
+          "name": "Fiji",
+          "value": 39102.269
+        },
+        {
+          "code": 499,
+          "name": "Montenegro",
+          "value": 36735.568
+        },
+        {
+          "code": 208,
+          "name": "Denmark",
+          "value": 36671.864
+        },
+        {
+          "code": 470,
+          "name": "Malta",
+          "value": 28241.547
+        },
+        {
+          "code": 288,
+          "name": "Ghana",
+          "value": 26969.6
+        },
+        {
+          "code": 800,
+          "name": "Uganda",
+          "value": 26078.079
+        },
+        {
+          "code": 462,
+          "name": "Maldives",
+          "value": 24890.063
+        },
+        {
+          "code": 834,
+          "name": "United Rep. of Tanzania",
+          "value": 22167.917
+        },
+        {
+          "code": 512,
+          "name": "Oman",
+          "value": 21765.675
+        },
+        {
+          "code": 152,
+          "name": "Chile",
+          "value": 19286.756
+        },
+        {
+          "code": 218,
+          "name": "Ecuador",
+          "value": 18383.846
+        },
+        {
+          "code": 368,
+          "name": "Iraq",
+          "value": 17023.684
+        },
+        {
+          "code": 646,
+          "name": "Rwanda",
+          "value": 15153.876
+        },
+        {
+          "code": 508,
+          "name": "Mozambique",
+          "value": 13863.267
+        },
+        {
+          "code": 634,
+          "name": "Qatar",
+          "value": 13618.51
+        },
+        {
+          "code": 12,
+          "name": "Algeria",
+          "value": 13477.899
+        },
+        {
+          "code": 266,
+          "name": "Gabon",
+          "value": 13186.946
+        },
+        {
+          "code": 480,
+          "name": "Mauritius",
+          "value": 11445.582
+        },
+        {
+          "code": 706,
+          "name": "Somalia",
+          "value": 10528.633
+        },
+        {
+          "code": 116,
+          "name": "Cambodia",
+          "value": 8669.085
+        },
+        {
+          "code": 768,
+          "name": "Togo",
+          "value": 8668.238
+        },
+        {
+          "code": 324,
+          "name": "Guinea",
+          "value": 7183.763
+        },
+        {
+          "code": 694,
+          "name": "Sierra Leone",
+          "value": 5883.129
+        },
+        {
+          "code": 188,
+          "name": "Costa Rica",
+          "value": 5858.501
+        },
+        {
+          "code": 579,
+          "name": "Norway",
+          "value": 5483.334
+        },
+        {
+          "code": 178,
+          "name": "Congo",
+          "value": 5302.14
+        },
+        {
+          "code": 148,
+          "name": "Chad",
+          "value": 4956.802
+        },
+        {
+          "code": 231,
+          "name": "Ethiopia",
+          "value": 4639.257
+        },
+        {
+          "code": 804,
+          "name": "Ukraine",
+          "value": 4525.026
+        },
+        {
+          "code": 688,
+          "name": "Serbia",
+          "value": 4259.478
+        },
+        {
+          "code": 418,
+          "name": "Lao People's Dem. Rep.",
+          "value": 4189.384
+        },
+        {
+          "code": 120,
+          "name": "Cameroon",
+          "value": 3376.97
+        },
+        {
+          "code": 270,
+          "name": "Gambia",
+          "value": 3206.448
+        },
+        {
+          "code": 72,
+          "name": "Botswana",
+          "value": 3148.815
+        },
+        {
+          "code": 894,
+          "name": "Zambia",
+          "value": 3095.819
+        },
+        {
+          "code": 716,
+          "name": "Zimbabwe",
+          "value": 2901.646
+        },
+        {
+          "code": 504,
+          "name": "Morocco",
+          "value": 2837.659
+        },
+        {
+          "code": 24,
+          "name": "Angola",
+          "value": 2677.716
+        },
+        {
+          "code": 598,
+          "name": "Papua New Guinea",
+          "value": 2642.651
+        },
+        {
+          "code": 90,
+          "name": "Solomon Isds",
+          "value": 2624.189
+        },
+        {
+          "code": 860,
+          "name": "Uzbekistan",
+          "value": 2570.463
+        },
+        {
+          "code": 388,
+          "name": "Jamaica",
+          "value": 2492.18
+        },
+        {
+          "code": 591,
+          "name": "Panama",
+          "value": 1730.868
+        },
+        {
+          "code": 454,
+          "name": "Malawi",
+          "value": 1605.142
+        },
+        {
+          "code": 887,
+          "name": "Yemen",
+          "value": 1465.567
+        },
+        {
+          "code": 320,
+          "name": "Guatemala",
+          "value": 1410.534
+        },
+        {
+          "code": 191,
+          "name": "Croatia",
+          "value": 1365.715
+        },
+        {
+          "code": 400,
+          "name": "Jordan",
+          "value": 1166.824
+        },
+        {
+          "code": 686,
+          "name": "Senegal",
+          "value": 1037.827
+        },
+        {
+          "code": 422,
+          "name": "Lebanon",
+          "value": 942.67
+        },
+        {
+          "code": 729,
+          "name": "Sudan",
+          "value": 924.867
+        },
+        {
+          "code": 604,
+          "name": "Peru",
+          "value": 877.001
+        },
+        {
+          "code": 434,
+          "name": "Libya",
+          "value": 868.376
+        },
+        {
+          "code": 780,
+          "name": "Trinidad and Tobago",
+          "value": 728.471
+        },
+        {
+          "code": 104,
+          "name": "Myanmar",
+          "value": 691.9
+        },
+        {
+          "code": 136,
+          "name": "Cayman Isds",
+          "value": 649.658
+        },
+        {
+          "code": 51,
+          "name": "Armenia",
+          "value": 418.409
+        },
+        {
+          "code": 268,
+          "name": "Georgia",
+          "value": 357.105
+        },
+        {
+          "code": 548,
+          "name": "Vanuatu",
+          "value": 294.554
+        },
+        {
+          "code": 466,
+          "name": "Mali",
+          "value": 262.207
+        },
+        {
+          "code": 450,
+          "name": "Madagascar",
+          "value": 258.465
+        },
+        {
+          "code": 795,
+          "name": "Turkmenistan",
+          "value": 232.085
+        },
+        {
+          "code": 204,
+          "name": "Benin",
+          "value": 214.764
+        },
+        {
+          "code": 430,
+          "name": "Liberia",
+          "value": 122.961
+        },
+        {
+          "code": 196,
+          "name": "Cyprus",
+          "value": 110.453
+        },
+        {
+          "code": 28,
+          "name": "Antigua and Barbuda",
+          "value": 24.922
+        },
+        {
+          "code": 214,
+          "name": "Dominican Rep.",
+          "value": 23.18
+        },
+        {
+          "code": 352,
+          "name": "Iceland",
+          "value": 21.674
+        },
+        {
+          "code": 516,
+          "name": "Namibia",
+          "value": 13.343
+        }
+      ],
+      "indiaPartnerYear": 2024
     },
     {
       "code": "8486",
@@ -8432,9 +9462,536 @@
           "batchesFailed": 0
         }
       },
-      "indiaImportsBySource": [],
-      "indiaExportsByDestination": [],
-      "indiaPartnerYear": null
+      "indiaImportsBySource": [
+        {
+          "code": 156,
+          "name": "China",
+          "value": 817783783.557
+        },
+        {
+          "code": 276,
+          "name": "Germany",
+          "value": 108715010.771
+        },
+        {
+          "code": 458,
+          "name": "Malaysia",
+          "value": 23321732.965
+        },
+        {
+          "code": 702,
+          "name": "Singapore",
+          "value": 19811342.818
+        },
+        {
+          "code": 842,
+          "name": "USA",
+          "value": 16002627.288
+        },
+        {
+          "code": 392,
+          "name": "Japan",
+          "value": 15029287.661
+        },
+        {
+          "code": 410,
+          "name": "Rep. of Korea",
+          "value": 7063210.949
+        },
+        {
+          "code": 490,
+          "name": "Other Asia, nes",
+          "value": 4608066.507
+        },
+        {
+          "code": 380,
+          "name": "Italy",
+          "value": 4599139.286
+        },
+        {
+          "code": 792,
+          "name": "Türkiye",
+          "value": 2560655.728
+        },
+        {
+          "code": 826,
+          "name": "United Kingdom",
+          "value": 1577202.652
+        },
+        {
+          "code": 251,
+          "name": "France",
+          "value": 1115199.807
+        },
+        {
+          "code": 752,
+          "name": "Sweden",
+          "value": 782389.397
+        },
+        {
+          "code": 40,
+          "name": "Austria",
+          "value": 568121.524
+        },
+        {
+          "code": 344,
+          "name": "China, Hong Kong SAR",
+          "value": 519868.115
+        },
+        {
+          "code": 704,
+          "name": "Viet Nam",
+          "value": 296575.569
+        },
+        {
+          "code": 203,
+          "name": "Czechia",
+          "value": 193853.794
+        },
+        {
+          "code": 764,
+          "name": "Thailand",
+          "value": 173491.287
+        },
+        {
+          "code": 528,
+          "name": "Netherlands",
+          "value": 169008.738
+        },
+        {
+          "code": 616,
+          "name": "Poland",
+          "value": 165759.706
+        },
+        {
+          "code": 642,
+          "name": "Romania",
+          "value": 105168.642
+        },
+        {
+          "code": 699,
+          "name": "India",
+          "value": 72556.847
+        },
+        {
+          "code": 757,
+          "name": "Switzerland",
+          "value": 69349.14
+        },
+        {
+          "code": 376,
+          "name": "Israel",
+          "value": 55691.53
+        },
+        {
+          "code": 608,
+          "name": "Philippines",
+          "value": 45056.315
+        },
+        {
+          "code": 124,
+          "name": "Canada",
+          "value": 40508.402
+        },
+        {
+          "code": 784,
+          "name": "United Arab Emirates",
+          "value": 28506.201
+        },
+        {
+          "code": 524,
+          "name": "Nepal",
+          "value": 28164.134
+        },
+        {
+          "code": 116,
+          "name": "Cambodia",
+          "value": 20755.735
+        },
+        {
+          "code": 372,
+          "name": "Ireland",
+          "value": 15170.937
+        },
+        {
+          "code": 144,
+          "name": "Sri Lanka",
+          "value": 12719.776
+        },
+        {
+          "code": 484,
+          "name": "Mexico",
+          "value": 11847.341
+        },
+        {
+          "code": 724,
+          "name": "Spain",
+          "value": 5545.074
+        },
+        {
+          "code": 360,
+          "name": "Indonesia",
+          "value": 3671.147
+        },
+        {
+          "code": 100,
+          "name": "Bulgaria",
+          "value": 3243.996
+        },
+        {
+          "code": 56,
+          "name": "Belgium",
+          "value": 1554.452
+        },
+        {
+          "code": 428,
+          "name": "Latvia",
+          "value": 1354.337
+        },
+        {
+          "code": 36,
+          "name": "Australia",
+          "value": 213.729
+        },
+        {
+          "code": 208,
+          "name": "Denmark",
+          "value": 6.942
+        }
+      ],
+      "indiaExportsByDestination": [
+        {
+          "code": 702,
+          "name": "Singapore",
+          "value": 9928061.385
+        },
+        {
+          "code": 842,
+          "name": "USA",
+          "value": 9215221.536
+        },
+        {
+          "code": 392,
+          "name": "Japan",
+          "value": 6966727.959
+        },
+        {
+          "code": 458,
+          "name": "Malaysia",
+          "value": 1434911.368
+        },
+        {
+          "code": 276,
+          "name": "Germany",
+          "value": 1386788.309
+        },
+        {
+          "code": 156,
+          "name": "China",
+          "value": 785276.194
+        },
+        {
+          "code": 490,
+          "name": "Other Asia, nes",
+          "value": 534591.345
+        },
+        {
+          "code": 203,
+          "name": "Czechia",
+          "value": 510598.533
+        },
+        {
+          "code": 643,
+          "name": "Russian Federation",
+          "value": 469205.552
+        },
+        {
+          "code": 410,
+          "name": "Rep. of Korea",
+          "value": 241041.206
+        },
+        {
+          "code": 826,
+          "name": "United Kingdom",
+          "value": 141961.396
+        },
+        {
+          "code": 40,
+          "name": "Austria",
+          "value": 139243.427
+        },
+        {
+          "code": 724,
+          "name": "Spain",
+          "value": 135271.537
+        },
+        {
+          "code": 124,
+          "name": "Canada",
+          "value": 117761.88
+        },
+        {
+          "code": 251,
+          "name": "France",
+          "value": 77850.928
+        },
+        {
+          "code": 818,
+          "name": "Egypt",
+          "value": 75920.756
+        },
+        {
+          "code": 757,
+          "name": "Switzerland",
+          "value": 71957.491
+        },
+        {
+          "code": 784,
+          "name": "United Arab Emirates",
+          "value": 68085.171
+        },
+        {
+          "code": 372,
+          "name": "Ireland",
+          "value": 63513.125
+        },
+        {
+          "code": 528,
+          "name": "Netherlands",
+          "value": 42942.902
+        },
+        {
+          "code": 554,
+          "name": "New Zealand",
+          "value": 38274.9
+        },
+        {
+          "code": 36,
+          "name": "Australia",
+          "value": 37572.492
+        },
+        {
+          "code": 899,
+          "name": "Areas, nes",
+          "value": 37091.649
+        },
+        {
+          "code": 792,
+          "name": "Türkiye",
+          "value": 28945.331
+        },
+        {
+          "code": 608,
+          "name": "Philippines",
+          "value": 28107.043
+        },
+        {
+          "code": 566,
+          "name": "Nigeria",
+          "value": 27048.412
+        },
+        {
+          "code": 524,
+          "name": "Nepal",
+          "value": 23113.505
+        },
+        {
+          "code": 834,
+          "name": "United Rep. of Tanzania",
+          "value": 21552.782
+        },
+        {
+          "code": 376,
+          "name": "Israel",
+          "value": 19189.705
+        },
+        {
+          "code": 144,
+          "name": "Sri Lanka",
+          "value": 15751.019
+        },
+        {
+          "code": 380,
+          "name": "Italy",
+          "value": 15491.283
+        },
+        {
+          "code": 764,
+          "name": "Thailand",
+          "value": 13859.137
+        },
+        {
+          "code": 344,
+          "name": "China, Hong Kong SAR",
+          "value": 12864.882
+        },
+        {
+          "code": 246,
+          "name": "Finland",
+          "value": 12008.755
+        },
+        {
+          "code": 484,
+          "name": "Mexico",
+          "value": 11668.406
+        },
+        {
+          "code": 682,
+          "name": "Saudi Arabia",
+          "value": 11298.428
+        },
+        {
+          "code": 634,
+          "name": "Qatar",
+          "value": 11274.789
+        },
+        {
+          "code": 694,
+          "name": "Sierra Leone",
+          "value": 9693.604
+        },
+        {
+          "code": 404,
+          "name": "Kenya",
+          "value": 9163.259
+        },
+        {
+          "code": 462,
+          "name": "Maldives",
+          "value": 7614.409
+        },
+        {
+          "code": 360,
+          "name": "Indonesia",
+          "value": 6091.35
+        },
+        {
+          "code": 800,
+          "name": "Uganda",
+          "value": 6039.001
+        },
+        {
+          "code": 64,
+          "name": "Bhutan",
+          "value": 4890.168
+        },
+        {
+          "code": 76,
+          "name": "Brazil",
+          "value": 4319.134
+        },
+        {
+          "code": 686,
+          "name": "Senegal",
+          "value": 4304.814
+        },
+        {
+          "code": 48,
+          "name": "Bahrain",
+          "value": 2773.649
+        },
+        {
+          "code": 170,
+          "name": "Colombia",
+          "value": 1560.723
+        },
+        {
+          "code": 368,
+          "name": "Iraq",
+          "value": 1430.29
+        },
+        {
+          "code": 24,
+          "name": "Angola",
+          "value": 1151.728
+        },
+        {
+          "code": 480,
+          "name": "Mauritius",
+          "value": 1028.967
+        },
+        {
+          "code": 12,
+          "name": "Algeria",
+          "value": 987.83
+        },
+        {
+          "code": 704,
+          "name": "Viet Nam",
+          "value": 858.398
+        },
+        {
+          "code": 208,
+          "name": "Denmark",
+          "value": 826.64
+        },
+        {
+          "code": 710,
+          "name": "South Africa",
+          "value": 780.362
+        },
+        {
+          "code": 288,
+          "name": "Ghana",
+          "value": 618.935
+        },
+        {
+          "code": 716,
+          "name": "Zimbabwe",
+          "value": 572.61
+        },
+        {
+          "code": 50,
+          "name": "Bangladesh",
+          "value": 560.608
+        },
+        {
+          "code": 688,
+          "name": "Serbia",
+          "value": 462.593
+        },
+        {
+          "code": 56,
+          "name": "Belgium",
+          "value": 382.874
+        },
+        {
+          "code": 894,
+          "name": "Zambia",
+          "value": 336.196
+        },
+        {
+          "code": 600,
+          "name": "Paraguay",
+          "value": 287.694
+        },
+        {
+          "code": 646,
+          "name": "Rwanda",
+          "value": 278.139
+        },
+        {
+          "code": 690,
+          "name": "Seychelles",
+          "value": 237.768
+        },
+        {
+          "code": 231,
+          "name": "Ethiopia",
+          "value": 132.904
+        },
+        {
+          "code": 860,
+          "name": "Uzbekistan",
+          "value": 50.667
+        },
+        {
+          "code": 328,
+          "name": "Guyana",
+          "value": 1.341
+        }
+      ],
+      "indiaPartnerYear": 2024
     },
     {
       "code": "8541",
@@ -12957,9 +14514,1061 @@
           "batchesFailed": 0
         }
       },
-      "indiaImportsBySource": [],
-      "indiaExportsByDestination": [],
-      "indiaPartnerYear": null
+      "indiaImportsBySource": [
+        {
+          "code": 156,
+          "name": "China",
+          "value": 4448889141.351
+        },
+        {
+          "code": 704,
+          "name": "Viet Nam",
+          "value": 560966286.466
+        },
+        {
+          "code": 458,
+          "name": "Malaysia",
+          "value": 211864245.279
+        },
+        {
+          "code": 392,
+          "name": "Japan",
+          "value": 211508734.808
+        },
+        {
+          "code": 764,
+          "name": "Thailand",
+          "value": 175979685.244
+        },
+        {
+          "code": 702,
+          "name": "Singapore",
+          "value": 98202087.177
+        },
+        {
+          "code": 490,
+          "name": "Other Asia, nes",
+          "value": 86038285.031
+        },
+        {
+          "code": 608,
+          "name": "Philippines",
+          "value": 57906019.596
+        },
+        {
+          "code": 116,
+          "name": "Cambodia",
+          "value": 53608481.552
+        },
+        {
+          "code": 410,
+          "name": "Rep. of Korea",
+          "value": 53202764.662
+        },
+        {
+          "code": 842,
+          "name": "USA",
+          "value": 48314820.147
+        },
+        {
+          "code": 276,
+          "name": "Germany",
+          "value": 41620130.493
+        },
+        {
+          "code": 344,
+          "name": "China, Hong Kong SAR",
+          "value": 35921149.509
+        },
+        {
+          "code": 348,
+          "name": "Hungary",
+          "value": 32650590.137
+        },
+        {
+          "code": 757,
+          "name": "Switzerland",
+          "value": 20875342.257
+        },
+        {
+          "code": 251,
+          "name": "France",
+          "value": 13035952.057
+        },
+        {
+          "code": 418,
+          "name": "Lao People's Dem. Rep.",
+          "value": 12229344.458
+        },
+        {
+          "code": 703,
+          "name": "Slovakia",
+          "value": 12193145.941
+        },
+        {
+          "code": 360,
+          "name": "Indonesia",
+          "value": 10776483.986
+        },
+        {
+          "code": 826,
+          "name": "United Kingdom",
+          "value": 7491550.947
+        },
+        {
+          "code": 699,
+          "name": "India",
+          "value": 6825638.386
+        },
+        {
+          "code": 440,
+          "name": "Lithuania",
+          "value": 5072099.892
+        },
+        {
+          "code": 484,
+          "name": "Mexico",
+          "value": 4125256.2
+        },
+        {
+          "code": 380,
+          "name": "Italy",
+          "value": 4034785.489
+        },
+        {
+          "code": 376,
+          "name": "Israel",
+          "value": 3171110.185
+        },
+        {
+          "code": 724,
+          "name": "Spain",
+          "value": 2752824.084
+        },
+        {
+          "code": 554,
+          "name": "New Zealand",
+          "value": 2071514.267
+        },
+        {
+          "code": 36,
+          "name": "Australia",
+          "value": 1967548.832
+        },
+        {
+          "code": 203,
+          "name": "Czechia",
+          "value": 1760529.837
+        },
+        {
+          "code": 643,
+          "name": "Russian Federation",
+          "value": 1632774.198
+        },
+        {
+          "code": 784,
+          "name": "United Arab Emirates",
+          "value": 789886.481
+        },
+        {
+          "code": 246,
+          "name": "Finland",
+          "value": 744730.774
+        },
+        {
+          "code": 76,
+          "name": "Brazil",
+          "value": 640991.692
+        },
+        {
+          "code": 504,
+          "name": "Morocco",
+          "value": 578983.776
+        },
+        {
+          "code": 688,
+          "name": "Serbia",
+          "value": 516516.985
+        },
+        {
+          "code": 372,
+          "name": "Ireland",
+          "value": 496457.715
+        },
+        {
+          "code": 40,
+          "name": "Austria",
+          "value": 395990.222
+        },
+        {
+          "code": 882,
+          "name": "Samoa",
+          "value": 394356.075
+        },
+        {
+          "code": 124,
+          "name": "Canada",
+          "value": 344416.405
+        },
+        {
+          "code": 528,
+          "name": "Netherlands",
+          "value": 258571.925
+        },
+        {
+          "code": 752,
+          "name": "Sweden",
+          "value": 248240.324
+        },
+        {
+          "code": 222,
+          "name": "El Salvador",
+          "value": 211937.002
+        },
+        {
+          "code": 56,
+          "name": "Belgium",
+          "value": 187715.2
+        },
+        {
+          "code": 620,
+          "name": "Portugal",
+          "value": 163678.428
+        },
+        {
+          "code": 616,
+          "name": "Poland",
+          "value": 102723.035
+        },
+        {
+          "code": 104,
+          "name": "Myanmar",
+          "value": 97090.488
+        },
+        {
+          "code": 208,
+          "name": "Denmark",
+          "value": 96501.322
+        },
+        {
+          "code": 470,
+          "name": "Malta",
+          "value": 89374.792
+        },
+        {
+          "code": 804,
+          "name": "Ukraine",
+          "value": 66591.129
+        },
+        {
+          "code": 792,
+          "name": "Türkiye",
+          "value": 61881.696
+        },
+        {
+          "code": 204,
+          "name": "Benin",
+          "value": 46633.217
+        },
+        {
+          "code": 642,
+          "name": "Romania",
+          "value": 39173.222
+        },
+        {
+          "code": 516,
+          "name": "Namibia",
+          "value": 33913.77
+        },
+        {
+          "code": 152,
+          "name": "Chile",
+          "value": 32629.869
+        },
+        {
+          "code": 144,
+          "name": "Sri Lanka",
+          "value": 29870.41
+        },
+        {
+          "code": 188,
+          "name": "Costa Rica",
+          "value": 27444.841
+        },
+        {
+          "code": 466,
+          "name": "Mali",
+          "value": 27296.864
+        },
+        {
+          "code": 454,
+          "name": "Malawi",
+          "value": 24913.879
+        },
+        {
+          "code": 233,
+          "name": "Estonia",
+          "value": 23232.23
+        },
+        {
+          "code": 788,
+          "name": "Tunisia",
+          "value": 19358.921
+        },
+        {
+          "code": 148,
+          "name": "Chad",
+          "value": 17827.414
+        },
+        {
+          "code": 300,
+          "name": "Greece",
+          "value": 15128.46
+        },
+        {
+          "code": 705,
+          "name": "Slovenia",
+          "value": 14034.295
+        },
+        {
+          "code": 579,
+          "name": "Norway",
+          "value": 8780.727
+        },
+        {
+          "code": 214,
+          "name": "Dominican Rep.",
+          "value": 8270.762
+        },
+        {
+          "code": 807,
+          "name": "North Macedonia",
+          "value": 7796.215
+        },
+        {
+          "code": 100,
+          "name": "Bulgaria",
+          "value": 6346.039
+        },
+        {
+          "code": 191,
+          "name": "Croatia",
+          "value": 4160.379
+        },
+        {
+          "code": 428,
+          "name": "Latvia",
+          "value": 1764.662
+        },
+        {
+          "code": 408,
+          "name": "Dem. People's Rep. of Korea",
+          "value": 1653.35
+        },
+        {
+          "code": 340,
+          "name": "Honduras",
+          "value": 346.08
+        },
+        {
+          "code": 862,
+          "name": "Venezuela",
+          "value": 244.416
+        }
+      ],
+      "indiaExportsByDestination": [
+        {
+          "code": 842,
+          "name": "USA",
+          "value": 1508840338.22
+        },
+        {
+          "code": 48,
+          "name": "Bahrain",
+          "value": 118210575.227
+        },
+        {
+          "code": 784,
+          "name": "United Arab Emirates",
+          "value": 28133255.513
+        },
+        {
+          "code": 144,
+          "name": "Sri Lanka",
+          "value": 20182286.433
+        },
+        {
+          "code": 50,
+          "name": "Bangladesh",
+          "value": 19637430.569
+        },
+        {
+          "code": 344,
+          "name": "China, Hong Kong SAR",
+          "value": 18342522.539
+        },
+        {
+          "code": 704,
+          "name": "Viet Nam",
+          "value": 6223615.482
+        },
+        {
+          "code": 156,
+          "name": "China",
+          "value": 5131936.211
+        },
+        {
+          "code": 764,
+          "name": "Thailand",
+          "value": 3640342.694
+        },
+        {
+          "code": 124,
+          "name": "Canada",
+          "value": 3543813.45
+        },
+        {
+          "code": 826,
+          "name": "United Kingdom",
+          "value": 3442777.265
+        },
+        {
+          "code": 276,
+          "name": "Germany",
+          "value": 2271827.059
+        },
+        {
+          "code": 246,
+          "name": "Finland",
+          "value": 2101012.606
+        },
+        {
+          "code": 643,
+          "name": "Russian Federation",
+          "value": 1689904.82
+        },
+        {
+          "code": 702,
+          "name": "Singapore",
+          "value": 1625820.226
+        },
+        {
+          "code": 528,
+          "name": "Netherlands",
+          "value": 1509078.97
+        },
+        {
+          "code": 376,
+          "name": "Israel",
+          "value": 1294866.27
+        },
+        {
+          "code": 458,
+          "name": "Malaysia",
+          "value": 1267137.382
+        },
+        {
+          "code": 251,
+          "name": "France",
+          "value": 1220450.545
+        },
+        {
+          "code": 490,
+          "name": "Other Asia, nes",
+          "value": 1191334.775
+        },
+        {
+          "code": 484,
+          "name": "Mexico",
+          "value": 1058590.717
+        },
+        {
+          "code": 524,
+          "name": "Nepal",
+          "value": 957321.459
+        },
+        {
+          "code": 410,
+          "name": "Rep. of Korea",
+          "value": 798213.923
+        },
+        {
+          "code": 328,
+          "name": "Guyana",
+          "value": 775716.388
+        },
+        {
+          "code": 800,
+          "name": "Uganda",
+          "value": 720205.499
+        },
+        {
+          "code": 392,
+          "name": "Japan",
+          "value": 675344.393
+        },
+        {
+          "code": 380,
+          "name": "Italy",
+          "value": 671311.328
+        },
+        {
+          "code": 834,
+          "name": "United Rep. of Tanzania",
+          "value": 642280.348
+        },
+        {
+          "code": 404,
+          "name": "Kenya",
+          "value": 629389.991
+        },
+        {
+          "code": 616,
+          "name": "Poland",
+          "value": 609093.942
+        },
+        {
+          "code": 348,
+          "name": "Hungary",
+          "value": 531885.483
+        },
+        {
+          "code": 682,
+          "name": "Saudi Arabia",
+          "value": 438745.494
+        },
+        {
+          "code": 792,
+          "name": "Türkiye",
+          "value": 434031.084
+        },
+        {
+          "code": 566,
+          "name": "Nigeria",
+          "value": 400422.869
+        },
+        {
+          "code": 360,
+          "name": "Indonesia",
+          "value": 378108.681
+        },
+        {
+          "code": 233,
+          "name": "Estonia",
+          "value": 341222.759
+        },
+        {
+          "code": 710,
+          "name": "South Africa",
+          "value": 322381.263
+        },
+        {
+          "code": 608,
+          "name": "Philippines",
+          "value": 321579.545
+        },
+        {
+          "code": 64,
+          "name": "Bhutan",
+          "value": 299178.814
+        },
+        {
+          "code": 508,
+          "name": "Mozambique",
+          "value": 297190.928
+        },
+        {
+          "code": 706,
+          "name": "Somalia",
+          "value": 284805.512
+        },
+        {
+          "code": 724,
+          "name": "Spain",
+          "value": 201557.028
+        },
+        {
+          "code": 180,
+          "name": "Dem. Rep. of the Congo",
+          "value": 198906.164
+        },
+        {
+          "code": 442,
+          "name": "Luxembourg",
+          "value": 160755.379
+        },
+        {
+          "code": 324,
+          "name": "Guinea",
+          "value": 158300.429
+        },
+        {
+          "code": 76,
+          "name": "Brazil",
+          "value": 156346.759
+        },
+        {
+          "code": 642,
+          "name": "Romania",
+          "value": 149768.377
+        },
+        {
+          "code": 757,
+          "name": "Switzerland",
+          "value": 147354.163
+        },
+        {
+          "code": 36,
+          "name": "Australia",
+          "value": 142189.645
+        },
+        {
+          "code": 384,
+          "name": "Côte d'Ivoire",
+          "value": 132448.257
+        },
+        {
+          "code": 887,
+          "name": "Yemen",
+          "value": 105893.442
+        },
+        {
+          "code": 56,
+          "name": "Belgium",
+          "value": 93256.891
+        },
+        {
+          "code": 120,
+          "name": "Cameroon",
+          "value": 84596.784
+        },
+        {
+          "code": 466,
+          "name": "Mali",
+          "value": 75959.116
+        },
+        {
+          "code": 512,
+          "name": "Oman",
+          "value": 74871.363
+        },
+        {
+          "code": 752,
+          "name": "Sweden",
+          "value": 67764.907
+        },
+        {
+          "code": 218,
+          "name": "Ecuador",
+          "value": 66244.955
+        },
+        {
+          "code": 899,
+          "name": "Areas, nes",
+          "value": 64486.588
+        },
+        {
+          "code": 170,
+          "name": "Colombia",
+          "value": 61482.396
+        },
+        {
+          "code": 100,
+          "name": "Bulgaria",
+          "value": 56795.579
+        },
+        {
+          "code": 270,
+          "name": "Gambia",
+          "value": 54113.133
+        },
+        {
+          "code": 634,
+          "name": "Qatar",
+          "value": 52748.677
+        },
+        {
+          "code": 694,
+          "name": "Sierra Leone",
+          "value": 52380.229
+        },
+        {
+          "code": 414,
+          "name": "Kuwait",
+          "value": 47801.053
+        },
+        {
+          "code": 440,
+          "name": "Lithuania",
+          "value": 45813.202
+        },
+        {
+          "code": 686,
+          "name": "Senegal",
+          "value": 41916.854
+        },
+        {
+          "code": 554,
+          "name": "New Zealand",
+          "value": 39541.411
+        },
+        {
+          "code": 288,
+          "name": "Ghana",
+          "value": 31815.89
+        },
+        {
+          "code": 32,
+          "name": "Argentina",
+          "value": 31726.911
+        },
+        {
+          "code": 548,
+          "name": "Vanuatu",
+          "value": 30705.545
+        },
+        {
+          "code": 454,
+          "name": "Malawi",
+          "value": 30366.161
+        },
+        {
+          "code": 854,
+          "name": "Burkina Faso",
+          "value": 23679.797
+        },
+        {
+          "code": 620,
+          "name": "Portugal",
+          "value": 22686.095
+        },
+        {
+          "code": 152,
+          "name": "Chile",
+          "value": 21414.395
+        },
+        {
+          "code": 894,
+          "name": "Zambia",
+          "value": 20991.15
+        },
+        {
+          "code": 208,
+          "name": "Denmark",
+          "value": 20756.559
+        },
+        {
+          "code": 364,
+          "name": "Iran",
+          "value": 20751.864
+        },
+        {
+          "code": 320,
+          "name": "Guatemala",
+          "value": 18870.924
+        },
+        {
+          "code": 818,
+          "name": "Egypt",
+          "value": 18846.156
+        },
+        {
+          "code": 480,
+          "name": "Mauritius",
+          "value": 16992.526
+        },
+        {
+          "code": 40,
+          "name": "Austria",
+          "value": 16821.381
+        },
+        {
+          "code": 368,
+          "name": "Iraq",
+          "value": 15865.544
+        },
+        {
+          "code": 231,
+          "name": "Ethiopia",
+          "value": 14493.263
+        },
+        {
+          "code": 203,
+          "name": "Czechia",
+          "value": 14140.465
+        },
+        {
+          "code": 470,
+          "name": "Malta",
+          "value": 14097.87
+        },
+        {
+          "code": 688,
+          "name": "Serbia",
+          "value": 13085.729
+        },
+        {
+          "code": 400,
+          "name": "Jordan",
+          "value": 12948.472
+        },
+        {
+          "code": 417,
+          "name": "Kyrgyzstan",
+          "value": 12256.866
+        },
+        {
+          "code": 31,
+          "name": "Azerbaijan",
+          "value": 12079.837
+        },
+        {
+          "code": 705,
+          "name": "Slovenia",
+          "value": 10269.603
+        },
+        {
+          "code": 598,
+          "name": "Papua New Guinea",
+          "value": 9926.183
+        },
+        {
+          "code": 72,
+          "name": "Botswana",
+          "value": 8718.458
+        },
+        {
+          "code": 262,
+          "name": "Djibouti",
+          "value": 8673.933
+        },
+        {
+          "code": 591,
+          "name": "Panama",
+          "value": 8335.055
+        },
+        {
+          "code": 646,
+          "name": "Rwanda",
+          "value": 8118.125
+        },
+        {
+          "code": 51,
+          "name": "Armenia",
+          "value": 8058.716
+        },
+        {
+          "code": 450,
+          "name": "Madagascar",
+          "value": 7898.784
+        },
+        {
+          "code": 24,
+          "name": "Angola",
+          "value": 7531.242
+        },
+        {
+          "code": 504,
+          "name": "Morocco",
+          "value": 6237.833
+        },
+        {
+          "code": 462,
+          "name": "Maldives",
+          "value": 6231.432
+        },
+        {
+          "code": 860,
+          "name": "Uzbekistan",
+          "value": 6152.69
+        },
+        {
+          "code": 804,
+          "name": "Ukraine",
+          "value": 6123.109
+        },
+        {
+          "code": 112,
+          "name": "Belarus",
+          "value": 5504.738
+        },
+        {
+          "code": 729,
+          "name": "Sudan",
+          "value": 5068.326
+        },
+        {
+          "code": 300,
+          "name": "Greece",
+          "value": 4425.504
+        },
+        {
+          "code": 604,
+          "name": "Peru",
+          "value": 4272.209
+        },
+        {
+          "code": 703,
+          "name": "Slovakia",
+          "value": 3452.535
+        },
+        {
+          "code": 430,
+          "name": "Liberia",
+          "value": 3397.456
+        },
+        {
+          "code": 12,
+          "name": "Algeria",
+          "value": 3246.631
+        },
+        {
+          "code": 716,
+          "name": "Zimbabwe",
+          "value": 3105.197
+        },
+        {
+          "code": 340,
+          "name": "Honduras",
+          "value": 2384.774
+        },
+        {
+          "code": 768,
+          "name": "Togo",
+          "value": 2173.211
+        },
+        {
+          "code": 204,
+          "name": "Benin",
+          "value": 1853.806
+        },
+        {
+          "code": 372,
+          "name": "Ireland",
+          "value": 1572.607
+        },
+        {
+          "code": 516,
+          "name": "Namibia",
+          "value": 1359.985
+        },
+        {
+          "code": 266,
+          "name": "Gabon",
+          "value": 1213.596
+        },
+        {
+          "code": 268,
+          "name": "Georgia",
+          "value": 740.414
+        },
+        {
+          "code": 178,
+          "name": "Congo",
+          "value": 666.931
+        },
+        {
+          "code": 558,
+          "name": "Nicaragua",
+          "value": 643.022
+        },
+        {
+          "code": 422,
+          "name": "Lebanon",
+          "value": 632.938
+        },
+        {
+          "code": 579,
+          "name": "Norway",
+          "value": 543.653
+        },
+        {
+          "code": 108,
+          "name": "Burundi",
+          "value": 329.889
+        },
+        {
+          "code": 807,
+          "name": "North Macedonia",
+          "value": 318.569
+        },
+        {
+          "code": 428,
+          "name": "Latvia",
+          "value": 309.697
+        },
+        {
+          "code": 434,
+          "name": "Libya",
+          "value": 251.5
+        },
+        {
+          "code": 104,
+          "name": "Myanmar",
+          "value": 244.345
+        },
+        {
+          "code": 44,
+          "name": "Bahamas",
+          "value": 222.283
+        },
+        {
+          "code": 4,
+          "name": "Afghanistan",
+          "value": 173.216
+        },
+        {
+          "code": 188,
+          "name": "Costa Rica",
+          "value": 163.379
+        },
+        {
+          "code": 242,
+          "name": "Fiji",
+          "value": 98.181
+        },
+        {
+          "code": 408,
+          "name": "Dem. People's Rep. of Korea",
+          "value": 85.437
+        },
+        {
+          "code": 788,
+          "name": "Tunisia",
+          "value": 73.871
+        },
+        {
+          "code": 748,
+          "name": "Eswatini",
+          "value": 45.537
+        },
+        {
+          "code": 68,
+          "name": "Bolivia (Plurinational State of)",
+          "value": 18.827
+        },
+        {
+          "code": 214,
+          "name": "Dominican Rep.",
+          "value": 16.638
+        },
+        {
+          "code": 858,
+          "name": "Uruguay",
+          "value": 10.025
+        },
+        {
+          "code": 600,
+          "name": "Paraguay",
+          "value": 9.837
+        },
+        {
+          "code": 116,
+          "name": "Cambodia",
+          "value": 1.541
+        }
+      ],
+      "indiaPartnerYear": 2024
     }
   ]
 }
