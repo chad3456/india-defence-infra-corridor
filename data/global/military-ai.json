@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-15T18:03:24.187Z",
+  "builtAt": "2026-09-15T18:06:51.290Z",
   "sources": {
     "incidents": "AIAAIC Repository (aiaaic.org), the public incidents and controversies spreadsheet, exported as CSV. A volunteer register; every row carries its own source links.",
     "spending": "USAspending.gov API, Department of Defense contract awards (types A-D), aggregated by fiscal year server-side. Each figure is obligated money against a public award id."
@@ -16,66 +16,1036 @@
   ],
   "incidents": {
     "header": [
-      "Incidents",
+      "AIAAIC ID#",
+      "Incident headline",
+      "Occurred",
+      "Deployer",
+      "Developer",
+      "System name",
+      "Technology",
+      "Purpose",
+      "News trigger (taxonomy)",
+      "Ethical issue (taxonomy)",
+      "Impacted area",
+      "",
+      "External harm (taxonomy)",
       "",
       "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
+      "Harm status",
+      "Consequence (taxonomy)",
+      "Response (taxonomy)",
+      "Summary/links",
       ""
     ],
-    "totalRows": 2261,
+    "totalRows": 2260,
     "droppedRows": 0,
-    "note": "2261 rows read, 0 dropped for a column count that did not match the header, 0 matched the military filter",
-    "matched": 0,
+    "note": "the header is row 2, not row 1 — the rows above it are a title block. 2260 rows read, 0 dropped for a column count that did not match the header, 35 matched the military filter",
+    "matched": 35,
     "bySector": [],
     "byCountry": [],
-    "byYear": [],
-    "rows": []
+    "byYear": [
+      {
+        "key": "2018",
+        "n": 2
+      },
+      {
+        "key": "2020",
+        "n": 4
+      },
+      {
+        "key": "2021",
+        "n": 5
+      },
+      {
+        "key": "2022",
+        "n": 8
+      },
+      {
+        "key": "2023",
+        "n": 4
+      },
+      {
+        "key": "2024",
+        "n": 3
+      },
+      {
+        "key": "2025",
+        "n": 5
+      },
+      {
+        "key": "2026",
+        "n": 2
+      }
+    ],
+    "rows": [
+      {
+        "ref": "AIAAIC2232",
+        "headline": "Pentagon uses Anthropic's Claude to plan and support Iran airstrikes",
+        "type": "",
+        "sector": "",
+        "technology": "Generative AI",
+        "country": "",
+        "occurred": "2026",
+        "matched": [
+          "pentagon"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/pentagon-uses-anthropics-claude-to-plan-and-support-iran-airstrikes"
+        ]
+      },
+      {
+        "ref": "AIAAIC2220",
+        "headline": "Pentagon uses Anthropic's Claude to capture Venezuela president Maduro",
+        "type": "",
+        "sector": "",
+        "technology": "Generative AI",
+        "country": "",
+        "occurred": "2026",
+        "matched": [
+          "pentagon"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/pentagon-uses-anthropics-claude-to-capture-venezuela-president-maduro"
+        ]
+      },
+      {
+        "ref": "AIAAIC2180",
+        "headline": "Pro-Ukrainian hackers use AI-generated decoy documents to infiltrate Russian defence industry",
+        "type": "",
+        "sector": "",
+        "technology": "Generative AI",
+        "country": "",
+        "occurred": "2025",
+        "matched": [
+          "defence"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/pro-ukrainian-hackers-use-fake-ai-documents-to-infiltrate-russia"
+        ]
+      },
+      {
+        "ref": "AIAAIC2077",
+        "headline": "Baltimore student handcuffed after AI system mistakes bag of chips for weapon",
+        "type": "",
+        "sector": "",
+        "technology": "Computer vision; Context recognition",
+        "country": "",
+        "occurred": "2025",
+        "matched": [
+          "weapon"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/baltimore-student-handcuffed-after-ai-mistakes-bag-of-chips-as-weapon"
+        ]
+      },
+      {
+        "ref": "AIAAIC2004",
+        "headline": "Ukrainian AI-powered drones decimate Russian war planes",
+        "type": "",
+        "sector": "",
+        "technology": "Computer vision; Drone; Machine learning",
+        "country": "",
+        "occurred": "2025",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/ukrainian-ai-powered-drones-decimate-russian-war-planes"
+        ]
+      },
+      {
+        "ref": "AIAAIC1985",
+        "headline": "Audio deepfake scam imitates Italian defence minister Guido Crosetto",
+        "type": "",
+        "sector": "",
+        "technology": "Deepfake",
+        "country": "",
+        "occurred": "2025",
+        "matched": [
+          "defence"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/audio-deepfake-scam-imitates-italian-defence-minister-guido-crosetto"
+        ]
+      },
+      {
+        "ref": "AIAAIC1885",
+        "headline": "AI gun detector fails to detect Nashville School Shooting weapon",
+        "type": "",
+        "sector": "",
+        "technology": "Computer vision; Machine learning; Object recognition",
+        "country": "",
+        "occurred": "2025",
+        "matched": [
+          "weapon"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/ai-gun-detector-failed-to-detect-nashville-school-shooting-weapon"
+        ]
+      },
+      {
+        "ref": "AIAAIC1858",
+        "headline": "Ukraine robot-only force attacks Russian troops",
+        "type": "",
+        "sector": "",
+        "technology": "Drone; Robotics",
+        "country": "",
+        "occurred": "2024",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/ukraine-robot-only-force-attacks-russian-troops"
+        ]
+      },
+      {
+        "ref": "AIAAIC1446",
+        "headline": "Greece fined for AI-powered asylum centre monitoring system",
+        "type": "",
+        "sector": "",
+        "technology": "Computer vision; Drone; Machine learning; Motion analysis",
+        "country": "",
+        "occurred": "2024",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/greece-fined-for-ai-powered-asylum-centre-monitoring-system"
+        ]
+      },
+      {
+        "ref": "AIAAIC1441",
+        "headline": "Israel attacks Hamas using AI drone swarm",
+        "type": "",
+        "sector": "",
+        "technology": "Drone",
+        "country": "",
+        "occurred": "2021",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/israel-attacks-hamas-using-ai-drone-swarm"
+        ]
+      },
+      {
+        "ref": "AIAAIC1437",
+        "headline": "Grok generates fake Iran missile attack headline",
+        "type": "",
+        "sector": "",
+        "technology": "Generative AI",
+        "country": "",
+        "occurred": "2024",
+        "matched": [
+          "missile"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/grok-generates-fake-iran-missile-attack-headline"
+        ]
+      },
+      {
+        "ref": "AIAAIC1312",
+        "headline": "Takaful' poverty targeting algorithm unfairly excludes poor Jordanians",
+        "type": "",
+        "sector": "",
+        "technology": "Ranking algorithm",
+        "country": "",
+        "occurred": "2023",
+        "matched": [
+          "targeting"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/jordan-takaful-poverty-targeting-algorithm-unfairly-excludes-poor-people"
+        ]
+      },
+      {
+        "ref": "AIAAIC1150",
+        "headline": "Defence lawyer using AI 'botches' criminal trial closing argument",
+        "type": "",
+        "sector": "",
+        "technology": "Generative AI",
+        "country": "",
+        "occurred": "2023",
+        "matched": [
+          "defence"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/defence-lawyer-using-ai-botches-criminal-trial-closing-argument"
+        ]
+      },
+      {
+        "ref": "AIAAIC1048",
+        "headline": "Deepfake 'Chechnyan' soldier posts false Ukraine war stories",
+        "type": "",
+        "sector": "",
+        "technology": "Deepfake",
+        "country": "",
+        "occurred": "2023",
+        "matched": [
+          "soldier"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/deepfake-soldier-posts-fake-ukraine-war-stories"
+        ]
+      },
+      {
+        "ref": "AIAAIC1019",
+        "headline": "Pentagon deepfake 'explosion' jitters US stock market",
+        "type": "",
+        "sector": "",
+        "technology": "Deepfake",
+        "country": "",
+        "occurred": "2023",
+        "matched": [
+          "pentagon"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/pentagon-deepfake-explosion"
+        ]
+      },
+      {
+        "ref": "AIAAIC1002",
+        "headline": "Amazon botches delivery drone commercial launch",
+        "type": "",
+        "sector": "",
+        "technology": "Drone",
+        "country": "",
+        "occurred": "2022",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/amazon-botches-delivery-drone-commercial-launch"
+        ]
+      },
+      {
+        "ref": "AIAAIC1001",
+        "headline": "Amazon delivery drone crashes, sparks 25-acre fire",
+        "type": "",
+        "sector": "",
+        "technology": "Drone",
+        "country": "",
+        "occurred": "2022",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/amazon-delivery-drone-crashes-sparks-22-acre-fire"
+        ]
+      },
+      {
+        "ref": "AIAAIC0967",
+        "headline": "AI system invents 40,000 biochemical warfare agents",
+        "type": "",
+        "sector": "",
+        "technology": "Machine learning",
+        "country": "",
+        "occurred": "2022",
+        "matched": [
+          "warfare"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/ai-invents-40000-biochemical-warfare-agents"
+        ]
+      },
+      {
+        "ref": "AIAAIC0874",
+        "headline": "Axon plan to develop school security taser drones prompts backlash",
+        "type": "",
+        "sector": "",
+        "technology": "Drone; Computer vision",
+        "country": "",
+        "occurred": "2022",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/axon-school-security-taser-drones"
+        ]
+      },
+      {
+        "ref": "AIAAIC0854",
+        "headline": "Minnesota Operation Safety Net (OSN)",
+        "type": "",
+        "sector": "",
+        "technology": "Social media monitoring; Drone; Facial recognition",
+        "country": "",
+        "occurred": "",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/minnesota-operation-safety-net"
+        ]
+      },
+      {
+        "ref": "AIAAIC0847",
+        "headline": "Russian KUB-BLA drones conduct autonomous 'suicide' attacks",
+        "type": "",
+        "sector": "",
+        "technology": "Drone; Object recognition",
+        "country": "",
+        "occurred": "2022",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/russian-kub-bla-suicide-drone-attacks"
+        ]
+      },
+      {
+        "ref": "AIAAIC0845",
+        "headline": "Deepfake President Zelenskyy instructs Ukraine army to surrender",
+        "type": "",
+        "sector": "",
+        "technology": "Deepfake",
+        "country": "",
+        "occurred": "2022",
+        "matched": [
+          "army"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/president-zelenskyy-deepfake-surrender"
+        ]
+      },
+      {
+        "ref": "AIAAIC0837",
+        "headline": "Ethiopia Bayraktar TB2 drone Tigray school attack",
+        "type": "",
+        "sector": "",
+        "technology": "Drone; Robotics",
+        "country": "",
+        "occurred": "2022",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/ethiopia-bayraktar-tb2-drone-tigray-school-attack"
+        ]
+      },
+      {
+        "ref": "AIAAIC0834",
+        "headline": "Ukraine uses Bayraktar TB2 drones to hit Russian targets",
+        "type": "",
+        "sector": "",
+        "technology": "Drone; Object recognition",
+        "country": "",
+        "occurred": "2021",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/ukraine-russia-bayraktar-tb2-drone-attacks"
+        ]
+      },
+      {
+        "ref": "AIAAIC0819",
+        "headline": "Houthis attack Abu Dhabi oil deport, airport using kamikaze drones",
+        "type": "",
+        "sector": "",
+        "technology": "Drone",
+        "country": "",
+        "occurred": "2022",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/houthi-abu-dhabi-drone-attack"
+        ]
+      },
+      {
+        "ref": "AIAAIC0788",
+        "headline": "Eucharist delivery drone sparks religious controversy",
+        "type": "",
+        "sector": "",
+        "technology": "Drone",
+        "country": "",
+        "occurred": "2018",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/s%C3%A3o-geraldo-magela-drone-delivery"
+        ]
+      },
+      {
+        "ref": "AIAAIC0787",
+        "headline": "New Delhi police rapped for using facial recognition to monitor India citizenship law protests",
+        "type": "",
+        "sector": "",
+        "technology": "Facial recognition; Gait recognition; Drone",
+        "country": "",
+        "occurred": "2020",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/india-citizenship-law-protest-surveillance"
+        ]
+      },
+      {
+        "ref": "AIAAIC0751",
+        "headline": "Amazon Ring Always Home Cam",
+        "type": "",
+        "sector": "",
+        "technology": "Drone; Computer vision",
+        "country": "",
+        "occurred": "",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/amazon-ring-always-home-cam"
+        ]
+      },
+      {
+        "ref": "AIAAIC0691",
+        "headline": "NATO warships' locations are spoofed",
+        "type": "",
+        "sector": "",
+        "technology": "Automatic identification system (AIS)",
+        "country": "",
+        "occurred": "2021",
+        "matched": [
+          "nato"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/nato-warships-ais-spoofing"
+        ]
+      },
+      {
+        "ref": "AIAAIC0686",
+        "headline": "Dubai drone cloud seeding raises flooding, biodiversity, weaponisation concerns",
+        "type": "",
+        "sector": "",
+        "technology": "Drone",
+        "country": "",
+        "occurred": "2021",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/dubai-drone-weather-engineering"
+        ]
+      },
+      {
+        "ref": "AIAAIC0641",
+        "headline": "Kargu-2 fully autonomous drone attacks Libyan armed forces",
+        "type": "",
+        "sector": "",
+        "technology": "Drone; Machine learning; Robotics",
+        "country": "",
+        "occurred": "2020",
+        "matched": [
+          "drone",
+          "armed forces"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/kargu-2-autonomous-drone-attack"
+        ]
+      },
+      {
+        "ref": "AIAAIC0538",
+        "headline": "Oosto/AnyVision files facial recognition drone patent",
+        "type": "",
+        "sector": "",
+        "technology": "Drone; Facial recognition",
+        "country": "",
+        "occurred": "2021",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/oostoanyvision-facial-recognition-drones"
+        ]
+      },
+      {
+        "ref": "AIAAIC0442",
+        "headline": "Tyndall Air Force base robot patrol dogs",
+        "type": "",
+        "sector": "",
+        "technology": "Robotics",
+        "country": "",
+        "occurred": "2020",
+        "matched": [
+          "air force"
+        ],
+        "links": []
+      },
+      {
+        "ref": "AIAAIC0424",
+        "headline": "UK police criticised for using drones to monitor lockdown avoiders",
+        "type": "",
+        "sector": "",
+        "technology": "Drone; Thermal imaging",
+        "country": "",
+        "occurred": "2020",
+        "matched": [
+          "drone"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/uk-police-criticised-for-using-drones-to-monitor-lockdown-avoiders"
+        ]
+      },
+      {
+        "ref": "AIAAIC0174",
+        "headline": "Google Project Maven drone imaging",
+        "type": "",
+        "sector": "",
+        "technology": "Machine learning",
+        "country": "",
+        "occurred": "2018",
+        "matched": [
+          "drone"
+        ],
+        "links": []
+      }
+    ]
   },
   "spending": [
     {
       "term": "artificial intelligence",
       "ok": true,
-      "years": []
+      "years": [
+        {
+          "year": 2016,
+          "amount": 2726935.65
+        },
+        {
+          "year": 2017,
+          "amount": 1904981.41
+        },
+        {
+          "year": 2018,
+          "amount": 52438378.75
+        },
+        {
+          "year": 2019,
+          "amount": 55286266.98
+        },
+        {
+          "year": 2020,
+          "amount": 117537624.02
+        },
+        {
+          "year": 2021,
+          "amount": 120426812.73
+        },
+        {
+          "year": 2022,
+          "amount": 129901782.51
+        },
+        {
+          "year": 2023,
+          "amount": 146191422.9
+        },
+        {
+          "year": 2024,
+          "amount": 187463312.9
+        },
+        {
+          "year": 2025,
+          "amount": 327574031.77
+        },
+        {
+          "year": 2026,
+          "amount": 236098031.44
+        }
+      ],
+      "sampleBucket": {
+        "aggregated_amount": 2726935.65,
+        "time_period": {
+          "fiscal_year": "2016"
+        },
+        "Contract_Obligations": 2726935.65,
+        "Direct_Obligations": 0,
+        "Grant_Obligations": 0,
+        "Idv_Obligations": 0,
+        "Loan_Obligations": 0,
+        "Other_Obligations": 0,
+        "total_outlays": null,
+        "Contract_Outlays": null,
+        "Direct_Outlays": null,
+        "Grant_Outlays": null,
+        "Idv_Outlays": null,
+        "Loan_Outlays": null,
+        "Other_Outlays": null
+      },
+      "messages": [
+        "For searches, time period start and end dates are currently limited to an earliest date of 2007-10-01.  For data going back to 2000-10-01, use either the Custom Award Download feature on the website or one of our download or bulk_download API endpoints as listed on https://api.usaspending.gov/docs/endpoints. ",
+        "The 'subawards' field will be deprecated in the future. Set 'spending_level' to 'subawards' instead. See documentation for more information.",
+        "You may see additional month, quarter and year results when searching for Awards or Subawards. This is due to Awards or Subawards overlapping with the time period specified but having an 'action date' outside of that time period."
+      ]
     },
     {
       "term": "machine learning",
       "ok": true,
-      "years": []
+      "years": [
+        {
+          "year": 2016,
+          "amount": 602039.68
+        },
+        {
+          "year": 2017,
+          "amount": 20299670.19
+        },
+        {
+          "year": 2018,
+          "amount": 59002255.52
+        },
+        {
+          "year": 2019,
+          "amount": 56082806.63
+        },
+        {
+          "year": 2020,
+          "amount": 90883376.2
+        },
+        {
+          "year": 2021,
+          "amount": 98064932.59
+        },
+        {
+          "year": 2022,
+          "amount": 80644353.76
+        },
+        {
+          "year": 2023,
+          "amount": 82660859.57
+        },
+        {
+          "year": 2024,
+          "amount": 138061513.84
+        },
+        {
+          "year": 2025,
+          "amount": 260966302.16
+        },
+        {
+          "year": 2026,
+          "amount": 161377526.12
+        }
+      ],
+      "sampleBucket": {
+        "aggregated_amount": 602039.68,
+        "time_period": {
+          "fiscal_year": "2016"
+        },
+        "Contract_Obligations": 602039.68,
+        "Direct_Obligations": 0,
+        "Grant_Obligations": 0,
+        "Idv_Obligations": 0,
+        "Loan_Obligations": 0,
+        "Other_Obligations": 0,
+        "total_outlays": null,
+        "Contract_Outlays": null,
+        "Direct_Outlays": null,
+        "Grant_Outlays": null,
+        "Idv_Outlays": null,
+        "Loan_Outlays": null,
+        "Other_Outlays": null
+      },
+      "messages": [
+        "For searches, time period start and end dates are currently limited to an earliest date of 2007-10-01.  For data going back to 2000-10-01, use either the Custom Award Download feature on the website or one of our download or bulk_download API endpoints as listed on https://api.usaspending.gov/docs/endpoints. ",
+        "The 'subawards' field will be deprecated in the future. Set 'spending_level' to 'subawards' instead. See documentation for more information.",
+        "You may see additional month, quarter and year results when searching for Awards or Subawards. This is due to Awards or Subawards overlapping with the time period specified but having an 'action date' outside of that time period."
+      ]
     },
     {
       "term": "autonomous systems",
       "ok": true,
-      "years": []
+      "years": [
+        {
+          "year": 2016,
+          "amount": 2410590
+        },
+        {
+          "year": 2017,
+          "amount": 1454185.19
+        },
+        {
+          "year": 2018,
+          "amount": 7278900.76
+        },
+        {
+          "year": 2019,
+          "amount": 5116610
+        },
+        {
+          "year": 2020,
+          "amount": 8281068
+        },
+        {
+          "year": 2021,
+          "amount": 12440281.25
+        },
+        {
+          "year": 2022,
+          "amount": 12702766.23
+        },
+        {
+          "year": 2023,
+          "amount": 12433379.72
+        },
+        {
+          "year": 2024,
+          "amount": 18588505.39
+        },
+        {
+          "year": 2025,
+          "amount": 17870461
+        },
+        {
+          "year": 2026,
+          "amount": 11500029.66
+        }
+      ],
+      "sampleBucket": {
+        "aggregated_amount": 2410590,
+        "time_period": {
+          "fiscal_year": "2016"
+        },
+        "Contract_Obligations": 2410590,
+        "Direct_Obligations": 0,
+        "Grant_Obligations": 0,
+        "Idv_Obligations": 0,
+        "Loan_Obligations": 0,
+        "Other_Obligations": 0,
+        "total_outlays": null,
+        "Contract_Outlays": null,
+        "Direct_Outlays": null,
+        "Grant_Outlays": null,
+        "Idv_Outlays": null,
+        "Loan_Outlays": null,
+        "Other_Outlays": null
+      },
+      "messages": [
+        "For searches, time period start and end dates are currently limited to an earliest date of 2007-10-01.  For data going back to 2000-10-01, use either the Custom Award Download feature on the website or one of our download or bulk_download API endpoints as listed on https://api.usaspending.gov/docs/endpoints. ",
+        "The 'subawards' field will be deprecated in the future. Set 'spending_level' to 'subawards' instead. See documentation for more information.",
+        "You may see additional month, quarter and year results when searching for Awards or Subawards. This is due to Awards or Subawards overlapping with the time period specified but having an 'action date' outside of that time period."
+      ]
     },
     {
       "term": "computer vision",
       "ok": true,
-      "years": []
+      "years": [
+        {
+          "year": 2016,
+          "amount": 149934
+        },
+        {
+          "year": 2017,
+          "amount": 639689
+        },
+        {
+          "year": 2018,
+          "amount": 962419
+        },
+        {
+          "year": 2019,
+          "amount": 1582167.7
+        },
+        {
+          "year": 2020,
+          "amount": 1434182.64
+        },
+        {
+          "year": 2021,
+          "amount": 2037387.21
+        },
+        {
+          "year": 2022,
+          "amount": 5304691.52
+        },
+        {
+          "year": 2023,
+          "amount": 4680380.02
+        },
+        {
+          "year": 2024,
+          "amount": 3504626
+        },
+        {
+          "year": 2025,
+          "amount": 10438866.32
+        },
+        {
+          "year": 2026,
+          "amount": 23588
+        }
+      ],
+      "sampleBucket": {
+        "aggregated_amount": 149934,
+        "time_period": {
+          "fiscal_year": "2016"
+        },
+        "Contract_Obligations": 149934,
+        "Direct_Obligations": 0,
+        "Grant_Obligations": 0,
+        "Idv_Obligations": 0,
+        "Loan_Obligations": 0,
+        "Other_Obligations": 0,
+        "total_outlays": null,
+        "Contract_Outlays": null,
+        "Direct_Outlays": null,
+        "Grant_Outlays": null,
+        "Idv_Outlays": null,
+        "Loan_Outlays": null,
+        "Other_Outlays": null
+      },
+      "messages": [
+        "For searches, time period start and end dates are currently limited to an earliest date of 2007-10-01.  For data going back to 2000-10-01, use either the Custom Award Download feature on the website or one of our download or bulk_download API endpoints as listed on https://api.usaspending.gov/docs/endpoints. ",
+        "The 'subawards' field will be deprecated in the future. Set 'spending_level' to 'subawards' instead. See documentation for more information.",
+        "You may see additional month, quarter and year results when searching for Awards or Subawards. This is due to Awards or Subawards overlapping with the time period specified but having an 'action date' outside of that time period."
+      ]
     },
     {
       "term": "large language model",
       "ok": true,
-      "years": []
+      "years": [
+        {
+          "year": 2016,
+          "amount": 0
+        },
+        {
+          "year": 2017,
+          "amount": 0
+        },
+        {
+          "year": 2018,
+          "amount": 0
+        },
+        {
+          "year": 2019,
+          "amount": 0
+        },
+        {
+          "year": 2020,
+          "amount": 0
+        },
+        {
+          "year": 2021,
+          "amount": 0
+        },
+        {
+          "year": 2022,
+          "amount": 0
+        },
+        {
+          "year": 2023,
+          "amount": 24444548
+        },
+        {
+          "year": 2024,
+          "amount": 7773448
+        },
+        {
+          "year": 2025,
+          "amount": 10863428.3
+        },
+        {
+          "year": 2026,
+          "amount": -249898
+        }
+      ],
+      "sampleBucket": {
+        "aggregated_amount": 0,
+        "time_period": {
+          "fiscal_year": "2016"
+        },
+        "Contract_Obligations": 0,
+        "Direct_Obligations": 0,
+        "Grant_Obligations": 0,
+        "Idv_Obligations": 0,
+        "Loan_Obligations": 0,
+        "Other_Obligations": 0,
+        "total_outlays": null,
+        "Contract_Outlays": null,
+        "Direct_Outlays": null,
+        "Grant_Outlays": null,
+        "Idv_Outlays": null,
+        "Loan_Outlays": null,
+        "Other_Outlays": null
+      },
+      "messages": [
+        "For searches, time period start and end dates are currently limited to an earliest date of 2007-10-01.  For data going back to 2000-10-01, use either the Custom Award Download feature on the website or one of our download or bulk_download API endpoints as listed on https://api.usaspending.gov/docs/endpoints. ",
+        "The 'subawards' field will be deprecated in the future. Set 'spending_level' to 'subawards' instead. See documentation for more information.",
+        "You may see additional month, quarter and year results when searching for Awards or Subawards. This is due to Awards or Subawards overlapping with the time period specified but having an 'action date' outside of that time period."
+      ]
     },
     {
       "term": "algorithmic warfare",
       "ok": true,
-      "years": []
+      "years": [
+        {
+          "year": 2016,
+          "amount": 0
+        },
+        {
+          "year": 2017,
+          "amount": 0
+        },
+        {
+          "year": 2018,
+          "amount": 0
+        },
+        {
+          "year": 2019,
+          "amount": 0
+        },
+        {
+          "year": 2020,
+          "amount": 0
+        },
+        {
+          "year": 2021,
+          "amount": 0
+        },
+        {
+          "year": 2022,
+          "amount": 0
+        },
+        {
+          "year": 2023,
+          "amount": 665376.93
+        },
+        {
+          "year": 2024,
+          "amount": 1211458.6
+        },
+        {
+          "year": 2025,
+          "amount": 11763562.15
+        },
+        {
+          "year": 2026,
+          "amount": 478000
+        }
+      ],
+      "sampleBucket": {
+        "aggregated_amount": 0,
+        "time_period": {
+          "fiscal_year": "2016"
+        },
+        "Contract_Obligations": 0,
+        "Direct_Obligations": 0,
+        "Grant_Obligations": 0,
+        "Idv_Obligations": 0,
+        "Loan_Obligations": 0,
+        "Other_Obligations": 0,
+        "total_outlays": null,
+        "Contract_Outlays": null,
+        "Direct_Outlays": null,
+        "Grant_Outlays": null,
+        "Idv_Outlays": null,
+        "Loan_Outlays": null,
+        "Other_Outlays": null
+      },
+      "messages": [
+        "For searches, time period start and end dates are currently limited to an earliest date of 2007-10-01.  For data going back to 2000-10-01, use either the Custom Award Download feature on the website or one of our download or bulk_download API endpoints as listed on https://api.usaspending.gov/docs/endpoints. ",
+        "The 'subawards' field will be deprecated in the future. Set 'spending_level' to 'subawards' instead. See documentation for more information.",
+        "You may see additional month, quarter and year results when searching for Awards or Subawards. This is due to Awards or Subawards overlapping with the time period specified but having an 'action date' outside of that time period."
+      ]
     }
   ]
 }
