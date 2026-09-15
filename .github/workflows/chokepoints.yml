@@ -1,0 +1,43 @@
+name: Gulf exposure and drone trade
+
+# What India's energy imports depend on, who it trades with on each side of the
+# Gulf, and what the only published country-by-country drone trade figure says.
+#
+# It runs here because the editing sandbox's egress refuses comtradeapi.un.org.
+#
+# Manual and on-change. Not scheduled: annual customs data moves once a year,
+# and a free public endpoint should not be polled faster than its own source.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/connectors/chokepoints.ts"
+      - ".github/workflows/chokepoints.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: chokepoints
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Fetch
+        run: npm run chokepoints
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/global/chokepoints.json
+          "chore(global): Gulf exposure and drone trade $(date -u +'%Y-%m-%d %H:%M')"
