@@ -66,6 +66,7 @@ const CRUDE = "270900";
 const LNG = "271111";
 const PROPANE = "271112";
 const BUTANE = "271113";
+const REFINED = "2710";
 
 /** Two LPG headings are one product in a kitchen. Summed, once, here. */
 function lpgYear(
@@ -128,6 +129,11 @@ export default function DronesAndStrait() {
   const crudeGulfThen = crudeSplitThen.locked + crudeSplitThen.bypass;
   const lpgGulfNow = lpgSplitNow ? lpgSplitNow.locked + lpgSplitNow.bypass : 0;
   const lpgGulfThen = lpgThen ? split(d, lpgThen).locked + split(d, lpgThen).bypass : 0;
+
+  const refinedNow = energyYear(energyLine(d, REFINED), now);
+  const refinedThen = energyYear(energyLine(d, REFINED), then);
+  const refinedGulfShare = refinedNow
+    ? shareFrom(d, refinedNow, ["locked", "bypass", "outside"]).value : 0;
 
   /* ── The drone pipeline ───────────────────────────────────────────── */
   const past = pastPaper(uav);
@@ -397,7 +403,8 @@ export default function DronesAndStrait() {
           not how much of its energy is &ldquo;Gulf&rdquo; — a headline word that includes Oman,
           whose terminals are already past the Strait — but how much of it has{" "}
           <Mark>no other way out</Mark>. Those are different numbers and the gap between them is
-          this section.
+          this section — and the traffic runs both ways, because India refines much of what it
+          lands and sells it straight back out through the same water.
         </Standfirst>
       </section>
 
@@ -570,6 +577,61 @@ export default function DronesAndStrait() {
                 </Caption>
               </div>
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── The return leg ───────────────────────────────────────────── */}
+      {refinedNow && refinedThen && crudeNow && (
+        <section className="mt-14">
+          <Eyebrow tone="mid">the same water, the other way</Eyebrow>
+          <Headline>India Is the Refinery at the End of the Strait.</Headline>
+          <Standfirst>
+            The exposure is not only inbound. India imported {usd(crudeNow.total)} of crude in{" "}
+            {now} and exported <Mark tone="mid">{usd(refinedNow.total)}</Mark> of refined
+            product to {refinedNow.sources.length} destinations — diesel, jet fuel and petrol made
+            on the Gujarat coast. {refinedGulfShare.toFixed(0)}% of it goes straight back into the
+            Gulf it came from, and the largest single destination has changed completely.
+          </Standfirst>
+          <div className="story-card mt-7 p-5 sm:p-7">
+            <div className="grid gap-9 lg:grid-cols-2">
+              <div className="min-w-0">
+                <ChartTitle note={`Where India's refined product went in ${then}, share of ${usd(refinedThen.total)}.`}>
+                  {then}
+                </ChartTitle>
+                <RankedRows
+                  tone="mid"
+                  rows={refinedThen.sources.slice(0, 8).map((c) => ({
+                    name: nameOf(d, c).replace("United Arab Emirates", "UAE").replace("United Rep. of Tanzania", "Tanzania"),
+                    value: c.value,
+                    display: `${((c.value / refinedThen.total) * 100).toFixed(1)}%`,
+                  }))}
+                />
+              </div>
+              <div className="min-w-0">
+                <ChartTitle note={`And in ${now}, share of ${usd(refinedNow.total)}.`}>
+                  {now}
+                </ChartTitle>
+                <RankedRows
+                  tone="cool"
+                  markTone="hot"
+                  rows={refinedNow.sources.slice(0, 8).map((c) => ({
+                    name: nameOf(d, c).replace("United Arab Emirates", "UAE").replace("United Rep. of Tanzania", "Tanzania"),
+                    value: c.value,
+                    display: `${((c.value / refinedNow.total) * 100).toFixed(1)}%`,
+                    mark: c.code === 528,
+                  }))}
+                />
+              </div>
+            </div>
+            <Caption>
+              The Netherlands goes from {(((refinedThen.sources.find((c) => c.code === 528)?.value ?? 0) / refinedThen.total) * 100).toFixed(1)}%
+              {" "}of India&rsquo;s refined exports to {(((refinedNow.sources.find((c) => c.code === 528)?.value ?? 0) / refinedNow.total) * 100).toFixed(1)}%,
+              {" "}and Rotterdam is Europe&rsquo;s fuel entrepôt. This page will not join that to the
+              Russian crude on the inbound chart: customs data cannot trace a molecule from a
+              cargo to a product, both things are true of the same years, and asserting the link
+              would be a story told over the data rather than read out of it.
+            </Caption>
           </div>
         </section>
       )}

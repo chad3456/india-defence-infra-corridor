@@ -402,7 +402,16 @@ async function main(): Promise<void> {
    * category and whose role does not name an unmanned aircraft is dropped —
    * and counted, so the filter is visible rather than silent.
    */
-  const droneish = /\b(uav|ucav|unmanned|drone|loitering|target aircraft|remotely piloted)\b/i;
+  /**
+   * For a page the drone categories did not surface, the aerial sense is required.
+   *
+   * DRDO Muntra is Mission UNmanned TRAcked — a tracked ground vehicle. It came
+   * from the broad DRDO category, its role field says "Unmanned vehicle", and a
+   * filter that accepted the word "unmanned" put a tank in a chart about the
+   * next generation of drones. A page that a drone category already vouched for
+   * needs no such test; a page that arrived from the general index does.
+   */
+  const droneish = /\b(uav|ucav|aerial|aircraft|drone|loitering|remotely piloted|rpas?)\b/i;
   /**
    * A counter-drone system is not a drone.
    *
