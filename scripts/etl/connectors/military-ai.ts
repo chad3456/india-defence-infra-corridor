@@ -73,6 +73,26 @@ const AIAAIC_CSV =
 const MILITARY = /\b(militar|defen[cs]e|army|navy|air force|weapon|warfare|combat|drone|uav|missile|soldier|troop|battlefield|targeting|munition|pentagon|nato|idf|armed forces)\b/i;
 
 /**
+ * Whether an ARMED FORCE deployed it, which is a different question.
+ *
+ * The keyword filter above is deliberately wide and catches rows it should
+ * not: a supermarket's facial recognition (the word "weapon" appears in the
+ * harm column), a school gun detector, a killing in which a chatbot was
+ * mentioned. Those are AI incidents and they are not military operations.
+ *
+ * So the deployer column is tested separately. A row whose deployer is a named
+ * army, navy, air force, defence ministry or intelligence service is a case
+ * about a military using a system; everything else the wide filter caught is
+ * military-adjacent technology — surveillance, datasets, counter-drone — and
+ * is kept, flagged, and presented apart. Conflating the two is how a register
+ * of AI controversies gets quoted as a count of battlefield incidents.
+ */
+const ARMED_FORCE = /\b(defense force|defence force|armed forces|army|navy|air force|marine corps|department of (war|defen[cs]e)|ministry of defen[cs]e|pentagon|idf|nato|liberation army|national guard|military|intelligence agency|mossad|gru|fsb|cia|nsa|dod)\b/i;
+
+/** Governments, which deploy systems in operations without being a service. */
+const STATE_ACTOR = /\b(government of|ministry of|state of|republic of|federal)\b/i;
+
+/**
  * The register's columns, as it actually has them.
  *
  * The first version asked for Sector and Country and got neither: this sheet
@@ -105,6 +125,14 @@ export interface Incident {
   impactedArea: string;
   /** Which words matched, so the filter is inspectable per row. */
   matched: string[];
+  /**
+   * Whether the register names an armed force or a government as the deployer.
+   *
+   * "force" is the tier this story is actually about. "adjacent" is a real AI
+   * incident with a military-sounding word somewhere in its row, and is kept
+   * apart rather than dropped or counted alongside.
+   */
+  tier: "force" | "state" | "adjacent";
   /** The register's own links. Never followed, never summarised. */
   links: string[];
 }
@@ -245,9 +273,13 @@ async function readAiaaic(): Promise<{
     // they are harvested from the whole row rather than from a named column.
     const links = r.flatMap((cell) => [...cell.matchAll(/https?:\/\/[^\s,;"]+/g)].map((m) => m[0]))
       .slice(0, 6);
+    const tier: Incident["tier"] = ARMED_FORCE.test(deployer)
+      ? "force"
+      : STATE_ACTOR.test(deployer) ? "state" : "adjacent";
     incidents.push({
       ref: at(r, col.ref),
       headline,
+      tier,
       occurred: at(r, col.occurred),
       deployer,
       developer: at(r, col.developer),
@@ -421,6 +453,14 @@ async function main(): Promise<void> {
       "both 'artificial intelligence' and 'machine learning' is in both series. No combined " +
       "total appears in this file for that reason.",
     militaryFilter: MILITARY.source,
+    deployerFilter: ARMED_FORCE.source,
+    tiers:
+      "A row is tier 'force' when the register names an armed force, defence ministry or " +
+      "intelligence service as the deployer, 'state' when it names a government, and " +
+      "'adjacent' otherwise. The wide keyword filter catches supermarket facial recognition " +
+      "and school gun detectors — those are AI incidents and not military operations, and " +
+      "counting them together is how a register of AI controversies gets quoted as a tally of " +
+      "battlefield events.",
     refusal:
       "No casualty figure, no capability claim, and no assertion that a named system was used " +
       "in a named operation. Where a case is carried it is carried as 'this register records " +
@@ -441,6 +481,11 @@ async function main(): Promise<void> {
       byDeployer: tally(byDeployer).slice(0, 25),
       byTechnology: tally(byTechnology).slice(0, 25),
       byHarmStatus: tally(byHarmStatus),
+      byTier: {
+        force: aiaaic.incidents.filter((i) => i.tier === "force").length,
+        state: aiaaic.incidents.filter((i) => i.tier === "state").length,
+        adjacent: aiaaic.incidents.filter((i) => i.tier === "adjacent").length,
+      },
       byYear: tally(byYear).sort((a, b) => a.key.localeCompare(b.key)),
       rows: aiaaic.incidents,
     },
