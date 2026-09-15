@@ -1,7 +1,7 @@
 {
-  "id": "run-1789473122332",
-  "startedAt": "2026-09-15T11:49:12.820Z",
-  "finishedAt": "2026-09-15T11:52:02.332Z",
+  "id": "run-1789479567825",
+  "startedAt": "2026-09-15T13:34:19.657Z",
+  "finishedAt": "2026-09-15T13:39:27.825Z",
   "status": "partial",
   "connectorsRun": 9,
   "connectorsFailed": 0,
@@ -11,6 +11,7 @@
     "worldbank: SL.EMP.OWAC.MA.ZS: no Indian observations",
     "satp: terror: https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir -> HTTP 403",
     "satp: terror: no candidate URL yielded a full table; keeping previous data",
+    "ingest: IDRW: HTTP 415",
     "ingest: The Tribune: HTTP 403",
     "ingest: Deccan Herald: HTTP 404",
     "ingest: The New Indian Express: HTTP 404",
@@ -22,13 +23,14 @@
     "ingest: Outlook India: HTTP 404",
     "ingest: Scroll.in: response was not a feed (blocked or interstitial)",
     "ingest: The Wire: response was not a feed (blocked or interstitial)",
+    "ingest: Moneycontrol: response was not a feed (blocked or interstitial)",
     "ingest: IndiaSpend: HTTP 404",
     "ingest: FORCE Magazine: HTTP 404",
     "ingest: Defence Aviation Post: HTTP 404",
     "ingest: Daily Excelsior: HTTP 403",
     "ingest: Search: pipelines — gas pipeline India commissioned: feed had no items",
     "ingest: Search: energy — transmission line India charged: feed had no items",
-    "ingest funnel: 1753 items -> 565 candidates -> 74 events (lost: 220 no sector, 168 not an action, 103 no place)",
+    "ingest funnel: 1730 items -> 551 candidates -> 80 events (lost: 204 no sector, 162 not an action, 105 no place)",
     "x: X_BEARER_TOKEN not set — reading X is paid per post since February 2026, so this connector is inactive. Official announcements still arrive via the PIB, PMO and ministry feeds at no cost."
   ]
 }
