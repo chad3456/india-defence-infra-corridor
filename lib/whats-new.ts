@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "stories-2026-09",
+    title: "Visual stories",
+    blurb:
+      "Three short, data-led arguments — why India assembles but does not fabricate, what the " +
+      "defence export figure counts, and the gap between Indian farm output and Indian farm income.",
+    href: "/stories",
+    since: "2026-09-15",
+  },
+  {
     id: "schemes-2026-09",
     title: "Welfare schemes",
     blurb:

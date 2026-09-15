@@ -469,3 +469,133 @@
   .ascii-wash { display: none; }
   .glass { background: var(--surface-1); backdrop-filter: none; }
 }
+
+/* ══ Visual stories ═════════════════════════════════════════════════════
+   A second, louder register for the narrative pages under /stories.
+
+   The rest of this site is a publication: serif display, off-white ground,
+   restraint as a signal of seriousness. That is right for a chart registry
+   and wrong for a story someone should be able to read on a phone in ninety
+   seconds. So the stories get their own surface — a cool lavender ground,
+   very heavy sans display type, and cards that carry one number each at a
+   size you cannot skim past.
+
+   It is a register, not a different site: the same tokens, the same fonts,
+   the same rules about what a number may claim. Nothing here licenses a
+   figure the rest of the site would refuse.
+
+   ── The trio ──────────────────────────────────────────────────────────
+   Crimson, amber, emerald, used as an ordered status scale rather than as
+   categories — stuck, sticky, free. Both themes validated with the dataviz
+   checker against their own ground:
+
+     light  #dc0f5c #c17c00 #0e9f6e on #f3f3fa — all six checks pass
+     dark   #ec3a80 #bd8a2c #22a474 on #14141f — all six checks pass
+
+   Every card that wears one of these also carries a printed label, which is
+   the secondary encoding a status palette is required to ship with. */
+.story {
+  --story-bg: #f3f3fa;
+  --story-card: #ffffff;
+  --story-ink: #15162b;
+  --story-ink-2: #4a4b63;
+  --story-ink-3: #85869c;
+  --story-rule: rgba(21, 22, 43, 0.09);
+
+  --s-hot: #dc0f5c;
+  --s-mid: #c17c00;
+  --s-cool: #0e9f6e;
+  /* Tints for filled cards. The text on them stays ink, never the hue. */
+  --s-hot-fill: #fbd7e2;
+  --s-mid-fill: #f6e3c0;
+  --s-cool-fill: #c9eedd;
+
+  background: var(--story-bg);
+  color: var(--story-ink);
+}
+@media (prefers-color-scheme: dark) {
+  .story:not([data-theme="light"]) {
+    --story-bg: #14141f;
+    --story-card: #1d1d2b;
+    --story-ink: #f2f2f7;
+    --story-ink-2: #b4b5c6;
+    --story-ink-3: #82839a;
+    --story-rule: rgba(255, 255, 255, 0.11);
+
+    --s-hot: #ec3a80;
+    --s-mid: #bd8a2c;
+    --s-cool: #22a474;
+    --s-hot-fill: #4a1230;
+    --s-mid-fill: #3f3114;
+    --s-cool-fill: #123b2c;
+  }
+}
+:root[data-theme="dark"] .story {
+  --story-bg: #14141f;
+  --story-card: #1d1d2b;
+  --story-ink: #f2f2f7;
+  --story-ink-2: #b4b5c6;
+  --story-ink-3: #82839a;
+  --story-rule: rgba(255, 255, 255, 0.11);
+  --s-hot: #ec3a80;
+  --s-mid: #bd8a2c;
+  --s-cool: #22a474;
+  --s-hot-fill: #4a1230;
+  --s-mid-fill: #3f3114;
+  --s-cool-fill: #123b2c;
+}
+
+/* The story register's display face: the body grotesque at its heaviest,
+   not the serif. A number is the subject here, and a serif numeral at 64px
+   reads as an essay's pull-quote rather than as a measurement. */
+.story-display {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  color: var(--story-ink);
+}
+.story-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.story-card {
+  background: var(--story-card);
+  border: 1px solid var(--story-rule);
+  border-radius: 14px;
+}
+/* The coloured cap on a card. A 4px top edge rather than a full border:
+   at card size a full coloured border reads as a warning box. */
+.story-card[data-tone] { border-top-width: 4px; border-top-style: solid; }
+.story-card[data-tone="hot"] { border-top-color: var(--s-hot); }
+.story-card[data-tone="mid"] { border-top-color: var(--s-mid); }
+.story-card[data-tone="cool"] { border-top-color: var(--s-cool); }
+
+.story-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* A tile that flips from its name to its value. Transform only — animating
+   height or width here would reflow a grid of two hundred tiles. */
+.story-tile { position: relative; transition: transform .16s ease; }
+.story-tile:hover, .story-tile:focus-visible { transform: translateY(-2px); z-index: 2; }
+.story-tile .tile-value { opacity: 0; transition: opacity .14s ease; }
+.story-tile:hover .tile-value, .story-tile:focus-visible .tile-value { opacity: 1; }
+.story-tile:hover .tile-name, .story-tile:focus-visible .tile-name { opacity: 0; }
+.story-tile .tile-name { transition: opacity .14s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .story-tile, .story-tile .tile-value, .story-tile .tile-name { transition: none; }
+  .story-tile:hover, .story-tile:focus-visible { transform: none; }
+}
