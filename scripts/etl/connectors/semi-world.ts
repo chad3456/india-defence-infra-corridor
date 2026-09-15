@@ -113,6 +113,75 @@ async function pace(): Promise<void> {
 }
 
 /**
+ * Codes in these rankings that are not one country.
+ *
+ * Comtrade's reporter list mixes countries with aggregates and with political
+ * compromises, and three of them sit in the top ten of the chip trade. Left
+ * unannotated they would be read as countries, and two of the most important
+ * facts in this data would be invisible:
+ *
+ *   490 "Other Asia, nes" is Taiwan. The second largest chip exporter on earth
+ *       has no name in United Nations trade statistics, because it has no seat.
+ *       A ranking that prints the label verbatim tells the reader nothing; one
+ *       that silently renames it asserts more than the source does. Both the
+ *       code's own label and what it denotes are carried here.
+ *
+ *    97 "European Union" is an aggregate whose members are also reporters, so
+ *       a ranking containing both double-counts. It is kept and flagged rather
+ *       than dropped, because dropping it silently would make the EU vanish
+ *       from a chart where it is genuinely the fourth largest seller of fab
+ *       equipment.
+ *
+ *   344 Hong Kong is a country in this data and an entrepôt in reality: it is
+ *       the largest chip exporter and the second largest importer, and it
+ *       fabricates none. That is not a data error — it is the clearest
+ *       available demonstration that an 8542 export is a shipment, not a
+ *       wafer.
+ */
+export const NOT_ONE_COUNTRY: Record<number, { label: string; kind: "aggregate" | "unnamed" | "entrepot"; note: string }> = {
+  97: { label: "European Union", kind: "aggregate",
+    note: "An aggregate of member states that also report separately. Any ranking containing both double-counts." },
+  490: { label: "Other Asia, nes", kind: "unnamed",
+    note: "Comtrade's code for Taiwan, which has no UN seat and therefore no name in these statistics. Overwhelmingly Taiwanese trade." },
+  344: { label: "China, Hong Kong SAR", kind: "entrepot",
+    note: "A trans-shipment port. Chips pass through and are counted both in and out; almost none are fabricated there." },
+  837: { label: "Bunkers", kind: "aggregate", note: "Ship and aircraft stores, not a territory." },
+  838: { label: "Free Zones", kind: "aggregate", note: "Free-zone trade, not a territory." },
+  839: { label: "Special Categories", kind: "aggregate", note: "Unallocated, not a territory." },
+  899: { label: "Areas, nes", kind: "aggregate", note: "Unallocated residual." },
+};
+
+/**
+ * The partner universe, from Comtrade's own reference file.
+ *
+ * `partnerCode=all` is a 400. The first run of this connector assumed it was
+ * accepted because `reporterCode` takes a list and the docs read as though the
+ * two behave alike; every India-by-partner call failed and the whole partner
+ * dimension came back empty while the rest of the file looked complete. So the
+ * partner list is fetched and batched exactly like the reporter list.
+ */
+async function partners(): Promise<{ codes: number[]; names: Map<number, string>; note: string }> {
+  const url = "https://comtradeapi.un.org/files/v1/app/reference/partnerAreas.json";
+  const res = await getJson<{ results?: ReporterRef[] } | ReporterRef[]>(url, {
+    timeoutMs: 60_000, retries: 3, cacheMs: 0,
+  });
+  if (!res.ok || !res.data) return { codes: [], names: new Map(), note: `partner reference failed: ${res.error ?? "no body"}` };
+  const list = Array.isArray(res.data) ? res.data : (res.data.results ?? []);
+  const codes: number[] = [];
+  const names = new Map<number, string>();
+  for (const r of list) {
+    const raw = (r as { PartnerCode?: number }).PartnerCode ?? r.reporterCode ?? r.id;
+    const code = typeof raw === "number" ? raw : Number.parseInt(String(raw ?? ""), 10);
+    const name = (r as { PartnerDesc?: string }).PartnerDesc ?? r.reporterDesc ?? r.text ?? "";
+    if (!Number.isFinite(code) || code <= 0 || name === "") continue;
+    if (names.has(code)) continue;
+    names.set(code, name);
+    codes.push(code);
+  }
+  return { codes, names, note: `${codes.length} partners from the reference file` };
+}
+
+/**
  * The reporter universe, from Comtrade's own reference file.
  *
  * Not a hand-typed list of M49 codes. A hand-typed list is a silent filter:
@@ -242,6 +311,12 @@ async function main(): Promise<void> {
     throw new Error("no reporter universe — refusing to write a ranking built on a hand-typed country list");
   }
   const batches = chunk(codes, BATCH);
+
+  const { codes: pCodes, names: partnerNames, note: pNote } = await partners();
+  console.log(pNote);
+  // Fall back to the reporter codes: they are drawn from the same area-code
+  // list, so a missing partner reference costs coverage, not correctness.
+  const partnerBatches = chunk(pCodes.length > 0 ? pCodes : codes, BATCH);
   const lines: LineOut[] = [];
 
   for (const line of LINES) {
@@ -282,21 +357,28 @@ async function main(): Promise<void> {
     let indiaExports: CountryValue[] = [];
     let partnerYear: number | null = null;
     for (const year of [...YEARS].reverse()) {
-      const m = await ask(`${line.code} India M ${year} by partner`, {
-        reporterCode: String(INDIA), period: String(year), cmdCode: line.code,
-        flowCode: "M", partnerCode: "all",
-      });
-      if (m === null || m.length === 0) continue;
-      const x = await ask(`${line.code} India X ${year} by partner`, {
-        reporterCode: String(INDIA), period: String(year), cmdCode: line.code,
-        flowCode: "X", partnerCode: "all",
-      });
+      const got: Record<"M" | "X", CountryValue[]> = { M: [], X: [] };
+      let anyFailed = false;
+      for (const flow of ["M", "X"] as const) {
+        for (const [i, batch] of partnerBatches.entries()) {
+          const rows = await ask(`${line.code} India ${flow} ${year} partners[${i}]`, {
+            reporterCode: String(INDIA), period: String(year), cmdCode: line.code,
+            flowCode: flow, partnerCode: batch.join(","),
+          });
+          if (rows === null) { anyFailed = true; continue; }
+          got[flow].push(...fold(rows, partnerNames, "partner"));
+        }
+      }
+      if (got.M.length === 0 && got.X.length === 0) continue;
       // partnerCode 0 is "World" and would sit at the top of a list of
       // countries as though it were one. Drop it from the breakdown; the
       // world total is already in data/semi/trade.json.
-      indiaImports = fold(m, names, "partner").filter((c) => c.code !== 0);
-      indiaExports = x ? fold(x, names, "partner").filter((c) => c.code !== 0) : [];
+      indiaImports = got.M.filter((c) => c.code !== 0).sort((a, b) => b.value - a.value);
+      indiaExports = got.X.filter((c) => c.code !== 0).sort((a, b) => b.value - a.value);
       partnerYear = year;
+      if (anyFailed) {
+        console.log(`  ${line.code} ${year}: at least one partner batch failed — the breakdown is short, not complete`);
+      }
       break;
     }
     console.log(`  ${line.code} India partners (${partnerYear ?? "none"}): ${indiaImports.length} sources`);
@@ -320,6 +402,7 @@ async function main(): Promise<void> {
     unit: "US$, nominal",
     years: YEARS,
     reporterUniverse: codes.length,
+    notOneCountry: NOT_ONE_COUNTRY,
     batchSize: BATCH,
     refusal:
       "No country's capability is inferred from these numbers beyond what crossing a border shows. " +
