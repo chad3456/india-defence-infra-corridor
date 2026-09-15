@@ -103,7 +103,16 @@ const ENERGY = [
 ] as const;
 
 /** Refined products, the other direction: India sells these back out. */
-const REFINED = { code: "271000", label: "Refined petroleum products", short: "Refined" };
+/**
+ * Refined products, asked at heading level.
+ *
+ * The first run asked for "271000" and got nothing, five years running, with
+ * no error — because 2710 has no ".00" subheading: its six-digit lines are
+ * 271012, 271019, 271020, 271091 and 271099. A code that does not exist
+ * returns an empty answer that looks exactly like a country with no trade.
+ * The heading is asked instead, which Comtrade accepts.
+ */
+const REFINED = { code: "2710", label: "Refined petroleum products", short: "Refined" };
 
 const DRONES = { code: "8806", label: "Unmanned aircraft", short: "Drones" };
 
@@ -153,6 +162,8 @@ async function ask(what: string, params: Record<string, string>): Promise<Row[] 
 }
 
 async function areas(file: string, codeKey: string, descKey: string): Promise<number[]> {
+  // Names are recorded as a side effect, because every caller needs them and
+  // none of them should have to ask twice.
   const res = await getJson<{ results?: AreaRef[] } | AreaRef[]>(
     `https://comtradeapi.un.org/files/v1/app/reference/${file}`,
     { timeoutMs: 60_000, retries: 3, cacheMs: 0 },
@@ -168,6 +179,7 @@ async function areas(file: string, codeKey: string, descKey: string): Promise<nu
     if (!Number.isFinite(code) || code <= 0 || typeof name !== "string" || name === "") continue;
     if (seen.has(code)) continue;
     seen.add(code);
+    if (!NAMES.has(code)) NAMES.set(code, name);
     out.push(code);
   }
   return out;
@@ -181,12 +193,24 @@ function chunk<T>(xs: T[], n: number): T[][] {
 
 export interface CountryValue { code: number; name: string; value: number }
 
+/**
+ * Code → name, from Comtrade's own reference files.
+ *
+ * The preview endpoint does not return reporterDesc or partnerDesc on every
+ * call, and the first run of this connector fell back to String(code) for
+ * every row — so the file came back complete, correct and unreadable, with
+ * "643" where "Russian Federation" should have been. The reference files were
+ * already being fetched for their codes; their names are now kept too.
+ */
+const NAMES = new Map<number, string>();
+
 function fold(rows: Row[], key: "reporter" | "partner"): CountryValue[] {
   const out = new Map<number, CountryValue>();
   for (const r of rows) {
     const code = key === "reporter" ? r.reporterCode : r.partnerCode;
     if (typeof code !== "number" || code <= 0) continue;
-    const name = (key === "reporter" ? r.reporterDesc : r.partnerDesc) ?? String(code);
+    const name = (key === "reporter" ? r.reporterDesc : r.partnerDesc)
+      ?? NAMES.get(code) ?? String(code);
     const v = typeof r.primaryValue === "number" ? r.primaryValue : 0;
     const prev = out.get(code);
     if (prev) { prev.value += v; duplicates++; continue; }
@@ -228,7 +252,13 @@ async function main(): Promise<void> {
       // partnerCode 0 is "World": the total, not a country. Kept as the
       // denominator rather than left in a list of origins.
       const world = got.find((c) => c.code === 0)?.value ?? 0;
-      const sources = got.filter((c) => c.code !== 0).sort((a, b) => b.value - a.value);
+      // 0 is "World" — the total, not a country — and India-as-its-own-partner
+      // is a re-import artefact of the residual codes, not an origin. Both are
+      // dropped from a list of origins and the world figure is kept as the
+      // denominator.
+      const sources = got
+        .filter((c) => c.code !== 0 && c.code !== INDIA)
+        .sort((a, b) => b.value - a.value);
       const total = world > 0 ? world : sources.reduce((a, b) => a + b.value, 0);
       years.push({ year, sources, total, batchesFailed: failed });
       console.log(`  ${line.code} ${flow} ${year}: ${sources.length} partners, total ${(total / 1e9).toFixed(1)}bn, ${failed} failed`);
@@ -295,8 +325,8 @@ async function main(): Promise<void> {
       }
     }
     if (got.M.length === 0 && got.X.length === 0) continue;
-    droneSources = got.M.filter((c) => c.code !== 0).sort((a, b) => b.value - a.value);
-    droneDests = got.X.filter((c) => c.code !== 0).sort((a, b) => b.value - a.value);
+    droneSources = got.M.filter((c) => c.code !== 0 && c.code !== INDIA).sort((a, b) => b.value - a.value);
+    droneDests = got.X.filter((c) => c.code !== 0 && c.code !== INDIA).sort((a, b) => b.value - a.value);
     dronePartnerYear = year;
     break;
   }
@@ -311,6 +341,7 @@ async function main(): Promise<void> {
       "Annual, HS as reported, nominal US$, not deflated.",
     unit: "US$, nominal",
     gulf: GULF,
+    names: Object.fromEntries([...NAMES].map(([k, v]) => [String(k), v])),
     chokepointNote:
       "Gulf-origin and Hormuz-transiting are different quantities. Iraq, Kuwait, Qatar, Bahrain " +
       "and Iran load only inside the Strait. Saudi Arabia and the UAE have pipelines to open " +
