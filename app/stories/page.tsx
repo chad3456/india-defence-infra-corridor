@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Eyebrow } from "@/components/stories/Kit";
+import NewBadge from "@/components/ui/NewBadge";
 
 /**
  * The index of visual stories.
@@ -82,7 +83,12 @@ export default function StoriesIndex() {
         {STORIES.map((s) => (
           <Link key={s.href} href={s.href} className="story-card block p-6 transition-transform hover:-translate-y-1"
             data-tone={s.tone}>
-            <Eyebrow tone={s.tone}>{s.kicker}</Eyebrow>
+            <span className="flex flex-wrap items-center gap-2">
+              <Eyebrow tone={s.tone}>{s.kicker}</Eyebrow>
+              {/* Reads its own expiry off the reader's clock, so a card built
+                  in September stops claiming to be new without a redeploy. */}
+              <NewBadge href={s.href} />
+            </span>
             <p className="story-display mt-4 text-[34px] sm:text-[38px]"
               style={{ color: `var(--s-${s.tone === "hot" ? "hot" : s.tone === "mid" ? "mid" : "cool"})` }}>
               {s.stat}

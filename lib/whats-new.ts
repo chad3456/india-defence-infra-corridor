@@ -42,11 +42,24 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "temples-2026-09",
+    title: "Temples of India",
+    blurb:
+      "Three thousand mapped shrines, and the finding that half of them are in two states — " +
+      "which is a fact about who has been entering them before it is one about India.",
+    href: "/stories/temples",
+    since: "2026-09-15",
+  },
+  {
+    // The id is deliberately unchanged from the three-story launch. Bumping it
+    // would re-announce the section to everyone who has already dismissed it,
+    // and the section is not new — it has a fourth story and denser charts.
     id: "stories-2026-09",
     title: "Visual stories",
     blurb:
-      "Three short, data-led arguments — why India assembles but does not fabricate, what the " +
-      "defence export figure counts, and the gap between Indian farm output and Indian farm income.",
+      "Four short, data-led arguments — where India sits in the world chip trade, what the " +
+      "defence export figure counts, the gap between farm output and farm income, and what a " +
+      "temple atlas can and cannot say.",
     href: "/stories",
     since: "2026-09-15",
   },
