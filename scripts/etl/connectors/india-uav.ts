@@ -47,16 +47,45 @@ import { parseInfobox, plain } from "../lib/wikitext";
 const OUT = join(process.cwd(), "data/global/india-uav.json");
 const API = "https://en.wikipedia.org/w/api.php";
 
+/** Every infobox template name met, so the next run reads rather than guesses. */
+const templatesSeen: string[] = [];
+/** Pages with no usable infobox, and what templates they did carry. */
+const noBoxTemplates = new Map<string, string>();
+
 /**
- * The indexes asked. More than one because the categories partition by kind:
- * a loitering munition is not filed as an unmanned aerial vehicle, and the
- * Nagastra and SkyStriker class of weapon is exactly the part of the pipeline
- * that has moved fastest.
+ * Seed categories, plus whatever a category-namespace search turns up.
+ *
+ * The first run asked three categories and got six articles out of the one
+ * that mattered — because Wikipedia files these under several names and
+ * subcategories, and a typed list of three cannot know that. So the category
+ * namespace is searched as well, one level of subcategory is walked, and the
+ * file publishes every category it ended up reading and how many articles each
+ * returned. The index is then inspectable rather than trusted.
  */
-const CATEGORIES = [
+const SEED_CATEGORIES = [
   "Category:Unmanned aerial vehicles of India",
   "Category:Loitering munitions of India",
   "Category:Defence Research and Development Organisation",
+];
+
+/** Category-namespace searches. What they return is recorded, not assumed. */
+const CATEGORY_SEARCHES = [
+  "unmanned aerial vehicles of India",
+  "loitering munitions India",
+  "military drones India",
+];
+
+/**
+ * List articles read for names the categories miss.
+ *
+ * Not a list of programmes anyone typed — a list of *indexes* to read. If an
+ * article does not exist the run records that and loses nothing, and any
+ * programme these surface is still read from its own page like every other.
+ */
+const LIST_ARTICLES = [
+  "List of unmanned aerial vehicles of India",
+  "List of equipment of the Indian Army",
+  "List of active Indian military aircraft",
 ];
 
 /** Pages that are lists, disambiguations or organisations, not aircraft. */
@@ -67,27 +96,70 @@ function isAircraftPage(title: string): boolean {
 
 interface CatMember { title?: string; ns?: number }
 interface CatResponse { query?: { categorymembers?: CatMember[] }; continue?: { cmcontinue?: string } }
+interface SearchResponse { query?: { search?: Array<{ title?: string }> } }
 
-async function members(category: string): Promise<{ titles: string[]; note: string }> {
+/** Articles (ns 0) and subcategories (ns 14) of one category. */
+async function members(category: string): Promise<{ titles: string[]; subcats: string[]; note: string }> {
   const titles: string[] = [];
+  const subcats: string[] = [];
   let cont: string | undefined;
   for (let page = 0; page < 6; page++) {
     const qs = new URLSearchParams({
       action: "query", format: "json", list: "categorymembers",
-      cmtitle: category, cmlimit: "500", cmnamespace: "0",
+      cmtitle: category, cmlimit: "500", cmnamespace: "0|14",
       ...(cont ? { cmcontinue: cont } : {}),
     });
     const res = await getJson<CatResponse>(`${API}?${qs.toString()}`, {
       timeoutMs: 45_000, retries: 2, cacheMs: 0,
     });
-    if (!res.ok || !res.data) return { titles, note: `${category}: ${res.error ?? "no body"}` };
+    if (!res.ok || !res.data) {
+      return { titles, subcats, note: `${category}: ${res.error ?? "no body"}` };
+    }
     for (const m of res.data.query?.categorymembers ?? []) {
-      if (typeof m.title === "string" && m.ns === 0) titles.push(m.title);
+      if (typeof m.title !== "string") continue;
+      if (m.ns === 0) titles.push(m.title);
+      else if (m.ns === 14) subcats.push(m.title);
     }
     cont = res.data.continue?.cmcontinue;
     if (!cont) break;
   }
-  return { titles, note: `${category}: ${titles.length} article(s)` };
+  return { titles, subcats, note: `${category}: ${titles.length} article(s), ${subcats.length} subcategor(ies)` };
+}
+
+/** Categories the encyclopaedia itself thinks match a phrase. */
+async function searchCategories(phrase: string): Promise<string[]> {
+  const qs = new URLSearchParams({
+    action: "query", format: "json", list: "search",
+    srsearch: phrase, srnamespace: "14", srlimit: "20",
+  });
+  const res = await getJson<SearchResponse>(`${API}?${qs.toString()}`, {
+    timeoutMs: 45_000, retries: 2, cacheMs: 0,
+  });
+  if (!res.ok || !res.data) return [];
+  return (res.data.query?.search ?? [])
+    .map((r) => r.title)
+    .filter((t): t is string => typeof t === "string");
+}
+
+/**
+ * Wikilinks out of a list article whose text mentions an unmanned aircraft.
+ *
+ * A list article is a table of links; this takes the links whose surrounding
+ * row says something unmanned and hands them to the same per-page reader every
+ * other candidate goes through. Nothing the list article *asserts* is used —
+ * only which pages it points at.
+ */
+function unmannedLinksIn(wikitext: string): string[] {
+  const out = new Set<string>();
+  for (const line of wikitext.split(/\r?\n/)) {
+    if (!/\b(uav|ucav|unmanned|drone|loitering|remotely piloted)\b/i.test(line)) continue;
+    for (const m of line.matchAll(/\[\[([^|\]#]+)(?:\|[^\]]*)?\]\]/g)) {
+      const t = (m[1] ?? "").trim();
+      if (t === "" || /^(File|Image|Category|Template):/i.test(t)) continue;
+      out.add(t);
+    }
+  }
+  return [...out];
 }
 
 /**
@@ -147,14 +219,34 @@ async function readProgramme(title: string): Promise<Programme | null> {
   const text = res.data?.parse?.wikitext?.["*"];
   if (!res.ok || typeof text !== "string") return null;
 
-  // Aircraft infoboxes: {{Infobox aircraft type}} preceded by
-  // {{Infobox aircraft begin}}, or the single {{Infobox weapon}} that the
-  // loitering munitions use. Both are asked for; whichever answers wins.
-  const box = parseInfobox(text, /Infobox aircraft type/i)
-    ?? parseInfobox(text, /Infobox aircraft begin/i)
-    ?? parseInfobox(text, /Infobox weapon/i)
-    ?? parseInfobox(text, /Infobox rocket/i);
-  if (!box) return null;
+  /**
+   * Read which infobox templates the page actually has, then parse those.
+   *
+   * The first version named four templates and asked for each in turn, which
+   * meant a page using a fifth reported as "no infobox" — indistinguishable in
+   * the output from a page that is an organisation rather than an aircraft.
+   * Scanning for the names first makes the run say what it met, so the next
+   * guess about this source is a reading.
+   */
+  const templates = [...text.matchAll(/\{\{\s*([Ii]nfobox[^|}\n]*)/g)]
+    .map((m) => (m[1] ?? "").trim())
+    .filter((t) => t !== "");
+  templatesSeen.push(...templates);
+
+  const relevant = templates.filter((t) => /aircraft|weapon|rocket|uav|drone|missile|vehicle/i.test(t));
+  let box: Record<string, string> | null = null;
+  // Aircraft articles split their facts across two templates: the "begin" box
+  // carries the name and image, the "type" box carries status and role. Both
+  // are read and merged, type last so its fields win.
+  for (const name of relevant.sort((a, b) => (/begin/i.test(a) ? -1 : 1))) {
+    const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const got = parseInfobox(text, new RegExp(escaped, "i"));
+    if (got) box = { ...(box ?? {}), ...got };
+  }
+  if (!box) {
+    noBoxTemplates.set(title, templates.slice(0, 4).join(", ") || "no infobox template at all");
+    return null;
+  }
 
   const pick = (...keys: string[]): string | null => {
     for (const k of keys) {
@@ -184,19 +276,67 @@ async function readProgramme(title: string): Promise<Programme | null> {
 async function main(): Promise<void> {
   const seen = new Map<string, string[]>();
   const indexNotes: string[] = [];
-  for (const cat of CATEGORIES) {
-    const { titles, note } = await members(cat);
-    indexNotes.push(note);
-    console.log(note);
-    for (const t of titles) {
-      if (!isAircraftPage(t)) continue;
-      seen.set(t, [...(seen.get(t) ?? []), cat]);
+
+  /* ── Work out which categories to read, rather than assuming ───────── */
+  const found = new Set(SEED_CATEGORIES);
+  for (const phrase of CATEGORY_SEARCHES) {
+    const hits = await searchCategories(phrase);
+    indexNotes.push(`search "${phrase}": ${hits.length} categor(ies) — ${hits.slice(0, 8).join("; ") || "none"}`);
+    for (const h of hits) {
+      // The DRDO category is already seeded and is enormous; a search that
+      // returns unrelated organisation categories would drag their whole
+      // membership in, so only categories naming an unmanned thing are added.
+      if (/unmanned|drone|uav|loitering/i.test(h)) found.add(h);
     }
   }
 
+  /* ── Read them, one level of subcategory deep ──────────────────────── */
+  const queue = [...found];
+  const read = new Set<string>();
+  const categoriesRead: string[] = [];
+  for (let depth = 0; depth < 2 && queue.length > 0; depth++) {
+    const level = queue.splice(0, queue.length);
+    for (const cat of level) {
+      if (read.has(cat)) continue;
+      read.add(cat);
+      categoriesRead.push(cat);
+      const { titles, subcats, note } = await members(cat);
+      indexNotes.push(note);
+      console.log(note);
+      for (const t of titles) {
+        if (!isAircraftPage(t)) continue;
+        seen.set(t, [...(seen.get(t) ?? []), cat]);
+      }
+      // Only unmanned-looking subcategories are descended into, for the same
+      // reason the search filters: one wrong subcategory is a whole tree.
+      for (const sc of subcats) {
+        if (/unmanned|drone|uav|loitering/i.test(sc) && !read.has(sc)) queue.push(sc);
+      }
+    }
+  }
+
+  /* ── List articles, read for the pages they point at ───────────────── */
+  for (const listTitle of LIST_ARTICLES) {
+    const qs = new URLSearchParams({
+      action: "parse", format: "json", prop: "wikitext", page: listTitle, redirects: "1",
+    });
+    const res = await getJson<{ parse?: { wikitext?: { "*"?: string } } }>(`${API}?${qs.toString()}`, {
+      timeoutMs: 45_000, retries: 2, cacheMs: 0,
+    });
+    const text = res.data?.parse?.wikitext?.["*"];
+    if (typeof text !== "string") {
+      indexNotes.push(`${listTitle}: not read (${res.error ?? "no wikitext"})`);
+      continue;
+    }
+    const links = unmannedLinksIn(text).filter(isAircraftPage);
+    indexNotes.push(`${listTitle}: ${links.length} unmanned-looking link(s)`);
+    console.log(`${listTitle}: ${links.length} link(s)`);
+    for (const t of links) seen.set(t, [...(seen.get(t) ?? []), listTitle]);
+  }
+  console.log(`${seen.size} candidate page(s) to read`);
+
   const programmes: Programme[] = [];
   const noInfobox: string[] = [];
-  const unread: string[] = [];
   for (const [title, via] of seen) {
     const p = await readProgramme(title);
     if (p === null) {
@@ -237,29 +377,43 @@ async function main(): Promise<void> {
     builtAt: new Date().toISOString(),
     source:
       "English Wikipedia, via the MediaWiki API. The article set is whatever the categories " +
-      `${CATEGORIES.map((c) => `"${c}"`).join(", ")} contain; every field is read from the ` +
-      "article's own infobox and the status string is carried verbatim beside the bucket it " +
-      "was sorted into.",
+      "named below contain, plus the unmanned-looking links in the list articles named beside " +
+      "them. Every field is read from the article's own infobox, and the status string is " +
+      "carried verbatim beside the bucket it was sorted into.",
     method:
-      "The category is the index rather than a list of programmes anyone typed, so an omission " +
-      "is an omission from the category and not from someone's recall. Pages with no aircraft, " +
-      "weapon or rocket infobox are recorded as such and not counted as programmes — most of " +
-      "them are organisations or umbrella projects rather than aircraft.",
+      "The indexes are the claim rather than a list of programmes anyone typed, so an omission " +
+      "is an omission from Wikipedia's own categorisation and not from someone's recall. The " +
+      "category namespace is searched, one level of unmanned-looking subcategory is walked, and " +
+      "every category actually read is published. Pages with no usable infobox are recorded " +
+      "with the templates they did carry — most are organisations or umbrella projects.",
     cannotSay: [
       "How many airframes exist. `numberBuilt` is present on a handful of articles and absent on most, and is never estimated here.",
       "Whether a programme recorded as in service is in service in any number that matters. An encyclopaedia's status field summarises press reporting, and press reporting on defence programmes is optimistic by construction.",
       "Anything about capability, payload, endurance or sensor fit. None of it is read and none of it belongs in a status count.",
       "Whether a programme absent from these categories exists. The index is the claim; a drone nobody has written an article about is invisible here and the count is a floor.",
     ],
-    categories: CATEGORIES,
+    categories: categoriesRead,
+    listArticles: LIST_ARTICLES,
     indexNotes,
+    /**
+     * Every infobox template name met, most common first.
+     *
+     * Published so the next change to this connector is a reading rather than
+     * a guess: the first run named four templates, asked for each in turn, and
+     * reported every page using a fifth as having no infobox at all.
+     */
+    templatesSeen: [...templatesSeen.reduce((m, t) => m.set(t, (m.get(t) ?? 0) + 1), new Map<string, number>())]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 40)
+      .map(([name, n]) => ({ name, n })),
+    noInfoboxDetail: [...noBoxTemplates].slice(0, 40).map(([title, templates]) => ({ title, templates })),
     counts: {
       articlesIndexed: seen.size,
       withInfobox: programmes.length,
       keptAsUnmanned: kept.length,
       filteredNotUnmanned: filtered.length,
       noInfobox: noInfobox.length,
-      unread: unread.length,
+      categoriesRead: categoriesRead.length,
     },
     byStage,
     filtered: filtered.slice(0, 60),
