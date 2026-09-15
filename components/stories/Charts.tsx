@@ -526,12 +526,42 @@ export interface MapBubble {
  * makes.
  */
 export function BubbleMap({
-  bubbles, height = 360, maxRadius = 30, note,
+  bubbles, height = 360, maxRadius = 30, note, fitTo, marks = [], width = 820,
 }: {
-  bubbles: MapBubble[]; height?: number; maxRadius?: number; note?: ReactNode;
+  bubbles: MapBubble[];
+  height?: number;
+  maxRadius?: number;
+  note?: ReactNode;
+  width?: number;
+  /**
+   * A [[west, south], [east, north]] window to zoom to.
+   *
+   * Without it the projection fits the whole world, which is right for a chip
+   * trade spanning six continents and useless for one that fits inside the
+   * Persian Gulf. A regional window also switches the projection to Mercator:
+   * Natural Earth is an equal-area compromise built for a whole-world frame
+   * and bends visibly across a small one.
+   */
+  fitTo?: [[number, number], [number, number]];
+  /** Labelled points that are annotation rather than data — a strait, a port. */
+  marks?: Array<{ lon: number; lat: number; label: string; tone?: Tone }>;
 }) {
-  const width = 820;
-  const projection = geoNaturalEarth1().fitExtent([[6, 6], [width - 6, height - 6]], world);
+  const box: GeoJSON.Feature = fitTo
+    ? {
+        type: "Feature", properties: {},
+        geometry: {
+          type: "Polygon",
+          coordinates: [[
+            [fitTo[0][0], fitTo[0][1]], [fitTo[1][0], fitTo[0][1]],
+            [fitTo[1][0], fitTo[1][1]], [fitTo[0][0], fitTo[1][1]],
+            [fitTo[0][0], fitTo[0][1]],
+          ]],
+        },
+      }
+    : (world as unknown as GeoJSON.Feature);
+  const projection = fitTo
+    ? geoMercator().fitExtent([[6, 6], [width - 6, height - 6]], box)
+    : geoNaturalEarth1().fitExtent([[6, 6], [width - 6, height - 6]], world);
   const path = geoPath(projection);
   const centroids = new Map<string, [number, number]>();
   for (const f of world.features) {
@@ -578,6 +608,21 @@ export function BubbleMap({
                 fill="var(--story-rule)" stroke="var(--story-bg)" strokeWidth={0.5} />
             ))}
           </g>
+          {marks.map((m) => {
+            const p = projection([m.lon, m.lat]);
+            if (!p) return null;
+            return (
+              <g key={m.label}>
+                <circle cx={p[0]} cy={p[1]} r={5} fill="none"
+                  stroke={TONE[m.tone ?? "hot"]} strokeWidth={1.8} />
+                <circle cx={p[0]} cy={p[1]} r={1.6} fill={TONE[m.tone ?? "hot"]} />
+                <text x={p[0]} y={p[1] + 18} textAnchor="middle"
+                  style={{ fontSize: 10.5, fontWeight: 700, fill: TONE[m.tone ?? "hot"] }}>
+                  {m.label}
+                </text>
+              </g>
+            );
+          })}
           <g>
             {drawn.map(({ b, at }) => {
               const r = Math.max(2.5, Math.sqrt(b.value / max) * maxRadius);
@@ -1187,6 +1232,112 @@ export function GridMap({
         A diagram, not a projection: every state gets one tile of equal size, placed roughly where it
         sits. A tile with a dot carries {empty}.
       </Caption>
+    </div>
+  );
+}
+
+/* ───────────────────────────── StackedBars ──────────────────────────── */
+
+export interface StackPart { key: string; label: string; tone: Tone; hatch?: boolean }
+
+/**
+ * A composition, at several dates, as one bar per date.
+ *
+ * The form for "what is this total made of, and how has that changed" — which
+ * a grouped bar chart answers badly, because the reader has to add the groups
+ * up in their head to see the total and then divide to see the share.
+ *
+ * Bars are drawn to 100% of their own total, so the chart is about mix and not
+ * about size; the total is printed above each bar so the size is not lost.
+ * Segments below a couple of per cent get no inline label and are named in the
+ * legend, because a label that does not fit its own segment is worse than the
+ * legend entry it duplicates.
+ *
+ * `hatch` marks a segment whose membership is uncertain — here, the Gulf
+ * producers that have a pipeline out and might not transit the Strait. A
+ * different hue would say "different thing"; a hatch says "same thing, less
+ * certain", which is the actual claim.
+ */
+export function StackedBars({
+  parts, rows, height = 240, totalFormat,
+}: {
+  parts: StackPart[];
+  rows: Array<{ label: string; values: Record<string, number>; total?: number }>;
+  height?: number;
+  totalFormat?: (v: number) => string;
+}) {
+  const barW = 74;
+  const gap = 26;
+  const padTop = 30;
+  const padBottom = 30;
+  const width = rows.length * (barW + gap) + gap;
+  const plot = height - padTop - padBottom;
+  const fmt = totalFormat ?? ((v: number) => String(Math.round(v)));
+  return (
+    <div>
+      <Scroller min={Math.min(width, 520)}>
+        <svg viewBox={`0 0 ${width} ${height}`} style={{ width: "100%", height: "auto" }} role="img"
+          aria-label={rows.map((r) =>
+            `${r.label}: ` + parts.map((p) => `${p.label} ${(r.values[p.key] ?? 0).toFixed(0)}`).join(", ")
+          ).join("; ")}>
+          <defs>
+            <pattern id="story-hatch" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+              <rect width="6" height="6" fill="var(--story-card)" />
+              <line x1="0" y1="0" x2="0" y2="6" stroke="currentColor" strokeWidth="3.4" />
+            </pattern>
+          </defs>
+          {rows.map((r, ri) => {
+            const sum = parts.reduce((a, p) => a + (r.values[p.key] ?? 0), 0) || 1;
+            const x = gap + ri * (barW + gap);
+            let y = padTop;
+            return (
+              <g key={r.label}>
+                <text x={x + barW / 2} y={padTop - 11} textAnchor="middle" className="mono"
+                  style={{ fontSize: 10.5, fontWeight: 700, fill: "var(--story-ink-2)" }}>
+                  {r.total !== undefined ? fmt(r.total) : ""}
+                </text>
+                {parts.map((p) => {
+                  const share = (r.values[p.key] ?? 0) / sum;
+                  const h = share * plot;
+                  const at = y;
+                  y += h;
+                  if (h <= 0) return null;
+                  return (
+                    <g key={p.key} style={{ color: TONE[p.tone] }}>
+                      <rect x={x} y={at} width={barW} height={h}
+                        fill={p.hatch ? "url(#story-hatch)" : TONE[p.tone]}
+                        stroke={p.hatch ? TONE[p.tone] : "var(--story-card)"} strokeWidth={p.hatch ? 1 : 0.8} />
+                      {h > 15 && (
+                        <text x={x + barW / 2} y={at + h / 2 + 4} textAnchor="middle"
+                          style={{ fontSize: 11, fontWeight: 700,
+                            fill: p.hatch ? "var(--story-ink)" : "var(--story-bg)" }}>
+                          {(share * 100).toFixed(0)}%
+                        </text>
+                      )}
+                    </g>
+                  );
+                })}
+                <text x={x + barW / 2} y={height - 12} textAnchor="middle" className="mono"
+                  style={{ fontSize: 11, fill: "var(--story-ink-3)" }}>
+                  {r.label}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+      </Scroller>
+      <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-[11.5px]">
+        {parts.map((p) => (
+          <li key={p.key} className="flex items-center gap-1.5">
+            <span className="inline-block h-[10px] w-[16px] rounded-[2px]"
+              style={p.hatch
+                ? { background: `repeating-linear-gradient(45deg, ${TONE[p.tone]} 0 3px, transparent 3px 6px)`,
+                    border: `1px solid ${TONE[p.tone]}` }
+                : { background: TONE[p.tone] }} />
+            <span style={{ color: "var(--story-ink-2)" }}>{p.label}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

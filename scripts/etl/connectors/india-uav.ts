@@ -171,15 +171,36 @@ function unmannedLinksIn(wikitext: string): string[] {
  */
 export type Stage = "in service" | "flying" | "in development" | "cancelled" | "unstated";
 
+/**
+ * Wikitext arrives with its HTML entities intact.
+ *
+ * DRDO Nishant's status is the six characters `&quot;` then "Abandoned
+ * project" then `&quot;` again, and the first version of this reader matched
+ * against that raw string — so a cancelled programme classified as unstated
+ * for want of a decode. Entities are cheap to get wrong silently.
+ */
+export function decode(s: string): string {
+  return s
+    .replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'")
+    .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+}
+
 export function stageOf(status: string | undefined): Stage {
   if (!status) return "unstated";
-  const s = status.toLowerCase();
-  if (/\b(cancell?ed|abandoned|terminated|shelved|discontinued)\b/.test(s)) return "cancelled";
-  if (/\b(in service|operational|active|inducted|in use|deployed)\b/.test(s)) return "in service";
-  if (/\b(prototype|trials?|testing|flight test|first flight|demonstrat)\b/.test(s)) return "flying";
-  if (/\b(development|design|proposed|planned|project|ongoing)\b/.test(s)) return "in development";
+  const s = decode(status).toLowerCase();
+  if (/\b(cancell?ed|abandoned|terminated|shelved|discontinued|scrapped)\b/.test(s)) return "cancelled";
+  if (/\b(in service|operational|active|inducted|in use|deployed|serving)\b/.test(s)) return "in service";
+  // "flight test" with a word boundary after it cannot match "flight tested",
+  // which is the exact string on one of these articles. Suffixes are optional
+  // on every verb here for the same reason.
+  if (/\b(prototypes?|trials?|test(s|ed|ing)?|first flight|flown|demonstrat)/.test(s)) return "flying";
+  if (/\b(development|design|proposed|planned|project|ongoing|pre-production)/.test(s)) return "in development";
   return "unstated";
 }
+
+/** Where a programme's stage came from, so an inference is never read as a statement. */
+export type StageBasis = "status field" | "stated service entry" | "stated first flight" | "none";
 
 /** A year from a free-text date field, or null. Never a guess. */
 export function yearOf(v: string | undefined): number | null {
@@ -195,6 +216,7 @@ export interface Programme {
   /** The infobox's own words, never paraphrased. */
   status: string | null;
   stage: Stage;
+  stageBasis: StageBasis;
   role: string | null;
   manufacturer: string | null;
   origin: string | null;
@@ -257,16 +279,37 @@ async function readProgramme(title: string): Promise<Programme | null> {
   };
 
   const status = pick("status");
+  const introduced = yearOf(pick("introduction", "introduced", "service") ?? undefined);
+  const firstFlight = yearOf(pick("first_flight", "first flight") ?? undefined);
+
+  /**
+   * Stage from the status field, and only if that is silent from a date.
+   *
+   * Eleven of seventeen programmes came back "unstated" on the first good run,
+   * including several with a stated service entry — because their infobox
+   * carries a year and no status line. Falling back to the dates recovers
+   * them, and `stageBasis` records which field the answer came from so an
+   * inference is never read as a statement. Nothing is inferred from silence:
+   * a programme with no status, no service date and no first flight stays
+   * unstated.
+   */
+  let stage = stageOf(status ?? undefined);
+  let stageBasis: StageBasis = status ? "status field" : "none";
+  if (stage === "unstated") {
+    if (introduced !== null) { stage = "in service"; stageBasis = "stated service entry"; }
+    else if (firstFlight !== null) { stage = "flying"; stageBasis = "stated first flight"; }
+  }
+
   return {
     title,
-    status,
-    stage: stageOf(status ?? undefined),
+    status: status ? decode(status) : null,
+    stage,
+    stageBasis,
     role: pick("type", "role"),
     manufacturer: pick("manufacturer", "developer", "design_group", "designer"),
     origin: pick("national_origin", "origin"),
-    firstFlight: yearOf(pick("first_flight", "first flight") ?? undefined),
-    introduced: pick("introduction", "introduced", "service")
-      ? yearOf(pick("introduction", "introduced", "service") ?? undefined) : null,
+    firstFlight,
+    introduced,
     numberBuilt: pick("number_built", "number built", "produced"),
     primaryUser: pick("primary_user", "primary_users", "used_by"),
     via: [],
@@ -360,11 +403,25 @@ async function main(): Promise<void> {
    * and counted, so the filter is visible rather than silent.
    */
   const droneish = /\b(uav|ucav|unmanned|drone|loitering|target aircraft|remotely piloted)\b/i;
+  /**
+   * A counter-drone system is not a drone.
+   *
+   * "Integrated Drone Detection & Interdiction System" passed the filter above
+   * on the word "Drone" in its own title, and would have been counted as an
+   * Indian unmanned aircraft programme. Anything whose title or role is about
+   * detecting or shooting one down is excluded and counted.
+   */
+  const counterDrone = /\b(counter[- ]?(drone|uas)|anti[- ]?drone|detection|interdict|jamm)/i;
   const kept: Programme[] = [];
   const filtered: Array<{ title: string; role: string | null }> = [];
   for (const p of programmes) {
+    const subject = `${p.role ?? ""} ${p.title}`;
+    if (counterDrone.test(subject)) {
+      filtered.push({ title: p.title, role: p.role });
+      continue;
+    }
     const fromDroneCategory = p.via.some((c) => /unmanned|loitering/i.test(c));
-    if (fromDroneCategory || droneish.test(`${p.role ?? ""} ${p.title}`)) kept.push(p);
+    if (fromDroneCategory || droneish.test(subject)) kept.push(p);
     else filtered.push({ title: p.title, role: p.role });
   }
 
