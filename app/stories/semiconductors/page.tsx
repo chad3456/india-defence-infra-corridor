@@ -332,6 +332,10 @@ export default function SemiconductorStory() {
             a: <>Figures are nominal US dollars and are not deflated. A chip bill that doubles over a decade in which chip prices moved is not a doubling of volume.</>,
           },
           {
+            q: "What the announced fabs are worth",
+            a: <>Nothing on this page carries a fab&rsquo;s sanctioned outlay, because none is sourced yet. The contract ledger this site runs against Press Information Bureau releases filters for defence acquisitions by construction — a fab approval has neither a defence institution nor an acquisition verb in it — so a semiconductor ledger needs its own reader and its own checks. Until it exists, the figures quoted for Dholera, Sanand and Jagiroad are not repeated here.</>,
+          },
+          {
             q: "Who owns the assembly",
             a: <>Not in this data. Trade statistics name a country, never a firm, so nothing here distinguishes an Indian-owned plant from a contract manufacturer operating in India.</>,
           },

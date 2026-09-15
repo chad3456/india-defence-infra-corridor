@@ -109,16 +109,25 @@ const INDEX_ARTICLES = [
   "Agni (missile)",
   "Indian Army",
   "Defence Space Agency",
-  // Semiconductors. The same machinery — PIB releases discovered through an
-  // encyclopaedia's citations and then read from the government's own page —
-  // works for the fab approvals, and the Semicon India announcements are
-  // exactly the kind of figure that gets quoted from memory and wrongly.
-  "Semiconductor industry in India",
-  "India Semiconductor Mission",
-  "Micron Technology",
-  "Tata Electronics",
-  "Electronics industry in India",
 ];
+
+/**
+ * Semiconductors are NOT discovered here, and the attempt is worth recording.
+ *
+ * Five semiconductor articles were added to the list above on the theory that
+ * the same machinery would pick up the Semicon India fab approvals. It cannot,
+ * and the reason is structural rather than fixable by adding more articles:
+ * every release has to pass `isDefenceAcquisition`, which requires a defence
+ * institution *and* an acquisition verb. A Micron fab approval has neither. Two
+ * of the five titles did not resolve at all and the other three contributed two
+ * release ids, none of which survived the filter.
+ *
+ * Leaving them in the list implied this ledger covers semiconductor
+ * announcements when by construction it never can. A semiconductor ledger
+ * needs its own filter and its own named-fact checks — the same shape as this
+ * one, not a widening of it — and until that exists, no fab outlay appears
+ * anywhere on this site.
+ */
 
 /** How many releases to fetch in one run. Each is ~78 KB. */
 const MAX_RELEASES = 500;
