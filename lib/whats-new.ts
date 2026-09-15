@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "drones-strait-2026-09",
+    title: "Drones and the Strait",
+    blurb:
+      "What is measurably at stake for India in a West Asian war — the drones it buys, and the " +
+      "cooking gas that has no route out of the Gulf but one.",
+    href: "/stories/drones-and-the-strait",
+    since: "2026-09-15",
+  },
+  {
     id: "temples-2026-09",
     title: "Temples of India",
     blurb:
@@ -57,9 +66,9 @@ export const WHATS_NEW: NewFeature[] = [
     id: "stories-2026-09",
     title: "Visual stories",
     blurb:
-      "Four short, data-led arguments — where India sits in the world chip trade, what the " +
-      "defence export figure counts, the gap between farm output and farm income, and what a " +
-      "temple atlas can and cannot say.",
+      "Five short, data-led arguments — where India sits in the world chip trade, what the " +
+      "defence export figure counts, the gap between farm output and farm income, what India " +
+      "has at stake in West Asia, and what a temple atlas can and cannot say.",
     href: "/stories",
     since: "2026-09-15",
   },

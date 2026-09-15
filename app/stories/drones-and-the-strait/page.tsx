@@ -371,14 +371,20 @@ export default function DronesAndStrait() {
                 <ChartTitle note={`India's HS 8806 imports by origin, ${d.drones.indiaPartnerYear}. Area is proportional to value.`}>
                   Where India&rsquo;s declared drones come from
                 </ChartTitle>
+                {/*
+                  A ranking, not a treemap. One origin is 84% of five, and a
+                  treemap of that is a single red rectangle with four slivers —
+                  technically correct and visually one block.
+                */}
                 {droneSources.length > 0 ? (
-                  <Treemap
-                    height={240}
-                    items={droneSources.slice(0, 8).map((c, i) => ({
+                  <RankedRows
+                    tone="hot"
+                    markTone="hot"
+                    rows={droneSources.slice(0, 8).map((c, i) => ({
                       name: nameOf(d, c),
                       value: c.value,
-                      display: `${usd(c.value)} · ${((c.value / droneSourceTotal) * 100).toFixed(0)}%`,
-                      tone: "hot" as const,
+                      display: `${((c.value / droneSourceTotal) * 100).toFixed(0)}%`,
+                      meta: usd(c.value),
                       mark: i === 0,
                     }))}
                   />
@@ -411,11 +417,19 @@ export default function DronesAndStrait() {
       <section className="mt-7">
         <div className="story-card p-4 sm:p-6">
           <BubbleMap
-            height={380}
-            width={760}
+            height={430}
+            width={600}
             maxRadius={34}
-            fitTo={[[44, 11], [78, 33]]}
-            marks={[{ lon: 56.3, lat: 26.6, label: "Strait of Hormuz", tone: "hot" }]}
+            /*
+              A frame around the producers, not around the region.
+              The first window ran to 78°E to include India, which put every
+              Gulf state in the top-left corner of a mostly empty Arabian Sea
+              and cut Iraq — the largest bubble — off the top edge. The window
+              is the bubbles' own extent now, and the frame is nearly square
+              because fitExtent letterboxes a square window inside a 2:1 box.
+            */
+            fitTo={[[40, 14], [64, 38]]}
+            marks={[{ lon: 56.3, lat: 26.6, label: "Strait of Hormuz", tone: "hot", dx: 58, dy: 4 }]}
             bubbles={(crudeNow?.sources ?? [])
               .filter((c) => gulfOf(d, c.code) !== undefined)
               .map((c) => {

@@ -543,22 +543,35 @@ export function BubbleMap({
    * and bends visibly across a small one.
    */
   fitTo?: [[number, number], [number, number]];
-  /** Labelled points that are annotation rather than data — a strait, a port. */
-  marks?: Array<{ lon: number; lat: number; label: string; tone?: Tone }>;
+  /**
+   * Labelled points that are annotation rather than data — a strait, a port.
+   *
+   * `dx`/`dy` nudge the label off the point. A strait sits between two
+   * countries by definition, so its label lands on top of one of theirs unless
+   * it is moved, and no automatic rule can know which side is free.
+   */
+  marks?: Array<{ lon: number; lat: number; label: string; tone?: Tone; dx?: number; dy?: number }>;
 }) {
-  const box: GeoJSON.Feature = fitTo
-    ? {
-        type: "Feature", properties: {},
-        geometry: {
-          type: "Polygon",
-          coordinates: [[
-            [fitTo[0][0], fitTo[0][1]], [fitTo[1][0], fitTo[0][1]],
-            [fitTo[1][0], fitTo[1][1]], [fitTo[0][0], fitTo[1][1]],
-            [fitTo[0][0], fitTo[0][1]],
-          ]],
-        },
-      }
-    : (world as unknown as GeoJSON.Feature);
+  /**
+   * The window is two corner points, not a rectangle — because d3 winds the
+   * other way and a rectangle is ambiguous.
+   *
+   * On a sphere a closed ring divides the globe into two parts and the winding
+   * order says which one is the interior. d3-geo takes the interior to be on
+   * the left of the walk, which is the opposite of the GeoJSON convention, so
+   * the box drawn the "correct" way round fits the whole planet *minus* the
+   * Gulf: the projection came out at world scale, the map rendered, every
+   * circle landed in the right place, and the only sign of the bug was that
+   * the reader was looking at Australia.
+   *
+   * A MultiPoint has no winding. Its bounds are the two corners and nothing
+   * has to be reasoned about.
+   */
+  const box = {
+    type: "Feature" as const,
+    properties: {},
+    geometry: { type: "MultiPoint" as const, coordinates: [fitTo?.[0] ?? [0, 0], fitTo?.[1] ?? [0, 0]] },
+  };
   const projection = fitTo
     ? geoMercator().fitExtent([[6, 6], [width - 6, height - 6]], box)
     : geoNaturalEarth1().fitExtent([[6, 6], [width - 6, height - 6]], world);
@@ -616,7 +629,7 @@ export function BubbleMap({
                 <circle cx={p[0]} cy={p[1]} r={5} fill="none"
                   stroke={TONE[m.tone ?? "hot"]} strokeWidth={1.8} />
                 <circle cx={p[0]} cy={p[1]} r={1.6} fill={TONE[m.tone ?? "hot"]} />
-                <text x={p[0]} y={p[1] + 18} textAnchor="middle"
+                <text x={p[0] + (m.dx ?? 0)} y={p[1] + (m.dy ?? 18)} textAnchor="middle"
                   style={{ fontSize: 10.5, fontWeight: 700, fill: TONE[m.tone ?? "hot"] }}>
                   {m.label}
                 </text>

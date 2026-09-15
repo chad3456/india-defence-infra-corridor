@@ -5,7 +5,7 @@ import NewBadge from "@/components/ui/NewBadge";
 /**
  * The index of visual stories.
  *
- * Four so far, each built on data already in this repository rather than
+ * Five so far, each built on data already in this repository rather than
  * assembled for the occasion — which is the only reason these pages are
  * allowed to be this loud. The register puts a number at 58px; the number has
  * to be one the rest of the site would stand behind at 13px.
@@ -13,8 +13,8 @@ import NewBadge from "@/components/ui/NewBadge";
 export const metadata = {
   title: "Visual stories · Bharat Tracker",
   description:
-    "Short, data-led stories on Indian semiconductors, defence manufacturing, farming and " +
-    "sacred geography — each built from the sourced series behind the rest of this site.",
+    "Short, data-led stories on Indian semiconductors, defence manufacturing, farming, drones " +
+    "and sacred geography — each built from the sourced series behind the rest of this site.",
 };
 
 const STORIES = [
@@ -52,6 +52,17 @@ const STORIES = [
     statLabel: "cereals produced, 2024",
   },
   {
+    href: "/stories/drones-and-the-strait",
+    tone: "hot" as const,
+    kicker: "drones · energy · exposure",
+    title: "India Flies Bought Drones and Burns Gulf Gas.",
+    blurb:
+      "What is measurably at stake for India in a West Asian war. Cooking gas is the exposure " +
+      "with no alternative; crude already found one, and not for safety.",
+    stat: "99%",
+    statLabel: "of India's cooking gas is Gulf-sourced",
+  },
+  {
     href: "/stories/temples",
     tone: "mid" as const,
     kicker: "sacred geography · coverage",
@@ -70,7 +81,7 @@ export default function StoriesIndex() {
       <header className="pt-10">
         <Eyebrow>visual stories</Eyebrow>
         <h1 className="story-display mt-4 max-w-[16ch] text-[40px] sm:text-[56px] lg:text-[64px]">
-          Four arguments, told in numbers.
+          Five arguments, told in numbers.
         </h1>
         <p className="mt-5 max-w-[60ch] text-[15px] leading-[1.62]" style={{ color: "var(--story-ink-2)" }}>
           Each of these is built from series already published elsewhere on this site, with the
@@ -79,7 +90,7 @@ export default function StoriesIndex() {
         </p>
       </header>
 
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {STORIES.map((s) => (
           <Link key={s.href} href={s.href} className="story-card block p-6 transition-transform hover:-translate-y-1"
             data-tone={s.tone}>
