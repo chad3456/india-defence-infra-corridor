@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-15T18:10:32.543Z",
+  "builtAt": "2026-09-15T18:12:31.376Z",
   "sources": {
     "incidents": "AIAAIC Repository (aiaaic.org), the public incidents and controversies spreadsheet, exported as CSV. A volunteer register; every row carries its own source links.",
     "spending": "USAspending.gov API, Department of Defense contract awards (types A-D), aggregated by fiscal year server-side. Each figure is obligated money against a public award id."
@@ -7,6 +7,8 @@
   "definition": "There is no procurement code for artificial intelligence. Awards are matched on their description text, so these figures measure AWARDS WHOSE DESCRIPTION SAYS AI and not AI. A contract for an autonomous targeting system described as 'sensor integration services' is invisible here; a contract to run a conference about AI is counted. The keyword list is published and each term's total is kept separate so any of them can be discarded.",
   "doubleCounting": "The per-term totals overlap and MUST NOT be summed. An award whose description contains both 'artificial intelligence' and 'machine learning' is in both series. No combined total appears in this file for that reason.",
   "militaryFilter": "\\b(militar|defen[cs]e|army|navy|air force|weapon|warfare|combat|drone|uav|missile|soldier|troop|battlefield|targeting|munition|pentagon|nato|idf|armed forces)\\b",
+  "deployerFilter": "\\b(defense force|defence force|armed forces|army|navy|air force|marine corps|department of (war|defen[cs]e)|ministry of defen[cs]e|pentagon|idf|nato|liberation army|national guard|military|intelligence agency|mossad|gru|fsb|cia|nsa|dod)\\b",
+  "tiers": "A row is tier 'force' when the register names an armed force, defence ministry or intelligence service as the deployer, 'state' when it names a government, and 'adjacent' otherwise. The wide keyword filter catches supermarket facial recognition and school gun detectors — those are AI incidents and not military operations, and counting them together is how a register of AI controversies gets quoted as a tally of battlefield events.",
   "refusal": "No casualty figure, no capability claim, and no assertion that a named system was used in a named operation. Where a case is carried it is carried as 'this register records this, citing that', in the register's own words and with its own links. The difference between a documented case and a reported one is the entire value of doing it this way.",
   "cannotSay": [
     "Whether any of this money bought a capability that works. An obligation is a payment, not an outcome.",
@@ -235,6 +237,11 @@
         "n": 2
       }
     ],
+    "byTier": {
+      "force": 10,
+      "state": 5,
+      "adjacent": 40
+    },
     "byYear": [
       {
         "key": "2018",
@@ -277,6 +284,7 @@
       {
         "ref": "AIAAIC2257",
         "headline": "Welshman kills mother with sledgehammer after speaking to Discord AI bot",
+        "tier": "adjacent",
         "occurred": "2025",
         "deployer": "Tristan Roberts",
         "developer": "DeepSeek Artificial Intelligence Co",
@@ -297,6 +305,7 @@
       {
         "ref": "AIAAIC2232",
         "headline": "Pentagon uses Anthropic's Claude to plan and support Iran airstrikes",
+        "tier": "force",
         "occurred": "2026",
         "deployer": "Department of War",
         "developer": "Anthropic",
@@ -317,6 +326,7 @@
       {
         "ref": "AIAAIC2220",
         "headline": "Pentagon uses Anthropic's Claude to capture Venezuela president Maduro",
+        "tier": "force",
         "occurred": "2026",
         "deployer": "Department of War",
         "developer": "Anthropic",
@@ -337,6 +347,7 @@
       {
         "ref": "AIAAIC2180",
         "headline": "Pro-Ukrainian hackers use AI-generated decoy documents to infiltrate Russian defence industry",
+        "tier": "adjacent",
         "occurred": "2025",
         "deployer": "Pro-Ukraine hackers",
         "developer": "",
@@ -357,6 +368,7 @@
       {
         "ref": "AIAAIC2077",
         "headline": "Baltimore student handcuffed after AI system mistakes bag of chips for weapon",
+        "tier": "adjacent",
         "occurred": "2025",
         "deployer": "Kenwood High School",
         "developer": "Omnilert",
@@ -377,6 +389,7 @@
       {
         "ref": "AIAAIC2041",
         "headline": "Kmart facial recogniton ruled to have violated customer privacy",
+        "tier": "adjacent",
         "occurred": "2020",
         "deployer": "Kmart",
         "developer": "",
@@ -397,6 +410,7 @@
       {
         "ref": "AIAAIC2004",
         "headline": "Ukrainian AI-powered drones decimate Russian war planes",
+        "tier": "state",
         "occurred": "2025",
         "deployer": "Government of Ukraine",
         "developer": "Government of Ukraine",
@@ -417,6 +431,7 @@
       {
         "ref": "AIAAIC1985",
         "headline": "Audio deepfake scam imitates Italian defence minister Guido Crosetto",
+        "tier": "adjacent",
         "occurred": "2025",
         "deployer": "",
         "developer": "",
@@ -437,6 +452,7 @@
       {
         "ref": "AIAAIC1963",
         "headline": "Israel uses AI to kill Hamas official Ibrahim Biari",
+        "tier": "adjacent",
         "occurred": "2023",
         "deployer": "Israel Defense Forces",
         "developer": "Israel Defense Forces",
@@ -457,6 +473,7 @@
       {
         "ref": "AIAAIC1885",
         "headline": "AI gun detector fails to detect Nashville School Shooting weapon",
+        "tier": "adjacent",
         "occurred": "2025",
         "deployer": "Metro Nashville Public Schools",
         "developer": "Omnilert",
@@ -477,6 +494,7 @@
       {
         "ref": "AIAAIC1858",
         "headline": "Ukraine robot-only force attacks Russian troops",
+        "tier": "state",
         "occurred": "2024",
         "deployer": "Government of Ukraine",
         "developer": "",
@@ -497,6 +515,7 @@
       {
         "ref": "AIAAIC1794",
         "headline": "China develops military AI chatbot using Meta's Llama model",
+        "tier": "force",
         "occurred": "2023",
         "deployer": "People's Liberation Army",
         "developer": "Meta Platforms",
@@ -517,6 +536,7 @@
       {
         "ref": "AIAAIC1559",
         "headline": "People in Photo Albums dataset criticised for using sensitive personal images without consent",
+        "tier": "adjacent",
         "occurred": "2019",
         "deployer": "ETH Zurich; Max Planck Institute of Informatics; Toyota Motor Europe; SenseTime; National University of Singapore; National University of Defense Technology, China; Facebook",
         "developer": "UC Berkeley; Facebook",
@@ -537,6 +557,7 @@
       {
         "ref": "AIAAIC1556",
         "headline": "MS-Celeb-1M facial recognition database criticised for violating user privacy",
+        "tier": "adjacent",
         "occurred": "2019",
         "deployer": "Alibaba; École Polytechnique Fédérale de Lausanne; Hitachi; Huawei; IBM; IDIAP Research Institute; Megvii; Microsoft; National University of Defense Technology (NUDT); Nvidia; Panasonic; SenseTime; Universidad Autónoma de Madrid; University of Leicester; Multiple",
         "developer": "Microsoft",
@@ -557,6 +578,7 @@
       {
         "ref": "AIAAIC1545",
         "headline": "US government research dataset raises privacy, misuse concerns",
+        "tier": "adjacent",
         "occurred": "2019",
         "deployer": "SenseTime; NEC; National University of Defense Technology (NUDT)",
         "developer": "Noblis; Iarpa",
@@ -577,6 +599,7 @@
       {
         "ref": "AIAAIC1536",
         "headline": "Duke University pulls facial recognition dataset after privacy controversy",
+        "tier": "force",
         "occurred": "2019",
         "deployer": "CloudWalk; China Electronics Technology Group/Hikvision; Megvii; SenseNets; SeeQuestor; SenseTime; Beihang University; National University of Defense Technology, China; NEC; PLA Army Engineering University",
         "developer": "Ergys Ristani; Francesco Solera; Roger Zou; Rita Cucchiara; Carlo Tomasi; Duke University",
@@ -598,6 +621,7 @@
       {
         "ref": "AIAAIC1446",
         "headline": "Greece fined for AI-powered asylum centre monitoring system",
+        "tier": "state",
         "occurred": "2024",
         "deployer": "Ministry of Immigration and Asylum",
         "developer": "Ministry of Immigration and Asylum",
@@ -618,6 +642,7 @@
       {
         "ref": "AIAAIC1441",
         "headline": "Israel attacks Hamas using AI drone swarm",
+        "tier": "adjacent",
         "occurred": "2021",
         "deployer": "Israel Defense Forces",
         "developer": "Elbit Systems",
@@ -639,6 +664,7 @@
       {
         "ref": "AIAAIC1437",
         "headline": "Grok generates fake Iran missile attack headline",
+        "tier": "adjacent",
         "occurred": "2024",
         "deployer": "Elon Musk",
         "developer": "xAI",
@@ -659,6 +685,7 @@
       {
         "ref": "AIAAIC1430",
         "headline": "Israel reportedly uses AI to identify 37,000 Hamas targets",
+        "tier": "adjacent",
         "occurred": "2023-",
         "deployer": "Israel Defense Forces",
         "developer": "",
@@ -679,6 +706,7 @@
       {
         "ref": "AIAAIC1413",
         "headline": "Israel facial recognition system misidentifies innocent Gazans",
+        "tier": "adjacent",
         "occurred": "2024",
         "deployer": "Israel Defense Forces",
         "developer": "Corsight",
@@ -699,6 +727,7 @@
       {
         "ref": "AIAAIC1312",
         "headline": "Takaful' poverty targeting algorithm unfairly excludes poor Jordanians",
+        "tier": "adjacent",
         "occurred": "2023",
         "deployer": "Jordan National Aid Fund",
         "developer": "The World Bank",
@@ -719,6 +748,7 @@
       {
         "ref": "AIAAIC1232",
         "headline": "Israeli AI automated 'target factory' slaughters innocent Palestinian women, children",
+        "tier": "adjacent",
         "occurred": "2023",
         "deployer": "Israel Defense Forces",
         "developer": "",
@@ -739,6 +769,7 @@
       {
         "ref": "AIAAIC1150",
         "headline": "Defence lawyer using AI 'botches' criminal trial closing argument",
+        "tier": "adjacent",
         "occurred": "2023",
         "deployer": "David Kenner",
         "developer": "EyeLevel.AI; CaseFile Connect",
@@ -759,6 +790,7 @@
       {
         "ref": "AIAAIC1048",
         "headline": "Deepfake 'Chechnyan' soldier posts false Ukraine war stories",
+        "tier": "adjacent",
         "occurred": "2023",
         "deployer": "",
         "developer": "",
@@ -779,6 +811,7 @@
       {
         "ref": "AIAAIC1019",
         "headline": "Pentagon deepfake 'explosion' jitters US stock market",
+        "tier": "adjacent",
         "occurred": "2023",
         "deployer": "xAI",
         "developer": "",
@@ -799,6 +832,7 @@
       {
         "ref": "AIAAIC1002",
         "headline": "Amazon botches delivery drone commercial launch",
+        "tier": "adjacent",
         "occurred": "2022",
         "deployer": "Amazon/Prime Air",
         "developer": "Amazon/Prime Air",
@@ -819,6 +853,7 @@
       {
         "ref": "AIAAIC1001",
         "headline": "Amazon delivery drone crashes, sparks 25-acre fire",
+        "tier": "adjacent",
         "occurred": "2022",
         "deployer": "Amazon/Prime Air",
         "developer": "Amazon/Prime Air",
@@ -839,6 +874,7 @@
       {
         "ref": "AIAAIC0967",
         "headline": "AI system invents 40,000 biochemical warfare agents",
+        "tier": "adjacent",
         "occurred": "2022",
         "deployer": "Collaborations Pharmaceuticals",
         "developer": "Collaborations Pharmaceuticals",
@@ -859,6 +895,7 @@
       {
         "ref": "AIAAIC0939",
         "headline": "Iarpa Janus Benchmark-C (IJP-C) dataset",
+        "tier": "adjacent",
         "occurred": "",
         "deployer": "SenseTime; NEC; National University of Defense Technology (NUDT)",
         "developer": "Noblis; Iarpa",
@@ -879,6 +916,7 @@
       {
         "ref": "AIAAIC0937",
         "headline": "People in Photo Albums (PIPA) dataset",
+        "tier": "adjacent",
         "occurred": "",
         "deployer": "ETH Zurich; Max Planck Institute of Informatics; Toyota Motor Europe; SenseTime; National University of Singapore; National University of Defense Technology, China; Facebook",
         "developer": "UC Berkeley; Facebook",
@@ -899,6 +937,7 @@
       {
         "ref": "AIAAIC0874",
         "headline": "Axon plan to develop school security taser drones prompts backlash",
+        "tier": "adjacent",
         "occurred": "2022",
         "deployer": "",
         "developer": "Axon",
@@ -919,6 +958,7 @@
       {
         "ref": "AIAAIC0854",
         "headline": "Minnesota Operation Safety Net (OSN)",
+        "tier": "state",
         "occurred": "",
         "deployer": "Hennepin County Sheriff’s Office; Department of Homeland Security (DHS); Federal Bureau of Investigation (FBI)",
         "developer": "Department of Homeland Security (DHS); AT&T/Intrepid Networks",
@@ -939,6 +979,7 @@
       {
         "ref": "AIAAIC0847",
         "headline": "Russian KUB-BLA drones conduct autonomous 'suicide' attacks",
+        "tier": "adjacent",
         "occurred": "2022",
         "deployer": "Russian Aerospace Forces",
         "developer": "Rostec/JSC Kalashnikov Concern/ZALA Aero",
@@ -959,6 +1000,7 @@
       {
         "ref": "AIAAIC0845",
         "headline": "Deepfake President Zelenskyy instructs Ukraine army to surrender",
+        "tier": "adjacent",
         "occurred": "2022",
         "deployer": "",
         "developer": "",
@@ -979,6 +1021,7 @@
       {
         "ref": "AIAAIC0837",
         "headline": "Ethiopia Bayraktar TB2 drone Tigray school attack",
+        "tier": "force",
         "occurred": "2022",
         "deployer": "Ethiopian National Defense Force (ENDF)",
         "developer": "Baykar Defence",
@@ -1000,6 +1043,7 @@
       {
         "ref": "AIAAIC0834",
         "headline": "Ukraine uses Bayraktar TB2 drones to hit Russian targets",
+        "tier": "force",
         "occurred": "2021",
         "deployer": "Ministry of Defenсe of Ukraine; Ukrainian Air Force",
         "developer": "Baykar Defence",
@@ -1021,6 +1065,7 @@
       {
         "ref": "AIAAIC0819",
         "headline": "Houthis attack Abu Dhabi oil deport, airport using kamikaze drones",
+        "tier": "adjacent",
         "occurred": "2022",
         "deployer": "Ansar Allah",
         "developer": "Ansar Allah",
@@ -1041,6 +1086,7 @@
       {
         "ref": "AIAAIC0794",
         "headline": "Report: Israel use of facial recognition to monitor Hebron Palestinians raises human right concerns",
+        "tier": "adjacent",
         "occurred": "2020",
         "deployer": "Israel Defense Forces",
         "developer": "",
@@ -1061,6 +1107,7 @@
       {
         "ref": "AIAAIC0788",
         "headline": "Eucharist delivery drone sparks religious controversy",
+        "tier": "adjacent",
         "occurred": "2018",
         "deployer": "São Geraldo Magela church, Sorocaba",
         "developer": "",
@@ -1081,6 +1128,7 @@
       {
         "ref": "AIAAIC0787",
         "headline": "New Delhi police rapped for using facial recognition to monitor India citizenship law protests",
+        "tier": "adjacent",
         "occurred": "2020",
         "deployer": "Delhi Police, Uttar Pradesh Police",
         "developer": "Innefu Labs, Staqu",
@@ -1101,6 +1149,7 @@
       {
         "ref": "AIAAIC0751",
         "headline": "Amazon Ring Always Home Cam",
+        "tier": "adjacent",
         "occurred": "",
         "deployer": "Amazon",
         "developer": "Amazon",
@@ -1121,6 +1170,7 @@
       {
         "ref": "AIAAIC0713",
         "headline": "Unity found to be secretly developing AI products for US military",
+        "tier": "force",
         "occurred": "2021",
         "deployer": "US Department of Defense",
         "developer": "Unity",
@@ -1141,6 +1191,7 @@
       {
         "ref": "AIAAIC0691",
         "headline": "NATO warships' locations are spoofed",
+        "tier": "force",
         "occurred": "2021",
         "deployer": "Royal Navy; Swedish Navy; United States Navy",
         "developer": "International Maritime Organization",
@@ -1162,6 +1213,7 @@
       {
         "ref": "AIAAIC0686",
         "headline": "Dubai drone cloud seeding raises flooding, biodiversity, weaponisation concerns",
+        "tier": "adjacent",
         "occurred": "2021",
         "deployer": "National Center of Meteorology (NCM)",
         "developer": "University of Reading; University of Bath",
@@ -1182,6 +1234,7 @@
       {
         "ref": "AIAAIC0641",
         "headline": "Kargu-2 fully autonomous drone attacks Libyan armed forces",
+        "tier": "state",
         "occurred": "2020",
         "deployer": "Government of Libya",
         "developer": "STM",
@@ -1203,6 +1256,7 @@
       {
         "ref": "AIAAIC0538",
         "headline": "Oosto/AnyVision files facial recognition drone patent",
+        "tier": "adjacent",
         "occurred": "2021",
         "deployer": "",
         "developer": "Oosto/AnyVision Interactive Technologies",
@@ -1223,6 +1277,7 @@
       {
         "ref": "AIAAIC0531",
         "headline": "Israel AI robot machine guns fire tear gas at Palestinian protestors",
+        "tier": "adjacent",
         "occurred": "2022",
         "deployer": "Israel Defense Forces",
         "developer": "Smart Shooter",
@@ -1243,6 +1298,7 @@
       {
         "ref": "AIAAIC0442",
         "headline": "Tyndall Air Force base robot patrol dogs",
+        "tier": "adjacent",
         "occurred": "2020",
         "deployer": "",
         "developer": "Ghost Robotics",
@@ -1261,6 +1317,7 @@
       {
         "ref": "AIAAIC0424",
         "headline": "UK police criticised for using drones to monitor lockdown avoiders",
+        "tier": "adjacent",
         "occurred": "2020",
         "deployer": "Derbyshire Constabulary",
         "developer": "SZ DJI Technology Co",
@@ -1281,6 +1338,7 @@
       {
         "ref": "AIAAIC0215",
         "headline": "AnyVision 'Google Ayosh' Palestinian surveillance",
+        "tier": "adjacent",
         "occurred": "2019",
         "deployer": "Israel Defense Forces",
         "developer": "Oosto/AnyVision Interactive Technologies",
@@ -1301,6 +1359,7 @@
       {
         "ref": "AIAAIC0200",
         "headline": "DukeMTMC facial recognition dataset",
+        "tier": "force",
         "occurred": "",
         "deployer": "CloudWalk; China Electronics Technology Group/Hikvision; Megvii; SenseNets; SeeQuestor; SenseTime; Beihang University; National University of Defense Technology, China; NEC; PLA Army Engineering University",
         "developer": "Ergys Ristani; Francesco Solera; Roger Zou; Rita Cucchiara; Carlo Tomasi; Duke University",
@@ -1322,6 +1381,7 @@
       {
         "ref": "AIAAIC0174",
         "headline": "Google Project Maven drone imaging",
+        "tier": "force",
         "occurred": "2018",
         "deployer": "US Department of Defense",
         "developer": "Google",
@@ -1341,6 +1401,7 @@
       {
         "ref": "AIAAIC037",
         "headline": "Stanford University Brainwash cafe facial recognition dataset",
+        "tier": "adjacent",
         "occurred": "",
         "deployer": "Beijing University of Technology; Delft University of Technology; Honeywell Technology Solutions; Huawei; IDIAP Research Institute; IIT Madras; Megvii; National University of Defense Technology, China; North University of China; Shenzhen University; Qualcomm; University of Electronic Science and Technology of China",
         "developer": "Stanford University; Stewart Russell; Mykhaylo Andriluka; Andrew Ng",
@@ -1361,6 +1422,7 @@
       {
         "ref": "AIAAIC031",
         "headline": "Microsoft Celeb (MS-Celeb-1M) facial recognition dataset",
+        "tier": "adjacent",
         "occurred": "",
         "deployer": "Alibaba; École Polytechnique Fédérale de Lausanne; Hitachi; Huawei; IBM; IDIAP Research Institute; Megvii; Microsoft; National University of Defense Technology (NUDT); Nvidia; Panasonic; SenseTime; Universidad Autónoma de Madrid; University of Leicester; Multiple",
         "developer": "Microsoft",
