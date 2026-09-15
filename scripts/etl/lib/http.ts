@@ -77,12 +77,33 @@ export interface GetOptions {
   accept?: string;
   /** Extra request headers, e.g. an Authorization bearer token. */
   headers?: Record<string, string>;
+  /**
+   * HTTP method. Defaults to GET.
+   *
+   * Some public APIs only expose their useful queries over POST — USAspending's
+   * award search is one — and a GET-only helper leaves a connector writing its
+   * own fetch with its own retry and its own timeout, which is where retry
+   * logic goes to diverge.
+   */
+  method?: "GET" | "POST";
+  /** Request body, for POST. */
+  body?: string;
 }
 
 export async function getText(url: string, opts: GetOptions = {}): Promise<FetchResult<string>> {
-  const { timeoutMs = 30_000, retries = 3, cacheMs = 6 * 60 * 60 * 1000, accept, headers } = opts;
+  const {
+    timeoutMs = 30_000, retries = 3, cacheMs = 6 * 60 * 60 * 1000,
+    accept, headers, method = "GET", body,
+  } = opts;
 
-  if (cacheMs > 0) {
+  /**
+   * The disk cache is keyed on the URL alone, so it is only ever correct for
+   * GET. Two POSTs to one endpoint with different bodies are different
+   * requests that would share a cache entry, and the second would silently
+   * receive the first one's answer.
+   */
+  const cacheable = method === "GET";
+  if (cacheable && cacheMs > 0) {
     const cached = await readCache<string>(url, cacheMs);
     if (cached !== null) return { ok: true, data: cached, fromCache: true, finalUrl: url };
   }
@@ -100,6 +121,8 @@ export async function getText(url: string, opts: GetOptions = {}): Promise<Fetch
     try {
       const res = await fetch(url, {
         signal: controller.signal,
+        method,
+        ...(body !== undefined ? { body } : {}),
         headers: {
           "user-agent": triedBrowserUa ? BROWSER_UA : USER_AGENT,
           "accept-language": "en-IN,en;q=0.9",
@@ -119,9 +142,9 @@ export async function getText(url: string, opts: GetOptions = {}): Promise<Fetch
         if (res.status >= 400 && res.status < 500 && res.status !== 429) break;
         continue;
       }
-      const body = await res.text();
-      await writeCache(url, body);
-      return { ok: true, data: body, finalUrl: res.url || url };
+      const text = await res.text();
+      if (cacheable) await writeCache(url, text);
+      return { ok: true, data: text, finalUrl: res.url || url };
     } catch (err) {
       clearTimeout(timer);
       lastError = err instanceof Error ? err.message : String(err);

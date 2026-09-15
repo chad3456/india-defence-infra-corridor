@@ -1,0 +1,67 @@
+name: Oryx losses and military AI
+
+# Two instance-level records: equipment losses where every entry links to the
+# photograph that confirms it, and AI-in-military evidence where every figure
+# is either an obligated federal award or a catalogued incident with citations.
+#
+# Runs here because the editing sandbox cannot reach any of these hosts.
+#
+# Manual and on-change. Oryx is updated continuously but a story does not need
+# a daily loss count, and a volunteer site should not be polled like an API.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/connectors/oryx.ts"
+      - "scripts/etl/connectors/military-ai.ts"
+      - "scripts/etl/lib/http.ts"
+      - ".github/workflows/attrition.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: attrition
+  cancel-in-progress: true
+
+jobs:
+  oryx:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Fetch Oryx
+        run: npm run oryx:ingest
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/global/oryx.json
+          "chore(global): Oryx photographed losses $(date -u +'%Y-%m-%d %H:%M')"
+
+  # A separate job, not a second step: these two sources have nothing to do
+  # with each other, and one host refusing must not cost the other its run.
+  military-ai:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Fetch incidents and obligations
+        run: npm run military-ai
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/global/military-ai.json
+          "chore(global): military AI incidents and obligations $(date -u +'%Y-%m-%d %H:%M')"
