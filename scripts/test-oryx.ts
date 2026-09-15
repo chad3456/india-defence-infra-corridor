@@ -13,7 +13,7 @@
  * pairing between a loss and its receipt, which is the only thing this dataset
  * is for.
  */
-import { parseItem, classify, statedTotals, textOf } from "./etl/connectors/oryx";
+import { parseItem, classify, statedTotals, textOf, vehiclesIn, enclosingHref } from "./etl/connectors/oryx";
 
 let failures = 0;
 function check(name: string, got: unknown, want: unknown): void {
@@ -49,12 +49,52 @@ console.log("Oryx entry parsing");
   check("legacy layout: model name", r.model, "BMP-1");
   check("legacy layout: both losses found", r.losses.length, 2);
   check("legacy layout: statuses", r.losses.map((l) => l.status), ["destroyed", "captured"]);
+  check("legacy layout: the link that follows a status is its receipt",
+    r.losses.map((l) => l.evidence),
+    ["https://i.postimg.cc/aaa.jpg", "https://i.postimg.cc/bbb.jpg"]);
 }
 {
-  // The bug that cost two CI runs: running both patterns over one block.
+  // The bug that cost two CI runs was counting one loss under two patterns.
+  // With a single bracket-based pass there is one pattern, so the invariant
+  // worth pinning is that a block's losses equal its status brackets: two
+  // blocks' worth of markup is four losses, not eight.
   const r = parseItem(CURRENT + LEGACY);
-  check("a block matching both patterns is not counted twice", r.losses.length, 2);
+  check("losses equal status brackets, never a multiple of them", r.losses.length, 4);
 }
+
+{
+  // The entries the anchor-based reader could not express, which is where the
+  // last few per cent of every section went.
+  const nested = `<details><summary>1 BTR-82A:</summary>
+    <a href="https://postimg.cc/x1"><u>(1, destroyed)</u></a></details>`;
+  const r1 = parseItem(nested);
+  check("markup inside the link does not lose the loss", r1.losses.length, 1);
+  check("and the receipt is still found", r1.losses[0]?.evidence, "https://postimg.cc/x1");
+
+  const pair = `<details><summary>2 T-80BV:</summary>
+    <a href="https://postimg.cc/x2">(1 and 2, destroyed)</a></details>`;
+  const r2 = parseItem(pair);
+  check("two vehicles in one photograph count as two", r2.losses.length, 2);
+  check("and share the one receipt",
+    r2.losses.map((l) => l.evidence), ["https://postimg.cc/x2", "https://postimg.cc/x2"]);
+
+  const bare = `<details><summary>1 Msta-S:</summary>(1, captured)</details>`;
+  const r3 = parseItem(bare);
+  check("a loss with no link is still a loss", r3.losses.length, 1);
+  check("and is flagged as having no receipt", r3.losses[0]?.evidence, "");
+
+  const bracketName = `<details><summary>1 BM-21 (Grad):</summary>
+    <a href="https://postimg.cc/x3">(1, destroyed)</a></details>`;
+  check("a bracket in the model name is not a loss", parseItem(bracketName).losses.length, 1);
+}
+
+console.log("\nBracket arithmetic");
+check("one number is one vehicle", vehiclesIn("1"), 1);
+check("two numbers are two vehicles", vehiclesIn("1 and 2"), 2);
+check("three, comma separated", vehiclesIn("1, 2, 3"), 3);
+check("an empty token is still one", vehiclesIn(""), 1);
+check("an enclosing anchor is found", enclosingHref('<a href="u">(1, destroyed)', 12), "u");
+check("a closed anchor does not enclose", enclosingHref('<a href="u">x</a> (1, destroyed)', 22), "");
 
 console.log("\nStatus classification");
 check("damaged and captured is captured", classify("damaged and captured"), "captured");

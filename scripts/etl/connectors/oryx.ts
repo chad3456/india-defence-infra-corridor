@@ -245,8 +245,61 @@ export function statedTotals(heading: string): Section["stated"] {
  *
  * Both layouts are read now, link-wrapping first.
  */
-const LINK_WRAPPED = /<a\b[^>]*href="([^"]+)"[^>]*>\s*\(\s*\d+\s*,\s*([^)<]+?)\s*\)\s*<\/a>/gi;
-const STATUS_FIRST = /\(\s*\d+\s*,\s*([a-z ]+?)\s*\)\s*(?:<[^>]*>\s*)*?<a\b[^>]*href="([^"]+)"/gi;
+/**
+ * A loss is a status bracket. The anchor around it is its receipt.
+ *
+ * Tying the count to the anchor was wrong twice over. Any nested markup inside
+ * the link — an underline, a span — broke the match, which is where the last
+ * two to eight per cent went; and it cannot express the entries Oryx writes as
+ * "(1 and 2, destroyed)", which are two vehicles in one photograph and count
+ * as two in the source's own totals.
+ *
+ * So every bracket is found first, and the href is looked up afterwards by
+ * walking back to the nearest unclosed anchor. A loss with no receipt this
+ * parser could find is still a loss, counted and flagged, because the source's
+ * total is the thing being checked against.
+ */
+const BRACKET = /\(\s*([\d\s,and&+\u2013\u2014-]*?\d)\s*,\s*([^)<]{3,40}?)\s*\)/gi;
+
+/**
+ * How many vehicles one bracket describes.
+ *
+ * "(1, destroyed)" is one. "(1 and 2, destroyed)" is two: Oryx uses it for two
+ * vehicles visible in a single photograph, and counts both in the section
+ * total. Reading it as one is the difference between agreeing with the source
+ * and being quietly short.
+ */
+export function vehiclesIn(token: string): number {
+  const numbers = token.match(/\d+/g);
+  return Math.max(1, numbers?.length ?? 1);
+}
+
+/**
+ * The receipt for a loss at a position: the anchor around it, or the next one.
+ *
+ * Both layouts are served by one rule. On the current pages the status sits
+ * inside the link, so the enclosing anchor is the evidence. On the older ones
+ * the link follows the status, so the next anchor is — but only if no further
+ * status bracket comes between them, which would mean the link belongs to that
+ * one instead. Returns "" rather than guessing, and a loss with no receipt is
+ * still counted, because the source's own total is what this is checked
+ * against.
+ */
+export function enclosingHref(html: string, at: number): string {
+  const before = html.slice(0, at);
+  const open = before.lastIndexOf("<a ");
+  if (open >= 0 && before.lastIndexOf("</a>") < open) {
+    const href = /href="([^"]+)"/i.exec(html.slice(open, at));
+    if (href?.[1]) return href[1];
+  }
+  const after = html.slice(at);
+  const next = /<a\b[^>]*href="([^"]+)"/i.exec(after);
+  if (!next) return "";
+  const gap = after.slice(0, next.index ?? 0);
+  // Another status bracket in between means that link is the other loss's.
+  if (/\(\s*\d[^)<]*,\s*[a-z][^)<]*\)/i.test(gap.replace(/^[^)]*\)/, ""))) return "";
+  return next[1] ?? "";
+}
 
 /**
  * A compound status to the one it is counted under.
@@ -275,30 +328,18 @@ export function parseItem(html: string): {
   const head = summary?.[1] ?? html.split(/<a\b/i)[0] ?? "";
   const named = /(\d[\d,]*)\s+([^:<]+?)\s*:/.exec(textOf(head));
   const model = named?.[2]?.trim() || textOf(head).replace(/^\d+\s*/, "").replace(/:$/, "").slice(0, 80);
+  // Everything after the summary, so a model name containing a bracket cannot
+  // be read as a loss.
+  const body = summary ? html.slice((summary.index ?? 0) + summary[0].length) : html;
 
   const losses: Array<{ status: Status; raw: string; evidence: string }> = [];
-  for (const m of html.matchAll(LINK_WRAPPED)) {
+  for (const m of body.matchAll(BRACKET)) {
     const raw = (m[2] ?? "").trim();
     const status = classify(raw);
     if (!status) continue;
-    losses.push({ status, raw, evidence: m[1] ?? "" });
-  }
-  /**
-   * The old layout is a fallback, not a supplement.
-   *
-   * Running both patterns over the same block double-counted every loss: the
-   * status text sits *inside* the anchor on the current layout, so the
-   * status-first pattern matched it again and paired it with the next anchor's
-   * href. The guard that was meant to prevent this compared match strings that
-   * could never contain one another. It only runs now when the current
-   * pattern found nothing at all in this block.
-   */
-  if (losses.length === 0) {
-    for (const m of html.matchAll(STATUS_FIRST)) {
-      const raw = (m[1] ?? "").trim();
-      const status = classify(raw);
-      if (!status) continue;
-      losses.push({ status, raw, evidence: m[2] ?? "" });
+    const evidence = enclosingHref(body, m.index ?? 0);
+    for (let i = 0; i < vehiclesIn(m[1] ?? ""); i++) {
+      losses.push({ status, raw, evidence });
     }
   }
   return { model, losses };
