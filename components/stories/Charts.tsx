@@ -61,10 +61,19 @@ const FILL: Record<Tone, string> = {
   cool: "var(--s-cool-fill)",
 };
 
-/** A chart's own horizontal scroll. See the width rule above. */
+/**
+ * A chart's own horizontal scroll. See the width rule above.
+ *
+ * `min-w-0` is not cosmetic. A grid or flex item's automatic minimum size is
+ * its content's, so a scroll container holding a 468px chart is itself sized
+ * to 468px by its parent and never scrolls — it just pushes the page sideways.
+ * The temple story's state grid did exactly that: `overflow-x-auto` was set,
+ * the chart still hung 109px off a 400px viewport, and the container looked
+ * innocent because the rule that failed was on its parent.
+ */
 export function Scroller({ min, children }: { min: number; children: ReactNode }) {
   return (
-    <div className="-mx-1 overflow-x-auto px-1 pb-1">
+    <div className="-mx-1 min-w-0 max-w-full overflow-x-auto px-1 pb-1">
       <div style={{ minWidth: min }}>{children}</div>
     </div>
   );
@@ -996,15 +1005,27 @@ export function DotStrip({
 }) {
   const colW = dotSize + gap;
   const fmt = format ?? ((n: number) => String(n));
-  const width = bins.reduce((a, b) => a + Math.max(1, Math.ceil(b.count / maxPerColumn)) * colW + 14, 10);
   const height = maxPerColumn * (dotSize + gap) + 44;
+  /**
+   * A group is at least as wide as its own label.
+   *
+   * Sized to the dots alone, a bin holding nine items is one column of six
+   * pixels with "founding date" written under it, and three such bins in a row
+   * overprint each other into a single unreadable smear. The labels are the
+   * axis here, so they set the spacing and the dots sit inside it.
+   */
   let x = 10;
   const groups = bins.map((b) => {
     const cols = Math.max(1, Math.ceil(b.count / maxPerColumn));
+    const labelW = Math.max(b.label.length, fmt(b.count).length) * 5.6;
+    const span = Math.max(cols * colW, labelW) + 12;
     const at = x;
-    x += cols * colW + 14;
+    x += span;
     return { b, at, cols };
   });
+  // Trailing room for the last group's label, which starts at its group's left
+  // edge and runs right past it.
+  const width = x + 10;
   return (
     <Scroller min={Math.min(width, 560)}>
       <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height} role="img"
@@ -1054,6 +1075,26 @@ const GRID: Array<[string, number, number]> = [
   ["Kerala", 7, 2], ["Tamil Nadu", 7, 3], ["Puducherry", 7, 4], ["Lakshadweep", 7, 0],
 ];
 
+/**
+ * The standard two-letter code for each state.
+ *
+ * Slicing letters off the name produced "NCOF" for Delhi and "JA" for Jammu &
+ * Kashmir. These are the codes on the number plates, which is the abbreviation
+ * every Indian reader already knows — a tile grid is only readable if the
+ * label needs no decoding.
+ */
+const CODE: Record<string, string> = {
+  "Andhra Pradesh": "AP", "Arunachal Pradesh": "AR", "Assam": "AS", "Bihar": "BR",
+  "Chhattisgarh": "CG", "Goa": "GA", "Gujarat": "GJ", "Haryana": "HR",
+  "Himachal Pradesh": "HP", "Jharkhand": "JH", "Jammu & Kashmir": "JK", "Karnataka": "KA",
+  "Kerala": "KL", "Ladakh": "LA", "Madhya Pradesh": "MP", "Maharashtra": "MH",
+  "Manipur": "MN", "Meghalaya": "ML", "Mizoram": "MZ", "Nagaland": "NL",
+  "NCT of Delhi": "DL", "Odisha": "OD", "Punjab": "PB", "Puducherry": "PY",
+  "Rajasthan": "RJ", "Sikkim": "SK", "Tamil Nadu": "TN", "Telangana": "TS",
+  "Tripura": "TR", "Uttar Pradesh": "UP", "Uttarakhand": "UK", "West Bengal": "WB",
+  "Chandigarh": "CH", "Andaman & Nicobar": "AN", "Daman & Diu": "DD", "Lakshadweep": "LD",
+};
+
 export function GridMap({
   values, format, scale = "hot", empty = "not in this dataset",
 }: {
@@ -1082,7 +1123,7 @@ export function GridMap({
             // twenty-nine tiles in the bottom tenth of the scale, i.e. one
             // colour.
             const t = v ? Math.sqrt(v.value / max) : 0;
-            const short = name.replace(/ & /g, "&").split(" ").map((w) => w.slice(0, 2)).join("").slice(0, 4);
+            const short = CODE[name] ?? name.slice(0, 2).toUpperCase();
             return (
               <g key={name}>
                 <rect x={col * cell + 2} y={row * cell + 2} width={cell - 4} height={cell - 4} rx={5}

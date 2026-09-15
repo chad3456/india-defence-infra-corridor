@@ -4,7 +4,7 @@ import { Eyebrow } from "@/components/stories/Kit";
 /**
  * The index of visual stories.
  *
- * Three so far, each built on data already in this repository rather than
+ * Four so far, each built on data already in this repository rather than
  * assembled for the occasion — which is the only reason these pages are
  * allowed to be this loud. The register puts a number at 58px; the number has
  * to be one the rest of the site would stand behind at 13px.
@@ -12,8 +12,8 @@ import { Eyebrow } from "@/components/stories/Kit";
 export const metadata = {
   title: "Visual stories · Bharat Tracker",
   description:
-    "Short, data-led stories on Indian semiconductors, defence manufacturing and farming — " +
-    "each built from the sourced series behind the rest of this site.",
+    "Short, data-led stories on Indian semiconductors, defence manufacturing, farming and " +
+    "sacred geography — each built from the sourced series behind the rest of this site.",
 };
 
 const STORIES = [
@@ -21,12 +21,12 @@ const STORIES = [
     href: "/stories/semiconductors",
     tone: "hot" as const,
     kicker: "electronics · trade",
-    title: "India Learned to Assemble. It Has Not Learned to Fabricate.",
+    title: "India Buys the World's Chips. It Sells Almost None.",
     blurb:
-      "Phones flipped from a $19.6bn deficit to a $4.4bn surplus in seven years. Chips went the " +
-      "other way — and the second is the price of the first.",
-    stat: "$23.4bn",
-    statLabel: "chips imported, 2024",
+      "Of the world's twenty-five largest chip importers, India has the lowest export cover " +
+      "there is. Five countries are three quarters of the trade.",
+    stat: "1.1%",
+    statLabel: "cents of chips sold per dollar bought",
   },
   {
     href: "/stories/defence",
@@ -50,6 +50,17 @@ const STORIES = [
     stat: "391 Mt",
     statLabel: "cereals produced, 2024",
   },
+  {
+    href: "/stories/temples",
+    tone: "mid" as const,
+    kicker: "sacred geography · coverage",
+    title: "Three Thousand Temples, and a Map of Who Has Been Typing.",
+    blurb:
+      "Half the atlas is in two states and fifteen per cent of it names a deity. The canon " +
+      "sets are the one place its coverage can be measured rather than guessed.",
+    stat: "3,465",
+    statLabel: "sites with coordinates",
+  },
 ];
 
 export default function StoriesIndex() {
@@ -58,7 +69,7 @@ export default function StoriesIndex() {
       <header className="pt-10">
         <Eyebrow>visual stories</Eyebrow>
         <h1 className="story-display mt-4 max-w-[16ch] text-[40px] sm:text-[56px] lg:text-[64px]">
-          Three arguments, told in numbers.
+          Four arguments, told in numbers.
         </h1>
         <p className="mt-5 max-w-[60ch] text-[15px] leading-[1.62]" style={{ color: "var(--story-ink-2)" }}>
           Each of these is built from series already published elsewhere on this site, with the
@@ -67,7 +78,7 @@ export default function StoriesIndex() {
         </p>
       </header>
 
-      <div className="mt-12 grid gap-5 lg:grid-cols-3">
+      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {STORIES.map((s) => (
           <Link key={s.href} href={s.href} className="story-card block p-6 transition-transform hover:-translate-y-1"
             data-tone={s.tone}>
