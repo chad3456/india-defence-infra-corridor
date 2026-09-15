@@ -40,6 +40,19 @@ const FILL_VAR: Record<Tone, string> = {
 export function toneColour(t: Tone): string { return TONE_VAR[t]; }
 export function toneFill(t: Tone): string { return FILL_VAR[t]; }
 
+/**
+ * A percentage, to one decimal, never raw.
+ *
+ * World Bank values carry full float precision, and the farm story printed
+ * agriculture's employment share as "41.6251280877573%" before anyone looked.
+ * That is fifteen significant figures on a modelled estimate whose *first*
+ * decimal is uncertain — a number claiming a confidence nothing supports. It
+ * lives in the kit so no story has to remember.
+ */
+export function pct(v: number | null | undefined, dp = 1): string {
+  return v === null || v === undefined ? "—" : `${v.toFixed(dp)}%`;
+}
+
 /** The coloured caps-label above a section. */
 export function Eyebrow({ children, tone }: { children: ReactNode; tone?: Tone }) {
   return (
@@ -165,8 +178,25 @@ export function Columns({
 }) {
   const max = Math.max(1, ...points.map((p) => p.value));
   const fmt = format ?? ((v: number) => String(Math.round(v)));
+  /**
+   * A floor per column, and the chart scrolls rather than crushing itself.
+   *
+   * The farm yield chart is twenty-four columns of four-digit numbers. At
+   * 400px that is eleven pixels a column for a label twenty-four pixels wide,
+   * so the numbers painted over each other and over the page edge — the
+   * document scrolled sideways by exactly the overspill and no single element
+   * was ever wider than the viewport, which is why an element-by-element check
+   * found nothing.
+   *
+   * Charts are one of the three things allowed to be wider than the page, in
+   * their own scroll container. That is the fix here rather than dropping
+   * labels, because a column whose value you cannot read is not a cheaper
+   * chart, it is a different one.
+   */
+  const minWidth = points.length * 30;
   return (
-    <div className="flex items-end gap-1.5 sm:gap-2.5">
+    <div className="-mx-1 overflow-x-auto px-1">
+      <div className="flex items-end gap-1.5 sm:gap-2.5" style={{ minWidth }}>
       {points.map((p, i) => {
         const last = highlightLast && i === points.length - 1;
         return (
@@ -211,6 +241,7 @@ export function Columns({
           </div>
         );
       })}
+      </div>
     </div>
   );
 }
