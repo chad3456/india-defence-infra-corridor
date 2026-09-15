@@ -1,0 +1,304 @@
+{
+  "probedAt": "2026-09-15T17:54:44.351Z",
+  "question": "Is there an instance-level, verifiable record of commercial drone use in Ukraine and of AI in military operations — thousands of individual occurrences, each with a citation — or only aggregate claims from parties to the conflict?",
+  "refusal": "This file publishes no tally, no loss figure, no casualty number and no dollar amount. It records only whether a source answered, in what shape, and roughly how many rows it appears to carry. A probe log that quoted a loss count beside a URL would be a casualty claim with a filename where a citation should be.",
+  "note": "Loss records like Oryx are undercounts by construction: a vehicle nobody photographed is not in the list. That is a feature for citability and a trap for comparison — the two sides are photographed at different rates by different numbers of people with different phones and different reasons to post. Any page built on this must say so in the same breath as the number.",
+  "findings": [
+    {
+      "id": "oryx:russia",
+      "kind": "verified-loss",
+      "what": "Oryx, Russian equipment losses, one entry per photographed item",
+      "url": "https://www.oryxspioenkop.com/2022/02/attack-on-europe-documenting-equipment.html",
+      "settles": "Whether a per-item, photo-linked loss record can be read by a script at all",
+      "ok": true,
+      "status": "200",
+      "bytes": 1898488,
+      "shape": "html",
+      "found": [
+        "destroyed",
+        "damaged",
+        "captured",
+        "abandoned",
+        "postimg",
+        "Unmanned"
+      ],
+      "missing": [],
+      "counts": {
+        "listItems": 679,
+        "destroyedTags": 17703,
+        "damagedTags": 900,
+        "capturedTags": 2406,
+        "evidenceLinks": 20983,
+        "uavHeadings": 2
+      }
+    },
+    {
+      "id": "oryx:ukraine",
+      "kind": "verified-loss",
+      "what": "Oryx, Ukrainian equipment losses, the mirror list",
+      "url": "https://www.oryxspioenkop.com/2022/02/attack-on-europe-documenting-ukrainian.html",
+      "settles": "Whether both sides can be read the same way, so neither is the only side shown",
+      "ok": true,
+      "status": "200",
+      "bytes": 1532869,
+      "shape": "html",
+      "found": [
+        "destroyed",
+        "captured",
+        "Unmanned"
+      ],
+      "missing": [],
+      "counts": {
+        "listItems": 629,
+        "destroyedTags": 9243,
+        "evidenceLinks": 11880,
+        "uavHeadings": 2
+      }
+    },
+    {
+      "id": "usaspending:agency",
+      "kind": "procurement",
+      "what": "USAspending, a keyless federal award API",
+      "url": "https://api.usaspending.gov/api/v2/references/toptier_agencies/",
+      "settles": "Whether the award API answers without a key, and what it calls the defence agencies",
+      "ok": true,
+      "status": "200",
+      "bytes": 52613,
+      "shape": "json",
+      "found": [
+        "Department of Defense",
+        "toptier_code",
+        "agency_name"
+      ],
+      "missing": [],
+      "counts": {
+        "agencies": 111
+      }
+    },
+    {
+      "id": "usaspending:psc",
+      "kind": "procurement",
+      "what": "USAspending, the product and service code tree",
+      "url": "https://api.usaspending.gov/api/v2/references/filter_tree/psc/",
+      "settles": "Whether contracts can be filtered by what was bought rather than by a keyword search",
+      "ok": true,
+      "status": "200",
+      "bytes": 262,
+      "shape": "json",
+      "found": [
+        "children",
+        "count"
+      ],
+      "missing": [],
+      "counts": {
+        "nodes": 0
+      }
+    },
+    {
+      "id": "usaspending:naics",
+      "kind": "procurement",
+      "what": "USAspending, an award-by-id record, to see a single row's shape",
+      "url": "https://api.usaspending.gov/api/v2/awards/CONT_AWD_N0001919C0001_9700_-NONE-_-NONE-/",
+      "settles": "What one award record carries, so a connector knows which fields exist",
+      "ok": true,
+      "status": "200",
+      "bytes": 6582,
+      "shape": "json",
+      "found": [
+        "description",
+        "total_obligation",
+        "recipient"
+      ],
+      "missing": []
+    },
+    {
+      "id": "aiid:index",
+      "kind": "ai-incident",
+      "what": "AI Incident Database, the public snapshot index",
+      "url": "https://incidentdatabase.ai/research/snapshots/",
+      "settles": "Whether the incident corpus is downloadable in bulk rather than scraped",
+      "ok": true,
+      "status": "200",
+      "bytes": 386000,
+      "shape": "html",
+      "found": [
+        "snapshot",
+        "download"
+      ],
+      "missing": [
+        "mongodump"
+      ]
+    },
+    {
+      "id": "aiid:api",
+      "kind": "ai-incident",
+      "what": "AI Incident Database, GraphQL",
+      "url": "https://incidentdatabase.ai/api/graphql?query=%7Bincidents(limit:1)%7Bincident_id%20title%7D%7D",
+      "settles": "Whether incidents can be queried directly",
+      "ok": false,
+      "status": "HTTP 400",
+      "bytes": null
+    },
+    {
+      "id": "aiaaic:sheet",
+      "kind": "ai-incident",
+      "what": "AIAAIC repository, the public spreadsheet as CSV",
+      "url": "https://docs.google.com/spreadsheets/d/1Bn55B4xz21-_Rgdr8BBb2lt0n_4rzLGxFADMlVW0PYI/export?format=csv&gid=888071280",
+      "settles": "Whether a thousand-row incident register with a military sector exists as machine-readable text",
+      "ok": true,
+      "status": "200",
+      "bytes": 966047,
+      "shape": "csv",
+      "found": [
+        "Type",
+        "Sector",
+        "Technology",
+        "Country"
+      ],
+      "missing": [],
+      "counts": {
+        "rows": 2268,
+        "military": 146
+      }
+    },
+    {
+      "id": "ucdp:ged",
+      "kind": "event-data",
+      "what": "UCDP georeferenced events, Ukraine, one year",
+      "url": "https://ucdpapi.pcr.uu.se/api/gedevents/25.1?pagesize=10&Country=Ukraine",
+      "settles": "Whether a per-event, geolocated, source-cited conflict dataset is keyless",
+      "ok": false,
+      "status": "HTTP 401",
+      "bytes": null
+    },
+    {
+      "id": "acled:api",
+      "kind": "event-data",
+      "what": "ACLED, which classifies drone strikes as their own event subtype",
+      "url": "https://api.acleddata.com/acled/read?limit=1",
+      "settles": "Whether ACLED answers without a key — it is the only source that types a drone strike as such",
+      "ok": false,
+      "status": "fetch failed",
+      "bytes": null
+    },
+    {
+      "id": "wiki:List_of_equipment_of_the_Ukrainian_Ground_Forces",
+      "kind": "encyclopaedia",
+      "what": "List of equipment of the Ukrainian Ground Forces",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=List_of_equipment_of_the_Ukrainian_Ground_Forces&redirects=1",
+      "settles": "Whether an equipment list gives a per-type table a script can read",
+      "ok": true,
+      "status": "200",
+      "bytes": 303150,
+      "shape": "json",
+      "found": [
+        "unmanned",
+        "UAV",
+        "drone"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 889,
+        "tables": 51,
+        "refs": 757,
+        "sections": 17
+      }
+    },
+    {
+      "id": "wiki:Unmanned_aerial_vehicles_in_the_Russo-Ukrainian_War",
+      "kind": "encyclopaedia",
+      "what": "Unmanned aerial vehicles in the Russo-Ukrainian War",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=Unmanned_aerial_vehicles_in_the_Russo-Ukrainian_War&redirects",
+      "settles": "Whether there is a single article indexing the UAV types in this war",
+      "ok": true,
+      "status": "200",
+      "bytes": 397,
+      "shape": "json",
+      "found": [],
+      "missing": [
+        "Bayraktar",
+        "Shahed",
+        "Lancet",
+        "FPV",
+        "commercial"
+      ],
+      "note": "decode path \"parse.wikitext.*\" did not reach a string; counted the raw body",
+      "counts": {
+        "tableRows": 0,
+        "tables": 0,
+        "refs": 0,
+        "sections": 0
+      }
+    },
+    {
+      "id": "wiki:Artificial_intelligence_arms_race",
+      "kind": "encyclopaedia",
+      "what": "Artificial intelligence arms race",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=Artificial_intelligence_arms_race&redirects=1",
+      "settles": "Whether a survey article indexes named military AI programmes",
+      "ok": true,
+      "status": "200",
+      "bytes": 149395,
+      "shape": "json",
+      "found": [
+        "Project Maven",
+        "autonomous",
+        "Lavender",
+        "targeting"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 89,
+        "tables": 2,
+        "refs": 199,
+        "sections": 11
+      }
+    },
+    {
+      "id": "wiki:Project_Maven",
+      "kind": "encyclopaedia",
+      "what": "Project Maven",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=Project_Maven&redirects=1",
+      "settles": "A named, documented military AI programme with dates and contracts",
+      "ok": true,
+      "status": "200",
+      "bytes": 54143,
+      "shape": "json",
+      "found": [
+        "Google",
+        "Pentagon",
+        "algorithmic warfare"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 0,
+        "tables": 0,
+        "refs": 122,
+        "sections": 7
+      }
+    },
+    {
+      "id": "wiki:DJI_Mavic",
+      "kind": "encyclopaedia",
+      "what": "DJI Mavic",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=DJI_Mavic&redirects=1",
+      "settles": "Whether the single most-used commercial airframe in this war has a readable article",
+      "ok": true,
+      "status": "200",
+      "bytes": 55707,
+      "shape": "json",
+      "found": [
+        "Mavic",
+        "Ukraine",
+        "military"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 0,
+        "tables": 0,
+        "refs": 196,
+        "sections": 8
+      }
+    }
+  ]
+}
