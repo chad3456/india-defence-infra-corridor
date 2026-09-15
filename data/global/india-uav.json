@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-15T13:42:51.574Z",
+  "builtAt": "2026-09-15T13:49:24.746Z",
   "source": "English Wikipedia, via the MediaWiki API. The article set is whatever the categories named below contain, plus the unmanned-looking links in the list articles named beside them. Every field is read from the article's own infobox, and the status string is carried verbatim beside the bucket it was sorted into.",
   "method": "The indexes are the claim rather than a list of programmes anyone typed, so an omission is an omission from Wikipedia's own categorisation and not from someone's recall. The category namespace is searched, one level of unmanned-looking subcategory is walked, and every category actually read is published. Pages with no usable infobox are recorded with the templates they did carry — most are organisations or umbrella projects.",
   "cannotSay": [
@@ -302,17 +302,17 @@
   "counts": {
     "articlesIndexed": 183,
     "withInfobox": 68,
-    "keptAsUnmanned": 17,
-    "filteredNotUnmanned": 51,
+    "keptAsUnmanned": 16,
+    "filteredNotUnmanned": 52,
     "noInfobox": 115,
     "categoriesRead": 4
   },
   "byStage": {
-    "in service": 2,
-    "flying": 2,
+    "in service": 3,
+    "flying": 4,
     "in development": 1,
     "cancelled": 1,
-    "unstated": 11
+    "unstated": 7
   },
   "filtered": [
     {
@@ -398,6 +398,10 @@
     {
       "title": "INSAS rifle",
       "role": null
+    },
+    {
+      "title": "Integrated Drone Detection & Interdiction System",
+      "role": "Laser weapon"
     },
     {
       "title": "K-4 (missile)",
@@ -586,7 +590,8 @@
     {
       "title": "DRDO Abhyas",
       "status": null,
-      "stage": "unstated",
+      "stage": "flying",
+      "stageBasis": "stated first flight",
       "role": null,
       "manufacturer": "Hindustan Aeronautics Limited Larsen and Toubro",
       "origin": "India",
@@ -602,6 +607,7 @@
       "title": "DRDO Bharat",
       "status": null,
       "stage": "unstated",
+      "stageBasis": "none",
       "role": null,
       "manufacturer": null,
       "origin": "India",
@@ -617,6 +623,7 @@
       "title": "DRDO Ghatak",
       "status": "Under development",
       "stage": "in development",
+      "stageBasis": "status field",
       "role": null,
       "manufacturer": null,
       "origin": "India",
@@ -632,7 +639,8 @@
     {
       "title": "DRDO Imperial Eagle",
       "status": "Flight tested",
-      "stage": "unstated",
+      "stage": "flying",
+      "stageBasis": "status field",
       "role": null,
       "manufacturer": "Aeronautical Development Establishment Council of Scientific and Industrial Research-National Aerospace Laboratories",
       "origin": "India",
@@ -648,6 +656,7 @@
       "title": "DRDO Kapothaka",
       "status": null,
       "stage": "unstated",
+      "stageBasis": "none",
       "role": null,
       "manufacturer": "Aeronautical Development Establishment",
       "origin": "India",
@@ -663,6 +672,7 @@
       "title": "DRDO Lakshya",
       "status": "Active",
       "stage": "in service",
+      "stageBasis": "status field",
       "role": "Target drone",
       "manufacturer": "Hindustan Aeronautics Limited",
       "origin": null,
@@ -677,7 +687,8 @@
     {
       "title": "DRDO Muntra",
       "status": null,
-      "stage": "unstated",
+      "stage": "in service",
+      "stageBasis": "stated service entry",
       "role": "Unmanned vehicle",
       "manufacturer": "Ordnance Factory",
       "origin": "India",
@@ -693,6 +704,7 @@
       "title": "DRDO Netra",
       "status": "Active",
       "stage": "in service",
+      "stageBasis": "status field",
       "role": null,
       "manufacturer": "IdeaForge",
       "origin": "India",
@@ -706,8 +718,9 @@
     },
     {
       "title": "DRDO Nishant",
-      "status": "&quot;Abandoned project&quot;",
+      "status": "\"Abandoned project\"",
       "stage": "cancelled",
+      "stageBasis": "status field",
       "role": "Military UAV",
       "manufacturer": "ARDE CISR-NAL R&DE(E)",
       "origin": null,
@@ -723,6 +736,7 @@
       "title": "DRDO Rustom",
       "status": null,
       "stage": "unstated",
+      "stageBasis": "none",
       "role": null,
       "manufacturer": "Aeronautical Development Establishment of DRDO",
       "origin": "India",
@@ -738,6 +752,7 @@
       "title": "HAL CATS Warrior",
       "status": "Prototype testing",
       "stage": "flying",
+      "stageBasis": "status field",
       "role": null,
       "manufacturer": "Hindustan Aeronautics Limited",
       "origin": "India",
@@ -750,24 +765,10 @@
       ]
     },
     {
-      "title": "Integrated Drone Detection & Interdiction System",
-      "status": null,
-      "stage": "unstated",
-      "role": "Laser weapon",
-      "manufacturer": "Bharat Electronics",
-      "origin": "India",
-      "firstFlight": null,
-      "introduced": 2024,
-      "numberBuilt": null,
-      "primaryUser": "Corps of Army Air Defence",
-      "via": [
-        "Category:Defence Research and Development Organisation"
-      ]
-    },
-    {
       "title": "KAL (drone)",
       "status": null,
       "stage": "unstated",
+      "stageBasis": "none",
       "role": "* Loitering munition * One-way attack drone",
       "manufacturer": "IG Defence",
       "origin": null,
@@ -783,6 +784,7 @@
       "title": "Nagastra-1",
       "status": null,
       "stage": "unstated",
+      "stageBasis": "none",
       "role": "Unmanned aerial vehicle Loitering munition",
       "manufacturer": "Economic Explosives Limited",
       "origin": "India",
@@ -798,6 +800,7 @@
       "title": "Rudrastra",
       "status": null,
       "stage": "unstated",
+      "stageBasis": "none",
       "role": null,
       "manufacturer": "Solar Aerospace and Defence Limited",
       "origin": "India",
@@ -813,6 +816,7 @@
       "title": "Sheshnaag-150",
       "status": null,
       "stage": "unstated",
+      "stageBasis": "none",
       "role": "* Loitering munition * One-way attack drone",
       "manufacturer": "NewSpace Research and Technologies (NRT)",
       "origin": null,
@@ -828,6 +832,7 @@
       "title": "TAPAS-BH-201",
       "status": "User trials",
       "stage": "flying",
+      "stageBasis": "status field",
       "role": null,
       "manufacturer": "Bharat Electronics Hindustan Aeronautics Limited",
       "origin": "India",
