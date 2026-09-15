@@ -82,7 +82,11 @@ const FILL: Record<Tone, string> = {
  */
 export function Scroller({ min, children }: { min: number; children: ReactNode }) {
   return (
-    <div className="-mx-1 min-w-0 max-w-full overflow-x-auto px-1 pb-1">
+    // w-full as well as max-w-full: max-width resolves against the parent, and
+    // a single-column grid track is sized `auto`, so the parent can itself be
+    // as wide as this chart wants. Pinning the width to the track rather than
+    // to the content is what makes the overflow scroll instead of push.
+    <div className="-mx-1 w-full min-w-0 max-w-full overflow-x-auto px-1 pb-1">
       <div style={{ minWidth: min }}>{children}</div>
     </div>
   );

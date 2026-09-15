@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "drone-war-2026-09",
+    title: "Drones and military AI",
+    blurb:
+      "A photo-verified archive of 36,000 vehicle losses holds a few dozen drones — and what " +
+      "that absence says about every drone figure in circulation.",
+    href: "/stories/drone-war",
+    since: "2026-09-15",
+  },
+  {
     id: "drones-strait-2026-09",
     title: "Drones and the Strait",
     blurb:
@@ -66,7 +75,7 @@ export const WHATS_NEW: NewFeature[] = [
     id: "stories-2026-09",
     title: "Visual stories",
     blurb:
-      "Five short, data-led arguments — where India sits in the world chip trade, what the " +
+      "Six short, data-led arguments — where India sits in the world chip trade, what the " +
       "defence export figure counts, the gap between farm output and farm income, what India " +
       "has at stake in West Asia, and what a temple atlas can and cannot say.",
     href: "/stories",

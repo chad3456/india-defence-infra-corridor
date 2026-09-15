@@ -63,34 +63,38 @@ export const metadata = {
 
 /** The register's tiers, in the order the page reads them. */
 const TIERS = [
-  { id: "force" as const, label: "An armed force deployed it", tone: "hot" as const },
-  { id: "state" as const, label: "A government deployed it", tone: "mid" as const },
-  { id: "adjacent" as const, label: "Military-adjacent technology", tone: "cool" as const },
+  { id: "force" as const, label: "an armed force", tone: "hot" as const },
+  { id: "state" as const, label: "a government", tone: "mid" as const },
+  { id: "adjacent" as const, label: "neither", tone: "cool" as const },
 ];
 
 function IncidentCard({ i }: { i: Incident }) {
   return (
-    <li className="story-card p-4 sm:p-5" data-tone={i.tier === "force" ? "hot" : i.tier === "state" ? "mid" : "cool"}>
-      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+    <li className="story-card min-w-0 p-4 sm:p-5" data-tone={i.tier === "force" ? "hot" : i.tier === "state" ? "mid" : "cool"}>
+      <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
         <span className="mono text-[11px]" style={{ color: "var(--story-ink-3)" }}>
           {i.occurred || "date not stated"}
         </span>
         {i.deployer && (
-          <span className="text-[11.5px] font-bold" style={{ color: "var(--s-hot)" }}>{i.deployer}</span>
+          <span className="min-w-0 break-words text-[11.5px] font-bold" style={{ color: "var(--s-hot)" }}>
+            {i.deployer}
+          </span>
         )}
         {i.system && (
-          <span className="mono text-[11px]" style={{ color: "var(--story-ink-2)" }}>{i.system}</span>
+          <span className="mono min-w-0 break-words text-[11px]" style={{ color: "var(--story-ink-2)" }}>
+            {i.system}
+          </span>
         )}
       </div>
-      <p className="mt-2 text-[13px] font-semibold leading-[1.45]">{i.headline}</p>
-      <dl className="mt-2.5 grid gap-x-4 gap-y-0.5 text-[11px] sm:grid-cols-2">
+      <p className="mt-2 break-words text-[13px] font-semibold leading-[1.45]">{i.headline}</p>
+      <dl className="mt-2.5 grid grid-cols-[minmax(0,1fr)] gap-x-4 gap-y-0.5 text-[11px] sm:grid-cols-2">
         {[
           ["technology", i.technology],
           ["purpose", i.purpose],
           ["issue the register records", i.ethicalIssue],
           ["harm status", i.harmStatus],
         ].filter(([, v]) => v).map(([k, v]) => (
-          <div key={k as string} className="flex gap-1.5">
+          <div key={k as string} className="flex min-w-0 gap-1.5">
             <dt className="shrink-0" style={{ color: "var(--story-ink-3)" }}>{k}:</dt>
             <dd className="min-w-0 truncate" style={{ color: "var(--story-ink-2)" }}>{v}</dd>
           </div>
@@ -233,7 +237,7 @@ export default function DroneWarStory() {
             do not reach a single cell.
           </Standfirst>
           <div className="story-card mt-7 p-5 sm:p-7">
-            <div className="grid gap-9 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+            <div className="grid grid-cols-[minmax(0,1fr)] gap-9 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
               <div className="min-w-0">
                 <ChartTitle note={`One square is 1% of the ${bothStated.toLocaleString("en-US")} entries, about ${Math.round(bothStated / 100)} vehicles.`}>
                   The archive by category
@@ -313,7 +317,7 @@ export default function DroneWarStory() {
             because the wreck is identifiable and worth photographing.
           </Standfirst>
           <div className="story-card mt-7 p-5 sm:p-7">
-            <div className="grid gap-9 lg:grid-cols-2">
+            <div className="grid grid-cols-[minmax(0,1fr)] gap-9 lg:grid-cols-2">
               <div className="min-w-0">
                 <ChartTitle note="Entries per type, both sides. One row is one model of aircraft.">
                   By type
@@ -353,7 +357,7 @@ export default function DroneWarStory() {
               <ChartTitle note="Each row is one aircraft and links to the photograph the archive cites for it.">
                 The rows themselves
               </ChartTitle>
-              <ul className="m-0 grid list-none gap-x-7 gap-y-0 p-0 sm:grid-cols-2">
+              <ul className="m-0 grid list-none grid-cols-[minmax(0,1fr)] gap-x-7 gap-y-0 p-0 sm:grid-cols-2">
                 {verified.slice(0, 30).map((i, n) => (
                   <li key={`${i.model}-${n}`}
                     className="flex items-baseline justify-between gap-3 border-b py-2"
@@ -526,7 +530,7 @@ export default function DroneWarStory() {
               down, not a count of what has happened.
             </Standfirst>
             <div className="story-card mt-7 p-5 sm:p-7">
-              <div className="grid gap-9 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
+              <div className="grid grid-cols-[minmax(0,1fr)] gap-9 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
                 <div className="min-w-0">
                   <ChartTitle note="Who the register names as having deployed the system. One dot is one row.">
                     Who deployed it
@@ -589,13 +593,13 @@ export default function DroneWarStory() {
                 several are contested by the party they describe, and the register records that in
                 its harm-status column rather than resolving it.
               </Standfirst>
-              <ul className="mt-7 grid list-none gap-4 p-0 lg:grid-cols-2">
+              <ul className="mt-7 grid list-none grid-cols-[minmax(0,1fr)] gap-4 p-0 lg:grid-cols-2">
                 {forceRows.slice(0, 12).map((i) => <IncidentCard key={`${i.ref}-${i.headline}`} i={i} />)}
               </ul>
               {stateRows.length > 0 && (
                 <>
                   <h3 className="story-display mt-10 text-[20px]">And where a government is.</h3>
-                  <ul className="mt-4 grid list-none gap-4 p-0 lg:grid-cols-2">
+                  <ul className="mt-4 grid list-none grid-cols-[minmax(0,1fr)] gap-4 p-0 lg:grid-cols-2">
                     {stateRows.slice(0, 6).map((i) => <IncidentCard key={`${i.ref}-${i.headline}`} i={i} />)}
                   </ul>
                 </>

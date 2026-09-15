@@ -5,7 +5,7 @@ import NewBadge from "@/components/ui/NewBadge";
 /**
  * The index of visual stories.
  *
- * Five so far, each built on data already in this repository rather than
+ * Six so far, each built on data already in this repository rather than
  * assembled for the occasion — which is the only reason these pages are
  * allowed to be this loud. The register puts a number at 58px; the number has
  * to be one the rest of the site would stand behind at 13px.
@@ -13,8 +13,8 @@ import NewBadge from "@/components/ui/NewBadge";
 export const metadata = {
   title: "Visual stories · Bharat Tracker",
   description:
-    "Short, data-led stories on Indian semiconductors, defence manufacturing, farming, drones " +
-    "and sacred geography — each built from the sourced series behind the rest of this site.",
+    "Short, data-led stories on semiconductors, defence manufacturing, farming, drones, " +
+    "military AI and sacred geography — each built from sourced, checkable series.",
 };
 
 const STORIES = [
@@ -52,6 +52,17 @@ const STORIES = [
     statLabel: "cereals produced, 2024",
   },
   {
+    href: "/stories/drone-war",
+    tone: "hot" as const,
+    kicker: "drones · military AI · evidence",
+    title: "Thirty-Six Thousand Receipts, and Almost No Drones.",
+    blurb:
+      "The best archive of the Ukraine war photographs every vehicle lost. Its drone sections " +
+      "hold a few dozen. What is verifiable about drones and military AI — and what is not.",
+    stat: "0.15%",
+    statLabel: "of a photo-verified war archive is drones",
+  },
+  {
     href: "/stories/drones-and-the-strait",
     tone: "hot" as const,
     kicker: "drones · energy · exposure",
@@ -81,7 +92,7 @@ export default function StoriesIndex() {
       <header className="pt-10">
         <Eyebrow>visual stories</Eyebrow>
         <h1 className="story-display mt-4 max-w-[16ch] text-[40px] sm:text-[56px] lg:text-[64px]">
-          Five arguments, told in numbers.
+          Six arguments, told in numbers.
         </h1>
         <p className="mt-5 max-w-[60ch] text-[15px] leading-[1.62]" style={{ color: "var(--story-ink-2)" }}>
           Each of these is built from series already published elsewhere on this site, with the
