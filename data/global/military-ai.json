@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-15T18:12:31.376Z",
+  "builtAt": "2026-09-15T18:16:13.416Z",
   "sources": {
     "incidents": "AIAAIC Repository (aiaaic.org), the public incidents and controversies spreadsheet, exported as CSV. A volunteer register; every row carries its own source links.",
     "spending": "USAspending.gov API, Department of Defense contract awards (types A-D), aggregated by fiscal year server-side. Each figure is obligated money against a public award id."
@@ -7,7 +7,7 @@
   "definition": "There is no procurement code for artificial intelligence. Awards are matched on their description text, so these figures measure AWARDS WHOSE DESCRIPTION SAYS AI and not AI. A contract for an autonomous targeting system described as 'sensor integration services' is invisible here; a contract to run a conference about AI is counted. The keyword list is published and each term's total is kept separate so any of them can be discarded.",
   "doubleCounting": "The per-term totals overlap and MUST NOT be summed. An award whose description contains both 'artificial intelligence' and 'machine learning' is in both series. No combined total appears in this file for that reason.",
   "militaryFilter": "\\b(militar|defen[cs]e|army|navy|air force|weapon|warfare|combat|drone|uav|missile|soldier|troop|battlefield|targeting|munition|pentagon|nato|idf|armed forces)\\b",
-  "deployerFilter": "\\b(defense force|defence force|armed forces|army|navy|air force|marine corps|department of (war|defen[cs]e)|ministry of defen[cs]e|pentagon|idf|nato|liberation army|national guard|military|intelligence agency|mossad|gru|fsb|cia|nsa|dod)\\b",
+  "deployerFilter": "\\b(defen[cs]e forces?|armed forces?|army|navy|air force|marine corps|department of (war|defen[cs]e)|min(istry|istr[a-z]*) of defen[\\u0441cs]e|pentagon|idf|nato|liberation army|national guard|military|intelligence agency|mossad|gru|fsb|cia|nsa|dod)\\b",
   "tiers": "A row is tier 'force' when the register names an armed force, defence ministry or intelligence service as the deployer, 'state' when it names a government, and 'adjacent' otherwise. The wide keyword filter catches supermarket facial recognition and school gun detectors — those are AI incidents and not military operations, and counting them together is how a register of AI controversies gets quoted as a tally of battlefield events.",
   "refusal": "No casualty figure, no capability claim, and no assertion that a named system was used in a named operation. Where a case is carried it is carried as 'this register records this, citing that', in the register's own words and with its own links. The difference between a documented case and a reported one is the entire value of doing it this way.",
   "cannotSay": [
@@ -238,9 +238,9 @@
       }
     ],
     "byTier": {
-      "force": 10,
+      "force": 18,
       "state": 5,
-      "adjacent": 40
+      "adjacent": 32
     },
     "byYear": [
       {
@@ -452,7 +452,7 @@
       {
         "ref": "AIAAIC1963",
         "headline": "Israel uses AI to kill Hamas official Ibrahim Biari",
-        "tier": "adjacent",
+        "tier": "force",
         "occurred": "2023",
         "deployer": "Israel Defense Forces",
         "developer": "Israel Defense Forces",
@@ -642,7 +642,7 @@
       {
         "ref": "AIAAIC1441",
         "headline": "Israel attacks Hamas using AI drone swarm",
-        "tier": "adjacent",
+        "tier": "force",
         "occurred": "2021",
         "deployer": "Israel Defense Forces",
         "developer": "Elbit Systems",
@@ -685,7 +685,7 @@
       {
         "ref": "AIAAIC1430",
         "headline": "Israel reportedly uses AI to identify 37,000 Hamas targets",
-        "tier": "adjacent",
+        "tier": "force",
         "occurred": "2023-",
         "deployer": "Israel Defense Forces",
         "developer": "",
@@ -706,7 +706,7 @@
       {
         "ref": "AIAAIC1413",
         "headline": "Israel facial recognition system misidentifies innocent Gazans",
-        "tier": "adjacent",
+        "tier": "force",
         "occurred": "2024",
         "deployer": "Israel Defense Forces",
         "developer": "Corsight",
@@ -748,7 +748,7 @@
       {
         "ref": "AIAAIC1232",
         "headline": "Israeli AI automated 'target factory' slaughters innocent Palestinian women, children",
-        "tier": "adjacent",
+        "tier": "force",
         "occurred": "2023",
         "deployer": "Israel Defense Forces",
         "developer": "",
@@ -1086,7 +1086,7 @@
       {
         "ref": "AIAAIC0794",
         "headline": "Report: Israel use of facial recognition to monitor Hebron Palestinians raises human right concerns",
-        "tier": "adjacent",
+        "tier": "force",
         "occurred": "2020",
         "deployer": "Israel Defense Forces",
         "developer": "",
@@ -1277,7 +1277,7 @@
       {
         "ref": "AIAAIC0531",
         "headline": "Israel AI robot machine guns fire tear gas at Palestinian protestors",
-        "tier": "adjacent",
+        "tier": "force",
         "occurred": "2022",
         "deployer": "Israel Defense Forces",
         "developer": "Smart Shooter",
@@ -1338,7 +1338,7 @@
       {
         "ref": "AIAAIC0215",
         "headline": "AnyVision 'Google Ayosh' Palestinian surveillance",
-        "tier": "adjacent",
+        "tier": "force",
         "occurred": "2019",
         "deployer": "Israel Defense Forces",
         "developer": "Oosto/AnyVision Interactive Technologies",
