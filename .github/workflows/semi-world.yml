@@ -1,0 +1,50 @@
+name: Semiconductors, countrywise
+
+# Who sells chips, who sells the machines that make them, and where India's
+# chips come from. One cross-section of UN Comtrade at three years.
+#
+# It runs here because the editing sandbox's egress refuses comtradeapi.un.org
+# outright — a local run would report a fact about the sandbox, not the source.
+#
+# Manual and on-change. Not scheduled: this is a cross-section that moves once
+# a year, and a free public endpoint should not be asked more often than the
+# data changes.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/connectors/semi-world.ts"
+      - ".github/workflows/semi-world.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: semi-world
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Fetch
+        run: npm run semi:world
+
+      # always(): the connector writes once at the end, so this only helps when
+      # the commit step itself is what fails — but the diagnostics block inside
+      # the file is the point of the run even when half the calls refused, and
+      # a job that produced it must not throw it away.
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/semi/world.json
+          "chore(semi): countrywise semiconductor trade $(date -u +'%Y-%m-%d %H:%M')"
