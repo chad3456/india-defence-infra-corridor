@@ -123,6 +123,40 @@ export function parseCsv(text: string): { header: string[]; rows: string[][]; dr
   return { header, rows: kept, dropped };
 }
 
+/**
+ * The header row, and the rows below it.
+ *
+ * Scans the first few rows for one that names at least two of the columns this
+ * connector needs. Records nothing if none does — better to publish an empty
+ * incident list with a note than to read two thousand rows under the wrong
+ * column names.
+ */
+export function findHeader(
+  first: string[],
+  rows: string[][],
+): { header: string[]; rows: string[][]; atRow: number; note: string } {
+  const names = (r: string[]): number =>
+    [/sector/i, /technolog/i, /countr/i, /^\s*type\s*$/i, /headline|title/i]
+      .filter((re) => r.some((c) => re.test(c.trim()))).length;
+  const candidates = [first, ...rows.slice(0, 8)];
+  let best = -1;
+  let bestScore = 0;
+  for (const [i, r] of candidates.entries()) {
+    const score = names(r);
+    if (score > bestScore) { bestScore = score; best = i; }
+  }
+  if (best < 0 || bestScore < 2) {
+    return { header: first, rows, atRow: 0, note: `no row in the first ${candidates.length} named the expected columns; read as-is and probably wrong` };
+  }
+  if (best === 0) return { header: first, rows, atRow: 0, note: "the first row is the header" };
+  return {
+    header: candidates[best] ?? first,
+    rows: rows.slice(best),
+    atRow: best,
+    note: `the header is row ${best + 1}, not row 1 — the rows above it are a title block`,
+  };
+}
+
 /** Find a column by what its header says, not by position. */
 export function columnMatching(header: string[], want: RegExp): number {
   return header.findIndex((h) => want.test(h.trim()));
@@ -139,7 +173,21 @@ async function readAiaaic(): Promise<{
   if (!res.ok || !res.data) {
     return { header: [], total: 0, dropped: 0, incidents: [], note: `fetch failed: ${res.error ?? "no body"}` };
   }
-  const { header, rows, dropped } = parseCsv(res.data);
+  const parsed = parseCsv(res.data);
+  /**
+   * Find the header row rather than assuming it is the first.
+   *
+   * The sheet opens with a title row — a single cell reading "Incidents"
+   * followed by thirteen empty ones. Taking it as the header gave every column
+   * lookup an index of -1, so every field came back empty, nothing matched the
+   * military filter, and the connector reported 2,261 rows read and 0 matched
+   * without erroring. The header is the first row that names the columns this
+   * connector actually needs.
+   */
+  const head = findHeader(parsed.header, parsed.rows);
+  const header = head.header;
+  const rows = head.rows;
+  const dropped = parsed.dropped;
   const col = {
     ref: columnMatching(header, /^\s*(aiaaic\s*)?(id|ref)/i),
     headline: columnMatching(header, /headline|title|summary/i),
@@ -181,7 +229,7 @@ async function readAiaaic(): Promise<{
     total: rows.length,
     dropped,
     incidents,
-    note: `${rows.length} rows read, ${dropped} dropped for a column count that did not match the header, ${incidents.length} matched the military filter`,
+    note: `${head.note}. ${rows.length} rows read, ${dropped} dropped for a column count that did not match the header, ${incidents.length} matched the military filter`,
   };
 }
 
@@ -209,8 +257,31 @@ const TERMS = [
 /** Defence agencies, by the toptier code USAspending uses. */
 const DEFENCE = { code: "097", name: "Department of Defense" };
 
-interface AwardBucket { fiscal_year?: number; aggregated_amount?: number; time_period?: string }
+/**
+ * The year lives inside time_period, not beside it.
+ *
+ * `spending_over_time` returns
+ *   { "time_period": { "fiscal_year": "2020" }, "aggregated_amount": 1234 }
+ * and the first version read `fiscal_year` off the row. That is undefined, so
+ * the fallback stringified the object to "[object Object]", parsed NaN, and
+ * the filter dropped every bucket — six series, all reporting ok, all empty.
+ * The raw shape of the first bucket is published now so the next change here
+ * is a reading.
+ */
+interface AwardBucket {
+  fiscal_year?: number | string;
+  aggregated_amount?: number;
+  time_period?: { fiscal_year?: number | string; quarter?: string } | string;
+}
 interface SpendingResponse { results?: AwardBucket[]; messages?: string[] }
+
+function yearOfBucket(r: AwardBucket): number {
+  const raw = typeof r.time_period === "object" && r.time_period !== null
+    ? r.time_period.fiscal_year
+    : (r.fiscal_year ?? r.time_period);
+  const n = typeof raw === "number" ? raw : Number.parseInt(String(raw ?? ""), 10);
+  return Number.isFinite(n) ? n : Number.NaN;
+}
 
 /**
  * Obligations per fiscal year for one search term.
@@ -220,7 +291,14 @@ interface SpendingResponse { results?: AwardBucket[]; messages?: string[] }
  * carry, and the endpoint aggregates server-side so no total here is a sum
  * this connector computed and could get wrong.
  */
-async function spendingFor(term: string): Promise<{ term: string; ok: boolean; years: Array<{ year: number; amount: number }>; error?: string }> {
+async function spendingFor(term: string): Promise<{
+  term: string; ok: boolean;
+  years: Array<{ year: number; amount: number }>;
+  error?: string;
+  /** The first bucket verbatim, so the response shape is inspectable. */
+  sampleBucket?: unknown;
+  messages?: string[];
+}> {
   const body = {
     group: "fiscal_year",
     filters: {
@@ -237,14 +315,16 @@ async function spendingFor(term: string): Promise<{ term: string; ok: boolean; y
     headers: { "content-type": "application/json" },
   });
   if (!res.ok || !res.data) return { term, ok: false, years: [], error: res.error ?? "no body" };
-  const years = (res.data.results ?? [])
-    .map((r) => ({
-      year: typeof r.fiscal_year === "number" ? r.fiscal_year : Number.parseInt(String(r.time_period ?? ""), 10),
-      amount: typeof r.aggregated_amount === "number" ? r.aggregated_amount : 0,
-    }))
+  const buckets = res.data.results ?? [];
+  const years = buckets
+    .map((r) => ({ year: yearOfBucket(r), amount: typeof r.aggregated_amount === "number" ? r.aggregated_amount : 0 }))
     .filter((r) => Number.isFinite(r.year) && r.year > 2000)
     .sort((a, b) => a.year - b.year);
-  return { term, ok: true, years };
+  return {
+    term, ok: true, years,
+    sampleBucket: buckets[0],
+    ...(res.data.messages && res.data.messages.length > 0 ? { messages: res.data.messages } : {}),
+  };
 }
 
 async function main(): Promise<void> {
