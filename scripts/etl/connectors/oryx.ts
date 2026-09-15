@@ -199,9 +199,19 @@ export function statedTotals(heading: string): Section["stated"] {
   // Sections write "Tanks (4447, of which destroyed: 3352, …)"; the two
   // page-level roll-ups write "Russia - 24098, of which: destroyed: 19065, …".
   // Both are read, because the roll-up is the check on the page as a whole.
-  const paren = /\(([^)]*)\)/.exec(text);
+  /**
+   * The bracket that carries the totals, not the first bracket on the line.
+   *
+   * "Mine-Resistant Ambush Protected (MRAP) Vehicles (64, of which destroyed:
+   * 48, …)" opens with an acronym. Taking the first bracket gave "MRAP", no
+   * digits, and a section reported as stating no total — unverifiable, and
+   * therefore suppressed, for a heading that states its total perfectly well.
+   */
+  const withTotals = [...text.matchAll(/\(([^)]*)\)/g)]
+    .map((m) => m[1] ?? "")
+    .filter((inner) => /\d/.test(inner) && /of which/i.test(inner));
   const dash = /[-–—]\s*(\d[\d,]*\s*,\s*of which[\s\S]*)$/i.exec(text);
-  const inner = paren?.[1] ?? dash?.[1] ?? "";
+  const inner = withTotals[withTotals.length - 1] ?? dash?.[1] ?? "";
   if (inner === "") return { total: null, byStatus: {} };
   const lead = /^\s*(\d[\d,]*)/.exec(inner);
   const byStatus: Partial<Record<Status, number>> = {};
@@ -267,22 +277,29 @@ export function parseItem(html: string): {
   const model = named?.[2]?.trim() || textOf(head).replace(/^\d+\s*/, "").replace(/:$/, "").slice(0, 80);
 
   const losses: Array<{ status: Status; raw: string; evidence: string }> = [];
-  const seen = new Set<string>();
   for (const m of html.matchAll(LINK_WRAPPED)) {
     const raw = (m[2] ?? "").trim();
     const status = classify(raw);
     if (!status) continue;
-    seen.add(m[0]);
     losses.push({ status, raw, evidence: m[1] ?? "" });
   }
-  // Fallback for any entry still written the old way. Guarded against
-  // double-counting a loss the first pattern already took.
-  for (const m of html.matchAll(STATUS_FIRST)) {
-    if ([...seen].some((t) => m[0].includes(t))) continue;
-    const raw = (m[1] ?? "").trim();
-    const status = classify(raw);
-    if (!status) continue;
-    losses.push({ status, raw, evidence: m[2] ?? "" });
+  /**
+   * The old layout is a fallback, not a supplement.
+   *
+   * Running both patterns over the same block double-counted every loss: the
+   * status text sits *inside* the anchor on the current layout, so the
+   * status-first pattern matched it again and paired it with the next anchor's
+   * href. The guard that was meant to prevent this compared match strings that
+   * could never contain one another. It only runs now when the current
+   * pattern found nothing at all in this block.
+   */
+  if (losses.length === 0) {
+    for (const m of html.matchAll(STATUS_FIRST)) {
+      const raw = (m[1] ?? "").trim();
+      const status = classify(raw);
+      if (!status) continue;
+      losses.push({ status, raw, evidence: m[2] ?? "" });
+    }
   }
   return { model, losses };
 }
@@ -309,6 +326,8 @@ interface PageResult {
   ok: boolean;
   bytes: number;
   sections: Section[];
+  /** The page-level totals the source states about itself. */
+  rollUps: Array<{ heading: string; stated: Section["stated"] }>;
   instances: Instance[];
   tallies: ModelTally[];
   /** A verbatim list item, so the next change to this parser is a reading. */
@@ -318,10 +337,11 @@ interface PageResult {
 async function readPage(page: (typeof PAGES)[number]): Promise<PageResult> {
   const res = await getText(page.url, { timeoutMs: 120_000, retries: 3, cacheMs: 0 });
   const html = res.data ?? "";
+  const rollUps: Array<{ heading: string; stated: Section["stated"] }> = [];
   const result: PageResult = {
     side: page.side, what: page.what, url: page.url,
     ok: res.ok, bytes: html.length,
-    sections: [], instances: [], tallies: [], sampleItem: "",
+    sections: [], rollUps, instances: [], tallies: [], sampleItem: "",
   };
   if (!res.ok || html === "") return result;
 
@@ -335,17 +355,38 @@ async function readPage(page: (typeof PAGES)[number]): Promise<PageResult> {
     if (category === "") continue;
 
     const stated = statedTotals(heading);
+    /**
+     * The two roll-up headings are page totals, not sections.
+     *
+     * "Russia - 24098, of which: destroyed: 19065…" and the armoured-vehicle
+     * subtotal below it summarise the sections that follow; no entries sit
+     * under them. Checked as sections they parse zero against a stated
+     * twenty-four thousand and report as a catastrophic failure, which buries
+     * the real ones. They are recorded as what they are.
+     */
+    const isRollUp = /^(russia|ukraine)\s*[-–—]/i.test(category)
+      || /^losses of armoured combat vehicles/i.test(category);
+    if (isRollUp) {
+      rollUps.push({ heading: headText, stated });
+      continue;
+    }
     const unmanned = unmannedKind(category);
     const byStatus: Record<Status, number> = { destroyed: 0, damaged: 0, abandoned: 0, captured: 0 };
     const tallies: ModelTally[] = [];
     const instances: Instance[] = [];
 
-    // <details> per model on the current layout, <li> on the old one. Both
-    // are scanned; a page using one yields nothing for the other.
-    const blocks = [
-      ...body.matchAll(/<details\b[^>]*>([\s\S]*?)<\/details>/gi),
-      ...body.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/gi),
-    ];
+    /**
+     * One block type per section, whichever the page uses.
+     *
+     * Scanning both double-counted every loss on pages where a <details> sits
+     * inside an <li>, which is most of them. Combined with the fallback bug
+     * above, the parse came in at 3.8x the stated total — a factor so uniform
+     * across every section that it could only be structural.
+     */
+    const details = [...body.matchAll(/<details\b[^>]*>([\s\S]*?)<\/details>/gi)];
+    const blocks = details.length > 0
+      ? details
+      : [...body.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/gi)];
     for (const m of blocks) {
       const itemHtml = m[1] ?? "";
       const { model, losses } = parseItem(itemHtml);
@@ -470,6 +511,7 @@ async function main(): Promise<void> {
     pages: pages.map((p) => ({
       side: p.side, what: p.what, url: p.url, ok: p.ok, bytes: p.bytes,
       sampleItem: p.sampleItem,
+      rollUps: p.rollUps,
       sections: p.sections,
     })),
     unmannedSections,
