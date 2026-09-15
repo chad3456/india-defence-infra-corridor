@@ -1,7 +1,7 @@
 {
-  "builtAt": "2026-09-15T13:36:54.862Z",
-  "source": "English Wikipedia, via the MediaWiki API. The article set is whatever the categories \"Category:Unmanned aerial vehicles of India\", \"Category:Loitering munitions of India\", \"Category:Defence Research and Development Organisation\" contain; every field is read from the article's own infobox and the status string is carried verbatim beside the bucket it was sorted into.",
-  "method": "The category is the index rather than a list of programmes anyone typed, so an omission is an omission from the category and not from someone's recall. Pages with no aircraft, weapon or rocket infobox are recorded as such and not counted as programmes — most of them are organisations or umbrella projects rather than aircraft.",
+  "builtAt": "2026-09-15T13:42:51.574Z",
+  "source": "English Wikipedia, via the MediaWiki API. The article set is whatever the categories named below contain, plus the unmanned-looking links in the list articles named beside them. Every field is read from the article's own infobox, and the status string is carried verbatim beside the bucket it was sorted into.",
+  "method": "The indexes are the claim rather than a list of programmes anyone typed, so an omission is an omission from Wikipedia's own categorisation and not from someone's recall. The category namespace is searched, one level of unmanned-looking subcategory is walked, and every category actually read is published. Pages with no usable infobox are recorded with the templates they did carry — most are organisations or umbrella projects.",
   "cannotSay": [
     "How many airframes exist. `numberBuilt` is present on a handful of articles and absent on most, and is never estimated here.",
     "Whether a programme recorded as in service is in service in any number that matters. An encyclopaedia's status field summarises press reporting, and press reporting on defence programmes is optimistic by construction.",
@@ -11,29 +11,314 @@
   "categories": [
     "Category:Unmanned aerial vehicles of India",
     "Category:Loitering munitions of India",
-    "Category:Defence Research and Development Organisation"
+    "Category:Defence Research and Development Organisation",
+    "Category:Unmanned military aircraft of India"
+  ],
+  "listArticles": [
+    "List of unmanned aerial vehicles of India",
+    "List of equipment of the Indian Army",
+    "List of active Indian military aircraft"
   ],
   "indexNotes": [
-    "Category:Unmanned aerial vehicles of India: 6 article(s)",
-    "Category:Loitering munitions of India: 0 article(s)",
-    "Category:Defence Research and Development Organisation: 73 article(s)"
+    "search \"unmanned aerial vehicles of India\": 3 categor(ies) — Category:Unmanned aerial vehicles of India; Category:Unmanned military aircraft of India; Category:Hindustan Aeronautics Limited",
+    "search \"loitering munitions India\": 0 categor(ies) — none",
+    "search \"military drones India\": 0 categor(ies) — none",
+    "Category:Unmanned aerial vehicles of India: 6 article(s), 1 subcategor(ies)",
+    "Category:Loitering munitions of India: 0 article(s), 0 subcategor(ies)",
+    "Category:Defence Research and Development Organisation: 73 article(s), 5 subcategor(ies)",
+    "Category:Unmanned military aircraft of India: 16 article(s), 0 subcategor(ies)",
+    "List of unmanned aerial vehicles of India: not read (no wikitext)",
+    "List of equipment of the Indian Army: 43 unmanned-looking link(s)",
+    "List of active Indian military aircraft: 47 unmanned-looking link(s)"
+  ],
+  "templatesSeen": [
+    {
+      "name": "Infobox weapon",
+      "n": 43
+    },
+    {
+      "name": "Infobox aircraft",
+      "n": 23
+    },
+    {
+      "name": "Infobox newspaper",
+      "n": 7
+    },
+    {
+      "name": "Infobox Radar",
+      "n": 6
+    },
+    {
+      "name": "Infobox military unit",
+      "n": 6
+    },
+    {
+      "name": "Infobox company",
+      "n": 5
+    },
+    {
+      "name": "Infobox government agency",
+      "n": 3
+    },
+    {
+      "name": "infobox weapon",
+      "n": 3
+    },
+    {
+      "name": "Infobox ship",
+      "n": 2
+    },
+    {
+      "name": "Infobox ship/image",
+      "n": 2
+    },
+    {
+      "name": "Infobox ship/characteristics",
+      "n": 2
+    },
+    {
+      "name": "Infobox website",
+      "n": 2
+    },
+    {
+      "name": "Infobox magazine",
+      "n": 2
+    },
+    {
+      "name": "Infobox ship/career",
+      "n": 1
+    },
+    {
+      "name": "Infobox rocket",
+      "n": 1
+    },
+    {
+      "name": "Infobox rocket/payload",
+      "n": 1
+    },
+    {
+      "name": "Infobox rocket/stage",
+      "n": 1
+    },
+    {
+      "name": "Infobox laboratory",
+      "n": 1
+    },
+    {
+      "name": "Infobox event",
+      "n": 1
+    },
+    {
+      "name": "Infobox ship/class overview",
+      "n": 1
+    },
+    {
+      "name": "Infobox national military",
+      "n": 1
+    },
+    {
+      "name": "Infobox",
+      "n": 1
+    },
+    {
+      "name": "Infobox book series",
+      "n": 1
+    },
+    {
+      "name": "Infobox executive government",
+      "n": 1
+    },
+    {
+      "name": "Infobox law enforcement agency",
+      "n": 1
+    },
+    {
+      "name": "Infobox publisher",
+      "n": 1
+    }
+  ],
+  "noInfoboxDetail": [
+    {
+      "title": "NAL/ADE Black Kite",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "NAL/ADE Golden Hawk",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "NAL/ADE Pushpak",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "Defence Research and Development Organisation",
+      "templates": "Infobox government agency"
+    },
+    {
+      "title": "INS Anvesh",
+      "templates": "Infobox ship, Infobox ship/image, Infobox ship/career, Infobox ship/characteristics"
+    },
+    {
+      "title": "BEL Battle Field Surveillance Radar",
+      "templates": "Infobox Radar"
+    },
+    {
+      "title": "BrahMos Aerospace",
+      "templates": "Infobox company"
+    },
+    {
+      "title": "Bund Blasting Device",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "Chitradurga Aeronautical Test Range",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "Defence Laboratory, Jodhpur",
+      "templates": "Infobox laboratory"
+    },
+    {
+      "title": "Defence Research and Development Service",
+      "templates": "Infobox government agency"
+    },
+    {
+      "title": "Divyachakshu Through Barrier Imaging Radar",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "Dr. A. P. J. Abdul Kalam Missile Complex",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "DRDO Daksh",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "DRDO espionage case",
+      "templates": "Infobox event"
+    },
+    {
+      "title": "DRDO Floating Test Range",
+      "templates": "Infobox ship, Infobox ship/image, Infobox ship/class overview, Infobox ship/characteristics"
+    },
+    {
+      "title": "DRDO light tank",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "DRDO NETRA",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "DRDO Self Propelled Mine Burier",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "Indian Doppler Radar",
+      "templates": "Infobox Radar"
+    },
+    {
+      "title": "Integrated Guided Missile Development Programme",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "KALI (electron accelerator)",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "Machilipatnam Test Range Project",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "Maitri (missile)",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "Pashan Test Range",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "Projects of DRDO",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "Rajendra (radar system)",
+      "templates": "Infobox Radar"
+    },
+    {
+      "title": "Ramgarh Test Range",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "Samyukta electronic warfare system",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "Swathi Weapon Locating Radar",
+      "templates": "Infobox Radar"
+    },
+    {
+      "title": "Swordfish Long Range Tracking Radar",
+      "templates": "Infobox Radar"
+    },
+    {
+      "title": "Tandur Test Range",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "Uttam AESA Radar",
+      "templates": "Infobox Radar"
+    },
+    {
+      "title": "DRDO Ulka",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "HAL RUAV-200",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "NAL Slybird",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "DRDO/IAI Pawan",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "Unmanned ground vehicle",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "reconnaissance vehicle",
+      "templates": "no infobox template at all"
+    },
+    {
+      "title": "Anti-aircraft gun",
+      "templates": "no infobox template at all"
+    }
   ],
   "counts": {
-    "articlesIndexed": 79,
-    "withInfobox": 41,
-    "keptAsUnmanned": 2,
-    "filteredNotUnmanned": 39,
-    "noInfobox": 38,
-    "unread": 0
+    "articlesIndexed": 183,
+    "withInfobox": 68,
+    "keptAsUnmanned": 17,
+    "filteredNotUnmanned": 51,
+    "noInfobox": 115,
+    "categoriesRead": 4
   },
   "byStage": {
-    "in service": 0,
-    "flying": 0,
-    "in development": 0,
-    "cancelled": 0,
-    "unstated": 2
+    "in service": 2,
+    "flying": 2,
+    "in development": 1,
+    "cancelled": 1,
+    "unstated": 11
   },
   "filtered": [
+    {
+      "title": "DRDO Netra Mk2",
+      "role": null
+    },
     {
       "title": "Ugram (battle rifle)",
       "role": "Battle rifle"
@@ -68,7 +353,7 @@
     },
     {
       "title": "Avatar (spacecraft)",
-      "role": null
+      "role": "stage"
     },
     {
       "title": "Bharani Mk-I",
@@ -101,6 +386,10 @@
     {
       "title": "High Speed Low Drag Bomb",
       "role": "Precision-guided general-purpose bomb"
+    },
+    {
+      "title": "Hypersonic Technology Demonstrator Vehicle",
+      "role": null
     },
     {
       "title": "Indian Ballistic Missile Defence Programme",
@@ -189,17 +478,53 @@
     {
       "title": "VL-SRSAM",
       "role": "Surface-to-air missile"
+    },
+    {
+      "title": "9M113 Konkurs",
+      "role": "Anti-tank missile"
+    },
+    {
+      "title": "Aérospatiale Alouette III",
+      "role": "Light utility helicopter"
+    },
+    {
+      "title": "Aérospatiale SA 315B Lama",
+      "role": "Utility helicopter"
+    },
+    {
+      "title": "Mil Mi-17",
+      "role": "Utility, transport, armed capable helicopter"
+    },
+    {
+      "title": "Mil Mi-24",
+      "role": "Attack helicopter with transport capabilities, helicopter gunship"
+    },
+    {
+      "title": "HAL Dhruv",
+      "role": "Utility helicopter"
+    },
+    {
+      "title": "HAL Prachand",
+      "role": "Attack helicopter"
+    },
+    {
+      "title": "HAL Rudra",
+      "role": null
+    },
+    {
+      "title": "Boeing AH-64 Apache",
+      "role": null
+    },
+    {
+      "title": "Boeing CH-47 Chinook",
+      "role": null
     }
   ],
   "noInfobox": [
-    "DRDO Kapothaka",
-    "DRDO Netra",
     "NAL/ADE Black Kite",
     "NAL/ADE Golden Hawk",
     "NAL/ADE Pushpak",
-    "Rudrastra",
     "Defence Research and Development Organisation",
-    "DRDO Netra Mk2",
     "INS Anvesh",
     "BEL Battle Field Surveillance Radar",
     "BrahMos Aerospace",
@@ -215,7 +540,6 @@
     "DRDO light tank",
     "DRDO NETRA",
     "DRDO Self Propelled Mine Burier",
-    "Hypersonic Technology Demonstrator Vehicle",
     "Indian Doppler Radar",
     "Integrated Guided Missile Development Programme",
     "KALI (electron accelerator)",
@@ -229,9 +553,127 @@
     "Swathi Weapon Locating Radar",
     "Swordfish Long Range Tracking Radar",
     "Tandur Test Range",
-    "Uttam AESA Radar"
+    "Uttam AESA Radar",
+    "DRDO Ulka",
+    "HAL RUAV-200",
+    "NAL Slybird",
+    "DRDO/IAI Pawan",
+    "Unmanned ground vehicle",
+    "reconnaissance vehicle",
+    "Anti-aircraft gun",
+    "Bharat Electronics Limited",
+    "Request for proposal",
+    "Radio jamming",
+    "Counter unmanned air system",
+    "Command and control",
+    "Loitering munition",
+    "Hindustan Times",
+    "Future Ready Combat Vehicle",
+    "active protection system",
+    "Network-centric warfare",
+    "Stealth aircraft",
+    "Signals intelligence",
+    "Electronic Attack",
+    "weapons of mass destruction",
+    "Medium-altitude long-endurance UAV",
+    "High-altitude long-endurance",
+    "Nuclear detection",
+    "Business Standard",
+    "unmanned combat aerial vehicles",
+    "supercruise"
   ],
   "programmes": [
+    {
+      "title": "DRDO Abhyas",
+      "status": null,
+      "stage": "unstated",
+      "role": null,
+      "manufacturer": "Hindustan Aeronautics Limited Larsen and Toubro",
+      "origin": "India",
+      "firstFlight": 2012,
+      "introduced": null,
+      "numberBuilt": null,
+      "primaryUser": null,
+      "via": [
+        "Category:Unmanned military aircraft of India"
+      ]
+    },
+    {
+      "title": "DRDO Bharat",
+      "status": null,
+      "stage": "unstated",
+      "role": null,
+      "manufacturer": null,
+      "origin": "India",
+      "firstFlight": null,
+      "introduced": null,
+      "numberBuilt": null,
+      "primaryUser": "Indian Army",
+      "via": [
+        "Category:Unmanned military aircraft of India"
+      ]
+    },
+    {
+      "title": "DRDO Ghatak",
+      "status": "Under development",
+      "stage": "in development",
+      "role": null,
+      "manufacturer": null,
+      "origin": "India",
+      "firstFlight": 2022,
+      "introduced": null,
+      "numberBuilt": "2 downscale prototypes",
+      "primaryUser": null,
+      "via": [
+        "Category:Unmanned military aircraft of India",
+        "List of equipment of the Indian Army"
+      ]
+    },
+    {
+      "title": "DRDO Imperial Eagle",
+      "status": "Flight tested",
+      "stage": "unstated",
+      "role": null,
+      "manufacturer": "Aeronautical Development Establishment Council of Scientific and Industrial Research-National Aerospace Laboratories",
+      "origin": "India",
+      "firstFlight": 2012,
+      "introduced": null,
+      "numberBuilt": null,
+      "primaryUser": "National Security Guard",
+      "via": [
+        "Category:Unmanned military aircraft of India"
+      ]
+    },
+    {
+      "title": "DRDO Kapothaka",
+      "status": null,
+      "stage": "unstated",
+      "role": null,
+      "manufacturer": "Aeronautical Development Establishment",
+      "origin": "India",
+      "firstFlight": null,
+      "introduced": null,
+      "numberBuilt": null,
+      "primaryUser": "Indian Army",
+      "via": [
+        "Category:Unmanned aerial vehicles of India"
+      ]
+    },
+    {
+      "title": "DRDO Lakshya",
+      "status": "Active",
+      "stage": "in service",
+      "role": "Target drone",
+      "manufacturer": "Hindustan Aeronautics Limited",
+      "origin": null,
+      "firstFlight": 1985,
+      "introduced": 2000,
+      "numberBuilt": "30",
+      "primaryUser": "Indian Army Indian Air Force Indian Navy",
+      "via": [
+        "Category:Unmanned military aircraft of India"
+      ]
+    },
     {
       "title": "DRDO Muntra",
       "status": null,
@@ -248,6 +690,66 @@
       ]
     },
     {
+      "title": "DRDO Netra",
+      "status": "Active",
+      "stage": "in service",
+      "role": null,
+      "manufacturer": "IdeaForge",
+      "origin": "India",
+      "firstFlight": 2010,
+      "introduced": 2012,
+      "numberBuilt": "24",
+      "primaryUser": "Central Reserve Police Force",
+      "via": [
+        "Category:Unmanned aerial vehicles of India"
+      ]
+    },
+    {
+      "title": "DRDO Nishant",
+      "status": "&quot;Abandoned project&quot;",
+      "stage": "cancelled",
+      "role": "Military UAV",
+      "manufacturer": "ARDE CISR-NAL R&DE(E)",
+      "origin": null,
+      "firstFlight": 1996,
+      "introduced": 2011,
+      "numberBuilt": "Many",
+      "primaryUser": "Indian Army",
+      "via": [
+        "Category:Unmanned military aircraft of India"
+      ]
+    },
+    {
+      "title": "DRDO Rustom",
+      "status": null,
+      "stage": "unstated",
+      "role": null,
+      "manufacturer": "Aeronautical Development Establishment of DRDO",
+      "origin": "India",
+      "firstFlight": null,
+      "introduced": null,
+      "numberBuilt": null,
+      "primaryUser": null,
+      "via": [
+        "Category:Unmanned military aircraft of India"
+      ]
+    },
+    {
+      "title": "HAL CATS Warrior",
+      "status": "Prototype testing",
+      "stage": "flying",
+      "role": null,
+      "manufacturer": "Hindustan Aeronautics Limited",
+      "origin": "India",
+      "firstFlight": 2025,
+      "introduced": null,
+      "numberBuilt": null,
+      "primaryUser": "Indian Air Force (intended)",
+      "via": [
+        "Category:Unmanned military aircraft of India"
+      ]
+    },
+    {
       "title": "Integrated Drone Detection & Interdiction System",
       "status": null,
       "stage": "unstated",
@@ -260,6 +762,81 @@
       "primaryUser": "Corps of Army Air Defence",
       "via": [
         "Category:Defence Research and Development Organisation"
+      ]
+    },
+    {
+      "title": "KAL (drone)",
+      "status": null,
+      "stage": "unstated",
+      "role": "* Loitering munition * One-way attack drone",
+      "manufacturer": "IG Defence",
+      "origin": null,
+      "firstFlight": null,
+      "introduced": null,
+      "numberBuilt": null,
+      "primaryUser": null,
+      "via": [
+        "Category:Unmanned military aircraft of India"
+      ]
+    },
+    {
+      "title": "Nagastra-1",
+      "status": null,
+      "stage": "unstated",
+      "role": "Unmanned aerial vehicle Loitering munition",
+      "manufacturer": "Economic Explosives Limited",
+      "origin": "India",
+      "firstFlight": null,
+      "introduced": null,
+      "numberBuilt": null,
+      "primaryUser": "Indian Army",
+      "via": [
+        "Category:Unmanned military aircraft of India"
+      ]
+    },
+    {
+      "title": "Rudrastra",
+      "status": null,
+      "stage": "unstated",
+      "role": null,
+      "manufacturer": "Solar Aerospace and Defence Limited",
+      "origin": "India",
+      "firstFlight": null,
+      "introduced": null,
+      "numberBuilt": null,
+      "primaryUser": null,
+      "via": [
+        "Category:Unmanned aerial vehicles of India"
+      ]
+    },
+    {
+      "title": "Sheshnaag-150",
+      "status": null,
+      "stage": "unstated",
+      "role": "* Loitering munition * One-way attack drone",
+      "manufacturer": "NewSpace Research and Technologies (NRT)",
+      "origin": null,
+      "firstFlight": null,
+      "introduced": null,
+      "numberBuilt": null,
+      "primaryUser": "Indian Army (Intended) Indian Air Force (Intended)",
+      "via": [
+        "Category:Unmanned military aircraft of India"
+      ]
+    },
+    {
+      "title": "TAPAS-BH-201",
+      "status": "User trials",
+      "stage": "flying",
+      "role": null,
+      "manufacturer": "Bharat Electronics Hindustan Aeronautics Limited",
+      "origin": "India",
+      "firstFlight": null,
+      "introduced": null,
+      "numberBuilt": "4 (Prototypes)",
+      "primaryUser": "Indian Armed Forces",
+      "via": [
+        "Category:Unmanned military aircraft of India"
       ]
     }
   ]
