@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-15T18:08:55.248Z",
+  "builtAt": "2026-09-15T18:10:32.543Z",
   "sources": {
     "incidents": "AIAAIC Repository (aiaaic.org), the public incidents and controversies spreadsheet, exported as CSV. A volunteer register; every row carries its own source links.",
     "spending": "USAspending.gov API, Department of Defense contract awards (types A-D), aggregated by fiscal year server-side. Each figure is obligated money against a public award id."
@@ -39,38 +39,234 @@
     ],
     "totalRows": 2260,
     "droppedRows": 0,
-    "note": "the header is row 2, not row 1 — the rows above it are a title block. 2260 rows read, 0 dropped for a column count that did not match the header, 35 matched the military filter",
-    "matched": 35,
-    "bySector": [],
-    "byCountry": [],
+    "note": "the header is row 2, not row 1 — the rows above it are a title block. 2260 rows read, 0 dropped for a column count that did not match the header, 55 matched the military filter",
+    "matched": 55,
+    "byDeployer": [
+      {
+        "key": "Israel Defense Forces",
+        "n": 8
+      },
+      {
+        "key": "SenseTime",
+        "n": 8
+      },
+      {
+        "key": "China",
+        "n": 5
+      },
+      {
+        "key": "Megvii",
+        "n": 5
+      },
+      {
+        "key": "National University of Defense Technology",
+        "n": 5
+      },
+      {
+        "key": "National University of Defense Technology (NUDT)",
+        "n": 4
+      },
+      {
+        "key": "NEC",
+        "n": 4
+      },
+      {
+        "key": "Amazon",
+        "n": 3
+      },
+      {
+        "key": "Huawei",
+        "n": 3
+      },
+      {
+        "key": "IDIAP Research Institute",
+        "n": 3
+      },
+      {
+        "key": "Alibaba",
+        "n": 2
+      },
+      {
+        "key": "Beihang University",
+        "n": 2
+      },
+      {
+        "key": "China Electronics Technology Group",
+        "n": 2
+      },
+      {
+        "key": "CloudWalk",
+        "n": 2
+      },
+      {
+        "key": "Department of War",
+        "n": 2
+      },
+      {
+        "key": "École Polytechnique Fédérale de Lausanne",
+        "n": 2
+      },
+      {
+        "key": "ETH Zurich",
+        "n": 2
+      },
+      {
+        "key": "Facebook",
+        "n": 2
+      },
+      {
+        "key": "Government of Ukraine",
+        "n": 2
+      },
+      {
+        "key": "Hikvision",
+        "n": 2
+      },
+      {
+        "key": "Hitachi",
+        "n": 2
+      },
+      {
+        "key": "IBM",
+        "n": 2
+      },
+      {
+        "key": "Max Planck Institute of Informatics",
+        "n": 2
+      },
+      {
+        "key": "Microsoft",
+        "n": 2
+      },
+      {
+        "key": "Multiple",
+        "n": 2
+      }
+    ],
+    "byTechnology": [
+      {
+        "key": "Drone",
+        "n": 19
+      },
+      {
+        "key": "Computer vision",
+        "n": 17
+      },
+      {
+        "key": "Facial recognition",
+        "n": 16
+      },
+      {
+        "key": "Machine learning",
+        "n": 12
+      },
+      {
+        "key": "Database",
+        "n": 9
+      },
+      {
+        "key": "dataset",
+        "n": 9
+      },
+      {
+        "key": "Generative AI",
+        "n": 7
+      },
+      {
+        "key": "Robotics",
+        "n": 5
+      },
+      {
+        "key": "Deepfake",
+        "n": 4
+      },
+      {
+        "key": "Object recognition",
+        "n": 3
+      },
+      {
+        "key": "Neural network",
+        "n": 2
+      },
+      {
+        "key": "Automatic identification system (AIS)",
+        "n": 1
+      },
+      {
+        "key": "Context recognition",
+        "n": 1
+      },
+      {
+        "key": "Gait recognition",
+        "n": 1
+      },
+      {
+        "key": "Large language model",
+        "n": 1
+      },
+      {
+        "key": "Motion analysis",
+        "n": 1
+      },
+      {
+        "key": "NLP",
+        "n": 1
+      },
+      {
+        "key": "Ranking algorithm",
+        "n": 1
+      },
+      {
+        "key": "Social media monitoring",
+        "n": 1
+      },
+      {
+        "key": "text analysis",
+        "n": 1
+      },
+      {
+        "key": "Thermal imaging",
+        "n": 1
+      }
+    ],
+    "byHarmStatus": [
+      {
+        "key": "Actual",
+        "n": 2
+      }
+    ],
     "byYear": [
       {
         "key": "2018",
         "n": 2
       },
       {
+        "key": "2019",
+        "n": 5
+      },
+      {
         "key": "2020",
-        "n": 4
+        "n": 6
       },
       {
         "key": "2021",
-        "n": 5
+        "n": 6
       },
       {
         "key": "2022",
-        "n": 8
+        "n": 9
       },
       {
         "key": "2023",
-        "n": 4
+        "n": 8
       },
       {
         "key": "2024",
-        "n": 3
+        "n": 4
       },
       {
         "key": "2025",
-        "n": 5
+        "n": 6
       },
       {
         "key": "2026",
@@ -79,13 +275,38 @@
     ],
     "rows": [
       {
+        "ref": "AIAAIC2257",
+        "headline": "Welshman kills mother with sledgehammer after speaking to Discord AI bot",
+        "occurred": "2025",
+        "deployer": "Tristan Roberts",
+        "developer": "DeepSeek Artificial Intelligence Co",
+        "system": "DeepSeek",
+        "technology": "Generative AI",
+        "purpose": "Research murder methods and weapon efficacy",
+        "ethicalIssue": "Accountability; Anthropomorphism; Safety",
+        "externalHarm": "Loss of life",
+        "harmStatus": "Actual",
+        "impactedArea": "UK",
+        "matched": [
+          "weapon"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/welshman-kills-mother-with-sledgehammer-after-speaking-to-discord-ai-bot"
+        ]
+      },
+      {
         "ref": "AIAAIC2232",
         "headline": "Pentagon uses Anthropic's Claude to plan and support Iran airstrikes",
-        "type": "",
-        "sector": "",
-        "technology": "Generative AI",
-        "country": "",
         "occurred": "2026",
+        "deployer": "Department of War",
+        "developer": "Anthropic",
+        "system": "Claude",
+        "technology": "Generative AI",
+        "purpose": "Plan and support airstrikes",
+        "ethicalIssue": "Accountability; Autonomous weapons; Dual use; Normalisation; Transparency",
+        "externalHarm": "",
+        "harmStatus": "Actual",
+        "impactedArea": "Iran",
         "matched": [
           "pentagon"
         ],
@@ -96,11 +317,16 @@
       {
         "ref": "AIAAIC2220",
         "headline": "Pentagon uses Anthropic's Claude to capture Venezuela president Maduro",
-        "type": "",
-        "sector": "",
-        "technology": "Generative AI",
-        "country": "",
         "occurred": "2026",
+        "deployer": "Department of War",
+        "developer": "Anthropic",
+        "system": "Claude",
+        "technology": "Generative AI",
+        "purpose": "Plan and implement military operation",
+        "ethicalIssue": "Accountability; Autonomy/agency; Dual use; Transparency",
+        "externalHarm": "Loss of rights/freedoms",
+        "harmStatus": "",
+        "impactedArea": "USA; Venezuela",
         "matched": [
           "pentagon"
         ],
@@ -111,11 +337,16 @@
       {
         "ref": "AIAAIC2180",
         "headline": "Pro-Ukrainian hackers use AI-generated decoy documents to infiltrate Russian defence industry",
-        "type": "",
-        "sector": "",
-        "technology": "Generative AI",
-        "country": "",
         "occurred": "2025",
+        "deployer": "Pro-Ukraine hackers",
+        "developer": "",
+        "system": "",
+        "technology": "Generative AI",
+        "purpose": "Create fake documents",
+        "ethicalIssue": "Security",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "Russia",
         "matched": [
           "defence"
         ],
@@ -126,11 +357,16 @@
       {
         "ref": "AIAAIC2077",
         "headline": "Baltimore student handcuffed after AI system mistakes bag of chips for weapon",
-        "type": "",
-        "sector": "",
-        "technology": "Computer vision; Context recognition",
-        "country": "",
         "occurred": "2025",
+        "deployer": "Kenwood High School",
+        "developer": "Omnilert",
+        "system": "Gun Detect",
+        "technology": "Computer vision; Context recognition",
+        "purpose": "Detect weapons",
+        "ethicalIssue": "Accuracy/reliability; Autonomy/agency; Human rights/civil liberties",
+        "externalHarm": "Anxiety/distress; Autonomy/agency loss; Loss of rights/freedoms",
+        "harmStatus": "",
+        "impactedArea": "USA",
         "matched": [
           "weapon"
         ],
@@ -139,13 +375,38 @@
         ]
       },
       {
+        "ref": "AIAAIC2041",
+        "headline": "Kmart facial recogniton ruled to have violated customer privacy",
+        "occurred": "2020",
+        "deployer": "Kmart",
+        "developer": "",
+        "system": "",
+        "technology": "Facial recognition",
+        "purpose": "Combat refund fraud",
+        "ethicalIssue": "Accountability; Alignment; Privacy/surveillance; Transparency",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "Australia",
+        "matched": [
+          "combat"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/kmart-facial-recogniton-ruled-to-have-violated-customer-privacy"
+        ]
+      },
+      {
         "ref": "AIAAIC2004",
         "headline": "Ukrainian AI-powered drones decimate Russian war planes",
-        "type": "",
-        "sector": "",
-        "technology": "Computer vision; Drone; Machine learning",
-        "country": "",
         "occurred": "2025",
+        "deployer": "Government of Ukraine",
+        "developer": "Government of Ukraine",
+        "system": "",
+        "technology": "Computer vision; Drone; Machine learning",
+        "purpose": "Destroy warplanes",
+        "ethicalIssue": "Accountability; Autonomous weapons; Transparency",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "Russia",
         "matched": [
           "drone"
         ],
@@ -156,11 +417,16 @@
       {
         "ref": "AIAAIC1985",
         "headline": "Audio deepfake scam imitates Italian defence minister Guido Crosetto",
-        "type": "",
-        "sector": "",
-        "technology": "Deepfake",
-        "country": "",
         "occurred": "2025",
+        "deployer": "",
+        "developer": "",
+        "system": "",
+        "technology": "Deepfake",
+        "purpose": "Generate fake video",
+        "ethicalIssue": "Authenticity/integrity; Security",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "Italy",
         "matched": [
           "defence"
         ],
@@ -169,13 +435,38 @@
         ]
       },
       {
+        "ref": "AIAAIC1963",
+        "headline": "Israel uses AI to kill Hamas official Ibrahim Biari",
+        "occurred": "2023",
+        "deployer": "Israel Defense Forces",
+        "developer": "Israel Defense Forces",
+        "system": "",
+        "technology": "NLP/text analysis; Machine learning",
+        "purpose": "Analyse audio",
+        "ethicalIssue": "Accountability; Human rights/civil liberties",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "Israel; Palestine",
+        "matched": [
+          "defense"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/israel-uses-ai-to-kill-hamas-official-ibrahim-biari"
+        ]
+      },
+      {
         "ref": "AIAAIC1885",
         "headline": "AI gun detector fails to detect Nashville School Shooting weapon",
-        "type": "",
-        "sector": "",
-        "technology": "Computer vision; Machine learning; Object recognition",
-        "country": "",
         "occurred": "2025",
+        "deployer": "Metro Nashville Public Schools",
+        "developer": "Omnilert",
+        "system": "Omnilert Gun Detect",
+        "technology": "Computer vision; Machine learning; Object recognition",
+        "purpose": "Detect weapons",
+        "ethicalIssue": "Accuracy/reliability; Automation bias; Safety",
+        "externalHarm": "Loss of life",
+        "harmStatus": "",
+        "impactedArea": "USA",
         "matched": [
           "weapon"
         ],
@@ -186,11 +477,16 @@
       {
         "ref": "AIAAIC1858",
         "headline": "Ukraine robot-only force attacks Russian troops",
-        "type": "",
-        "sector": "",
-        "technology": "Drone; Robotics",
-        "country": "",
         "occurred": "2024",
+        "deployer": "Government of Ukraine",
+        "developer": "",
+        "system": "",
+        "technology": "Drone; Robotics",
+        "purpose": "Kill/maim/damage/destroy",
+        "ethicalIssue": "Autonomous weapons; Safety",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "Russia; Ukraine",
         "matched": [
           "drone"
         ],
@@ -199,13 +495,119 @@
         ]
       },
       {
+        "ref": "AIAAIC1794",
+        "headline": "China develops military AI chatbot using Meta's Llama model",
+        "occurred": "2023",
+        "deployer": "People's Liberation Army",
+        "developer": "Meta Platforms",
+        "system": "ChatBIT; Llama",
+        "technology": "Generative AI; Large language model",
+        "purpose": "Generate text",
+        "ethicalIssue": "Dual use; Autonomous weapons",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "China; USA",
+        "matched": [
+          "army"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/china-uses-metas-llama-to-develop-military-ai-chatbot"
+        ]
+      },
+      {
+        "ref": "AIAAIC1559",
+        "headline": "People in Photo Albums dataset criticised for using sensitive personal images without consent",
+        "occurred": "2019",
+        "deployer": "ETH Zurich; Max Planck Institute of Informatics; Toyota Motor Europe; SenseTime; National University of Singapore; National University of Defense Technology, China; Facebook",
+        "developer": "UC Berkeley; Facebook",
+        "system": "People in Photo Albums",
+        "technology": "Database/dataset; Facial recognition; Computer vision",
+        "purpose": "Train facial recognition systems",
+        "ethicalIssue": "Consent; Dual use; Privacy/surveillance;",
+        "externalHarm": "Privacy loss",
+        "harmStatus": "",
+        "impactedArea": "Germany; USA",
+        "matched": [
+          "defense"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/pipa-dataset-criticised-for-using-sensitive-personal-images-without-consent"
+        ]
+      },
+      {
+        "ref": "AIAAIC1556",
+        "headline": "MS-Celeb-1M facial recognition database criticised for violating user privacy",
+        "occurred": "2019",
+        "deployer": "Alibaba; École Polytechnique Fédérale de Lausanne; Hitachi; Huawei; IBM; IDIAP Research Institute; Megvii; Microsoft; National University of Defense Technology (NUDT); Nvidia; Panasonic; SenseTime; Universidad Autónoma de Madrid; University of Leicester; Multiple",
+        "developer": "Microsoft",
+        "system": "MS-Celeb-1M; MS1M-IBUG; MS1M-ArcFace; MS1M-RetinaFace",
+        "technology": "Database/dataset; Facial recognition; Computer vision",
+        "purpose": "Train facial recognition systems",
+        "ethicalIssue": "Appropriation; Dual use; Privacy/surveillance",
+        "externalHarm": "Privacy loss",
+        "harmStatus": "",
+        "impactedArea": "USA",
+        "matched": [
+          "defense"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/ms-celeb-1m-facial-recognition-database-criticised-for-violating-privacy"
+        ]
+      },
+      {
+        "ref": "AIAAIC1545",
+        "headline": "US government research dataset raises privacy, misuse concerns",
+        "occurred": "2019",
+        "deployer": "SenseTime; NEC; National University of Defense Technology (NUDT)",
+        "developer": "Noblis; Iarpa",
+        "system": "Iarpa Janus Benchmark-C (IJP-C)",
+        "technology": "Database/dataset; Facial recognition; Computer vision; Neural network; Machine learning",
+        "purpose": "Enable facial recognition research",
+        "ethicalIssue": "Dual use; Privacy/surveillance; Transparency",
+        "externalHarm": "Privacy loss",
+        "harmStatus": "",
+        "impactedArea": "USA",
+        "matched": [
+          "defense"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/us-government-research-dataset-raises-privacy-misuse-concerns"
+        ]
+      },
+      {
+        "ref": "AIAAIC1536",
+        "headline": "Duke University pulls facial recognition dataset after privacy controversy",
+        "occurred": "2019",
+        "deployer": "CloudWalk; China Electronics Technology Group/Hikvision; Megvii; SenseNets; SeeQuestor; SenseTime; Beihang University; National University of Defense Technology, China; NEC; PLA Army Engineering University",
+        "developer": "Ergys Ristani; Francesco Solera; Roger Zou; Rita Cucchiara; Carlo Tomasi; Duke University",
+        "system": "DukeMTMC; DukeMTMC-ReID;  DukeMTMC-SI-Tracklet; DukeMTMC-VideoReID",
+        "technology": "Database/dataset; Facial recognition; Computer vision",
+        "purpose": "Train facial recognition systems",
+        "ethicalIssue": "Dual use; Privacy/surveillance; Transparency",
+        "externalHarm": "Privacy loss",
+        "harmStatus": "",
+        "impactedArea": "USA",
+        "matched": [
+          "defense",
+          "army"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/duke-university-pulls-facial-recognition-dataset-after-privacy-controversy"
+        ]
+      },
+      {
         "ref": "AIAAIC1446",
         "headline": "Greece fined for AI-powered asylum centre monitoring system",
-        "type": "",
-        "sector": "",
-        "technology": "Computer vision; Drone; Machine learning; Motion analysis",
-        "country": "",
         "occurred": "2024",
+        "deployer": "Ministry of Immigration and Asylum",
+        "developer": "Ministry of Immigration and Asylum",
+        "system": "Centaur; Hyperion",
+        "technology": "Computer vision; Drone; Machine learning; Motion analysis",
+        "purpose": "Monitor asylum centres",
+        "ethicalIssue": "Privacy/surveillance",
+        "externalHarm": "Privacy loss",
+        "harmStatus": "",
+        "impactedArea": "Greece",
         "matched": [
           "drone"
         ],
@@ -216,13 +618,19 @@
       {
         "ref": "AIAAIC1441",
         "headline": "Israel attacks Hamas using AI drone swarm",
-        "type": "",
-        "sector": "",
-        "technology": "Drone",
-        "country": "",
         "occurred": "2021",
+        "deployer": "Israel Defense Forces",
+        "developer": "Elbit Systems",
+        "system": "",
+        "technology": "Drone",
+        "purpose": "Detect rocket launch locations",
+        "ethicalIssue": "Autonomous weapons; Safety",
+        "externalHarm": "Loss of life",
+        "harmStatus": "",
+        "impactedArea": "Israel; Palestine",
         "matched": [
-          "drone"
+          "drone",
+          "defense"
         ],
         "links": [
           "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/israel-attacks-hamas-using-ai-drone-swarm"
@@ -231,11 +639,16 @@
       {
         "ref": "AIAAIC1437",
         "headline": "Grok generates fake Iran missile attack headline",
-        "type": "",
-        "sector": "",
-        "technology": "Generative AI",
-        "country": "",
         "occurred": "2024",
+        "deployer": "Elon Musk",
+        "developer": "xAI",
+        "system": "Grok",
+        "technology": "Generative AI",
+        "purpose": "Summarise news articles",
+        "ethicalIssue": "Accuracy/reliability; Mis/disinformation",
+        "externalHarm": "Anxiety/distress",
+        "harmStatus": "",
+        "impactedArea": "Iran; Israel",
         "matched": [
           "missile"
         ],
@@ -244,13 +657,58 @@
         ]
       },
       {
+        "ref": "AIAAIC1430",
+        "headline": "Israel reportedly uses AI to identify 37,000 Hamas targets",
+        "occurred": "2023-",
+        "deployer": "Israel Defense Forces",
+        "developer": "",
+        "system": "Lavender",
+        "technology": "Machine learning",
+        "purpose": "Identify targets",
+        "ethicalIssue": "Autonomous weapons",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "Israel; Palestine",
+        "matched": [
+          "defense"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/israel-reportedly-uses-ai-to-identify-37000-hamas-targets"
+        ]
+      },
+      {
+        "ref": "AIAAIC1413",
+        "headline": "Israel facial recognition system misidentifies innocent Gazans",
+        "occurred": "2024",
+        "deployer": "Israel Defense Forces",
+        "developer": "Corsight",
+        "system": "",
+        "technology": "Facial recognition",
+        "purpose": "Identify terrorists",
+        "ethicalIssue": "Human rights/civil liberties; Privacy/surveillance",
+        "externalHarm": "Privacy loss; Loss of rights/freedoms",
+        "harmStatus": "",
+        "impactedArea": "Israel; Palestine",
+        "matched": [
+          "defense"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/israel-facial-recognition-system-misidentifies-innocent-gazans"
+        ]
+      },
+      {
         "ref": "AIAAIC1312",
         "headline": "Takaful' poverty targeting algorithm unfairly excludes poor Jordanians",
-        "type": "",
-        "sector": "",
-        "technology": "Ranking algorithm",
-        "country": "",
         "occurred": "2023",
+        "deployer": "Jordan National Aid Fund",
+        "developer": "The World Bank",
+        "system": "Unified Cash Transfer Program/Takaful",
+        "technology": "Ranking algorithm",
+        "purpose": "Calculate aid eligibility and distribution",
+        "ethicalIssue": "Accuracy/reliability; Fairness; Transparency",
+        "externalHarm": "Financial loss; Anxiety/distress; Dignity loss; Loss of rights/freedoms",
+        "harmStatus": "",
+        "impactedArea": "Jordan",
         "matched": [
           "targeting"
         ],
@@ -259,13 +717,38 @@
         ]
       },
       {
+        "ref": "AIAAIC1232",
+        "headline": "Israeli AI automated 'target factory' slaughters innocent Palestinian women, children",
+        "occurred": "2023",
+        "deployer": "Israel Defense Forces",
+        "developer": "",
+        "system": "Habsora",
+        "technology": "Computer vision; Machine learning",
+        "purpose": "Identify bomb targets; Estimate civilian deaths",
+        "ethicalIssue": "Autonomous weapons; Safety",
+        "externalHarm": "Health deterioration; Financial loss",
+        "harmStatus": "",
+        "impactedArea": "Israel",
+        "matched": [
+          "defense"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/israel-uses-habsora-24-hour-automated-target-factory-against-palestinians"
+        ]
+      },
+      {
         "ref": "AIAAIC1150",
         "headline": "Defence lawyer using AI 'botches' criminal trial closing argument",
-        "type": "",
-        "sector": "",
-        "technology": "Generative AI",
-        "country": "",
         "occurred": "2023",
+        "deployer": "David Kenner",
+        "developer": "EyeLevel.AI; CaseFile Connect",
+        "system": "EyeLevel Legal AI",
+        "technology": "Generative AI",
+        "purpose": "Conduct legal research",
+        "ethicalIssue": "Accuracy/reliability",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "USA",
         "matched": [
           "defence"
         ],
@@ -276,11 +759,16 @@
       {
         "ref": "AIAAIC1048",
         "headline": "Deepfake 'Chechnyan' soldier posts false Ukraine war stories",
-        "type": "",
-        "sector": "",
-        "technology": "Deepfake",
-        "country": "",
         "occurred": "2023",
+        "deployer": "",
+        "developer": "",
+        "system": "",
+        "technology": "Deepfake",
+        "purpose": "Scare/confuse/destabilise",
+        "ethicalIssue": "Mis/disinformation; Transparency",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "China; Ukraine",
         "matched": [
           "soldier"
         ],
@@ -291,11 +779,16 @@
       {
         "ref": "AIAAIC1019",
         "headline": "Pentagon deepfake 'explosion' jitters US stock market",
-        "type": "",
-        "sector": "",
-        "technology": "Deepfake",
-        "country": "",
         "occurred": "2023",
+        "deployer": "xAI",
+        "developer": "",
+        "system": "",
+        "technology": "Deepfake",
+        "purpose": "Scare/confuse/destabilise",
+        "ethicalIssue": "Authenticity/integrity; Mis/disinformation",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "USA",
         "matched": [
           "pentagon"
         ],
@@ -306,11 +799,16 @@
       {
         "ref": "AIAAIC1002",
         "headline": "Amazon botches delivery drone commercial launch",
-        "type": "",
-        "sector": "",
-        "technology": "Drone",
-        "country": "",
         "occurred": "2022",
+        "deployer": "Amazon/Prime Air",
+        "developer": "Amazon/Prime Air",
+        "system": "MK27-2",
+        "technology": "Drone",
+        "purpose": "Deliver products",
+        "ethicalIssue": "",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "USA",
         "matched": [
           "drone"
         ],
@@ -321,11 +819,16 @@
       {
         "ref": "AIAAIC1001",
         "headline": "Amazon delivery drone crashes, sparks 25-acre fire",
-        "type": "",
-        "sector": "",
-        "technology": "Drone",
-        "country": "",
         "occurred": "2022",
+        "deployer": "Amazon/Prime Air",
+        "developer": "Amazon/Prime Air",
+        "system": "MK27",
+        "technology": "Drone",
+        "purpose": "Deliver products",
+        "ethicalIssue": "Safety; Environment",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "USA",
         "matched": [
           "drone"
         ],
@@ -336,11 +839,16 @@
       {
         "ref": "AIAAIC0967",
         "headline": "AI system invents 40,000 biochemical warfare agents",
-        "type": "",
-        "sector": "",
-        "technology": "Machine learning",
-        "country": "",
         "occurred": "2022",
+        "deployer": "Collaborations Pharmaceuticals",
+        "developer": "Collaborations Pharmaceuticals",
+        "system": "MegaSyn",
+        "technology": "Machine learning",
+        "purpose": "Predict molecule toxicity",
+        "ethicalIssue": "Autonomous weapons; Dual use; Safety",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "USA; UK; Switzerland",
         "matched": [
           "warfare"
         ],
@@ -349,13 +857,58 @@
         ]
       },
       {
+        "ref": "AIAAIC0939",
+        "headline": "Iarpa Janus Benchmark-C (IJP-C) dataset",
+        "occurred": "",
+        "deployer": "SenseTime; NEC; National University of Defense Technology (NUDT)",
+        "developer": "Noblis; Iarpa",
+        "system": "Iarpa Janus Benchmark-C (IJP-C)",
+        "technology": "Database/dataset; Facial recognition; Computer vision; Neural network; Machine learning",
+        "purpose": "Create facial recognition benchmark",
+        "ethicalIssue": "Privacy/surveillance; Dual/multi-use",
+        "externalHarm": "Privacy loss",
+        "harmStatus": "",
+        "impactedArea": "USA",
+        "matched": [
+          "defense"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/iarpa-janus-benchmark-c-ijp-c-dataset"
+        ]
+      },
+      {
+        "ref": "AIAAIC0937",
+        "headline": "People in Photo Albums (PIPA) dataset",
+        "occurred": "",
+        "deployer": "ETH Zurich; Max Planck Institute of Informatics; Toyota Motor Europe; SenseTime; National University of Singapore; National University of Defense Technology, China; Facebook",
+        "developer": "UC Berkeley; Facebook",
+        "system": "People in Photo Albums",
+        "technology": "Database/dataset; Facial recognition; Computer vision",
+        "purpose": "Train facial recognition systems",
+        "ethicalIssue": "Privacy/surveillance; Dual/multi-use",
+        "externalHarm": "Privacy loss",
+        "harmStatus": "",
+        "impactedArea": "Germany; USA",
+        "matched": [
+          "defense"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/people-in-photo-albums-pipa-dataset"
+        ]
+      },
+      {
         "ref": "AIAAIC0874",
         "headline": "Axon plan to develop school security taser drones prompts backlash",
-        "type": "",
-        "sector": "",
-        "technology": "Drone; Computer vision",
-        "country": "",
         "occurred": "2022",
+        "deployer": "",
+        "developer": "Axon",
+        "system": "Project ION",
+        "technology": "Drone; Computer vision",
+        "purpose": "Strengthen security",
+        "ethicalIssue": "Accountability; Alignment; Fairness; Privacy; Transparency",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "USA",
         "matched": [
           "drone"
         ],
@@ -366,11 +919,16 @@
       {
         "ref": "AIAAIC0854",
         "headline": "Minnesota Operation Safety Net (OSN)",
-        "type": "",
-        "sector": "",
-        "technology": "Social media monitoring; Drone; Facial recognition",
-        "country": "",
         "occurred": "",
+        "deployer": "Hennepin County Sheriff’s Office; Department of Homeland Security (DHS); Federal Bureau of Investigation (FBI)",
+        "developer": "Department of Homeland Security (DHS); AT&T/Intrepid Networks",
+        "system": "Minnesota Operation Safety Net (OSN)",
+        "technology": "Social media monitoring; Drone; Facial recognition",
+        "purpose": "Strengthen security; Increase safety",
+        "ethicalIssue": "Privacy",
+        "externalHarm": "Privacy loss; Loss of freedom of expression/right of assembly",
+        "harmStatus": "",
+        "impactedArea": "USA",
         "matched": [
           "drone"
         ],
@@ -381,11 +939,16 @@
       {
         "ref": "AIAAIC0847",
         "headline": "Russian KUB-BLA drones conduct autonomous 'suicide' attacks",
-        "type": "",
-        "sector": "",
-        "technology": "Drone; Object recognition",
-        "country": "",
         "occurred": "2022",
+        "deployer": "Russian Aerospace Forces",
+        "developer": "Rostec/JSC Kalashnikov Concern/ZALA Aero",
+        "system": "KUB-BLA",
+        "technology": "Drone; Object recognition",
+        "purpose": "",
+        "ethicalIssue": "Accuracy/reliability; Autonomous weapons",
+        "externalHarm": "Property damage",
+        "harmStatus": "",
+        "impactedArea": "Ukraine; Russia",
         "matched": [
           "drone"
         ],
@@ -396,11 +959,16 @@
       {
         "ref": "AIAAIC0845",
         "headline": "Deepfake President Zelenskyy instructs Ukraine army to surrender",
-        "type": "",
-        "sector": "",
-        "technology": "Deepfake",
-        "country": "",
         "occurred": "2022",
+        "deployer": "",
+        "developer": "",
+        "system": "",
+        "technology": "Deepfake",
+        "purpose": "Scare/confuse/destabilise",
+        "ethicalIssue": "Mis/disinformation",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "Ukraine; Russia",
         "matched": [
           "army"
         ],
@@ -411,13 +979,19 @@
       {
         "ref": "AIAAIC0837",
         "headline": "Ethiopia Bayraktar TB2 drone Tigray school attack",
-        "type": "",
-        "sector": "",
-        "technology": "Drone; Robotics",
-        "country": "",
         "occurred": "2022",
+        "deployer": "Ethiopian National Defense Force (ENDF)",
+        "developer": "Baykar Defence",
+        "system": "Bayraktar TB2",
+        "technology": "Drone; Robotics",
+        "purpose": "Kill/maim/damage/destroy",
+        "ethicalIssue": "Autonomous weapons; Safety",
+        "externalHarm": "Loss of life; Bodily injury",
+        "harmStatus": "",
+        "impactedArea": "Ethiopia",
         "matched": [
-          "drone"
+          "drone",
+          "defense"
         ],
         "links": [
           "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/ethiopia-bayraktar-tb2-drone-tigray-school-attack"
@@ -426,12 +1000,18 @@
       {
         "ref": "AIAAIC0834",
         "headline": "Ukraine uses Bayraktar TB2 drones to hit Russian targets",
-        "type": "",
-        "sector": "",
-        "technology": "Drone; Object recognition",
-        "country": "",
         "occurred": "2021",
+        "deployer": "Ministry of Defenсe of Ukraine; Ukrainian Air Force",
+        "developer": "Baykar Defence",
+        "system": "Bayraktar TB2",
+        "technology": "Drone; Object recognition",
+        "purpose": "Kill/maim/damage/destroy",
+        "ethicalIssue": "Autonomous weapons; Safety",
+        "externalHarm": "Loss of life",
+        "harmStatus": "",
+        "impactedArea": "Ukraine; Russia",
         "matched": [
+          "air force",
           "drone"
         ],
         "links": [
@@ -441,11 +1021,16 @@
       {
         "ref": "AIAAIC0819",
         "headline": "Houthis attack Abu Dhabi oil deport, airport using kamikaze drones",
-        "type": "",
-        "sector": "",
-        "technology": "Drone",
-        "country": "",
         "occurred": "2022",
+        "deployer": "Ansar Allah",
+        "developer": "Ansar Allah",
+        "system": "",
+        "technology": "Drone",
+        "purpose": "Kill/maim/damage/destroy",
+        "ethicalIssue": "Autonomous weapons; Safety",
+        "externalHarm": "Loss of life",
+        "harmStatus": "",
+        "impactedArea": "UAE - Abu Dhabi; Yemen",
         "matched": [
           "drone"
         ],
@@ -454,13 +1039,38 @@
         ]
       },
       {
+        "ref": "AIAAIC0794",
+        "headline": "Report: Israel use of facial recognition to monitor Hebron Palestinians raises human right concerns",
+        "occurred": "2020",
+        "deployer": "Israel Defense Forces",
+        "developer": "",
+        "system": "Wolf Pack; Red Wolf; Blue Wolf; White Wolf",
+        "technology": "Facial recognition",
+        "purpose": "Identify Palestinians",
+        "ethicalIssue": "Fairness; Human rights/civil liberties; Privacy/surveillance",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "Israel; Palestine",
+        "matched": [
+          "defense"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/hebron-palestinian-facial-recognition-surveillance"
+        ]
+      },
+      {
         "ref": "AIAAIC0788",
         "headline": "Eucharist delivery drone sparks religious controversy",
-        "type": "",
-        "sector": "",
-        "technology": "Drone",
-        "country": "",
         "occurred": "2018",
+        "deployer": "São Geraldo Magela church, Sorocaba",
+        "developer": "",
+        "system": "",
+        "technology": "Drone",
+        "purpose": "Deliver Eucharist",
+        "ethicalIssue": "Alignment",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "Brazil",
         "matched": [
           "drone"
         ],
@@ -471,11 +1081,16 @@
       {
         "ref": "AIAAIC0787",
         "headline": "New Delhi police rapped for using facial recognition to monitor India citizenship law protests",
-        "type": "",
-        "sector": "",
-        "technology": "Facial recognition; Gait recognition; Drone",
-        "country": "",
         "occurred": "2020",
+        "deployer": "Delhi Police, Uttar Pradesh Police",
+        "developer": "Innefu Labs, Staqu",
+        "system": "Innefu Labs AI Vision; Staqu Police Artificial Intelligence System",
+        "technology": "Facial recognition; Gait recognition; Drone",
+        "purpose": "Identify criminal suspects; Identify protestors",
+        "ethicalIssue": "Accountability; Accuracy/reliability; Fairness; Dual/multi-use; Human rights/civil liberties; Transparency",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "India",
         "matched": [
           "drone"
         ],
@@ -486,11 +1101,16 @@
       {
         "ref": "AIAAIC0751",
         "headline": "Amazon Ring Always Home Cam",
-        "type": "",
-        "sector": "",
-        "technology": "Drone; Computer vision",
-        "country": "",
         "occurred": "",
+        "deployer": "Amazon",
+        "developer": "Amazon",
+        "system": "Amazon Ring Always Home Cam",
+        "technology": "Drone; Computer vision",
+        "purpose": "Strengthen home security",
+        "ethicalIssue": "Privacy; Security; Dual/multi-use",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "USA",
         "matched": [
           "drone"
         ],
@@ -499,15 +1119,41 @@
         ]
       },
       {
+        "ref": "AIAAIC0713",
+        "headline": "Unity found to be secretly developing AI products for US military",
+        "occurred": "2021",
+        "deployer": "US Department of Defense",
+        "developer": "Unity",
+        "system": "",
+        "technology": "Machine learning",
+        "purpose": "Develop military products",
+        "ethicalIssue": "Autonomous weapons; Transparency",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "USA",
+        "matched": [
+          "defense"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/unity-govtech-ai-military-applications"
+        ]
+      },
+      {
         "ref": "AIAAIC0691",
         "headline": "NATO warships' locations are spoofed",
-        "type": "",
-        "sector": "",
-        "technology": "Automatic identification system (AIS)",
-        "country": "",
         "occurred": "2021",
+        "deployer": "Royal Navy; Swedish Navy; United States Navy",
+        "developer": "International Maritime Organization",
+        "system": "",
+        "technology": "Automatic identification system (AIS)",
+        "purpose": "Track vessel movements",
+        "ethicalIssue": "Security; Safety; Mis/disinformation; Dual use",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "Russia; Sweden; UK; USA",
         "matched": [
-          "nato"
+          "nato",
+          "navy"
         ],
         "links": [
           "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/nato-warships-ais-spoofing"
@@ -516,11 +1162,16 @@
       {
         "ref": "AIAAIC0686",
         "headline": "Dubai drone cloud seeding raises flooding, biodiversity, weaponisation concerns",
-        "type": "",
-        "sector": "",
-        "technology": "Drone",
-        "country": "",
         "occurred": "2021",
+        "deployer": "National Center of Meteorology (NCM)",
+        "developer": "University of Reading; University of Bath",
+        "system": "",
+        "technology": "Drone",
+        "purpose": "Seed clouds",
+        "ethicalIssue": "Dual use; Environment; Transparency",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "UAE/Dubai",
         "matched": [
           "drone"
         ],
@@ -531,11 +1182,16 @@
       {
         "ref": "AIAAIC0641",
         "headline": "Kargu-2 fully autonomous drone attacks Libyan armed forces",
-        "type": "",
-        "sector": "",
-        "technology": "Drone; Machine learning; Robotics",
-        "country": "",
         "occurred": "2020",
+        "deployer": "Government of Libya",
+        "developer": "STM",
+        "system": "Kargu-2",
+        "technology": "Drone; Machine learning; Robotics",
+        "purpose": "Attack Libyan armed forces",
+        "ethicalIssue": "Accountability; Autonomous weapons",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "Libya",
         "matched": [
           "drone",
           "armed forces"
@@ -547,11 +1203,16 @@
       {
         "ref": "AIAAIC0538",
         "headline": "Oosto/AnyVision files facial recognition drone patent",
-        "type": "",
-        "sector": "",
-        "technology": "Drone; Facial recognition",
-        "country": "",
         "occurred": "2021",
+        "deployer": "",
+        "developer": "Oosto/AnyVision Interactive Technologies",
+        "system": "",
+        "technology": "Drone; Facial recognition",
+        "purpose": "Identify military targets",
+        "ethicalIssue": "Privacy/surveillance",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "Israel",
         "matched": [
           "drone"
         ],
@@ -560,13 +1221,38 @@
         ]
       },
       {
+        "ref": "AIAAIC0531",
+        "headline": "Israel AI robot machine guns fire tear gas at Palestinian protestors",
+        "occurred": "2022",
+        "deployer": "Israel Defense Forces",
+        "developer": "Smart Shooter",
+        "system": "SMASH Hopper",
+        "technology": "Computer vision; Robotics",
+        "purpose": "Control population",
+        "ethicalIssue": "Autonomous weapons; Safety",
+        "externalHarm": "Loss of rights/freedoms",
+        "harmStatus": "",
+        "impactedArea": "Israel",
+        "matched": [
+          "defense"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/israel-ai-robot-machine-guns-fire-tear-gas-at-palestinian-protestors"
+        ]
+      },
+      {
         "ref": "AIAAIC0442",
         "headline": "Tyndall Air Force base robot patrol dogs",
-        "type": "",
-        "sector": "",
-        "technology": "Robotics",
-        "country": "",
         "occurred": "2020",
+        "deployer": "",
+        "developer": "Ghost Robotics",
+        "system": "",
+        "technology": "Robotics",
+        "purpose": "Enhance security",
+        "ethicalIssue": "Autonomous weapons; Safety",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "USA",
         "matched": [
           "air force"
         ],
@@ -575,11 +1261,16 @@
       {
         "ref": "AIAAIC0424",
         "headline": "UK police criticised for using drones to monitor lockdown avoiders",
-        "type": "",
-        "sector": "",
-        "technology": "Drone; Thermal imaging",
-        "country": "",
         "occurred": "2020",
+        "deployer": "Derbyshire Constabulary",
+        "developer": "SZ DJI Technology Co",
+        "system": "DJI Mavic 2 Enterprise",
+        "technology": "Drone; Thermal imaging",
+        "purpose": "Identify lockdown violations",
+        "ethicalIssue": "Human rights/civil liberties; Privacy/surveillance",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "UK",
         "matched": [
           "drone"
         ],
@@ -588,17 +1279,104 @@
         ]
       },
       {
+        "ref": "AIAAIC0215",
+        "headline": "AnyVision 'Google Ayosh' Palestinian surveillance",
+        "occurred": "2019",
+        "deployer": "Israel Defense Forces",
+        "developer": "Oosto/AnyVision Interactive Technologies",
+        "system": "Better Tomorrow",
+        "technology": "Facial recognition",
+        "purpose": "Population surveillance",
+        "ethicalIssue": "Privacy/surveillance",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "Israel",
+        "matched": [
+          "defense"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/anyvision-google-ayosh-palestinian-surveillance"
+        ]
+      },
+      {
+        "ref": "AIAAIC0200",
+        "headline": "DukeMTMC facial recognition dataset",
+        "occurred": "",
+        "deployer": "CloudWalk; China Electronics Technology Group/Hikvision; Megvii; SenseNets; SeeQuestor; SenseTime; Beihang University; National University of Defense Technology, China; NEC; PLA Army Engineering University",
+        "developer": "Ergys Ristani; Francesco Solera; Roger Zou; Rita Cucchiara; Carlo Tomasi; Duke University",
+        "system": "DukeMTMC; DukeMTMC-ReID;  DukeMTMC-SI-Tracklet; DukeMTMC-VideoReID",
+        "technology": "Database/dataset; Facial recognition; Computer vision",
+        "purpose": "Train facial recognition systems",
+        "ethicalIssue": "Privacy/surveillance; Ethics/values; Dual use",
+        "externalHarm": "Privacy loss",
+        "harmStatus": "",
+        "impactedArea": "USA",
+        "matched": [
+          "defense",
+          "army"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/dukemtmc-facial-recognition-dataset"
+        ]
+      },
+      {
         "ref": "AIAAIC0174",
         "headline": "Google Project Maven drone imaging",
-        "type": "",
-        "sector": "",
-        "technology": "Machine learning",
-        "country": "",
         "occurred": "2018",
+        "deployer": "US Department of Defense",
+        "developer": "Google",
+        "system": "",
+        "technology": "Machine learning",
+        "purpose": "Strengthen surveillance capabilities",
+        "ethicalIssue": "Autonomous weapons",
+        "externalHarm": "",
+        "harmStatus": "",
+        "impactedArea": "USA",
         "matched": [
-          "drone"
+          "drone",
+          "defense"
         ],
         "links": []
+      },
+      {
+        "ref": "AIAAIC037",
+        "headline": "Stanford University Brainwash cafe facial recognition dataset",
+        "occurred": "",
+        "deployer": "Beijing University of Technology; Delft University of Technology; Honeywell Technology Solutions; Huawei; IDIAP Research Institute; IIT Madras; Megvii; National University of Defense Technology, China; North University of China; Shenzhen University; Qualcomm; University of Electronic Science and Technology of China",
+        "developer": "Stanford University; Stewart Russell; Mykhaylo Andriluka; Andrew Ng",
+        "system": "Brainwash",
+        "technology": "Database/dataset; Facial recognition; Computer vision",
+        "purpose": "Train algorithm effectiveness",
+        "ethicalIssue": "Privacy/surveillance",
+        "externalHarm": "Privacy/surveillance loss",
+        "harmStatus": "",
+        "impactedArea": "USA; China",
+        "matched": [
+          "defense"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/stanford-university-brainwash-cafe-facial-recognition-dataset"
+        ]
+      },
+      {
+        "ref": "AIAAIC031",
+        "headline": "Microsoft Celeb (MS-Celeb-1M) facial recognition dataset",
+        "occurred": "",
+        "deployer": "Alibaba; École Polytechnique Fédérale de Lausanne; Hitachi; Huawei; IBM; IDIAP Research Institute; Megvii; Microsoft; National University of Defense Technology (NUDT); Nvidia; Panasonic; SenseTime; Universidad Autónoma de Madrid; University of Leicester; Multiple",
+        "developer": "Microsoft",
+        "system": "MS-Celeb-1M; MS1M-IBUG; MS1M-ArcFace; MS1M-RetinaFace",
+        "technology": "Database/dataset; Facial recognition; Computer vision",
+        "purpose": "Train facial recognition systems",
+        "ethicalIssue": "Privacy/surveillance; Appropriation; Dual/multi-use",
+        "externalHarm": "Privacy loss",
+        "harmStatus": "",
+        "impactedArea": "USA",
+        "matched": [
+          "defense"
+        ],
+        "links": [
+          "https://www.aiaaic.org/aiaaic-repository/ai-algorithmic-and-automation-incidents/microsoft-celeb-ms-celeb-1m-facial-recognition-dataset"
+        ]
       }
     ]
   },
