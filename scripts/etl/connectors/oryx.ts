@@ -71,6 +71,58 @@ const PAGES = [
   },
 ] as const;
 
+/**
+ * Every post Oryx has published, so "is there a drone list?" is a reading.
+ *
+ * The two loss lists above were typed in because they are the famous ones. But
+ * the main lists turn out to carry almost no unmanned aircraft — a couple of
+ * dozen combat drones against thirty-six thousand vehicles — and the obvious
+ * next question is whether the drones are catalogued somewhere else on the
+ * same site. Guessing URLs would answer that badly: a 404 from a guessed slug
+ * is indistinguishable from a page that does not exist.
+ *
+ * Blogger publishes a post index as JSON. Asking it, and recording every post
+ * whose title mentions an unmanned system, turns the guess into a finding
+ * either way — including the finding that there is no such list.
+ */
+const BLOG_INDEX =
+  "https://www.oryxspioenkop.com/feeds/posts/summary?alt=json&max-results=500";
+
+const UNMANNED_TITLE = /\b(drone|uav|ucav|unmanned|loitering|shahed|lancet|orlan|bayraktar|fpv)\b/i;
+
+interface BlogEntry { title?: { $t?: string }; link?: Array<{ rel?: string; href?: string }>; published?: { $t?: string } }
+interface BlogFeed { feed?: { entry?: BlogEntry[]; openSearch$totalResults?: { $t?: string } } }
+
+async function postIndex(): Promise<{
+  total: number;
+  posts: number;
+  unmannedPosts: Array<{ title: string; url: string; published: string }>;
+  note: string;
+}> {
+  const res = await getText(BLOG_INDEX, { timeoutMs: 60_000, retries: 2, cacheMs: 0 });
+  if (!res.ok || !res.data) {
+    return { total: 0, posts: 0, unmannedPosts: [], note: `post index failed: ${res.error ?? "no body"}` };
+  }
+  let feed: BlogFeed;
+  try { feed = JSON.parse(res.data) as BlogFeed; }
+  catch { return { total: 0, posts: 0, unmannedPosts: [], note: "post index did not parse as JSON" }; }
+  const entries = feed.feed?.entry ?? [];
+  const unmannedPosts: Array<{ title: string; url: string; published: string }> = [];
+  for (const e of entries) {
+    const title = e.title?.$t ?? "";
+    if (!UNMANNED_TITLE.test(title)) continue;
+    const url = e.link?.find((l) => l.rel === "alternate")?.href ?? "";
+    unmannedPosts.push({ title, url, published: (e.published?.$t ?? "").slice(0, 10) });
+  }
+  const total = Number.parseInt(feed.feed?.openSearch$totalResults?.$t ?? "0", 10);
+  return {
+    total: Number.isFinite(total) ? total : 0,
+    posts: entries.length,
+    unmannedPosts,
+    note: `${entries.length} of ${total} posts indexed, ${unmannedPosts.length} titled for an unmanned system`,
+  };
+}
+
 /** The statuses Oryx uses. Anything else is recorded as seen and not counted. */
 const STATUSES = ["destroyed", "damaged", "abandoned", "captured"] as const;
 export type Status = (typeof STATUSES)[number];
@@ -98,6 +150,8 @@ export interface Instance {
   category: string;
   model: string;
   status: Status;
+  /** The source's exact words, which may be compound: "damaged and captured". */
+  statusAsWritten: string;
   /** The link Oryx gives as proof. Kept verbatim, never followed. */
   evidence: string;
 }
@@ -142,9 +196,13 @@ export function textOf(html: string): string {
  */
 export function statedTotals(heading: string): Section["stated"] {
   const text = textOf(heading);
+  // Sections write "Tanks (4447, of which destroyed: 3352, …)"; the two
+  // page-level roll-ups write "Russia - 24098, of which: destroyed: 19065, …".
+  // Both are read, because the roll-up is the check on the page as a whole.
   const paren = /\(([^)]*)\)/.exec(text);
-  if (!paren) return { total: null, byStatus: {} };
-  const inner = paren[1] ?? "";
+  const dash = /[-–—]\s*(\d[\d,]*\s*,\s*of which[\s\S]*)$/i.exec(text);
+  const inner = paren?.[1] ?? dash?.[1] ?? "";
+  if (inner === "") return { total: null, byStatus: {} };
   const lead = /^\s*(\d[\d,]*)/.exec(inner);
   const byStatus: Partial<Record<Status, number>> = {};
   for (const s of STATUSES) {
@@ -158,30 +216,73 @@ export function statedTotals(heading: string): Section["stated"] {
 }
 
 /**
- * One list item into its individual losses.
+ * One entry block into its individual losses.
  *
- * The leading integer and the model name are the item's own header; each
- * `(n, status)` that follows is one vehicle, and the anchor immediately after
- * it is that vehicle's evidence. Pairing status to link by position rather
- * than by parsing the whole item as a unit means a malformed entry costs that
- * entry and not the model.
+ * The markup is a <details>/<summary> pair per model, and each loss is an
+ * anchor whose own text is the status:
+ *
+ *     <summary>… 2 T-54-3M:</summary>
+ *     <a href="https://postimg.cc/zBC4NPVv">(1, destroyed)</a>
+ *     <a href="https://postimg.cc/s29RHpfN">(1, damaged and abandoned)</a>
+ *
+ * The first version of this reader assumed the older layout, where the status
+ * was plain text and the link followed it. That regex still matched almost
+ * everything — by pairing each status with the *next* loss's link, and
+ * dropping the last loss of every model because nothing followed it. The
+ * result was a count 5% short and, far worse, every receipt attached to the
+ * wrong vehicle. The section check caught it; nothing else would have, because
+ * the numbers were plausible and the format was right.
+ *
+ * Both layouts are read now, link-wrapping first.
  */
-export function parseItem(html: string): { model: string; losses: Array<{ status: Status; evidence: string }> } {
-  // "4 T-72B Obr. 1989: (1, destroyed) …" — the name runs to the first colon
-  // that is followed by a bracketed status, not to the first colon at all:
-  // several model names contain one ("Buk-M1: 9A310M1").
-  const head = /^\s*(?:<[^>]+>\s*)*(\d[\d,]*)\s+([\s\S]*?):\s*(?=\()/.exec(html);
-  const model = head?.[2] ? textOf(head[2]) : textOf(html.split(":")[0] ?? "").slice(0, 80);
-  const body = head ? html.slice(head[0].length) : html;
+const LINK_WRAPPED = /<a\b[^>]*href="([^"]+)"[^>]*>\s*\(\s*\d+\s*,\s*([^)<]+?)\s*\)\s*<\/a>/gi;
+const STATUS_FIRST = /\(\s*\d+\s*,\s*([a-z ]+?)\s*\)\s*(?:<[^>]*>\s*)*?<a\b[^>]*href="([^"]+)"/gi;
 
-  const losses: Array<{ status: Status; evidence: string }> = [];
-  // A status bracket, then anything that is not another bracket, then the href.
-  const re = /\(\s*\d+\s*,\s*([a-z ]+?)\s*\)\s*(?:<[^>]*>\s*)*?<a\b[^>]*href="([^"]+)"/gi;
-  for (const m of body.matchAll(re)) {
-    const raw = (m[1] ?? "").trim().toLowerCase();
-    const status = STATUSES.find((s) => raw.includes(s));
+/**
+ * A compound status to the one it is counted under.
+ *
+ * Oryx writes "damaged and abandoned" and "damaged and captured". Each is one
+ * vehicle and must be counted once. The outcome is taken as the later verb —
+ * a vehicle that was damaged and then captured is, in the end, captured — and
+ * the source's exact words are kept on the row so the choice is inspectable.
+ */
+export function classify(raw: string): Status | null {
+  const s = raw.toLowerCase();
+  if (s.includes("captured")) return "captured";
+  if (s.includes("abandoned")) return "abandoned";
+  if (s.includes("destroyed")) return "destroyed";
+  if (s.includes("damaged")) return "damaged";
+  return null;
+}
+
+export function parseItem(html: string): {
+  model: string;
+  losses: Array<{ status: Status; raw: string; evidence: string }>;
+} {
+  // The model name is in the <summary>, after a leading count and any flag
+  // image, and ends at the colon.
+  const summary = /<summary\b[^>]*>([\s\S]*?)<\/summary>/i.exec(html);
+  const head = summary?.[1] ?? html.split(/<a\b/i)[0] ?? "";
+  const named = /(\d[\d,]*)\s+([^:<]+?)\s*:/.exec(textOf(head));
+  const model = named?.[2]?.trim() || textOf(head).replace(/^\d+\s*/, "").replace(/:$/, "").slice(0, 80);
+
+  const losses: Array<{ status: Status; raw: string; evidence: string }> = [];
+  const seen = new Set<string>();
+  for (const m of html.matchAll(LINK_WRAPPED)) {
+    const raw = (m[2] ?? "").trim();
+    const status = classify(raw);
     if (!status) continue;
-    losses.push({ status, evidence: m[2] ?? "" });
+    seen.add(m[0]);
+    losses.push({ status, raw, evidence: m[1] ?? "" });
+  }
+  // Fallback for any entry still written the old way. Guarded against
+  // double-counting a loss the first pattern already took.
+  for (const m of html.matchAll(STATUS_FIRST)) {
+    if ([...seen].some((t) => m[0].includes(t))) continue;
+    const raw = (m[1] ?? "").trim();
+    const status = classify(raw);
+    if (!status) continue;
+    losses.push({ status, raw, evidence: m[2] ?? "" });
   }
   return { model, losses };
 }
@@ -227,6 +328,9 @@ async function readPage(page: (typeof PAGES)[number]): Promise<PageResult> {
   for (const { heading, body } of sections(html)) {
     const headText = textOf(heading);
     if (headText === "") continue;
+    // Blogger's own page template emits headings built from JavaScript
+    // fragments — "' + g + '" and similar. They are not sections.
+    if (/^['"]?\s*\+|\+\s*['"]?$|posttitle/.test(headText)) continue;
     const category = headText.replace(/\s*\([^)]*\)\s*$/, "").trim();
     if (category === "") continue;
 
@@ -236,7 +340,13 @@ async function readPage(page: (typeof PAGES)[number]): Promise<PageResult> {
     const tallies: ModelTally[] = [];
     const instances: Instance[] = [];
 
-    for (const m of body.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/gi)) {
+    // <details> per model on the current layout, <li> on the old one. Both
+    // are scanned; a page using one yields nothing for the other.
+    const blocks = [
+      ...body.matchAll(/<details\b[^>]*>([\s\S]*?)<\/details>/gi),
+      ...body.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/gi),
+    ];
+    for (const m of blocks) {
       const itemHtml = m[1] ?? "";
       const { model, losses } = parseItem(itemHtml);
       if (losses.length === 0) continue;
@@ -248,7 +358,10 @@ async function readPage(page: (typeof PAGES)[number]): Promise<PageResult> {
         byStatus[l.status]++;
         // Receipts are kept in full only where they are the subject.
         if (unmanned) {
-          instances.push({ side: page.side, category, model, status: l.status, evidence: l.evidence });
+          instances.push({
+            side: page.side, category, model,
+            status: l.status, statusAsWritten: l.raw, evidence: l.evidence,
+          });
         }
       }
       tallies.push({ category, model, counts, total: losses.length });
@@ -290,6 +403,10 @@ async function readPage(page: (typeof PAGES)[number]): Promise<PageResult> {
 }
 
 async function main(): Promise<void> {
+  const index = await postIndex();
+  console.log(`Post index: ${index.note}`);
+  for (const p of index.unmannedPosts.slice(0, 12)) console.log(`   ${p.published}  ${p.title.slice(0, 80)}`);
+
   const pages: PageResult[] = [];
   for (const p of PAGES) {
     const r = await readPage(p);
@@ -338,8 +455,9 @@ async function main(): Promise<void> {
       "When anything was lost. Oryx dates its entries by when the evidence surfaced, not by when the vehicle was hit, and this file records no date at all rather than implying one.",
       "Where anything was lost. No coordinates are published per entry.",
       "Whether a drone was commercial or military. No published loss list separates a hobby quadcopter from a purpose-built military airframe, and this file does not invent the distinction — it can only say which categories are unmanned.",
-      "Anything about the vastly larger population of small FPV and quadcopter losses, which are consumed in the thousands weekly and are almost never catalogued individually by anyone.",
+      "Anything about the vastly larger population of small FPV and quadcopter losses, which are almost never catalogued individually by anyone. The scale of that gap is the most important thing this file has to say, and it says it by absence: the unmanned categories here are a rounding error against the vehicle count, and that is a fact about what can be photographed and archived, not about what is being flown.",
     ],
+    postIndex: index,
     counts: {
       pages: pages.length,
       sections: pages.reduce((a, p) => a + p.sections.length, 0),
