@@ -87,7 +87,17 @@ const MILITARY = /\b(militar|defen[cs]e|army|navy|air force|weapon|warfare|comba
  * is kept, flagged, and presented apart. Conflating the two is how a register
  * of AI controversies gets quoted as a count of battlefield incidents.
  */
-const ARMED_FORCE = /\b(defense force|defence force|armed forces|army|navy|air force|marine corps|department of (war|defen[cs]e)|ministry of defen[cs]e|pentagon|idf|nato|liberation army|national guard|military|intelligence agency|mossad|gru|fsb|cia|nsa|dod)\b/i;
+const ARMED_FORCE = /\b(defen[cs]e forces?|armed forces?|army|navy|air force|marine corps|department of (war|defen[cs]e)|min(istry|istr[a-z]*) of defen[\u0441cs]e|pentagon|idf|nato|liberation army|national guard|military|intelligence agency|mossad|gru|fsb|cia|nsa|dod)\b/i;
+
+/*
+ * Two traps in one line. "Israel Defense Forces" does not match
+ * \bdefense force\b, because the word boundary after "force" fails against the
+ * following "s" — eight of the most relevant rows in the register were sorted
+ * as adjacent for want of an optional plural. And one deployer is written
+ * "Ministry of Defenсe of Ukraine" with a CYRILLIC es in place of the c, which
+ * no Latin-only pattern can see; the character class admits it explicitly
+ * rather than leaving a row to fall through a lookalike.
+ */
 
 /** Governments, which deploy systems in operations without being a service. */
 const STATE_ACTOR = /\b(government of|ministry of|state of|republic of|federal)\b/i;
