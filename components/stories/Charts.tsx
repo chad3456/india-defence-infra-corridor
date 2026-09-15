@@ -31,6 +31,15 @@
  * the charts are present in the HTML for anything that does not run scripts.
  * Interactivity here is CSS hover on an element that already exists.
  *
+ * ── Charts scale by width, never by a height attribute ──────────────────
+ *
+ * An SVG with a viewBox and a fixed `height` letterboxes inside anything wider
+ * than its viewBox: the content scales to fit and centres, and the chart sits
+ * in the middle of its card with a band of empty surface either side, looking
+ * like a layout bug because it is one. `height: auto` lets the width drive it
+ * and the `height` prop becomes what it should have been all along — the
+ * chart's aspect ratio, not its size.
+ *
  * ── The one rule about width ─────────────────────────────────────────────
  *
  * Charts are one of the three things allowed to be wider than the page, and
@@ -145,7 +154,19 @@ export function RankedRows({
                 {startRank + i}
               </span>
             )}
-            <span className="w-[6.5rem] shrink-0 truncate text-[12px] leading-tight sm:w-[10rem] sm:text-[13px]"
+            {/*
+              The name takes what is left and the bar takes a fixed share of
+              the row, rather than the other way round.
+
+              With a fixed 10rem name column and a 5rem value column, two of
+              these side by side in a half-width card leave the bar negative
+              space: the browser does not shrink a fixed-width span, so the
+              value slid underneath the name and the chart rendered as
+              overlapping text. Making the name the flexible element means the
+              row degrades by truncating a country name, which is legible, and
+              never by stacking two numbers on top of each other.
+            */}
+            <span className="min-w-0 flex-1 truncate text-[12px] leading-tight sm:text-[13px]"
               style={{ fontWeight: r.mark ? 700 : 500 }}>
               {r.name}
               {r.meta && (
@@ -154,15 +175,15 @@ export function RankedRows({
                 </span>
               )}
             </span>
-            <span className="min-w-0 flex-1">
+            <span className="basis-[34%] shrink-0">
               <span className="block h-[12px] rounded-sm" style={{
                 width: `${Math.max(r.value > 0 ? 1 : 0, (r.value / max) * 100)}%`,
                 background: r.mark ? TONE[t] : FILL[t],
                 border: r.mark ? "none" : `1px solid ${TONE[t]}40`,
               }} />
             </span>
-            <span className="mono w-[4.2rem] shrink-0 text-right text-[12px] font-semibold tabular-nums sm:w-[5rem] sm:text-[13px]"
-              style={{ color: r.mark ? TONE[markTone] : "var(--story-ink)" }}>
+            <span className="mono shrink-0 text-right text-[12px] font-semibold tabular-nums sm:text-[13px]"
+              style={{ color: r.mark ? TONE[markTone] : "var(--story-ink)", minWidth: "3.2rem" }}>
               {r.display}
             </span>
           </div>
@@ -383,7 +404,7 @@ export function PackedBubbles({
   return (
     <div>
       <Scroller min={Math.min(width, 560)}>
-        <svg viewBox={`0 0 ${width} ${height}`} width="100%" height={height} role="img"
+        <svg viewBox={`0 0 ${width} ${height}`} style={{ width: "100%", height: "auto" }} role="img"
           aria-label={bubbles.map((b) => `${b.name} ${b.display}`).join("; ")}>
           {placed.map((p) => {
             const b = bubbles[p.i];
@@ -451,6 +472,26 @@ const india = feature(
   indiaTopo as unknown as Topology,
   (indiaTopo as unknown as Topology).objects.india as GeometryCollection,
 ) as FeatureCollection<Geometry, { name: string | null }>;
+
+/**
+ * The world atlas's numeric id for a country, by the atlas's own spelling.
+ *
+ * Exported because some datasets in this repository are already resolved to
+ * atlas names — the drone connector writes `originCountry` precisely so the
+ * name it records is the one the map uses. For those, a name lookup is not the
+ * fragile join it would be against raw trade data; it is a lookup against the
+ * same vocabulary. Anything else should still join on a code.
+ */
+const ISO_BY_NAME = new Map<string, string>(
+  world.features
+    .map((f) => [f.properties?.name ?? "", String(f.id ?? "")] as const)
+    .filter(([n, id]) => n !== "" && id !== "")
+    .map(([n, id]) => [n, id]),
+);
+
+export function isoForCountryName(name: string): string | undefined {
+  return ISO_BY_NAME.get(name);
+}
 
 export interface MapBubble {
   id: string;
@@ -529,7 +570,7 @@ export function BubbleMap({
   return (
     <div>
       <Scroller min={560}>
-        <svg viewBox={`0 0 ${width} ${height}`} width="100%" height={height} role="img"
+        <svg viewBox={`0 0 ${width} ${height}`} style={{ width: "100%", height: "auto" }} role="img"
           aria-label={bubbles.map((b) => `${b.name} ${b.display}`).join("; ")}>
           <g>
             {world.features.map((f, i) => (
@@ -619,7 +660,7 @@ export function IndiaBubbleMap({
 
   return (
     <div>
-      <svg viewBox={`0 0 ${width} ${height}`} width="100%" height={height} className="max-w-full" role="img"
+      <svg viewBox={`0 0 ${width} ${height}`} style={{ width: "100%", height: "auto" }} className="max-w-full" role="img"
         aria-label={bubbles.map((b) => `${b.state} ${b.display}`).join("; ")}>
         {showOutline && india.features.map((f, i) => (
           <path key={i} d={path(f) ?? undefined}
@@ -674,7 +715,7 @@ export function DotMap({
   const projection = geoMercator().fitExtent([[8, 8], [width - 8, height - 8]], india);
   const path = geoPath(projection);
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} width="100%" height={height} className="max-w-full" role="img"
+    <svg viewBox={`0 0 ${width} ${height}`} style={{ width: "100%", height: "auto" }} className="max-w-full" role="img"
       aria-label={`${dots.length} mapped sites`}>
       {india.features.map((f, i) => (
         <path key={i} d={path(f) ?? undefined}
@@ -733,7 +774,7 @@ export function SlopeChart({
   void format;
   return (
     <Scroller min={520}>
-      <svg viewBox={`0 0 ${width} ${height}`} width="100%" height={height} role="img"
+      <svg viewBox={`0 0 ${width} ${height}`} style={{ width: "100%", height: "auto" }} role="img"
         aria-label={rows.map((r) => `${r.name}: ${r.fromDisplay} to ${r.toDisplay}`).join("; ")}>
         <line x1={x1} y1={padY - 14} x2={x1} y2={height - padY + 6} stroke="var(--story-rule)" />
         <line x1={x2} y1={padY - 14} x2={x2} y2={height - padY + 6} stroke="var(--story-rule)" />
@@ -945,7 +986,7 @@ export function Treemap({
   const rects = squarify(items.map((i) => i.value), width, height);
   return (
     <Scroller min={Math.min(width, 520)}>
-      <svg viewBox={`0 0 ${width} ${height}`} width="100%" height={height} role="img"
+      <svg viewBox={`0 0 ${width} ${height}`} style={{ width: "100%", height: "auto" }} role="img"
         aria-label={items.map((i) => `${i.name} ${i.display}`).join("; ")}>
         {rects.map((r) => {
           const it = items[r.i];

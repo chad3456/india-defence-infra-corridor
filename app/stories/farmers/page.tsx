@@ -4,6 +4,9 @@ import {
   Eyebrow, Headline, Standfirst, Mark, Stat, Columns, BarRow, pct,
   WhatThisCannotSay, Sources,
 } from "@/components/stories/Kit";
+import {
+  ChartTitle, Caption, RankedRows, DivergingRanks, Waffle,
+} from "@/components/stories/Charts";
 
 /**
  * India feeds itself twice over. The farmer is still waiting.
@@ -65,6 +68,29 @@ export default function FarmersStory() {
   const femEmpl = getSeries("wdi-sl-agr-empl-fe-zs");
   const foodExp = getSeries("wdi-tx-val-food-zs-un");
 
+  /**
+   * The wedge: agriculture's share of employment minus its share of output.
+   *
+   * Joined across two series by country name, and only countries present in
+   * both are kept. The two series carry their own latest year per country, so
+   * a row can pair a 2025 employment share with a 2021 output share — which is
+   * why every row prints both years rather than one date for the chart. A
+   * wedge computed across four years is still a wedge; a chart that hid the
+   * mismatch would be asserting a simultaneity the data does not have.
+   */
+  const emplPeers = peersOf("wdi-agriculture-employment");
+  const gdpPeers = peersOf("wdi-agriculture-gdp");
+  const wedge = emplPeers
+    .map((e) => {
+      const o = gdpPeers.find((x) => x.country === e.country);
+      return o ? { country: e.country, employment: e.value, output: o.value,
+                   gap: e.value - o.value, years: `${e.period}/${o.period}` } : null;
+    })
+    .filter((x): x is { country: string; employment: number; output: number; gap: number; years: string } => x !== null)
+    .sort((a, b) => b.gap - a.gap);
+  const wedgeGap = wedge.find((r) => r.country === "India")?.gap ?? 0;
+  const wedgeSecond = wedge.filter((r) => r.country !== "India")[0];
+
   if (!yieldS || !prod) {
     return (
       <div className="pt-12">
@@ -84,6 +110,25 @@ export default function FarmersStory() {
   const yieldPeers = peersOf("wdi-ag-yld-crel-kg");
   const workerPeers = peersOf("wdi-nv-agr-empl-kd");
   const landPeers = peersOf("wdi-ag-lnd-crel-ha");
+
+  /**
+   * Land under cereals beside what came off it, ordered by land.
+   *
+   * The one pairing that carries the whole productivity argument without a
+   * ratio: India farms more cereal land than China and harvests six tonnes for
+   * China's ten. Joined on country name across two series, each keeping its
+   * own year, and a country missing from either is dropped rather than
+   * half-drawn.
+   */
+  const outputPeers = peersOf("wdi-ag-prd-crel-mt");
+  const landHarvest = landPeers
+    .map((l) => {
+      const o = outputPeers.find((x) => x.country === l.country);
+      return o ? { country: l.country, land: l.value, output: o.value } : null;
+    })
+    .filter((x): x is { country: string; land: number; output: number } => x !== null)
+    .sort((a, b) => b.land - a.land);
+
   const india = yieldPeers.find((p) => p.country === "India");
   const china = yieldPeers.find((p) => p.country === "China");
   const indiaLand = landPeers.find((p) => p.country === "India");
@@ -180,24 +225,75 @@ export default function FarmersStory() {
             is the productivity story, and it is not about effort.
           </Standfirst>
           <div className="story-card mt-7 p-5 sm:p-7">
-            <Eyebrow>cereal yield, kg per hectare</Eyebrow>
-            <div className="mt-4 space-y-1">
-              {yieldPeers.map((p) => (
-                <BarRow
-                  key={p.country}
-                  label={p.country}
-                  sub={p.period}
-                  value={p.value}
-                  max={Math.max(...yieldPeers.map((x) => x.value))}
-                  display={Math.round(p.value).toLocaleString("en-IN")}
-                  tone={p.country === "India" ? "hot" : "cool"}
+            <div className="grid gap-9 lg:grid-cols-2">
+              <div className="min-w-0">
+                <ChartTitle note="Each row carries its own year, because the latest available year differs by country and comparing 2024 against 2023 without saying so is how peer charts mislead.">
+                  Cereal yield, kg per hectare
+                </ChartTitle>
+                <RankedRows
+                  tone="cool"
+                  markTone="hot"
+                  rows={[...yieldPeers].sort((a, b) => b.value - a.value).map((pr) => ({
+                    name: pr.country,
+                    value: pr.value,
+                    display: Math.round(pr.value).toLocaleString("en-US"),
+                    mark: pr.country === "India",
+                    meta: pr.period,
+                  }))}
                 />
-              ))}
+              </div>
+              <div className="min-w-0">
+                <ChartTitle note="The same six countries, ranked twice. Hectares and tonnes are different units and are never put on one scale — the finding is the change of position between the two columns.">
+                  Ranked by land, then by harvest
+                </ChartTitle>
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div className="min-w-0">
+                    <p className="story-eyebrow mb-2" style={{ color: "var(--s-mid)" }}>
+                      land under cereals
+                    </p>
+                    <RankedRows
+                      tone="mid"
+                      markTone="hot"
+                      rows={[...landHarvest].sort((a, b) => b.land - a.land).map((r) => ({
+                        name: r.country,
+                        value: r.land,
+                        display: `${(r.land / 1e6).toFixed(0)}`,
+                        mark: r.country === "India",
+                      }))}
+                    />
+                    <p className="mono mt-1.5 text-[10px]" style={{ color: "var(--story-ink-3)" }}>
+                      million hectares
+                    </p>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="story-eyebrow mb-2" style={{ color: "var(--s-cool)" }}>
+                      cereals harvested
+                    </p>
+                    <RankedRows
+                      tone="cool"
+                      markTone="hot"
+                      rows={[...landHarvest].sort((a, b) => b.output - a.output).map((r) => ({
+                        name: r.country,
+                        value: r.output,
+                        display: `${Math.round(r.output / 1e6)}`,
+                        mark: r.country === "India",
+                      }))}
+                    />
+                    <p className="mono mt-1.5 text-[10px]" style={{ color: "var(--story-ink-3)" }}>
+                      million tonnes
+                    </p>
+                  </div>
+                </div>
+                <Caption>
+                  India is <strong>{[...landHarvest].sort((a, b) => b.land - a.land).findIndex((r) => r.country === "India") + 1}st</strong>{" "}
+                  by land and{" "}
+                  <strong>{[...landHarvest].sort((a, b) => b.output - a.output).findIndex((r) => r.country === "India") + 1}rd</strong>{" "}
+                  by harvest. No country in this set that farms less land harvests less than India
+                  in proportion to it. Each figure carries its own latest year, which differs by
+                  country.
+                </Caption>
+              </div>
             </div>
-            <p className="mt-5 text-[12px] leading-[1.6]" style={{ color: "var(--story-ink-3)" }}>
-              Each bar carries its own year, because the latest available year differs by country
-              and comparing 2024 against 2023 without saying so is how peer charts mislead.
-            </p>
           </div>
         </section>
       )}
@@ -208,54 +304,106 @@ export default function FarmersStory() {
         <Headline>Forty-Two Per Cent of the Workers, Sixteen Per Cent of the Output.</Headline>
         <Standfirst>
           That ratio is the definition of low farm incomes, and it has improved only slowly:
-          agriculture&rsquo;s share of employment fell from{" "}
-          {pct(firstPoint(empl!)?.value)} to {pct(emplLast?.value)} while its share of output fell from{" "}
-          {pct(firstPoint(gdp!)?.value)} to {pct(gdpLast?.value)}. People are leaving farming more slowly
-          than farming is shrinking as a share of the economy.
+          agriculture&rsquo;s share of employment fell from {pct(firstPoint(empl!)?.value)} to{" "}
+          {pct(emplLast?.value)} while its share of output fell from {pct(firstPoint(gdp!)?.value)}
+          {" "}to {pct(gdpLast?.value)}. People are leaving farming more slowly than farming is
+          shrinking as a share of the economy — and the same gap, measured the same way in five
+          comparable countries, is nowhere near as wide.
         </Standfirst>
-        <div className="mt-7 grid gap-4 sm:grid-cols-2">
-          {empl && gdp && emplLast && gdpLast && (
-            <div className="story-card p-5" data-tone="hot">
-              <Eyebrow tone="hot">the scissors, {emplLast.period}</Eyebrow>
-              <div className="mt-4 space-y-2">
-                <BarRow label="Share of employment" value={emplLast.value ?? 0} max={100}
-                  display={pct(emplLast.value)} tone="hot" />
-                <BarRow label="Share of output" value={gdpLast.value ?? 0} max={100}
-                  display={pct(gdpLast.value)} tone="mid" />
+
+        {emplLast && gdpLast && (
+          <div className="story-card mt-7 p-5 sm:p-7" data-tone="hot">
+            <div className="grid gap-9 lg:grid-cols-2">
+              <div className="min-w-0">
+                <ChartTitle note={`Of every hundred working Indians and every hundred rupees of output, ${emplLast.period}. One square is one in a hundred.`}>
+                  The same hundred, counted twice
+                </ChartTitle>
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1 lg:gap-7">
+                  <div>
+                    <Waffle
+                      cell={13}
+                      gap={2.5}
+                      parts={[
+                        { label: "work in agriculture", share: emplLast.value ?? 0, tone: "hot",
+                          display: pct(emplLast.value, 0) },
+                        { label: "work in everything else", share: 100 - (emplLast.value ?? 0), tone: "cool",
+                          display: pct(100 - (emplLast.value ?? 0), 0) },
+                      ]}
+                    />
+                  </div>
+                  <div>
+                    <Waffle
+                      cell={13}
+                      gap={2.5}
+                      parts={[
+                        { label: "of output comes from it", share: gdpLast.value ?? 0, tone: "hot",
+                          display: pct(gdpLast.value, 0) },
+                        { label: "from everything else", share: 100 - (gdpLast.value ?? 0), tone: "cool",
+                          display: pct(100 - (gdpLast.value ?? 0), 0) },
+                      ]}
+                    />
+                  </div>
+                </div>
               </div>
-              <p className="mt-4 text-[12.5px] leading-[1.55]" style={{ color: "var(--story-ink-2)" }}>
-                Two and a half workers on the land for every one unit of output the rest of the
-                economy would produce with one.
-              </p>
-            </div>
-          )}
-          {workerPeers.length > 0 && (
-            <div className="story-card p-5" data-tone="hot">
-              <Eyebrow tone="hot">value added per farm worker, constant US$</Eyebrow>
-              <div className="mt-4 space-y-1">
-                {workerPeers.map((p) => (
-                  <BarRow
-                    key={p.country}
-                    label={p.country}
-                    sub={p.period}
-                    value={p.value}
-                    max={Math.max(...workerPeers.map((x) => x.value))}
-                    display={`$${Math.round(p.value).toLocaleString("en-IN")}`}
-                    tone={p.country === "India" ? "hot" : "cool"}
-                  />
-                ))}
+              <div className="min-w-0">
+                <ChartTitle note="Agriculture's share of employment against its share of output, in each country's latest reported year. Both sides share one scale.">
+                  The wedge, country by country
+                </ChartTitle>
+                <DivergingRanks
+                  leftLabel="of workers"
+                  rightLabel="of output"
+                  leftTone="hot"
+                  rightTone="cool"
+                  rows={wedge.map((r) => ({
+                    name: r.country,
+                    left: r.employment,
+                    right: r.output,
+                    leftDisplay: pct(r.employment, 0),
+                    rightDisplay: pct(r.output, 0),
+                    mark: r.country === "India",
+                  }))}
+                />
+                <Caption>
+                  The distance between a country&rsquo;s two bars is the wedge: how much more of the
+                  workforce farming holds than of the economy. India&rsquo;s is{" "}
+                  <strong>{wedgeGap.toFixed(0)} points</strong>, the widest here and{" "}
+                  {wedgeSecond ? `${(wedgeGap - wedgeSecond.gap).toFixed(0)} points wider than ${wedgeSecond.country}` : "wider than every comparator"}.
+                  Employment shares are modelled ILO estimates, so their first decimal is not solid;
+                  the ordering is.
+                </Caption>
               </div>
             </div>
-          )}
-        </div>
-        {perWorker && firstPoint(perWorker) && latestPoint(perWorker) && (
-          <p className="mt-5 max-w-[64ch] text-[13px] leading-[1.6]" style={{ color: "var(--story-ink-2)" }}>
-            It is rising: ${Math.round(firstPoint(perWorker)!.value ?? 0).toLocaleString("en-IN")}{" "}
-            in {firstPoint(perWorker)!.period} to $
-            {Math.round(latestPoint(perWorker)!.value ?? 0).toLocaleString("en-IN")} in{" "}
-            {latestPoint(perWorker)!.period}, a doubling in constant dollars. The gap is to the
-            comparators, not to the past.
-          </p>
+          </div>
+        )}
+
+        {workerPeers.length > 0 && (
+          <div className="story-card mt-5 p-5 sm:p-7">
+            <ChartTitle note="Agriculture, forestry and fishing value added per worker, constant 2015 US$, each country's latest reported year.">
+              What a year of farm work produces
+            </ChartTitle>
+            <RankedRows
+              tone="cool"
+              markTone="hot"
+              rows={[...workerPeers].sort((a, b) => b.value - a.value).map((pr) => ({
+                name: pr.country,
+                value: pr.value,
+                display: `$${Math.round(pr.value).toLocaleString("en-US")}`,
+                mark: pr.country === "India",
+                meta: pr.period,
+              }))}
+            />
+            {perWorker && firstPoint(perWorker) && latestPoint(perWorker) && (
+              <Caption>
+                India&rsquo;s figure is rising and has roughly doubled in constant dollars — $
+                {Math.round(firstPoint(perWorker)!.value ?? 0).toLocaleString("en-US")} in{" "}
+                {firstPoint(perWorker)!.period} to $
+                {Math.round(latestPoint(perWorker)!.value ?? 0).toLocaleString("en-US")} in{" "}
+                {latestPoint(perWorker)!.period}. The gap on this chart is to the comparators, not
+                to the past. Constant-dollar value added per worker is not income: it is output per
+                head before rent, input costs and whatever the household does not sell.
+              </Caption>
+            )}
+          </div>
         )}
       </section>
 

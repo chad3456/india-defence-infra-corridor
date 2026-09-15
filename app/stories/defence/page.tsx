@@ -1,10 +1,16 @@
 import Link from "next/link";
 import { getSeries, latestPoint, firstPoint } from "@/lib/data";
-import { loadDeals, MEASURE_LABEL, asWritten } from "@/lib/deals";
+import { loadDeals, MEASURE_LABEL, asWritten, croreValue, type Measure } from "@/lib/deals";
+import { getDefenceTrade, scaleComparison, usd } from "@/lib/defence-trade";
+import { loadDrones } from "@/lib/drones";
 import {
   Eyebrow, Headline, Standfirst, Mark, Stat, Columns, BarRow, pct,
   WhatThisCannotSay, Sources,
 } from "@/components/stories/Kit";
+import {
+  ChartTitle, Caption, RankedRows, DivergingRanks, Waffle, BubbleMap,
+  Treemap, PairedChange, isoForCountryName,
+} from "@/components/stories/Charts";
 
 /**
  * The fastest-growing number in Indian industry, and what it counts.
@@ -60,6 +66,8 @@ export default function DefenceStory() {
   const budget = getSeries("defence-budget");
   const capital = getSeries("defence-capital-outlay");
   const deals = loadDeals();
+  const trade = getDefenceTrade();
+  const drones = loadDrones();
 
   if (!exports) {
     return (
@@ -85,6 +93,65 @@ export default function DefenceStory() {
   // one is what India sold abroad, the other what it bought at home.
   const contracts = deals.deals.filter((x) => x.measure === "contract");
   const aons = deals.deals.filter((x) => x.measure === "acceptance-of-necessity");
+
+  /* ── What customs can see of all this ─────────────────────────────── */
+  const tradeYear = trade.years[trade.years.length - 1] ?? 2024;
+  const scale = scaleComparison(trade, tradeYear);
+  /**
+   * The one heading the tariff itself calls military.
+   *
+   * HS 9301 plus 930591 — weapons of war and their parts. This is as close as
+   * the customs classification gets to naming defence equipment, and putting
+   * it beside the Ministry's export figure is the whole point of the section
+   * it drives: they differ by a factor of hundreds, and neither is wrong.
+   */
+  const military = trade.groups.find((g) => g.id === "ch93-military-weapons");
+  const milYear = military?.years.find((y) => y.year === tradeYear);
+  const milExports = milYear?.reported ? (milYear.exports ?? 0) : 0;
+  /**
+   * The Ministry's figure converted at a stated rate, once, to make one
+   * comparison possible — and labelled everywhere it appears.
+   *
+   * Nothing else on this site converts currency. It is done here because the
+   * comparison is the finding, and a reader cannot compare ₹38,424 crore with
+   * US$16.3m without it. The rate is printed, so the arithmetic is checkable
+   * and the reader can redo it at whatever rate they prefer.
+   */
+  const RATE = 83;
+  const officialUsd = ((expLast.value ?? 0) * 1e7) / RATE;
+  const customsShare = officialUsd > 0 ? (milExports / officialUsd) * 100 : 0;
+
+  /**
+   * The announced figures that can be put on one scale.
+   *
+   * A release may print several figures — a total and its parts — and the
+   * ledger keeps all of them. For a chart, the largest is the event's own
+   * headline number and the rest are its breakdown, so summing them would
+   * double-count. Anything `croreValue` cannot size (a dollar figure, an
+   * unrecognised unit) is dropped from the chart and stays in the list.
+   */
+  const sized = [...contracts, ...aons]
+    .map((x) => {
+      const values = x.money.map(croreValue).filter((v): v is number => v !== null);
+      const crore = values.length > 0 ? Math.max(...values) : null;
+      return crore === null ? null : {
+        crore,
+        measure: x.measure,
+        short: x.title
+          .replace(/^(Aatmanirbhar Bharat:\s*|Further boost to [^;]*;\s*)/i, "")
+          .replace(/^MoD /, "")
+          .slice(0, 46),
+      };
+    })
+    .filter((x): x is { crore: number; measure: Measure; short: string } => x !== null)
+    .sort((a, b) => b.crore - a.crore);
+
+  /* ── Armed and reconnaissance drones, worldwide ───────────────────── */
+  const droneOperators = [...drones.countries]
+    .sort((a, b) => b.types.length - a.types.length);
+  const indiaDrones = droneOperators.find((c) => c.country === "India");
+  const indiaSupplies = drones.suppliers.find((s) => s.originCountry === "India"
+    || s.origin === "India");
 
   return (
     <div>
@@ -202,6 +269,153 @@ export default function DefenceStory() {
       </section>
 
       {/* ── The structural shift ──────────────────────────────────────── */}
+      {/* ── What customs can see ─────────────────────────────────────── */}
+      {military && milYear?.reported && (
+        <section className="mt-16">
+          <Eyebrow tone="hot">two measurements of the same industry</Eyebrow>
+          <Headline>Customs Can See Half a Per Cent of It.</Headline>
+          <Standfirst>
+            The Ministry&rsquo;s {expLast.period} export figure is {cr(expLast.value ?? 0)}. In the
+            same period, the one tariff heading the classification itself calls military —
+            weapons of war and their parts — recorded <Mark>{usd(milExports)}</Mark> of Indian
+            exports. Neither number is wrong. They are measuring different things, and the gap
+            between them is the most useful thing on this page.
+          </Standfirst>
+          <div className="story-card mt-7 p-5 sm:p-7" data-tone="hot">
+            <div className="grid gap-7 lg:grid-cols-[minmax(0,260px)_minmax(0,1fr)]">
+              <div className="min-w-0">
+                <Eyebrow tone="hot">customs as a share of the official figure</Eyebrow>
+                <p className="story-display mt-3 text-[48px] sm:text-[58px]">
+                  {customsShare < 1 ? customsShare.toFixed(2) : customsShare.toFixed(1)}%
+                </p>
+                <p className="mt-3 text-[12.5px] leading-[1.6]" style={{ color: "var(--story-ink-2)" }}>
+                  {usd(milExports)} against {cr(expLast.value ?? 0)}, converted once at ₹{RATE} to
+                  the dollar purely so the two can sit on one line. Nothing else on this site
+                  converts currency; the rate is printed so you can redo it.
+                </p>
+              </div>
+              <div className="min-w-0">
+                <ChartTitle note={`Why: a defence export authorisation covers services, offsets, licensed production and platforms that never cross a customs border. And the tariff scatters what does cross it across chapters 88, 89 and 93 — most of them civil lines with military content inside.`}>
+                  Where the hardware actually sits in the tariff, {tradeYear}
+                </ChartTitle>
+                <DivergingRanks
+                  leftLabel="imported"
+                  rightLabel="exported"
+                  leftTone="hot"
+                  rightTone="cool"
+                  rows={scale.filter((r) => r.imports !== null || r.exports !== null).map((r) => ({
+                    name: r.label
+                      .replace(/ \(HS [^)]*\)/, "")
+                      .replace("Aircraft: helicopters and aeroplanes", "Aircraft")
+                      .replace("Aircraft and spacecraft parts", "Aircraft parts")
+                      .replace("Other vessels, explicitly NOT warships", "Non-warship vessels")
+                      .replace("Spacecraft and launch vehicles", "Spacecraft")
+                      .replace("Machines for making semiconductor devices", "Fab equipment")
+                      .replace("Military weapons only", "Military weapons")
+                      .replace(", in full", ""),
+                    left: r.imports ?? 0,
+                    right: r.exports ?? 0,
+                    leftDisplay: usd(r.imports),
+                    rightDisplay: usd(r.exports),
+                    mark: r.military === "military",
+                  }))}
+                />
+                <Caption>
+                  Bold rows are the groups the classification calls military outright. Everything
+                  else is a civil-dominant line that happens to contain the defence-relevant
+                  hardware — which is why the biggest bar here is aircraft, and why almost all of
+                  it is airliners. {trade.caveat.slice(0, 200)}…
+                </Caption>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Drones: operated, not supplied ───────────────────────────── */}
+      {droneOperators.length > 0 && (
+        <section className="mt-16">
+          <Eyebrow tone="mid">one class of equipment, traced end to end</Eyebrow>
+          <Headline>India Flies Five Types. It Supplies None.</Headline>
+          <Standfirst>
+            {drones.countryCount} countries are publicly recorded as operating one of{" "}
+            {drones.typeCount} major armed or reconnaissance drone types. India operates{" "}
+            <Mark tone="mid">{indiaDrones?.types.length ?? 0}</Mark> of them, from{" "}
+            {(indiaDrones?.origins ?? []).join(" and ")} — and appears nowhere on the supplier
+            side. It is the clearest single case of the gap between manufacturing and exporting,
+            because here both ends of the chain are visible.
+          </Standfirst>
+          <div className="story-card mt-7 p-4 sm:p-6">
+            <BubbleMap
+              height={360}
+              maxRadius={22}
+              bubbles={droneOperators
+                .map((c) => ({
+                  id: isoForCountryName(c.country) ?? "",
+                  name: c.country === "United States of America" ? "United States" : c.country,
+                  value: c.types.length,
+                  display: `${c.types.length} type${c.types.length === 1 ? "" : "s"}`,
+                  tone: (c.country === "India" ? "cool" : "mid") as "cool" | "mid",
+                  mark: c.country === "India",
+                }))
+                .filter((b) => b.id !== "")}
+              note={
+                <>
+                  Circle area is proportional to the number of distinct types a country is recorded
+                  as operating — not to how many airframes it has, which no public source states.
+                  {" "}{drones.gap.slice(0, 180)}…
+                </>
+              }
+            />
+            <div className="mt-7 grid gap-7 border-t pt-6 lg:grid-cols-2" style={{ borderColor: "var(--story-rule)" }}>
+              <div className="min-w-0">
+                <ChartTitle note="Countries recorded as operating at least one type from each producer.">
+                  Who supplies them
+                </ChartTitle>
+                <RankedRows
+                  tone="mid"
+                  markTone="hot"
+                  rows={drones.suppliers.map((sp) => ({
+                    name: sp.origin,
+                    value: sp.operators,
+                    display: String(sp.operators),
+                    mark: sp.origin === "India" || sp.originCountry === "India",
+                    meta: sp.operators === 0 ? "no recorded export operator" : undefined,
+                  }))}
+                />
+                <Caption>
+                  {indiaSupplies
+                    ? `India's own type in this set, DRDO's Rustom / TAPAS, has no recorded operator outside India — which is what a zero here means: a type that exists and has not been sold.`
+                    : "India does not appear on this list."}
+                </Caption>
+              </div>
+              <div className="min-w-0">
+                <ChartTitle note="The types India is recorded as operating, and where each comes from.">
+                  What India flies
+                </ChartTitle>
+                <ul className="m-0 list-none p-0">
+                  {(indiaDrones?.types ?? []).map((name) => {
+                    const t = drones.types.find((x) => x.name === name);
+                    return (
+                      <li key={name} className="flex items-baseline justify-between gap-3 border-b py-2.5 last:border-0"
+                        style={{ borderColor: "var(--story-rule)" }}>
+                        <span className="text-[13px] font-semibold">{name}</span>
+                        <span className="mono shrink-0 text-[11px]" style={{ color: "var(--story-ink-3)" }}>
+                          {t?.origin ?? "—"} · {t?.klass ?? "—"}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <Caption>
+                  All of them bought. None of them built here, and none of them exported from here.
+                </Caption>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {rusFrom && rusTo && (
         <section className="mt-16">
           <Eyebrow tone="cool">the number that matters more</Eyebrow>
@@ -246,6 +460,39 @@ export default function DefenceStory() {
             become contracts.
           </Standfirst>
           <div className="story-card mt-7 p-5 sm:p-7">
+            {sized.length > 0 && (
+              <div className="mb-8">
+                <ChartTitle note={`Area is proportional to the rupee figure the release printed. ${sized.length} of ${contracts.length + aons.length} events carry a figure this chart could size; the rest are in the ledger and not drawn.`}>
+                  Every announced figure, on one scale
+                </ChartTitle>
+                <Treemap
+                  height={320}
+                  items={sized.slice(0, 18).map((x) => ({
+                    name: x.short,
+                    value: x.crore,
+                    display: `₹${x.crore >= 100000 ? `${(x.crore / 100000).toFixed(2)} lakh cr` : `${Math.round(x.crore).toLocaleString("en-IN")} cr`}`,
+                    tone: (x.measure === "contract" ? "cool" : "mid") as "cool" | "mid",
+                    mark: x.measure === "contract",
+                  }))}
+                />
+                <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-[11.5px]">
+                  <li className="flex items-center gap-1.5">
+                    <span className="inline-block h-[10px] w-[16px] rounded-[2px]" style={{ background: "var(--s-cool)" }} />
+                    signed contract — money committed
+                  </li>
+                  <li className="flex items-center gap-1.5">
+                    <span className="inline-block h-[10px] w-[16px] rounded-[2px]"
+                      style={{ background: "var(--s-mid-fill)", border: "1px solid var(--s-mid)" }} />
+                    acceptance of necessity — permission to begin
+                  </li>
+                </ul>
+                <Caption>
+                  The two are never added, and the chart puts them on one scale precisely so the
+                  difference in size is visible: the largest rectangles here are permissions, not
+                  purchases. {MEASURE_LABEL["acceptance-of-necessity"].means}
+                </Caption>
+              </div>
+            )}
             <ul className="m-0 list-none space-y-0 p-0">
               {contracts.slice(0, 8).map((x) => (
                 <li key={x.prid} className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b py-2.5 last:border-b-0"

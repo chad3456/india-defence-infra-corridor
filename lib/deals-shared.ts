@@ -115,3 +115,32 @@ export function asWritten(m: Money): string {
   const sym = m.currency === "USD" ? "US$" : "₹";
   return `${sym}${m.amount}${m.unit ? ` ${m.unit}` : ""}`;
 }
+
+/**
+ * A rupee figure in crore, for sizing a chart and nothing else.
+ *
+ * `asWritten` is the rule everywhere a figure is *shown*: the release's own
+ * words, never converted. But a treemap needs one comparable number per
+ * rectangle, and "₹2.23 lakh crore" and "₹975 crore" cannot be compared as
+ * strings. This does that one job and returns null rather than guessing:
+ *
+ *   - a dollar figure is not converted, because no rate belongs in a ledger
+ *   - a unit this function does not recognise returns null rather than being
+ *     treated as crore, which is how "1.45 lakh crore" once became 1.45 lakh
+ *     and a chart was wrong by seven orders of magnitude
+ *
+ * Every caller must handle the null. A row whose value cannot be sized is
+ * listed, not drawn — the same rule the rest of this project uses when a
+ * measure fails its own check.
+ */
+export function croreValue(m: Money): number | null {
+  if (m.currency !== "INR") return null;
+  const n = Number.parseFloat(m.amount.replace(/,/g, ""));
+  if (!Number.isFinite(n)) return null;
+  const unit = m.unit.trim().toLowerCase();
+  // Compound units first, or "lakh crore" reads as "lakh".
+  if (/^lakh\s+crores?$/.test(unit)) return n * 100_000;
+  if (/^thousand\s+crores?$/.test(unit)) return n * 1_000;
+  if (/^crores?\.?$/.test(unit) || unit === "cr" || unit === "cr.") return n;
+  return null;
+}
