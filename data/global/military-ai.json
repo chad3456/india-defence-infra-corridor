@@ -1,0 +1,81 @@
+{
+  "builtAt": "2026-09-15T18:01:35.325Z",
+  "sources": {
+    "incidents": "AIAAIC Repository (aiaaic.org), the public incidents and controversies spreadsheet, exported as CSV. A volunteer register; every row carries its own source links.",
+    "spending": "USAspending.gov API, Department of Defense contract awards (types A-D), aggregated by fiscal year server-side. Each figure is obligated money against a public award id."
+  },
+  "definition": "There is no procurement code for artificial intelligence. Awards are matched on their description text, so these figures measure AWARDS WHOSE DESCRIPTION SAYS AI and not AI. A contract for an autonomous targeting system described as 'sensor integration services' is invisible here; a contract to run a conference about AI is counted. The keyword list is published and each term's total is kept separate so any of them can be discarded.",
+  "doubleCounting": "The per-term totals overlap and MUST NOT be summed. An award whose description contains both 'artificial intelligence' and 'machine learning' is in both series. No combined total appears in this file for that reason.",
+  "militaryFilter": "\\b(militar|defen[cs]e|army|navy|air force|weapon|warfare|combat|drone|uav|missile|soldier|troop|battlefield|targeting|munition|pentagon|nato|idf|armed forces)\\b",
+  "refusal": "No casualty figure, no capability claim, and no assertion that a named system was used in a named operation. Where a case is carried it is carried as 'this register records this, citing that', in the register's own words and with its own links. The difference between a documented case and a reported one is the entire value of doing it this way.",
+  "cannotSay": [
+    "Whether any of this money bought a capability that works. An obligation is a payment, not an outcome.",
+    "What any other country spends. Only the United States publishes contract-level award data; the comparison a reader wants is unavailable at any level of effort, and its absence is not evidence that others spend less.",
+    "How many military AI incidents there have been. The register is volunteer-maintained and its military subset is small — that is a finding about how little is documented, not a count of what has happened.",
+    "Anything about classified programmes, which is where the subject mostly lives."
+  ],
+  "incidents": {
+    "header": [
+      "Incidents",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "totalRows": 2261,
+    "droppedRows": 0,
+    "note": "2261 rows read, 0 dropped for a column count that did not match the header, 0 matched the military filter",
+    "matched": 0,
+    "bySector": [],
+    "byCountry": [],
+    "byYear": [],
+    "rows": []
+  },
+  "spending": [
+    {
+      "term": "artificial intelligence",
+      "ok": true,
+      "years": []
+    },
+    {
+      "term": "machine learning",
+      "ok": true,
+      "years": []
+    },
+    {
+      "term": "autonomous systems",
+      "ok": true,
+      "years": []
+    },
+    {
+      "term": "computer vision",
+      "ok": true,
+      "years": []
+    },
+    {
+      "term": "large language model",
+      "ok": true,
+      "years": []
+    },
+    {
+      "term": "algorithmic warfare",
+      "ok": true,
+      "years": []
+    }
+  ]
+}
