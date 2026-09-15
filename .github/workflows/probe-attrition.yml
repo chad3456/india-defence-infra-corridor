@@ -1,0 +1,47 @@
+name: Probe attrition and military-AI sources
+
+# Asks whether an instance-level, verifiable record exists for commercial drone
+# use in Ukraine and for AI in military operations — or whether the only
+# available numbers are aggregate claims by parties to the conflict.
+#
+# It runs here because the editing sandbox reaches almost nothing. Publishes no
+# tally, no loss figure and no dollar amount: only whether a source answered,
+# in what shape, and roughly how many rows it carries.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-attrition.ts"
+      - ".github/workflows/probe-attrition.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-attrition
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Probe
+        run: npm run attrition:probe
+
+      # always(): the runner writes after every target, so a run killed by one
+      # slow host still leaves the findings it did collect. The artifact is the
+      # diagnosis; a job that throws before committing leaves only a log.
+      - name: Commit the probe report
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/live/attrition-probe.json
+          "chore(sources): attrition probe $(date -u +'%Y-%m-%d %H:%M')"
