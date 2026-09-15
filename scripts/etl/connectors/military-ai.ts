@@ -72,15 +72,37 @@ const AIAAIC_CSV =
  */
 const MILITARY = /\b(militar|defen[cs]e|army|navy|air force|weapon|warfare|combat|drone|uav|missile|soldier|troop|battlefield|targeting|munition|pentagon|nato|idf|armed forces)\b/i;
 
+/**
+ * The register's columns, as it actually has them.
+ *
+ * The first version asked for Sector and Country and got neither: this sheet
+ * has no such columns. What it does have is better for this subject —
+ * `Deployer` names the force or agency that used the system, `System name`
+ * names the thing, `Purpose` says what it was for, and `Harm status` says
+ * whether the harm is alleged, occurred or was averted. Those four are the
+ * difference between "an AI incident" and a case study.
+ *
+ * Reading the real header rather than a hoped-for one is why the connector
+ * publishes it.
+ */
 export interface Incident {
-  /** The register's own row identifier, where it has one. */
+  /** The register's own row identifier. */
   ref: string;
   headline: string;
-  type: string;
-  sector: string;
-  technology: string;
-  country: string;
   occurred: string;
+  /** Who used it — a force, an agency, a ministry. */
+  deployer: string;
+  /** Who built it. */
+  developer: string;
+  /** What it is called, where the register names it. */
+  system: string;
+  technology: string;
+  purpose: string;
+  /** The register's own harm taxonomy, and whether the harm is alleged. */
+  ethicalIssue: string;
+  externalHarm: string;
+  harmStatus: string;
+  impactedArea: string;
   /** Which words matched, so the filter is inspectable per row. */
   matched: string[];
   /** The register's own links. Never followed, never summarised. */
@@ -189,22 +211,33 @@ async function readAiaaic(): Promise<{
   const rows = head.rows;
   const dropped = parsed.dropped;
   const col = {
-    ref: columnMatching(header, /^\s*(aiaaic\s*)?(id|ref)/i),
-    headline: columnMatching(header, /headline|title|summary/i),
-    type: columnMatching(header, /^\s*type/i),
-    sector: columnMatching(header, /sector/i),
+    ref: columnMatching(header, /^\s*(aiaaic\s*)?id/i),
+    headline: columnMatching(header, /headline/i),
+    occurred: columnMatching(header, /occurr/i),
+    deployer: columnMatching(header, /deployer/i),
+    developer: columnMatching(header, /developer/i),
+    system: columnMatching(header, /system name/i),
     tech: columnMatching(header, /technolog/i),
-    country: columnMatching(header, /countr/i),
-    occurred: columnMatching(header, /occurr|date|year/i),
+    purpose: columnMatching(header, /purpose/i),
+    ethical: columnMatching(header, /ethical issue/i),
+    harm: columnMatching(header, /external harm/i),
+    harmStatus: columnMatching(header, /harm status/i),
+    area: columnMatching(header, /impacted area/i),
   };
   const at = (r: string[], i: number): string => (i >= 0 ? (r[i] ?? "").trim() : "");
 
   const incidents: Incident[] = [];
   for (const r of rows) {
-    const sector = at(r, col.sector);
     const headline = at(r, col.headline);
+    const deployer = at(r, col.deployer);
+    const system = at(r, col.system);
     const tech = at(r, col.tech);
-    const subject = `${sector} ${headline} ${tech}`;
+    const purpose = at(r, col.purpose);
+    const area = at(r, col.area);
+    // The filter runs over every column that could name a force, a weapon or a
+    // military purpose. Matching the headline alone would miss a row whose
+    // deployer is an army and whose headline is about a procurement dispute.
+    const subject = `${headline} ${deployer} ${system} ${tech} ${purpose} ${area}`;
     const matched = [...subject.matchAll(new RegExp(MILITARY.source, "gi"))]
       .map((m) => m[0].toLowerCase());
     if (matched.length === 0) continue;
@@ -215,11 +248,16 @@ async function readAiaaic(): Promise<{
     incidents.push({
       ref: at(r, col.ref),
       headline,
-      type: at(r, col.type),
-      sector,
-      technology: tech,
-      country: at(r, col.country),
       occurred: at(r, col.occurred),
+      deployer,
+      developer: at(r, col.developer),
+      system,
+      technology: tech,
+      purpose,
+      ethicalIssue: at(r, col.ethical),
+      externalHarm: at(r, col.harm),
+      harmStatus: at(r, col.harmStatus),
+      impactedArea: area,
       matched: [...new Set(matched)],
       links,
     });
@@ -343,16 +381,19 @@ async function main(): Promise<void> {
     await new Promise((res) => setTimeout(res, 1_200));
   }
 
-  const bySector = new Map<string, number>();
-  const byCountry = new Map<string, number>();
+  const byDeployer = new Map<string, number>();
+  const byTechnology = new Map<string, number>();
+  const byHarmStatus = new Map<string, number>();
   const byYear = new Map<string, number>();
   for (const i of aiaaic.incidents) {
-    for (const s of i.sector.split(/[;,/]/).map((x) => x.trim()).filter(Boolean)) {
-      bySector.set(s, (bySector.get(s) ?? 0) + 1);
+    for (const s of i.deployer.split(/[;,/]/).map((x) => x.trim()).filter(Boolean)) {
+      byDeployer.set(s, (byDeployer.get(s) ?? 0) + 1);
     }
-    for (const c of i.country.split(/[;,/]/).map((x) => x.trim()).filter(Boolean)) {
-      byCountry.set(c, (byCountry.get(c) ?? 0) + 1);
+    for (const t of i.technology.split(/[;,/]/).map((x) => x.trim()).filter(Boolean)) {
+      byTechnology.set(t, (byTechnology.get(t) ?? 0) + 1);
     }
+    const h = i.harmStatus.trim();
+    if (h) byHarmStatus.set(h, (byHarmStatus.get(h) ?? 0) + 1);
     const y = /\b(19|20)\d{2}\b/.exec(i.occurred)?.[0];
     if (y) byYear.set(y, (byYear.get(y) ?? 0) + 1);
   }
@@ -397,8 +438,9 @@ async function main(): Promise<void> {
       droppedRows: aiaaic.dropped,
       note: aiaaic.note,
       matched: aiaaic.incidents.length,
-      bySector: tally(bySector).slice(0, 25),
-      byCountry: tally(byCountry).slice(0, 25),
+      byDeployer: tally(byDeployer).slice(0, 25),
+      byTechnology: tally(byTechnology).slice(0, 25),
+      byHarmStatus: tally(byHarmStatus),
       byYear: tally(byYear).sort((a, b) => a.key.localeCompare(b.key)),
       rows: aiaaic.incidents,
     },

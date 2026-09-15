@@ -170,7 +170,15 @@ export interface Section {
   /** What the heading says about itself. */
   stated: { total: number | null; byStatus: Partial<Record<Status, number>> };
   /** What this parse found. */
-  parsed: { total: number; byStatus: Record<Status, number>; models: number };
+  parsed: {
+    total: number;
+    byStatus: Record<Status, number>;
+    models: number;
+    /** Losses a model block claimed. */
+    attributedToAModel: number;
+    /** Losses counted in the section but claimed by no block — nesting, usually. */
+    unattributed: number;
+  };
   /** Whether the two agree. A section that fails is suppressed, not warned about. */
   agrees: boolean;
   why: string;
@@ -424,6 +432,23 @@ async function readPage(page: (typeof PAGES)[number]): Promise<PageResult> {
      * above, the parse came in at 3.8x the stated total — a factor so uniform
      * across every section that it could only be structural.
      */
+    /**
+     * The section total is counted over the whole section, not block by block.
+     *
+     * Blocks nest: a <details> inside a <details> makes a lazy regex stop at
+     * the inner close tag and truncate the outer block, losing whatever came
+     * after it. That is where the last two to eight per cent went, and it is
+     * unfixable in general with regular expressions over HTML.
+     *
+     * So the count that gets checked against the source is a count of status
+     * brackets across the entire section body, which no amount of nesting can
+     * disturb. Blocks are used only to attribute losses to a model, and any
+     * loss the blocks failed to claim is recorded as unattributed rather than
+     * dropped — a number that does not add up should say so, not shrink.
+     */
+    const whole = parseItem(`<summary>${category}:</summary>${body}`);
+    for (const l of whole.losses) byStatus[l.status]++;
+
     const details = [...body.matchAll(/<details\b[^>]*>([\s\S]*?)<\/details>/gi)];
     const blocks = details.length > 0
       ? details
@@ -437,7 +462,6 @@ async function readPage(page: (typeof PAGES)[number]): Promise<PageResult> {
       const counts: Record<Status, number> = { destroyed: 0, damaged: 0, abandoned: 0, captured: 0 };
       for (const l of losses) {
         counts[l.status]++;
-        byStatus[l.status]++;
         // Receipts are kept in full only where they are the subject.
         if (unmanned) {
           instances.push({
@@ -450,6 +474,7 @@ async function readPage(page: (typeof PAGES)[number]): Promise<PageResult> {
     }
 
     const parsedTotal = Object.values(byStatus).reduce((a, b) => a + b, 0);
+    const attributed = tallies.reduce((a, b) => a + b.total, 0);
     /**
      * Agreement, within one per cent.
      *
@@ -468,7 +493,11 @@ async function readPage(page: (typeof PAGES)[number]): Promise<PageResult> {
       category,
       unmanned,
       stated,
-      parsed: { total: parsedTotal, byStatus, models: tallies.length },
+      parsed: {
+        total: parsedTotal, byStatus, models: tallies.length,
+        attributedToAModel: attributed,
+        unattributed: parsedTotal - attributed,
+      },
       agrees,
       why: target === null
         ? "the heading states no total, so this parse cannot be checked against the source"
