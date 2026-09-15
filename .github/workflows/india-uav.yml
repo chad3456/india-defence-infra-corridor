@@ -1,0 +1,41 @@
+name: Indian UAV programmes
+
+# What Indian unmanned aircraft programmes exist and how far along each one is,
+# read from the Wikipedia categories that index them rather than from a list
+# anyone typed.
+#
+# It runs here because en.wikipedia.org returns 000 from the editing sandbox.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/connectors/india-uav.ts"
+      - ".github/workflows/india-uav.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: india-uav
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Fetch
+        run: npm run uav:india
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/global/india-uav.json
+          "chore(global): Indian UAV programmes $(date -u +'%Y-%m-%d %H:%M')"
