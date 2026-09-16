@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-16T10:17:54.142Z",
+ "builtAt": "2026-09-16T20:25:54.207Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206497,7 +206497,7 @@
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 23,
+   "items": 22,
    "kept": 0,
    "via": "direct"
   },
@@ -206517,6 +206517,20 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-2qq4pj",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-09-16",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/09/castelion-secures-u-s-navy-production-order-for-blackbeard-hypersonic-weapon/",
+   "headline": "Castelion Secures U.S. Navy Production Order for Blackbeard Hypersonic Weapon",
+   "primary": false
+  },
   {
    "id": "ev-1kngocc",
    "kind": "order",
@@ -206830,99 +206844,6 @@
  ],
  "groups": [
   {
-   "key": "order||germany",
-   "systems": [],
-   "countries": [
-    "Germany"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1kngocc",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Germany"
-     ],
-     "value": null,
-     "date": "2026-09-16",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/09/german-ministry-of-defense-to-procure-an-additional-type-424-sigint-vessel/",
-     "headline": "German Ministry of Defense to Procure an Additional Type 424 SIGINT Vessel",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order|u.s. navy|united states",
-   "systems": [
-    "U.S. Navy"
-   ],
-   "countries": [
-    "United States"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1r3bdn2",
-     "kind": "order",
-     "systems": [
-      "U.S. Navy"
-     ],
-     "countries": [
-      "United States"
-     ],
-     "value": null,
-     "date": "2026-09-15",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/industry/techwatch/2026/09/15/us-navy-boeing-ink-first-mq-25a-stingray-production-contract/",
-     "headline": "US Navy, Boeing ink first MQ-25A Stingray production contract",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defense News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order||israel+united states",
-   "systems": [],
-   "countries": [
-    "United States",
-    "Israel"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1tdmgip",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States",
-      "Israel"
-     ],
-     "value": null,
-     "date": "2026-09-15",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/israeli-drone-helicopter-clears-key-u-s-flight-hurdle/",
-     "headline": "Israeli drone helicopter clears key U.S. flight hurdle",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defence Blog"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -206930,6 +206851,20 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-2qq4pj",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-16",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/castelion-secures-u-s-navy-production-order-for-blackbeard-hypersonic-weapon/",
+     "headline": "Castelion Secures U.S. Navy Production Order for Blackbeard Hypersonic Weapon",
+     "primary": false
+    },
     {
      "id": "ev-l7jfmg",
      "kind": "order",
@@ -207028,11 +206963,105 @@
     }
    ],
    "outlets": [
+    "Naval News",
     "Defence Blog",
     "Defense News"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "order||germany",
+   "systems": [],
+   "countries": [
+    "Germany"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1kngocc",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Germany"
+     ],
+     "value": null,
+     "date": "2026-09-16",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/german-ministry-of-defense-to-procure-an-additional-type-424-sigint-vessel/",
+     "headline": "German Ministry of Defense to Procure an Additional Type 424 SIGINT Vessel",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order|u.s. navy|united states",
+   "systems": [
+    "U.S. Navy"
+   ],
+   "countries": [
+    "United States"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1r3bdn2",
+     "kind": "order",
+     "systems": [
+      "U.S. Navy"
+     ],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-15",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/industry/techwatch/2026/09/15/us-navy-boeing-ink-first-mq-25a-stingray-production-contract/",
+     "headline": "US Navy, Boeing ink first MQ-25A Stingray production contract",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order||israel+united states",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Israel"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1tdmgip",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Israel"
+     ],
+     "value": null,
+     "date": "2026-09-15",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/israeli-drone-helicopter-clears-key-u-s-flight-hurdle/",
+     "headline": "Israeli drone helicopter clears key U.S. flight hurdle",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "delivery||france",
