@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-15T20:26:18.800Z",
+ "builtAt": "2026-09-16T10:17:54.142Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -202111,6 +202111,13 @@
    "source": "List_of_missiles_by_country"
   },
   {
+   "name": "Barak MX",
+   "key": "barak mx",
+   "kind": "mixed",
+   "country": "Israel",
+   "source": "List_of_missiles_by_country"
+  },
+  {
    "name": "Delilah",
    "key": "delilah",
    "kind": "mixed",
@@ -206498,18 +206505,32 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-1kngocc",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Germany"
+   ],
+   "value": null,
+   "date": "2026-09-16",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/09/german-ministry-of-defense-to-procure-an-additional-type-424-sigint-vessel/",
+   "headline": "German Ministry of Defense to Procure an Additional Type 424 SIGINT Vessel",
+   "primary": false
+  },
   {
    "id": "ev-1r3bdn2",
    "kind": "order",
@@ -206808,6 +206829,35 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||germany",
+   "systems": [],
+   "countries": [
+    "Germany"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1kngocc",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Germany"
+     ],
+     "value": null,
+     "date": "2026-09-16",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/german-ministry-of-defense-to-procure-an-additional-type-424-sigint-vessel/",
+     "headline": "German Ministry of Defense to Procure an Additional Type 424 SIGINT Vessel",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order|u.s. navy|united states",
    "systems": [
