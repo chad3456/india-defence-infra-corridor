@@ -43,7 +43,7 @@
  * are paced, the run has a hard time budget, and the whole thing is manual and
  * on-change rather than scheduled. Nothing here should be run in a loop.
  */
-import { mkdir, writeFile, rm } from "node:fs/promises";
+import { mkdir, writeFile, rm, readdir } from "node:fs/promises";
 import { join } from "node:path";
 import { getText, getJson } from "../lib/http";
 import { isEntryPoint } from "../lib/entry";
@@ -332,7 +332,91 @@ async function main(): Promise<void> {
   let bytesPulled = 0;
   let stoppedEarly = "";
 
-  /** Everything the run has so far, on disk. Safe to call at any point. */
+  /**
+   * The registry's own description of itself, as of right now.
+   *
+   * A function rather than a value because it is written on every incremental
+   * pass, so its counts and `stoppedEarly` describe the state on disk at that
+   * moment. A partial registry that reported finished counts would be worse
+   * than one with no index at all.
+   */
+  const buildIndex = () => {
+    const byCategory = new Map<string, number>();
+    for (const ind of indicators) byCategory.set(ind.category, (byCategory.get(ind.category) ?? 0) + 1);
+    return {
+      builtAt: new Date().toISOString(),
+      source:
+        "Our World in Data (ourworldindata.org). Chart slugs discovered from OWID's own sitemap; " +
+        "every indicator's unit, attribution and citation read from its published metadata " +
+        "document before any of its data was fetched.",
+      method:
+        "One request per indicator, for the whole export — every country, every year — because a " +
+        "probe against a map-default chart found that the country parameter is accepted and " +
+        "ignored, and that time=earliest..latest returns those two years rather than the span " +
+        "between them. There is no parameter combination that returns one country's series, so " +
+        "every filter here is applied after the file arrives. Two tiers come out of that one " +
+        "response: SERIES carries India and a fixed comparator set with full history, and MAP " +
+        "carries the latest value for every country. Which tiers an indicator has is recorded on " +
+        "its row. The run stops on whichever of its time or byte budget runs out first, and says " +
+        "which.",
+      attribution:
+        "Each indicator carries OWID's own attribution and citation strings. OWID is a compiler: " +
+        "the producer named in `attribution` is who to credit and who to check, and OWID is how " +
+        "it was obtained. Nothing here is a figure this project computed.",
+      refusal:
+        "An indicator whose metadata carried no unit, attribution or citation was skipped rather " +
+        "than published with a blank source line. At this volume nobody would ever notice one, " +
+        "which is exactly why the rule is mechanical.",
+      cannotSay: [
+        "Anything OWID does not carry. The index is OWID's sitemap; a subject absent from it is absent here, and the count is a floor rather than a census of what is knowable.",
+        "Whether two indicators are comparable. Different indicators come from different producers with different definitions, coverage and vintages, and nothing here reconciles them.",
+        "What a value means without its unit. Every row carries one and no chart on this site may render an indicator without printing it.",
+        "Anything at subnational level. These are country series; India's states are not in them.",
+      ],
+      comparators: COUNTRIES,
+      counts: {
+        slugsDiscovered: slugs.length,
+        slugsAttempted: chosen.length,
+        indicators: indicators.length,
+        withMapTier: indicators.filter((i) => i.tiers.map).length,
+        withIndia: indicators.filter((i) => i.hasIndia).length,
+        skipped: failures.length,
+        shards: seriesShards.size,
+      },
+      byCategory: [...byCategory].map(([key, n]) => ({ key, n })).sort((a, b) => b.n - a.n),
+      discovery: note,
+      stoppedEarly,
+      lastIncrementalWrite: lastWrite,
+      stride,
+      rateLimited,
+      bytesPulled,
+      failures: failures.slice(0, 120),
+      indicators,
+    };
+  };
+
+  /**
+   * Everything the run has so far, on disk, index included. Safe at any point.
+   *
+   * ── Why the index is written on every pass, not only at the end ──────
+   *
+   * It used to be written last. The shards went down every fifty indicators so
+   * a killed run would keep what it had fetched, and the index — the file that
+   * names the indicators, records the units and citations, and makes the
+   * shards readable at all — was written once, after the loop.
+   *
+   * Then a run was cancelled ninety seconds in. It had cleared the output
+   * directory, written one incremental pass of about fifty indicators, and
+   * produced no index. The commit step saw a non-empty directory, reasoned
+   * that shards from a cut-short run were better than losing the run, and
+   * committed: 684 indicators replaced by 50, and index.json deleted. Shards
+   * without an index are inert — the site read no registry at all.
+   *
+   * Writing the index every time makes every incremental state a complete,
+   * self-describing registry rather than a pile of shards waiting for one. The
+   * counts and `stoppedEarly` in it are true as of that write, so a partial
+   * registry says how partial it is instead of looking finished.
+   */
   const write = async (): Promise<void> => {
     await mkdir(join(OUT_DIR, "series"), { recursive: true });
     await mkdir(join(OUT_DIR, "map"), { recursive: true });
@@ -343,12 +427,32 @@ async function main(): Promise<void> {
       await writeFile(join(OUT_DIR, "map", `${shard}.json`), JSON.stringify(payload) + "\n", "utf8");
     }
     lastWrite = indicators.length;
+    await writeFile(join(OUT_DIR, "index.json"), JSON.stringify(buildIndex(), null, 2) + "\n", "utf8");
   };
 
-  // The output directory is cleared once, before anything is written, rather
-  // than immediately before the final write — an incremental writer that also
-  // deletes would destroy its own earlier output on every pass.
-  await rm(OUT_DIR, { recursive: true, force: true });
+  /**
+   * Stale shards are removed after the run, not before it.
+   *
+   * Clearing the directory up front is what let a cancelled run publish a
+   * deletion: by the time it was killed the old registry was already gone from
+   * the working tree, and everything downstream only saw a directory with
+   * fewer files in it. A shard file this run did not write is stale only once
+   * the run has finished deciding how many shards there are, so that is when
+   * it goes.
+   */
+  const dropStaleShards = async (): Promise<void> => {
+    for (const kind of ["series", "map"] as const) {
+      const dir = join(OUT_DIR, kind);
+      let names: string[] = [];
+      try { names = await readdir(dir); } catch { continue; }
+      const live = kind === "series" ? seriesShards : mapShards;
+      for (const name of names) {
+        const n = Number.parseInt(name.replace(/\.json$/, ""), 10);
+        if (!Number.isFinite(n) || live.has(n)) continue;
+        await rm(join(dir, name), { force: true });
+      }
+    }
+  };
 
   for (const [i, slug] of chosen.entries()) {
     if (Date.now() - started > BUDGET_MS) {
@@ -607,63 +711,12 @@ async function main(): Promise<void> {
 
   await write();
 
-  const byCategory = new Map<string, number>();
-  for (const ind of indicators) byCategory.set(ind.category, (byCategory.get(ind.category) ?? 0) + 1);
-
-  const index = {
-    builtAt: new Date().toISOString(),
-    source:
-      "Our World in Data (ourworldindata.org). Chart slugs discovered from OWID's own sitemap; " +
-      "every indicator's unit, attribution and citation read from its published metadata " +
-      "document before any of its data was fetched.",
-    method:
-      "One request per indicator, for the whole export — every country, every year — because a " +
-      "probe against a map-default chart found that the country parameter is accepted and " +
-      "ignored, and that time=earliest..latest returns those two years rather than the span " +
-      "between them. There is no parameter combination that returns one country's series, so " +
-      "every filter here is applied after the file arrives. Two tiers come out of that one " +
-      "response: SERIES carries India and a fixed comparator set with full history, and MAP " +
-      "carries the latest value for every country. Which tiers an indicator has is recorded on " +
-      "its row. The run stops on whichever of its time or byte budget runs out first, and says " +
-      "which.",
-    attribution:
-      "Each indicator carries OWID's own attribution and citation strings. OWID is a compiler: " +
-      "the producer named in `attribution` is who to credit and who to check, and OWID is how " +
-      "it was obtained. Nothing here is a figure this project computed.",
-    refusal:
-      "An indicator whose metadata carried no unit, attribution or citation was skipped rather " +
-      "than published with a blank source line. At this volume nobody would ever notice one, " +
-      "which is exactly why the rule is mechanical.",
-    cannotSay: [
-      "Anything OWID does not carry. The index is OWID's sitemap; a subject absent from it is absent here, and the count is a floor rather than a census of what is knowable.",
-      "Whether two indicators are comparable. Different indicators come from different producers with different definitions, coverage and vintages, and nothing here reconciles them.",
-      "What a value means without its unit. Every row carries one and no chart on this site may render an indicator without printing it.",
-      "Anything at subnational level. These are country series; India's states are not in them.",
-    ],
-    comparators: COUNTRIES,
-    counts: {
-      slugsDiscovered: slugs.length,
-      slugsAttempted: chosen.length,
-      indicators: indicators.length,
-      withMapTier: indicators.filter((i) => i.tiers.map).length,
-      withIndia: indicators.filter((i) => i.hasIndia).length,
-      skipped: failures.length,
-      shards: seriesShards.size,
-    },
-    byCategory: [...byCategory].map(([key, n]) => ({ key, n })).sort((a, b) => b.n - a.n),
-    discovery: note,
-    stoppedEarly,
-    lastIncrementalWrite: lastWrite,
-    stride,
-    rateLimited,
-    failures: failures.slice(0, 120),
-    indicators,
-  };
-  await writeFile(join(OUT_DIR, "index.json"), JSON.stringify(index, null, 2) + "\n", "utf8");
+  await dropStaleShards();
 
   console.log(
     `\nWrote ${OUT_DIR}: ${indicators.length} indicators ` +
-    `(${index.counts.withMapTier} map-capable, ${index.counts.withIndia} with India), ` +
+    `(${indicators.filter((i) => i.tiers.map).length} map-capable, ` +
+    `${indicators.filter((i) => i.hasIndia).length} with India), ` +
     `${seriesShards.size} shards, ${failures.length} skipped.` +
     (stoppedEarly ? `\n${stoppedEarly}` : ""),
   );

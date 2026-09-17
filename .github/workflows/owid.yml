@@ -21,7 +21,18 @@ permissions:
 
 concurrency:
   group: owid
-  cancel-in-progress: true
+  # Never cancel a run in progress.
+  #
+  # This job spends up to forty-six minutes pulling from a charity's servers.
+  # Cancelling it throws that bandwidth away and gets it re-spent on the next
+  # push, which is both wasteful and rude. It also did real damage once: a run
+  # cancelled ninety seconds in had already cleared the output directory and
+  # written one incremental pass, and the commit step published that — 684
+  # indicators replaced by 50, with the index deleted.
+  #
+  # Two other changes below make a cancelled run harmless. This one makes it
+  # rare, and stops the host paying for our pushes.
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -44,16 +55,35 @@ jobs:
         if: always()
         run: |
           set -uo pipefail
-          # A run killed by the workflow timeout never reaches its summary, so
-          # index.json may be absent while the shards from the last incremental
-          # write are there. Committing those is better than losing the run.
-          if [ ! -d data/owid ] || [ -z "$(ls -A data/owid 2>/dev/null)" ]; then
-            echo "Nothing to commit: the registry produced no files at all." >&2
+          # No index, no commit.
+          #
+          # This used to say the opposite: if the directory had files in it,
+          # commit them, on the reasoning that shards from a run killed by the
+          # timeout beat losing forty minutes of fetching. The reasoning was
+          # about the timeout case and the condition was not — it asked "did
+          # this run write anything", when the question is "is this better than
+          # what is already committed".
+          #
+          # A run cancelled ninety seconds in answered yes. It had written one
+          # incremental pass and no index, so this step replaced a registry of
+          # 684 indicators with 50 and deleted the file that makes any of them
+          # readable. The site read no registry at all.
+          #
+          # The connector now writes the index on every incremental pass, so a
+          # run killed by the timeout has a complete, self-describing partial
+          # registry that says how partial it is. That makes this check free:
+          # anything worth committing has an index by construction.
+          if [ ! -s data/owid/index.json ]; then
+            echo "No index.json: the run was cut short before its first incremental write." >&2
+            echo "Leaving the committed registry alone — shards with no index are unreadable." >&2
             exit 1
           fi
-          if [ ! -f data/owid/index.json ]; then
-            echo "index.json is absent — the run was cut short. Committing the shards it wrote." >&2
+          COUNT="$(node -e 'process.stdout.write(String(require("./data/owid/index.json").indicators.length))')"
+          if [ "$COUNT" -lt 1 ]; then
+            echo "index.json carries no indicators. Refusing to publish it over a good one." >&2
+            exit 1
           fi
+          echo "Committing a registry of $COUNT indicators."
           git config user.name  "bharat-tracker-bot"
           git config user.email "actions@github.com"
           KEEP="$(mktemp -d)"

@@ -14,7 +14,17 @@ permissions:
   contents: write
 concurrency:
   group: probe-growth
-  cancel-in-progress: true
+  # Never cancel a run that commits data.
+  #
+  # Cancelling a job whose whole purpose is to produce a file means the file is
+  # produced partially and then committed anyway, because the commit step runs
+  # `if: always()`. The OWID registry lost 634 of its 684 indicators that way:
+  # a push cancelled a run ninety seconds in, and the commit step published the
+  # fifty it had written. Nothing failed.
+  #
+  # The saving cancellation offers is a few minutes of runner time. The cost is
+  # the data. Queue instead.
+  cancel-in-progress: false
 
 jobs:
   probe:
