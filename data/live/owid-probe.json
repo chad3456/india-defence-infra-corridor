@@ -1,0 +1,285 @@
+{
+  "probedAt": "2026-09-17T08:11:29.525Z",
+  "question": "Can a thousand indicators be discovered and fetched from a source that publishes its own units and citations, and which measures of Indian filmmaking are reachable at all?",
+  "refusal": "No figure of any kind is published here — not a life expectancy, not a box-office total, not a film count. Only whether a source answered, in what shape, how many rows it appears to carry, and whether its query parameters do anything.",
+  "note": "The brief describes Indian filmmaking as declining. That is not assumed here. 'The largest film industry on earth by title count' and 'an industry in decline' are both widely asserted and are not incompatible, because they measure different things — titles, admissions, revenue, screens and share of a domestic market can and do move in opposite directions at once. The probe asks which of them are reachable; whichever way they point is what gets built.",
+  "findings": [
+    {
+      "id": "owid:sitemap",
+      "kind": "owid-index",
+      "what": "OWID sitemap — the published list of every chart slug",
+      "url": "https://ourworldindata.org/sitemap.xml",
+      "settles": "Whether the thousand attributes can be discovered rather than typed",
+      "ok": true,
+      "status": "200",
+      "bytes": 966552,
+      "shape": "xml-feed",
+      "found": [
+        "<loc>",
+        "grapher"
+      ],
+      "missing": [],
+      "counts": {
+        "urls": 6440,
+        "graphers": 4374,
+        "sitemapIndex": 0
+      }
+    },
+    {
+      "id": "owid:sitemap-charts",
+      "kind": "owid-index",
+      "what": "OWID chart sitemap, if the index points at one",
+      "url": "https://ourworldindata.org/sitemap-charts.xml",
+      "settles": "Whether charts have their own sitemap file",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "owid:search",
+      "kind": "owid-index",
+      "what": "OWID chart search API",
+      "url": "https://ourworldindata.org/api/charts.json",
+      "settles": "Whether there is a JSON index of charts, which would beat parsing XML",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "owid:csv-filtered",
+      "kind": "owid-data",
+      "what": "One indicator as CSV, filtered to India",
+      "url": "https://ourworldindata.org/grapher/life-expectancy.csv?csvType=filtered&country=IND&useColumnShortNames=true",
+      "settles": "Whether the country filter works, or is ignored while returning a plausible file",
+      "ok": true,
+      "status": "200",
+      "bytes": 1969,
+      "shape": "csv",
+      "found": [
+        "Entity",
+        "Year",
+        "India"
+      ],
+      "missing": [],
+      "counts": {
+        "rows": 85,
+        "india": 85
+      },
+      "parameterWorks": true,
+      "parameterNote": "same length but different content"
+    },
+    {
+      "id": "owid:csv-full",
+      "kind": "owid-data",
+      "what": "The same indicator unfiltered, to size a bulk pull",
+      "url": "https://ourworldindata.org/grapher/life-expectancy.csv",
+      "settles": "Whether a whole indicator is small enough to fetch and filter locally",
+      "ok": true,
+      "status": "200",
+      "bytes": 605250,
+      "shape": "csv",
+      "found": [
+        "Entity",
+        "Year"
+      ],
+      "missing": [],
+      "counts": {
+        "rows": 21565
+      }
+    },
+    {
+      "id": "owid:metadata",
+      "kind": "owid-data",
+      "what": "Indicator metadata — unit, source, citation",
+      "url": "https://ourworldindata.org/grapher/life-expectancy.metadata.json",
+      "settles": "Whether every attribute arrives with the unit and citation it needs to be publishable",
+      "ok": true,
+      "status": "200",
+      "bytes": 4281,
+      "shape": "json",
+      "found": [
+        "unit",
+        "citation",
+        "descriptionShort",
+        "columns"
+      ],
+      "missing": [
+        "attribution"
+      ],
+      "counts": {
+        "columns": 1
+      }
+    },
+    {
+      "id": "owid:csv-trade",
+      "kind": "owid-data",
+      "what": "A trade indicator, to confirm the pattern holds beyond one slug",
+      "url": "https://ourworldindata.org/grapher/merchandise-exports.csv?csvType=filtered&country=IND~CHN~USA&useColumnShortNames=true",
+      "settles": "Whether several countries can be requested in one call",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "wiki:Cinema_of_India",
+      "kind": "cinema",
+      "what": "Cinema of India",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=Cinema_of_India&redirects=1",
+      "settles": "Whether a survey article carries production, box-office or screen figures in tables",
+      "ok": true,
+      "status": "200",
+      "bytes": 199366,
+      "shape": "json",
+      "found": [
+        "films produced",
+        "box office",
+        "screens",
+        "admissions",
+        "certified"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 83,
+        "tables": 4,
+        "refs": 422,
+        "years": 1107
+      }
+    },
+    {
+      "id": "wiki:List_of_Indian_films_of_2024",
+      "kind": "cinema",
+      "what": "List of Indian films of 2024",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=List_of_Indian_films_of_2024&redirects=1",
+      "settles": "Whether films released in a year are listed one per row, which would make a production count countable",
+      "ok": true,
+      "status": "200",
+      "bytes": 18897,
+      "shape": "json",
+      "found": [
+        "Director"
+      ],
+      "missing": [
+        "Cast and crew",
+        "Opening"
+      ],
+      "counts": {
+        "tableRows": 11,
+        "tables": 1,
+        "refs": 37,
+        "years": 106
+      }
+    },
+    {
+      "id": "wiki:List_of_Indian_films_of_2014",
+      "kind": "cinema",
+      "what": "List of Indian films of 2014",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=List_of_Indian_films_of_2014&redirects=1",
+      "settles": "Whether the same list exists a decade earlier, so a trend is possible",
+      "ok": true,
+      "status": "200",
+      "bytes": 397,
+      "shape": "json",
+      "found": [],
+      "missing": [
+        "Director"
+      ],
+      "note": "decode path \"parse.wikitext.*\" did not reach a string; counted the raw body",
+      "counts": {
+        "tableRows": 0,
+        "tables": 0,
+        "refs": 0,
+        "years": 0
+      }
+    },
+    {
+      "id": "wiki:List_of_highest-grossing_Indian_films",
+      "kind": "cinema",
+      "what": "List of highest-grossing Indian films",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=List_of_highest-grossing_Indian_films&redirects=1",
+      "settles": "Whether box-office figures are tabulated with years",
+      "ok": true,
+      "status": "200",
+      "bytes": 278266,
+      "shape": "json",
+      "found": [
+        "Worldwide gross",
+        "Year",
+        "crore"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 328,
+        "tables": 17,
+        "refs": 489,
+        "years": 1748
+      }
+    },
+    {
+      "id": "wiki:Bollywood",
+      "kind": "cinema",
+      "what": "Bollywood",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=Bollywood&redirects=1",
+      "settles": "Whether the largest single industry article carries its own output figures",
+      "ok": true,
+      "status": "200",
+      "bytes": 193937,
+      "shape": "json",
+      "found": [
+        "films",
+        "box office",
+        "revenue"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 0,
+        "tables": 0,
+        "refs": 376,
+        "years": 1028
+      }
+    },
+    {
+      "id": "wiki:Central_Board_of_Film_Certification",
+      "kind": "cinema",
+      "what": "Central Board of Film Certification",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=Central_Board_of_Film_Certification&redirects=1",
+      "settles": "Whether the certifier's own output — titles certified per year — is recorded anywhere readable",
+      "ok": true,
+      "status": "200",
+      "bytes": 22451,
+      "shape": "json",
+      "found": [
+        "certified",
+        "films"
+      ],
+      "missing": [
+        "annual"
+      ],
+      "counts": {
+        "tableRows": 0,
+        "tables": 0,
+        "refs": 32,
+        "years": 102
+      }
+    },
+    {
+      "id": "owid:cinema",
+      "kind": "cinema",
+      "what": "OWID, in case cinema attendance is among its indicators",
+      "url": "https://ourworldindata.org/grapher/cinema-attendance-per-capita.csv?csvType=filtered&country=IND",
+      "settles": "Whether admissions per head are available from a source that cites itself",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "cbfc:site",
+      "kind": "cinema",
+      "what": "The Central Board of Film Certification's own site",
+      "url": "https://www.cbfcindia.gov.in/cbfcAdmin/html/statistics.html",
+      "settles": "Whether the primary source for titles certified answers a script at all",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    }
+  ]
+}
