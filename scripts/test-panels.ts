@@ -11,7 +11,7 @@
  * has every series reversed in time, and asserts the same indicators are
  * chosen in the same order.
  */
-import { buildPanels, selectPanels, tally, changeLabel } from "../lib/growth-panels";
+import { buildPanels, selectPanels, tally, changeLabel, yearLabel } from "../lib/growth-panels";
 import type { Registry, Indicator } from "../lib/owid";
 import { sparkGeometry } from "../components/stories/Charts";
 
@@ -227,6 +227,50 @@ console.log("\nA long series keeps every point it was given");
   const g = sparkGeometry(long, 1000, 210);
   check("no point is dropped to make room for a label", (g.d.match(/[ML]/g) ?? []).length, 156);
   check("and an exponential span takes the log axis", g.logScale, true);
+}
+
+/**
+ * Four things that only became visible once the series were real.
+ *
+ * The registry used to carry one year per country for two thirds of its
+ * indicators, so none of these could happen. With two centuries of data behind
+ * each panel they all did, on the same page, at the same time.
+ */
+console.log("\nWhat a real series exposes");
+{
+  const reg = registry([["flat", "Economy"], ["moves", "Health"]]);
+  fill("flat", YEARS.map(() => 0));
+  fill("moves", rising);
+  const { panels, rejected } = selectPanels(reg, { limit: 10, readSeries });
+  check("a series that never moves is not a panel", panels.map((p) => p.indicator.slug), ["moves"]);
+  check("and it is counted as constant, not as flat", rejected.constant, 1);
+}
+{
+  // A non-zero constant is the same failure: 237 years of the same number.
+  const reg = registry([["same", "Economy"]]);
+  fill("same", YEARS.map(() => 42));
+  check("a constant that is not zero is held out too",
+    selectPanels(reg, { limit: 10, readSeries }).rejected.constant, 1);
+}
+{
+  const reg = registry([["z", "Economy"]]);
+  fill("z", YEARS.map((_, i) => (i === 0 ? 0 : i * 500_000)));
+  const p = selectPanels(reg, { limit: 1, readSeries }).panels[0]!;
+  check("a change from zero reads in words, not in exponents", changeLabel(p), "+10.00 million");
+  check("and not in scientific notation", /e[+-]/.test(changeLabel(p)), false);
+}
+check("a year before the common era is a date, not a negative", yearLabel(-900), "900 BCE");
+check("and an ordinary year is left alone", yearLabel(1947), "1947");
+{
+  // A reading every century, then a reading every year: the early points each
+  // sit alone between two gaps, and a lone `M` strokes nothing.
+  const sparse = [
+    ...Array.from({ length: 5 }, (_, i) => ({ year: -900 + i * 100, value: 1 + i })),
+    ...Array.from({ length: 30 }, (_, i) => ({ year: 1990 + i, value: 100 + i })),
+  ];
+  const g = sparkGeometry(sparse, 110, 34);
+  check("an isolated reading is drawn as a dot rather than dropped",
+    (g.d.match(/M[\d.]+,[\d.]+ L/g) ?? []).length >= 5, true);
 }
 
 console.log(failures === 0 ? "\nAll panel selector tests passed." : `\n${failures} panel selector test(s) failed.`);

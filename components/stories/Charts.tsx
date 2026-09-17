@@ -1451,8 +1451,26 @@ export function seriesPath(
   let d = "";
   points.forEach((p, i) => {
     const prev = points[i - 1];
-    const jump = prev !== undefined && p.year - prev.year > breakAt;
-    d += `${i === 0 || jump ? "M" : "L"}${px(p.year).toFixed(1)},${py(p.value).toFixed(1)} `;
+    const next = points[i + 1];
+    const startsHere = i === 0 || (prev !== undefined && p.year - prev.year > breakAt);
+    const endsHere = next === undefined || next.year - p.year > breakAt;
+    const x = px(p.year).toFixed(1);
+    const y = py(p.value).toFixed(1);
+    /**
+     * A point with a gap on both sides is drawn as a dot, not as nothing.
+     *
+     * Breaking the path at gaps left the long-run series — the ones with a
+     * reading every century before 1700 and one every year after — rendering
+     * as a short line at the right-hand end and empty space where the early
+     * observations are. Every one of those observations started and ended its
+     * own segment, and a single `M` strokes nothing at all. The data was
+     * there, the path was correct, and the chart showed a blank.
+     *
+     * A zero-length segment under `stroke-linecap: round` is a dot, so the
+     * isolated readings appear as the isolated readings they are.
+     */
+    d += `${startsHere ? "M" : "L"}${x},${y} `;
+    if (startsHere && endsHere) d += `L${x},${y} `;
   });
   return d.trim();
 }

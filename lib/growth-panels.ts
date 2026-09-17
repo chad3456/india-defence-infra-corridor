@@ -28,7 +28,7 @@
  * claims.
  */
 import {
-  type Registry, type Indicator, seriesFor, countrySeries, latestOf,
+  type Registry, type Indicator, seriesFor, countrySeries, latestOf, fmt,
 } from "./owid";
 
 export interface Panel {
@@ -114,6 +114,8 @@ function measureKey(ind: Indicator): string {
 export interface Rejections {
   /** Its latest value is in the future: a projection, not something that happened. */
   projection: number;
+  /** Every value in it is the same number, so it has nothing to say about change. */
+  constant: number;
   /** Its title names two measures, so it cannot label the one column taken. */
   twoVariable: number;
   /** Another chart already carries the same column and unit. */
@@ -167,7 +169,7 @@ export function selectPanels(
   } = {},
 ): { panels: Panel[]; rejected: Rejections } {
   const scored: Panel[] = [];
-  const rejected: Rejections = { projection: 0, twoVariable: 0, duplicateMeasure: 0 };
+  const rejected: Rejections = { projection: 0, constant: 0, twoVariable: 0, duplicateMeasure: 0 };
 
   for (const ind of reg.indicators) {
     if (!ind.hasIndia) continue;
@@ -191,6 +193,23 @@ export function selectPanels(
     const last = india[india.length - 1]!;
     const span = last.year - first.year;
     if (span < 10) continue;
+
+    /**
+     * A series that never moves is not a panel on a page about change.
+     *
+     * Two of them shipped: `access-to-justice-women-row` and
+     * `direct-democracy-index` each carry 237 years of Indian data in which
+     * every single value is zero. They passed every filter here — long span,
+     * plenty of points, comparators present — and rendered as a headline
+     * reading "0", a change reading "+0.00", and a perfectly flat line. A
+     * card that looks like all the others and contains no information.
+     *
+     * This is stricter than the "flat" direction already computed, which
+     * covers a series that moved less than two per cent. Moving slightly is a
+     * finding; not moving at all, across two centuries, is the source telling
+     * you it has nothing for this country.
+     */
+    if (india.every((pt) => pt.value === india[0]!.value)) { rejected.constant++; continue; }
 
     const comparatorValues = reg.comparators
       .map((iso) => ({ iso, point: latestOf(rows, iso) }))
@@ -314,9 +333,31 @@ export function tally(panels: Panel[]): PanelTally {
   };
 }
 
+/**
+ * A year, readable when it is before the common era.
+ *
+ * Three panels draw series that begin in 900 BCE, and the label read "since
+ * -900". A negative number is how the data stores a year; it is not how a
+ * reader reads one, and "-900" scans as a quantity rather than a date.
+ */
+export function yearLabel(y: number): string {
+  return y < 0 ? `${Math.abs(y)} BCE` : String(y);
+}
+
 /** A change, printed with a sign and without false precision. */
 export function changeLabel(p: Panel): string {
-  if (p.changePct === null) return `${p.changeAbs >= 0 ? "+" : "−"}${Math.abs(p.changeAbs).toPrecision(3)}`;
+  /**
+   * The absolute fallback, in words rather than in exponents.
+   *
+   * When the first value is zero there is no percentage to give, so the label
+   * falls back to the absolute change — and `toPrecision(3)` rendered that as
+   * "+1.05e+7" and "+3.03e+9". Two panels on the page carried a change in
+   * scientific notation, which is a format for a calculator readout and not
+   * for a card that a reader is meant to take a number from.
+   */
+  if (p.changePct === null) {
+    return `${p.changeAbs >= 0 ? "+" : "−"}${fmt(Math.abs(p.changeAbs))}`;
+  }
   const v = Math.abs(p.changePct);
   const sign = p.changePct >= 0 ? "+" : "−";
   /**

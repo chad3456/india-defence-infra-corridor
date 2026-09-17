@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { loadRegistry, fmt } from "@/lib/owid";
-import { selectPanels, tally, changeLabel, type Panel } from "@/lib/growth-panels";
+import { selectPanels, tally, changeLabel, yearLabel, type Panel } from "@/lib/growth-panels";
 import {
   Eyebrow, Headline, Standfirst, Mark, Stat, Sources,
 } from "@/components/stories/Kit";
@@ -77,7 +77,7 @@ function PanelCard({ p }: { p: Panel }) {
           <span>
             <span className="story-display block text-[22px]">{fmt(p.last.value)}</span>
             <span className="mono block text-[10px]" style={{ color: "var(--story-ink-3)" }}>
-              {p.last.year}
+              {yearLabel(p.last.year)}
             </span>
           </span>
           <Sparkline points={p.india} tone={tone} width={110} height={34} />
@@ -89,7 +89,7 @@ function PanelCard({ p }: { p: Panel }) {
             {changeLabel(p)}
           </span>
           <span className="mono text-[10px]" style={{ color: "var(--story-ink-3)" }}>
-            since {p.first.year}
+            since {yearLabel(p.first.year)}
           </span>
           {p.rank > 0 && (
             <span className="mono text-[10px]" style={{ color: "var(--story-ink-3)" }}>
@@ -120,7 +120,8 @@ export default function GrowthHundred() {
 
   const { panels, rejected } = selectPanels(reg, { limit: 100 });
   const t = tally(panels);
-  const excluded = rejected.projection + rejected.twoVariable + rejected.duplicateMeasure;
+  const excluded = rejected.projection + rejected.constant + rejected.twoVariable
+    + rejected.duplicateMeasure;
 
   const biggestRises = [...panels]
     .filter((p) => p.changePct !== null && p.direction === "rose")
@@ -179,7 +180,7 @@ export default function GrowthHundred() {
                 name: p.indicator.title,
                 value: Math.abs(p.changePct ?? 0),
                 display: changeLabel(p),
-                meta: `${p.first.year}–${p.last.year}`,
+                meta: `${yearLabel(p.first.year)}–${yearLabel(p.last.year)}`,
               }))}
             />
           </div>
@@ -193,7 +194,7 @@ export default function GrowthHundred() {
                 name: p.indicator.title,
                 value: Math.abs(p.changePct ?? 0),
                 display: changeLabel(p),
-                meta: `${p.first.year}–${p.last.year}`,
+                meta: `${yearLabel(p.first.year)}–${yearLabel(p.last.year)}`,
               }))}
             />
           </div>
@@ -240,7 +241,9 @@ export default function GrowthHundred() {
           <span className="mono">{rejected.projection}</span> end in a future year, which makes
           the headline figure a forecast — and nothing in the source marks which of their earlier
           points were measured and which were modelled, so they cannot be trimmed back to the
-          present either.
+          present either. And <span className="mono">{rejected.constant}</span> never move: every
+          value identical across the whole span, which on a page about change is the source saying
+          it has nothing for this country rather than a finding about it.
         </div>
         <ul className="mt-7 grid list-none grid-cols-[minmax(0,1fr)] gap-3 p-0 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {panels.map((p) => <PanelCard key={p.indicator.slug} p={p} />)}
