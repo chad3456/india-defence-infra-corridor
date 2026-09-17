@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-09-17T08:11:29.525Z",
+  "probedAt": "2026-09-17T09:17:18.564Z",
   "question": "Can a thousand indicators be discovered and fetched from a source that publishes its own units and citations, and which measures of Indian filmmaking are reachable at all?",
   "refusal": "No figure of any kind is published here — not a life expectancy, not a box-office total, not a film count. Only whether a source answered, in what shape, how many rows it appears to carry, and whether its query parameters do anything.",
   "note": "The brief describes Indian filmmaking as declining. That is not assumed here. 'The largest film industry on earth by title count' and 'an industry in decline' are both widely asserted and are not incompatible, because they measure different things — titles, admissions, revenue, screens and share of a domestic market can and do move in opposite directions at once. The probe asks which of them are reachable; whichever way they point is what gets built.",
@@ -109,6 +109,127 @@
       "counts": {
         "columns": 1
       }
+    },
+    {
+      "id": "owid:csv-map-default",
+      "kind": "owid-params",
+      "what": "A map-default chart, asking for one country the way the connector does",
+      "url": "https://ourworldindata.org/grapher/above-ground-biomass-in-forest-per-hectare.csv?csvType=filtered&country=IND&useColumnShortNames=true",
+      "settles": "Whether country is honoured on a map-default chart, or quietly ignored",
+      "ok": true,
+      "status": "200",
+      "bytes": 4724,
+      "shape": "csv",
+      "found": [
+        "Entity",
+        "Year",
+        "Code"
+      ],
+      "missing": [],
+      "counts": {
+        "rows": 189,
+        "india": 1,
+        "years1990": 0
+      },
+      "parameterWorks": false,
+      "parameterNote": "same length to within 64 bytes and an identical middle — the parameter is ignored"
+    },
+    {
+      "id": "owid:csv-time-param",
+      "kind": "owid-params",
+      "what": "The same chart with an explicit time range",
+      "url": "https://ourworldindata.org/grapher/above-ground-biomass-in-forest-per-hectare.csv?csvType=filtered&country=IND&time=earliest..latest&useColu",
+      "settles": "Whether time= restores the depth that a map-default chart drops",
+      "ok": true,
+      "status": "200",
+      "bytes": 9272,
+      "shape": "csv",
+      "found": [
+        "Entity",
+        "Year"
+      ],
+      "missing": [],
+      "counts": {
+        "rows": 373,
+        "india": 2
+      },
+      "parameterWorks": true,
+      "parameterNote": "same length but different content"
+    },
+    {
+      "id": "owid:csv-full-filtered",
+      "kind": "owid-params",
+      "what": "csvType=full with a country list — every year, only the countries asked for",
+      "url": "https://ourworldindata.org/grapher/above-ground-biomass-in-forest-per-hectare.csv?csvType=full&country=IND~CHN~USA&useColumnShortNames=true",
+      "settles": "Whether the full export honours country, which would give depth and width in one call",
+      "ok": true,
+      "status": "200",
+      "bytes": 36227,
+      "shape": "csv",
+      "found": [
+        "Entity",
+        "Year"
+      ],
+      "missing": [],
+      "counts": {
+        "rows": 1342,
+        "india": 6,
+        "china": 6,
+        "brazil": 6
+      },
+      "parameterWorks": false,
+      "parameterNote": "same length to within 72 bytes and an identical middle — the parameter is ignored"
+    },
+    {
+      "id": "owid:csv-full-line",
+      "kind": "owid-params",
+      "what": "The same combination on the line chart, to see whether the rule is per-chart or general",
+      "url": "https://ourworldindata.org/grapher/life-expectancy.csv?csvType=full&country=IND~CHN~USA&useColumnShortNames=true",
+      "settles": "Whether one request shape can serve every chart type, or the connector must branch",
+      "ok": true,
+      "status": "200",
+      "bytes": 605252,
+      "shape": "csv",
+      "found": [
+        "Entity",
+        "Year"
+      ],
+      "missing": [],
+      "counts": {
+        "rows": 21565,
+        "india": 85
+      },
+      "parameterWorks": false,
+      "parameterNote": "same length to within 1211 bytes and an identical middle — the parameter is ignored"
+    },
+    {
+      "id": "owid:csv-map-unfiltered-size",
+      "kind": "owid-params",
+      "what": "The map-default chart with no parameters at all, to size the worst case",
+      "url": "https://ourworldindata.org/grapher/above-ground-biomass-in-forest-per-hectare.csv",
+      "settles": "What a local-filtering fallback would cost per indicator if no parameter is honoured",
+      "ok": true,
+      "status": "200",
+      "bytes": 36252,
+      "shape": "csv",
+      "found": [
+        "Entity",
+        "Year"
+      ],
+      "missing": [],
+      "counts": {
+        "rows": 1342
+      }
+    },
+    {
+      "id": "owid:csv-daily",
+      "kind": "owid-params",
+      "what": "A daily-resolution indicator, which the year parser cannot represent",
+      "url": "https://ourworldindata.org/grapher/daily-covid-cases.csv?csvType=filtered&country=IND&useColumnShortNames=true",
+      "settles": "Whether a Day column is distinguishable from a Year column in the header alone",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
     },
     {
       "id": "owid:csv-trade",
