@@ -92,6 +92,24 @@ jobs:
             git fetch --quiet origin "$GITHUB_REF_NAME" || true
             git rebase --abort 2>/dev/null || true
             git reset --hard --quiet 2>/dev/null || true
+            # Clear the output BEFORE the checkout, not after.
+            #
+            # `git reset --hard` reverts tracked files and leaves untracked
+            # ones alone, so this run's new shards survived it — and a checkout
+            # onto a ref that tracks those same paths refuses to clobber an
+            # untracked file. That is git protecting work it cannot see is
+            # already saved.
+            #
+            # It only started failing when every indicator gained a map tier:
+            # the run began producing thirteen map shards where the branch had
+            # four, and the nine new ones aborted the checkout. One run built
+            # 726 indicators over forty-seven minutes and threw all of them
+            # away at this line.
+            #
+            # The output is already in $KEEP by this point, so removing it here
+            # costs nothing and the checkout has a clean path.
+            rm -rf data/owid
+            git clean -qfd data/owid 2>/dev/null || true
             git checkout -q -B "$GITHUB_REF_NAME" "origin/$GITHUB_REF_NAME"
             rm -rf data/owid
             cp -r "$KEEP/owid" data/

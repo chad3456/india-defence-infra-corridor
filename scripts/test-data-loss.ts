@@ -97,5 +97,44 @@ for (const file of readdirSync(DIR).filter((f) => f.endsWith(".yml"))) {
   );
 }
 
+/**
+ * A commit step must clear its own output before it checks out a branch.
+ *
+ * Both commit paths save the run's output to a temporary directory, reset onto
+ * the branch, and replay it. `git reset --hard` reverts tracked files and
+ * leaves untracked ones alone — so a path this run created that the branch has
+ * since begun tracking survives the reset, and the checkout then refuses to
+ * clobber it and aborts.
+ *
+ * That is git protecting work it cannot see is already saved, and it is
+ * invisible until the shapes diverge. The registry job ran cleanly for weeks,
+ * then every indicator gained a map tier, the run began producing thirteen map
+ * shards where the branch had four, and the nine new ones aborted the
+ * checkout. 726 indicators and forty-seven minutes of a charity's bandwidth,
+ * thrown away at the last line of the job, after the build had printed its
+ * success.
+ */
+console.log("\nA commit step clears its output before checking out");
+{
+  const yml = readFileSync(join(DIR, "owid.yml"), "utf8");
+  const before = yml.indexOf("rm -rf data/owid");
+  const checkout = yml.indexOf('git checkout -q -B "$GITHUB_REF_NAME"');
+  check(
+    "the registry job removes data/owid before its checkout",
+    before !== -1 && checkout !== -1 && before < checkout,
+    "otherwise a shard this run created, which the branch has since started tracking, "
+      + "aborts the checkout and the whole run is lost at the last step",
+  );
+
+  const sh = readFileSync(join(process.cwd(), ".github/scripts/commit-generated.sh"), "utf8");
+  const rm = sh.indexOf('rm -f "$FILE"');
+  const co = sh.indexOf('git checkout -q -B "$BRANCH"');
+  check(
+    "and the shared helper removes its file before its checkout",
+    rm !== -1 && co !== -1 && rm < co,
+    "same failure, one file at a time",
+  );
+}
+
 console.log(failures === 0 ? "\nAll data-loss tests passed." : `\n${failures} data-loss test(s) failed.`);
 if (failures > 0) process.exit(1);

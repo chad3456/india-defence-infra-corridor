@@ -47,6 +47,17 @@ for attempt in 1 2 3 4; do
   # the only thing that reliably clears an interrupted rebase's unmerged paths.
   git rebase --abort 2>/dev/null || true
   git reset --hard --quiet 2>/dev/null || true
+  # And remove the generated file itself, which the reset does not touch.
+  #
+  # `git reset --hard` reverts tracked files and leaves untracked ones where
+  # they are. If this run created a path that the branch has since started
+  # tracking — the usual case being two jobs adding the same new generated
+  # file — the checkout refuses to clobber it and aborts, and the run's whole
+  # output is lost at the last step. The registry job lost 726 indicators and
+  # forty-seven minutes of fetching to exactly this.
+  #
+  # The file is in $KEEP by now, so removing it here costs nothing.
+  rm -f "$FILE"
   git checkout -q -B "$BRANCH" "origin/$BRANCH"
 
   mkdir -p "$(dirname "$FILE")"
