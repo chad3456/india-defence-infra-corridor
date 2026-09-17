@@ -71,16 +71,44 @@ async function pace(): Promise<void> {
   lastCall = Date.now();
 }
 
-async function wikitext(page: string): Promise<string | null> {
+/**
+ * Wikitext, and the title the request actually landed on.
+ *
+ * The resolved title is the whole point. Asking for "List of Punjabi films of
+ * 2003" with redirects on and not checking where it went produced ten
+ * consecutive years with byte-identical content: every missing year had been
+ * redirected to one combined article, and the connector dutifully counted the
+ * same 188 films as 2000's output, and 2001's, and so on to 2009 — which put
+ * Punjabi at 29% of all Indian film titles in a decade when it was a fraction
+ * of that.
+ *
+ * Nothing about that failure looked wrong. The counts were plausible, the
+ * tables were real film tables, and the only symptom was a share nobody would
+ * question unless they knew the industry.
+ */
+async function wikitext(page: string): Promise<{ text: string; resolved: string } | null> {
   await pace();
   const qs = new URLSearchParams({
     action: "parse", format: "json", prop: "wikitext", page, redirects: "1",
   });
-  const res = await getJson<{ parse?: { wikitext?: { "*"?: string } } }>(
+  const res = await getJson<{ parse?: { title?: string; wikitext?: { "*"?: string } } }>(
     `${API}?${qs.toString()}`, { timeoutMs: 45_000, retries: 1, cacheMs: 0 },
   );
   const t = res.data?.parse?.wikitext?.["*"];
-  return typeof t === "string" ? t : null;
+  if (typeof t !== "string") return null;
+  return { text: t, resolved: res.data?.parse?.title ?? page };
+}
+
+/**
+ * Whether a resolved title is still about the year that was asked for.
+ *
+ * A redirect that keeps the year is fine — articles get renamed. A redirect
+ * that drops it has landed on a combined list, and whatever it contains is not
+ * that year's output.
+ */
+export function isSameYear(requested: string, resolved: string, year: number): boolean {
+  if (resolved.trim().toLowerCase() === requested.trim().toLowerCase()) return true;
+  return new RegExp(`\\b${year}\\b`).test(resolved);
 }
 
 /**
@@ -105,7 +133,18 @@ export function filmRows(text: string): { films: number; tablesUsed: number; hea
     const looksLikeFilms =
       headers.some((h) => /^(title|film|name)$/.test(h) || /\btitle\b/.test(h))
       && headers.some((h) => /director|cast|producer|studio|banner|genre/.test(h));
-    if (!looksLikeFilms) continue;
+    /**
+     * A box-office table is not a release listing.
+     *
+     * Year articles carry a "highest-grossing films of <year>" table whose
+     * headers are rank, title, director and worldwide gross. It passes the
+     * test above — it has a title and a director — and counting it both
+     * inflates the year and double-counts the films that also appear in the
+     * release list. A gross or a rank column is the tell.
+     */
+    const isBoxOffice = headers.some((h) => /gross|box office|revenue|earnings/.test(h))
+      || headers.some((h) => /^(rank|no\.?|position)$/.test(h));
+    if (!looksLikeFilms || isBoxOffice) continue;
     tablesUsed++;
     films += t.rows.length;
     headersSeen.push(headers.filter(Boolean).slice(0, 6).join(" | "));
@@ -135,6 +174,8 @@ export interface YearLanguage {
   headersSeen: string[];
   /** Whether the list article exists at all for this year and language. */
   listed: boolean;
+  /** Where a request went, when it was redirected off its own year. */
+  redirectedTo?: string;
 }
 
 export interface Grosser {
@@ -149,17 +190,26 @@ export interface Grosser {
 async function main(): Promise<void> {
   const rows: YearLanguage[] = [];
   const missing: string[] = [];
+  const redirected: string[] = [];
 
   for (const language of LANGUAGES) {
     for (let year = FIRST_YEAR; year <= LAST_YEAR; year++) {
       const page = `List of ${language} films of ${year}`;
-      const text = await wikitext(page);
-      if (text === null) {
+      const got = await wikitext(page);
+      if (got === null) {
         rows.push({ year, language, films: 0, tablesUsed: 0, headersSeen: [], listed: false });
         missing.push(page);
         continue;
       }
-      const { films, tablesUsed, headersSeen } = filmRows(text);
+      if (!isSameYear(page, got.resolved, year)) {
+        rows.push({
+          year, language, films: 0, tablesUsed: 0, headersSeen: [], listed: false,
+          redirectedTo: got.resolved,
+        });
+        redirected.push(`${page} → ${got.resolved}`);
+        continue;
+      }
+      const { films, tablesUsed, headersSeen } = filmRows(got.text);
       rows.push({ year, language, films, tablesUsed, headersSeen, listed: true });
     }
     const got = rows.filter((r) => r.language === language && r.listed);
@@ -169,6 +219,45 @@ async function main(): Promise<void> {
     );
   }
 
+  /**
+   * A backstop against redirect variants the title check does not catch.
+   *
+   * Three or more consecutive years with an identical film count AND an
+   * identical table count is not something a film industry does; it is one
+   * article being read several times. The title comparison above should catch
+   * every case, and this exists because it is the class of bug that already
+   * got through once wearing a completely plausible face. Flagged years are
+   * dropped from the counts and listed.
+   */
+  const suspect: string[] = [];
+  for (const language of LANGUAGES) {
+    const mine = rows.filter((r) => r.language === language && r.listed).sort((a, b) => a.year - b.year);
+    let run: YearLanguage[] = [];
+    const flush = (): void => {
+      if (run.length >= 3 && (run[0]?.films ?? 0) > 0) {
+        for (const r of run) {
+          r.listed = false;
+          r.films = 0;
+          suspect.push(`${language} ${r.year}`);
+        }
+      }
+      run = [];
+    };
+    for (const r of mine) {
+      const prev = run[run.length - 1];
+      if (prev && prev.films === r.films && prev.tablesUsed === r.tablesUsed && prev.year === r.year - 1) {
+        run.push(r);
+      } else {
+        flush();
+        run = [r];
+      }
+    }
+    flush();
+  }
+  if (suspect.length > 0) {
+    console.log(`Dropped ${suspect.length} year(s) whose counts repeated exactly: ${suspect.slice(0, 12).join(", ")}`);
+  }
+
   /* ── Box office, the one series coverage growth does not govern ──── */
   const grossers: Grosser[] = [];
   let grossNote = "";
@@ -176,7 +265,7 @@ async function main(): Promise<void> {
   if (gross === null) {
     grossNote = "the highest-grossing list did not load";
   } else {
-    const tables = parseTables(gross);
+    const tables = parseTables(gross.text);
     let used = 0;
     for (const t of tables) {
       const headers = (t.headers ?? []).map((h) => plain(h).toLowerCase().trim());
@@ -260,14 +349,32 @@ async function main(): Promise<void> {
     ],
     years: { first: FIRST_YEAR, last: LAST_YEAR },
     languages: LANGUAGES,
+    checks: {
+      redirectOffYear:
+        "Every request records the title it actually landed on. A resolved title that no longer " +
+        "names the year asked for has hit a combined list, and its contents are not that year's " +
+        "output. Without this check ten consecutive Punjabi years returned byte-identical " +
+        "content and the connector counted the same 188 films ten times.",
+      repeatedCounts:
+        "As a backstop, three or more consecutive years with an identical film AND table count " +
+        "are dropped. A film industry does not do that; one article read several times does.",
+      boxOfficeExcluded:
+        "Tables whose headers carry a gross or a rank column are the year's highest-grossing " +
+        "box, not its release list. Counting them inflates the year and double-counts the films " +
+        "that appear in both.",
+    },
     counts: {
       rowsAttempted: rows.length,
       yearsListed: rows.filter((r) => r.listed).length,
       yearsMissing: missing.length,
+      yearsRedirected: redirected.length,
+      yearsDroppedAsRepeats: suspect.length,
       titles: rows.reduce((a, r) => a + r.films, 0),
       grossers: grossers.length,
     },
     missingLists: missing.slice(0, 60),
+    redirectedLists: redirected.slice(0, 60),
+    repeatedCountYears: suspect,
     grossNote,
     shares,
     rows,

@@ -678,6 +678,135 @@ export function BubbleMap({
   );
 }
 
+/* ───────────────────────────── Choropleth ───────────────────────────── */
+
+export interface ChoroplethRow { id: string; name: string; value: number }
+
+/**
+ * A world map coloured by value, for an indicator whose units the caller knows.
+ *
+ * Distinct from BubbleMap, which sizes a mark by a magnitude. A choropleth is
+ * right when the quantity is a rate, a share or a per-head figure — something
+ * that is a property OF a country rather than an amount IN one — and wrong for
+ * a total, because colouring Russia and Luxembourg by absolute GDP tells the
+ * reader about area. The caller decides; this component only draws.
+ *
+ * ── Quantiles, not a linear ramp ─────────────────────────────────────────
+ *
+ * Almost every country-level indicator is heavily skewed, and a linear ramp on
+ * a skewed distribution leaves nine tenths of the world in the bottom colour
+ * and calls it a map. Breaks are quantiles of the actual values, so each band
+ * holds a similar number of countries and the map shows rank rather than
+ * magnitude. The legend prints the real break values so the reader can see
+ * which it is.
+ *
+ * ── Absence is drawn as absence ──────────────────────────────────────────
+ *
+ * A country with no value gets the surface's own "no data" hatch, never the
+ * bottom colour of the scale. Zero and unknown are different facts and a map
+ * that renders them identically is asserting the wrong one about whichever
+ * countries happen to be missing.
+ */
+export function Choropleth({
+  rows, height = 400, unit, note, marked,
+}: {
+  rows: ChoroplethRow[];
+  height?: number;
+  unit?: string;
+  note?: ReactNode;
+  /** A country to outline — usually the one the page is about. */
+  marked?: string;
+}) {
+  const width = 820;
+  const projection = geoNaturalEarth1().fitExtent([[4, 4], [width - 4, height - 4]], world);
+  const path = geoPath(projection);
+  const byId = new Map(rows.map((r) => [r.id, r]));
+
+  const values = rows.map((r) => r.value).sort((a, b) => a - b);
+  const BANDS = 5;
+  const breaks: number[] = [];
+  for (let i = 1; i < BANDS; i++) {
+    const at = Math.floor((values.length * i) / BANDS);
+    const v = values[Math.min(at, values.length - 1)];
+    if (v !== undefined) breaks.push(v);
+  }
+  const bandOf = (v: number): number => {
+    let b = 0;
+    for (const brk of breaks) if (v >= brk) b++;
+    return Math.min(b, BANDS - 1);
+  };
+  /**
+   * Five steps from the register's cool end to its hot end.
+   *
+   * The opacity ramp runs over one hue rather than across the hot/mid/cool
+   * trio, because those three are an ordered STATUS scale with meanings
+   * attached — stuck, sticky, free — and an indicator whose direction the page
+   * does not know must not be coloured as though someone had decided which end
+   * was good.
+   */
+  const fillFor = (b: number): string => `var(--s-mid)`;
+  const opacityFor = (b: number): number => 0.18 + (b / (BANDS - 1)) * 0.82;
+
+  const drawn = world.features.filter((f) => byId.has(String(f.id ?? "")));
+
+  return (
+    <div>
+      <Scroller min={560}>
+        <svg viewBox={`0 0 ${width} ${height}`} style={{ width: "100%", height: "auto" }} role="img"
+          aria-label={`${rows.length} countries with a value${unit ? `, in ${unit}` : ""}`}>
+          <defs>
+            <pattern id="story-nodata" width="5" height="5" patternTransform="rotate(45)"
+              patternUnits="userSpaceOnUse">
+              <rect width="5" height="5" fill="var(--story-rule)" />
+              <line x1="0" y1="0" x2="0" y2="5" stroke="var(--story-bg)" strokeWidth="2" />
+            </pattern>
+          </defs>
+          {world.features.map((f, i) => {
+            const id = String(f.id ?? "");
+            const row = byId.get(id);
+            const isMarked = marked !== undefined && id === marked;
+            return (
+              <path key={i} d={path(f) ?? undefined}
+                fill={row ? fillFor(bandOf(row.value)) : "url(#story-nodata)"}
+                fillOpacity={row ? opacityFor(bandOf(row.value)) : 1}
+                stroke={isMarked ? "var(--s-hot)" : "var(--story-bg)"}
+                strokeWidth={isMarked ? 1.6 : 0.4} />
+            );
+          })}
+        </svg>
+      </Scroller>
+      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+        <span className="flex items-center gap-1.5">
+          {Array.from({ length: BANDS }, (_, b) => (
+            <span key={b} className="inline-block h-[11px] w-[26px]"
+              style={{ background: fillFor(b), opacity: opacityFor(b) }} />
+          ))}
+        </span>
+        <span className="mono text-[10.5px]" style={{ color: "var(--story-ink-3)" }}>
+          {values[0] !== undefined ? `${values[0] < 1 ? values[0].toPrecision(2) : Math.round(values[0]).toLocaleString("en-US")}` : "—"}
+          {" → "}
+          {values[values.length - 1] !== undefined
+            ? `${Math.round(values[values.length - 1]!).toLocaleString("en-US")}`
+            : "—"}
+          {unit ? ` ${unit}` : ""}
+        </span>
+        <span className="flex items-center gap-1.5 text-[10.5px]" style={{ color: "var(--story-ink-3)" }}>
+          <span className="inline-block h-[11px] w-[16px]"
+            style={{ background: "repeating-linear-gradient(45deg, var(--story-rule) 0 2px, var(--story-bg) 2px 4px)" }} />
+          no value
+        </span>
+      </div>
+      <Caption>
+        {drawn.length} of {rows.length} countries in this indicator have an outline on this map and
+        are drawn; the rest are small states the 110-metre atlas does not carry. Colour is by
+        quantile, so each band holds about a fifth of the countries — the map shows rank, not
+        magnitude. Countries with no value are hatched, never coloured at the bottom of the scale.
+        {note ? <> {note}</> : null}
+      </Caption>
+    </div>
+  );
+}
+
 /* ────────────────────────── India bubble map ────────────────────────── */
 
 export interface StateBubble { state: string; value: number; display: string; tone: Tone }
