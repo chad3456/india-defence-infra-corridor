@@ -56,13 +56,19 @@ const GAP_MS = 220;
 /**
  * Leave the job time to write and commit whatever it has.
  *
- * Well inside the workflow's fifty-minute timeout, because a run killed by the
+ * Well inside the workflow's sixty-minute timeout, because a run killed by the
  * timeout skips its own summary and leaves the commit step to find whatever
  * the last incremental write put down.
  */
-const BUDGET_MS = 30 * 60_000;
-/** Ceiling on indicators. Raised or lowered by editing this line, not by luck. */
-const MAX_INDICATORS = 1400;
+const BUDGET_MS = 46 * 60_000;
+/**
+ * Target number of slugs to attempt, spread across the whole index by stride.
+ *
+ * Roughly a quarter are skipped for carrying no unit or citation, or for
+ * having no data for any comparator, so this is set well above the number of
+ * indicators wanted.
+ */
+const MAX_INDICATORS = 2000;
 /**
  * Ceiling on indicators fetched for every country.
  *
@@ -244,9 +250,19 @@ export function parseCsv(text: string): { header: string[]; rows: string[][] } {
   return { header: rows.shift() ?? [], rows };
 }
 
+/**
+ * How many 403s the run has seen. Each one widens the gap a little.
+ *
+ * A 403 from a CDN under load is a request to slow down, and a connector that
+ * keeps the same cadence through them is both rude and losing data. This backs
+ * off permanently for the rest of the run rather than per request, because the
+ * condition is about the host and not about the slug.
+ */
+let rateLimited = 0;
+
 let lastCall = 0;
 async function pace(gap: number = GAP_MS): Promise<void> {
-  const wait = gap - (Date.now() - lastCall);
+  const wait = gap + Math.min(rateLimited * 8, 400) - (Date.now() - lastCall);
   if (wait > 0) await new Promise((r) => setTimeout(r, wait));
   lastCall = Date.now();
 }
@@ -263,7 +279,26 @@ async function main(): Promise<void> {
     throw new Error("no slugs discovered — refusing to build a registry on a typed list");
   }
 
-  const chosen = slugs.slice(0, MAX_INDICATORS);
+  /**
+   * Sample across the whole list, never a prefix.
+   *
+   * The slugs come back sorted, and the first version took the first N of
+   * them. When the time budget stopped that run at slug 1,029 of 4,324, the
+   * registry it produced was everything from "above-ground-biomass" to roughly
+   * the letter M — which showed up as 166 health indicators against 27
+   * economic ones and looked like a fact about what OWID covers. It was a fact
+   * about the alphabet.
+   *
+   * Striding gives an unbiased spread across the whole index, is deterministic
+   * so two runs agree, and degrades correctly: a run cut short has thinner
+   * coverage everywhere rather than complete coverage of the first half.
+   */
+  const stride = Math.max(1, Math.floor(slugs.length / MAX_INDICATORS));
+  const chosen = stride === 1 ? slugs : slugs.filter((_, i) => i % stride === 0);
+  console.log(
+    `Attempting ${chosen.length} of ${slugs.length} slugs, every ${stride}${stride === 1 ? "" : stride === 2 ? "nd" : "th"} ` +
+    "— a stride across the whole index rather than a prefix of it.",
+  );
   const indicators: Indicator[] = [];
   /** Set by the writer each time, so the summary reflects the last write. */
   let lastWrite = 0;
@@ -310,6 +345,10 @@ async function main(): Promise<void> {
     const meta = await getJson<Metadata>(`${OWID}/grapher/${slug}.metadata.json`, {
       timeoutMs: 15_000, retries: 0, cacheMs: 0,
     });
+    // Fifty-four series requests came back 403 on the last run. Unlike a 404,
+    // that is the host asking for less traffic and it does fix itself — so the
+    // pace widens for the rest of the run rather than losing those slugs.
+    if (!meta.ok && (meta.error ?? "").includes("403")) rateLimited++;
     if (!meta.ok || !meta.data) {
       failures.push({ slug, stage: "metadata", why: meta.error ?? "no body" });
       continue;
@@ -337,11 +376,28 @@ async function main(): Promise<void> {
     }
 
     /* ── Series tier ────────────────────────────────────────────────── */
-    await pace();
-    const seriesCsv = await getText(
+    /**
+     * The one failure worth asking twice about.
+     *
+     * A 404 is a retired slug and will never answer, so the metadata fetch
+     * above takes no retries. A 403 is the opposite: the slug is fine and the
+     * CDN is shedding load, which is why fifty-four of them landed in a single
+     * run and every one of them threw away an indicator whose metadata had
+     * already been fetched and paid for. So a 403 here — and only a 403 —
+     * widens the pace for the rest of the run and asks once more after a
+     * pause. Everything else still fails on the first answer.
+     */
+    const fetchSeries = () => getText(
       `${OWID}/grapher/${slug}.csv?csvType=filtered&country=${COUNTRIES.join("~")}&useColumnShortNames=true`,
       { timeoutMs: 20_000, retries: 0, cacheMs: 0 },
     );
+    await pace();
+    let seriesCsv = await fetchSeries();
+    if (!seriesCsv.ok && (seriesCsv.error ?? "").includes("403")) {
+      rateLimited++;
+      await pace(GAP_MS * 6);
+      seriesCsv = await fetchSeries();
+    }
     if (!seriesCsv.ok || !seriesCsv.data) {
       failures.push({ slug, stage: "series", why: seriesCsv.error ?? "no body" });
       continue;
@@ -504,6 +560,8 @@ async function main(): Promise<void> {
     discovery: note,
     stoppedEarly,
     lastIncrementalWrite: lastWrite,
+    stride,
+    rateLimited,
     failures: failures.slice(0, 120),
     indicators,
   };
