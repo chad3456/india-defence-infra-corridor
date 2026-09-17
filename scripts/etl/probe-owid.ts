@@ -119,6 +119,98 @@ const TARGETS: Target[] = [
     count: { columns: /"titleShort"/g },
     settles: "Whether every attribute arrives with the unit and citation it needs to be publishable",
   },
+  /* ── What the first probe did not ask ──────────────────────────────── */
+  /**
+   * The first pass asked whether the country filter works and got "yes".
+   *
+   * It did work — on `life-expectancy`, a line chart, where "filtered" means
+   * the lines the chart draws: India, every year. Eighty-five rows, all of
+   * them India, and the paired request for Brazil came back different. A clean
+   * answer to the question that was put.
+   *
+   * The question that was not put is what "filtered" means on a chart whose
+   * default view is a map. The 684-indicator registry answered it by accident:
+   * 465 of those indicators came back with one year per country, and 416 came
+   * back with more than twenty countries despite asking for thirteen. So on a
+   * map-default chart, "filtered" appears to mean what the map tab shows —
+   * every country, one year — and the country parameter is silently not the
+   * dimension being filtered.
+   *
+   * Nothing about that is visible in a response. Each file was a valid CSV
+   * with the right header, plausible values and a 200. Two thirds of a
+   * "series" tier had no series in it and the run reported ok.
+   *
+   * These targets settle which parameters actually move which dimension, on a
+   * slug known to be map-default, before the connector is rewritten around a
+   * second guess.
+   */
+  {
+    id: "owid:csv-map-default",
+    kind: "owid-params",
+    what: "A map-default chart, asking for one country the way the connector does",
+    url: `${OWID}/grapher/above-ground-biomass-in-forest-per-hectare.csv?csvType=filtered&country=IND&useColumnShortNames=true`,
+    paired: `${OWID}/grapher/above-ground-biomass-in-forest-per-hectare.csv?csvType=filtered&country=BRA&useColumnShortNames=true`,
+    look: ["Entity", "Year", "Code"],
+    count: { rows: /\n/g, india: /\bIndia\b/g, years1990: /,1990,/g },
+    settles: "Whether country is honoured on a map-default chart, or quietly ignored",
+  },
+  {
+    id: "owid:csv-time-param",
+    kind: "owid-params",
+    what: "The same chart with an explicit time range",
+    url: `${OWID}/grapher/above-ground-biomass-in-forest-per-hectare.csv?csvType=filtered&country=IND&time=earliest..latest&useColumnShortNames=true`,
+    paired: `${OWID}/grapher/above-ground-biomass-in-forest-per-hectare.csv?csvType=filtered&country=IND&time=2000..2005&useColumnShortNames=true`,
+    look: ["Entity", "Year"],
+    count: { rows: /\n/g, india: /\bIndia\b/g },
+    settles: "Whether time= restores the depth that a map-default chart drops",
+  },
+  {
+    id: "owid:csv-full-filtered",
+    kind: "owid-params",
+    what: "csvType=full with a country list — every year, only the countries asked for",
+    url: `${OWID}/grapher/above-ground-biomass-in-forest-per-hectare.csv?csvType=full&country=IND~CHN~USA&useColumnShortNames=true`,
+    paired: `${OWID}/grapher/above-ground-biomass-in-forest-per-hectare.csv?csvType=full&country=BRA~NGA~JPN&useColumnShortNames=true`,
+    look: ["Entity", "Year"],
+    count: { rows: /\n/g, india: /\bIndia\b/g, china: /\bChina\b/g, brazil: /\bBrazil\b/g },
+    settles: "Whether the full export honours country, which would give depth and width in one call",
+  },
+  {
+    id: "owid:csv-full-line",
+    kind: "owid-params",
+    what: "The same combination on the line chart, to see whether the rule is per-chart or general",
+    url: `${OWID}/grapher/life-expectancy.csv?csvType=full&country=IND~CHN~USA&useColumnShortNames=true`,
+    paired: `${OWID}/grapher/life-expectancy.csv?csvType=full&country=BRA~NGA~JPN&useColumnShortNames=true`,
+    look: ["Entity", "Year"],
+    count: { rows: /\n/g, india: /\bIndia\b/g },
+    settles: "Whether one request shape can serve every chart type, or the connector must branch",
+  },
+  {
+    id: "owid:csv-map-unfiltered-size",
+    kind: "owid-params",
+    what: "The map-default chart with no parameters at all, to size the worst case",
+    url: `${OWID}/grapher/above-ground-biomass-in-forest-per-hectare.csv`,
+    look: ["Entity", "Year"],
+    count: { rows: /\n/g },
+    settles: "What a local-filtering fallback would cost per indicator if no parameter is honoured",
+  },
+  /**
+   * A daily series, because one indicator in the registry carried 2,431 points
+   * for a single country. That is a Day column, not a Year column, and the
+   * connector reads the first four characters of the cell as the year — so a
+   * decade of daily observations becomes ten years each repeated 365 times.
+   * The registry's own timespan field said "1990-2025" while its series held
+   * one year; this is the same class of mismatch from the other direction.
+   */
+  {
+    id: "owid:csv-daily",
+    kind: "owid-params",
+    what: "A daily-resolution indicator, which the year parser cannot represent",
+    url: `${OWID}/grapher/daily-covid-cases.csv?csvType=filtered&country=IND&useColumnShortNames=true`,
+    look: ["Entity", "Day"],
+    count: { rows: /\n/g, dayHeader: /(^|,)Day(,|$)/gm },
+    settles: "Whether a Day column is distinguishable from a Year column in the header alone",
+  },
+
   {
     id: "owid:csv-trade",
     kind: "owid-data",
