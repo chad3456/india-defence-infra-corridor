@@ -83,13 +83,30 @@ function coverageScore(ind: Indicator, points: number, span: number, comparators
  */
 export function buildPanels(
   reg: Registry,
-  { limit = 100, perCategory = 14 }: { limit?: number; perCategory?: number } = {},
+  {
+    limit = 100,
+    perCategory = 14,
+    readSeries = seriesFor,
+  }: {
+    limit?: number;
+    perCategory?: number;
+    /**
+     * How to fetch an indicator's series. Defaults to reading the shard files.
+     *
+     * A seam rather than a mock, because the honesty claim this module makes —
+     * that the selector cannot see which way a series points — is only worth
+     * the test that holds it, and ES module exports cannot be monkeypatched.
+     * One optional parameter buys a test that reverses every series and
+     * asserts the same indicators come out in the same order.
+     */
+    readSeries?: (ind: Indicator) => ReturnType<typeof seriesFor>;
+  } = {},
 ): Panel[] {
   const scored: Panel[] = [];
 
   for (const ind of reg.indicators) {
     if (!ind.hasIndia) continue;
-    const rows = seriesFor(ind);
+    const rows = readSeries(ind);
     const india = countrySeries(rows, "IND");
     if (india.length < 5) continue;
 
@@ -129,26 +146,49 @@ export function buildPanels(
 
   scored.sort((a, b) => b.score - a.score);
 
-  const taken: Panel[] = [];
-  const perCat = new Map<string, number>();
+  /**
+   * Round-robin across subjects, rather than a cap with a fallback.
+   *
+   * The first version capped each category and then, if the page came up
+   * short, filled from whatever was left — which meant the cap was abandoned
+   * exactly when it was doing something, and a registry heavy in one subject
+   * produced a page heavy in that subject anyway. The test caught it: ten
+   * health indicators and two economic ones gave ten health panels under a cap
+   * of three.
+   *
+   * Taking one from each subject in turn needs no cap constant, always fills
+   * the page, and degrades in the only sensible direction — when a subject
+   * runs out, the others simply keep going. `perCategory` remains as a hard
+   * ceiling for callers that want one.
+   */
+  const queues = new Map<string, Panel[]>();
   for (const p of scored) {
-    if (taken.length >= limit) break;
-    const cat = p.indicator.category;
-    const n = perCat.get(cat) ?? 0;
-    if (n >= perCategory) continue;
-    perCat.set(cat, n + 1);
-    taken.push(p);
+    const q = queues.get(p.indicator.category) ?? [];
+    q.push(p);
+    queues.set(p.indicator.category, q);
   }
-  // If the per-category cap left the page short, fill from what is left rather
-  // than publishing eighty panels under a heading that says a hundred.
-  if (taken.length < limit) {
-    const have = new Set(taken.map((p) => p.indicator.slug));
-    for (const p of scored) {
+  // Subjects ordered by their best indicator, so the strongest data leads.
+  const order = [...queues.keys()].sort(
+    (a, b) => (queues.get(b)?.[0]?.score ?? 0) - (queues.get(a)?.[0]?.score ?? 0),
+  );
+  const taken: Panel[] = [];
+  const used = new Map<string, number>();
+  let exhausted = false;
+  while (taken.length < limit && !exhausted) {
+    exhausted = true;
+    for (const cat of order) {
       if (taken.length >= limit) break;
-      if (have.has(p.indicator.slug)) continue;
-      taken.push(p);
+      const q = queues.get(cat);
+      const n = used.get(cat) ?? 0;
+      if (!q || n >= q.length || n >= perCategory) continue;
+      taken.push(q[n]!);
+      used.set(cat, n + 1);
+      exhausted = false;
     }
   }
+  // Ordered by evidence rather than by the round-robin's interleaving, so the
+  // page reads strongest-first and the balance is a property of the set.
+  taken.sort((a, b) => b.score - a.score);
   return taken;
 }
 
@@ -178,7 +218,17 @@ export function changeLabel(p: Panel): string {
   if (p.changePct === null) return `${p.changeAbs >= 0 ? "+" : "−"}${Math.abs(p.changeAbs).toPrecision(3)}`;
   const v = Math.abs(p.changePct);
   const sign = p.changePct >= 0 ? "+" : "−";
-  if (v >= 1000) return `${sign}${Math.round(v / 100) / 10}×`;
+  /**
+   * Past a tenfold change a percentage stops being readable, so it becomes a
+   * multiple of the starting value: +20,000% is 201× what it was. The first
+   * version divided the percentage by a hundred and called that the multiple,
+   * which is out by a factor of ten and reported a two-hundredfold rise as
+   * twentyfold — a plausible number in the right units and wrong.
+   */
+  if (v >= 1000) {
+    const multiple = 1 + v / 100;
+    return `${sign}${multiple >= 100 ? Math.round(multiple) : multiple.toFixed(1)}×`;
+  }
   if (v >= 100) return `${sign}${Math.round(v)}%`;
   return `${sign}${v.toFixed(1)}%`;
 }
