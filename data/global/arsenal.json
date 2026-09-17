@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-17T10:25:56.900Z",
+ "builtAt": "2026-09-17T20:34:51.874Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -201628,6 +201628,13 @@
    "source": "List_of_missiles_by_country"
   },
   {
+   "name": "SMART",
+   "key": "smart",
+   "kind": "mixed",
+   "country": "India",
+   "source": "List_of_missiles_by_country"
+  },
+  {
    "name": "Nirbhay",
    "key": "nirbhay",
    "kind": "mixed",
@@ -201684,8 +201691,8 @@
    "source": "List_of_missiles_by_country"
   },
   {
-   "name": "SMART",
-   "key": "smart",
+   "name": "LRSoW",
+   "key": "lrsow",
    "kind": "mixed",
    "country": "India",
    "source": "List_of_missiles_by_country"
@@ -206491,7 +206498,7 @@
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
@@ -206517,6 +206524,53 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-1gv0hyp",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-09-17",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/news/pentagon-congress/2026/09/17/pentagon-lockheed-sign-framework-deal-to-boost-aim-260-production/",
+   "headline": "Pentagon, Lockheed sign framework deal to boost AIM-260 production",
+   "primary": false
+  },
+  {
+   "id": "ev-25d1fk",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Saudi Arabia"
+   ],
+   "value": {
+    "amount": 24000000000,
+    "currency": "USD",
+    "asWritten": "$24B"
+   },
+   "date": "2026-09-17",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/09/us-clears-24b-f-35-sale-for-saudi-arabia/",
+   "headline": "US clears $24B F-35 sale for Saudi Arabia",
+   "primary": false
+  },
+  {
+   "id": "ev-1tu2uoh",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "value": null,
+   "date": "2026-09-17",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
+   "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
+   "primary": false
+  },
   {
    "id": "ev-2qq4pj",
    "kind": "order",
@@ -206852,6 +206906,20 @@
    "kind": "order",
    "events": [
     {
+     "id": "ev-1gv0hyp",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-17",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/news/pentagon-congress/2026/09/17/pentagon-lockheed-sign-framework-deal-to-boost-aim-260-production/",
+     "headline": "Pentagon, Lockheed sign framework deal to boost AIM-260 production",
+     "primary": false
+    },
+    {
      "id": "ev-2qq4pj",
      "kind": "order",
      "systems": [],
@@ -206963,12 +207031,80 @@
     }
    ],
    "outlets": [
+    "Defense News",
     "Naval News",
-    "Defence Blog",
-    "Defense News"
+    "Defence Blog"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "order||saudi arabia+united states",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Saudi Arabia"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-25d1fk",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Saudi Arabia"
+     ],
+     "value": {
+      "amount": 24000000000,
+      "currency": "USD",
+      "asWritten": "$24B"
+     },
+     "date": "2026-09-17",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/09/us-clears-24b-f-35-sale-for-saudi-arabia/",
+     "headline": "US clears $24B F-35 sale for Saudi Arabia",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Breaking Defense"
+   ],
+   "value": {
+    "amount": 24000000000,
+    "currency": "USD",
+    "asWritten": "$24B"
+   },
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order||united kingdom",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1tu2uoh",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-09-17",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
+     "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order||germany",
