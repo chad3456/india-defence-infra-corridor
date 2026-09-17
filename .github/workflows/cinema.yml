@@ -1,0 +1,45 @@
+name: Indian film output
+
+# Titles listed per language per year, and the highest-grossing list.
+#
+# Its own workflow rather than a second job beside the OWID registry, and its
+# own concurrency group. Sharing one meant every edit to this connector
+# cancelled a thirty-five-minute registry build that had nothing to do with it
+# — which is what `cancel-in-progress` is for and exactly what it should not
+# have been pointed at.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/connectors/cinema.ts"
+      - ".github/workflows/cinema.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cinema
+  cancel-in-progress: true
+
+jobs:
+  cinema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Check the readers before spending a run on them
+        run: npm run test:cinema
+      - name: Build the cinema series
+        run: npm run cinema:build
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/cinema/output.json
+          "chore(cinema): Indian film output $(date -u +'%Y-%m-%d %H:%M')"
