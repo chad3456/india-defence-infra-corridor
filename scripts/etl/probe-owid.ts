@@ -23,6 +23,10 @@
  * a number with a filename where a citation should be, and would be worse than
  * not having it.
  *
+ * Re-run note: the first attempt failed before reaching a single host, because
+ * the npm script did not exist. That is the workflow doing its job — a probe
+ * that cannot run must not report that every source refused.
+ *
  * ── The filmmaking question, asked without its answer assumed ────────────
  *
  * The brief calls it a downgrade. That may be right and it is not something

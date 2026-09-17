@@ -1,0 +1,77 @@
+name: OWID indicator registry
+
+# Discovers OWID's chart slugs from its own sitemap and builds a two-tier
+# registry: India plus comparators for every indicator, and latest-value-per-
+# country for a capped subset the map can colour by.
+#
+# Runs here because the editing sandbox cannot reach ourworldindata.org.
+#
+# Manual and on-change only. This is a charity's infrastructure serving a
+# public good for free; requests are paced and the run has a hard time budget.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/connectors/owid.ts"
+      - ".github/workflows/owid.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: owid
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Build the registry
+        run: npm run owid:build
+
+      # The registry is many files, so the single-file commit helper will not
+      # do. Same discipline: reset onto the branch, replay this run's output,
+      # and fail rather than report success without the data.
+      - name: Commit
+        if: always()
+        run: |
+          set -uo pipefail
+          if [ ! -f data/owid/index.json ]; then
+            echo "Nothing to commit: the registry was not produced." >&2
+            exit 1
+          fi
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          KEEP="$(mktemp -d)"
+          cp -r data/owid "$KEEP/"
+          for attempt in 1 2 3 4; do
+            git fetch --quiet origin "$GITHUB_REF_NAME" || true
+            git rebase --abort 2>/dev/null || true
+            git reset --hard --quiet 2>/dev/null || true
+            git checkout -q -B "$GITHUB_REF_NAME" "origin/$GITHUB_REF_NAME"
+            rm -rf data/owid
+            cp -r "$KEEP/owid" data/
+            git add -A data/owid
+            if git diff --staged --quiet; then
+              echo "The registry is unchanged from what the branch already holds."
+              exit 0
+            fi
+            git commit --quiet -m "chore(owid): indicator registry $(date -u +'%Y-%m-%d %H:%M')"
+            if git push origin "$GITHUB_REF_NAME"; then
+              echo "Committed the registry."
+              exit 0
+            fi
+            wait=$((2 ** attempt))
+            echo "push failed (attempt $attempt), retrying in ${wait}s"
+            sleep "$wait"
+          done
+          echo "Could not commit the registry after four attempts." >&2
+          exit 1
