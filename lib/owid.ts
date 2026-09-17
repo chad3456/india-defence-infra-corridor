@@ -156,14 +156,16 @@ export function fmt(v: number): string {
   return v.toPrecision(2);
 }
 
-/** The compact shape a picker sends to the browser. Never the whole registry. */
-export interface PickerRow {
-  slug: string;
-  title: string;
-  category: string;
-  map: boolean;
-  unit: string;
-}
+/**
+ * Re-exported from lib/owid-shared, which has no imports of its own.
+ *
+ * This module reads shard files and so imports node:fs. A client component
+ * importing PickerRow from here would drag the filesystem into the browser
+ * bundle, which `npm run test:client` refuses. Client code imports from
+ * lib/owid-shared; server code can use either.
+ */
+export type { PickerRow } from "./owid-shared";
+import type { PickerRow } from "./owid-shared";
 
 export function pickerRows(d: Registry): PickerRow[] {
   return d.indicators.map((i) => ({

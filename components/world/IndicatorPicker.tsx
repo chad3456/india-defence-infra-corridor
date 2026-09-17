@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import type { PickerRow } from "@/lib/owid";
+import type { PickerRow } from "@/lib/owid-shared";
 
 /**
  * A search box over a thousand indicators.
