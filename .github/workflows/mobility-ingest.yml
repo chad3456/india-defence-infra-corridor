@@ -36,12 +36,22 @@ jobs:
       - run: npm ci
       - name: Ingest
         run: npm run mobility:ingest
+
+      # data/geo/state-layers.json is derived from data/mobility, and for three
+      # days it was not rebuilt when the ingest changed its inputs. The station
+      # layer sat fifteen stations behind the data it is made of, and the only
+      # thing that noticed was a byte-identity test that had nothing to do with
+      # mobility. A derived file that is not rebuilt beside its input is a file
+      # that will silently drift.
+      - name: Rebuild the layers this ingest feeds
+        run: npm run geo:layers
+
       - name: Commit
         if: always()
         run: |
           git config user.name  "bharat-tracker-bot"
           git config user.email "actions@github.com"
-          git add data/mobility 2>/dev/null || true
+          git add data/mobility data/geo/state-layers.json 2>/dev/null || true
           if git diff --staged --quiet; then echo "unchanged"; exit 0; fi
           git commit -m "chore(mobility): network + flight snapshot $(date -u +'%Y-%m-%d %H:%M')"
           for i in 1 2 3 4; do

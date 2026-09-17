@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-14T16:41:08.164Z",
+  "builtAt": "2026-09-17T08:37:31.239Z",
   "note": "Named things per state, for the map to answer a click with. Each layer records how its rows reached a state and how many did not, because the join is where this kind of file goes wrong invisibly.",
   "refused": [
     {
@@ -25369,14 +25369,14 @@
           },
           {
             "name": "Red Line: Madhavaram → Shozhinganallur (u/c)",
-            "why": "Chennai Metro, 7 stations · run by CMRL.",
+            "why": "Chennai Metro, 21 stations · run by CMRL.",
             "basis": "OpenStreetMap relation tags: line name, station count and operator as tagged",
             "lat": 13.157,
             "lon": 80.237
           },
           {
             "name": "Red Line: Shozhinganallur → Madhavaram (u/c)",
-            "why": "Chennai Metro, 7 stations · run by CMRL.",
+            "why": "Chennai Metro, 21 stations · run by CMRL.",
             "basis": "OpenStreetMap relation tags: line name, station count and operator as tagged",
             "lat": 13.1497,
             "lon": 80.2415
@@ -25573,8 +25573,8 @@
       "blurb": "Every railway station the mobility dataset holds a coordinate for, placed into the state whose polygon contains it. Presence only — the source carries a name, a station code and a coordinate, and nothing about how many trains stop or how many people pass through, so a count of stations is a count of stations and not of service.",
       "join": "Point-in-polygon against the map's own topology. A station in no polygon is listed unplaced, never assigned to a neighbour.",
       "source": "OpenStreetMap, via the mobility connector.",
-      "total": 10293,
-      "placed": 10125,
+      "total": 10308,
+      "placed": 10140,
       "unplacedCount": 119,
       "deduped": 49,
       "unplaced": [
@@ -30350,8 +30350,8 @@
             "name": "Pandurang Wadi",
             "why": "No station code in this dataset.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 19.2612,
-            "lon": 72.8715
+            "lat": 19.2597,
+            "lon": 72.8725
           },
           {
             "name": "Panevadi",
@@ -37899,7 +37899,7 @@
             "why": "Station code VVA.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 22.2993,
-            "lon": 68.9673
+            "lon": 68.9674
           },
           {
             "name": "Vasad Junction",
@@ -44635,6 +44635,13 @@
             "lon": 77.1529
           },
           {
+            "name": "Assissi Nagar",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.1604,
+            "lon": 80.2324
+          },
+          {
             "name": "Attippattu",
             "why": "Station code AIP.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -44740,6 +44747,13 @@
             "lon": 78.3138
           },
           {
+            "name": "Butt Road Metro",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.0086,
+            "lon": 80.1991
+          },
+          {
             "name": "Cauvery",
             "why": "Station code CV.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -44780,6 +44794,13 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 12.9808,
             "lon": 80.1642
+          },
+          {
+            "name": "Chennai Trade Centre Metro",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.0156,
+            "lon": 80.1913
           },
           {
             "name": "Cheranmahadevi",
@@ -45517,6 +45538,13 @@
             "lon": 77.8606
           },
           {
+            "name": "Kolathur",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.1253,
+            "lon": 80.2053
+          },
+          {
             "name": "Kolatur",
             "why": "Station code KLS.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -45902,6 +45930,13 @@
             "lon": 78.4538
           },
           {
+            "name": "Manapakkam",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.0215,
+            "lon": 80.1829
+          },
+          {
             "name": "Manaparai",
             "why": "Station code MPA.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -45921,6 +45956,13 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 10.7251,
             "lon": 79.6281
+          },
+          {
+            "name": "Manjampakkam",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.1614,
+            "lon": 80.227
           },
           {
             "name": "Manjattidal",
@@ -46145,6 +46187,13 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 13.0849,
             "lon": 79.7122
+          },
+          {
+            "name": "Mugalivakkam",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.0321,
+            "lon": 80.1638
           },
           {
             "name": "Mukhasa Parur",
@@ -47022,6 +47071,13 @@
             "lon": 78.8375
           },
           {
+            "name": "Ramapuram",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.0263,
+            "lon": 80.1742
+          },
+          {
             "name": "Ramapuram Railway Station",
             "why": "Station code RAM.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -47062,6 +47118,13 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 12.9993,
             "lon": 80.201
+          },
+          {
+            "name": "Retteri Junction Metro",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.1323,
+            "lon": 80.2148
           },
           {
             "name": "Runneymede",
@@ -47113,7 +47176,7 @@
             "lon": 78.162
           },
           {
-            "name": "Saligramam Metro",
+            "name": "Saligramam",
             "why": "No station code in this dataset.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 13.0483,
@@ -47384,6 +47447,13 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 11.0869,
             "lon": 77.1857
+          },
+          {
+            "name": "Srinivasa Nagar",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.1184,
+            "lon": 80.2089
           },
           {
             "name": "Srirangam",
@@ -48163,6 +48233,13 @@
             "lon": 79.1368
           },
           {
+            "name": "Velmurugan Nagar",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.1532,
+            "lon": 80.2237
+          },
+          {
             "name": "Vembur",
             "why": "Station code VBU.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -48210,6 +48287,13 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 13.1103,
             "lon": 80.2092
+          },
+          {
+            "name": "Villivakkam Metro",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.111,
+            "lon": 80.2108
           },
           {
             "name": "Villiyambakkam",
@@ -48282,7 +48366,7 @@
             "lon": 80.1921
           },
           {
-            "name": "Virugambakkam South Metro",
+            "name": "Virugambakkam South",
             "why": "No station code in this dataset.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 13.0475,
@@ -55202,6 +55286,13 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 27.7124,
             "lon": 77.5027
+          },
+          {
+            "name": "Chaubepur Railway Station",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 26.6171,
+            "lon": 80.1954
           },
           {
             "name": "Chaubisi",
@@ -96493,6 +96584,20 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 27.1309,
             "lon": 93.7097
+          },
+          {
+            "name": "Pasighat",
+            "why": "Station code PAGT.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 28.0274,
+            "lon": 95.3299
+          },
+          {
+            "name": "Sille",
+            "why": "Station code SILE.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 27.9378,
+            "lon": 95.2987
           }
         ],
         "Mizoram": [
