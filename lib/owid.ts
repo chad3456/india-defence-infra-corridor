@@ -21,6 +21,19 @@ export interface Indicator {
   title: string;
   subtitle: string;
   column: string;
+  /**
+   * How many data columns the chart carries.
+   *
+   * Above one, `title` names a comparison rather than the column taken: "Age
+   * dependency breakdown" over the old-age ratio alone, "Access to electricity
+   * in urban vs. rural areas" over the urban figure. Anything labelling a
+   * figure has to check this before using the title.
+   *
+   * Optional because registries built before it was recorded do not carry it,
+   * and a reader that crashed on an older file would take the site down rather
+   * than show one page short.
+   */
+  columnCount?: number;
   unit: string;
   shortUnit: string;
   description: string;

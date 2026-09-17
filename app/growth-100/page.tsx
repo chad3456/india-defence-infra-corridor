@@ -50,6 +50,25 @@ function PanelCard({ p }: { p: Panel }) {
           {p.indicator.category}
         </p>
         <h3 className="mt-1.5 text-[13px] font-bold leading-[1.3]">{p.indicator.title}</h3>
+        {/*
+          When a chart carries several measures, its title names the comparison
+          and not the column this figure came from. "Age dependency breakdown"
+          shipped over the old-age dependency ratio alone; "Access to
+          electricity in urban vs. rural areas" shipped over the urban figure.
+          Both read as complete labels and neither was one.
+
+          Naming the column is better than dropping the indicator, which would
+          throw away a real series, and better than relabelling it with
+          something invented. OWID's own column names are long and occasionally
+          carry an SDG code, which is a fair price for the card saying which of
+          a chart's measures it is showing.
+        */}
+        {(p.indicator.columnCount ?? 1) > 1 && (
+          <p className="mt-1 text-[10px] leading-[1.35]" style={{ color: "var(--story-ink-2)" }}>
+            one of {p.indicator.columnCount} measures on this chart:{" "}
+            <span className="mono">{p.indicator.column}</span>
+          </p>
+        )}
         <p className="mono mt-1 truncate text-[10px]" style={{ color: "var(--story-ink-3)" }}>
           {p.indicator.shortUnit || p.indicator.unit || "no unit stated"}
         </p>

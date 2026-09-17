@@ -70,17 +70,28 @@ const BUDGET_MS = 46 * 60_000;
  */
 const MAX_INDICATORS = 2000;
 /**
- * Ceiling on indicators fetched for every country.
+ * A ceiling on total bytes, because the run now pulls a full CSV per indicator.
  *
- * The probe measured one full indicator CSV at 605KB and 21,565 rows. Four
- * hundred of those is 240MB pulled from a charity in one job, which is not a
- * polite thing to do for a choropleth. A hundred and fifty is ninety
- * megabytes, still the largest single thing this pipeline does, and the full
- * fetches get their own slower pace below.
+ * There is no parameter that returns one country's series from these charts,
+ * so every indicator arrives whole — every country, every year. The probe
+ * measured two of them: a map-default chart at 36KB and `life-expectancy` at
+ * 605KB. The spread is wide enough that a count of indicators is not a
+ * prediction of bandwidth, so the limit is on the bytes themselves.
+ *
+ * Six hundred megabytes is the most this job should ever pull from a charity's
+ * infrastructure in one go. Whichever of time or bytes runs out first stops
+ * the run, and the summary says which — so the next change is made against the
+ * constraint that actually bound rather than the one assumed.
  */
-const MAX_MAP = 150;
-/** Full-country CSVs are ~600KB each and get three times the gap. */
-const MAP_GAP_MS = 660;
+const MAX_BYTES = 600 * 1024 * 1024;
+/**
+ * The gap between the full CSVs, which are the large request.
+ *
+ * Three times the metadata gap. Two requests per indicator at 220 and 660
+ * gives roughly a request a second, sustained, which is a rate a human
+ * clicking through the site could plausibly produce.
+ */
+const FULL_GAP_MS = 660;
 /** Indicators per shard file. Keeps any one file under a megabyte or so. */
 const SHARD = 60;
 
@@ -95,6 +106,9 @@ const SHARD = 60;
 const COUNTRIES = [
   "IND", "CHN", "USA", "BRA", "IDN", "VNM", "BGD", "PAK", "NGA", "ZAF", "JPN", "DEU",
 ] as const;
+
+/** The same set as a lookup, because the filtering is now done here. */
+const COMPARATOR_SET = new Set<string>(COUNTRIES);
 
 interface MetaColumn {
   titleShort?: string;
@@ -119,6 +133,14 @@ export interface Indicator {
   subtitle: string;
   /** The column this project reads, when a chart has several. */
   column: string;
+  /**
+   * How many data columns the chart has.
+   *
+   * Above one, the chart's title names a comparison rather than the column
+   * taken, and is not a label for the figure. See the pick site for what that
+   * shipped as.
+   */
+  columnCount: number;
   unit: string;
   shortUnit: string;
   description: string;
@@ -306,6 +328,8 @@ async function main(): Promise<void> {
   const mapShards = new Map<number, Record<string, MapRow[]>>();
   const failures: Failure[] = [];
   let mapFetched = 0;
+  /** Total CSV bytes pulled from the host, which is now the binding cost. */
+  let bytesPulled = 0;
   let stoppedEarly = "";
 
   /** Everything the run has so far, on disk. Safe to call at any point. */
@@ -329,6 +353,12 @@ async function main(): Promise<void> {
   for (const [i, slug] of chosen.entries()) {
     if (Date.now() - started > BUDGET_MS) {
       stoppedEarly = `time budget reached after ${i} of ${chosen.length} slugs`;
+      break;
+    }
+    if (bytesPulled > MAX_BYTES) {
+      stoppedEarly =
+        `byte budget reached after ${i} of ${chosen.length} slugs `
+        + `(${(bytesPulled / 1024 / 1024).toFixed(0)}MB pulled)`;
       break;
     }
 
@@ -358,7 +388,23 @@ async function main(): Promise<void> {
     // project reads. A multi-column chart is reduced to its first measure
     // rather than guessed at, and the column name is recorded so the choice is
     // visible.
-    const columnName = Object.keys(columns).find((k) => !/^(Entity|Code|Year|Day)$/i.test(k));
+    /**
+     * How many measures this chart carries, recorded rather than collapsed.
+     *
+     * The registry takes a chart's first data column. On a single-measure
+     * chart that is the chart, and the chart's title names it. On a chart with
+     * several, the title names the comparison and not the column taken — so
+     * "Age dependency breakdown" shipped carrying the old-age dependency ratio
+     * under a heading for the whole breakdown, and "Access to electricity in
+     * urban vs. rural areas" shipped carrying the urban figure with no way for
+     * a reader to know which of the two they were looking at.
+     *
+     * The count is published so a page can decline to use the title as a label
+     * when it is not one. Dropping these here instead would throw away data
+     * that a chart naming its own column can still show honestly.
+     */
+    const dataColumns = Object.keys(columns).filter((k) => !/^(Entity|Code|Year|Day)$/i.test(k));
+    const columnName = dataColumns[0];
     const col = columnName ? columns[columnName] : undefined;
     if (!columnName || !col) {
       failures.push({ slug, stage: "metadata", why: "no data column in metadata" });
@@ -375,50 +421,117 @@ async function main(): Promise<void> {
       continue;
     }
 
-    /* ── Series tier ────────────────────────────────────────────────── */
+    /* ── One fetch, both tiers ──────────────────────────────────────── */
+    /**
+     * `csvType=full`, and every filter applied here rather than asked for.
+     *
+     * The first version asked the way OWID's own download modal does:
+     * `csvType=filtered&country=IND~CHN~…`. The probe had confirmed that works
+     * — on `life-expectancy`, where it returned 85 rows, all India, and a
+     * paired request for Brazil came back different. A clean answer to the
+     * question that was put.
+     *
+     * What it did not ask is what "filtered" means on a chart whose default
+     * view is a map, which is most of them. A re-probe against a known
+     * map-default slug settled it:
+     *
+     *   country=IND           → 189 rows, every country, one year.
+     *                           The request for Brazil returned an identical
+     *                           file. The parameter does nothing at all.
+     *   time=earliest..latest → 373 rows. Time IS honoured, but "earliest to
+     *                           latest" means those two points, not the span
+     *                           between them. Two years, not a series.
+     *   csvType=full          → 1,342 rows, every country, every year, and it
+     *                           ignores `country` too.
+     *
+     * So there is no parameter combination that returns a country's series for
+     * these charts. The full export is the only shape that carries one, and
+     * every filter has to be applied after it arrives.
+     *
+     * The registry that shipped on the old assumption had 465 of its 684
+     * indicators holding a single year per country, and 416 holding more than
+     * twenty countries after asking for thirteen. Each file was a valid CSV
+     * with the right header and plausible values, every request returned 200,
+     * and the run reported ok. Two thirds of a series tier with no series in
+     * it, and the only reason anyone looked was that the sparklines drawn from
+     * it were the wrong shape.
+     *
+     * The compensation for the larger payload is that the map tier now comes
+     * out of the same response. It used to be a second request, capped at a
+     * hundred and fifty indicators because it was the expensive one. Now it is
+     * free, uncapped, and the requests per indicator drop from three to two.
+     */
+    await pace(FULL_GAP_MS);
+    const fetchFull = () => getText(`${OWID}/grapher/${slug}.csv?csvType=full&useColumnShortNames=true`, {
+      timeoutMs: 45_000, retries: 0, cacheMs: 0,
+    });
+    let csv = await fetchFull();
     /**
      * The one failure worth asking twice about.
      *
-     * A 404 is a retired slug and will never answer, so the metadata fetch
-     * above takes no retries. A 403 is the opposite: the slug is fine and the
-     * CDN is shedding load, which is why fifty-four of them landed in a single
-     * run and every one of them threw away an indicator whose metadata had
-     * already been fetched and paid for. So a 403 here — and only a 403 —
-     * widens the pace for the rest of the run and asks once more after a
-     * pause. Everything else still fails on the first answer.
+     * A 404 is a retired slug and will never answer, so nothing here retries
+     * by default. A 403 is the opposite: the slug is fine and the CDN is
+     * shedding load, which is why fifty-four of them landed in a single run
+     * and every one threw away an indicator whose metadata had already been
+     * fetched and paid for. A 403 widens the pace for the rest of the run and
+     * asks once more after a pause.
      */
-    const fetchSeries = () => getText(
-      `${OWID}/grapher/${slug}.csv?csvType=filtered&country=${COUNTRIES.join("~")}&useColumnShortNames=true`,
-      { timeoutMs: 20_000, retries: 0, cacheMs: 0 },
-    );
-    await pace();
-    let seriesCsv = await fetchSeries();
-    if (!seriesCsv.ok && (seriesCsv.error ?? "").includes("403")) {
+    if (!csv.ok && (csv.error ?? "").includes("403")) {
       rateLimited++;
-      await pace(GAP_MS * 6);
-      seriesCsv = await fetchSeries();
+      await pace(FULL_GAP_MS * 4);
+      csv = await fetchFull();
     }
-    if (!seriesCsv.ok || !seriesCsv.data) {
-      failures.push({ slug, stage: "series", why: seriesCsv.error ?? "no body" });
+    if (!csv.ok || !csv.data) {
+      failures.push({ slug, stage: "data", why: csv.error ?? "no body" });
       continue;
     }
-    const parsed = parseCsv(seriesCsv.data);
+    bytesPulled += csv.data.length;
+
+    const parsed = parseCsv(csv.data);
     const codeAt = parsed.header.findIndex((h) => /^Code$/i.test(h.trim()));
     const yearAt = parsed.header.findIndex((h) => /^(Year|Day)$/i.test(h.trim()));
     const valueAt = parsed.header.findIndex((h) => !/^(Entity|Code|Year|Day)$/i.test(h.trim()));
     if (codeAt < 0 || yearAt < 0 || valueAt < 0) {
-      failures.push({ slug, stage: "series", why: `unexpected columns: ${parsed.header.join("|")}` });
+      failures.push({ slug, stage: "data", why: `unexpected columns: ${parsed.header.join("|")}` });
+      continue;
+    }
+
+    /**
+     * A Day column is not a Year column, and the difference is four characters.
+     *
+     * The year is read as the first four characters of the time cell, which on
+     * a daily series turns 3,650 observations into ten years each repeated
+     * three hundred and sixty-five times. One indicator in the last registry
+     * carried 2,431 points for a single country on exactly this. The header
+     * says which it is, so the check costs nothing and the indicator is
+     * skipped rather than silently flattened.
+     */
+    if (/^Day$/i.test((parsed.header[yearAt] ?? "").trim())) {
+      failures.push({ slug, stage: "data", why: "daily resolution; the year parser cannot represent it" });
       continue;
     }
 
     const byIso = new Map<string, SeriesRow>();
+    const latest = new Map<string, MapRow>();
     let firstYear: number | null = null;
     let lastYear: number | null = null;
     for (const r of parsed.rows) {
       const iso = (r[codeAt] ?? "").trim();
+      // Aggregates carry no ISO3 code in OWID's files — "World", "Africa",
+      // income groups — so requiring three letters drops them without a list
+      // of names to maintain.
+      if (!/^[A-Z]{3}$/.test(iso)) continue;
       const year = Number.parseInt((r[yearAt] ?? "").slice(0, 4), 10);
       const value = Number.parseFloat(r[valueAt] ?? "");
-      if (iso === "" || !Number.isFinite(year) || !Number.isFinite(value)) continue;
+      if (!Number.isFinite(year) || !Number.isFinite(value)) continue;
+
+      // Map tier: every country, its most recent value.
+      const prev = latest.get(iso);
+      if (!prev || year > prev.year) latest.set(iso, { iso, year, value });
+
+      // Series tier: the comparator set only, so the committed file stays the
+      // size the old one was even though the fetch is now the whole world.
+      if (!COMPARATOR_SET.has(iso)) continue;
       const row = byIso.get(iso) ?? { iso, years: [], values: [] };
       row.years.push(year);
       row.values.push(value);
@@ -427,44 +540,20 @@ async function main(): Promise<void> {
       if (lastYear === null || year > lastYear) lastYear = year;
     }
     if (byIso.size === 0) {
-      failures.push({ slug, stage: "series", why: "no rows for any comparator country" });
+      failures.push({ slug, stage: "data", why: "no rows for any comparator country" });
       continue;
     }
-
-    /* ── Map tier, for as many as the cap allows ────────────────────── */
-    let mapRows: MapRow[] = [];
-    const wantMap = mapFetched < MAX_MAP && byIso.size >= 6;
-    if (wantMap) {
-      await pace(MAP_GAP_MS);
-      const full = await getText(`${OWID}/grapher/${slug}.csv?useColumnShortNames=true`, {
-        timeoutMs: 45_000, retries: 0, cacheMs: 0,
-      });
-      if (full.ok && full.data) {
-        const f = parseCsv(full.data);
-        const fc = f.header.findIndex((h) => /^Code$/i.test(h.trim()));
-        const fy = f.header.findIndex((h) => /^(Year|Day)$/i.test(h.trim()));
-        const fv = f.header.findIndex((h) => !/^(Entity|Code|Year|Day)$/i.test(h.trim()));
-        if (fc >= 0 && fy >= 0 && fv >= 0) {
-          // Latest value per country. Aggregates carry no ISO3 code in OWID's
-          // files — "World", "Africa", income groups — so filtering to a
-          // three-letter code drops them without a list of names to maintain.
-          const latest = new Map<string, MapRow>();
-          for (const r of f.rows) {
-            const iso = (r[fc] ?? "").trim();
-            if (!/^[A-Z]{3}$/.test(iso)) continue;
-            const year = Number.parseInt((r[fy] ?? "").slice(0, 4), 10);
-            const value = Number.parseFloat(r[fv] ?? "");
-            if (!Number.isFinite(year) || !Number.isFinite(value)) continue;
-            const prev = latest.get(iso);
-            if (!prev || year > prev.year) latest.set(iso, { iso, year, value });
-          }
-          mapRows = [...latest.values()].sort((a, b) => a.iso.localeCompare(b.iso));
-          if (mapRows.length > 0) mapFetched++;
-        }
-      } else {
-        failures.push({ slug, stage: "map", why: full.error ?? "no body" });
-      }
+    // Years arrive in file order, which is entity-major and usually ascending
+    // but is not promised to be. Everything downstream reads index 0 as the
+    // earliest point, so the order is made true here rather than assumed.
+    for (const row of byIso.values()) {
+      const order = row.years.map((y, i) => i).sort((a, b) => row.years[a]! - row.years[b]!);
+      row.years = order.map((i) => row.years[i]!);
+      row.values = order.map((i) => row.values[i]!);
     }
+
+    const mapRows: MapRow[] = [...latest.values()].sort((a, b) => a.iso.localeCompare(b.iso));
+    if (mapRows.length > 0) mapFetched++;
 
     const shard = Math.floor(indicators.length / SHARD);
     const title = meta.data.chart?.title ?? col.titleShort ?? slug.replace(/-/g, " ");
@@ -473,6 +562,7 @@ async function main(): Promise<void> {
       title,
       subtitle: meta.data.chart?.subtitle ?? "",
       column: columnName,
+      columnCount: dataColumns.length,
       unit,
       shortUnit: col.shortUnit ?? "",
       description: col.descriptionShort ?? "",
@@ -527,11 +617,15 @@ async function main(): Promise<void> {
       "every indicator's unit, attribution and citation read from its published metadata " +
       "document before any of its data was fetched.",
     method:
-      "Two tiers. SERIES carries India and a fixed comparator set with full history for every " +
-      "indicator here. MAP carries the latest value for every country, for the first " +
-      `${MAX_MAP} indicators with data for at least six comparators — a cap, because one full ` +
-      "indicator CSV is about 600KB and a thousand of those is a gigabyte pulled from a charity " +
-      "in one job. Which tiers an indicator has is recorded on its row.",
+      "One request per indicator, for the whole export — every country, every year — because a " +
+      "probe against a map-default chart found that the country parameter is accepted and " +
+      "ignored, and that time=earliest..latest returns those two years rather than the span " +
+      "between them. There is no parameter combination that returns one country's series, so " +
+      "every filter here is applied after the file arrives. Two tiers come out of that one " +
+      "response: SERIES carries India and a fixed comparator set with full history, and MAP " +
+      "carries the latest value for every country. Which tiers an indicator has is recorded on " +
+      "its row. The run stops on whichever of its time or byte budget runs out first, and says " +
+      "which.",
     attribution:
       "Each indicator carries OWID's own attribution and citation strings. OWID is a compiler: " +
       "the producer named in `attribution` is who to credit and who to check, and OWID is how " +
