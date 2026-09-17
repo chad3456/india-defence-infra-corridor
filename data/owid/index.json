@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-17T18:18:20.006Z",
+  "builtAt": "2026-09-17T20:04:35.884Z",
   "source": "Our World in Data (ourworldindata.org). Chart slugs discovered from OWID's own sitemap; every indicator's unit, attribution and citation read from its published metadata document before any of its data was fetched.",
   "method": "One request per indicator, for the whole export — every country, every year — because a probe against a map-default chart found that the country parameter is accepted and ignored, and that time=earliest..latest returns those two years rather than the span between them. There is no parameter combination that returns one country's series, so every filter here is applied after the file arrives. Two tiers come out of that one response: SERIES carries India and a fixed comparator set with full history, and MAP carries the latest value for every country. Which tiers an indicator has is recorded on its row. The run stops on whichever of its time or byte budget runs out first, and says which.",
   "attribution": "Each indicator carries OWID's own attribution and citation strings. OWID is a compiler: the producer named in `attribution` is who to credit and who to check, and OWID is how it was obtained. Nothing here is a figure this project computed.",
@@ -27,16 +27,16 @@
   "counts": {
     "slugsDiscovered": 4324,
     "slugsAttempted": 2162,
-    "indicators": 1400,
-    "withMapTier": 1400,
-    "withIndia": 1169,
-    "skipped": 711,
+    "indicators": 1413,
+    "withMapTier": 1413,
+    "withIndia": 1179,
+    "skipped": 719,
     "shards": 24
   },
   "byCategory": [
     {
       "key": "Other",
-      "n": 275
+      "n": 283
     },
     {
       "key": "Population",
@@ -52,7 +52,7 @@
     },
     {
       "key": "Food and farming",
-      "n": 107
+      "n": 110
     },
     {
       "key": "Trade and shipping",
@@ -60,19 +60,19 @@
     },
     {
       "key": "Energy",
-      "n": 79
+      "n": 80
     },
     {
       "key": "Emissions and climate",
-      "n": 71
+      "n": 72
     },
     {
       "key": "Society",
-      "n": 64
+      "n": 65
     },
     {
       "key": "Environment",
-      "n": 45
+      "n": 44
     },
     {
       "key": "Conflict and arms",
@@ -88,11 +88,11 @@
     }
   ],
   "discovery": "root sitemap: 4324 grapher slugs directly",
-  "stoppedEarly": "byte budget reached after 2111 of 2162 slugs (601MB pulled)",
-  "lastIncrementalWrite": 1400,
+  "stoppedEarly": "byte budget reached after 2132 of 2162 slugs (600MB pulled)",
+  "lastIncrementalWrite": 1413,
   "stride": 2,
-  "rateLimited": 275,
-  "bytesPulled": 629831636,
+  "rateLimited": 274,
+  "bytesPulled": 629253939,
   "failures": [
     {
       "slug": "absolute-number-of-deaths-from-outdoor-air-pollution",
@@ -520,6 +520,11 @@
       "why": "no rows for any comparator country"
     },
     {
+      "slug": "consumption-deforestation-per-person",
+      "stage": "metadata",
+      "why": "This operation was aborted"
+    },
+    {
       "slug": "continents-according-to-our-world-in-data",
       "stage": "data",
       "why": "no rows for any comparator country"
@@ -652,7 +657,7 @@
     {
       "slug": "covid-19-daily-tests-vs-daily-new-confirmed-cases-per-million",
       "stage": "metadata",
-      "why": "This operation was aborted"
+      "why": "HTTP 503"
     },
     {
       "slug": "covid-19-testing-policy",
@@ -662,7 +667,7 @@
     {
       "slug": "covid-19-total-confirmed-cases-vs-total-tests-conducted",
       "stage": "metadata",
-      "why": "This operation was aborted"
+      "why": "HTTP 503"
     },
     {
       "slug": "covid-contact-tracing",
@@ -672,7 +677,7 @@
     {
       "slug": "covid-daily-vs-total-cases-per-million",
       "stage": "metadata",
-      "why": "This operation was aborted"
+      "why": "HTTP 503"
     },
     {
       "slug": "covid-icu-patients-per-million",
@@ -688,11 +693,6 @@
       "slug": "covid-vaccinations-vs-covid-death-rate",
       "stage": "metadata",
       "why": "This operation was aborted"
-    },
-    {
-      "slug": "covid-vaccine-booster-doses-per-capita",
-      "stage": "data",
-      "why": "daily resolution; the year parser cannot represent it"
     }
   ],
   "indicators": [
@@ -6102,29 +6102,6 @@
       "lastYear": 2023
     },
     {
-      "slug": "consumption-deforestation-per-person",
-      "title": "Consumption-based deforestation per person",
-      "subtitle": "Estimated average deforestation for agricultural and forestry products, per person. This is adjusted for trade, so it reflects deforestation caused by consumption, not domestic production.",
-      "column": "Trade-adjusted deforestation per person",
-      "columnCount": 2,
-      "unit": "square meters",
-      "shortUnit": "m²",
-      "description": "",
-      "attribution": "",
-      "citation": "Singh et al. (2026) – processed by Our World in Data",
-      "timespan": "2005-2023",
-      "category": "Environment",
-      "tiers": {
-        "series": true,
-        "map": true
-      },
-      "countriesWithData": 12,
-      "hasIndia": true,
-      "shard": 3,
-      "firstYear": 2005,
-      "lastYear": 2023
-    },
-    {
       "slug": "consumption-of-ozone-depleting-substances",
       "title": "Consumption of ozone-depleting substances",
       "subtitle": "Ozone-depleting substances (ODS) are measured in units of ODP tonnes, which is the amount of ODS consumed multiplied by their ozone-depleting potential.",
@@ -6235,7 +6212,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 4,
+      "shard": 3,
       "firstYear": 2021,
       "lastYear": 2021
     },
@@ -7615,7 +7592,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 5,
+      "shard": 4,
       "firstYear": 2000,
       "lastYear": 2021
     },
@@ -8995,7 +8972,7 @@
       },
       "countriesWithData": 1,
       "hasIndia": false,
-      "shard": 6,
+      "shard": 5,
       "firstYear": 1937,
       "lastYear": 2022
     },
@@ -10375,7 +10352,7 @@
       },
       "countriesWithData": 1,
       "hasIndia": false,
-      "shard": 7,
+      "shard": 6,
       "firstYear": 2000,
       "lastYear": 2100
     },
@@ -11576,29 +11553,6 @@
       "lastYear": 2024
     },
     {
-      "slug": "foreign-aid-received-net",
-      "title": "Foreign aid received",
-      "subtitle": "Net official development assistance (ODA) from governments and multilateral organizations. This data is expressed in US dollars and adjusted for inflation.",
-      "column": "Official development assistance (ODA) by recipient (Official donors)",
-      "columnCount": 2,
-      "unit": "constant 2024 US$",
-      "shortUnit": "$",
-      "description": "Official development assistance (ODA) is defined as government aid designed to promote the economic development and welfare of developing countries. Monetary aid is estimated as net disbursements. This data is expressed in US dollars. It is adjusted for inflation.",
-      "attribution": "",
-      "citation": "OECD (2026) – with major processing by Our World in Data",
-      "timespan": "1960-2024",
-      "category": "Other",
-      "tiers": {
-        "series": true,
-        "map": true
-      },
-      "countriesWithData": 9,
-      "hasIndia": true,
-      "shard": 7,
-      "firstYear": 1960,
-      "lastYear": 2024
-    },
-    {
       "slug": "foreign-aid-received-per-capita-vs-gdp-per-capita",
       "title": "Foreign aid received per capita vs. GDP per capita",
       "subtitle": "Net official development assistance (ODA), expressed in US dollars and adjusted for inflation.",
@@ -11755,7 +11709,7 @@
       },
       "countriesWithData": 11,
       "hasIndia": true,
-      "shard": 8,
+      "shard": 7,
       "firstYear": 1965,
       "lastYear": 2025
     },
@@ -11778,7 +11732,7 @@
       },
       "countriesWithData": 10,
       "hasIndia": true,
-      "shard": 8,
+      "shard": 7,
       "firstYear": 1981,
       "lastYear": 2025
     },
@@ -13135,7 +13089,7 @@
       },
       "countriesWithData": 3,
       "hasIndia": false,
-      "shard": 9,
+      "shard": 8,
       "firstYear": 2007,
       "lastYear": 2023
     },
@@ -13158,7 +13112,7 @@
       },
       "countriesWithData": 11,
       "hasIndia": true,
-      "shard": 9,
+      "shard": 8,
       "firstYear": 1980,
       "lastYear": 2010
     },
@@ -14515,7 +14469,7 @@
       },
       "countriesWithData": 7,
       "hasIndia": false,
-      "shard": 10,
+      "shard": 9,
       "firstYear": 1990,
       "lastYear": 2024
     },
@@ -14538,7 +14492,7 @@
       },
       "countriesWithData": 9,
       "hasIndia": true,
-      "shard": 10,
+      "shard": 9,
       "firstYear": 2000,
       "lastYear": 2024
     },
@@ -15895,7 +15849,7 @@
       },
       "countriesWithData": 9,
       "hasIndia": true,
-      "shard": 11,
+      "shard": 10,
       "firstYear": 2009,
       "lastYear": 2021
     },
@@ -15918,7 +15872,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 11,
+      "shard": 10,
       "firstYear": 2010,
       "lastYear": 2020
     },
@@ -17275,7 +17229,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 12,
+      "shard": 11,
       "firstYear": 1975,
       "lastYear": 2016
     },
@@ -17298,7 +17252,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 12,
+      "shard": 11,
       "firstYear": 1963,
       "lastYear": 2025
     },
@@ -18655,7 +18609,7 @@
       },
       "countriesWithData": 9,
       "hasIndia": true,
-      "shard": 13,
+      "shard": 12,
       "firstYear": 1960,
       "lastYear": 2023
     },
@@ -18678,7 +18632,7 @@
       },
       "countriesWithData": 8,
       "hasIndia": true,
-      "shard": 13,
+      "shard": 12,
       "firstYear": 1500,
       "lastYear": 1996
     },
@@ -20035,7 +19989,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 14,
+      "shard": 13,
       "firstYear": 1986,
       "lastYear": 2025
     },
@@ -20058,7 +20012,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 14,
+      "shard": 13,
       "firstYear": 1998,
       "lastYear": 2024
     },
@@ -21415,7 +21369,7 @@
       },
       "countriesWithData": 10,
       "hasIndia": true,
-      "shard": 15,
+      "shard": 14,
       "firstYear": 1961,
       "lastYear": 2024
     },
@@ -21438,7 +21392,7 @@
       },
       "countriesWithData": 6,
       "hasIndia": false,
-      "shard": 15,
+      "shard": 14,
       "firstYear": 2000,
       "lastYear": 2022
     },
@@ -22795,7 +22749,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 16,
+      "shard": 15,
       "firstYear": 1989,
       "lastYear": 2023
     },
@@ -22818,7 +22772,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 16,
+      "shard": 15,
       "firstYear": 2000,
       "lastYear": 2024
     },
@@ -24175,7 +24129,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 17,
+      "shard": 16,
       "firstYear": 1963,
       "lastYear": 2025
     },
@@ -24198,7 +24152,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 17,
+      "shard": 16,
       "firstYear": 1993,
       "lastYear": 2022
     },
@@ -25555,7 +25509,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 18,
+      "shard": 17,
       "firstYear": 1985,
       "lastYear": 2025
     },
@@ -25578,7 +25532,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 18,
+      "shard": 17,
       "firstYear": 1991,
       "lastYear": 2025
     },
@@ -26935,7 +26889,7 @@
       },
       "countriesWithData": 8,
       "hasIndia": false,
-      "shard": 19,
+      "shard": 18,
       "firstYear": 2016,
       "lastYear": 2021
     },
@@ -26958,7 +26912,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 19,
+      "shard": 18,
       "firstYear": 2017,
       "lastYear": 2023
     },
@@ -28315,7 +28269,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 20,
+      "shard": 19,
       "firstYear": 1963,
       "lastYear": 2025
     },
@@ -28338,7 +28292,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 20,
+      "shard": 19,
       "firstYear": 2000,
       "lastYear": 2024
     },
@@ -29695,7 +29649,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 21,
+      "shard": 20,
       "firstYear": 1816,
       "lastYear": 2011
     },
@@ -29718,7 +29672,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 21,
+      "shard": 20,
       "firstYear": 1980,
       "lastYear": 2018
     },
@@ -31075,7 +31029,7 @@
       },
       "countriesWithData": 12,
       "hasIndia": true,
-      "shard": 22,
+      "shard": 21,
       "firstYear": 2000,
       "lastYear": 2021
     },
@@ -31098,7 +31052,7 @@
       },
       "countriesWithData": 3,
       "hasIndia": false,
-      "shard": 22,
+      "shard": 21,
       "firstYear": 1933,
       "lastYear": 2023
     },
@@ -32455,7 +32409,7 @@
       },
       "countriesWithData": 4,
       "hasIndia": false,
-      "shard": 23,
+      "shard": 22,
       "firstYear": 2016,
       "lastYear": 2026
     },
@@ -32478,7 +32432,7 @@
       },
       "countriesWithData": 2,
       "hasIndia": false,
-      "shard": 23,
+      "shard": 22,
       "firstYear": 2019,
       "lastYear": 2019
     },
@@ -32895,6 +32849,351 @@
       "shard": 23,
       "firstYear": 1,
       "lastYear": 36
+    },
+    {
+      "slug": "weighted-carbon-price-ets",
+      "title": "Emissions-weighted carbon price in emissions trading systems",
+      "subtitle": "The emissions-weighted carbon price in emissions trading systems (ETS) is calculated for the whole economy by multiplying each sector's (e.g. electricity, or road transport) carbon price by its contribution to a country's carbon dioxide emissions.",
+      "column": "Average price on emissions covered by an ETS, weighted by the share of the country's CO₂ emissions",
+      "columnCount": 1,
+      "unit": "constant 2021 US$ per tonne of CO₂ equivalents",
+      "shortUnit": "$/t",
+      "description": "This data is expressed in US dollars. It is adjusted for inflation but does not account for differences in the cost of living between countries.",
+      "attribution": "",
+      "citation": "Dolphin and Merkle (2024) – with minor processing by Our World in Data",
+      "timespan": "1989-2025",
+      "category": "Emissions and climate",
+      "tiers": {
+        "series": true,
+        "map": true
+      },
+      "countriesWithData": 12,
+      "hasIndia": true,
+      "shard": 23,
+      "firstYear": 1989,
+      "lastYear": 2025
+    },
+    {
+      "slug": "whale-catch",
+      "title": "Number of whales killed",
+      "subtitle": "Whales caught and killed annually world wide, by species.",
+      "column": "Total number of whales caught annually",
+      "columnCount": 11,
+      "unit": "whales",
+      "shortUnit": "",
+      "description": "Total number of whales caught annually.",
+      "attribution": "",
+      "citation": "Rocha, Clapham & Ivashchenko (2014); International Whaling Commission (IWC) (2026) – with minor processing by Our World in Data",
+      "timespan": "1900-2024",
+      "category": "Other",
+      "tiers": {
+        "series": true,
+        "map": true
+      },
+      "countriesWithData": 3,
+      "hasIndia": false,
+      "shard": 23,
+      "firstYear": 1985,
+      "lastYear": 2024
+    },
+    {
+      "slug": "whales-killed-per-decade",
+      "title": "Number of whales killed globally per decade",
+      "subtitle": "",
+      "column": "Total number of whales caught per decade",
+      "columnCount": 1,
+      "unit": "whales",
+      "shortUnit": "",
+      "description": "Total number of whales caught per decade.",
+      "attribution": "",
+      "citation": "Rocha, Clapham & Ivashchenko (2014); International Whaling Commission (IWC) (2026) – with minor processing by Our World in Data",
+      "timespan": "1900-2020",
+      "category": "Other",
+      "tiers": {
+        "series": true,
+        "map": true
+      },
+      "countriesWithData": 3,
+      "hasIndia": false,
+      "shard": 23,
+      "firstYear": 1990,
+      "lastYear": 2020
+    },
+    {
+      "slug": "wheat-yields",
+      "title": "Wheat yields",
+      "subtitle": "Yields are measured in tonnes per hectare.",
+      "column": "Wheat yield",
+      "columnCount": 1,
+      "unit": "tonnes per hectare",
+      "shortUnit": "t/ha",
+      "description": "Harvested production per unit of harvested area for wheat.",
+      "attribution": "",
+      "citation": "Food and Agriculture Organization of the United Nations (2025) and other sources – with major processing by Our World in Data",
+      "timespan": "1275-2024",
+      "category": "Food and farming",
+      "tiers": {
+        "series": true,
+        "map": true
+      },
+      "countriesWithData": 10,
+      "hasIndia": true,
+      "shard": 23,
+      "firstYear": 1850,
+      "lastYear": 2024
+    },
+    {
+      "slug": "wild-caught-fish",
+      "title": "Number of fishes caught from the wild",
+      "subtitle": "This data does not include unrecorded fish capture, such as fish caught illegally and those caught as bycatch and discards. Data at the country level is based on the average tonnage of annual catch from 2000 to 2019, and estimated mean weights for fish species.",
+      "column": "Estimated number of wild-caught fish",
+      "columnCount": 3,
+      "unit": "fish",
+      "shortUnit": "",
+      "description": "Midpoint estimate of the annual number of fish caught in global fishing, calculated as the average between the lower and upper estimates.",
+      "attribution": "",
+      "citation": "Mood and Brooke (2024) – processed by Our World in Data",
+      "timespan": "1999-2019",
+      "category": "Food and farming",
+      "tiers": {
+        "series": true,
+        "map": true
+      },
+      "countriesWithData": 12,
+      "hasIndia": true,
+      "shard": 23,
+      "firstYear": 2019,
+      "lastYear": 2019
+    },
+    {
+      "slug": "wild-fish-catch-gear-type",
+      "title": "Wild fish catch by gear type",
+      "subtitle": "",
+      "column": "bottom_trawl",
+      "columnCount": 8,
+      "unit": "tonnes",
+      "shortUnit": "",
+      "description": "",
+      "attribution": "",
+      "citation": "Sea Around Us (2020) – processed by Our World in Data",
+      "timespan": "1950-2018",
+      "category": "Food and farming",
+      "tiers": {
+        "series": true,
+        "map": true
+      },
+      "countriesWithData": 11,
+      "hasIndia": true,
+      "shard": 23,
+      "firstYear": 1950,
+      "lastYear": 2018
+    },
+    {
+      "slug": "wind-energy-generation-by-region",
+      "title": "Wind energy generation by region",
+      "subtitle": "Measured in terawatt-hours. Includes both onshore and offshore wind sources.",
+      "column": "Wind generation - TWh",
+      "columnCount": 1,
+      "unit": "terawatt-hours",
+      "shortUnit": "TWh",
+      "description": "Figures are based on gross generation and do not account for cross-border electricity supply.",
+      "attribution": "",
+      "citation": "Energy Institute – Statistical Review of World Energy (2026) – with major processing by Our World in Data",
+      "timespan": "1965-2025",
+      "category": "Energy",
+      "tiers": {
+        "series": true,
+        "map": true
+      },
+      "countriesWithData": 11,
+      "hasIndia": true,
+      "shard": 23,
+      "firstYear": 1965,
+      "lastYear": 2025
+    },
+    {
+      "slug": "wine-as-share-alcohol-consumption",
+      "title": "Wine as a share of total alcohol consumption",
+      "subtitle": "Wine as a share of total alcohol consumption, as measured by intake in litres of pure alcohol.",
+      "column": "Alcohol, consumption of pure alcohol by type of beverage (%) - Beverage types: Wine",
+      "columnCount": 1,
+      "unit": "%",
+      "shortUnit": "",
+      "description": "",
+      "attribution": "",
+      "citation": "World Health Organization – Global Health Observatory (2026) – with minor processing by Our World in Data",
+      "timespan": "2000-2019",
+      "category": "Other",
+      "tiers": {
+        "series": true,
+        "map": true
+      },
+      "countriesWithData": 12,
+      "hasIndia": true,
+      "shard": 23,
+      "firstYear": 2000,
+      "lastYear": 2019
+    },
+    {
+      "slug": "wine-production",
+      "title": "Wine production",
+      "subtitle": "Wine production, measured in tonnes per year.",
+      "column": "Wine | 00000564 || Production | 005510 || tonnes",
+      "columnCount": 1,
+      "unit": "tonnes",
+      "shortUnit": "t",
+      "description": "",
+      "attribution": "",
+      "citation": "Food and Agriculture Organization of the United Nations (2025) – with major processing by Our World in Data",
+      "timespan": "1961-2023",
+      "category": "Other",
+      "tiers": {
+        "series": true,
+        "map": true
+      },
+      "countriesWithData": 7,
+      "hasIndia": false,
+      "shard": 23,
+      "firstYear": 1961,
+      "lastYear": 2023
+    },
+    {
+      "slug": "women-and-men-have-equal-rights-to-immovable-property",
+      "title": "Women and men have the same rights to own property",
+      "subtitle": "",
+      "column": "Women and men have the same rights to own property",
+      "columnCount": 1,
+      "unit": "(1=yes; 0=no)",
+      "shortUnit": "",
+      "description": "The law gives women and men the same rights to own and manage property, without granting husbands special control over marital property.",
+      "attribution": "",
+      "citation": "Women, Business and the Law; World Bank – processed by Our World in Data",
+      "timespan": "1970-2023",
+      "category": "Society",
+      "tiers": {
+        "series": true,
+        "map": true
+      },
+      "countriesWithData": 12,
+      "hasIndia": true,
+      "shard": 23,
+      "firstYear": 1970,
+      "lastYear": 2023
+    },
+    {
+      "slug": "women-business-and-the-law-index",
+      "title": "Women, Business and the Law Index",
+      "subtitle": "The index measures how laws and regulations affect women’s economic opportunity on a scale from 0 to 100, where 100 means equal legal rights for men and women. It is the average score of eight categories: mobility, workplace, pay, marriage, parenthood, entrepreneurship, assets and pension.",
+      "column": "Women, Business and the Law Index",
+      "columnCount": 1,
+      "unit": "index (0–100)",
+      "shortUnit": "",
+      "description": "The index measures how laws and regulations affect women’s economic opportunity on a scale from 0 to 100, where 100 means equal legal rights for men and women. It is the average score of eight categories: mobility, workplace, pay, marriage, parenthood, entrepreneurship, assets, and pension.",
+      "attribution": "",
+      "citation": "Women, Business and the Law; World Bank – processed by Our World in Data",
+      "timespan": "1970-2023",
+      "category": "Other",
+      "tiers": {
+        "series": true,
+        "map": true
+      },
+      "countriesWithData": 12,
+      "hasIndia": true,
+      "shard": 23,
+      "firstYear": 1970,
+      "lastYear": 2023
+    },
+    {
+      "slug": "women-can-obtain-divorce-same-as-men",
+      "title": "Women can get a divorce on the same terms as men",
+      "subtitle": "The divorce process is equal for women and men, unless the law provides women with added safeguards, such as during pregnancy. It is unequal if women face extra barriers, only men can initiate, or divorce is prohibited.",
+      "column": "Women can get a divorce on the same terms as men",
+      "columnCount": 1,
+      "unit": "(1=yes; 0=no)",
+      "shortUnit": "",
+      "description": "The divorce process is equal for women and men, unless the law provides women with added safeguards, such as during pregnancy. It is unequal if women face extra barriers, only men can initiate, or divorce is prohibited.",
+      "attribution": "",
+      "citation": "Women, Business and the Law; World Bank – processed by Our World in Data",
+      "timespan": "1970-2023",
+      "category": "Other",
+      "tiers": {
+        "series": true,
+        "map": true
+      },
+      "countriesWithData": 12,
+      "hasIndia": true,
+      "shard": 23,
+      "firstYear": 1970,
+      "lastYear": 2023
+    },
+    {
+      "slug": "women-can-register-a-business-in-the-same-way-as-men",
+      "title": "Women can register a business on the same terms as men",
+      "subtitle": "",
+      "column": "Women can register a business on the same terms as men",
+      "columnCount": 1,
+      "unit": "(1=yes; 0=no)",
+      "shortUnit": "",
+      "description": "Women face no legal restrictions when registering a business, such as needing a husband’s consent or providing extra documents not required of men.",
+      "attribution": "",
+      "citation": "Women, Business and the Law; World Bank – processed by Our World in Data",
+      "timespan": "1970-2023",
+      "category": "Other",
+      "tiers": {
+        "series": true,
+        "map": true
+      },
+      "countriesWithData": 12,
+      "hasIndia": true,
+      "shard": 23,
+      "firstYear": 1970,
+      "lastYear": 2023
+    },
+    {
+      "slug": "women-can-take-the-same-jobs-as-men",
+      "title": "Women can take the same jobs as men",
+      "subtitle": "",
+      "column": "Women can get a job in the same way as men",
+      "columnCount": 1,
+      "unit": "(1=yes; 0=no)",
+      "shortUnit": "",
+      "description": "Husbands cannot prevent their wives from working, women don't need more permissions or additional documentation to work relative to men, and their work is not considered a form of disobedience with legal consequences.",
+      "attribution": "",
+      "citation": "Women, Business and the Law; World Bank – processed by Our World in Data",
+      "timespan": "1970-2023",
+      "category": "Other",
+      "tiers": {
+        "series": true,
+        "map": true
+      },
+      "countriesWithData": 12,
+      "hasIndia": true,
+      "shard": 23,
+      "firstYear": 1970,
+      "lastYear": 2023
+    },
+    {
+      "slug": "women-civil-liberties-index",
+      "title": "Women's Civil Liberties Index",
+      "subtitle": "Data by V-Dem. Expert estimates of the extent to which women are free from forced labor, have property rights and access to the justice system, and enjoy freedom of movement. The index ranges from 0 to 1 (most rights).",
+      "column": "Women's civil rights index (central estimate)",
+      "columnCount": 2,
+      "unit": "",
+      "shortUnit": "",
+      "description": "Central estimate of the extent to which women are free from forced labor, have property rights and access to the justice system, and enjoy freedom of movement.",
+      "attribution": "",
+      "citation": "V-Dem (2026) – processed by Our World in Data",
+      "timespan": "1789-2025",
+      "category": "Other",
+      "tiers": {
+        "series": true,
+        "map": true
+      },
+      "countriesWithData": 12,
+      "hasIndia": true,
+      "shard": 23,
+      "firstYear": 1789,
+      "lastYear": 2025
     }
   ]
 }
