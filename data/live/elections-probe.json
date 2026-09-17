@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-09-03T15:26:35.505Z",
+  "probedAt": "2026-09-17T09:44:57.555Z",
   "probes": [
     {
       "group": "wikipedia",
@@ -7,28 +7,13 @@
       "url": "https://en.wikipedia.org/w/index.php?action=raw&title=2024%20Indian%20general%20election",
       "ok": true,
       "status": "200",
-      "bytes": 275280,
-      "statewiseTables": 4,
+      "bytes": 275415,
+      "statewiseTables": 2,
       "headersSeen": [
         [
           "Party/Alliance",
           "States/UTs",
-          "Seats contested",
-          "Recognised Parties"
-        ],
-        [
-          "State/UT",
-          "Total",
-          "Voter turnout by phase",
-          "Phase 1",
-          "Phase 2",
-          "Phase 3",
-          "Phase 4",
-          "Phase 5",
-          "Phase 6",
-          "Phase 7",
-          "Seats",
-          "Turnout (%)"
+          "Seats contested"
         ],
         [
           "State/UT",
@@ -36,10 +21,6 @@
           "Total voters",
           "Total turnout",
           "Total seats"
-        ],
-        [
-          "State/Union Territory",
-          "Seats"
         ]
       ]
     },
@@ -50,34 +31,8 @@
       "ok": true,
       "status": "200",
       "bytes": 247261,
-      "statewiseTables": 3,
+      "statewiseTables": 1,
       "headersSeen": [
-        [
-          "Parties",
-          "States/UTs",
-          "Seats contested",
-          "Seats won",
-          "2019",
-          "2014",
-          "Swing",
-          "2019",
-          "2014",
-          "Swing"
-        ],
-        [
-          "State/UT",
-          "Total",
-          "Voter turnout by phase{{efn| / indicate change from the 2014 elections.}}",
-          "Phase 1",
-          "Phase 2",
-          "Phase 3",
-          "Phase 4",
-          "Phase 5",
-          "Phase 6",
-          "Phase 7",
-          "Seats",
-          "Turnout (%)"
-        ],
         [
           "State/UT",
           "Total electors",
@@ -119,28 +74,9 @@
       "url": "https://en.wikipedia.org/w/index.php?action=raw&title=Results%20of%20the%202024%20Indian%20general%20election",
       "ok": true,
       "status": "200",
-      "bytes": 298117,
-      "statewiseTables": 2,
-      "headersSeen": [
-        [
-          "State/Union Territory",
-          "Seats"
-        ],
-        [
-          "State",
-          "Parliamentary Constituency",
-          "Winner",
-          "Runner-up",
-          "Margin",
-          "No.",
-          "Name",
-          "Candidate",
-          "Party",
-          "%",
-          "Votes",
-          "Candidate"
-        ]
-      ]
+      "bytes": 291291,
+      "statewiseTables": 0,
+      "headersSeen": []
     },
     {
       "group": "wikipedia",
@@ -181,8 +117,12 @@
       "group": "eci",
       "what": "results portal",
       "url": "https://results.eci.gov.in/",
-      "ok": false,
-      "status": "fetch failed"
+      "ok": true,
+      "status": "200",
+      "bytes": 558,
+      "statewiseTables": 0,
+      "headersSeen": [],
+      "looksLikeShell": false
     },
     {
       "group": "eci",
