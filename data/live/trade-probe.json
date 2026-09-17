@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-09-01T05:32:22.607Z",
+  "probedAt": "2026-09-17T09:46:00.899Z",
   "keyPresent": false,
   "purpose": "establish whether HS6 import/export series for India are reachable, and at what cap",
   "checks": [
@@ -11,7 +11,7 @@
       "count": 215,
       "rows": 215,
       "distinctCodes": 1,
-      "elapsedMs": 1195,
+      "elapsedMs": 1402,
       "sample": [
         {
           "cmdCode": "TOTAL",
@@ -45,7 +45,7 @@
       "count": 500,
       "rows": 500,
       "distinctCodes": 40,
-      "elapsedMs": 5403,
+      "elapsedMs": 1804,
       "sample": [
         {
           "cmdCode": "54",
@@ -81,7 +81,7 @@
       "count": 500,
       "rows": 500,
       "distinctCodes": 76,
-      "elapsedMs": 1782,
+      "elapsedMs": 1761,
       "sample": [
         {
           "cmdCode": "6401",
@@ -117,7 +117,7 @@
       "count": 500,
       "rows": 500,
       "distinctCodes": 93,
-      "elapsedMs": 5930,
+      "elapsedMs": 4474,
       "sample": [
         {
           "cmdCode": "842230",
@@ -152,7 +152,7 @@
       "count": 500,
       "rows": 500,
       "distinctCodes": 498,
-      "elapsedMs": 1786,
+      "elapsedMs": 3580,
       "sample": [
         {
           "cmdCode": "850300",
@@ -181,7 +181,7 @@
       "withKey": false,
       "status": "failed",
       "httpError": "HTTP 400",
-      "elapsedMs": 4147
+      "elapsedMs": 4315
     },
     {
       "name": "comtrade/total-pinned-mot-customs-p2",
@@ -191,7 +191,7 @@
       "count": 1,
       "rows": 1,
       "distinctCodes": 1,
-      "elapsedMs": 1191,
+      "elapsedMs": 1913,
       "sample": [
         {
           "cmdCode": "TOTAL",
@@ -210,7 +210,7 @@
       "count": 215,
       "rows": 215,
       "distinctCodes": 1,
-      "elapsedMs": 1892,
+      "elapsedMs": 2805,
       "sample": [
         {
           "cmdCode": "TOTAL",
@@ -244,7 +244,7 @@
       "count": 500,
       "rows": 500,
       "distinctCodes": 500,
-      "elapsedMs": 7719,
+      "elapsedMs": 1634,
       "sample": [
         {
           "cmdCode": "842230",
@@ -272,7 +272,7 @@
       "count": 66,
       "rows": 66,
       "distinctCodes": 34,
-      "elapsedMs": 1285,
+      "elapsedMs": 4185,
       "sample": [
         {
           "cmdCode": "151190",
@@ -307,7 +307,7 @@
       "count": 500,
       "rows": 500,
       "distinctCodes": 500,
-      "elapsedMs": 6308,
+      "elapsedMs": 1543,
       "sample": [
         {
           "cmdCode": "842230",
@@ -333,7 +333,7 @@
       "withKey": false,
       "status": "ok",
       "rows": 1952772,
-      "elapsedMs": 1806,
+      "elapsedMs": 393,
       "sample": "{\r\n\t\"more\": false,\r\n\t\"minimumInputLength\": 2,\r\n\t\"classCode\": \"HS\",\r\n\t\"className\": \"Combined HS\",\r\n\t\"results\": \t[\r\n\t  {\r\n\t\t\"id\": \"TOTAL\",\r\n\t\t\"text\": \"Total - All H6 commodities\",\r\n\t\t\"parent\": \"#\",\r\n\t\t\"isLeaf\": \"0\",\r\n\t\t\"aggrLevel\": 0,\r\n\t\t\"standardUnitAbbr\": \"n/a\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"01\",\r\n\t\t\"text\": \"01 - Animals; live\",\r\n\t\t\"parent\": \"TOTAL\",\r\n\t\t\"isLeaf\": \"0\",\r\n\t\t\"aggrLevel\": 2,\r\n\t\t\"standardUnitAbbr\": \"n/a\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"0101\",\r\n\t\t\"text\": \"0101 - Horses, asses, mules and hinnies; live\",\r\n\t\t\"parent\": \"01\",\r\n\t\t\"isLeaf\": \"0\",\r\n\t\t\"aggrLevel\": 4,\r\n\t\t\"standardUnitAbbr\": \"n/a\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"010110\",\r\n\t\t\"text\": \"010110 - -  Pure-bred breeding animals\",\r\n\t\t\"parent\": \"0101\",\r\n\t\t\"isLeaf\": \"1\",\r\n\t\t\"aggrLevel\": 6,\r\n\t\t\"standardUnitAbbr\": \"u\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"010111\",\r\n\t\t\"text\": \"010111 - Horses :-- Pure-bred breeding animals\",\r\n\t\t\"parent\": \"0101\",\r\n\t\t\"isLeaf\": \"1\",\r\n\t\t\"aggrLevel\": 6,\r\n\t\t\"standardUnitAbbr\": \"u\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"010119\",\r\n\t\t\"text\": \"010119 - Horses :-- Other\",\r\n\t\t\"parent\": \"0101\",\r\n\t\t\"isLeaf\": \"1\",\r\n\t\t\"aggrLevel\": 6,\r\n\t\t\"standardUnitAbbr\": \"u\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"010120\",\r\n\t\t\"text\": \"010120 - Asses, mules and hinnies\",\r\n\t\t\"parent\": \"0101\",\r\n\t\t\"isLeaf\": \"1\",\r\n\t\t\"aggrLevel\": 6,\r\n\t\t\"standardUnitAbbr\": \"u\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"010121\",\r\n\t\t\"text\": \"010121 - Horses; live, pure-bred breeding animals\",\r\n\t\t\"parent\": \"0101\",\r\n\t\t\"isLeaf\": \"1\",\r\n\t\t\"aggrLevel\": 6,\r\n\t\t\"standardUnitAbbr\": \"u\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"010129\",\r\n\t\t\"text\": \"010129 - Horses; li"
     },
     {
@@ -342,7 +342,7 @@
       "withKey": false,
       "status": "ok",
       "rows": 1750724,
-      "elapsedMs": 1808,
+      "elapsedMs": 273,
       "sample": "{\r\n\t\"more\": false,\r\n\t\"minimumInputLength\": 2,\r\n\t\"classCode\": \"H6\",\r\n\t\"className\": \"HS2022\",\r\n\t\"results\": \t[\r\n\t\t  {\r\n\t\t\t\"id\": \"TOTAL\",\r\n\t\t\t\"text\": \"Total - All H6 commodities\",\r\n\t\t\t\"parent\": \"#\",\r\n\t\t\t\"isLeaf\": \"0\",\r\n\t\t\t\"aggrlevel\": 0,\r\n\t\t\t\"standardUnitAbbr\": \"n/a\"\r\n\t\t  },\r\n\t\t  {\r\n\t\t\t\"id\": \"01\",\r\n\t\t\t\"text\": \"01 - Animals; live\",\r\n\t\t\t\"parent\": \"TOTAL\",\r\n\t\t\t\"isLeaf\": \"0\",\r\n\t\t\t\"aggrlevel\": 2,\r\n\t\t\t\"standardUnitAbbr\": \"n/a\"\r\n\t\t  },\r\n\t\t  {\r\n\t\t\t\"id\": \"0101\",\r\n\t\t\t\"text\": \"0101 - Horses, asses, mules and hinnies; live\",\r\n\t\t\t\"parent\": \"01\",\r\n\t\t\t\"isLeaf\": \"0\",\r\n\t\t\t\"aggrlevel\": 4,\r\n\t\t\t\"standardUnitAbbr\": \"n/a\"\r\n\t\t  },\r\n\t\t  {\r\n\t\t\t\"id\": \"010121\",\r\n\t\t\t\"text\": \"010121 - Horses; live, pure-bred breeding animals\",\r\n\t\t\t\"parent\": \"0101\",\r\n\t\t\t\"isLeaf\": \"1\",\r\n\t\t\t\"aggrlevel\": 6,\r\n\t\t\t\"standardUnitAbbr\": \"u\"\r\n\t\t  },\r\n\t\t  {\r\n\t\t\t\"id\": \"010129\",\r\n\t\t\t\"text\": \"010129 - Horses; live, other than pure-bred breeding animals\",\r\n\t\t\t\"parent\": \"0101\",\r\n\t\t\t\"isLeaf\": \"1\",\r\n\t\t\t\"aggrlevel\": 6,\r\n\t\t\t\"standardUnitAbbr\": \"u\"\r\n\t\t  },\r\n\t\t  {\r\n\t\t\t\"id\": \"010130\",\r\n\t\t\t\"text\": \"010130 - Asses; live\",\r\n\t\t\t\"parent\": \"0101\",\r\n\t\t\t\"isLeaf\": \"1\",\r\n\t\t\t\"aggrlevel\": 6,\r\n\t\t\t\"standardUnitAbbr\": \"u\"\r\n\t\t  },\r\n\t\t  {\r\n\t\t\t\"id\": \"010190\",\r\n\t\t\t\"text\": \"010190 - Mules and hinnies; live\",\r\n\t\t\t\"parent\": \"0101\",\r\n\t\t\t\"isLeaf\": \"1\",\r\n\t\t\t\"aggrlevel\": 6,\r\n\t\t\t\"standardUnitAbbr\": \"u\"\r\n\t\t  },\r\n\t\t  {\r\n\t\t\t\"id\": \"0102\",\r\n\t\t\t\"text\": \"0102 - Bovine animals; live\",\r\n\t\t\t\"parent\": \"01\",\r\n\t\t\t\"isLeaf\": \"0\",\r\n\t\t\t\"aggrlevel\": 4,\r\n\t\t\t\"standardUnitAbbr\": \"n/a\"\r\n\t\t  },\r\n\t"
     },
     {
@@ -351,7 +351,7 @@
       "withKey": false,
       "status": "ok",
       "rows": 1632054,
-      "elapsedMs": 1740,
+      "elapsedMs": 285,
       "sample": "{\r\n  \"more\": false,\r\n  \"minimumInputLength\": 2,\r\n  \"classCode\": \"H5\",\r\n  \"className\": \"HS2017\",\r\n  \"results\":\t[\r\n\t  {\r\n\t\t\"id\": \"TOTAL\",\r\n\t\t\"text\": \"Total - All H5 commodities\",\r\n\t\t\"parent\": \"#\",\r\n\t\t\"isLeaf\": \"0\",\r\n\t\t\"aggrlevel\": 0,\r\n\t\t\"standardUnitAbbr\": \"n/a\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"01\",\r\n\t\t\"text\": \"01 - Animals; live\",\r\n\t\t\"parent\": \"TOTAL\",\r\n\t\t\"isLeaf\": \"0\",\r\n\t\t\"aggrlevel\": 2,\r\n\t\t\"standardUnitAbbr\": \"n/a\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"0101\",\r\n\t\t\"text\": \"0101 - Horses, asses, mules and hinnies; live\",\r\n\t\t\"parent\": \"01\",\r\n\t\t\"isLeaf\": \"0\",\r\n\t\t\"aggrlevel\": 4,\r\n\t\t\"standardUnitAbbr\": \"n/a\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"010121\",\r\n\t\t\"text\": \"010121 - Horses; live, pure-bred breeding animals\",\r\n\t\t\"parent\": \"0101\",\r\n\t\t\"isLeaf\": \"1\",\r\n\t\t\"aggrlevel\": 6,\r\n\t\t\"standardUnitAbbr\": \"u\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"010129\",\r\n\t\t\"text\": \"010129 - Horses; live, other than pure-bred breeding animals\",\r\n\t\t\"parent\": \"0101\",\r\n\t\t\"isLeaf\": \"1\",\r\n\t\t\"aggrlevel\": 6,\r\n\t\t\"standardUnitAbbr\": \"u\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"010130\",\r\n\t\t\"text\": \"010130 - Asses; live\",\r\n\t\t\"parent\": \"0101\",\r\n\t\t\"isLeaf\": \"1\",\r\n\t\t\"aggrlevel\": 6,\r\n\t\t\"standardUnitAbbr\": \"u\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"010190\",\r\n\t\t\"text\": \"010190 - Mules and hinnies; live\",\r\n\t\t\"parent\": \"0101\",\r\n\t\t\"isLeaf\": \"1\",\r\n\t\t\"aggrlevel\": 6,\r\n\t\t\"standardUnitAbbr\": \"u\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"0102\",\r\n\t\t\"text\": \"0102 - Bovine animals; live\",\r\n\t\t\"parent\": \"01\",\r\n\t\t\"isLeaf\": \"0\",\r\n\t\t\"aggrlevel\": 4,\r\n\t\t\"standardUnitAbbr\": \"n/a\"\r\n\t  },\r\n\t  {\r\n\t\t\"id\": \"010221\",\r\n\t\t\"text\": \"010221 - Cattle; live, pu"
     },
     {
@@ -360,8 +360,8 @@
       "withKey": false,
       "status": "ok",
       "rows": 7148,
-      "elapsedMs": 1180,
-      "sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?><!--NSI Web Service v5.2.3--><message:StructureSpecificData xmlns:ss=\"http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific\" xmlns:footer=\"http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message/footer\" xmlns:ns1=\"urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=WBG_WITS:TRADESTATS(1.0):ObsLevelDim:TIME_PERIOD\" xmlns:message=\"http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message\" xmlns:common=\"http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xml=\"http://www.w3.org/XML/1998/namespace\"><message:Header><message:ID>DF_WITS_TradeStats_Trade</message:ID><message:Test>false</message:Test><message:Prepared>2026-09-01T01:32:21</message:Prepared><message:Sender id=\"WBG_WITS\"><common:Name xml:lang=\"en\">World Bank Group - WITS</common:Name><message:Contact><common:Name xml:lang=\"en\">WITS Admin</common:Name><message:Department xml:lang=\"en\">DECDG</message:Department><message:Role xml:lang=\"en\">Support</message:Role><message:Email>wits@worldbank.org</message:Email></message:Contact></message:Sender><message:Structure structureID=\"WBG_WITS_TRADESTATS_1_0\" namespace=\"urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=WBG_WITS:TRADESTATS(1.0):ObsLevelDim:TIME_PERIOD\" dimensionAtObservation=\"TIME_PERIOD\"><common:Structure><Ref agencyID=\"WBG_WITS\" id=\"TRADESTATS\" version=\"1.0\" /></common:Structure></message:Structure><message:DataSetAction>Information</"
+      "elapsedMs": 262,
+      "sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?><!--NSI Web Service v5.2.3--><message:StructureSpecificData xmlns:ss=\"http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific\" xmlns:footer=\"http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message/footer\" xmlns:ns1=\"urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=WBG_WITS:TRADESTATS(1.0):ObsLevelDim:TIME_PERIOD\" xmlns:message=\"http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message\" xmlns:common=\"http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xml=\"http://www.w3.org/XML/1998/namespace\"><message:Header><message:ID>DF_WITS_TradeStats_Trade</message:ID><message:Test>false</message:Test><message:Prepared>2026-09-17T05:46:00</message:Prepared><message:Sender id=\"WBG_WITS\"><common:Name xml:lang=\"en\">World Bank Group - WITS</common:Name><message:Contact><common:Name xml:lang=\"en\">WITS Admin</common:Name><message:Department xml:lang=\"en\">DECDG</message:Department><message:Role xml:lang=\"en\">Support</message:Role><message:Email>wits@worldbank.org</message:Email></message:Contact></message:Sender><message:Structure structureID=\"WBG_WITS_TRADESTATS_1_0\" namespace=\"urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=WBG_WITS:TRADESTATS(1.0):ObsLevelDim:TIME_PERIOD\" dimensionAtObservation=\"TIME_PERIOD\"><common:Structure><Ref agencyID=\"WBG_WITS\" id=\"TRADESTATS\" version=\"1.0\" /></common:Structure></message:Structure><message:DataSetAction>Information</"
     },
     {
       "name": "wits/sdmx-datasource-list",
@@ -369,7 +369,7 @@
       "withKey": false,
       "status": "failed",
       "httpError": "HTTP 403",
-      "elapsedMs": 162
+      "elapsedMs": 137
     },
     {
       "name": "wits/product-codelist",
@@ -377,7 +377,7 @@
       "withKey": false,
       "status": "ok",
       "rows": 1719360,
-      "elapsedMs": 492,
+      "elapsedMs": 173,
       "sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<wits:datasource datasourcecode=\"TRN\" datasourcename=\"WITS - UNTCTAD TRAINS\" language=\"en\" total=\"6882\" xmlns:wits=\"http://wits.worldbank.org\">\r\n  <wits:products>\r\n    <wits:product productcode=\"010110\" isgroup=\"No\" nomenclaturecode=\"HS\" grouptype=\"N/A\">\r\n      <wits:productdescription>010110 -- (2002-2011) - Pure-bred breeding animals</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"010111\" isgroup=\"No\" nomenclaturecode=\"HS\" grouptype=\"N/A\">\r\n      <wits:productdescription>010111 -- (-2001) -- Pure-bred breeding animals</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"010119\" isgroup=\"No\" nomenclaturecode=\"HS\" grouptype=\"N/A\">\r\n      <wits:productdescription>010119 -- (-2001) -- Other</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"010120\" isgroup=\"No\" nomenclaturecode=\"HS\" grouptype=\"N/A\">\r\n      <wits:productdescription>010120 -- (-2001) - Asses, mules and hinnies</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"010121\" isgroup=\"No\" nomenclaturecode=\"HS\" grouptype=\"N/A\">\r\n      <wits:productdescription>010121 -- (2012-) -- Pure-bred breeding animals</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"010129\" isgroup=\"No\" nomenclaturecode=\"HS\" grouptype=\"N/A\">\r\n      <wits:productd"
     },
     {
@@ -386,7 +386,7 @@
       "withKey": false,
       "status": "ok",
       "rows": 7076,
-      "elapsedMs": 302,
+      "elapsedMs": 88,
       "sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<wits:datasource datasourcecode=\"tradestats-trade\" datasourcename=\"WITS TradeStats - Trade\" language=\"en\" total=\"31\" xmlns:wits=\"http://wits.worldbank.org\">\r\n  <wits:products>\r\n    <wits:product productcode=\"999999\" isgroup=\"N/A\" nomenclaturecode=\"N/A\" grouptype=\"N/A\">\r\n      <wits:productdescription>Not Applicable</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"01-05_Animal\" isgroup=\"Yes\" nomenclaturecode=\"H0\" grouptype=\"Sector\">\r\n      <wits:productdescription>Animal</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"06-15_Vegetable\" isgroup=\"Yes\" nomenclaturecode=\"H0\" grouptype=\"Sector\">\r\n      <wits:productdescription>Vegetable</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"16-24_FoodProd\" isgroup=\"Yes\" nomenclaturecode=\"H0\" grouptype=\"Sector\">\r\n      <wits:productdescription>Food Products</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"25-26_Minerals\" isgroup=\"Yes\" nomenclaturecode=\"H0\" grouptype=\"Sector\">\r\n      <wits:productdescription>Minerals</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <wits:product productcode=\"27-27_Fuels\" isgroup=\"Yes\" nomenclaturecode=\"H0\" grouptype=\"Sector\">\r\n      <wits:productdescription>Fuels</wits:productdescription>\r\n      <wits:notes />\r\n    </wits:product>\r\n    <w"
     },
     {
@@ -395,7 +395,7 @@
       "withKey": false,
       "status": "ok",
       "rows": 775,
-      "elapsedMs": 235,
+      "elapsedMs": 205,
       "sample": "[{\"page\":1,\"pages\":22,\"per_page\":3,\"total\":66,\"sourceid\":\"2\",\"lastupdated\":\"2026-07-13\"},[{\"indicator\":{\"id\":\"NE.IMP.GNFS.ZS\",\"value\":\"Imports of goods and services (% of GDP)\"},\"country\":{\"id\":\"IN\",\"value\":\"India\"},\"countryiso3code\":\"IND\",\"date\":\"2025\",\"value\":24.0051596190103,\"unit\":\"\",\"obs_status\":\"\",\"decimal\":1},{\"indicator\":{\"id\":\"NE.IMP.GNFS.ZS\",\"value\":\"Imports of goods and services (% of GDP)\"},\"country\":{\"id\":\"IN\",\"value\":\"India\"},\"countryiso3code\":\"IND\",\"date\":\"2024\",\"value\":23.8527091324349,\"unit\":\"\",\"obs_status\":\"\",\"decimal\":1},{\"indicator\":{\"id\":\"NE.IMP.GNFS.ZS\",\"value\":\"Imports of goods and services (% of GDP)\"},\"country\":{\"id\":\"IN\",\"value\":\"India\"},\"countryiso3code\":\"IND\",\"date\":\"2023\",\"value\":23.9681500915008,\"unit\":\"\",\"obs_status\":\"\",\"decimal\":1}]]"
     }
   ]
