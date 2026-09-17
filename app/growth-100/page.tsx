@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { loadRegistry, fmt } from "@/lib/owid";
-import { buildPanels, tally, changeLabel, type Panel } from "@/lib/growth-panels";
+import { selectPanels, tally, changeLabel, type Panel } from "@/lib/growth-panels";
 import {
   Eyebrow, Headline, Standfirst, Mark, Stat, Sources,
 } from "@/components/stories/Kit";
@@ -99,8 +99,9 @@ export default function GrowthHundred() {
     );
   }
 
-  const panels = buildPanels(reg, { limit: 100 });
+  const { panels, rejected } = selectPanels(reg, { limit: 100 });
   const t = tally(panels);
+  const excluded = rejected.projection + rejected.twoVariable + rejected.duplicateMeasure;
 
   const biggestRises = [...panels]
     .filter((p) => p.changePct !== null && p.direction === "rose")
@@ -118,11 +119,11 @@ export default function GrowthHundred() {
           {panels.length} indicators · {t.categories.length} subjects · median span {t.medianSpan} years
         </Eyebrow>
         <h1 className="story-display mt-4 max-w-[18ch] text-[36px] sm:text-[50px] lg:text-[58px]">
-          A Hundred Indicators, Whichever Way They Point.
+          {panels.length} Indicators, Whichever Way They Point.
         </h1>
         <Standfirst>
-          India across a hundred of Our World in Data&rsquo;s indicators, chosen by how much data
-          exists rather than by what it shows. <Mark tone="cool">{t.rose} rose</Mark>,{" "}
+          India across {panels.length} of Our World in Data&rsquo;s indicators, chosen by how much
+          data exists rather than by what it shows. <Mark tone="cool">{t.rose} rose</Mark>,{" "}
           <Mark>{t.fell} fell</Mark>, {t.flat} moved less than two per cent. That mix is a result
           of the selection rule, not a decision about what to include.
         </Standfirst>
@@ -187,19 +188,52 @@ export default function GrowthHundred() {
 
       {/* ── The hundred ───────────────────────────────────────────────── */}
       <section className="mt-14">
-        <Eyebrow>the hundred</Eyebrow>
+        <Eyebrow>the set</Eyebrow>
         <Headline>Every One of Them.</Headline>
         <Standfirst>
           Ordered by how much data stands behind them. Each panel is India&rsquo;s own series;
           click through for the world map, the comparator set and the citation.
         </Standfirst>
+
+        {/*
+          What was thrown out, and why, before anyone asks why the number is not
+          a round hundred.
+
+          The first version of this page drew ninety panels and four of them
+          were the same series. OWID publishes one column under several chart
+          titles — "Annual CO₂ emissions", "CO₂ emissions from fossil fuels and
+          land-use change", "…by world region", "…by income level" — and
+          nothing in a panel showed which column it came from, so four
+          identical sparklines sat under four different names and counted as
+          four indicators.
+        */}
+        <div className="mt-6 rounded-lg border p-4 text-[12.5px] leading-[1.65]"
+          style={{ borderColor: "var(--story-rule)", color: "var(--story-ink-2)" }}>
+          <strong style={{ color: "var(--story-ink)" }}>
+            {excluded} indicators were held out of this set.
+          </strong>{" "}
+          <span className="mono">{rejected.twoVariable}</span> are charts titled
+          &ldquo;X&nbsp;vs.&nbsp;Y&rdquo;, which plot two measures against each other: the
+          registry can only take one column from them, so the title is not a name for the number
+          underneath it and there is no honest one to substitute.{" "}
+          <span className="mono">{rejected.duplicateMeasure}</span> were a second or third chart
+          drawing a column already on this page under a different title.{" "}
+          <span className="mono">{rejected.projection}</span> end in a future year, which makes
+          the headline figure a forecast — and nothing in the source marks which of their earlier
+          points were measured and which were modelled, so they cannot be trimmed back to the
+          present either.
+        </div>
         <ul className="mt-7 grid list-none grid-cols-[minmax(0,1fr)] gap-3 p-0 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {panels.map((p) => <PanelCard key={p.indicator.slug} p={p} />)}
         </ul>
         <Caption>
           Sparklines are drawn from the series minimum, not from zero, because a line encodes
           change and a zero baseline flattens every series whose variation is small against its
-          level. Read shape from the line and magnitude from the number beside it.
+          level. Read shape from the line and magnitude from the number beside it. A sparkline
+          marked <span className="mono">log</span> spans fiftyfold or more and is drawn on a
+          logarithmic axis, where steady exponential growth is a straight rising line; on a linear
+          one those series are a flat rule along the bottom with a tick at the end. A break in a
+          line is a gap in the record, not a value of zero.
         </Caption>
       </section>
 

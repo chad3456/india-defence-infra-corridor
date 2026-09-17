@@ -1399,6 +1399,79 @@ export function GridMap({
  * any page using these has to say so, because a reader who assumes zero will
  * read a 2% wobble as a collapse.
  */
+/**
+ * The sparkline's geometry, separated from its markup so it can be tested.
+ *
+ * Both decisions it makes — which scale to use, and where to stop drawing —
+ * are invisible in the output: a log sparkline and a linear one are the same
+ * shape of mark, and a line that skips a gap looks like a line that does not.
+ * A silent choice with no test on it is a choice that drifts.
+ */
+export function sparkGeometry(
+  points: Array<{ year: number; value: number }>,
+  width: number,
+  height: number,
+): { d: string; logScale: boolean; segments: number } {
+  const xs = points.map((p) => p.year);
+  const ys = points.map((p) => p.value);
+  const x0 = Math.min(...xs);
+  const x1 = Math.max(...xs);
+
+  /**
+   * A linear axis turns a century of exponential growth into a flat line.
+   *
+   * India's annual CO₂ emissions run from 1858, and on a linear axis scaled to
+   * the 2024 value the first hundred and twenty years sit inside one pixel of
+   * the baseline. What rendered was a flat rule along the bottom with a dot at
+   * each end — at thumbnail size, indistinguishable from a series with two
+   * points in it, and drawn that way on a page whose whole subject is growth.
+   * The shape was correct and it communicated nothing.
+   *
+   * So a series spanning fifty-fold or more, with no zero or negative value in
+   * it, is drawn on a log axis, where steady exponential growth is a straight
+   * rising line — which is the actual finding about it. Fifty is the point at
+   * which the bottom half of a linear range stops being separable at this
+   * size; below it the linear axis is still the more honest default, because
+   * a log axis flattens differences a reader would want to see.
+   *
+   * The choice is made here rather than by the caller, and the chart marks
+   * itself when it takes it. A hundred panels silently mixing two scales is
+   * exactly the kind of quiet inconsistency that makes a wall of sparklines
+   * unreadable, and a caller can always forget to pass the flag.
+   */
+  const lo = Math.min(...ys);
+  const hi = Math.max(...ys);
+  const logScale = lo > 0 && hi / lo >= 50;
+  const t = (v: number): number => (logScale ? Math.log10(v) : v);
+  const y0 = t(lo);
+  const y1 = t(hi);
+
+  const px = (year: number): number => (x1 === x0 ? 1 : ((year - x0) / (x1 - x0)) * (width - 6) + 3);
+  const py = (v: number): number =>
+    (y1 === y0 ? height / 2 : height - 4 - ((t(v) - y0) / (y1 - y0)) * (height - 8));
+
+  /**
+   * A line drawn across missing years asserts values nobody observed.
+   *
+   * The CO₂ series has no readings between 1866 and 1878, and the first
+   * version joined them with a straight segment twelve years long — a
+   * confident interpolation through a gap the source is explicit about. The
+   * path breaks wherever a step is more than three times the usual one, so a
+   * hole in the record reads as a hole.
+   */
+  const steps = points.slice(1).map((p, i) => p.year - points[i]!.year).sort((a, b) => a - b);
+  const typical = steps[Math.floor(steps.length / 2)] ?? 1;
+  const breakAt = Math.max(2, typical * 3);
+  let d = "";
+  points.forEach((p, i) => {
+    const prev = points[i - 1];
+    const jump = prev !== undefined && p.year - prev.year > breakAt;
+    d += `${i === 0 || jump ? "M" : "L"}${px(p.year).toFixed(1)},${py(p.value).toFixed(1)} `;
+  });
+
+  return { d: d.trim(), logScale, segments: (d.match(/M/g) ?? []).length };
+}
+
 export function Sparkline({
   points, tone = "mid", width = 150, height = 36,
 }: {
@@ -1414,25 +1487,36 @@ export function Sparkline({
       </span>
     );
   }
+  const { d, logScale } = sparkGeometry(points, width, height);
   const xs = points.map((p) => p.year);
   const ys = points.map((p) => p.value);
   const x0 = Math.min(...xs);
   const x1 = Math.max(...xs);
-  const y0 = Math.min(...ys);
-  const y1 = Math.max(...ys);
+  const lo = Math.min(...ys);
+  const hi = Math.max(...ys);
+  const t = (v: number): number => (logScale ? Math.log10(v) : v);
+  const y0 = t(lo);
+  const y1 = t(hi);
   const px = (year: number): number => (x1 === x0 ? 1 : ((year - x0) / (x1 - x0)) * (width - 6) + 3);
-  const py = (v: number): number => (y1 === y0 ? height / 2 : height - 4 - ((v - y0) / (y1 - y0)) * (height - 8));
-  const d = points.map((p, i) => `${i === 0 ? "M" : "L"}${px(p.year).toFixed(1)},${py(p.value).toFixed(1)}`).join(" ");
+  const py = (v: number): number =>
+    (y1 === y0 ? height / 2 : height - 4 - ((t(v) - y0) / (y1 - y0)) * (height - 8));
   const last = points[points.length - 1]!;
   const first = points[0]!;
   return (
     <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height} role="img"
-      aria-label={`${points.length} points from ${x0} to ${x1}`}
+      aria-label={
+        `${points.length} points from ${x0} to ${x1}`
+        + (logScale ? ", drawn on a logarithmic scale" : "")
+      }
       style={{ maxWidth: "100%" }}>
       <path d={d} fill="none" stroke={TONE[tone]} strokeWidth={1.6}
         strokeLinejoin="round" strokeLinecap="round" />
       <circle cx={px(first.year)} cy={py(first.value)} r={2} fill={TONE[tone]} fillOpacity={0.45} />
       <circle cx={px(last.year)} cy={py(last.value)} r={2.6} fill={TONE[tone]} />
+      {logScale && (
+        <text x={width - 1} y={8} textAnchor="end" fontSize={7} fontFamily="ui-monospace, monospace"
+          fill="var(--story-ink-3)">log</text>
+      )}
     </svg>
   );
 }

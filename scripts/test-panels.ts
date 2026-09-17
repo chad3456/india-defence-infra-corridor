@@ -11,8 +11,9 @@
  * has every series reversed in time, and asserts the same indicators are
  * chosen in the same order.
  */
-import { buildPanels, tally, changeLabel } from "../lib/growth-panels";
+import { buildPanels, selectPanels, tally, changeLabel } from "../lib/growth-panels";
 import type { Registry, Indicator } from "../lib/owid";
+import { sparkGeometry } from "../components/stories/Charts";
 
 let failures = 0;
 function check(name: string, got: unknown, want: unknown): void {
@@ -27,12 +28,22 @@ function check(name: string, got: unknown, want: unknown): void {
 const shards = new Map<string, Array<{ iso: string; years: number[]; values: number[] }>>();
 const readSeries = (i: Indicator) => shards.get(i.slug) ?? [];
 
-function ind(slug: string, category: string): Indicator {
+/**
+ * `column` defaults to the slug, so two fixture indicators are two measures.
+ *
+ * It was the literal "v" for every one of them, which mattered the moment the
+ * selector started collapsing charts that draw the same column. Every fixture
+ * registry became one indicator wearing several slugs and four tests failed
+ * at once — the right failure for the wrong reason, and a fixture that would
+ * have hidden the opposite bug just as well.
+ */
+function ind(slug: string, category: string, over: Partial<Indicator> = {}): Indicator {
   return {
-    slug, title: slug, subtitle: "", column: "v", unit: "u", shortUnit: "u",
+    slug, title: slug, subtitle: "", column: slug, unit: "u", shortUnit: "u",
     description: "", attribution: "a", citation: "c", timespan: "",
     category, tiers: { series: true, map: true }, countriesWithData: 6,
     hasIndia: true, shard: 0, firstYear: 2000, lastYear: 2020,
+    ...over,
   };
 }
 
@@ -121,6 +132,84 @@ console.log("\nChange labels carry a sign and no false precision");
   fill("x", YEARS.map((_, i) => 10 + i * 100));
   const big = buildPanels(reg, { limit: 1, readSeries })[0]!;
   check("a two-hundredfold rise reads as a multiple, not 20000%", changeLabel(big), "+201×");
+}
+
+/**
+ * The three ways a panel can be wrong about what it is showing.
+ *
+ * All three shipped. Ninety panels went up with four of them drawing one
+ * column under four titles, six labelled with a title naming two measures
+ * when the number was one of them, and one whose headline figure was a
+ * forecast for 2050 formatted exactly like a 2024 observation. Each looked
+ * correct in isolation; the duplicates were only visible by reading four
+ * cards and noticing the sparklines matched.
+ */
+console.log("\nA panel must be about what its title says");
+{
+  const reg = registry([["a", "Economy"], ["b", "Health"], ["c", "Energy"], ["d", "Society"]]);
+  // b draws the same column as a, under its own title.
+  reg.indicators[1]!.column = reg.indicators[0]!.column;
+  reg.indicators[2]!.title = "Energy use vs. GDP per capita";
+  reg.indicators[3]!.lastYear = new Date().getUTCFullYear() + 25;
+  for (const [slug] of [["a"], ["b"], ["c"], ["d"]] as Array<[string]>) fill(slug, rising);
+
+  const { panels, rejected } = selectPanels(reg, { limit: 10, readSeries });
+  check("only one chart per column and unit survives", panels.map((p) => p.indicator.slug), ["a"]);
+  check("the duplicate is counted", rejected.duplicateMeasure, 1);
+  check("an \"X vs. Y\" title is held out", rejected.twoVariable, 1);
+  check("a series ending in the future is held out", rejected.projection, 1);
+}
+
+{
+  // Same column name, different unit, is not the same measurement — and
+  // merging those would be this rule failing in the other direction.
+  const reg = registry([["a", "Economy"], ["b", "Health"]]);
+  reg.indicators[1]!.column = reg.indicators[0]!.column;
+  reg.indicators[1]!.unit = "a different unit";
+  fill("a", rising); fill("b", rising);
+  const { panels, rejected } = selectPanels(reg, { limit: 10, readSeries });
+  check("the same column in a different unit is kept", panels.length, 2);
+  check("and nothing is counted as duplicate", rejected.duplicateMeasure, 0);
+}
+
+/**
+ * The sparkline makes two choices nothing in its output reveals.
+ *
+ * On a linear axis, India's CO₂ emissions from 1858 sat inside one pixel of
+ * the baseline for a hundred and twenty years and rendered as a flat rule with
+ * a dot at each end — visually a two-point series, on a page about growth.
+ * And the same series has no readings between 1866 and 1878, which the line
+ * crossed with a single confident twelve-year segment.
+ *
+ * Both fixes are invisible by construction: a log sparkline is the same kind
+ * of mark as a linear one, and a line that breaks over a gap looks like a line
+ * that never had one.
+ */
+console.log("\nThe sparkline says which scale it is on and where the data stops");
+{
+  const steady = Array.from({ length: 20 }, (_, i) => ({ year: 2000 + i, value: 100 + i }));
+  check("a narrow range stays linear", sparkGeometry(steady, 110, 34).logScale, false);
+
+  const exponential = Array.from({ length: 20 }, (_, i) => ({ year: 2000 + i, value: 2 ** i }));
+  check("a range over fiftyfold goes log", sparkGeometry(exponential, 110, 34).logScale, true);
+
+  const withZero = [{ year: 2000, value: 0 }, ...exponential.slice(1)];
+  check("a zero in the series keeps it linear", sparkGeometry(withZero, 110, 34).logScale, false);
+
+  const negative = exponential.map((p, i) => (i === 3 ? { ...p, value: -5 } : p));
+  check("a negative value keeps it linear", sparkGeometry(negative, 110, 34).logScale, false);
+
+  check("a continuous series is one stroke", sparkGeometry(steady, 110, 34).segments, 1);
+
+  const gapped = [
+    ...Array.from({ length: 8 }, (_, i) => ({ year: 1858 + i, value: 10 + i })),
+    ...Array.from({ length: 8 }, (_, i) => ({ year: 1878 + i, value: 30 + i })),
+  ];
+  check("a twelve-year hole breaks the line", sparkGeometry(gapped, 110, 34).segments, 2);
+
+  const decadal = Array.from({ length: 8 }, (_, i) => ({ year: 1950 + i * 10, value: 10 + i }));
+  check("a decadal series is not mistaken for a gapped annual one",
+    sparkGeometry(decadal, 110, 34).segments, 1);
 }
 
 console.log(failures === 0 ? "\nAll panel selector tests passed." : `\n${failures} panel selector test(s) failed.`);

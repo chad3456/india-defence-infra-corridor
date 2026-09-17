@@ -75,13 +75,77 @@ function coverageScore(ind: Indicator, points: number, span: number, comparators
 }
 
 /**
+ * The year beyond which a value is a forecast rather than an observation.
+ *
+ * Read from the clock rather than written down, because a constant here would
+ * quietly start admitting projections the year after it was set.
+ */
+const THIS_YEAR = new Date().getUTCFullYear();
+
+/**
+ * Two charts, one measurement.
+ *
+ * OWID publishes the same underlying column under several chart titles, each
+ * framing it differently: "Annual CO₂ emissions", "CO₂ emissions from fossil
+ * fuels and land-use change", "Annual CO₂ emissions by world region" and
+ * "Carbon dioxide emissions by income level" are four slugs that resolve to
+ * one column. The first version of this page drew all four — same series, same
+ * sparkline, same number, four names — and called it four of a hundred
+ * indicators. Nothing on the page showed they were the same, because nothing
+ * on the page showed the column.
+ *
+ * The key is the column and its unit together rather than the column alone: a
+ * short column name like `consumption_per_capita` is generic enough that two
+ * genuinely different measures could share it, and merging those would be the
+ * same error pointing the other way.
+ */
+function measureKey(ind: Indicator): string {
+  return `${ind.column.trim().toLowerCase()}\u0000${ind.unit.trim().toLowerCase()}`;
+}
+
+/**
+ * Why an indicator was kept out, in the page's own words.
+ *
+ * Published rather than silently applied. A selector that drops a fifth of its
+ * candidates and says nothing is indistinguishable from one that had fewer
+ * candidates, and the difference matters to a reader deciding what "a hundred
+ * indicators" means here.
+ */
+export interface Rejections {
+  /** Its latest value is in the future: a projection, not something that happened. */
+  projection: number;
+  /** Its title names two measures, so it cannot label the one column taken. */
+  twoVariable: number;
+  /** Another chart already carries the same column and unit. */
+  duplicateMeasure: number;
+}
+
+/**
+ * A chart titled "X vs. Y" plots two measures against each other.
+ *
+ * The registry takes a chart's first data column, which for one of these is
+ * one of the two — so "Seafood production: wild fish catch vs. aquaculture"
+ * arrived carrying the aquaculture number, and "Changes in energy use vs.
+ * changes in GDP per capita" arrived carrying energy use. In both cases the
+ * title is not a name for the number beneath it, and there is no way to derive
+ * one: the column's own short name is `consumption_per_capita`, which is not a
+ * label either.
+ *
+ * These are dropped rather than relabelled because this project does not
+ * publish a figure under a name it had to invent.
+ */
+function isTwoVariable(title: string): boolean {
+  return /\svs\.?\s/i.test(title);
+}
+
+/**
  * Build the panels.
  *
  * `perCategory` caps how many any one subject can contribute, so a registry
  * that happens to carry three hundred health indicators cannot turn a page
  * about India's growth into a page about Indian health.
  */
-export function buildPanels(
+export function selectPanels(
   reg: Registry,
   {
     limit = 100,
@@ -101,11 +165,24 @@ export function buildPanels(
      */
     readSeries?: (ind: Indicator) => ReturnType<typeof seriesFor>;
   } = {},
-): Panel[] {
+): { panels: Panel[]; rejected: Rejections } {
   const scored: Panel[] = [];
+  const rejected: Rejections = { projection: 0, twoVariable: 0, duplicateMeasure: 0 };
 
   for (const ind of reg.indicators) {
     if (!ind.hasIndia) continue;
+    /**
+     * A value dated after this year was modelled, not observed.
+     *
+     * The air-conditioning chart runs to 2050 and arrived looking exactly like
+     * every other panel: a headline number, a year beneath it, a sparkline. Its
+     * number was a forecast for a year a quarter of a century away, sat on a
+     * page about growth that has already happened, formatted identically to a
+     * measured 2024 observation. Truncating to the present is not available,
+     * because nothing in the file says which of its points were measured.
+     */
+    if (ind.lastYear !== null && ind.lastYear > THIS_YEAR) { rejected.projection++; continue; }
+    if (isTwoVariable(ind.title)) { rejected.twoVariable++; continue; }
     const rows = readSeries(ind);
     const india = countrySeries(rows, "IND");
     if (india.length < 5) continue;
@@ -147,6 +224,22 @@ export function buildPanels(
   scored.sort((a, b) => b.score - a.score);
 
   /**
+   * One panel per measurement, keeping the best-evidenced framing of it.
+   *
+   * Applied after the sort, so the survivor is the highest-scoring of the
+   * group and the choice is the same one the page would have made anyway.
+   * Ties break on slug, so two runs over the same registry agree.
+   */
+  const seen = new Set<string>();
+  const unique: Panel[] = [];
+  for (const p of scored) {
+    const key = measureKey(p.indicator);
+    if (seen.has(key)) { rejected.duplicateMeasure++; continue; }
+    seen.add(key);
+    unique.push(p);
+  }
+
+  /**
    * Round-robin across subjects, rather than a cap with a fallback.
    *
    * The first version capped each category and then, if the page came up
@@ -162,7 +255,7 @@ export function buildPanels(
    * ceiling for callers that want one.
    */
   const queues = new Map<string, Panel[]>();
-  for (const p of scored) {
+  for (const p of unique) {
     const q = queues.get(p.indicator.category) ?? [];
     q.push(p);
     queues.set(p.indicator.category, q);
@@ -189,7 +282,15 @@ export function buildPanels(
   // Ordered by evidence rather than by the round-robin's interleaving, so the
   // page reads strongest-first and the balance is a property of the set.
   taken.sort((a, b) => b.score - a.score);
-  return taken;
+  return { panels: taken, rejected };
+}
+
+/** The panels alone, for callers that do not report the exclusions. */
+export function buildPanels(
+  reg: Registry,
+  opts: Parameters<typeof selectPanels>[1] = {},
+): Panel[] {
+  return selectPanels(reg, opts).panels;
 }
 
 export interface PanelTally {
