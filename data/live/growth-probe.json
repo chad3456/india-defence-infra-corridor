@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-09-08T05:39:03.216Z",
+  "probedAt": "2026-09-17T09:47:33.534Z",
   "probes": [
     {
       "topic": "startups",
@@ -7,7 +7,7 @@
       "url": "https://www.startupindia.gov.in/",
       "ok": true,
       "status": "200",
-      "bytes": 720039,
+      "bytes": 710691,
       "statesNamed": 4,
       "statewiseRows": 0,
       "sampleRows": [],
@@ -20,7 +20,7 @@
       "url": "https://dpiit.gov.in/",
       "ok": true,
       "status": "200",
-      "bytes": 6588,
+      "bytes": 6593,
       "statesNamed": 0,
       "statewiseRows": 0,
       "sampleRows": [],
@@ -44,9 +44,9 @@
       "statesNamed": 21,
       "statewiseRows": 41,
       "sampleRows": [
-        "2 | Andhra Pradesh | 12,617,958 | 4,713,062 | 17,331,020 | 6,910.18",
-        "4 | Assam | 23,431,254 | 2,673,607 | 26,104,861 | 7,435.71",
-        "5 | Bihar | 61,285,862 | 9,018,419 | 70,304,281 | 31,288.30"
+        "2 | Andhra Pradesh | 12,636,392 | 4,726,512 | 17,362,904 | 7,016.17",
+        "4 | Assam | 23,336,661 | 2,675,677 | 26,012,338 | 7,522.78",
+        "5 | Bihar | 61,370,720 | 9,035,084 | 70,405,804 | 31,366.41"
       ],
       "looksLikeShell": false,
       "note": "carries a statewise table in the bytes"
@@ -143,7 +143,7 @@
       "url": "https://pib.gov.in/allRel.aspx",
       "ok": true,
       "status": "200",
-      "bytes": 131925,
+      "bytes": 147120,
       "statesNamed": 0,
       "statewiseRows": 0,
       "sampleRows": [],
@@ -154,8 +154,14 @@
       "topic": "press",
       "what": "PIB Ministry of Commerce",
       "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=1",
-      "ok": false,
-      "status": "HTTP 404"
+      "ok": true,
+      "status": "200",
+      "bytes": 5213,
+      "statesNamed": 0,
+      "statewiseRows": 0,
+      "sampleRows": [],
+      "looksLikeShell": false,
+      "note": "200, but no statewise data found"
     }
   ]
 }
