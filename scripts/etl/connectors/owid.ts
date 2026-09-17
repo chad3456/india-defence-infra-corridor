@@ -53,8 +53,14 @@ const OWID = "https://ourworldindata.org";
 
 /** Requests per indicator are two, so the gap is what protects the host. */
 const GAP_MS = 220;
-/** Leave the job time to write and commit whatever it has. */
-const BUDGET_MS = 32 * 60_000;
+/**
+ * Leave the job time to write and commit whatever it has.
+ *
+ * Well inside the workflow's fifty-minute timeout, because a run killed by the
+ * timeout skips its own summary and leaves the commit step to find whatever
+ * the last incremental write put down.
+ */
+const BUDGET_MS = 30 * 60_000;
 /** Ceiling on indicators. Raised or lowered by editing this line, not by luck. */
 const MAX_INDICATORS = 1400;
 /**
@@ -259,11 +265,31 @@ async function main(): Promise<void> {
 
   const chosen = slugs.slice(0, MAX_INDICATORS);
   const indicators: Indicator[] = [];
+  /** Set by the writer each time, so the summary reflects the last write. */
+  let lastWrite = 0;
   const seriesShards = new Map<number, Record<string, SeriesRow[]>>();
   const mapShards = new Map<number, Record<string, MapRow[]>>();
   const failures: Failure[] = [];
   let mapFetched = 0;
   let stoppedEarly = "";
+
+  /** Everything the run has so far, on disk. Safe to call at any point. */
+  const write = async (): Promise<void> => {
+    await mkdir(join(OUT_DIR, "series"), { recursive: true });
+    await mkdir(join(OUT_DIR, "map"), { recursive: true });
+    for (const [shard, payload] of seriesShards) {
+      await writeFile(join(OUT_DIR, "series", `${shard}.json`), JSON.stringify(payload) + "\n", "utf8");
+    }
+    for (const [shard, payload] of mapShards) {
+      await writeFile(join(OUT_DIR, "map", `${shard}.json`), JSON.stringify(payload) + "\n", "utf8");
+    }
+    lastWrite = indicators.length;
+  };
+
+  // The output directory is cleared once, before anything is written, rather
+  // than immediately before the final write — an incremental writer that also
+  // deletes would destroy its own earlier output on every pass.
+  await rm(OUT_DIR, { recursive: true, force: true });
 
   for (const [i, slug] of chosen.entries()) {
     if (Date.now() - started > BUDGET_MS) {
@@ -273,8 +299,16 @@ async function main(): Promise<void> {
 
     /* ── Metadata first. No metadata, no indicator. ─────────────────── */
     await pace();
+    /**
+     * No retry and a short timeout, because the common failure is a 404.
+     *
+     * OWID's sitemap lists charts that have since been retired, and a retired
+     * slug 404s. With one retry and a 45-second timeout each dead slug cost up
+     * to a minute and a half of backoff; across a few hundred of them that is
+     * the entire run. A 404 will not fix itself on a second ask.
+     */
     const meta = await getJson<Metadata>(`${OWID}/grapher/${slug}.metadata.json`, {
-      timeoutMs: 45_000, retries: 1, cacheMs: 0,
+      timeoutMs: 15_000, retries: 0, cacheMs: 0,
     });
     if (!meta.ok || !meta.data) {
       failures.push({ slug, stage: "metadata", why: meta.error ?? "no body" });
@@ -306,7 +340,7 @@ async function main(): Promise<void> {
     await pace();
     const seriesCsv = await getText(
       `${OWID}/grapher/${slug}.csv?csvType=filtered&country=${COUNTRIES.join("~")}&useColumnShortNames=true`,
-      { timeoutMs: 45_000, retries: 1, cacheMs: 0 },
+      { timeoutMs: 20_000, retries: 0, cacheMs: 0 },
     );
     if (!seriesCsv.ok || !seriesCsv.data) {
       failures.push({ slug, stage: "series", why: seriesCsv.error ?? "no body" });
@@ -347,7 +381,7 @@ async function main(): Promise<void> {
     if (wantMap) {
       await pace(MAP_GAP_MS);
       const full = await getText(`${OWID}/grapher/${slug}.csv?useColumnShortNames=true`, {
-        timeoutMs: 60_000, retries: 1, cacheMs: 0,
+        timeoutMs: 45_000, retries: 0, cacheMs: 0,
       });
       if (full.ok && full.data) {
         const f = parseCsv(full.data);
@@ -412,19 +446,20 @@ async function main(): Promise<void> {
         `  ${indicators.length} indicators, ${mapFetched} with map data, ${failures.length} skipped, ` +
         `${Math.round((Date.now() - started) / 1000)}s elapsed`,
       );
+      /**
+       * Write as we go, because a run that is killed must not lose everything.
+       *
+       * The first version wrote once at the end. It overran its budget, the
+       * workflow timeout killed it, and the commit step found no file — forty
+       * minutes of a charity's bandwidth spent and nothing to show. Every
+       * other connector in this project writes incrementally for exactly this
+       * reason; this one forgot.
+       */
+      await write();
     }
   }
 
-  /* ── Write ──────────────────────────────────────────────────────── */
-  await rm(OUT_DIR, { recursive: true, force: true });
-  await mkdir(join(OUT_DIR, "series"), { recursive: true });
-  await mkdir(join(OUT_DIR, "map"), { recursive: true });
-  for (const [shard, payload] of seriesShards) {
-    await writeFile(join(OUT_DIR, "series", `${shard}.json`), JSON.stringify(payload) + "\n", "utf8");
-  }
-  for (const [shard, payload] of mapShards) {
-    await writeFile(join(OUT_DIR, "map", `${shard}.json`), JSON.stringify(payload) + "\n", "utf8");
-  }
+  await write();
 
   const byCategory = new Map<string, number>();
   for (const ind of indicators) byCategory.set(ind.category, (byCategory.get(ind.category) ?? 0) + 1);
@@ -468,6 +503,7 @@ async function main(): Promise<void> {
     byCategory: [...byCategory].map(([key, n]) => ({ key, n })).sort((a, b) => b.n - a.n),
     discovery: note,
     stoppedEarly,
+    lastIncrementalWrite: lastWrite,
     failures: failures.slice(0, 120),
     indicators,
   };

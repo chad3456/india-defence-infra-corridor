@@ -44,9 +44,15 @@ jobs:
         if: always()
         run: |
           set -uo pipefail
-          if [ ! -f data/owid/index.json ]; then
-            echo "Nothing to commit: the registry was not produced." >&2
+          # A run killed by the workflow timeout never reaches its summary, so
+          # index.json may be absent while the shards from the last incremental
+          # write are there. Committing those is better than losing the run.
+          if [ ! -d data/owid ] || [ -z "$(ls -A data/owid 2>/dev/null)" ]; then
+            echo "Nothing to commit: the registry produced no files at all." >&2
             exit 1
+          fi
+          if [ ! -f data/owid/index.json ]; then
+            echo "index.json is absent — the run was cut short. Committing the shards it wrote." >&2
           fi
           git config user.name  "bharat-tracker-bot"
           git config user.email "actions@github.com"
