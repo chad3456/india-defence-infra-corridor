@@ -212,5 +212,22 @@ console.log("\nThe sparkline says which scale it is on and where the data stops"
     sparkGeometry(decadal, 110, 34).segments, 1);
 }
 
+/**
+ * The long-series chart, whose whole reason for existing is a form failure.
+ *
+ * The world tracker drew 156 points of CO₂ emissions as twenty-six labelled
+ * columns in a card 498 pixels wide — nineteen pixels per column for labels
+ * reading "12.29 billion". It scrolled to 780 pixels and was legible at
+ * neither width. The axis decisions it replaced those columns with are the
+ * same two the sparkline makes, so they are tested once, against both.
+ */
+console.log("\nA long series keeps every point it was given");
+{
+  const long = Array.from({ length: 156 }, (_, i) => ({ year: 1858 + i, value: 1000 * 1.05 ** i }));
+  const g = sparkGeometry(long, 1000, 210);
+  check("no point is dropped to make room for a label", (g.d.match(/[ML]/g) ?? []).length, 156);
+  check("and an exponential span takes the log axis", g.logScale, true);
+}
+
 console.log(failures === 0 ? "\nAll panel selector tests passed." : `\n${failures} panel selector test(s) failed.`);
 if (failures > 0) process.exit(1);

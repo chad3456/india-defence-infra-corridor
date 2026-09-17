@@ -193,7 +193,23 @@ export function Columns({
    * labels, because a column whose value you cannot read is not a cheaper
    * chart, it is a different one.
    */
-  const minWidth = points.length * 30;
+  /**
+   * The width comes from the widest label, not from a constant.
+   *
+   * It was thirty pixels a column, which is right for the two- and four-digit
+   * labels these stories mostly use and badly wrong for anything longer. The
+   * world tracker handed it twenty-six columns labelled "12.29 billion" and
+   * every one of them painted over its neighbours — inside a scroll container
+   * that was working exactly as designed, at a width the component itself had
+   * chosen. The chart was legible at no size.
+   *
+   * Roughly 6.2 pixels per character at the 11–13px the labels are drawn at,
+   * plus the gap. An estimate rather than a measurement, because measuring
+   * text needs a DOM and this renders on the server — but an estimate from the
+   * actual strings beats a constant that cannot see them.
+   */
+  const widest = Math.max(2, ...points.map((p) => fmt(p.value).length));
+  const minWidth = points.length * Math.max(30, Math.ceil(widest * 6.2) + 6);
   return (
     <div className="-mx-1 overflow-x-auto px-1">
       <div className="flex items-end gap-1.5 sm:gap-2.5" style={{ minWidth }}>

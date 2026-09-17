@@ -1399,6 +1399,64 @@ export function GridMap({
  * any page using these has to say so, because a reader who assumes zero will
  * read a 2% wobble as a collapse.
  */
+/* ─────────────────────── Series rules, shared ───────────────────────── */
+
+export interface Point { year: number; value: number }
+
+/**
+ * Whether a series needs a logarithmic axis to show its own shape.
+ *
+ * India's annual CO₂ emissions run from 1792. On a linear axis scaled to the
+ * 2024 value, the first century and a half sits inside one pixel of the
+ * baseline — a flat rule with a tick at the end, correct and communicating
+ * nothing. On a log axis steady exponential growth is a straight rising line,
+ * which is the actual finding about it.
+ *
+ * Fifty-fold is where the bottom half of a linear range stops being separable
+ * at chart size. Below that the linear axis is the more honest default,
+ * because a log axis flattens differences a reader would want to see. A zero
+ * or a negative anywhere in the series rules it out entirely.
+ */
+export function shouldLog(values: number[]): boolean {
+  const lo = Math.min(...values);
+  const hi = Math.max(...values);
+  return lo > 0 && hi / lo >= 50;
+}
+
+/**
+ * Where a line must stop, because the record does.
+ *
+ * India's CO₂ series has no readings between 1866 and 1878. Joining those with
+ * a straight segment is a confident interpolation through a hole the source is
+ * explicit about. A step more than three times the usual one is a gap, and the
+ * path breaks there so a hole in the record reads as a hole.
+ *
+ * Three times the median rather than a fixed number of years, because a
+ * decadal census series is not a gapped annual one and a constant could not
+ * tell them apart.
+ */
+export function gapThreshold(points: Point[]): number {
+  const steps = points.slice(1).map((p, i) => p.year - points[i]!.year).sort((a, b) => a - b);
+  const typical = steps[Math.floor(steps.length / 2)] ?? 1;
+  return Math.max(2, typical * 3);
+}
+
+/** A path through the points, broken at gaps, using caller-supplied scales. */
+export function seriesPath(
+  points: Point[],
+  px: (year: number) => number,
+  py: (value: number) => number,
+): string {
+  const breakAt = gapThreshold(points);
+  let d = "";
+  points.forEach((p, i) => {
+    const prev = points[i - 1];
+    const jump = prev !== undefined && p.year - prev.year > breakAt;
+    d += `${i === 0 || jump ? "M" : "L"}${px(p.year).toFixed(1)},${py(p.value).toFixed(1)} `;
+  });
+  return d.trim();
+}
+
 /**
  * The sparkline's geometry, separated from its markup so it can be tested.
  *
@@ -1408,7 +1466,7 @@ export function GridMap({
  * A silent choice with no test on it is a choice that drifts.
  */
 export function sparkGeometry(
-  points: Array<{ year: number; value: number }>,
+  points: Point[],
   width: number,
   height: number,
 ): { d: string; logScale: boolean; segments: number } {
@@ -1416,60 +1474,15 @@ export function sparkGeometry(
   const ys = points.map((p) => p.value);
   const x0 = Math.min(...xs);
   const x1 = Math.max(...xs);
-
-  /**
-   * A linear axis turns a century of exponential growth into a flat line.
-   *
-   * India's annual CO₂ emissions run from 1858, and on a linear axis scaled to
-   * the 2024 value the first hundred and twenty years sit inside one pixel of
-   * the baseline. What rendered was a flat rule along the bottom with a dot at
-   * each end — at thumbnail size, indistinguishable from a series with two
-   * points in it, and drawn that way on a page whose whole subject is growth.
-   * The shape was correct and it communicated nothing.
-   *
-   * So a series spanning fifty-fold or more, with no zero or negative value in
-   * it, is drawn on a log axis, where steady exponential growth is a straight
-   * rising line — which is the actual finding about it. Fifty is the point at
-   * which the bottom half of a linear range stops being separable at this
-   * size; below it the linear axis is still the more honest default, because
-   * a log axis flattens differences a reader would want to see.
-   *
-   * The choice is made here rather than by the caller, and the chart marks
-   * itself when it takes it. A hundred panels silently mixing two scales is
-   * exactly the kind of quiet inconsistency that makes a wall of sparklines
-   * unreadable, and a caller can always forget to pass the flag.
-   */
-  const lo = Math.min(...ys);
-  const hi = Math.max(...ys);
-  const logScale = lo > 0 && hi / lo >= 50;
+  const logScale = shouldLog(ys);
   const t = (v: number): number => (logScale ? Math.log10(v) : v);
-  const y0 = t(lo);
-  const y1 = t(hi);
-
+  const y0 = t(Math.min(...ys));
+  const y1 = t(Math.max(...ys));
   const px = (year: number): number => (x1 === x0 ? 1 : ((year - x0) / (x1 - x0)) * (width - 6) + 3);
   const py = (v: number): number =>
     (y1 === y0 ? height / 2 : height - 4 - ((t(v) - y0) / (y1 - y0)) * (height - 8));
-
-  /**
-   * A line drawn across missing years asserts values nobody observed.
-   *
-   * The CO₂ series has no readings between 1866 and 1878, and the first
-   * version joined them with a straight segment twelve years long — a
-   * confident interpolation through a gap the source is explicit about. The
-   * path breaks wherever a step is more than three times the usual one, so a
-   * hole in the record reads as a hole.
-   */
-  const steps = points.slice(1).map((p, i) => p.year - points[i]!.year).sort((a, b) => a - b);
-  const typical = steps[Math.floor(steps.length / 2)] ?? 1;
-  const breakAt = Math.max(2, typical * 3);
-  let d = "";
-  points.forEach((p, i) => {
-    const prev = points[i - 1];
-    const jump = prev !== undefined && p.year - prev.year > breakAt;
-    d += `${i === 0 || jump ? "M" : "L"}${px(p.year).toFixed(1)},${py(p.value).toFixed(1)} `;
-  });
-
-  return { d: d.trim(), logScale, segments: (d.match(/M/g) ?? []).length };
+  const d = seriesPath(points, px, py);
+  return { d, logScale, segments: (d.match(/M/g) ?? []).length };
 }
 
 export function Sparkline({
@@ -1518,6 +1531,162 @@ export function Sparkline({
           fill="var(--story-ink-3)">log</text>
       )}
     </svg>
+  );
+}
+
+/* ───────────────────────────── TimeSeries ───────────────────────────── */
+
+/**
+ * A long series at full size, with axes, drawn as a line.
+ *
+ * ── Why this exists ──────────────────────────────────────────────────────
+ *
+ * The world tracker drew India's annual CO₂ emissions — 156 points spanning
+ * 1792 to 2024 — as a column chart, thinned to twenty-six columns with the
+ * value printed on each. At the width the card gives it that is nineteen
+ * pixels per column for labels reading "12.29 billion", so the numbers painted
+ * over each other into an unreadable smear, and the chart scrolled sideways to
+ * 780 pixels to hold columns nobody could read anyway.
+ *
+ * `Columns` was not being misused so much as used past its own stated range:
+ * its doc comment says it is "fine for the ten-to-twenty points these stories
+ * use and wrong above that", and that "the form should change before the label
+ * rule does". There was no form to change to. This is it.
+ *
+ * ── What it does differently ─────────────────────────────────────────────
+ *
+ * It draws every point rather than thinning to what will fit labels, because a
+ * line does not need a label per point — the axes carry the reading and the
+ * shape carries the finding. It labels the ends and nothing in between, which
+ * is what a reader actually wants from a two-century series: where it started,
+ * where it is now, and the shape between.
+ *
+ * It takes the same two decisions the sparkline takes, by the same rules: a
+ * log axis when the range spans fiftyfold or more, and a break in the line
+ * wherever the record has a hole. Both are marked here rather than silent —
+ * the axis says "log scale" in words and a broken line is visibly broken.
+ */
+export function TimeSeries({
+  points, tone = "mid", height = 300, format, unit,
+}: {
+  points: Point[];
+  tone?: Tone;
+  height?: number;
+  format?: (v: number) => string;
+  unit?: string;
+}) {
+  if (points.length < 2) {
+    return (
+      <p className="mono text-[11px]" style={{ color: "var(--story-ink-3)" }}>
+        Fewer than two points; nothing to draw as a series.
+      </p>
+    );
+  }
+  const fmtV = format ?? ((v: number) => String(Math.round(v)));
+
+  /*
+   * The viewBox is a fixed 1000 wide and the SVG scales to its container, so
+   * the gutters are in viewBox units. A left gutter sized in pixels would be
+   * the wrong width at every size but one.
+   */
+  const W = 1000;
+  /*
+   * The gutter and the type size are in viewBox units, so they have to be
+   * chosen against the scale the chart actually renders at. This sits in a
+   * half-width card — about 500px on a desktop, so a 1000-unit viewBox halves
+   * everything. At the first sizes, a 13-unit label rendered as six-pixel type
+   * and "1.19 billion" ran off the left edge as ".19 billion": a value axis
+   * that was both unreadable and wrong.
+   *
+   * 22 units renders as 11px at half scale and 8px at the ~0.37 a phone gives
+   * it, and 170 units of gutter holds the longest label this formats at either.
+   */
+  const L = 170;  // value axis
+  const R = 20;
+  const T = 20;
+  const B = 44;   // year axis
+
+  const xs = points.map((p) => p.year);
+  const ys = points.map((p) => p.value);
+  const x0 = Math.min(...xs);
+  const x1 = Math.max(...xs);
+  const logScale = shouldLog(ys);
+  const t = (v: number): number => (logScale ? Math.log10(v) : v);
+
+  /*
+   * A linear axis starts at zero, because the distance from the axis is the
+   * quantity and a cropped baseline overstates every change. A log axis
+   * cannot: log(0) is undefined, so it starts at the series minimum and the
+   * label beside it says so.
+   */
+  const lo = Math.min(...ys);
+  const hi = Math.max(...ys);
+  const base = logScale ? t(lo) : Math.min(0, lo);
+  const top = logScale ? t(hi) : hi;
+  const span = top - base || 1;
+
+  const px = (year: number): number =>
+    (x1 === x0 ? L : L + ((year - x0) / (x1 - x0)) * (W - L - R));
+  const py = (v: number): number => T + (1 - (t(v) - base) / span) * (height - T - B);
+
+  const d = seriesPath(points, px, py);
+  const first = points[0]!;
+  const last = points[points.length - 1]!;
+
+  /* Three value ticks: the ends and the middle. More is clutter at this size. */
+  const ticks = logScale
+    ? [lo, Math.sqrt(lo * hi), hi]
+    : [base, base + span / 2, base + span];
+
+  /*
+   * Year ticks at the ends plus two inside, snapped to real observations so a
+   * label never names a year the series has no reading for.
+   */
+  const yearAt = (frac: number): number =>
+    points[Math.round(frac * (points.length - 1))]!.year;
+  const yearTicks = [...new Set([x0, yearAt(0.33), yearAt(0.66), x1])];
+
+  return (
+    <div>
+      <svg viewBox={`0 0 ${W} ${height}`} role="img"
+        aria-label={
+          `${points.length} points from ${x0} to ${x1}, `
+          + `${fmtV(first.value)} to ${fmtV(last.value)}`
+          + (logScale ? ", drawn on a logarithmic scale" : "")
+        }
+        style={{ width: "100%", height: "auto" }}>
+        {ticks.map((v, i) => (
+          <g key={i}>
+            <line x1={L} x2={W - R} y1={py(v)} y2={py(v)}
+              stroke="var(--story-rule)" strokeWidth={1} />
+            <text x={L - 14} y={py(v) + 7} textAnchor="end" fontSize={22}
+              fontFamily="ui-monospace, monospace" fill="var(--story-ink-3)">
+              {fmtV(v)}
+            </text>
+          </g>
+        ))}
+        {yearTicks.map((y) => (
+          <text key={y} x={px(y)} y={height - 10}
+            textAnchor={y === x0 ? "start" : y === x1 ? "end" : "middle"}
+            fontSize={22} fontFamily="ui-monospace, monospace" fill="var(--story-ink-3)">
+            {y}
+          </text>
+        ))}
+        <path d={d} fill="none" stroke={TONE[tone]} strokeWidth={2}
+          strokeLinejoin="round" strokeLinecap="round" />
+        <circle cx={px(last.year)} cy={py(last.value)} r={4} fill={TONE[tone]} />
+      </svg>
+      <p className="mono mt-1.5 text-[10.5px] leading-[1.5]" style={{ color: "var(--story-ink-3)" }}>
+        {points.length} points, {x0}–{x1}. {fmtV(first.value)} → {fmtV(last.value)}
+        {unit ? ` ${unit}` : ""}.
+        {logScale
+          ? " Log scale: each gridline is a step in order of magnitude, and the axis starts at the series minimum rather than zero, because zero has no place on one."
+          : " Linear scale from zero."}
+        {(d.match(/M/g) ?? []).length > 1
+          ? " The line breaks where the record has no readings."
+          : ""}
+      </p>
+    </div>
   );
 }
 

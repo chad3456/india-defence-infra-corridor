@@ -7,7 +7,7 @@ import {
   Eyebrow, Headline, Standfirst, Mark, Stat, Columns, Sources,
 } from "@/components/stories/Kit";
 import {
-  ChartTitle, Caption, Choropleth, RankedRows,
+  ChartTitle, Caption, Choropleth, RankedRows, TimeSeries,
 } from "@/components/stories/Charts";
 import IndicatorPicker from "@/components/world/IndicatorPicker";
 
@@ -88,6 +88,22 @@ export default async function WorldPage({
     ?? reg.indicators.find((i) => i.tiers.map)
     ?? reg.indicators[0];
 
+  /**
+   * A link asking for an indicator the registry does not have.
+   *
+   * The fallback chain above is right — a retired default must not take the
+   * page down — but it was silent, so a stale or mistyped `?i=` rendered a
+   * different indicator with nothing to say so. Every heading, every number
+   * and the map itself were about something else, and the only clue was that
+   * the highlighted row in the list was not the one asked for.
+   *
+   * The registry is rebuilt from OWID's sitemap, and OWID retires slugs, so
+   * links into this page go stale as a matter of course. Saying so costs one
+   * line and is the difference between a reader knowing they are looking at a
+   * substitute and not.
+   */
+  const substituted = wanted !== undefined && indicator(reg, wanted) === undefined ? wanted : null;
+
   if (!chosen) {
     return (
       <div className="pt-12">
@@ -147,6 +163,17 @@ export default async function WorldPage({
 
       {/* ── The chosen indicator ──────────────────────────────────────── */}
       <section className="mt-10">
+        {substituted && (
+          <p className="mb-5 rounded-lg border p-3.5 text-[12.5px] leading-[1.6]"
+            style={{ borderColor: "var(--s-hot)", color: "var(--story-ink-2)" }}>
+            <strong style={{ color: "var(--s-hot)" }}>Not the indicator you asked for.</strong>{" "}
+            This registry has no <span className="mono">{substituted}</span> — the slug may have
+            been retired by Our World in Data since the link was made, or the last build may not
+            have reached it. Everything below is about{" "}
+            <strong style={{ color: "var(--story-ink)" }}>{chosen.title}</strong> instead. Search
+            above for what you were after.
+          </p>
+        )}
         <Eyebrow tone="hot">{chosen.category}</Eyebrow>
         <Headline>{chosen.title}</Headline>
         {chosen.subtitle && <Standfirst>{chosen.subtitle}</Standfirst>}
@@ -240,34 +267,45 @@ export default async function WorldPage({
       </section>
 
       {/* ── India over time, and against the comparators ──────────────── */}
-      <section className="mt-6 grid gap-5 lg:grid-cols-2">
+      <section className="mt-6 grid items-start gap-5 lg:grid-cols-2">
         <div className="story-card min-w-0 p-5 sm:p-6">
+          {/*
+            India's own first and last year, not the indicator's.
+
+            The heading used chosen.firstYear, which is the earliest year in
+            the file across the whole comparator set. On CO₂ emissions that is
+            1792 — a Chinese observation — so the card read "India, 1792–2024"
+            above a line that starts in 1858, and the chart's own caption
+            underneath it said 1858. The heading was wrong by sixty-six years
+            about a country it named.
+          */}
           <ChartTitle note={`${unit || "Unit not stated"}. India only.`}>
-            India, {chosen.firstYear ?? "?"}–{chosen.lastYear ?? "?"}
+            {india.length > 0
+              ? `India, ${india[0]!.year}–${india[india.length - 1]!.year}`
+              : "India"}
           </ChartTitle>
-          {india.length > 1 ? (
-            <Columns
-              tone="hot"
-              height={170}
-              points={india
-                // A century of annual points is unreadable as labelled columns,
-                // so a long series is thinned to about thirty and the caption
-                // says so rather than letting the gaps read as missing years.
-                .filter((_, i, arr) => arr.length <= 30 || i % Math.ceil(arr.length / 30) === 0)
-                .map((p) => ({ label: String(p.year).slice(2), value: p.value }))}
-              format={(v: number) => fmt(v)}
-            />
-          ) : (
-            <p className="text-[13px]" style={{ color: "var(--story-ink-2)" }}>
-              Fewer than two Indian points; nothing to draw as a series.
-            </p>
-          )}
-          {india.length > 30 && (
-            <Caption>
-              {india.length} annual points thinned to about thirty so each column can carry its
-              value. The years between are in the data and not on this chart.
-            </Caption>
-          )}
+          {/*
+            A line, not thinned columns.
+
+            This drew 156 points of CO₂ emissions as twenty-six labelled
+            columns in a card 498 pixels wide. Nineteen pixels a column, for
+            labels reading "12.29 billion": the numbers painted over each other
+            into a smear, and the chart scrolled to 780 pixels to hold columns
+            that could not be read at either width. Thinning to thirty also
+            threw away eighty per cent of the series to make room for labels
+            nobody could use.
+
+            A line needs no label per point — the axes carry the reading — so
+            every observation is drawn, and the two decisions the chart makes
+            about scale and gaps are stated underneath it.
+          */}
+          <TimeSeries
+            points={india}
+            tone="hot"
+            height={300}
+            format={(v: number) => fmt(v)}
+            unit={unit || undefined}
+          />
         </div>
 
         <div className="story-card min-w-0 p-5 sm:p-6">
