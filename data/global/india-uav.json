@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-15T13:52:14.529Z",
+  "builtAt": "2026-09-17T09:45:30.794Z",
   "source": "English Wikipedia, via the MediaWiki API. The article set is whatever the categories named below contain, plus the unmanned-looking links in the list articles named beside them. Every field is read from the article's own infobox, and the status string is carried verbatim beside the bucket it was sorted into.",
   "method": "The indexes are the claim rather than a list of programmes anyone typed, so an omission is an omission from Wikipedia's own categorisation and not from someone's recall. The category namespace is searched, one level of unmanned-looking subcategory is walked, and every category actually read is published. Pages with no usable infobox are recorded with the templates they did carry — most are organisations or umbrella projects.",
   "cannotSay": [
@@ -34,23 +34,23 @@
   "templatesSeen": [
     {
       "name": "Infobox weapon",
-      "n": 43
+      "n": 37
     },
     {
       "name": "Infobox aircraft",
-      "n": 23
+      "n": 22
     },
     {
       "name": "Infobox newspaper",
       "n": 7
     },
     {
-      "name": "Infobox Radar",
+      "name": "Infobox military unit",
       "n": 6
     },
     {
-      "name": "Infobox military unit",
-      "n": 6
+      "name": "Infobox Radar",
+      "n": 5
     },
     {
       "name": "Infobox company",
@@ -58,10 +58,6 @@
     },
     {
       "name": "Infobox government agency",
-      "n": 3
-    },
-    {
-      "name": "infobox weapon",
       "n": 3
     },
     {
@@ -74,6 +70,10 @@
     },
     {
       "name": "Infobox ship/characteristics",
+      "n": 2
+    },
+    {
+      "name": "infobox weapon",
       "n": 2
     },
     {
@@ -215,14 +215,6 @@
       "templates": "no infobox template at all"
     },
     {
-      "title": "Indian Doppler Radar",
-      "templates": "Infobox Radar"
-    },
-    {
-      "title": "Integrated Guided Missile Development Programme",
-      "templates": "no infobox template at all"
-    },
-    {
       "title": "KALI (electron accelerator)",
       "templates": "no infobox template at all"
     },
@@ -297,14 +289,22 @@
     {
       "title": "Anti-aircraft gun",
       "templates": "no infobox template at all"
+    },
+    {
+      "title": "Bharat Electronics Limited",
+      "templates": "Infobox company"
+    },
+    {
+      "title": "Request for proposal",
+      "templates": "no infobox template at all"
     }
   ],
   "counts": {
     "articlesIndexed": 183,
-    "withInfobox": 68,
+    "withInfobox": 60,
     "keptAsUnmanned": 15,
-    "filteredNotUnmanned": 53,
-    "noInfobox": 115,
+    "filteredNotUnmanned": 45,
+    "noInfobox": 123,
     "categoriesRead": 4
   },
   "byStage": {
@@ -382,38 +382,6 @@
     {
       "title": "Extended Range Air Defence System",
       "role": "Long-range surface-to-air missile"
-    },
-    {
-      "title": "Gaurav (glide bomb)",
-      "role": "Guided glide bomb"
-    },
-    {
-      "title": "High Speed Low Drag Bomb",
-      "role": "Precision-guided general-purpose bomb"
-    },
-    {
-      "title": "Hypersonic Technology Demonstrator Vehicle",
-      "role": null
-    },
-    {
-      "title": "Indian Ballistic Missile Defence Programme",
-      "role": "Missile defense"
-    },
-    {
-      "title": "INSAS rifle",
-      "role": null
-    },
-    {
-      "title": "Integrated Drone Detection & Interdiction System",
-      "role": "Laser weapon"
-    },
-    {
-      "title": "K-4 (missile)",
-      "role": "Intermediate-range SLBM"
-    },
-    {
-      "title": "K-5 (ballistic missile)",
-      "role": "SLBM"
     },
     {
       "title": "K-6 (missile)",
@@ -548,8 +516,16 @@
     "DRDO light tank",
     "DRDO NETRA",
     "DRDO Self Propelled Mine Burier",
+    "Gaurav (glide bomb)",
+    "High Speed Low Drag Bomb",
+    "Hypersonic Technology Demonstrator Vehicle",
+    "Indian Ballistic Missile Defence Programme",
     "Indian Doppler Radar",
+    "INSAS rifle",
+    "Integrated Drone Detection & Interdiction System",
     "Integrated Guided Missile Development Programme",
+    "K-4 (missile)",
+    "K-5 (ballistic missile)",
     "KALI (electron accelerator)",
     "Machilipatnam Test Range Project",
     "Maitri (missile)",
@@ -580,15 +556,7 @@
     "active protection system",
     "Network-centric warfare",
     "Stealth aircraft",
-    "Signals intelligence",
-    "Electronic Attack",
-    "weapons of mass destruction",
-    "Medium-altitude long-endurance UAV",
-    "High-altitude long-endurance",
-    "Nuclear detection",
-    "Business Standard",
-    "unmanned combat aerial vehicles",
-    "supercruise"
+    "Signals intelligence"
   ],
   "programmes": [
     {
