@@ -1,0 +1,43 @@
+name: Probe OWID and Indian cinema
+
+# Asks whether a thousand indicators can be discovered and fetched from a
+# source that publishes its own units and citations, and which measures of
+# Indian filmmaking are reachable at all.
+#
+# Runs here because the editing sandbox reaches almost nothing. Publishes no
+# figure: only whether a source answered, in what shape, and whether its query
+# parameters do anything.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-owid.ts"
+      - ".github/workflows/probe-owid.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-owid
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Probe
+        run: npm run owid:probe
+      - name: Commit the probe report
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/live/owid-probe.json
+          "chore(sources): OWID and cinema probe $(date -u +'%Y-%m-%d %H:%M')"
