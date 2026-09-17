@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-17T08:16:13.796Z",
+  "builtAt": "2026-09-17T08:21:15.249Z",
   "source": "English Wikipedia, via the MediaWiki API: the 'List of <language> films of <year>' articles, and 'List of highest-grossing Indian films'. Counts are of rows in tables whose headers name a title and a director, cast, producer or studio — a property of the table rather than of its position on the page.",
   "coverage": "THE ABSOLUTE TITLE COUNT IS NOT A PRODUCTION COUNT. It is the number of films English Wikipedia lists, which is a function of how many were made AND of how many people have written them down. The second has grown enormously since 2000 and has not grown evenly across languages, so a rising line in the absolute series may be a rising amount of documentation. The share between languages is far more robust, because coverage growth moves numerator and denominator together, and that is what any conclusion here should rest on.",
   "boxOfficeNote": "Box office is the one series coverage growth does not govern: the highest-grossing lists have been maintained across the whole period because money is interesting, and a film taking hundreds of crore does not go unrecorded in either direction. It is a top-of-distribution measure and says nothing whatever about the median film. Figures are nominal rupees and are not deflated; the cell is kept verbatim beside every converted number.",
@@ -29,14 +29,31 @@
     "Assamese",
     "Bhojpuri"
   ],
+  "checks": {
+    "redirectOffYear": "Every request records the title it actually landed on. A resolved title that no longer names the year asked for has hit a combined list, and its contents are not that year's output. Without this check ten consecutive Punjabi years returned byte-identical content and the connector counted the same 188 films ten times.",
+    "repeatedCounts": "As a backstop, three or more consecutive years with an identical film AND table count are dropped. A film industry does not do that; one article read several times does.",
+    "boxOfficeExcluded": "Tables whose headers carry a gross or a rank column are the year's highest-grossing box, not its release list. Counting them inflates the year and double-counts the films that appear in both."
+  },
   "counts": {
     "rowsAttempted": 324,
-    "yearsListed": 258,
-    "yearsMissing": 66,
-    "titles": 22674,
+    "yearsListed": 215,
+    "yearsMissing": 59,
+    "yearsRedirected": 47,
+    "yearsDroppedAsRepeats": 3,
+    "titles": 19987,
     "grossers": 271
   },
   "missingLists": [
+    "List of Punjabi films of 2016",
+    "List of Punjabi films of 2017",
+    "List of Punjabi films of 2018",
+    "List of Punjabi films of 2019",
+    "List of Punjabi films of 2020",
+    "List of Punjabi films of 2021",
+    "List of Punjabi films of 2022",
+    "List of Punjabi films of 2023",
+    "List of Punjabi films of 2024",
+    "List of Punjabi films of 2025",
     "List of Punjabi films of 2026",
     "List of Gujarati films of 2000",
     "List of Gujarati films of 2001",
@@ -52,23 +69,6 @@
     "List of Gujarati films of 2011",
     "List of Gujarati films of 2012",
     "List of Gujarati films of 2013",
-    "List of Gujarati films of 2014",
-    "List of Gujarati films of 2015",
-    "List of Gujarati films of 2016",
-    "List of Gujarati films of 2017",
-    "List of Gujarati films of 2018",
-    "List of Gujarati films of 2019",
-    "List of Gujarati films of 2020",
-    "List of Gujarati films of 2021",
-    "List of Gujarati films of 2022",
-    "List of Gujarati films of 2023",
-    "List of Gujarati films of 2024",
-    "List of Gujarati films of 2025",
-    "List of Gujarati films of 2026",
-    "List of Odia films of 2000",
-    "List of Odia films of 2001",
-    "List of Odia films of 2002",
-    "List of Odia films of 2003",
     "List of Assamese films of 2000",
     "List of Assamese films of 2001",
     "List of Assamese films of 2002",
@@ -96,571 +96,561 @@
     "List of Bhojpuri films of 2009",
     "List of Bhojpuri films of 2010",
     "List of Bhojpuri films of 2011",
-    "List of Bhojpuri films of 2012"
+    "List of Bhojpuri films of 2012",
+    "List of Bhojpuri films of 2013",
+    "List of Bhojpuri films of 2014",
+    "List of Bhojpuri films of 2015",
+    "List of Bhojpuri films of 2016",
+    "List of Bhojpuri films of 2017",
+    "List of Bhojpuri films of 2026"
+  ],
+  "redirectedLists": [
+    "List of Bengali films of 2000 → List of Bengali films",
+    "List of Bengali films of 2001 → List of Bengali films",
+    "List of Bengali films of 2002 → List of Bengali films",
+    "List of Bengali films of 2003 → List of Bengali films",
+    "List of Bengali films of 2004 → List of Bengali films",
+    "List of Bengali films of 2005 → List of Bengali films",
+    "List of Bengali films of 2006 → List of Bengali films",
+    "List of Bengali films of 2007 → List of Bengali films",
+    "List of Bengali films of 2008 → List of Bengali films",
+    "List of Bengali films of 2009 → List of Bengali films",
+    "List of Bengali films of 2010 → List of Bengali films",
+    "List of Bengali films of 2011 → List of Bengali films",
+    "List of Bengali films of 2012 → List of Bengali films",
+    "List of Bengali films of 2013 → List of Bengali films",
+    "List of Bengali films of 2014 → List of Bengali films",
+    "List of Bengali films of 2015 → List of Bengali films",
+    "List of Bengali films of 2016 → List of Bengali films",
+    "List of Bengali films of 2017 → List of Bengali films",
+    "List of Bengali films of 2018 → List of Bengali films",
+    "List of Bengali films of 2019 → List of Bengali films",
+    "List of Bengali films of 2020 → List of Bengali films",
+    "List of Bengali films of 2022 → List of Bengali films",
+    "List of Bengali films of 2023 → List of Bengali films",
+    "List of Bengali films of 2024 → List of Bengali films",
+    "List of Bengali films of 2025 → List of Bengali films",
+    "List of Punjabi films of 2000 → List of Punjabi films of the 2000s",
+    "List of Punjabi films of 2001 → List of Punjabi films of the 2000s",
+    "List of Punjabi films of 2002 → List of Punjabi films of the 2000s",
+    "List of Punjabi films of 2003 → List of Punjabi films of the 2000s",
+    "List of Punjabi films of 2004 → List of Punjabi films of the 2000s",
+    "List of Punjabi films of 2005 → List of Punjabi films of the 2000s",
+    "List of Punjabi films of 2006 → List of Punjabi films of the 2000s",
+    "List of Punjabi films of 2007 → List of Punjabi films of the 2000s",
+    "List of Punjabi films of 2008 → List of Punjabi films of the 2000s",
+    "List of Punjabi films of 2009 → List of Punjabi films of the 2000s",
+    "List of Assamese films of 2014 → List of Assamese films of the 2010s",
+    "List of Assamese films of 2015 → List of Assamese films of the 2010s",
+    "List of Assamese films of 2016 → List of Assamese films of the 2010s",
+    "List of Assamese films of 2017 → List of Assamese films of the 2010s",
+    "List of Assamese films of 2018 → List of Assamese films of the 2010s",
+    "List of Assamese films of 2019 → List of Assamese films of the 2010s",
+    "List of Assamese films of 2020 → List of Assamese films of the 2020s",
+    "List of Assamese films of 2021 → List of Assamese films of the 2020s",
+    "List of Assamese films of 2022 → List of Assamese films of the 2020s",
+    "List of Assamese films of 2023 → List of Assamese films of the 2020s",
+    "List of Assamese films of 2024 → List of Assamese films of the 2020s",
+    "List of Assamese films of 2025 → List of Assamese films of the 2020s"
+  ],
+  "repeatedCountYears": [
+    "Marathi 2000",
+    "Marathi 2001",
+    "Marathi 2002"
   ],
   "grossNote": "17 of 18 tables carried a film and a gross column; 271 rows read",
   "shares": [
     {
       "year": 2000,
-      "total": 536,
+      "total": 344,
       "byLanguage": {
-        "Hindi": 90,
+        "Hindi": 80,
         "Tamil": 72,
         "Telugu": 77,
         "Malayalam": 50,
         "Kannada": 54,
-        "Bengali": 0,
-        "Marathi": 5,
-        "Punjabi": 188
+        "Odia": 11
       },
       "shares": {
-        "Hindi": 16.791044776119403,
-        "Tamil": 13.432835820895523,
-        "Telugu": 14.365671641791044,
-        "Malayalam": 9.328358208955224,
-        "Kannada": 10.074626865671641,
-        "Bengali": 0,
-        "Marathi": 0.9328358208955223,
-        "Punjabi": 35.07462686567165
+        "Hindi": 23.25581395348837,
+        "Tamil": 20.930232558139537,
+        "Telugu": 22.38372093023256,
+        "Malayalam": 14.534883720930234,
+        "Kannada": 15.69767441860465,
+        "Odia": 3.1976744186046515
       }
     },
     {
       "year": 2001,
-      "total": 601,
+      "total": 407,
       "byLanguage": {
-        "Hindi": 75,
+        "Hindi": 65,
         "Tamil": 80,
         "Telugu": 89,
         "Malayalam": 102,
         "Kannada": 62,
-        "Bengali": 0,
-        "Marathi": 5,
-        "Punjabi": 188
+        "Odia": 9
       },
       "shares": {
-        "Hindi": 12.479201331114808,
-        "Tamil": 13.311148086522461,
-        "Telugu": 14.80865224625624,
-        "Malayalam": 16.97171381031614,
-        "Kannada": 10.316139767054908,
-        "Bengali": 0,
-        "Marathi": 0.8319467554076538,
-        "Punjabi": 31.281198003327788
+        "Hindi": 15.970515970515969,
+        "Tamil": 19.656019656019655,
+        "Telugu": 21.867321867321866,
+        "Malayalam": 25.061425061425062,
+        "Kannada": 15.233415233415235,
+        "Odia": 2.211302211302211
       }
     },
     {
       "year": 2002,
-      "total": 645,
+      "total": 457,
       "byLanguage": {
-        "Hindi": 94,
+        "Hindi": 84,
         "Tamil": 84,
-        "Telugu": 94,
+        "Telugu": 93,
         "Malayalam": 104,
         "Kannada": 76,
-        "Bengali": 0,
-        "Marathi": 5,
-        "Punjabi": 188
+        "Odia": 16
       },
       "shares": {
-        "Hindi": 14.573643410852712,
-        "Tamil": 13.023255813953488,
-        "Telugu": 14.573643410852712,
-        "Malayalam": 16.124031007751938,
-        "Kannada": 11.782945736434108,
-        "Bengali": 0,
-        "Marathi": 0.7751937984496124,
-        "Punjabi": 29.147286821705425
+        "Hindi": 18.38074398249453,
+        "Tamil": 18.38074398249453,
+        "Telugu": 20.350109409190374,
+        "Malayalam": 22.75711159737418,
+        "Kannada": 16.630196936542667,
+        "Odia": 3.50109409190372
       }
     },
     {
       "year": 2003,
-      "total": 645,
+      "total": 468,
       "byLanguage": {
         "Hindi": 103,
         "Tamil": 101,
-        "Telugu": 76,
+        "Telugu": 75,
         "Malayalam": 73,
         "Kannada": 92,
-        "Bengali": 0,
         "Marathi": 12,
-        "Punjabi": 188
+        "Odia": 12
       },
       "shares": {
-        "Hindi": 15.968992248062017,
-        "Tamil": 15.658914728682172,
-        "Telugu": 11.782945736434108,
-        "Malayalam": 11.317829457364342,
-        "Kannada": 14.263565891472869,
-        "Bengali": 0,
-        "Marathi": 1.8604651162790697,
-        "Punjabi": 29.147286821705425
+        "Hindi": 22.00854700854701,
+        "Tamil": 21.581196581196583,
+        "Telugu": 16.025641025641026,
+        "Malayalam": 15.598290598290598,
+        "Kannada": 19.65811965811966,
+        "Marathi": 2.564102564102564,
+        "Odia": 2.564102564102564
       }
     },
     {
       "year": 2004,
-      "total": 648,
+      "total": 460,
       "byLanguage": {
         "Hindi": 101,
         "Tamil": 87,
         "Telugu": 99,
         "Malayalam": 72,
         "Kannada": 79,
-        "Bengali": 0,
         "Marathi": 15,
-        "Punjabi": 188,
         "Odia": 7
       },
       "shares": {
-        "Hindi": 15.58641975308642,
-        "Tamil": 13.425925925925927,
-        "Telugu": 15.277777777777779,
-        "Malayalam": 11.11111111111111,
-        "Kannada": 12.191358024691358,
-        "Bengali": 0,
-        "Marathi": 2.314814814814815,
-        "Punjabi": 29.01234567901235,
-        "Odia": 1.0802469135802468
+        "Hindi": 21.956521739130437,
+        "Tamil": 18.913043478260867,
+        "Telugu": 21.521739130434785,
+        "Malayalam": 15.65217391304348,
+        "Kannada": 17.17391304347826,
+        "Marathi": 3.260869565217391,
+        "Odia": 1.5217391304347827
       }
     },
     {
       "year": 2005,
-      "total": 677,
+      "total": 489,
       "byLanguage": {
         "Hindi": 120,
         "Tamil": 102,
         "Telugu": 95,
         "Malayalam": 71,
         "Kannada": 74,
-        "Bengali": 0,
         "Marathi": 10,
-        "Punjabi": 188,
         "Odia": 17
       },
       "shares": {
-        "Hindi": 17.725258493353028,
-        "Tamil": 15.066469719350073,
-        "Telugu": 14.032496307237812,
-        "Malayalam": 10.487444608567207,
-        "Kannada": 10.930576070901035,
-        "Bengali": 0,
-        "Marathi": 1.4771048744460855,
-        "Punjabi": 27.76957163958641,
-        "Odia": 2.511078286558346
+        "Hindi": 24.539877300613497,
+        "Tamil": 20.858895705521473,
+        "Telugu": 19.427402862985684,
+        "Malayalam": 14.519427402862986,
+        "Kannada": 15.132924335378323,
+        "Marathi": 2.044989775051125,
+        "Odia": 3.476482617586912
       }
     },
     {
       "year": 2006,
-      "total": 640,
+      "total": 448,
       "byLanguage": {
         "Hindi": 86,
         "Tamil": 102,
-        "Telugu": 75,
+        "Telugu": 71,
         "Malayalam": 69,
         "Kannada": 71,
-        "Bengali": 0,
         "Marathi": 37,
-        "Punjabi": 188,
         "Odia": 12
       },
       "shares": {
-        "Hindi": 13.4375,
-        "Tamil": 15.937499999999998,
-        "Telugu": 11.71875,
-        "Malayalam": 10.78125,
-        "Kannada": 11.09375,
-        "Bengali": 0,
-        "Marathi": 5.78125,
-        "Punjabi": 29.375,
-        "Odia": 1.875
+        "Hindi": 19.196428571428573,
+        "Tamil": 22.767857142857142,
+        "Telugu": 15.848214285714285,
+        "Malayalam": 15.401785714285715,
+        "Kannada": 15.848214285714285,
+        "Marathi": 8.258928571428571,
+        "Odia": 2.6785714285714284
       }
     },
     {
       "year": 2007,
-      "total": 679,
+      "total": 481,
       "byLanguage": {
-        "Hindi": 102,
+        "Hindi": 92,
         "Tamil": 106,
         "Telugu": 68,
         "Malayalam": 86,
         "Kannada": 84,
-        "Bengali": 0,
         "Marathi": 23,
-        "Punjabi": 188,
         "Odia": 22
       },
       "shares": {
-        "Hindi": 15.022091310751104,
-        "Tamil": 15.61119293078056,
-        "Telugu": 10.014727540500736,
-        "Malayalam": 12.665684830633284,
-        "Kannada": 12.371134020618557,
-        "Bengali": 0,
-        "Marathi": 3.3873343151693667,
-        "Punjabi": 27.68777614138439,
-        "Odia": 3.2400589101620034
+        "Hindi": 19.12681912681913,
+        "Tamil": 22.03742203742204,
+        "Telugu": 14.137214137214137,
+        "Malayalam": 17.87941787941788,
+        "Kannada": 17.463617463617464,
+        "Marathi": 4.781704781704782,
+        "Odia": 4.5738045738045745
       }
     },
     {
       "year": 2008,
-      "total": 697,
+      "total": 509,
       "byLanguage": {
         "Hindi": 89,
         "Tamil": 121,
         "Telugu": 94,
         "Malayalam": 72,
         "Kannada": 100,
-        "Bengali": 0,
         "Marathi": 16,
-        "Punjabi": 188,
         "Odia": 17
       },
       "shares": {
-        "Hindi": 12.769010043041607,
-        "Tamil": 17.360114777618367,
-        "Telugu": 13.486370157819225,
-        "Malayalam": 10.329985652797705,
-        "Kannada": 14.347202295552366,
-        "Bengali": 0,
-        "Marathi": 2.295552367288379,
-        "Punjabi": 26.97274031563845,
-        "Odia": 2.4390243902439024
+        "Hindi": 17.4852652259332,
+        "Tamil": 23.772102161100197,
+        "Telugu": 18.467583497053045,
+        "Malayalam": 14.145383104125736,
+        "Kannada": 19.646365422396855,
+        "Marathi": 3.143418467583497,
+        "Odia": 3.3398821218074657
       }
     },
     {
       "year": 2009,
-      "total": 704,
+      "total": 514,
       "byLanguage": {
         "Hindi": 101,
         "Tamil": 126,
-        "Telugu": 58,
+        "Telugu": 56,
         "Malayalam": 77,
         "Kannada": 113,
-        "Bengali": 0,
         "Marathi": 20,
-        "Punjabi": 188,
         "Odia": 21
       },
       "shares": {
-        "Hindi": 14.346590909090908,
-        "Tamil": 17.897727272727273,
-        "Telugu": 8.238636363636363,
-        "Malayalam": 10.9375,
-        "Kannada": 16.051136363636363,
-        "Bengali": 0,
-        "Marathi": 2.840909090909091,
-        "Punjabi": 26.704545454545453,
-        "Odia": 2.9829545454545454
+        "Hindi": 19.64980544747082,
+        "Tamil": 24.5136186770428,
+        "Telugu": 10.894941634241246,
+        "Malayalam": 14.980544747081712,
+        "Kannada": 21.98443579766537,
+        "Marathi": 3.8910505836575875,
+        "Odia": 4.085603112840467
       }
     },
     {
       "year": 2010,
-      "total": 702,
+      "total": 692,
       "byLanguage": {
         "Hindi": 123,
         "Tamil": 139,
-        "Telugu": 98,
+        "Telugu": 88,
         "Malayalam": 107,
         "Kannada": 126,
-        "Bengali": 0,
         "Marathi": 67,
         "Punjabi": 17,
         "Odia": 25
       },
       "shares": {
-        "Hindi": 17.52136752136752,
-        "Tamil": 19.8005698005698,
-        "Telugu": 13.96011396011396,
-        "Malayalam": 15.242165242165242,
-        "Kannada": 17.94871794871795,
-        "Bengali": 0,
-        "Marathi": 9.544159544159545,
-        "Punjabi": 2.4216524216524213,
-        "Odia": 3.561253561253561
+        "Hindi": 17.77456647398844,
+        "Tamil": 20.08670520231214,
+        "Telugu": 12.716763005780345,
+        "Malayalam": 15.462427745664739,
+        "Kannada": 18.20809248554913,
+        "Marathi": 9.68208092485549,
+        "Punjabi": 2.4566473988439306,
+        "Odia": 3.6127167630057806
       }
     },
     {
       "year": 2011,
-      "total": 626,
+      "total": 616,
       "byLanguage": {
         "Hindi": 107,
         "Tamil": 132,
-        "Telugu": 87,
+        "Telugu": 77,
         "Malayalam": 93,
         "Kannada": 103,
-        "Bengali": 0,
         "Marathi": 67,
         "Punjabi": 13,
         "Odia": 24
       },
       "shares": {
-        "Hindi": 17.0926517571885,
-        "Tamil": 21.08626198083067,
-        "Telugu": 13.89776357827476,
-        "Malayalam": 14.856230031948881,
-        "Kannada": 16.45367412140575,
-        "Bengali": 0,
-        "Marathi": 10.702875399361023,
-        "Punjabi": 2.07667731629393,
-        "Odia": 3.8338658146964857
+        "Hindi": 17.37012987012987,
+        "Tamil": 21.428571428571427,
+        "Telugu": 12.5,
+        "Malayalam": 15.0974025974026,
+        "Kannada": 16.72077922077922,
+        "Marathi": 10.876623376623376,
+        "Punjabi": 2.1103896103896105,
+        "Odia": 3.896103896103896
       }
     },
     {
       "year": 2012,
-      "total": 704,
+      "total": 694,
       "byLanguage": {
         "Hindi": 105,
         "Tamil": 146,
-        "Telugu": 105,
+        "Telugu": 95,
         "Malayalam": 130,
         "Kannada": 96,
-        "Bengali": 0,
         "Marathi": 76,
         "Punjabi": 25,
         "Odia": 21
       },
       "shares": {
-        "Hindi": 14.914772727272727,
-        "Tamil": 20.738636363636363,
-        "Telugu": 14.914772727272727,
-        "Malayalam": 18.46590909090909,
-        "Kannada": 13.636363636363635,
-        "Bengali": 0,
-        "Marathi": 10.795454545454545,
-        "Punjabi": 3.5511363636363638,
-        "Odia": 2.9829545454545454
+        "Hindi": 15.129682997118154,
+        "Tamil": 21.037463976945244,
+        "Telugu": 13.688760806916425,
+        "Malayalam": 18.73198847262248,
+        "Kannada": 13.8328530259366,
+        "Marathi": 10.951008645533141,
+        "Punjabi": 3.602305475504323,
+        "Odia": 3.025936599423631
       }
     },
     {
       "year": 2013,
-      "total": 827,
+      "total": 824,
       "byLanguage": {
         "Hindi": 124,
         "Tamil": 152,
         "Telugu": 106,
         "Malayalam": 172,
         "Kannada": 121,
-        "Bengali": 0,
-        "Marathi": 74,
+        "Marathi": 71,
         "Punjabi": 41,
         "Odia": 37
       },
       "shares": {
-        "Hindi": 14.993954050785973,
-        "Tamil": 18.37968561064087,
-        "Telugu": 12.817412333736398,
-        "Malayalam": 20.79806529625151,
-        "Kannada": 14.631197097944376,
-        "Bengali": 0,
-        "Marathi": 8.94800483675937,
-        "Punjabi": 4.957678355501813,
-        "Odia": 4.474002418379685
+        "Hindi": 15.048543689320388,
+        "Tamil": 18.446601941747574,
+        "Telugu": 12.864077669902912,
+        "Malayalam": 20.87378640776699,
+        "Kannada": 14.684466019417474,
+        "Marathi": 8.616504854368932,
+        "Punjabi": 4.975728155339806,
+        "Odia": 4.490291262135923
       }
     },
     {
       "year": 2014,
-      "total": 1008,
+      "total": 885,
       "byLanguage": {
         "Hindi": 138,
         "Tamil": 206,
         "Telugu": 120,
         "Malayalam": 153,
         "Kannada": 115,
-        "Bengali": 0,
         "Marathi": 72,
         "Punjabi": 40,
-        "Odia": 19,
-        "Assamese": 145
+        "Gujarati": 22,
+        "Odia": 19
       },
       "shares": {
-        "Hindi": 13.690476190476192,
-        "Tamil": 20.436507936507937,
-        "Telugu": 11.904761904761903,
-        "Malayalam": 15.178571428571427,
-        "Kannada": 11.408730158730158,
-        "Bengali": 0,
-        "Marathi": 7.142857142857142,
-        "Punjabi": 3.968253968253968,
-        "Odia": 1.8849206349206349,
-        "Assamese": 14.384920634920634
+        "Hindi": 15.593220338983052,
+        "Tamil": 23.27683615819209,
+        "Telugu": 13.559322033898304,
+        "Malayalam": 17.28813559322034,
+        "Kannada": 12.994350282485875,
+        "Marathi": 8.135593220338983,
+        "Punjabi": 4.519774011299435,
+        "Gujarati": 2.4858757062146895,
+        "Odia": 2.1468926553672314
       }
     },
     {
       "year": 2015,
-      "total": 1036,
+      "total": 905,
       "byLanguage": {
         "Hindi": 112,
         "Tamil": 194,
         "Telugu": 102,
         "Malayalam": 173,
         "Kannada": 137,
-        "Bengali": 0,
-        "Marathi": 114,
+        "Marathi": 103,
         "Punjabi": 43,
-        "Odia": 16,
-        "Assamese": 145
+        "Gujarati": 25,
+        "Odia": 16
       },
       "shares": {
-        "Hindi": 10.81081081081081,
-        "Tamil": 18.725868725868725,
-        "Telugu": 9.845559845559846,
-        "Malayalam": 16.698841698841697,
-        "Kannada": 13.223938223938225,
-        "Bengali": 0,
-        "Marathi": 11.003861003861005,
-        "Punjabi": 4.1505791505791505,
-        "Odia": 1.5444015444015444,
-        "Assamese": 13.996138996138995
+        "Hindi": 12.375690607734807,
+        "Tamil": 21.43646408839779,
+        "Telugu": 11.2707182320442,
+        "Malayalam": 19.116022099447513,
+        "Kannada": 15.138121546961326,
+        "Marathi": 11.38121546961326,
+        "Punjabi": 4.751381215469613,
+        "Gujarati": 2.7624309392265194,
+        "Odia": 1.7679558011049725
       }
     },
     {
       "year": 2016,
-      "total": 1060,
+      "total": 917,
       "byLanguage": {
         "Hindi": 125,
         "Tamil": 200,
         "Telugu": 114,
         "Malayalam": 132,
         "Kannada": 179,
-        "Bengali": 0,
-        "Marathi": 104,
-        "Punjabi": 41,
-        "Odia": 20,
-        "Assamese": 145
+        "Marathi": 101,
+        "Gujarati": 46,
+        "Odia": 20
       },
       "shares": {
-        "Hindi": 11.79245283018868,
-        "Tamil": 18.867924528301888,
-        "Telugu": 10.754716981132075,
-        "Malayalam": 12.452830188679245,
-        "Kannada": 16.88679245283019,
-        "Bengali": 0,
-        "Marathi": 9.811320754716983,
-        "Punjabi": 3.8679245283018866,
-        "Odia": 1.8867924528301887,
-        "Assamese": 13.679245283018867
+        "Hindi": 13.631406761177752,
+        "Tamil": 21.810250817884405,
+        "Telugu": 12.431842966194111,
+        "Malayalam": 14.394765539803709,
+        "Kannada": 19.520174482006546,
+        "Marathi": 11.014176663031625,
+        "Gujarati": 5.0163576881134135,
+        "Odia": 2.1810250817884405
       }
     },
     {
       "year": 2017,
-      "total": 1107,
+      "total": 983,
       "byLanguage": {
         "Hindi": 127,
         "Tamil": 196,
         "Telugu": 156,
         "Malayalam": 146,
         "Kannada": 183,
-        "Bengali": 0,
         "Marathi": 98,
-        "Punjabi": 40,
-        "Odia": 16,
-        "Assamese": 145
+        "Gujarati": 61,
+        "Odia": 16
       },
       "shares": {
-        "Hindi": 11.47244805781391,
-        "Tamil": 17.70551038843722,
-        "Telugu": 14.092140921409213,
-        "Malayalam": 13.188798554652212,
-        "Kannada": 16.53116531165312,
-        "Bengali": 0,
-        "Marathi": 8.85275519421861,
-        "Punjabi": 3.6133694670280034,
-        "Odia": 1.4453477868112015,
-        "Assamese": 13.098464317976513
+        "Hindi": 12.919633774160733,
+        "Tamil": 19.938962360122076,
+        "Telugu": 15.869786368260428,
+        "Malayalam": 14.852492370295014,
+        "Kannada": 18.61648016276704,
+        "Marathi": 9.969481180061038,
+        "Gujarati": 6.205493387589013,
+        "Odia": 1.627670396744659
       }
     },
     {
       "year": 2018,
-      "total": 1077,
+      "total": 943,
       "byLanguage": {
         "Hindi": 103,
         "Tamil": 180,
         "Telugu": 140,
         "Malayalam": 162,
         "Kannada": 223,
-        "Bengali": 0,
         "Marathi": 51,
-        "Punjabi": 40,
+        "Gujarati": 51,
         "Odia": 9,
-        "Assamese": 145,
         "Bhojpuri": 24
       },
       "shares": {
-        "Hindi": 9.563602599814299,
-        "Tamil": 16.71309192200557,
-        "Telugu": 12.999071494893222,
-        "Malayalam": 15.041782729805014,
-        "Kannada": 20.705663881151345,
-        "Bengali": 0,
-        "Marathi": 4.735376044568245,
-        "Punjabi": 3.7140204271123487,
-        "Odia": 0.8356545961002786,
-        "Assamese": 13.463324048282265,
-        "Bhojpuri": 2.2284122562674096
+        "Hindi": 10.922587486744433,
+        "Tamil": 19.088016967126194,
+        "Telugu": 14.846235418875928,
+        "Malayalam": 17.17921527041357,
+        "Kannada": 23.647932131495228,
+        "Marathi": 5.408271474019088,
+        "Gujarati": 5.408271474019088,
+        "Odia": 0.9544008483563097,
+        "Bhojpuri": 2.545068928950159
       }
     },
     {
       "year": 2019,
-      "total": 1134,
+      "total": 987,
       "byLanguage": {
         "Hindi": 128,
         "Tamil": 199,
         "Telugu": 148,
         "Malayalam": 205,
         "Kannada": 193,
-        "Bengali": 0,
         "Marathi": 34,
-        "Punjabi": 44,
+        "Gujarati": 42,
         "Odia": 24,
-        "Assamese": 145,
         "Bhojpuri": 14
       },
       "shares": {
-        "Hindi": 11.28747795414462,
-        "Tamil": 17.548500881834215,
-        "Telugu": 13.051146384479717,
-        "Malayalam": 18.077601410934744,
-        "Kannada": 17.019400352733687,
-        "Bengali": 0,
-        "Marathi": 2.9982363315696645,
-        "Punjabi": 3.880070546737213,
-        "Odia": 2.1164021164021163,
-        "Assamese": 12.786596119929452,
-        "Bhojpuri": 1.2345679012345678
+        "Hindi": 12.968591691995949,
+        "Tamil": 20.16210739614995,
+        "Telugu": 14.994934143870314,
+        "Malayalam": 20.77001013171226,
+        "Kannada": 19.55420466058764,
+        "Marathi": 3.4447821681864235,
+        "Gujarati": 4.25531914893617,
+        "Odia": 2.43161094224924,
+        "Bhojpuri": 1.4184397163120568
       }
     },
     {
       "year": 2020,
-      "total": 498,
+      "total": 472,
       "byLanguage": {
         "Hindi": 105,
         "Tamil": 106,
         "Telugu": 65,
         "Malayalam": 61,
         "Kannada": 72,
-        "Bengali": 0,
         "Marathi": 20,
-        "Punjabi": 9,
+        "Gujarati": 15,
         "Odia": 21,
-        "Assamese": 32,
         "Bhojpuri": 7
       },
       "shares": {
-        "Hindi": 21.084337349397593,
-        "Tamil": 21.285140562248998,
-        "Telugu": 13.052208835341366,
-        "Malayalam": 12.248995983935743,
-        "Kannada": 14.457831325301203,
-        "Bengali": 0,
-        "Marathi": 4.016064257028113,
-        "Punjabi": 1.8072289156626504,
-        "Odia": 4.216867469879518,
-        "Assamese": 6.425702811244979,
-        "Bhojpuri": 1.4056224899598393
+        "Hindi": 22.245762711864405,
+        "Tamil": 22.45762711864407,
+        "Telugu": 13.771186440677965,
+        "Malayalam": 12.923728813559322,
+        "Kannada": 15.254237288135593,
+        "Marathi": 4.23728813559322,
+        "Gujarati": 3.1779661016949152,
+        "Odia": 4.4491525423728815,
+        "Bhojpuri": 1.4830508474576272
       }
     },
     {
       "year": 2021,
-      "total": 834,
+      "total": 813,
       "byLanguage": {
         "Hindi": 102,
         "Tamil": 186,
@@ -669,167 +659,151 @@
         "Kannada": 101,
         "Bengali": 36,
         "Marathi": 20,
-        "Punjabi": 13,
+        "Gujarati": 24,
         "Odia": 51,
-        "Assamese": 32,
         "Bhojpuri": 11
       },
       "shares": {
-        "Hindi": 12.23021582733813,
-        "Tamil": 22.302158273381295,
-        "Telugu": 13.66906474820144,
-        "Malayalam": 20.14388489208633,
-        "Kannada": 12.11031175059952,
-        "Bengali": 4.316546762589928,
-        "Marathi": 2.3980815347721824,
-        "Punjabi": 1.5587529976019185,
-        "Odia": 6.115107913669065,
-        "Assamese": 3.8369304556354913,
-        "Bhojpuri": 1.3189448441247003
+        "Hindi": 12.546125461254611,
+        "Tamil": 22.878228782287824,
+        "Telugu": 14.022140221402212,
+        "Malayalam": 20.66420664206642,
+        "Kannada": 12.423124231242312,
+        "Bengali": 4.428044280442804,
+        "Marathi": 2.4600246002460024,
+        "Gujarati": 2.952029520295203,
+        "Odia": 6.273062730627306,
+        "Bhojpuri": 1.3530135301353015
       }
     },
     {
       "year": 2022,
-      "total": 1044,
+      "total": 1058,
       "byLanguage": {
         "Hindi": 108,
         "Tamil": 228,
         "Telugu": 96,
         "Malayalam": 256,
         "Kannada": 166,
-        "Bengali": 0,
-        "Marathi": 66,
-        "Punjabi": 24,
+        "Marathi": 59,
+        "Gujarati": 77,
         "Odia": 42,
-        "Assamese": 32,
         "Bhojpuri": 26
       },
       "shares": {
-        "Hindi": 10.344827586206897,
-        "Tamil": 21.839080459770116,
-        "Telugu": 9.195402298850574,
-        "Malayalam": 24.521072796934863,
-        "Kannada": 15.900383141762454,
-        "Bengali": 0,
-        "Marathi": 6.321839080459771,
-        "Punjabi": 2.2988505747126435,
-        "Odia": 4.022988505747127,
-        "Assamese": 3.065134099616858,
-        "Bhojpuri": 2.490421455938697
+        "Hindi": 10.207939508506616,
+        "Tamil": 21.550094517958414,
+        "Telugu": 9.073724007561438,
+        "Malayalam": 24.196597353497165,
+        "Kannada": 15.689981096408317,
+        "Marathi": 5.576559546313799,
+        "Gujarati": 7.277882797731569,
+        "Odia": 3.9697542533081283,
+        "Bhojpuri": 2.4574669187145557
       }
     },
     {
       "year": 2023,
-      "total": 1189,
+      "total": 1184,
       "byLanguage": {
         "Hindi": 137,
         "Tamil": 256,
         "Telugu": 172,
         "Malayalam": 253,
         "Kannada": 179,
-        "Bengali": 0,
         "Marathi": 83,
-        "Punjabi": 32,
+        "Gujarati": 59,
         "Odia": 22,
-        "Assamese": 32,
         "Bhojpuri": 23
       },
       "shares": {
-        "Hindi": 11.522287636669471,
-        "Tamil": 21.530698065601346,
-        "Telugu": 14.465937762825904,
-        "Malayalam": 21.27838519764508,
-        "Kannada": 15.054667788057191,
-        "Bengali": 0,
-        "Marathi": 6.980656013456686,
-        "Punjabi": 2.6913372582001682,
-        "Odia": 1.8502943650126156,
-        "Assamese": 2.6913372582001682,
-        "Bhojpuri": 1.9343986543313711
+        "Hindi": 11.570945945945946,
+        "Tamil": 21.62162162162162,
+        "Telugu": 14.527027027027026,
+        "Malayalam": 21.368243243243242,
+        "Kannada": 15.118243243243242,
+        "Marathi": 7.010135135135136,
+        "Gujarati": 4.983108108108108,
+        "Odia": 1.8581081081081081,
+        "Bhojpuri": 1.9425675675675675
       }
     },
     {
       "year": 2024,
-      "total": 1222,
+      "total": 1233,
       "byLanguage": {
         "Hindi": 131,
         "Tamil": 218,
         "Telugu": 253,
         "Malayalam": 229,
         "Kannada": 208,
-        "Bengali": 0,
-        "Marathi": 109,
-        "Punjabi": 13,
+        "Marathi": 98,
+        "Gujarati": 67,
         "Odia": 24,
-        "Assamese": 32,
         "Bhojpuri": 5
       },
       "shares": {
-        "Hindi": 10.72013093289689,
-        "Tamil": 17.83960720130933,
-        "Telugu": 20.7037643207856,
-        "Malayalam": 18.73977086743044,
-        "Kannada": 17.02127659574468,
-        "Bengali": 0,
-        "Marathi": 8.919803600654665,
-        "Punjabi": 1.0638297872340425,
-        "Odia": 1.9639934533551555,
-        "Assamese": 2.618657937806874,
-        "Bhojpuri": 0.4091653027823241
+        "Hindi": 10.62449310624493,
+        "Tamil": 17.680454176804542,
+        "Telugu": 20.519059205190594,
+        "Malayalam": 18.572587185725872,
+        "Kannada": 16.86942416869424,
+        "Marathi": 7.948094079480941,
+        "Gujarati": 5.43390105433901,
+        "Odia": 1.9464720194647203,
+        "Bhojpuri": 0.40551500405515
       }
     },
     {
       "year": 2025,
-      "total": 1236,
+      "total": 1237,
       "byLanguage": {
         "Hindi": 134,
         "Tamil": 255,
         "Telugu": 184,
         "Malayalam": 216,
         "Kannada": 239,
-        "Bengali": 0,
         "Marathi": 102,
-        "Punjabi": 34,
+        "Gujarati": 67,
         "Odia": 34,
-        "Assamese": 32,
         "Bhojpuri": 6
       },
       "shares": {
-        "Hindi": 10.841423948220065,
-        "Tamil": 20.631067961165048,
-        "Telugu": 14.886731391585762,
-        "Malayalam": 17.475728155339805,
-        "Kannada": 19.336569579288028,
-        "Bengali": 0,
-        "Marathi": 8.25242718446602,
-        "Punjabi": 2.750809061488673,
-        "Odia": 2.750809061488673,
-        "Assamese": 2.5889967637540456,
-        "Bhojpuri": 0.48543689320388345
+        "Hindi": 10.832659660468877,
+        "Tamil": 20.6143896523848,
+        "Telugu": 14.874696847210995,
+        "Malayalam": 17.461600646725948,
+        "Kannada": 19.320937752627323,
+        "Marathi": 8.24575586095392,
+        "Gujarati": 5.416329830234439,
+        "Odia": 2.7485852869846403,
+        "Bhojpuri": 0.4850444624090542
       }
     },
     {
       "year": 2026,
-      "total": 898,
+      "total": 967,
       "byLanguage": {
-        "Hindi": 136,
+        "Hindi": 137,
         "Tamil": 156,
         "Telugu": 143,
         "Malayalam": 152,
         "Kannada": 182,
         "Bengali": 40,
         "Marathi": 73,
+        "Gujarati": 68,
         "Odia": 16
       },
       "shares": {
-        "Hindi": 15.14476614699332,
-        "Tamil": 17.37193763919822,
-        "Telugu": 15.924276169265033,
-        "Malayalam": 16.926503340757236,
-        "Kannada": 20.26726057906459,
-        "Bengali": 4.4543429844097995,
-        "Marathi": 8.129175946547884,
-        "Odia": 1.7817371937639197
+        "Hindi": 14.167528438469493,
+        "Tamil": 16.132368148914168,
+        "Telugu": 14.788004136504654,
+        "Malayalam": 15.718717683557394,
+        "Kannada": 18.821096173733196,
+        "Bengali": 4.1365046535677354,
+        "Marathi": 7.549120992761117,
+        "Gujarati": 7.0320579110651495,
+        "Odia": 1.6546018614270943
       }
     }
   ],
@@ -837,10 +811,9 @@
     {
       "year": 2000,
       "language": "Hindi",
-      "films": 90,
-      "tablesUsed": 2,
+      "films": 80,
+      "tablesUsed": 1,
       "headersSeen": [
-        "rank | title | director | producers | worldwide gross",
         "title | director | cast | genre | music director"
       ],
       "listed": true
@@ -848,10 +821,9 @@
     {
       "year": 2001,
       "language": "Hindi",
-      "films": 75,
-      "tablesUsed": 2,
+      "films": 65,
+      "tablesUsed": 1,
       "headersSeen": [
-        "no. | title | director | production company | worldwide gross",
         "title | director | cast | genre"
       ],
       "listed": true
@@ -859,10 +831,9 @@
     {
       "year": 2002,
       "language": "Hindi",
-      "films": 94,
-      "tablesUsed": 2,
+      "films": 84,
+      "tablesUsed": 1,
       "headersSeen": [
-        "rank | title | director | worldwide gross | reference",
         "title | director | cast | genre"
       ],
       "listed": true
@@ -911,10 +882,9 @@
     {
       "year": 2007,
       "language": "Hindi",
-      "films": 102,
-      "tablesUsed": 5,
+      "films": 92,
+      "tablesUsed": 4,
       "headersSeen": [
-        "rank | title | director | worldwide gross",
         "opening | title | director | cast | genre | production house"
       ],
       "listed": true
@@ -1103,7 +1073,7 @@
     {
       "year": 2026,
       "language": "Hindi",
-      "films": 136,
+      "films": 137,
       "tablesUsed": 4,
       "headersSeen": [
         "opening | title | director | cast | studio (production house)"
@@ -1428,10 +1398,9 @@
     {
       "year": 2002,
       "language": "Telugu",
-      "films": 94,
-      "tablesUsed": 4,
+      "films": 93,
+      "tablesUsed": 3,
       "headersSeen": [
-        "rank | title | studio | worldwide gross | ref.",
         "opening | | title | director | cast | production house | ref",
         "title | director | cast | studio | ref"
       ],
@@ -1440,10 +1409,9 @@
     {
       "year": 2003,
       "language": "Telugu",
-      "films": 76,
-      "tablesUsed": 3,
+      "films": 75,
+      "tablesUsed": 2,
       "headersSeen": [
-        "rank | title | studio | worldwide gross | ref",
         "opening | | title | director | cast | production house | ref"
       ],
       "listed": true
@@ -1471,10 +1439,9 @@
     {
       "year": 2006,
       "language": "Telugu",
-      "films": 75,
-      "tablesUsed": 2,
+      "films": 71,
+      "tablesUsed": 1,
       "headersSeen": [
-        "rank | title | studio | distributor share | ref.",
         "opening | | title | director | cast | production house | ref"
       ],
       "listed": true
@@ -1503,10 +1470,9 @@
     {
       "year": 2009,
       "language": "Telugu",
-      "films": 58,
-      "tablesUsed": 2,
+      "films": 56,
+      "tablesUsed": 1,
       "headersSeen": [
-        "rank | title | studio | worldwide gross | ref",
         "opening | | title | director | cast | production house | ref"
       ],
       "listed": true
@@ -1514,10 +1480,9 @@
     {
       "year": 2010,
       "language": "Telugu",
-      "films": 98,
-      "tablesUsed": 3,
+      "films": 88,
+      "tablesUsed": 2,
       "headersSeen": [
-        "rank | title | studio | worldwide gross | ref.",
         "opening | | title | director | cast | production house | ref"
       ],
       "listed": true
@@ -1525,10 +1490,9 @@
     {
       "year": 2011,
       "language": "Telugu",
-      "films": 87,
-      "tablesUsed": 3,
+      "films": 77,
+      "tablesUsed": 2,
       "headersSeen": [
-        "rank | title | studio | worldwide gross | share | ref.",
         "opening | | title | director | cast | production house | ref"
       ],
       "listed": true
@@ -1536,10 +1500,9 @@
     {
       "year": 2012,
       "language": "Telugu",
-      "films": 105,
-      "tablesUsed": 3,
+      "films": 95,
+      "tablesUsed": 2,
       "headersSeen": [
-        "rank | title | studio | worldwide gross | share | ref.",
         "opening | | title | director | cast | production house | ref"
       ],
       "listed": true
@@ -2256,7 +2219,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2001,
@@ -2264,7 +2228,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2002,
@@ -2272,7 +2237,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2003,
@@ -2280,7 +2246,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2004,
@@ -2288,7 +2255,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2005,
@@ -2296,7 +2264,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2006,
@@ -2304,7 +2273,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2007,
@@ -2312,7 +2282,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2008,
@@ -2320,7 +2291,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2009,
@@ -2328,7 +2300,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2010,
@@ -2336,7 +2309,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2011,
@@ -2344,7 +2318,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2012,
@@ -2352,7 +2327,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2013,
@@ -2360,7 +2336,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2014,
@@ -2368,7 +2345,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2015,
@@ -2376,7 +2354,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2016,
@@ -2384,7 +2363,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2017,
@@ -2392,7 +2372,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2018,
@@ -2400,7 +2381,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2019,
@@ -2408,7 +2390,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2020,
@@ -2416,7 +2399,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2021,
@@ -2434,7 +2418,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2023,
@@ -2442,7 +2427,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2024,
@@ -2450,7 +2436,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2025,
@@ -2458,7 +2445,8 @@
       "films": 0,
       "tablesUsed": 0,
       "headersSeen": [],
-      "listed": true
+      "listed": false,
+      "redirectedTo": "List of Bengali films"
     },
     {
       "year": 2026,
@@ -2473,32 +2461,32 @@
     {
       "year": 2000,
       "language": "Marathi",
-      "films": 5,
+      "films": 0,
       "tablesUsed": 1,
       "headersSeen": [
         "year | film | director | cast | release date | producer"
       ],
-      "listed": true
+      "listed": false
     },
     {
       "year": 2001,
       "language": "Marathi",
-      "films": 5,
+      "films": 0,
       "tablesUsed": 1,
       "headersSeen": [
         "year | film | director | cast | release date | producer"
       ],
-      "listed": true
+      "listed": false
     },
     {
       "year": 2002,
       "language": "Marathi",
-      "films": 5,
+      "films": 0,
       "tablesUsed": 1,
       "headersSeen": [
         "year | film | director | cast | release date | producer"
       ],
-      "listed": true
+      "listed": false
     },
     {
       "year": 2003,
@@ -2610,10 +2598,9 @@
     {
       "year": 2013,
       "language": "Marathi",
-      "films": 74,
-      "tablesUsed": 5,
+      "films": 71,
+      "tablesUsed": 4,
       "headersSeen": [
-        "rank | film | director | studio (s) | worldwide gross | ref.",
         "month | opening | title | director | cast | genre"
       ],
       "listed": true
@@ -2631,10 +2618,9 @@
     {
       "year": 2015,
       "language": "Marathi",
-      "films": 114,
-      "tablesUsed": 5,
+      "films": 103,
+      "tablesUsed": 4,
       "headersSeen": [
-        "rank | film | director | studio (s) | worldwide gross | ref.",
         "opening | title | director | cast",
         "opening | title | director | cast | genre | imdb"
       ],
@@ -2643,10 +2629,9 @@
     {
       "year": 2016,
       "language": "Marathi",
-      "films": 104,
-      "tablesUsed": 5,
+      "films": 101,
+      "tablesUsed": 4,
       "headersSeen": [
-        "rank | film | production studio (s) | worldwide gross | ref.",
         "opening | title | director | cast | genre | source"
       ],
       "listed": true
@@ -2707,10 +2692,9 @@
     {
       "year": 2022,
       "language": "Marathi",
-      "films": 66,
-      "tablesUsed": 3,
+      "films": 59,
+      "tablesUsed": 2,
       "headersSeen": [
-        "rank | film | studio (s) | worldwide gross | ref.",
         "opening | title | director | cast"
       ],
       "listed": true
@@ -2729,10 +2713,9 @@
     {
       "year": 2024,
       "language": "Marathi",
-      "films": 109,
-      "tablesUsed": 5,
+      "films": 98,
+      "tablesUsed": 4,
       "headersSeen": [
-        "rank | title | studio(s) | worldwide gross | ref",
         "opening | title | director | cast"
       ],
       "listed": true
@@ -2761,112 +2744,92 @@
     {
       "year": 2000,
       "language": "Punjabi",
-      "films": 188,
-      "tablesUsed": 10,
-      "headersSeen": [
-        "title | director | cast (subject of documentary) | genre | notes | release date",
-        "sr. no. | title | director | cast | genre | release date (tentative)"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Punjabi films of the 2000s"
     },
     {
       "year": 2001,
       "language": "Punjabi",
-      "films": 188,
-      "tablesUsed": 10,
-      "headersSeen": [
-        "title | director | cast (subject of documentary) | genre | notes | release date",
-        "sr. no. | title | director | cast | genre | release date (tentative)"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Punjabi films of the 2000s"
     },
     {
       "year": 2002,
       "language": "Punjabi",
-      "films": 188,
-      "tablesUsed": 10,
-      "headersSeen": [
-        "title | director | cast (subject of documentary) | genre | notes | release date",
-        "sr. no. | title | director | cast | genre | release date (tentative)"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Punjabi films of the 2000s"
     },
     {
       "year": 2003,
       "language": "Punjabi",
-      "films": 188,
-      "tablesUsed": 10,
-      "headersSeen": [
-        "title | director | cast (subject of documentary) | genre | notes | release date",
-        "sr. no. | title | director | cast | genre | release date (tentative)"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Punjabi films of the 2000s"
     },
     {
       "year": 2004,
       "language": "Punjabi",
-      "films": 188,
-      "tablesUsed": 10,
-      "headersSeen": [
-        "title | director | cast (subject of documentary) | genre | notes | release date",
-        "sr. no. | title | director | cast | genre | release date (tentative)"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Punjabi films of the 2000s"
     },
     {
       "year": 2005,
       "language": "Punjabi",
-      "films": 188,
-      "tablesUsed": 10,
-      "headersSeen": [
-        "title | director | cast (subject of documentary) | genre | notes | release date",
-        "sr. no. | title | director | cast | genre | release date (tentative)"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Punjabi films of the 2000s"
     },
     {
       "year": 2006,
       "language": "Punjabi",
-      "films": 188,
-      "tablesUsed": 10,
-      "headersSeen": [
-        "title | director | cast (subject of documentary) | genre | notes | release date",
-        "sr. no. | title | director | cast | genre | release date (tentative)"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Punjabi films of the 2000s"
     },
     {
       "year": 2007,
       "language": "Punjabi",
-      "films": 188,
-      "tablesUsed": 10,
-      "headersSeen": [
-        "title | director | cast (subject of documentary) | genre | notes | release date",
-        "sr. no. | title | director | cast | genre | release date (tentative)"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Punjabi films of the 2000s"
     },
     {
       "year": 2008,
       "language": "Punjabi",
-      "films": 188,
-      "tablesUsed": 10,
-      "headersSeen": [
-        "title | director | cast (subject of documentary) | genre | notes | release date",
-        "sr. no. | title | director | cast | genre | release date (tentative)"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Punjabi films of the 2000s"
     },
     {
       "year": 2009,
       "language": "Punjabi",
-      "films": 188,
-      "tablesUsed": 10,
-      "headersSeen": [
-        "title | director | cast (subject of documentary) | genre | notes | release date",
-        "sr. no. | title | director | cast | genre | release date (tentative)"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Punjabi films of the 2000s"
     },
     {
       "year": 2010,
@@ -2931,102 +2894,82 @@
     {
       "year": 2016,
       "language": "Punjabi",
-      "films": 41,
-      "tablesUsed": 1,
-      "headersSeen": [
-        "title | director | cast | genre | release date | producer"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false
     },
     {
       "year": 2017,
       "language": "Punjabi",
-      "films": 40,
-      "tablesUsed": 1,
-      "headersSeen": [
-        "opening | title | director | cast | genre | producer"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false
     },
     {
       "year": 2018,
       "language": "Punjabi",
-      "films": 40,
-      "tablesUsed": 1,
-      "headersSeen": [
-        "opening | title | director | cast | genre | producer"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false
     },
     {
       "year": 2019,
       "language": "Punjabi",
-      "films": 44,
-      "tablesUsed": 1,
-      "headersSeen": [
-        "opening | title | director | cast | producer | ref"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false
     },
     {
       "year": 2020,
       "language": "Punjabi",
-      "films": 9,
-      "tablesUsed": 1,
-      "headersSeen": [
-        "opening | title | director | cast | studio (production house) | ref."
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false
     },
     {
       "year": 2021,
       "language": "Punjabi",
-      "films": 13,
-      "tablesUsed": 1,
-      "headersSeen": [
-        "opening | title | director | cast | studio (production house) | ref."
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false
     },
     {
       "year": 2022,
       "language": "Punjabi",
-      "films": 24,
-      "tablesUsed": 1,
-      "headersSeen": [
-        "opening | title | director | cast | studio/ production house | ref."
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false
     },
     {
       "year": 2023,
       "language": "Punjabi",
-      "films": 32,
-      "tablesUsed": 2,
-      "headersSeen": [
-        "opening | title | director | cast"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false
     },
     {
       "year": 2024,
       "language": "Punjabi",
-      "films": 13,
-      "tablesUsed": 2,
-      "headersSeen": [
-        "opening | title | director | cast"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false
     },
     {
       "year": 2025,
       "language": "Punjabi",
-      "films": 34,
-      "tablesUsed": 2,
-      "headersSeen": [
-        "releasing | title | director | main cast"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false
     },
     {
       "year": 2026,
@@ -3151,138 +3094,172 @@
     {
       "year": 2014,
       "language": "Gujarati",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 22,
+      "tablesUsed": 4,
+      "headersSeen": [
+        "opening | name | genre | director | cast"
+      ],
+      "listed": true
     },
     {
       "year": 2015,
       "language": "Gujarati",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 25,
+      "tablesUsed": 4,
+      "headersSeen": [
+        "opening | name | genre | director | cast | source"
+      ],
+      "listed": true
     },
     {
       "year": 2016,
       "language": "Gujarati",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 46,
+      "tablesUsed": 4,
+      "headersSeen": [
+        "opening | name | genre | director | cast | source"
+      ],
+      "listed": true
     },
     {
       "year": 2017,
       "language": "Gujarati",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 61,
+      "tablesUsed": 4,
+      "headersSeen": [
+        "opening | name | genre | director | cast | source"
+      ],
+      "listed": true
     },
     {
       "year": 2018,
       "language": "Gujarati",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 51,
+      "tablesUsed": 3,
+      "headersSeen": [
+        "opening | name | genre | director | cast | source"
+      ],
+      "listed": true
     },
     {
       "year": 2019,
       "language": "Gujarati",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 42,
+      "tablesUsed": 4,
+      "headersSeen": [
+        "opening | name | director | cast | source"
+      ],
+      "listed": true
     },
     {
       "year": 2020,
       "language": "Gujarati",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 15,
+      "tablesUsed": 2,
+      "headersSeen": [
+        "opening | name | director | cast | source"
+      ],
+      "listed": true
     },
     {
       "year": 2021,
       "language": "Gujarati",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 24,
+      "tablesUsed": 4,
+      "headersSeen": [
+        "opening | name | genre | director | cast"
+      ],
+      "listed": true
     },
     {
       "year": 2022,
       "language": "Gujarati",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 77,
+      "tablesUsed": 4,
+      "headersSeen": [
+        "opening | name | genre | director | cast"
+      ],
+      "listed": true
     },
     {
       "year": 2023,
       "language": "Gujarati",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 59,
+      "tablesUsed": 4,
+      "headersSeen": [
+        "opening | name | genre | director | cast"
+      ],
+      "listed": true
     },
     {
       "year": 2024,
       "language": "Gujarati",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 67,
+      "tablesUsed": 4,
+      "headersSeen": [
+        "opening | name | genre | director | cast"
+      ],
+      "listed": true
     },
     {
       "year": 2025,
       "language": "Gujarati",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 67,
+      "tablesUsed": 4,
+      "headersSeen": [
+        "opening | name | genre | director | cast"
+      ],
+      "listed": true
     },
     {
       "year": 2026,
       "language": "Gujarati",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 68,
+      "tablesUsed": 4,
+      "headersSeen": [
+        "opening | name | genre | director | cast"
+      ],
+      "listed": true
     },
     {
       "year": 2000,
       "language": "Odia",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 11,
+      "tablesUsed": 1,
+      "headersSeen": [
+        "title | director | cast | genre | notes"
+      ],
+      "listed": true
     },
     {
       "year": 2001,
       "language": "Odia",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 9,
+      "tablesUsed": 1,
+      "headersSeen": [
+        "title | director | cast | genre | notes"
+      ],
+      "listed": true
     },
     {
       "year": 2002,
       "language": "Odia",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 16,
+      "tablesUsed": 1,
+      "headersSeen": [
+        "title | director | cast | genre | notes"
+      ],
+      "listed": true
     },
     {
       "year": 2003,
       "language": "Odia",
-      "films": 0,
-      "tablesUsed": 0,
-      "headersSeen": [],
-      "listed": false
+      "films": 12,
+      "tablesUsed": 1,
+      "headersSeen": [
+        "title | director | cast | genre | notes"
+      ],
+      "listed": true
     },
     {
       "year": 2004,
@@ -3631,152 +3608,110 @@
     {
       "year": 2014,
       "language": "Assamese",
-      "films": 145,
-      "tablesUsed": 8,
-      "headersSeen": [
-        "release date | title | director | cast | genre",
-        "# | opening | title | director | cast | genre",
-        "# | opening | title | director | cast | cbfc",
-        "# | premiere | title | director | cast | genre"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Assamese films of the 2010s"
     },
     {
       "year": 2015,
       "language": "Assamese",
-      "films": 145,
-      "tablesUsed": 8,
-      "headersSeen": [
-        "release date | title | director | cast | genre",
-        "# | opening | title | director | cast | genre",
-        "# | opening | title | director | cast | cbfc",
-        "# | premiere | title | director | cast | genre"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Assamese films of the 2010s"
     },
     {
       "year": 2016,
       "language": "Assamese",
-      "films": 145,
-      "tablesUsed": 8,
-      "headersSeen": [
-        "release date | title | director | cast | genre",
-        "# | opening | title | director | cast | genre",
-        "# | opening | title | director | cast | cbfc",
-        "# | premiere | title | director | cast | genre"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Assamese films of the 2010s"
     },
     {
       "year": 2017,
       "language": "Assamese",
-      "films": 145,
-      "tablesUsed": 8,
-      "headersSeen": [
-        "release date | title | director | cast | genre",
-        "# | opening | title | director | cast | genre",
-        "# | opening | title | director | cast | cbfc",
-        "# | premiere | title | director | cast | genre"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Assamese films of the 2010s"
     },
     {
       "year": 2018,
       "language": "Assamese",
-      "films": 145,
-      "tablesUsed": 8,
-      "headersSeen": [
-        "release date | title | director | cast | genre",
-        "# | opening | title | director | cast | genre",
-        "# | opening | title | director | cast | cbfc",
-        "# | premiere | title | director | cast | genre"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Assamese films of the 2010s"
     },
     {
       "year": 2019,
       "language": "Assamese",
-      "films": 145,
-      "tablesUsed": 8,
-      "headersSeen": [
-        "release date | title | director | cast | genre",
-        "# | opening | title | director | cast | genre",
-        "# | opening | title | director | cast | cbfc",
-        "# | premiere | title | director | cast | genre"
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Assamese films of the 2010s"
     },
     {
       "year": 2020,
       "language": "Assamese",
-      "films": 32,
-      "tablesUsed": 5,
-      "headersSeen": [
-        "opening | title | director | cast",
-        "title | producer / studio | certification date | release format",
-        "release date | title | director | cast | studio (production company) | ref."
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Assamese films of the 2020s"
     },
     {
       "year": 2021,
       "language": "Assamese",
-      "films": 32,
-      "tablesUsed": 5,
-      "headersSeen": [
-        "opening | title | director | cast",
-        "title | producer / studio | certification date | release format",
-        "release date | title | director | cast | studio (production company) | ref."
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Assamese films of the 2020s"
     },
     {
       "year": 2022,
       "language": "Assamese",
-      "films": 32,
-      "tablesUsed": 5,
-      "headersSeen": [
-        "opening | title | director | cast",
-        "title | producer / studio | certification date | release format",
-        "release date | title | director | cast | studio (production company) | ref."
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Assamese films of the 2020s"
     },
     {
       "year": 2023,
       "language": "Assamese",
-      "films": 32,
-      "tablesUsed": 5,
-      "headersSeen": [
-        "opening | title | director | cast",
-        "title | producer / studio | certification date | release format",
-        "release date | title | director | cast | studio (production company) | ref."
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Assamese films of the 2020s"
     },
     {
       "year": 2024,
       "language": "Assamese",
-      "films": 32,
-      "tablesUsed": 5,
-      "headersSeen": [
-        "opening | title | director | cast",
-        "title | producer / studio | certification date | release format",
-        "release date | title | director | cast | studio (production company) | ref."
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Assamese films of the 2020s"
     },
     {
       "year": 2025,
       "language": "Assamese",
-      "films": 32,
-      "tablesUsed": 5,
-      "headersSeen": [
-        "opening | title | director | cast",
-        "title | producer / studio | certification date | release format",
-        "release date | title | director | cast | studio (production company) | ref."
-      ],
-      "listed": true
+      "films": 0,
+      "tablesUsed": 0,
+      "headersSeen": [],
+      "listed": false,
+      "redirectedTo": "List of Assamese films of the 2020s"
     },
     {
       "year": 2026,
