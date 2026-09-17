@@ -43,6 +43,7 @@ const GROUPS: Group[] = [
     items: [
       { href: "/stories", label: "Visual stories", blurb: "Short, data-led arguments — semiconductors, defence, farming" },
       { href: "/growth", label: "Growth", blurb: "Digital payments, literacy, space, defence industry" },
+      { href: "/growth-100", label: "A hundred indicators", blurb: "India across a hundred series, whichever way they point" },
       { href: "/ai", label: "AI", blurb: "What Indian labs have published, and the frontier record beside it" },
       { href: "/everyday", label: "Everyday", blurb: "A hundred numbers anyone can read" },
       { href: "/schemes", label: "Welfare schemes", blurb: "Ninety-six central schemes, and what they publish" },
@@ -62,6 +63,7 @@ const GROUPS: Group[] = [
     id: "world",
     label: "The world",
     items: [
+      { href: "/world", label: "World tracker", blurb: "Every Our World in Data indicator, mapped one at a time" },
       { href: "/global", label: "Global economy", blurb: "India against the economies it is compared with" },
       { href: "/arsenal", label: "Arsenal", blurb: "Missiles by nation, and who is buying what" },
       { href: "/drones", label: "Military drones", blurb: "Who flies what, and which producer reaches furthest" },

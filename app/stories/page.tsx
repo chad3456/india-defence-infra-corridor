@@ -5,7 +5,7 @@ import NewBadge from "@/components/ui/NewBadge";
 /**
  * The index of visual stories.
  *
- * Six so far, each built on data already in this repository rather than
+ * Seven so far, each built on data already in this repository rather than
  * assembled for the occasion — which is the only reason these pages are
  * allowed to be this loud. The register puts a number at 58px; the number has
  * to be one the rest of the site would stand behind at 13px.
@@ -52,6 +52,17 @@ const STORIES = [
     statLabel: "cereals produced, 2024",
   },
   {
+    href: "/stories/cinema",
+    tone: "hot" as const,
+    kicker: "cinema · language · share",
+    title: "Indian Cinema Did Not Shrink. It Moved South.",
+    blurb:
+      "Hindi's share of Indian film titles fell from about a fifth to about an eighth since " +
+      "2000. Nothing else tracked fell — the decline is a redistribution.",
+    stat: "12.9%",
+    statLabel: "Hindi share of titles, 2017-26",
+  },
+  {
     href: "/stories/drone-war",
     tone: "hot" as const,
     kicker: "drones · military AI · evidence",
@@ -92,7 +103,7 @@ export default function StoriesIndex() {
       <header className="pt-10">
         <Eyebrow>visual stories</Eyebrow>
         <h1 className="story-display mt-4 max-w-[16ch] text-[40px] sm:text-[56px] lg:text-[64px]">
-          Six arguments, told in numbers.
+          Seven arguments, told in numbers.
         </h1>
         <p className="mt-5 max-w-[60ch] text-[15px] leading-[1.62]" style={{ color: "var(--story-ink-2)" }}>
           Each of these is built from series already published elsewhere on this site, with the

@@ -42,6 +42,33 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "world-tracker-2026-09",
+    title: "World tracker",
+    blurb:
+      "Every chart Our World in Data publishes, discovered from its own index and mapped one at " +
+      "a time — each with the unit and citation its producer gives it.",
+    href: "/world",
+    since: "2026-09-17",
+  },
+  {
+    id: "growth-100-2026-09",
+    title: "A hundred indicators",
+    blurb:
+      "India across a hundred series, selected by data coverage rather than by direction — so " +
+      "the mix of rising and falling is a result, not an edit.",
+    href: "/growth-100",
+    since: "2026-09-17",
+  },
+  {
+    id: "cinema-2026-09",
+    title: "Indian cinema",
+    blurb:
+      "Hindi's share of Indian film titles roughly halved since 2000, and nothing else tracked " +
+      "fell. The decline people describe is a redistribution.",
+    href: "/stories/cinema",
+    since: "2026-09-17",
+  },
+  {
     id: "drone-war-2026-09",
     title: "Drones and military AI",
     blurb:

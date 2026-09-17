@@ -1382,6 +1382,61 @@ export function GridMap({
   );
 }
 
+/* ───────────────────────────── Sparkline ────────────────────────────── */
+
+/**
+ * A series at panel size, with its ends marked and nothing else.
+ *
+ * No axes, no gridlines, no labels. A sparkline's whole job is shape — is this
+ * rising, falling, flat, spiky — and everything that makes a full chart
+ * readable makes a two-centimetre one illegible. The numbers belong beside it
+ * in text, where they can be read.
+ *
+ * The baseline is the series minimum, not zero. That is the right choice here
+ * and the wrong one for a bar chart: a bar's length encodes magnitude and must
+ * start at zero, while a line encodes change and a zero baseline flattens
+ * every series whose variation is small relative to its level. The caption on
+ * any page using these has to say so, because a reader who assumes zero will
+ * read a 2% wobble as a collapse.
+ */
+export function Sparkline({
+  points, tone = "mid", width = 150, height = 36,
+}: {
+  points: Array<{ year: number; value: number }>;
+  tone?: Tone;
+  width?: number;
+  height?: number;
+}) {
+  if (points.length < 2) {
+    return (
+      <span className="mono text-[10px]" style={{ color: "var(--story-ink-3)" }}>
+        too few points to draw
+      </span>
+    );
+  }
+  const xs = points.map((p) => p.year);
+  const ys = points.map((p) => p.value);
+  const x0 = Math.min(...xs);
+  const x1 = Math.max(...xs);
+  const y0 = Math.min(...ys);
+  const y1 = Math.max(...ys);
+  const px = (year: number): number => (x1 === x0 ? 1 : ((year - x0) / (x1 - x0)) * (width - 6) + 3);
+  const py = (v: number): number => (y1 === y0 ? height / 2 : height - 4 - ((v - y0) / (y1 - y0)) * (height - 8));
+  const d = points.map((p, i) => `${i === 0 ? "M" : "L"}${px(p.year).toFixed(1)},${py(p.value).toFixed(1)}`).join(" ");
+  const last = points[points.length - 1]!;
+  const first = points[0]!;
+  return (
+    <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height} role="img"
+      aria-label={`${points.length} points from ${x0} to ${x1}`}
+      style={{ maxWidth: "100%" }}>
+      <path d={d} fill="none" stroke={TONE[tone]} strokeWidth={1.6}
+        strokeLinejoin="round" strokeLinecap="round" />
+      <circle cx={px(first.year)} cy={py(first.value)} r={2} fill={TONE[tone]} fillOpacity={0.45} />
+      <circle cx={px(last.year)} cy={py(last.value)} r={2.6} fill={TONE[tone]} />
+    </svg>
+  );
+}
+
 /* ───────────────────────────── StackedBars ──────────────────────────── */
 
 export interface StackPart { key: string; label: string; tone: Tone; hatch?: boolean }
