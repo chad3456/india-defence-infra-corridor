@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-09-14T16:15:55.033Z",
+  "probedAt": "2026-09-17T09:44:32.871Z",
   "question": "Which welfare schemes publish their own coverage, and at what grain — household, village, bare beneficiary count, or district aggregate?",
   "refusal": "No coverage figure, beneficiary count or spend is recorded here. Only whether a source answers, in what shape, and how many rows it carries.",
   "fourGrains": "Household, village, beneficiary count and district aggregate are four different things. A beneficiary count has no denominator and is not a penetration rate; supplying one is exactly the step where a tracker invents a number. A village percentage is of villages and not of people, and the two diverge sharply because villages differ in size by orders of magnitude. The eventual dataset keeps them in separate columns.",
@@ -38,7 +38,7 @@
       "settles": "Whether the open-data portal is browsable without the API key this project lacks.",
       "ok": true,
       "status": "200",
-      "bytes": 1002289,
+      "bytes": 1005552,
       "shape": "html",
       "found": [
         "catalog"
@@ -156,7 +156,7 @@
       "settles": "The denominator. Any village-grain percentage needs a count of villages per state, and this is the register the government uses for it.",
       "ok": true,
       "status": "200",
-      "bytes": 231057,
+      "bytes": 230724,
       "shape": "html",
       "found": [
         "panchayat",
@@ -223,14 +223,9 @@
       "what": "Wikipedia: list of Indian government schemes",
       "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_schemes_of_the_government_of_India&redirects=1&prop=wikitext&formatversion=2&fo",
       "settles": "A fallback roster if myScheme refuses, and a cross-check on it if it does not.",
-      "ok": true,
-      "status": "200",
-      "bytes": 111780,
-      "shape": "json",
-      "counts": {
-        "tableRows": 106,
-        "links": 309
-      }
+      "ok": false,
+      "status": "HTTP 429",
+      "bytes": null
     }
   ]
 }
