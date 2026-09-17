@@ -117,7 +117,20 @@ export default function IndicatorPicker({
         ))}
       </div>
 
-      <ul className="mt-4 m-0 grid list-none grid-cols-[minmax(0,1fr)] gap-x-6 gap-y-0 p-0 md:grid-cols-2 xl:grid-cols-3">
+      {/*
+        The list scrolls inside itself rather than lengthening the page.
+
+        At a hundred and sixty matches in one column, the index alone is six
+        thousand pixels — on a phone the whole page came to twelve thousand,
+        almost all of it list, with the map the page is named after somewhere
+        past the bottom of a long thumb drag. And that was with a registry of
+        684 indicators; the point of this page is that the number grows.
+
+        Bounding it to the viewport means the page is the same length whether
+        the search matches four indicators or four hundred, and the map stays a
+        scroll away rather than a search away.
+      */}
+      <ul className="mt-4 m-0 grid max-h-[58vh] list-none grid-cols-[minmax(0,1fr)] gap-x-6 gap-y-0 overflow-y-auto p-0 md:grid-cols-2 xl:grid-cols-3">
         {shown.map((r) => (
           <li key={r.slug} className="min-w-0 border-b" style={{ borderColor: "var(--story-rule)" }}>
             <Link
