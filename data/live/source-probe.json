@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-08-29T10:04:33.286Z",
+  "probedAt": "2026-09-17T09:48:53.671Z",
   "findings": [
     {
       "id": "amfi-stats",
@@ -10,11 +10,12 @@
       ],
       "expect": "html-table",
       "status": "ok",
-      "bytes": 577804,
+      "bytes": 587468,
       "looksLike": "html",
-      "title": "AMFI",
+      "title": "AMFI - Association of Mutual Funds in India",
       "yearTables": 0,
       "dataLinks": [
+        "https://portal.amfiindia.com/spages/amaug2026repo.xls",
         "https://portal.amfiindia.com/spages/amjul2026repo.xls",
         "https://portal.amfiindia.com/spages/amjun2026repo.xls",
         "https://portal.amfiindia.com/spages/ammay2026repo.xls",
@@ -33,8 +34,7 @@
         "https://portal.amfiindia.com/spages/amapr2025repo.xls",
         "https://portal.amfiindia.com/spages/ammar2025repo.xls",
         "https://portal.amfiindia.com/spages/amfeb2025repo.xls",
-        "https://portal.amfiindia.com/spages/amjan2025repo.xls",
-        "https://portal.amfiindia.com/spages/amdec2024repo.xls"
+        "https://portal.amfiindia.com/spages/amjan2025repo.xls"
       ],
       "candidateLinks": [],
       "embeddedJson": {
@@ -96,7 +96,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 38563,
+      "bytes": 38449,
       "looksLike": "html",
       "title": "PPAC | 404 Error",
       "yearTables": 0,
@@ -107,8 +107,8 @@
           "text": "Central Excise and Customs Tariff Table on Major Petroleum Products"
         },
         {
-          "href": "https://ppac.gov.in/download.php?file=menu/1785597488_Web_Upload_Flash_Report_July26.pdf",
-          "text": "Flash Report July 26"
+          "href": "https://ppac.gov.in/download.php?file=menu/1788266780_Flash_Report_WEB_UPLOAD_Aug26.pdf",
+          "text": "Flash Report Aug 26"
         },
         {
           "href": "https://ppac.gov.in/download.php?file=menu/1748348757_Foundation_Day_Report_vfinal_26052025.pdf",
@@ -125,16 +125,16 @@
           "text": "Central Excise and Customs Tariff Table on Major Petroleum Products",
           "status": 200,
           "contentType": "text/html; charset=UTF-8",
-          "bytes": 41171,
+          "bytes": 37804,
           "looksLike": "html",
           "dataLinks": []
         },
         {
-          "url": "https://ppac.gov.in/download.php?file=menu/1785597488_Web_Upload_Flash_Report_July26.pdf",
-          "text": "Flash Report July 26",
+          "url": "https://ppac.gov.in/download.php?file=menu/1788266780_Flash_Report_WEB_UPLOAD_Aug26.pdf",
+          "text": "Flash Report Aug 26",
           "status": 200,
           "contentType": "application/octet-stream",
-          "bytes": 512638,
+          "bytes": 538706,
           "looksLike": "binary"
         },
         {
@@ -166,7 +166,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 425585,
+      "bytes": 424513,
       "looksLike": "html",
       "title": "Home | Telecom Regulatory Authority of India | Government of India",
       "yearTables": 0,
@@ -188,7 +188,7 @@
           "status": 200,
           "contentType": "application/pdf",
           "bytes": 4826655,
-          "looksLike": "binary"
+          "looksLike": "unknown"
         },
         {
           "url": "https://www.trai.gov.in/sites/default/files/2024-12/broadcasting-dashboard.pdf",
@@ -199,7 +199,119 @@
           "looksLike": "binary"
         }
       ],
-      "score": 123
+      "score": 122
+    },
+    {
+      "id": "rbi-handbook",
+      "publisher": "Reserve Bank of India",
+      "url": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy",
+      "feeds": [
+        "food-inflation",
+        "demat-accounts",
+        "many"
+      ],
+      "expect": "html",
+      "status": "ok",
+      "bytes": 421982,
+      "looksLike": "html",
+      "title": "Handbook of Statistics on Indian Economy - Reserve Bank of India",
+      "yearTables": 0,
+      "dataLinks": [
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/1T_HBIE310720260FBAA53A59A94B94A78CB8313C150B62.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/2T_HBIE310720261ED415A38F9E465C9B9BEDEA897741FB.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/3T_HBIE3107202652095164B57C43B0B310E415B27E8B6C.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/4T_HBIE31072026F0C76C15F0DC456FBC2FE3F0E9031F41.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/5T_HBIE310720269D892692410D4CDE90B8D8D010BDC6BD.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/6T_HBIE31072026B0ED4698A2884D62BBB82A7C93EC5D0B.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/7T_HBIE310720261C6A115880DE44C4B9A5D1A29A2D111D.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/8T_HBIE310720266C3B86A85C3040DB9DEA7F513E20F73A.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/9T_HBIE31072026A3F18AB442CE4A23BEC929D29B406162.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/10T_HBIE310720268B682995CC224C51B22FC6036E99B7D1.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/11T_HBIE31072026BCEC5B4D423F4C8CB5C240A3F204325D.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/12T_HBIE31072026BB07C9F4CC59463DA173B25E5DA2DE8C.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/13T_HBIE310720269307659238684ED9870EA1D235062EA7.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/14T_HBIE31072026B0F0C489ABB44F2082CC4AD55DE9B027.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/15T_HBIE31072026A1DCB169BACD4B8694F96C48D854BA2E.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/16T_HBIE310720267F9C80E5540E48A1B2A0715D8B9470D2.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/17T_HBIE3107202631E57FDEF1BC41429F5A6606CD9ED6F5.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/18T_HBIE31072026F66166DD083C4F4AA4F2CDF71DBE801B.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/19T_HBIE3107202629B99CB632CF4D45B187E8C67BE219D6.XLSX",
+        "https://rbidocs.rbi.org.in/rdocs/Publications/DOCs/20T_HBIE3107202671C15323BC42438093450A506466C9E4.XLSX"
+      ],
+      "candidateLinks": [
+        {
+          "href": "https://www.rbi.org.in/Scripts/StateStatisticsFinances.aspx",
+          "text": "State Statistics and Finances"
+        },
+        {
+          "href": "https://www.rbi.org.in/scripts/FS_PDS.aspx",
+          "text": "Public Debt Statistics"
+        },
+        {
+          "href": "https://rbidocs.rbi.org.in/rdocs/Publications/PDFs/0HSIE31072026042B2753EC8F4B9EA7081AF75B56AA20.PDF",
+          "text": "(Note: To obtain the tables in Near-Real time, please access the Database on Indian Economy"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy#mainsection",
+          "text": "Skip to main content"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy#",
+          "text": ""
+        },
+        {
+          "href": "https://www.rbi.org.in/scripts/Statistics.aspx",
+          "text": "Data Releases"
+        },
+        {
+          "href": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy#top",
+          "text": "Top"
+        }
+      ],
+      "followed": [
+        {
+          "url": "https://www.rbi.org.in/Scripts/StateStatisticsFinances.aspx",
+          "text": "State Statistics and Finances",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://www.rbi.org.in/scripts/FS_PDS.aspx",
+          "text": "Public Debt Statistics",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://rbidocs.rbi.org.in/rdocs/Publications/PDFs/0HSIE31072026042B2753EC8F4B9EA7081AF75B56AA20.PDF",
+          "text": "(Note: To obtain the tables in Near-Real time, please access the Database on Indian Economy",
+          "status": 200,
+          "contentType": "text/html",
+          "bytes": 49749,
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy#mainsection",
+          "text": "Skip to main content",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        },
+        {
+          "url": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy#",
+          "text": "",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "looksLike": "html",
+          "dataLinks": []
+        }
+      ],
+      "score": 121
     },
     {
       "id": "econ-survey-appendix",
@@ -348,7 +460,7 @@
       ],
       "expect": "html-table",
       "status": "ok",
-      "bytes": 105013,
+      "bytes": 105265,
       "looksLike": "html",
       "title": "Entity-wise Retail Payments Systems Statistics | Official Website of Reserve Bank of India",
       "yearTables": 0,
@@ -430,11 +542,12 @@
       ],
       "expect": "html-table",
       "status": "ok",
-      "bytes": 101492,
+      "bytes": 101560,
       "looksLike": "html",
       "title": "Bankwise Volumes in ECS/NEFT/RTGS/Mobile Transactions | Official Website of Reserve Bank of India",
       "yearTables": 0,
       "dataLinks": [
+        "https://rbidocs.rbi.org.in/rdocs/NEFT/DOCs/NEFT0820261B7B990E0D59497D85EAF93FA8CA94AA.XLSX",
         "https://rbidocs.rbi.org.in/rdocs/NEFT/DOCs/NEFTRTGS07202639E933943FEE495699B67B9CA1A392D0.XLSX",
         "https://rbidocs.rbi.org.in/rdocs/NEFT/DOCs/NEFTRTGS062026AEF0C8D7EA6B4338B5171CDA4A5C4085.XLSX",
         "https://rbidocs.rbi.org.in/rdocs/NEFT/DOCs/NEFTRTGSMAY202693E5BCD9E1D7477DAFD0EA60C1EA692F.XLSX",
@@ -443,8 +556,7 @@
         "https://rbidocs.rbi.org.in/rdocs/NEFT/DOCs/NEFTRTGSFEB2634BBDA78EAE94D019A6F04D55A6B094A.XLSX",
         "https://rbidocs.rbi.org.in/rdocs/NEFT/DOCs/NEFTRTGS2026D1D1C71B5FF0486E9DB5E68FDFDFCC3A.XLSX",
         "https://rbidocs.rbi.org.in/rdocs/NEFT/DOCs/NEFTRTGSDEC202506277199F5B34AECB402FD77D7CB781D.XLSX",
-        "https://rbidocs.rbi.org.in/rdocs/NEFT/DOCs/NEFTRTGSNOV202542D1F24A3E01432D855209BEE5F1A037.XLSX",
-        "https://rbidocs.rbi.org.in/rdocs/NEFT/DOCs/NEFTRTGSOCT202500525D9695804072A96486C06D03064B.XLSX"
+        "https://rbidocs.rbi.org.in/rdocs/NEFT/DOCs/NEFTRTGSNOV202542D1F24A3E01432D855209BEE5F1A037.XLSX"
       ],
       "candidateLinks": [
         {
@@ -511,7 +623,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 52216,
+      "bytes": 52331,
       "looksLike": "html",
       "title": "भारत में अपराध | National Crime Records Bureau",
       "yearTables": 0,
@@ -604,7 +716,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 67684,
+      "bytes": 67799,
       "looksLike": "html",
       "title": "Home | National Crime Records Bureau",
       "yearTables": 0,
@@ -655,7 +767,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 67684,
+      "bytes": 67799,
       "looksLike": "html",
       "title": "Home | National Crime Records Bureau",
       "yearTables": 0,
@@ -706,7 +818,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 83527,
+      "bytes": 83779,
       "looksLike": "html",
       "title": "Data Releases | Official Website of Reserve Bank of India",
       "yearTables": 0,
@@ -844,7 +956,7 @@
       ],
       "expect": "json",
       "status": "ok",
-      "bytes": 414153,
+      "bytes": 414703,
       "looksLike": "json",
       "title": "",
       "yearTables": 0,
@@ -862,7 +974,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 119157,
+      "bytes": 118694,
       "looksLike": "html",
       "title": "General Review : All India Electricity Statistics (2021) - Central Electricity Authority",
       "yearTables": 0,
@@ -888,7 +1000,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 233458,
+      "bytes": 237784,
       "looksLike": "html",
       "title": "Central Electricity Authority - CEA",
       "yearTables": 0,
@@ -914,7 +1026,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 5384,
+      "bytes": 5391,
       "looksLike": "html",
       "title": "",
       "yearTables": 0,
@@ -946,7 +1058,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 253155,
+      "bytes": 214411,
       "looksLike": "html",
       "title": "Dataset - Dataful",
       "yearTables": 0,
@@ -954,7 +1066,7 @@
       "candidateLinks": [],
       "embeddedJson": {
         "kind": "next-flight",
-        "bytes": 14,
+        "bytes": 11,
         "topKeys": []
       },
       "score": 46
@@ -969,7 +1081,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 293694,
+      "bytes": 275529,
       "looksLike": "html",
       "title": "Dataset - Dataful",
       "yearTables": 0,
@@ -992,7 +1104,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 244661,
+      "bytes": 225946,
       "looksLike": "html",
       "title": "Dataset - Dataful",
       "yearTables": 0,
@@ -1013,15 +1125,11 @@
         {
           "href": "https://dataful.in/datasets/413/",
           "text": "Year, Month and Payment Application-wise UPI Apps Transaction Statistics"
-        },
-        {
-          "href": "https://dataful.in/datasets/22462/",
-          "text": "Year-, Month-, Chargeback Statistics for Transactions performed through UPI"
         }
       ],
       "embeddedJson": {
         "kind": "next-flight",
-        "bytes": 23,
+        "bytes": 22,
         "topKeys": []
       },
       "score": 46
@@ -1035,7 +1143,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 225299,
+      "bytes": 204232,
       "looksLike": "html",
       "title": "Dataset - Dataful",
       "yearTables": 0,
@@ -1043,7 +1151,7 @@
       "candidateLinks": [],
       "embeddedJson": {
         "kind": "next-flight",
-        "bytes": 8,
+        "bytes": 7,
         "topKeys": []
       },
       "score": 46
@@ -1057,7 +1165,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 1002289,
+      "bytes": 1005552,
       "looksLike": "html",
       "title": "Catalog | Open Government Data (OGD) Platform India",
       "yearTables": 0,
@@ -1114,7 +1222,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 65377,
+      "bytes": 78021,
       "looksLike": "html",
       "title": "Welcome to PNGRB",
       "yearTables": 0,
@@ -1164,7 +1272,7 @@
       ],
       "expect": "xlsx",
       "status": "ok",
-      "bytes": 44920,
+      "bytes": 46021,
       "looksLike": "html",
       "title": "",
       "yearTables": 0,
@@ -1201,7 +1309,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 66641,
+      "bytes": 66898,
       "looksLike": "html",
       "title": "Statistical Tables Relating to Banks in India - Reserve Bank of India",
       "yearTables": 0,
@@ -1272,51 +1380,12 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 249306,
-      "looksLike": "html",
+      "bytes": 336474,
+      "looksLike": "unknown",
       "title": "RBI Bulletin | Official Website of Reserve Bank of India",
       "yearTables": 0,
       "dataLinks": [],
-      "candidateLinks": [
-        {
-          "href": "https://www.rbi.org.in/Scripts/StateStatisticsFinances.aspx",
-          "text": "State Statistics and Finances"
-        },
-        {
-          "href": "https://www.rbi.org.in/scripts/FS_PDS.aspx",
-          "text": "Public Debt Statistics"
-        },
-        {
-          "href": "https://www.rbi.org.in/scripts/Statistics.aspx",
-          "text": "Data Releases"
-        }
-      ],
-      "followed": [
-        {
-          "url": "https://www.rbi.org.in/Scripts/StateStatisticsFinances.aspx",
-          "text": "State Statistics and Finances",
-          "status": 200,
-          "contentType": "text/html; charset=utf-8",
-          "looksLike": "html",
-          "dataLinks": []
-        },
-        {
-          "url": "https://www.rbi.org.in/scripts/FS_PDS.aspx",
-          "text": "Public Debt Statistics",
-          "status": 200,
-          "contentType": "text/html; charset=utf-8",
-          "looksLike": "html",
-          "dataLinks": []
-        },
-        {
-          "url": "https://www.rbi.org.in/scripts/Statistics.aspx",
-          "text": "Data Releases",
-          "status": 200,
-          "contentType": "text/html; charset=utf-8",
-          "looksLike": "html",
-          "dataLinks": []
-        }
-      ],
+      "candidateLinks": [],
       "score": 1
     },
     {
@@ -1348,7 +1417,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 137274,
+      "bytes": 147122,
       "looksLike": "html",
       "title": "All Press Release: Press Information Bureau",
       "yearTables": 0,
@@ -1366,7 +1435,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 60876,
+      "bytes": 60270,
       "looksLike": "html",
       "title": "SIPRI Arms Transfers Database | SIPRI",
       "yearTables": 0,
@@ -1399,7 +1468,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 190242,
+      "bytes": 190304,
       "looksLike": "html",
       "title": "Home | Directorate General of Civil Aviation | Government of India",
       "yearTables": 0,
@@ -1424,25 +1493,6 @@
       "dataLinks": [],
       "candidateLinks": [],
       "followed": [],
-      "score": 1
-    },
-    {
-      "id": "rbi-handbook",
-      "publisher": "Reserve Bank of India",
-      "url": "https://www.rbi.org.in/Scripts/AnnualPublications.aspx?head=Handbook%20of%20Statistics%20on%20Indian%20Economy",
-      "feeds": [
-        "food-inflation",
-        "demat-accounts",
-        "many"
-      ],
-      "expect": "html",
-      "status": "ok",
-      "bytes": 423289,
-      "looksLike": "unknown",
-      "title": "Handbook of Statistics on Indian Economy - Reserve Bank of India",
-      "yearTables": 0,
-      "dataLinks": [],
-      "candidateLinks": [],
       "score": 1
     },
     {
@@ -1473,7 +1523,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 39763,
+      "bytes": 39770,
       "looksLike": "html",
       "title": "Welcome to Data Analytics Portal",
       "yearTables": 0,
@@ -1491,7 +1541,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 183806,
+      "bytes": 197198,
       "looksLike": "html",
       "title": "Press Release: Press Information Bureau",
       "yearTables": 0,
@@ -1562,7 +1612,7 @@
       ],
       "expect": "csv",
       "status": "ok",
-      "bytes": 133,
+      "bytes": 217,
       "looksLike": "unknown",
       "title": "",
       "yearTables": 0,
@@ -1598,7 +1648,7 @@
       ],
       "expect": "html",
       "status": "ok",
-      "bytes": 190242,
+      "bytes": 190304,
       "looksLike": "html",
       "title": "Home | Directorate General of Civil Aviation | Government of India",
       "yearTables": 0,
