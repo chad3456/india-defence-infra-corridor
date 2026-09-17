@@ -56,11 +56,21 @@ const GAP_MS = 220;
 /**
  * Leave the job time to write and commit whatever it has.
  *
- * Well inside the workflow's sixty-minute timeout, because a run killed by the
- * timeout skips its own summary and leaves the commit step to find whatever
- * the last incremental write put down.
+ * Well inside the workflow's timeout, because a run killed by the timeout
+ * skips its own summary and leaves the commit step to find whatever the last
+ * incremental write put down.
+ *
+ * Sized from a measurement rather than a guess. At forty-six minutes the run
+ * reached 1,197 of its 2,162 slugs and produced 757 indicators — 2.3 seconds a
+ * slug, most of it the pacing this connector imposes on itself. Finishing the
+ * stride needs about eighty-three minutes, so this is that with headroom.
+ *
+ * Two hours of a crawl at roughly one request every one and a half seconds is
+ * a modest thing to ask of a public data site, and this job is manual and
+ * on-change rather than scheduled. The byte budget below is the harder limit
+ * and the one more likely to bind.
  */
-const BUDGET_MS = 46 * 60_000;
+const BUDGET_MS = 110 * 60_000;
 /**
  * Target number of slugs to attempt, spread across the whole index by stride.
  *
