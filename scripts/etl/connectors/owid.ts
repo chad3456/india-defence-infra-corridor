@@ -57,8 +57,18 @@ const GAP_MS = 220;
 const BUDGET_MS = 32 * 60_000;
 /** Ceiling on indicators. Raised or lowered by editing this line, not by luck. */
 const MAX_INDICATORS = 1400;
-/** Ceiling on indicators fetched for every country. See the two-tier note. */
-const MAX_MAP = 400;
+/**
+ * Ceiling on indicators fetched for every country.
+ *
+ * The probe measured one full indicator CSV at 605KB and 21,565 rows. Four
+ * hundred of those is 240MB pulled from a charity in one job, which is not a
+ * polite thing to do for a choropleth. A hundred and fifty is ninety
+ * megabytes, still the largest single thing this pipeline does, and the full
+ * fetches get their own slower pace below.
+ */
+const MAX_MAP = 150;
+/** Full-country CSVs are ~600KB each and get three times the gap. */
+const MAP_GAP_MS = 660;
 /** Indicators per shard file. Keeps any one file under a megabyte or so. */
 const SHARD = 60;
 
@@ -229,8 +239,8 @@ export function parseCsv(text: string): { header: string[]; rows: string[][] } {
 }
 
 let lastCall = 0;
-async function pace(): Promise<void> {
-  const wait = GAP_MS - (Date.now() - lastCall);
+async function pace(gap: number = GAP_MS): Promise<void> {
+  const wait = gap - (Date.now() - lastCall);
   if (wait > 0) await new Promise((r) => setTimeout(r, wait));
   lastCall = Date.now();
 }
@@ -335,7 +345,7 @@ async function main(): Promise<void> {
     let mapRows: MapRow[] = [];
     const wantMap = mapFetched < MAX_MAP && byIso.size >= 6;
     if (wantMap) {
-      await pace();
+      await pace(MAP_GAP_MS);
       const full = await getText(`${OWID}/grapher/${slug}.csv?useColumnShortNames=true`, {
         timeoutMs: 60_000, retries: 1, cacheMs: 0,
       });
@@ -428,9 +438,9 @@ async function main(): Promise<void> {
     method:
       "Two tiers. SERIES carries India and a fixed comparator set with full history for every " +
       "indicator here. MAP carries the latest value for every country, for the first " +
-      `${MAX_MAP} indicators with data for at least six comparators — a cap, because the same ` +
-      "indicator for every country and year is about a megabyte and a thousand of those is a " +
-      "gigabyte of repository. Which tiers an indicator has is recorded on its row.",
+      `${MAX_MAP} indicators with data for at least six comparators — a cap, because one full ` +
+      "indicator CSV is about 600KB and a thousand of those is a gigabyte pulled from a charity " +
+      "in one job. Which tiers an indicator has is recorded on its row.",
     attribution:
       "Each indicator carries OWID's own attribution and citation strings. OWID is a compiler: " +
       "the producer named in `attribution` is who to credit and who to check, and OWID is how " +

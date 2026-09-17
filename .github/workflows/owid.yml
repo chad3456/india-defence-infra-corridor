@@ -1,4 +1,4 @@
-name: OWID indicator registry
+name: OWID registry and Indian cinema
 
 # Discovers OWID's chart slugs from its own sitemap and builds a two-tier
 # registry: India plus comparators for every indicator, and latest-value-per-
@@ -14,6 +14,7 @@ on:
   push:
     paths:
       - "scripts/etl/connectors/owid.ts"
+      - "scripts/etl/connectors/cinema.ts"
       - ".github/workflows/owid.yml"
 
 permissions:
@@ -24,6 +25,27 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # A separate job, not a second step: these two sources have nothing to do
+  # with each other, and one refusing must not cost the other its run.
+  cinema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Build the cinema series
+        run: npm run cinema:build
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/cinema/output.json
+          "chore(cinema): Indian film output $(date -u +'%Y-%m-%d %H:%M')"
+
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 50
