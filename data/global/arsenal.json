@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-17T20:34:51.874Z",
+ "builtAt": "2026-09-18T10:03:16.595Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206519,7 +206519,7 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
@@ -206569,6 +206569,21 @@
    "outlet": "Naval News",
    "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
    "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
+   "primary": false
+  },
+  {
+   "id": "ev-1t7bgpc",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Saudi Arabia"
+   ],
+   "value": null,
+   "date": "2026-09-17",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/u-s-approves-saudi-f-35-sale-after-year-of-signals/",
+   "headline": "U.S. approves Saudi F-35 sale after year of signals",
    "primary": false
   },
   {
@@ -207065,17 +207080,33 @@
      "url": "https://breakingdefense.com/2026/09/us-clears-24b-f-35-sale-for-saudi-arabia/",
      "headline": "US clears $24B F-35 sale for Saudi Arabia",
      "primary": false
+    },
+    {
+     "id": "ev-1t7bgpc",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Saudi Arabia"
+     ],
+     "value": null,
+     "date": "2026-09-17",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-approves-saudi-f-35-sale-after-year-of-signals/",
+     "headline": "U.S. approves Saudi F-35 sale after year of signals",
+     "primary": false
     }
    ],
    "outlets": [
-    "Breaking Defense"
+    "Breaking Defense",
+    "Defence Blog"
    ],
    "value": {
     "amount": 24000000000,
     "currency": "USD",
     "asWritten": "$24B"
    },
-   "verdict": "a single report, uncorroborated"
+   "verdict": "corroborated by independent outlets"
   },
   {
    "key": "order||united kingdom",
