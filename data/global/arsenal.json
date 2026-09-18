@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-18T10:03:16.595Z",
+ "builtAt": "2026-09-18T19:58:53.699Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206491,7 +206491,7 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   },
   {
@@ -206519,11 +206519,30 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-11v23bm",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Saudi Arabia"
+   ],
+   "value": {
+    "amount": 24300000000,
+    "currency": "USD",
+    "asWritten": "$24.3 billion"
+   },
+   "date": "2026-09-18",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/industry/techwatch/2026/09/18/us-clears-way-for-243-billion-fighter-jet-sale-to-saudi-arabia/",
+   "headline": "US clears way for $24.3 billion fighter jet sale to Saudi Arabia",
+   "primary": false
+  },
   {
    "id": "ev-1gv0hyp",
    "kind": "order",
@@ -206913,6 +206932,81 @@
  ],
  "groups": [
   {
+   "key": "order||saudi arabia+united states",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Saudi Arabia"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-11v23bm",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Saudi Arabia"
+     ],
+     "value": {
+      "amount": 24300000000,
+      "currency": "USD",
+      "asWritten": "$24.3 billion"
+     },
+     "date": "2026-09-18",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/industry/techwatch/2026/09/18/us-clears-way-for-243-billion-fighter-jet-sale-to-saudi-arabia/",
+     "headline": "US clears way for $24.3 billion fighter jet sale to Saudi Arabia",
+     "primary": false
+    },
+    {
+     "id": "ev-25d1fk",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Saudi Arabia"
+     ],
+     "value": {
+      "amount": 24000000000,
+      "currency": "USD",
+      "asWritten": "$24B"
+     },
+     "date": "2026-09-17",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/09/us-clears-24b-f-35-sale-for-saudi-arabia/",
+     "headline": "US clears $24B F-35 sale for Saudi Arabia",
+     "primary": false
+    },
+    {
+     "id": "ev-1t7bgpc",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Saudi Arabia"
+     ],
+     "value": null,
+     "date": "2026-09-17",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-approves-saudi-f-35-sale-after-year-of-signals/",
+     "headline": "U.S. approves Saudi F-35 sale after year of signals",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News",
+    "Breaking Defense",
+    "Defence Blog"
+   ],
+   "value": {
+    "amount": 24300000000,
+    "currency": "USD",
+    "asWritten": "$24.3 billion"
+   },
+   "verdict": "corroborated by independent outlets"
+  },
+  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -207052,61 +207146,6 @@
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
-  },
-  {
-   "key": "order||saudi arabia+united states",
-   "systems": [],
-   "countries": [
-    "United States",
-    "Saudi Arabia"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-25d1fk",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States",
-      "Saudi Arabia"
-     ],
-     "value": {
-      "amount": 24000000000,
-      "currency": "USD",
-      "asWritten": "$24B"
-     },
-     "date": "2026-09-17",
-     "outlet": "Breaking Defense",
-     "url": "https://breakingdefense.com/2026/09/us-clears-24b-f-35-sale-for-saudi-arabia/",
-     "headline": "US clears $24B F-35 sale for Saudi Arabia",
-     "primary": false
-    },
-    {
-     "id": "ev-1t7bgpc",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States",
-      "Saudi Arabia"
-     ],
-     "value": null,
-     "date": "2026-09-17",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/u-s-approves-saudi-f-35-sale-after-year-of-signals/",
-     "headline": "U.S. approves Saudi F-35 sale after year of signals",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Breaking Defense",
-    "Defence Blog"
-   ],
-   "value": {
-    "amount": 24000000000,
-    "currency": "USD",
-    "asWritten": "$24B"
-   },
-   "verdict": "corroborated by independent outlets"
   },
   {
    "key": "order||united kingdom",
