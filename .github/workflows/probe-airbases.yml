@@ -1,0 +1,50 @@
+name: Probe military airbases, inventories and live traffic
+
+# Asks whether military airbases, air-force inventories and live military air
+# traffic can be assembled from open sources that publish their own data.
+#
+# Runs here because the editing sandbox reaches almost nothing. Publishes no
+# coordinate, no callsign, no registration and no count of aircraft at any
+# named place: only whether a source answered, in what shape, and whether its
+# query parameters do anything.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-airbases.ts"
+      - ".github/workflows/probe-airbases.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-airbases
+  # Never cancel a run that commits data.
+  #
+  # Cancelling a job whose whole purpose is to produce a file means the file is
+  # produced partially and then committed anyway, because the commit step runs
+  # `if: always()`. The OWID registry lost 634 of its 684 indicators that way:
+  # a push cancelled a run ninety seconds in, and the commit step published the
+  # fifty it had written. Nothing failed.
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Probe
+        run: npm run airbases:probe
+      - name: Commit the probe report
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/live/airbases-probe.json
+          "chore(sources): airbase, inventory and live-traffic probe $(date -u +'%Y-%m-%d %H:%M')"
