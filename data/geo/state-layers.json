@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-18T11:31:31.528Z",
+  "builtAt": "2026-09-18T16:35:56.661Z",
   "note": "Named things per state, for the map to answer a click with. Each layer records how its rows reached a state and how many did not, because the join is where this kind of file goes wrong invisibly.",
   "refused": [
     {
@@ -25573,8 +25573,8 @@
       "blurb": "Every railway station the mobility dataset holds a coordinate for, placed into the state whose polygon contains it. Presence only — the source carries a name, a station code and a coordinate, and nothing about how many trains stop or how many people pass through, so a count of stations is a count of stations and not of service.",
       "join": "Point-in-polygon against the map's own topology. A station in no polygon is listed unplaced, never assigned to a neighbour.",
       "source": "OpenStreetMap, via the mobility connector.",
-      "total": 10310,
-      "placed": 10142,
+      "total": 10311,
+      "placed": 10143,
       "unplacedCount": 119,
       "deduped": 49,
       "unplaced": [
@@ -95317,6 +95317,13 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 21.7856,
             "lon": 85.5241
+          },
+          {
+            "name": "Purunakatak",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 20.6296,
+            "lon": 84.4326
           },
           {
             "name": "Radhakishorepur Junction",
