@@ -1,0 +1,42 @@
+name: Build the air-force inventories
+
+# Reads Wikipedia's per-force "List of active … aircraft" articles header-first.
+# Weekly, because these articles change slowly and a daily run would be noise.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 4 * * 1"
+  push:
+    paths:
+      - "scripts/etl/connectors/air-inventory.ts"
+      - ".github/workflows/air-inventory.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: air-inventory
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Read the catalogues
+        run: npm run inventory:build
+      - name: Check the parse before publishing it
+        run: npm run test:airpower
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/defence/air-inventory.json
+          "chore(defence): air-force inventories $(date -u +'%Y-%m-%d %H:%M')"

@@ -1,0 +1,44 @@
+name: Ingest military ADS-B
+
+# Appends a snapshot of military aircraft broadcasting ADS-B, from two
+# independent community aggregators.
+#
+# Scheduled because one call is a single instant in the sky and an instant is
+# not a pattern. The connector appends and keeps the last 336 snapshots, which
+# at this cadence is a fortnight.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 * * * *"
+  push:
+    paths:
+      - "scripts/etl/connectors/mil-traffic.ts"
+      - ".github/workflows/mil-traffic.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mil-traffic
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Snapshot
+        run: npm run traffic:ingest
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/defence/mil-traffic.json
+          "chore(defence): military ADS-B snapshot $(date -u +'%Y-%m-%d %H:%M')"

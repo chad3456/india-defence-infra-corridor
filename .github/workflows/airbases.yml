@@ -1,0 +1,44 @@
+name: Build the airbase catalogue
+
+# Sweeps OpenStreetMap for military airfields and assigns each a country
+# locally, from the same world atlas polygons the site's maps are drawn from.
+#
+# Manual and on-change. Overpass is volunteer infrastructure that returns 429
+# when pushed, so the connector paces itself hard and this is not scheduled.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/connectors/airbases.ts"
+      - "scripts/etl/lib/world-shapes.ts"
+      - ".github/workflows/airbases.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: airbases
+  # Never cancel a run that commits data: the commit step runs `if: always()`,
+  # so a cancelled run publishes a partial file over a complete one.
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Sweep Overpass
+        run: npm run airbases:build
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/defence/airbases.json
+          "chore(defence): military airfield catalogue $(date -u +'%Y-%m-%d %H:%M')"
