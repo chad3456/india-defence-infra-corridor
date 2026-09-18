@@ -1,0 +1,301 @@
+{
+  "probedAt": "2026-09-18T15:46:25.314Z",
+  "question": "Can military airbases, air-force inventories and live military air traffic be assembled from open sources that publish their own data, without a key and without a scraper per site?",
+  "refusal": "No coordinate, no callsign, no registration and no count of aircraft at any named place is published here. Only whether a source answered, in what shape, roughly how many rows it appears to carry, and whether its query parameters do anything.",
+  "note": "The live-traffic answer is expected to be partial and the page built on it has to say so. Military aircraft are not obliged to broadcast ADS-B and routinely do not, so a public feed shows a self-selected minority — transports, tankers, trainers, maritime patrol, and anything transiting civil airspace under civil rules. Absence from these feeds is not absence from the sky, and a tracker that lets a reader infer otherwise is worse than no tracker. What the visible fraction does support is a record of publicly observable movement, which is the same material ADS-B Exchange and adsb.lol already publish.",
+  "findings": [
+    {
+      "id": "ourairports:csv",
+      "kind": "airbase-catalogue",
+      "what": "OurAirports — a public-domain CSV of every aerodrome it knows",
+      "url": "https://davidmegginson.github.io/ourairports-data/airports.csv",
+      "settles": "Whether a single public-domain file carries the world's aerodromes, and whether military ones are identifiable in it",
+      "ok": true,
+      "status": "200",
+      "bytes": 12674483,
+      "shape": "csv",
+      "found": [
+        "ident",
+        "type",
+        "latitude_deg",
+        "iso_country",
+        "name"
+      ],
+      "missing": [],
+      "counts": {
+        "rows": 86095,
+        "airBaseNamed": 1575,
+        "closed": 13531
+      }
+    },
+    {
+      "id": "overpass:mil-airfield-count",
+      "kind": "airbase-geometry",
+      "what": "OpenStreetMap — how many military airfields exist worldwide",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A60%5D%3Bnwr%5B%22military%22%3D%22airfield%22%5D%3Bout%20count%3B",
+      "settles": "Whether OSM's military airfield tag is populated enough to be a spine",
+      "ok": true,
+      "status": "200",
+      "bytes": 420,
+      "shape": "json",
+      "found": [
+        "elements"
+      ],
+      "missing": [],
+      "counts": {
+        "elements": 1,
+        "tags": 1,
+        "lat": 0
+      }
+    },
+    {
+      "id": "overpass:mil-airfield-india",
+      "kind": "airbase-geometry",
+      "what": "The same tag inside India's bounding box, with tags and centres",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A90%5D%3Bnwr%5B%22military%22%3D%22airfield%22%5D(6.5%2C68.0%2C36.0",
+      "settles": "Whether the objects carry names and coordinates, or only geometry",
+      "ok": true,
+      "status": "200",
+      "bytes": 59150,
+      "shape": "json",
+      "found": [
+        "elements"
+      ],
+      "missing": [],
+      "counts": {
+        "elements": 166,
+        "tags": 161,
+        "lat": 161
+      },
+      "parameterWorks": false,
+      "parameterNote": "the paired request failed: HTTP 429"
+    },
+    {
+      "id": "overpass:aerodrome-military",
+      "kind": "airbase-geometry",
+      "what": "Civil-tagged aerodromes that also carry a military tag",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A90%5D%3Bnwr%5B%22aeroway%22%3D%22aerodrome%22%5D%5B%22military%22%",
+      "settles": "Whether joint-use fields are reachable by a second tag rather than missed",
+      "ok": false,
+      "status": "HTTP 429",
+      "bytes": null
+    },
+    {
+      "id": "wiki:List_of_Indian_Air_Force_stations",
+      "kind": "inventory",
+      "what": "List of Indian Air Force stations",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=List_of_Indian_Air_Force_stations&redirects=1",
+      "settles": "Whether a force's own station list is a table this repo can read",
+      "ok": true,
+      "status": "200",
+      "bytes": 38290,
+      "shape": "json",
+      "found": [
+        "command",
+        "state",
+        "squadron",
+        "air force station"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 80,
+        "tables": 1,
+        "refs": 44
+      }
+    },
+    {
+      "id": "wiki:List_of_United_States_Air_Force_installations",
+      "kind": "inventory",
+      "what": "List of United States Air Force installations",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=List_of_United_States_Air_Force_installations&redirects=1",
+      "settles": "Whether the same shape holds for a second, much larger air force",
+      "ok": true,
+      "status": "200",
+      "bytes": 250888,
+      "shape": "json",
+      "found": [
+        "base",
+        "state",
+        "command"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 231,
+        "tables": 6,
+        "refs": 263
+      }
+    },
+    {
+      "id": "wiki:List_of_active_Indian_military_aircraft",
+      "kind": "inventory",
+      "what": "List of active Indian military aircraft",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=List_of_active_Indian_military_aircraft&redirects=1",
+      "settles": "Whether aircraft inventories are tables with a type, a role and a number in service",
+      "ok": true,
+      "status": "200",
+      "bytes": 79747,
+      "shape": "json",
+      "found": [
+        "origin",
+        "role",
+        "in service",
+        "variant"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 117,
+        "tables": 4,
+        "refs": 169
+      }
+    },
+    {
+      "id": "wiki:List_of_active_People's_Liberation_Army_Air_Force_aircraft",
+      "kind": "inventory",
+      "what": "List of active People's Liberation Army Air Force aircraft",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=List_of_active_People's_Liberation_Army_Air_Force_aircraft&re",
+      "settles": "Whether the inventory shape generalises past India",
+      "ok": true,
+      "status": "200",
+      "bytes": 8518,
+      "shape": "json",
+      "found": [
+        "origin",
+        "role",
+        "in service"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 60,
+        "tables": 1,
+        "refs": 40
+      }
+    },
+    {
+      "id": "wiki:List_of_active_Russian_military_aircraft",
+      "kind": "inventory",
+      "what": "List of active Russian military aircraft",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=List_of_active_Russian_military_aircraft&redirects=1",
+      "settles": "A third force, to see whether the columns are a convention or a coincidence",
+      "ok": true,
+      "status": "200",
+      "bytes": 91127,
+      "shape": "json",
+      "found": [
+        "origin",
+        "role",
+        "in service"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 216,
+        "tables": 7,
+        "refs": 263
+      }
+    },
+    {
+      "id": "wiki:List_of_active_Pakistan_Air_Force_aircraft",
+      "kind": "inventory",
+      "what": "List of active Pakistan Air Force aircraft",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=List_of_active_Pakistan_Air_Force_aircraft&redirects=1",
+      "settles": "A fourth, and the one most often set beside India's",
+      "ok": true,
+      "status": "200",
+      "bytes": 38424,
+      "shape": "json",
+      "found": [
+        "origin",
+        "role",
+        "in service"
+      ],
+      "missing": [],
+      "counts": {
+        "tableRows": 79,
+        "tables": 1,
+        "refs": 79
+      }
+    },
+    {
+      "id": "adsblol:mil",
+      "kind": "live-traffic",
+      "what": "adsb.lol — aircraft its community feeders have tagged as military",
+      "url": "https://api.adsb.lol/v2/mil",
+      "settles": "Whether a free, keyless feed of military ADS-B exists at all, and how many aircraft it sees worldwide at one instant",
+      "ok": true,
+      "status": "200",
+      "bytes": 159455,
+      "shape": "json",
+      "found": [
+        "ac",
+        "hex",
+        "flight"
+      ],
+      "missing": [],
+      "counts": {
+        "aircraft": 374,
+        "withCallsign": 310,
+        "withPosition": 307,
+        "typed": 336
+      }
+    },
+    {
+      "id": "adsblol:point",
+      "kind": "live-traffic",
+      "what": "The same service asked for a radius around Delhi",
+      "url": "https://api.adsb.lol/v2/point/28.6/77.2/250",
+      "settles": "Whether the feed can be queried by region, which decides whether a per-airbase view is possible",
+      "ok": true,
+      "status": "200",
+      "bytes": 9832,
+      "shape": "json",
+      "found": [
+        "ac"
+      ],
+      "missing": [],
+      "counts": {
+        "aircraft": 15,
+        "withPosition": 15
+      },
+      "parameterWorks": true,
+      "parameterNote": "6297 bytes apart, beyond a 64-byte tolerance"
+    },
+    {
+      "id": "adsbfi:mil",
+      "kind": "live-traffic",
+      "what": "adsb.fi — a second independent aggregator's military feed",
+      "url": "https://opendata.adsb.fi/api/v2/mil",
+      "settles": "Whether a second feed corroborates the first, so neither is taken on its own say-so",
+      "ok": true,
+      "status": "200",
+      "bytes": 185779,
+      "shape": "json",
+      "found": [
+        "ac",
+        "hex"
+      ],
+      "missing": [],
+      "counts": {
+        "aircraft": 404,
+        "withCallsign": 342
+      }
+    },
+    {
+      "id": "opensky:states",
+      "kind": "live-traffic",
+      "what": "OpenSky states over India, for the identifiers this repo does not currently keep",
+      "url": "https://opensky-network.org/api/states/all?lamin=6.5&lomin=68.0&lamax=36.0&lomax=97.5",
+      "settles": "Whether the existing flight feed carries an ICAO address and callsign, which is what would let military traffic be separated from civil",
+      "ok": true,
+      "status": "200",
+      "bytes": 36996,
+      "shape": "json",
+      "found": [
+        "states",
+        "time"
+      ],
+      "missing": [],
+      "counts": {
+        "rows": 288
+      }
+    }
+  ]
+}
