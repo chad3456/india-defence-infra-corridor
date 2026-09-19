@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-18T19:58:53.699Z",
+ "builtAt": "2026-09-19T09:43:32.643Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206504,7 +206504,7 @@
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 22,
+   "items": 21,
    "kept": 0,
    "via": "direct"
   },
@@ -206512,18 +206512,33 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 2,
+   "kept": 1,
    "via": "direct"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-cjft82",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Ukraine"
+   ],
+   "value": null,
+   "date": "2026-09-19",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/u-s-approves-ukraine-air-defense-package-with-unclear-weapons/",
+   "headline": "U.S. approves Ukraine air defense package with unclear weapons",
+   "primary": false
+  },
   {
    "id": "ev-11v23bm",
    "kind": "order",
@@ -206931,6 +206946,37 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||ukraine+united states",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Ukraine"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-cjft82",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-09-19",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-approves-ukraine-air-defense-package-with-unclear-weapons/",
+     "headline": "U.S. approves Ukraine air defense package with unclear weapons",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||saudi arabia+united states",
    "systems": [],
