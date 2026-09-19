@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-19T15:59:59.972Z",
+  "builtAt": "2026-09-19T20:53:07.863Z",
   "note": "Named things per state, for the map to answer a click with. Each layer records how its rows reached a state and how many did not, because the join is where this kind of file goes wrong invisibly.",
   "refused": [
     {
@@ -25573,10 +25573,10 @@
       "blurb": "Every railway station the mobility dataset holds a coordinate for, placed into the state whose polygon contains it. Presence only — the source carries a name, a station code and a coordinate, and nothing about how many trains stop or how many people pass through, so a count of stations is a count of stations and not of service.",
       "join": "Point-in-polygon against the map's own topology. A station in no polygon is listed unplaced, never assigned to a neighbour.",
       "source": "OpenStreetMap, via the mobility connector.",
-      "total": 10310,
+      "total": 10312,
       "placed": 10142,
       "unplacedCount": 119,
-      "deduped": 49,
+      "deduped": 51,
       "unplaced": [
         "Tiruchendur",
         "Tettu",
