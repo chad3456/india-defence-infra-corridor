@@ -678,6 +678,73 @@ export function BubbleMap({
   );
 }
 
+/* ───────────────────────────── WorldDots ────────────────────────────── */
+
+/**
+ * Points on a world map, for a set of places rather than a set of values.
+ *
+ * ── Why this exists next to DotMap ───────────────────────────────────────
+ *
+ * `DotMap` is an India map. It projects with a Mercator fitted to India's own
+ * extent, which is right for the station and ground layers it was written for
+ * and silently wrong for anything else: a point in Nevada or over the Pacific
+ * still projects, to a coordinate far outside the viewBox, and an SVG does not
+ * clip by default. So a world dataset handed to it renders as India's outline
+ * with a scatter of dots in and around it, and nothing anywhere reports an
+ * error.
+ *
+ * That is exactly what happened here. The military ADS-B map and the worldwide
+ * airfield map were both drawn with `DotMap`, and both came out as pictures of
+ * India with most of their data off the edge of the frame. Every count on the
+ * page was right, every dot was drawn, and the maps were of the wrong world.
+ *
+ * ── The projection ───────────────────────────────────────────────────────
+ *
+ * Natural Earth, matching the choropleth on the same page, so a reader moving
+ * between the two is looking at the same planet. Mercator would be worse here
+ * for the usual reason and a specific one: military airfields cluster at high
+ * latitudes, where Mercator inflates area most, and a map that makes northern
+ * Russia and Alaska look enormous would be making an argument the data does
+ * not.
+ */
+export function WorldDots({
+  dots, height = 430, r = 1.6, opacity = 0.6, highlightIso,
+}: {
+  dots: Array<{ lat: number; lon: number; tone?: Tone }>;
+  height?: number;
+  r?: number;
+  opacity?: number;
+  /** A country to outline, by ISO 3166-1 numeric, as the choropleth does. */
+  highlightIso?: string;
+}) {
+  const width = 820;
+  const projection = geoNaturalEarth1().fitExtent([[4, 4], [width - 4, height - 4]], world);
+  const path = geoPath(projection);
+  return (
+    <svg viewBox={`0 0 ${width} ${height}`} style={{ width: "100%", height: "auto" }}
+      className="max-w-full" role="img" aria-label={`${dots.length} places on a world map`}>
+      {world.features.map((f, i) => (
+        <path key={i} d={path(f) ?? undefined}
+          fill="var(--story-card)" stroke="var(--story-rule)" strokeWidth={0.5} />
+      ))}
+      {dots.map((d, i) => {
+        const p = projection([d.lon, d.lat]);
+        if (!p) return null;
+        return (
+          <circle key={i} cx={p[0]} cy={p[1]} r={r}
+            fill={TONE[d.tone ?? "hot"]} fillOpacity={opacity} />
+        );
+      })}
+      {highlightIso && world.features
+        .filter((f) => String(f.id ?? "") === highlightIso)
+        .map((f, i) => (
+          <path key={`h${i}`} d={path(f) ?? undefined} fill="none"
+            stroke="var(--s-hot)" strokeWidth={1.1} />
+        ))}
+    </svg>
+  );
+}
+
 /* ───────────────────────────── Choropleth ───────────────────────────── */
 
 export interface ChoroplethRow { id: string; name: string; value: number }
@@ -1585,13 +1652,26 @@ export function Sparkline({
  * the axis says "log scale" in words and a broken line is visibly broken.
  */
 export function TimeSeries({
-  points, tone = "mid", height = 300, format, unit,
+  points, tone = "mid", height = 300, format, unit, xLabel, xNote,
 }: {
   points: Point[];
   tone?: Tone;
   height?: number;
   format?: (v: number) => string;
   unit?: string;
+  /**
+   * How to print a value from the x axis.
+   *
+   * The axis is called `year` because that is what almost every series here
+   * carries, and the first caller whose x was not a year — hourly ADS-B
+   * snapshots, keyed by epoch milliseconds — got four labels reading
+   * "1789746879419" and overlapping each other into a smear. A series is not
+   * obliged to be annual, and a chart that can only label years should say so
+   * or offer this.
+   */
+  xLabel?: (x: number) => string;
+  /** What the x axis is, when it is not years, for the line under the chart. */
+  xNote?: string;
 }) {
   if (points.length < 2) {
     return (
@@ -1662,13 +1742,14 @@ export function TimeSeries({
    */
   const yearAt = (frac: number): number =>
     points[Math.round(frac * (points.length - 1))]!.year;
+  const printX = xLabel ?? ((x: number) => String(x));
   const yearTicks = [...new Set([x0, yearAt(0.33), yearAt(0.66), x1])];
 
   return (
     <div>
       <svg viewBox={`0 0 ${W} ${height}`} role="img"
         aria-label={
-          `${points.length} points from ${x0} to ${x1}, `
+          `${points.length} points from ${printX(x0)} to ${printX(x1)}, `
           + `${fmtV(first.value)} to ${fmtV(last.value)}`
           + (logScale ? ", drawn on a logarithmic scale" : "")
         }
@@ -1687,7 +1768,7 @@ export function TimeSeries({
           <text key={y} x={px(y)} y={height - 10}
             textAnchor={y === x0 ? "start" : y === x1 ? "end" : "middle"}
             fontSize={22} fontFamily="ui-monospace, monospace" fill="var(--story-ink-3)">
-            {y}
+            {printX(y)}
           </text>
         ))}
         <path d={d} fill="none" stroke={TONE[tone]} strokeWidth={2}
@@ -1695,7 +1776,8 @@ export function TimeSeries({
         <circle cx={px(last.year)} cy={py(last.value)} r={4} fill={TONE[tone]} />
       </svg>
       <p className="mono mt-1.5 text-[10.5px] leading-[1.5]" style={{ color: "var(--story-ink-3)" }}>
-        {points.length} points, {x0}–{x1}. {fmtV(first.value)} → {fmtV(last.value)}
+        {points.length} points, {printX(x0)}–{printX(x1)}
+        {xNote ? ` ${xNote}` : ""}. {fmtV(first.value)} → {fmtV(last.value)}
         {unit ? ` ${unit}` : ""}.
         {logScale
           ? " Log scale: each gridline is a step in order of magnitude, and the axis starts at the series minimum rather than zero, because zero has no place on one."
