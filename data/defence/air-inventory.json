@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-20T13:50:24.505Z",
+  "builtAt": "2026-09-20T13:54:18.379Z",
   "source": "English Wikipedia's per-force 'List of active … aircraft' articles, read header-first. Those articles compile mostly from IISS's Military Balance and FlightGlobal's World Air Forces, and carry those publications' lag and their disagreements.",
   "method": "Tables are matched on their headers, never on column position. A table without both an aircraft column and a quantity column is skipped and counted rather than read by guessing. A quantity cell yields a number only when it carries one unambiguously; a range, a dash or prose yields null, which is counted separately and never treated as zero. A force whose quantity cells parsed less than sixty per cent of the time has its fleet total withheld while its list of types is kept.",
   "refusal": "No fleet total is reconciled against another catalogue, and no aircraft is resolved to a base. Every number here says 'a public catalogue lists this many', which is a weaker claim than 'this country has this many' and is the only one the source supports.",
@@ -11,10 +11,10 @@
   ],
   "counts": {
     "forces": 13,
-    "types": 775,
-    "counted": 551,
-    "unreadable": 224,
-    "totalsWithheld": 3,
+    "types": 787,
+    "counted": 641,
+    "unreadable": 146,
+    "totalsWithheld": 1,
     "failed": 1
   },
   "failures": [
@@ -91,9 +91,9 @@
           "filled": 4
         }
       ],
-      "types": 112,
+      "types": 98,
       "counted": 83,
-      "unreadable": 29,
+      "unreadable": 15,
       "total": 2792,
       "tablesRead": 4,
       "tablesSkipped": 0
@@ -125,10 +125,10 @@
           "filled": 51
         }
       ],
-      "types": 76,
+      "types": 69,
       "counted": 42,
-      "unreadable": 34,
-      "total": -1,
+      "unreadable": 27,
+      "total": 1802,
       "tablesRead": 1,
       "tablesSkipped": 0
     },
@@ -154,9 +154,9 @@
           "filled": 51
         }
       ],
-      "types": 59,
+      "types": 51,
       "counted": 51,
-      "unreadable": 8,
+      "unreadable": 0,
       "total": 4268,
       "tablesRead": 1,
       "tablesSkipped": 0
@@ -272,9 +272,9 @@
           "filled": 0
         }
       ],
-      "types": 28,
+      "types": 21,
       "counted": 0,
-      "unreadable": 28,
+      "unreadable": 21,
       "total": -1,
       "tablesRead": 2,
       "tablesSkipped": 5
@@ -299,9 +299,9 @@
           ],
           "rows": 73,
           "typeAt": 0,
-          "serviceAt": -1,
-          "used": false,
-          "filled": 0
+          "serviceAt": 7,
+          "used": true,
+          "filled": 69
         },
         {
           "headers": [
@@ -317,9 +317,9 @@
           ],
           "rows": 28,
           "typeAt": 0,
-          "serviceAt": -1,
-          "used": false,
-          "filled": 0
+          "serviceAt": 7,
+          "used": true,
+          "filled": 25
         },
         {
           "headers": [
@@ -335,9 +335,9 @@
           ],
           "rows": 8,
           "typeAt": 0,
-          "serviceAt": -1,
-          "used": false,
-          "filled": 0
+          "serviceAt": 7,
+          "used": true,
+          "filled": 7
         },
         {
           "headers": [
@@ -396,12 +396,12 @@
           "filled": 1
         }
       ],
-      "types": 78,
-      "counted": 49,
-      "unreadable": 29,
-      "total": 2638,
-      "tablesRead": 3,
-      "tablesSkipped": 3
+      "types": 187,
+      "counted": 139,
+      "unreadable": 48,
+      "total": 11108,
+      "tablesRead": 6,
+      "tablesSkipped": 0
     },
     {
       "iso": "GBR",
@@ -587,9 +587,9 @@
           "filled": 0
         }
       ],
-      "types": 80,
+      "types": 64,
       "counted": 55,
-      "unreadable": 25,
+      "unreadable": 9,
       "total": 508,
       "tablesRead": 6,
       "tablesSkipped": 3
@@ -642,10 +642,10 @@
           "filled": 0
         }
       ],
-      "types": 36,
+      "types": 29,
       "counted": 21,
-      "unreadable": 15,
-      "total": -1,
+      "unreadable": 8,
+      "total": 597,
       "tablesRead": 1,
       "tablesSkipped": 3
     },
@@ -695,9 +695,9 @@
           "filled": 0
         }
       ],
-      "types": 35,
+      "types": 27,
       "counted": 24,
-      "unreadable": 11,
+      "unreadable": 3,
       "total": 593,
       "tablesRead": 1,
       "tablesSkipped": 3
@@ -733,7 +733,7 @@
             "Notes"
           ],
           "rows": 7,
-          "typeAt": 0,
+          "typeAt": 2,
           "serviceAt": 4,
           "used": true,
           "filled": 5
@@ -770,9 +770,9 @@
           "filled": 0
         }
       ],
-      "types": 47,
+      "types": 37,
       "counted": 31,
-      "unreadable": 16,
+      "unreadable": 6,
       "total": 2821,
       "tablesRead": 2,
       "tablesSkipped": 3
@@ -799,9 +799,9 @@
           "filled": 33
         }
       ],
-      "types": 40,
+      "types": 33,
       "counted": 29,
-      "unreadable": 11,
+      "unreadable": 4,
       "total": 857,
       "tablesRead": 1,
       "tablesSkipped": 0
@@ -858,9 +858,9 @@
           "filled": 8
         }
       ],
-      "types": 51,
+      "types": 42,
       "counted": 39,
-      "unreadable": 12,
+      "unreadable": 3,
       "total": 667,
       "tablesRead": 3,
       "tablesSkipped": 0
@@ -929,7 +929,7 @@
             "Notes"
           ],
           "rows": 13,
-          "typeAt": 0,
+          "typeAt": 2,
           "serviceAt": -1,
           "used": false,
           "filled": 0
@@ -942,15 +942,15 @@
             "Notes"
           ],
           "rows": 11,
-          "typeAt": 0,
+          "typeAt": 2,
           "serviceAt": -1,
           "used": false,
           "filled": 0
         }
       ],
-      "types": 22,
+      "types": 18,
       "counted": 17,
-      "unreadable": 5,
+      "unreadable": 1,
       "total": 181,
       "tablesRead": 1,
       "tablesSkipped": 5
@@ -1082,17 +1082,6 @@
       "iso": "IND",
       "country": "India",
       "force": "India (all services)",
-      "type": "Fighter trainers",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "IND",
-      "country": "India",
-      "force": "India (all services)",
       "type": "Dassault Mirage 2000",
       "origin": "France",
       "role": "",
@@ -1137,17 +1126,6 @@
       "iso": "IND",
       "country": "India",
       "force": "India (all services)",
-      "type": "AEW&C",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "IND",
-      "country": "India",
-      "force": "India (all services)",
       "type": "Beriev A-50",
       "origin": "Soviet Union",
       "role": "",
@@ -1176,17 +1154,6 @@
       "variant": "Netra Mk2",
       "inService": null,
       "inServiceRaw": "–"
-    },
-    {
-      "iso": "IND",
-      "country": "India",
-      "force": "India (all services)",
-      "type": "Reconnaissance",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "IND",
@@ -1247,17 +1214,6 @@
       "iso": "IND",
       "country": "India",
       "force": "India (all services)",
-      "type": "Tanker",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "IND",
-      "country": "India",
-      "force": "India (all services)",
       "type": "Airbus A330 MRTT",
       "origin": "France",
       "role": "",
@@ -1286,17 +1242,6 @@
       "variant": "Il-78MKI",
       "inService": 6,
       "inServiceRaw": "6"
-    },
-    {
-      "iso": "IND",
-      "country": "India",
-      "force": "India (all services)",
-      "type": "Transport",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "IND",
@@ -1423,17 +1368,6 @@
       "iso": "IND",
       "country": "India",
       "force": "India (all services)",
-      "type": "Helicopters",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "IND",
-      "country": "India",
-      "force": "India (all services)",
       "type": "Aérospatiale Alouette III",
       "origin": "France / India",
       "role": "",
@@ -1555,17 +1489,6 @@
       "iso": "IND",
       "country": "India",
       "force": "India (all services)",
-      "type": "Trainer",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "IND",
-      "country": "India",
-      "force": "India (all services)",
       "type": "BAE Hawk",
       "origin": "United Kingdom / India",
       "role": "",
@@ -1616,17 +1539,6 @@
       "variant": "Garud",
       "inService": 72,
       "inServiceRaw": "72"
-    },
-    {
-      "iso": "IND",
-      "country": "India",
-      "force": "India (all services)",
-      "type": "UAV",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "IND",
@@ -1737,17 +1649,6 @@
       "variant": "Rudra",
       "inService": 74,
       "inServiceRaw": "74"
-    },
-    {
-      "iso": "IND",
-      "country": "India",
-      "force": "India (all services)",
-      "type": "UAV",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "IND",
@@ -1918,17 +1819,6 @@
       "iso": "IND",
       "country": "India",
       "force": "India (all services)",
-      "type": "Patrol / Utility",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "IND",
-      "country": "India",
-      "force": "India (all services)",
       "type": "Boeing P-8",
       "origin": "United States",
       "role": "",
@@ -1957,17 +1847,6 @@
       "variant": "228-201",
       "inService": 31,
       "inServiceRaw": "31"
-    },
-    {
-      "iso": "IND",
-      "country": "India",
-      "force": "India (all services)",
-      "type": "Helicopters",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "IND",
@@ -2050,17 +1929,6 @@
       "iso": "IND",
       "country": "India",
       "force": "India (all services)",
-      "type": "Trainer",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "IND",
-      "country": "India",
-      "force": "India (all services)",
       "type": "BAE Hawk",
       "origin": "United Kingdom / India",
       "role": "",
@@ -2089,17 +1957,6 @@
       "variant": "Garud",
       "inService": 12,
       "inServiceRaw": "12"
-    },
-    {
-      "iso": "IND",
-      "country": "India",
-      "force": "India (all services)",
-      "type": "UAV",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "IND",
@@ -2144,17 +2001,6 @@
       "variant": "228-101/201",
       "inService": 41,
       "inServiceRaw": "41"
-    },
-    {
-      "iso": "IND",
-      "country": "India",
-      "force": "India (all services)",
-      "type": "Helicopters",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "IND",
@@ -2413,17 +2259,6 @@
       "iso": "PAK",
       "country": "Pakistan",
       "force": "Pakistan Air Force",
-      "type": "Trainer Aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "PAK",
-      "country": "Pakistan",
-      "force": "Pakistan Air Force",
       "type": "K-8",
       "origin": "Hongdu / Pakistan Aeronautical Complex",
       "role": "Jet",
@@ -2479,34 +2314,12 @@
       "iso": "PAK",
       "country": "Pakistan",
       "force": "Pakistan Air Force",
-      "type": "Strategic Airlift Transporter/Aerial Refueling Aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "PAK",
-      "country": "Pakistan",
-      "force": "Pakistan Air Force",
       "type": "Il-78",
       "origin": "Ilyushin",
       "role": "Jet",
       "variant": "Il-78MP",
       "inService": 4,
       "inServiceRaw": "4"
-    },
-    {
-      "iso": "PAK",
-      "country": "Pakistan",
-      "force": "Pakistan Air Force",
-      "type": "Transport Aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "PAK",
@@ -2688,17 +2501,6 @@
       "iso": "PAK",
       "country": "Pakistan",
       "force": "Pakistan Air Force",
-      "type": "Airborne Early Warning & Control Aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "PAK",
-      "country": "Pakistan",
-      "force": "Pakistan Air Force",
       "type": "Saab 2000",
       "origin": "Saab",
       "role": "Turboprop",
@@ -2716,17 +2518,6 @@
       "variant": "",
       "inService": 0,
       "inServiceRaw": "0"
-    },
-    {
-      "iso": "PAK",
-      "country": "Pakistan",
-      "force": "Pakistan Air Force",
-      "type": "Electronic Warfare Aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "PAK",
@@ -2760,17 +2551,6 @@
       "variant": "DA-20F",
       "inService": 3,
       "inServiceRaw": "3"
-    },
-    {
-      "iso": "PAK",
-      "country": "Pakistan",
-      "force": "Pakistan Air Force",
-      "type": "Unmanned Combat Aerial Vehicles / Unmanned Aerial Vehicles",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "PAK",
@@ -2980,17 +2760,6 @@
       "variant": "CH-4B",
       "inService": null,
       "inServiceRaw": "(shared with the row above)"
-    },
-    {
-      "iso": "PAK",
-      "country": "Pakistan",
-      "force": "Pakistan Air Force",
-      "type": "Helicopters",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "PAK",
@@ -3238,17 +3007,6 @@
       "iso": "CHN",
       "country": "China",
       "force": "PLA Air Force",
-      "type": "AEW&C",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "CHN",
-      "country": "China",
-      "force": "PLA Air Force",
       "type": "KJ-2000",
       "origin": "China / Russia",
       "role": "",
@@ -3282,34 +3040,12 @@
       "iso": "CHN",
       "country": "China",
       "force": "PLA Air Force",
-      "type": "Reconnaissance",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "CHN",
-      "country": "China",
-      "force": "PLA Air Force",
       "type": "JZ-8",
       "origin": "China",
       "role": "",
       "variant": "JZ-8/F",
       "inService": 48,
       "inServiceRaw": "48"
-    },
-    {
-      "iso": "CHN",
-      "country": "China",
-      "force": "PLA Air Force",
-      "type": "Electronic warfare",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "CHN",
@@ -3359,17 +3095,6 @@
       "iso": "CHN",
       "country": "China",
       "force": "PLA Air Force",
-      "type": "Maritime patrol",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "CHN",
-      "country": "China",
-      "force": "PLA Air Force",
       "type": "Boeing 737",
       "origin": "United States",
       "role": "",
@@ -3387,17 +3112,6 @@
       "variant": "",
       "inService": 3,
       "inServiceRaw": "3"
-    },
-    {
-      "iso": "CHN",
-      "country": "China",
-      "force": "PLA Air Force",
-      "type": "Tanker",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "CHN",
@@ -3431,17 +3145,6 @@
       "variant": "",
       "inService": 8,
       "inServiceRaw": "8"
-    },
-    {
-      "iso": "CHN",
-      "country": "China",
-      "force": "PLA Air Force",
-      "type": "Transport",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "CHN",
@@ -3524,17 +3227,6 @@
       "iso": "CHN",
       "country": "China",
       "force": "PLA Air Force",
-      "type": "Helicopter",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "CHN",
-      "country": "China",
-      "force": "PLA Air Force",
       "type": "Changhe Z-8",
       "origin": "China",
       "role": "",
@@ -3601,17 +3293,6 @@
       "iso": "CHN",
       "country": "China",
       "force": "PLA Air Force",
-      "type": "Trainer aircraft: 1060+",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "CHN",
-      "country": "China",
-      "force": "PLA Air Force",
       "type": "Chengdu J-7",
       "origin": "China",
       "role": "",
@@ -3673,83 +3354,6 @@
       "variant": "",
       "inService": 15,
       "inServiceRaw": "15"
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
-      "type": "AWACS",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
-      "type": "Electronic Warfare",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
-      "type": "Reconnaissance",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
-      "type": "Tanker",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
-      "type": "Transport",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
-      "type": "Helicopter",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
-      "type": "Trainer",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "RUS",
@@ -3978,6 +3582,1205 @@
       "type": "Yakovlev VTOL fighter",
       "origin": "",
       "role": "Jet",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "OA-1K Skyraider II",
+      "origin": "L3Harris",
+      "role": "CAS / Attack",
+      "variant": "",
+      "inService": 8,
+      "inServiceRaw": "8"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "A-10C Thunderbolt II",
+      "origin": "Fairchild Republic",
+      "role": "CAS / Attack",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "last1=Losey |first1=Stephen |title=US Air Force to retire all A-10s, cancel E-7 under 2026 spending plan |url=https://www.defensenews.com/air/2025/06/27/us-air-force-to-retire-all-a-10s-cancel-e-7-under-2026-spending-plan/ |access-date=16 September 2025 |work=Defense News |date=27 June 2025 |language=en}}"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "A-29C Super Tucano",
+      "origin": "Sierra Nevada Corporation",
+      "role": "Research and development",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "date=June 20, 2025 |title=2025 USAF & USSF Almanac: Equipment |url=https://www.airandspaceforces.com/article/2025-usaf-ussf-almanac-equipment/ |access-date=June 22, 2025 |website=airandspaceforces.com}}"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "EA-37B Compass Call",
+      "origin": "Gulfstream",
+      "role": "Radar jamming / PSYOP",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "last1=Mabeus-Brown |first1=Courtney |title=Air Force to add 5 new Compass Call electronic-attack planes in 2025 |url=https://www.airforcetimes.com/news/your-air-force/2024/03/22/air-force-to-add-5-new-compass-call-electronic-attack-planes-in-2025/ |access-date=19 April 2024 |work=Air Force Times |date=22 March 2024 |language=en}}"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "B-1 Lancer",
+      "origin": "Rockwell International",
+      "role": "Bomber",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "title=ProMedia Supplements |url=https://edition.pagesuite.com/html5/reader/production/default.aspx?pubname=&edid=be17c552-aa6c-4cd0-820b-45bdade036a2 |access-date=2026-08-06 |website=edition.pagesuite.com |language=en-US}}"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "B-2 Spirit",
+      "origin": "Northrop Grumman",
+      "role": "Bomber",
+      "variant": "",
+      "inService": 20,
+      "inServiceRaw": "20"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "B-21 Raider",
+      "origin": "Northrop Grumman",
+      "role": "Bomber",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "B-52H Stratofortress",
+      "origin": "Boeing",
+      "role": "Bomber",
+      "variant": "",
+      "inService": 72,
+      "inServiceRaw": "72"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-5M Super Galaxy",
+      "origin": "Lockheed",
+      "role": "Strategic airlifter",
+      "variant": "",
+      "inService": 52,
+      "inServiceRaw": "52"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-12C/D/F/J Huron",
+      "origin": "Beechcraft",
+      "role": "Transport",
+      "variant": "",
+      "inService": 29,
+      "inServiceRaw": "29"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-17A Globemaster III",
+      "origin": "McDonnell Douglas/Boeing",
+      "role": "Strategic airlifter",
+      "variant": "",
+      "inService": 219,
+      "inServiceRaw": "219"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-21A Learjet 35",
+      "origin": "Learjet",
+      "role": "VIP transport",
+      "variant": "",
+      "inService": 19,
+      "inServiceRaw": "19"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "VC-25A",
+      "origin": "Boeing",
+      "role": "Presidential transport",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-32A/B Air Force Two",
+      "origin": "Boeing",
+      "role": "VIP transport",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4/2"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-37A/B Gulfstream V",
+      "origin": "Gulfstream",
+      "role": "VIP transport",
+      "variant": "",
+      "inService": 9,
+      "inServiceRaw": "9/7"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-40B/C",
+      "origin": "Boeing",
+      "role": "VIP transport",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4/7"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "KC-46A Pegasus",
+      "origin": "Boeing",
+      "role": "Aerial refueling",
+      "variant": "",
+      "inService": 77,
+      "inServiceRaw": "77"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-130H Hercules",
+      "origin": "Lockheed Martin",
+      "role": "Tactical airlifter",
+      "variant": "",
+      "inService": 126,
+      "inServiceRaw": "126"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "EC-130H Compass Call",
+      "origin": "Lockheed Martin",
+      "role": "Radar jamming / PSYOP",
+      "variant": "",
+      "inService": 5,
+      "inServiceRaw": "5"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "LC-130H Hercules",
+      "origin": "Lockheed Martin",
+      "role": "Cargo aircraft",
+      "variant": "",
+      "inService": 10,
+      "inServiceRaw": "10"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-130J Super Hercules/J-30 Super Hercules",
+      "origin": "Lockheed Martin",
+      "role": "Tactical airlifter",
+      "variant": "",
+      "inService": 151,
+      "inServiceRaw": "151"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "AC-130J Ghostrider",
+      "origin": "Lockheed Martin",
+      "role": "CAS / Attack",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "last1=Premo |first1=Capt. Alicia |title=AFSOC receives final AC-130J |url=https://www.af.mil/News/Article-Display/Article/3209455/afsoc-receives-final-ac-130j/ |access-date=19 April 2024 |work=U.S. Air Force |date=3 November 2022}}"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "HC-130J Combat King II",
+      "origin": "Lockheed Martin",
+      "role": "Search and rescue",
+      "variant": "",
+      "inService": 39,
+      "inServiceRaw": "39"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "MC-130J Commando II",
+      "origin": "Lockheed Martin",
+      "role": "Multi-mission/Special Operations",
+      "variant": "",
+      "inService": 57,
+      "inServiceRaw": "57"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "WC-130J Hercules",
+      "origin": "Lockheed Martin",
+      "role": "Weather reconnaissance",
+      "variant": "",
+      "inService": 10,
+      "inServiceRaw": "10"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "WC-135R Constant Phoenix",
+      "origin": "Boeing",
+      "role": "Atmospheric research",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "KC-135R/T Stratotanker",
+      "origin": "Boeing",
+      "role": "Aerial refueling",
+      "variant": "",
+      "inService": 376,
+      "inServiceRaw": "376"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "TC-135S/W",
+      "origin": "Boeing",
+      "role": "Trainer",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "RC-135S/U/V/W Cobra Ball/Combat Sent/Rivet Joint",
+      "origin": "Boeing",
+      "role": "Reconnaissance / ELINT / surveillance",
+      "variant": "",
+      "inService": 25,
+      "inServiceRaw": "25"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-146A Wolfhound",
+      "origin": "Fairchild-Dornier",
+      "role": "Transport",
+      "variant": "",
+      "inService": 20,
+      "inServiceRaw": "20"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-147A",
+      "origin": "De Havilland Canada",
+      "role": "Transport",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "E-3B/G Sentry (AWACS)",
+      "origin": "Boeing",
+      "role": "AWACS",
+      "variant": "",
+      "inService": 15,
+      "inServiceRaw": "15"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "E-4B (NAOC)",
+      "origin": "Boeing",
+      "role": "Command and control",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "E-9A Widget",
+      "origin": "De Havilland Canada",
+      "role": "Surveillance",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "E-11A (BACN)",
+      "origin": "Northrop Grumman",
+      "role": "Command and control / BACN",
+      "variant": "",
+      "inService": 5,
+      "inServiceRaw": "5"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "F-15C/D Eagle",
+      "origin": "McDonnell Douglas",
+      "role": "Air superiority",
+      "variant": "",
+      "inService": 108,
+      "inServiceRaw": "108"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "F-15E Strike Eagle",
+      "origin": "McDonnell Douglas/Boeing",
+      "role": "Multirole, primarily strike",
+      "variant": "",
+      "inService": 218,
+      "inServiceRaw": "218"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "F-15EX Eagle II",
+      "origin": "Boeing",
+      "role": "Multirole, primarily strike",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "url=https://www.nationalguard.mil/News/Article-View/Article/3838218/f-15ex-eagle-ii-unveiled-at-portland-air-national-guard-base/ |website=National Guard |title=F-15EX Eagle II Unveiled at Portland Air National Guard Base |date=15 July 2024 |access-date=15 August 2024}}"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "QF-16A/C",
+      "origin": "Boeing",
+      "role": "Target drone",
+      "variant": "",
+      "inService": 73,
+      "inServiceRaw": "73"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "F-16C/D Fighting Falcon",
+      "origin": "General Dynamics",
+      "role": "Multirole",
+      "variant": "",
+      "inService": 762,
+      "inServiceRaw": "762"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "F-22A Raptor",
+      "origin": "Lockheed Martin",
+      "role": "Air superiority",
+      "variant": "",
+      "inService": 183,
+      "inServiceRaw": "183"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "F-35A Lightning II",
+      "origin": "Lockheed Martin",
+      "role": "Multirole",
+      "variant": "",
+      "inService": 302,
+      "inServiceRaw": "302"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "F-117 Nighthawk",
+      "origin": "Lockheed",
+      "role": "Aggressor aircraft/research and development",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "TG-15A",
+      "origin": "",
+      "role": "Trainer",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "TG-15B",
+      "origin": "",
+      "role": "Trainer",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "TG-16A",
+      "origin": "",
+      "role": "Trainer",
+      "variant": "",
+      "inService": 19,
+      "inServiceRaw": "19"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "TG-17A",
+      "origin": "",
+      "role": "Trainer",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "TH-1H Iroquois",
+      "origin": "Bell",
+      "role": "Trainer",
+      "variant": "",
+      "inService": 28,
+      "inServiceRaw": "28"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "UH-1N Twin Huey/UH-1N Operational Support Airlift",
+      "origin": "Bell",
+      "role": "Utility",
+      "variant": "",
+      "inService": 63,
+      "inServiceRaw": "63"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "HH-60G/U Pave Hawk",
+      "origin": "Sikorsky",
+      "role": "CSAR",
+      "variant": "",
+      "inService": 64,
+      "inServiceRaw": "64"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "HH-60W Jolly Green II",
+      "origin": "Sikorsky",
+      "role": "CSAR",
+      "variant": "",
+      "inService": 32,
+      "inServiceRaw": "32"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "MH-139A Grey Wolf",
+      "origin": "AgustaWestland",
+      "role": "Utility",
+      "variant": "",
+      "inService": 7,
+      "inServiceRaw": "7"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "P-9A Pale Ale",
+      "origin": "Bombardier",
+      "role": "Maritime patrol",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "RQ-4B Global Hawk",
+      "origin": "Northrop Grumman",
+      "role": "ISTAR",
+      "variant": "",
+      "inService": 9,
+      "inServiceRaw": "9"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "MQ-9A Reaper",
+      "origin": "General Atomics",
+      "role": "Multi-mission",
+      "variant": "",
+      "inService": 55,
+      "inServiceRaw": "55"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "RQ-20 Puma",
+      "origin": "AeroVironment",
+      "role": "Patrol",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "RQ-170 Sentinel",
+      "origin": "Lockheed Martin",
+      "role": "Multi-Mission",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "T-1A Jayhawk",
+      "origin": "Raytheon",
+      "role": "Trainer",
+      "variant": "",
+      "inService": 127,
+      "inServiceRaw": "127"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "T-6A Texan II",
+      "origin": "Raytheon/Beechcraft",
+      "role": "Trainer",
+      "variant": "",
+      "inService": 442,
+      "inServiceRaw": "442"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "T-7 Red Hawk",
+      "origin": "Boeing / Saab",
+      "role": "Trainer",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "T-38A/C/AT-38B Talon",
+      "origin": "Northrop",
+      "role": "Trainer",
+      "variant": "",
+      "inService": 495,
+      "inServiceRaw": "495"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "T-41D Mescalero",
+      "origin": "Cessna",
+      "role": "Basic trainer",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "T-51A Cessna",
+      "origin": "Cessna",
+      "role": "Basic trainer",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "T-53A Kadet II",
+      "origin": "Cirrus",
+      "role": "Basic trainer",
+      "variant": "",
+      "inService": 24,
+      "inServiceRaw": "24"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "U-2S Dragon Lady",
+      "origin": "Lockheed",
+      "role": "Reconnaissance",
+      "variant": "",
+      "inService": 27,
+      "inServiceRaw": "27"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "TU-2S Dragon Lady",
+      "origin": "Lockheed",
+      "role": "Conversion trainer",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "U-28A Draco/PC-12",
+      "origin": "Pilatus",
+      "role": "Utility",
+      "variant": "",
+      "inService": 30,
+      "inServiceRaw": "30 U-28A/5 PC-12"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "UV-18B Twin Otter",
+      "origin": "De Havilland Canada",
+      "role": "Utility",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "CV-22B Osprey",
+      "origin": "Bell, Boeing",
+      "role": "CSAR / transport",
+      "variant": "",
+      "inService": 52,
+      "inServiceRaw": "52"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "X-62 VISTA",
+      "origin": "General Dynamics",
+      "role": "In-flight simulator",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "BQM-167 Skeeter",
+      "origin": "Composite Engineering",
+      "role": "Target drone",
+      "variant": "",
+      "inService": 37,
+      "inServiceRaw": "37"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "CN-235",
+      "origin": "CASA",
+      "role": "Reconnaissance",
+      "variant": "",
+      "inService": 5,
+      "inServiceRaw": "5"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "Dzyne ULTRA",
+      "origin": "DZYNE Technologies",
+      "role": "Surveillance",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-12D/R/U/V Huron",
+      "origin": "Beechcraft",
+      "role": "Cargo/Transport",
+      "variant": "",
+      "inService": 95,
+      "inServiceRaw": "95"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "MC/RC-12D/H/K",
+      "origin": "Beechcraft",
+      "role": "Reconnaissance",
+      "variant": "",
+      "inService": 95,
+      "inServiceRaw": "95"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-12J",
+      "origin": "Beechcraft",
+      "role": "Transport",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-20H",
+      "origin": "Gulfstream",
+      "role": "VIP Transport",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-26E Metroliner",
+      "origin": "Fairchild",
+      "role": "Cargo/Transport",
+      "variant": "",
+      "inService": 13,
+      "inServiceRaw": "13"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-27J Spartan",
+      "origin": "Alenia Aeronautica",
+      "role": "Cargo aircraft",
+      "variant": "",
+      "inService": 7,
+      "inServiceRaw": "7"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "UC-35",
+      "origin": "Cessna",
+      "role": "Utility aircraft",
+      "variant": "",
+      "inService": 27,
+      "inServiceRaw": "27"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-37",
+      "origin": "Gulfstream",
+      "role": "VIP Transport",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-41 Aviocar",
+      "origin": "CASA",
+      "role": "Cargo/Transport",
+      "variant": "",
+      "inService": 5,
+      "inServiceRaw": "5"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "AH/MH-6M Little Bird",
+      "origin": "MD Helicopter",
+      "role": "Attack",
+      "variant": "",
+      "inService": 43,
+      "inServiceRaw": "43"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "MH-47D/E/G Chinook",
+      "origin": "Boeing",
+      "role": "Multi-mission",
+      "variant": "",
+      "inService": 61,
+      "inServiceRaw": "61"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "CH-47D/F Chinook",
+      "origin": "Boeing",
+      "role": "Transport",
+      "variant": "",
+      "inService": 510,
+      "inServiceRaw": "510 (figure includes MH-47G)"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "EH-60A Black Hawk",
+      "origin": "Sikorsky",
+      "role": "Electronic-warfare",
+      "variant": "",
+      "inService": 64,
+      "inServiceRaw": "64"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "UH-60A/L/M Black Hawk",
+      "origin": "Sikorsky",
+      "role": "Utility",
+      "variant": "",
+      "inService": 1443,
+      "inServiceRaw": "1,443"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "MH-60K/L Black Hawk",
+      "origin": "Sikorsky",
+      "role": "Multi-mission",
+      "variant": "",
+      "inService": 58,
+      "inServiceRaw": "58"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "AH-64D/E Apache Longbow, Guardian",
+      "origin": "Boeing",
+      "role": "Attack",
+      "variant": "",
+      "inService": 824,
+      "inServiceRaw": "824"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "UH-72A/B Lakota",
+      "origin": "Eurocopter",
+      "role": "Utility",
+      "variant": "",
+      "inService": 478,
+      "inServiceRaw": "478"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "MQ-1C Gray Eagle",
+      "origin": "General Atomics",
+      "role": "",
+      "variant": "",
+      "inService": 75,
+      "inServiceRaw": "75"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "CQ-10 Snowgoose",
+      "origin": "MMIST",
+      "role": "Transport",
+      "variant": "",
+      "inService": 15,
+      "inServiceRaw": "15"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "RQ-11 Raven",
+      "origin": "AeroVironment",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "RQ-20 Puma",
+      "origin": "AeroVironment",
+      "role": "Patrol",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "T-6D Texan II",
+      "origin": "",
+      "role": "Trainer",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "UV-18C",
+      "origin": "de Havilland Canada",
+      "role": "Cargo/Transport",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "Black Hornet Nano",
+      "origin": "Teledyne FLIR",
+      "role": "Surveillance",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "CL-650 (ARTEMIS)",
+      "origin": "Bombardier",
+      "role": "Intelligence, Surveillance and Reconnaissance",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "Mil Mi-8/Mi-17",
+      "origin": "Mil Moscow Helicopter Plant",
+      "role": "",
+      "variant": "",
+      "inService": 10,
+      "inServiceRaw": "10"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "Mil Mi-24",
+      "origin": "Mil Moscow Helicopter Plant",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "Prioria Robotics Maveric",
+      "origin": "Prioria Robotics",
+      "role": "",
+      "variant": "",
+      "inService": 36,
+      "inServiceRaw": "36"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "HC-27J Spartan",
+      "origin": "Alenia Aeronautica",
+      "role": "Medium Range Surveillance",
+      "variant": "",
+      "inService": 14,
+      "inServiceRaw": "14"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-37A Gulfstream V",
+      "origin": "Gulfstream",
+      "role": "Long Range Command & Control",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "title=Coast Guard accepts new C-37B long range command and control aircraft |url=https://www.dcms.uscg.mil/Our-Organization/Assistant-Commandant-for-Acquisitions-CG-9/Newsroom/Latest-Acquisition-News/Article/3084688/coast-guard-accepts-new-c-37b-long-range-command-and-control-aircraft/ |publisher=United States Coast Guard |website=dcms.usgg.mil |access-date=16 November 2025}}"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "C-37B Gulfstream 550",
+      "origin": "Gulfstream",
+      "role": "Long Range Command & Control",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "title=Coast Guard accepts new C-37B long range command and control aircraft |url=https://www.dcms.uscg.mil/Our-Organization/Assistant-Commandant-for-Acquisitions-CG-9/Newsroom/Latest-Acquisition-News/Article/3084688/coast-guard-accepts-new-c-37b-long-range-command-and-control-aircraft/ |publisher=United States Coast Guard |website=dcms.usgg.mil |access-date=16 November 2025}}"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "HC-130J Hercules",
+      "origin": "Lockheed Martin",
+      "role": "Long Range Surveillance",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "title=HC-130J Long Range Surveillance Aircraft |url=https://www.dcms.uscg.mil/Our-Organization/Assistant-Commandant-for-Acquisitions-CG-9/Programs/Air-Programs/LRS-HC-130J/ |publisher=United States Coast Guard |website=dcms.usgg.mil |access-date=17 November 2025}}"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "HC-144B Ocean Sentry",
+      "origin": "Airbus",
+      "role": "Medium Range Surveillance",
+      "variant": "",
+      "inService": 18,
+      "inServiceRaw": "18"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "MH-60T Jayhawk",
+      "origin": "Sikorsky",
+      "role": "Medium Range Recovery (MRR)",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "title=MH-60T Medium Range Recovery Helicopter |url=https://www.dcms.uscg.mil/Our-Organization/Assistant-Commandant-for-Acquisitions-CG-9/Programs/Air-Programs/MRR-MH-60T/ |publisher=United States Coast Guard |website=dcms.usgg.mil |access-date=17 November 2025}}"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "MH-65E Dolphin",
+      "origin": "Eurocopter",
+      "role": "Short Range Recovery (SRR)",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "title=MH-65 Short Range Recovery Helicopter |url=https://www.dcms.uscg.mil/Our-Organization/Assistant-Commandant-for-Acquisitions-CG-9/Programs/Air-Programs/SRR-MH-65/ |publisher=United States Coast Guard |website=dcms.usgg.mil |access-date=16 November 2025}}"
+    },
+    {
+      "iso": "USA",
+      "country": "United States",
+      "force": "United States (all services)",
+      "type": "MQ-9A Reaper",
+      "origin": "General Atomics",
+      "role": "Intelligence Surveillance and Reconnaissance",
       "variant": "",
       "inService": null,
       "inServiceRaw": ""
@@ -6109,17 +6912,6 @@
       "iso": "FRA",
       "country": "France",
       "force": "France (all services)",
-      "type": "Military transport aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
       "type": "Airbus A400M",
       "origin": "Spain, France, Germany, United Kindom, Belgium, Turkey",
       "role": "Strategic airlifter / tactical airlifter",
@@ -6170,17 +6962,6 @@
       "variant": "CN-235-300",
       "inService": 8,
       "inServiceRaw": "8"
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
-      "type": "VIP transport and liaison aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "FRA",
@@ -6252,17 +7033,6 @@
       "iso": "FRA",
       "country": "France",
       "force": "France (all services)",
-      "type": "Aerial refueling",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
       "type": "Airbus A330 MRTT Phénix",
       "origin": "Spain France Germany",
       "role": "Tanker / command node /transporter /",
@@ -6291,17 +7061,6 @@
       "variant": "KC-130J",
       "inService": 2,
       "inServiceRaw": "2"
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
-      "type": "Special role aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "FRA",
@@ -6351,17 +7110,6 @@
       "iso": "FRA",
       "country": "France",
       "force": "France (all services)",
-      "type": "Demonstration aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
       "type": "Alpha Jet (Dassault / Dornier)",
       "origin": "France Germany",
       "role": "Aerobatic display",
@@ -6379,17 +7127,6 @@
       "variant": "–",
       "inService": 3,
       "inServiceRaw": "3"
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
-      "type": "Trainer aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "FRA",
@@ -6538,34 +7275,12 @@
       "iso": "FRA",
       "country": "France",
       "force": "France (all services)",
-      "type": "Light military helicopters",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
       "type": "Eurocopter AS555 Fennec",
       "origin": "France",
       "role": "/ /",
       "variant": "–",
       "inService": 40,
       "inServiceRaw": "40"
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
-      "type": "VIP transport",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "FRA",
@@ -6626,34 +7341,12 @@
       "iso": "FRA",
       "country": "France",
       "force": "France (all services)",
-      "type": "Optical observation satellites",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
       "type": "Airbus Defence and Space / Thales Alenia Space",
       "origin": "France",
       "role": "earth observation satellite",
       "variant": "–",
       "inService": 3,
       "inServiceRaw": "3"
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
-      "type": "Optical observation (data purchase)",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "FRA",
@@ -6681,34 +7374,12 @@
       "iso": "FRA",
       "country": "France",
       "force": "France (all services)",
-      "type": "Radar observation (data purchase)",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
       "type": "SAR-Lupe OHB-System",
       "origin": "Germany",
       "role": "near polar orbit, earth observation satellite",
       "variant": "–",
       "inService": 5,
       "inServiceRaw": "5"
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
-      "type": "Electronic intelligence",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "FRA",
@@ -6731,17 +7402,6 @@
       "variant": "–",
       "inService": 0,
       "inServiceRaw": "0 (+11 planned)"
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
-      "type": "Military communication satellites",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "FRA",
@@ -6791,17 +7451,6 @@
       "iso": "FRA",
       "country": "France",
       "force": "France (all services)",
-      "type": "Civilian communication satellites (contracts)",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
       "type": "Eutelsat",
       "origin": "France",
       "role": "Telecommunication satellites",
@@ -6819,17 +7468,6 @@
       "variant": "–",
       "inService": 0,
       "inServiceRaw": "0 (+18 on order)"
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
-      "type": "Navigation satellites",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "FRA",
@@ -6912,17 +7550,6 @@
       "iso": "FRA",
       "country": "France",
       "force": "France (all services)",
-      "type": "Anti-drone systems",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "FRA",
-      "country": "France",
-      "force": "France (all services)",
       "type": "PARADE Thales / CS Group",
       "origin": "France",
       "role": "",
@@ -7000,17 +7627,6 @@
       "iso": "ISR",
       "country": "Israel",
       "force": "Israeli Air Force",
-      "type": "Airborne early warning and control",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "ISR",
-      "country": "Israel",
-      "force": "Israeli Air Force",
       "type": "Boeing 707",
       "origin": "United States / Israel",
       "role": "",
@@ -7033,17 +7649,6 @@
       "iso": "ISR",
       "country": "Israel",
       "force": "Israeli Air Force",
-      "type": "Reconnaissance",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "ISR",
-      "country": "Israel",
-      "force": "Israeli Air Force",
       "type": "Super King Air",
       "origin": "United States",
       "role": "",
@@ -7061,17 +7666,6 @@
       "variant": "",
       "inService": 4,
       "inServiceRaw": "4"
-    },
-    {
-      "iso": "ISR",
-      "country": "Israel",
-      "force": "Israeli Air Force",
-      "type": "Tanker",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "ISR",
@@ -7110,17 +7704,6 @@
       "iso": "ISR",
       "country": "Israel",
       "force": "Israeli Air Force",
-      "type": "Transport",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "ISR",
-      "country": "Israel",
-      "force": "Israeli Air Force",
       "type": "Super King Air",
       "origin": "United States",
       "role": "",
@@ -7154,17 +7737,6 @@
       "iso": "ISR",
       "country": "Israel",
       "force": "Israeli Air Force",
-      "type": "Helicopters",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "ISR",
-      "country": "Israel",
-      "force": "Israeli Air Force",
       "type": "AH-64 Apache",
       "origin": "United States",
       "role": "",
@@ -7193,17 +7765,6 @@
       "variant": "S-65C-3",
       "inService": 21,
       "inServiceRaw": "21"
-    },
-    {
-      "iso": "ISR",
-      "country": "Israel",
-      "force": "Israeli Air Force",
-      "type": "Trainer aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "ISR",
@@ -7270,17 +7831,6 @@
       "variant": "AW119Kx",
       "inService": 8,
       "inServiceRaw": "8"
-    },
-    {
-      "iso": "ISR",
-      "country": "Israel",
-      "force": "Israeli Air Force",
-      "type": "Unmanned aerial vehicles",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "ISR",
@@ -7396,17 +7946,6 @@
       "iso": "JPN",
       "country": "Japan",
       "force": "Japan ASDF",
-      "type": "AWACS",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "JPN",
-      "country": "Japan",
-      "force": "Japan ASDF",
       "type": "Boeing E-767",
       "origin": "United States",
       "role": "",
@@ -7429,34 +7968,12 @@
       "iso": "JPN",
       "country": "Japan",
       "force": "Japan ASDF",
-      "type": "Reconnaissance",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "JPN",
-      "country": "Japan",
-      "force": "Japan ASDF",
       "type": "Kawasaki C-2",
       "origin": "Japan",
       "role": "",
       "variant": "RC-2",
       "inService": null,
       "inServiceRaw": "last=Hoyle |first=Craig |year=2024 |title=World Air Forces 2025 |url=https://www.flightglobal.com/download?ac=106507 |access-date=7 December 2024 |publisher=Flight Global |doi=}}"
-    },
-    {
-      "iso": "JPN",
-      "country": "Japan",
-      "force": "Japan ASDF",
-      "type": "Electronic warfare",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "JPN",
@@ -7479,17 +7996,6 @@
       "variant": "",
       "inService": 3,
       "inServiceRaw": "3"
-    },
-    {
-      "iso": "JPN",
-      "country": "Japan",
-      "force": "Japan ASDF",
-      "type": "Tanker",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "JPN",
@@ -7523,17 +8029,6 @@
       "variant": "KC-130H",
       "inService": 2,
       "inServiceRaw": "2"
-    },
-    {
-      "iso": "JPN",
-      "country": "Japan",
-      "force": "Japan ASDF",
-      "type": "Transport",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "JPN",
@@ -7616,17 +8111,6 @@
       "iso": "JPN",
       "country": "Japan",
       "force": "Japan ASDF",
-      "type": "Helicopters",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "JPN",
-      "country": "Japan",
-      "force": "Japan ASDF",
       "type": "Boeing CH-47 Chinook",
       "origin": "United States",
       "role": "",
@@ -7644,17 +8128,6 @@
       "variant": "UH-60J",
       "inService": 61,
       "inServiceRaw": "61"
-    },
-    {
-      "iso": "JPN",
-      "country": "Japan",
-      "force": "Japan ASDF",
-      "type": "Trainer aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "JPN",
@@ -7699,17 +8172,6 @@
       "variant": "",
       "inService": 0,
       "inServiceRaw": "0"
-    },
-    {
-      "iso": "JPN",
-      "country": "Japan",
-      "force": "Japan ASDF",
-      "type": "UAV",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "JPN",
@@ -7803,17 +8265,6 @@
       "iso": "KOR",
       "country": "South Korea",
       "force": "Republic of Korea AF",
-      "type": "AWACS",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "KOR",
-      "country": "South Korea",
-      "force": "Republic of Korea AF",
       "type": "Bombardier Global 6500",
       "origin": "Canada",
       "role": "",
@@ -7836,34 +8287,12 @@
       "iso": "KOR",
       "country": "South Korea",
       "force": "Republic of Korea AF",
-      "type": "Electronic warfare",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "KOR",
-      "country": "South Korea",
-      "force": "Republic of Korea AF",
       "type": "Bombardier Global 6500",
       "origin": "Canada",
       "role": "",
       "variant": "",
       "inService": 2,
       "inServiceRaw": "2"
-    },
-    {
-      "iso": "KOR",
-      "country": "South Korea",
-      "force": "Republic of Korea AF",
-      "type": "Reconnaissance",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "KOR",
@@ -7891,34 +8320,12 @@
       "iso": "KOR",
       "country": "South Korea",
       "force": "Republic of Korea AF",
-      "type": "Tanker",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "KOR",
-      "country": "South Korea",
-      "force": "Republic of Korea AF",
       "type": "Airbus A330 MRTT",
       "origin": "France",
       "role": "",
       "variant": "KC-330",
       "inService": 4,
       "inServiceRaw": "4"
-    },
-    {
-      "iso": "KOR",
-      "country": "South Korea",
-      "force": "Republic of Korea AF",
-      "type": "Transport",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "KOR",
@@ -8001,17 +8408,6 @@
       "iso": "KOR",
       "country": "South Korea",
       "force": "Republic of Korea AF",
-      "type": "Helicopters",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "KOR",
-      "country": "South Korea",
-      "force": "Republic of Korea AF",
       "type": "AS332 Super Puma",
       "origin": "France",
       "role": "",
@@ -8062,17 +8458,6 @@
       "variant": "",
       "inService": 3,
       "inServiceRaw": "3"
-    },
-    {
-      "iso": "KOR",
-      "country": "South Korea",
-      "force": "Republic of Korea AF",
-      "type": "Trainer aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "KOR",
@@ -8144,17 +8529,6 @@
       "iso": "KOR",
       "country": "South Korea",
       "force": "Republic of Korea AF",
-      "type": "UAV",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "KOR",
-      "country": "South Korea",
-      "force": "Republic of Korea AF",
       "type": "RQ-4 Global Hawk",
       "origin": "United States",
       "role": "",
@@ -8166,7 +8540,7 @@
       "iso": "KOR",
       "country": "South Korea",
       "force": "Republic of Korea AF",
-      "type": "MIM-104 Patriot",
+      "type": "ABM / SAM system",
       "origin": "United States",
       "role": "",
       "variant": "PAC-3",
@@ -8177,7 +8551,7 @@
       "iso": "KOR",
       "country": "South Korea",
       "force": "Republic of Korea AF",
-      "type": "KM-SAM Cheongung",
+      "type": "medium range ABM / SAM system",
       "origin": "Republic of Korea",
       "role": "",
       "variant": "Block I",
@@ -8188,7 +8562,7 @@
       "iso": "KOR",
       "country": "South Korea",
       "force": "Republic of Korea AF",
-      "type": "KM-SAM Cheongung",
+      "type": "medium range ABM / SAM system",
       "origin": "Republic of Korea",
       "role": "",
       "variant": "Block II",
@@ -8199,18 +8573,7 @@
       "iso": "KOR",
       "country": "South Korea",
       "force": "Republic of Korea AF",
-      "type": "Anti-aircraft artillery",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "KOR",
-      "country": "South Korea",
-      "force": "Republic of Korea AF",
-      "type": "M167 VADS",
+      "type": "anti-aircraft gun",
       "origin": "Republic of Korea",
       "role": "",
       "variant": "KM167A3",
@@ -8221,18 +8584,7 @@
       "iso": "KOR",
       "country": "South Korea",
       "force": "Republic of Korea AF",
-      "type": "Man-portable air-defense system",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "KOR",
-      "country": "South Korea",
-      "force": "Republic of Korea AF",
-      "type": "KP-SAM Shingung",
+      "type": "man-portable air-defense system",
       "origin": "Republic of Korea",
       "role": "",
       "variant": "",
@@ -8331,34 +8683,12 @@
       "iso": "TUR",
       "country": "Türkiye",
       "force": "Turkish Air Force",
-      "type": "AEW&C",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "TUR",
-      "country": "Türkiye",
-      "force": "Turkish Air Force",
       "type": "E-7 Peace Eagle",
       "origin": "",
       "role": "",
       "variant": "E-7T",
       "inService": 4,
       "inServiceRaw": "4"
-    },
-    {
-      "iso": "TUR",
-      "country": "Türkiye",
-      "force": "Turkish Air Force",
-      "type": "Electronic warfare / Reconnaissance",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "TUR",
@@ -8386,34 +8716,12 @@
       "iso": "TUR",
       "country": "Türkiye",
       "force": "Turkish Air Force",
-      "type": "Tanker",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "TUR",
-      "country": "Türkiye",
-      "force": "Turkish Air Force",
       "type": "KC-135 Stratotanker",
       "origin": "",
       "role": "",
       "variant": "KC-135R",
       "inService": 7,
       "inServiceRaw": "7"
-    },
-    {
-      "iso": "TUR",
-      "country": "Türkiye",
-      "force": "Turkish Air Force",
-      "type": "Transport",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "TUR",
@@ -8474,17 +8782,6 @@
       "iso": "TUR",
       "country": "Türkiye",
       "force": "Turkish Air Force",
-      "type": "Helicopters",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "TUR",
-      "country": "Türkiye",
-      "force": "Turkish Air Force",
       "type": "AS532 Cougar",
       "origin": "",
       "role": "",
@@ -8535,17 +8832,6 @@
       "variant": "",
       "inService": null,
       "inServiceRaw": "url=https://www.mildefin.com/tusas/jandarmanin-dorduncu-gokbeyi-envanterde/ |title=Jandarma’nın Dördüncü GÖKBEYİ Envanterde |access-date=2025-08-20 |language=tr}}"
-    },
-    {
-      "iso": "TUR",
-      "country": "Türkiye",
-      "force": "Turkish Air Force",
-      "type": "Trainer aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "TUR",
@@ -8639,17 +8925,6 @@
       "iso": "TUR",
       "country": "Türkiye",
       "force": "Turkish Air Force",
-      "type": "UAV",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "TUR",
-      "country": "Türkiye",
-      "force": "Turkish Air Force",
       "type": "TAI Anka",
       "origin": "",
       "role": "",
@@ -8727,34 +9002,12 @@
       "iso": "BRA",
       "country": "Brazil",
       "force": "Brazil (all services)",
-      "type": "AEW&C",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "BRA",
-      "country": "Brazil",
-      "force": "Brazil (all services)",
       "type": "Embraer E-99",
       "origin": "Brazil",
       "role": "",
       "variant": "E-99M",
       "inService": 5,
       "inServiceRaw": "5"
-    },
-    {
-      "iso": "BRA",
-      "country": "Brazil",
-      "force": "Brazil (all services)",
-      "type": "Reconnaissance",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "BRA",
@@ -8793,17 +9046,6 @@
       "iso": "BRA",
       "country": "Brazil",
       "force": "Brazil (all services)",
-      "type": "Maritime patrol",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "BRA",
-      "country": "Brazil",
-      "force": "Brazil (all services)",
       "type": "Embraer 110",
       "origin": "Brazil",
       "role": "",
@@ -8821,17 +9063,6 @@
       "variant": "P-3AM",
       "inService": 3,
       "inServiceRaw": "3"
-    },
-    {
-      "iso": "BRA",
-      "country": "Brazil",
-      "force": "Brazil (all services)",
-      "type": "Transport",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "BRA",
@@ -8936,17 +9167,6 @@
       "iso": "BRA",
       "country": "Brazil",
       "force": "Brazil (all services)",
-      "type": "Helicopters",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "BRA",
-      "country": "Brazil",
-      "force": "Brazil (all services)",
       "type": "Eurocopter EC725",
       "origin": "France",
       "role": "",
@@ -8975,17 +9195,6 @@
       "variant": "H-60",
       "inService": 16,
       "inServiceRaw": "16"
-    },
-    {
-      "iso": "BRA",
-      "country": "Brazil",
-      "force": "Brazil (all services)",
-      "type": "Trainer aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "BRA",
@@ -9030,17 +9239,6 @@
       "variant": "H-50",
       "inService": 19,
       "inServiceRaw": "19"
-    },
-    {
-      "iso": "BRA",
-      "country": "Brazil",
-      "force": "Brazil (all services)",
-      "type": "UAV",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "BRA",
@@ -9145,17 +9343,6 @@
       "iso": "BRA",
       "country": "Brazil",
       "force": "Brazil (all services)",
-      "type": "Helicopters",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "BRA",
-      "country": "Brazil",
-      "force": "Brazil (all services)",
       "type": "Sikorsky SH-60",
       "origin": "United States",
       "role": "",
@@ -9211,17 +9398,6 @@
       "iso": "BRA",
       "country": "Brazil",
       "force": "Brazil (all services)",
-      "type": "Trainer aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "BRA",
-      "country": "Brazil",
-      "force": "Brazil (all services)",
       "type": "Bell 206",
       "origin": "United States",
       "role": "",
@@ -9261,17 +9437,6 @@
       "variant": "B/BM/UB/UBM",
       "inService": 8,
       "inServiceRaw": "8"
-    },
-    {
-      "iso": "BGD",
-      "country": "Bangladesh",
-      "force": "Bangladesh Air Force",
-      "type": "Transports",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "BGD",
@@ -9321,17 +9486,6 @@
       "iso": "BGD",
       "country": "Bangladesh",
       "force": "Bangladesh Air Force",
-      "type": "Helicopters",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "BGD",
-      "country": "Bangladesh",
-      "force": "Bangladesh Air Force",
       "type": "Mil Mi-17",
       "origin": "Russia",
       "role": "",
@@ -9371,17 +9525,6 @@
       "variant": "",
       "inService": 6,
       "inServiceRaw": "6"
-    },
-    {
-      "iso": "BGD",
-      "country": "Bangladesh",
-      "force": "Bangladesh Air Force",
-      "type": "Trainer aircraft",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "BGD",
@@ -9459,17 +9602,6 @@
       "variant": "",
       "inService": 2,
       "inServiceRaw": "2"
-    },
-    {
-      "iso": "BGD",
-      "country": "Bangladesh",
-      "force": "Bangladesh Air Force",
-      "type": "UAVs",
-      "origin": "",
-      "role": "",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
     },
     {
       "iso": "BGD",
