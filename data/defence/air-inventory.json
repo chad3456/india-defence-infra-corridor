@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-20T13:54:18.379Z",
+  "builtAt": "2026-09-20T13:57:11.393Z",
   "source": "English Wikipedia's per-force 'List of active … aircraft' articles, read header-first. Those articles compile mostly from IISS's Military Balance and FlightGlobal's World Air Forces, and carry those publications' lag and their disagreements.",
   "method": "Tables are matched on their headers, never on column position. A table without both an aircraft column and a quantity column is skipped and counted rather than read by guessing. A quantity cell yields a number only when it carries one unambiguously; a range, a dash or prose yields null, which is counted separately and never treated as zero. A force whose quantity cells parsed less than sixty per cent of the time has its fleet total withheld while its list of types is kept.",
   "refusal": "No fleet total is reconciled against another catalogue, and no aircraft is resolved to a base. Every number here says 'a public catalogue lists this many', which is a weaker claim than 'this country has this many' and is the only one the source supports.",
@@ -11,9 +11,9 @@
   ],
   "counts": {
     "forces": 13,
-    "types": 787,
-    "counted": 641,
-    "unreadable": 146,
+    "types": 782,
+    "counted": 637,
+    "unreadable": 145,
     "totalsWithheld": 1,
     "failed": 1
   },
@@ -733,10 +733,10 @@
             "Notes"
           ],
           "rows": 7,
-          "typeAt": 2,
+          "typeAt": -1,
           "serviceAt": 4,
-          "used": true,
-          "filled": 5
+          "used": false,
+          "filled": 0
         },
         {
           "headers": [],
@@ -770,12 +770,12 @@
           "filled": 0
         }
       ],
-      "types": 37,
-      "counted": 31,
-      "unreadable": 6,
-      "total": 2821,
-      "tablesRead": 2,
-      "tablesSkipped": 3
+      "types": 32,
+      "counted": 27,
+      "unreadable": 5,
+      "total": 602,
+      "tablesRead": 1,
+      "tablesSkipped": 4
     },
     {
       "iso": "TUR",
@@ -929,7 +929,7 @@
             "Notes"
           ],
           "rows": 13,
-          "typeAt": 2,
+          "typeAt": -1,
           "serviceAt": -1,
           "used": false,
           "filled": 0
@@ -942,7 +942,7 @@
             "Notes"
           ],
           "rows": 11,
-          "typeAt": 2,
+          "typeAt": -1,
           "serviceAt": -1,
           "used": false,
           "filled": 0
@@ -8535,61 +8535,6 @@
       "variant": "",
       "inService": 4,
       "inServiceRaw": "4"
-    },
-    {
-      "iso": "KOR",
-      "country": "South Korea",
-      "force": "Republic of Korea AF",
-      "type": "ABM / SAM system",
-      "origin": "United States",
-      "role": "",
-      "variant": "PAC-3",
-      "inService": null,
-      "inServiceRaw": "url=https://web.archive.org/web/20190422051706/http://armstrade.sipri.org/armstrade/page/trade_register.php |date=2019-04-22 }}. Armstrade.sipri.org. Retrieved on 6 October 2015"
-    },
-    {
-      "iso": "KOR",
-      "country": "South Korea",
-      "force": "Republic of Korea AF",
-      "type": "medium range ABM / SAM system",
-      "origin": "Republic of Korea",
-      "role": "",
-      "variant": "Block I",
-      "inService": 18,
-      "inServiceRaw": "18 batteries"
-    },
-    {
-      "iso": "KOR",
-      "country": "South Korea",
-      "force": "Republic of Korea AF",
-      "type": "medium range ABM / SAM system",
-      "origin": "Republic of Korea",
-      "role": "",
-      "variant": "Block II",
-      "inService": 1,
-      "inServiceRaw": "1 (7 on order)"
-    },
-    {
-      "iso": "KOR",
-      "country": "South Korea",
-      "force": "Republic of Korea AF",
-      "type": "anti-aircraft gun",
-      "origin": "Republic of Korea",
-      "role": "",
-      "variant": "KM167A3",
-      "inService": 200,
-      "inServiceRaw": "200"
-    },
-    {
-      "iso": "KOR",
-      "country": "South Korea",
-      "force": "Republic of Korea AF",
-      "type": "man-portable air-defense system",
-      "origin": "Republic of Korea",
-      "role": "",
-      "variant": "",
-      "inService": 2000,
-      "inServiceRaw": "2,000"
     },
     {
       "iso": "TUR",
