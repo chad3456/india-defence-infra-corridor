@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-20T13:32:06.661Z",
+  "builtAt": "2026-09-20T13:36:43.783Z",
   "source": "English Wikipedia's per-force 'List of active … aircraft' articles, read header-first. Those articles compile mostly from IISS's Military Balance and FlightGlobal's World Air Forces, and carry those publications' lag and their disagreements.",
   "method": "Tables are matched on their headers, never on column position. A table without both an aircraft column and a quantity column is skipped and counted rather than read by guessing. A quantity cell yields a number only when it carries one unambiguously; a range, a dash or prose yields null, which is counted separately and never treated as zero. A force whose quantity cells parsed less than sixty per cent of the time has its fleet total withheld while its list of types is kept.",
   "refusal": "No fleet total is reconciled against another catalogue, and no aircraft is resolved to a base. Every number here says 'a public catalogue lists this many', which is a weaker claim than 'this country has this many' and is the only one the source supports.",
@@ -11,9 +11,9 @@
   ],
   "counts": {
     "forces": 13,
-    "types": 784,
+    "types": 775,
     "counted": 479,
-    "unreadable": 305,
+    "unreadable": 296,
     "totalsWithheld": 6,
     "failed": 1
   },
@@ -29,6 +29,68 @@
       "country": "India",
       "force": "India (all services)",
       "page": "List_of_active_Indian_military_aircraft",
+      "tablesSeen": [
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 64,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 28
+        },
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 20,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 9
+        },
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 23,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 11
+        },
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 5,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 2
+        }
+      ],
       "types": 112,
       "counted": 43,
       "unreadable": 69,
@@ -41,6 +103,28 @@
       "country": "Pakistan",
       "force": "Pakistan Air Force",
       "page": "List_of_active_Pakistan_Air_Force_aircraft",
+      "tablesSeen": [
+        {
+          "headers": [
+            "Aircraft",
+            "Manufacturer",
+            "Image",
+            "Origin",
+            "Class",
+            "Role",
+            "Introduced",
+            "Variants",
+            "In service",
+            "Total (acquired)",
+            "Notes"
+          ],
+          "rows": 76,
+          "typeAt": 0,
+          "serviceAt": 8,
+          "used": true,
+          "filled": 51
+        }
+      ],
       "types": 76,
       "counted": 42,
       "unreadable": 34,
@@ -53,6 +137,23 @@
       "country": "China",
       "force": "PLA Air Force",
       "page": "List_of_active_People's_Liberation_Army_Air_Force_aircraft",
+      "tablesSeen": [
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 59,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 43
+        }
+      ],
       "types": 59,
       "counted": 43,
       "unreadable": 16,
@@ -65,9 +166,115 @@
       "country": "Russia",
       "force": "Russia (all services)",
       "page": "List_of_active_Russian_military_aircraft",
-      "types": 37,
+      "tablesSeen": [
+        {
+          "headers": [
+            "Type",
+            "Origin",
+            "Class",
+            "Role",
+            "Introduced",
+            "Notes"
+          ],
+          "rows": 53,
+          "typeAt": 0,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Type",
+            "Origin",
+            "Class",
+            "Role",
+            "Introduced",
+            "Notes"
+          ],
+          "rows": 35,
+          "typeAt": 0,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Model",
+            "Image",
+            "Origin",
+            "Type",
+            "Details"
+          ],
+          "rows": 9,
+          "typeAt": 0,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Type",
+            "Origin",
+            "Class",
+            "Role",
+            "Introduced",
+            "Notes"
+          ],
+          "rows": 27,
+          "typeAt": 0,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 61,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 36
+        },
+        {
+          "headers": [
+            "Type",
+            "Origin",
+            "Class",
+            "Role",
+            "Introduced",
+            "In service",
+            "Notes"
+          ],
+          "rows": 21,
+          "typeAt": 0,
+          "serviceAt": 5,
+          "used": true,
+          "filled": 7
+        },
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Class",
+            "Role",
+            "Notes"
+          ],
+          "rows": 4,
+          "typeAt": 0,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        }
+      ],
+      "types": 28,
       "counted": 0,
-      "unreadable": 37,
+      "unreadable": 28,
       "total": -1,
       "tablesRead": 2,
       "tablesSkipped": 5
@@ -77,6 +284,118 @@
       "country": "United States",
       "force": "United States (all services)",
       "page": "List_of_active_United_States_military_aircraft",
+      "tablesSeen": [
+        {
+          "headers": [
+            "Aircraft",
+            "Manufacturer",
+            "Origin",
+            "Propulsion",
+            "Role",
+            "Control",
+            "Introduced/IOC",
+            "Inventory",
+            "Notes"
+          ],
+          "rows": 73,
+          "typeAt": 0,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Type",
+            "Manufacturer",
+            "Origin",
+            "Propulsion",
+            "Role",
+            "Control",
+            "Introduced",
+            "Inventory",
+            "Notes"
+          ],
+          "rows": 28,
+          "typeAt": 0,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Type",
+            "Manufacturer",
+            "Origin",
+            "Propulsion",
+            "Role",
+            "Control",
+            "Introduced",
+            "Inventory",
+            "Notes"
+          ],
+          "rows": 8,
+          "typeAt": 0,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Type",
+            "Manufacturer",
+            "Origin",
+            "Propulsion",
+            "Role",
+            "Control",
+            "Introduced",
+            "In service",
+            "Total",
+            "Notes"
+          ],
+          "rows": 27,
+          "typeAt": 0,
+          "serviceAt": 7,
+          "used": true,
+          "filled": 23
+        },
+        {
+          "headers": [
+            "Type",
+            "Manufacturer",
+            "Origin",
+            "Propulsion",
+            "Role",
+            "Control",
+            "Introduced",
+            "In service",
+            "Total",
+            "Notes"
+          ],
+          "rows": 50,
+          "typeAt": 0,
+          "serviceAt": 7,
+          "used": true,
+          "filled": 48
+        },
+        {
+          "headers": [
+            "Type",
+            "Manufacturer",
+            "Origin",
+            "Propulsion",
+            "Role",
+            "Control",
+            "Introduced",
+            "In service",
+            "Notes"
+          ],
+          "rows": 1,
+          "typeAt": 0,
+          "serviceAt": 7,
+          "used": true,
+          "filled": 1
+        }
+      ],
       "types": 78,
       "counted": 49,
       "unreadable": 29,
@@ -89,6 +408,53 @@
       "country": "United Kingdom",
       "force": "Royal Air Force",
       "page": "List_of_aircraft_of_the_Royal_Air_Force",
+      "tablesSeen": [
+        {
+          "headers": [
+            "Manufacturer",
+            "Type",
+            "Origin",
+            "Class",
+            "Role",
+            "Introduced",
+            "Retired",
+            "Engine(s)",
+            "Notes"
+          ],
+          "rows": 313,
+          "typeAt": 1,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Aircraft type",
+            "Number impressed",
+            "Unit(s)/location/purpose"
+          ],
+          "rows": 91,
+          "typeAt": 0,
+          "serviceAt": 1,
+          "used": true,
+          "filled": 91
+        },
+        {
+          "headers": [
+            "Type",
+            "Original operator",
+            "Number",
+            "Period",
+            "Unit(s)",
+            "Purpose"
+          ],
+          "rows": 20,
+          "typeAt": 0,
+          "serviceAt": 2,
+          "used": true,
+          "filled": 20
+        }
+      ],
       "types": 111,
       "counted": 110,
       "unreadable": 1,
@@ -101,6 +467,126 @@
       "country": "France",
       "force": "France (all services)",
       "page": "List_of_active_French_military_aircraft",
+      "tablesSeen": [
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Role",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 38,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 28
+        },
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Role",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 10,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 8
+        },
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Role",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 2,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 2
+        },
+        {
+          "headers": [
+            "Model",
+            "Origin",
+            "Role",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 24,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 14
+        },
+        {
+          "headers": [
+            "Model",
+            "Origin",
+            "Role",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 2,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 2
+        },
+        {
+          "headers": [
+            "Model",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 7,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 5
+        },
+        {
+          "headers": [],
+          "rows": 0,
+          "typeAt": -1,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Rank group",
+            "Aspirant student",
+            "Officer cadet"
+          ],
+          "rows": 2,
+          "typeAt": -1,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [],
+          "rows": 0,
+          "typeAt": -1,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        }
+      ],
       "types": 80,
       "counted": 48,
       "unreadable": 32,
@@ -113,6 +599,49 @@
       "country": "Israel",
       "force": "Israeli Air Force",
       "page": "Israeli_Air_Force",
+      "tablesSeen": [
+        {
+          "headers": [
+            "Order of Battle"
+          ],
+          "rows": 1,
+          "typeAt": -1,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 36,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 22
+        },
+        {
+          "headers": [],
+          "rows": 0,
+          "typeAt": -1,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [],
+          "rows": 0,
+          "typeAt": -1,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        }
+      ],
       "types": 36,
       "counted": 21,
       "unreadable": 15,
@@ -125,6 +654,47 @@
       "country": "Japan",
       "force": "Japan ASDF",
       "page": "Japan_Air_Self-Defense_Force",
+      "tablesSeen": [
+        {
+          "headers": [],
+          "rows": 0,
+          "typeAt": -1,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [],
+          "rows": 0,
+          "typeAt": -1,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 35,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 25
+        },
+        {
+          "headers": [],
+          "rows": 29,
+          "typeAt": -1,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        }
+      ],
       "types": 35,
       "counted": 22,
       "unreadable": 13,
@@ -137,6 +707,69 @@
       "country": "South Korea",
       "force": "Republic of Korea AF",
       "page": "Republic_of_Korea_Air_Force",
+      "tablesSeen": [
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 40,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 26
+        },
+        {
+          "headers": [
+            "Name",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 7,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 4
+        },
+        {
+          "headers": [],
+          "rows": 0,
+          "typeAt": -1,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Rank Group",
+            "Warrant officer"
+          ],
+          "rows": 2,
+          "typeAt": -1,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Rank group",
+            "Non-commissioned officer",
+            "Enlisted"
+          ],
+          "rows": 0,
+          "typeAt": -1,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        }
+      ],
       "types": 47,
       "counted": 27,
       "unreadable": 20,
@@ -149,6 +782,23 @@
       "country": "Türkiye",
       "force": "Turkish Air Force",
       "page": "List_of_active_Turkish_military_aircraft",
+      "tablesSeen": [
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 40,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 22
+        }
+      ],
       "types": 40,
       "counted": 18,
       "unreadable": 22,
@@ -161,6 +811,53 @@
       "country": "Brazil",
       "force": "Brazil (all services)",
       "page": "List_of_active_Brazilian_military_aircraft",
+      "tablesSeen": [
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 36,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 29
+        },
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 5,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 5
+        },
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 10,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 8
+        }
+      ],
       "types": 51,
       "counted": 39,
       "unreadable": 12,
@@ -173,6 +870,84 @@
       "country": "Bangladesh",
       "force": "Bangladesh Air Force",
       "page": "Bangladesh_Air_Force",
+      "tablesSeen": [
+        {
+          "headers": [
+            "Squadron No",
+            "Insignia",
+            "Names/Motto",
+            "Air Force Base",
+            "Aircraft"
+          ],
+          "rows": 18,
+          "typeAt": 4,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [],
+          "rows": 0,
+          "typeAt": -1,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Rank group",
+            "Junior commissioned officers",
+            "Non-commissioned officer",
+            "Enlisted"
+          ],
+          "rows": 0,
+          "typeAt": -1,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Aircraft",
+            "Origin",
+            "Type",
+            "Variant",
+            "In service",
+            "Notes"
+          ],
+          "rows": 22,
+          "typeAt": 0,
+          "serviceAt": 4,
+          "used": true,
+          "filled": 18
+        },
+        {
+          "headers": [
+            "Name",
+            "Origin",
+            "Type",
+            "Notes"
+          ],
+          "rows": 13,
+          "typeAt": 0,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        },
+        {
+          "headers": [
+            "Name",
+            "Origin",
+            "Type",
+            "Notes"
+          ],
+          "rows": 11,
+          "typeAt": 0,
+          "serviceAt": -1,
+          "used": false,
+          "filled": 0
+        }
+      ],
       "types": 22,
       "counted": 17,
       "unreadable": 5,
@@ -2903,56 +3678,12 @@
       "iso": "RUS",
       "country": "Russia",
       "force": "Russia (all services)",
-      "type": "154x154px|A Russian Air Force Su-35S",
-      "origin": "Sukhoi Su-35",
-      "role": "",
-      "variant": "air superiority",
-      "inService": null,
-      "inServiceRaw": "Su-35S"
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
-      "type": "154x154px|A Russian Air Force Su-34",
-      "origin": "Sukhoi Su-34",
-      "role": "",
-      "variant": "multirole",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
-      "type": "154x154px|A Tu-160 during the 2018 Victory Day Parade",
-      "origin": "Tupolev Tu-160",
-      "role": "",
-      "variant": "strategic bomber",
-      "inService": null,
-      "inServiceRaw": "Tu-160/M"
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
       "type": "AWACS",
       "origin": "",
       "role": "",
       "variant": "",
       "inService": null,
       "inServiceRaw": ""
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
-      "type": "154x154px|A Beriev A-50 in flight",
-      "origin": "Beriev A-50",
-      "role": "",
-      "variant": "AWACS",
-      "inService": null,
-      "inServiceRaw": "A-50/U"
     },
     {
       "iso": "RUS",
@@ -2980,34 +3711,12 @@
       "iso": "RUS",
       "country": "Russia",
       "force": "Russia (all services)",
-      "type": "154x154px|A Tu-214R taking off from Borisoglebskoye Airfield",
-      "origin": "Tupolev Tu-214R",
-      "role": "",
-      "variant": "SIGINT / ELINT",
-      "inService": null,
-      "inServiceRaw": "Tu-214R"
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
       "type": "Tanker",
       "origin": "",
       "role": "",
       "variant": "",
       "inService": null,
       "inServiceRaw": ""
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
-      "type": "154x154px|An Il-78M of the 203rd Guards Air Refuelling Regiment",
-      "origin": "Ilyushin Il-78",
-      "role": "",
-      "variant": "air refueling",
-      "inService": null,
-      "inServiceRaw": "Il-78/M"
     },
     {
       "iso": "RUS",
@@ -3024,17 +3733,6 @@
       "iso": "RUS",
       "country": "Russia",
       "force": "Russia (all services)",
-      "type": "154x154px|An An-124-100 accompanied by a Su-27UB",
-      "origin": "Antonov An-124",
-      "role": "",
-      "variant": "strategic airlifter",
-      "inService": null,
-      "inServiceRaw": "An-124-100"
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
       "type": "Helicopter",
       "origin": "",
       "role": "",
@@ -3046,32 +3744,10 @@
       "iso": "RUS",
       "country": "Russia",
       "force": "Russia (all services)",
-      "type": "154x154px|A Russian Air Force Ka-52 in flight",
-      "origin": "Kamov Ka-52",
-      "role": "",
-      "variant": "attack",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
       "type": "Trainer",
       "origin": "",
       "role": "",
       "variant": "",
-      "inService": null,
-      "inServiceRaw": ""
-    },
-    {
-      "iso": "RUS",
-      "country": "Russia",
-      "force": "Russia (all services)",
-      "type": "154x154px|A Yak-130 at the 2012 Farnborough International Airshow",
-      "origin": "Yakovlev Yak-130",
-      "role": "",
-      "variant": "trainer / attack",
       "inService": null,
       "inServiceRaw": ""
     },
