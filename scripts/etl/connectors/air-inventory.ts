@@ -256,8 +256,32 @@ async function main(): Promise<void> {
 
       for (const t of tables) {
         const headers = t.headers.map((h) => plain(h).toLowerCase());
-        const typeAt = columnIndex(headers, /^(aircraft|type|model|name)\b/);
-        const serviceAt = columnIndex(headers, /(in service|in inventory|quantity|number|qty|total|active)/);
+        /*
+         * "Name" is dropped from the aircraft-column patterns on purpose.
+         *
+         * When a force has no dedicated aircraft list this reads its main
+         * article instead, and a force article carries equipment tables that
+         * are not aircraft. The Republic of Korea Air Force page has two:
+         * "Aircraft / Origin / Type / Variant / In service" and "Name /
+         * Origin / Type / Variant / In service". The second is air defence,
+         * and it put 2,000 KP-SAM Shingung man-portable missiles and 200 M167
+         * anti-aircraft guns into the fleet — 2,219 of a published total of
+         * 2,821, on a page about aircraft.
+         *
+         * In these articles the aircraft tables are headed "Aircraft", "Type"
+         * or "Model" and the equipment tables are headed "Name". Losing a real
+         * aircraft table to this costs a skipped table that is counted and
+         * visible in `tablesSeen`; keeping it cost a fleet four times its true
+         * size with nothing to show for it.
+         */
+        const typeAt = columnIndex(headers, /^(aircraft|type|model)\b/);
+        /*
+         * `inventory` on its own, not only "in inventory". Three tables on the
+         * United States list are headed "… | Introduced | Inventory" and were
+         * skipped for want of the preposition — 109 of its rows, which is most
+         * of the American fleet.
+         */
+        const serviceAt = columnIndex(headers, /(in service|inventory|quantity|number|qty|total|active|strength)/);
         /*
          * Both columns or nothing. A table with an aircraft column and no
          * quantity column is a list of types, not an inventory, and reading it
@@ -278,6 +302,18 @@ async function main(): Promise<void> {
         for (const [ri, r] of t.rows.entries()) {
           const type = plain(r[typeAt] ?? "").trim();
           if (type === "" || /^(total|notes?)$/i.test(type)) continue;
+          /**
+           * A row carrying one value and nothing else is a section divider.
+           *
+           * The Russian list breaks its table into sections with a full-width
+           * row holding only the section name, so "AWACS", "Tanker",
+           * "Transport", "Electronic Warfare" and "Gunship" were all published
+           * as aircraft types with no quantity. They are not wrong numbers —
+           * they have no numbers — but they inflate the count of types a force
+           * flies and the count of cells that could not be read, which is the
+           * figure this page uses to decide whether to trust a total at all.
+           */
+          if (r.every((cell, i) => i === typeAt || plain(cell ?? "").trim() === "")) continue;
           /**
            * A quantity inherited from a rowspan above belongs to the row that
            * wrote it, and is not counted again here.

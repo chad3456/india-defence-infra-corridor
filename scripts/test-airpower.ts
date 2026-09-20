@@ -129,5 +129,34 @@ console.log("\nThe live-traffic connector publishes its own limits");
     /refusing to append an empty snapshot/.test(src), true);
 }
 
+/**
+ * Three faults the self-describing ingest found, each held in place.
+ *
+ * All three were published numbers that looked entirely normal, and all three
+ * were visible only because the connector reports the headers it met and the
+ * columns it chose rather than just its results.
+ */
+console.log("\nThe inventory connector's column rules");
+{
+  const src = readFileSync(join(process.cwd(), "scripts/etl/connectors/air-inventory.ts"), "utf8");
+  const typeRe = /const typeAt = columnIndex\(headers, ([^)]+)\)/.exec(src)?.[1] ?? "";
+  const svcRe = /const serviceAt = columnIndex\(headers, ([^)]+)\)/.exec(src)?.[1] ?? "";
+
+  // A force article's "Name" table is air defence, not aircraft: it put 2,000
+  // man-portable missiles and 200 AA guns into the Korean fleet.
+  check("an aircraft column is not headed \"Name\"", /\bname\b/.test(typeRe), false);
+  check("but Aircraft, Type and Model all count",
+    /aircraft/.test(typeRe) && /type/.test(typeRe) && /model/.test(typeRe), true);
+
+  // Three United States tables headed "Inventory" were skipped for want of a
+  // preposition — 109 rows, most of the American fleet.
+  check("\"Inventory\" alone is a quantity column", /inventory/.test(svcRe), true);
+  check("and so is \"In service\"", /in service/.test(svcRe), true);
+
+  // The Russian list divides its table with rows holding only a section name.
+  check("a row with only one filled cell is a section divider, not an aircraft",
+    /is a section divider/.test(src), true);
+}
+
 console.log(failures === 0 ? "\nAll airpower tests passed." : `\n${failures} airpower test(s) failed.`);
 if (failures > 0) process.exit(1);

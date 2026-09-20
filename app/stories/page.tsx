@@ -19,6 +19,17 @@ export const metadata = {
 
 const STORIES = [
   {
+    href: "/airpower",
+    tone: "hot" as const,
+    kicker: "airpower · osint",
+    title: "Almost None of Military Aviation Is Visible.",
+    blurb:
+      "Two ADS-B networks together see a few hundred military aircraft worldwide, against " +
+      "thousands catalogued — and every type they see is a transport, a tanker or a trainer.",
+    stat: "4.5%",
+    statLabel: "of catalogued airframes visible, at the best moment on record",
+  },
+  {
     href: "/stories/semiconductors",
     tone: "hot" as const,
     kicker: "electronics · trade",
