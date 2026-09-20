@@ -139,14 +139,20 @@ console.log("\nThe live-traffic connector publishes its own limits");
 console.log("\nThe inventory connector's column rules");
 {
   const src = readFileSync(join(process.cwd(), "scripts/etl/connectors/air-inventory.ts"), "utf8");
-  const typeRe = /const typeAt = columnIndex\(headers, ([^)]+)\)/.exec(src)?.[1] ?? "";
   const svcRe = /const serviceAt = columnIndex\(headers, ([^)]+)\)/.exec(src)?.[1] ?? "";
 
-  // A force article's "Name" table is air defence, not aircraft: it put 2,000
-  // man-portable missiles and 200 AA guns into the Korean fleet.
-  check("an aircraft column is not headed \"Name\"", /\bname\b/.test(typeRe), false);
-  check("but Aircraft, Type and Model all count",
-    /aircraft/.test(typeRe) && /type/.test(typeRe) && /model/.test(typeRe), true);
+  /*
+   * A Name+Type table is equipment, not aircraft. Dropping "Name" from the
+   * patterns was not enough on its own — the table matched on its "Type"
+   * column instead and the same rows came back with "man-portable air-defense
+   * system" where the aircraft name should be. The rule has to be about the
+   * table's shape.
+   */
+  check("the aircraft column is decided by the table's shape",
+    /aircraftAt >= 0 \? aircraftAt : \(nameAt >= 0 \? -1 : typeColAt\)/.test(src), true);
+  check("an explicit Aircraft or Model column wins", /\^\(aircraft\|model\)/.test(src), true);
+  check("and a Name column with no Aircraft column disqualifies the table",
+    /nameAt >= 0 \? -1/.test(src), true);
 
   // Three United States tables headed "Inventory" were skipped for want of a
   // preposition — 109 rows, most of the American fleet.

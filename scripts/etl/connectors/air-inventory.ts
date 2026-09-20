@@ -256,31 +256,39 @@ async function main(): Promise<void> {
 
       for (const t of tables) {
         const headers = t.headers.map((h) => plain(h).toLowerCase());
-        /*
-         * "Name" is dropped from the aircraft-column patterns on purpose.
+        /**
+         * Which column names the aircraft, and whether this is an aircraft
+         * table at all.
          *
-         * When a force has no dedicated aircraft list this reads its main
-         * article instead, and a force article carries equipment tables that
-         * are not aircraft. The Republic of Korea Air Force page has two:
-         * "Aircraft / Origin / Type / Variant / In service" and "Name /
-         * Origin / Type / Variant / In service". The second is air defence,
-         * and it put 2,000 KP-SAM Shingung man-portable missiles and 200 M167
-         * anti-aircraft guns into the fleet — 2,219 of a published total of
-         * 2,821, on a page about aircraft.
+         * Where a force has no dedicated aircraft list this falls back to its
+         * main article, and a force article carries equipment tables that are
+         * not aircraft. The Republic of Korea Air Force page has two that look
+         * alike:
          *
-         * In these articles the aircraft tables are headed "Aircraft", "Type"
-         * or "Model" and the equipment tables are headed "Name". Losing a real
-         * aircraft table to this costs a skipped table that is counted and
-         * visible in `tablesSeen`; keeping it cost a fleet four times its true
-         * size with nothing to show for it.
+         *     Aircraft | Origin | Type | Variant | In service | Notes
+         *     Name     | Origin | Type | Variant | In service | Notes
+         *
+         * The second is air defence. Reading it put 2,000 KP-SAM Shingung
+         * man-portable missiles and 200 M167 anti-aircraft guns into the
+         * fleet — 2,219 of a published total of 2,821, on a page about
+         * aircraft.
+         *
+         * Dropping "Name" from the patterns was not enough, and the way it
+         * failed is worth keeping: the table still matched, on its "Type"
+         * column, so the same rows came back with "man-portable air-defense
+         * system" where the aircraft name should be. A narrower pattern did
+         * not exclude the table; it just moved which column was misread.
+         *
+         * So the rule is about the table rather than about one header. An
+         * explicit "Aircraft" or "Model" column is the name. Failing that,
+         * "Type" is the name — but only when the table has no "Name" column,
+         * because Name-plus-Type is the shape these articles use for equipment
+         * that is not aircraft.
          */
-        const typeAt = columnIndex(headers, /^(aircraft|type|model)\b/);
-        /*
-         * `inventory` on its own, not only "in inventory". Three tables on the
-         * United States list are headed "… | Introduced | Inventory" and were
-         * skipped for want of the preposition — 109 of its rows, which is most
-         * of the American fleet.
-         */
+        const aircraftAt = columnIndex(headers, /^(aircraft|model)\b/);
+        const nameAt = columnIndex(headers, /^name\b/);
+        const typeColAt = columnIndex(headers, /^type\b/);
+        const typeAt = aircraftAt >= 0 ? aircraftAt : (nameAt >= 0 ? -1 : typeColAt);
         const serviceAt = columnIndex(headers, /(in service|inventory|quantity|number|qty|total|active|strength)/);
         /*
          * Both columns or nothing. A table with an aircraft column and no
