@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-18T16:03:51.025Z",
+  "builtAt": "2026-09-20T13:46:23.850Z",
   "source": "OpenStreetMap, via the Overpass API. Objects tagged military=airfield, plus civil aerodromes carrying a military tag, which is how joint-use fields are usually mapped.",
   "method": "The world is swept in twelve overlapping regional boxes, because a single planet-wide query for this tag times out. Objects returned twice are deduplicated by OSM id. Every element is checked against the box it was asked for, and a run in which more than two per cent fall outside it fails rather than publishing counts built on a filter that did nothing. Countries are assigned locally by testing each coordinate against the same world atlas polygons the site's maps are drawn from, rather than by asking Overpass once per country.",
   "refusal": "An object with no name is not published, because a record that cannot be checked against the source is not a record. Nothing here is a coordinate this project derived, inferred or refined: every position is the centre OpenStreetMap already publishes.",
@@ -7,20 +7,21 @@
     "How many military airfields a country has. This counts what OpenStreetMap's contributors have mapped and tagged, so a country with active mappers looks denser than one without, and that is a fact about OSM rather than about airpower. Treat every count as a floor.",
     "Whether an airfield is in use. OSM carries no reliable status for these, and a field mapped in 2014 may be closed, expanded or repurposed.",
     "What is based at one. Nothing here reads aircraft to installations; the inventory data on this site is national and does not resolve to a base.",
-    "Anything about facilities that are not mapped. Absence here is absence from a public map, which is not absence from the ground."
+    "Anything about facilities that are not mapped. Absence here is absence from a public map, which is not absence from the ground.",
+    "Anything about a region whose sweep failed. Overpass returns 429 and 504 under load, and a box that never answered leaves a hole in the catalogue with no other trace: the countries inside it are undercounted by an unknown amount rather than missing. Any failed box is named in `failures`, and a count for a country inside one is not a count."
   ],
   "counts": {
-    "airfields": 1990,
+    "airfields": 2052,
     "jointUse": 16,
-    "countries": 125,
-    "withIcao": 984,
-    "unplaced": 161,
+    "countries": 129,
+    "withIcao": 1004,
+    "unplaced": 57,
     "outsideBox": 0,
     "boxesFailed": 1
   },
   "failures": [
     {
-      "box": "russia-north",
+      "box": "russia-east",
       "why": "no answer after five attempts"
     }
   ],
@@ -28,37 +29,37 @@
     {
       "iso": "USA",
       "country": "United States of America",
-      "n": 364,
-      "jointUse": 0
+      "n": 377,
+      "jointUse": 1
     },
     {
       "iso": "RUS",
       "country": "Russia",
-      "n": 172,
+      "n": 234,
       "jointUse": 0
     },
     {
       "iso": "CHN",
       "country": "China",
-      "n": 114,
+      "n": 116,
       "jointUse": 1
     },
     {
       "iso": "IND",
       "country": "India",
-      "n": 92,
+      "n": 93,
       "jointUse": 0
     },
     {
       "iso": "MEX",
       "country": "Mexico",
-      "n": 63,
+      "n": 67,
       "jointUse": 0
     },
     {
       "iso": "GBR",
       "country": "United Kingdom",
-      "n": 56,
+      "n": 58,
       "jointUse": 2
     },
     {
@@ -70,13 +71,13 @@
     {
       "iso": "KOR",
       "country": "South Korea",
-      "n": 43,
+      "n": 44,
       "jointUse": 0
     },
     {
       "iso": "AUS",
       "country": "Australia",
-      "n": 40,
+      "n": 41,
       "jointUse": 0
     },
     {
@@ -84,6 +85,12 @@
       "country": "Germany",
       "n": 38,
       "jointUse": 0
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "n": 36,
+      "jointUse": 1
     },
     {
       "iso": "BRA",
@@ -104,12 +111,6 @@
       "jointUse": 0
     },
     {
-      "iso": "JPN",
-      "country": "Japan",
-      "n": 32,
-      "jointUse": 1
-    },
-    {
       "iso": "TUR",
       "country": "Turkey",
       "n": 29,
@@ -118,31 +119,37 @@
     {
       "iso": "ITA",
       "country": "Italy",
-      "n": 28,
+      "n": 29,
+      "jointUse": 2
+    },
+    {
+      "iso": "IDN",
+      "country": "Indonesia",
+      "n": 29,
       "jointUse": 1
     },
     {
       "iso": "IRN",
       "country": "Iran",
-      "n": 25,
+      "n": 27,
       "jointUse": 0
-    },
-    {
-      "iso": "IDN",
-      "country": "Indonesia",
-      "n": 25,
-      "jointUse": 1
     },
     {
       "iso": "ESP",
       "country": "Spain",
-      "n": 24,
+      "n": 27,
+      "jointUse": 0
+    },
+    {
+      "iso": "CAN",
+      "country": "Canada",
+      "n": 23,
       "jointUse": 0
     },
     {
       "iso": "EGY",
       "country": "Egypt",
-      "n": 21,
+      "n": 22,
       "jointUse": 0
     },
     {
@@ -158,20 +165,20 @@
       "jointUse": 0
     },
     {
-      "iso": "CAN",
-      "country": "Canada",
-      "n": 20,
+      "iso": "GRC",
+      "country": "Greece",
+      "n": 19,
+      "jointUse": 0
+    },
+    {
+      "iso": "SAU",
+      "country": "Saudi Arabia",
+      "n": 17,
       "jointUse": 0
     },
     {
       "iso": "DZA",
       "country": "Algeria",
-      "n": 17,
-      "jointUse": 0
-    },
-    {
-      "iso": "GRC",
-      "country": "Greece",
       "n": 17,
       "jointUse": 0
     },
@@ -188,16 +195,16 @@
       "jointUse": 1
     },
     {
-      "iso": "SAU",
-      "country": "Saudi Arabia",
-      "n": 16,
-      "jointUse": 0
-    },
-    {
       "iso": "TWN",
       "country": "Taiwan",
-      "n": 14,
+      "n": 16,
       "jointUse": 3
+    },
+    {
+      "iso": "SWE",
+      "country": "Sweden",
+      "n": 12,
+      "jointUse": 0
     },
     {
       "iso": "THA",
@@ -212,32 +219,26 @@
       "jointUse": 0
     },
     {
-      "iso": "SWE",
-      "country": "Sweden",
-      "n": 11,
-      "jointUse": 0
-    },
-    {
       "iso": "BEL",
       "country": "Belgium",
       "n": 11,
       "jointUse": 0
     },
     {
-      "iso": "ZAF",
-      "country": "South Africa",
-      "n": 10,
-      "jointUse": 0
-    },
-    {
       "iso": "VNM",
       "country": "Vietnam",
-      "n": 10,
+      "n": 11,
       "jointUse": 0
     },
     {
       "iso": "LKA",
       "country": "Sri Lanka",
+      "n": 11,
+      "jointUse": 0
+    },
+    {
+      "iso": "ZAF",
+      "country": "South Africa",
       "n": 10,
       "jointUse": 0
     },
@@ -308,8 +309,20 @@
       "jointUse": 0
     },
     {
+      "iso": "CHL",
+      "country": "Chile",
+      "n": 7,
+      "jointUse": 0
+    },
+    {
       "iso": "ARE",
       "country": "United Arab Emirates",
+      "n": 7,
+      "jointUse": 0
+    },
+    {
+      "iso": "PHL",
+      "country": "Philippines",
       "n": 7,
       "jointUse": 0
     },
@@ -332,8 +345,8 @@
       "jointUse": 0
     },
     {
-      "iso": "CHL",
-      "country": "Chile",
+      "iso": "NOR",
+      "country": "Norway",
       "n": 6,
       "jointUse": 0
     },
@@ -344,8 +357,20 @@
       "jointUse": 0
     },
     {
+      "iso": "LBY",
+      "country": "Libya",
+      "n": 6,
+      "jointUse": 0
+    },
+    {
       "iso": "CHE",
       "country": "Switzerland",
+      "n": 6,
+      "jointUse": 0
+    },
+    {
+      "iso": "PER",
+      "country": "Peru",
       "n": 6,
       "jointUse": 0
     },
@@ -353,18 +378,6 @@
       "iso": "ZWE",
       "country": "Zimbabwe",
       "n": 6,
-      "jointUse": 0
-    },
-    {
-      "iso": "NOR",
-      "country": "Norway",
-      "n": 5,
-      "jointUse": 0
-    },
-    {
-      "iso": "LBY",
-      "country": "Libya",
-      "n": 5,
       "jointUse": 0
     },
     {
@@ -376,18 +389,6 @@
     {
       "iso": "MMR",
       "country": "Myanmar",
-      "n": 5,
-      "jointUse": 0
-    },
-    {
-      "iso": "PER",
-      "country": "Peru",
-      "n": 5,
-      "jointUse": 0
-    },
-    {
-      "iso": "PHL",
-      "country": "Philippines",
       "n": 5,
       "jointUse": 0
     },
@@ -416,6 +417,12 @@
       "jointUse": 0
     },
     {
+      "iso": "YEM",
+      "country": "Yemen",
+      "n": 4,
+      "jointUse": 0
+    },
+    {
       "iso": "SRB",
       "country": "Serbia",
       "n": 4,
@@ -426,6 +433,12 @@
       "country": "Romania",
       "n": 4,
       "jointUse": 0
+    },
+    {
+      "iso": "UZB",
+      "country": "Uzbekistan",
+      "n": 4,
+      "jointUse": 1
     },
     {
       "iso": "OMN",
@@ -440,8 +453,20 @@
       "jointUse": 0
     },
     {
+      "iso": "KEN",
+      "country": "Kenya",
+      "n": 4,
+      "jointUse": 0
+    },
+    {
       "iso": "FLK",
       "country": "Falkland Is.",
+      "n": 4,
+      "jointUse": 0
+    },
+    {
+      "iso": "LTU",
+      "country": "Lithuania",
       "n": 4,
       "jointUse": 0
     },
@@ -464,12 +489,6 @@
       "jointUse": 0
     },
     {
-      "iso": "YEM",
-      "country": "Yemen",
-      "n": 3,
-      "jointUse": 0
-    },
-    {
       "iso": "QAT",
       "country": "Qatar",
       "n": 3,
@@ -482,16 +501,22 @@
       "jointUse": 0
     },
     {
+      "iso": "KAZ",
+      "country": "Kazakhstan",
+      "n": 3,
+      "jointUse": 0
+    },
+    {
       "iso": "AGO",
       "country": "Angola",
       "n": 3,
       "jointUse": 0
     },
     {
-      "iso": "UZB",
-      "country": "Uzbekistan",
+      "iso": "IRL",
+      "country": "Ireland",
       "n": 3,
-      "jointUse": 1
+      "jointUse": 0
     },
     {
       "iso": "DNK",
@@ -506,15 +531,15 @@
       "jointUse": 0
     },
     {
-      "iso": "KEN",
-      "country": "Kenya",
+      "iso": "BHR",
+      "country": "Bahrain",
       "n": 3,
-      "jointUse": 0
+      "jointUse": 1
     },
     {
-      "iso": "LTU",
-      "country": "Lithuania",
-      "n": 3,
+      "iso": "ERI",
+      "country": "Eritrea",
+      "n": 2,
       "jointUse": 0
     },
     {
@@ -536,14 +561,14 @@
       "jointUse": 0
     },
     {
-      "iso": "IRL",
-      "country": "Ireland",
+      "iso": "ETH",
+      "country": "Ethiopia",
       "n": 2,
       "jointUse": 0
     },
     {
-      "iso": "ETH",
-      "country": "Ethiopia",
+      "iso": "DJI",
+      "country": "Djibouti",
       "n": 2,
       "jointUse": 0
     },
@@ -620,6 +645,24 @@
       "jointUse": 0
     },
     {
+      "iso": "KHM",
+      "country": "Cambodia",
+      "n": 2,
+      "jointUse": 0
+    },
+    {
+      "iso": "SDN",
+      "country": "Sudan",
+      "n": 2,
+      "jointUse": 0
+    },
+    {
+      "iso": "TUN",
+      "country": "Tunisia",
+      "n": 2,
+      "jointUse": 0
+    },
+    {
       "iso": "BWA",
       "country": "Botswana",
       "n": 2,
@@ -652,12 +695,6 @@
     {
       "iso": "NPL",
       "country": "Nepal",
-      "n": 1,
-      "jointUse": 0
-    },
-    {
-      "iso": "ERI",
-      "country": "Eritrea",
       "n": 1,
       "jointUse": 0
     },
@@ -728,6 +765,12 @@
       "jointUse": 0
     },
     {
+      "iso": "PAN",
+      "country": "Panama",
+      "n": 1,
+      "jointUse": 0
+    },
+    {
       "iso": "SEN",
       "country": "Senegal",
       "n": 1,
@@ -754,24 +797,6 @@
     {
       "iso": "MKD",
       "country": "Macedonia",
-      "n": 1,
-      "jointUse": 0
-    },
-    {
-      "iso": "KHM",
-      "country": "Cambodia",
-      "n": 1,
-      "jointUse": 0
-    },
-    {
-      "iso": "TUN",
-      "country": "Tunisia",
-      "n": 1,
-      "jointUse": 0
-    },
-    {
-      "iso": "SDN",
-      "country": "Sudan",
       "n": 1,
       "jointUse": 0
     }
@@ -1108,6 +1133,17 @@
       "icao": "UMMA"
     },
     {
+      "osm": "node/5315394570",
+      "name": "6977-я авиабаза Сокол",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 57.9143,
+      "lon": 56.0389,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "relation/20324435",
       "name": "8th Bomber Division, Southern Theater Command",
       "iso": "CHN",
@@ -1293,6 +1329,17 @@
       "operator": null,
       "kind": "military-airfield",
       "icao": "LFMC"
+    },
+    {
+      "osm": "way/81610280",
+      "name": "Aerodrome Troitsk",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 54.1102,
+      "lon": 61.5373,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "XSCT"
     },
     {
       "osm": "node/3379910571",
@@ -1880,8 +1927,8 @@
     {
       "osm": "way/128300364",
       "name": "Aeródromo Militar del Port de Pollença",
-      "iso": null,
-      "country": null,
+      "iso": "ESP",
+      "country": "Spain",
       "lat": 39.9083,
       "lon": 3.1021,
       "operator": "Ministerio de Defensa (Gobierno de España)",
@@ -2067,8 +2114,8 @@
     {
       "osm": "way/455878757",
       "name": "Aeroport-de-Mingan",
-      "iso": null,
-      "country": null,
+      "iso": "CAN",
+      "country": "Canada",
       "lat": 50.2899,
       "lon": -64.1439,
       "operator": null,
@@ -2243,8 +2290,8 @@
     {
       "osm": "way/928340267",
       "name": "Aeroporto militare \"Orazio Pierozzi\"",
-      "iso": null,
-      "country": null,
+      "iso": "ITA",
+      "country": "Italy",
       "lat": 40.6513,
       "lon": 17.9466,
       "operator": "Aeronautica Militare;United Nations",
@@ -2668,6 +2715,17 @@
       "operator": null,
       "kind": "military-airfield",
       "icao": "LTBT"
+    },
+    {
+      "osm": "way/251607905",
+      "name": "Akhtubinsk Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 48.3089,
+      "lon": 46.2464,
+      "operator": "Министерство обороны Российской Федерации",
+      "kind": "military-airfield",
+      "icao": null
     },
     {
       "osm": "node/254442520",
@@ -3374,6 +3432,17 @@
       "icao": "RJFA"
     },
     {
+      "osm": "way/421260312",
+      "name": "Ashuluk Airfield",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 47.4215,
+      "lon": 47.9269,
+      "operator": "Министерство обороны Российской Федерации",
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "relation/18398620",
       "name": "Asmara Airbase",
       "iso": "ERI",
@@ -3387,8 +3456,8 @@
     {
       "osm": "way/431514956",
       "name": "Assab International Airport",
-      "iso": null,
-      "country": null,
+      "iso": "ERI",
+      "country": "Eritrea",
       "lat": 13.0757,
       "lon": 42.6427,
       "operator": null,
@@ -3528,6 +3597,17 @@
       "icao": "OIFP"
     },
     {
+      "osm": "relation/4662191",
+      "name": "Bagay-Baranovka Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 52.1409,
+      "lon": 46.968,
+      "operator": "Russian Air Force",
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "way/350142690",
       "name": "Bagram Air Base",
       "iso": "AFG",
@@ -3537,6 +3617,17 @@
       "operator": "Afghan Armed Forces",
       "kind": "military-airfield",
       "icao": "OAIX"
+    },
+    {
+      "osm": "relation/6725906",
+      "name": "Baikonur Cosmodrome",
+      "iso": "KAZ",
+      "country": "Kazakhstan",
+      "lat": 45.9559,
+      "lon": 63.4548,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
     },
     {
       "osm": "way/143366050",
@@ -3926,8 +4017,8 @@
     {
       "osm": "way/1342269835",
       "name": "Base Aérea Los Cóndores",
-      "iso": null,
-      "country": null,
+      "iso": "CHL",
+      "country": "Chile",
       "lat": -20.5185,
       "lon": -70.1808,
       "operator": null,
@@ -4289,8 +4380,8 @@
     {
       "osm": "way/96191045",
       "name": "Base d'hidroavions del Port de Pollença",
-      "iso": null,
-      "country": null,
+      "iso": "ESP",
+      "country": "Spain",
       "lat": 39.9059,
       "lon": 3.104,
       "operator": null,
@@ -4452,6 +4543,17 @@
       "icao": "ZBXJ"
     },
     {
+      "osm": "way/323619458",
+      "name": "Beketovka",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 54.0656,
+      "lon": 46.9487,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "way/251616513",
       "name": "Beketovka Air Base",
       "iso": "RUS",
@@ -4505,6 +4607,28 @@
       "operator": null,
       "kind": "military-airfield",
       "icao": "UKDB"
+    },
+    {
+      "osm": "way/52057754",
+      "name": "Berdsk Airfield",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 54.7322,
+      "lon": 83.0978,
+      "operator": "Новосибирский авиационно-технический спортивный клуб",
+      "kind": "military-airfield",
+      "icao": "XNNB"
+    },
+    {
+      "osm": "way/252085045",
+      "name": "Beryozovka Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 65.0536,
+      "lon": 56.68,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
     },
     {
       "osm": "way/41847401",
@@ -4848,6 +4972,17 @@
       "icao": null
     },
     {
+      "osm": "relation/9327645",
+      "name": "Borisoglebskoye",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 55.8645,
+      "lon": 49.1316,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "UWKG"
+    },
+    {
       "osm": "way/1289093137",
       "name": "Borovtsy Air Base",
       "iso": "BLR",
@@ -5037,8 +5172,8 @@
     {
       "osm": "way/532928260",
       "name": "Bumba Airport",
-      "iso": null,
-      "country": null,
+      "iso": "LBY",
+      "country": "Libya",
       "lat": 32.4515,
       "lon": 23.1194,
       "operator": null,
@@ -5092,8 +5227,8 @@
     {
       "osm": "node/8259106030",
       "name": "Byron Bay Airport (abandoned)",
-      "iso": null,
-      "country": null,
+      "iso": "CAN",
+      "country": "Canada",
       "lat": 68.7528,
       "lon": -109.1016,
       "operator": null,
@@ -5433,8 +5568,8 @@
     {
       "osm": "way/1551439536",
       "name": "Cape Newenham LRRS Airport",
-      "iso": null,
-      "country": null,
+      "iso": "USA",
+      "country": "United States of America",
       "lat": 58.6484,
       "lon": -162.0639,
       "operator": null,
@@ -5455,8 +5590,8 @@
     {
       "osm": "way/203511219",
       "name": "Cape Romanzof Long Range Radar Site Airport",
-      "iso": null,
-      "country": null,
+      "iso": "USA",
+      "country": "United States of America",
       "lat": 61.7812,
       "lon": -166.0388,
       "operator": null,
@@ -5662,6 +5797,28 @@
       "icao": null
     },
     {
+      "osm": "way/252287611",
+      "name": "Chebenki Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 51.9754,
+      "lon": 55.5424,
+      "operator": "Russian Air Force",
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
+      "osm": "way/75208152",
+      "name": "Chelyabinsk Shagol Airport",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 55.2572,
+      "lon": 61.2995,
+      "operator": "Министерство обороны Российской Федерации",
+      "kind": "military-airfield",
+      "icao": "USCG"
+    },
+    {
       "osm": "way/390485059",
       "name": "Chenachene Airport",
       "iso": "DZA",
@@ -5827,6 +5984,17 @@
       "icao": null
     },
     {
+      "osm": "node/1105890222",
+      "name": "Chistoozernoe Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 54.658,
+      "lon": 76.5373,
+      "operator": "МО, недействующий",
+      "kind": "military-airfield",
+      "icao": "XNOR"
+    },
+    {
       "osm": "way/252283954",
       "name": "Chita Northwest Air Base",
       "iso": "RUS",
@@ -5964,7 +6132,7 @@
       "iso": "TUR",
       "country": "Turkey",
       "lat": 38.5148,
-      "lon": 27.0137,
+      "lon": 27.0131,
       "operator": "Hava Eğitim Komutanlığı",
       "kind": "military-airfield",
       "icao": "LTBL"
@@ -6267,6 +6435,17 @@
       "icao": null
     },
     {
+      "osm": "way/252098829",
+      "name": "Danilovo Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 56.6626,
+      "lon": 48.0271,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "way/948883745",
       "name": "Darbhanga Airport",
       "iso": "IND",
@@ -6522,8 +6701,8 @@
     {
       "osm": "way/661699999",
       "name": "Diglipur INS Kohasa",
-      "iso": null,
-      "country": null,
+      "iso": "IND",
+      "country": "India",
       "lat": 13.236,
       "lon": 93.0495,
       "operator": "Indian Navy",
@@ -6577,8 +6756,8 @@
     {
       "osm": "way/753780246",
       "name": "Djibouti-Ambouli International Airport",
-      "iso": null,
-      "country": null,
+      "iso": "DJI",
+      "country": "Djibouti",
       "lat": 11.5471,
       "lon": 43.1591,
       "operator": null,
@@ -6650,6 +6829,17 @@
       "operator": null,
       "kind": "military-airfield",
       "icao": "LBPL"
+    },
+    {
+      "osm": "way/252107981",
+      "name": "Dombarovskiy Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 50.8028,
+      "lon": 59.5219,
+      "operator": "Russian Air Force",
+      "kind": "military-airfield",
+      "icao": "UWOF"
     },
     {
       "osm": "way/252108221",
@@ -6775,8 +6965,8 @@
     {
       "osm": "node/1042053866",
       "name": "Driftwood Bay Air Force Station",
-      "iso": null,
-      "country": null,
+      "iso": "USA",
+      "country": "United States of America",
       "lat": 53.9721,
       "lon": -166.8573,
       "operator": null,
@@ -6995,8 +7185,8 @@
     {
       "osm": "way/240219351",
       "name": "Edwin Andrews Air Base",
-      "iso": null,
-      "country": null,
+      "iso": "PHL",
+      "country": "Philippines",
       "lat": 6.926,
       "lon": 122.0662,
       "operator": null,
@@ -7158,6 +7348,17 @@
       "icao": null
     },
     {
+      "osm": "way/240082750",
+      "name": "Engels-2 Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 51.4807,
+      "lon": 46.2308,
+      "operator": "Министерство обороны Российской Федерации",
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "way/1290818668",
       "name": "Enosburg Falls Armory Heliport",
       "iso": "USA",
@@ -7215,8 +7416,8 @@
     {
       "osm": "way/417321833",
       "name": "Escuadrón Aeronaval 31",
-      "iso": null,
-      "country": null,
+      "iso": "PER",
+      "country": "Peru",
       "lat": -15.3576,
       "lon": -75.1342,
       "operator": null,
@@ -7292,8 +7493,8 @@
     {
       "osm": "node/305605119",
       "name": "Estación Aeronaval de Isla Socorro",
-      "iso": null,
-      "country": null,
+      "iso": "MEX",
+      "country": "Mexico",
       "lat": 18.776,
       "lon": -110.9304,
       "operator": null,
@@ -7347,8 +7548,8 @@
     {
       "osm": "node/51398507",
       "name": "F18G",
-      "iso": null,
-      "country": null,
+      "iso": "SWE",
+      "country": "Sweden",
       "lat": 57.6726,
       "lon": 18.3467,
       "operator": null,
@@ -7743,8 +7944,8 @@
     {
       "osm": "way/525709338",
       "name": "Former Asaloyeh Airfield",
-      "iso": null,
-      "country": null,
+      "iso": "IRN",
+      "country": "Iran",
       "lat": 27.4828,
       "lon": 52.6124,
       "operator": null,
@@ -7952,8 +8153,8 @@
     {
       "osm": "node/1042056580",
       "name": "Futenma Marine Corps Air Station",
-      "iso": null,
-      "country": null,
+      "iso": "JPN",
+      "country": "Japan",
       "lat": 26.2731,
       "lon": 127.7557,
       "operator": null,
@@ -9492,8 +9693,8 @@
     {
       "osm": "way/92375467",
       "name": "Hsinchu Air Base",
-      "iso": null,
-      "country": null,
+      "iso": "TWN",
+      "country": "Taiwan",
       "lat": 24.8193,
       "lon": 120.9401,
       "operator": "國防部空軍司令部",
@@ -9965,8 +10166,8 @@
     {
       "osm": "way/294854226",
       "name": "Jan Mayensfield",
-      "iso": null,
-      "country": null,
+      "iso": "NOR",
+      "country": "Norway",
       "lat": 70.9437,
       "lon": -8.6533,
       "operator": "Forsvaret",
@@ -9976,8 +10177,8 @@
     {
       "osm": "way/820454499",
       "name": "Japan Self-Defense Force Base Djibouti",
-      "iso": null,
-      "country": null,
+      "iso": "DJI",
+      "country": "Djibouti",
       "lat": 11.5533,
       "lon": 43.1453,
       "operator": null,
@@ -9987,8 +10188,8 @@
     {
       "osm": "node/1042056033",
       "name": "JASDF Matsushima Airbase",
-      "iso": null,
-      "country": null,
+      "iso": "JPN",
+      "country": "Japan",
       "lat": 38.4049,
       "lon": 141.22,
       "operator": null,
@@ -10031,8 +10232,8 @@
     {
       "osm": "relation/9130497",
       "name": "Jask Airport",
-      "iso": null,
-      "country": null,
+      "iso": "IRN",
+      "country": "Iran",
       "lat": 25.6552,
       "lon": 57.7991,
       "operator": null,
@@ -10053,8 +10254,8 @@
     {
       "osm": "way/148396789",
       "name": "Jenny Lind Island Airport (abandoned)",
-      "iso": null,
-      "country": null,
+      "iso": "CAN",
+      "country": "Canada",
       "lat": 68.657,
       "lon": -101.7358,
       "operator": null,
@@ -10339,8 +10540,8 @@
     {
       "osm": "node/407674577",
       "name": "Kadena Air Base",
-      "iso": null,
-      "country": null,
+      "iso": "JPN",
+      "country": "Japan",
       "lat": 26.3556,
       "lon": 127.7675,
       "operator": "United States Air Force",
@@ -10350,8 +10551,8 @@
     {
       "osm": "relation/2563052",
       "name": "Kadena Air Base",
-      "iso": null,
-      "country": null,
+      "iso": "JPN",
+      "country": "Japan",
       "lat": 26.348,
       "lon": 127.7741,
       "operator": "United States Air Force",
@@ -10460,13 +10661,24 @@
     {
       "osm": "node/1224748180",
       "name": "Kamaran Island",
-      "iso": null,
-      "country": null,
+      "iso": "YEM",
+      "country": "Yemen",
       "lat": 15.366,
       "lon": 42.6106,
       "operator": null,
       "kind": "military-airfield",
       "icao": "OYKM"
+    },
+    {
+      "osm": "way/171842825",
+      "name": "Kambala Air Base",
+      "iso": "KAZ",
+      "country": "Kazakhstan",
+      "lat": 46.0255,
+      "lon": 73.4863,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "XAAM"
     },
     {
       "osm": "node/3433535658",
@@ -10487,6 +10699,17 @@
       "lat": 49.2425,
       "lon": 140.1867,
       "operator": "Russian Navy",
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
+      "osm": "way/92668187",
+      "name": "Kamensk-Uralskiy Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 56.4362,
+      "lon": 61.9908,
+      "operator": "Russian Air Force",
       "kind": "military-airfield",
       "icao": null
     },
@@ -10579,6 +10802,28 @@
       "icao": "VECX"
     },
     {
+      "osm": "way/99635746",
+      "name": "Kansk Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 56.126,
+      "lon": 95.6637,
+      "operator": "Russian Air Force",
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
+      "osm": "way/57679079",
+      "name": "Kapustin Yar Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 48.6654,
+      "lon": 45.7297,
+      "operator": "Министерство обороны Российской Федерации",
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "way/818834036",
       "name": "Kapyong Drop Zone",
       "iso": "AUS",
@@ -10647,8 +10892,8 @@
     {
       "osm": "relation/9188012",
       "name": "Karinių oro pajėgų Aviacijos bazės Pirmasis paieškos ir gelbėjimo postas",
-      "iso": null,
-      "country": null,
+      "iso": "LTU",
+      "country": "Lithuania",
       "lat": 55.8621,
       "lon": 21.0788,
       "operator": null,
@@ -10757,8 +11002,8 @@
     {
       "osm": "node/408503714",
       "name": "Katukurunda Airport",
-      "iso": null,
-      "country": null,
+      "iso": "LKA",
+      "country": "Sri Lanka",
       "lat": 6.5521,
       "lon": 79.9775,
       "operator": "Sri Lanka Air Force",
@@ -11048,6 +11293,17 @@
       "lat": 69.0953,
       "lon": 32.4068,
       "operator": "Russian Air Force",
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
+      "osm": "way/252130940",
+      "name": "Kinel-Cherkassy Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 53.4669,
+      "lon": 51.5587,
+      "operator": null,
       "kind": "military-airfield",
       "icao": null
     },
@@ -11459,6 +11715,17 @@
       "icao": null
     },
     {
+      "osm": "way/252136965",
+      "name": "Kupino Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 54.3526,
+      "lon": 77.3528,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "XNNK"
+    },
+    {
       "osm": "way/252137136",
       "name": "Kushchyovskaya Air Base",
       "iso": "RUS",
@@ -11527,8 +11794,8 @@
     {
       "osm": "relation/18798170",
       "name": "La Candelaria Bay",
-      "iso": null,
-      "country": null,
+      "iso": "PAN",
+      "country": "Panama",
       "lat": 7.732,
       "lon": -80.1402,
       "operator": null,
@@ -11747,8 +12014,8 @@
     {
       "osm": "way/706866336",
       "name": "Lapangan Udara Parigi",
-      "iso": null,
-      "country": null,
+      "iso": "IDN",
+      "country": "Indonesia",
       "lat": -7.6937,
       "lon": 108.5201,
       "operator": "TNI Angkatan Udara",
@@ -11833,6 +12100,17 @@
       "icao": "KLSF"
     },
     {
+      "osm": "way/252138830",
+      "name": "Lebyazhye Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 50.1997,
+      "lon": 45.2021,
+      "operator": "Министерство обороны Российской Федерации",
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "relation/10050451",
       "name": "Lecce Galatina Airport",
       "iso": "ITA",
@@ -11879,8 +12157,8 @@
     {
       "osm": "way/629227685",
       "name": "Lemnos Air Base",
-      "iso": null,
-      "country": null,
+      "iso": "GRC",
+      "country": "Greece",
       "lat": 39.9113,
       "lon": 25.2242,
       "operator": null,
@@ -12198,8 +12476,8 @@
     {
       "osm": "node/369144685",
       "name": "Lonely Air Station",
-      "iso": null,
-      "country": null,
+      "iso": "USA",
+      "country": "United States of America",
       "lat": 70.9103,
       "lon": -153.2428,
       "operator": null,
@@ -12493,6 +12771,17 @@
       "icao": "LFSX"
     },
     {
+      "osm": "way/103797987",
+      "name": "Lyambir",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 54.2853,
+      "lon": 45.1619,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "node/369138908",
       "name": "Lykes Palmdale Airport",
       "iso": "USA",
@@ -12704,8 +12993,8 @@
     {
       "osm": "way/361945657",
       "name": "Manda Bay Airfield",
-      "iso": null,
-      "country": null,
+      "iso": "KEN",
+      "country": "Kenya",
       "lat": -2.1697,
       "lon": 40.8953,
       "operator": null,
@@ -12913,8 +13202,8 @@
     {
       "osm": "way/217635679",
       "name": "Maritsa Air Base",
-      "iso": null,
-      "country": null,
+      "iso": "GRC",
+      "country": "Greece",
       "lat": 36.3836,
       "lon": 28.1092,
       "operator": null,
@@ -12990,8 +13279,8 @@
     {
       "osm": "way/160707679",
       "name": "Matagorda Island Air Force Base",
-      "iso": null,
-      "country": null,
+      "iso": "USA",
+      "country": "United States of America",
       "lat": 28.3244,
       "lon": -96.4622,
       "operator": null,
@@ -13254,8 +13543,8 @@
     {
       "osm": "way/316656032",
       "name": "Menzi Airfield",
-      "iso": null,
-      "country": null,
+      "iso": "PHL",
+      "country": "Philippines",
       "lat": 6.654,
       "lon": 121.9798,
       "operator": "Philippine Air Force",
@@ -13881,8 +14170,8 @@
     {
       "osm": "way/1121922765",
       "name": "Multinational Force and Observers South Camp Heliport",
-      "iso": null,
-      "country": null,
+      "iso": "EGY",
+      "country": "Egypt",
       "lat": 27.8982,
       "lon": 34.3226,
       "operator": null,
@@ -14156,8 +14445,8 @@
     {
       "osm": "way/31929333",
       "name": "Naval Air Station North Island",
-      "iso": null,
-      "country": null,
+      "iso": "USA",
+      "country": "United States of America",
       "lat": 32.6987,
       "lon": -117.2043,
       "operator": null,
@@ -14189,8 +14478,8 @@
     {
       "osm": "way/777529014",
       "name": "Naval Air Station Whiddy Island_Ireland (WW1)",
-      "iso": null,
-      "country": null,
+      "iso": "IRL",
+      "country": "Ireland",
       "lat": 51.6984,
       "lon": -9.4801,
       "operator": null,
@@ -14222,8 +14511,8 @@
     {
       "osm": "way/534911780",
       "name": "Naval Outlying Field San Nicolas Island",
-      "iso": null,
-      "country": null,
+      "iso": "USA",
+      "country": "United States of America",
       "lat": 33.2398,
       "lon": -119.4591,
       "operator": "US Navy",
@@ -14288,8 +14577,8 @@
     {
       "osm": "relation/533411",
       "name": "Naval Outlying Landing Field Coupeville",
-      "iso": null,
-      "country": null,
+      "iso": "USA",
+      "country": "United States of America",
       "lat": 48.1889,
       "lon": -122.6316,
       "operator": null,
@@ -14684,8 +14973,8 @@
     {
       "osm": "node/1042045901",
       "name": "North Island Naval Air Station",
-      "iso": null,
-      "country": null,
+      "iso": "USA",
+      "country": "United States of America",
       "lat": 32.6992,
       "lon": -117.215,
       "operator": "United States Navy",
@@ -14702,6 +14991,17 @@
       "operator": "Luftwaffe",
       "kind": "military-airfield",
       "icao": "ETNN"
+    },
+    {
+      "osm": "way/323253745",
+      "name": "Novaya Besovka",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 54.1305,
+      "lon": 50.1086,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
     },
     {
       "osm": "way/358573470",
@@ -14922,6 +15222,17 @@
       "operator": null,
       "kind": "military-airfield",
       "icao": "LFMO"
+    },
+    {
+      "osm": "way/144957930",
+      "name": "Orenburg Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 51.7072,
+      "lon": 55.0202,
+      "operator": "Russian Air Force",
+      "kind": "military-airfield",
+      "icao": null
     },
     {
       "osm": "way/71710741",
@@ -15245,8 +15556,8 @@
     {
       "osm": "way/1094565350",
       "name": "Pangkalan Udara Dominicus Dumatubun",
-      "iso": null,
-      "country": null,
+      "iso": "IDN",
+      "country": "Indonesia",
       "lat": -5.6614,
       "lon": 132.7313,
       "operator": null,
@@ -15344,8 +15655,8 @@
     {
       "osm": "relation/14705477",
       "name": "Pangkalan Udara Raden Sadjad",
-      "iso": null,
-      "country": null,
+      "iso": "IDN",
+      "country": "Indonesia",
       "lat": 3.9069,
       "lon": 108.3864,
       "operator": null,
@@ -15377,8 +15688,8 @@
     {
       "osm": "way/244135793",
       "name": "Pangkalan Udara Zainuddin Abdul Madjid",
-      "iso": null,
-      "country": null,
+      "iso": "IDN",
+      "country": "Indonesia",
       "lat": -8.5621,
       "lon": 116.0915,
       "operator": null,
@@ -15617,6 +15928,17 @@
       "icao": "FLND"
     },
     {
+      "osm": "way/242159929",
+      "name": "Petrovsk Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 52.2732,
+      "lon": 45.3897,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "way/239587157",
       "name": "Phalodi Air Force Station",
       "iso": "IND",
@@ -15806,8 +16128,8 @@
     {
       "osm": "node/3641586059",
       "name": "Pista Delicias",
-      "iso": null,
-      "country": null,
+      "iso": "MEX",
+      "country": "Mexico",
       "lat": 30.7351,
       "lon": -114.7007,
       "operator": null,
@@ -15850,8 +16172,8 @@
     {
       "osm": "node/3641586072",
       "name": "Pista Punta Bufeo",
-      "iso": null,
-      "country": null,
+      "iso": "MEX",
+      "country": "Mexico",
       "lat": 29.907,
       "lon": -114.4494,
       "operator": null,
@@ -15927,8 +16249,8 @@
     {
       "osm": "relation/7369702",
       "name": "PMRF Barking Sands",
-      "iso": null,
-      "country": null,
+      "iso": "USA",
+      "country": "United States of America",
       "lat": 22.0261,
       "lon": -159.7694,
       "operator": "United States Navy",
@@ -16037,8 +16359,8 @@
     {
       "osm": "way/126083117",
       "name": "Port Sudan Regional Airport",
-      "iso": null,
-      "country": null,
+      "iso": "SDN",
+      "country": "Sudan",
       "lat": 19.5759,
       "lon": 37.2145,
       "operator": null,
@@ -16081,8 +16403,8 @@
     {
       "osm": "way/1095843463",
       "name": "Preah Sihanouk Military Air Base",
-      "iso": null,
-      "country": null,
+      "iso": "KHM",
+      "country": "Cambodia",
       "lat": 10.5871,
       "lon": 103.6376,
       "operator": null,
@@ -16167,6 +16489,17 @@
       "icao": "OEPS"
     },
     {
+      "osm": "way/82264872",
+      "name": "Privolzhskiy Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 46.3965,
+      "lon": 47.8882,
+      "operator": "Министерство обороны Российской Федерации",
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "way/766858784",
       "name": "Pryluky Air Base",
       "iso": "UKR",
@@ -16180,8 +16513,8 @@
     {
       "osm": "node/846358981",
       "name": "Pt. Barrow Airfield",
-      "iso": null,
-      "country": null,
+      "iso": "USA",
+      "country": "United States of America",
       "lat": 71.3386,
       "lon": -156.638,
       "operator": null,
@@ -16202,13 +16535,24 @@
     {
       "osm": "node/389337983",
       "name": "Puerto Cortés Naval Airstrip",
-      "iso": null,
-      "country": null,
+      "iso": "MEX",
+      "country": "Mexico",
       "lat": 24.475,
       "lon": -111.8254,
       "operator": "Secretaría de Marina",
       "kind": "military-airfield",
       "icao": "MMPT"
+    },
+    {
+      "osm": "way/422416360",
+      "name": "Pugachev Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 52.032,
+      "lon": 48.8188,
+      "operator": "Министерство обороны Российской Федерации",
+      "kind": "military-airfield",
+      "icao": null
     },
     {
       "osm": "node/698893790",
@@ -16675,8 +17019,8 @@
     {
       "osm": "way/1119038059",
       "name": "RAF Lossiemouth",
-      "iso": null,
-      "country": null,
+      "iso": "GBR",
+      "country": "United Kingdom",
       "lat": 57.7076,
       "lon": -3.3312,
       "operator": "Royal Air Force",
@@ -16862,8 +17206,8 @@
     {
       "osm": "way/167349905",
       "name": "RAF Woodvale",
-      "iso": null,
-      "country": null,
+      "iso": "GBR",
+      "country": "United Kingdom",
       "lat": 53.5819,
       "lon": -3.0551,
       "operator": "Royal Air Force",
@@ -17137,8 +17481,8 @@
     {
       "osm": "way/1044667363",
       "name": "Riffa Airbase",
-      "iso": null,
-      "country": null,
+      "iso": "BHR",
+      "country": "Bahrain",
       "lat": 26.1102,
       "lon": 50.5791,
       "operator": null,
@@ -17285,6 +17629,17 @@
       "lat": 30.5723,
       "lon": -86.1289,
       "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
+      "osm": "way/135875732",
+      "name": "Rogachyovo Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 71.618,
+      "lon": 52.4792,
+      "operator": "Russian Air Force",
       "kind": "military-airfield",
       "icao": null
     },
@@ -17476,6 +17831,17 @@
       "icao": null
     },
     {
+      "osm": "way/948835779",
+      "name": "Ruzaevka",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 52.322,
+      "lon": 45.474,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "node/5683533553",
       "name": "Ryan AAF Auxilary A-1 (historical)",
       "iso": "USA",
@@ -17610,8 +17976,8 @@
     {
       "osm": "way/176050715",
       "name": "Sakhir Air Base",
-      "iso": null,
-      "country": null,
+      "iso": "BHR",
+      "country": "Bahrain",
       "lat": 26.0328,
       "lon": 50.5252,
       "operator": null,
@@ -17637,6 +18003,17 @@
       "lat": 34.7336,
       "lon": 40.7094,
       "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
+      "osm": "way/308936620",
+      "name": "Salka Airport",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 57.9864,
+      "lon": 60.2359,
+      "operator": "ФКП «НТИИМ»",
       "kind": "military-airfield",
       "icao": null
     },
@@ -17674,6 +18051,17 @@
       "icao": "LTBX"
     },
     {
+      "osm": "way/42370222",
+      "name": "Samara Kryazh Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 53.1095,
+      "lon": 50.0968,
+      "operator": "Russian Air Force",
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "way/818837900",
       "name": "Samuel Hill Airfield",
       "iso": "AUS",
@@ -17687,8 +18075,8 @@
     {
       "osm": "way/1494545538",
       "name": "Sân bay Năm Căn",
-      "iso": null,
-      "country": null,
+      "iso": "VNM",
+      "country": "Vietnam",
       "lat": 8.7554,
       "lon": 104.9813,
       "operator": null,
@@ -17806,6 +18194,17 @@
       "icao": "SBES"
     },
     {
+      "osm": "way/299766145",
+      "name": "Saratov West Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 51.5427,
+      "lon": 45.8456,
+      "operator": "Министерство обороны Российской Федерации",
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "way/386346899",
       "name": "Sarsawa Air Force Station",
       "iso": "IND",
@@ -17830,8 +18229,8 @@
     {
       "osm": "way/250328479",
       "name": "Saudi Aramco Tanajib Airport",
-      "iso": null,
-      "country": null,
+      "iso": "SAU",
+      "country": "Saudi Arabia",
       "lat": 27.8696,
       "lon": 48.769,
       "operator": null,
@@ -18081,6 +18480,17 @@
       "icao": null
     },
     {
+      "osm": "way/252287032",
+      "name": "Shadrinsk Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 56.0385,
+      "lon": 63.6767,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "way/125240056",
       "name": "Shahid Asyaee Airport",
       "iso": "IRN",
@@ -18105,8 +18515,8 @@
     {
       "osm": "way/51568129",
       "name": "Shaikh Isa Air Base",
-      "iso": null,
-      "country": null,
+      "iso": "BHR",
+      "country": "Bahrain",
       "lat": 25.9167,
       "lon": 50.5914,
       "operator": null,
@@ -18411,6 +18821,17 @@
       "icao": "EYSA"
     },
     {
+      "osm": "way/422987928",
+      "name": "Sibirskiy Heliport",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 53.5852,
+      "lon": 83.8608,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "way/287748709",
       "name": "Sibutu Air Base",
       "iso": null,
@@ -18708,6 +19129,17 @@
       "icao": "RKND"
     },
     {
+      "osm": "way/75208037",
+      "name": "Sokol Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 51.2834,
+      "lon": 58.6049,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "way/30966438",
       "name": "Solenzara (BA 126) Air Base",
       "iso": "FRA",
@@ -18743,8 +19175,8 @@
     {
       "osm": "way/377445774",
       "name": "Son Sant Joan Air Base",
-      "iso": null,
-      "country": null,
+      "iso": "ESP",
+      "country": "Spain",
       "lat": 39.5577,
       "lon": 2.7439,
       "operator": null,
@@ -18851,6 +19283,17 @@
       "icao": "LGSP"
     },
     {
+      "osm": "way/323254883",
+      "name": "SPK im. Krupskoy (4-y otdeleniye)",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 53.9778,
+      "lon": 49.867,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "node/3927862830",
       "name": "Springlea Airstrip",
       "iso": "AUS",
@@ -18919,8 +19362,8 @@
     {
       "osm": "node/4210093923",
       "name": "Stewarts",
-      "iso": null,
-      "country": null,
+      "iso": "AUS",
+      "country": "Australia",
       "lat": -30.1533,
       "lon": 153.1623,
       "operator": null,
@@ -19282,8 +19725,8 @@
     {
       "osm": "relation/15441032",
       "name": "Taganrog Airport",
-      "iso": null,
-      "country": null,
+      "iso": "RUS",
+      "country": "Russia",
       "lat": 47.1968,
       "lon": 38.8489,
       "operator": "Таганрогский авиационный научно-технический комплекс имени Г.М. Бериева;Министерство обороны Российской Федерации",
@@ -19443,6 +19886,17 @@
       "operator": null,
       "kind": "military-airfield",
       "icao": "PATL"
+    },
+    {
+      "osm": "way/1257796617",
+      "name": "Tatischevo Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 51.6844,
+      "lon": 45.5479,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
     },
     {
       "osm": "way/303804371",
@@ -19689,8 +20143,8 @@
     {
       "osm": "way/248545951",
       "name": "Tin City LRRS Airport",
-      "iso": null,
-      "country": null,
+      "iso": "USA",
+      "country": "United States of America",
       "lat": 65.5639,
       "lon": -167.9224,
       "operator": null,
@@ -19830,6 +20284,17 @@
       "icao": null
     },
     {
+      "osm": "way/135772127",
+      "name": "Totskoye Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 52.5014,
+      "lon": 52.7837,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "way/44018740",
       "name": "Travis Air Force Base",
       "iso": "USA",
@@ -19850,6 +20315,17 @@
       "operator": null,
       "kind": "military-airfield",
       "icao": "LGTP"
+    },
+    {
+      "osm": "way/90175493",
+      "name": "Troekurovka Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 53.2206,
+      "lon": 48.5497,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
     },
     {
       "osm": "way/252271092",
@@ -19876,8 +20352,8 @@
     {
       "osm": "way/510082598",
       "name": "Tuchengzi Airport",
-      "iso": null,
-      "country": null,
+      "iso": "CHN",
+      "country": "China",
       "lat": 38.9131,
       "lon": 121.2386,
       "operator": null,
@@ -20171,6 +20647,17 @@
       "icao": "EGDJ"
     },
     {
+      "osm": "way/81714792",
+      "name": "Uprun Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 54.3759,
+      "lon": 61.3525,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "XSCU"
+    },
+    {
       "osm": "way/102221928",
       "name": "Uqba Bin Nafeh Air Force Base",
       "iso": "LBY",
@@ -20380,6 +20867,17 @@
       "icao": null
     },
     {
+      "osm": "node/415824148",
+      "name": "Verkhnaya Zaimka",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 55.825,
+      "lon": 110.0997,
+      "operator": "unknown",
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "relation/18772316",
       "name": "Veseloye Air Base",
       "iso": "RUS",
@@ -20404,8 +20902,8 @@
     {
       "osm": "node/410604722",
       "name": "Vetrovoye Air Base (historical)",
-      "iso": null,
-      "country": null,
+      "iso": "RUS",
+      "country": "Russia",
       "lat": 45.2548,
       "lon": 148.3117,
       "operator": null,
@@ -20534,6 +21032,17 @@
       "icao": "EHVK"
     },
     {
+      "osm": "way/89905451",
+      "name": "Vorkuta Sovetskiy Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 67.4634,
+      "lon": 64.2992,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "way/316053383",
       "name": "Voronezh Malshevo Air Base",
       "iso": "RUS",
@@ -20551,6 +21060,17 @@
       "country": "Russia",
       "lat": 50.3127,
       "lon": 36.9216,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
+      "osm": "way/66942623",
+      "name": "Vozrozhdeniya Island Airport Barkhan (inactive)",
+      "iso": "UZB",
+      "country": "Uzbekistan",
+      "lat": 45.1558,
+      "lon": 59.2983,
       "operator": null,
       "kind": "military-airfield",
       "icao": null
@@ -20679,8 +21199,8 @@
     {
       "osm": "way/887433283",
       "name": "Washington National Guard Sinclair HGTS Heliport",
-      "iso": null,
-      "country": null,
+      "iso": "USA",
+      "country": "United States of America",
       "lat": 47.554,
       "lon": -122.6827,
       "operator": "Washington National Guard",
@@ -21064,8 +21584,8 @@
     {
       "osm": "node/9518124655",
       "name": "Yakutori Naval Airfield (historical)",
-      "iso": null,
-      "country": null,
+      "iso": "RUS",
+      "country": "Russia",
       "lat": 45.3057,
       "lon": 148.3923,
       "operator": null,
@@ -21159,6 +21679,17 @@
       "operator": "Indian Air Force",
       "kind": "military-airfield",
       "icao": "VOYK"
+    },
+    {
+      "osm": "way/75207981",
+      "name": "Yeltsovka",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 55.0899,
+      "lon": 83.0022,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "UNNE"
     },
     {
       "osm": "way/1207926795",
@@ -21289,6 +21820,17 @@
       "lat": 43.953,
       "lon": -90.6626,
       "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
+      "osm": "way/252290704",
+      "name": "Yugorsk Sovetsky Air Base",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 61.2653,
+      "lon": 63.1415,
+      "operator": "Russian Air Force",
       "kind": "military-airfield",
       "icao": null
     },
@@ -21493,8 +22035,8 @@
     {
       "osm": "way/314279529",
       "name": "Zuoying Naval Airfield",
-      "iso": null,
-      "country": null,
+      "iso": "TWN",
+      "country": "Taiwan",
       "lat": 22.7043,
       "lon": 120.2801,
       "operator": "中華民國海軍",
@@ -21590,6 +22132,28 @@
       "icao": null
     },
     {
+      "osm": "way/75207995",
+      "name": "Аэродром Омск-Северный",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 54.9748,
+      "lon": 73.5511,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
+      "osm": "way/122016620",
+      "name": "Аэродром Савватия",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 60.9948,
+      "lon": 46.865,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "ULKS"
+    },
+    {
       "osm": "node/1259183074",
       "name": "Аэродром Скопин",
       "iso": "RUS",
@@ -21599,6 +22163,17 @@
       "operator": null,
       "kind": "military-airfield",
       "icao": "ZAM0"
+    },
+    {
+      "osm": "way/672613239",
+      "name": "Аэродром Славгород \"Северный\"",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 53.0514,
+      "lon": 78.6387,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
     },
     {
       "osm": "way/152804971",
@@ -21614,8 +22189,8 @@
     {
       "osm": "way/75208099",
       "name": "Аэродром Советская Гавань (Постовая)",
-      "iso": null,
-      "country": null,
+      "iso": "RUS",
+      "country": "Russia",
       "lat": 49.033,
       "lon": 140.2269,
       "operator": null,
@@ -21654,6 +22229,17 @@
       "operator": null,
       "kind": "military-airfield",
       "icao": "ZA2H"
+    },
+    {
+      "osm": "way/326134505",
+      "name": "Әуе қорғанысы күштері Әскери институтының авиациялық тұрағы",
+      "iso": "KAZ",
+      "country": "Kazakhstan",
+      "lat": 50.256,
+      "lon": 57.2003,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
     },
     {
       "osm": "way/542495746",
@@ -21711,6 +22297,28 @@
       "icao": null
     },
     {
+      "osm": "way/239705711",
+      "name": "Гора Пашнина",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 55.126,
+      "lon": 60.5629,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "H558"
+    },
+    {
+      "osm": "way/692198770",
+      "name": "Гора придорожная",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 55.1078,
+      "lon": 60.6601,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "HAA7"
+    },
+    {
       "osm": "way/421291020",
       "name": "Егорлыкская",
       "iso": "RUS",
@@ -21755,6 +22363,17 @@
       "icao": null
     },
     {
+      "osm": "way/692198752",
+      "name": "Левый НП",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 55.1139,
+      "lon": 60.5292,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "H618"
+    },
+    {
       "osm": "way/706522881",
       "name": "Мишенное поле",
       "iso": "RUS",
@@ -21766,6 +22385,39 @@
       "icao": null
     },
     {
+      "osm": "way/645737957",
+      "name": "Новогорный",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 55.634,
+      "lon": 60.8064,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "HF28"
+    },
+    {
+      "osm": "way/692198751",
+      "name": "Площадка 23",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 55.0836,
+      "lon": 60.8004,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "H143"
+    },
+    {
+      "osm": "way/692198755",
+      "name": "Площадка-22",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 55.0977,
+      "lon": 60.7403,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "H139"
+    },
+    {
       "osm": "way/43412543",
       "name": "полигон в/ч 19893",
       "iso": "RUS",
@@ -21775,6 +22427,17 @@
       "operator": null,
       "kind": "military-airfield",
       "icao": null
+    },
+    {
+      "osm": "way/692198756",
+      "name": "Правый НП",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 55.1005,
+      "lon": 60.536,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "H401"
     },
     {
       "osm": "node/7796038961",
@@ -21799,6 +22462,17 @@
       "icao": null
     },
     {
+      "osm": "way/330014029",
+      "name": "Тимшер",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 61.8897,
+      "lon": 55.1336,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
       "osm": "way/1159111348",
       "name": "Центр военно-патриотического воспитания «Патриот»",
       "iso": "RUS",
@@ -21810,12 +22484,45 @@
       "icao": null
     },
     {
+      "osm": "way/692198769",
+      "name": "Центральный НП",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 55.1084,
+      "lon": 60.5336,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "H487"
+    },
+    {
+      "osm": "way/692198753",
+      "name": "Чебаркульский городок",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 55.0276,
+      "lon": 60.423,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": "HA0T"
+    },
+    {
       "osm": "way/749130897",
       "name": "Ягодник",
       "iso": "RUS",
       "country": "Russia",
       "lat": 64.4029,
       "lon": 40.8909,
+      "operator": null,
+      "kind": "military-airfield",
+      "icao": null
+    },
+    {
+      "osm": "way/308934543",
+      "name": "Ясный",
+      "iso": "RUS",
+      "country": "Russia",
+      "lat": 51.0488,
+      "lon": 59.8522,
       "operator": null,
       "kind": "military-airfield",
       "icao": null
@@ -21977,8 +22684,8 @@
     {
       "osm": "way/42029110",
       "name": "مطار صفاقس - طينة الدولي",
-      "iso": null,
-      "country": null,
+      "iso": "TUN",
+      "country": "Tunisia",
       "lat": 34.7151,
       "lon": 10.6971,
       "operator": null,
@@ -22065,8 +22772,8 @@
     {
       "osm": "way/460934377",
       "name": "죽변비상활주로",
-      "iso": null,
-      "country": null,
+      "iso": "KOR",
+      "country": "South Korea",
       "lat": 37.0594,
       "lon": 129.4089,
       "operator": null,
@@ -22516,8 +23223,8 @@
     {
       "osm": "way/692360252",
       "name": "绥中空军基地机场",
-      "iso": null,
-      "country": null,
+      "iso": "CHN",
+      "country": "China",
       "lat": 40.2994,
       "lon": 120.3596,
       "operator": null,
