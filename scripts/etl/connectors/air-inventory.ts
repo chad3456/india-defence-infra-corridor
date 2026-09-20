@@ -275,10 +275,31 @@ async function main(): Promise<void> {
         const roleAt = columnIndex(headers, /role|category|class|mission/);
         const variantAt = columnIndex(headers, /variant|version|mark/);
 
-        for (const r of t.rows) {
+        for (const [ri, r] of t.rows.entries()) {
           const type = plain(r[typeAt] ?? "").trim();
           if (type === "" || /^(total|notes?)$/i.test(type)) continue;
-          const raw = plain(r[serviceAt] ?? "").trim();
+          /**
+           * A quantity inherited from a rowspan above belongs to the row that
+           * wrote it, and is not counted again here.
+           *
+           * These tables group variants under one aircraft and put the fleet
+           * figure on the spanning cell. Carrying that cell down is what puts
+           * every row back at full width — without it a variant row reads as
+           * a separate aircraft with no quantity at all, which is how India's
+           * list came to 64 rows of which only 28 carried a number.
+           *
+           * But the carried value repeats, and summing the column would count
+           * one fleet once per variant. 260 Su-30s under two variant rows is
+           * 520: a plausible number in the right units, on the page this site
+           * exists to not be.
+           *
+           * The variant row is still published — it is a real thing the
+           * catalogue lists — with its quantity null and the reason recorded,
+           * so the count of unreadable cells stays honest rather than being
+           * quietly inflated by every rowspan in the source.
+           */
+          const inheritedQty = t.spanned[ri]?.[serviceAt] === true;
+          const raw = inheritedQty ? "" : plain(r[serviceAt] ?? "").trim();
           if (type === "" ) continue;
           rows.push({
             iso: f.iso,
@@ -288,8 +309,8 @@ async function main(): Promise<void> {
             origin: originAt >= 0 ? plain(r[originAt] ?? "").trim() : "",
             role: roleAt >= 0 ? plain(r[roleAt] ?? "").trim() : "",
             variant: variantAt >= 0 ? plain(r[variantAt] ?? "").trim() : "",
-            inService: countIn(raw),
-            inServiceRaw: raw,
+            inService: inheritedQty ? null : countIn(raw),
+            inServiceRaw: inheritedQty ? "(shared with the row above)" : raw,
           });
         }
         /*
@@ -302,7 +323,8 @@ async function main(): Promise<void> {
          * that from a column full of prose. One is a wrong column; the other
          * is a hard source. They need different fixes and looked identical.
          */
-        const filled = t.rows.filter((r) => plain(r[serviceAt] ?? "").trim() !== "").length;
+        const filled = t.rows.filter((r, ri) =>
+          t.spanned[ri]?.[serviceAt] !== true && plain(r[serviceAt] ?? "").trim() !== "").length;
         saw.push({ headers: t.headers, rows: t.rows.length, typeAt, serviceAt, used: true, filled });
       }
 

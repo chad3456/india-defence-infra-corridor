@@ -181,5 +181,62 @@ console.log("\nA row broken across lines without a citation still works");
     JSON.stringify(t.rows));
 }
 
+/**
+ * A rowspan is inheritance, and inheritance has to be visible.
+ *
+ * Wikipedia's inventory tables group variants under one aircraft and put the
+ * fleet figure on the spanning cell:
+ *
+ *     | rowspan="2" | Sukhoi Su-30 || … || rowspan="2" | 260
+ *     |-
+ *     | Su-30MKI-A || Upgrade
+ *
+ * Read positionally, the second row has two cells: its "aircraft" is
+ * "Su-30MKI-A" and its quantity column is off the end of the row, so a
+ * variant becomes a separate type and its fleet count disappears. India's
+ * list came to 64 rows of which only 28 carried a quantity, and the missing
+ * 36 were all this.
+ *
+ * Carrying the spanned cells down fixes the width — and creates the opposite
+ * hazard, because the value now repeats and a consumer summing the column
+ * counts one fleet once per row it spans. 260 Su-30s under two variants is
+ * 520: a plausible number in the right units. So `spanned` says which cells
+ * were inherited, and a caller summing a column skips the ones it did not own.
+ */
+console.log("\nA rowspan fills the row it spans, and says that it did");
+{
+  const t = parseTables(`
+{| class="wikitable"
+! Aircraft !! Origin !! Type !! Variant !! In service !! Notes
+|-
+| rowspan="2" | Sukhoi Su-30 || rowspan="2" | Russia || rowspan="2" | Multirole || Su-30MKI || rowspan="2" | 260 || A
+|-
+| Su-30MKI-A || B
+|-
+| Dassault Rafale || France || Multirole || Rafale EH || 36 || C
+|-
+| rowspan="2" | HAL Tejas || rowspan="2" | India || Multirole || Mk1 || 32 || D
+|-
+| Multirole || Mk1A || 10 || E
+|}
+`)[0]!;
+  ok("every row is full width", t.rows.every((r) => r.length === 6),
+    JSON.stringify(t.rows.map((r) => r.length)));
+  ok("a variant row inherits its aircraft", t.rows[1]?.[0] === "Sukhoi Su-30",
+    JSON.stringify(t.rows[1]));
+  ok("and keeps its own variant", t.rows[1]?.[3] === "Su-30MKI-A", JSON.stringify(t.rows[1]));
+  ok("an unspanned row is untouched", t.rows[2]?.[0] === "Dassault Rafale", JSON.stringify(t.rows[2]));
+
+  ok("the inherited quantity is marked inherited", t.spanned[1]?.[4] === true,
+    JSON.stringify(t.spanned[1]));
+  ok("the written one is not", t.spanned[0]?.[4] === false, JSON.stringify(t.spanned[0]));
+  ok("a variant with its own quantity is not marked", t.spanned[4]?.[4] === false,
+    JSON.stringify(t.spanned[4]));
+
+  // The whole point: summing without double-counting.
+  const sum = t.rows.reduce((a, r, i) => a + (t.spanned[i]?.[4] ? 0 : Number(r[4]) || 0), 0);
+  ok("skipping inherited cells sums to 338, not 598", sum === 338, String(sum));
+}
+
 if (bad > 0) { console.error(`\n${bad} wikitext test(s) failed.`); process.exit(1); }
 console.log("\nAll wikitext tests passed.");

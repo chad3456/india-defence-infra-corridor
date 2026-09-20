@@ -29,6 +29,20 @@ export interface WikiTable {
   headerRows: string[][];
   /** Body rows, each already aligned to `headers` by position. */
   rows: string[][];
+  /**
+   * Which cells were inherited from a `rowspan` above rather than written here.
+   *
+   * Aligned to `rows`. It exists because carrying a spanned cell down — which
+   * is what puts every row back at full width — also repeats its value, and a
+   * consumer that sums a column would then count one figure once per row it
+   * spans. A fleet of 260 under two variant rows becomes 520, which is a
+   * plausible number in the right units.
+   *
+   * So the repetition is published alongside the value: a caller summing a
+   * column skips the cells it did not own, and a caller reading a row for
+   * context still sees the inherited value in place.
+   */
+  spanned: boolean[][];
   /** Anything on the table line itself, e.g. a class or caption. */
   caption: string | null;
 }
@@ -104,7 +118,10 @@ export function plain(cell: string): string {
 }
 
 /** Split a `|`-separated cell line, honouring `||` on one physical line. */
-function splitCells(line: string, marker: "|" | "!"): string[] {
+/** A cell, with the row span its attributes declare. */
+interface Cell { text: string; rowspan: number }
+
+function splitCells(line: string, marker: "|" | "!"): Cell[] {
   const body = line.replace(new RegExp(`^\\${marker}+`), "");
   const parts = body.split(marker === "|" ? "||" : /!!|\|\|/);
   return parts.map((p) => {
@@ -112,8 +129,11 @@ function splitCells(line: string, marker: "|" | "!"): string[] {
     // Only split on the FIRST bar, and only when what precedes it looks like
     // attributes rather than data.
     const m = /^([^|]*?)\|(?!\|)([\s\S]*)$/.exec(p);
-    if (m && /=/.test(m[1] ?? "") && !/\[\[/.test(m[1] ?? "")) return plain(m[2] ?? "");
-    return plain(p);
+    const isAttr = m && /=/.test(m[1] ?? "") && !/\[\[/.test(m[1] ?? "");
+    const attrs = isAttr ? (m[1] ?? "") : "";
+    const text = plain(isAttr ? (m[2] ?? "") : p);
+    const span = /rowspan\s*=\s*"?(\d+)"?/i.exec(attrs);
+    return { text, rowspan: span ? Math.max(1, Number.parseInt(span[1] ?? "1", 10)) : 1 };
   });
 }
 
@@ -176,15 +196,79 @@ export function parseTables(wikitext: string): WikiTable[] {
     // above the headers from shifting every column index by one.
     const headerRows: string[][] = [];
     const rows: string[][] = [];
-    let cur: string[] = [];
+    const spanned: boolean[][] = [];
+    let cur: Cell[] = [];
+    /**
+     * Cells still spanning down from a row above, by column index.
+     *
+     * Wikipedia's inventory tables group variants under one aircraft:
+     *
+     *     | rowspan="2" | Sukhoi Su-30
+     *     | rowspan="2" | Russia
+     *     | Su-30MKI
+     *     | rowspan="2" | 260
+     *     |-
+     *     | Su-30MKI-A
+     *
+     * The second row is written with two cells, because four are inherited.
+     * Read positionally that is a row whose "aircraft" is "Su-30MKI-A" and
+     * whose quantity column is off the end of the row and therefore empty —
+     * so a variant becomes a separate aircraft type and its fleet count
+     * vanishes. India's list came to 64 rows of which only 28 carried a
+     * quantity at all, and the missing 36 were this.
+     *
+     * Carrying spanned cells down puts every row back at full width, which is
+     * what the positional alignment downstream has always assumed.
+     */
+    let carry: Array<{ text: string; left: number } | null> = [];
     let curIsHeader = true;
     let started = false;
+    carry = [];
     let caption = caption0;
 
     const flush = (): void => {
-      if (cur.length === 0) return;
-      if (curIsHeader && rows.length === 0) headerRows.push(cur);
-      else rows.push(cur);
+      const hasCarry = carry.some((c) => c && c.left > 0);
+      if (cur.length === 0 && !hasCarry) return;
+
+      if (curIsHeader && rows.length === 0) {
+        // Header rows do not inherit: a spanning header is a title, and the
+        // aligner already picks the row whose width matches the body.
+        headerRows.push(cur.map((c) => c.text));
+        cur = [];
+        curIsHeader = true;
+        return;
+      }
+
+      /*
+       * Rebuild the row column by column, taking an inherited cell where one
+       * is still spanning and the next written cell otherwise.
+       */
+      const width = Math.max(
+        headerRows.length > 0 ? Math.max(...headerRows.map((h) => h.length)) : 0,
+        cur.length + carry.filter((c) => c && c.left > 0).length,
+      );
+      const row: string[] = [];
+      const inherited: boolean[] = [];
+      let next = 0;
+      for (let col = 0; col < width; col++) {
+        const held = carry[col];
+        if (held && held.left > 0) {
+          row.push(held.text);
+          inherited.push(true);
+          held.left--;
+          continue;
+        }
+        const c = cur[next++];
+        if (c === undefined) break;
+        row.push(c.text);
+        inherited.push(false);
+        if (c.rowspan > 1) carry[col] = { text: c.text, left: c.rowspan - 1 };
+      }
+      // Anything written beyond the computed width still belongs to the row.
+      for (; next < cur.length; next++) { row.push(cur[next]!.text); inherited.push(false); }
+
+      rows.push(row);
+      spanned.push(inherited);
       cur = [];
       curIsHeader = true;
     };
@@ -265,12 +349,13 @@ export function parseTables(wikitext: string): WikiTable[] {
          * safe to repeat because every rule in it is idempotent on text that
          * has already had the markup removed.
          */
-        cur[cur.length - 1] = plain(`${cur[cur.length - 1]} ${plain(ln)}`).trim();
+        const tail = cur[cur.length - 1]!;
+        tail.text = plain(`${tail.text} ${plain(ln)}`).trim();
       }
     }
     flush();
 
-    out.push({ headers: alignedHeader(headerRows, rows), headerRows, rows, caption });
+    out.push({ headers: alignedHeader(headerRows, rows), headerRows, rows, spanned, caption });
   }
   return out;
 }
