@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-18T15:54:55.153Z",
+  "builtAt": "2026-09-20T13:32:06.661Z",
   "source": "English Wikipedia's per-force 'List of active … aircraft' articles, read header-first. Those articles compile mostly from IISS's Military Balance and FlightGlobal's World Air Forces, and carry those publications' lag and their disagreements.",
   "method": "Tables are matched on their headers, never on column position. A table without both an aircraft column and a quantity column is skipped and counted rather than read by guessing. A quantity cell yields a number only when it carries one unambiguously; a range, a dash or prose yields null, which is counted separately and never treated as zero. A force whose quantity cells parsed less than sixty per cent of the time has its fleet total withheld while its list of types is kept.",
   "refusal": "No fleet total is reconciled against another catalogue, and no aircraft is resolved to a base. Every number here says 'a public catalogue lists this many', which is a weaker claim than 'this country has this many' and is the only one the source supports.",
@@ -10,37 +10,17 @@
     "Anything about a force whose quantity cells did not parse. Those totals are withheld rather than estimated, and the count of unreadable cells is published beside every force."
   ],
   "counts": {
-    "forces": 8,
-    "types": 533,
-    "counted": 322,
-    "unreadable": 211,
-    "totalsWithheld": 4,
-    "failed": 6
+    "forces": 13,
+    "types": 784,
+    "counted": 479,
+    "unreadable": 305,
+    "totalsWithheld": 6,
+    "failed": 1
   },
   "failures": [
     {
-      "page": "List_of_active_Royal_Air_Force_aircraft",
-      "why": "no wikitext returned"
-    },
-    {
-      "page": "List_of_active_Israeli_Air_Force_aircraft",
-      "why": "no wikitext returned"
-    },
-    {
-      "page": "List_of_active_Japan_Air_Self-Defense_Force_aircraft",
-      "why": "no wikitext returned"
-    },
-    {
-      "page": "List_of_active_Republic_of_Korea_Air_Force_aircraft",
-      "why": "no wikitext returned"
-    },
-    {
-      "page": "List_of_active_Indonesian_military_aircraft",
-      "why": "no wikitext returned"
-    },
-    {
-      "page": "List_of_active_Bangladesh_Air_Force_aircraft",
-      "why": "no wikitext returned"
+      "page": "List_of_active_Indonesian_military_aircraft | Indonesian_Air_Force",
+      "why": "no title yielded a table carrying both a type and a quantity column"
     }
   ],
   "perForce": [
@@ -48,9 +28,10 @@
       "iso": "IND",
       "country": "India",
       "force": "India (all services)",
+      "page": "List_of_active_Indian_military_aircraft",
       "types": 112,
-      "counted": 44,
-      "unreadable": 68,
+      "counted": 43,
+      "unreadable": 69,
       "total": -1,
       "tablesRead": 4,
       "tablesSkipped": 0
@@ -59,6 +40,7 @@
       "iso": "PAK",
       "country": "Pakistan",
       "force": "Pakistan Air Force",
+      "page": "List_of_active_Pakistan_Air_Force_aircraft",
       "types": 76,
       "counted": 42,
       "unreadable": 34,
@@ -70,6 +52,7 @@
       "iso": "CHN",
       "country": "China",
       "force": "PLA Air Force",
+      "page": "List_of_active_People's_Liberation_Army_Air_Force_aircraft",
       "types": 59,
       "counted": 43,
       "unreadable": 16,
@@ -81,9 +64,10 @@
       "iso": "RUS",
       "country": "Russia",
       "force": "Russia (all services)",
+      "page": "List_of_active_Russian_military_aircraft",
       "types": 37,
-      "counted": 7,
-      "unreadable": 30,
+      "counted": 0,
+      "unreadable": 37,
       "total": -1,
       "tablesRead": 2,
       "tablesSkipped": 5
@@ -92,31 +76,82 @@
       "iso": "USA",
       "country": "United States",
       "force": "United States (all services)",
+      "page": "List_of_active_United_States_military_aircraft",
       "types": 78,
-      "counted": 71,
-      "unreadable": 7,
-      "total": 11314,
+      "counted": 49,
+      "unreadable": 29,
+      "total": 2638,
       "tablesRead": 3,
       "tablesSkipped": 3
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "page": "List_of_aircraft_of_the_Royal_Air_Force",
+      "types": 111,
+      "counted": 110,
+      "unreadable": 1,
+      "total": 1177,
+      "tablesRead": 2,
+      "tablesSkipped": 1
     },
     {
       "iso": "FRA",
       "country": "France",
       "force": "France (all services)",
+      "page": "List_of_active_French_military_aircraft",
       "types": 80,
-      "counted": 53,
-      "unreadable": 27,
-      "total": 845649,
+      "counted": 48,
+      "unreadable": 32,
+      "total": 431,
       "tablesRead": 6,
+      "tablesSkipped": 3
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "page": "Israeli_Air_Force",
+      "types": 36,
+      "counted": 21,
+      "unreadable": 15,
+      "total": -1,
+      "tablesRead": 1,
+      "tablesSkipped": 3
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "page": "Japan_Air_Self-Defense_Force",
+      "types": 35,
+      "counted": 22,
+      "unreadable": 13,
+      "total": 526,
+      "tablesRead": 1,
+      "tablesSkipped": 3
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "page": "Republic_of_Korea_Air_Force",
+      "types": 47,
+      "counted": 27,
+      "unreadable": 20,
+      "total": -1,
+      "tablesRead": 2,
       "tablesSkipped": 3
     },
     {
       "iso": "TUR",
       "country": "Türkiye",
       "force": "Turkish Air Force",
+      "page": "List_of_active_Turkish_military_aircraft",
       "types": 40,
-      "counted": 20,
-      "unreadable": 20,
+      "counted": 18,
+      "unreadable": 22,
       "total": -1,
       "tablesRead": 1,
       "tablesSkipped": 0
@@ -125,12 +160,25 @@
       "iso": "BRA",
       "country": "Brazil",
       "force": "Brazil (all services)",
+      "page": "List_of_active_Brazilian_military_aircraft",
       "types": 51,
-      "counted": 42,
-      "unreadable": 9,
-      "total": 114517,
+      "counted": 39,
+      "unreadable": 12,
+      "total": 667,
       "tablesRead": 3,
       "tablesSkipped": 0
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "page": "Bangladesh_Air_Force",
+      "types": 22,
+      "counted": 17,
+      "unreadable": 5,
+      "total": 181,
+      "tablesRead": 1,
+      "tablesSkipped": 5
     }
   ],
   "airframes": [
@@ -703,7 +751,7 @@
       "origin": "India",
       "role": "",
       "variant": "10",
-      "inService": 2116411,
+      "inService": null,
       "inServiceRaw": "url=https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2116411|title=MoD inks two contracts worth Rs 62,700 crore with HAL for supply of 156 LCH, Prachand to the Armed Forces|quote=Out of 156 LCHs, 66 LCHs will be supplied to the Indian Air Force and 90 to the Indian Army|work=Press Information Bureau|date=3 October 2022|access-date=1 June 2024|archive-date=16 April 2025|archive-url=https://web.archive.org/web/20250416040127/https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2116411|url-status=live}}"
     },
     {
@@ -3046,7 +3094,7 @@
       "origin": "",
       "role": "Jet",
       "variant": "",
-      "inService": 2026,
+      "inService": null,
       "inServiceRaw": "2026"
     },
     {
@@ -3068,7 +3116,7 @@
       "origin": "",
       "role": "Jet",
       "variant": "",
-      "inService": 2021,
+      "inService": null,
       "inServiceRaw": "2021"
     },
     {
@@ -3090,7 +3138,7 @@
       "origin": "",
       "role": "Jet",
       "variant": "",
-      "inService": 2021,
+      "inService": null,
       "inServiceRaw": "2021"
     },
     {
@@ -3145,7 +3193,7 @@
       "origin": "",
       "role": "Propeller",
       "variant": "",
-      "inService": 2023,
+      "inService": null,
       "inServiceRaw": "2023"
     },
     {
@@ -3156,7 +3204,7 @@
       "origin": "",
       "role": "Propeller",
       "variant": "",
-      "inService": 2018,
+      "inService": null,
       "inServiceRaw": "2018"
     },
     {
@@ -3233,7 +3281,7 @@
       "origin": "",
       "role": "Jet",
       "variant": "",
-      "inService": 2024,
+      "inService": null,
       "inServiceRaw": "2024"
     },
     {
@@ -3244,7 +3292,7 @@
       "origin": "",
       "role": "Jet",
       "variant": "",
-      "inService": 2027,
+      "inService": null,
       "inServiceRaw": "2027"
     },
     {
@@ -3387,7 +3435,7 @@
       "origin": "Bell",
       "role": "Utility",
       "variant": "",
-      "inService": 1,
+      "inService": null,
       "inServiceRaw": "last1=Bell |first1=Public Affairs |title=Bell completes U.S. Marine Corps AH-1Z POR |url=https://verticalmag.com/press-releases/bell-completes-u-s-marine-corps-ah-1z-program-of-record/ |access-date=15 Nov 2025 |work=Vertical |date=2 November 2022}}"
     },
     {
@@ -3398,7 +3446,7 @@
       "origin": "Bell",
       "role": "Close air support",
       "variant": "",
-      "inService": 1,
+      "inService": null,
       "inServiceRaw": "title=AH-1Z Viper |url=https://www.navair.navy.mil/product/AH-1Z-Viper |website=navair.navy.mil}}"
     },
     {
@@ -3420,7 +3468,7 @@
       "origin": "Sikorsky",
       "role": "Cargo/Transport",
       "variant": "",
-      "inService": 53,
+      "inService": null,
       "inServiceRaw": "title=CH-53E Super Stallion |url=https://www.navair.navy.mil/product/CH-53E-Super-Stallion |website=navair.navy.mil}}"
     },
     {
@@ -3596,7 +3644,7 @@
       "origin": "Beechcraft",
       "role": "Cargo/Transport",
       "variant": "",
-      "inService": 12,
+      "inService": null,
       "inServiceRaw": "title=C-12 |url=https://www.navair.navy.mil/product/c-12/ |website=navair.navy.mil}}"
     },
     {
@@ -3618,7 +3666,7 @@
       "origin": "Gulfstream",
       "role": "Test Range support",
       "variant": "",
-      "inService": 20,
+      "inService": null,
       "inServiceRaw": "title=C-20 Gulfstream |url=https://www.navair.navy.mil/product/C-20-Gulfstream/ |website=navair.navy.mil}}"
     },
     {
@@ -3629,7 +3677,7 @@
       "origin": "Fairchild",
       "role": "USNTPS trainer",
       "variant": "",
-      "inService": 26,
+      "inService": null,
       "inServiceRaw": "title=C-26 Metroliner |url=https://www.navair.navy.mil/product/C-26-Metroliner/ |website=navair.navy.mil}}"
     },
     {
@@ -3640,7 +3688,7 @@
       "origin": "Fairchild",
       "role": "Cargo/Transport",
       "variant": "",
-      "inService": 2023,
+      "inService": null,
       "inServiceRaw": "Flight Global|2023|p=33-34}}"
     },
     {
@@ -3651,7 +3699,7 @@
       "origin": "Fairchild",
       "role": "Missile Range support",
       "variant": "",
-      "inService": 2023,
+      "inService": null,
       "inServiceRaw": "Flight Global|2023|p=33-34}}"
     },
     {
@@ -3662,7 +3710,7 @@
       "origin": "Fairchild",
       "role": "Missile Range support",
       "variant": "",
-      "inService": 2023,
+      "inService": null,
       "inServiceRaw": "Flight Global|2023|p=33-34}}"
     },
     {
@@ -3673,7 +3721,7 @@
       "origin": "Gulfstream",
       "role": "VIP Transport",
       "variant": "",
-      "inService": 37,
+      "inService": null,
       "inServiceRaw": "title=C-37 |url=https://www.navair.navy.mil/product/C-37/ |website=navair.navy.mil}}"
     },
     {
@@ -3706,7 +3754,7 @@
       "origin": "Israel Aerospace Industries",
       "role": "Test & Evaluation support",
       "variant": "",
-      "inService": 38,
+      "inService": null,
       "inServiceRaw": "title=C-38 |url=https://www.navair.navy.mil/product/C-38/ |website=navair.navy.mil}}"
     },
     {
@@ -3717,7 +3765,7 @@
       "origin": "Boeing",
       "role": "Cargo/Transport",
       "variant": "",
-      "inService": 40,
+      "inService": null,
       "inServiceRaw": "title=C-40 Clipper |url=https://www.navair.navy.mil/product/C-40-Clipper/ |website=navair.navy.mil}}"
     },
     {
@@ -3728,7 +3776,7 @@
       "origin": "Lockheed Martin",
       "role": "Cargo/Transport",
       "variant": "",
-      "inService": 130,
+      "inService": null,
       "inServiceRaw": "title=C/KC-130 Hercules and Super Hercules |url=https://www.navair.navy.mil/product/CKC-130-Hercules-Super-Hercules/ |website=navair.navy.mil}}"
     },
     {
@@ -3783,7 +3831,7 @@
       "origin": "Northrop",
       "role": "Aggressor",
       "variant": "",
-      "inService": 5,
+      "inService": null,
       "inServiceRaw": "title=F-5 Tiger II |url=https://www.navair.navy.mil/product/F-5-Tiger-II |website=navair.navy.mil}}"
     },
     {
@@ -3849,7 +3897,7 @@
       "origin": "Sikorsky",
       "role": "Anti-submarine warfare, Anti-surface warfare, Electronic warfare",
       "variant": "",
-      "inService": 60,
+      "inService": null,
       "inServiceRaw": "title=MH-60R Seahawk |url=https://www.navair.navy.mil/product/MH-60R-Seahawk/ |website=navair.navy.mil}}"
     },
     {
@@ -3860,7 +3908,7 @@
       "origin": "Sikorsky",
       "role": "Vertical replenishment, Combat Search and Rescue, Naval Special Warfare support",
       "variant": "",
-      "inService": 60,
+      "inService": null,
       "inServiceRaw": "title=MH-60S Seahawk |url=https://www.navair.navy.mil/product/MH-60S-Seahawk/ |website=navair.navy.mil}}"
     },
     {
@@ -3871,7 +3919,7 @@
       "origin": "Bell",
       "role": "USNTPS trainer",
       "variant": "",
-      "inService": 72,
+      "inService": null,
       "inServiceRaw": "title=UH-72 Lakota / TH-67 Creek |url=https://www.navair.navy.mil/product/UH-72-Lakota-TH-67-Creek |website=navair.navy.mil}}"
     },
     {
@@ -3882,7 +3930,7 @@
       "origin": "Air Bus",
       "role": "USNTPS trainer",
       "variant": "",
-      "inService": 2023,
+      "inService": null,
       "inServiceRaw": "Flight Global|2023|p=33-34}}"
     },
     {
@@ -3948,7 +3996,7 @@
       "origin": "Northrop Grumman",
       "role": "Surveillance and Reconnaissance",
       "variant": "",
-      "inService": 1,
+      "inService": null,
       "inServiceRaw": "last1=Burgess |first1=Richard R. |title=Navy Is Sustaining 10 Operational MQ-8C Fire Scout UAVs; Rest in Storage |url=https://seapowermagazine.org/navy-is-sustaining-10-operational-mq-8c-fire-scout-uavs-rest-in-storage/ |access-date=23 May 2024 |work=Seapower |publisher=Seapower |date=31 January 2023}}"
     },
     {
@@ -4047,7 +4095,7 @@
       "origin": "Beechcraft",
       "role": "Trainer",
       "variant": "",
-      "inService": 1,
+      "inService": null,
       "inServiceRaw": "last1=Rosenberg |first1=Zach |title=US Navy accepts first two Textron T-54 deliveries |url=https://www.janes.com/defence-news/news-detail/us-navy-accepts-first-two-textron-t-54-deliveries |access-date=23 May 2024 |work=Janes.com |date=23 April 2024 |language=en}}"
     },
     {
@@ -4080,7 +4128,7 @@
       "origin": "de Havilland Canada",
       "role": "NRL support",
       "variant": "",
-      "inService": 1,
+      "inService": null,
       "inServiceRaw": "last1=staff |first1=Naval News |title=New Twin Otter aircraft joins NRL’s aerial research platforms fleet |url=https://www.navalnews.com/naval-news/2019/05/new-twin-otter-aircraft-joins-us-nrl-aerial-research-platforms/#:~:text=New%20Twin%20Otter%20aircraft%20joins%20NRL's%20aerial%20research%20platforms&text=*%20Published%20on%2015/05/2019.%20*%20By%20Naval%20News%20Staff. |access-date=14 Nov 2025 |work=Naval News.com |date=15 May 2019 |language=en}}"
     },
     {
@@ -4102,7 +4150,7 @@
       "origin": "Schweizer",
       "role": "USNTPS trainer",
       "variant": "",
-      "inService": 26,
+      "inService": null,
       "inServiceRaw": "title=X-26A Frigate Glider |url=https://www.navair.navy.mil/product/x-26a-frigate-glider |website=navair.navy.mil}}"
     },
     {
@@ -4117,6 +4165,1227 @@
       "inServiceRaw": "2"
     },
     {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Aeronca 50 Chief",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Airspeed AS 5 Courier",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 9,
+      "inServiceRaw": "9"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Airspeed AS 6 Envoy",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Airspeed Ferry",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Armstrong Whitworth Atalanta",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 5,
+      "inServiceRaw": "5"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Armstrong Whitworth Ensign",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Avro 504N",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 7,
+      "inServiceRaw": "7"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Avro 642 Eighteen",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Avro 652",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Avro Cadet",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 32,
+      "inServiceRaw": "32"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Avro Commodore",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Avro 619 Five",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Beech 17 Traveller",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Bellanca Pacemaker",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "British Aircraft Double Eagle",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "British Aircraft Eagle",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "British Aircraft Swallow",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 9,
+      "inServiceRaw": "9"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "British Aircraft Company Drone",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Blackburn B-2",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 31,
+      "inServiceRaw": "31"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Boeing 247D",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Cessna C-34 Airmaster",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Cierva C.30A",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 5,
+      "inServiceRaw": "5"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Cierva C.40 Rota Mk II",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Comper Swift",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Curtiss T-32 Condor II",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "De Havilland DH.86B",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "De Havilland Albatross",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "De Havilland Dragon",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 17,
+      "inServiceRaw": "17"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "De Havilland Dragon Rapide",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 40,
+      "inServiceRaw": "40"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "De Havilland Dragonfly",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 15,
+      "inServiceRaw": "15"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "De Havilland Flamingo",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "De Havilland Fox Moth",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "De Havilland Gipsy Moth",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 37,
+      "inServiceRaw": "37"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "De Havilland Hornet Moth",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 64,
+      "inServiceRaw": "64"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "De Havilland Moth Minor",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 26,
+      "inServiceRaw": "26"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "De Havilland Leopard Moth",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 45,
+      "inServiceRaw": "45"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "De Havilland Moth Major",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "unk."
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "De Havilland Puss Moth",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 47,
+      "inServiceRaw": "47"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "De Havilland Tiger Moth",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 160,
+      "inServiceRaw": "160 +"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Desoutter Mk.II",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Douglas DC-2",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 19,
+      "inServiceRaw": "19"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Douglas DC-3",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 10,
+      "inServiceRaw": "10"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Fairchild 24",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Fairchild 91",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Focke-Wulf Fw 200 Condor",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Fokker F.XXII",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Fokker F.XXXVI",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Ford Trimotor",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Foster Wikner Warferry",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "General Aircraft Cagnet",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "General Aircraft Cygnet",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 5,
+      "inServiceRaw": "5"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "General Aircraft Owlet",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "General Aircraft Monospar (ST-6, 10 & 12)",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "General Aircraft Monospar ST-25",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 13,
+      "inServiceRaw": "13"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "General Aircraft Owlet",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Grumman Goose",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Grumman Widgeon",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Handley Page HP.42",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Harlow PC-5A",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 5,
+      "inServiceRaw": "5"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Heston Phoenix",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Koolhoven F.K.43",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Lockheed Model 10 Electra",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Lockheed Model 12 Electra Junior",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Messerschmitt Aldon",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Miles Falcon",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 6,
+      "inServiceRaw": "6"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Miles Hawk Major",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 11,
+      "inServiceRaw": "11"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Miles Hawk Trainer",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 11,
+      "inServiceRaw": "11"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Miles Mohawk",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Miles Monarch",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 5,
+      "inServiceRaw": "5"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Miles Whitney Straight",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 21,
+      "inServiceRaw": "21"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Parnall Heck",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Percival Gull",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Percival Q.6 Petrel",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 9,
+      "inServiceRaw": "9"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Percival Vega Gull",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 20,
+      "inServiceRaw": "20"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Piper J-4 Cub Coupe",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 19,
+      "inServiceRaw": "19"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Saro Cutty Sark",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Savoia-Marchetti S.73",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 7,
+      "inServiceRaw": "7"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Short Empire",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Short G-class",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Short Mercury",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Short Scion",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 11,
+      "inServiceRaw": "11"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Short Scion Senior",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Spartan Cruiser",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Spartan Executive",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Stampe SV.4B",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Stinson Reliant",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 11,
+      "inServiceRaw": "11"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Stinson Voyager",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Taylorcraft Auster Plus C and Plus D",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 23,
+      "inServiceRaw": "23"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Tipsy B/Trainer",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 6,
+      "inServiceRaw": "6"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Westland Wessex",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Zlin 212",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Bloch MB.81",
+      "origin": "L'Armee de l'Air",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Bücker Bü 181",
+      "origin": "Luftwaffe",
+      "role": "",
+      "variant": "",
+      "inService": 70,
+      "inServiceRaw": "70 ~"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Caudron Simoun",
+      "origin": "L'Armee de l'Air",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Caproni Ca.148",
+      "origin": "Regia Aeronautica",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Dewoitine D.520",
+      "origin": "L'Armee de l'Air",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Dornier Do 17Ka",
+      "origin": "Royal Yugoslav Air Force",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Dornier Do 22Kj",
+      "origin": "Royal Yugoslav Navy",
+      "role": "",
+      "variant": "",
+      "inService": 8,
+      "inServiceRaw": "8"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Fieseler Fi 156",
+      "origin": "Luftwaffe",
+      "role": "",
+      "variant": "",
+      "inService": 50,
+      "inServiceRaw": "50 ~"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Focke-Wulf Fw 58",
+      "origin": "Luftwaffe",
+      "role": "",
+      "variant": "",
+      "inService": 9,
+      "inServiceRaw": "9 ~"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Fokker T.VIIIW",
+      "origin": "Marineluchtvaartdienst",
+      "role": "",
+      "variant": "",
+      "inService": 5,
+      "inServiceRaw": "5"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Heinkel He 115A-2",
+      "origin": "Marinens Flyvevsen",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Junkers Ju 52/3m",
+      "origin": "Luftwaffe",
+      "role": "",
+      "variant": "",
+      "inService": 70,
+      "inServiceRaw": "70 ~"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Loire 130",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Morane-Saulnier M.S.406",
+      "origin": "L'Armee de l'Air",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Potez 29",
+      "origin": "L'Armee de l'Air",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Potez 63-11",
+      "origin": "L'Armee de l'Air",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Rogožarski SIM-XIV-H",
+      "origin": "Royal Yugoslav Navy",
+      "role": "",
+      "variant": "",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Savoia-Marchetti SM.79K",
+      "origin": "Royal Yugoslav Air Force",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Savoia-Marchetti SM.82",
+      "origin": "Regia Aeronautica",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "GBR",
+      "country": "United Kingdom",
+      "force": "Royal Air Force",
+      "type": "Siebel Si 204",
+      "origin": "Luftwaffe",
+      "role": "",
+      "variant": "",
+      "inService": 65,
+      "inServiceRaw": "65 ~"
+    },
+    {
       "iso": "FRA",
       "country": "France",
       "force": "France (all services)",
@@ -4124,7 +5393,7 @@
       "origin": "France",
       "role": "Swingrole fighter",
       "variant": "Rafale B / C",
-      "inService": 2026,
+      "inService": null,
       "inServiceRaw": "title=World Air Forces 2026 |url=https://www.flightglobal.com/download?ac=113841 |archive-url=https://web.archive.org/web/20251210145634/https://www.flightglobal.com/download?ac=113841 |archive-date=10 December 2025}} (+42 on order)"
     },
     {
@@ -4256,7 +5525,7 @@
       "origin": "France",
       "role": "Government transport",
       "variant": "Falcon 900",
-      "inService": 2026,
+      "inService": null,
       "inServiceRaw": "title=Projet Sabena technics : soutien aéronautique de la flotte gouvernementale française |url=https://www.sabenatechnics.com/fr/projets/la-flotte-gouvernementale |access-date=2026-08-30 |website=www.sabenatechnics.com |language=fr}}"
     },
     {
@@ -4377,7 +5646,7 @@
       "origin": "Sweden Canada",
       "role": "",
       "variant": "Global 6500 - GlobalEye",
-      "inService": 2025,
+      "inService": null,
       "inServiceRaw": "title=Saab receives order for GlobalEye from France |url=https://www.saab.com/newsroom/press-releases/2025/saab-receives-order-for-globaleye-from-france |access-date=2026-08-30 |website=Start |language=en}}"
     },
     {
@@ -4388,7 +5657,7 @@
       "origin": "France",
       "role": "",
       "variant": "Falcon 8X Archange",
-      "inService": 837115,
+      "inService": null,
       "inServiceRaw": "url=https://www.latribune.fr/entreprises-finance/industrie/aeronautique-defense/defense-archange-decolle-les-armees-espionneront-mieux-les-theatres-d-operations-837115.html|title=Défense : Archange décolle, les armées espionneront les théâtres d'opérations|date=14 January 2020}}"
     },
     {
@@ -4399,7 +5668,7 @@
       "origin": "United States Belgium France",
       "role": "",
       "variant": "",
-      "inService": 2026,
+      "inService": null,
       "inServiceRaw": "date=2026-05-06 |title=[SÉRIE] Les capteurs emblématiques de la DRM 4/5 : le Vador Ministère des Armées et des Anciens combattants |url=http://www.defense.gouv.fr/drm/actualites/serie-capteurs-emblematiques-drm-45-vador |archive-url=https://web.archive.org/web/20260613003744/https://www.defense.gouv.fr/drm/actualites/serie-capteurs-emblematiques-drm-45-vador |archive-date=13 June 2026 |access-date=2026-08-30 |website=www.defense.gouv.fr |language=fr}}"
     },
     {
@@ -4997,6 +6266,1304 @@
       "inServiceRaw": "–"
     },
     {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "F-15 Eagle",
+      "origin": "United States",
+      "role": "",
+      "variant": "F-15A/C",
+      "inService": 66,
+      "inServiceRaw": "66"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "F-15E Strike Eagle",
+      "origin": "F-15I",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "F-15EX Eagle II",
+      "origin": "F-15IA",
+      "role": "",
+      "variant": "last=Scheer |first=Steven |date=3 May 2026 |title=Israel approves plan to buy F-35 and F-15IA fighter jets from Lockheed, Boeing |url=https://www.reuters.com/business/aerospace-defense/israel-approves-plan-buy-f-35-f-15i-aircraft-us-2026-05-03/ |access-date=7 June 2026 |website=Reuters}}",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "F-16 Fighting Falcon",
+      "origin": "United States",
+      "role": "",
+      "variant": "F-16C/I",
+      "inService": 173,
+      "inServiceRaw": "173"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "F-35 Lightning II",
+      "origin": "United States",
+      "role": "",
+      "variant": "F-35I",
+      "inService": 48,
+      "inServiceRaw": "48"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Airborne early warning and control",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Boeing 707",
+      "origin": "United States / Israel",
+      "role": "",
+      "variant": "EL/M-2075 Phalcon",
+      "inService": null,
+      "inServiceRaw": "author=International Institute for Strategic Studies (IISS)| author-link=International Institute for Strategic Studies| title=The Military Balance 2019| journal=The Military Balance| volume=119| date=14 February 2019| language=en}}"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Gulfstream G550",
+      "origin": "United States",
+      "role": "",
+      "variant": "CAEW",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Reconnaissance",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Super King Air",
+      "origin": "United States",
+      "role": "",
+      "variant": "B200",
+      "inService": 13,
+      "inServiceRaw": "13"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Gulfstream G550",
+      "origin": "United States",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Tanker",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Boeing 707",
+      "origin": "United States",
+      "role": "",
+      "variant": "KC-707-300",
+      "inService": 7,
+      "inServiceRaw": "7"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "KC-46 Pegasus",
+      "origin": "United States",
+      "role": "",
+      "variant": "KC-46A",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "KC-130 Hercules",
+      "origin": "United States",
+      "role": "",
+      "variant": "KC-130H",
+      "inService": 7,
+      "inServiceRaw": "7"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Transport",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Super King Air",
+      "origin": "United States",
+      "role": "",
+      "variant": "B200",
+      "inService": 5,
+      "inServiceRaw": "5"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "C-130 Hercules",
+      "origin": "United States",
+      "role": "",
+      "variant": "C-130E/H",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "C-130J Super Hercules",
+      "origin": "United States",
+      "role": "",
+      "variant": "C-130J-30",
+      "inService": 7,
+      "inServiceRaw": "7"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Helicopters",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "AH-64 Apache",
+      "origin": "United States",
+      "role": "",
+      "variant": "|AH-64A/D",
+      "inService": 48,
+      "inServiceRaw": "48"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Sikorsky UH-60",
+      "origin": "United States",
+      "role": "",
+      "variant": "UH-60A/L",
+      "inService": 49,
+      "inServiceRaw": "49"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Sikorsky CH-53",
+      "origin": "United States",
+      "role": "",
+      "variant": "S-65C-3",
+      "inService": 21,
+      "inServiceRaw": "21"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Trainer aircraft",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "M-346 Lavi",
+      "origin": "Italy",
+      "role": "",
+      "variant": "M-346i",
+      "inService": 30,
+      "inServiceRaw": "30"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "F-15 Eagle",
+      "origin": "United States",
+      "role": "",
+      "variant": "F-15B/D",
+      "inService": 21,
+      "inServiceRaw": "21"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "F-16 Fighting Falcon",
+      "origin": "United States",
+      "role": "",
+      "variant": "F-16D",
+      "inService": 49,
+      "inServiceRaw": "49"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "T-6 Texan II",
+      "origin": "United States",
+      "role": "",
+      "variant": "T-6A",
+      "inService": 20,
+      "inServiceRaw": "20"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Grob G 120",
+      "origin": "Germany",
+      "role": "",
+      "variant": "G 120A-1",
+      "inService": 16,
+      "inServiceRaw": "16"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "AgustaWestland AW119",
+      "origin": "Italy",
+      "role": "",
+      "variant": "AW119Kx",
+      "inService": 8,
+      "inServiceRaw": "8"
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Unmanned aerial vehicles",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "IAI Eitan",
+      "origin": "Israel",
+      "role": "",
+      "variant": "Heron-TP",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "IAI Heron",
+      "origin": "Israel",
+      "role": "",
+      "variant": "Heron-1",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Hermes 900",
+      "origin": "Israel",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Hermes 450",
+      "origin": "Israel",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "ISR",
+      "country": "Israel",
+      "force": "Israeli Air Force",
+      "type": "Orbiter 4",
+      "origin": "Israel",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "F-15 Eagle",
+      "origin": "United States / Japan",
+      "role": "",
+      "variant": "F-15J",
+      "inService": null,
+      "inServiceRaw": "title=World Air Forces 2026 - Page 22 |url=https://www.flightglobal.com/download?ac=113841 |archive-url=https://web.archive.org/web/20251210145634/https://www.flightglobal.com/download?ac=113841 |archive-date=10 December 2025}}"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Conversion trainer",
+      "origin": "F-15DJ",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "F-35 Lightning II",
+      "origin": "United States",
+      "role": "",
+      "variant": "F-35A/B",
+      "inService": 47,
+      "inServiceRaw": "47"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Mitsubishi F-2",
+      "origin": "Japan",
+      "role": "",
+      "variant": "F-2A",
+      "inService": 62,
+      "inServiceRaw": "62"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Conversion trainer",
+      "origin": "F-2B",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "AWACS",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Boeing E-767",
+      "origin": "United States",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "E-2 Hawkeye",
+      "origin": "United States",
+      "role": "",
+      "variant": "E-2C/D",
+      "inService": 20,
+      "inServiceRaw": "20"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Reconnaissance",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Kawasaki C-2",
+      "origin": "Japan",
+      "role": "",
+      "variant": "RC-2",
+      "inService": null,
+      "inServiceRaw": "last=Hoyle |first=Craig |year=2024 |title=World Air Forces 2025 |url=https://www.flightglobal.com/download?ac=106507 |access-date=7 December 2024 |publisher=Flight Global |doi=}}"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Electronic warfare",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Kawasaki C-1",
+      "origin": "Japan",
+      "role": "",
+      "variant": "EC-1",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "NAMC YS-11",
+      "origin": "Japan",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Tanker",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Boeing KC-767",
+      "origin": "United States",
+      "role": "",
+      "variant": "KC-767J",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Boeing KC-46 Pegasus",
+      "origin": "United States",
+      "role": "",
+      "variant": "KC-46A",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Lockheed Martin KC-130",
+      "origin": "United States",
+      "role": "",
+      "variant": "KC-130H",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Transport",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Boeing 777",
+      "origin": "United States",
+      "role": "",
+      "variant": "777-300ER",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Hawker 800",
+      "origin": "United Kingdom",
+      "role": "",
+      "variant": "U-125A",
+      "inService": 25,
+      "inServiceRaw": "25"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Kawasaki C-2",
+      "origin": "Japan",
+      "role": "",
+      "variant": "",
+      "inService": 15,
+      "inServiceRaw": "15"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Lockheed C-130 Hercules",
+      "origin": "United States",
+      "role": "",
+      "variant": "C-130H",
+      "inService": 14,
+      "inServiceRaw": "14"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Gulfstream IV",
+      "origin": "United States",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "last = |first = |url= https://www.mod.go.jp/asdf/equipment/shienki_tenkenki/U-4/index.html|title = U-4|archive-url=|archive-date=|access-date=16 May 2020|language=ja}}"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "British Aerospace 125",
+      "origin": "United Kingdom",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Cessna Citation Latitude",
+      "origin": "United States",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Helicopters",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Boeing CH-47 Chinook",
+      "origin": "United States",
+      "role": "",
+      "variant": "CH-47J",
+      "inService": 17,
+      "inServiceRaw": "17"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Sikorsky UH-60 Black Hawk",
+      "origin": "United States",
+      "role": "",
+      "variant": "UH-60J",
+      "inService": 61,
+      "inServiceRaw": "61"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Trainer aircraft",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Fuji T-7",
+      "origin": "Japan",
+      "role": "",
+      "variant": "",
+      "inService": 49,
+      "inServiceRaw": "49"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Hawker 400",
+      "origin": "United States",
+      "role": "",
+      "variant": "T-1 Jayhawk",
+      "inService": 13,
+      "inServiceRaw": "13"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "Kawasaki T-4",
+      "origin": "Japan",
+      "role": "",
+      "variant": "",
+      "inService": 178,
+      "inServiceRaw": "178"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "T-6 Texan II",
+      "origin": "United States",
+      "role": "",
+      "variant": "",
+      "inService": 0,
+      "inServiceRaw": "0"
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "UAV",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "JPN",
+      "country": "Japan",
+      "force": "Japan ASDF",
+      "type": "RQ-4 Global Hawk",
+      "origin": "United States",
+      "role": "",
+      "variant": "RQ-4B",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "F-5 Tiger II",
+      "origin": "United States",
+      "role": "",
+      "variant": "KF-5E/F",
+      "inService": null,
+      "inServiceRaw": "last=Jeong |first=Chung-sin |date=2024-05-16 |title=KF-21 창설부대 강릉 18전비 105비행대대…예천기지 제2비행단 예정 |trans-title=KF-21 to be First Deployed by Gangneung's 18th Fighter Wing 105th Squadron… Yecheon Base to Follow as Second. |url=https://munhwa.com/news/view.html?no=2024051601039930114007 |accessdate=13 August 2024 |work=Munhwa Ilbo |language=ko}}"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "F-15E Strike Eagle",
+      "origin": "United States",
+      "role": "",
+      "variant": "F-15K",
+      "inService": null,
+      "inServiceRaw": "year=2025 |title=World Air Forces 2025 |url=https://www.flightglobal.com/download?ac=106507 |access-date=26 April 2025 |newspaper=Flight Global |doi=}}"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "F-16 Fighting Falcon",
+      "origin": "United States",
+      "role": "",
+      "variant": "KF-16C/U",
+      "inService": 118,
+      "inServiceRaw": "118"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "KF-16D",
+      "origin": "49",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "F-35 Lightning II",
+      "origin": "United States",
+      "role": "",
+      "variant": "F-35A",
+      "inService": 40,
+      "inServiceRaw": "40"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "KF-21 Boramae",
+      "origin": "Republic of Korea",
+      "role": "",
+      "variant": "Block 1",
+      "inService": 6,
+      "inServiceRaw": "6 prototypes"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "T-50 Golden Eagle",
+      "origin": "Republic of Korea",
+      "role": "",
+      "variant": "FA-50",
+      "inService": 60,
+      "inServiceRaw": "60"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "AWACS",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Bombardier Global 6500",
+      "origin": "Canada",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "E-7 Wedgetail",
+      "origin": "United States",
+      "role": "",
+      "variant": "E-737",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Electronic warfare",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Bombardier Global 6500",
+      "origin": "Canada",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Reconnaissance",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Dassault Falcon",
+      "origin": "France",
+      "role": "",
+      "variant": "2000",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Hawker 800",
+      "origin": "United Kingdom",
+      "role": "",
+      "variant": "RC-800s",
+      "inService": 8,
+      "inServiceRaw": "8"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Tanker",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Airbus A330 MRTT",
+      "origin": "France",
+      "role": "",
+      "variant": "KC-330",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Transport",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Antonov An-2",
+      "origin": "Soviet Union",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Boeing 737",
+      "origin": "United States",
+      "role": "",
+      "variant": "737 MAX 8",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Boeing 747",
+      "origin": "United States",
+      "role": "",
+      "variant": "747-8I",
+      "inService": 1,
+      "inServiceRaw": "1"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "CASA CN-235",
+      "origin": "Spain / Indonesia",
+      "role": "",
+      "variant": "",
+      "inService": 18,
+      "inServiceRaw": "18"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "C-130 Hercules",
+      "origin": "United States",
+      "role": "",
+      "variant": "C-130H",
+      "inService": 12,
+      "inServiceRaw": "12"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "C-130J Super Hercules",
+      "origin": "United States",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "C-390 Millennium",
+      "origin": "Brazil",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Helicopters",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "AS332 Super Puma",
+      "origin": "France",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Bell 412",
+      "origin": "United States",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "CH-47 Chinook",
+      "origin": "United States",
+      "role": "",
+      "variant": "HH-47D",
+      "inService": 9,
+      "inServiceRaw": "9"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Sikorsky S-70",
+      "origin": "United States",
+      "role": "",
+      "variant": "HH-60P",
+      "inService": 17,
+      "inServiceRaw": "17"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Sikorsky S-92",
+      "origin": "United States",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Trainer aircraft",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "KC-100 Naraon",
+      "origin": "Republic of Korea",
+      "role": "",
+      "variant": "KT-100",
+      "inService": 23,
+      "inServiceRaw": "23"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "KT-1 Woongbi",
+      "origin": "Republic of Korea",
+      "role": "",
+      "variant": "KT-1",
+      "inService": 103,
+      "inServiceRaw": "103"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "light attack",
+      "origin": "KA-1",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "T-50 Golden Eagle",
+      "origin": "Republic of Korea",
+      "role": "",
+      "variant": "T-50",
+      "inService": 72,
+      "inServiceRaw": "72"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Aerobatic-specialized",
+      "origin": "T-50B",
+      "role": "",
+      "variant": "Used by Black Eagles aerobatic team",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "LIFT",
+      "origin": "TA-50",
+      "role": "",
+      "variant": "20 Block II on order.",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "UAV",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "RQ-4 Global Hawk",
+      "origin": "United States",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "MIM-104 Patriot",
+      "origin": "United States",
+      "role": "",
+      "variant": "PAC-3",
+      "inService": null,
+      "inServiceRaw": "url=https://web.archive.org/web/20190422051706/http://armstrade.sipri.org/armstrade/page/trade_register.php |date=2019-04-22 }}. Armstrade.sipri.org. Retrieved on 6 October 2015"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "KM-SAM Cheongung",
+      "origin": "Republic of Korea",
+      "role": "",
+      "variant": "Block I",
+      "inService": 18,
+      "inServiceRaw": "18 batteries"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Block II",
+      "origin": "1 (7 on order)",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Anti-aircraft artillery",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "M167 VADS",
+      "origin": "Republic of Korea",
+      "role": "",
+      "variant": "KM167A3",
+      "inService": 200,
+      "inServiceRaw": "200"
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "Man-portable air-defense system",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "KOR",
+      "country": "South Korea",
+      "force": "Republic of Korea AF",
+      "type": "KP-SAM Shingung",
+      "origin": "Republic of Korea",
+      "role": "",
+      "variant": "",
+      "inService": 2000,
+      "inServiceRaw": "2,000"
+    },
+    {
       "iso": "TUR",
       "country": "Türkiye",
       "force": "Turkish Air Force",
@@ -5004,7 +7571,7 @@
       "origin": "",
       "role": "",
       "variant": "F-16C/D Block 30TM",
-      "inService": 2025,
+      "inService": null,
       "inServiceRaw": "last=Hoyle |first=Craig |year=2025 |title=World Air Forces 2026 |url=https://www.flightglobal.com/download?ac=113841 |access-date=27 December 2025 |publisher=Flight Global |doi=}}"
     },
     {
@@ -5378,7 +7945,7 @@
       "origin": "",
       "role": "",
       "variant": "F-5/2000",
-      "inService": 2024,
+      "inService": null,
       "inServiceRaw": "last=Hoyle |first=Craig |year=2024 |title=World Air Forces 2025 |url=https://www.flightglobal.com/download?ac=106507 |access-date=7 July 2025 |publisher=Flight Global |doi=}}"
     },
     {
@@ -5653,7 +8220,7 @@
       "origin": "Brazil",
       "role": "",
       "variant": "C-97",
-      "inService": 113841,
+      "inService": null,
       "inServiceRaw": "url=https://www.flightglobal.com/download?ac=113841|title=World Air Forces 2026|publisher=Flightglobal|accessdate= 26 January 2026|date=2025|last=Hoyle|first=Craig|page=14}}"
     },
     {
@@ -5719,7 +8286,7 @@
       "origin": "France",
       "role": "",
       "variant": "VH-35",
-      "inService": 8,
+      "inService": null,
       "inServiceRaw": "url=https://www.aeroflap.com.br/en/rotary-wings-meet-the-helicopters-of-the-brazilian-air-force/|first=Gabriel|last=Centeno|title=Rotary Wings: Meet the helicopters of the Brazilian Air Force|publisher=Aeroflap|access-date=8 July 2023|date=15 May 2021}}"
     },
     {
@@ -5994,8 +8561,250 @@
       "origin": "United States",
       "role": "",
       "variant": "TA-4KU",
-      "inService": 1,
+      "inService": null,
       "inServiceRaw": "last1=International Institute for Strategic Studies |author1-link=International Institute for Strategic Studies |title=The Military Balance 2024 |date=13 February 2024 |publisher=Routledge |isbn=978-1032780047 |edition=1st |pages=416-420}}"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "Inter| Chengdu F-7",
+      "origin": "China",
+      "role": "",
+      "variant": "F/FT-7A/B/BG/BGI",
+      "inService": 32,
+      "inServiceRaw": "32"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "MiG-29",
+      "origin": "Russia",
+      "role": "",
+      "variant": "B/BM/UB/UBM",
+      "inService": 8,
+      "inServiceRaw": "8"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "Transports",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "C-130J Super Hercules",
+      "origin": "United States",
+      "role": "",
+      "variant": "",
+      "inService": 5,
+      "inServiceRaw": "5"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "C-130 Hercules",
+      "origin": "United States",
+      "role": "",
+      "variant": "C-130B",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "Antonov An-32",
+      "origin": "Ukraine",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "L-410 Turbolet",
+      "origin": "Czech Republic",
+      "role": "",
+      "variant": "",
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "Helicopters",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "Mil Mi-17",
+      "origin": "Russia",
+      "role": "",
+      "variant": "Mi-17/171",
+      "inService": 35,
+      "inServiceRaw": "35"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "Bell 212",
+      "origin": "United States",
+      "role": "",
+      "variant": "",
+      "inService": 14,
+      "inServiceRaw": "14"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "AgustaWestland AW139",
+      "origin": "Italy",
+      "role": "",
+      "variant": "",
+      "inService": 4,
+      "inServiceRaw": "4"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "T129 ATAK",
+      "origin": "Turkey",
+      "role": "",
+      "variant": "",
+      "inService": 6,
+      "inServiceRaw": "6"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "Trainer aircraft",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "Grob G 115",
+      "origin": "Germany",
+      "role": "",
+      "variant": "G-115BD",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "Grob G 120TP",
+      "origin": "Germany",
+      "role": "",
+      "variant": "",
+      "inService": 23,
+      "inServiceRaw": "23"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "Nanchang PT-6",
+      "origin": "China",
+      "role": "",
+      "variant": "",
+      "inService": 9,
+      "inServiceRaw": "9"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "Hongdu JL-8",
+      "origin": "China / Pakistan",
+      "role": "",
+      "variant": "K-8W",
+      "inService": 14,
+      "inServiceRaw": "14"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "Yakovlev Yak-130",
+      "origin": "Russia",
+      "role": "",
+      "variant": "",
+      "inService": 12,
+      "inServiceRaw": "12"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "Bell 206",
+      "origin": "United States",
+      "role": "",
+      "variant": "206L",
+      "inService": 6,
+      "inServiceRaw": "6"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "AgustaWestland AW119",
+      "origin": "Italy",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "UAVs",
+      "origin": "",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": ""
+    },
+    {
+      "iso": "BGD",
+      "country": "Bangladesh",
+      "force": "Bangladesh Air Force",
+      "type": "Selex ES Falco",
+      "origin": "Italy",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "language=it |title=Il Bangladesh acquista il drone Falco EVO di Leonardo |url=https://www.aresdifesa.it/2020/06/21/il-bangladesh-acquista-il-drone-falco-evo-di-leonardo/ |date=21 June 2020 |access-date=2023-12-26 |publisher=Ares Osservatorio Difesa}}"
     }
   ]
 }
