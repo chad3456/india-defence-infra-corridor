@@ -48,6 +48,22 @@ console.log("A fleet count comes out of a free-text cell, or does not come out")
   check("a designation is not a quantity", countIn("F-16"), null);
   check("nor is a Russian one", countIn("Su-30"), null);
   check("nor one with a slash", countIn("MiG-29/35"), null);
+
+  /**
+   * The citation cases, which are the ones that actually shipped.
+   *
+   * A multi-line citation template used to be split into extra table cells,
+   * shifting every column after it and dropping URL and title fragments into
+   * the quantity column. The parser is fixed; these hold the second line of
+   * defence, because a wrong fleet size is invisible downstream.
+   */
+  check("a URL is not a fleet", countIn("url=https://www.flightglobal.com/download"), null);
+  check("nor is a citation title", countIn("title=World Air Forces 2026 |url=https:/"), null);
+  check("nor a short-form citation", countIn("Flight Global|2023|p=33-34}}"), null);
+  check("nor a template fragment", countIn("{{cite web |date=2025-12-01"), null);
+  check("a bare year alone in the cell is a year, not a count", countIn("2023"), null);
+  check("but a four-digit fleet with a separator is a count", countIn("1,430"), 1430);
+  check("and a real count beside a note still reads", countIn("108 (incl. 2 prototypes)"), 108);
 }
 
 /**

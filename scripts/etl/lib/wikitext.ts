@@ -165,23 +165,83 @@ export function parseTables(wikitext: string): WikiTable[] {
       curIsHeader = true;
     };
 
+    /**
+     * A line starting with `|` is a new cell only when nothing is still open.
+     *
+     * Citation templates are routinely broken across lines, and their
+     * continuation lines start with the same character that starts a cell:
+     *
+     *     | 549<ref>{{cite web
+     *      |url=https://www.flightglobal.com/download
+     *      |title=World Air Forces 2026}}</ref>
+     *
+     * Read line by line, that is three cells rather than one — and the two
+     * spurious ones shift every column after them. The damage is not that the
+     * citation shows up; it is that the NEXT column's value is read from the
+     * wrong place.
+     *
+     * The air-force inventories are where this surfaced. France's fleet came
+     * to 845,649 aircraft, because a URL fragment landed in the quantity
+     * column and the first digit run inside the URL was read as a count. The
+     * Rafale came to 2,026 and the American Metroliners to 2,023: the year out
+     * of a `|title=World Air Forces 2026` and a `|Flight Global|2023|`. Every
+     * one of those is a number in the right units, in the right column, of an
+     * entirely plausible magnitude for a fleet.
+     *
+     * So depth is tracked across lines. While a template or a ref is open, a
+     * leading bar is data, and the line is appended to the cell it belongs to.
+     */
+    let braceDepth = 0;
+    let inRef = false;
+    const track = (ln: string): void => {
+      braceDepth += (ln.match(/\{\{/g) ?? []).length;
+      braceDepth -= (ln.match(/\}\}/g) ?? []).length;
+      if (braceDepth < 0) braceDepth = 0;
+      // Self-closing refs open nothing.
+      const opens = (ln.match(/<ref(?![^>]*\/>)[^>]*>/gi) ?? []).length;
+      const closes = (ln.match(/<\/ref>/gi) ?? []).length;
+      if (opens > closes) inRef = true;
+      else if (closes >= opens && closes > 0) inRef = false;
+    };
+    const stillOpen = (): boolean => braceDepth > 0 || inRef;
+
     for (const ln of body) {
-      if (/^\s*\|\+/.test(ln)) { caption = plain(ln.replace(/^\s*\|\+/, "")); continue; }
-      if (/^\s*\|-/.test(ln)) { flush(); started = true; continue; }
-      if (/^\s*!/.test(ln)) {
+      const wasOpen = stillOpen();
+      if (!wasOpen && /^\s*\|\+/.test(ln)) {
+        track(ln);
+        caption = plain(ln.replace(/^\s*\|\+/, ""));
+        continue;
+      }
+      if (!wasOpen && /^\s*\|-/.test(ln)) { track(ln); flush(); started = true; continue; }
+      if (!wasOpen && /^\s*!/.test(ln)) {
+        track(ln);
         cur.push(...splitCells(ln.trim(), "!"));
         started = true;
         continue;
       }
-      if (/^\s*\|/.test(ln)) {
+      if (!wasOpen && /^\s*\|/.test(ln)) {
+        track(ln);
         cur.push(...splitCells(ln.trim(), "|"));
         curIsHeader = false;
         started = true;
         continue;
       }
-      // A continuation line belongs to the cell above it.
+      // A continuation line belongs to the cell above it — either because it
+      // does not start a cell, or because something above it is still open.
+      track(ln);
       if (started && cur.length > 0 && ln.trim()) {
-        cur[cur.length - 1] = `${cur[cur.length - 1]} ${plain(ln)}`.trim();
+        /*
+         * Cleaned again once the cell is whole, not only line by line.
+         *
+         * `plain` strips a template by matching its braces, and half a
+         * template matches nothing — so cleaning each line as it arrives
+         * leaves the pieces behind and joins them into a cell that still
+         * carries the citation. Re-running it on the concatenation is the
+         * cheapest way to give it a balanced string to work on, and it is
+         * safe to repeat because every rule in it is idempotent on text that
+         * has already had the markup removed.
+         */
+        cur[cur.length - 1] = plain(`${cur[cur.length - 1]} ${plain(ln)}`).trim();
       }
     }
     flush();

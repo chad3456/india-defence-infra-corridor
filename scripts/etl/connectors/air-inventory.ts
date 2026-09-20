@@ -68,24 +68,36 @@ async function pace(): Promise<void> {
  * Chosen for coverage of the comparisons this site already makes rather than
  * by fleet size: India and the forces it is usually set against, the suppliers
  * whose aircraft fill those fleets, and the two largest air arms in the world.
- * Each is an article title, so a force whose article is renamed fails loudly
- * with a 404 rather than silently returning nothing.
+ *
+ * ── Why each force carries a list of titles rather than one ──────────────
+ *
+ * The first version named one article per force and six of the fourteen came
+ * back empty, because Wikipedia does not use one convention for these. Some
+ * forces have a "List of active …" article; others keep the inventory inside
+ * the force's own article under an "Aircraft" section; others are titled by
+ * country rather than by service. A single guessed title is a coin flip, and a
+ * failed flip is indistinguishable from a force with no aircraft.
+ *
+ * So each force lists the titles worth trying, in order, and the first that
+ * yields a usable table wins. Which title actually answered is published on
+ * the force's row, so a rename shows up as a changed source rather than as a
+ * silently different number.
  */
-const FORCES: Array<{ page: string; force: string; iso: string; country: string }> = [
-  { page: "List_of_active_Indian_military_aircraft", force: "India (all services)", iso: "IND", country: "India" },
-  { page: "List_of_active_Pakistan_Air_Force_aircraft", force: "Pakistan Air Force", iso: "PAK", country: "Pakistan" },
-  { page: "List_of_active_People's_Liberation_Army_Air_Force_aircraft", force: "PLA Air Force", iso: "CHN", country: "China" },
-  { page: "List_of_active_Russian_military_aircraft", force: "Russia (all services)", iso: "RUS", country: "Russia" },
-  { page: "List_of_active_United_States_military_aircraft", force: "United States (all services)", iso: "USA", country: "United States" },
-  { page: "List_of_active_Royal_Air_Force_aircraft", force: "Royal Air Force", iso: "GBR", country: "United Kingdom" },
-  { page: "List_of_active_French_military_aircraft", force: "France (all services)", iso: "FRA", country: "France" },
-  { page: "List_of_active_Israeli_Air_Force_aircraft", force: "Israeli Air Force", iso: "ISR", country: "Israel" },
-  { page: "List_of_active_Japan_Air_Self-Defense_Force_aircraft", force: "Japan ASDF", iso: "JPN", country: "Japan" },
-  { page: "List_of_active_Republic_of_Korea_Air_Force_aircraft", force: "Republic of Korea AF", iso: "KOR", country: "South Korea" },
-  { page: "List_of_active_Turkish_Air_Force_aircraft", force: "Turkish Air Force", iso: "TUR", country: "Türkiye" },
-  { page: "List_of_active_Brazilian_military_aircraft", force: "Brazil (all services)", iso: "BRA", country: "Brazil" },
-  { page: "List_of_active_Indonesian_military_aircraft", force: "Indonesia (all services)", iso: "IDN", country: "Indonesia" },
-  { page: "List_of_active_Bangladesh_Air_Force_aircraft", force: "Bangladesh Air Force", iso: "BGD", country: "Bangladesh" },
+const FORCES: Array<{ pages: string[]; force: string; iso: string; country: string }> = [
+  { pages: ["List_of_active_Indian_military_aircraft"], force: "India (all services)", iso: "IND", country: "India" },
+  { pages: ["List_of_active_Pakistan_Air_Force_aircraft", "Pakistan_Air_Force"], force: "Pakistan Air Force", iso: "PAK", country: "Pakistan" },
+  { pages: ["List_of_active_People's_Liberation_Army_Air_Force_aircraft"], force: "PLA Air Force", iso: "CHN", country: "China" },
+  { pages: ["List_of_active_Russian_military_aircraft"], force: "Russia (all services)", iso: "RUS", country: "Russia" },
+  { pages: ["List_of_active_United_States_military_aircraft"], force: "United States (all services)", iso: "USA", country: "United States" },
+  { pages: ["List_of_aircraft_of_the_Royal_Air_Force", "List_of_active_United_Kingdom_military_aircraft", "Royal_Air_Force"], force: "Royal Air Force", iso: "GBR", country: "United Kingdom" },
+  { pages: ["List_of_active_French_military_aircraft"], force: "France (all services)", iso: "FRA", country: "France" },
+  { pages: ["List_of_aircraft_of_the_Israeli_Air_Force", "Israeli_Air_Force"], force: "Israeli Air Force", iso: "ISR", country: "Israel" },
+  { pages: ["List_of_active_Japan_Self-Defense_Forces_equipment", "Japan_Air_Self-Defense_Force"], force: "Japan ASDF", iso: "JPN", country: "Japan" },
+  { pages: ["Republic_of_Korea_Air_Force"], force: "Republic of Korea AF", iso: "KOR", country: "South Korea" },
+  { pages: ["List_of_active_Turkish_military_aircraft", "Turkish_Air_Force"], force: "Turkish Air Force", iso: "TUR", country: "Türkiye" },
+  { pages: ["List_of_active_Brazilian_military_aircraft"], force: "Brazil (all services)", iso: "BRA", country: "Brazil" },
+  { pages: ["List_of_active_Indonesian_military_aircraft", "Indonesian_Air_Force"], force: "Indonesia (all services)", iso: "IDN", country: "Indonesia" },
+  { pages: ["Bangladesh_Air_Force"], force: "Bangladesh Air Force", iso: "BGD", country: "Bangladesh" },
 ];
 
 export interface Airframe {
@@ -130,10 +142,45 @@ export function countIn(cell: string): number | null {
   if (s === "" || /^[-–—]+$/.test(s)) return null;
   // A designation, not a quantity: a letter joined to digits by a hyphen.
   if (/^[A-Za-z]{1,3}[-/]\d/.test(s)) return null;
+
+  /**
+   * Anything carrying citation machinery is not a quantity.
+   *
+   * The table parser used to break a multi-line citation into extra cells,
+   * which shifted every column after it and dropped URL and title fragments
+   * into the quantity column. France's fleet came to 845,649 aircraft from a
+   * digit run inside a flightglobal.com URL; the Rafale came to 2,026 and the
+   * American Metroliners to 2,023, out of `|title=World Air Forces 2026` and
+   * `|Flight Global|2023|`. Every one of them was a plausible number in the
+   * right column.
+   *
+   * The parser is fixed. This stays because the cost is a few characters and
+   * the failure it guards against is invisible in the output: a fleet size is
+   * a plausible number whatever it is, and there is no downstream check that
+   * would catch one.
+   */
+  if (/https?:|\bur[l]\s*=|\btitle\s*=|\|\s*\w+\s*=|\}\}|\{\{/.test(s)) return null;
+
   const m = s.match(/\d[\d,]*/);
   if (!m) return null;
   const n = Number.parseInt(m[0].replace(/,/g, ""), 10);
-  return Number.isFinite(n) ? n : null;
+  if (!Number.isFinite(n)) return null;
+
+  /**
+   * A bare four-digit number in the range of a year, alone in the cell, is a
+   * year.
+   *
+   * The same rule the cinema connector needed for box-office cells, for the
+   * same reason: "2023" is a legitimate fleet size in principle and a citation
+   * year in practice, and nothing in the cell distinguishes them. No single
+   * aircraft type is fielded in four-digit numbers by any force outside the
+   * United States, and the American rows that matter carry a comma. Refusing
+   * here loses a handful of real counts and prevents a whole class of silent
+   * fiction.
+   */
+  if (/^(19|20)\d{2}$/.test(s)) return null;
+
+  return n;
 }
 
 interface WikiRes { parse?: { wikitext?: { "*"?: string } } }
@@ -152,59 +199,83 @@ async function main(): Promise<void> {
   const failures: Array<{ page: string; why: string }> = [];
   const perForce: Array<{
     iso: string; country: string; force: string;
+    /** Which candidate title actually answered, so a rename is visible. */
+    page: string;
     types: number; counted: number; unreadable: number; total: number;
     tablesRead: number; tablesSkipped: number;
   }> = [];
 
   for (const f of FORCES) {
-    const text = await wikitextOf(f.page);
-    if (text === null) {
-      failures.push({ page: f.page, why: "no wikitext returned" });
-      continue;
-    }
-
-    const tables = parseTables(text);
     let tablesRead = 0;
     let tablesSkipped = 0;
-    const rowsForForce: Airframe[] = [];
+    let rowsForForce: Airframe[] = [];
+    let usedPage = "";
+    const tried: string[] = [];
 
-    for (const t of tables) {
-      const headers = t.headers.map((h) => plain(h).toLowerCase());
-      const typeAt = columnIndex(headers, /^(aircraft|type|model|name)\b/);
-      const serviceAt = columnIndex(headers, /(in service|in inventory|quantity|number|qty|total|active)/);
-      /*
-       * Both columns or nothing. A table with an aircraft column and no
-       * quantity column is a list of types, not an inventory, and reading it
-       * as one would add every type at a count of null and then report a
-       * fleet made mostly of unknowns.
-       */
-      if (typeAt < 0 || serviceAt < 0) { tablesSkipped++; continue; }
-      tablesRead++;
+    /*
+     * The first title that yields a usable table wins.
+     *
+     * Ordered most-specific first, so a dedicated inventory article is
+     * preferred over the force's own page — the latter carries the same table
+     * alongside history and organisation, and is a fallback rather than an
+     * equal. Which one answered is recorded on the force's row.
+     */
+    for (const page of f.pages) {
+      tried.push(page);
+      const text = await wikitextOf(page);
+      if (text === null) continue;
 
-      const originAt = columnIndex(headers, /origin|manufactur|country/);
-      const roleAt = columnIndex(headers, /role|category|class|mission/);
-      const variantAt = columnIndex(headers, /variant|version|mark/);
+      const tables = parseTables(text);
+      const rows: Airframe[] = [];
+      let read = 0;
+      let skipped = 0;
 
-      for (const r of t.rows) {
-        const type = plain(r[typeAt] ?? "").trim();
-        if (type === "" || /^(total|notes?)$/i.test(type)) continue;
-        const raw = plain(r[serviceAt] ?? "").trim();
-        rowsForForce.push({
-          iso: f.iso,
-          country: f.country,
-          force: f.force,
-          type,
-          origin: originAt >= 0 ? plain(r[originAt] ?? "").trim() : "",
-          role: roleAt >= 0 ? plain(r[roleAt] ?? "").trim() : "",
-          variant: variantAt >= 0 ? plain(r[variantAt] ?? "").trim() : "",
-          inService: countIn(raw),
-          inServiceRaw: raw,
-        });
+      for (const t of tables) {
+        const headers = t.headers.map((h) => plain(h).toLowerCase());
+        const typeAt = columnIndex(headers, /^(aircraft|type|model|name)\b/);
+        const serviceAt = columnIndex(headers, /(in service|in inventory|quantity|number|qty|total|active)/);
+        /*
+         * Both columns or nothing. A table with an aircraft column and no
+         * quantity column is a list of types, not an inventory, and reading it
+         * as one would add every type at a count of null and then report a
+         * fleet made mostly of unknowns.
+         */
+        if (typeAt < 0 || serviceAt < 0) { skipped++; continue; }
+        read++;
+
+        const originAt = columnIndex(headers, /origin|manufactur|country/);
+        const roleAt = columnIndex(headers, /role|category|class|mission/);
+        const variantAt = columnIndex(headers, /variant|version|mark/);
+
+        for (const r of t.rows) {
+          const type = plain(r[typeAt] ?? "").trim();
+          if (type === "" || /^(total|notes?)$/i.test(type)) continue;
+          const raw = plain(r[serviceAt] ?? "").trim();
+          rows.push({
+            iso: f.iso,
+            country: f.country,
+            force: f.force,
+            type,
+            origin: originAt >= 0 ? plain(r[originAt] ?? "").trim() : "",
+            role: roleAt >= 0 ? plain(r[roleAt] ?? "").trim() : "",
+            variant: variantAt >= 0 ? plain(r[variantAt] ?? "").trim() : "",
+            inService: countIn(raw),
+            inServiceRaw: raw,
+          });
+        }
+      }
+
+      if (rows.length > 0) {
+        rowsForForce = rows;
+        tablesRead = read;
+        tablesSkipped = skipped;
+        usedPage = page;
+        break;
       }
     }
 
     if (rowsForForce.length === 0) {
-      failures.push({ page: f.page, why: `no table carried both a type and a quantity column (${tables.length} tables seen)` });
+      failures.push({ page: tried.join(" | "), why: "no title yielded a table carrying both a type and a quantity column" });
       continue;
     }
 
@@ -225,7 +296,7 @@ async function main(): Promise<void> {
 
     airframes.push(...rowsForForce);
     perForce.push({
-      iso: f.iso, country: f.country, force: f.force,
+      iso: f.iso, country: f.country, force: f.force, page: usedPage,
       types: rowsForForce.length,
       counted,
       unreadable,

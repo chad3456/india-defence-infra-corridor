@@ -112,5 +112,74 @@ console.log("\nA table with no header at all");
     `${t.headers.length} headers, ${t.rows.length} rows`);
 }
 
+/**
+ * A citation broken across lines is not extra columns.
+ *
+ * Wikipedia editors routinely write a reference over several lines, and every
+ * continuation line starts with the same character that starts a table cell:
+ *
+ *     | 108<ref name="waf">{{cite web
+ *      |url=https://example.org/x.pdf
+ *      |title=World Air Forces 2026}}</ref>
+ *
+ * Read line by line that is three cells rather than one, and the two spurious
+ * ones shift every column after them. The visible damage is not the citation
+ * appearing; it is the NEXT column's value being read from the wrong place.
+ *
+ * It shipped. The air-force inventory page had France at 845,649 aircraft —
+ * a digit run from inside a flightglobal.com URL that had landed in the
+ * quantity column — with the Rafale at 2,026 and the American Metroliners at
+ * 2,023, out of a `|title=World Air Forces 2026` and a `|Flight Global|2023|`.
+ * Numbers in the right units, in the right column, of an entirely plausible
+ * size for a fleet.
+ *
+ * This library is shared, so the same shift was available to every connector
+ * that reads a Wikipedia table.
+ */
+console.log("\nA multi-line citation stays inside its cell");
+{
+  const t = parseTables(`
+{| class="wikitable"
+! Aircraft !! Origin !! Role !! In service
+|-
+| Dassault Rafale
+| France
+| Swingrole fighter
+| 108<ref name="waf">{{cite web
+ |url=https://www.flightglobal.com/download/x.pdf
+ |title=World Air Forces 2026
+ |date=2025-12-01}}</ref>
+|-
+| Mirage 2000 || France || Fighter || 26
+|-
+| Sukhoi Su-30MKI || Russia/India || Fighter || 260{{sfn|Flight Global|2023|p=33-34}}
+|}
+`)[0]!;
+  ok("the header is four columns", t.headers.length === 4, JSON.stringify(t.headers));
+  ok("every row is four columns", t.rows.every((r) => r.length === 4),
+    JSON.stringify(t.rows.map((r) => r.length)));
+  ok("the cited quantity is the quantity", t.rows[0]?.[3] === "108", JSON.stringify(t.rows[0]));
+  ok("the citation year does not become the quantity",
+    t.rows[0]?.[3] !== "2026" && t.rows[0]?.[3] !== "2025", JSON.stringify(t.rows[0]?.[3]));
+  ok("a single-line citation is stripped too", t.rows[2]?.[3] === "260", JSON.stringify(t.rows[2]));
+  ok("and the uncited row is untouched", t.rows[1]?.[3] === "26", JSON.stringify(t.rows[1]));
+}
+
+console.log("\nA row broken across lines without a citation still works");
+{
+  const t = parseTables(`
+{| class="wikitable"
+! Name !! Note
+|-
+| Hindon
+| Largest air base in Asia
+|-
+| Palam || Delhi
+|}
+`)[0]!;
+  ok("two rows, two columns each", t.rows.length === 2 && t.rows.every((r) => r.length === 2),
+    JSON.stringify(t.rows));
+}
+
 if (bad > 0) { console.error(`\n${bad} wikitext test(s) failed.`); process.exit(1); }
 console.log("\nAll wikitext tests passed.");
