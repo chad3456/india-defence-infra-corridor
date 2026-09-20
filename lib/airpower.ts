@@ -44,6 +44,8 @@ export interface ForceRow {
   iso: string; country: string; force: string;
   /** Which Wikipedia title actually answered, so a rename is visible. */
   page: string;
+  /** What the parser saw in each table, so a bad column choice is visible. */
+  tablesSeen?: Array<{ headers: string[]; rows: number; typeAt: number; serviceAt: number; used: boolean; filled: number }>;
   types: number; counted: number; unreadable: number;
   /** -1 when the parse was too partial to publish a total. */
   total: number;

@@ -70,6 +70,30 @@ export function plain(cell: string): string {
     return `${a[0]}-${String(a[1]).padStart(2, "0")}-${String(a[2]).padStart(2, "0")}`;
   });
   s = s.replace(/\{\{[^{}]*\}\}/g, " ");           // any remaining simple template
+  /*
+   * An embedded file is not data, and its caption is not a value.
+   *
+   * `[[File:Su-35S.jpg|thumb|154x154px|A Russian Air Force Su-35S]]` went
+   * through the [[Target|Display]] rule below and came out as
+   * "thumb|154x154px|A Russian Air Force Su-35S" — so an illustration column
+   * in an inventory table read as an aircraft type, and every row of the
+   * Russian fleet arrived named after its own photograph.
+   *
+   * Stripped innermost-first, because a caption routinely contains its own
+   * links and a single pass over the outer brackets would leave their halves
+   * behind.
+   */
+  const FILE = /\[\[\s*(?:File|Image|Datei|Archivo)\s*:[^[\]]*\]\]/gi;
+  for (let guard = 0; guard < 8; guard++) {
+    const before = s;
+    s = s.replace(FILE, " ");
+    // A caption routinely contains its own links, which keep the outer
+    // brackets from matching. Resolving the innermost ones first — those with
+    // no brackets inside them — lets the next pass see a flat file link.
+    s = s.replace(/\[\[([^[\]|]+)\|([^[\]]+)\]\]/g, "$2");
+    s = s.replace(/\[\[([^[\]|]+)\]\]/g, "$1");
+    if (s === before) break;
+  }
   s = s.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2");   // [[Target|Display]]
   s = s.replace(/\[\[([^\]]+)\]\]/g, "$1");              // [[Target]]
   s = s.replace(/\[(?:https?:)?\/\/\S+\s+([^\]]+)\]/g, "$1"); // [url Display]

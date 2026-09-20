@@ -54,7 +54,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getJson } from "../lib/http";
 import { isEntryPoint } from "../lib/entry";
-import { countryAt, loadWorld } from "../lib/world-shapes";
+import { countryAt, loadWorld, loadFine } from "../lib/world-shapes";
 
 const OUT_DIR = join(process.cwd(), "data", "defence");
 const OUT = join(OUT_DIR, "airbases.json");
@@ -83,7 +83,16 @@ const BOXES: Array<{ id: string; box: [number, number, number, number] }> = [
   { id: "southeast-asia",  box: [-12.0, 92.0, 22.0, 142.0] },
   { id: "west-asia",       box: [10.0, 25.0, 45.0, 65.0] },
   { id: "europe",          box: [34.0, -12.0, 72.0, 45.0] },
-  { id: "russia-north",    box: [45.0, 25.0, 78.0, 190.0] },
+  /*
+   * Russia is three boxes, not one. A single box spanning 165 degrees of
+   * longitude timed out on every one of its five attempts, and the run
+   * published a Russian count built entirely on the European box's overlap —
+   * 172 airfields, with everything east of 45°E missing and nothing in the
+   * output saying so except a failure count of one.
+   */
+  { id: "russia-west",     box: [45.0, 25.0, 78.0, 70.0] },
+  { id: "russia-central",  box: [45.0, 70.0, 78.0, 120.0] },
+  { id: "russia-east",     box: [45.0, 120.0, 78.0, 190.0] },
   { id: "africa-north",    box: [8.0, -20.0, 38.0, 55.0] },
   { id: "africa-south",    box: [-36.0, -20.0, 10.0, 52.0] },
   { id: "north-america-w", box: [14.0, -170.0, 72.0, -100.0] },
@@ -192,15 +201,14 @@ async function main(): Promise<void> {
       const name = (tags["name:en"] ?? tags["name"] ?? "").trim();
       if (name === "") continue;
 
-      const place = countryAt(world, c.lon, c.lat);
-      if (!place) unplaced++;
-
       const key = `${el.type}/${el.id}`;
       found.set(key, {
         osm: key,
         name,
-        iso: place?.iso ?? null,
-        country: place?.name ?? null,
+        // Countries are assigned after the sweep, in one pass, so the finer
+        // atlas is loaded at most once and only if something needs it.
+        iso: null,
+        country: null,
         lat: Number(c.lat.toFixed(4)),
         lon: Number(c.lon.toFixed(4)),
         operator: tags["operator"] ?? tags["operator:type"] ?? null,
@@ -227,6 +235,30 @@ async function main(): Promise<void> {
       + "Overpass is not honouring the bounding box; refusing to publish country counts built on it.",
     );
   }
+
+  /**
+   * Place every airfield, and re-ask the finer atlas about the ones that miss.
+   *
+   * The coarse atlas handles the great majority and is a tenth of the size.
+   * Its failures are all coastal or island fields, where a kilometre of
+   * imprecision in the coastline puts a real airfield in the sea — 131 of
+   * 1,990 on the first sweep, which is eight per cent of the catalogue absent
+   * from every per-country count with nothing in the output naming which.
+   */
+  for (const b of found.values()) {
+    const place = countryAt(world, b.lon, b.lat);
+    if (place) { b.iso = place.iso; b.country = place.name; }
+  }
+  const misses = [...found.values()].filter((b) => b.iso === null);
+  if (misses.length > 0) {
+    console.log(`  ${misses.length} airfields unplaced at 110m; re-asking the 50m atlas.`);
+    await loadFine(world);
+    for (const b of misses) {
+      const place = countryAt(world, b.lon, b.lat);
+      if (place) { b.iso = place.iso; b.country = place.name; }
+    }
+  }
+  unplaced = [...found.values()].filter((b) => b.iso === null).length;
 
   const bases = [...found.values()].sort((a, b) => a.name.localeCompare(b.name));
   if (bases.length === 0) {
@@ -265,6 +297,7 @@ async function main(): Promise<void> {
       "Whether an airfield is in use. OSM carries no reliable status for these, and a field mapped in 2014 may be closed, expanded or repurposed.",
       "What is based at one. Nothing here reads aircraft to installations; the inventory data on this site is national and does not resolve to a base.",
       "Anything about facilities that are not mapped. Absence here is absence from a public map, which is not absence from the ground.",
+      "Anything about a region whose sweep failed. Overpass returns 429 and 504 under load, and a box that never answered leaves a hole in the catalogue with no other trace: the countries inside it are undercounted by an unknown amount rather than missing. Any failed box is named in `failures`, and a count for a country inside one is not a count.",
     ],
     counts: {
       airfields: bases.length,

@@ -100,6 +100,26 @@ const FORCES: Array<{ pages: string[]; force: string; iso: string; country: stri
   { pages: ["Bangladesh_Air_Force"], force: "Bangladesh Air Force", iso: "BGD", country: "Bangladesh" },
 ];
 
+/**
+ * What the parser saw in one table, published rather than logged.
+ *
+ * Self-describing ingest: the connector reports the headers it actually met
+ * and which columns it picked out of them, so the next guess about a source
+ * is made against a reading instead of against an assumption. The cost is a
+ * few hundred bytes per force; the alternative is another round of inferring
+ * a table's shape from the shape of its output.
+ */
+export interface TableNote {
+  headers: string[];
+  rows: number;
+  typeAt: number;
+  serviceAt: number;
+  /** False when the table was skipped for want of a recognisable column pair. */
+  used: boolean;
+  /** How many of its quantity cells were non-empty before parsing. */
+  filled: number;
+}
+
 export interface Airframe {
   iso: string;
   country: string;
@@ -201,6 +221,8 @@ async function main(): Promise<void> {
     iso: string; country: string; force: string;
     /** Which candidate title actually answered, so a rename is visible. */
     page: string;
+    /** What the parser saw, so the next fix is made against a reading. */
+    tablesSeen: TableNote[];
     types: number; counted: number; unreadable: number; total: number;
     tablesRead: number; tablesSkipped: number;
   }> = [];
@@ -208,6 +230,7 @@ async function main(): Promise<void> {
   for (const f of FORCES) {
     let tablesRead = 0;
     let tablesSkipped = 0;
+    let tablesSeen: TableNote[] = [];
     let rowsForForce: Airframe[] = [];
     let usedPage = "";
     const tried: string[] = [];
@@ -227,6 +250,7 @@ async function main(): Promise<void> {
 
       const tables = parseTables(text);
       const rows: Airframe[] = [];
+      const saw: TableNote[] = [];
       let read = 0;
       let skipped = 0;
 
@@ -240,7 +264,11 @@ async function main(): Promise<void> {
          * as one would add every type at a count of null and then report a
          * fleet made mostly of unknowns.
          */
-        if (typeAt < 0 || serviceAt < 0) { skipped++; continue; }
+        if (typeAt < 0 || serviceAt < 0) {
+          skipped++;
+          saw.push({ headers: t.headers, rows: t.rows.length, typeAt, serviceAt, used: false, filled: 0 });
+          continue;
+        }
         read++;
 
         const originAt = columnIndex(headers, /origin|manufactur|country/);
@@ -251,6 +279,7 @@ async function main(): Promise<void> {
           const type = plain(r[typeAt] ?? "").trim();
           if (type === "" || /^(total|notes?)$/i.test(type)) continue;
           const raw = plain(r[serviceAt] ?? "").trim();
+          if (type === "" ) continue;
           rows.push({
             iso: f.iso,
             country: f.country,
@@ -263,12 +292,25 @@ async function main(): Promise<void> {
             inServiceRaw: raw,
           });
         }
+        /*
+         * How many of this table's quantity cells actually carried a number.
+         *
+         * Published per table, because "the force's total was withheld" does
+         * not say which table let it down. India's first run had 62 of 69
+         * unreadable cells simply EMPTY — a matched header over a column that
+         * is blank for most rows — and nothing in the output distinguished
+         * that from a column full of prose. One is a wrong column; the other
+         * is a hard source. They need different fixes and looked identical.
+         */
+        const filled = t.rows.filter((r) => plain(r[serviceAt] ?? "").trim() !== "").length;
+        saw.push({ headers: t.headers, rows: t.rows.length, typeAt, serviceAt, used: true, filled });
       }
 
       if (rows.length > 0) {
         rowsForForce = rows;
         tablesRead = read;
         tablesSkipped = skipped;
+        tablesSeen = saw;
         usedPage = page;
         break;
       }
@@ -296,7 +338,7 @@ async function main(): Promise<void> {
 
     airframes.push(...rowsForForce);
     perForce.push({
-      iso: f.iso, country: f.country, force: f.force, page: usedPage,
+      iso: f.iso, country: f.country, force: f.force, page: usedPage, tablesSeen,
       types: rowsForForce.length,
       counted,
       unreadable,

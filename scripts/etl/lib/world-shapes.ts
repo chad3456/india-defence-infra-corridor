@@ -33,6 +33,8 @@ import type { Feature, Geometry } from "geojson";
 
 export interface WorldShapes {
   features: Array<Feature<Geometry, { name?: string }>>;
+  /** The finer atlas, loaded lazily and only for points the coarse one misses. */
+  fine?: Array<Feature<Geometry, { name?: string }>>;
 }
 
 /**
@@ -44,11 +46,37 @@ export interface WorldShapes {
  * the wrong side of it — which is why `countryAt` is used for counting and
  * never for adjudicating anything about a specific place.
  */
-export async function loadWorld(): Promise<WorldShapes> {
-  const topo = (await import("world-atlas/countries-110m.json", { with: { type: "json" } })).default;
+async function atlas(res: "110m" | "50m"): Promise<WorldShapes["features"]> {
+  const topo = res === "110m"
+    ? (await import("world-atlas/countries-110m.json", { with: { type: "json" } })).default
+    : (await import("world-atlas/countries-50m.json", { with: { type: "json" } })).default;
   // topojson's types are loose here; the shape is a FeatureCollection.
   const fc = feature(topo as never, (topo as never as { objects: { countries: unknown } }).objects.countries as never);
-  return { features: (fc as unknown as { features: WorldShapes["features"] }).features };
+  return (fc as unknown as { features: WorldShapes["features"] }).features;
+}
+
+export async function loadWorld(): Promise<WorldShapes> {
+  return { features: await atlas("110m") };
+}
+
+/**
+ * Load the finer atlas, for the points the coarse one could not place.
+ *
+ * The first airbase sweep left 131 of 1,990 airfields on no country at all,
+ * and every one of them was coastal or on an island: Port de Pollença on
+ * Mallorca, Abu Musa in the Gulf, Assab on the Eritrean shore, Los Cóndores
+ * on the Chilean coast. At 110m the coastline is drawn coarsely enough that a
+ * field a kilometre inland sits in the sea.
+ *
+ * Eight per cent of the catalogue absent from every per-country count, with
+ * nothing in the output to say which eight per cent. So the coarse atlas
+ * answers first, because it is a tenth of the size and handles the other
+ * ninety-two per cent, and only its failures are re-asked of the fine one.
+ */
+export async function loadFine(world: WorldShapes): Promise<WorldShapes> {
+  if (world.fine) return world;
+  world.fine = await atlas("50m");
+  return world;
 }
 
 /**
@@ -63,7 +91,17 @@ export function countryAt(
   lon: number,
   lat: number,
 ): { iso: string; name: string } | null {
-  for (const f of world.features) {
+  const hit = search(world.features, lon, lat);
+  // Only the misses pay for the finer atlas.
+  return hit ?? (world.fine ? search(world.fine, lon, lat) : null);
+}
+
+function search(
+  features: WorldShapes["features"],
+  lon: number,
+  lat: number,
+): { iso: string; name: string } | null {
+  for (const f of features) {
     if (!geoContains(f, [lon, lat])) continue;
     /*
      * world-atlas keys features by ISO 3166-1 numeric, as a string with the
