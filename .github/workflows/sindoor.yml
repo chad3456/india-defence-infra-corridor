@@ -1,0 +1,48 @@
+name: Build the Operation Sindoor timeline
+
+# Reads the Operation Sindoor and Pahalgam attack articles as prose and
+# extracts dated sentences with their own citations and their claimant.
+#
+# Publishes no casualty total, no loss figure and no judgement about who
+# prevailed. Every entry is a statement someone made, carried with the name of
+# whoever made it.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "37 5 * * 2"
+  push:
+    paths:
+      - "scripts/etl/connectors/sindoor.ts"
+      - ".github/workflows/sindoor.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sindoor
+  # Never cancel a run that commits data: the commit step runs `if: always()`,
+  # so a cancelled run publishes a partial file over a complete one.
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Read the articles
+        run: npm run sindoor:build
+      - name: Check the classifier before publishing
+        run: npm run test:sindoor
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/defence/sindoor.json
+          "chore(defence): Operation Sindoor timeline $(date -u +'%Y-%m-%d %H:%M')"
