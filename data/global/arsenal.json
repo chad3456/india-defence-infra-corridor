@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-20T19:44:04.833Z",
+ "builtAt": "2026-09-21T11:06:27.126Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206491,7 +206491,7 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 2,
+   "kept": 3,
    "via": "direct"
   },
   {
@@ -206512,18 +206512,46 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-l1p4nx",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Denmark"
+   ],
+   "value": null,
+   "date": "2026-09-21",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/global/europe/2026/09/21/denmark-says-nato-shares-responsibility-for-arctic-security-under-greenland-deal/",
+   "headline": "Denmark says NATO shares responsibility for Arctic security under Greenland deal",
+   "primary": false
+  },
+  {
+   "id": "ev-12bkx53",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-09-21",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/09/us-navy-boeing-mq-25a-stingray-production-contract/",
+   "headline": "U.S. Navy and Boeing Ink First Production Contract for MQ-25A Stingray",
+   "primary": false
+  },
   {
    "id": "ev-eht9ha",
    "kind": "order",
@@ -206961,6 +206989,35 @@
  ],
  "groups": [
   {
+   "key": "order||denmark",
+   "systems": [],
+   "countries": [
+    "Denmark"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-l1p4nx",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Denmark"
+     ],
+     "value": null,
+     "date": "2026-09-21",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/global/europe/2026/09/21/denmark-says-nato-shares-responsibility-for-arctic-security-under-greenland-deal/",
+     "headline": "Denmark says NATO shares responsibility for Arctic security under Greenland deal",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -206968,6 +207025,20 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-12bkx53",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-21",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/us-navy-boeing-mq-25a-stingray-production-contract/",
+     "headline": "U.S. Navy and Boeing Ink First Production Contract for MQ-25A Stingray",
+     "primary": false
+    },
     {
      "id": "ev-eht9ha",
      "kind": "order",
@@ -207108,9 +207179,9 @@
     }
    ],
    "outlets": [
+    "Naval News",
     "Defence Blog",
-    "Defense News",
-    "Naval News"
+    "Defense News"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
