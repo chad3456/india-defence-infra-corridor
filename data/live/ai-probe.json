@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-09-17T09:46:00.761Z",
+  "probedAt": "2026-09-21T11:23:42.104Z",
   "question": "What can be sourced about LLM development, and about what Indian companies and labs are actually building?",
   "refusal": "No download count, parameter count, benchmark score, valuation or funding figure is recorded here — only whether a source answers, in what shape, and how many rows it carries. A probe log that quotes a figure beside a URL is a number with a filename where a citation should be, and the next reader will treat it as sourced.",
   "twoQuestions": "Model releases leave hard artifacts: an author, a date, a licence, a download count, served as JSON without a key. Startup funding does not: it comes from paywalled trackers and trade press. The eventual tracker must not present the second with the confidence of the first, so this probe keeps them in separate kinds and expects the business sources to refuse.",
@@ -13,14 +13,14 @@
       "settles": "Whether the model listing can be walked at all, and by which axes.",
       "ok": true,
       "status": "200",
-      "bytes": 53579,
+      "bytes": 53716,
       "shape": "json",
       "counts": {
         "entries": 100,
         "dated": 100
       },
       "parameterWorks": true,
-      "parameterNote": "884 bytes apart, beyond a 109-byte tolerance"
+      "parameterNote": "1499 bytes apart, beyond a 110-byte tolerance"
     },
     {
       "id": "hf-models-indic",
@@ -30,13 +30,13 @@
       "settles": "Language coverage as a measurable thing rather than a claim.",
       "ok": true,
       "status": "200",
-      "bytes": 97196,
+      "bytes": 96474,
       "shape": "json",
       "counts": {
         "entries": 100
       },
       "parameterWorks": true,
-      "parameterNote": "13530 bytes apart, beyond a 221-byte tolerance"
+      "parameterNote": "14034 bytes apart, beyond a 221-byte tolerance"
     },
     {
       "id": "hf-datasets-ai4bharat",
@@ -46,7 +46,7 @@
       "settles": "The corpus side: what Indian-language training data is public.",
       "ok": true,
       "status": "200",
-      "bytes": 87009,
+      "bytes": 87007,
       "shape": "json",
       "counts": {
         "entries": 76
@@ -60,7 +60,7 @@
       "settles": "Sarvam AI's published models. Each row carries an id, a creation date and a licence.",
       "ok": true,
       "status": "200",
-      "bytes": 22032,
+      "bytes": 22031,
       "shape": "json",
       "counts": {
         "entries": 14,
@@ -75,7 +75,7 @@
       "settles": "AI4Bharat's, the IIT Madras group behind IndicTrans and IndicBERT. Each row carries an id, a creation date and a licence.",
       "ok": true,
       "status": "200",
-      "bytes": 185465,
+      "bytes": 185980,
       "shape": "json",
       "counts": {
         "entries": 100,
@@ -180,7 +180,7 @@
       "settles": "A control: a large publisher whose count we can sanity-check against. Each row carries an id, a creation date and a licence.",
       "ok": true,
       "status": "200",
-      "bytes": 112349,
+      "bytes": 111692,
       "shape": "json",
       "counts": {
         "entries": 100,
@@ -195,7 +195,7 @@
       "settles": "Training compute, parameters and release dates for notable models, curated with sources. The single best dataset for the development half if it is fetchable.",
       "ok": true,
       "status": "200",
-      "bytes": 2252232,
+      "bytes": 2252236,
       "shape": "csv",
       "counts": {
         "rows": 8431
@@ -209,7 +209,7 @@
       "settles": "Where the CSV lives, if the direct link has moved.",
       "ok": true,
       "status": "200",
-      "bytes": 142079,
+      "bytes": 142178,
       "shape": "html",
       "found": [
         "model",
@@ -225,13 +225,13 @@
       "settles": "Publication volume as a proxy for research activity, by category and date.",
       "ok": true,
       "status": "200",
-      "bytes": 249356,
+      "bytes": 279712,
       "shape": "xml-feed",
       "counts": {
         "entries": 100
       },
       "parameterWorks": true,
-      "parameterNote": "5050 bytes apart, beyond a 499-byte tolerance"
+      "parameterNote": "35601 bytes apart, beyond a 559-byte tolerance"
     },
     {
       "id": "arxiv-india",
@@ -325,7 +325,7 @@
       "settles": "A dated, sourced table of models — the cheapest possible spine for the development half.",
       "ok": true,
       "status": "200",
-      "bytes": 143117,
+      "bytes": 142665,
       "shape": "json",
       "found": [
         "parameters",
@@ -333,8 +333,8 @@
       ],
       "missing": [],
       "counts": {
-        "tableRows": 187,
-        "refs": 340
+        "tableRows": 188,
+        "refs": 337
       }
     },
     {
@@ -345,7 +345,7 @@
       "settles": "Which Indian efforts are notable enough to have a citation trail at all.",
       "ok": true,
       "status": "200",
-      "bytes": 201985,
+      "bytes": 201933,
       "shape": "json",
       "found": [
         "India"
