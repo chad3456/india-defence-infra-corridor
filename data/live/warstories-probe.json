@@ -1,0 +1,350 @@
+{
+  "probedAt": "2026-09-21T11:19:58.589Z",
+  "question": "Can a story engine discover military and AI-military reporting from a published index rather than a hand-kept list, and is Operation Sindoor reconstructable from sources that cite themselves per event?",
+  "refusal": "No headline, no casualty figure, no loss claim and no account of what happened in May 2025 is published here. Only whether a source answered, in what shape, roughly how many rows it carries, and whether its query parameters do anything.",
+  "note": "Operation Sindoor is a recent, contested operation between two nuclear-armed states whose governments published incompatible accounts of it. Aircraft losses and casualties in particular are claims by belligerents rather than measurements. Anything built on this has to carry each claim with the claimant attached and the two accounts side by side; a single authoritative sequence merging them would be this project inventing an account. The probe therefore asks whether a source carries dated events with per-event citations, not what those events were.",
+  "findings": [
+    {
+      "id": "wiki:Operation_Sindoor",
+      "kind": "sindoor",
+      "what": "Operation Sindoor",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=Operation_Sindoor&redirects=1",
+      "settles": "Whether the operation has an article at all, how heavily cited it is, and whether it carries dated events rather than only narrative",
+      "ok": true,
+      "status": "200",
+      "bytes": 191358,
+      "shape": "json",
+      "found": [
+        "timeline",
+        "May 2025",
+        "Indian Air Force",
+        "Pakistan",
+        "ceasefire"
+      ],
+      "missing": [],
+      "counts": {
+        "refs": 476,
+        "citeNews": 320,
+        "datedLines": 655,
+        "isoDates": 15,
+        "sections": 13,
+        "tableRows": 0
+      }
+    },
+    {
+      "id": "wiki:2025_India–Pakistan_conflict",
+      "kind": "sindoor",
+      "what": "2025 India–Pakistan conflict",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=2025_India%E2%80%93Pakistan_conflict&redirects=1",
+      "settles": "Whether the wider conflict is a separate article, which would carry the sequence the operation sits inside",
+      "ok": true,
+      "status": "200",
+      "bytes": 191289,
+      "shape": "json",
+      "found": [
+        "timeline",
+        "ceasefire",
+        "strike"
+      ],
+      "missing": [],
+      "counts": {
+        "refs": 476,
+        "citeNews": 320,
+        "datedLines": 655,
+        "isoDates": 15,
+        "sections": 13,
+        "tableRows": 0
+      }
+    },
+    {
+      "id": "wiki:Timeline_of_the_2025_India–Pakistan_conflict",
+      "kind": "sindoor",
+      "what": "Timeline of the 2025 India–Pakistan conflict",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=Timeline_of_the_2025_India%E2%80%93Pakistan_conflict&redirect",
+      "settles": "Whether a dedicated timeline article exists — the ideal shape, because every entry is already dated",
+      "ok": true,
+      "status": "200",
+      "bytes": 397,
+      "shape": "json",
+      "found": [],
+      "missing": [
+        "timeline",
+        "May"
+      ],
+      "note": "decode path \"parse.wikitext.*\" did not reach a string; counted the raw body",
+      "counts": {
+        "refs": 0,
+        "citeNews": 0,
+        "datedLines": 0,
+        "isoDates": 0,
+        "sections": 0,
+        "tableRows": 0
+      }
+    },
+    {
+      "id": "wiki:Pahalgam_attack",
+      "kind": "sindoor",
+      "what": "Pahalgam attack",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=Pahalgam_attack&redirects=1",
+      "settles": "Whether the triggering event is documented separately, which the timeline has to open on",
+      "ok": true,
+      "status": "200",
+      "bytes": 208077,
+      "shape": "json",
+      "found": [
+        "April 2025",
+        "Jammu and Kashmir"
+      ],
+      "missing": [],
+      "counts": {
+        "refs": 497,
+        "citeNews": 387,
+        "datedLines": 351,
+        "isoDates": 116,
+        "sections": 11,
+        "tableRows": 18
+      }
+    },
+    {
+      "id": "pib:releases",
+      "kind": "sindoor",
+      "what": "PIB — the Indian government's own release archive, as a search",
+      "url": "https://www.pib.gov.in/allRel.aspx",
+      "settles": "Whether India's own releases are reachable, so official claims can be quoted as claims rather than paraphrased",
+      "ok": true,
+      "status": "200",
+      "bytes": 147983,
+      "shape": "html",
+      "found": [
+        "Ministry",
+        "Release"
+      ],
+      "missing": [],
+      "counts": {
+        "links": 139,
+        "dates": 0
+      }
+    },
+    {
+      "id": "gdelt:military-ai",
+      "kind": "story-engine",
+      "what": "GDELT — global news index, queried for military AI",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=(%22artificial%20intelligence%22%20OR%20%22machine%20learning%22%20OR%20autonomous)%20(mil",
+      "settles": "Whether a keyless global news index answers, and how many military-AI articles it holds for one quarter",
+      "ok": false,
+      "status": "HTTP 429",
+      "bytes": null
+    },
+    {
+      "id": "gdelt:drone-strike",
+      "kind": "story-engine",
+      "what": "The same index, queried for drone strikes",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=(%22drone%20strike%22%20OR%20%22UAV%20strike%22%20OR%20%22loitering%20munition%22)%20(atta",
+      "settles": "Whether drone-strike reporting is reachable at volume through the same mechanism",
+      "ok": false,
+      "status": "HTTP 429",
+      "bytes": null
+    },
+    {
+      "id": "gdelt:sindoor",
+      "kind": "story-engine",
+      "what": "The same index, queried for the operation",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%22Operation%20Sindoor%22&mode=artlist&maxrecords=250&format=json&timespan=3months",
+      "settles": "Whether contemporaneous reporting on the operation is retrievable by name, which is what a timeline's citations would be checked against",
+      "ok": false,
+      "status": "HTTP 429",
+      "bytes": null
+    },
+    {
+      "id": "gdelt:timeline-mode",
+      "kind": "story-engine",
+      "what": "GDELT timeline mode — article volume over time rather than a list",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=(%22artificial%20intelligence%22)%20(military%20OR%20defence)&mode=timelinevol&format=json",
+      "settles": "Whether attention over time is measurable, which is a chart the story engine could carry",
+      "ok": true,
+      "status": "200",
+      "bytes": 53,
+      "shape": "empty",
+      "found": [],
+      "missing": [
+        "timeline",
+        "date",
+        "value"
+      ],
+      "counts": {
+        "points": 0
+      }
+    },
+    {
+      "id": "aiaaic:csv",
+      "kind": "ai-register",
+      "what": "AIAAIC — the volunteer AI incidents register this site already reads",
+      "url": "https://docs.google.com/spreadsheets/d/1Bn55B4xz21-_Rgdr8BBb2lt0n_4rzLGxFADMlVW0PYI/export?format=csv&gid=888071280",
+      "settles": "Whether the existing register still answers, and how many of its rows look military at all",
+      "ok": true,
+      "status": "200",
+      "bytes": 966047,
+      "shape": "csv",
+      "found": [
+        "Headline",
+        "Type",
+        "Sector"
+      ],
+      "missing": [],
+      "counts": {
+        "rows": 2268,
+        "military": 102
+      }
+    },
+    {
+      "id": "airwars:api",
+      "kind": "ai-register",
+      "what": "Airwars — a civilian-harm register of air and drone strikes",
+      "url": "https://airwars.org/wp-json/wp/v2/posts?per_page=20",
+      "settles": "Whether a second, independent strike register is machine-readable without a key",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null
+    },
+    {
+      "id": "acleddata:probe",
+      "kind": "ai-register",
+      "what": "ACLED — conflict event data, to confirm whether it needs a key",
+      "url": "https://api.acleddata.com/acled/read?limit=5",
+      "settles": "Whether the standard conflict-event dataset is usable here, or is key-gated and therefore out",
+      "ok": false,
+      "status": "fetch failed",
+      "bytes": null
+    },
+    {
+      "id": "feed:janes",
+      "kind": "publisher",
+      "what": "Janes — RSS",
+      "url": "https://www.janes.com/feeds/news",
+      "settles": "Whether Janes answers a script, so the engine can corroborate rather than trust one outlet",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "feed:warzone",
+      "kind": "publisher",
+      "what": "The War Zone — RSS",
+      "url": "https://www.twz.com/feed",
+      "settles": "Whether The War Zone answers a script, so the engine can corroborate rather than trust one outlet",
+      "ok": true,
+      "status": "200",
+      "bytes": 748757,
+      "shape": "xml-feed",
+      "found": [
+        "<item",
+        "<title"
+      ],
+      "missing": [],
+      "counts": {
+        "items": 40,
+        "links": 41
+      }
+    },
+    {
+      "id": "feed:defencenewsin",
+      "kind": "publisher",
+      "what": "Defence News India (IDRW) — RSS",
+      "url": "https://idrw.org/feed/",
+      "settles": "Whether Defence News India (IDRW) answers a script, so the engine can corroborate rather than trust one outlet",
+      "ok": true,
+      "status": "200",
+      "bytes": 38752,
+      "shape": "xml-feed",
+      "found": [
+        "<item",
+        "<title"
+      ],
+      "missing": [],
+      "counts": {
+        "items": 30,
+        "links": 32
+      }
+    },
+    {
+      "id": "feed:armyrecognition",
+      "kind": "publisher",
+      "what": "Army Recognition — RSS",
+      "url": "https://armyrecognition.com/rss.xml",
+      "settles": "Whether Army Recognition answers a script, so the engine can corroborate rather than trust one outlet",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "feed:militarytimes",
+      "kind": "publisher",
+      "what": "Military Times — RSS",
+      "url": "https://www.militarytimes.com/arc/outboundfeeds/rss/",
+      "settles": "Whether Military Times answers a script, so the engine can corroborate rather than trust one outlet",
+      "ok": true,
+      "status": "200",
+      "bytes": 144737,
+      "shape": "xml-feed",
+      "found": [
+        "<item",
+        "<title"
+      ],
+      "missing": [],
+      "counts": {
+        "items": 25,
+        "links": 26
+      }
+    },
+    {
+      "id": "feed:c4isrnet",
+      "kind": "publisher",
+      "what": "C4ISRNET — RSS",
+      "url": "https://www.c4isrnet.com/arc/outboundfeeds/rss/",
+      "settles": "Whether C4ISRNET answers a script, so the engine can corroborate rather than trust one outlet",
+      "ok": true,
+      "status": "200",
+      "bytes": 140345,
+      "shape": "xml-feed",
+      "found": [
+        "<item",
+        "<title"
+      ],
+      "missing": [],
+      "counts": {
+        "items": 25,
+        "links": 26
+      }
+    },
+    {
+      "id": "feed:nationaldefense",
+      "kind": "publisher",
+      "what": "National Defense Magazine — RSS",
+      "url": "https://www.nationaldefensemagazine.org/rss",
+      "settles": "Whether National Defense Magazine answers a script, so the engine can corroborate rather than trust one outlet",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "feed:defensescoop",
+      "kind": "publisher",
+      "what": "DefenseScoop — RSS",
+      "url": "https://defensescoop.com/feed/",
+      "settles": "Whether DefenseScoop answers a script, so the engine can corroborate rather than trust one outlet",
+      "ok": true,
+      "status": "200",
+      "bytes": 80309,
+      "shape": "xml-feed",
+      "found": [
+        "<item",
+        "<title"
+      ],
+      "missing": [],
+      "counts": {
+        "items": 10,
+        "links": 12
+      }
+    }
+  ]
+}
