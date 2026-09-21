@@ -19,6 +19,28 @@ export const metadata = {
 
 const STORIES = [
   {
+    href: "/sindoor",
+    tone: "hot" as const,
+    kicker: "operation sindoor · osint",
+    title: "Two Accounts That Do Not Meet.",
+    blurb:
+      "252 dated statements about one week, each carrying whoever made it and the outlet that " +
+      "reported it — with the Indian and Pakistani versions kept apart rather than resolved.",
+    stat: "77%",
+    statLabel: "of the record names no source inside the sentence",
+  },
+  {
+    href: "/military-ai",
+    tone: "mid" as const,
+    kicker: "military ai · story engine",
+    title: "A Record of What Was Written Down.",
+    blurb:
+      "An engine reads fourteen defence publishers every four hours and keeps what is both " +
+      "military and about AI, autonomy or drones. It maps the press, not the capability.",
+    stat: "14/14",
+    statLabel: "publishers answering the last sweep",
+  },
+  {
     href: "/airpower",
     tone: "hot" as const,
     kicker: "airpower · osint",

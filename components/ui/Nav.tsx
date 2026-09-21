@@ -68,6 +68,8 @@ const GROUPS: Group[] = [
       { href: "/arsenal", label: "Arsenal", blurb: "Missiles by nation, and who is buying what" },
       { href: "/drones", label: "Military drones", blurb: "Who flies what, and which producer reaches furthest" },
       { href: "/airpower", label: "Airpower", blurb: "Airfields, catalogued fleets, and the sliver of military flying that is visible" },
+      { href: "/military-ai", label: "Military AI", blurb: "A live register of AI, autonomy and drone reporting — and its English-language bias" },
+      { href: "/sindoor", label: "Operation Sindoor", blurb: "Two incompatible accounts of one week, kept apart rather than merged" },
       { href: "/benchmark", label: "Benchmark", blurb: "The honest global assessment" },
     ],
   },

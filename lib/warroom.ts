@@ -104,3 +104,84 @@ const EMPTY_STORIES: Warstories = {
 export function loadSindoor(): Sindoor { return read(SINDOOR_PATH, EMPTY_SINDOOR); }
 export function loadStories(): Warstories { return read(STORIES_PATH, EMPTY_STORIES); }
 
+
+/* ── The AI incident register ────────────────────────────────────────── */
+
+export interface AiIncident {
+  ref: string;
+  headline: string;
+  /** force = an armed service or ministry; state = a government; adjacent = neither. */
+  tier: "force" | "state" | "adjacent";
+  occurred: string;
+  deployer: string;
+  developer: string;
+  system: string;
+  technology: string;
+  purpose: string;
+  links: string[];
+}
+
+export interface MilitaryAi {
+  present: boolean;
+  builtAt: string;
+  sources: { incidents?: string; spending?: string };
+  definition: string;
+  refusal: string;
+  cannotSay: string[];
+  incidents: {
+    totalRows: number;
+    matched: number;
+    byTier: { force: number; state: number; adjacent: number };
+    byYear: Array<{ key: string; n: number }>;
+    byDeployer: Array<{ key: string; n: number }>;
+    byTechnology: Array<{ key: string; n: number }>;
+    rows: AiIncident[];
+  };
+  spending: Array<{ term: string; ok: boolean; years: Array<{ year: number; amount: number }> }>;
+}
+
+const MILITARY_AI_PATH = join(process.cwd(), "data", "global", "military-ai.json");
+
+const EMPTY_AI: MilitaryAi = {
+  present: false, builtAt: "", sources: {}, definition: "", refusal: "", cannotSay: [],
+  incidents: {
+    totalRows: 0, matched: 0, byTier: { force: 0, state: 0, adjacent: 0 },
+    byYear: [], byDeployer: [], byTechnology: [], rows: [],
+  },
+  spending: [],
+};
+
+export function loadMilitaryAi(): MilitaryAi { return read(MILITARY_AI_PATH, EMPTY_AI); }
+
+/**
+ * Which country a deployer belongs to, where the name says so.
+ *
+ * AIAAIC carries no country column — only a named deployer, which may be an
+ * armed service, a ministry, a university or a company. So a country is
+ * assigned only where the organisation's name contains one, and everything
+ * else is left unassigned and counted.
+ *
+ * That leaves a thin and lopsided picture, which is the honest one: 23 of the
+ * register's 55 military-matching rows name a force or a state at all, and a
+ * country chart built on the other 32 would be a chart about which companies
+ * happen to be named after places.
+ */
+const DEPLOYER_COUNTRY: Array<{ iso: string; name: string; re: RegExp }> = [
+  { iso: "ISR", name: "Israel", re: /israel|idf\b/i },
+  { iso: "CHN", name: "China", re: /\bchina|chinese|\bPLA\b|national university of defense technology|sensetime|megvii|hikvision|dahua/i },
+  { iso: "USA", name: "United States", re: /united states|\bUS\b|u\.s\.|pentagon|department of defense|darpa|\bCIA\b|\bNSA\b|air force|army|navy|marine/i },
+  { iso: "RUS", name: "Russia", re: /russia|kalashnikov|rostec/i },
+  { iso: "UKR", name: "Ukraine", re: /ukrain/i },
+  { iso: "GBR", name: "United Kingdom", re: /united kingdom|britain|british|\bMoD\b|royal air force|royal navy/i },
+  { iso: "IND", name: "India", re: /\bindia|drdo|hindustan aeronautics/i },
+  { iso: "IRN", name: "Iran", re: /iran/i },
+  { iso: "TUR", name: "Türkiye", re: /turkey|türkiye|baykar|bayraktar|stm\b/i },
+  { iso: "KOR", name: "South Korea", re: /south korea|hanwha|dodaam/i },
+  { iso: "AUS", name: "Australia", re: /australia/i },
+  { iso: "FRA", name: "France", re: /france|french|thales|dassault/i },
+];
+
+export function countryOfDeployer(deployer: string): { iso: string; name: string } | null {
+  const hit = DEPLOYER_COUNTRY.find((c) => c.re.test(deployer));
+  return hit ? { iso: hit.iso, name: hit.name } : null;
+}
