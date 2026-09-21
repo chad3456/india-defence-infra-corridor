@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-09-21T11:19:58.589Z",
+  "probedAt": "2026-09-21T11:25:40.486Z",
   "question": "Can a story engine discover military and AI-military reporting from a published index rather than a hand-kept list, and is Operation Sindoor reconstructable from sources that cite themselves per event?",
   "refusal": "No headline, no casualty figure, no loss claim and no account of what happened in May 2025 is published here. Only whether a source answered, in what shape, roughly how many rows it carries, and whether its query parameters do anything.",
   "note": "Operation Sindoor is a recent, contested operation between two nuclear-armed states whose governments published incompatible accounts of it. Aircraft losses and casualties in particular are claims by belligerents rather than measurements. Anything built on this has to carry each claim with the claimant attached and the two accounts side by side; a single authoritative sequence merging them would be this project inventing an account. The probe therefore asks whether a source carries dated events with per-event citations, not what those events were.",
@@ -36,7 +36,7 @@
       "kind": "sindoor",
       "what": "2025 India–Pakistan conflict",
       "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=2025_India%E2%80%93Pakistan_conflict&redirects=1",
-      "settles": "Whether the wider conflict is a separate article, which would carry the sequence the operation sits inside",
+      "settles": "Whether this is a separate article or a redirect — identical counts would mean one article under two names",
       "ok": true,
       "status": "200",
       "bytes": 191289,
@@ -53,31 +53,6 @@
         "datedLines": 655,
         "isoDates": 15,
         "sections": 13,
-        "tableRows": 0
-      }
-    },
-    {
-      "id": "wiki:Timeline_of_the_2025_India–Pakistan_conflict",
-      "kind": "sindoor",
-      "what": "Timeline of the 2025 India–Pakistan conflict",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=Timeline_of_the_2025_India%E2%80%93Pakistan_conflict&redirect",
-      "settles": "Whether a dedicated timeline article exists — the ideal shape, because every entry is already dated",
-      "ok": true,
-      "status": "200",
-      "bytes": 397,
-      "shape": "json",
-      "found": [],
-      "missing": [
-        "timeline",
-        "May"
-      ],
-      "note": "decode path \"parse.wikitext.*\" did not reach a string; counted the raw body",
-      "counts": {
-        "refs": 0,
-        "citeNews": 0,
-        "datedLines": 0,
-        "isoDates": 0,
-        "sections": 0,
         "tableRows": 0
       }
     },
@@ -113,7 +88,7 @@
       "settles": "Whether India's own releases are reachable, so official claims can be quoted as claims rather than paraphrased",
       "ok": true,
       "status": "200",
-      "bytes": 147983,
+      "bytes": 147989,
       "shape": "html",
       "found": [
         "Ministry",
@@ -161,19 +136,9 @@
       "what": "GDELT timeline mode — article volume over time rather than a list",
       "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=(%22artificial%20intelligence%22)%20(military%20OR%20defence)&mode=timelinevol&format=json",
       "settles": "Whether attention over time is measurable, which is a chart the story engine could carry",
-      "ok": true,
-      "status": "200",
-      "bytes": 53,
-      "shape": "empty",
-      "found": [],
-      "missing": [
-        "timeline",
-        "date",
-        "value"
-      ],
-      "counts": {
-        "points": 0
-      }
+      "ok": false,
+      "status": "HTTP 429",
+      "bytes": null
     },
     {
       "id": "aiaaic:csv",
@@ -217,16 +182,6 @@
       "bytes": null
     },
     {
-      "id": "feed:janes",
-      "kind": "publisher",
-      "what": "Janes — RSS",
-      "url": "https://www.janes.com/feeds/news",
-      "settles": "Whether Janes answers a script, so the engine can corroborate rather than trust one outlet",
-      "ok": false,
-      "status": "HTTP 404",
-      "bytes": null
-    },
-    {
       "id": "feed:warzone",
       "kind": "publisher",
       "what": "The War Zone — RSS",
@@ -265,16 +220,6 @@
         "items": 30,
         "links": 32
       }
-    },
-    {
-      "id": "feed:armyrecognition",
-      "kind": "publisher",
-      "what": "Army Recognition — RSS",
-      "url": "https://armyrecognition.com/rss.xml",
-      "settles": "Whether Army Recognition answers a script, so the engine can corroborate rather than trust one outlet",
-      "ok": false,
-      "status": "HTTP 404",
-      "bytes": null
     },
     {
       "id": "feed:militarytimes",
@@ -317,16 +262,6 @@
       }
     },
     {
-      "id": "feed:nationaldefense",
-      "kind": "publisher",
-      "what": "National Defense Magazine — RSS",
-      "url": "https://www.nationaldefensemagazine.org/rss",
-      "settles": "Whether National Defense Magazine answers a script, so the engine can corroborate rather than trust one outlet",
-      "ok": false,
-      "status": "HTTP 404",
-      "bytes": null
-    },
-    {
       "id": "feed:defensescoop",
       "kind": "publisher",
       "what": "DefenseScoop — RSS",
@@ -345,6 +280,96 @@
         "items": 10,
         "links": 12
       }
+    },
+    {
+      "id": "feed:armyrecognition2",
+      "kind": "publisher",
+      "what": "Army Recognition (alternate path) — RSS",
+      "url": "https://www.armyrecognition.com/feed",
+      "settles": "Whether Army Recognition (alternate path) answers a script, so the engine can corroborate rather than trust one outlet",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "feed:janes2",
+      "kind": "publisher",
+      "what": "Janes (alternate path) — RSS",
+      "url": "https://www.janes.com/rss/defence-news",
+      "settles": "Whether Janes (alternate path) answers a script, so the engine can corroborate rather than trust one outlet",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "feed:shephard",
+      "kind": "publisher",
+      "what": "Shephard Media — RSS",
+      "url": "https://www.shephardmedia.com/feed/",
+      "settles": "Whether Shephard Media answers a script, so the engine can corroborate rather than trust one outlet",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "feed:armytimes",
+      "kind": "publisher",
+      "what": "Army Times — RSS",
+      "url": "https://www.armytimes.com/arc/outboundfeeds/rss/",
+      "settles": "Whether Army Times answers a script, so the engine can corroborate rather than trust one outlet",
+      "ok": true,
+      "status": "200",
+      "bytes": 145478,
+      "shape": "xml-feed",
+      "found": [
+        "<item",
+        "<title"
+      ],
+      "missing": [],
+      "counts": {
+        "items": 25,
+        "links": 26
+      }
+    },
+    {
+      "id": "feed:defenseindustry",
+      "kind": "publisher",
+      "what": "Defence Industry Europe — RSS",
+      "url": "https://defence-industry.eu/feed/",
+      "settles": "Whether Defence Industry Europe answers a script, so the engine can corroborate rather than trust one outlet",
+      "ok": true,
+      "status": "200",
+      "bytes": 32077,
+      "shape": "xml-feed",
+      "found": [
+        "<item",
+        "<title"
+      ],
+      "missing": [],
+      "counts": {
+        "items": 10,
+        "links": 12
+      }
+    },
+    {
+      "id": "feed:militaryaero",
+      "kind": "publisher",
+      "what": "Military & Aerospace Electronics — RSS",
+      "url": "https://www.militaryaerospace.com/rss",
+      "settles": "Whether Military & Aerospace Electronics answers a script, so the engine can corroborate rather than trust one outlet",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "feed:nato",
+      "kind": "publisher",
+      "what": "NATO newsroom — RSS",
+      "url": "https://www.nato.int/cps/en/natohq/news.rss",
+      "settles": "Whether NATO newsroom answers a script, so the engine can corroborate rather than trust one outlet",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
     }
   ]
 }
