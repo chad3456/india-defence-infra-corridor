@@ -45,6 +45,17 @@ export interface Target {
   paired?: string;
   /** Which part of the eventual dataset this source could settle. */
   settles: string;
+  /**
+   * Wait this long before asking, and before the paired request.
+   *
+   * Most probes fire as fast as the network allows, which is fine for a
+   * handful of unrelated hosts. It is not fine for several questions put to
+   * ONE host: four GDELT queries in a row came back 429, 429, 429 and an empty
+   * 200, which reads exactly like a service that refuses scripts and is
+   * actually a service asking to be asked more slowly. A probe that cannot
+   * tell those apart will write off a working source.
+   */
+  gapMs?: number;
 }
 
 export interface Finding {
@@ -75,6 +86,7 @@ export async function runProbe(
   const findings: Finding[] = [];
 
   for (const t of targets) {
+    if (t.gapMs) await new Promise((r) => setTimeout(r, t.gapMs));
     const res = await getText(t.url, { cacheMs: 0, retries: 1, timeoutMs: 45_000 });
     const body = res.data ?? "";
     const f: Finding = {
@@ -109,6 +121,7 @@ export async function runProbe(
         );
       }
       if (t.paired) {
+        if (t.gapMs) await new Promise((r) => setTimeout(r, t.gapMs));
         const other = await getText(t.paired, { cacheMs: 0, retries: 1, timeoutMs: 45_000 });
         if (!other.ok || !other.data) {
           f.parameterWorks = false;

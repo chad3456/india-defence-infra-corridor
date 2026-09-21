@@ -91,6 +91,14 @@ const gdelt = (
   ...(paired
     ? { paired: `${GDELT}?query=${encodeURIComponent(paired)}&mode=artlist&maxrecords=250&format=json&timespan=3months` }
     : {}),
+  /*
+   * Eight seconds between GDELT calls. The first pass fired four in a row and
+   * got three 429s and an empty 200 — which reads like a service that refuses
+   * scripts and is really one asking to be asked more slowly. GDELT publishes
+   * no rate limit; this is well under one request every five seconds, which is
+   * the figure its user community settles on.
+   */
+  gapMs: 8000,
   look: ["articles", "url", "domain"],
   count: { articles: /"url"\s*:/g, domains: /"domain"\s*:/g, english: /"language"\s*:\s*"English"/g },
   settles,
@@ -104,17 +112,20 @@ const TARGETS: Target[] = [
     "Whether the operation has an article at all, how heavily cited it is, and whether it carries dated events rather than only narrative",
     ["timeline", "May 2025", "Indian Air Force", "Pakistan", "ceasefire"],
   ),
+  /*
+   * The first pass settled two of these and they are kept so the answers stay
+   * on the record. "2025 India–Pakistan conflict" returned counts identical to
+   * "Operation Sindoor" down to the last reference, so the two titles are one
+   * article and a connector reading both would double every event.
+   * "Timeline of the 2025 India–Pakistan conflict" returned nothing at all:
+   * there is no dedicated timeline article, so the sequence has to be read out
+   * of the main article's prose.
+   */
   wikiPage(
     "2025_India–Pakistan_conflict",
     "sindoor",
-    "Whether the wider conflict is a separate article, which would carry the sequence the operation sits inside",
+    "Whether this is a separate article or a redirect — identical counts would mean one article under two names",
     ["timeline", "ceasefire", "strike"],
-  ),
-  wikiPage(
-    "Timeline_of_the_2025_India–Pakistan_conflict",
-    "sindoor",
-    "Whether a dedicated timeline article exists — the ideal shape, because every entry is already dated",
-    ["timeline", "May"],
   ),
   wikiPage(
     "Pahalgam_attack",
@@ -195,14 +206,24 @@ const TARGETS: Target[] = [
 
   /* ── A wider publisher set, for the engine's corroboration tier ────── */
   ...[
-    ["janes", "Janes", "https://www.janes.com/feeds/news"],
+    // Five of these answered on the first pass: The War Zone (40 items), IDRW
+    // (30), Military Times (25), C4ISRNET (25) and DefenseScoop (10). Janes,
+    // Army Recognition and National Defense Magazine all 404'd on the feed
+    // paths guessed for them, so those three are replaced here with different
+    // candidates rather than dropped — a publisher with no RSS may still have
+    // one under another path, and a 404 is about the path, not the outlet.
     ["warzone", "The War Zone", "https://www.twz.com/feed"],
     ["defencenewsin", "Defence News India (IDRW)", "https://idrw.org/feed/"],
-    ["armyrecognition", "Army Recognition", "https://armyrecognition.com/rss.xml"],
     ["militarytimes", "Military Times", "https://www.militarytimes.com/arc/outboundfeeds/rss/"],
     ["c4isrnet", "C4ISRNET", "https://www.c4isrnet.com/arc/outboundfeeds/rss/"],
-    ["nationaldefense", "National Defense Magazine", "https://www.nationaldefensemagazine.org/rss"],
     ["defensescoop", "DefenseScoop", "https://defensescoop.com/feed/"],
+    ["armyrecognition2", "Army Recognition (alternate path)", "https://www.armyrecognition.com/feed"],
+    ["janes2", "Janes (alternate path)", "https://www.janes.com/rss/defence-news"],
+    ["shephard", "Shephard Media", "https://www.shephardmedia.com/feed/"],
+    ["armytimes", "Army Times", "https://www.armytimes.com/arc/outboundfeeds/rss/"],
+    ["defenseindustry", "Defence Industry Europe", "https://defence-industry.eu/feed/"],
+    ["militaryaero", "Military & Aerospace Electronics", "https://www.militaryaerospace.com/rss"],
+    ["nato", "NATO newsroom", "https://www.nato.int/cps/en/natohq/news.rss"],
   ].map(([id, outlet, url]): Target => ({
     id: `feed:${id}`,
     kind: "publisher",
