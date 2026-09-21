@@ -1,0 +1,679 @@
+{
+  "builtAt": "2026-09-21T11:34:32.116Z",
+  "previousBuild": "",
+  "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
+  "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
+  "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
+  "engineNote": "GDELT was the intended backbone and refused: four queries at eight-second intervals all returned 429 from GitHub's runners, after four more had done so at full speed. That is a service which does not serve shared CI addresses, so the register grows by accumulation over scheduled runs rather than by one large query.",
+  "cannotSay": [
+    "Whether any story is true. The engine counts newsrooms; it cannot check a claim, and three outlets running the same agency copy is one source wearing three hats.",
+    "What a country is actually doing with military AI. This is a register of what was reported in English-language defence media, which over-covers the United States and NATO and under-covers everyone else by a wide margin.",
+    "Anything about the period before this register started. It accumulates forward from its first run and cannot see a story that was published before that.",
+    "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
+  ],
+  "counts": {
+    "stories": 24,
+    "createdThisRun": 24,
+    "corroboratedThisRun": 6,
+    "feedsAnswered": 14,
+    "feedsTried": 14,
+    "itemsSeen": 286,
+    "corroboration": {
+      "one": 21,
+      "two": 1,
+      "threePlus": 2
+    }
+  },
+  "byTheme": [
+    {
+      "id": "drone",
+      "label": "Drones and loitering munitions",
+      "n": 12
+    },
+    {
+      "id": "autonomy",
+      "label": "Autonomous and unmanned systems",
+      "n": 7
+    },
+    {
+      "id": "targeting",
+      "label": "Targeting, ISR and decision systems",
+      "n": 3
+    },
+    {
+      "id": "cyber-ew",
+      "label": "Cyber and electronic warfare",
+      "n": 3
+    },
+    {
+      "id": "military-ai",
+      "label": "AI in military use",
+      "n": 1
+    }
+  ],
+  "byCountry": [
+    {
+      "iso": "USA",
+      "name": "United States",
+      "n": 6
+    },
+    {
+      "iso": "IND",
+      "name": "India",
+      "n": 1
+    },
+    {
+      "iso": "GBR",
+      "name": "United Kingdom",
+      "n": 1
+    },
+    {
+      "iso": "DEU",
+      "name": "Germany",
+      "n": 1
+    },
+    {
+      "iso": "UKR",
+      "name": "Ukraine",
+      "n": 1
+    },
+    {
+      "iso": "IRN",
+      "name": "Iran",
+      "n": 1
+    },
+    {
+      "iso": "RUS",
+      "name": "Russia",
+      "n": 1
+    }
+  ],
+  "feeds": [
+    {
+      "outlet": "The War Zone",
+      "ok": true,
+      "items": 40,
+      "kept": 5
+    },
+    {
+      "outlet": "Indian Defence Research Wing",
+      "ok": true,
+      "items": 30,
+      "kept": 2
+    },
+    {
+      "outlet": "Military Times",
+      "ok": true,
+      "items": 25,
+      "kept": 2
+    },
+    {
+      "outlet": "Army Times",
+      "ok": true,
+      "items": 25,
+      "kept": 3
+    },
+    {
+      "outlet": "C4ISRNET",
+      "ok": true,
+      "items": 25,
+      "kept": 6
+    },
+    {
+      "outlet": "DefenseScoop",
+      "ok": true,
+      "items": 10,
+      "kept": 3
+    },
+    {
+      "outlet": "Defence Industry Europe",
+      "ok": true,
+      "items": 10,
+      "kept": 3
+    },
+    {
+      "outlet": "Defense News",
+      "ok": true,
+      "items": 25,
+      "kept": 3
+    },
+    {
+      "outlet": "Breaking Defense",
+      "ok": true,
+      "items": 15,
+      "kept": 0
+    },
+    {
+      "outlet": "Defense One",
+      "ok": true,
+      "items": 21,
+      "kept": 3
+    },
+    {
+      "outlet": "Naval News",
+      "ok": true,
+      "items": 10,
+      "kept": 0
+    },
+    {
+      "outlet": "Defence Blog",
+      "ok": true,
+      "items": 10,
+      "kept": 0
+    },
+    {
+      "outlet": "UK Ministry of Defence",
+      "ok": true,
+      "items": 20,
+      "kept": 0
+    },
+    {
+      "outlet": "Press Information Bureau (India)",
+      "ok": true,
+      "items": 20,
+      "kept": 0
+    }
+  ],
+  "stories": [
+    {
+      "id": "https://www.militarytimes.com/news/your-military/2026/09/16/ai-military-targeting-may-move-faster-than-humans-can-authenticate-critics-warn/",
+      "headline": "AI military targeting may move faster than humans can authenticate, critics warn",
+      "firstSeen": "2026-09-16",
+      "lastSeen": "2026-09-16",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/news/your-military/2026/09/16/ai-military-targeting-may-move-faster-than-humans-can-authenticate-critics-warn/",
+          "published": "2026-09-16"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/news/your-military/2026/09/16/ai-military-targeting-may-move-faster-than-humans-can-authenticate-critics-warn/",
+          "published": "2026-09-16"
+        },
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/news/your-military/2026/09/16/ai-military-targeting-may-move-faster-than-humans-can-authenticate-critics-warn/",
+          "published": "2026-09-16"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/news/your-military/2026/09/16/ai-military-targeting-may-move-faster-than-humans-can-authenticate-critics-warn/",
+          "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/news/your-military/2026/09/18/as-experimental-drone-battalion-ends-army-aims-to-push-drones-to-every-squad/",
+      "headline": "As experimental drone battalion ends, Army aims to push drones to every squad",
+      "firstSeen": "2026-08-21",
+      "lastSeen": "2026-09-18",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/news/your-military/2026/09/18/as-experimental-drone-battalion-ends-army-aims-to-push-drones-to-every-squad/",
+          "published": "2026-09-18"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/news/your-military/2026/09/18/as-experimental-drone-battalion-ends-army-aims-to-push-drones-to-every-squad/",
+          "published": "2026-09-18"
+        },
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/news/your-military/2026/08/21/us-army-to-end-experimental-drone-battalion-in-europe/",
+          "published": "2026-08-21"
+        }
+      ]
+    },
+    {
+      "id": "https://www.armytimes.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
+      "headline": "US military must adapt as formations will be ‘hunted’ by autonomous systems, Caine says",
+      "firstSeen": "2026-09-16",
+      "lastSeen": "2026-09-16",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
+          "published": "2026-09-16"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
+          "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/rfly-pro-uavs-delivered-to-indian-army-for-surveillance/",
+      "headline": "RFLY-PRO UAVs Delivered to Indian Army for Surveillance",
+      "firstSeen": "2026-09-21",
+      "lastSeen": "2026-09-21",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/rfly-pro-uavs-delivered-to-indian-army-for-surveillance/",
+          "published": "2026-09-21"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/tekever-wins-british-army-contract-worth-up-to-400-million-for-ar5-long-range-surveillance-drones-built-in-swindon-under-project-corvus/",
+      "headline": "Tekever wins British Army contract worth up to £400 million for AR5 long-range surveillance drones built in Swindon under Project Corvus",
+      "firstSeen": "2026-09-21",
+      "lastSeen": "2026-09-21",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [
+        {
+          "iso": "GBR",
+          "name": "United Kingdom"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/tekever-wins-british-army-contract-worth-up-to-400-million-for-ar5-long-range-surveillance-drones-built-in-swindon-under-project-corvus/",
+          "published": "2026-09-21"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/rheinmetall-demonstrates-networked-unmanned-systems-with-german-navy-to-protect-ports-and-maritime-infrastructure-at-repmus26/",
+      "headline": "Rheinmetall demonstrates networked unmanned systems with German Navy to protect ports and maritime infrastructure at REPMUS26",
+      "firstSeen": "2026-09-21",
+      "lastSeen": "2026-09-21",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "DEU",
+          "name": "Germany"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/rheinmetall-demonstrates-networked-unmanned-systems-with-german-navy-to-protect-ports-and-maritime-infrastructure-at-repmus26/",
+          "published": "2026-09-21"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/jsw-defence-puts-v-bat-uav-through-dronathon-2026/",
+      "headline": "JSW Defence Puts V-BAT UAV Through Dronathon 2026",
+      "firstSeen": "2026-09-20",
+      "lastSeen": "2026-09-20",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/jsw-defence-puts-v-bat-uav-through-dronathon-2026/",
+          "published": "2026-09-20"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/perennial-autonomy-beats-10-rivals-to-win-u-s-department-of-war-deep-strike-drone-trial-after-delivering-120-production-ready-aircraft/",
+      "headline": "Perennial Autonomy beats 10 rivals to win U.S. Department of War deep-strike drone trial after delivering 120 production-ready aircraft",
+      "firstSeen": "2026-09-20",
+      "lastSeen": "2026-09-20",
+      "themes": [
+        "autonomy",
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/perennial-autonomy-beats-10-rivals-to-win-u-s-department-of-war-deep-strike-drone-trial-after-delivering-120-production-ready-aircraft/",
+          "published": "2026-09-20"
+        }
+      ]
+    },
+    {
+      "id": "https://www.twz.com/sea/marine-colonel-who-led-mideast-combat-deployment-wants-his-own-drone-boats",
+      "headline": "Marine Colonel Who Led Mideast Combat Deployment Wants His Own Drone Boats",
+      "firstSeen": "2026-09-18",
+      "lastSeen": "2026-09-18",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "The War Zone",
+          "url": "https://www.twz.com/sea/marine-colonel-who-led-mideast-combat-deployment-wants-his-own-drone-boats",
+          "published": "2026-09-18"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/09/18/drone-dominance-program-gauntlet-2-results/",
+      "headline": "Pentagon unveils top performers in latest ‘Gauntlet’ for Drone Dominance Program",
+      "firstSeen": "2026-09-18",
+      "lastSeen": "2026-09-18",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/09/18/drone-dominance-program-gauntlet-2-results/",
+          "published": "2026-09-18"
+        }
+      ]
+    },
+    {
+      "id": "https://www.defenseone.com/technology/2026/09/air-force-contemplates-unmanned-tankers/416069/",
+      "headline": "Air Force contemplates unmanned tankers",
+      "firstSeen": "2026-09-17",
+      "lastSeen": "2026-09-17",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defense One",
+          "url": "https://www.defenseone.com/technology/2026/09/air-force-contemplates-unmanned-tankers/416069/",
+          "published": "2026-09-17"
+        }
+      ]
+    },
+    {
+      "id": "https://www.defenseone.com/business/2026/09/defense-business-brief-dispatch-afas-air-space-cyber-2026/416055/",
+      "headline": "Defense Business Brief: Dispatch from AFA’s Air, Space, & Cyber 2026",
+      "firstSeen": "2026-09-17",
+      "lastSeen": "2026-09-17",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defense One",
+          "url": "https://www.defenseone.com/business/2026/09/defense-business-brief-dispatch-afas-air-space-cyber-2026/416055/",
+          "published": "2026-09-17"
+        }
+      ]
+    },
+    {
+      "id": "https://www.twz.com/air/how-the-air-force-is-preparing-for-allied-ccas-to-join-the-fight",
+      "headline": "How The USAF Is Preparing For European Allies To Join The Collaborative Combat Aircraft Club",
+      "firstSeen": "2026-09-16",
+      "lastSeen": "2026-09-16",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "The War Zone",
+          "url": "https://www.twz.com/air/how-the-air-force-is-preparing-for-allied-ccas-to-join-the-fight",
+          "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/09/16/gen-laneve-army-experimental-drone-unit/",
+      "headline": "LaNeve tells soldiers that decision to revert experimental drone unit back to infantry roots predated his tenure as acting Army chief",
+      "firstSeen": "2026-09-16",
+      "lastSeen": "2026-09-16",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/09/16/gen-laneve-army-experimental-drone-unit/",
+          "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/09/16/pentagon-taps-usnda-to-head-its-top-drone-competitions/",
+      "headline": "Pentagon taps USNDA to head its ‘Top Drone’ competitions",
+      "firstSeen": "2026-09-16",
+      "lastSeen": "2026-09-16",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/09/16/pentagon-taps-usnda-to-head-its-top-drone-competitions/",
+          "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://www.defensenews.com/global/2026/09/16/ukraines-zelenskyy-says-new-anti-drone-weapon-being-tested/",
+      "headline": "Ukraine’s Zelenskyy says new anti-drone weapon being tested",
+      "firstSeen": "2026-09-16",
+      "lastSeen": "2026-09-16",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "UKR",
+          "name": "Ukraine"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/global/2026/09/16/ukraines-zelenskyy-says-new-anti-drone-weapon-being-tested/",
+          "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://www.twz.com/space/new-details-on-how-space-force-has-waged-electronic-warfare-against-iran",
+      "headline": "New Details On How Space Force Has Waged Electronic Warfare Against Iran",
+      "firstSeen": "2026-09-15",
+      "lastSeen": "2026-09-15",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "IRN",
+          "name": "Iran"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "The War Zone",
+          "url": "https://www.twz.com/space/new-details-on-how-space-force-has-waged-electronic-warfare-against-iran",
+          "published": "2026-09-15"
+        }
+      ]
+    },
+    {
+      "id": "https://www.c4isrnet.com/global/europe/2026/09/15/italian-nato-jet-downs-drone-in-lithuania-minister-says-it-probably-came-from-russia/",
+      "headline": "Italian NATO jet downs drone in Lithuania, minister says it probably came from Russia",
+      "firstSeen": "2026-09-15",
+      "lastSeen": "2026-09-15",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "RUS",
+          "name": "Russia"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/global/europe/2026/09/15/italian-nato-jet-downs-drone-in-lithuania-minister-says-it-probably-came-from-russia/",
+          "published": "2026-09-15"
+        }
+      ]
+    },
+    {
+      "id": "https://www.twz.com/news-features/fleet-of-at-least-500-collaborative-combat-aircraft-by-2032-now-in-usafs-plans",
+      "headline": "Fleet Of At Least 500 Collaborative Combat Aircraft By 2032 Now In USAF’s Plans",
+      "firstSeen": "2026-09-14",
+      "lastSeen": "2026-09-14",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "The War Zone",
+          "url": "https://www.twz.com/news-features/fleet-of-at-least-500-collaborative-combat-aircraft-by-2032-now-in-usafs-plans",
+          "published": "2026-09-14"
+        }
+      ]
+    },
+    {
+      "id": "https://www.twz.com/news-features/everything-we-just-learned-about-the-vectis-collaborative-combat-aircraft-from-the-skunk-works",
+      "headline": "Everything We Just Learned About The Vectis Collaborative Combat Aircraft From The Skunk Works",
+      "firstSeen": "2026-09-14",
+      "lastSeen": "2026-09-14",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "The War Zone",
+          "url": "https://www.twz.com/news-features/everything-we-just-learned-about-the-vectis-collaborative-combat-aircraft-from-the-skunk-works",
+          "published": "2026-09-14"
+        }
+      ]
+    },
+    {
+      "id": "https://www.c4isrnet.com/global/europe/2026/09/10/us-radar-maker-echodyne-mulls-european-production-as-drone-warfare-fuels-demand/",
+      "headline": "US radar maker Echodyne mulls European production as drone warfare fuels demand",
+      "firstSeen": "2026-09-10",
+      "lastSeen": "2026-09-10",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/global/europe/2026/09/10/us-radar-maker-echodyne-mulls-european-production-as-drone-warfare-fuels-demand/",
+          "published": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "https://www.defenseone.com/policy/2026/09/pentagon-cio-cyber-personnel-technology/415927/",
+      "headline": "‘We have to throw technology at the cyber problem,’ Pentagon CIO says",
+      "firstSeen": "2026-09-10",
+      "lastSeen": "2026-09-10",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defense One",
+          "url": "https://www.defenseone.com/policy/2026/09/pentagon-cio-cyber-personnel-technology/415927/",
+          "published": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "https://www.c4isrnet.com/global/europe/2026/08/25/dutch-navy-to-equip-fleet-with-destinus-c-uas-interceptor-drones/",
+      "headline": "Dutch Navy to equip fleet with Destinus C-UAS interceptor drones",
+      "firstSeen": "2026-08-25",
+      "lastSeen": "2026-08-25",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/global/europe/2026/08/25/dutch-navy-to-equip-fleet-with-destinus-c-uas-interceptor-drones/",
+          "published": "2026-08-25"
+        }
+      ]
+    },
+    {
+      "id": "https://www.c4isrnet.com/news/your-military/2026/07/21/us-marine-corps-turns-to-ai-powered-bullfrog-as-drone-threats-expand/",
+      "headline": "US Marine Corps turns to AI-powered Bullfrog as drone threats expand",
+      "firstSeen": "2026-07-21",
+      "lastSeen": "2026-07-21",
+      "themes": [
+        "military-ai",
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/news/your-military/2026/07/21/us-marine-corps-turns-to-ai-powered-bullfrog-as-drone-threats-expand/",
+          "published": "2026-07-21"
+        }
+      ]
+    }
+  ]
+}
