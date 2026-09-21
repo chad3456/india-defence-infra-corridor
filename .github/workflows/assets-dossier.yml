@@ -1,0 +1,44 @@
+name: Regenerate the military assets dossier
+
+# Rebuilds data/defence/military-assets.txt from the committed data. Runs on
+# any change to the files it reads, so the dossier cannot drift behind its own
+# inputs — the failure the OWID registry and the state layers both had.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "13 6 * * 3"
+  push:
+    paths:
+      - "scripts/etl/assets-dossier.ts"
+      - "data/defence/airbases.json"
+      - "data/defence/air-inventory.json"
+      - "data/global/arsenal.json"
+      - ".github/workflows/assets-dossier.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: assets-dossier
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Generate
+        run: npm run assets:dossier
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/defence/military-assets.txt
+          "chore(defence): military assets dossier $(date -u +'%Y-%m-%d %H:%M')"

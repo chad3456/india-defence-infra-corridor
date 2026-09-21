@@ -1,0 +1,48 @@
+name: Ingest military and AI-military stories
+
+# Reads fourteen defence publishers, keeps items that are both military and on
+# one of five themes, folds near-duplicate headlines together and counts the
+# independent newsrooms behind each story.
+#
+# Scheduled because an RSS feed is a window on the last few days: the register
+# is built by looking through it repeatedly, not by one large query.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "19 */4 * * *"
+  push:
+    paths:
+      - "scripts/etl/connectors/warstories.ts"
+      - ".github/workflows/warstories.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: warstories
+  # Never cancel a run that commits data: the commit step runs `if: always()`,
+  # so a cancelled run publishes a partial file over a complete one.
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Sweep the publishers
+        run: npm run warstories:ingest
+      - name: Check the classifier before publishing
+        run: npm run test:sindoor
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/global/warstories.json
+          "chore(global): military story register $(date -u +'%Y-%m-%d %H:%M')"
