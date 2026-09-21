@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-21T11:06:27.126Z",
+ "builtAt": "2026-09-21T21:14:36.311Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206477,7 +206477,7 @@
    "outlet": "UK Ministry of Defence",
    "ok": true,
    "items": 50,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
@@ -206498,7 +206498,7 @@
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   },
   {
@@ -206510,10 +206510,10 @@
   },
   {
    "outlet": "Naval News",
-   "ok": true,
-   "items": 10,
-   "kept": 2,
-   "via": "direct"
+   "ok": false,
+   "items": 0,
+   "kept": 0,
+   "via": "unconfigured"
   },
   {
    "outlet": "Defence Blog",
@@ -206524,6 +206524,20 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-xithjw",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "value": null,
+   "date": "2026-09-21",
+   "outlet": "UK Ministry of Defence",
+   "url": "https://www.gov.uk/government/publications/design-approved-organization-scheme-daos",
+   "headline": "Design Approved Organization Scheme (DAOS)",
+   "primary": true
+  },
   {
    "id": "ev-l1p4nx",
    "kind": "order",
@@ -206989,6 +207003,50 @@
  ],
  "groups": [
   {
+   "key": "order||united kingdom",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-xithjw",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-09-21",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/publications/design-approved-organization-scheme-daos",
+     "headline": "Design Approved Organization Scheme (DAOS)",
+     "primary": true
+    },
+    {
+     "id": "ev-1tu2uoh",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-09-17",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
+     "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "UK Ministry of Defence",
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "from a primary source"
+  },
+  {
    "key": "order||denmark",
    "systems": [],
    "countries": [
@@ -207291,35 +207349,6 @@
     "asWritten": "$24.3 billion"
    },
    "verdict": "corroborated by independent outlets"
-  },
-  {
-   "key": "order||united kingdom",
-   "systems": [],
-   "countries": [
-    "United Kingdom"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1tu2uoh",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-09-17",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
-     "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order||germany",
