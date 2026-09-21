@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-09-17T09:47:00.718Z",
+  "probedAt": "2026-09-21T11:25:11.687Z",
   "question": "Which transport authority publishes a state breakdown a script can read — for vehicle registrations, air traffic, and public transport networks?",
   "refusal": "No registration count, passenger figure or network length is recorded here. Only whether a source answers, in what shape, and how many rows it carries.",
   "registrationsAreNotSales": "VAHAN counts registrations, not sales. A vehicle is registered where its buyer registers it, and fleet and lease vehicles are registered wherever road tax is lowest — so the small states that compete on that are systematically overstated. SIAM publishes real dispatches with no state dimension at all. The two must not be combined, and the eventual page must not call either one 'sales by state'.",
@@ -24,7 +24,7 @@
       "settles": "The newer front end, if the old dashboard is a postback application.",
       "ok": true,
       "status": "200",
-      "bytes": 39770,
+      "bytes": 137004,
       "shape": "html",
       "found": [
         "analytics"
@@ -103,7 +103,7 @@
       "settles": "Domestic passenger volume by carrier and route — a different cut of the same thing.",
       "ok": true,
       "status": "200",
-      "bytes": 190304,
+      "bytes": 190295,
       "shape": "html",
       "found": [
         "traffic"
@@ -133,7 +133,7 @@
       "settles": "Whether the OpenStreetMap query service answers. Bus routes, metro and rail are already ingested from it; extending to coverage needs the same door open.",
       "ok": true,
       "status": "200",
-      "bytes": 212,
+      "bytes": 210,
       "shape": "html",
       "found": [
         "available"
@@ -162,7 +162,7 @@
       "settles": "The denominator. Metro kilometres without population ranks states by size, not by service — and the last full count is Census 2011, which is a finding in itself.",
       "ok": true,
       "status": "200",
-      "bytes": 23928,
+      "bytes": 24011,
       "shape": "json",
       "counts": {
         "tableRows": 38
