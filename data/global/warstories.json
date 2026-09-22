@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-09-22T04:56:06.028Z",
-  "previousBuild": "2026-09-21T23:17:28.063Z",
+  "builtAt": "2026-09-22T13:25:10.732Z",
+  "previousBuild": "2026-09-22T04:56:06.028Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 26,
-    "createdThisRun": 1,
+    "stories": 28,
+    "createdThisRun": 2,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 286,
     "corroboration": {
-      "one": 23,
+      "one": 25,
       "two": 1,
       "threePlus": 2
     }
@@ -28,12 +28,12 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 12
+      "n": 13
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 8
+      "n": 10
     },
     {
       "id": "targeting",
@@ -99,7 +99,7 @@
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Military Times",
@@ -129,13 +129,13 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 0
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Breaking Defense",
@@ -159,7 +159,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -274,6 +274,41 @@
         {
           "outlet": "Defence Industry Europe",
           "url": "https://defence-industry.eu/netherlands-extends-mq-9-reaper-surveillance-mission-through-2027-as-dutch-role-grows-and-u-s-participation-ends-on-natos-eastern-flank/",
+          "published": "2026-09-22"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-army-tests-drone-mothership-that-launches-its-own-swarm/",
+      "headline": "U.S. Army tests drone mothership that launches its own swarm",
+      "firstSeen": "2026-09-22",
+      "lastSeen": "2026-09-22",
+      "themes": [
+        "autonomy",
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-army-tests-drone-mothership-that-launches-its-own-swarm/",
+          "published": "2026-09-22"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-navy-tests-new-tool-to-plan-missions-for-autonomous-jets/",
+      "headline": "U.S. Navy tests new tool to plan missions for autonomous jets",
+      "firstSeen": "2026-09-22",
+      "lastSeen": "2026-09-22",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-navy-tests-new-tool-to-plan-missions-for-autonomous-jets/",
           "published": "2026-09-22"
         }
       ]
