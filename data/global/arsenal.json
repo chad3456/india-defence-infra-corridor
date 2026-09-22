@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-22T10:20:06.736Z",
+ "builtAt": "2026-09-22T20:28:44.310Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206491,7 +206491,7 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 3,
+   "kept": 4,
    "via": "direct"
   },
   {
@@ -206519,11 +206519,43 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-t9y2y9",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": {
+    "amount": 1200000000,
+    "currency": "USD",
+    "asWritten": "$1.2B"
+   },
+   "date": "2026-09-22",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/industry/2026/09/22/us-army-awards-lockheed-martin-12b-prsm-contract/",
+   "headline": "US Army awards Lockheed Martin $1.2B PrSM contract",
+   "primary": false
+  },
+  {
+   "id": "ev-15os7bu",
+   "kind": "delivery",
+   "systems": [],
+   "countries": [
+    "South Korea"
+   ],
+   "value": null,
+   "date": "2026-09-22",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/south-koreas-air-force-takes-delivery-of-its-first-kf-21-fighter-jet/",
+   "headline": "South Korea&#8217;s Air Force takes delivery of its first KF-21 fighter jet",
+   "primary": false
+  },
   {
    "id": "ev-xithjw",
    "kind": "order",
@@ -207003,79 +207035,6 @@
  ],
  "groups": [
   {
-   "key": "order||united kingdom",
-   "systems": [],
-   "countries": [
-    "United Kingdom"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-xithjw",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-09-21",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/publications/design-approved-organization-scheme-daos",
-     "headline": "Design Approved Organization Scheme (DAOS)",
-     "primary": true
-    },
-    {
-     "id": "ev-1tu2uoh",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-09-17",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
-     "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "UK Ministry of Defence",
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "from a primary source"
-  },
-  {
-   "key": "order||denmark",
-   "systems": [],
-   "countries": [
-    "Denmark"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-l1p4nx",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Denmark"
-     ],
-     "value": null,
-     "date": "2026-09-21",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/global/europe/2026/09/21/denmark-says-nato-shares-responsibility-for-arctic-security-under-greenland-deal/",
-     "headline": "Denmark says NATO shares responsibility for Arctic security under Greenland deal",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defense News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -207083,6 +207042,24 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-t9y2y9",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 1200000000,
+      "currency": "USD",
+      "asWritten": "$1.2B"
+     },
+     "date": "2026-09-22",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/industry/2026/09/22/us-army-awards-lockheed-martin-12b-prsm-contract/",
+     "headline": "US Army awards Lockheed Martin $1.2B PrSM contract",
+     "primary": false
+    },
     {
      "id": "ev-12bkx53",
      "kind": "order",
@@ -207237,12 +207214,114 @@
     }
    ],
    "outlets": [
+    "Defense News",
     "Naval News",
-    "Defence Blog",
-    "Defense News"
+    "Defence Blog"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "delivery||south korea",
+   "systems": [],
+   "countries": [
+    "South Korea"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-15os7bu",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "South Korea"
+     ],
+     "value": null,
+     "date": "2026-09-22",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/south-koreas-air-force-takes-delivery-of-its-first-kf-21-fighter-jet/",
+     "headline": "South Korea&#8217;s Air Force takes delivery of its first KF-21 fighter jet",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order||united kingdom",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-xithjw",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-09-21",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/publications/design-approved-organization-scheme-daos",
+     "headline": "Design Approved Organization Scheme (DAOS)",
+     "primary": true
+    },
+    {
+     "id": "ev-1tu2uoh",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-09-17",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
+     "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "UK Ministry of Defence",
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "from a primary source"
+  },
+  {
+   "key": "order||denmark",
+   "systems": [],
+   "countries": [
+    "Denmark"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-l1p4nx",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Denmark"
+     ],
+     "value": null,
+     "date": "2026-09-21",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/global/europe/2026/09/21/denmark-says-nato-shares-responsibility-for-arctic-security-under-greenland-deal/",
+     "headline": "Denmark says NATO shares responsibility for Arctic security under Greenland deal",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order||ukraine+united states",
