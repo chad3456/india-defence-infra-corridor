@@ -45,6 +45,51 @@ const PAGES: Array<{ id: string; what: string; url: string; keep: RegExp }> = [
     url: "https://socialjustice.gov.in/common/76750",
     keep: /\.(?:pdf|xlsx?|csv)(?:$|\?)/i,
   },
+  /*
+   * The page the last round was looking for without knowing its name.
+   *
+   * Section 21(4) of the Act requires the central government to lay a report
+   * on its working before both Houses every year. That report carries the
+   * registration, chargesheet, conviction and pendency figures the Act is
+   * argued about, from the government's own hand and with the caveats the
+   * government itself attaches — which makes it a better source than a general
+   * crime volume, because it is about this statute rather than about crime.
+   *
+   * It was found by listing rather than by guessing: the ministry's home page
+   * carries a link reading "Annual Reports on Prevention Atrocity Act (PoA)".
+   */
+  {
+    id: "msje:poa", what: "Ministry of Social Justice — annual reports on the Act itself",
+    url: "https://socialjustice.gov.in/whats-new/77881",
+    keep: /\.(?:pdf|xlsx?|csv)(?:$|\?)|annual|report|\b(?:19|20)\d{2}\b/i,
+  },
+  {
+    id: "msje:pcr", what: "Ministry of Social Justice — annual reports under the Protection of Civil Rights Act",
+    url: "https://socialjustice.gov.in/whats-new/77882",
+    keep: /\.(?:pdf|xlsx?|csv)(?:$|\?)|annual|report|\b(?:19|20)\d{2}\b/i,
+  },
+  {
+    id: "msje:statistics", what: "Ministry of Social Justice — the statistics section",
+    url: "https://socialjustice.gov.in/common/1240",
+    keep: /\.(?:pdf|xlsx?|csv)(?:$|\?)|statistic|handbook|data/i,
+  },
+  {
+    id: "msje:handbook", what: "Handbook on Social Welfare Statistics",
+    url: "https://socialjustice.gov.in/common/76786",
+    keep: /\.(?:pdf|xlsx?|csv)(?:$|\?)|handbook|\b(?:19|20)\d{2}\b/i,
+  },
+  /*
+   * NCRB's year pages served the Hindi edition — chapter files named CII2021H
+   * and link text that is mostly a file size, "[ 633.30 KB ]". So this asks
+   * for the English listing by name, and for the per-table page that answered
+   * 500 last time, since a per-table download would put the SC/ST table within
+   * reach without parsing a six-hundred-page volume.
+   */
+  {
+    id: "ncrb:english", what: "NCRB Crime in India — the English listing",
+    url: "https://www.ncrb.gov.in/crime-in-india-table-addtional-table-and-chapter-contents.html",
+    keep: /\.(?:pdf|xlsx?|csv)(?:$|\?)|scheduled|caste|tribe|table/i,
+  },
   {
     id: "msje:home", what: "Ministry of Social Justice — home",
     url: "https://socialjustice.gov.in/",
