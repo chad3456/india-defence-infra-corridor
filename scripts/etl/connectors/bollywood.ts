@@ -48,6 +48,7 @@
  * to it. A film that depicts a gangster in order to condemn him reads here
  * exactly like one that depicts him in order to thrill.
  */
+import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getText } from "../lib/http";
@@ -205,33 +206,54 @@ export const MARKERS: Marker[] = [
     note: "Caste or religious community named as the axis of the conflict.",
     re: /\b(?:caste|dalit|untouchab|communal (?:riot|violence|tension)|Hindu[- ]Muslim)\b/i },
 
-  /* Outcome — how the film resolves for whoever did the harm. */
-  { id: "villain-punished", label: "The wrongdoer is punished", tier: "outcome",
-    note: "Killed, arrested, jailed or brought to justice by the end of the summary.",
-    re: /\b(?:villain|antagonist|gangster|don|criminal|killer|murderer)\b[^.]{0,80}\b(?:is (?:killed|arrested|jailed|shot|hanged|imprisoned)|is brought to justice|surrenders|is sentenced)/i },
-  { id: "hero-kills", label: "The protagonist kills", tier: "outcome",
-    note: "The leading character kills someone in the summary.",
-    re: /\b(?:he|she|they)\s+(?:finally\s+)?(?:kills?|shoots? (?:dead|and kills)|murders?|beats? (?:him|them) to death)\b/i },
-  { id: "criminal-unpunished", label: "The criminal is not punished", tier: "outcome",
-    note: "Escapes, wins, takes power, or the summary simply ends with him in place.",
-    re: /\b(?:escapes? (?:justice|arrest|punishment|unharmed)|goes free|walks free|gets away with|becomes the (?:new )?don|takes over the (?:gang|underworld|city))\b/i },
-  { id: "criminal-redeemed", label: "The wrongdoer is redeemed", tier: "outcome",
-    note: "Reforms, repents or sacrifices himself — an arc that asks the audience to forgive.",
-    re: /\b(?:reform(?:s|ed)|repent(?:s|ed|ance)|redeem(?:s|ed|ption)|turns over a new leaf|sacrifices? (?:himself|his life) (?:to|for))\b/i },
+  /*
+   * Outcome — what kind of ending the summary describes.
+   *
+   * These run over the ENDING only, not the whole plot. An outcome is how a
+   * story resolves, and "the villain is killed" in the second act is a plot
+   * event rather than a resolution; scoring it as one would file a film that
+   * kills its antagonist halfway and lets the real one win as a film where
+   * crime was punished.
+   *
+   * They also deliberately do not claim WHO. A summary sentence reading "is
+   * shot dead" is frequently about the hero, the hero's father, or a bystander,
+   * and no regular expression over English prose is going to resolve the
+   * referent reliably. So these record the KIND of ending — a reckoning, an
+   * escape, a reconciliation — and the labels say exactly that. The first
+   * version of these patterns tried to name the villain and matched almost
+   * nothing: across 2,670 films it fired on under one per cent, which is not a
+   * finding about cinema but a broken instrument reporting silence.
+   */
+  { id: "ending-reckoning", label: "Ends in a reckoning", tier: "outcome",
+    note: "The closing lines describe a death, an arrest, a sentence or a surrender. It does not say whose — a summary rarely makes the referent resolvable, and this does not guess.",
+    re: /\b(?:is (?:killed|shot|arrested|jailed|imprisoned|hanged|sentenced|executed|caught)|kills? (?:him|her|them)|shoots? (?:him|her|them) dead|surrenders?|is brought to justice|taken into custody|dies in|is beaten to death|police arrive|behind bars)\b/i },
+  { id: "ending-escape", label: "Ends with the wrongdoer still standing", tier: "outcome",
+    note: "The closing lines describe an escape, an evasion, or an ascent — someone who did harm ends the film free, in power, or unaccounted for.",
+    re: /\b(?:escapes?|flees?|gets away|walks free|goes free|is never caught|remains at large|takes over|becomes the (?:new )?(?:don|boss|king|leader)|rises to power|vanishes|disappears without)\b/i },
+  { id: "ending-reconciliation", label: "Ends in reconciliation", tier: "outcome",
+    note: "The closing lines describe reform, forgiveness, reunion or a sacrifice that settles the story — an ending that asks the audience to let go rather than to see someone punished.",
+    re: /\b(?:reform(?:s|ed)|repent(?:s|ed|ance)|redeem(?:s|ed|ption)|forgive[sn]?|reconcil(?:e|es|ed|iation)|reunited?|sacrifices? (?:himself|herself|his life|her life)|apologi[sz]es?|makes? peace)\b/i },
 
-  /* Framing — the summary's own words valorise. The narrowest tier. */
-  { id: "feared-respected", label: "Feared and respected", tier: "framing",
-    note: "The summary states that others fear, respect or admire the character.",
-    re: /\b(?:feared and respected|respected and feared|commands? (?:respect|fear)|revered by|idolis(?:ed|ing)|worshipped by)\b/i },
+  /*
+   * Framing — the summary's own words valorise. The narrowest tier, and the
+   * closest thing here to the question the brief actually asked.
+   *
+   * Broadened from a first version that required near-exact phrases and
+   * consequently fired on about one film in a hundred. These still require the
+   * summary to make an evaluative statement rather than merely narrate.
+   */
+  { id: "feared-respected", label: "Feared, respected, admired", tier: "framing",
+    note: "The summary states that others fear, respect, admire or look up to the character — an evaluation, not an event.",
+    re: /\b(?:feared|respected|revered|idoli[sz]ed|admired|worshipped|looks? up to|commands? (?:respect|fear|loyalty)|legendary|notorious)\b/i },
   { id: "robin-hood", label: "Crime framed as justice", tier: "framing",
-    note: "Robin-Hood framing: the crime is for the poor, the oppressed, the wronged.",
-    re: /\b(?:robin hood|steals? from the rich|fights? for the (?:poor|oppressed|downtrodden)|champion of the (?:poor|oppressed))\b/i },
+    note: "Robin-Hood framing: the wrongdoing is for the poor, the oppressed or the wronged.",
+    re: /\b(?:robin hood|steals? from the rich|fights? for the (?:poor|oppressed|downtrodden|helpless)|champion of the (?:poor|oppressed)|protector of the (?:poor|village|weak)|messiah|saviou?r of)\b/i },
   { id: "hero-word", label: "Called a hero for it", tier: "framing",
-    note: "The summary calls the character a hero, a saviour or a messiah.",
-    re: /\b(?:hailed as a hero|becomes a hero|is a hero to|saviou?r of|messiah)\b/i },
+    note: "The summary calls the character a hero, a saviour or a legend, or says he is celebrated.",
+    re: /\b(?:hailed as|becomes? a hero|is a hero|declared a hero|celebrated as|honou?red as|a local legend|folk hero)\b/i },
   { id: "rise-to-power", label: "A rise-to-power arc", tier: "framing",
-    note: "The summary narrates ascent through crime as ascent.",
-    re: /\b(?:rises? (?:through the ranks|to (?:power|the top))|builds? (?:an|his) empire|climbs? the ranks of)\b/i },
+    note: "The summary narrates ascent through crime as ascent — ranks climbed, an empire built.",
+    re: /\b(?:rises? (?:through the ranks|to (?:power|the top|prominence))|builds? (?:an|his|her) (?:empire|network)|climbs? the ranks|kingpin|crime lord|underworld (?:boss|king)|makes? a name for)\b/i },
 ];
 
 /** Title words that announce the subject before the film starts. */
@@ -242,6 +264,8 @@ export interface Film {
   year: number;
   /** Words in the plot summary. The control variable for everything else. */
   plotWords: number;
+  /** Words in the closing passage the outcome markers were scored over. */
+  endingWords: number;
   genres: string[];
   markers: string[];
   /** One matched sentence per marker, so every count can be opened. */
@@ -257,29 +281,86 @@ function sentenceFor(plot: string, re: RegExp): string {
   return "";
 }
 
+/**
+ * Where a plot summary stops setting up and starts resolving.
+ *
+ * The last quarter of the sentences, with a floor of two and a ceiling of six.
+ * A floor because a three-sentence summary has no measurable ending otherwise;
+ * a ceiling because in a forty-sentence summary the last quarter is still most
+ * of the third act and would readmit the mid-film events this scoping exists
+ * to exclude.
+ */
+export function endingOf(plot: string): string {
+  const sentences = plot.split(/(?<=[.!?])\s+/).filter((x) => x.trim().length > 0);
+  if (sentences.length === 0) return "";
+  const take = Math.min(6, Math.max(2, Math.ceil(sentences.length * 0.25)));
+  return sentences.slice(-take).join(" ");
+}
+
 export function measure(title: string, year: number, wikitext: string): Film | null {
   const plot = plotOf(wikitext);
   if (plot.length < 120) return null;
   const words = plot.split(/\s+/).filter(Boolean).length;
+  const ending = endingOf(plot);
   const markers: string[] = [];
   const evidence: Array<{ marker: string; quote: string }> = [];
   for (const m of MARKERS) {
-    if (!m.re.test(plot)) continue;
+    /*
+     * Outcome markers see only the ending; the other two tiers see the whole
+     * summary. A reckoning in the second act is a plot event, not a
+     * resolution, and scoring it as one files a film that kills a henchman
+     * halfway and lets the real villain win as a film where crime was
+     * punished.
+     */
+    const scope = m.tier === "outcome" ? ending : plot;
+    if (!m.re.test(scope)) continue;
     markers.push(m.id);
-    const q = sentenceFor(plot, m.re);
+    const q = sentenceFor(scope, m.re);
     if (q !== "") evidence.push({ marker: m.id, quote: q });
   }
   return {
-    title, year, plotWords: words, genres: genresOf(wikitext),
-    markers, evidence, titleWord: TITLE_WORDS.test(title),
+    title, year, plotWords: words, endingWords: ending.split(/\s+/).filter(Boolean).length,
+    genres: genresOf(wikitext), markers, evidence, titleWord: TITLE_WORDS.test(title),
   };
 }
 
-interface Stored { films?: Film[] }
+/**
+ * A fingerprint of the instrument.
+ *
+ * The run caches films it has already measured, so a second run only fetches
+ * what is new. That is right for the fetching and catastrophic for the
+ * measuring: change a pattern and the stored films keep their old scores while
+ * new ones get the new ones, and the corpus is then measured by two different
+ * instruments with no sign of it in the output. Every rate would be a blend of
+ * two definitions and every year-on-year comparison would be partly an
+ * artefact of when a film happened to be collected.
+ *
+ * So the marker definitions are hashed. If the hash has moved, the cache is
+ * dropped and everything is measured again by the instrument now in force.
+ */
+function instrumentHash(): string {
+  const h = createHash("sha256");
+  for (const m of MARKERS) h.update(`${m.id}|${m.tier}|${m.re.source}\n`);
+  h.update(`title:${TITLE_WORDS.source}\n`);
+  return h.digest("hex").slice(0, 16);
+}
+
+interface Stored { films?: Film[]; instrument?: string }
 
 async function main(): Promise<void> {
   const stored: Stored = await readFile(OUT, "utf8").then((t) => JSON.parse(t) as Stored).catch(() => ({}));
-  const have = new Map<string, Film>((stored.films ?? []).map((f) => [`${f.year}::${f.title}`, f]));
+  const instrument = instrumentHash();
+  const sameInstrument = stored.instrument === instrument;
+  if (!sameInstrument && (stored.films ?? []).length > 0) {
+    console.log(
+      `Marker definitions have changed (${stored.instrument ?? "none"} -> ${instrument}). `
+      + `Re-measuring all ${(stored.films ?? []).length} films, because a corpus scored by two `
+      + "different instruments would report the change as a change in cinema.",
+    );
+  }
+  const have = new Map<string, Film>(
+    sameInstrument ? (stored.films ?? []).map((f) => [`${f.year}::${f.title}`, f]) : [],
+  );
   const carried = have.size;
 
   const perYear: Array<{ year: number; listTitle: string | null; listed: number; measured: number }> = [];
@@ -362,6 +443,8 @@ async function main(): Promise<void> {
   await mkdir(OUT_DIR, { recursive: true });
   await writeFile(OUT, JSON.stringify({
     builtAt: new Date().toISOString(),
+    /* The instrument in force. If this moves, every film is measured again. */
+    instrument,
     source:
       "English Wikipedia: the year list for each year from 1995 to 2025, then the plot section of "
       + "every linked film article that has one. Plot text and infobox genre only.",

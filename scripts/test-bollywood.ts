@@ -4,7 +4,7 @@
  * The finding this piece is built to avoid producing is a rising line that is
  * really a fact about Wikipedia. Everything below guards one step of that.
  */
-import { filmsFromList, plotOf, genresOf, measure, MARKERS, TITLE_WORDS } from "./etl/connectors/bollywood";
+import { filmsFromList, plotOf, genresOf, measure, endingOf, MARKERS, TITLE_WORDS } from "./etl/connectors/bollywood";
 
 let failures = 0;
 function check(name: string, got: unknown, want: unknown): void {
@@ -94,8 +94,8 @@ console.log("\nMarkers are what they say and nothing more");
     MARKERS.find((m) => m.id === "revenge")?.tier, "presence");
   check("being called a hero is framing, not presence",
     MARKERS.find((m) => m.id === "hero-word")?.tier, "framing");
-  check("punishment is an outcome",
-    MARKERS.find((m) => m.id === "villain-punished")?.tier, "outcome");
+  check("an ending in a reckoning is an outcome",
+    MARKERS.find((m) => m.id === "ending-reckoning")?.tier, "outcome");
 
   /* Every marker publishes a note saying what it does not establish. */
   check("every marker carries a caveat", MARKERS.every((m) => m.note.length > 20), true);
@@ -104,10 +104,29 @@ console.log("\nMarkers are what they say and nothing more");
   const plain = mk("A plot summary of reasonable length about two friends who open a restaurant together in a small town, work hard through a difficult first year, and find that it goes well for everyone in the end.");
   check("an ordinary plot trips nothing", plain?.markers, []);
 
-  const unpunished = mk("A plot summary of reasonable length in which a young man joins a crew of thieves, rises through it over several years, and in the final scene the gangster escapes justice and becomes the new don of the city.");
-  check("an unpunished criminal is detected", unpunished?.markers.includes("criminal-unpunished"), true);
+  /*
+   * Outcome markers see only the ending, so this fixture puts the escape in
+   * the last sentence where a resolution actually lives.
+   */
+  const unpunished = mk("A plot summary of reasonable length in which a young man joins a crew of thieves and works for them. He is pursued for years by a determined officer. In the final scene he escapes and becomes the new don of the city.");
+  check("an ending with the wrongdoer still standing is detected",
+    unpunished?.markers.includes("ending-escape"), true);
   check("that is an outcome, not a presence claim",
-    MARKERS.find((m) => m.id === "criminal-unpunished")?.tier, "outcome");
+    MARKERS.find((m) => m.id === "ending-escape")?.tier, "outcome");
+
+  /*
+   * The scoping that makes the outcome tier mean anything. A reckoning in the
+   * second act is a plot event; only the resolution is an outcome. Without
+   * this, a film that kills a henchman halfway and lets the real villain win
+   * counts as a film where crime was punished.
+   */
+  const midFilmDeath = mk("A plot summary in which the henchman is shot dead early on by the police during a raid on the warehouse. The investigation then stalls for years and nothing more is done. The case is quietly closed and the family moves away.");
+  check("a reckoning in the second act is not an ending in a reckoning",
+    midFilmDeath?.markers.includes("ending-reckoning"), false);
+
+  const endsInArrest = mk("A plot summary in which a man builds a business over many years and is admired in his town for it. Rivals come and go and the business grows. In the closing scene he is arrested and sentenced for what he did.");
+  check("a reckoning in the closing lines is one",
+    endsInArrest?.markers.includes("ending-reckoning"), true);
 }
 
 console.log("\nThe length confound is measurable, which is the point");
@@ -126,6 +145,20 @@ console.log("\nThe length confound is measurable, which is the point");
 
   /* Too short to measure at all is dropped rather than counted as clean. */
   check("a stub plot is not a film with no markers", measure("X", 2000, "== Plot ==\nHe wins."), null);
+}
+
+console.log("\nThe ending is where an outcome lives");
+{
+  const five = "One. Two. Three. Four. Five.";
+  /* A quarter of the sentences, floored at two: a three-sentence summary has
+     no measurable ending otherwise. */
+  check("a short summary still has an ending", endingOf("One. Two. Three."), "Two. Three.");
+  check("a quarter is taken from a longer one", endingOf(five), "Four. Five.");
+  /* And capped, because in a forty-sentence summary a quarter is still most of
+     the third act — which is the mid-film material this scoping excludes. */
+  const forty = Array.from({ length: 40 }, (_, i) => `S${i}.`).join(" ");
+  check("the ending is capped at six sentences", endingOf(forty).split(/\s+/).length, 6);
+  check("an empty plot has an empty ending", endingOf(""), "");
 }
 
 console.log("\nTitle words are titles, not plots");
