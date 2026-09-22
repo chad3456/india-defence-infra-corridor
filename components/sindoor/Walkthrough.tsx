@@ -116,7 +116,7 @@ export default function Walkthrough({
     <div className="relative mt-10 grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
       {/* The pinned plate. On a phone it sits above the column rather than
           sticking, because a sticky half-screen image leaves no room to read. */}
-      <div className="lg:sticky lg:top-6 lg:h-[78vh]">
+      <div className="lg:sticky lg:top-20 lg:h-[72vh]">
         <div className="ink-plate relative aspect-[15/9] w-full overflow-hidden lg:h-full">
           {frames.map((f, i) => (
             // eslint-disable-next-line @next/next/no-img-element
@@ -131,12 +131,18 @@ export default function Walkthrough({
               aria-hidden={i !== shown}
               loading={i < 2 ? "eager" : "lazy"}
               decoding="async"
-              className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500"
+              /*
+               * Contain, not cover. The frames are drawings with their subject
+               * at a known place in them; cover crops to fill, which sliced
+               * India off the right-hand edge of its own map at the one aspect
+               * ratio a phone actually has.
+               */
+              className="absolute inset-0 h-full w-full object-contain transition-opacity duration-500"
               style={{ opacity: i === shown ? 1 : 0 }}
             />
           ))}
 
-          <div className="pointer-events-none absolute left-3 top-3 flex flex-wrap gap-1.5">
+          <div className="pointer-events-none absolute bottom-10 left-3 flex flex-wrap gap-1.5">
             <span className="ink-note px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em]"
               style={{ color: "var(--s-hot)" }}>
               ● sites named for 7 May
