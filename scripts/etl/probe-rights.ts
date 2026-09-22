@@ -96,11 +96,19 @@ const TARGETS: Target[] = [
     "Whether the Act has a cited article carrying its amendment history and the litigation over it",
     ["1989", "amendment", "Supreme Court", "atrocities"],
   ),
+  /*
+   * The first pass asked for "Subhash Kashinath Mahajan v. State of
+   * Maharashtra" and got a 200 carrying nothing at all — no references, no
+   * sections, no years. That is Wikipedia's shape for an article that does not
+   * exist, and it is worth knowing that a missing article answers 200 rather
+   * than 404, because a connector reading it would have found an empty string
+   * and reported a page with no events rather than a page that is not there.
+   */
   wikiPage(
-    "Subhash_Kashinath_Mahajan_v._State_of_Maharashtra",
+    "Indian_Penal_Code_Section_498A",
     "scst",
-    "Whether the 2018 judgment that diluted the Act is documented separately, with dates",
-    ["2018", "Supreme Court", "arrest"],
+    "A second statute argued about in the same terms, to see whether the misuse debate has a documented shape anywhere",
+    ["misuse", "Supreme Court"],
   ),
   wikiPage(
     "Caste-related_violence_in_India",
@@ -139,13 +147,41 @@ const TARGETS: Target[] = [
     settles: "Whether the judgment corpus is searchable without a key, which would put the litigation record within reach",
   },
 
+  {
+    id: "indiankanoon:page2",
+    kind: "scst",
+    what: "Indian Kanoon, second page of results",
+    url: "https://indiankanoon.org/search/?formInput=scheduled%20castes%20prevention%20of%20atrocities%20act&pagenum=1",
+    // Paired against page one. Identical answers would mean pagination does
+    // nothing and the corpus is capped at whatever one page returns.
+    paired: "https://indiankanoon.org/search/?formInput=scheduled%20castes%20prevention%20of%20atrocities%20act&pagenum=0",
+    look: ["result_title", "docsource"],
+    count: { results: /class="result_title"/g, links: /href="\/doc/g },
+    settles: "Whether the judgment corpus can be walked beyond its first ten results, which decides whether this is a spine or a sample",
+  },
+  {
+    id: "indiankanoon:doc",
+    kind: "scst",
+    what: "One judgment document, to see what a record actually carries",
+    url: "https://indiankanoon.org/doc/1217049/",
+    look: ["judgment", "court"],
+    count: { paras: /<p[\s>]/g, dates: /\b(19|20)\d{2}\b/g },
+    settles: "Whether a judgment page carries its court, date and text, which is what would make it citable evidence",
+  },
+
   /* ── PM SHRI ───────────────────────────────────────────────────────── */
-  wikiPage(
-    "PM_SHRI_Schools",
-    "pmshri",
-    "Whether the scheme has a cited article carrying its rollout and the states' refusals",
-    ["PM SHRI", "memorandum", "schools"],
-  ),
+  /*
+   * "PM SHRI Schools" also came back as an empty 200. Three more spellings,
+   * because a scheme article may sit under its expansion, under the ministry's
+   * naming, or under the umbrella programme it is funded through.
+   */
+  wikiPage("PM_SHRI", "pmshri", "The scheme under its short name", ["school", "scheme"]),
+  wikiPage("Samagra_Shiksha_Abhiyan", "pmshri",
+    "The umbrella programme PM SHRI funding is routed through, where the withheld-funds dispute sits",
+    ["Samagra", "education", "funds"]),
+  wikiPage("National_Education_Policy_2020", "pmshri",
+    "The policy PM SHRI is meant to demonstrate, and the states that rejected it",
+    ["states", "Tamil Nadu", "policy"]),
   {
     id: "pmshri:portal",
     kind: "pmshri",
@@ -176,18 +212,24 @@ const TARGETS: Target[] = [
 
   /* ── The press, for both subjects ──────────────────────────────────── */
   ...[
+    // Answered on the first pass, with volume: The Hindu 60 items, Hindustan
+    // Times 100. Scroll and The Wire answered but returned zero items, which
+    // is a different failure — the feed exists and is empty or in a shape the
+    // parser does not read — so both are re-asked under another path.
     ["thehindu-national", "The Hindu — National", "https://www.thehindu.com/news/national/feeder/default.rss"],
-    ["indianexpress-india", "The Indian Express — India", "https://indianexpress.com/section/india/feed/"],
-    ["indianexpress-edu", "The Indian Express — Education", "https://indianexpress.com/section/education/feed/"],
-    ["scroll", "Scroll.in", "https://scroll.in/feed"],
-    ["thewire", "The Wire", "https://thewire.in/rss"],
-    ["downtoearth", "Down To Earth", "https://www.downtoearth.org.in/rss"],
     ["hindustantimes", "Hindustan Times — India", "https://www.hindustantimes.com/feeds/rss/india-news/rssfeed.xml"],
-    ["newindianexpress", "The New Indian Express", "https://www.newindianexpress.com/Nation/rssfeed/?id=170&getXmlFeed=true"],
-    ["deccanherald", "Deccan Herald — National", "https://www.deccanherald.com/rss/national.rss"],
-    ["telegraphindia", "The Telegraph India", "https://www.telegraphindia.com/feeds/rss.jsp?id=4"],
     ["thequint", "The Quint", "https://www.thequint.com/stories.rss"],
     ["newslaundry", "Newslaundry", "https://www.newslaundry.com/stories.rss"],
+    ["scroll2", "Scroll.in (alternate path)", "https://scroll.in/feed/"],
+    ["thewire2", "The Wire (alternate path)", "https://thewire.in/feed"],
+    // 403 and 404 on the first pass. A 403 is about the request, a 404 about
+    // the path, so both are worth one more try under a different address.
+    ["indianexpress2", "The Indian Express (alternate path)", "https://indianexpress.com/feed/"],
+    ["deccanherald2", "Deccan Herald (alternate path)", "https://www.deccanherald.com/feeds/national"],
+    ["downtoearth2", "Down To Earth (alternate path)", "https://www.downtoearth.org.in/rss/india"],
+    ["thehindu-nat2", "The Hindu — States", "https://www.thehindu.com/news/national/feeder/default.rss"],
+    ["livemint", "Mint", "https://www.livemint.com/rss/news"],
+    ["firstpost", "Firstpost — India", "https://www.firstpost.com/rss/india.xml"],
   ].map(([id, outlet, url]) => feed(id!, outlet!, url!)),
 ];
 
