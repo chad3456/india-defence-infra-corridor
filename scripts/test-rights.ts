@@ -108,69 +108,66 @@ console.log("\nA judgment's year comes off the end of its title");
 
 console.log("\nSearch results parse, or report that they did not");
 {
+  /*
+   * This fixture is the markup Indian Kanoon actually served, recorded by a
+   * run that could not read it. Two earlier versions of this parser guessed —
+   * first at a CSS class name, then at the permalink — and both produced a
+   * corpus-shaped result that was not a corpus.
+   *
+   * Note the two links to one judgment. The permalink-shaped one, /doc/ID/,
+   * is labelled "Full Document"; the title is on the /docfragment/ link.
+   * Anchoring on the permalink gave a hundred and fifty-seven documents all
+   * titled "Full Document" — correctly identified and completely unusable.
+   */
   const html = `
-<div class="result">
-<div class="result_title"><a href="/doc/1217049/">Rajesh vs State Of M.P. on 12 March, 2019</a></div>
-<div class="docsource">Madhya Pradesh High Court</div>
-<p>the appellant was acquitted by the trial court of the offence under the
-Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act</p>
-</div>
-<div class="result">
-<div class="result_title"><a href="/doc/998877/">Suresh vs State Of Bihar on 1 July, 2021</a></div>
+<article class="result" role="listitem">
+<h4 class="result_title"> <a href="/docfragment/1841482/?formInput=scheduled%20castes">C.Sathiyanathan vs Veeramuthu on 14 November, 2008</a> </h4>
+<div class="docsource">Madras High Court</div>
+<div class="headline"> offence punishable under the provisions of the <b>Scheduled</b> <b>Castes</b> and <b>Scheduled</b> <b>Tribes</b> Act, 1989 and the accused was acquitted by the trial court </div>
+<a href="/doc/1841482/">Full Document</a>
+</article>
+<article class="result" role="listitem">
+<h4 class="result_title"> <a href="/docfragment/998877/?formInput=x">Suresh vs State Of Bihar on 1 July, 2021</a> </h4>
 <div class="docsource">Patna High Court</div>
-<p>the complaint was found to be false and the FIR is quashed</p>
-</div>`;
+<div class="headline"> the complaint was found to be false and the FIR is quashed </div>
+<a href="/doc/998877/">Full Document</a>
+</article>`;
   const rows = parseResults(html);
   check("both results are found", rows.length, 2);
-  check("the doc id is read", rows[0]?.docId, "1217049");
+  check("the doc id is read", rows[0]?.docId, "1841482");
   check("the court is read", rows[1]?.court, "Patna High Court");
+  check("the court is read on the first result too", rows[0]?.court, "Madras High Court");
   check("the snippet carries the text", /acquitted/.test(rows[0]?.snippet ?? ""), true);
+
   /*
-   * The snippet bug that hid behind a working parse: slicing from one link to
-   * the next gave snippets one character long — "[" — because a result carries
-   * a second link to itself a few characters later. A fixed window is coarser
-   * and actually contains the prose.
+   * The bug that hid behind a working parse. Anchoring on the permalink took
+   * "Full Document" as the title for every result on every page.
    */
+  check("the title is the case, not the link label", rows[0]?.title,
+    "C.Sathiyanathan vs Veeramuthu on 14 November, 2008");
+  check("no result is titled Full Document",
+    rows.some((r) => /^full document$/i.test(r.title)), false);
+  check("a result is recognised as a judgment", rows[0]?.kind, "judgment");
+  check("its year comes off the title", yearOf(rows[0]?.title ?? ""), 2008);
+
+  /* One judgment, two links, one row. */
+  check("two links to one judgment are one result",
+    parseResults(html.split("</article>")[0] + "</article>").length, 1);
+
+  /* A snippet must be prose, not the punctuation between two links. */
   check("a snippet is prose, not punctuation", (rows[0]?.snippet ?? "").length > 20, true);
-  check("a result knows what kind of document it is", rows[0]?.kind, "judgment");
-  /*
-   * A layout change must produce zero results rather than wrong ones, so the
-   * run reports a page that yielded nothing and stops rather than carrying on
-   * against a page it no longer understands.
-   */
+
+  /* One block must not swallow the next result's text. */
+  check("a snippet does not swallow the next result",
+    /Bihar/.test(rows[0]?.snippet ?? ""), false);
+
   check("markup it does not recognise yields nothing",
     parseResults("<div class='something-else'>text</div>").length, 0);
   check("tags are stripped from text", textOf("<b>Patna</b> High&nbsp;Court"), "Patna High Court");
 
   /*
-   * The regression this parser exists for. The first version split the page on
-   * `<div class="result_title">` and parsed zero results on every page of every
-   * query — a class name is a fact about a stylesheet, and stylesheets get
-   * rewritten. Results are now found by the one thing a judgment search cannot
-   * change without breaking its own permalinks: a link to /doc/<id>/.
-   */
-  const renamed = `
-<li class="listing"><a href="/doc/551122/">Mohan vs State Of Rajasthan on 9 August, 2020</a>
-<span class="court-label docsource_main">Rajasthan High Court</span>
-<p>conviction under the Atrocities Act is upheld</p></li>`;
-  const r2 = parseResults(renamed);
-  check("a result is found when the class names have changed", r2.length, 1);
-  check("its id survives the rename", r2[0]?.docId, "551122");
-  check("its year survives the rename", yearOf(r2[0]?.title ?? ""), 2020);
-
-  /*
-   * Two links to one judgment must be one row, not two, or every count in the
-   * corpus doubles.
-   */
-  const twice = `
-<div><a href="/doc/771/">Anil vs State Of Gujarat on 2 May, 2018</a><div class="docsource">Gujarat High Court</div>
-<p>the appeal is dismissed</p><a href="/doc/771/">full document</a></div>`;
-  check("two links to one judgment are one result", parseResults(twice).length, 1);
-  check("the longer anchor text is taken as the title",
-    /Anil vs State/.test(parseResults(twice)[0]?.title ?? ""), true);
-
-  /*
-   * A run that reads nothing must leave behind what it met.
+   * A run that reads nothing must leave behind what it met. This is the
+   * mechanism that produced the fixture above.
    */
   check("a shape note describes a page it could not read",
     shapeNote("<html><script>var x=1</script><body><a href=\"/doc/9/\">t</a></body></html>").includes("/doc/9/"), true);

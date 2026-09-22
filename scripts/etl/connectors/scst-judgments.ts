@@ -223,56 +223,67 @@ export function yearOf(title: string): number | null {
  * anchor text wins as the title.
  */
 export function parseResults(html: string): Array<{ docId: string; title: string; court: string | null; snippet: string; kind: DocKind; window: string }> {
-  const anchors = [...html.matchAll(/<a\s[^>]*href="\/doc\/(\d+)\/?[^"]*"[^>]*>([\s\S]*?)<\/a>/gi)];
-  const byDoc = new Map<string, { docId: string; title: string; court: string | null; snippet: string; kind: DocKind; window: string; at: number }>();
+  /*
+   * Each result is an <article class="result">. This is a reading, not a
+   * guess: the first two attempts guessed — at a CSS class, then at the
+   * permalink — and the run that recorded what it actually met is what
+   * produced this. The window it captured reads:
+   *
+   *   <article class="result" role="listitem">
+   *     <h4 class="result_title">
+   *       <a href="/docfragment/1841482/?formInput=...">
+   *         C.Sathiyanathan vs Veeramuthu on 14 November, 2008</a></h4>
+   *     <div class="headline"> offence punishable under the provisions of
+   *       the <b>Scheduled</b> <b>Castes</b> ... </div>
+   *     ... <a href="/doc/1841482/">Full Document</a> ...
+   *
+   * Two links point at one judgment, and the permalink-shaped one — /doc/ID/ —
+   * is the one whose anchor text reads "Full Document". Anchoring on it gave a
+   * hundred and fifty-seven documents all titled "Full Document", correctly
+   * identified and completely unusable. The title lives on the /docfragment/
+   * link.
+   */
+  const blocks = html.split(/<article\b[^>]*class="[^"]*\bresult\b[^"]*"[^>]*>/i).slice(1);
+  const source = blocks.length > 0 ? blocks : [html];
+  const out: Array<{ docId: string; title: string; court: string | null; snippet: string; kind: DocKind; window: string }> = [];
+  const seen = new Set<string>();
 
-  for (let i = 0; i < anchors.length; i++) {
-    const m = anchors[i];
-    if (!m) continue;
-    const docId = m[1] ?? "";
-    const title = textOf(m[2] ?? "");
-    if (docId === "" || title.length < 8) continue;
+  /** Anchor text that labels a link rather than naming a document. */
+  const BOILERPLATE = /^(?:full document|cites?|cited by|view|read more|pdf|print|\d+)$/i;
 
-    /*
-     * A fixed window after the link, not the gap to the next link.
-     *
-     * The gap was the first attempt and it produced snippets one character
-     * long — "[" — because a result carries a second link to itself a few
-     * characters after the first, so the gap between them holds punctuation
-     * and nothing else. A window is coarser and actually contains the prose.
-     */
-    const from = (m.index ?? 0) + m[0].length;
-    const window = html.slice(from, Math.min(html.length, from + 1600));
+  for (const raw of source) {
+    // Stop at the end of this result so a block never swallows the next one.
+    const block = raw.split(/<\/article>/i)[0] ?? raw;
 
-    const src = /<div[^>]*class="[^"]*docsource[^"]*"[^>]*>([\s\S]*?)<\/div>/i.exec(window)
-      ?? /<div[^>]*class="[^"]*docsource[^"]*"[^>]*>([^<]*)/i.exec(window);
+    const idm = /href="\/(?:docfragment|doc)\/(\d+)/i.exec(block);
+    if (!idm) continue;
+    const docId = idm[1] ?? "";
+    if (docId === "" || seen.has(docId)) continue;
+
+    // The title: the result_title anchor where the markup offers one,
+    // otherwise the longest anchor text that is not a link label.
+    let title = "";
+    const th = /class="[^"]*\bresult_title\b[^"]*"[\s\S]{0,200}?<a\s[^>]*>([\s\S]*?)<\/a>/i.exec(block);
+    if (th) title = textOf(th[1] ?? "");
+    if (title === "" || BOILERPLATE.test(title)) {
+      for (const a of block.matchAll(/<a\s[^>]*href="\/(?:docfragment|doc)\/\d+[^"]*"[^>]*>([\s\S]*?)<\/a>/gi)) {
+        const t = textOf(a[1] ?? "");
+        if (!BOILERPLATE.test(t) && t.length > title.length) title = t;
+      }
+    }
+    if (title === "" || BOILERPLATE.test(title) || title.length < 8) continue;
+
+    const hl = /<div[^>]*class="[^"]*\bheadline\b[^"]*"[^>]*>([\s\S]*?)<\/div>/i.exec(block);
+    const snippet = textOf(hl ? (hl[1] ?? "") : block).slice(0, 400);
+
+    const src = /<div[^>]*class="[^"]*docsource[^"]*"[^>]*>([\s\S]*?)<\/div>/i.exec(block)
+      ?? /<div[^>]*class="[^"]*docsource[^"]*"[^>]*>([^<]*)/i.exec(block);
     const court = src ? textOf(src[1] ?? "").slice(0, 120) || null : null;
 
-    // Drop the markup of any FOLLOWING result out of the snippet, so one
-    // judgment's text is not attributed to its neighbour.
-    const nextAt = window.search(/<a\s[^>]*href="\/doc\/\d+/i);
-    const ownText = nextAt > 120 ? window.slice(0, nextAt) : window;
-    const snippet = textOf(ownText).replace(/^[\s\[\]|·,-]+/, "").slice(0, 400);
-
-    const prev = byDoc.get(docId);
-    if (prev && prev.title.length >= title.length) {
-      if (snippet.length > prev.snippet.length) prev.snippet = snippet;
-      if (prev.court === null && court !== null) prev.court = court;
-      continue;
-    }
-    byDoc.set(docId, {
-      docId,
-      title,
-      court: court ?? prev?.court ?? null,
-      snippet: snippet.length >= (prev?.snippet.length ?? 0) ? snippet : (prev?.snippet ?? snippet),
-      kind: kindOf(title),
-      window: window.slice(0, 700).replace(/\s+/g, " "),
-      at: prev?.at ?? i,
-    });
+    seen.add(docId);
+    out.push({ docId, title, court, snippet, kind: kindOf(title), window: block.slice(0, 700).replace(/\s+/g, " ") });
   }
-
-  return [...byDoc.values()].sort((a, b) => a.at - b.at)
-    .map(({ docId, title, court, snippet, kind, window }) => ({ docId, title, court, snippet, kind, window }));
+  return out;
 }
 
 /**
@@ -315,10 +326,19 @@ async function main(): Promise<void> {
    * them means the hundred statute sections the first walk collected are
    * correctly counted as statutes instead of silently vanishing.
    */
-  const found = new Map<string, Judgment>((stored.judgments ?? []).map((j) => [
-    j.docId,
-    { ...j, kind: j.kind ?? kindOf(j.title), firstSeen: j.firstSeen ?? today },
-  ]));
+  const found = new Map<string, Judgment>(
+    (stored.judgments ?? [])
+      /*
+       * Drop anything an earlier parser stored that is not a document. One
+       * version anchored on the permalink and took the anchor text with it,
+       * giving a hundred and fifty-seven rows all titled "Full Document" —
+       * correct ids, no titles, no use. Filtering on read means a bad run
+       * cannot leave that in the corpus permanently, and costs nothing when
+       * there is none.
+       */
+      .filter((j) => !/^(?:full document|cites?|cited by|view|read more|pdf|print)$/i.test(j.title.trim()))
+      .map((j) => [j.docId, { ...j, kind: j.kind ?? kindOf(j.title), firstSeen: j.firstSeen ?? today }]),
+  );
   const carried = found.size;
   const depth: Record<string, number> = { ...(stored.depth ?? {}) };
 
