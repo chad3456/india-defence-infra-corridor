@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-09-22T06:59:29.339Z",
+  "probedAt": "2026-09-22T07:03:06.945Z",
   "question": "Is there one document, anywhere, that a script can read, stating how many PM SHRI schools were sanctioned, to which states, and how much money was released?",
   "refusal": "This file publishes whether a document answered, its shape, and how many times a named pattern appeared in it. It publishes no school count, no funding figure and no claim about the scheme.",
   "note": "The citation harvest found three pieces on this scheme against five hundred and seven on the SC/ST Act. That gap is not an artefact of the collector: the scheme has no encyclopaedia article, the ministry's page for it is a JavaScript shell, the portal renders its counts in the browser, and Parliament's question API answers 404. Everything reachable so far has been reachable and empty, which is why every target here names the figure it is after.",
@@ -12,7 +12,7 @@
       "settles": "Whether a release carries its own body text under this path, so official claims can be quoted with a date and an id",
       "ok": true,
       "status": "200",
-      "bytes": 96763,
+      "bytes": 96765,
       "shape": "html",
       "found": [],
       "missing": [
@@ -20,7 +20,7 @@
         "school"
       ],
       "counts": {
-        "bigNumbers": 94,
+        "bigNumbers": 96,
         "schools": 0,
         "states": 2,
         "crore": 0,
@@ -35,7 +35,7 @@
       "settles": "Whether the two PIB paths differ in what they carry, which decides which one a connector should read",
       "ok": true,
       "status": "200",
-      "bytes": 182661,
+      "bytes": 182663,
       "shape": "html",
       "found": [],
       "missing": [
@@ -43,7 +43,7 @@
         "school"
       ],
       "counts": {
-        "bigNumbers": 161,
+        "bigNumbers": 164,
         "schools": 0,
         "states": 1,
         "crore": 0,
@@ -58,21 +58,21 @@
       "settles": "Whether the release id is honoured — two different ids must return two different bodies, or the archive cannot be walked",
       "ok": true,
       "status": "200",
-      "bytes": 67926,
+      "bytes": 67928,
       "shape": "html",
       "found": [],
       "missing": [
         "PM SHRI"
       ],
       "counts": {
-        "bigNumbers": 86,
+        "bigNumbers": 88,
         "schools": 0,
         "states": 12,
         "crore": 0,
         "pmshri": 0
       },
       "parameterWorks": true,
-      "parameterNote": "28837 bytes apart, beyond a 194-byte tolerance"
+      "parameterNote": "28835 bytes apart, beyond a 194-byte tolerance"
     },
     {
       "id": "portal:stats",
@@ -180,7 +180,7 @@
       "settles": "Whether the ministry publishes a report carrying the scheme's own numbers, as a document rather than an application",
       "ok": true,
       "status": "200",
-      "bytes": 6325,
+      "bytes": 6326,
       "shape": "js-app",
       "found": [],
       "missing": [
@@ -200,7 +200,7 @@
       "settles": "Whether the ministry lists the scheme with figures beside it",
       "ok": true,
       "status": "200",
-      "bytes": 6329,
+      "bytes": 6330,
       "shape": "js-app",
       "found": [],
       "missing": [
@@ -231,6 +231,68 @@
       "counts": {
         "articles": 257
       }
+    },
+    {
+      "id": "gnews:pmshri",
+      "kind": "search",
+      "what": "Google News RSS — a keyword search over the news archive",
+      "url": "https://news.google.com/rss/search?q=%22PM+SHRI%22+schools&hl=en-IN&gl=IN&ceid=IN:en",
+      "settles": "Whether press coverage of the scheme can be searched rather than waited for, which decides whether this page can be built at all",
+      "ok": true,
+      "status": "200",
+      "bytes": 202412,
+      "shape": "xml-feed",
+      "found": [
+        "<item",
+        "<title"
+      ],
+      "missing": [],
+      "counts": {
+        "items": 100,
+        "pmshri": 187,
+        "outlets": 100
+      },
+      "parameterWorks": true,
+      "parameterNote": "201278 bytes apart, beyond a 405-byte tolerance"
+    },
+    {
+      "id": "gnews:scst",
+      "kind": "search",
+      "what": "Google News RSS — the same search for the Act",
+      "url": "https://news.google.com/rss/search?q=%22SC%2FST+Act%22+OR+%22atrocities+act%22&hl=en-IN&gl=IN&ceid=IN:en",
+      "settles": "Whether the same route would deepen the Act's register too, which is currently one item per sweep from five feeds",
+      "ok": true,
+      "status": "200",
+      "bytes": 204886,
+      "shape": "xml-feed",
+      "found": [
+        "<item"
+      ],
+      "missing": [],
+      "counts": {
+        "items": 100,
+        "outlets": 100
+      }
+    },
+    {
+      "id": "bing:pmshri",
+      "kind": "search",
+      "what": "Bing News RSS — the same question put to a second index",
+      "url": "https://www.bing.com/news/search?q=%22PM+SHRI%22+schools&format=RSS",
+      "settles": "Whether a second index answers, so the register does not depend on one company's endpoint",
+      "ok": true,
+      "status": "200",
+      "bytes": 10724,
+      "shape": "xml-feed",
+      "found": [
+        "<item"
+      ],
+      "missing": [],
+      "counts": {
+        "items": 12
+      },
+      "parameterWorks": true,
+      "parameterNote": "9718 bytes apart, beyond a 64-byte tolerance"
     }
   ]
 }
