@@ -14,8 +14,14 @@ name: Walk the SC/ST Act judgment corpus
 on:
   workflow_dispatch:
   schedule:
-    # Weekly. The corpus is a court record; it does not move hourly.
-    - cron: "40 2 * * 1"
+    # Every three hours, twelve pages at a time.
+    #
+    # Not because the corpus changes that fast — it is a court record — but
+    # because Indian Kanoon answers about ten requests and then stops, so the
+    # only way to reach a few hundred judgments is many small visits rather
+    # than one long crawl. Twelve requests eight seconds apart, eight times a
+    # day, is under a hundred requests daily on a free public service.
+    - cron: "40 */3 * * *"
   push:
     paths:
       - "scripts/etl/connectors/scst-judgments.ts"
@@ -47,5 +53,14 @@ jobs:
         if: always()
         run: >
           .github/scripts/commit-generated.sh
-          data/rights/scst-judgments.json data/rights/kanoon-shape.json
+          data/rights/scst-judgments.json
           "data(rights): SC/ST Act judgment corpus $(date -u +'%Y-%m-%d %H:%M')"
+      # A second call, because the script commits one file per invocation. This
+      # one only exists when the run could not read the page, and it is what
+      # makes the next attempt a reading rather than a guess.
+      - name: Commit the shape note, if the run could not read the page
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/rights/kanoon-shape.json
+          "chore(rights): what Indian Kanoon served $(date -u +'%Y-%m-%d %H:%M')"

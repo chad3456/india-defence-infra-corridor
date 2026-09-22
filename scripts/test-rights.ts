@@ -18,7 +18,7 @@
  * These tests exist so that error cannot be reintroduced quietly.
  */
 import { subjectOf, facetOf } from "../scripts/etl/connectors/rights-news";
-import { yearOf, parseResults, textOf, shapeNote } from "../scripts/etl/connectors/scst-judgments";
+import { yearOf, parseResults, textOf, shapeNote, kindOf } from "../scripts/etl/connectors/scst-judgments";
 import { parseCitations, cleanField, citationDate, outletOf } from "../scripts/etl/connectors/rights-citations";
 
 let failures = 0;
@@ -126,6 +126,14 @@ Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act</p>
   check("the court is read", rows[1]?.court, "Patna High Court");
   check("the snippet carries the text", /acquitted/.test(rows[0]?.snippet ?? ""), true);
   /*
+   * The snippet bug that hid behind a working parse: slicing from one link to
+   * the next gave snippets one character long — "[" — because a result carries
+   * a second link to itself a few characters later. A fixed window is coarser
+   * and actually contains the prose.
+   */
+  check("a snippet is prose, not punctuation", (rows[0]?.snippet ?? "").length > 20, true);
+  check("a result knows what kind of document it is", rows[0]?.kind, "judgment");
+  /*
    * A layout change must produce zero results rather than wrong ones, so the
    * run reports a page that yielded nothing and stops rather than carrying on
    * against a page it no longer understands.
@@ -168,6 +176,31 @@ Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act</p>
     shapeNote("<html><script>var x=1</script><body><a href=\"/doc/9/\">t</a></body></html>").includes("/doc/9/"), true);
   check("a shape note drops scripts",
     shapeNote("<script>SECRETVAR</script><a href=\"/doc/9/\">t</a>").includes("SECRETVAR"), false);
+}
+
+console.log("\nA statute is not a case");
+{
+  /*
+   * The error this exists to prevent. The first working walk collected a
+   * hundred documents and not one of them was a judgment: Indian Kanoon
+   * indexes statutes alongside cases, and a search for the Act's name ranks
+   * the Act's own text first. So the corpus was Section 3, Section 14, Section
+   * 18 and the Entire Act, each dated 1989, each carrying no outcome — and it
+   * looked exactly like a corpus. Counting those as cases would inflate the
+   * record by the number of sections in the statute.
+   */
+  check("a numbered section is a statute",
+    kindOf("Section 3 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act, 1989"), "statute");
+  check("a lettered section is a statute", kindOf("Section 15A in The Scheduled Castes ... Act, 1989"), "statute");
+  check("the whole act is a statute", kindOf("Entire Act"), "statute");
+  check("a bare act title is a statute", kindOf("The Scheduled Castes and Scheduled Tribes Act, 1989"), "statute");
+
+  check("a dated party title is a judgment",
+    kindOf("Rajesh vs State Of Madhya Pradesh on 12 March, 2019"), "judgment");
+  check("versus spelled out is a judgment",
+    kindOf("Ram Kumar versus State Of Bihar on 3 May, 2019"), "judgment");
+  check("an undated party title is still a judgment", kindOf("Suresh vs Union Of India"), "judgment");
+  check("something else is unknown, not assumed", kindOf("Law Commission Report No. 262"), "unknown");
 }
 
 console.log("\nCitations come out of a reference list whole");

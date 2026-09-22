@@ -41,7 +41,7 @@
  * complaint false is evidence of misuse, and those are flagged separately and
  * are rare.
  */
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getText } from "../lib/http";
 import { isEntryPoint } from "../lib/entry";
@@ -59,8 +59,21 @@ const KANOON = "https://indiankanoon.org/search/";
  * ten results each is five hundred judgments for fifty requests, spread over
  * two and a half minutes. That is a visit, not a crawl.
  */
-const GAP_MS = 3000;
-const MAX_PAGES = 55;
+/*
+ * Eight seconds, and twelve pages a run.
+ *
+ * The first working walk asked for fifty-five pages three seconds apart. It
+ * got ten, and then Indian Kanoon stopped answering — three of the four
+ * queries never returned a single page. That is not a failure to handle; it is
+ * a small free service saying it has had enough, and the correct response is
+ * to ask for less and come back later rather than to retry harder.
+ *
+ * So the corpus is built ACROSS runs, the way the event map is. Each run walks
+ * a little deeper than the last, merges what it finds into what is stored, and
+ * a run that is refused early keeps everything the earlier runs collected.
+ */
+const GAP_MS = 8000;
+const PAGES_PER_RUN = 12;
 
 let last = 0;
 async function pace(): Promise<void> {
@@ -84,12 +97,50 @@ async function pace(): Promise<void> {
  * their relative frequency; it says both queries were asked for the same
  * number of pages.
  */
-const QUERIES: Array<{ id: string; label: string; q: string; pages: number }> = [
-  { id: "act", label: "The Act generally", q: "scheduled castes scheduled tribes prevention of atrocities act", pages: 25 },
-  { id: "acquittal", label: "Acquittal language", q: "prevention of atrocities act acquitted appeal", pages: 10 },
-  { id: "false", label: "Complaint found false", q: "prevention of atrocities act false complaint quashed", pages: 10 },
-  { id: "conviction", label: "Conviction language", q: "prevention of atrocities act conviction sentence upheld", pages: 10 },
+const QUERIES: Array<{ id: string; label: string; q: string }> = [
+  { id: "act", label: "The Act generally", q: "scheduled castes scheduled tribes prevention of atrocities act" },
+  { id: "acquittal", label: "Acquittal language", q: "prevention of atrocities act acquitted appeal" },
+  { id: "false", label: "Complaint found false", q: "prevention of atrocities act false complaint quashed" },
+  { id: "conviction", label: "Conviction language", q: "prevention of atrocities act conviction sentence upheld" },
 ];
+
+/**
+ * Ask for judgments, and check that judgments are what came back.
+ *
+ * The first walk collected a hundred documents and not one of them was a case.
+ * Indian Kanoon indexes statutes alongside judgments, and a search for the
+ * Act's name ranks the Act's own text first — so the corpus was Section 3,
+ * Section 14, Section 18 and the Entire Act, a hundred times over, each dated
+ * 1989 and carrying no outcome at all. It looked like a corpus. Counting it as
+ * one would have inflated the case record by the number of sections in the
+ * statute.
+ *
+ * The search takes a document-type filter, so it is asked for. But asking is
+ * not the same as receiving — that is the whole PIB lesson — so every result
+ * is classified by the shape of its own title and statutes are counted
+ * separately rather than quietly dropped. If the filter stops working, the
+ * statute count rises and the file says so.
+ */
+const DOCTYPES = "judgments";
+
+export type DocKind = "judgment" | "statute" | "unknown";
+
+/**
+ * What a result is, from its title.
+ *
+ * A judgment is titled for its parties and dated: "Rajesh vs State Of Madhya
+ * Pradesh on 12 March, 2019". A statute is titled for its place in an Act:
+ * "Section 3 in The Scheduled Castes...", "Entire Act". The distinction is
+ * load-bearing, so it is made explicitly and the residue is called unknown
+ * rather than being assumed to be one or the other.
+ */
+export function kindOf(title: string): DocKind {
+  if (/^\s*(?:section|article|rule|order|schedule)\s+[\dA-Z]/i.test(title)) return "statute";
+  if (/^\s*(?:entire act|the\s+.*\bact\b\s*,?\s*\d{4}\s*$)/i.test(title)) return "statute";
+  if (/\bv(?:s\.?|ersus)\b/i.test(title) && /\bon\s+\d{1,2}\s+\w+,?\s+\d{4}\s*$/i.test(title)) return "judgment";
+  if (/\bv(?:s\.?|ersus)\b/i.test(title)) return "judgment";
+  return "unknown";
+}
 
 export interface Judgment {
   /** Indian Kanoon document id, which is the stable handle. */
@@ -101,6 +152,10 @@ export interface Judgment {
   year: number | null;
   /** Which query returned it. A judgment may be returned by several. */
   queries: string[];
+  /** Judgment, statute or unknown. Statutes are kept apart, never counted as cases. */
+  kind: DocKind;
+  /** When this document first entered the corpus, across runs. */
+  firstSeen: string;
   /**
    * Outcome words present in the snippet. A MENTION, never a finding — the
    * snippet may be the court reciting an order it goes on to overturn.
@@ -167,9 +222,9 @@ export function yearOf(title: string): number | null {
  * secondary link, so results are collapsed by document id and the longest
  * anchor text wins as the title.
  */
-export function parseResults(html: string): Array<{ docId: string; title: string; court: string | null; snippet: string }> {
+export function parseResults(html: string): Array<{ docId: string; title: string; court: string | null; snippet: string; kind: DocKind; window: string }> {
   const anchors = [...html.matchAll(/<a\s[^>]*href="\/doc\/(\d+)\/?[^"]*"[^>]*>([\s\S]*?)<\/a>/gi)];
-  const byDoc = new Map<string, { docId: string; title: string; court: string | null; snippet: string; at: number }>();
+  const byDoc = new Map<string, { docId: string; title: string; court: string | null; snippet: string; kind: DocKind; window: string; at: number }>();
 
   for (let i = 0; i < anchors.length; i++) {
     const m = anchors[i];
@@ -178,21 +233,28 @@ export function parseResults(html: string): Array<{ docId: string; title: string
     const title = textOf(m[2] ?? "");
     if (docId === "" || title.length < 8) continue;
 
-    // The block running from this anchor to the next result's anchor is where
-    // the court label and the snippet live.
+    /*
+     * A fixed window after the link, not the gap to the next link.
+     *
+     * The gap was the first attempt and it produced snippets one character
+     * long — "[" — because a result carries a second link to itself a few
+     * characters after the first, so the gap between them holds punctuation
+     * and nothing else. A window is coarser and actually contains the prose.
+     */
     const from = (m.index ?? 0) + m[0].length;
-    const next = anchors[i + 1];
-    const to = next?.index ?? Math.min(html.length, from + 2000);
-    const block = html.slice(from, to > from ? to : from);
+    const window = html.slice(from, Math.min(html.length, from + 1600));
 
-    const src = /<div[^>]*class="[^"]*docsource[^"]*"[^>]*>([\s\S]*?)<\/div>/i.exec(block)
-      ?? /<div[^>]*class="[^"]*docsource[^"]*"[^>]*>([\s\S]*)/i.exec(block);
+    const src = /<div[^>]*class="[^"]*docsource[^"]*"[^>]*>([\s\S]*?)<\/div>/i.exec(window)
+      ?? /<div[^>]*class="[^"]*docsource[^"]*"[^>]*>([^<]*)/i.exec(window);
     const court = src ? textOf(src[1] ?? "").slice(0, 120) || null : null;
-    const snippet = textOf(block).slice(0, 400);
+
+    // Drop the markup of any FOLLOWING result out of the snippet, so one
+    // judgment's text is not attributed to its neighbour.
+    const nextAt = window.search(/<a\s[^>]*href="\/doc\/\d+/i);
+    const ownText = nextAt > 120 ? window.slice(0, nextAt) : window;
+    const snippet = textOf(ownText).replace(/^[\s\[\]|·,-]+/, "").slice(0, 400);
 
     const prev = byDoc.get(docId);
-    // Two links to one judgment: keep the one whose anchor text reads as the
-    // title, which is the longer of them, but keep the richer snippet.
     if (prev && prev.title.length >= title.length) {
       if (snippet.length > prev.snippet.length) prev.snippet = snippet;
       if (prev.court === null && court !== null) prev.court = court;
@@ -203,12 +265,14 @@ export function parseResults(html: string): Array<{ docId: string; title: string
       title,
       court: court ?? prev?.court ?? null,
       snippet: snippet.length >= (prev?.snippet.length ?? 0) ? snippet : (prev?.snippet ?? snippet),
+      kind: kindOf(title),
+      window: window.slice(0, 700).replace(/\s+/g, " "),
       at: prev?.at ?? i,
     });
   }
 
   return [...byDoc.values()].sort((a, b) => a.at - b.at)
-    .map(({ docId, title, court, snippet }) => ({ docId, title, court, snippet }));
+    .map(({ docId, title, court, snippet, kind, window }) => ({ docId, title, court, snippet, kind, window }));
 }
 
 /**
@@ -226,38 +290,83 @@ export function shapeNote(html: string): string {
   return stripped.slice(at, at + 1200).replace(/\s+/g, " ").trim();
 }
 
+interface Stored {
+  /** Legacy rows predate `kind` and `firstSeen`, so both are optional on read. */
+  judgments?: Array<Omit<Judgment, "kind" | "firstSeen"> & { kind?: DocKind; firstSeen?: string }>;
+  /** How deep each query has been walked, so the next run goes further. */
+  depth?: Record<string, number>;
+}
+
 async function main(): Promise<void> {
-  const found = new Map<string, Judgment>();
-  const perQuery: Array<{ id: string; label: string; pagesAsked: number; pagesOk: number; results: number }> = [];
+  const today = new Date().toISOString().slice(0, 10);
+
+  /*
+   * Everything earlier runs collected. Indian Kanoon answers about ten
+   * requests and then stops, so one run is never the corpus — it is one more
+   * instalment of it. A run that is refused on its first page must leave the
+   * stored record exactly as it found it.
+   */
+  const stored: Stored = await readFile(OUT, "utf8")
+    .then((t) => JSON.parse(t) as Stored)
+    .catch(() => ({}));
+  /*
+   * Rows stored before this connector knew the difference between a statute
+   * and a case carry no `kind`. Classifying them on read rather than dropping
+   * them means the hundred statute sections the first walk collected are
+   * correctly counted as statutes instead of silently vanishing.
+   */
+  const found = new Map<string, Judgment>((stored.judgments ?? []).map((j) => [
+    j.docId,
+    { ...j, kind: j.kind ?? kindOf(j.title), firstSeen: j.firstSeen ?? today },
+  ]));
+  const carried = found.size;
+  const depth: Record<string, number> = { ...(stored.depth ?? {}) };
+
+  const perQuery: Array<{ id: string; label: string; from: number; pagesOk: number; results: number; refusedAt: number | null }> = [];
   const pageYields: number[] = [];
   /** What a page that yielded nothing actually looked like. See shapeNote. */
   const unparsed: Array<{ query: string; page: number; bytes: number; shape: string }> = [];
+  /** The raw markup around the first results of the run, so extraction is fixed by reading. */
+  const sampleWindows: Array<{ query: string; title: string; court: string | null; window: string }> = [];
+
+  /*
+   * The page budget is shared across the four queries, and each query starts
+   * where it left off. So four runs cover what one run cannot, and no run
+   * re-fetches what the last one already has.
+   */
+  const perQueryBudget = Math.max(1, Math.floor(PAGES_PER_RUN / QUERIES.length));
+  let spent = 0;
 
   for (const q of QUERIES) {
+    const from = depth[q.id] ?? 0;
     let pagesOk = 0;
     let results = 0;
-    for (let page = 0; page < Math.min(q.pages, MAX_PAGES); page++) {
+    let refusedAt: number | null = null;
+
+    for (let page = from; page < from + perQueryBudget && spent < PAGES_PER_RUN; page++) {
       await pace();
-      const url = `${KANOON}?formInput=${encodeURIComponent(q.q)}&pagenum=${page}`;
+      spent++;
+      const url = `${KANOON}?formInput=${encodeURIComponent(`${q.q} doctypes:${DOCTYPES}`)}&pagenum=${page}`;
       const res = await getText(url, { timeoutMs: 45_000, retries: 1, cacheMs: 0 });
       if (!res.ok || !res.data) {
-        console.log(`  ${q.id} page ${page}: ${res.error ?? "no body"}`);
-        // A refusal mid-way is the service asking to stop. Move on rather than
-        // hammering the remaining pages of this query.
+        console.log(`  ${q.id} page ${page}: ${res.error ?? "no body"} — stopping this query`);
+        refusedAt = page;
         break;
       }
       const rows = parseResults(res.data);
       pageYields.push(rows.length);
       if (rows.length === 0) {
-        // Leave behind what the page looked like, so the next attempt reads
-        // rather than guesses. The first version of this connector guessed at
-        // a CSS class name and parsed nothing, four queries deep, twice.
         unparsed.push({ query: q.id, page, bytes: res.data.length, shape: shapeNote(res.data) });
         console.log(`  ${q.id} page ${page}: parsed 0 results from ${res.data.length} bytes — shape recorded`);
         break;
       }
+      if (sampleWindows.length < 3 && rows[0]) {
+        sampleWindows.push({ query: q.id, title: rows[0].title, court: rows[0].court, window: rows[0].window });
+      }
       pagesOk++;
       results += rows.length;
+      depth[q.id] = page + 1;
+
       for (const r of rows) {
         const prev = found.get(r.docId);
         if (prev) {
@@ -271,18 +380,32 @@ async function main(): Promise<void> {
           court: r.court,
           year: yearOf(r.title),
           queries: [q.id],
+          kind: r.kind,
+          firstSeen: today,
           mentions,
           snippet: r.snippet,
           url: `https://indiankanoon.org/doc/${r.docId}/`,
         });
       }
     }
-    perQuery.push({ id: q.id, label: q.label, pagesAsked: q.pages, pagesOk, results });
-    console.log(`  ${q.label}: ${pagesOk} pages, ${results} results`);
+    perQuery.push({ id: q.id, label: q.label, from, pagesOk, results, refusedAt });
+    console.log(`  ${q.label}: from page ${from}, ${pagesOk} pages, ${results} results${refusedAt === null ? "" : ` (refused at ${refusedAt})`}`);
   }
 
-  const judgments = [...found.values()];
-  if (judgments.length === 0) {
+  const all = [...found.values()];
+  /*
+   * Statutes are not cases. The first walk collected a hundred documents and
+   * every one of them was a section of the Act — Section 3, Section 14, the
+   * Entire Act — each dated 1989 and carrying no outcome. They are kept,
+   * because the statute's own text is worth having, and they are counted
+   * separately, because calling them judgments would inflate the case record
+   * by the number of sections in the statute.
+   */
+  const judgments = all.filter((j) => j.kind === "judgment");
+  const statutes = all.filter((j) => j.kind === "statute");
+  const unknown = all.filter((j) => j.kind === "unknown");
+
+  if (all.length === 0) {
     await mkdir(OUT_DIR, { recursive: true });
     await writeFile(SHAPE_OUT, JSON.stringify({
       builtAt: new Date().toISOString(),
@@ -291,7 +414,7 @@ async function main(): Promise<void> {
       unparsed,
     }, null, 2) + "\n", "utf8");
     console.log(`Wrote ${SHAPE_OUT}: ${unparsed.length} unreadable page(s).`);
-    throw new Error("no judgments parsed — refusing to publish an empty corpus over a good one");
+    throw new Error("no documents parsed and none stored — refusing to publish an empty corpus");
   }
 
   const byYear = new Map<number, number>();
@@ -308,12 +431,12 @@ async function main(): Promise<void> {
     builtAt: new Date().toISOString(),
     source:
       "Indian Kanoon (indiankanoon.org), the free Indian judgment search. Four queries, each "
-      + "paged separately, ten results per request, three seconds apart.",
+      + "asked with a judgments-only document filter, ten results per request, eight seconds apart.",
     method:
-      "Queries are asked separately rather than as one broad search, so the rarest category is "
-      + "actually reached instead of being buried by ranking. Each result yields a document id, "
-      + "a title, the court the search labels it with, the year from the end of the title, and "
-      + "which outcome words appear in the returned snippet.",
+      "Indian Kanoon answers roughly ten requests and then stops, so the corpus is built across "
+      + "runs rather than in one: each run walks twelve pages, resumes each query where the last "
+      + "run left it, and merges into what is stored. Queries are asked separately rather than as "
+      + "one broad search, so the rarest category is reached instead of being buried by ranking.",
     refusal:
       "No acquittal rate, conviction rate or misuse measure is computed. The outcome words are "
       + "MENTIONS in a search snippet, not findings: a snippet reading 'the accused was "
@@ -322,33 +445,37 @@ async function main(): Promise<void> {
       + "beside its flags so a reader checks rather than trusts.",
     cannotSay: [
       "How often the Act is misused. Only a court explicitly finding a complaint false is evidence of that, and those are flagged separately and are rare. An acquittal is not evidence of it: it can follow from a false complaint and can equally follow from a hostile witness, from intimidation of the complainant, from an investigation that never gathered the caste-certificate evidence the statute requires, or from a compromise outside court — and no public dataset separates them.",
-      "What share of cases end any particular way. These counts are per query, and each query was asked for a set number of pages. Fifty judgments returned for one query and fifty for another says both were asked equally, not that the outcomes are equally common.",
+      "What share of cases end any particular way. These counts are per query, and each query is walked a set number of pages per run. Fifty judgments returned for one query and fifty for another says both were asked equally, not that the outcomes are equally common.",
       "Anything about cases that never reached a written judgment, which is most of them. Judgments are the end of a filtered process — registration, investigation, chargesheet, trial — and every stage before drops cases for reasons this corpus cannot see.",
       "Whether a flagged outcome is the court's own. The flag says a word appeared in a snippet. The snippet is published; the judgment is one link away.",
     ],
     counts: {
+      documents: all.length,
       judgments: judgments.length,
+      statutes: statutes.length,
+      unknown: unknown.length,
+      carriedFromEarlierRuns: carried,
+      addedThisRun: all.length - carried,
+      pagesThisRun: pageYields.length,
       withYear: judgments.filter((j) => j.year !== null).length,
       withCourt: judgments.filter((j) => j.court !== null).length,
       withNoMention: judgments.filter((j) => j.mentions.length === 0).length,
-      pagesFetched: pageYields.length,
-      medianPageYield: [...pageYields].sort((a, b) => a - b)[Math.floor(pageYields.length / 2)] ?? 0,
     },
+    depth,
     perQuery,
     unparsed,
+    sampleWindows,
     byYear: [...byYear].map(([year, n]) => ({ year, n })).sort((a, b) => a.year - b.year),
     byCourt: [...byCourt].map(([court, n]) => ({ court, n })).sort((a, b) => b.n - a.n).slice(0, 40),
     byMention: [...byMention].map(([mention, n]) => ({ mention, n })).sort((a, b) => b.n - a.n),
-    judgments,
+    judgments: all,
   }, null, 2) + "\n", "utf8");
 
   console.log(
-    `\nWrote ${OUT}: ${judgments.length} judgments from ${pageYields.length} pages `
-    + `(${judgments.filter((j) => j.year !== null).length} dated, `
-    + `${judgments.filter((j) => j.mentions.length === 0).length} with no outcome word).`,
+    `\nWrote ${OUT}: ${all.length} documents (${judgments.length} judgments, ${statutes.length} statutes, `
+    + `${unknown.length} unclassified), ${all.length - carried} new this run.`,
   );
 }
-
 if (isEntryPoint(import.meta.url)) {
   void main();
 }
