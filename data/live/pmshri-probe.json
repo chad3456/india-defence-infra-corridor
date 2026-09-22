@@ -1,0 +1,236 @@
+{
+  "probedAt": "2026-09-22T06:59:29.339Z",
+  "question": "Is there one document, anywhere, that a script can read, stating how many PM SHRI schools were sanctioned, to which states, and how much money was released?",
+  "refusal": "This file publishes whether a document answered, its shape, and how many times a named pattern appeared in it. It publishes no school count, no funding figure and no claim about the scheme.",
+  "note": "The citation harvest found three pieces on this scheme against five hundred and seven on the SC/ST Act. That gap is not an artefact of the collector: the scheme has no encyclopaedia article, the ministry's page for it is a JavaScript shell, the portal renders its counts in the browser, and Parliament's question API answers 404. Everything reachable so far has been reachable and empty, which is why every target here names the figure it is after.",
+  "findings": [
+    {
+      "id": "pib:page",
+      "kind": "pib",
+      "what": "PIB — a release under the PressReleasePage path",
+      "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=1855825",
+      "settles": "Whether a release carries its own body text under this path, so official claims can be quoted with a date and an id",
+      "ok": true,
+      "status": "200",
+      "bytes": 96763,
+      "shape": "html",
+      "found": [],
+      "missing": [
+        "PM SHRI",
+        "school"
+      ],
+      "counts": {
+        "bigNumbers": 94,
+        "schools": 0,
+        "states": 2,
+        "crore": 0,
+        "pmshri": 0
+      }
+    },
+    {
+      "id": "pib:detail",
+      "kind": "pib",
+      "what": "PIB — the same release under the PressReleseDetail path",
+      "url": "https://pib.gov.in/PressReleseDetail.aspx?PRID=1855825",
+      "settles": "Whether the two PIB paths differ in what they carry, which decides which one a connector should read",
+      "ok": true,
+      "status": "200",
+      "bytes": 182661,
+      "shape": "html",
+      "found": [],
+      "missing": [
+        "PM SHRI",
+        "school"
+      ],
+      "counts": {
+        "bigNumbers": 161,
+        "schools": 0,
+        "states": 1,
+        "crore": 0,
+        "pmshri": 0
+      }
+    },
+    {
+      "id": "pib:education-ministry",
+      "kind": "pib",
+      "what": "PIB — releases filtered to the Ministry of Education",
+      "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2004056",
+      "settles": "Whether the release id is honoured — two different ids must return two different bodies, or the archive cannot be walked",
+      "ok": true,
+      "status": "200",
+      "bytes": 67926,
+      "shape": "html",
+      "found": [],
+      "missing": [
+        "PM SHRI"
+      ],
+      "counts": {
+        "bigNumbers": 86,
+        "schools": 0,
+        "states": 12,
+        "crore": 0,
+        "pmshri": 0
+      },
+      "parameterWorks": true,
+      "parameterNote": "28837 bytes apart, beyond a 194-byte tolerance"
+    },
+    {
+      "id": "portal:stats",
+      "kind": "portal",
+      "what": "PM SHRI portal — a statistics call",
+      "url": "https://pmshrischools.education.gov.in/api/dashboard/stats",
+      "settles": "Whether the portal's browser-side counts can be read by a script, which would make them the primary figure",
+      "ok": true,
+      "status": "200",
+      "bytes": 1238,
+      "shape": "html",
+      "found": [
+        "school"
+      ],
+      "missing": [],
+      "counts": {
+        "bigNumbers": 2,
+        "schools": 1,
+        "states": 0,
+        "crore": 0,
+        "pmshri": 1
+      }
+    },
+    {
+      "id": "portal:statewise",
+      "kind": "portal",
+      "what": "PM SHRI portal — a state-wise call",
+      "url": "https://pmshrischools.education.gov.in/api/school/statewise",
+      "settles": "Whether the portal serves the state-wise distribution, which is where the whole dispute lives",
+      "ok": true,
+      "status": "200",
+      "bytes": 1238,
+      "shape": "html",
+      "found": [],
+      "missing": [
+        "state"
+      ],
+      "counts": {
+        "bigNumbers": 2,
+        "schools": 1,
+        "states": 0,
+        "crore": 0,
+        "pmshri": 1
+      }
+    },
+    {
+      "id": "portal:root",
+      "kind": "portal",
+      "what": "PM SHRI portal — the shell itself, read again for a data island",
+      "url": "https://pmshrischools.education.gov.in/",
+      "settles": "Whether the shell embeds its counts in the page as JSON, which some government SPAs do",
+      "ok": true,
+      "status": "200",
+      "bytes": 1238,
+      "shape": "html",
+      "found": [
+        "PM SHRI"
+      ],
+      "missing": [],
+      "counts": {
+        "bigNumbers": 2,
+        "schools": 1,
+        "states": 0,
+        "crore": 0,
+        "pmshri": 1,
+        "json": 0
+      }
+    },
+    {
+      "id": "sansad:search",
+      "kind": "sansad",
+      "what": "Lok Sabha questions — the search the site's own page calls",
+      "url": "https://sansad.in/api/ls/question/questionsearch?subject=PM%20SHRI",
+      "settles": "Whether the question archive answers a script under any path, which would put dated state-wise figures within reach",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "sansad:loksabha-page",
+      "kind": "sansad",
+      "what": "Lok Sabha questions — the human-readable archive",
+      "url": "https://sansad.in/ls/questions/questions-and-answers",
+      "settles": "Whether the archive pages at all, which decides whether it can be walked or only opened",
+      "ok": true,
+      "status": "200",
+      "bytes": 312041,
+      "shape": "html",
+      "found": [
+        "question"
+      ],
+      "missing": [],
+      "counts": {
+        "links": 10,
+        "pdfs": 5
+      },
+      "parameterWorks": true,
+      "parameterNote": "same length but different content"
+    },
+    {
+      "id": "moe:annual",
+      "kind": "ministry",
+      "what": "Ministry of Education — the annual report listing",
+      "url": "https://www.education.gov.in/documents_reports",
+      "settles": "Whether the ministry publishes a report carrying the scheme's own numbers, as a document rather than an application",
+      "ok": true,
+      "status": "200",
+      "bytes": 6325,
+      "shape": "js-app",
+      "found": [],
+      "missing": [
+        "report"
+      ],
+      "counts": {
+        "pdfs": 0,
+        "links": 0,
+        "years": 1
+      }
+    },
+    {
+      "id": "moe:schemes",
+      "kind": "ministry",
+      "what": "Ministry of Education — the schemes listing",
+      "url": "https://www.education.gov.in/schemes",
+      "settles": "Whether the ministry lists the scheme with figures beside it",
+      "ok": true,
+      "status": "200",
+      "bytes": 6329,
+      "shape": "js-app",
+      "found": [],
+      "missing": [
+        "scheme"
+      ],
+      "counts": {
+        "bigNumbers": 17,
+        "schools": 0,
+        "states": 0,
+        "crore": 0,
+        "pmshri": 0
+      }
+    },
+    {
+      "id": "press:thehindu-search",
+      "kind": "press",
+      "what": "The Hindu — site search for the scheme",
+      "url": "https://www.thehindu.com/search/?q=PM%20SHRI",
+      "settles": "Whether a newsroom archive can be searched by a script, which is the only route to coverage older than a feed",
+      "ok": true,
+      "status": "200",
+      "bytes": 157944,
+      "shape": "html",
+      "found": [],
+      "missing": [
+        "PM SHRI"
+      ],
+      "counts": {
+        "articles": 257
+      }
+    }
+  ]
+}
