@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-22T19:56:07.872Z",
+  "builtAt": "2026-09-22T23:19:00.212Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,13 +10,13 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 761,
-    "addedThisRun": 22,
-    "carriedFromEarlierRuns": 739,
-    "withOutlet": 729,
+    "items": 768,
+    "addedThisRun": 7,
+    "carriedFromEarlierRuns": 761,
+    "withOutlet": 735,
     "bySubject": {
-      "scst": 484,
-      "pmshri": 277
+      "scst": 490,
+      "pmshri": 278
     },
     "queriesAsked": 20,
     "offSubjectDropped": 312
@@ -24,11 +24,11 @@
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 370
+      "n": 374
     },
     {
       "key": "use",
-      "n": 274
+      "n": 277
     },
     {
       "key": "dispute",
@@ -125,6 +125,10 @@
       "n": 8
     },
     {
+      "key": "Telegraph India",
+      "n": 8
+    },
+    {
       "key": "ANI News",
       "n": 8
     },
@@ -145,7 +149,7 @@
       "n": 7
     },
     {
-      "key": "Telegraph India",
+      "key": "The Statesman",
       "n": 7
     },
     {
@@ -166,10 +170,6 @@
     },
     {
       "key": "Outlook India",
-      "n": 6
-    },
-    {
-      "key": "The Statesman",
       "n": 6
     },
     {
@@ -205,6 +205,10 @@
       "n": 5
     },
     {
+      "key": "News18",
+      "n": 5
+    },
+    {
       "key": "Citizens for Justice and Peace | CJP",
       "n": 4
     },
@@ -230,10 +234,6 @@
     },
     {
       "key": "Kashmir Life",
-      "n": 4
-    },
-    {
-      "key": "News18",
       "n": 4
     },
     {
@@ -297,8 +297,8 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 6,
-      "offSubject": 6
+      "kept": 0,
+      "offSubject": 7
     },
     {
       "id": "act-registered",
@@ -306,8 +306,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 5,
-      "kept": 3,
+      "bing": 4,
+      "kept": 1,
       "offSubject": 14
     },
     {
@@ -317,8 +317,8 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 42
+      "kept": 0,
+      "offSubject": 41
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 52,
-      "bing": 7,
+      "bing": 10,
       "kept": 1,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
@@ -337,7 +337,7 @@
       "expect": "use",
       "google": 43,
       "bing": 2,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 11
     },
     {
@@ -347,15 +347,15 @@
       "expect": "use",
       "google": 68,
       "bing": 2,
-      "kept": 3,
-      "offSubject": 23
+      "kept": 1,
+      "offSubject": 25
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 85,
+      "google": 84,
       "bing": 0,
       "kept": 0,
       "offSubject": 42
@@ -375,9 +375,9 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 44,
-      "bing": 0,
-      "kept": 3,
+      "google": 43,
+      "bing": 1,
+      "kept": 1,
       "offSubject": 7
     },
     {
@@ -385,9 +385,9 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 27,
-      "bing": 0,
-      "kept": 1,
+      "google": 28,
+      "bing": 1,
+      "kept": 2,
       "offSubject": 4
     },
     {
@@ -397,7 +397,7 @@
       "expect": "false-finding",
       "google": 48,
       "bing": 2,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 17
     },
     {
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 28,
+      "google": 27,
       "bing": 0,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 18
     },
     {
       "id": "shri-general",
@@ -416,8 +416,8 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 12,
-      "kept": 1,
+      "bing": 0,
+      "kept": 0,
       "offSubject": 3
     },
     {
@@ -427,7 +427,7 @@
       "expect": "use",
       "google": 46,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 10
     },
     {
@@ -445,7 +445,7 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 50,
+      "google": 51,
       "bing": 3,
       "kept": 0,
       "offSubject": 12
@@ -466,9 +466,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 28,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 13
     },
     {
       "id": "shri-nep",
@@ -476,7 +476,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 52,
-      "bing": 7,
+      "bing": 0,
       "kept": 0,
       "offSubject": 9
     },
@@ -488,7 +488,7 @@
       "google": 46,
       "bing": 1,
       "kept": 0,
-      "offSubject": 36
+      "offSubject": 35
     }
   ],
   "items": [
@@ -12549,10 +12549,12 @@
       "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQdHU2OXk3LUV1cXlncnBQdkUzUkZUdlhjUTNyYkZPTmtuY21SYXpLMGNJSVRZZ2xTYlpOTlRncndsRHFIWDEtdWlsUXlPckNuMi1BT3FEY05XbEZyMUtncW9KdXdQc1pmVC0tSmEwQWYtbk5BdlZHSUl6NkEzZGxsTElWbFFsSHhfa0NEYTY2cnBYLVZZMzF4enFVOWVlQlVlY1NHUVlneE4wTHZJTExvUVljbmRNMmpPT2MwVjhJVTFBX0NzUl9vR1J1QWd4OUdfVVB4MXZkcWJZUzUzN3U2T2d6eWw4Um8?oc=5",
       "queries": [
         "act-general",
-        "act-misuse-claim"
+        "act-misuse-claim",
+        "act-dilution"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -12839,7 +12841,8 @@
       "published": "2026-09-22",
       "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPV082c2pWU3dBdHFYcms1b2YxR09XemZTY29HVUxGdjNib2pYb3hpZk1uS3ppbElKYXJlWHZidEFUd3RkN0Z5SHVqczNZUjBvQUZNcmFJOXhJeVNjbmp3ejZqYWs4UHdUY0pGc0tBcXVpUy1WT0hZZ1VZeF9ZdlNWdXpmN0ZyYzBteTE3dHp3STdZVVZob0lnNnpnQ09CSEt6VmJLWkdxRmcwWkwtajg4VE1rXzNwMHY3RDZYNDNNQnRQRzZF?oc=5",
       "queries": [
-        "act-false"
+        "act-false",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -12856,6 +12859,118 @@
       "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNcm1qdUl5NkgtX2FoWGVSWVFqTUl5Z3VYSjdabmNZMXpqZFp3QVY2VE1hYXBZTDJkWk1xVGxwdlc0cTlabWU5eW5zcmRFZEwtNTQ0R2FJU2FtNGtKSndmRFhnNXVmNVRQd0pyNWdNeGEtZUhKMkFublZqVy01VG52T2ZjMFNjdjZSSXVnWHhabWpHWlhobU5CUC1yYVJTRmo3TWo5R1RYbmNQSzRqdkYxRk9DQUVLWXRiZlRqNFVqZnNmbTYxdHc4QXJxY01hODdyU3B0Y05uaWZvcktaRUHSAeMBQVVfeXFMT0hjZk0taG9xWnB0NlcxcGdoaWxkN2hBZFdFQlNEYk5meW5PdnNuZTdGWHNsSlRINkpISWRHenRpTjEwSGZsRmJkREtLcG5TczJpRzFveG1kMEs5X2tJdngxcEVVaG1TSGpPakY0TFpIMVhGUmxrUkRSVzNwSTVuUlJuRUV4ZGJqSDEzMjBNMGFRNzJrRmNjRUVTNnJkcVd2V3VncGRHUkt4SFBwQmg1d1JBQ3plbnIyQVozbXVBOHhybXhHZkpzcEp5TWlNNVppUE1KQzBwYWMxUDNBbVB6emI4NGc?oc=5",
       "queries": [
         "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-22"
+    },
+    {
+      "id": "smriti mandhana s friend files fir against palaash muchhal under sc st act over alleged ca",
+      "headline": "Smriti Mandhana’s friend files FIR against Palaash Muchhal under SC/ST Act over alleged casteist remarks",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Statesman",
+      "published": "2026-05-06",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNd2FGRnVhenpjUGFLUGZULXJqNVlTc2luelpQN25GSmNHRVZ1WlBXNHFSRmZ4ZzRDd3NZcGoybzBrcUsyTE5aQnRDcE55Y2ZNemNQaHBhMndzLUFudmVEaERNZlc1QWQ2WlQ2ZkRIbVpUcV9QTlhrMDdXMnFaenYtZDhLX0N6cEFsd25WMGVXZGlRNE4tZUxKWTNUUHhGbmVhbWhCLTBWZWhJNDc4bjlpUE56UkRER2hpblJCbUNuN2JlcEYtVHlLOTZvTFhRMG9heURPM0k1NjZmeGdEVTFjOE5OWE5Hd9IB6wFBVV95cUxQODFaN2Q5OWZVVnVjZ2JNWFhHY3pDWjRNcVU2WFc2OElnMngxTlVaRURQNWlfdzdJcEozdHAtc2tfRWdqQWtQUlVQbUtkbV9qcV9wV1hCVGRKVHpXTGUteVZyVU1WYTRsdDIyVkFnM2l4LWRWSlcxVDlpZHdhVVRLbVpBVF9NQVVHVEg1dzNnZG9NcUVYbzU4LXN5UVNIcElPeWNqd2R5X05lODV4Ry0yN21DQmFpTXZQZElEM2s3MGgxRmtzRXkzbTVDSDFNTmE5aVR3TDVjdWxuQXlUbUJjbDZEMGh3RWJxekw4?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-22"
+    },
+    {
+      "id": "2 bhopal cops arrested for luring and raping dalit teen",
+      "headline": "2 Bhopal cops arrested for luring and raping Dalit teen",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-07-24",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab30c837e394b47b7ac3ecc85e15e48&url=https%3a%2f%2fwww.rediff.com%2fnews%2freport%2ftwo-bhopal-cops-arrested-for-luring-and-raping-dalit-teen%2f20260724.htm&c=16590861802645917789&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-09-22"
+    },
+    {
+      "id": "ensure timely justice in cases under sc st act says dhami",
+      "headline": "Ensure timely justice in cases under SC-ST Act, says Dhami",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Pioneer Edge",
+      "published": "2026-09-22",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQMHU3UzlwTVFkaHRtU1NMcHIyNUdQT3FsZkMtQl9DMi1pNWozc1NwRXgyUHU1clp6Z2Zmd0w3OXhabHZTcFZTQ3NSUko3cjNsRmVGQnd5bEVXcFNTSVRqU2RoSmZScW1nUHVtOWU5T3lTeUIzbXQzakYyd1BzV3d1YjRBVFNuMUNS?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-22"
+    },
+    {
+      "id": "nda govt staged bharat bandh against sc st act amendment to divide dalits obcs tejashwi ya",
+      "headline": "NDA Govt Staged Bharat Bandh Against SC/ST Act Amendment to Divide Dalits, OBCs: Tejashwi Yadav",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "News18",
+      "published": "2018-09-11",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOSjllZktJSkxZbGZIZ3R1Y1BLTEtramFLZ0EyQ01LNmlQSmJXbWN2bVpFZndqVlE2QndCY1BtZHNGV3ZaOTNFWERwMnRNcXhhYlR0ZkY0Q3pBNjNpdDFzbTJlbkFIbXYxYndLVnhudjhYZW41X05jdURxalh4ZHowOUVteHVBYUtmX0g0aFRCbG1GZ1B4Y0RCZWtMeFF2X1NxR0FoTk5SNnBwZXFsRnBaQWpCaS1WWXd5VTd6Wjl6XzFwXzBlY0V1MEppMnMzRjB2aWp2NEdvdkNWUdIB3wFBVV95cUxOVTNJLVUzbWNkOWxMN1Y2OWx2Ymd1dWpKenhCNkc2MEI1anN1T19PNHJHNWQ1b3F4TGRkT19IRU9YZ0NEc2dBODZGU2EzOVZBSDd2aHprQmlXWGhUUHAyVzV2TU8taUdQV0FTMW9vb2hCMXpRdTBhSFA4S0dLMjlLOW5Nd1YwM0JVU0dHNmhyQzJfaVdIQ3VRb0tBWDhaVVozOHltbmtMNVhnMFczTFBrSnlQSEg0TUhMeENuamNuLVBtSjhHTEpZak4yQ09fY2VhM2Q2UEg0UnF0eGgwVFpV?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-22"
+    },
+    {
+      "id": "did rahul gandhi say sc st act has been scrapped a factcheck boom",
+      "headline": "Did Rahul Gandhi Say SC/ST Act Has Been Scrapped? A FactCheck | BOOM",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "BOOM Fact Check",
+      "published": "2018-04-05",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQVzFJSzdkZ3U4RGQxVkRmczNfbFowYml6MWtPWm55aTdMeVk4WmhUWlF1cTNVTmtsMVdGRkNKeVRod1JCREgwcUhuT28tRGFWRzkwSHVwaGdTZktDQVV0OUVDMjRHT19obEJFTWlwWGVEc1R6T2lUMjhIZUsweTh2Wm9tbVRwR0g2MjkweNIBkgFBVV95cUxNMkstS1VoRlJqRUVkWlpzOWdsNU8zNndvNXhXSDhFU1ZrRFJEUlJLTkNVRmJJTFItOUM0NWR5d3dkYXRiNkdnOXc2QllQRk5aVzdnR1hFUEhucFh6aU1BYnBGQVd3SEJhLU5xdFZhckdfZlBUd0g5dVdPM0F6TEg1TzBuSnRjaVBaeGxwTVhJbFlJdw?oc=5",
+      "queries": [
+        "act-dilution"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-22"
+    },
+    {
+      "id": "right wing stir against modi on sc st act in ranchi",
+      "headline": "Right-wing stir against Modi on SC/ST Act in Ranchi",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Telegraph India",
+      "published": "2018-10-30",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNdDRFYWdEQ0NTeGVTVGZhT1RSRkZjYlA3RVhhSGdVOUZwQ01ZcEJIZkxWazJsMUpadmk0WFI2bWdwWk1sZ1FYVUNmdWZPS2I2Ynk4blZPOC1RUVdJUXpHQkNTN25VVlVSa3NmSWxFNFZ3S3ZTRl9NVmNKRG1sSkVTazRnUVNNRUNxSUZOeklCSHN1aHBvS2dnY1NLTFdvVDVUV1VwSG10Z9IBrAFBVV95cUxNYWxXNkNmbXNocXdGd1EwTnlRRVRvUnRZOVRlOExnSHg3SGZBYXQ2MEQtTTI0Rjg3YW9QZVhUMllpeG16LWNBbVlIX0xYb0JHR2VzMTVGWHJjbFNFMEFNS01aS0JUMk5pRksyWlpEMW4xcTVpUGtlSHpndFNaNE5LcnV1Q25MajQ2c1otNEtBV0NaR0JxN2pPQ1NBeEpLZ2hWenk5VlpkOWZwV1I4?oc=5",
+      "queries": [
+        "act-dilution"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-22"
+    },
+    {
+      "id": "37 schools in dk udupi selected under pm shri scheme for upgradation",
+      "headline": "37 Schools in DK, Udupi selected under PM SHRI scheme for upgradation",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "mangaloretoday.com",
+      "published": "2025-08-04",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPTG5GazB1N2hqTXlZUDlNYnlvZkM0aEVtWkR3d0pvZXN4SUd0NE1TVnBYdnF5SFMyLXVOd2MtM2I5a2J2aEpWclQ0cHpmTWdaUEpHaHVrWkpZcGxOY0NiLXFjN21IVzBIMk5TRVFCMnFNOW13SUFxcmctY1lPRmZQeTVlTGl5cmJHWVlnNUx0QU9UQU9US0VsQktLaGFpaXFTTklvT1MxRmdzbVp5c2c?oc=5",
+      "queries": [
+        "shri-sanctioned"
       ],
       "indexes": [
         "google"
