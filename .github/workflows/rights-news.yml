@@ -1,0 +1,50 @@
+name: Register press coverage of the SC/ST Act and PM SHRI
+
+# Coverage is context, not data. Nothing this run writes becomes a chart series;
+# it becomes a cited register of what was reported, filed into four tiers that
+# must never be merged — the law operating, a court acquitting, somebody
+# alleging misuse, and a court finding a specific complaint false.
+#
+# Five of the twelve newsrooms probed actually answer with items. The register
+# therefore grows slowly and from a narrow bench, and the page says so rather
+# than widening the filter to reach a rounder number.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Six-hourly: an RSS feed only shows recent items, so the register is built
+    # by sweeping often over a long period, not by one deep fetch.
+    - cron: "25 */6 * * *"
+  push:
+    paths:
+      - "scripts/etl/connectors/rights-news.ts"
+      - ".github/workflows/rights-news.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rights-news
+  # Never cancel a run that commits data: the commit step runs `if: always()`,
+  # so a cancelled run publishes a partial file over a complete one.
+  cancel-in-progress: false
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Sweep the feeds
+        run: npm run rights:ingest
+      - name: Commit the register
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/rights/news.json
+          "data(rights): SC/ST Act and PM SHRI coverage register $(date -u +'%Y-%m-%d %H:%M')"

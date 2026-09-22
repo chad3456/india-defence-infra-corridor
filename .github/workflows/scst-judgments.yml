@@ -1,0 +1,51 @@
+name: Walk the SC/ST Act judgment corpus
+
+# Indian Kanoon publishes the text of Indian judgments and answers without a
+# key. A judgment is dated, citable, primary evidence: it says what a court did,
+# under its own name, on a known day. That makes it a better spine for this
+# subject than press coverage, which reports the cases that were interesting
+# rather than the cases that happened.
+#
+# The run walks paced search pages and records what each judgment SAYS. It does
+# not compute an acquittal rate, a conviction rate or a misuse rate, because the
+# corpus is a search result and not a sample, and because — see the header of
+# scripts/test-rights.ts — an acquittal is not a finding of misuse.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Weekly. The corpus is a court record; it does not move hourly.
+    - cron: "40 2 * * 1"
+  push:
+    paths:
+      - "scripts/etl/connectors/scst-judgments.ts"
+      - ".github/workflows/scst-judgments.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scst-judgments
+  # Never cancel a run that commits data: the commit step runs `if: always()`,
+  # so a cancelled run publishes a partial file over a complete one.
+  cancel-in-progress: false
+
+jobs:
+  judgments:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Walk the corpus
+        run: npm run scst:judgments
+      - name: Commit the corpus
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/rights/scst-judgments.json
+          "data(rights): SC/ST Act judgment corpus $(date -u +'%Y-%m-%d %H:%M')"

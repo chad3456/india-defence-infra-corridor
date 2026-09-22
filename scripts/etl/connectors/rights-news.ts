@@ -70,23 +70,27 @@ async function pace(): Promise<void> {
 }
 
 /**
- * The outlets, trimmed to those the probe found answering.
+ * The outlets, trimmed to those that answered WITH ITEMS.
  *
- * A feed listed here that does not answer would quietly lower the
- * corroboration count on every item, so the list is the probe's output rather
- * than a wish list.
+ * Twelve were tried across two probe rounds and five carry volume: The Hindu
+ * at 60 items a fetch, Hindustan Times at 100, Mint at 35, and two smaller.
+ * The Indian Express and Firstpost refuse with 403 on every path tried;
+ * Deccan Herald and Down To Earth 404; Scroll and The Wire return a feed with
+ * zero items in it, which is a third kind of failure and no more usable than
+ * the other two.
+ *
+ * None of those seven is listed here. A feed that does not answer would
+ * quietly lower the corroboration count on every item in the register while
+ * appearing to broaden it, which is worse than a shorter list.
+ *
+ * Five newsrooms is thin, and the page built on this has to say so. It is
+ * above the floor this repository sets for a subject, and well below what the
+ * question deserves.
  */
 export const FEEDS: Array<{ id: string; outlet: string; url: string }> = [
-  { id: "thehindu-national", outlet: "The Hindu", url: "https://www.thehindu.com/news/national/feeder/default.rss" },
-  { id: "indianexpress-india", outlet: "The Indian Express", url: "https://indianexpress.com/section/india/feed/" },
-  { id: "indianexpress-edu", outlet: "The Indian Express (Education)", url: "https://indianexpress.com/section/education/feed/" },
-  { id: "scroll", outlet: "Scroll.in", url: "https://scroll.in/feed" },
-  { id: "thewire", outlet: "The Wire", url: "https://thewire.in/rss" },
-  { id: "downtoearth", outlet: "Down To Earth", url: "https://www.downtoearth.org.in/rss" },
+  { id: "thehindu", outlet: "The Hindu", url: "https://www.thehindu.com/news/national/feeder/default.rss" },
   { id: "hindustantimes", outlet: "Hindustan Times", url: "https://www.hindustantimes.com/feeds/rss/india-news/rssfeed.xml" },
-  { id: "newindianexpress", outlet: "The New Indian Express", url: "https://www.newindianexpress.com/Nation/rssfeed/?id=170&getXmlFeed=true" },
-  { id: "deccanherald", outlet: "Deccan Herald", url: "https://www.deccanherald.com/rss/national.rss" },
-  { id: "telegraphindia", outlet: "The Telegraph India", url: "https://www.telegraphindia.com/feeds/rss.jsp?id=4" },
+  { id: "livemint", outlet: "Mint", url: "https://www.livemint.com/rss/news" },
   { id: "thequint", outlet: "The Quint", url: "https://www.thequint.com/stories.rss" },
   { id: "newslaundry", outlet: "Newslaundry", url: "https://www.newslaundry.com/stories.rss" },
 ];
