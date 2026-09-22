@@ -1,0 +1,1997 @@
+{
+  "builtAt": "2026-09-22T06:46:38.667Z",
+  "source": "Indian Kanoon (indiankanoon.org), the free Indian judgment search. Four queries, each asked with a judgments-only document filter, ten results per request, eight seconds apart.",
+  "method": "Indian Kanoon answers roughly ten requests and then stops, so the corpus is built across runs rather than in one: each run walks twelve pages, resumes each query where the last run left it, and merges into what is stored. Queries are asked separately rather than as one broad search, so the rarest category is reached instead of being buried by ranking.",
+  "refusal": "No acquittal rate, conviction rate or misuse measure is computed. The outcome words are MENTIONS in a search snippet, not findings: a snippet reading 'the accused was acquitted' may be the court's holding or it reciting a trial court order it goes on to overturn, and ten words of context cannot tell them apart. Every snippet is published beside its flags so a reader checks rather than trusts.",
+  "cannotSay": [
+    "How often the Act is misused. Only a court explicitly finding a complaint false is evidence of that, and those are flagged separately and are rare. An acquittal is not evidence of it: it can follow from a false complaint and can equally follow from a hostile witness, from intimidation of the complainant, from an investigation that never gathered the caste-certificate evidence the statute requires, or from a compromise outside court — and no public dataset separates them.",
+    "What share of cases end any particular way. These counts are per query, and each query is walked a set number of pages per run. Fifty judgments returned for one query and fifty for another says both were asked equally, not that the outcomes are equally common.",
+    "Anything about cases that never reached a written judgment, which is most of them. Judgments are the end of a filtered process — registration, investigation, chargesheet, trial — and every stage before drops cases for reasons this corpus cannot see.",
+    "Whether a flagged outcome is the court's own. The flag says a word appeared in a snippet. The snippet is published; the judgment is one link away."
+  ],
+  "counts": {
+    "documents": 117,
+    "judgments": 117,
+    "statutes": 0,
+    "unknown": 0,
+    "carriedFromEarlierRuns": 0,
+    "addedThisRun": 117,
+    "pagesThisRun": 12,
+    "withYear": 116,
+    "withCourt": 0,
+    "withNoMention": 53
+  },
+  "depth": {
+    "act": 3,
+    "acquittal": 3,
+    "false": 3,
+    "conviction": 3
+  },
+  "perQuery": [
+    {
+      "id": "act",
+      "label": "The Act generally",
+      "from": 0,
+      "pagesOk": 3,
+      "results": 30,
+      "refusedAt": null
+    },
+    {
+      "id": "acquittal",
+      "label": "Acquittal language",
+      "from": 0,
+      "pagesOk": 3,
+      "results": 30,
+      "refusedAt": null
+    },
+    {
+      "id": "false",
+      "label": "Complaint found false",
+      "from": 0,
+      "pagesOk": 3,
+      "results": 30,
+      "refusedAt": null
+    },
+    {
+      "id": "conviction",
+      "label": "Conviction language",
+      "from": 0,
+      "pagesOk": 3,
+      "results": 30,
+      "refusedAt": null
+    }
+  ],
+  "unparsed": [],
+  "sampleWindows": [
+    {
+      "query": "act",
+      "title": "V.P.Kuppurao vs The Director General Of Police on 5 October, 2009",
+      "court": null,
+      "window": " <h4 class=\"result_title\"> <a href=\"/docfragment/1348044/?formInput=scheduled%20castes%20scheduled%20tribes%20prevention%20of%20atrocities%20act%20%20doctypes%3A%20judgments\">V.P.Kuppurao vs The Director General Of Police on 5 October, 2009</a> </h4> <div class=\"headline\"> <b>scheduled</b> caste, punishable under the provisions of the <b>Scheduled</b> <b>Castes</b> and <b>Scheduled</b> <b>Tribes</b> (<b>Prevention</b> of <b>Atrocities</b>) <b>Act</b>, 1989 . All the above said ... Investigating Officers in cases of <b>atrocities</b> under the <b>Scheduled</b> <b>Castes</b> and <b>Scheduled</b> <b>Tribes</b> (<b>Prevention"
+    },
+    {
+      "query": "act",
+      "title": "Kosaraju Sasidhar vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "window": " <h4 class=\"result_title\"> <a href=\"/docfragment/89075897/?formInput=scheduled%20castes%20scheduled%20tribes%20prevention%20of%20atrocities%20act%20%20doctypes%3A%20judgments\">Kosaraju Sasidhar vs The State Of Andhra Pradesh on 6 January, 2025</a> </h4> <div class=\"headline\"> <b>Scheduled</b> <b>Castes</b> and the <b>Scheduled</b> <b>Tribes</b> (<b>Prevention</b> of <b>Atrocities</b>) <b>Act</b>, 1989. Thereafter, the police, on the strength of the material collected, altered ... <b>Scheduled</b> <b>Castes</b> and the <b>Scheduled</b> <b>Tribes</b> (<b>Prevention</b> of <b>Atrocities</b>) <b>Act</b>, 1989. "
+    },
+    {
+      "query": "act",
+      "title": "E. Velmurugan vs State Of Tamil Nadu Rep By on 27 July, 2023",
+      "court": null,
+      "window": " <h4 class=\"result_title\"> <a href=\"/docfragment/196049944/?formInput=scheduled%20castes%20scheduled%20tribes%20prevention%20of%20atrocities%20act%20%20doctypes%3A%20judgments\">E. Velmurugan vs State Of Tamil Nadu Rep By on 27 July, 2023</a> </h4> <div class=\"headline\"> Exclusive Trial of Cases registered under the <b>Scheduled</b> <b>Castes</b> and <b>Scheduled</b> <b>Tribes</b> (<b>Prevention</b> of <b>Atrocities</b>) <b>Act</b>, 1989 at Villupuram District ... Exclusive Trial of Cases registered under the <b>Scheduled</b> <b>Castes</b> and <b>Scheduled</b> <b>Tribes"
+    }
+  ],
+  "byYear": [
+    {
+      "year": 1996,
+      "n": 1
+    },
+    {
+      "year": 1997,
+      "n": 1
+    },
+    {
+      "year": 1998,
+      "n": 1
+    },
+    {
+      "year": 2003,
+      "n": 1
+    },
+    {
+      "year": 2004,
+      "n": 1
+    },
+    {
+      "year": 2005,
+      "n": 1
+    },
+    {
+      "year": 2006,
+      "n": 1
+    },
+    {
+      "year": 2008,
+      "n": 3
+    },
+    {
+      "year": 2009,
+      "n": 3
+    },
+    {
+      "year": 2010,
+      "n": 1
+    },
+    {
+      "year": 2011,
+      "n": 2
+    },
+    {
+      "year": 2012,
+      "n": 1
+    },
+    {
+      "year": 2013,
+      "n": 4
+    },
+    {
+      "year": 2014,
+      "n": 3
+    },
+    {
+      "year": 2015,
+      "n": 4
+    },
+    {
+      "year": 2016,
+      "n": 5
+    },
+    {
+      "year": 2017,
+      "n": 4
+    },
+    {
+      "year": 2018,
+      "n": 7
+    },
+    {
+      "year": 2019,
+      "n": 8
+    },
+    {
+      "year": 2020,
+      "n": 6
+    },
+    {
+      "year": 2021,
+      "n": 3
+    },
+    {
+      "year": 2022,
+      "n": 7
+    },
+    {
+      "year": 2023,
+      "n": 9
+    },
+    {
+      "year": 2024,
+      "n": 7
+    },
+    {
+      "year": 2025,
+      "n": 26
+    },
+    {
+      "year": 2026,
+      "n": 6
+    }
+  ],
+  "byCourt": [],
+  "byMention": [
+    {
+      "mention": "convicted",
+      "n": 28
+    },
+    {
+      "mention": "acquitted",
+      "n": 23
+    },
+    {
+      "mention": "quashed",
+      "n": 13
+    },
+    {
+      "mention": "false-complaint",
+      "n": 5
+    },
+    {
+      "mention": "compromise",
+      "n": 2
+    },
+    {
+      "mention": "bail",
+      "n": 1
+    }
+  ],
+  "judgments": [
+    {
+      "docId": "1348044",
+      "title": "V.P.Kuppurao vs The Director General Of Police on 5 October, 2009",
+      "court": null,
+      "year": 2009,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "scheduled caste, punishable under the provisions of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 . All the above said ... Investigating Officers in cases of atrocities under the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 arising within their jurisdiction subject",
+      "url": "https://indiankanoon.org/doc/1348044/"
+    },
+    {
+      "docId": "1841482",
+      "title": "C.Sathiyanathan vs Veeramuthu on 14 November, 2008",
+      "court": null,
+      "year": 2008,
+      "queries": [
+        "act",
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "offence punishable under the provisions of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 and registering the case ... Section 3(i)(x) of the Scheduled Castes and Scheduled Tribes ( Prevention of atrocities ) Act , 1989. But it is pertinent to note that",
+      "url": "https://indiankanoon.org/doc/1841482/"
+    },
+    {
+      "docId": "121591680",
+      "title": "Gudavalli Ratna Sudhakar Sudhakar vs The State Of A.P, on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/121591680/"
+    },
+    {
+      "docId": "189989526",
+      "title": "Manne Sundara Rao vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/189989526/"
+    },
+    {
+      "docId": "192924254",
+      "title": "Gonthena Lovaraj Kumar vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/192924254/"
+    },
+    {
+      "docId": "98032900",
+      "title": "Sri Nannapaneni Chalapathi Rao vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/98032900/"
+    },
+    {
+      "docId": "92519097",
+      "title": "Nakka Pullaiah Alias Gandhi vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/92519097/"
+    },
+    {
+      "docId": "13367135",
+      "title": "Mohammad Gouse, vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/13367135/"
+    },
+    {
+      "docId": "148512276",
+      "title": "Shaik Sardar Johny vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/148512276/"
+    },
+    {
+      "docId": "151731967",
+      "title": "Pothumarthi Hemanth Babi vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/151731967/"
+    },
+    {
+      "docId": "89075897",
+      "title": "Kosaraju Sasidhar vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/89075897/"
+    },
+    {
+      "docId": "173975444",
+      "title": "Bheemavarapu Yateendra Rama Krishna, vs The State Of Andhra Pradesh, on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/173975444/"
+    },
+    {
+      "docId": "144820722",
+      "title": "Shaik Mohammad Moulana Abdul Kalam Sk Mm ... vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/144820722/"
+    },
+    {
+      "docId": "100558061",
+      "title": "Thota Venkateswarao vs The State Of Ap on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/100558061/"
+    },
+    {
+      "docId": "56214079",
+      "title": "Anagani Ravi vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/56214079/"
+    },
+    {
+      "docId": "14810184",
+      "title": "Gondi Parandhamaiah vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/14810184/"
+    },
+    {
+      "docId": "98819598",
+      "title": "Olupalli Mohana Ranga Rao vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/98819598/"
+    },
+    {
+      "docId": "158517458",
+      "title": "Vinta Adinarayana Reddy vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/158517458/"
+    },
+    {
+      "docId": "156655158",
+      "title": "Chalivendra Ramakrishna Salivendra ... vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/156655158/"
+    },
+    {
+      "docId": "51408509",
+      "title": "Simhadri Subba Rao Alias Subba Rao Goud vs The State Of Andhra Pradesh on 6 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth",
+      "url": "https://indiankanoon.org/doc/51408509/"
+    },
+    {
+      "docId": "196049944",
+      "title": "E. Velmurugan vs State Of Tamil Nadu Rep By on 27 July, 2023",
+      "court": null,
+      "year": 2023,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Exclusive Trial of Cases registered under the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 at Villupuram District ... Exclusive Trial of Cases registered under the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , Villupuram. 2. The Appellants are arrayed",
+      "url": "https://indiankanoon.org/doc/196049944/"
+    },
+    {
+      "docId": "107538668",
+      "title": "Sunil Kumar vs The State Of Jharkhand on 8 April, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes or Scheduled Tribes mentioned in Section 2 (c) of Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act ... Scheduled Castes or Scheduled Tribes for the purpose of Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act",
+      "url": "https://indiankanoon.org/doc/107538668/"
+    },
+    {
+      "docId": "395403",
+      "title": "Ram Pal vs State Of Rajasthan on 21 November, 1997",
+      "court": null,
+      "year": 1997,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Section 3(1) (iv) and (x) of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 and issued process against the accused ... offence under Section 4 of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 and issued process against the police officers",
+      "url": "https://indiankanoon.org/doc/395403/"
+    },
+    {
+      "docId": "190855482",
+      "title": "The State By vs Naga @ Nagaraju S/O Hanumanthappa on 2 January, 2020",
+      "court": null,
+      "year": 2020,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "attract 3(1)(r) of the Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act , it is necessary to prove that the offence ... Scheduled Caste, the provision u/s 3(1)(r) of The Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act",
+      "url": "https://indiankanoon.org/doc/190855482/"
+    },
+    {
+      "docId": "79129066",
+      "title": "Monu @ Ranu Kushwah vs The State Of Madhya Pradesh on 30 November, 2016",
+      "court": null,
+      "year": 2016,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Caste or a Scheduled Tribe . 14. The Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 was enacted because ... Scheduled Castes and a Scheduled Tribes , certain amendments have been introduced by the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities",
+      "url": "https://indiankanoon.org/doc/79129066/"
+    },
+    {
+      "docId": "178330653",
+      "title": "7. In The Light Of The Judgment Of This ... vs . State Of M.P. [2012 (4) Scc 516]. ... on 16 October, 2014",
+      "court": null,
+      "year": 2014,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "charge under Section 3(2)(v) of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 by this Court ... under Section.3(2)(v) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , would arise and the learned Second Additional",
+      "url": "https://indiankanoon.org/doc/178330653/"
+    },
+    {
+      "docId": "1426837",
+      "title": "Thangarasu vs State By Deputy Superintendent on 14 September, 2009",
+      "court": null,
+      "year": 2009,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Section 3(1)(x) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. The same was taken on file ... offences under the provisions of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 The learned Principal Sessions Judge (Special Judge",
+      "url": "https://indiankanoon.org/doc/1426837/"
+    },
+    {
+      "docId": "187762506",
+      "title": "Rajendra Prasad Singh vs State Of U.P. on 10 December, 2020",
+      "court": null,
+      "year": 2020,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "under Section 3(1)(x) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 for one year Rigorous Imprisonment ... under Section 3(2)(v) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 to life imprisonment and a fine",
+      "url": "https://indiankanoon.org/doc/187762506/"
+    },
+    {
+      "docId": "92940867",
+      "title": "Ruma Raha Dutta & Ors vs The State Of West Bengal & Anr on 16 May, 2014",
+      "court": null,
+      "year": 2014,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "quashed"
+      ],
+      "snippet": "Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 pending before the Court of Learned Additional Chief Judicial Magistrate, Serampore, Hooghly ... with Sections 3 and 4 of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. The petitioners have prayed for quashing",
+      "url": "https://indiankanoon.org/doc/92940867/"
+    },
+    {
+      "docId": "58171185",
+      "title": "P.K.Illavarasan vs Union Of India on 27 June, 2019",
+      "court": null,
+      "year": 2019,
+      "queries": [
+        "act"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Castes and Scheduled Tribes as found in the Special Enactment and the Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act ... Castes and Scheduled Tribes as found in the Special Enactment and the Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act",
+      "url": "https://indiankanoon.org/doc/58171185/"
+    },
+    {
+      "docId": "29453158",
+      "title": "Tejinder Singh @ Kaka vs State Of Punjab on 11 April, 2013",
+      "court": null,
+      "year": 2013,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "same is under challenge in these appeals by the appellants urging various grounds. However, the High Court acquitted the appellants of the charges framed under ... Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2. The appellants have prayed for allowing the appeals by setting aside the impugned judgment",
+      "url": "https://indiankanoon.org/doc/29453158/"
+    },
+    {
+      "docId": "91601029",
+      "title": "Ashoksinh Jayendrasinh vs The State Of Gujarat on 7 May, 2019",
+      "court": null,
+      "year": 2019,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 . 1 2. Brief facts which led to filing of this appeal are:- On 23.11.1997 at about ... Arms Act . The High Court acquitted the appellant under Section 3(1)(x) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act",
+      "url": "https://indiankanoon.org/doc/91601029/"
+    },
+    {
+      "docId": "34217078",
+      "title": "Kailash vs State Of M.P. on 28 September, 2022",
+      "court": null,
+      "year": 2022,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "Prevention of Atrocities ) Act , Ratlam (M.P.) whereby learned Judge of the Trial Court, while acquitting all the accused persons under Section ... acquitted all the accused persons from Section 3(2)(5) of the Scheduled Caste & Scheduled Tribe ( Prevention of Atrocities ) Act , 1989, has also acquitted",
+      "url": "https://indiankanoon.org/doc/34217078/"
+    },
+    {
+      "docId": "3081065",
+      "title": "Ballu @ Jamuna vs State Of M.P. on 10 November, 2017",
+      "court": null,
+      "year": 2017,
+      "queries": [
+        "acquittal",
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "Prevention of Atrocities ) Act , hence, all the appeals are partly allowed and all the appellants are acquitted from the charge punishable under Section ... Prevention of Atrocities ) Act (In Three counts) and appellant Rajendra is acquitted from the charge punishable under Section 323 of IPC for assaulting Lalita",
+      "url": "https://indiankanoon.org/doc/3081065/"
+    },
+    {
+      "docId": "193324377",
+      "title": "Geeta Devi vs State Of U.P. on 18 January, 2022",
+      "court": null,
+      "year": 2022,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Tribes ( Prevention of Atrocities ) Digitally signed by Rajni Mukhi Date: 2022.01.18 14:12:02 IST Reason: 1 Act , 1989, the victim – original appellant ... Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Feeling aggrieved and dissatisfied with the judgment and order passed by the learned Special Court acquitting the respondents",
+      "url": "https://indiankanoon.org/doc/193324377/"
+    },
+    {
+      "docId": "30471469",
+      "title": "Mustaq Mohd. vs The State Of M.P. on 17 March, 2015",
+      "court": null,
+      "year": 2015,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "which, the appeal of the appellant may be accepted and appellant may be acquitted from all the charges. Consequently, the appeal filed by the appellant ... Prevention of Atrocities ) Act is hereby set aside. He is acquitted from all the charges. He would be 6 Criminal Appeal No.637/1998 entitled",
+      "url": "https://indiankanoon.org/doc/30471469/"
+    },
+    {
+      "docId": "114142341",
+      "title": "Baljit Singh And Ors vs State Of Punjab on 13 May, 2015",
+      "court": null,
+      "year": 2015,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "sentenced as mentioned above. They were acquitted of charges under the Scheduled Castes & Scheduled Tribes ( Prevention of OMKAR SINGH 2015.05.14 10:50 I attest ... Chandigarh CRA-D No.896-DB of 2011 [8] Atrocities ) Act , 1989. Hence aggrieved, present appeal has been filed. It is argued by learned senior",
+      "url": "https://indiankanoon.org/doc/114142341/"
+    },
+    {
+      "docId": "165428321",
+      "title": "Muneem Gadewal vs The State Of Madhya Pradesh Judgement ... on 10 July, 2013",
+      "court": null,
+      "year": 2013,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "Section 3(i)(x) of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Appellant pleaded not guilty therefore, he was put to trial ... this appeal . However, appellant acquitted from the charge punishable under Section 3(i)(x) of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act",
+      "url": "https://indiankanoon.org/doc/165428321/"
+    },
+    {
+      "docId": "25129897",
+      "title": "K.Annadurai vs The State Rep. By on 8 December, 2022",
+      "court": null,
+      "year": 2022,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "Judge/ Special Judge Under SC & ST ( Prevention of Atrocities ) Act , Chennai, by allowing this criminal appeal . https://www.mhc.tn.gov.in/judis Page ... Principal Sessions Judge/Special Judge Under SC and ST ( Prevention of Atrocities ) Act , Chennai, thereby acquitted the second respondent for the offence under Sections",
+      "url": "https://indiankanoon.org/doc/25129897/"
+    },
+    {
+      "docId": "48266072",
+      "title": "State Of Karnataka vs Dadapeer on 14 March, 2023",
+      "court": null,
+      "year": 2023,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "SEXUAL OFFENCES ACT AND SECTIONS 3(2)(V) OF THE SCHEDULED CASTES AND THE SCHEDULED TRIBES ( PREVENTION OF ATROCITIES ) ACT . THIS CRIMINAL APPEAL COMING ... Act , 2012 (&#x27; POCSO Act &#x27; for short) read with Section 3(2)(v) of the Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities",
+      "url": "https://indiankanoon.org/doc/48266072/"
+    },
+    {
+      "docId": "87934431",
+      "title": "State Of Karnataka vs Sharifsab @ Sharfanna on 10 March, 2023",
+      "court": null,
+      "year": 2023,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 (hereinafter referred to as &#x27;the SC/ST and POA Act &#x27;, for short). Criminal Appeal No.1530 ... Prevention of Atrocities ) Act , 1989? - 13 - CRL.A No. 1522 of 2016 C/W CRL.A No. 1530 of 2016 (ii) Whether the appellant/State",
+      "url": "https://indiankanoon.org/doc/87934431/"
+    },
+    {
+      "docId": "18705345",
+      "title": "State Of Karnataka vs Sharifsab @ on 10 March, 2023",
+      "court": null,
+      "year": 2023,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 (hereinafter referred to as &#x27;the SC/ST and POA Act &#x27;, for short). Criminal Appeal No.1530 ... Prevention of Atrocities ) Act , 1989? - 13 - CRL.A No. 1522 of 2016 C/W CRL.A No. 1530 of 2016 (ii) Whether the appellant/State",
+      "url": "https://indiankanoon.org/doc/18705345/"
+    },
+    {
+      "docId": "15153588",
+      "title": "Kumar vs The State Represented By on 8 March, 2013",
+      "court": null,
+      "year": 2013,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "Prevention of Atrocities ) Act . A.1 to A.3 Section 3(2)(v) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act . Accused ... Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , were acquitted and the State has not preferred any appeal challenging the acquittal",
+      "url": "https://indiankanoon.org/doc/15153588/"
+    },
+    {
+      "docId": "21689784",
+      "title": "Abinesh vs State Rep. By on 19 July, 2024",
+      "court": null,
+      "year": 2024,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "learned Special Sessions Judge, Special Court for SC/ST Prevention of Atrocities Act , Perambalur, in Spl.S.C.No.10 of 2021 dated ... Judge, Special Court for SC/ST ( Prevention of Atrocities ) Act , Perambalur, is set aside and they are acquitted of the charges under Section",
+      "url": "https://indiankanoon.org/doc/21689784/"
+    },
+    {
+      "docId": "169167996",
+      "title": "The State Through vs M G Athmarama Gowda on 7 March, 2023",
+      "court": null,
+      "year": 2023,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "SCHEDULED CASTES AND THE SCHEDULED TRIBES ( PREVENTION OF ATROCITIES ) ACT , 1989. THIS CRIMINAL APPEAL COMING ON FOR FINAL HEARING, THIS DAY, K.S.MUDAGAL ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 (&#x27;the Act &#x27; for short). 3. For the purpose of convenience, the parties",
+      "url": "https://indiankanoon.org/doc/169167996/"
+    },
+    {
+      "docId": "38925844",
+      "title": "Raju @ Pralhad Vitthal Naik vs The State Of Maharashtra on 19 August, 2020",
+      "court": null,
+      "year": 2020,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 [hereinafter referred to as the \"S.C. & S.T. ( Prevention of Atrocities ) Act ... Prevention of Atrocities ) Act . As such this Appeal . 2] Facts as are necessary for deciding the present appeal are as under:- 3] The complainant Maya",
+      "url": "https://indiankanoon.org/doc/38925844/"
+    },
+    {
+      "docId": "98303370",
+      "title": "The State Of Karnataka vs Suresh S/O Laxmanrao Jadhav Ors on 17 November, 2017",
+      "court": null,
+      "year": 2017,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "Prevention of Atrocities ) Act , 1989. This appeal coming on for arguments this day, RATHNAKALA J., delivered the following: JUDGMENT The State is in appeal challenging ... Prevention of Atrocities ) Act , 1989 also failed and rightly Special Judge has acquitted the accused persons and we endorse the same. Accordingly, the appeal",
+      "url": "https://indiankanoon.org/doc/98303370/"
+    },
+    {
+      "docId": "85819862",
+      "title": "In Reference vs Ilaram Sahu And Anr on 5 May, 2026",
+      "court": null,
+      "year": 2026,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "Judge, SC/ST ( Prevention of Atrocities ) Act , Raipur in Special Sessions Trial No.47/2008, committed a manifest error in acquitting accused Ilaram Sahu (arrayed ... Judge, SC/ST ( Prevention of Atrocities ) Act , Raipur, in Special Sessions Trial No.47/2008 vide judgment dated 04.11.2011, has rightly acquitted the non-applicant",
+      "url": "https://indiankanoon.org/doc/85819862/"
+    },
+    {
+      "docId": "106404368",
+      "title": "Basavaral Mahadevappa Ramaji vs The State Of Karnataka on 4 November, 2022",
+      "court": null,
+      "year": 2022,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "PREVENTION OF ATROCITIES ) ACT , 1989 AND ALLOW THE PRESENT APPEAL BY ACQUITTING THE APPELLANT/ACCUSED NO. 9. THESE CRIMINAL APPEALS HAVING BEEN HEARD AND RESERVED ... accused were acquitted of offences under Sections 3(2)(v) of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 (for short",
+      "url": "https://indiankanoon.org/doc/106404368/"
+    },
+    {
+      "docId": "54364956",
+      "title": "K.Pugazh vs The State Of Tamil Nadu on 18 November, 2016",
+      "court": null,
+      "year": 2016,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Tribes ( Prevention of Atrocities ) Act , 1989, Villupuram, peruse the same, hear the appeal , set aside the Judgment dated November 18th, 2016 and acquit the appellant ... Cases Registered under the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , Villupuram&#x27; (henceforth &#x27;Trial Court&#x27; for the sake",
+      "url": "https://indiankanoon.org/doc/54364956/"
+    },
+    {
+      "docId": "24022130",
+      "title": "Karuppusamy vs State Rep By on 14 November, 2024",
+      "court": null,
+      "year": 2024,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "Court for Scheduled Castes/Scheduled Tribes ( Prevention of Atrocities ) Act Cases, Dindigul and set aside the same and acquit the appellant/accused from all charges ... Special Court for Scheduled Castes/Scheduled Tribes ( Prevention of Atrocities ) Act Cases, Dindigul, has filed this appeal , challenging the conviction and sentence imposed",
+      "url": "https://indiankanoon.org/doc/24022130/"
+    },
+    {
+      "docId": "175569390",
+      "title": "Sadashiva vs The State Of Karnataka on 17 July, 2026",
+      "court": null,
+      "year": 2026,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "SCHEDULED TRIBE ( PREVENTION OF ATROCITIES ) ACT , 1989 AND ACQUIT THE APPELLANT FROM THE CHARGES LEVELED AGAINST HIM ALLOWING THIS APPEAL IN THE INTEREST OF JUSTICE ... Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 (for short, &#x27;the SC/ST (POA) Act &#x27;). 2. The brief facts",
+      "url": "https://indiankanoon.org/doc/175569390/"
+    },
+    {
+      "docId": "99301194",
+      "title": "Chandra Shekhar @ Daulal vs The State Of M.P. on 14 March, 2024",
+      "court": null,
+      "year": 2024,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. It is also urged that looking to abuse uttered by appellant, it cannot be said ... appellant is acquitted of offence under Section 3(1)(x) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 and of offence",
+      "url": "https://indiankanoon.org/doc/99301194/"
+    },
+    {
+      "docId": "67280109",
+      "title": "The State Of Karnataka vs Girish S/O Jagadish Rao Astikar on 31 January, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "SCHEDULED CASTES & SCHEDULED TRIBES ( PREVENTION OF ATROCITY ) ACT 1989. THIS APPEAL COMING ON FOR HEARING, THIS DAY, JUDGMENT WAS DELIVERED THEREIN AS UNDER: CORAM ... Scheduled Castes and Scheduled Tribes ( Prevention of Atrocity ) Act , 1989. Accordingly, the Special Judge has rightly acquitted the accused from the charges leveled against",
+      "url": "https://indiankanoon.org/doc/67280109/"
+    },
+    {
+      "docId": "103658663",
+      "title": "Chandra Shekhar @ Daulal vs The State Of M.P. on 2 January, 2024",
+      "court": null,
+      "year": 2024,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. It is also urged that looking to abuse uttered by appellant, it cannot be said ... allowed and is acquitted under Section 3(1)(x) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Appeal filed",
+      "url": "https://indiankanoon.org/doc/103658663/"
+    },
+    {
+      "docId": "161179783",
+      "title": "Rajangam vs The State on 27 August, 2018",
+      "court": null,
+      "year": 2018,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "with 3(2)(v) of SC/ST ( Prevention of Atrocities ) Amendment Ordinance, 2014, while he was acquitted under Section ... Act , 2012 (hereinafter referred to as the “ POCSO Act ”) and 3(1)(xii) read with 3(2)(v) of SC/ST ( Prevention of Atrocities ) Amendment",
+      "url": "https://indiankanoon.org/doc/161179783/"
+    },
+    {
+      "docId": "102558956",
+      "title": "Shivaraj S/O Basavarajaiah vs The State Of Karntaka Rep By Its Spp on 3 June, 2013",
+      "court": null,
+      "year": 2013,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "fact that the appellants have been acquitted for the offence under Scheduled Castes/Scheduled Tribes ( Prevention of Atrocity ) Act . He further pleads that the order ... Caste/Scheduled Tribes ( Prevention of Atrocity ) Act . In so trying such offences under the Scheduled Castes/Scheduled Tribes ( Prevention of Atrocity ) Act , various other offences",
+      "url": "https://indiankanoon.org/doc/102558956/"
+    },
+    {
+      "docId": "157094064",
+      "title": "State Of Karnataka vs Moti @ Mohan on 20 August, 2015",
+      "court": null,
+      "year": 2015,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "UNDER SECTION 3(1)(x) OF SC/ST ( PREVENTION OF ATROCITIES ) ACT . IN CRIMINAL APPEAL NO. 445/11 BETWEEN: 1. MOTI ALIAS MOHANA ... Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act r/w 149 of IPC . The reasons assigned for acquitting the accused for the offences punishable",
+      "url": "https://indiankanoon.org/doc/157094064/"
+    },
+    {
+      "docId": "189602953",
+      "title": "S.Ganesan vs State By",
+      "court": null,
+      "year": null,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted",
+        "convicted"
+      ],
+      "snippet": "exclusive trial of Cases registered under SC/ST ( Prevention of Atrocities ) Act , Villupuram and acquit the Appellant. 2.The Convict/sole Accused is the Appellant ... Court has acquitted the Accused and convicted him for the offences under the SC/ST ( Prevention of Atrocities ) Act . Hence the Appeal",
+      "url": "https://indiankanoon.org/doc/189602953/"
+    },
+    {
+      "docId": "133311632",
+      "title": "State Of Chhattisgarh vs Laxman @ Videshi And Ors on 17 November, 2022",
+      "court": null,
+      "year": 2022,
+      "queries": [
+        "acquittal"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "appeal and they have been filed assailing the impugned judgment dated 23.10.2007 passed Special Judge, Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ), Act ... Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act has committed grave error in acquitting the respondents in Acquittal Appeal No. 180/2010 by recording",
+      "url": "https://indiankanoon.org/doc/133311632/"
+    },
+    {
+      "docId": "124161348",
+      "title": "The Secretary vs Elephant G. Rajendran on 6 November, 2023",
+      "court": null,
+      "year": 2023,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "The Secretary vs Elephant G. Rajendran on 6 November, 2023 Author: S.Vaidyanathan Bench: S",
+      "url": "https://indiankanoon.org/doc/124161348/"
+    },
+    {
+      "docId": "151525209",
+      "title": "Deepak Das Mahant @ Mahant Deepak Das vs The State Of Chhattisgarh on 17 August, 2026",
+      "court": null,
+      "year": 2026,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Prevention of Atrocities ) Act , 1989. The contention that the complaint was lodged as a counterblast to the pending civil dispute is a matter of defence ... provisions of the SC/ST ( Prevention of Atrocities ) Act , 1989. The contention of the petitioner that the complaint is false and has been lodged",
+      "url": "https://indiankanoon.org/doc/151525209/"
+    },
+    {
+      "docId": "1335765",
+      "title": "P.Nallusamy vs )The Deputy Superintendent Of Police on 13 June, 2008",
+      "court": null,
+      "year": 2008,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "quashed"
+      ],
+      "snippet": "Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 based on the complaint of the 3rd respondent herein; that the said complaint had been preferred in order ... Prevention of Atrocities ) Act , 1989 were not attracted by the contents of the complaint and hence for that reason also, the FIR must be quashed",
+      "url": "https://indiankanoon.org/doc/1335765/"
+    },
+    {
+      "docId": "190655185",
+      "title": "Raja vs The Deputy Superintendent Of Police on 25 September, 2019",
+      "court": null,
+      "year": 2019,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "false-complaint"
+      ],
+      "snippet": "pending investigation on the file of the respondent police and quash the same. For Petitioner : Mr. R. Mariappan For Respondents : Mr.K.Suyambulinga bharathi ... Prevention of Atrocities ) Act . Due to political enmity, the defacto complainant has lodged a false complaint as agaisnt the petitioner. Hence he prayed to quash",
+      "url": "https://indiankanoon.org/doc/190655185/"
+    },
+    {
+      "docId": "108728085",
+      "title": "Dr. Subhash Kashinath Mahajan vs The State Of Maharashtra on 20 March, 2018",
+      "court": null,
+      "year": 2018,
+      "queries": [
+        "false",
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "quashed"
+      ],
+      "snippet": "provisions of the Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 and for certain other connected offences. The said matter was dealt ... another complaint by the respondent no. 2 against the petitioner under the said provisions. The quashing of the said complaint has been declined",
+      "url": "https://indiankanoon.org/doc/108728085/"
+    },
+    {
+      "docId": "419456",
+      "title": "Dr. N.T. Desai vs State Of Gujarat on 10 December, 1996",
+      "court": null,
+      "year": 1996,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "complaint against the petitioner for the alleged offences punishable under Section 3 (1 )(x) of the Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act ... this Court alleging that the complaint in question against him by the complainant being patently malicious, false , frivolous and vexatious, filed only with a view",
+      "url": "https://indiankanoon.org/doc/419456/"
+    },
+    {
+      "docId": "8425861",
+      "title": "The State Of Maharashtra vs Sayeed Mohd. Hanif Abdul Rahim on 10 February, 2012",
+      "court": null,
+      "year": 2012,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "The State Of Maharashtra vs Sayeed Mohd. Hanif Abdul Rahim on 10 February, 2012 Author",
+      "url": "https://indiankanoon.org/doc/8425861/"
+    },
+    {
+      "docId": "1546166",
+      "title": "Anil Kumar Pandey vs Daulat Prasad on 3 August, 2005",
+      "court": null,
+      "year": 2005,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989, before the Court of Chief Judicial Magistrate, Sagar. Respondent/complainant besides himself examined Bablu Chamar ... Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act and ordered for issuance of bailable warrant against him. 4. Aggrieved by the aforesaid order",
+      "url": "https://indiankanoon.org/doc/1546166/"
+    },
+    {
+      "docId": "105470989",
+      "title": "Prabhu Dayal Kumawat And Anr vs State Of Rajasthan And Anr on 5 October, 2016",
+      "court": null,
+      "year": 2016,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "quashed"
+      ],
+      "snippet": "Scheduled Castes and Schedule Tribes ( Prevention of Atrocities ) Act , has been added only with a view to make the case non-bailable, otherwise no such ... Schedule Tribes ( Prevention of Atrocities ) Act , is not attracted. Learned Public Prosecutor opposed the petition and stated that the FIR cannot be quashed . The matter",
+      "url": "https://indiankanoon.org/doc/105470989/"
+    },
+    {
+      "docId": "714647",
+      "title": "Ms.Arokia Mary Lucia vs The State Of Tamil Nadu on 13 February, 2004",
+      "court": null,
+      "year": 2004,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "quashed",
+        "false-complaint"
+      ],
+      "snippet": "Act and Rules 5 to 7 of the Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Rules, 1995 and hence needless to mention that ... would only amount to encouraging such false cases deliberately foisted to cheat the system which, if not quashed , would only give the way for dishonest",
+      "url": "https://indiankanoon.org/doc/714647/"
+    },
+    {
+      "docId": "28670948",
+      "title": "Ankit Dixit vs The State Of Madhya Pradesh on 22 March, 2021",
+      "court": null,
+      "year": 2021,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Ankit Dixit vs The State Of Madhya Pradesh on 22 March, 2021 Author: Rajeev Kumar",
+      "url": "https://indiankanoon.org/doc/28670948/"
+    },
+    {
+      "docId": "957635",
+      "title": "V. Kanagasabapathy vs The Deputy Inspector General Of Police on 12 April, 2006",
+      "court": null,
+      "year": 2006,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Castes and Scheduled Tribes Prevention of Atrocities Act , 1989. The said criminal case was charge sheeted before the Judicial Magistrate Court, Tirunelveli ... that the Complainant Kumar @ Rajkumar gave false and motivated complaint . Petitioner has now filed this writ petition to quash the charge memo on the ground",
+      "url": "https://indiankanoon.org/doc/957635/"
+    },
+    {
+      "docId": "97752181",
+      "title": "Smt. Kavita Tiwari vs The State Of Madhya Pradesh on 10 February, 2020",
+      "court": null,
+      "year": 2020,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Prevention of Atrocities ) Act , 1989. It is alleged that the petitioner lodged FIR against the petitioner&#x27;s husband on 22.06.2019 and to make ... MCRC-40789-2019 ( Prevention of Atrocities ) Act , 1989 against the present petitioner. Under such circumstances, prayer is made to quash the FIR proceedings of crime",
+      "url": "https://indiankanoon.org/doc/97752181/"
+    },
+    {
+      "docId": "66170032",
+      "title": "Amit Gupta vs State Of Haryana And Another on 3 April, 2014",
+      "court": null,
+      "year": 2014,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "quashed"
+      ],
+      "snippet": "without considering or even referring to the cancellation report, the court quashed the complaint Saini Paramjit Kaur 2014.04.23 13:35 I attest to the accuracy ... Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 and Section 506 IPC. In Harbans Singh&#x27;s case (supra), the court by referring",
+      "url": "https://indiankanoon.org/doc/66170032/"
+    },
+    {
+      "docId": "45929354",
+      "title": "Neeraj Shukla vs The State Of Madhya Pradesh on 24 July, 2017",
+      "court": null,
+      "year": 2017,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "quashed"
+      ],
+      "snippet": "held on facts, was called for â Quashing of complaint filed against appellant by Respondent 3 â Complaint alleging that appellant abused respondent ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 the complainant ought to have alleged that the appellant- accused was not a member",
+      "url": "https://indiankanoon.org/doc/45929354/"
+    },
+    {
+      "docId": "60079745",
+      "title": "Ajit Singh @ Papsa vs Smt Lal Kanwar on 27 July, 2022",
+      "court": null,
+      "year": 2022,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "complaint and that the inherent powers do not confer any arbitrary jurisdiction on the Court to act according to its whims and fancies ... Section 3 read with Section 7 of the SC/ST ( Prevention of Atrocities ) Act were made against them. The respondent herein had also filed",
+      "url": "https://indiankanoon.org/doc/60079745/"
+    },
+    {
+      "docId": "19142904",
+      "title": "Dr.A.Ganapathi vs The State Of Tamil Nadu on 30 January, 2019",
+      "court": null,
+      "year": 2019,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "false-complaint"
+      ],
+      "snippet": "pending on the file of the 1st respondent and quash the same as illegal, arbitrary, abuse of process and without jurisdiction. http://www.judis ... Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , (hereinafter called as the Act ), is being misused by giving a false complaint and on the other side",
+      "url": "https://indiankanoon.org/doc/19142904/"
+    },
+    {
+      "docId": "182995365",
+      "title": "Subal Chandra Ghosh & Ors vs The State Of West Bengal & Anr on 27 July, 2015",
+      "court": null,
+      "year": 2015,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "quashed"
+      ],
+      "snippet": "Act and Rule 7 of the S.C./S.T. Act ( Prevention of Atrocities ) Rules, 1995. There was no notification nor there is anything ... liable to be quashed for conducting the investigation in violation of the provisions of Section 9 of the said Act and Rule",
+      "url": "https://indiankanoon.org/doc/182995365/"
+    },
+    {
+      "docId": "139506463",
+      "title": "S.K. Devanath @ Sampangi & Ors vs The State Of West Bengal & Anr on 24 March, 2008",
+      "court": null,
+      "year": 2008,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "quashed"
+      ],
+      "snippet": "offence punishable under the said Act having been made out the impugned FIR is liable to be quashed . According to Mr. Basu since there ... Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 can be said to have been made out against them. He further submitted that",
+      "url": "https://indiankanoon.org/doc/139506463/"
+    },
+    {
+      "docId": "164104429",
+      "title": "Sri S L Sathyanarayana Rao vs The State Of Karnataka on 28 September, 2018",
+      "court": null,
+      "year": 2018,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 [henceforth for brevity referred to as \"SC & ST (POA) Act , 1989\"]. WP No.8931/2016 ... lodged a complaint with the first respondent - police station on 24.03.2014. The summary of the complaint is that the present petitioner giving false information",
+      "url": "https://indiankanoon.org/doc/164104429/"
+    },
+    {
+      "docId": "1422275",
+      "title": "Nirmala Rani vs The State Of Tamilnadu, Rep. By The ... on 18 February, 2003",
+      "court": null,
+      "year": 2003,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Nirmala Rani vs The State Of Tamilnadu, Rep. By The ... on 18 February, 2003 Equivalent",
+      "url": "https://indiankanoon.org/doc/1422275/"
+    },
+    {
+      "docId": "128221875",
+      "title": "Shiv Kumar Singh & Ors vs State Of Jharkhand & Anr on 22 January, 2016",
+      "court": null,
+      "year": 2016,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "false-complaint"
+      ],
+      "snippet": "Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2. The allegations made in the complaint petition which was initially filed by the complainant ... Scheduled Tribes ( Prevention of Atrocities ) Act and, therefore, it further fortifies the claim of the petitioners with respect to their false implication. 5. Submission",
+      "url": "https://indiankanoon.org/doc/128221875/"
+    },
+    {
+      "docId": "1710553",
+      "title": "Malkiat Singh Dhaliwal vs Manpreet Kaur Dhaliwal And Another on 6 January, 2009",
+      "court": null,
+      "year": 2009,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "under Section 3(1)x of Prevention of Atrocities of Scheduled Castes and Scheduled Tribes Act , 1999 at Police Station Jagraon. Counsel has Criminal Misc ... Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 (for short \"SC & ST Criminal Misc. No. M-4542 of 2008 3 Act \") was registered",
+      "url": "https://indiankanoon.org/doc/1710553/"
+    },
+    {
+      "docId": "110813621",
+      "title": "Bhure Alias Chhotelal Jain vs The State Of Madhya Pradesh on 28 June, 2019",
+      "court": null,
+      "year": 2019,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "quashed"
+      ],
+      "snippet": "quashing the order dated 16.11.2017 passed by learned Special Judge, Sagar in Complaint Case No.334/2017, whereby the cognizance has been taken ... Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 . In brief, the prosecution case against the petitioners, is that on 22.01.2017 at about",
+      "url": "https://indiankanoon.org/doc/110813621/"
+    },
+    {
+      "docId": "6970392",
+      "title": "Manoj Agarwal vs The State Of Uttar Pradesh on 4 March, 2022",
+      "court": null,
+      "year": 2022,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "quashed"
+      ],
+      "snippet": "went there to drink water. 3. I say that I filed a complaint against Manoj Goyal and Ajay Goyal in the police station Hapur Nagar ... Scheduled Caste and Scheduled Tribe ( Prevention of Atrocities ) Act , 1989, and proceedings pursuant thereto are hereby quashed and set 4 aside. The Special Leave Petition",
+      "url": "https://indiankanoon.org/doc/6970392/"
+    },
+    {
+      "docId": "12230081",
+      "title": "Vishal Goyal vs State Of Rajasthan on 8 October, 2018",
+      "court": null,
+      "year": 2018,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "quashed"
+      ],
+      "snippet": "Scheduled Caste and Scheduled Tribe ( Prevention of Atrocities ) Act , 1989 may kindly be quashed and set aside. (2 of 42) [CRLMP-2232/2018] Any other ... respondent No.2 filed a complaint against the petitioner before the SHO, Police Station, Balotra, District Barmer regarding making false promise to marry and establishing",
+      "url": "https://indiankanoon.org/doc/12230081/"
+    },
+    {
+      "docId": "124814484",
+      "title": "Mohamed Yusufbhai Sandhi vs State Of Gujarat on 2 August, 2021",
+      "court": null,
+      "year": 2021,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "quashed"
+      ],
+      "snippet": "Scheduled Casts and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. It is further submitted by the learned advocate for the petitioner that the allegations made ... this Court on 28.11.2019 and hence, also the impugned complaint is required to be quashed . It was requested by the learned advocate appearing",
+      "url": "https://indiankanoon.org/doc/124814484/"
+    },
+    {
+      "docId": "152849523",
+      "title": "Smt C P Vijayakumari vs State Of Karnataka By on 24 June, 2019",
+      "court": null,
+      "year": 2019,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "offenders who obtained false caste certificate and the rule reads as under: 7-A. Prosecution for obtaining false caste certificate- (1) The Caste Verification Committee ... Scheduled Tribes( Prevention of Atrocities ) Act , 1989 cannot be faulted with as the allegations made in the complaint prima facie make out the ingredients",
+      "url": "https://indiankanoon.org/doc/152849523/"
+    },
+    {
+      "docId": "101313290",
+      "title": "N. Sivagurunathan vs The Station House Officer on 30 August, 2018",
+      "court": null,
+      "year": 2018,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "false-complaint"
+      ],
+      "snippet": "Special Court for SC/ST Act Cases, contending that he belongs to Dalit community and that he has been falsely implicated in this case ... Scheduled Tribes ( Prevention of Atrocities ) Act . Not stopping with the filing of the said suit, the petitioner has filed a private complaint on 27.07.2018 under",
+      "url": "https://indiankanoon.org/doc/101313290/"
+    },
+    {
+      "docId": "104772929",
+      "title": "Amir Khan vs The State Of Madhya Pradesh on 30 September, 2019",
+      "court": null,
+      "year": 2019,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "Prevention of Atrocities ) Act against each appellant is hereby set aside and the conviction under Section 452 of IPC is altered into the conviction under ... hereby upheld . 15. So far as sentence is concerned, sentence passed under Section 3(1)(x) of SC/ST ( Prevention of Atrocities ) Act is hereby",
+      "url": "https://indiankanoon.org/doc/104772929/"
+    },
+    {
+      "docId": "128309451",
+      "title": "Dablu vs The State Of Madhya Pradesh on 11 March, 2026",
+      "court": null,
+      "year": 2026,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "MITHAL, J. 1. These appeals have been preferred by four accused/convicts sentenced to life imprisonment in a case concerning the murder of one Balkishan ... under Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 . The aforesaid conviction and sentence have been upheld by the High Court vide impugned",
+      "url": "https://indiankanoon.org/doc/128309451/"
+    },
+    {
+      "docId": "64172125",
+      "title": "Ram Prasad @ Gudda vs State Of Rajasthan (2023:Rj-Jd:40511) on 23 November, 2023",
+      "court": null,
+      "year": 2023,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "Prevention of Atrocities ) Act Cases, Pratapgarh whereby, the learned Judge dismissed the appeal filed by the petitioner and upheld the the conviction and sentence passed ... Prevention of Atrocities ) Act Cases, Pratapgarh, however, the appeal filed by the petitioner was dismissed and the conviction and sentence of the petitioner-convict",
+      "url": "https://indiankanoon.org/doc/64172125/"
+    },
+    {
+      "docId": "122463431",
+      "title": "Udai Bhan vs The State Of Uttar Pradesh on 12 February, 2021",
+      "court": null,
+      "year": 2021,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 and upheld the conviction and sentence under Section 376(2) (g) of the Indian Penal",
+      "url": "https://indiankanoon.org/doc/122463431/"
+    },
+    {
+      "docId": "78076815",
+      "title": "Jagta vs State Of U.P. on 22 August, 2019",
+      "court": null,
+      "year": 2019,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "Prevention of Atrocities Act can not sustain. In view of these facts, the conviction and sentence of both the appellants under Section ... Conviction and sentence of both the appellants/accused under Section 3(2)(v) of the Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act",
+      "url": "https://indiankanoon.org/doc/78076815/"
+    },
+    {
+      "docId": "1050002",
+      "title": "Sheikh Sayeed & Anr. vs The State Of Madhya Pradesh on 25 February, 2010",
+      "court": null,
+      "year": 2010,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "Scheduled Caste and Scheduled Tribe ( Prevention of Atrocities ) Act , 1989 cannot be upheld . 25. For the reasons stated above, we are of the considered opinion ... aside. Conviction and sentence of all the appellants under section 3(2)(v) of SC/ST ( Prevention of Atrocities ) Act , 1989 is also set aside",
+      "url": "https://indiankanoon.org/doc/1050002/"
+    },
+    {
+      "docId": "129372199",
+      "title": "Deep Chand Sahu vs The State Of Madhya Pradesh on 21 March, 2017",
+      "court": null,
+      "year": 2017,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "difficult to prove as to who caused these injuries. The chances of conviction , therefore, appear to be remote. It would, therefore, be unnecessary to drag ... Prevention of Atrocities ) Act 1989 is upheld . However, the sentence awarded by the trial court is modified to the extent of already undergone in view",
+      "url": "https://indiankanoon.org/doc/129372199/"
+    },
+    {
+      "docId": "92724724",
+      "title": "Masra Ram @ Masru vs State Of Rajasthan on 24 March, 2026",
+      "court": null,
+      "year": 2026,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989, beyond reasonable doubt. The learned trial court therefore rightly convicted and sentenced the accused-appellant ... Judge, SC/ST ( Prevention of Atrocities ) Act Cases, Jalore below. Hence, impugned judgment of conviction and sentence dated 18.08.2023 is upheld . 52. Accordingly, the present",
+      "url": "https://indiankanoon.org/doc/92724724/"
+    },
+    {
+      "docId": "63279019",
+      "title": "Padma Charan Bhoi vs State Of Orissa on 25 September, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted",
+        "convicted"
+      ],
+      "snippet": "Section 3 (1) (x) of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 is concerned. Accordingly, he is acquitted of the said charge ... Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 is concerned, is turned down. However, the conviction under Section 323 IPC is upheld , as mentioned",
+      "url": "https://indiankanoon.org/doc/63279019/"
+    },
+    {
+      "docId": "1496404",
+      "title": "Whether Reporters Of Local Papers May Be ... vs State Of Gujarat on 2 August, 2011",
+      "court": null,
+      "year": 2011,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 as well as sentences imposed for the commission of those offences is hereby upheld . It is already clarified ... Scheduled Castes & The Scheduled Tribes ( Prevention of Atrocities Act ), 1989 as well as the sentence of R.I. for life imposed for the commission",
+      "url": "https://indiankanoon.org/doc/1496404/"
+    },
+    {
+      "docId": "99281714",
+      "title": "Kunwar Lal vs The State Of Madhya Pradesh on 19 January, 2024",
+      "court": null,
+      "year": 2024,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "Prevention of Atrocities ) Act and sentenced as stated herein above, however, so far as the conviction of appellant ... upheld . 8. So far as the conviction of appellant u/S 3(1) (X) of SC/ST ( Prevention of Atrocities ) Act is concerned complainant Deep",
+      "url": "https://indiankanoon.org/doc/99281714/"
+    },
+    {
+      "docId": "13249559",
+      "title": "Jagdish Prasad And Ors. vs The State Of Madhya Pradesh on 28 December, 2023",
+      "court": null,
+      "year": 2023,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "Tribes ( Prevention of Atrocities ) Act , 1989 is set aside. Their conviction under Section 323 of the I.P.C. is upheld . 7. The sentence needs",
+      "url": "https://indiankanoon.org/doc/13249559/"
+    },
+    {
+      "docId": "144550062",
+      "title": "Veeran Singh vs The State Of Madhya Pradesh on 7 March, 2024",
+      "court": null,
+      "year": 2024,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "proved beyond reasonable doubt, the conviction cannot be upheld under the provisions of the Prevention of Atrocities Act . Unless caste is proved and certificate ... therefore, conviction and sentence passed under Section 3(1)(x) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 is hereby",
+      "url": "https://indiankanoon.org/doc/144550062/"
+    },
+    {
+      "docId": "140116850",
+      "title": "Akram @ Babloo vs The State Of M.P. on 13 December, 2018",
+      "court": null,
+      "year": 2018,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted",
+        "bail"
+      ],
+      "snippet": "conviction and sentence of the appellant under Section 3(2)(v) of SC & ST ( Prevention of Atrocities ) Act is concerned, the certificate ... Prevention of Atrocities ) Act is set aside and his conviction and sentence under Section 376(1) of IPC is upheld . The appellant is on bail",
+      "url": "https://indiankanoon.org/doc/140116850/"
+    },
+    {
+      "docId": "144182863",
+      "title": "Suresh Annaso Kank vs The State Of Maharashtra on 1 December, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted",
+        "convicted"
+      ],
+      "snippet": "Sections 354 and 506(1) of the Indian Penal Code, 1860 and sentenced to undergo rigorous imprisonment for two years. He was acquitted ... Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. On appeal, the High Court upheld the conviction of the appellant and reduced the sentence to six months",
+      "url": "https://indiankanoon.org/doc/144182863/"
+    },
+    {
+      "docId": "152109595",
+      "title": "Pinjari Tipusulthan vs The State Of Andhra Pradesh on 23 September, 2024",
+      "court": null,
+      "year": 2024,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "following O R D E R The petitioner/appellant was convicted and sentenced for five years RI by the Sessions Court for the offences punishable ... Scheduled Tribes ( Prevention of Atrocities ) Act . His appeal was partly allowed by the High Court whereby the conviction is upheld but the sentence Signature",
+      "url": "https://indiankanoon.org/doc/152109595/"
+    },
+    {
+      "docId": "198259320",
+      "title": "Selladurai vs State Rep. By The Inspector Of Police on 4 August, 2020",
+      "court": null,
+      "year": 2020,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "Caste and Scheduled Tribe ( Prevention of Atrocities ) Act , 1989 and sentenced to one year imprisonment. The conviction and sentence was upheld by the High Court",
+      "url": "https://indiankanoon.org/doc/198259320/"
+    },
+    {
+      "docId": "1632114",
+      "title": "Kailas & Ors vs State Of Maharashtra Tr.Taluka P.S on 5 January, 2011",
+      "court": null,
+      "year": 2011,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "conviction under the provisions of the IPC have been upheld but that under the Scheduled Cases and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 have ... surprised that the conviction of the accused under the Scheduled Cases and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 was set aside on hyper technical",
+      "url": "https://indiankanoon.org/doc/1632114/"
+    },
+    {
+      "docId": "148518168",
+      "title": "Doula S/O Hussain Sab vs The State A By The on 22 July, 2020",
+      "court": null,
+      "year": 2020,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "POCSO Act and Section 3(2)(v) of SC/ST ( Prevention of atrocities ) Act , is set aside. The conviction of accused ... Section 6 of the POCSO Act is upheld and he is sentenced to undergo rigorous imprisonment for a period of 10 years with fine",
+      "url": "https://indiankanoon.org/doc/148518168/"
+    },
+    {
+      "docId": "1365753",
+      "title": "Ashabai Ganeshrao Khote & Another vs State Of Maharashtra on 24 November, 1998",
+      "court": null,
+      "year": 1998,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "therefore, the conviction and sentence cannot be upheld . 11. Hence, the appeal is allowed. The order of conviction and sentence recorded by the Special Judge ... with section 6 of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Fine, if paid, be refunded to the accused. 12. Appeal",
+      "url": "https://indiankanoon.org/doc/1365753/"
+    },
+    {
+      "docId": "77724265",
+      "title": "Patel Babubhai Manohardas vs The State Of Gujarat on 5 March, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "under Section 3(2)(5) of the Prevention of Atrocities Act . Upon such conviction , the trial court sentenced the appellants to undergo ... punishable under Sections 306 / 114 IPC. 9. Appellants assailed the aforesaid conviction and sentence of the trial court before the High Court in Criminal Appeal",
+      "url": "https://indiankanoon.org/doc/77724265/"
+    },
+    {
+      "docId": "139770793",
+      "title": "Mallanna vs The State Of Karnataka on 19 November, 2018",
+      "court": null,
+      "year": 2018,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [],
+      "snippet": "punishable U/sec. 3(1)(xi) of SC/ST ( Prevention of Atrocities ) Act 1989 and sentenced to undergo simple imprisonment for a period ... punishable u/sec 3(1) (x) of SC/ST ( Prevention of Atrocities ) Act , 1989 and sentenced to undergo simple imprisonment for a period of one year",
+      "url": "https://indiankanoon.org/doc/139770793/"
+    },
+    {
+      "docId": "190457033",
+      "title": "Baluram And Ors vs State Of Rajasthan on 6 November, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "serious offences under the SC/ST Act and Section 436 IPC. 4.10. Learned Public Prosecutor submitted that the sentence awarded is proportionate to the gravity ... judgment of conviction and sentence dated 16.03.1993/20.03.1993 passed by the learned Special Judge, SC/ST ( Prevention of Atrocities ) Act , Jodhpur, be affirmed",
+      "url": "https://indiankanoon.org/doc/190457033/"
+    },
+    {
+      "docId": "177086560",
+      "title": "Surinder Pal And Ors. vs State Of Punjab on 15 September, 2026",
+      "court": null,
+      "year": 2026,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "Act by the present appellants. Their conviction under Section 3 of the Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 read with ... upheld , whereas their conviction under Section 3 of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 read with Section",
+      "url": "https://indiankanoon.org/doc/177086560/"
+    },
+    {
+      "docId": "151874694",
+      "title": "Ramesh And Ors. vs The State Of M.P. on 15 September, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted",
+        "compromise"
+      ],
+      "snippet": "Prevention of Atrocities ) Act on merits and have confined the submissions only to the question of sentence on the basis of the compromise entered between ... conviction of the appellants under Section 452 / 34 of IPC and also Section 3(1)(x) of SC/ST ( Prevention of Atrocities ) Act are hereby",
+      "url": "https://indiankanoon.org/doc/151874694/"
+    },
+    {
+      "docId": "186087221",
+      "title": "Sunil Patra @ Sunil Bihari Patra vs State Of Orissa on 27 November, 2025",
+      "court": null,
+      "year": 2025,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "Accordingly, the conviction of the accused appellants U/s.3(1)(x) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act ... Indian Penal Code, the same is upheld . Consequently, the accused-appellants should undergo the sentence as imposed by the learned Trial Court in regard",
+      "url": "https://indiankanoon.org/doc/186087221/"
+    },
+    {
+      "docId": "136707433",
+      "title": "Krishan vs State Of Haryana on 2 September, 2023",
+      "court": null,
+      "year": 2023,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "acquitted",
+        "convicted",
+        "compromise"
+      ],
+      "snippet": "compromise was effected and this Court set aside the judgments of conviction and sentence passed by the Courts below and acquitted the accused-petitioner ... Supra), conviction was recorded under Section 452 IPC, besides Section 3(1)(x) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act",
+      "url": "https://indiankanoon.org/doc/136707433/"
+    },
+    {
+      "docId": "144113121",
+      "title": "Deepaji Javaraji Rajput & 2 vs State Of ... on 4 July, 2016",
+      "court": null,
+      "year": 2016,
+      "queries": [
+        "conviction"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-22",
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "Prevention of Atrocities ) Act , 1989, applying the aforesaid ratio to the facts of the present case, while upholding the impugned judgment and order of conviction ... conviction dated 18.5.2016 passed in Special ( Atrocity ) Case No.10 of 2013 by the learned Additional Special Judge, Deesa at Banaskantha is hereby upheld . However",
+      "url": "https://indiankanoon.org/doc/144113121/"
+    }
+  ]
+}
