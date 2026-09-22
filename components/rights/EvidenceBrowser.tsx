@@ -39,13 +39,23 @@ export interface Row {
 
 const PAGE = 40;
 
-/** A URL a reader can read, rather than a hundred characters of query string. */
-function label(url: string): string {
+/**
+ * A URL a reader can read, rather than a hundred characters of query string.
+ *
+ * An item found through a news index carries the index's redirect, not the
+ * newsroom's address. Printing "news.google.com" beside a Times of India
+ * headline reads as though Google published it, which is the opposite of what
+ * the register is for — so the aggregator is named as what it is, a route to
+ * the piece rather than its source. The outlet is printed first either way.
+ */
+function label(url: string): string | null {
   try {
-    const u = new URL(url);
-    return u.hostname.replace(/^www\./, "");
+    const host = new URL(url).hostname.replace(/^www\./, "");
+    if (/(^|\.)news\.google\.com$/.test(host) || host === "news.google.com") return "via Google News";
+    if (/(^|\.)bing\.com$/.test(host)) return "via Bing News";
+    return host;
   } catch {
-    return url.slice(0, 40);
+    return null;
   }
 }
 

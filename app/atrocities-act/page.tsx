@@ -1,5 +1,5 @@
 import {
-  loadJudgments, loadCitations, loadRightsNews, loadDocsProbe,
+  loadJudgments, loadCitations, loadRightsNews, loadDocsProbe, loadSearch,
   citationsFor, facetCounts, falseFindings, outletsOf, byDecade,
   FACET_LABEL, FACET_WHY, type Facet,
 } from "@/lib/rights";
@@ -71,14 +71,16 @@ export default function AtrocitiesActPage() {
   const citations = loadCitations();
   const news = loadRightsNews();
   const docs = loadDocsProbe();
+  const search = loadSearch();
 
   const cited = citationsFor(citations, "scst");
+  const searched = search.items.filter((i) => i.subject === "scst");
   const press = news.items.filter((i) => i.subject === "scst");
-  const tiers = facetCounts([...cited, ...press]);
+  const tiers = facetCounts([...cited, ...searched, ...press]);
   const maxTier = Math.max(1, ...tiers.map((t) => t.n));
   const falseFound = falseFindings(judgments);
-  const outlets = outletsOf(citations, "scst");
-  const decades = byDecade(cited);
+  const outlets = outletsOf("scst", cited, searched, press.map((p) => ({ subject: p.subject, outlet: p.sources[0]?.outlet ?? null })));
+  const decades = byDecade([...cited, ...searched]);
   const cases = judgments.judgments.filter((j) => j.kind === "judgment");
 
   /* Did the official record answer? Read off the probe, not asserted here. */
@@ -87,6 +89,10 @@ export default function AtrocitiesActPage() {
   const poa = docs.findings.find((f) => f.id === "msje:poa");
 
   const rows: Row[] = [
+    ...searched.map((i): Row => ({
+      id: `s:${i.id}`, headline: i.headline, outlet: i.outlet, published: i.published,
+      url: i.url, facet: i.facet, matchedOn: "headline",
+    })),
     ...cited.map((c): Row => ({
       id: c.id, headline: c.headline, outlet: c.outlet, published: c.published,
       url: c.url, facet: c.facet, matchedOn: c.matchedOn, articles: c.articles,
@@ -98,7 +104,7 @@ export default function AtrocitiesActPage() {
     })),
   ];
 
-  if (!citations.present && !judgments.present) {
+  if (!citations.present && !judgments.present && !search.present) {
     return (
       <div className="pt-12">
         <Eyebrow>not built</Eyebrow>
@@ -274,8 +280,8 @@ export default function AtrocitiesActPage() {
 
       {/* ── The cited reporting ────────────────────────────────────── */}
       <section className="mt-16">
-        <ChartTitle note="Citation metadata from the reference lists of encyclopaedia articles on this subject. Outlet, headline, date, link.">
-          {citations.counts.bySubject.scst} pieces of published reporting
+        <ChartTitle note="Two collectors, pooled. Citation metadata from the reference lists of encyclopaedia articles, and a keyword search of two news indexes asked one tier at a time.">
+          {cited.length + searched.length} pieces of published reporting
         </ChartTitle>
         <div className="mt-5 grid gap-3 sm:grid-cols-3">
           <Stat size="sm" tone="cool" value={String(citations.counts.byMatch.headline)}
@@ -284,9 +290,33 @@ export default function AtrocitiesActPage() {
           <Stat size="sm" tone="mid" value={String(citations.counts.byMatch.bibliography)}
             label="qualified on the bibliography"
             note="Pieces whose own headline does not say so — “Two held in Bihar killing” — kept because they sit in the reference list of an article about a specific case. A weaker claim, counted separately." />
-          <Stat size="sm" tone="cool" value={String(citations.counts.withUrl)}
-            label="carry a link you can open" />
+          <Stat size="sm" tone="cool" value={String(searched.length)}
+            label="found by searching the indexes"
+            note="Twenty queries, each aimed at one tier and asked separately, so the rarest is reached instead of being buried under the commonest." />
         </div>
+
+        {search.present && (
+          <div className="mt-8">
+            <ChartTitle note="Each query aimed at one tier. The counts are per query, so they are not proportions of anything.">
+              What each query returned
+            </ChartTitle>
+            <div className="mt-3">
+              {search.perQuery.filter((q) => q.subject === "scst").map((q) => (
+                <BarRow key={q.id} label={q.label} value={q.kept}
+                  max={Math.max(1, ...search.perQuery.filter((x) => x.subject === "scst").map((x) => x.kept))}
+                  display={String(q.kept)} tone={TIER_TONE[q.expect]}
+                  sub={`${q.offSubject} dropped off subject`} />
+              ))}
+            </div>
+            <Caption>
+              A query aimed at acquittals that returns an allegation is filed as an allegation:
+              every item is classified from its own headline, never from the query that found it.
+              Items whose headline is off subject are dropped and counted, because a search that
+              drifts is worth knowing about and a register that silently keeps the drift is worth
+              nothing.
+            </Caption>
+          </div>
+        )}
 
         {outlets.length > 0 && (
           <div className="mt-8 grid gap-8 lg:grid-cols-2">
@@ -410,7 +440,9 @@ export default function AtrocitiesActPage() {
       />
 
       <Sources>
-        Judgments: Indian Kanoon (indiankanoon.org), free judgment search, walked twelve pages a
+        Searched coverage: Google News and Bing News keyless RSS, twenty queries asked one tier at
+        a time, three seconds apart, merged across runs; a searched item links through the index that found it, and carries the outlet the index names; every item classified from its own
+        headline. Judgments: Indian Kanoon (indiankanoon.org), free judgment search, walked twelve pages a
         run with a judgments-only document filter, eight seconds between requests, accumulated
         across runs. Cited reporting: citation templates in the reference lists of English
         Wikipedia articles on this subject — outlet, headline, date and URL only; no encyclopaedia

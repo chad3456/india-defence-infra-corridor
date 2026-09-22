@@ -45,6 +45,8 @@ const JUDGMENTS_PATH = join(process.cwd(), "data", "rights", "scst-judgments.jso
 const CITATIONS_PATH = join(process.cwd(), "data", "rights", "citations.json");
 const NEWS_PATH = join(process.cwd(), "data", "rights", "news.json");
 const DOCS_PATH = join(process.cwd(), "data", "live", "docs-probe.json");
+const SEARCH_PATH = join(process.cwd(), "data", "rights", "search.json");
+const PMSHRI_PROBE_PATH = join(process.cwd(), "data", "live", "pmshri-probe.json");
 
 function read<T extends object>(path: string, empty: T): T {
   try {
@@ -188,6 +190,54 @@ const EMPTY_NEWS: RightsNews = {
 
 export function loadRightsNews(): RightsNews { return read(NEWS_PATH, EMPTY_NEWS); }
 
+/* ── Searched coverage ───────────────────────────────────────────────── */
+
+export interface SearchItem {
+  id: string;
+  headline: string;
+  subject: Subject;
+  facet: Facet;
+  outlet: string | null;
+  published: string;
+  url: string;
+  /** Which queries returned it. Counts are per query, never proportions. */
+  queries: string[];
+  indexes: string[];
+  firstSeen: string;
+}
+
+export interface SearchRegister {
+  present: boolean;
+  builtAt: string;
+  source: string;
+  method: string;
+  refusal: string;
+  cannotSay: string[];
+  counts: {
+    items: number; addedThisRun: number; carriedFromEarlierRuns: number;
+    withOutlet: number; queriesAsked: number; offSubjectDropped: number;
+    bySubject: { scst: number; pmshri: number };
+  };
+  byFacet: Array<{ key: Facet; n: number }>;
+  byOutlet: Array<{ key: string; n: number }>;
+  perQuery: Array<{
+    id: string; label: string; subject: Subject; expect: Facet;
+    google: number; bing: number; kept: number; offSubject: number;
+  }>;
+  items: SearchItem[];
+}
+
+const EMPTY_SEARCH: SearchRegister = {
+  present: false, builtAt: "", source: "", method: "", refusal: "", cannotSay: [],
+  counts: {
+    items: 0, addedThisRun: 0, carriedFromEarlierRuns: 0, withOutlet: 0,
+    queriesAsked: 0, offSubjectDropped: 0, bySubject: { scst: 0, pmshri: 0 },
+  },
+  byFacet: [], byOutlet: [], perQuery: [], items: [],
+};
+
+export function loadSearch(): SearchRegister { return read(SEARCH_PATH, EMPTY_SEARCH); }
+
 /* ── What the official record would and would not answer ─────────────── */
 
 export interface DocsProbe {
@@ -205,6 +255,25 @@ export interface DocsProbe {
 const EMPTY_DOCS: DocsProbe = { present: false, probedAt: "", question: "", refusal: "", findings: [] };
 
 export function loadDocsProbe(): DocsProbe { return read(DOCS_PATH, EMPTY_DOCS); }
+
+/** The probe of PM SHRI's own sources, whose findings are the scheme's page. */
+export interface SourceProbe {
+  present: boolean;
+  probedAt: string;
+  question: string;
+  refusal: string;
+  note?: string;
+  findings: Array<{
+    id: string; kind: string; what: string; url: string; settles: string;
+    ok: boolean; status: string; bytes: number | null; shape?: string;
+    found?: string[]; missing?: string[]; counts?: Record<string, number>;
+    parameterWorks?: boolean; parameterNote?: string; note?: string;
+  }>;
+}
+
+const EMPTY_PROBE: SourceProbe = { present: false, probedAt: "", question: "", refusal: "", findings: [] };
+
+export function loadPmShriProbe(): SourceProbe { return read(PMSHRI_PROBE_PATH, EMPTY_PROBE); }
 
 /* ── Counting, with the refusals built in ────────────────────────────── */
 
@@ -260,12 +329,26 @@ export function falseFindings(j: Judgments): Judgment[] {
   return j.judgments.filter((x) => x.kind === "judgment" && x.mentions.includes("false-complaint"));
 }
 
-/** Outlets that published more than one piece in the register, most first. */
-export function outletsOf(c: Citations, subject: Subject): Array<{ outlet: string; n: number }> {
+/**
+ * Outlets across every register, for one subject.
+ *
+ * Deliberately pooled rather than kept per collector. A reader asking who did
+ * the reporting is not asking which script found it, and an outlet that
+ * appears in both the bibliography and the search index is one newsroom, not
+ * two.
+ */
+export function outletsOf(
+  subject: Subject,
+  ...registers: Array<Array<{ subject: Subject; outlet: string | null }>>
+): Array<{ outlet: string; n: number }> {
   const m = new Map<string, number>();
-  for (const x of c.citations) {
-    if (x.subject !== subject || x.outlet === null) continue;
-    m.set(x.outlet, (m.get(x.outlet) ?? 0) + 1);
+  for (const reg of registers) {
+    for (const x of reg) {
+      if (x.subject !== subject || x.outlet === null) continue;
+      const name = x.outlet.replace(/\s+/g, " ").trim();
+      if (name === "") continue;
+      m.set(name, (m.get(name) ?? 0) + 1);
+    }
   }
   return [...m].map(([outlet, n]) => ({ outlet, n })).sort((a, b) => b.n - a.n);
 }
@@ -278,7 +361,7 @@ export function outletsOf(c: Citations, subject: Subject): Array<{ outlet: strin
  * editors wrote, which is why the pages that draw this say so on the chart
  * itself rather than underneath it.
  */
-export function byDecade(items: Citation[]): Array<{ decade: string; n: number }> {
+export function byDecade(items: Array<{ published: string | null }>): Array<{ decade: string; n: number }> {
   const m = new Map<string, number>();
   for (const x of items) {
     const y = Number.parseInt((x.published ?? "").slice(0, 4), 10);
@@ -286,4 +369,53 @@ export function byDecade(items: Citation[]): Array<{ decade: string; n: number }
     m.set(`${Math.floor(y / 10) * 10}s`, (m.get(`${Math.floor(y / 10) * 10}s`) ?? 0) + 1);
   }
   return [...m].map(([decade, n]) => ({ decade, n })).sort((a, b) => a.decade.localeCompare(b.decade));
+}
+
+/**
+ * How often each state is named in a set of headlines.
+ *
+ * This counts HEADLINES, not positions. A state appearing forty times has been
+ * written about forty times; it has not refused anything forty times, and a
+ * state absent from the list has not agreed to anything. The distinction
+ * matters here more than usual, because the PM SHRI argument is precisely
+ * about which states signed, and a chart of headline mentions would be read as
+ * a chart of consent by anyone who did not read the caption.
+ *
+ * Only states with a distinctive name are counted. "Punjab", "Goa" and
+ * "Manipur" are safe; a bare "India" is not a state and is not here.
+ */
+const STATES: string[] = [
+  "Tamil Nadu", "Kerala", "West Bengal", "Karnataka", "Andhra Pradesh", "Telangana",
+  "Maharashtra", "Gujarat", "Rajasthan", "Madhya Pradesh", "Uttar Pradesh", "Bihar",
+  "Jharkhand", "Odisha", "Chhattisgarh", "Punjab", "Haryana", "Himachal Pradesh",
+  "Uttarakhand", "Assam", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Tripura",
+  "Arunachal Pradesh", "Sikkim", "Goa", "Delhi", "Jammu and Kashmir", "Ladakh", "Puducherry",
+];
+
+export function statesNamed(headlines: string[]): Array<{ state: string; n: number }> {
+  const m = new Map<string, number>();
+  for (const h of headlines) {
+    for (const st of STATES) {
+      if (h.includes(st)) m.set(st, (m.get(st) ?? 0) + 1);
+    }
+  }
+  return [...m].map(([state, n]) => ({ state, n })).sort((a, b) => b.n - a.n);
+}
+
+/**
+ * Items per calendar year.
+ *
+ * Returned so a page can DRAW the shape and say what it is: a property of the
+ * collection. A search index ranks recent material higher and carries more of
+ * it, so every register built this way rises towards the present whatever its
+ * subject was doing.
+ */
+export function byYear(items: Array<{ published: string | null }>): Array<{ year: string; n: number }> {
+  const m = new Map<string, number>();
+  for (const x of items) {
+    const y = (x.published ?? "").slice(0, 4);
+    if (!/^(19|20)\d\d$/.test(y)) continue;
+    m.set(y, (m.get(y) ?? 0) + 1);
+  }
+  return [...m].map(([year, n]) => ({ year, n })).sort((a, b) => a.year.localeCompare(b.year));
 }
