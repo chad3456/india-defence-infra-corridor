@@ -1,5 +1,5 @@
 {
-  "probedAt": "2026-09-22T06:11:14.708Z",
+  "probedAt": "2026-09-22T06:15:32.417Z",
   "question": "Is there a published record — official series, judgments, Parliament answers, press reporting — from which the SC/ST (Prevention of Atrocities) Act and the PM SHRI scheme can be reported, or would the numbers have to come from me?",
   "refusal": "No case count, no conviction rate, no school count and no claim about either subject is published here. Only whether a source answered, in what shape, roughly how many rows it appears to carry, and whether its query parameters do anything.",
   "note": "'Misuse' is the framing both subjects are usually argued about, and on the SC/ST Act it runs through one number: the acquittal rate, routinely offered as proof the Act is abused. It is not proof of that. An acquittal can follow from a false complaint; it can equally follow from a hostile witness, intimidation of the complainant, an investigation that never gathered the evidence the statute requires, or a compromise outside court — all of which India's own official record discusses, and none of which any public dataset separates. So this probe looks for what can be counted (registrations, chargesheeting, convictions, pendency, by state and year) and for the documented history of the dispute itself, which has dates and judgments. Anything built on it must present the argument as an argument with named positions, and must not let the acquittal rate stand in as a misuse metric.",
@@ -31,20 +31,19 @@
       }
     },
     {
-      "id": "wiki:Subhash_Kashinath_Mahajan_v._State_of_Maharashtra",
+      "id": "wiki:Indian_Penal_Code_Section_498A",
       "kind": "scst",
-      "what": "Subhash Kashinath Mahajan v. State of Maharashtra",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=Subhash_Kashinath_Mahajan_v._State_of_Maharashtra&redirects=1",
-      "settles": "Whether the 2018 judgment that diluted the Act is documented separately, with dates",
+      "what": "Indian Penal Code Section 498A",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=Indian_Penal_Code_Section_498A&redirects=1",
+      "settles": "A second statute argued about in the same terms, to see whether the misuse debate has a documented shape anywhere",
       "ok": true,
       "status": "200",
       "bytes": 397,
       "shape": "json",
       "found": [],
       "missing": [
-        "2018",
-        "Supreme Court",
-        "arrest"
+        "misuse",
+        "Supreme Court"
       ],
       "note": "decode path \"parse.wikitext.*\" did not reach a string; counted the raw body",
       "counts": {
@@ -135,20 +134,61 @@
       "parameterNote": "2654 bytes apart, beyond a 127-byte tolerance"
     },
     {
-      "id": "wiki:PM_SHRI_Schools",
+      "id": "indiankanoon:page2",
+      "kind": "scst",
+      "what": "Indian Kanoon, second page of results",
+      "url": "https://indiankanoon.org/search/?formInput=scheduled%20castes%20prevention%20of%20atrocities%20act&pagenum=1",
+      "settles": "Whether the judgment corpus can be walked beyond its first ten results, which decides whether this is a spine or a sample",
+      "ok": true,
+      "status": "200",
+      "bytes": 47066,
+      "shape": "html",
+      "found": [
+        "result_title",
+        "docsource"
+      ],
+      "missing": [],
+      "counts": {
+        "results": 10,
+        "links": 20
+      },
+      "parameterWorks": true,
+      "parameterNote": "13770 bytes apart, beyond a 122-byte tolerance"
+    },
+    {
+      "id": "indiankanoon:doc",
+      "kind": "scst",
+      "what": "One judgment document, to see what a record actually carries",
+      "url": "https://indiankanoon.org/doc/1217049/",
+      "settles": "Whether a judgment page carries its court, date and text, which is what would make it citable evidence",
+      "ok": true,
+      "status": "200",
+      "bytes": 31856,
+      "shape": "html",
+      "found": [
+        "judgment",
+        "court"
+      ],
+      "missing": [],
+      "counts": {
+        "paras": 11,
+        "dates": 7
+      }
+    },
+    {
+      "id": "wiki:PM_SHRI",
       "kind": "pmshri",
-      "what": "PM SHRI Schools",
-      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=PM_SHRI_Schools&redirects=1",
-      "settles": "Whether the scheme has a cited article carrying its rollout and the states' refusals",
+      "what": "PM SHRI",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=PM_SHRI&redirects=1",
+      "settles": "The scheme under its short name",
       "ok": true,
       "status": "200",
       "bytes": 397,
       "shape": "json",
       "found": [],
       "missing": [
-        "PM SHRI",
-        "memorandum",
-        "schools"
+        "school",
+        "scheme"
       ],
       "note": "decode path \"parse.wikitext.*\" did not reach a string; counted the raw body",
       "counts": {
@@ -158,6 +198,58 @@
         "tableRows": 0,
         "sections": 0,
         "years": 0
+      }
+    },
+    {
+      "id": "wiki:Samagra_Shiksha_Abhiyan",
+      "kind": "pmshri",
+      "what": "Samagra Shiksha Abhiyan",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=Samagra_Shiksha_Abhiyan&redirects=1",
+      "settles": "The umbrella programme PM SHRI funding is routed through, where the withheld-funds dispute sits",
+      "ok": true,
+      "status": "200",
+      "bytes": 11433,
+      "shape": "json",
+      "found": [
+        "Samagra",
+        "education"
+      ],
+      "missing": [
+        "funds"
+      ],
+      "counts": {
+        "refs": 20,
+        "citeNews": 18,
+        "tables": 0,
+        "tableRows": 0,
+        "sections": 3,
+        "years": 68
+      }
+    },
+    {
+      "id": "wiki:National_Education_Policy_2020",
+      "kind": "pmshri",
+      "what": "National Education Policy 2020",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=National_Education_Policy_2020&redirects=1",
+      "settles": "The policy PM SHRI is meant to demonstrate, and the states that rejected it",
+      "ok": true,
+      "status": "200",
+      "bytes": 76907,
+      "shape": "json",
+      "found": [
+        "states",
+        "policy"
+      ],
+      "missing": [
+        "Tamil Nadu"
+      ],
+      "counts": {
+        "refs": 106,
+        "citeNews": 89,
+        "tables": 0,
+        "tableRows": 0,
+        "sections": 9,
+        "years": 415
       }
     },
     {
@@ -198,7 +290,7 @@
       ],
       "counts": {
         "paras": 4,
-        "numbers": 175
+        "numbers": 174
       }
     },
     {
@@ -240,76 +332,6 @@
       }
     },
     {
-      "id": "feed:indianexpress-india",
-      "kind": "press",
-      "what": "The Indian Express — India — RSS",
-      "url": "https://indianexpress.com/section/india/feed/",
-      "settles": "Whether The Indian Express — India answers a script, so its reporting can be collected with attribution",
-      "ok": false,
-      "status": "HTTP 403",
-      "bytes": null
-    },
-    {
-      "id": "feed:indianexpress-edu",
-      "kind": "press",
-      "what": "The Indian Express — Education — RSS",
-      "url": "https://indianexpress.com/section/education/feed/",
-      "settles": "Whether The Indian Express — Education answers a script, so its reporting can be collected with attribution",
-      "ok": false,
-      "status": "HTTP 403",
-      "bytes": null
-    },
-    {
-      "id": "feed:scroll",
-      "kind": "press",
-      "what": "Scroll.in — RSS",
-      "url": "https://scroll.in/feed",
-      "settles": "Whether Scroll.in answers a script, so its reporting can be collected with attribution",
-      "ok": true,
-      "status": "200",
-      "bytes": 116112,
-      "shape": "html",
-      "found": [
-        "<title"
-      ],
-      "missing": [
-        "<item"
-      ],
-      "counts": {
-        "items": 0
-      }
-    },
-    {
-      "id": "feed:thewire",
-      "kind": "press",
-      "what": "The Wire — RSS",
-      "url": "https://thewire.in/rss",
-      "settles": "Whether The Wire answers a script, so its reporting can be collected with attribution",
-      "ok": true,
-      "status": "200",
-      "bytes": 11308,
-      "shape": "js-app",
-      "found": [
-        "<title"
-      ],
-      "missing": [
-        "<item"
-      ],
-      "counts": {
-        "items": 0
-      }
-    },
-    {
-      "id": "feed:downtoearth",
-      "kind": "press",
-      "what": "Down To Earth — RSS",
-      "url": "https://www.downtoearth.org.in/rss",
-      "settles": "Whether Down To Earth answers a script, so its reporting can be collected with attribution",
-      "ok": false,
-      "status": "HTTP 404",
-      "bytes": null
-    },
-    {
       "id": "feed:hindustantimes",
       "kind": "press",
       "what": "Hindustan Times — India — RSS",
@@ -317,7 +339,7 @@
       "settles": "Whether Hindustan Times — India answers a script, so its reporting can be collected with attribution",
       "ok": true,
       "status": "200",
-      "bytes": 95793,
+      "bytes": 95656,
       "shape": "xml-feed",
       "found": [
         "<item",
@@ -327,36 +349,6 @@
       "counts": {
         "items": 100
       }
-    },
-    {
-      "id": "feed:newindianexpress",
-      "kind": "press",
-      "what": "The New Indian Express — RSS",
-      "url": "https://www.newindianexpress.com/Nation/rssfeed/?id=170&getXmlFeed=true",
-      "settles": "Whether The New Indian Express answers a script, so its reporting can be collected with attribution",
-      "ok": false,
-      "status": "HTTP 404",
-      "bytes": null
-    },
-    {
-      "id": "feed:deccanherald",
-      "kind": "press",
-      "what": "Deccan Herald — National — RSS",
-      "url": "https://www.deccanherald.com/rss/national.rss",
-      "settles": "Whether Deccan Herald — National answers a script, so its reporting can be collected with attribution",
-      "ok": false,
-      "status": "HTTP 404",
-      "bytes": null
-    },
-    {
-      "id": "feed:telegraphindia",
-      "kind": "press",
-      "what": "The Telegraph India — RSS",
-      "url": "https://www.telegraphindia.com/feeds/rss.jsp?id=4",
-      "settles": "Whether The Telegraph India answers a script, so its reporting can be collected with attribution",
-      "ok": false,
-      "status": "HTTP 403",
-      "bytes": null
     },
     {
       "id": "feed:thequint",
@@ -385,7 +377,7 @@
       "settles": "Whether Newslaundry answers a script, so its reporting can be collected with attribution",
       "ok": true,
       "status": "200",
-      "bytes": 23223,
+      "bytes": 23146,
       "shape": "xml-feed",
       "found": [
         "<item",
@@ -395,6 +387,124 @@
       "counts": {
         "items": 2
       }
+    },
+    {
+      "id": "feed:scroll2",
+      "kind": "press",
+      "what": "Scroll.in (alternate path) — RSS",
+      "url": "https://scroll.in/feed/",
+      "settles": "Whether Scroll.in (alternate path) answers a script, so its reporting can be collected with attribution",
+      "ok": true,
+      "status": "200",
+      "bytes": 116112,
+      "shape": "html",
+      "found": [
+        "<title"
+      ],
+      "missing": [
+        "<item"
+      ],
+      "counts": {
+        "items": 0
+      }
+    },
+    {
+      "id": "feed:thewire2",
+      "kind": "press",
+      "what": "The Wire (alternate path) — RSS",
+      "url": "https://thewire.in/feed",
+      "settles": "Whether The Wire (alternate path) answers a script, so its reporting can be collected with attribution",
+      "ok": true,
+      "status": "200",
+      "bytes": 11308,
+      "shape": "js-app",
+      "found": [
+        "<title"
+      ],
+      "missing": [
+        "<item"
+      ],
+      "counts": {
+        "items": 0
+      }
+    },
+    {
+      "id": "feed:indianexpress2",
+      "kind": "press",
+      "what": "The Indian Express (alternate path) — RSS",
+      "url": "https://indianexpress.com/feed/",
+      "settles": "Whether The Indian Express (alternate path) answers a script, so its reporting can be collected with attribution",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null
+    },
+    {
+      "id": "feed:deccanherald2",
+      "kind": "press",
+      "what": "Deccan Herald (alternate path) — RSS",
+      "url": "https://www.deccanherald.com/feeds/national",
+      "settles": "Whether Deccan Herald (alternate path) answers a script, so its reporting can be collected with attribution",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "feed:downtoearth2",
+      "kind": "press",
+      "what": "Down To Earth (alternate path) — RSS",
+      "url": "https://www.downtoearth.org.in/rss/india",
+      "settles": "Whether Down To Earth (alternate path) answers a script, so its reporting can be collected with attribution",
+      "ok": false,
+      "status": "HTTP 404",
+      "bytes": null
+    },
+    {
+      "id": "feed:thehindu-nat2",
+      "kind": "press",
+      "what": "The Hindu — States — RSS",
+      "url": "https://www.thehindu.com/news/national/feeder/default.rss",
+      "settles": "Whether The Hindu — States answers a script, so its reporting can be collected with attribution",
+      "ok": true,
+      "status": "200",
+      "bytes": 49941,
+      "shape": "xml-feed",
+      "found": [
+        "<item",
+        "<title"
+      ],
+      "missing": [],
+      "counts": {
+        "items": 60
+      }
+    },
+    {
+      "id": "feed:livemint",
+      "kind": "press",
+      "what": "Mint — RSS",
+      "url": "https://www.livemint.com/rss/news",
+      "settles": "Whether Mint answers a script, so its reporting can be collected with attribution",
+      "ok": true,
+      "status": "200",
+      "bytes": 37803,
+      "shape": "xml-feed",
+      "found": [
+        "<item",
+        "<title"
+      ],
+      "missing": [],
+      "counts": {
+        "items": 35
+      }
+    },
+    {
+      "id": "feed:firstpost",
+      "kind": "press",
+      "what": "Firstpost — India — RSS",
+      "url": "https://www.firstpost.com/rss/india.xml",
+      "settles": "Whether Firstpost — India answers a script, so its reporting can be collected with attribution",
+      "ok": false,
+      "status": "HTTP 403",
+      "bytes": null
     }
   ]
 }
