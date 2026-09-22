@@ -276,12 +276,22 @@ export function parseResults(html: string): Array<{ docId: string; title: string
     const hl = /<div[^>]*class="[^"]*\bheadline\b[^"]*"[^>]*>([\s\S]*?)<\/div>/i.exec(block);
     const snippet = textOf(hl ? (hl[1] ?? "") : block).slice(0, 400);
 
-    const src = /<div[^>]*class="[^"]*docsource[^"]*"[^>]*>([\s\S]*?)<\/div>/i.exec(block)
-      ?? /<div[^>]*class="[^"]*docsource[^"]*"[^>]*>([^<]*)/i.exec(block);
+    /*
+     * The court, from whichever element carries it.
+     *
+     * A run that read a hundred and seventeen judgments correctly labelled
+     * none of them, because this looked for a <div class="docsource"> and the
+     * label is not a div inside the result. Matching any tag whose class says
+     * docsource costs nothing and stops the tag name being a second guess;
+     * the widened window below is what will settle it if this still finds
+     * nothing.
+     */
+    const src = /<[a-z]+[^>]*class="[^"]*docsource[^"]*"[^>]*>([\s\S]*?)<\/[a-z]+>/i.exec(block)
+      ?? /<[a-z]+[^>]*class="[^"]*docsource[^"]*"[^>]*>([^<]*)/i.exec(block);
     const court = src ? textOf(src[1] ?? "").slice(0, 120) || null : null;
 
     seen.add(docId);
-    out.push({ docId, title, court, snippet, kind: kindOf(title), window: block.slice(0, 700).replace(/\s+/g, " ") });
+    out.push({ docId, title, court, snippet, kind: kindOf(title), window: block.slice(0, 1800).replace(/\s+/g, " ") });
   }
   return out;
 }
