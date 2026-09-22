@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Eyebrow } from "@/components/stories/Kit";
 import NewBadge from "@/components/ui/NewBadge";
 import { loadSearch, loadCitations, loadJudgments } from "@/lib/rights";
+import { loadBollywood, pooled } from "@/lib/bollywood";
+import { loadSindoorBook } from "@/lib/sindoor-book";
 
 /**
  * The index of visual stories.
@@ -148,7 +150,39 @@ export default function StoriesIndex() {
   const shriPieces =
     search.items.filter((i) => i.subject === "pmshri").length + citations.counts.bySubject.pmshri;
 
+  const bolly = loadBollywood();
+  const book = loadSindoorBook();
+  const revengeEarly = pooled(bolly, "revenge", 1995, 1999);
+  const revengeLate = pooled(bolly, "revenge", 2021, 2025);
+  const bookFacts =
+    book.counts.targets + book.counts.airbases + book.counts.beats
+    + book.counts.weapons + book.counts.disputes;
+
   const RIGHTS = [
+    {
+      href: "/bollywood-villains",
+      tone: "hot" as const,
+      kicker: "hindi cinema · depiction",
+      title: "The Villains Left. The Reckonings Left With Them.",
+      blurb:
+        `${bolly.counts.films.toLocaleString("en-IN")} films of plot summary measured over thirty years. Revenge and organised `
+        + "crime roughly halve — against a confound that should have pushed them up. What "
+        + "changed instead is how the stories end.",
+      stat: `${revengeEarly.toFixed(0)}% → ${revengeLate.toFixed(0)}%`,
+      statLabel: "films whose plot turns on revenge, 1995-99 to 2021-25",
+    },
+    {
+      href: "/sindoor-walkthrough",
+      tone: "mid" as const,
+      kicker: "operation sindoor · one account",
+      title: "Nine Sites, Four Days, and One Account of Them.",
+      blurb:
+        `${bookFacts} facts from a retired Indian general's book, each verified against the text on every `
+        + "build and each citing a page read from the book's own pagination. Drawn as ink on "
+        + "paper, because a photoreal render of a contested border asserts what it cannot cite.",
+      stat: String(bookFacts),
+      statLabel: "facts, each re-checked against its source on every build",
+    },
     {
       href: "/atrocities-act",
       tone: "hot" as const,
