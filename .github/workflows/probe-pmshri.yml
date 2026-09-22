@@ -1,0 +1,48 @@
+name: Does PM SHRI have a readable primary source, anywhere
+
+# The last probe counted: NCRB's 2022 page carries thirty-five PDFs, the
+# Ministry of Social Justice's report page sixty-three. A count is enough to
+# know a source is worth opening and useless for opening it. The Act's national
+# figures live in exactly one of those files, and guessing which would be a
+# guess with a plausible-looking answer at the end of it.
+#
+# So this lists them — href and link text — and the choice of which file to
+# read becomes a reading.
+#
+# Downloads no PDF, extracts no table, publishes no figure.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-pmshri.ts"
+      - ".github/workflows/probe-pmshri.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-pmshri
+  # Never cancel a run that commits data: the commit step runs `if: always()`,
+  # so a cancelled run publishes a partial file over a complete one.
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Probe
+        run: npm run pmshri:probe
+      - name: Commit the probe report
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/live/pmshri-probe.json
+          "chore(sources): PM SHRI source probe $(date -u +'%Y-%m-%d %H:%M')"
