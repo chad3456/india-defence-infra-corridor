@@ -1,0 +1,55 @@
+name: Harvest the reporting cited on caste atrocities and school policy
+
+# The five newsrooms that answer a script saw 199 items in their first sweep
+# and matched one. That is not a bug: an RSS feed carries about a day of a
+# general national desk, and neither subject is a daily story. The feeds are a
+# live tripwire, not a way to reach volume.
+#
+# Volume comes from bibliographies that already exist. English Wikipedia's
+# articles on this subject carry large reference lists, and every citation in
+# them is a dated, attributed, linked piece of published reporting. This reads
+# the citation metadata only — outlet, headline, date, URL. No Wikipedia prose
+# is used for anything.
+#
+# A citation is evidence that an outlet published a headline on a date. It is
+# not a verified fact and it is not a sample of coverage, and nothing built on
+# it is turned into a time series.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Monthly. A reference list is an archive; it does not move daily.
+    - cron: "10 3 3 * *"
+  push:
+    paths:
+      - "scripts/etl/connectors/rights-citations.ts"
+      - ".github/workflows/rights-citations.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rights-citations
+  # Never cancel a run that commits data: the commit step runs `if: always()`,
+  # so a cancelled run publishes a partial file over a complete one.
+  cancel-in-progress: false
+
+jobs:
+  citations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Read the reference lists
+        run: npm run rights:citations
+      - name: Commit the register
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/rights/citations.json
+          "data(rights): cited-reporting register $(date -u +'%Y-%m-%d %H:%M')"

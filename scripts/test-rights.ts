@@ -19,6 +19,7 @@
  */
 import { subjectOf, facetOf } from "../scripts/etl/connectors/rights-news";
 import { yearOf, parseResults, textOf, shapeNote } from "../scripts/etl/connectors/scst-judgments";
+import { parseCitations, cleanField, citationDate, outletOf } from "../scripts/etl/connectors/rights-citations";
 
 let failures = 0;
 function check(name: string, got: unknown, want: unknown): void {
@@ -167,6 +168,59 @@ Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act</p>
     shapeNote("<html><script>var x=1</script><body><a href=\"/doc/9/\">t</a></body></html>").includes("/doc/9/"), true);
   check("a shape note drops scripts",
     shapeNote("<script>SECRETVAR</script><a href=\"/doc/9/\">t</a>").includes("SECRETVAR"), false);
+}
+
+console.log("\nCitations come out of a reference list whole");
+{
+  /*
+   * The trap. Citation templates nest — a title routinely carries {{ill}} or
+   * {{lang}}, and a lazy `\{\{cite[^}]*\}\}` stops at the first inner close,
+   * truncating the headline exactly where it gets interesting. So the parser
+   * walks braces, and this pins it.
+   */
+  const nested = "{{cite news|title=Dalit man killed in {{ill|Khairlanji|mr}} village|work=The Hindu|date=30 September 2006|url=https://example.org/a}}";
+  const c1 = parseCitations(nested);
+  check("a nested template does not truncate the citation", c1.length, 1);
+  check("the whole headline survives the nesting",
+    cleanField(c1[0]?.fields["title"] ?? ""), "Dalit man killed in village");
+  check("the field after the nesting is still read", c1[0]?.fields["work"], "The Hindu");
+  check("the url survives", c1[0]?.fields["url"], "https://example.org/a");
+
+  /* A pipe inside a wikilink belongs to the link, not to the field list. */
+  const piped = "{{cite news|title=[[Hathras case|The Hathras case]] reported|work=Indian Express|date=2020-10-01}}";
+  const c2 = parseCitations(piped);
+  check("a piped wikilink is one field", cleanField(c2[0]?.fields["title"] ?? ""), "The Hathras case reported");
+  check("the field after a piped link is read", c2[0]?.fields["work"], "Indian Express");
+
+  check("several citations in one body are all found",
+    parseCitations("{{cite news|title=One long enough headline}} text {{cite web|title=Two long enough headline}}").length, 2);
+  check("an unbalanced citation is skipped, not guessed at",
+    parseCitations("{{cite news|title=Truncated").length, 0);
+  check("a template that is not a citation is ignored",
+    parseCitations("{{infobox|name=Something}}").length, 0);
+}
+
+console.log("\nCitation dates normalise, or are dropped");
+{
+  check("day month year", citationDate("30 September 2006"), "2006-09-30");
+  check("month day, year", citationDate("September 30, 2006"), "2006-09-30");
+  check("already iso", citationDate("2020-10-01"), "2020-10-01");
+  /*
+   * A bare year is kept. For a 1991 massacre it is often all there is, and
+   * dropping it would push the case out of the record entirely.
+   */
+  check("a bare year is kept as a year", citationDate("1991"), "1991");
+  check("unparseable is null", citationDate("n.d."), null);
+  check("empty is null", citationDate(""), null);
+}
+
+console.log("\nThe outlet is read from whichever field carries it");
+{
+  check("work wins", outletOf({ work: "The Hindu", publisher: "THG" }), "The Hindu");
+  check("newspaper is read", outletOf({ newspaper: "Times of India" }), "Times of India");
+  check("publisher is a fallback", outletOf({ publisher: "Reuters" }), "Reuters");
+  check("a wikilinked outlet is cleaned", outletOf({ work: "[[The Hindu]]" }), "The Hindu");
+  check("no outlet field yields null", outletOf({ title: "Something" }), null);
 }
 
 console.log(failures === 0 ? "\nAll rights tests passed." : `\n${failures} rights test(s) failed.`);
