@@ -47,5 +47,5 @@ jobs:
         if: always()
         run: >
           .github/scripts/commit-generated.sh
-          data/rights/scst-judgments.json
+          data/rights/scst-judgments.json data/rights/kanoon-shape.json
           "data(rights): SC/ST Act judgment corpus $(date -u +'%Y-%m-%d %H:%M')"

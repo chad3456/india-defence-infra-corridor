@@ -18,7 +18,7 @@
  * These tests exist so that error cannot be reintroduced quietly.
  */
 import { subjectOf, facetOf } from "../scripts/etl/connectors/rights-news";
-import { yearOf, parseResults, textOf } from "../scripts/etl/connectors/scst-judgments";
+import { yearOf, parseResults, textOf, shapeNote } from "../scripts/etl/connectors/scst-judgments";
 
 let failures = 0;
 function check(name: string, got: unknown, want: unknown): void {
@@ -132,6 +132,41 @@ Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act</p>
   check("markup it does not recognise yields nothing",
     parseResults("<div class='something-else'>text</div>").length, 0);
   check("tags are stripped from text", textOf("<b>Patna</b> High&nbsp;Court"), "Patna High Court");
+
+  /*
+   * The regression this parser exists for. The first version split the page on
+   * `<div class="result_title">` and parsed zero results on every page of every
+   * query — a class name is a fact about a stylesheet, and stylesheets get
+   * rewritten. Results are now found by the one thing a judgment search cannot
+   * change without breaking its own permalinks: a link to /doc/<id>/.
+   */
+  const renamed = `
+<li class="listing"><a href="/doc/551122/">Mohan vs State Of Rajasthan on 9 August, 2020</a>
+<span class="court-label docsource_main">Rajasthan High Court</span>
+<p>conviction under the Atrocities Act is upheld</p></li>`;
+  const r2 = parseResults(renamed);
+  check("a result is found when the class names have changed", r2.length, 1);
+  check("its id survives the rename", r2[0]?.docId, "551122");
+  check("its year survives the rename", yearOf(r2[0]?.title ?? ""), 2020);
+
+  /*
+   * Two links to one judgment must be one row, not two, or every count in the
+   * corpus doubles.
+   */
+  const twice = `
+<div><a href="/doc/771/">Anil vs State Of Gujarat on 2 May, 2018</a><div class="docsource">Gujarat High Court</div>
+<p>the appeal is dismissed</p><a href="/doc/771/">full document</a></div>`;
+  check("two links to one judgment are one result", parseResults(twice).length, 1);
+  check("the longer anchor text is taken as the title",
+    /Anil vs State/.test(parseResults(twice)[0]?.title ?? ""), true);
+
+  /*
+   * A run that reads nothing must leave behind what it met.
+   */
+  check("a shape note describes a page it could not read",
+    shapeNote("<html><script>var x=1</script><body><a href=\"/doc/9/\">t</a></body></html>").includes("/doc/9/"), true);
+  check("a shape note drops scripts",
+    shapeNote("<script>SECRETVAR</script><a href=\"/doc/9/\">t</a>").includes("SECRETVAR"), false);
 }
 
 console.log(failures === 0 ? "\nAll rights tests passed." : `\n${failures} rights test(s) failed.`);

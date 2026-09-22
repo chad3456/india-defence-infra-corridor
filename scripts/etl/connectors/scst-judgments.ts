@@ -48,6 +48,8 @@ import { isEntryPoint } from "../lib/entry";
 
 const OUT_DIR = join(process.cwd(), "data", "rights");
 const OUT = join(OUT_DIR, "scst-judgments.json");
+/** Where a run that could not read the page leaves its description of it. */
+const SHAPE_OUT = join(OUT_DIR, "kanoon-shape.json");
 const KANOON = "https://indiankanoon.org/search/";
 
 /**
@@ -149,34 +151,87 @@ export function yearOf(title: string): number | null {
 /**
  * Results out of one search page.
  *
- * Written against the structure the probe measured — ten `result_title`
- * blocks and twenty `/doc/` links per page — and defensive about all of it,
- * because a layout change should show up as zero results parsed rather than
- * as wrong ones. The run publishes how many each page yielded for exactly
- * that reason.
+ * The first version of this split the page on `<div class="result_title">`,
+ * which the probe had seen in the markup. It parsed zero results on every
+ * page of every query, because a class name is a fact about a stylesheet and
+ * stylesheets get rewritten. The guard below caught it and refused to publish
+ * an empty corpus, which is the only reason it was a wasted run rather than a
+ * silently emptied dataset.
+ *
+ * So this anchors on the one thing a judgment search cannot change without
+ * changing its own permalinks: a link to `/doc/<id>/`. Everything else —
+ * where the court name sits, what the surrounding element is called — is
+ * read if present and left null if not.
+ *
+ * The page carries roughly two `/doc/` links per result, a title and a
+ * secondary link, so results are collapsed by document id and the longest
+ * anchor text wins as the title.
  */
 export function parseResults(html: string): Array<{ docId: string; title: string; court: string | null; snippet: string }> {
-  const out: Array<{ docId: string; title: string; court: string | null; snippet: string }> = [];
-  // Each result is a block starting at a result_title and running to the next.
-  const blocks = html.split(/<div class="result_title">/).slice(1);
-  for (const block of blocks) {
-    const link = /<a\s+href="\/doc\/(\d+)\/?[^"]*"[^>]*>([\s\S]*?)<\/a>/i.exec(block);
-    if (!link) continue;
-    const docId = link[1] ?? "";
-    const title = textOf(link[2] ?? "");
-    if (docId === "" || title === "") continue;
-    const src = /<div class="docsource[^"]*">([\s\S]*?)<\/div>/i.exec(block);
-    // The snippet is whatever prose follows, before the next result begins.
-    const snippet = textOf(block.replace(/<a\s+href="\/doc\/[\s\S]*?<\/a>/i, "")).slice(0, 400);
-    out.push({ docId, title, court: src ? textOf(src[1] ?? "") || null : null, snippet });
+  const anchors = [...html.matchAll(/<a\s[^>]*href="\/doc\/(\d+)\/?[^"]*"[^>]*>([\s\S]*?)<\/a>/gi)];
+  const byDoc = new Map<string, { docId: string; title: string; court: string | null; snippet: string; at: number }>();
+
+  for (let i = 0; i < anchors.length; i++) {
+    const m = anchors[i];
+    if (!m) continue;
+    const docId = m[1] ?? "";
+    const title = textOf(m[2] ?? "");
+    if (docId === "" || title.length < 8) continue;
+
+    // The block running from this anchor to the next result's anchor is where
+    // the court label and the snippet live.
+    const from = (m.index ?? 0) + m[0].length;
+    const next = anchors[i + 1];
+    const to = next?.index ?? Math.min(html.length, from + 2000);
+    const block = html.slice(from, to > from ? to : from);
+
+    const src = /<div[^>]*class="[^"]*docsource[^"]*"[^>]*>([\s\S]*?)<\/div>/i.exec(block)
+      ?? /<div[^>]*class="[^"]*docsource[^"]*"[^>]*>([\s\S]*)/i.exec(block);
+    const court = src ? textOf(src[1] ?? "").slice(0, 120) || null : null;
+    const snippet = textOf(block).slice(0, 400);
+
+    const prev = byDoc.get(docId);
+    // Two links to one judgment: keep the one whose anchor text reads as the
+    // title, which is the longer of them, but keep the richer snippet.
+    if (prev && prev.title.length >= title.length) {
+      if (snippet.length > prev.snippet.length) prev.snippet = snippet;
+      if (prev.court === null && court !== null) prev.court = court;
+      continue;
+    }
+    byDoc.set(docId, {
+      docId,
+      title,
+      court: court ?? prev?.court ?? null,
+      snippet: snippet.length >= (prev?.snippet.length ?? 0) ? snippet : (prev?.snippet ?? snippet),
+      at: prev?.at ?? i,
+    });
   }
-  return out;
+
+  return [...byDoc.values()].sort((a, b) => a.at - b.at)
+    .map(({ docId, title, court, snippet }) => ({ docId, title, court, snippet }));
+}
+
+/**
+ * What the page looked like, when it did not look like anything expected.
+ *
+ * A run that parses nothing must leave behind enough to fix it without
+ * guessing again. This publishes the markup around the first `/doc/` link, or
+ * the head of the body when there is not even one — sanitised of scripts and
+ * collapsed, so it is a shape and not a copy of the page.
+ */
+export function shapeNote(html: string): string {
+  const stripped = html.replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ");
+  const hit = /<a\s[^>]*href="\/doc\/\d+/i.exec(stripped);
+  const at = hit ? Math.max(0, (hit.index ?? 0) - 300) : 0;
+  return stripped.slice(at, at + 1200).replace(/\s+/g, " ").trim();
 }
 
 async function main(): Promise<void> {
   const found = new Map<string, Judgment>();
   const perQuery: Array<{ id: string; label: string; pagesAsked: number; pagesOk: number; results: number }> = [];
   const pageYields: number[] = [];
+  /** What a page that yielded nothing actually looked like. See shapeNote. */
+  const unparsed: Array<{ query: string; page: number; bytes: number; shape: string }> = [];
 
   for (const q of QUERIES) {
     let pagesOk = 0;
@@ -194,7 +249,11 @@ async function main(): Promise<void> {
       const rows = parseResults(res.data);
       pageYields.push(rows.length);
       if (rows.length === 0) {
-        console.log(`  ${q.id} page ${page}: parsed 0 results — layout may have changed`);
+        // Leave behind what the page looked like, so the next attempt reads
+        // rather than guesses. The first version of this connector guessed at
+        // a CSS class name and parsed nothing, four queries deep, twice.
+        unparsed.push({ query: q.id, page, bytes: res.data.length, shape: shapeNote(res.data) });
+        console.log(`  ${q.id} page ${page}: parsed 0 results from ${res.data.length} bytes — shape recorded`);
         break;
       }
       pagesOk++;
@@ -224,6 +283,14 @@ async function main(): Promise<void> {
 
   const judgments = [...found.values()];
   if (judgments.length === 0) {
+    await mkdir(OUT_DIR, { recursive: true });
+    await writeFile(SHAPE_OUT, JSON.stringify({
+      builtAt: new Date().toISOString(),
+      what: "Indian Kanoon returned pages this connector could not read. What they looked like.",
+      why: "So the fix is a reading rather than a second guess.",
+      unparsed,
+    }, null, 2) + "\n", "utf8");
+    console.log(`Wrote ${SHAPE_OUT}: ${unparsed.length} unreadable page(s).`);
     throw new Error("no judgments parsed — refusing to publish an empty corpus over a good one");
   }
 
@@ -268,6 +335,7 @@ async function main(): Promise<void> {
       medianPageYield: [...pageYields].sort((a, b) => a - b)[Math.floor(pageYields.length / 2)] ?? 0,
     },
     perQuery,
+    unparsed,
     byYear: [...byYear].map(([year, n]) => ({ year, n })).sort((a, b) => a.year - b.year),
     byCourt: [...byCourt].map(([court, n]) => ({ court, n })).sort((a, b) => b.n - a.n).slice(0, 40),
     byMention: [...byMention].map(([mention, n]) => ({ mention, n })).sort((a, b) => b.n - a.n),
