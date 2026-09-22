@@ -68,7 +68,25 @@ async function pace(): Promise<void> {
  * An article that does not exist answers 200 with an empty parse, so the run
  * reports which titles yielded nothing rather than assuming they were empty.
  */
-const ARTICLES: Array<{ title: string; note: string }> = [
+const ARTICLES: Array<{
+  title: string;
+  note: string;
+  /**
+   * Set only on bibliographies that are ABOUT one case, where every reference
+   * in the list is coverage of that case and a keyword test would throw most
+   * of it away — "Two held in Bihar killing" says nothing on its own.
+   *
+   * This is a curatorial assertion, not a measurement: I am saying the
+   * Khairlanji article's reference list is coverage of a caste atrocity. It is
+   * recorded on every citation it admits, so a reader can separate the pieces
+   * that say what they are from the pieces that sit in a list I vouched for.
+   *
+   * It is deliberately absent from the general articles. Allowing it there
+   * made the test circular — the article titled "Dalit" contributed 208 of the
+   * first 358 citations, every one qualifying on the article's own title.
+   */
+  caseSubject?: Subject;
+}> = [
   // The statute and its frame.
   { title: "Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989", note: "The Act itself" },
   { title: "Caste-related violence in India", note: "The pattern the Act addresses" },
@@ -82,26 +100,45 @@ const ARTICLES: Array<{ title: string; note: string }> = [
   { title: "Atrocities against Dalits in India", note: "If it exists under this title" },
 
   // Individual cases, which is where the reporting is.
-  { title: "Khairlanji massacre", note: "2006" },
-  { title: "2016 Una flogging incident", note: "2016" },
-  { title: "Hathras gang rape and murder", note: "2020" },
-  { title: "Bhima Koregaon violence", note: "2018" },
-  { title: "Kambalapalli massacre", note: "2000" },
-  { title: "Tsunduru massacre", note: "1991" },
-  { title: "Karamchedu massacre", note: "1985" },
-  { title: "Bathani Tola massacre", note: "1996" },
-  { title: "Laxmanpur Bathe massacre", note: "1997" },
-  { title: "Melavalavu massacre", note: "1997" },
-  { title: "Bant Singh", note: "2006" },
-  { title: "Rohith Vemula", note: "2016" },
-  { title: "2018 Indian Dalit protests", note: "The protests after the Subhash Kashinath Mahajan ruling" },
-  { title: "Delta Meghwal rape case", note: "2016" },
-  { title: "Mirchpur violence", note: "2010" },
-  { title: "Gohana riots", note: "2005" },
-  { title: "Bhagana rape case", note: "2014" },
-  { title: "Vachathi case", note: "1992, and its judgment thirty-one years later" },
-  { title: "Kilvenmani massacre", note: "1968, before the Act" },
-  { title: "Chunduru massacre", note: "Alternate title for Tsunduru" },
+  { title: "Khairlanji massacre", caseSubject: "scst", note: "2006" },
+  { title: "2016 Una flogging incident", caseSubject: "scst", note: "2016" },
+  { title: "Hathras gang rape and murder", caseSubject: "scst", note: "2020" },
+  { title: "Bhima Koregaon violence", caseSubject: "scst", note: "2018" },
+  { title: "Kambalapalli massacre", caseSubject: "scst", note: "2000" },
+  { title: "Tsunduru massacre", caseSubject: "scst", note: "1991" },
+  { title: "Karamchedu massacre", caseSubject: "scst", note: "1985" },
+  { title: "Bathani Tola massacre", caseSubject: "scst", note: "1996" },
+  { title: "Laxmanpur Bathe massacre", caseSubject: "scst", note: "1997" },
+  { title: "Melavalavu massacre", caseSubject: "scst", note: "1997" },
+  { title: "Bant Singh", caseSubject: "scst", note: "2006" },
+  { title: "Rohith Vemula", caseSubject: "scst", note: "2016" },
+  { title: "2018 Indian Dalit protests", caseSubject: "scst", note: "The protests after the Subhash Kashinath Mahajan ruling" },
+  { title: "Delta Meghwal rape case", caseSubject: "scst", note: "2016" },
+  { title: "Mirchpur violence", caseSubject: "scst", note: "2010" },
+  { title: "Gohana riots", caseSubject: "scst", note: "2005" },
+  { title: "Bhagana rape case", caseSubject: "scst", note: "2014" },
+  { title: "Vachathi case", caseSubject: "scst", note: "1992, and its judgment thirty-one years later" },
+  { title: "Kilvenmani massacre", caseSubject: "scst", note: "1968, before the Act" },
+  { title: "Chunduru massacre", caseSubject: "scst", note: "Alternate title for Tsunduru" },
+
+  // Further case bibliographies, including corrected titles for the ones that
+  // answered with no article at all. A missing article answers 200 with an
+  // empty parse, so the run reports which titles yielded nothing rather than
+  // assuming the subject has no coverage.
+  { title: "Mirchpur killings", caseSubject: "scst", note: "2010, under its other title" },
+  { title: "Bathani Tola", caseSubject: "scst", note: "1996, under its other title" },
+  { title: "Belchhi massacre", caseSubject: "scst", note: "1977" },
+  { title: "Ranvir Sena", caseSubject: "scst", note: "The caste militia behind several of the Bihar massacres" },
+  { title: "2018 Indian Bharat Bandh", caseSubject: "scst", note: "The protests after the Subhash Kashinath Mahajan ruling" },
+  { title: "Payal Tadvi suicide case", caseSubject: "scst", note: "2019" },
+  { title: "Bhim Army", caseSubject: "scst", note: "The organisation formed in response" },
+  { title: "Saharanpur violence", caseSubject: "scst", note: "2017" },
+  { title: "Kherlanji massacre", caseSubject: "scst", note: "Khairlanji under its other spelling" },
+  { title: "Caste system in India", note: "The structure the Act sits inside" },
+  { title: "National Commission for Scheduled Castes", note: "The body that reports on the Act's working" },
+  { title: "Dalit Christians", note: "A group the Act's protections are argued not to reach" },
+  { title: "Adivasi", note: "The Scheduled Tribes half of the statute, usually left out of the argument" },
+  { title: "Bonded labour in India", note: "An adjacent statute with its own enforcement record" },
 
   // The scheme and its policy frame.
   { title: "National Education Policy 2020", note: "The policy PM SHRI demonstrates" },
@@ -128,6 +165,11 @@ export interface Citation {
   articles: string[];
   /** cite news, cite web, cite report — recorded, because they differ in weight. */
   template: string;
+  /**
+   * How this citation qualified as on-subject: its own headline, or the case
+   * bibliography it sits in. Different strengths of claim, kept apart.
+   */
+  matchedOn: "headline" | "bibliography";
 }
 
 /**
@@ -264,13 +306,31 @@ async function main(): Promise<void> {
       const headline = cleanField(c.fields["title"] ?? "");
       if (headline.length < 12) continue;
       /*
-       * The subject test runs over the headline AND the article it was cited
-       * in. A headline reading "Two held in Bihar killing" is on-subject in
-       * the Khairlanji bibliography and meaningless on its own, and dropping
-       * it would throw away most of the case reporting.
+       * The subject test runs over the headline first, and only falls back to
+       * the article that cited it when that article is about a specific case.
+       *
+       * The fallback exists because a headline reading "Two held in Bihar
+       * killing" is on-subject in the Khairlanji bibliography and meaningless
+       * on its own, and dropping it would throw away most of the case
+       * reporting. But allowing it everywhere made the test tautological: the
+       * article titled "Dalit" contributed 208 of the first 358 citations,
+       * every one of them qualifying because the word "Dalit" was in the
+       * article's own title rather than in the piece being cited.
+       *
+       * Keyword-matching the article title would not have rescued the case
+       * bibliographies either: "Khairlanji massacre" contains no subject word,
+       * so the fallback only ever fired on the articles that made it circular.
+       * The subject a case bibliography carries is therefore asserted on the
+       * list above, by name, rather than inferred.
+       *
+       * A general article keeps only what its own headlines earn, and how each
+       * citation qualified is recorded, because "the headline says so" and "it
+       * sits in a bibliography I vouched for" are different strengths of claim
+       * and a reader is entitled to tell them apart.
        */
-      const subject = subjectOf(headline) ?? subjectOf(`${headline} ${a.title}`);
-      if (subject === null) continue;
+      const direct = subjectOf(headline);
+      const subject = direct ?? a.caseSubject ?? null;
+      if (subject === undefined || subject === null) continue;
       const url = cleanField(c.fields["url"] ?? "") || null;
       const id = url ?? `${outletOf(c.fields) ?? "?"}::${headline.toLowerCase()}`;
       const prev = found.get(id);
@@ -288,6 +348,7 @@ async function main(): Promise<void> {
         facet: facetOf(`${headline} ${a.title}`, subject),
         articles: [a.title],
         template: c.template,
+        matchedOn: direct !== null ? "headline" : "bibliography",
       });
       kept++;
     }
@@ -326,6 +387,7 @@ async function main(): Promise<void> {
       "How much coverage a subject received, in any year. These are the pieces Wikipedia editors reached for, which skews hard towards the cases that became famous and away from the ordinary registrations that are almost all of the Act's use. Counting these by year measures when editors were writing.",
       "That a cited report is accurate. The register records that it was published and cited; the link is there so a reader goes and reads it.",
       "Anything about the frequency of atrocities, acquittals or misuse. A bibliography is not a dataset.",
+      "That a citation qualifying through its bibliography is about the subject. Those are pieces whose own headline does not say so — 'Two held in Bihar killing' — kept because they sit in the reference list of an article about a specific case. The count of each is published; they are not the same strength of claim.",
       "That a case absent from this register did not happen. Most cases were never written up in an encyclopaedia, and the famous ones are famous partly because they were exceptional.",
     ],
     counts: {
@@ -335,6 +397,10 @@ async function main(): Promise<void> {
       withDate: citations.filter((c) => c.published !== null).length,
       articlesRead: perArticle.filter((a) => a.ok).length,
       articlesMissing: perArticle.filter((a) => !a.ok).length,
+      byMatch: {
+        headline: citations.filter((c) => c.matchedOn === "headline").length,
+        bibliography: citations.filter((c) => c.matchedOn === "bibliography").length,
+      },
       bySubject: {
         scst: citations.filter((c) => c.subject === "scst").length,
         pmshri: citations.filter((c) => c.subject === "pmshri").length,

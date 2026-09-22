@@ -230,6 +230,35 @@ console.log("\nCitations come out of a reference list whole");
     parseCitations("{{infobox|name=Something}}").length, 0);
 }
 
+console.log("\nA bibliography's title does not make a citation on-subject");
+{
+  /*
+   * The tautology this guards. The subject test used to fall back to the
+   * article a citation was cited in, for every article. The article titled
+   * "Dalit" then contributed 208 of the first 358 citations — every one
+   * qualifying because the word was in the article's own title rather than in
+   * the piece being cited. The fallback now applies only to articles about a
+   * specific case, where a headline like "Two held in Bihar killing" really is
+   * on-subject and would otherwise be lost.
+   *
+   * This checks the rule directly: an off-subject headline is on-subject only
+   * when read together with a case bibliography, never on its own.
+   */
+  check("an off-subject headline alone is not on subject",
+    subjectOf("Two held in Bihar killing"), null);
+  /*
+   * And keyword-matching the article title would not have rescued the case
+   * bibliographies anyway: "Khairlanji massacre" contains no subject word, so
+   * the old fallback only ever fired on the articles that made it circular.
+   * A case bibliography's subject is asserted by name in the article list
+   * instead, and recorded on every citation it admits.
+   */
+  check("a case bibliography's own title carries no subject keyword",
+    subjectOf("Two held in Bihar killing Khairlanji massacre"), null);
+  check("a headline that says it itself needs no bibliography",
+    subjectOf("Dalit man assaulted in Bihar village"), "scst");
+}
+
 console.log("\nCitation dates normalise, or are dropped");
 {
   check("day month year", citationDate("30 September 2006"), "2006-09-30");
