@@ -1,0 +1,50 @@
+name: Probe the official numbers behind the Act and the scheme
+
+# Round two settled the evidence: Indian Kanoon supplies judgments, five
+# newsrooms supply coverage. Neither supplies a national count. Registrations,
+# chargesheets, convictions and pendency under the SC/ST Act come from NCRB and
+# from nowhere else; sanctioned PM SHRI schools and funds released come from PIB
+# releases and Parliament answers.
+#
+# Round two also found all three of those "reachable" and none of them
+# answering. This round asks the narrower question — whether a specific document
+# with a specific table can be fetched and read.
+#
+# Publishes no case count, no conviction rate, no school count and no claim
+# about either subject.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-official.ts"
+      - ".github/workflows/probe-official.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-official
+  # Never cancel a run that commits data: the commit step runs `if: always()`,
+  # so a cancelled run publishes a partial file over a complete one.
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Probe
+        run: npm run official:probe
+      - name: Commit the probe report
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/live/official-probe.json
+          "chore(sources): official-numbers probe $(date -u +'%Y-%m-%d %H:%M')"
