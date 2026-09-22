@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-09-21T23:17:28.063Z",
-  "previousBuild": "2026-09-21T18:13:08.522Z",
+  "builtAt": "2026-09-22T04:56:06.028Z",
+  "previousBuild": "2026-09-21T23:17:28.063Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 25,
+    "stories": 26,
     "createdThisRun": 1,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 13,
+    "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 277,
+    "itemsSeen": 286,
     "corroboration": {
-      "one": 22,
+      "one": 23,
       "two": 1,
       "threePlus": 2
     }
@@ -38,7 +38,7 @@
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 3
+      "n": 4
     },
     {
       "id": "cyber-ew",
@@ -92,14 +92,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 41,
+      "items": 40,
       "kept": 5
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Military Times",
@@ -129,7 +129,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Defense News",
@@ -147,14 +147,13 @@
       "outlet": "Defense One",
       "ok": true,
       "items": 21,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "Naval News",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "HTTP 503"
+      "ok": true,
+      "items": 10,
+      "kept": 0
     },
     {
       "outlet": "Defence Blog",
@@ -259,6 +258,23 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/netherlands-extends-mq-9-reaper-surveillance-mission-through-2027-as-dutch-role-grows-and-u-s-participation-ends-on-natos-eastern-flank/",
+      "headline": "Netherlands extends MQ-9 Reaper surveillance mission through 2027 as Dutch role grows and U.S. participation ends on NATO’s eastern flank",
+      "firstSeen": "2026-09-22",
+      "lastSeen": "2026-09-22",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/netherlands-extends-mq-9-reaper-surveillance-mission-through-2027-as-dutch-role-grows-and-u-s-participation-ends-on-natos-eastern-flank/",
+          "published": "2026-09-22"
         }
       ]
     },
