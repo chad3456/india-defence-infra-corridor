@@ -1,0 +1,58 @@
+name: Search the coverage of the Act and the scheme
+
+# Three collectors came before this one and each hit the same wall from a
+# different side. The five newsrooms that answer a script saw 199 items in a
+# sweep and matched one, because an RSS feed carries about a day of a general
+# national desk. The bibliography harvest reached 510 pieces on the Act and
+# three on PM SHRI, because the scheme has no encyclopaedia article. Every
+# government route for the scheme — its own portal, the ministry's pages,
+# Parliament's API — answered 200 and carried no number, or 404.
+#
+# What was never tried was searching an archive. Google News publishes keyless
+# RSS over a news query and it honours the query: asked for the scheme it
+# returned a hundred items carrying a hundred and eighty-seven mentions of its
+# name, against a nonsense query two hundred kilobytes different.
+#
+# Queries are asked one tier at a time, so the rarest — a court finding a
+# complaint false — is reached rather than buried. The counts are therefore per
+# query and are not proportions of anything.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Four-hourly. A search index moves faster than a bibliography and slower
+    # than a newsroom, and the register merges across runs either way.
+    - cron: "50 */4 * * *"
+  push:
+    paths:
+      - "scripts/etl/connectors/rights-search.ts"
+      - ".github/workflows/rights-search.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rights-search
+  # Never cancel a run that commits data: the commit step runs `if: always()`,
+  # so a cancelled run publishes a partial file over a complete one.
+  cancel-in-progress: false
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Search both indexes
+        run: npm run rights:search
+      - name: Commit the register
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/rights/search.json
+          "data(rights): searched coverage register $(date -u +'%Y-%m-%d %H:%M')"
