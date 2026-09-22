@@ -139,7 +139,7 @@ export const TARGETS: Target[] = [
     id: "abbas", name: "Abbas Camp", town: "Kotli", region: "PoJK",
     depthKm: 15, agency: "Army", group: "unattributed in the book",
     what: "Named as a camp for indoctrination and for training suicide bombers.",
-    place: "Kotli", verify: "Abbas Camp, Kotli",
+    place: "Kotli, Pakistan", verify: "Abbas Camp, Kotli",
   },
   {
     id: "sarjal", name: "Sarjal Camp", town: "Narowal", region: "Pakistani Punjab",
@@ -151,7 +151,7 @@ export const TARGETS: Target[] = [
     id: "gulpur", name: "Gulpur Camp", town: "Kotli", region: "PoJK",
     depthKm: null, agency: "Army", group: "Lashkar-e-Taiba",
     what: "Named as a base for units active in Poonch and Rajouri districts.",
-    place: "Kotli", verify: "Gulpur Camp",
+    place: "Kotli, Pakistan", verify: "Gulpur Camp",
   },
   {
     id: "mehmoona-joya", name: "Mehmoona Joya Camp", town: "Sialkot", region: "Pakistani Punjab",

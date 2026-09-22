@@ -599,3 +599,103 @@
   .story-tile, .story-tile .tile-value, .story-tile .tile-name { transition: none; }
   .story-tile:hover, .story-tile:focus-visible { transform: none; }
 }
+
+/* ── The ink register ──────────────────────────────────────────────────────
+
+   The walkthrough's own layer, mounted inside `.story` so it inherits every
+   tone variable and adds a surface rather than replacing one.
+
+   Why a separate register exists at all: the page draws a contested military
+   operation. A clean vector diagram of it would read as a schematic — as the
+   settled account, rendered. An ink drawing on paper reads as what it is, a
+   thing somebody made from sources, with choices in it. For a subject where
+   both governments published incompatible versions, the honest visual register
+   is the one that does not pretend to be a window onto the event.
+
+   Everything here is surface. No number, label or attribution depends on a
+   filter rendering, because a browser that drops SVG filters must still get
+   the page's argument. */
+.ink {
+  --paper: #f7f5ef;
+  --paper-2: #efece2;
+  --ink-line: rgba(21, 22, 43, 0.82);
+  --ink-faint: rgba(21, 22, 43, 0.28);
+  background-color: var(--paper);
+  /* Laid-paper tooth: two hairline grids at slightly different pitches, so the
+     texture does not resolve into a visible repeat at any zoom. */
+  background-image:
+    repeating-linear-gradient(0deg, rgba(21, 22, 43, 0.026) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(21, 22, 43, 0.018) 0 1px, transparent 1px 4px);
+}
+@media (prefers-color-scheme: dark) {
+  .ink:not([data-theme="light"]) {
+    --paper: #17171f;
+    --paper-2: #1e1e28;
+    --ink-line: rgba(242, 242, 247, 0.78);
+    --ink-faint: rgba(242, 242, 247, 0.26);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.022) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.016) 0 1px, transparent 1px 4px);
+  }
+}
+:root[data-theme="dark"] .ink {
+  --paper: #17171f;
+  --paper-2: #1e1e28;
+  --ink-line: rgba(242, 242, 247, 0.78);
+  --ink-faint: rgba(242, 242, 247, 0.26);
+}
+
+/* The annotating hand. Only ever a note, a label or an aside — never a figure
+   and never a source line, because a number in handwriting looks like an
+   estimate and every number on this site is not one. */
+.ink-hand {
+  font-family: var(--font-hand-loaded), "Segoe Print", "Bradley Hand", cursive;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+  line-height: 1.25;
+  color: var(--ink-line);
+}
+
+/* A torn-edge card: paper laid on paper, with the corner lifted a degree.
+   The rotation is on the card and not on its text, so nothing reads as
+   slanted type. */
+.ink-note {
+  background: var(--paper-2);
+  border: 1px solid var(--ink-faint);
+  border-radius: 2px;
+  box-shadow: 1px 2px 0 rgba(21, 22, 43, 0.06);
+}
+.ink-note[data-tilt="l"] { transform: rotate(-0.5deg); }
+.ink-note[data-tilt="r"] { transform: rotate(0.55deg); }
+
+/* A hand-ruled underline: two overlapping strokes, as a pen makes. */
+.ink-rule {
+  background-image:
+    linear-gradient(to right, transparent, var(--ink-line) 6%, var(--ink-line) 94%, transparent),
+    linear-gradient(to right, transparent, var(--ink-line) 12%, var(--ink-line) 88%, transparent);
+  background-size: 100% 1.5px, 100% 1px;
+  background-position: 0 0, 0 3px;
+  background-repeat: no-repeat;
+  height: 5px;
+}
+
+/* The roughened stroke. Applied to SVG groups that draw connective marks —
+   circles round a pin, an arrow to a note. Wrapped in a support query because
+   a browser without SVG filters should get a clean line, not a missing one. */
+@supports (filter: url(#x)) {
+  .ink-rough { filter: url(#ink-rough); }
+}
+
+/* The frame the Blender renders sit in. `image-rendering: auto` is explicit:
+   these are photographic-sized WebPs of flat art, and a pixelated hint on a
+   1500px render would fight the anti-aliased ink. */
+.ink-plate {
+  background: var(--paper-2);
+  border: 1px solid var(--ink-faint);
+  border-radius: 3px;
+  image-rendering: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ink-note[data-tilt] { transform: none; }
+}

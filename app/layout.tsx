@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Spectral, Archivo, IBM_Plex_Mono } from "next/font/google";
+import { Spectral, Archivo, IBM_Plex_Mono, Caveat } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
@@ -35,6 +35,24 @@ const sans = Archivo({
   variable: "--font-sans-loaded",
   display: "swap",
 });
+/*
+  The annotating hand.
+ 
+  Used only inside `.ink`, which is the walkthrough's register: a page whose
+  argument is that a drawing of a contested event must not look like a
+  photograph of one. A marginal note in someone's handwriting reads as a
+  person's claim; the same words set in the body grotesque read as the site's
+  finding. That difference is the whole point of the page, so it is carried by
+  the typeface rather than explained in a caption.
+ 
+  One weight, latin only, self-hosted like the rest.
+*/
+const hand = Caveat({
+  subsets: ["latin"],
+  weight: ["500", "700"],
+  variable: "--font-hand-loaded",
+  display: "swap",
+});
 const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
@@ -60,7 +78,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable} ${hand.variable}`}>
       <body>
         <a
           href="#main"

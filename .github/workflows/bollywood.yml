@@ -1,0 +1,54 @@
+name: Measure what Hindi films depict, 1995-2025
+
+# Reads the year list for each year, then the plot section of every linked film
+# article that has one, and counts markers over the summaries.
+#
+# The finding this is built to avoid producing is a rising line that is really
+# a fact about Wikipedia. Plot summaries have got longer across the period — a
+# 1996 film often has eighty words, a 2023 film six hundred — so any marker
+# counted per film rises whatever cinema did. Every rate is published both raw
+# and per thousand words of summary, and the median summary length by year is
+# published as its own series so the confound can be seen rather than trusted.
+#
+# Publishes no claim that films caused anything. No dataset of films can show
+# that: there is no control group and no counterfactual India.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Monthly. Thirty years of released films is not a live series; the run
+    # exists to pick up new articles and newly written plot sections.
+    - cron: "20 4 6 * *"
+  push:
+    paths:
+      - "scripts/etl/connectors/bollywood.ts"
+      - ".github/workflows/bollywood.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bollywood
+  # Never cancel a run that commits data: the commit step runs `if: always()`,
+  # so a cancelled run publishes a partial file over a complete one.
+  cancel-in-progress: false
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Read the year lists and the plots
+        run: npm run bollywood:ingest
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/cinema/bollywood-plots.json
+          "data(cinema): Hindi film plot measures $(date -u +'%Y-%m-%d %H:%M')"
