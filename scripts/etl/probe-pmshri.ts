@@ -173,6 +173,50 @@ const TARGETS: Target[] = [
     count: { articles: /href="https:\/\/www\.thehindu\.com\/[a-z]/gi },
     gapMs: 3000,
   },
+  /*
+   * The last route, and the one that would change the answer.
+   *
+   * Every source above is either the government describing itself through an
+   * application, or a feed carrying a day of a general desk. What is missing
+   * is a way to search an ARCHIVE of press coverage by keyword. Google and
+   * Bing both publish keyless RSS over a news query; if either honours the
+   * query, the scheme's coverage becomes collectable and this page can be
+   * built out of reporting rather than out of three citations.
+   *
+   * Both are paired against a nonsense query, because a search endpoint that
+   * returns the same feed whatever it is asked is the PIB trap wearing a
+   * different hat — and a feed of general headlines would look exactly like a
+   * working search right up until the register filled with irrelevance.
+   */
+  {
+    id: "gnews:pmshri", kind: "search",
+    what: "Google News RSS — a keyword search over the news archive",
+    url: "https://news.google.com/rss/search?q=%22PM+SHRI%22+schools&hl=en-IN&gl=IN&ceid=IN:en",
+    paired: "https://news.google.com/rss/search?q=zzqqxx+nonsense+term&hl=en-IN&gl=IN&ceid=IN:en",
+    settles: "Whether press coverage of the scheme can be searched rather than waited for, which decides whether this page can be built at all",
+    look: ["<item", "<title"],
+    count: { items: /<item[\s>]/gi, pmshri: /PM[\s-]?SHRI/gi, outlets: /<source[\s>]/gi },
+    gapMs: 3000,
+  },
+  {
+    id: "gnews:scst", kind: "search",
+    what: "Google News RSS — the same search for the Act",
+    url: "https://news.google.com/rss/search?q=%22SC%2FST+Act%22+OR+%22atrocities+act%22&hl=en-IN&gl=IN&ceid=IN:en",
+    settles: "Whether the same route would deepen the Act's register too, which is currently one item per sweep from five feeds",
+    look: ["<item"],
+    count: { items: /<item[\s>]/gi, outlets: /<source[\s>]/gi },
+    gapMs: 3000,
+  },
+  {
+    id: "bing:pmshri", kind: "search",
+    what: "Bing News RSS — the same question put to a second index",
+    url: "https://www.bing.com/news/search?q=%22PM+SHRI%22+schools&format=RSS",
+    paired: "https://www.bing.com/news/search?q=zzqqxx+nonsense+term&format=RSS",
+    settles: "Whether a second index answers, so the register does not depend on one company's endpoint",
+    look: ["<item"],
+    count: { items: /<item[\s>]/gi },
+    gapMs: 3000,
+  },
 ];
 
 void runProbe(TARGETS, "data/live/pmshri-probe.json", {
