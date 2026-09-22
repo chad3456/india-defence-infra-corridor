@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { Eyebrow } from "@/components/stories/Kit";
 import NewBadge from "@/components/ui/NewBadge";
+import { loadSearch, loadCitations, loadJudgments } from "@/lib/rights";
 
 /**
  * The index of visual stories.
  *
- * Seven so far, each built on data already in this repository rather than
+ * Each built on data already in this repository rather than
  * assembled for the occasion — which is the only reason these pages are
  * allowed to be this loud. The register puts a number at 58px; the number has
  * to be one the rest of the site would stand behind at 13px.
@@ -131,12 +132,71 @@ const STORIES = [
 ];
 
 export default function StoriesIndex() {
+  /*
+   * Two cards state a live count instead of a frozen one.
+   *
+   * The other seven quote a figure fixed when they were written, which is
+   * right for a story built on a finished series. These two sit on registers
+   * that grow every few hours, and a card reading "510 pieces" beside a page
+   * reading "948" would be the site contradicting itself on the way in.
+   */
+  const search = loadSearch();
+  const citations = loadCitations();
+  const judgments = loadJudgments();
+  const actPieces =
+    search.items.filter((i) => i.subject === "scst").length + citations.counts.bySubject.scst;
+  const shriPieces =
+    search.items.filter((i) => i.subject === "pmshri").length + citations.counts.bySubject.pmshri;
+
+  const RIGHTS = [
+    {
+      href: "/atrocities-act",
+      tone: "hot" as const,
+      kicker: "the atrocities act · evidence",
+      title: "Four Things That Are Not the Same Thing.",
+      blurb:
+        `${actPieces} pieces of published reporting and ${judgments.counts.judgments} judgments, filed by what they are `
+        + "evidence of — because an acquittal is not a finding that a complaint was false, and the "
+        + "rate this law is argued through cannot tell the two apart.",
+      stat: actPieces.toLocaleString("en-IN"),
+      statLabel: "cited pieces, kept in four tiers that never merge",
+    },
+    {
+      href: "/pm-shri",
+      tone: "mid" as const,
+      kicker: "pm shri · transparency",
+      title: "A Scheme That Renders Its Numbers in a Browser.",
+      blurb:
+        `${shriPieces} pieces on the schools scheme, and no school count anywhere on the page: the portal `
+        + "returns the same 1,238 bytes for its front page and for two data paths that do not "
+        + "exist, and Parliament's question API answers 404.",
+      stat: "1,238",
+      statLabel: "bytes the scheme's portal returns, whatever you ask it",
+    },
+  ];
+
+  const all = [...RIGHTS, ...STORIES];
+  /*
+   * The count counts.
+   *
+   * This heading read "Seven arguments" while ten cards sat under it, because
+   * a word written once does not notice the array growing beside it. It is the
+   * cheapest possible version of the mistake this whole site is about — a
+   * confident number nobody rechecked — and it was on the index page.
+   */
+  const WORDS = [
+    "No", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+    "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen",
+    "Nineteen", "Twenty",
+  ];
+  const count = WORDS[all.length] ?? String(all.length);
+
   return (
     <div>
       <header className="pt-10">
         <Eyebrow>visual stories</Eyebrow>
         <h1 className="story-display mt-4 max-w-[16ch] text-[40px] sm:text-[56px] lg:text-[64px]">
-          Seven arguments, told in numbers.
+          {count} arguments, told in numbers.
         </h1>
         <p className="mt-5 max-w-[60ch] text-[15px] leading-[1.62]" style={{ color: "var(--story-ink-2)" }}>
           Each of these is built from series already published elsewhere on this site, with the
@@ -146,7 +206,7 @@ export default function StoriesIndex() {
       </header>
 
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {STORIES.map((s) => (
+        {all.map((s) => (
           <Link key={s.href} href={s.href} className="story-card block p-6 transition-transform hover:-translate-y-1"
             data-tone={s.tone}>
             <span className="flex flex-wrap items-center gap-2">
