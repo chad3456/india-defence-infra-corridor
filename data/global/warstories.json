@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-09-22T13:25:10.732Z",
-  "previousBuild": "2026-09-22T04:56:06.028Z",
+  "builtAt": "2026-09-22T19:45:21.212Z",
+  "previousBuild": "2026-09-22T13:25:10.732Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,15 +12,15 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 28,
-    "createdThisRun": 2,
-    "corroboratedThisRun": 0,
-    "feedsAnswered": 14,
+    "stories": 33,
+    "createdThisRun": 5,
+    "corroboratedThisRun": 1,
+    "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 286,
+    "itemsSeen": 280,
     "corroboration": {
-      "one": 25,
-      "two": 1,
+      "one": 29,
+      "two": 2,
       "threePlus": 2
     }
   },
@@ -28,12 +28,12 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 13
+      "n": 15
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 10
+      "n": 14
     },
     {
       "id": "targeting",
@@ -55,16 +55,16 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 6
-    },
-    {
-      "iso": "IND",
-      "name": "India",
-      "n": 1
+      "n": 7
     },
     {
       "iso": "GBR",
       "name": "United Kingdom",
+      "n": 3
+    },
+    {
+      "iso": "IND",
+      "name": "India",
       "n": 1
     },
     {
@@ -92,7 +92,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 40,
+      "items": 44,
       "kept": 5
     },
     {
@@ -105,7 +105,7 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Army Times",
@@ -123,13 +123,13 @@
       "outlet": "DefenseScoop",
       "ok": true,
       "items": 10,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 3
     },
     {
       "outlet": "Defense News",
@@ -151,9 +151,10 @@
     },
     {
       "outlet": "Naval News",
-      "ok": true,
-      "items": 10,
-      "kept": 0
+      "ok": false,
+      "items": 0,
+      "kept": 0,
+      "error": "HTTP 503"
     },
     {
       "outlet": "Defence Blog",
@@ -235,6 +236,37 @@
       ]
     },
     {
+      "id": "https://www.militarytimes.com/news/your-military/2026/09/22/royal-navy-successfully-launches-us-mk-48-torpedo-from-uncrewed-submersible/",
+      "headline": "Royal Navy successfully launches US Mk 48 torpedo from uncrewed submersible",
+      "firstSeen": "2026-09-22",
+      "lastSeen": "2026-09-22",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        },
+        {
+          "iso": "GBR",
+          "name": "United Kingdom"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/news/your-military/2026/09/22/royal-navy-successfully-launches-us-mk-48-torpedo-from-uncrewed-submersible/",
+          "published": "2026-09-22"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/news/your-military/2026/09/22/royal-navy-successfully-launches-us-mk-48-torpedo-from-uncrewed-submersible/",
+          "published": "2026-09-22"
+        }
+      ]
+    },
+    {
       "id": "https://www.armytimes.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
       "headline": "US military must adapt as formations will be ‘hunted’ by autonomous systems, Caine says",
       "firstSeen": "2026-09-16",
@@ -309,6 +341,80 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/u-s-navy-tests-new-tool-to-plan-missions-for-autonomous-jets/",
+          "published": "2026-09-22"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/news/your-navy/2026/09/22/navy-successfully-tests-new-autonomous-aircraft-feature-aimed-at-simplifying-mission-planning/",
+      "headline": "Navy successfully tests new autonomous aircraft feature aimed at simplifying mission planning",
+      "firstSeen": "2026-09-22",
+      "lastSeen": "2026-09-22",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/news/your-navy/2026/09/22/navy-successfully-tests-new-autonomous-aircraft-feature-aimed-at-simplifying-mission-planning/",
+          "published": "2026-09-22"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/u-s-navy-links-human-mission-planning-to-autonomous-combat-aircraft-moving-uncrewed-systems-closer-to-operational-fleet-use/",
+      "headline": "U.S. Navy links human mission planning to autonomous combat aircraft, moving uncrewed systems closer to operational fleet use",
+      "firstSeen": "2026-09-22",
+      "lastSeen": "2026-09-22",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-navy-links-human-mission-planning-to-autonomous-combat-aircraft-moving-uncrewed-systems-closer-to-operational-fleet-use/",
+          "published": "2026-09-22"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/u-s-navy-says-mk-48-torpedo-launch-from-british-underwater-drone-advances-autonomous-aukus-strike-capability-and-allied-integration/",
+      "headline": "U.S. Navy says Mk 48 torpedo launch from British underwater drone advances autonomous AUKUS strike capability and allied integration",
+      "firstSeen": "2026-09-22",
+      "lastSeen": "2026-09-22",
+      "themes": [
+        "autonomy",
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "GBR",
+          "name": "United Kingdom"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-navy-says-mk-48-torpedo-launch-from-british-underwater-drone-advances-autonomous-aukus-strike-capability-and-allied-integration/",
+          "published": "2026-09-22"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/bae-systems-says-new-ampv-30-vehicles-give-u-s-army-greater-firepower-connectivity-and-counter-drone-capability/",
+      "headline": "BAE Systems says new AMPV 30 vehicles give U.S. Army greater firepower, connectivity and counter-drone capability",
+      "firstSeen": "2026-09-22",
+      "lastSeen": "2026-09-22",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/bae-systems-says-new-ampv-30-vehicles-give-u-s-army-greater-firepower-connectivity-and-counter-drone-capability/",
           "published": "2026-09-22"
         }
       ]
