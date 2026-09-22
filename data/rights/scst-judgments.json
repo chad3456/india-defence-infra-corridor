@@ -1,0 +1,1280 @@
+{
+  "builtAt": "2026-09-22T06:30:59.075Z",
+  "source": "Indian Kanoon (indiankanoon.org), the free Indian judgment search. Four queries, each paged separately, ten results per request, three seconds apart.",
+  "method": "Queries are asked separately rather than as one broad search, so the rarest category is actually reached instead of being buried by ranking. Each result yields a document id, a title, the court the search labels it with, the year from the end of the title, and which outcome words appear in the returned snippet.",
+  "refusal": "No acquittal rate, conviction rate or misuse measure is computed. The outcome words are MENTIONS in a search snippet, not findings: a snippet reading 'the accused was acquitted' may be the court's holding or it reciting a trial court order it goes on to overturn, and ten words of context cannot tell them apart. Every snippet is published beside its flags so a reader checks rather than trusts.",
+  "cannotSay": [
+    "How often the Act is misused. Only a court explicitly finding a complaint false is evidence of that, and those are flagged separately and are rare. An acquittal is not evidence of it: it can follow from a false complaint and can equally follow from a hostile witness, from intimidation of the complainant, from an investigation that never gathered the caste-certificate evidence the statute requires, or from a compromise outside court — and no public dataset separates them.",
+    "What share of cases end any particular way. These counts are per query, and each query was asked for a set number of pages. Fifty judgments returned for one query and fifty for another says both were asked equally, not that the outcomes are equally common.",
+    "Anything about cases that never reached a written judgment, which is most of them. Judgments are the end of a filtered process — registration, investigation, chargesheet, trial — and every stage before drops cases for reasons this corpus cannot see.",
+    "Whether a flagged outcome is the court's own. The flag says a word appeared in a snippet. The snippet is published; the judgment is one link away."
+  ],
+  "counts": {
+    "judgments": 100,
+    "withYear": 26,
+    "withCourt": 0,
+    "withNoMention": 97,
+    "pagesFetched": 10,
+    "medianPageYield": 10
+  },
+  "perQuery": [
+    {
+      "id": "act",
+      "label": "The Act generally",
+      "pagesAsked": 25,
+      "pagesOk": 10,
+      "results": 103
+    },
+    {
+      "id": "acquittal",
+      "label": "Acquittal language",
+      "pagesAsked": 10,
+      "pagesOk": 0,
+      "results": 0
+    },
+    {
+      "id": "false",
+      "label": "Complaint found false",
+      "pagesAsked": 10,
+      "pagesOk": 0,
+      "results": 0
+    },
+    {
+      "id": "conviction",
+      "label": "Conviction language",
+      "pagesAsked": 10,
+      "pagesOk": 0,
+      "results": 0
+    }
+  ],
+  "unparsed": [],
+  "byYear": [
+    {
+      "year": 1989,
+      "n": 26
+    }
+  ],
+  "byCourt": [],
+  "byMention": [
+    {
+      "mention": "quashed",
+      "n": 1
+    },
+    {
+      "mention": "convicted",
+      "n": 1
+    },
+    {
+      "mention": "acquitted",
+      "n": 1
+    }
+  ],
+  "judgments": [
+    {
+      "docId": "157412304",
+      "title": "Section 3 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/157412304/"
+    },
+    {
+      "docId": "25085007",
+      "title": "Entire Act",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "] Section 18A in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 18A. No enquiry or approval required Union of India - Section Cites 0 - Cited by 943 Search within these results Document types Bench Author AI Tags Reset Zoom 1 2",
+      "url": "https://indiankanoon.org/doc/25085007/"
+    },
+    {
+      "docId": "50234497",
+      "title": "Section 14 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/50234497/"
+    },
+    {
+      "docId": "197893640",
+      "title": "Section 18 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/197893640/"
+    },
+    {
+      "docId": "20559273",
+      "title": "Section 15A in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/20559273/"
+    },
+    {
+      "docId": "162493942",
+      "title": "Section 14A in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/162493942/"
+    },
+    {
+      "docId": "184824311",
+      "title": "Section 15 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/184824311/"
+    },
+    {
+      "docId": "146712902",
+      "title": "Section 4 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/146712902/"
+    },
+    {
+      "docId": "157536392",
+      "title": "Section 5 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/157536392/"
+    },
+    {
+      "docId": "3387275",
+      "title": "Section 2 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/3387275/"
+    },
+    {
+      "docId": "97672625",
+      "title": "Section 18A in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/97672625/"
+    },
+    {
+      "docId": "147553200",
+      "title": "Section 10 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/147553200/"
+    },
+    {
+      "docId": "162121432",
+      "title": "Section 6 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/162121432/"
+    },
+    {
+      "docId": "140217157",
+      "title": "Section 12 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/140217157/"
+    },
+    {
+      "docId": "66356822",
+      "title": "Section 7 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/66356822/"
+    },
+    {
+      "docId": "32443604",
+      "title": "Section 9 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/32443604/"
+    },
+    {
+      "docId": "170714475",
+      "title": "Section 8 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/170714475/"
+    },
+    {
+      "docId": "158329941",
+      "title": "Section 1 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/158329941/"
+    },
+    {
+      "docId": "178779221",
+      "title": "Section 21 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/178779221/"
+    },
+    {
+      "docId": "86202135",
+      "title": "Section 11 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/86202135/"
+    },
+    {
+      "docId": "148721978",
+      "title": "Section 17 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/148721978/"
+    },
+    {
+      "docId": "56780019",
+      "title": "Section 23 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/56780019/"
+    },
+    {
+      "docId": "67411638",
+      "title": "Section 19 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/67411638/"
+    },
+    {
+      "docId": "151084689",
+      "title": "Section 13 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/151084689/"
+    },
+    {
+      "docId": "148031671",
+      "title": "Section 20 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/148031671/"
+    },
+    {
+      "docId": "150737147",
+      "title": "Section 16 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/150737147/"
+    },
+    {
+      "docId": "14345331",
+      "title": "Section 22 in The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989",
+      "court": null,
+      "year": 1989,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "[",
+      "url": "https://indiankanoon.org/doc/14345331/"
+    },
+    {
+      "docId": "1348044",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "C.Sathiyanathan vs Veeramuthu on 14 November, 2008 offence punishable under the provisions of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 and registering the case ... Section 3(i)(x) of the Scheduled Castes and Scheduled Tribes ( Prevention of atrocities ) Act , 1989. But it is pertinent to note that Madras High Court Cites 34 - Cited by 1 - P R Shivakumar -",
+      "url": "https://indiankanoon.org/doc/1348044/"
+    },
+    {
+      "docId": "1841482",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Bheemavarapu Yateendra Rama Krishna, vs The State Of Andhra Pradesh, on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddar",
+      "url": "https://indiankanoon.org/doc/1841482/"
+    },
+    {
+      "docId": "173975444",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Chalivendra Ramakrishna Salivendra ... vs The State Of Andhra Pradesh on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Sidda",
+      "url": "https://indiankanoon.org/doc/173975444/"
+    },
+    {
+      "docId": "156655158",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Search within these results Document types Bench Author AI Tags Reset Zoom Previous 1 2 3 <a href=\"/search/?formInput=scheduled%20castes%20scheduled%20tribes%20prevention%20of%20atrocities%2",
+      "url": "https://indiankanoon.org/doc/156655158/"
+    },
+    {
+      "docId": "144820722",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Mohammad Gouse, vs The State Of Andhra Pradesh on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth Andhra Pradesh High",
+      "url": "https://indiankanoon.org/doc/144820722/"
+    },
+    {
+      "docId": "13367135",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Nakka Pullaiah Alias Gandhi vs The State Of Andhra Pradesh on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth Andhra ",
+      "url": "https://indiankanoon.org/doc/13367135/"
+    },
+    {
+      "docId": "92519097",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Sri Nannapaneni Chalapathi Rao vs The State Of Andhra Pradesh on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth Andh",
+      "url": "https://indiankanoon.org/doc/92519097/"
+    },
+    {
+      "docId": "98032900",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Pothumarthi Hemanth Babi vs The State Of Andhra Pradesh on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth Andhra Pra",
+      "url": "https://indiankanoon.org/doc/98032900/"
+    },
+    {
+      "docId": "151731967",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Thota Venkateswarao vs The State Of Ap on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth Andhra Pradesh High Court -",
+      "url": "https://indiankanoon.org/doc/151731967/"
+    },
+    {
+      "docId": "100558061",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Vinta Adinarayana Reddy vs The State Of Andhra Pradesh on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth Andhra Prad",
+      "url": "https://indiankanoon.org/doc/100558061/"
+    },
+    {
+      "docId": "158517458",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Shaik Sardar Johny vs The State Of Andhra Pradesh on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth Andhra Pradesh H",
+      "url": "https://indiankanoon.org/doc/158517458/"
+    },
+    {
+      "docId": "148512276",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Kosaraju Sasidhar vs The State Of Andhra Pradesh on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth Andhra Pradesh Hi",
+      "url": "https://indiankanoon.org/doc/148512276/"
+    },
+    {
+      "docId": "89075897",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Olupalli Mohana Ranga Rao vs The State Of Andhra Pradesh on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth Andhra Pr",
+      "url": "https://indiankanoon.org/doc/89075897/"
+    },
+    {
+      "docId": "98819598",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Search within these results Document types Bench Author AI Tags Reset Zoom Previous 1 2 3",
+      "url": "https://indiankanoon.org/doc/98819598/"
+    },
+    {
+      "docId": "56214079",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Gondi Parandhamaiah vs The State Of Andhra Pradesh on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth Andhra Pradesh ",
+      "url": "https://indiankanoon.org/doc/56214079/"
+    },
+    {
+      "docId": "14810184",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Simhadri Subba Rao Alias Subba Rao Goud vs The State Of Andhra Pradesh on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Sidd",
+      "url": "https://indiankanoon.org/doc/14810184/"
+    },
+    {
+      "docId": "51408509",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Manne Sundara Rao vs The State Of Andhra Pradesh on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth Andhra Pradesh Hi",
+      "url": "https://indiankanoon.org/doc/51408509/"
+    },
+    {
+      "docId": "189989526",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Gonthena Lovaraj Kumar vs The State Of Andhra Pradesh on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth Andhra Prade",
+      "url": "https://indiankanoon.org/doc/189989526/"
+    },
+    {
+      "docId": "192924254",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Gudavalli Ratna Sudhakar Sudhakar vs The State Of A.P, on 6 January, 2025 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, the police, on the strength of the material collected, altered ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 2. Sri N. Harinadh, learned Counsel for petitioner and Sri Siddarth Andhra Prad",
+      "url": "https://indiankanoon.org/doc/192924254/"
+    },
+    {
+      "docId": "121591680",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "E. Velmurugan vs State Of Tamil Nadu Rep By on 27 July, 2023 Exclusive Trial of Cases registered under the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 at Villupuram District ... Exclusive Trial of Cases registered under the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , Villupuram. 2. The Appellants are arrayed Madras High Court Ci",
+      "url": "https://indiankanoon.org/doc/121591680/"
+    },
+    {
+      "docId": "196049944",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Sunil Kumar vs The State Of Jharkhand on 8 April, 2025 Scheduled Castes or Scheduled Tribes mentioned in Section 2 (c) of Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act ... Scheduled Castes or Scheduled Tribes for the purpose of Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act Jharkhand High Court Cites 17 - Cited by 0 - A K Choudhary -",
+      "url": "https://indiankanoon.org/doc/196049944/"
+    },
+    {
+      "docId": "107538668",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Ram Pal vs State Of Rajasthan on 21 November, 1997 Section 3(1) (iv) and (x) of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 and issued process against the accused ... offence under Section 4 of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 and issued process against the police officers Rajasthan High Court - Jaipur Cites 18 - Ci",
+      "url": "https://indiankanoon.org/doc/107538668/"
+    },
+    {
+      "docId": "395403",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "The State By vs Naga @ Nagaraju S/O Hanumanthappa on 2 January, 2020 attract 3(1)(r) of the Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act , it is necessary to prove that the offence ... Scheduled Caste, the provision u/s 3(1)(r) of The Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act Bangalore District Court Cites 14 - Cited by 0 -",
+      "url": "https://indiankanoon.org/doc/395403/"
+    },
+    {
+      "docId": "190855482",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Search within these results Document types Bench Author AI Tags Reset Zoom Previous 1 2 3",
+      "url": "https://indiankanoon.org/doc/190855482/"
+    },
+    {
+      "docId": "79129066",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "7. In The Light Of The Judgment Of This ... vs . State Of M.P. [2012 (4) Scc 516]. ... on 16 October, 2014 charge under Section 3(2)(v) of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 by this Court ... under Section.3(2)(v) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , would arise and the learned Second Additional Madras High Court",
+      "url": "https://indiankanoon.org/doc/79129066/"
+    },
+    {
+      "docId": "178330653",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Thangarasu vs State By Deputy Superintendent on 14 September, 2009 Section 3(1)(x) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. The same was taken on file ... offences under the provisions of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 The learned Principal Sessions Judge (Special Judge Madras High Court Cites 13 - Cite",
+      "url": "https://indiankanoon.org/doc/178330653/"
+    },
+    {
+      "docId": "1426837",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Rajendra Prasad Singh vs State Of U.P. on 10 December, 2020 under Section 3(1)(x) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 for one year Rigorous Imprisonment ... under Section 3(2)(v) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 to life imprisonment and a fine Allahabad High Court Cites 30 - Cited by 5 -",
+      "url": "https://indiankanoon.org/doc/1426837/"
+    },
+    {
+      "docId": "187762506",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [
+        "quashed"
+      ],
+      "snippet": "Ruma Raha Dutta & Ors vs The State Of West Bengal & Anr on 16 May, 2014 Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 pending before the Court of Learned Additional Chief Judicial Magistrate, Serampore, Hooghly ... with Sections 3 and 4 of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. The petitioners have prayed for quashing Calc",
+      "url": "https://indiankanoon.org/doc/187762506/"
+    },
+    {
+      "docId": "92940867",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "P.K.Illavarasan vs Union Of India on 27 June, 2019 Castes and Scheduled Tribes as found in the Special Enactment and the Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act ... Castes and Scheduled Tribes as found in the Special Enactment and the Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act Madras High Court Cites 30 - Cited by 1 -",
+      "url": "https://indiankanoon.org/doc/92940867/"
+    },
+    {
+      "docId": "58171185",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Prakash Revachand Budhrani And Ors vs The State Of Maharashtra And Anr on 24 October, 2018 Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989, registered at the instance of respondent no.2 Suresh Hindole, are challenging ... also no offence under the provisions of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , can be made out against Bomb",
+      "url": "https://indiankanoon.org/doc/58171185/"
+    },
+    {
+      "docId": "69605487",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Suvarna Atul Pathak vs The State Of Maharashtra on 12 July, 2018 Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Challenge in this appeal is to the order dated 25th January 2018 passed ... averments attracting the provisions of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , in the said statement. He further referred Bombay High Co",
+      "url": "https://indiankanoon.org/doc/69605487/"
+    },
+    {
+      "docId": "56531121",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "S.K. Devanath @ Sampangi & Ors vs The State Of West Bengal & Anr on 24 March, 2008 Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 on the following grounds, (a) The order under Section ... passed by the Learned Special Judge under Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , pursuant to which the impugned Calcutta High Court (Appelle",
+      "url": "https://indiankanoon.org/doc/56531121/"
+    },
+    {
+      "docId": "139506463",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Bimal Gorai vs State Of West Bengal on 14 September, 2011 under Section 3 (2)(v) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2 The said trial has ended ... Scheduled Tribe . Now, having regards to the provision of Section 3 of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act Calcutta High Court (Appellete Side) Cites 14 - Cited by",
+      "url": "https://indiankanoon.org/doc/139506463/"
+    },
+    {
+      "docId": "90784641",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Search within these results Document types Bench Author AI Tags Reset Zoom Previous 2 3 4",
+      "url": "https://indiankanoon.org/doc/90784641/"
+    },
+    {
+      "docId": "1647592",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "M.P.Mariappan vs ) The Deputy Inspector General Of Police on 26 February, 2014 offences under the provisions of the Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 . Learned counsel for the writ petitioner ... atrocities punishable under section 3(x) of the Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 23. When such Madras High",
+      "url": "https://indiankanoon.org/doc/1647592/"
+    },
+    {
+      "docId": "36180452",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Muthukrishnan vs The State Of Tamil Nadu on 15 March, 2021 exclusive trial of cases under the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , Villupuram in Special ... Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 and Section 4 of the Tamil Nadu Prohibition of Harassment of Woman Act Madras High Court Cites 11 - Cited by 0 - P Velmuru",
+      "url": "https://indiankanoon.org/doc/36180452/"
+    },
+    {
+      "docId": "145002594",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "State vs . Ravinder Singh Etc. on 13 July, 2010 prevent an Atrocity . The provisions of this Special Legislation (The Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 ) cannot ... dispute, the colour of an alleged atrocity under the Scheduled Castes / Scheduled Tribes ( Prevention of Atrocities ) Act 1989. This court in a case Delhi District Court Cites 25 - Cited ",
+      "url": "https://indiankanoon.org/doc/145002594/"
+    },
+    {
+      "docId": "191990877",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "M.P.Chothy vs State Of Kerala on 29 September, 2020 Scheduled Castes / Scheduled Tribes was constituted as per the State Legislation. The State Commission for Scheduled Castes and Scheduled Tribes ... Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 is an Act to prevent the commission of offences of atrocities against the members of the Scheduled Kerala High Court Cites 145 - Cited by 0 -",
+      "url": "https://indiankanoon.org/doc/191990877/"
+    },
+    {
+      "docId": "101999024",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Abdul Halim vs The State Of Jharkhand on 7 November, 2023 case is arising under the provision of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , the provision of appeal under Section ... challenged under Section 14A of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. To buttress this argument, he relied upon Jharkhand High Court Cit",
+      "url": "https://indiankanoon.org/doc/101999024/"
+    },
+    {
+      "docId": "13858404",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Abdul Halim vs The State Of Jharkhand on 7 November, 2023 case is arising under the provision of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , the provision of appeal under Section ... challenged under Section 14A of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. To buttress this argument, he relied upon Jharkhand High Court Cit",
+      "url": "https://indiankanoon.org/doc/13858404/"
+    },
+    {
+      "docId": "164850178",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Abdul Halim vs The State Of Jharkhand on 7 November, 2023 case is arising under the provision of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , the provision of appeal under Section ... challenged under Section 14A of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. To buttress this argument, he relied upon Jharkhand High Court Cit",
+      "url": "https://indiankanoon.org/doc/164850178/"
+    },
+    {
+      "docId": "139539681",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Rameshkumar Alias Madha Hiralal Patel vs State Of Gujarat on 19 June, 2023 Section 3(2)(v) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act . Thereafter, charge-sheet is filed, which is also ... Section 3(2)(v) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , there is specific bar, as offence is punishable Gujarat High Court Cites 44 - Ci",
+      "url": "https://indiankanoon.org/doc/139539681/"
+    },
+    {
+      "docId": "103154067",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Balaram Chari Dubey vs State Of U.P. Thru. Secy. Home Civil ... on 29 May, 2025 under Section 3(2)(v) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 and deliberately the said offence ... Section 3(2)(v) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act Allahabad High Court Cites 34 - Cited by 0 -",
+      "url": "https://indiankanoon.org/doc/103154067/"
+    },
+    {
+      "docId": "78152251",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Search within these results Document types Bench Author AI Tags Reset Zoom Previous 3 4 5",
+      "url": "https://indiankanoon.org/doc/78152251/"
+    },
+    {
+      "docId": "31785932",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Selvi vs Hemanth Kumar on 3 March, 2025 Section 3 (1) (x) of Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. Thereafter, P.W-10 collected the community certificates ... Bonded Labour System (Abolition) Act , 1976 , Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , Child Labour (Prohibition And Regulation) Act Madras High Court Cites 28 - C",
+      "url": "https://indiankanoon.org/doc/31785932/"
+    },
+    {
+      "docId": "179066303",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Sukhabhai Khatabhai Chauhan vs The State Of Gujarat on 18 August, 2023 Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act . 2. It is reported that charge-sheet is filed by the Investigating Officer before ... heard qua the offences under the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act only. 5. Heard learned advocates. Rule. Learned Gujarat High Court ",
+      "url": "https://indiankanoon.org/doc/179066303/"
+    },
+    {
+      "docId": "48935589",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [
+        "convicted"
+      ],
+      "snippet": "Kumar vs The State Represented By on 8 March, 2013 Section 3(1)(x) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act . A.1 to A.3 Section ... Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act . Accused Conviction Sentence A.1 to A.3 Section Madras High Court Cites 20 - Cited by 0 - M Sathyanarayanan -",
+      "url": "https://indiankanoon.org/doc/48935589/"
+    },
+    {
+      "docId": "15153588",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Pawan Kumar Dokania @ Pawan Dokania vs The State Of Jharkhand on 3 October, 2024 under Section 3(1) (v) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act against the appellants, pending in the Court ... Section 14-A (3) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 7. Mr. Rohan Mazumdar, learned counsel appearing Jharkhand High Co",
+      "url": "https://indiankanoon.org/doc/15153588/"
+    },
+    {
+      "docId": "136135223",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Mohd. Afzal Hussain @ Sufiyan vs State Of U.P. Thru. Prin. Secy. Deptt. Of ... on 11 August, 2026 Section 14-A(2) of the Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 with a prayer to set aside ... Section 3(2) V of the Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989, Police Station Pachpedwa, District Balrampur rejecting Allaha",
+      "url": "https://indiankanoon.org/doc/136135223/"
+    },
+    {
+      "docId": "54178008",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Rohit vs State Of U.P. & Another on 29 August, 2017 contained in section 14-A of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989, newly inserted by Amending Act ... introduction of section 14-A of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 without repealing expressly or by necessary Allahabad High Court Cites 30 - Cited by 0 ",
+      "url": "https://indiankanoon.org/doc/54178008/"
+    },
+    {
+      "docId": "181976947",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Amarendra Nath Tewary vs Basana Lohar (Midya) on 22 May, 2019 trial of offences under The Scheduled Castes and The Scheduled Tribes ( Prevention of Atrocities ) Act , 1986 . The opposite party ... Scheduled Tribes ( Prevention of Atrocities ) Rules 1995. Rule 7 of The Scheduled Castes and The Scheduled Tribes ( Prevention of Atrocities ) Rules Calcutta High Court (Appellete Side) Cites 20 - Cited ",
+      "url": "https://indiankanoon.org/doc/181976947/"
+    },
+    {
+      "docId": "90765420",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Balan vs State Rep. By on 16 September, 2025 Principal Sessions Judge, Salem (Special Court of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ), Act , 1989) dated 31.03.2022 by allowing this appeal ... Principal Sessions Judge, Salem (Special Judge for Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 ) and sentenced to undergo seven years Madras High ",
+      "url": "https://indiankanoon.org/doc/90765420/"
+    },
+    {
+      "docId": "69742202",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "S.Moorthy vs The State By The on 21 December, 2023 exclusive trial of cases registered under Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , Villupuram and set aside by allowing ... exclusive trial of cases registered under Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , Villupuram 2.The learned Counsel appearing Madras High Court Cit",
+      "url": "https://indiankanoon.org/doc/69742202/"
+    },
+    {
+      "docId": "40499984",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Search within these results Document types Bench Author AI Tags Reset Zoom Previous 4 5 6",
+      "url": "https://indiankanoon.org/doc/40499984/"
+    },
+    {
+      "docId": "175387611",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Kalimuthu vs State By Inspector Of Police on 27 October, 2015 Section 3(2)(V) of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989. 2. The Trial Court, vide impugned judgment dated ... caste or schedule tribe . Charge 4 3(1)(x) of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 – Intentionally insults Madras High Court Cites 11 - Cited by 0",
+      "url": "https://indiankanoon.org/doc/175387611/"
+    },
+    {
+      "docId": "22965878",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "7. In The Light Of The Judgment Of This ... vs . State Of M.P. [2012 (4) Scc 516]. ... on 16 October, 2014 charge under Section 3(2)(v) of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 by this Court ... under Section.3(2)(v) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , would arise and the learned Second Additional Madras High Court",
+      "url": "https://indiankanoon.org/doc/22965878/"
+    },
+    {
+      "docId": "25647003",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Shivaraj S/O Basavarajaiah vs The State Of Karntaka Rep By Its Spp on 3 June, 2013 section 3(1)(x) of the Scheduled Castes / Scheduled Tribes ( Prevention of Atrocity ) Act , 1989. A charge-sheet was filed against ... under the Scheduled Caste/ Scheduled Tribes ( Prevention of Atrocity ) Act . In so trying such offences under the Scheduled Castes / Scheduled Tribes Karnataka High Court Cites 10 - ",
+      "url": "https://indiankanoon.org/doc/25647003/"
+    },
+    {
+      "docId": "102558956",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Vijay Bhagwat Bhole vs The State Of Maharashtra And Anr on 11 June, 2019 subsequently the offences under section 3 of Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act are added ... silent with respect to the offences under Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act . The informant had not disclosed her caste Bombay High Court Cites 12 - Cited by 0 - A ",
+      "url": "https://indiankanoon.org/doc/102558956/"
+    },
+    {
+      "docId": "13280128",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Mallaiah @ Muthu Mallaiah vs The Deputy Superintendent Of Police on 29 April, 2010 with Section 3(2)(v) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989, seek to quash the proceedings ... Scheduled Caste community, the alleged offence under Section 3(2)(v) of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act Madras High Court Cites 12 - ",
+      "url": "https://indiankanoon.org/doc/13280128/"
+    },
+    {
+      "docId": "86329",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "",
+      "url": "https://indiankanoon.org/doc/86329/"
+    },
+    {
+      "docId": "52012574",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Subhash Sharma & Ors. vs State Of M.P. on 1 May, 2018 judgment dated 20.2.2004 passed by Special Judge, Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ), Act , Guna in S.T.No.78/1993 ... Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ), Act . 4. The Trial Court by order dated 4.10.1997 framed charge under Sections Madhya Pradesh High Court Cites 37 - Cited by 35",
+      "url": "https://indiankanoon.org/doc/52012574/"
+    },
+    {
+      "docId": "37647716",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "B. Venkateswaran vs P. Bakthavatchalam on 5 January, 2023 Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , the accused have preferred present appeal. 2.0. That the private respondent herein ... Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 alleging inter alia that the petitioners herein – original accused have conspired Supreme",
+      "url": "https://indiankanoon.org/doc/37647716/"
+    },
+    {
+      "docId": "56855462",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Search within these results Document types Bench Author AI Tags Reset Zoom Previous 5 6 7",
+      "url": "https://indiankanoon.org/doc/56855462/"
+    },
+    {
+      "docId": "17349617",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Roki Gurjar @ Hitendra vs The State Of Madhya Pradesh Thr on 25 July, 2017 Scheduled Caste or a Scheduled Tribe . 14. The Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 was enacted because ... Scheduled Castes and a Scheduled Tribes , certain amendments have been introduced by the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities Madhya Pradesh High Co",
+      "url": "https://indiankanoon.org/doc/17349617/"
+    },
+    {
+      "docId": "79967862",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Rakeysh Omprakash Mehra & Anr. vs Govt Of Nct Of Delhi & Anr. on 2 January, 2013 ingredients of Section 3 of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 and Section 7(d) of the Protection ... member of scheduled tribe and as such the provisions of Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act are not applicable Delhi High Court Cites 45 ",
+      "url": "https://indiankanoon.org/doc/79967862/"
+    },
+    {
+      "docId": "134958730",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Kallu Singh vs State Of U.P. on 8 November, 2017 Scheduled Caste, specially, covered the offence under Section 3(2)(v) Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ) Act ... State that though Section 3(2)(v) Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act may not be applicable but imposition Allahabad High Court Cites 18 - Cited by 1 - P Kumar -",
+      "url": "https://indiankanoon.org/doc/134958730/"
+    },
+    {
+      "docId": "58498972",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [
+        "acquitted"
+      ],
+      "snippet": "Velan @ Velandi @ Ponnan vs Soundararajan on 22 July, 2019 provisions of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , vide Judgment dated 20.10.2010 acquitted. Aggrieved by the same, the defacto ... Since the offences under the provisions of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , were also disclosed, further investigation ",
+      "url": "https://indiankanoon.org/doc/58498972/"
+    },
+    {
+      "docId": "145225204",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Sarfaraz Ahmad @ Sarfaraz Alam @ ... vs The State Of Jharkhand ... Opposite ... on 2 February, 2021 offence punishable under the penal provisions of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 is also involved in this case ... offences under both Acts i.e., POCSO Act and Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 , the same would",
+      "url": "https://indiankanoon.org/doc/145225204/"
+    },
+    {
+      "docId": "63843061",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Saurabh Shrivastava vs The State Of Madhya Pradesh Thr on 30 November, 2017 Appeal under Section 14-A(1) of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989, has been filed against the order ... under Section 3(1)(x) of Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act . The necessary facts for the disposal Madhya Pradesh High Court Cites 14 - Cite",
+      "url": "https://indiankanoon.org/doc/63843061/"
+    },
+    {
+      "docId": "5879660",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Saroj Kumar Upadhyaya S/O Late Sri Ram ... vs High Court Of Judicature At Allahabad ... on 19 July, 2007 accused for the offence under The Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act . Charge No. 44 relates to discrimination in grant ... under Section 3(1)(X) of The Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act . The charge against the petitioner i",
+      "url": "https://indiankanoon.org/doc/5879660/"
+    },
+    {
+      "docId": "271492",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Harish Kumar vs The State Of Jharkhand Through ... on 17 March, 2020 Sections 3(1)(v) / 4 of the Scheduled Castes & Scheduled Tribes ( Prevention of Atrocities ) Act , and Section 13(2) read with Section ... Scheduled Castes and Scheduled Tribe ( Prevention of Atrocities ) Act , 1989 and Section 13(2) read with Section Jharkhand High Court Cites 63 - Cited by 0 - A R Choudhary -",
+      "url": "https://indiankanoon.org/doc/271492/"
+    },
+    {
+      "docId": "68020277",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Narendra Singh vs The State Of Bihar on 14 September, 2016 Scheduled Castes and the Scheduled Tribes , the Government of India passed the Scheduled Castes and the Scheduled Tribes ( Prevention of Atrocities ... powers conferred by Section-14 of the Scheduled Castes and Scheduled Tribes ( Prevention of Atrocities ) Act , 1989 ( Act -33 of 1989) the Governor Patna High Court Cites 53 - Cited by 0 - ",
+      "url": "https://indiankanoon.org/doc/68020277/"
+    },
+    {
+      "docId": "122485194",
+      "title": "Full Document",
+      "court": null,
+      "year": null,
+      "queries": [
+        "act"
+      ],
+      "mentions": [],
+      "snippet": "Search within these results Document types Bench Author AI Tags Reset Zoom Previous 6 7 8",
+      "url": "https://indiankanoon.org/doc/122485194/"
+    }
+  ]
+}
