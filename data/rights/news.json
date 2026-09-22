@@ -1,0 +1,91 @@
+{
+  "builtAt": "2026-09-22T06:23:35.040Z",
+  "source": "5 Indian newsrooms, read as RSS. Each was probed before being added.",
+  "method": "Headlines are matched to a subject and then to one of four things: the law or scheme operating, a court acquitting, somebody alleging misuse, or a court finding a specific complaint false. Near-duplicate headlines are folded together and the independent newsrooms behind each are counted. The register accumulates across scheduled runs.",
+  "refusal": "An acquittal is not recorded as misuse. An acquittal under this Act can follow from a false complaint and can equally follow from a hostile witness, from intimidation of the complainant, from an investigation that never gathered the evidence the statute requires, or from a compromise outside court — and no public dataset separates them. Only a court or agency finding a specific complaint false is filed as evidence of misuse, and somebody saying the law is misused is filed as somebody saying so.",
+  "cannotSay": [
+    "How often either law is misused. The only tier here that is evidence of misuse is a judicial or investigative finding about a specific complaint, and news coverage of those is sparse and unrepresentative.",
+    "How often either is used. News volume measures attention, and attention tracks outrage rather than incidence. NCRB's own series is the count; this is the coverage of it.",
+    "Whether any item is true. The collector counts newsrooms and classifies headlines; it cannot check a claim, and three outlets running one agency's copy is one source wearing three hats.",
+    "Anything from before this register started. It accumulates forward from its first run."
+  ],
+  "counts": {
+    "items": 1,
+    "createdThisRun": 1,
+    "corroboratedThisRun": 0,
+    "feedsAnswered": 5,
+    "feedsTried": 5,
+    "itemsSeen": 199,
+    "bySubject": {
+      "scst": 1,
+      "pmshri": 0
+    }
+  },
+  "facets": {
+    "scst": {
+      "use": 0,
+      "acquittal": 0,
+      "allegation": 0,
+      "false-finding": 0,
+      "dispute": 0,
+      "unclassified": 1
+    },
+    "pmshri": {
+      "use": 0,
+      "acquittal": 0,
+      "allegation": 0,
+      "false-finding": 0,
+      "dispute": 0,
+      "unclassified": 0
+    }
+  },
+  "feeds": [
+    {
+      "outlet": "The Hindu",
+      "ok": true,
+      "items": 60,
+      "kept": 0
+    },
+    {
+      "outlet": "Hindustan Times",
+      "ok": true,
+      "items": 100,
+      "kept": 1
+    },
+    {
+      "outlet": "Mint",
+      "ok": true,
+      "items": 35,
+      "kept": 0
+    },
+    {
+      "outlet": "The Quint",
+      "ok": true,
+      "items": 2,
+      "kept": 0
+    },
+    {
+      "outlet": "Newslaundry",
+      "ok": true,
+      "items": 2,
+      "kept": 0
+    }
+  ],
+  "items": [
+    {
+      "id": "https://www.hindustantimes.com/india-news/bjp-seeks-to-shore-up-dalit-support-ahead-of-uttar-pradesh-assembly-elections-101790054101372.html",
+      "headline": "BJP seeks to shore up Dalit support ahead of Uttar Pradesh assembly elections",
+      "subject": "scst",
+      "facet": "unclassified",
+      "firstSeen": "2026-09-22",
+      "lastSeen": "2026-09-22",
+      "sources": [
+        {
+          "outlet": "Hindustan Times",
+          "url": "https://www.hindustantimes.com/india-news/bjp-seeks-to-shore-up-dalit-support-ahead-of-uttar-pradesh-assembly-elections-101790054101372.html",
+          "published": "2026-09-22"
+        }
+      ]
+    }
+  ]
+}
