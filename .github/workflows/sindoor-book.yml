@@ -1,0 +1,50 @@
+name: Verify and place the Sindoor book's facts
+
+# The facts this repository attributes to Lt Gen Dhillon's account were read
+# out of the book and typed in by hand. Each carries a phrase that must still
+# appear in the book, and the run fails if any does not — so a curated fact
+# that stops matching its source stops being publishable rather than quietly
+# ageing. Page numbers are never typed: each is read from the nearest
+# print-page anchor in the EPUB.
+#
+# The verification itself is offline and runs on every commit as part of
+# `npm test`. This workflow exists for the one thing that needs the network:
+# resolving each named place to coordinates from Wikipedia, so no latitude is
+# ever entered by hand either.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/connectors/sindoor-book.ts"
+      - "scripts/etl/lib/epub.ts"
+      - ".github/workflows/sindoor-book.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sindoor-book
+  # Never cancel a run that commits data: the commit step runs `if: always()`,
+  # so a cancelled run publishes a partial file over a complete one.
+  cancel-in-progress: false
+
+jobs:
+  book:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Verify every fact against the book, and place each site
+        run: npm run sindoor:book
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/defence/sindoor-book.json
+          "data(sindoor): book facts verified and placed $(date -u +'%Y-%m-%d %H:%M')"
