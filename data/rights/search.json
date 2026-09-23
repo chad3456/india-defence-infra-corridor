@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-23T05:15:09.170Z",
+  "builtAt": "2026-09-23T13:54:20.100Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 778,
-    "addedThisRun": 10,
-    "carriedFromEarlierRuns": 768,
-    "withOutlet": 743,
+    "items": 792,
+    "addedThisRun": 14,
+    "carriedFromEarlierRuns": 778,
+    "withOutlet": 756,
     "bySubject": {
-      "scst": 497,
-      "pmshri": 281
+      "scst": 509,
+      "pmshri": 283
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 314
+    "offSubjectDropped": 308
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 380
+      "n": 386
     },
     {
       "key": "use",
-      "n": 279
+      "n": 286
     },
     {
       "key": "dispute",
@@ -36,7 +36,7 @@
     },
     {
       "key": "allegation",
-      "n": 36
+      "n": 37
     },
     {
       "key": "acquittal",
@@ -54,15 +54,15 @@
     },
     {
       "key": "The Indian Express",
-      "n": 45
+      "n": 46
     },
     {
       "key": "The New Indian Express",
-      "n": 40
+      "n": 41
     },
     {
       "key": "The Hindu",
-      "n": 34
+      "n": 35
     },
     {
       "key": "India Today",
@@ -78,7 +78,7 @@
     },
     {
       "key": "Verdictum",
-      "n": 20
+      "n": 21
     },
     {
       "key": "Lawtext",
@@ -90,7 +90,7 @@
     },
     {
       "key": "opindia.com",
-      "n": 14
+      "n": 15
     },
     {
       "key": "ThePrint",
@@ -113,15 +113,19 @@
       "n": 10
     },
     {
+      "key": "Court Book",
+      "n": 10
+    },
+    {
       "key": "Deccan Herald",
       "n": 9
     },
     {
-      "key": "Court Book",
-      "n": 9
+      "key": "SCC Online",
+      "n": 8
     },
     {
-      "key": "SCC Online",
+      "key": "The Statesman",
       "n": 8
     },
     {
@@ -150,10 +154,6 @@
     },
     {
       "key": "The Tribune",
-      "n": 7
-    },
-    {
-      "key": "The Statesman",
       "n": 7
     },
     {
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 7
     },
     {
@@ -306,8 +306,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 4,
-      "kept": 2,
+      "bing": 6,
+      "kept": 3,
       "offSubject": 14
     },
     {
@@ -317,38 +317,38 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 42
+      "kept": 3,
+      "offSubject": 41
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 52,
-      "bing": 10,
-      "kept": 0,
-      "offSubject": 8
+      "google": 53,
+      "bing": 0,
+      "kept": 2,
+      "offSubject": 4
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 46,
-      "bing": 2,
-      "kept": 1,
-      "offSubject": 13
+      "google": 45,
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 12
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 70,
-      "bing": 2,
-      "kept": 0,
-      "offSubject": 25
+      "google": 68,
+      "bing": 0,
+      "kept": 1,
+      "offSubject": 24
     },
     {
       "id": "act-acquittal",
@@ -376,8 +376,8 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 42,
-      "bing": 2,
-      "kept": 1,
+      "bing": 1,
+      "kept": 2,
       "offSubject": 7
     },
     {
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 29,
+      "google": 30,
       "bing": 0,
       "kept": 1,
       "offSubject": 3
@@ -398,7 +398,7 @@
       "google": 48,
       "bing": 2,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 17
     },
     {
       "id": "act-fabricated",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 1,
+      "kept": 2,
       "offSubject": 3
     },
     {
@@ -426,9 +426,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 46,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 9
     },
     {
       "id": "shri-funds",
@@ -446,19 +446,19 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 50,
-      "bing": 3,
-      "kept": 1,
-      "offSubject": 12
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 11
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 45,
+      "google": 46,
       "bing": 1,
-      "kept": 1,
-      "offSubject": 5
+      "kept": 0,
+      "offSubject": 6
     },
     {
       "id": "shri-withheld",
@@ -488,7 +488,7 @@
       "google": 45,
       "bing": 1,
       "kept": 0,
-      "offSubject": 35
+      "offSubject": 36
     }
   ],
   "items": [
@@ -13137,6 +13137,231 @@
       "queries": [
         "shri-mou",
         "shri-nep"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-23"
+    },
+    {
+      "id": "iit bombay suicide case tehseen poonawalla extends support to prof doolla seeks inquiry be",
+      "headline": "IIT Bombay suicide case: Tehseen Poonawalla extends support to Prof. Doolla, seeks inquiry before SC-ST Act FIR",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Statesman",
+      "published": "2026-09-23",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOOGt5UjBjOWRtQzliUVlta0x3MFowQUdwTGF0d0tkczl3bEJNZk5MZ0xoWDBJTG9sOEItTWhJTHNsODExdWZsUVQ4Z1Flb3dZOXFDRG5lM1J2Y1NrRFAtTWpZeVpwQ3NDdUJCMUV4Z2FXc19PQ1lsN3BIX0F4dG9lQndTY0Qyel9zaEltejkxLTFCU2dicXJCQ2hYUVkwS0t6OUFsN2cyWUZkTmhZS3dHNzhEbVRXb055T29EQVZsM1NOMU5jbFVvSFZMQXFrcmRmTi1UYjBYQmMtQnp2a29GOHhsQm9IYjJVbUpSZFFDLVLSAfYBQVVfeXFMUGYtUEYxWDM3Q0pqTU1lNS0xVkZNcDNUUEhhNEZYeElKZ3FJYUxjbE52N0FSemlGQzFwWEhqWE9kRW91SE5fejN0OGtBQnYzY3FNbjRlZFNxUjhQcnJORkZ3WmhtdmN3alpxaTc2T2dVTlNFZHFFSUE5WF91cVBjZ0E0TndiTkhsSUJTakdoSTBfbDNkZ3hOQzBUSi1MU2xBcUlyUW9Mdy1jVHNsa1NwUVNnbGFaUURHTzYtWENiUnE5S09sT19nVFR6RkFRYzVZYVVqN1N6NHFOQm5sSXp3TGNSRE5TdnZxck1STXJ2TzN2dmFnd2JR?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-23"
+    },
+    {
+      "id": "delhi hc to hear youtuber s bail plea over sc st act case",
+      "headline": "Delhi HC to hear YouTuber’s bail plea over SC/ST Act case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "thepatriot.in",
+      "published": "2026-09-14",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOcHM3WDdLdTVkSnhVVzg2Y1lhaHlUS2NndHB6d19zZ05fd2ZJT2kzd3dMMF9VN0RxZnhUVmJXcXFtel8wLVNkSmMwR0hFeWtQcEZhNFVSMDA5U01GdEo0NnE2WEljOHNpRmFKUW1vQ25PV01qTk9hUmd0UFJubnNtckl5emNfZ0NVdHRKRFkwWWJtQzBMNklZd0I3X3J1T2tmcnRiV3Q2RzFjWGN3ekHSAbMBQVVfeXFMTTRPUE9uV2c5cGpBU3ZwVlM3dVg5VURKT1ppMFFSdjh6OE0wVUZ1NHpNMXRONG5xY0dWcnEtQks5SmVZVzJsbmtXUnR5Y1hrQTZuX3NxVnJwUnJSSFlCdDNpMEZKZC1GR0VGb1d0S1o4NlJlX1ZxMkJRN3pkYzZkd2c1M0tqdjBPZXd6Y2dlUWhWODExYmNlUXBCVGRvcGg5cEVCVi1JcEdlUFhqUjE1Ql84dDg?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-23"
+    },
+    {
+      "id": "ajeet bharti moves delhi high court for anticipatory bail in sc st act case",
+      "headline": "Ajeet Bharti moves Delhi High Court for anticipatory bail in SC/ST Act case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-09-09",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab3d99f6d63403c80f00d458a3ff8c1&url=https%3a%2f%2fwww.barandbench.com%2fnews%2fajeet-bharti-moves-delhi-high-court-for-anticipatory-bail-in-scst-act-case&c=6120927483900480512&mkt=en-us",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-09-23"
+    },
+    {
+      "id": "mere knowledge of victim s caste is sufficient post 2016 amendment sc upholds life sentenc",
+      "headline": "Mere Knowledge of Victim's Caste is Sufficient Post-2016 Amendment: SC Upholds Life Sentence in POCSO and SC/ST Act Case",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "lawtrend.in",
+      "published": "2025-10-15",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQQUNhbDE4bmU3N3ZzSDJ1ODVZWTQtU1YxbEFwOURmYWhPcVJFWXpXaF83MllBUnMzZ3cwZ3BWbjYzUGJGNGJ2eWk2Tlg3QlJBZFk1UmxUaHN5cXNsV2h3RzdTS1E4UjFkdGF3OVhSUjktMDhzU1ZKbmU0M0U0SEVPVllJTlZGZThXSm5VRlJLVDVjOGVyM25yU3U4NGxHRzB4RGYzb29PNHFQbE9MTjZ3aXZhVXc3YUQ2TFNWSjc4YmNWcERlc0xST05wRmxlakdsWFJtQU9B?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-23"
+    },
+    {
+      "id": "in a case involving offences under both sc st act pocso act victim does not have right to ",
+      "headline": "In A Case Involving Offences Under Both SC/ST Act & POCSO Act, Victim Does Not Have Right To Prefer...",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Verdictum",
+      "published": "2023-12-22",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxONWlDM1MtOFg0NWZFYkZRTi14RFRVYzh5SnJqOFhkeFJiOXpBUDk5M3JJQ2NOX0JvbWczMkNiVHZMNDRlcFU4UW1tNExVTGt1Z0t5WGR1LTFrWENWZmRyc1lQVGI1NjZwVnRBeWxUVDMwQWJDMUFaUlN6aWkxbHRDRklvSU14THByeUJkSEh5OXh4NU5aQTNWNWFRSkw0cFRYNTZ6QXRkZjA4SnNtdUNqSHV1bTlTakMxVFNSZU5GR09vWXFJ0gHKAUFVX3lxTFBLQ05mZU4zMVZERzRPNEhlSG5ucHhGSDhvX09ybGQzVjBxSHUxZUJCUlhiZXdPdXJUMzFkWHoxMWVZY2lHM3dmaWpJVnFYNWNVMXRYVGdjQll4dHB5UkZObl9MWEJwajhKMWhFSVk1VmRqMzZQRmF2TXFYQXAzLVVzalY2MXByc0laaWxiVG1pUEdoSVgzRzBTa0lRMEZFOE1yVmRJTU12U0xIMl90aU5QOW4zcDZIR2ZlTzV1endEMzlrOFBXOXprNWc?oc=5",
+      "queries": [
+        "act-convicted",
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-23"
+    },
+    {
+      "id": "five cpi activists sentenced to imprisonment in sc st act case",
+      "headline": "Five CPI activists sentenced to imprisonment in SC/ST Act case",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Telangana Today",
+      "published": "2021-11-25",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNNVFjLWtPY2lhZ3dnak9nMXF5bms0SnNaYTZxRzB4THdfaWxGQXlwUzlhRXpmLXY3Wkc5d2pGQlhRSUFsbjQzZGw5RzNDR3hyV2hsZWtoYWxqX1JiZ2xMdVFoNnBybDFXTjUxVGlReEFudGZyVXZwNUpHcEotUE9vQzM4S0pJdWlXZDlTQWpMUVVFSDQ?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-23"
+    },
+    {
+      "id": "dalit man s death after being thrashed over wasting food amreli court directs police to su",
+      "headline": "Dalit Man’s death after being thrashed over ‘wasting food’: Amreli court directs police to submit FSL report on May 1",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Indian Express",
+      "published": "2026-04-23",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPWWx0WnhNNFJkNHFYQjJtZFZGeVQ5OEdCbHp2WHZQMUd6cjRIZzNyVlRoYUNhU0lteXBfTzZkZ1Y0OTctMVNnck1hUFA2RG9nWWZxNUZqMXZvdWxNWFFLOHRpcUpHa1A1VFNsQWNhV2lYRmhlOGkxSVZrdjh4SlhGRlhTR1psdmJ5WnE0MF9fbDY1V2dUZ2NEOGdFVm9YQmloUFpRdXJ2SjFpYW9CYkgtR0NEVUhob1k4TjRuNXhGWUhWUzlEM21ORzJ2QWzSAdMBQVVfeXFMTlI2T0ZaQ1F6RXhQMEZ1WjFnY01UUGNnbnBRYy02UExJbEZULXZfWmtiOGVQNkthQlpoRlU0NzFnUDVjSU9yNXVmOXNzZko1ZEdveFhIYVktem5qbjEtTHhCblJ3ZGFfaklyb2NvZXpfcEJVSXhyWjlKZjFDazV2OGNDcDFydmdLMW9tQkNCcWY2bzJPeGZJSm1wMGp1QkhIZWFsTk5LbmhpTnpXWWZGZ0dXTlhRVEpzU1pBNm5Td2g1NUJWUXk0TElrZ1NFZklLMUh5VQ?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-23"
+    },
+    {
+      "id": "karnataka dalit man assaulted allegedly over caste faces counter case",
+      "headline": "Karnataka Dalit Man Assaulted Allegedly Over Caste, Faces Counter Case",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "NDTV",
+      "published": "2020-07-20",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPZVNwNVhPUHRYWGZQYjhLbXR0M2lLbVBtc3RueVQ3bTFIcVpMWl9xemU0SmZBOGhBd1loOG51cjh0NnhteGU0ZlVLTWprR3hwWXpXQ29QWnB3UkRybDBoQzZBdGo2V2xFZjNidlhOYW9pZmJZQXpFeC1uVWZzZE1KaWRtOHUyMUx5MG8wbFdBd0Y3S1RTbEFnYjh1aDF6VUR2Q3lEYXFVT05JanJtLU1rVTBZbFNwV0ZydUdtbzRwcEV5UQ?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-23"
+    },
+    {
+      "id": "u p rajasthan m p top in cases of atrocities on dalits report",
+      "headline": "U.P., Rajasthan, M.P. top in cases of atrocities on Dalits: report",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Hindu",
+      "published": "2024-09-23",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQNU9oaENSVTRjczNHbzAzS0hnOUFmMF9vSnhhZTZhdThaeFdrSkk0RnFKbFBOOWkwUWEwa3pBVFl0SHgtNFNIVHBwR3VSelhRWlp6OEJXcEN2LWstZ2ptbmppZktxa29WUVlTR1RJWnFZTndYaE4zWFU2SDVnRHptaHpGM0xKaUJtbHFINHpuYTJFVmo0QVc1bEZ0VVdOSnhtOHNScVRWT3J1d1V6MG0yNkQ4WVFXNlpzVnfSAcABQVVfeXFMTVNsYjFvRHZhRTEycjZzVXVPVzJHbHpWUDQ5M3A0Nlh5MDJfc3lGMW9yYmZVVWl4RXV2cGRWX2g4VGJXNXdOZHNsanlGeG5OSmlTZVJjRGtDMVk1bm9rQUx1LVZIcE9URnhfWUdGUGplMFphOG5ZOEJYM3g2T1FqNjFUWDhmTjY0QzQ3ZW5JN3Blb1ZROEswYTNsVW5FR0RDdUNiOXhVWXdjTk9EaWR5QXdNSXVyNHAxa3YxVFh4NHRy?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-23"
+    },
+    {
+      "id": "supreme court rejects challenge to 2018 sc st act amendment declines to revisit 2020 verdi",
+      "headline": "Supreme Court Rejects Challenge To 2018 SC/ST Act Amendment, Declines To Revisit 2020 Verdict",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Court Book",
+      "published": "2026-09-23",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxONl81SWhyS1VGMXJnTEEybDV0Z01ZSFQxT04wSVIyYVFDeElvRnBoYWZLRkRBUlNabFpIRWFYYnp1bl9Qc256eDFVaEVRQVBaaWZBclBxZFNOMjNYa1lQWkZFeXF4SDBOY1FFZm03dXpaNnA4ZXpzLS1Bd0hMYnllV1lHYlFCQ25zTnl5TklrUi1uRkQwOW1iTDZKT05YckxDSkdhNm1VSHNvSDJVSFl3aFVjcTZWRjV6UVE?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-23"
+    },
+    {
+      "id": "sc st act misuse ex cji br gavai says parliament should amend the law",
+      "headline": "SC/ST Act misuse: Ex-CJI BR Gavai says Parliament should amend the law",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "opindia.com",
+      "published": "2026-09-23",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPOEl1WkhNazNMNHhueHluRGQ5S3c5dEZCbjBoT0JYa3pTa2kxMzZrSXBKdS1yRWZpS3dHOWNnYU8tSzJiVm9PQUF2RnZkRGhNdGQwMXdRUWdhZW5PYnFsY0puWkNjMjZLNnZWaklxaWVZY0UwOF93ZVp6OFdMR2dWX3pINFlxRWVVQ2dBZEZTSlgzT2tyNFJjd2RSdzlrdw?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-23"
+    },
+    {
+      "id": "bharat bandh against sc st act peaceful in madhya pradesh",
+      "headline": "Bharat Bandh against SC/ST Act peaceful in Madhya Pradesh",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The New Indian Express",
+      "published": "2018-09-06",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQQUVQbWJZZHRZVVVXdUhCV2t0ZHhpS2xCZjhDWXNJdWdfWFl5Rzl0bTNfUmFMbmZQM3pFRHc0WnZPMkdXWjNwNEtGcUFUZDRRZWNXM3dvNTZ5b2Rvdm82bDFkWXNSWnhlVmdwcFY5d21qVXpwbG9xZDJmNDYtZGpjOGNFeEdiYUx2NzA0clRFcUhCc1BIelN0QlNkS2lhUzI3TWVxM3JlMThQeDFzbXhhNEtLSVhzN1ZISHRzNdIBygFBVV95cUxQUzVMRGlaaU5odzU3MmtzRjh3aENwNnFYeGs3X1lteFZQcldUcmV3SlRBb2JpdmpyTmx0bTFrMW1qLUpQcWYwTTZZVHVZQ3BYTGlmV0ZnOHptazBlUmMxYVY4emxjekFRVUhPdTQ0X0hhelNIUmFWSWF6Qjd1MkhlTFhaMXRVb0JKVHk4dzRmUnU3Q3FBU1V0Qndhb2lSeUNTMHZBVDhPQ1NRd3VLT0RiN3NJT0pUQVRiM1hDbTB5alRyYUNITnRXdlNR?oc=5",
+      "queries": [
+        "act-dilution"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-23"
+    },
+    {
+      "id": "west bengal signs mou to implement pm shri schools scheme",
+      "headline": "West Bengal signs MoU to implement PM SHRI Schools scheme",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Elets Technomedia",
+      "published": "2026-08-05",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOTXdhcTZ6dGFJRXMzbDlZZk1hc09TcXQ3S0dFZGkwS1cxTlh0cUFKNUxtZG5mWWx1aVp5M2tBOWVfVVZ1eklqVXZfM1k3OFF4dHBPYWRkdDIzdklQX0RJSE9PSUFBUnVvemlzNFI2QzZQN2dpNUJwdmZMWFZ1ZXFFTDdneERIcTZtLUdWYUhwZXVFQXZkRDdnT2ttZTZRd2tmekxoQ3V2alNuUQ?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-23"
+    },
+    {
+      "id": "centre approves rs 243 cr for pm shri schools",
+      "headline": "Centre approves Rs 243 cr for PM SHRI schools",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "Daily Excelsior",
+      "published": "2026-05-01",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPYkhNUFVacFpFeWRDLTJJbktjVHpTcnlPSUNJQ0NQNkhKTndPRmhuQVZIYWtCcVNobGJvamRMNFZuREhGbnlCMHd3UWNQSFlRY3hkWGJGaVktclJXU3VOV3lzYk1tVjhqWEJQWHNaTjFXN2RGSHZTTURJMGtWY1hiNGZod9IBhwFBVV95cUxOYW1CcU9wRXNCWEhxUjdBaERLeXpoN09iNGl3ZllWZjhXbElGSTJYVHhLNEVpLU82ZVRpYlNTNS1pSzJwOTE4VlBJb0NzY2NvVFdfMk9fVUlZZy1jTU9rZDZ2aDl0ejBha2ZWX0JaT1Rid1l6UDVoTmh1UWtCTWNha3FpU1FDbmc?oc=5",
+      "queries": [
+        "shri-general"
       ],
       "indexes": [
         "google"
