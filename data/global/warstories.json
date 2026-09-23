@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-09-23T19:41:15.280Z",
-  "previousBuild": "2026-09-23T13:39:09.234Z",
+  "builtAt": "2026-09-23T22:57:33.103Z",
+  "previousBuild": "2026-09-23T19:41:15.280Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 41,
-    "createdThisRun": 2,
+    "stories": 42,
+    "createdThisRun": 1,
     "corroboratedThisRun": 0,
     "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 283,
+    "itemsSeen": 285,
     "corroboration": {
-      "one": 37,
+      "one": 38,
       "two": 2,
       "threePlus": 2
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 18
+      "n": 19
     },
     {
       "id": "autonomy",
@@ -63,6 +63,11 @@
       "n": 3
     },
     {
+      "iso": "UKR",
+      "name": "Ukraine",
+      "n": 2
+    },
+    {
       "iso": "FRA",
       "name": "France",
       "n": 1
@@ -75,11 +80,6 @@
     {
       "iso": "DEU",
       "name": "Germany",
-      "n": 1
-    },
-    {
-      "iso": "UKR",
-      "name": "Ukraine",
       "n": 1
     },
     {
@@ -97,7 +97,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 48,
+      "items": 50,
       "kept": 5
     },
     {
@@ -116,7 +116,7 @@
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "C4ISRNET",
@@ -134,7 +134,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "Defense News",
@@ -407,6 +407,28 @@
         {
           "outlet": "Breaking Defense",
           "url": "https://breakingdefense.com/2026/09/the-still-formidable-f-16-will-be-even-more-capable-with-better-electronic-warfare/",
+          "published": "2026-09-23"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/finland-and-ukraine-open-path-to-joint-drone-production-and-faster-technology-transfers-under-new-defence-cooperation-pact/",
+      "headline": "Finland and Ukraine open path to joint drone production and faster technology transfers under new defence cooperation pact",
+      "firstSeen": "2026-09-23",
+      "lastSeen": "2026-09-23",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "UKR",
+          "name": "Ukraine"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/finland-and-ukraine-open-path-to-joint-drone-production-and-faster-technology-transfers-under-new-defence-cooperation-pact/",
           "published": "2026-09-23"
         }
       ]
