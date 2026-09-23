@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-22T21:27:13.683Z",
+  "builtAt": "2026-09-23T04:53:17.998Z",
   "source": "5 Indian newsrooms, read as RSS. Each was probed before being added.",
   "method": "Headlines are matched to a subject and then to one of four things: the law or scheme operating, a court acquitting, somebody alleging misuse, or a court finding a specific complaint false. Near-duplicate headlines are folded together and the independent newsrooms behind each are counted. The register accumulates across scheduled runs.",
   "refusal": "An acquittal is not recorded as misuse. An acquittal under this Act can follow from a false complaint and can equally follow from a hostile witness, from intimidation of the complainant, from an investigation that never gathered the evidence the statute requires, or from a compromise outside court — and no public dataset separates them. Only a court or agency finding a specific complaint false is filed as evidence of misuse, and somebody saying the law is misused is filed as somebody saying so.",
@@ -10,20 +10,20 @@
     "Anything from before this register started. It accumulates forward from its first run."
   ],
   "counts": {
-    "items": 2,
+    "items": 3,
     "createdThisRun": 1,
-    "corroboratedThisRun": 0,
+    "corroboratedThisRun": 1,
     "feedsAnswered": 5,
     "feedsTried": 5,
     "itemsSeen": 195,
     "bySubject": {
-      "scst": 2,
+      "scst": 3,
       "pmshri": 0
     }
   },
   "facets": {
     "scst": {
-      "use": 0,
+      "use": 1,
       "acquittal": 0,
       "allegation": 0,
       "false-finding": 0,
@@ -44,7 +44,7 @@
       "outlet": "The Hindu",
       "ok": true,
       "items": 60,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Hindustan Times",
@@ -78,12 +78,32 @@
       "subject": "scst",
       "facet": "unclassified",
       "firstSeen": "2026-09-22",
-      "lastSeen": "2026-09-22",
+      "lastSeen": "2026-09-23",
       "sources": [
         {
           "outlet": "Hindustan Times",
           "url": "https://www.hindustantimes.com/india-news/bjp-seeks-to-shore-up-dalit-support-ahead-of-uttar-pradesh-assembly-elections-101790054101372.html",
           "published": "2026-09-22"
+        },
+        {
+          "outlet": "The Hindu",
+          "url": "https://www.thehindu.com/data/the-influence-of-dalit-voters-in-uttar-pradesh/article71496795.ece",
+          "published": "2026-09-23"
+        }
+      ]
+    },
+    {
+      "id": "https://www.hindustantimes.com/india-news/sc-bins-challenge-to-sc-st-act-provisions-101790104263603.html",
+      "headline": "Supreme Court dismisses PIL challenging key provisions of SC/ST Atrocities Act",
+      "subject": "scst",
+      "facet": "use",
+      "firstSeen": "2026-09-23",
+      "lastSeen": "2026-09-23",
+      "sources": [
+        {
+          "outlet": "Hindustan Times",
+          "url": "https://www.hindustantimes.com/india-news/sc-bins-challenge-to-sc-st-act-provisions-101790104263603.html",
+          "published": "2026-09-23"
         }
       ]
     },
