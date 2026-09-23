@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-22T20:28:44.310Z",
+ "builtAt": "2026-09-23T10:17:00.598Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -204547,13 +204547,6 @@
    "source": "List_of_missiles_by_country"
   },
   {
-   "name": "Yıldırımhan",
-   "key": "y ld r mhan",
-   "kind": "ICBM",
-   "country": null,
-   "source": "List_of_intercontinental_ballistic_missiles"
-  },
-  {
    "name": "LGM-30 Minuteman-III",
    "key": "lgm 30 minuteman iii",
    "kind": "ICBM",
@@ -206504,7 +206497,7 @@
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 21,
+   "items": 20,
    "kept": 0,
    "via": "direct"
   },
@@ -206512,18 +206505,32 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-1qe8et3",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-09-23",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/under-new-deal-u-s-military-buys-non-standard-weapons/",
+   "headline": "Under new deal, U.S. military buys non-standard weapons",
+   "primary": false
+  },
   {
    "id": "ev-t9y2y9",
    "kind": "order",
@@ -207043,6 +207050,20 @@
    "kind": "order",
    "events": [
     {
+     "id": "ev-1qe8et3",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-23",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/under-new-deal-u-s-military-buys-non-standard-weapons/",
+     "headline": "Under new deal, U.S. military buys non-standard weapons",
+     "primary": false
+    },
+    {
      "id": "ev-t9y2y9",
      "kind": "order",
      "systems": [],
@@ -207214,9 +207235,9 @@
     }
    ],
    "outlets": [
+    "Defence Blog",
     "Defense News",
-    "Naval News",
-    "Defence Blog"
+    "Naval News"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
