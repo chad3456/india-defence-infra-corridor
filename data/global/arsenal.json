@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-23T20:41:21.939Z",
+ "builtAt": "2026-09-24T10:31:07.157Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206497,26 +206497,40 @@
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 20,
+   "items": 21,
    "kept": 0,
    "via": "direct"
   },
   {
    "outlet": "Naval News",
-   "ok": false,
-   "items": 0,
+   "ok": true,
+   "items": 10,
    "kept": 0,
-   "via": "unconfigured"
+   "via": "direct"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 2,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-d0tywu",
+   "kind": "delivery",
+   "systems": [],
+   "countries": [
+    "Russia"
+   ],
+   "value": null,
+   "date": "2026-09-24",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/russia-delivers-upgraded-su-57-stealth-fighters-to-its-air-force/",
+   "headline": "Russia delivers upgraded Su-57 stealth fighters to its air force",
+   "primary": false
+  },
   {
    "id": "ev-1qe8et3",
    "kind": "order",
@@ -207041,6 +207055,35 @@
   }
  ],
  "groups": [
+  {
+   "key": "delivery||russia",
+   "systems": [],
+   "countries": [
+    "Russia"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-d0tywu",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "Russia"
+     ],
+     "value": null,
+     "date": "2026-09-24",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/russia-delivers-upgraded-su-57-stealth-fighters-to-its-air-force/",
+     "headline": "Russia delivers upgraded Su-57 stealth fighters to its air force",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||united states",
    "systems": [],
