@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-24T10:31:07.157Z",
+ "builtAt": "2026-09-24T20:47:31.503Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206484,7 +206484,7 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 3,
+   "kept": 2,
    "via": "direct"
   },
   {
@@ -206497,26 +206497,44 @@
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 21,
+   "items": 20,
    "kept": 0,
    "via": "direct"
   },
   {
    "outlet": "Naval News",
-   "ok": true,
-   "items": 10,
+   "ok": false,
+   "items": 0,
    "kept": 0,
-   "via": "direct"
+   "via": "unconfigured"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-brlp20",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Italy"
+   ],
+   "value": {
+    "amount": 4200000000,
+    "currency": "USD",
+    "asWritten": "$4.2 billion"
+   },
+   "date": "2026-09-24",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/global/europe/2026/09/24/italy-taps-state-owned-firms-to-build-two-naval-destroyers-in-42-billion-deal/",
+   "headline": "Italy taps state-owned firms to build two naval destroyers in $4.2 billion deal",
+   "primary": false
+  },
   {
    "id": "ev-d0tywu",
    "kind": "delivery",
@@ -207055,6 +207073,43 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||italy",
+   "systems": [],
+   "countries": [
+    "Italy"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-brlp20",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Italy"
+     ],
+     "value": {
+      "amount": 4200000000,
+      "currency": "USD",
+      "asWritten": "$4.2 billion"
+     },
+     "date": "2026-09-24",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/global/europe/2026/09/24/italy-taps-state-owned-firms-to-build-two-naval-destroyers-in-42-billion-deal/",
+     "headline": "Italy taps state-owned firms to build two naval destroyers in $4.2 billion deal",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News"
+   ],
+   "value": {
+    "amount": 4200000000,
+    "currency": "USD",
+    "asWritten": "$4.2 billion"
+   },
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "delivery||russia",
    "systems": [],
