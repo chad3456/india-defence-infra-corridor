@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-09-23T22:57:33.103Z",
-  "previousBuild": "2026-09-23T19:41:15.280Z",
+  "builtAt": "2026-09-24T04:50:37.883Z",
+  "previousBuild": "2026-09-23T22:57:33.103Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -13,11 +13,11 @@
   ],
   "counts": {
     "stories": 42,
-    "createdThisRun": 1,
+    "createdThisRun": 0,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 13,
+    "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 285,
+    "itemsSeen": 297,
     "corroboration": {
       "one": 38,
       "two": 2,
@@ -97,7 +97,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 50,
+      "items": 52,
       "kept": 5
     },
     {
@@ -156,10 +156,9 @@
     },
     {
       "outlet": "Naval News",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "HTTP 503"
+      "ok": true,
+      "items": 10,
+      "kept": 0
     },
     {
       "outlet": "Defence Blog",
