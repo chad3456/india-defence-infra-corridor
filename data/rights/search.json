@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-23T23:12:30.753Z",
+  "builtAt": "2026-09-24T05:30:02.174Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 806,
-    "addedThisRun": 7,
-    "carriedFromEarlierRuns": 799,
-    "withOutlet": 767,
+    "items": 810,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 806,
+    "withOutlet": 771,
     "bySubject": {
-      "scst": 518,
-      "pmshri": 288
+      "scst": 521,
+      "pmshri": 289
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 316
+    "offSubjectDropped": 314
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 393
+      "n": 394
     },
     {
       "key": "use",
-      "n": 290
+      "n": 291
     },
     {
       "key": "dispute",
@@ -40,7 +40,7 @@
     },
     {
       "key": "acquittal",
-      "n": 28
+      "n": 30
     },
     {
       "key": "false-finding",
@@ -77,12 +77,12 @@
       "n": 24
     },
     {
-      "key": "Verdictum",
+      "key": "Lawtext",
       "n": 21
     },
     {
-      "key": "Lawtext",
-      "n": 19
+      "key": "Verdictum",
+      "n": 21
     },
     {
       "key": "livelaw.in",
@@ -133,6 +133,10 @@
       "n": 8
     },
     {
+      "key": "The Economic Times",
+      "n": 8
+    },
+    {
       "key": "ANI News",
       "n": 8
     },
@@ -158,10 +162,6 @@
     },
     {
       "key": "The Tribune",
-      "n": 7
-    },
-    {
-      "key": "The Economic Times",
       "n": 7
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 7,
-      "kept": 3,
-      "offSubject": 15
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 16
     },
     {
       "id": "act-convicted",
@@ -317,7 +317,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 41
     },
     {
@@ -325,7 +325,7 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 54,
+      "google": 53,
       "bing": 10,
       "kept": 0,
       "offSubject": 7
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 67,
+      "google": 66,
       "bing": 1,
       "kept": 0,
       "offSubject": 25
@@ -355,9 +355,9 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 87,
+      "google": 88,
       "bing": 0,
-      "kept": 0,
+      "kept": 2,
       "offSubject": 43
     },
     {
@@ -365,7 +365,7 @@
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 24,
+      "google": 23,
       "bing": 0,
       "kept": 0,
       "offSubject": 7
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 43,
-      "bing": 1,
+      "google": 42,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 5
     },
     {
       "id": "act-dilution",
@@ -396,7 +396,7 @@
       "subject": "scst",
       "expect": "false-finding",
       "google": 48,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
       "offSubject": 19
     },
@@ -416,19 +416,19 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 12,
-      "kept": 0,
-      "offSubject": 2
+      "bing": 0,
+      "kept": 1,
+      "offSubject": 3
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 46,
-      "bing": 1,
+      "google": 45,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "shri-funds",
@@ -446,7 +446,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 52,
-      "bing": 3,
+      "bing": 0,
       "kept": 0,
       "offSubject": 11
     },
@@ -455,9 +455,9 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 46,
-      "bing": 1,
-      "kept": 1,
+      "google": 47,
+      "bing": 0,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -465,10 +465,10 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 27,
+      "google": 26,
       "bing": 1,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "shri-nep",
@@ -476,8 +476,8 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 53,
-      "bing": 7,
-      "kept": 1,
+      "bing": 0,
+      "kept": 0,
       "offSubject": 11
     },
     {
@@ -488,7 +488,7 @@
       "google": 44,
       "bing": 1,
       "kept": 0,
-      "offSubject": 36
+      "offSubject": 35
     }
   ],
   "items": [
@@ -538,7 +538,8 @@
       "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQeldUUllVcy0zQkVDRHNLWGs0RWZqVjlLckx6WS1hVU1QUDFDZGp2ZzZXWTVjTE12SDEyNlZEbEctXzN1Wk1fRXRaNEFrWVpkWk9Kekg0QXNBUzZzVWl6aXBoZWs1MXdhS1VXVTRkalJIVkZhdHkycTBzRXdBelpPTGRyT01kQWlQaWhnNkM5cjVXbGxyd2xpOWNqN2k3REJZLVlOWlFXSzZrdVNr0gG6AUFVX3lxTE85eXliX0x1TVpyU1FyMThaWTNUYk53QUlvc1ZfYllHT0lkb1E4cU0zb1JJX0NhUnJYbi1nNDVNbThjazk2eXNNVXE3UkRWYS1WbnNYM2xYaXNWUzdSUC1JYV9Yczl5dExLR0pxS1dsREhKSDJzVnBVb1J5RmVIaGpwOThwRXJHbm1QMWJpRXhFR1hBN2RqWlVhN29KakExU2V0NnZoRlVXS0ViVnpFb1k5UnRwOFJzc29VQQ?oc=5",
       "queries": [
         "act-general",
-        "act-registered"
+        "act-registered",
+        "act-compensation"
       ],
       "indexes": [
         "google"
@@ -13600,6 +13601,70 @@
         "google"
       ],
       "firstSeen": "2026-09-23"
+    },
+    {
+      "id": "government proposes 40 hike in sc st atrocity compensation to up to rs 12 lakh",
+      "headline": "Government proposes 40% hike in SC/ST atrocity compensation to up to Rs 12 lakh",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Economic Times",
+      "published": "2026-08-12",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNeVJjQ0tFSDRmOTVOaFlqMVkyMV9TTUt6ZlZwTGxJaHVoV3VZYWFPbWZ6eFhHUkd5c3FHYUNCZmlPODkya2UyUGp6RW5KVnNSRGs5ekljOG9xQXRsdWhCd0xIbWhVRzRiVjJoVndrdmI1a2I2VmFYOExIb1k2U1VsWjRwNEJXcy03UVUxYW4xOXYxYy1oNzAwb3RmT1FMZ1lpM0w2SUNmWHVEWDNqS3pYV29LTkREcDZzRnNFeG1CVFFWbm1LeVl0MlBfSlZVMHNmQVBYLTV2X0l5Qk01YUlR0gHkAUFVX3lxTE51N1FQTVliQ21xUVNGQ0EwcmZyVXEyeDdfVEtZZlpTU3hudHhKWlFKelptNVU4cFIxUVQ4WFdnVmtjaEtTcUtzR2lTU2pfbkx0ZUtsUFJSN0VBOU5FUGlFSnFwNWk3T0QyUk0xOUtXWF9HSzk0dWU3X0lSRzk4bUVlTlQzcVQ4NkVKMjdWVnI2bk41SGpJWHlwQjF5V1ZFOXFTdDhXblpvOGJIR1M2Tnc2T01uVFJTSUVCMVhtUHM4SjFlLU5OM1BybGpleDBvSTdIaVQ5UXNDeGh0VnhUNjNFMy1udg?oc=5",
+      "queries": [
+        "act-compensation"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-24"
+    },
+    {
+      "id": "bombay high court acquits accused in atrocity case due to lack of evidence and improper in",
+      "headline": "Bombay High Court Acquits Accused in Atrocity Case Due to Lack of Evidence and Improper Investigation. Conviction under SC/ST Act and IPC set aside as prosecution failed to prove caste-based insult and arson beyond reasonable doubt.",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-09-23",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBjdVU1QUtBWFhMYUNlNlc1Nko1MERGZ1hzTFlQc2NLNG11eTRPRFpnNlhGbGlEaHhpYmlNSU5uajVWeUZCS1R3UGZTODIyUmtaMmI4TFVtWjVYX3NFZW9aUi1taEhrMVhO?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-24"
+    },
+    {
+      "id": "bombay high court upholds acquittal in sc st atrocity case due to inconsistent evidence an",
+      "headline": "Bombay High Court Upholds Acquittal in SC/ST Atrocity Case Due to Inconsistent Evidence and Absence of Public Witness. Caste-Based Insult Allegation Fails as Incident Occurred in Private Setting, Not in Public View Under Section 3(1)(x) of SC & ST (Preve",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-09-23",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1vejQzUmd0T3BDMWVDeC15MTd6d3plZDF0V2RuVDlRdExCTldTd09UNzVSR2xpa0Uwdi1HM1VlemZCa1RQWWlpbWxpdXd4dldiR1hoWG1ueGw5a2dkUGdrWUNkRmFuQQ?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-24"
+    },
+    {
+      "id": "attempt to bring sangh parivar ideology pinarayi vijayan slams udf govt for agreeing to im",
+      "headline": "\"Attempt to bring Sangh Parivar ideology\": Pinarayi Vijayan slams UDF govt for agreeing to implement PM SHRI scheme",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "aninews.in",
+      "published": "2026-08-01",
+      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxONFY3cFlVNEh3WG90Vkp2cEhiRklkZG1jVG5JUlJIY1RTR1hOOUpmR0JLdmotd3R2bjcwQkxaS0lCSng0UkNMUzM2b3Z0bDhsUUhYRnBOUGZFYTJwdXBPRVhuRFR5bVhkWUhSbnEzRDVOZWV3N21GU2tBWjhXOHNISU14aHk1OHhqZ1J3NHFOdmkxYm5RM0o0cmRqaGxSVm5rVEdvRGw1SHVUQlVpU2ZiQjFJSVR6a2VvWGJBMmE2T0ptYkFtYnAtMWNIV21fckh3VFNrcDdWN2lWNmhnd0JSNDRINF9BX2NsQkk0bWdjVEt1Z0o2Yl9PMXZZNk5FdzlWb1E?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-24"
     }
   ]
 }
