@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-09-24T04:50:37.883Z",
-  "previousBuild": "2026-09-23T22:57:33.103Z",
+  "builtAt": "2026-09-24T13:33:31.441Z",
+  "previousBuild": "2026-09-24T04:50:37.883Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 42,
-    "createdThisRun": 0,
+    "stories": 46,
+    "createdThisRun": 4,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 14,
+    "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 297,
+    "itemsSeen": 287,
     "corroboration": {
-      "one": 38,
+      "one": 42,
       "two": 2,
       "threePlus": 2
     }
@@ -28,12 +28,12 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 19
+      "n": 21
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 16
+      "n": 17
     },
     {
       "id": "targeting",
@@ -43,7 +43,7 @@
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 5
+      "n": 7
     },
     {
       "id": "military-ai",
@@ -65,16 +65,16 @@
     {
       "iso": "UKR",
       "name": "Ukraine",
+      "n": 3
+    },
+    {
+      "iso": "IND",
+      "name": "India",
       "n": 2
     },
     {
       "iso": "FRA",
       "name": "France",
-      "n": 1
-    },
-    {
-      "iso": "IND",
-      "name": "India",
       "n": 1
     },
     {
@@ -97,14 +97,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 52,
-      "kept": 5
+      "items": 51,
+      "kept": 4
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Military Times",
@@ -146,19 +146,20 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Defense One",
       "ok": true,
-      "items": 20,
+      "items": 21,
       "kept": 2
     },
     {
       "outlet": "Naval News",
-      "ok": true,
-      "items": 10,
-      "kept": 0
+      "ok": false,
+      "items": 0,
+      "kept": 0,
+      "error": "HTTP 503"
     },
     {
       "outlet": "Defence Blog",
@@ -294,6 +295,85 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/rrv-defence-claims-indias-first-patented-anti-drone-bullet/",
+      "headline": "RRV Defence Claims India’s First Patented Anti-Drone Bullet",
+      "firstSeen": "2026-09-24",
+      "lastSeen": "2026-09-24",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/rrv-defence-claims-indias-first-patented-anti-drone-bullet/",
+          "published": "2026-09-24"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/ukraine-approves-650-unmanned-aerial-systems-in-2026-as-domestic-production-drives-rapid-expansion-of-military-drone-capabilities/",
+      "headline": "Ukraine approves 650 unmanned aerial systems in 2026 as domestic production drives rapid expansion of military drone capabilities",
+      "firstSeen": "2026-09-24",
+      "lastSeen": "2026-09-24",
+      "themes": [
+        "autonomy",
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "UKR",
+          "name": "Ukraine"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/ukraine-approves-650-unmanned-aerial-systems-in-2026-as-domestic-production-drives-rapid-expansion-of-military-drone-capabilities/",
+          "published": "2026-09-24"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/babcock-and-arqit-demonstrate-quantum-safe-military-communications-network-designed-to-protect-battlefield-data-from-future-cyber-threats/",
+      "headline": "Babcock and Arqit demonstrate quantum safe military communications network designed to protect battlefield data from future cyber threats",
+      "firstSeen": "2026-09-24",
+      "lastSeen": "2026-09-24",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/babcock-and-arqit-demonstrate-quantum-safe-military-communications-network-designed-to-protect-battlefield-data-from-future-cyber-threats/",
+          "published": "2026-09-24"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/09/navy-wants-more-offensive-expeditionary-cyber-capabilities/",
+      "headline": "Navy wants more offensive, ‘expeditionary’ cyber capabilities",
+      "firstSeen": "2026-09-24",
+      "lastSeen": "2026-09-24",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/09/navy-wants-more-offensive-expeditionary-cyber-capabilities/",
+          "published": "2026-09-24"
         }
       ]
     },
