@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-09-24T13:33:31.441Z",
-  "previousBuild": "2026-09-24T04:50:37.883Z",
+  "builtAt": "2026-09-24T20:00:39.331Z",
+  "previousBuild": "2026-09-24T13:33:31.441Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 46,
-    "createdThisRun": 4,
+    "stories": 49,
+    "createdThisRun": 3,
     "corroboratedThisRun": 0,
     "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 287,
+    "itemsSeen": 283,
     "corroboration": {
-      "one": 42,
+      "one": 45,
       "two": 2,
       "threePlus": 2
     }
@@ -28,17 +28,17 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 21
+      "n": 22
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 17
+      "n": 18
     },
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 7
+      "n": 8
     },
     {
       "id": "cyber-ew",
@@ -97,8 +97,8 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 51,
-      "kept": 4
+      "items": 48,
+      "kept": 3
     },
     {
       "outlet": "Indian Defence Research Wing",
@@ -110,13 +110,13 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 2
+      "kept": 0
     },
     {
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "C4ISRNET",
@@ -128,7 +128,7 @@
       "outlet": "DefenseScoop",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defence Industry Europe",
@@ -146,12 +146,12 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 2
+      "kept": 3
     },
     {
       "outlet": "Defense One",
       "ok": true,
-      "items": 21,
+      "items": 20,
       "kept": 2
     },
     {
@@ -373,6 +373,57 @@
         {
           "outlet": "Breaking Defense",
           "url": "https://breakingdefense.com/2026/09/navy-wants-more-offensive-expeditionary-cyber-capabilities/",
+          "published": "2026-09-24"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/netherlands-plans-domestic-production-of-eos-high-energy-laser-weapons-establishing-european-hub-for-defence-against-drone-attacks/",
+      "headline": "Netherlands plans domestic production of EOS high-energy laser weapons, establishing European hub for defence against drone attacks",
+      "firstSeen": "2026-09-24",
+      "lastSeen": "2026-09-24",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/netherlands-plans-domestic-production-of-eos-high-energy-laser-weapons-establishing-european-hub-for-defence-against-drone-attacks/",
+          "published": "2026-09-24"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/leidos-secures-up-to-127-million-u-s-army-award-to-extend-artemis-airborne-isr-operations-across-europe-through-2027/",
+      "headline": "Leidos secures up to $127 million U.S. Army award to extend ARTEMIS airborne ISR operations across Europe through 2027",
+      "firstSeen": "2026-09-24",
+      "lastSeen": "2026-09-24",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/leidos-secures-up-to-127-million-u-s-army-award-to-extend-artemis-airborne-isr-operations-across-europe-through-2027/",
+          "published": "2026-09-24"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/09/navy-launches-robotics-and-autonomous-systems-warfighting-development-center/",
+      "headline": "Navy launches Robotics and Autonomous Systems Warfighting Development Center",
+      "firstSeen": "2026-09-24",
+      "lastSeen": "2026-09-24",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/09/navy-launches-robotics-and-autonomous-systems-warfighting-development-center/",
           "published": "2026-09-24"
         }
       ]
