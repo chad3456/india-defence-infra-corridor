@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-24T20:11:27.661Z",
+  "builtAt": "2026-09-24T23:31:10.697Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 836,
-    "addedThisRun": 7,
-    "carriedFromEarlierRuns": 829,
-    "withOutlet": 795,
+    "items": 839,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 836,
+    "withOutlet": 798,
     "bySubject": {
-      "scst": 544,
-      "pmshri": 292
+      "scst": 546,
+      "pmshri": 293
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 314
+    "offSubjectDropped": 313
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 415
+      "n": 418
     },
     {
       "key": "use",
@@ -78,7 +78,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 22
+      "n": 23
     },
     {
       "key": "Verdictum",
@@ -126,7 +126,7 @@
     },
     {
       "key": "ANI News",
-      "n": 9
+      "n": 10
     },
     {
       "key": "Careers360",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 7
     },
     {
@@ -306,8 +306,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 9,
-      "kept": 3,
+      "bing": 7,
+      "kept": 0,
       "offSubject": 14
     },
     {
@@ -317,7 +317,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 40
     },
     {
@@ -327,7 +327,7 @@
       "expect": "use",
       "google": 54,
       "bing": 10,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 7
     },
     {
@@ -335,20 +335,20 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 47,
+      "google": 46,
       "bing": 2,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 13
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 66,
+      "google": 65,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 26
+      "kept": 2,
+      "offSubject": 25
     },
     {
       "id": "act-acquittal",
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 42,
+      "google": 41,
       "bing": 2,
       "kept": 0,
       "offSubject": 5
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 30,
+      "google": 33,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 3
     },
     {
@@ -425,8 +425,8 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 45,
-      "bing": 1,
+      "google": 46,
+      "bing": 2,
       "kept": 0,
       "offSubject": 7
     },
@@ -435,8 +435,8 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 68,
-      "bing": 0,
+      "google": 67,
+      "bing": 2,
       "kept": 0,
       "offSubject": 24
     },
@@ -446,7 +446,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 50,
-      "bing": 0,
+      "bing": 3,
       "kept": 0,
       "offSubject": 11
     },
@@ -455,9 +455,9 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 47,
+      "google": 48,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -465,17 +465,17 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 27,
-      "bing": 0,
+      "google": 26,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 13
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 53,
+      "google": 54,
       "bing": 7,
       "kept": 0,
       "offSubject": 11
@@ -13162,7 +13162,8 @@
       "published": "2026-09-23",
       "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOOGt5UjBjOWRtQzliUVlta0x3MFowQUdwTGF0d0tkczl3bEJNZk5MZ0xoWDBJTG9sOEItTWhJTHNsODExdWZsUVQ4Z1Flb3dZOXFDRG5lM1J2Y1NrRFAtTWpZeVpwQ3NDdUJCMUV4Z2FXc19PQ1lsN3BIX0F4dG9lQndTY0Qyel9zaEltejkxLTFCU2dicXJCQ2hYUVkwS0t6OUFsN2cyWUZkTmhZS3dHNzhEbVRXb055T29EQVZsM1NOMU5jbFVvSFZMQXFrcmRmTi1UYjBYQmMtQnp2a29GOHhsQm9IYjJVbUpSZFFDLVLSAfYBQVVfeXFMUGYtUEYxWDM3Q0pqTU1lNS0xVkZNcDNUUEhhNEZYeElKZ3FJYUxjbE52N0FSemlGQzFwWEhqWE9kRW91SE5fejN0OGtBQnYzY3FNbjRlZFNxUjhQcnJORkZ3WmhtdmN3alpxaTc2T2dVTlNFZHFFSUE5WF91cVBjZ0E0TndiTkhsSUJTakdoSTBfbDNkZ3hOQzBUSi1MU2xBcUlyUW9Mdy1jVHNsa1NwUVNnbGFaUURHTzYtWENiUnE5S09sT19nVFR6RkFRYzVZYVVqN1N6NHFOQm5sSXp3TGNSRE5TdnZxck1STXJ2TzN2dmFnd2JR?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -13827,7 +13828,8 @@
       "published": "2026-09-24",
       "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNM1dla0VhdDJtTnBCOGJBcFZSMW9NMjFFdUdsVUhVY1d2cEZwZjVhcEUzdmlRTmREd2E2ZkQ3NVdEMkRoenIyQjVHY0VLSVVrMV9oWEVGTEJMN1MzOFlVRTJtQmZiaEtacHBhNU1KVERjWmt5YnNvdWdub0I1bU1EWXlJdXVXU1hZUWxYX2l6TC13REFnMzFxTHh2ZnA3dm5CWllZb3lRY1ZnQQ?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-general"
       ],
       "indexes": [
         "google",
@@ -14085,6 +14087,54 @@
       "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxONU1taVc5VDAyOTZiWUFDdHZ5cFBfRnNLLUg2cGhJa0tIV21aYXVUby1yY0ZJc0lHcVJ1aGZpNFA5QzFTZlV4LXZiLWh6SUpHZ2FZMlhXSVB3MlRpUGVIaHlVakp5b0lWTTcxY3h6dTRvTVFyV2pVb3U4T2lFZXVvR3NyQTZtTm9FcDNja2ExMDUwYl9LSlY4WA?oc=5",
       "queries": [
         "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-24"
+    },
+    {
+      "id": "high court of karnataka allows transfer and joint trial of case and counter case to avoid ",
+      "headline": "High Court of Karnataka Allows Transfer and Joint Trial of Case and Counter Case to Avoid Conflicting Judgments. Court Directs Committal of Magistrate's Case to Special Court Under Section 407 Cr.P.C. for Joint Trial with Counter Case Involving SC/ST Act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Lawtext",
+      "published": "2026-09-24",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFB3WTFJRG5kcjNJYlFBSmJXMk9IMHFPelgzSzRZcWlfV2FWektVdnJDek9HWG1WeXNCcnVtLWFMcktNdXZtdnNKcnlJLThWOWxmVFVYVEd5cW5oS1VLekNzXy1XTUVEMHF6?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-24"
+    },
+    {
+      "id": "caste identity alone not grounds to invoke sc st act allahabad high court",
+      "headline": "Caste Identity Alone Not Grounds To Invoke SC/ST Act: Allahabad High Court",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The CSR Journal",
+      "published": "2026-09-12",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPcXlNSklHOHBacHctZG1pZmluby1yR21jYTNiaERxYy1OREpkd3RucHpsdXd6c0RBd3hKLTZKME1USXliOUx1VVVJUWt6Sks3RGVOdVViemFJQVYwQzZJeG1rZlBBVl9TbDhnQlg5c0w3N2lNLXRwcy1yUjhoUWhkbGIwYmo2bk9DZUJYNmIxRFlsVnhVam5IWUE0V3AwYTQ?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-24"
+    },
+    {
+      "id": "centre hopeful of pm shri rollout in w bengal tamil nadu to write to states soon",
+      "headline": "Centre hopeful of PM SHRI rollout in W Bengal, Tamil Nadu; to write to states soon",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "ANI News",
+      "published": "2026-05-06",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQUWw0eGpfaHFDUnpJemcteEtFcUh5eE9iTC12TjBTVlAzd09yN2p2OTVyR3MxRjdicHltRkpaZno3TTdUOW80M3ZnMHdUMVBaUXE3QVQxTDNWcFJ3MUpGZ2NON0FIZVBfdlp2cnd3eVZqeTFDbkp2UmVRVzVuY0pKS0hIRzVKeTVXVGtFVlkyMVR5R1lnU0lQRVVBOXAzZXg5c0Q4dVp6dl9mQXJVZmhhMV8zVDcyQ2NveUVFVnBoekpFSGNfMnc0UU91UjJZQmRma05wbUd0dl9UdzVN?oc=5",
+      "queries": [
+        "shri-mou"
       ],
       "indexes": [
         "google"
