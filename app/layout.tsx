@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Spectral, Archivo, IBM_Plex_Mono, Caveat } from "next/font/google";
+import { Spectral, Archivo, IBM_Plex_Mono, Caveat, Dela_Gothic_One } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
@@ -53,6 +53,21 @@ const hand = Caveat({
   variable: "--font-hand-loaded",
   display: "swap",
 });
+/*
+  The manga title face, for the mela only.
+
+  Dela Gothic One is a heavy Japanese gothic whose Latin sits happily beside
+  katakana, which is what the stall signs need: a title and its sound-effect
+  sticker in one voice. Not preloaded — it is a CJK family served in
+  unicode-range slices, and every other page on the site would pay for it.
+*/
+const manga = Dela_Gothic_One({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-manga-loaded",
+  display: "swap",
+  preload: false,
+});
 const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
@@ -78,7 +93,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable} ${hand.variable}`}>
+    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable} ${hand.variable} ${manga.variable}`}>
       <body>
         <a
           href="#main"

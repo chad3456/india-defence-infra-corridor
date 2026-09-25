@@ -23,6 +23,19 @@
  * Nirmal Bharat, PMAY after Indira Awaas — the predecessor is named and
  * verified the same way.
  *
+ * ── What was removed, and why ────────────────────────────────────────────
+ *
+ * The first verification run failed 27 of 70. Where the failure was a wrong
+ * title and the right article exists, the title was corrected. Where the
+ * right article's opening states a different year and says what it is — the
+ * Institutions of Eminence article reads "set up in 2017" — the year was
+ * corrected to it. Where there is no dedicated article (Mudra's title
+ * redirects to a general article on the premiership), or the article's opening
+ * never states a launch year at all (PMAY, UDAN, Smart Cities, Bharatmala, Gati
+ * Shakti), the entry was removed. The one thing not done was to change a year
+ * to whichever one would pass: that would turn a check into a rubber stamp.
+ * Removal is not a judgement on the programme; its sector's numbers still show.
+ *
  * Notes are one neutral line on what the programme is. They are not an
  * assessment; the assessment is the stall's verdict, from lib/assessment.ts.
  */
@@ -47,8 +60,6 @@ export const PROGRAMMES: CuratedProgramme[] = [
   /* ── Finance ─────────────────────────────────────────────────────── */
   { id: "jan-dhan", stall: "finance", name: "Pradhan Mantri Jan Dhan Yojana", year: 2014, kind: "scheme",
     article: "Pradhan Mantri Jan Dhan Yojana", note: "Zero-balance bank accounts for households that had none." },
-  { id: "mudra", stall: "finance", name: "PM Mudra Yojana", year: 2015, kind: "scheme",
-    article: "Pradhan Mantri Mudra Yojana", note: "Collateral-free loans to micro-enterprises." },
   { id: "apy", stall: "finance", name: "Atal Pension Yojana", year: 2015, kind: "scheme",
     article: "Atal Pension Yojana", note: "A contributory pension for workers in the unorganised sector." },
   { id: "pmjjby", stall: "finance", name: "PM Jeevan Jyoti Bima Yojana", year: 2015, kind: "scheme",
@@ -78,21 +89,13 @@ export const PROGRAMMES: CuratedProgramme[] = [
   { id: "atmanirbhar", stall: "manufacturing", name: "Atmanirbhar Bharat", year: 2020, kind: "mission",
     article: "Atmanirbhar Bharat", note: "The self-reliance programme announced during the pandemic." },
   { id: "pli", stall: "manufacturing", name: "Production Linked Incentive schemes", year: 2020, kind: "scheme",
-    article: "Production Linked Incentive Scheme", note: "Subsidies tied to incremental output in chosen sectors." },
-  { id: "ism", stall: "manufacturing", name: "India Semiconductor Mission", year: 2021, kind: "mission",
-    article: "India Semiconductor Mission", note: "Incentives for chip fabrication, packaging and design." },
+    article: "Production Linked Incentive schemes in India", note: "Subsidies tied to incremental output in chosen sectors." },
   { id: "vishwakarma", stall: "manufacturing", name: "PM Vishwakarma", year: 2023, kind: "scheme",
-    article: "PM Vishwakarma", note: "Credit and training for traditional artisans." },
+    article: "Pradhan Mantri Vishwakarma Kaushal Samman Yojana", note: "Credit and training for traditional artisans." },
 
   /* ── Defence ─────────────────────────────────────────────────────── */
   { id: "up-corridor", stall: "defence", name: "Uttar Pradesh Defence Industrial Corridor", year: 2018, kind: "mission",
     article: "Uttar Pradesh Defence Industrial Corridor", note: "One of two defence manufacturing corridors." },
-  { id: "tn-corridor", stall: "defence", name: "Tamil Nadu Defence Industrial Corridor", year: 2018, kind: "mission",
-    article: "Tamil Nadu Defence Industrial Corridor", note: "The second corridor." },
-  { id: "idex", stall: "defence", name: "iDEX", year: 2018, kind: "scheme",
-    article: "Innovations for Defence Excellence", note: "Grants for defence start-ups." },
-  { id: "cds", stall: "defence", name: "Chief of Defence Staff", year: 2019, kind: "institution",
-    article: "Chief of Defence Staff (India)", note: "A single head for the three services' joint matters." },
   { id: "agnipath", stall: "defence", name: "Agnipath", year: 2022, kind: "scheme",
     article: "Agnipath Scheme", note: "Four-year enlistment for most new recruits. Contested at launch." },
   { id: "sindoor", stall: "defence", name: "Operation Sindoor", year: 2025, kind: "event",
@@ -103,42 +106,32 @@ export const PROGRAMMES: CuratedProgramme[] = [
     article: "Startup India", note: "Registration, tax and funding support for new firms." },
   { id: "aim", stall: "innovation", name: "Atal Innovation Mission", year: 2016, kind: "mission",
     article: "Atal Innovation Mission", note: "Tinkering labs in schools and incubators." },
-  { id: "gaganyaan", stall: "innovation", name: "Gaganyaan", year: 2018, kind: "mission",
-    article: "Gaganyaan", note: "The crewed spaceflight programme." },
   { id: "chandrayaan-3", stall: "innovation", name: "Chandrayaan-3", year: 2023, kind: "event",
     article: "Chandrayaan-3", note: "The lunar landing near the south pole." },
   { id: "aditya-l1", stall: "innovation", name: "Aditya-L1", year: 2023, kind: "event",
     article: "Aditya-L1", note: "The solar observatory at the first Lagrange point." },
   { id: "nqm", stall: "innovation", name: "National Quantum Mission", year: 2023, kind: "mission",
-    article: "National Quantum Mission", note: "Research funding for quantum technologies." },
-  { id: "indiaai", stall: "innovation", name: "IndiaAI Mission", year: 2024, kind: "mission",
-    article: "IndiaAI", note: "Public compute and funding for AI." },
+    article: "National Quantum Mission India", note: "Research funding for quantum technologies." },
 
   /* ── Education ───────────────────────────────────────────────────── */
-  { id: "skill-india", stall: "education", name: "Skill India", year: 2015, kind: "mission",
-    article: "Skill India", note: "Vocational training under one umbrella." },
-  { id: "pmkvy", stall: "education", name: "PM Kaushal Vikas Yojana", year: 2015, kind: "scheme",
-    article: "Pradhan Mantri Kaushal Vikas Yojana", note: "Short-term skill certification." },
   { id: "samagra", stall: "education", name: "Samagra Shiksha", year: 2018, kind: "scheme",
     article: "Samagra Shiksha Abhiyan", note: "One scheme for school education, pre-school to class XII." },
-  { id: "ioe", stall: "education", name: "Institutions of Eminence", year: 2018, kind: "scheme",
-    article: "Institute of Eminence", note: "Autonomy and funding for selected universities." },
+  /* The article: "a recognition status set up in 2017". */
+  { id: "ioe", stall: "education", name: "Institutions of Eminence", year: 2017, kind: "scheme",
+    article: "Institutions of Eminence", note: "Autonomy and funding for selected universities." },
   { id: "nep", stall: "education", name: "National Education Policy 2020", year: 2020, kind: "reform",
     article: "National Education Policy 2020", note: "The first new education policy since 1986. Some states rejected parts of it." },
-  { id: "onos", stall: "education", name: "One Nation One Subscription", year: 2024, kind: "scheme",
+  { id: "onos", stall: "education", name: "One Nation One Subscription", year: 2025, kind: "scheme",
     article: "One Nation One Subscription", note: "A national licence to academic journals." },
 
   /* ── Rural ───────────────────────────────────────────────────────── */
   { id: "swachh", stall: "rural", name: "Swachh Bharat Mission", year: 2014, kind: "mission",
     article: "Swachh Bharat Mission", note: "Toilets and the end of open defecation.",
     continues: { name: "Nirmal Bharat Abhiyan", year: 2012, article: "Nirmal Bharat Abhiyan" } },
-  { id: "pmay", stall: "rural", name: "PM Awas Yojana", year: 2015, kind: "scheme",
-    article: "Pradhan Mantri Awas Yojana", note: "Housing, rural and urban.",
-    continues: { name: "Indira Awaas Yojana", year: 1985, article: "Indira Awaas Yojana" } },
   { id: "pmfby", stall: "rural", name: "PM Fasal Bima Yojana", year: 2016, kind: "scheme",
     article: "Pradhan Mantri Fasal Bima Yojana", note: "Crop insurance." },
   { id: "saubhagya", stall: "rural", name: "Saubhagya", year: 2017, kind: "scheme",
-    article: "Pradhan Mantri Sahaj Bijli Har Ghar Yojana", note: "An electricity connection for every household." },
+    article: "Saubhagya scheme", note: "An electricity connection for every household." },
   { id: "pm-kisan", stall: "rural", name: "PM-KISAN", year: 2019, kind: "scheme",
     article: "Pradhan Mantri Kisan Samman Nidhi", note: "A fixed annual cash transfer to landholding farmers." },
   { id: "jjm", stall: "rural", name: "Jal Jeevan Mission", year: 2019, kind: "mission",
@@ -147,7 +140,7 @@ export const PROGRAMMES: CuratedProgramme[] = [
   { id: "pmgkay", stall: "rural", name: "PM Garib Kalyan Anna Yojana", year: 2020, kind: "scheme",
     article: "Pradhan Mantri Garib Kalyan Anna Yojana", note: "Free foodgrain, begun during the pandemic." },
   { id: "svamitva", stall: "rural", name: "SVAMITVA", year: 2020, kind: "scheme",
-    article: "SVAMITVA", note: "Drone-surveyed property cards for village homes." },
+    article: "Svamitva Yojana", note: "Drone-surveyed property cards for village homes." },
   { id: "farm-laws", stall: "rural", name: "The farm laws", year: 2020, kind: "law",
     article: "2020 Indian agriculture acts", note: "Passed in 2020 and repealed in 2021 after a year of protest." },
 
@@ -166,45 +159,27 @@ export const PROGRAMMES: CuratedProgramme[] = [
     article: "Muslim Women (Protection of Rights on Marriage) Act, 2019", note: "Made instant triple talaq a criminal offence." },
   { id: "nari-shakti", stall: "women", name: "Nari Shakti Vandan Adhiniyam", year: 2023, kind: "law",
     article: "Nari Shakti Vandan Adhiniyam", note: "A third of legislative seats for women, once the next delimitation is done." },
-  { id: "lakhpati", stall: "women", name: "Lakhpati Didi", year: 2023, kind: "scheme",
-    article: "Lakhpati Didi", note: "Income targets for women in self-help groups." },
 
   /* ── Health ──────────────────────────────────────────────────────── */
   { id: "indradhanush", stall: "health", name: "Mission Indradhanush", year: 2014, kind: "mission",
     article: "Mission Indradhanush", note: "Catch-up immunisation for children and pregnant women." },
   { id: "jan-aushadhi", stall: "health", name: "PM Bhartiya Janaushadhi Pariyojana", year: 2015, kind: "scheme",
-    article: "Pradhan Mantri Bhartiya Janaushadhi Pariyojana", note: "Generic-medicine shops." },
+    article: "Pradhan Mantri Bharatiya Janaushadhi Pariyojana", note: "Generic-medicine shops." },
   { id: "ayushman", stall: "health", name: "Ayushman Bharat", year: 2018, kind: "scheme",
     article: "Ayushman Bharat Yojana", note: "Hospital insurance for poorer households.",
     continues: { name: "Rashtriya Swasthya Bima Yojana", year: 2008, article: "Rashtriya Swasthya Bima Yojana" } },
-  { id: "poshan", stall: "health", name: "POSHAN Abhiyaan", year: 2018, kind: "mission",
-    article: "POSHAN Abhiyaan", note: "Nutrition for children, adolescent girls and mothers." },
   { id: "covid-vax", stall: "health", name: "COVID-19 vaccination", year: 2021, kind: "event",
     article: "COVID-19 vaccination in India", note: "The national vaccination drive." },
-  { id: "abdm", stall: "health", name: "Ayushman Bharat Digital Mission", year: 2021, kind: "mission",
-    article: "Ayushman Bharat Digital Mission", note: "Digital health IDs and records." },
 
   /* ── Infrastructure ──────────────────────────────────────────────── */
-  { id: "smart-cities", stall: "infrastructure", name: "Smart Cities Mission", year: 2015, kind: "mission",
-    article: "Smart Cities Mission", note: "Urban renewal in a hundred chosen cities." },
   { id: "amrut", stall: "infrastructure", name: "AMRUT", year: 2015, kind: "mission",
     article: "Atal Mission for Rejuvenation and Urban Transformation", note: "Water and sewerage in urban areas." },
   { id: "sagarmala", stall: "infrastructure", name: "Sagarmala", year: 2015, kind: "mission",
     article: "Sagarmala project", note: "Port-led development along the coast." },
-  { id: "udan", stall: "infrastructure", name: "UDAN", year: 2016, kind: "scheme",
-    article: "UDAN", note: "Subsidised regional flights to unserved airports." },
-  { id: "bharatmala", stall: "infrastructure", name: "Bharatmala", year: 2017, kind: "mission",
-    article: "Bharatmala", note: "The national highway building programme." },
   { id: "vande-bharat", stall: "infrastructure", name: "Vande Bharat Express", year: 2019, kind: "institution",
     article: "Vande Bharat Express", note: "Domestically built semi-high-speed trains." },
-  { id: "gati-shakti", stall: "infrastructure", name: "PM Gati Shakti", year: 2021, kind: "mission",
-    article: "PM Gati Shakti", note: "One planning map for infrastructure ministries." },
 
   /* ── Trade ───────────────────────────────────────────────────────── */
-  { id: "uae-cepa", stall: "trade", name: "India–UAE CEPA", year: 2022, kind: "law",
-    article: "India–United Arab Emirates Comprehensive Economic Partnership Agreement", note: "A trade agreement with the UAE." },
-  { id: "aus-ecta", stall: "trade", name: "India–Australia ECTA", year: 2022, kind: "law",
-    article: "India–Australia Economic Cooperation and Trade Agreement", note: "An interim trade agreement with Australia." },
   { id: "efta-tepa", stall: "trade", name: "India–EFTA TEPA", year: 2024, kind: "law",
     article: "India–EFTA Trade and Economic Partnership Agreement", note: "A trade agreement with Switzerland, Norway, Iceland and Liechtenstein." },
   { id: "uk-fta", stall: "trade", name: "India–UK trade agreement", year: 2025, kind: "law",

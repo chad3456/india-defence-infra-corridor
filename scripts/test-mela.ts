@@ -156,9 +156,11 @@ console.log("\nThe curated list");
     check(`the list keeps "${id}"`, ids.includes(id), true);
   }
   check("a pre-2014 programme is marked as such", termOf(PROGRAMMES.find((p) => p.id === "dbt")!.year), "before");
-  check("every stall has at least three programmes",
+  /* Two, not three: trade lost two agreements that have no dedicated article,
+     and padding it with a guessed title would be worse than a short list. */
+  check("every stall has at least two programmes",
     ["infrastructure", "defence", "finance", "manufacturing", "innovation", "education", "rural", "women", "health", "digital", "trade"]
-      .every((s) => PROGRAMMES.filter((p) => p.stall === s).length >= 3), true);
+      .every((s) => PROGRAMMES.filter((p) => p.stall === s).length >= 2), true);
   check("notes are neutral lines, not verdicts",
     PROGRAMMES.some((p) => /\b(?:historic|landmark|revolutionary|massive success|failed)\b/i.test(p.note ?? "")), false);
 }

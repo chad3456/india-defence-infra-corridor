@@ -4,6 +4,7 @@ import NewBadge from "@/components/ui/NewBadge";
 import { loadSearch, loadCitations, loadJudgments } from "@/lib/rights";
 import { loadBollywood, pooled } from "@/lib/bollywood";
 import { loadSindoorBook } from "@/lib/sindoor-book";
+import { loadMela } from "@/lib/mela";
 
 /**
  * The index of visual stories.
@@ -158,7 +159,21 @@ export default function StoriesIndex() {
     book.counts.targets + book.counts.airbases + book.counts.beats
     + book.counts.weapons + book.counts.disputes;
 
+  const mela = loadMela();
+
   const RIGHTS = [
+    {
+      href: "/mela",
+      tone: "cool" as const,
+      kicker: "2014–2026 · an interactive fair",
+      title: "The Vikas Mela: Three Terms, Eleven Stalls.",
+      blurb:
+        "An anime fairground of the programmes launched since 2014 — defence, finance, manufacturing, "
+        + "innovation, education, rural India, women. Walk it with the guide; every number is sourced, and "
+        + "the stalls show what fell as well as what rose.",
+      stat: String(mela.counts.programmesVerified),
+      statLabel: "programmes, each checked against its source",
+    },
     {
       href: "/bollywood-villains",
       tone: "hot" as const,
