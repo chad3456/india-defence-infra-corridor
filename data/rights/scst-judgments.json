@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-24T21:48:17.059Z",
+  "builtAt": "2026-09-25T05:23:11.109Z",
   "source": "Indian Kanoon (indiankanoon.org), the free Indian judgment search. Four queries, each asked with a judgments-only document filter, ten results per request, eight seconds apart.",
   "method": "Indian Kanoon answers roughly ten requests and then stops, so the corpus is built across runs rather than in one: each run walks twelve pages, resumes each query where the last run left it, and merges into what is stored. Queries are asked separately rather than as one broad search, so the rarest category is reached instead of being buried by ranking.",
   "refusal": "No acquittal rate, conviction rate or misuse measure is computed. The outcome words are MENTIONS in a search snippet, not findings: a snippet reading 'the accused was acquitted' may be the court's holding or it reciting a trial court order it goes on to overturn, and ten words of context cannot tell them apart. Every snippet is published beside its flags so a reader checks rather than trusts.",
@@ -10,54 +10,54 @@
     "Whether a flagged outcome is the court's own. The flag says a word appeared in a snippet. The snippet is published; the judgment is one link away."
   ],
   "counts": {
-    "documents": 1440,
-    "judgments": 1440,
+    "documents": 1448,
+    "judgments": 1448,
     "statutes": 0,
     "unknown": 0,
-    "carriedFromEarlierRuns": 1383,
-    "addedThisRun": 57,
-    "pagesThisRun": 10,
-    "withYear": 1419,
-    "withCourt": 1323,
-    "withNoMention": 913
+    "carriedFromEarlierRuns": 1440,
+    "addedThisRun": 8,
+    "pagesThisRun": 5,
+    "withYear": 1427,
+    "withCourt": 1331,
+    "withNoMention": 921
   },
   "depth": {
     "act": 40,
     "acquittal": 40,
-    "false": 39,
+    "false": 40,
     "conviction": 40
   },
   "perQuery": [
     {
       "id": "act",
       "label": "The Act generally",
-      "from": 39,
-      "pagesOk": 1,
-      "results": 10,
+      "from": 40,
+      "pagesOk": 0,
+      "results": 0,
       "refusedAt": null
     },
     {
       "id": "acquittal",
       "label": "Acquittal language",
+      "from": 40,
+      "pagesOk": 0,
+      "results": 0,
+      "refusedAt": null
+    },
+    {
+      "id": "false",
+      "label": "Complaint found false",
       "from": 39,
       "pagesOk": 1,
       "results": 10,
       "refusedAt": null
     },
     {
-      "id": "false",
-      "label": "Complaint found false",
-      "from": 36,
-      "pagesOk": 3,
-      "results": 30,
-      "refusedAt": null
-    },
-    {
       "id": "conviction",
       "label": "Conviction language",
-      "from": 38,
-      "pagesOk": 2,
-      "results": 20,
+      "from": 40,
+      "pagesOk": 0,
+      "results": 0,
       "refusedAt": null
     }
   ],
@@ -75,6 +75,12 @@
       "shape": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\"> <html lang=\"en\"> <head> <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"> <link type=\"text/css\" href=\"/static/js/jquery-ui-1.13.2/jquery-ui.min.css\" rel=\"stylesheet\"> <link type=\"text/css\" href=\"/static/js/jquery-ui-1.13.2/jquery-ui.theme.min.css\" rel=\"stylesheet\"> <link type=\"text/css\" href=\"/static/footer.css\" rel=\"stylesheet\"> <link type=\"text/css\" href=\"/static/print.css\" rel=\"stylesheet\"> <LINK REL=\"stylesheet\" TYPE=\"text/css\" HREF=\"/static/search_desktop_v20.css?v=20260623-1\"> <!-- Google tag (gtag.js) --> <TITLE>No Matching results</TITLE> </head> <body class=\"\"> <!-- Skip link for keyboard and screen reader users --> <a href=\"#main-content\" class=\"skip-link\">Skip to main content</a> <header class=\"main-header\" role=\"banner\"> <h1 class=\"sr-only\">Indian Kanoon - Search engine for Indian Law</h1> <div class=\"header-container\"> <!-- Left: Logo (hidden on homepage) --> <div class=\"header-logo\"> <a href=\"/\" aria"
     },
     {
+      "query": "false",
+      "page": 40,
+      "bytes": 16133,
+      "shape": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\"> <html lang=\"en\"> <head> <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"> <link type=\"text/css\" href=\"/static/js/jquery-ui-1.13.2/jquery-ui.min.css\" rel=\"stylesheet\"> <link type=\"text/css\" href=\"/static/js/jquery-ui-1.13.2/jquery-ui.theme.min.css\" rel=\"stylesheet\"> <link type=\"text/css\" href=\"/static/footer.css\" rel=\"stylesheet\"> <link type=\"text/css\" href=\"/static/print.css\" rel=\"stylesheet\"> <LINK REL=\"stylesheet\" TYPE=\"text/css\" HREF=\"/static/search_desktop_v20.css?v=20260623-1\"> <!-- Google tag (gtag.js) --> <TITLE>No Matching results</TITLE> </head> <body class=\"\"> <!-- Skip link for keyboard and screen reader users --> <a href=\"#main-content\" class=\"skip-link\">Skip to main content</a> <header class=\"main-header\" role=\"banner\"> <h1 class=\"sr-only\">Indian Kanoon - Search engine for Indian Law</h1> <div class=\"header-container\"> <!-- Left: Logo (hidden on homepage) --> <div class=\"header-logo\"> <a href=\"/\" aria"
+    },
+    {
       "query": "conviction",
       "page": 40,
       "bytes": 16136,
@@ -83,22 +89,10 @@
   ],
   "sampleWindows": [
     {
-      "query": "act",
-      "title": "Ami Chand vs State Of Himachal Pradesh on 14 September, 2020",
-      "court": "Himachal Pradesh High Court",
-      "window": " <h4 class=\"result_title\"> <a href=\"/docfragment/152410732/?formInput=scheduled%20castes%20scheduled%20tribes%20prevention%20of%20atrocities%20act%20%20doctypes%3A%20judgments\">Ami Chand vs State Of Himachal Pradesh on 14 September, 2020</a> </h4> <div class=\"headline\"> commission of offences punishable under the <b>Scheduled</b> <b>Castes</b> &amp; <b>Scheduled</b> <b>Tribes</b> (<b>Prevention</b> of <b>Atrocities</b>) <b>Act</b>, 1989 , after now called as &#x27;SCSTPOA ... Civil Rights <b>Act</b>, 1955 . Later on, vide <b>Scheduled</b> <b>Castes</b> and <b>Scheduled</b> <b>Tribes</b> (<b>Prevention</b> of <b>Atrocities</b>) <b>Act</b>, 1989 , the Parliament passed a more stringent </div> <div class=\"hlbottom\"> <span class=\"docsource\">Himachal Pradesh High Court</span> <a class=\"cite_tag\" href=\"/search/?formInput=cites:152410732\">Cites 61</a> - <a class=\"cite_tag\" href=\"/search/?formInput=citedby:152410732\">Cited by 0</a> - <a class=\"cite_tag\" href=\"/search/?formInput=authorid:a-chitkara\">A Chitkara</a> - <a class=\"cite_tag\" href=\"/doc/152410732/\">Full Document</a> </div> "
-    },
-    {
-      "query": "acquittal",
-      "title": "Arun vs The State Of Madhya Pradesh on 25 August, 2025",
-      "court": "Madhya Pradesh High Court",
-      "window": " <h4 class=\"result_title\"> <a href=\"/docfragment/65826307/?formInput=prevention%20of%20atrocities%20act%20acquitted%20appeal%20%20doctypes%3A%20judgments\">Arun vs The State Of Madhya Pradesh on 25 August, 2025</a> </h4> <div class=\"headline\"> CITATION NO. 2025:MPHC-JBP:40242 5 CRA-4460-2024 (<b>Prevention</b> of <b>Atrocities</b>) <b>Act</b>, 1989 and they have been sentenced as under:- Accused/ Section Imprisonment ... imprisonment R.I. for 06 (<b>Prevention</b> months of <b>Atrocities</b>) <b>Act</b>, 1989 7. Against the impugned judgment <b>appeal</b> has been filed by accused-Arun </div> <div class=\"hlbottom\"> <span class=\"docsource\">Madhya Pradesh High Court</span> <a class=\"cite_tag\" href=\"/search/?formInput=cites:65826307\">Cites 30</a> - <a class=\"cite_tag\" href=\"/search/?formInput=citedby:65826307\">Cited by 0</a> - <a class=\"cite_tag\" href=\"/search/?formInput=authorid:avanindra-kumar-singh\">A K Singh</a> - <a class=\"cite_tag\" href=\"/doc/65826307/\">Full Document</a> </div> "
-    },
-    {
       "query": "false",
-      "title": "Jagjit Singh Chahal vs State Of Punjab And Ors on 7 October, 2015",
-      "court": "Punjab-Haryana High Court",
-      "window": " <h4 class=\"result_title\"> <a href=\"/docfragment/54129631/?formInput=prevention%20of%20atrocities%20act%20false%20complaint%20quashed%20%20doctypes%3A%20judgments\">Jagjit Singh Chahal vs State Of Punjab And Ors on 7 October, 2015</a> </h4> <div class=\"headline\"> Jagjit Singh Chahal vs State Of Punjab And Ors on 7 October, 2015 Bench: Surya </div> <div class=\"hlbottom\"> <span class=\"docsource\">Punjab-Haryana High Court</span> <a class=\"cite_tag\" href=\"/search/?formInput=cites:54129631\">Cites 100</a> - <a class=\"cite_tag\" href=\"/search/?formInput=citedby:54129631\">Cited by 14</a> - <a class=\"cite_tag\" href=\"/doc/54129631/\">Full Document</a> </div> "
+      "title": "Kuldeep Jatav vs The State Of Madhya Pradesh Thr on 13 July, 2018",
+      "court": "Madhya Pradesh High Court",
+      "window": " <h4 class=\"result_title\"> <a href=\"/docfragment/83161887/?formInput=prevention%20of%20atrocities%20act%20false%20complaint%20quashed%20%20doctypes%3A%20judgments\">Kuldeep Jatav vs The State Of Madhya Pradesh Thr on 13 July, 2018</a> </h4> <div class=\"headline\"> Kuldeep Jatav vs The State Of Madhya Pradesh Thr on 13 July, 2018 1 MCRC </div> <div class=\"hlbottom\"> <span class=\"docsource\">Madhya Pradesh High Court</span> <a class=\"cite_tag\" href=\"/search/?formInput=cites:83161887\">Cites 9</a> - <a class=\"cite_tag\" href=\"/search/?formInput=citedby:83161887\">Cited by 8</a> - <a class=\"cite_tag\" href=\"/doc/83161887/\">Full Document</a> </div> "
     }
   ],
   "byYear": [
@@ -180,11 +174,11 @@
     },
     {
       "year": 2010,
-      "n": 21
+      "n": 22
     },
     {
       "year": 2011,
-      "n": 20
+      "n": 22
     },
     {
       "year": 2012,
@@ -196,11 +190,11 @@
     },
     {
       "year": 2014,
-      "n": 31
+      "n": 33
     },
     {
       "year": 2015,
-      "n": 28
+      "n": 29
     },
     {
       "year": 2016,
@@ -208,11 +202,11 @@
     },
     {
       "year": 2017,
-      "n": 96
+      "n": 97
     },
     {
       "year": 2018,
-      "n": 81
+      "n": 82
     },
     {
       "year": 2019,
@@ -250,11 +244,11 @@
   "byCourt": [
     {
       "court": "Madhya Pradesh High Court",
-      "n": 229
+      "n": 231
     },
     {
       "court": "Madras High Court",
-      "n": 121
+      "n": 122
     },
     {
       "court": "Supreme Court of India",
@@ -274,7 +268,7 @@
     },
     {
       "court": "Allahabad High Court",
-      "n": 89
+      "n": 90
     },
     {
       "court": "Himachal Pradesh High Court",
@@ -286,7 +280,7 @@
     },
     {
       "court": "Delhi High Court",
-      "n": 39
+      "n": 40
     },
     {
       "court": "Patna High Court",
@@ -310,7 +304,7 @@
     },
     {
       "court": "Kerala High Court",
-      "n": 23
+      "n": 24
     },
     {
       "court": "Telangana High Court",
@@ -334,11 +328,11 @@
     },
     {
       "court": "Andhra HC (Pre-Telangana)",
-      "n": 13
+      "n": 14
     },
     {
       "court": "Orissa High Court",
-      "n": 5
+      "n": 6
     },
     {
       "court": "Uttarakhand High Court",
@@ -12107,7 +12101,8 @@
       "court": "Delhi High Court",
       "year": 2014,
       "queries": [
-        "conviction"
+        "conviction",
+        "false"
       ],
       "kind": "judgment",
       "firstSeen": "2026-09-23",
@@ -12363,7 +12358,8 @@
       "court": "Madhya Pradesh High Court",
       "year": 2018,
       "queries": [
-        "act"
+        "act",
+        "false"
       ],
       "kind": "judgment",
       "firstSeen": "2026-09-23",
@@ -21835,6 +21831,118 @@
       "mentions": [],
       "snippet": "Siddharth Dubey vs The State Of Madhya Pradesh on 6 January, 2026 Author: Vivek Agarwal",
       "url": "https://indiankanoon.org/doc/10602038/"
+    },
+    {
+      "docId": "83161887",
+      "title": "Kuldeep Jatav vs The State Of Madhya Pradesh Thr on 13 July, 2018",
+      "court": "Madhya Pradesh High Court",
+      "year": 2018,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-25",
+      "mentions": [],
+      "snippet": "Kuldeep Jatav vs The State Of Madhya Pradesh Thr on 13 July, 2018 1 MCRC",
+      "url": "https://indiankanoon.org/doc/83161887/"
+    },
+    {
+      "docId": "102276095",
+      "title": "Valasala.K.C vs State Of Kerala on 17 June, 2011",
+      "court": "Kerala High Court",
+      "year": 2011,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-25",
+      "mentions": [],
+      "snippet": "Valasala.K.C vs State Of Kerala on 17 June, 2011 Author: S.S.Satheesachandran",
+      "url": "https://indiankanoon.org/doc/102276095/"
+    },
+    {
+      "docId": "87321004",
+      "title": "Dr. Punita K. Sodhi vs Union Of India & Ors. on 9 September, 2010",
+      "court": "Delhi High Court",
+      "year": 2010,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-25",
+      "mentions": [],
+      "snippet": "Dr. Punita K. Sodhi vs Union Of India & Ors. on 9 September, 2010 Author",
+      "url": "https://indiankanoon.org/doc/87321004/"
+    },
+    {
+      "docId": "1246577",
+      "title": "Ganesan [A vs State Rep. By on 28 April, 2011",
+      "court": "Madras High Court",
+      "year": 2011,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-25",
+      "mentions": [],
+      "snippet": "Ganesan [A vs State Rep. By on 28 April, 2011 IN THE HIGH COURT OF",
+      "url": "https://indiankanoon.org/doc/1246577/"
+    },
+    {
+      "docId": "14434515",
+      "title": "Chinni Appa Rao S/O.Simhachalam, 65 ... vs State Of A.P., Rep. By Its Public ... on 7 December, 2015",
+      "court": "Andhra HC (Pre-Telangana)",
+      "year": 2015,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-25",
+      "mentions": [],
+      "snippet": "Chinni Appa Rao S/O.Simhachalam, 65 ... vs State Of A.P., Rep. By Its",
+      "url": "https://indiankanoon.org/doc/14434515/"
+    },
+    {
+      "docId": "163930086",
+      "title": "Shyam Bihari Mishra vs The State Of Madhya Pradesh on 27 August, 2014",
+      "court": "Madhya Pradesh High Court",
+      "year": 2014,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-25",
+      "mentions": [],
+      "snippet": "Shyam Bihari Mishra vs The State Of Madhya Pradesh on 27 August, 2014 Author: Sushil",
+      "url": "https://indiankanoon.org/doc/163930086/"
+    },
+    {
+      "docId": "142735930",
+      "title": "Aaqil Jamil And 2 Others vs State Of U.P. And Another on 19 April, 2017",
+      "court": "Allahabad High Court",
+      "year": 2017,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-25",
+      "mentions": [],
+      "snippet": "Aaqil Jamil And 2 Others vs State Of U.P. And Another on 19 April",
+      "url": "https://indiankanoon.org/doc/142735930/"
+    },
+    {
+      "docId": "156479333",
+      "title": "Mrs. N. Ratnakumari vs State Of Odisha & Others ...... Opp. ... on 24 July, 2014",
+      "court": "Orissa High Court",
+      "year": 2014,
+      "queries": [
+        "false"
+      ],
+      "kind": "judgment",
+      "firstSeen": "2026-09-25",
+      "mentions": [],
+      "snippet": "Mrs. N. Ratnakumari vs State Of Odisha & Others ...... Opp. ... on 24 July, 2014 Author",
+      "url": "https://indiankanoon.org/doc/156479333/"
     }
   ]
 }
