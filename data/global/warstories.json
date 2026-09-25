@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-09-25T13:47:29.068Z",
-  "previousBuild": "2026-09-25T04:57:38.784Z",
+  "builtAt": "2026-09-25T20:01:27.049Z",
+  "previousBuild": "2026-09-25T13:47:29.068Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,15 +12,15 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 53,
-    "createdThisRun": 3,
-    "corroboratedThisRun": 0,
-    "feedsAnswered": 13,
+    "stories": 59,
+    "createdThisRun": 6,
+    "corroboratedThisRun": 3,
+    "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 283,
+    "itemsSeen": 292,
     "corroboration": {
-      "one": 49,
-      "two": 2,
+      "one": 52,
+      "two": 5,
       "threePlus": 2
     }
   },
@@ -28,17 +28,17 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 23
+      "n": 25
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 20
+      "n": 22
     },
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 9
+      "n": 10
     },
     {
       "id": "cyber-ew",
@@ -48,14 +48,14 @@
     {
       "id": "military-ai",
       "label": "AI in military use",
-      "n": 2
+      "n": 3
     }
   ],
   "byCountry": [
     {
       "iso": "USA",
       "name": "United States",
-      "n": 8
+      "n": 9
     },
     {
       "iso": "GBR",
@@ -63,14 +63,14 @@
       "n": 3
     },
     {
-      "iso": "UKR",
-      "name": "Ukraine",
+      "iso": "IND",
+      "name": "India",
       "n": 3
     },
     {
-      "iso": "IND",
-      "name": "India",
-      "n": 2
+      "iso": "UKR",
+      "name": "Ukraine",
+      "n": 3
     },
     {
       "iso": "FRA",
@@ -97,20 +97,20 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 48,
+      "items": 47,
       "kept": 3
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Army Times",
@@ -122,13 +122,13 @@
       "outlet": "C4ISRNET",
       "ok": true,
       "items": 25,
-      "kept": 6
+      "kept": 7
     },
     {
       "outlet": "DefenseScoop",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defence Industry Europe",
@@ -140,7 +140,7 @@
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 1
+      "kept": 3
     },
     {
       "outlet": "Breaking Defense",
@@ -156,10 +156,9 @@
     },
     {
       "outlet": "Naval News",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "HTTP 503"
+      "ok": true,
+      "items": 10,
+      "kept": 1
     },
     {
       "outlet": "Defence Blog",
@@ -237,6 +236,77 @@
           "outlet": "C4ISRNET",
           "url": "https://www.c4isrnet.com/news/your-military/2026/08/21/us-army-to-end-experimental-drone-battalion-in-europe/",
           "published": "2026-08-21"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/09/navy-launches-robotics-and-autonomous-systems-warfighting-development-center/",
+      "headline": "Navy launches Robotics and Autonomous Systems Warfighting Development Center",
+      "firstSeen": "2026-09-24",
+      "lastSeen": "2026-09-25",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/09/navy-launches-robotics-and-autonomous-systems-warfighting-development-center/",
+          "published": "2026-09-24"
+        },
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/09/25/navy-creates-robotic-autonomous-systems-warfighting-development-center/",
+          "published": "2026-09-25"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/industry/techwatch/2026/09/25/us-navy-stands-up-hub-to-prepare-unmanned-systems-for-combat/",
+      "headline": "US Navy stands up hub to prepare unmanned systems for combat",
+      "firstSeen": "2026-09-25",
+      "lastSeen": "2026-09-25",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/industry/techwatch/2026/09/25/us-navy-stands-up-hub-to-prepare-unmanned-systems-for-combat/",
+          "published": "2026-09-25"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/industry/techwatch/2026/09/25/us-navy-stands-up-hub-to-prepare-unmanned-systems-for-combat/",
+          "published": "2026-09-25"
+        }
+      ]
+    },
+    {
+      "id": "https://www.c4isrnet.com/global/europe/2026/09/25/thales-in-quite-advanced-talks-with-nato-countries-on-ai-powered-command-software/",
+      "headline": "Thales in ‘quite advanced’ talks with NATO countries on AI-powered command software",
+      "firstSeen": "2026-09-25",
+      "lastSeen": "2026-09-25",
+      "themes": [
+        "military-ai"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/global/europe/2026/09/25/thales-in-quite-advanced-talks-with-nato-countries-on-ai-powered-command-software/",
+          "published": "2026-09-25"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/global/europe/2026/09/25/thales-in-quite-advanced-talks-with-nato-countries-on-ai-powered-command-software/",
+          "published": "2026-09-25"
         }
       ]
     },
@@ -350,6 +420,79 @@
       ]
     },
     {
+      "id": "https://www.twz.com/land/marines-rushing-to-equip-amphibious-combat-vehicles-with-new-anti-drone-jammers",
+      "headline": "Marines Rushing To Equip Amphibious Combat Vehicles With New Anti-Drone Jammers",
+      "firstSeen": "2026-09-25",
+      "lastSeen": "2026-09-25",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "The War Zone",
+          "url": "https://www.twz.com/land/marines-rushing-to-equip-amphibious-combat-vehicles-with-new-anti-drone-jammers",
+          "published": "2026-09-25"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/indian-army-plans-next-in-line-for-anti-drone-cages-for-its-stallion-trucks/",
+      "headline": "Indian Army Plans Next In Line For Anti-Drone Cages for its Stallion Trucks",
+      "firstSeen": "2026-09-25",
+      "lastSeen": "2026-09-25",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/indian-army-plans-next-in-line-for-anti-drone-cages-for-its-stallion-trucks/",
+          "published": "2026-09-25"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/canada-moves-closer-to-acquiring-six-saab-globaleye-aircraft-for-arctic-surveillance-and-norad-continental-defence-missions/",
+      "headline": "Canada moves closer to acquiring six Saab GlobalEye aircraft for Arctic surveillance and NORAD continental defence missions",
+      "firstSeen": "2026-09-25",
+      "lastSeen": "2026-09-25",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/canada-moves-closer-to-acquiring-six-saab-globaleye-aircraft-for-arctic-surveillance-and-norad-continental-defence-missions/",
+          "published": "2026-09-25"
+        }
+      ]
+    },
+    {
+      "id": "https://www.navalnews.com/naval-news/2026/09/u-s-navy-establishes-raswdc-to-accelerate-unmanned-systems-integration/",
+      "headline": "U.S. Navy Establishes RASWDC To Accelerate Unmanned Systems Integration",
+      "firstSeen": "2026-09-25",
+      "lastSeen": "2026-09-25",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Naval News",
+          "url": "https://www.navalnews.com/naval-news/2026/09/u-s-navy-establishes-raswdc-to-accelerate-unmanned-systems-integration/",
+          "published": "2026-09-25"
+        }
+      ]
+    },
+    {
       "id": "https://idrw.org/rrv-defence-claims-indias-first-patented-anti-drone-bullet/",
       "headline": "RRV Defence Claims India’s First Patented Anti-Drone Bullet",
       "firstSeen": "2026-09-24",
@@ -458,23 +601,6 @@
         {
           "outlet": "Defence Industry Europe",
           "url": "https://defence-industry.eu/leidos-secures-up-to-127-million-u-s-army-award-to-extend-artemis-airborne-isr-operations-across-europe-through-2027/",
-          "published": "2026-09-24"
-        }
-      ]
-    },
-    {
-      "id": "https://breakingdefense.com/2026/09/navy-launches-robotics-and-autonomous-systems-warfighting-development-center/",
-      "headline": "Navy launches Robotics and Autonomous Systems Warfighting Development Center",
-      "firstSeen": "2026-09-24",
-      "lastSeen": "2026-09-24",
-      "themes": [
-        "autonomy"
-      ],
-      "countries": [],
-      "sources": [
-        {
-          "outlet": "Breaking Defense",
-          "url": "https://breakingdefense.com/2026/09/navy-launches-robotics-and-autonomous-systems-warfighting-development-center/",
           "published": "2026-09-24"
         }
       ]
