@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-24T20:47:31.503Z",
+ "builtAt": "2026-09-25T10:34:01.030Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206470,7 +206470,7 @@
    "outlet": "UK Ministry of Defence",
    "ok": true,
    "items": 50,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   },
   {
@@ -206503,20 +206503,48 @@
   },
   {
    "outlet": "Naval News",
-   "ok": false,
-   "items": 0,
-   "kept": 0,
-   "via": "unconfigured"
+   "ok": true,
+   "items": 10,
+   "kept": 2,
+   "via": "direct"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-11ges4w",
+   "kind": "delivery",
+   "systems": [],
+   "countries": [
+    "Italy"
+   ],
+   "value": null,
+   "date": "2026-09-25",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/09/fincantieri-delivers-5th-ppa-domenico-millelire-to-italian-navy/",
+   "headline": "Fincantieri Delivers 5th PPA &#8216;Domenico Millelire&#8217; to Italian Navy",
+   "primary": false
+  },
+  {
+   "id": "ev-1dgk4c2",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-09-25",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/leonardo-gets-u-s-army-deal-for-powerful-diode-lasers/",
+   "headline": "Leonardo gets U.S. Army deal for powerful diode lasers",
+   "primary": false
+  },
   {
    "id": "ev-brlp20",
    "kind": "order",
@@ -206533,6 +206561,20 @@
    "outlet": "Defense News",
    "url": "https://www.defensenews.com/global/europe/2026/09/24/italy-taps-state-owned-firms-to-build-two-naval-destroyers-in-42-billion-deal/",
    "headline": "Italy taps state-owned firms to build two naval destroyers in $4.2 billion deal",
+   "primary": false
+  },
+  {
+   "id": "ev-n572do",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Italy"
+   ],
+   "value": null,
+   "date": "2026-09-24",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/09/italy-signs-e3-7b-contract-for-new-ddx-destroyers/",
+   "headline": "Italy Signs €3.7B Contract for New DDX Destroyers",
    "primary": false
   },
   {
@@ -207074,67 +207116,30 @@
  ],
  "groups": [
   {
-   "key": "order||italy",
+   "key": "delivery||italy",
    "systems": [],
    "countries": [
     "Italy"
    ],
-   "kind": "order",
+   "kind": "delivery",
    "events": [
     {
-     "id": "ev-brlp20",
-     "kind": "order",
+     "id": "ev-11ges4w",
+     "kind": "delivery",
      "systems": [],
      "countries": [
       "Italy"
      ],
-     "value": {
-      "amount": 4200000000,
-      "currency": "USD",
-      "asWritten": "$4.2 billion"
-     },
-     "date": "2026-09-24",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/global/europe/2026/09/24/italy-taps-state-owned-firms-to-build-two-naval-destroyers-in-42-billion-deal/",
-     "headline": "Italy taps state-owned firms to build two naval destroyers in $4.2 billion deal",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defense News"
-   ],
-   "value": {
-    "amount": 4200000000,
-    "currency": "USD",
-    "asWritten": "$4.2 billion"
-   },
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "delivery||russia",
-   "systems": [],
-   "countries": [
-    "Russia"
-   ],
-   "kind": "delivery",
-   "events": [
-    {
-     "id": "ev-d0tywu",
-     "kind": "delivery",
-     "systems": [],
-     "countries": [
-      "Russia"
-     ],
      "value": null,
-     "date": "2026-09-24",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/russia-delivers-upgraded-su-57-stealth-fighters-to-its-air-force/",
-     "headline": "Russia delivers upgraded Su-57 stealth fighters to its air force",
+     "date": "2026-09-25",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/fincantieri-delivers-5th-ppa-domenico-millelire-to-italian-navy/",
+     "headline": "Fincantieri Delivers 5th PPA &#8216;Domenico Millelire&#8217; to Italian Navy",
      "primary": false
     }
    ],
    "outlets": [
-    "Defence Blog"
+    "Naval News"
    ],
    "value": null,
    "verdict": "a single report, uncorroborated"
@@ -207147,6 +207152,20 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-1dgk4c2",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-25",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/leonardo-gets-u-s-army-deal-for-powerful-diode-lasers/",
+     "headline": "Leonardo gets U.S. Army deal for powerful diode lasers",
+     "primary": false
+    },
     {
      "id": "ev-1qe8et3",
      "kind": "order",
@@ -207339,6 +207358,87 @@
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "order||italy",
+   "systems": [],
+   "countries": [
+    "Italy"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-brlp20",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Italy"
+     ],
+     "value": {
+      "amount": 4200000000,
+      "currency": "USD",
+      "asWritten": "$4.2 billion"
+     },
+     "date": "2026-09-24",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/global/europe/2026/09/24/italy-taps-state-owned-firms-to-build-two-naval-destroyers-in-42-billion-deal/",
+     "headline": "Italy taps state-owned firms to build two naval destroyers in $4.2 billion deal",
+     "primary": false
+    },
+    {
+     "id": "ev-n572do",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Italy"
+     ],
+     "value": null,
+     "date": "2026-09-24",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/italy-signs-e3-7b-contract-for-new-ddx-destroyers/",
+     "headline": "Italy Signs €3.7B Contract for New DDX Destroyers",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News",
+    "Naval News"
+   ],
+   "value": {
+    "amount": 4200000000,
+    "currency": "USD",
+    "asWritten": "$4.2 billion"
+   },
+   "verdict": "corroborated by independent outlets"
+  },
+  {
+   "key": "delivery||russia",
+   "systems": [],
+   "countries": [
+    "Russia"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-d0tywu",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "Russia"
+     ],
+     "value": null,
+     "date": "2026-09-24",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/russia-delivers-upgraded-su-57-stealth-fighters-to-its-air-force/",
+     "headline": "Russia delivers upgraded Su-57 stealth fighters to its air force",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "delivery||south korea",
