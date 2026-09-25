@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-25T20:10:40.290Z",
+  "builtAt": "2026-09-25T23:37:09.382Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 863,
-    "addedThisRun": 9,
-    "carriedFromEarlierRuns": 854,
-    "withOutlet": 822,
+    "items": 866,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 863,
+    "withOutlet": 825,
     "bySubject": {
-      "scst": 561,
+      "scst": 564,
       "pmshri": 302
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 298
+    "offSubjectDropped": 316
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 435
+      "n": 437
     },
     {
       "key": "use",
@@ -36,7 +36,7 @@
     },
     {
       "key": "allegation",
-      "n": 40
+      "n": 41
     },
     {
       "key": "acquittal",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 81
+      "n": 82
     },
     {
       "key": "The Indian Express",
@@ -62,7 +62,7 @@
     },
     {
       "key": "The Hindu",
-      "n": 36
+      "n": 37
     },
     {
       "key": "India Today",
@@ -133,12 +133,12 @@
       "n": 10
     },
     {
-      "key": "lawchakra.in",
+      "key": "Telegraph India",
       "n": 10
     },
     {
-      "key": "Telegraph India",
-      "n": 9
+      "key": "lawchakra.in",
+      "n": 10
     },
     {
       "key": "India Legal",
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 8,
-      "kept": 1,
-      "offSubject": 14
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 13
     },
     {
       "id": "act-convicted",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 54,
-      "bing": 10,
-      "kept": 0,
-      "offSubject": 8
+      "bing": 9,
+      "kept": 1,
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 62,
+      "google": 63,
       "bing": 1,
       "kept": 0,
       "offSubject": 26
@@ -377,7 +377,7 @@
       "expect": "allegation",
       "google": 43,
       "bing": 2,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 7
     },
     {
@@ -385,10 +385,10 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 33,
-      "bing": 1,
+      "google": 32,
+      "bing": 0,
       "kept": 1,
-      "offSubject": 4
+      "offSubject": 3
     },
     {
       "id": "act-false",
@@ -408,26 +408,26 @@
       "google": 29,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 19
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 100,
+      "google": 0,
       "bing": 12,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 0
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 46,
+      "google": 45,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 0,
+      "google": 69,
       "bing": 2,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 25
     },
     {
       "id": "shri-upgrade",
@@ -446,7 +446,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 51,
-      "bing": 3,
+      "bing": 0,
       "kept": 0,
       "offSubject": 12
     },
@@ -455,9 +455,9 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 48,
+      "google": 47,
       "bing": 1,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 5
     },
     {
@@ -466,17 +466,17 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 28,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 14
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 53,
-      "bing": 5,
+      "google": 52,
+      "bing": 4,
       "kept": 0,
       "offSubject": 11
     },
@@ -487,7 +487,7 @@
       "expect": "dispute",
       "google": 46,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 36
     }
   ],
@@ -14521,6 +14521,54 @@
       "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNb2NhRVRrcU00WVpjcEFjZUJkS2dGMUFTSW9EQXJRY0ZfNEI5MEpBbXdFVDM4eVM2Z3RjRGV3TjVVVUwxeWZMRzNubmZJa1IyOTc2ci01SXZnUm1BWmdkQVVXeDlJaHYtMTRwT3Uwb19LWU45dlNlR3Zyc0FpZHFjbk1neFV2RzQtV3BhSFdUdWpiUDl0MHIzb1N4M2x6X1U4aDJVUHBXdUVuN2hnZy1kNHNZaHJscnduRy1RVDRMTzN3cDlzMXUtdEpn?oc=5",
       "queries": [
         "shri-criticism"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "fear of reverse casteism in iit faculty fir sparks debate over sc st act misuse",
+      "headline": "Fear of 'reverse casteism' in IIT faculty FIR sparks debate over SC/ST Act misuse",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "Telegraph India",
+      "published": "2026-09-23",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOcncwbW9abFM3R1c3b0lVMGFvVzIxTVRHa0JPZS1sT2NKSE9tRTRKa1phekEzcGJMSVdYZW9DdnczU0p0ZlNvYUpQcURmcTNrMm5CYW9zQXVfYTJzdTc3dnNUTmpNcVhQdWFIWTl1NUpRbHJ5VkNPWkhETW40WXlMdncwS2p2T3p2LVk2Wk1JUmdwM1hVanlmZVE1ZHhLc3FfYURpUzZ4bWJNZ0N3UU9aakdzMFhQY0FYeW0wVnJkOTVsbmpwbjllNHBUSDZITjh50gHWAUFVX3lxTE0wdGJwdFpnMnRjUFdXZFF5ekVULWFnVnlFM2hQODBCZHc3Q0pwNXNRNVNPaXYwZ241QjU4S1dWWU14T1p3T2VaRWh6dFktcm9UekNGTFR0cWJjUVllb3EzakdjUUQ0THFiU0Q3YlNRVEtsUGRxVTBHUnl1cVFDSVRycUdYZmhjRnB2NE5MMTQ4TE9rUVI3WDlmZVJnNnc0NUF0Z0xIV2FRTjRDenRLQlNxd2xVYTBzWUZNRDZlV3lXdlhwOHpycE5NMzJvXzBFanpuYXNyb3c?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "dalit activist faces judicial custody with two associates",
+      "headline": "Dalit activist faces judicial custody with two associates",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2025-08-03",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQbDdmTl9lWmpnTXpZOFZmWTdxSlpncWNqRE40VFUtWG5FS2ZiWHF4TFZFYTgxajFvd3g5TlRVT3BINlZxSnZEX0F4aDdHN0FhZDNvdVdPOTVEYkszbDRMNEkwQ1B1TUJ3d1djZ0UzS1R0ZWlUVm92WGc2OVVxREF3M1FjMGppZm02WTd0bWZjUlBXSzVMTHhwME5Bb09XY1VYUXVhQXFDUjJjeHRpT2stYWlkOXZoN3FsbDhtX25mZlA0X01Wc1Z1LW9qQVpVMmZP0gHWAUFVX3lxTFAyZ1V1Y2RFakdJbVZfNHhKQ3lqUnBSVWZ0U0RTZE9iZTJsWUstQlhDZ0Jqb2F6bzJOVXNzc1lSTUtaeEpZQnZDYmFIT1JvTF91Tm5uak1pZ3c4dDZ4bkhYS3JjT1AwQzZQb0szUHFTUWVmVmVMQjNRNk9QV1BtQWp2SzdGczN3ZHRTUjhfc2p3ZEFvZjJZUGFEZ3Z1S1BBUmF2ZlZ5UHRKTFV5ZElCZXhJMWI0ZHE1RXpQakpCR3A5SHgzU1RJNlhNVmNTNEc3MktpVFdQOFE?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "ls passes sc st amendment bill",
+      "headline": "LS passes SC/ST amendment Bill",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Hindu",
+      "published": "2018-08-06",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQaVBVOU1LLUZtRXAxOFRWVmtjbzRUb3dQTnZCa05qQ2VVb2JpemRMakxyS2xhcnZ3X1d1WnN5ZFluZnVMUVdMVmtfODFBUVdsZldOaFpWZC00VVU1RDVKUDN2eW9vZXJoOWlfNUFjWVFEcmJGQjZuVWVTd01TRjVwNzZCaHZsTk1tb2VPUE03OWNDUdIBmAFBVV95cUxON2RmYlZKN1doekpnRDBCY1BGU3F2SzJOY09CUjBJQ0x3T0tWcXdyTk1aTEpIYTlpcEFRdFNydmx3dk1RSUI3ZGFneS1JV3NmbGljc1VCeG9BZlhDV0ZfcVdEbzdzZWdMRmlKRWxUUm9pUm1kb0N6ZEZ2VW10bzlUbTZ5X3BKRzRvSGFETzMyWjltb18yR0ZtZw?oc=5",
+      "queries": [
+        "act-dilution"
       ],
       "indexes": [
         "google"
