@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-25T14:13:08.892Z",
+  "builtAt": "2026-09-25T20:10:40.290Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 854,
-    "addedThisRun": 10,
-    "carriedFromEarlierRuns": 844,
-    "withOutlet": 813,
+    "items": 863,
+    "addedThisRun": 9,
+    "carriedFromEarlierRuns": 854,
+    "withOutlet": 822,
     "bySubject": {
-      "scst": 556,
-      "pmshri": 298
+      "scst": 561,
+      "pmshri": 302
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 318
+    "offSubjectDropped": 298
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 428
+      "n": 435
     },
     {
       "key": "use",
-      "n": 300
+      "n": 301
     },
     {
       "key": "dispute",
@@ -36,7 +36,7 @@
     },
     {
       "key": "allegation",
-      "n": 39
+      "n": 40
     },
     {
       "key": "acquittal",
@@ -54,7 +54,7 @@
     },
     {
       "key": "The Indian Express",
-      "n": 47
+      "n": 49
     },
     {
       "key": "The New Indian Express",
@@ -101,11 +101,19 @@
       "n": 13
     },
     {
+      "key": "SCC Online",
+      "n": 12
+    },
+    {
+      "key": "Careers360",
+      "n": 12
+    },
+    {
       "key": "Outlook India",
       "n": 11
     },
     {
-      "key": "SCC Online",
+      "key": "ANI News",
       "n": 11
     },
     {
@@ -114,10 +122,6 @@
     },
     {
       "key": "SabrangIndia",
-      "n": 11
-    },
-    {
-      "key": "Careers360",
       "n": 11
     },
     {
@@ -130,10 +134,6 @@
     },
     {
       "key": "lawchakra.in",
-      "n": 10
-    },
-    {
-      "key": "ANI News",
       "n": 10
     },
     {
@@ -173,6 +173,10 @@
       "n": 7
     },
     {
+      "key": "LawStreet Journal",
+      "n": 6
+    },
+    {
       "key": "organiser.org",
       "n": 6
     },
@@ -189,8 +193,8 @@
       "n": 6
     },
     {
-      "key": "LawStreet Journal",
-      "n": 5
+      "key": "Mathrubhumi English",
+      "n": 6
     },
     {
       "key": "The Federal",
@@ -210,10 +214,6 @@
     },
     {
       "key": "News18",
-      "n": 5
-    },
-    {
-      "key": "Mathrubhumi English",
       "n": 5
     },
     {
@@ -281,11 +281,11 @@
       "n": 3
     },
     {
-      "key": "Live Law",
+      "key": "ABP Live English",
       "n": 3
     },
     {
-      "key": "timesofindia.indiatimes.com",
+      "key": "Live Law",
       "n": 3
     }
   ],
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 7
     },
     {
@@ -306,8 +306,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 7,
-      "kept": 2,
+      "bing": 8,
+      "kept": 1,
       "offSubject": 14
     },
     {
@@ -318,15 +318,15 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 41
+      "offSubject": 40
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 53,
-      "bing": 11,
+      "google": 54,
+      "bing": 10,
       "kept": 0,
       "offSubject": 8
     },
@@ -336,16 +336,16 @@
       "subject": "scst",
       "expect": "use",
       "google": 46,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 12
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 63,
+      "google": 62,
       "bing": 1,
       "kept": 0,
       "offSubject": 26
@@ -355,10 +355,10 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 91,
+      "google": 92,
       "bing": 0,
       "kept": 0,
-      "offSubject": 45
+      "offSubject": 46
     },
     {
       "id": "act-hostile",
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 40,
+      "google": 43,
       "bing": 2,
-      "kept": 0,
-      "offSubject": 6
+      "kept": 2,
+      "offSubject": 7
     },
     {
       "id": "act-dilution",
@@ -387,7 +387,7 @@
       "expect": "allegation",
       "google": 33,
       "bing": 1,
-      "kept": 3,
+      "kept": 1,
       "offSubject": 4
     },
     {
@@ -396,9 +396,9 @@
       "subject": "scst",
       "expect": "false-finding",
       "google": 48,
-      "bing": 2,
-      "kept": 1,
-      "offSubject": 19
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 20
     },
     {
       "id": "act-fabricated",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 3
     },
     {
@@ -426,7 +426,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 46,
-      "bing": 2,
+      "bing": 1,
       "kept": 1,
       "offSubject": 6
     },
@@ -435,20 +435,20 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 67,
-      "bing": 1,
+      "google": 0,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 23
+      "offSubject": 1
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 50,
+      "google": 51,
       "bing": 3,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 12
     },
     {
       "id": "shri-mou",
@@ -457,17 +457,17 @@
       "expect": "dispute",
       "google": 48,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 6
+      "kept": 2,
+      "offSubject": 5
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 27,
-      "bing": 1,
-      "kept": 1,
+      "google": 28,
+      "bing": 0,
+      "kept": 0,
       "offSubject": 13
     },
     {
@@ -475,8 +475,8 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 54,
-      "bing": 6,
+      "google": 53,
+      "bing": 5,
       "kept": 0,
       "offSubject": 11
     },
@@ -486,9 +486,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 46,
-      "bing": 1,
-      "kept": 0,
-      "offSubject": 37
+      "bing": 0,
+      "kept": 1,
+      "offSubject": 36
     }
   ],
   "items": [
@@ -11973,10 +11973,12 @@
       "published": "2026-09-10",
       "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab229772b6441dcae05cc7888e6b3f7&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fcentre-presses-kerala-for-quick-decision-on-pm-shri-school-upgrade-scheme%2far-AA2c0fou&c=15216394426355408701&mkt=en-us",
       "queries": [
-        "shri-nep"
+        "shri-nep",
+        "shri-general"
       ],
       "indexes": [
-        "bing"
+        "bing",
+        "google"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -14375,6 +14377,150 @@
       "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQekFMQktraHctLWJfdEgyXzVSM0p4QllUV2xqYUFIUFFNa1JkT3Jvb2ZVbV9yVVVKUGVPSHNuSE5aVlJ2TFU5d2tPVy1FTnBTcENUWUh3cDdUeDRfVXJtRmpQcVBSNVp5YVA1LVpVX2N1WURJRVd4YXZrMEZrcmxhVU5Fci1ZV18wZVVTanprbDNBLWdDYkVEQmY4d09JLXRyMXJTWU9ES1hITXhidzJFMmlmS1dod1RteFlVRXVzSFR5TF9TcEppYXpjRWI2d3lDc3V0UVpRQndtcUFwak13dTZVZXJQMURXNUZwWVFYa9IB9AFBVV95cUxNQXB4NGhSWFhrUk1EdlZ4RTJaeUowSUpna0ZNS05lODZFd1p5UG5sWURKVDhYSHdVQzNvQVlENmhNR1JJR2txVDFITk0yeG5tTDFEald2aGpOMGpCWGJDdHZpMFpLTmtROWJZMGNnVnpfeXUwdnlLY20zd3JFSld2UHlQREJKYk9PNkZrdFJtd1JETFE5VkVUeUQxbl84d2VFZlNmVWV0UHVmV3BaQkNNOWtodGJfNTBKVGdFWl9xNzAtMEpCRHRvVVMtWHJncXRlZVViWkVNOFhpaG80YU81bFpQNVJaR045VWN4TWM1aW1tcTlW?oc=5",
       "queries": [
         "shri-withheld"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "public view is not optional delhi hc sets aside sc st act charge over remarks made inside ",
+      "headline": "\"Public View\" Is Not Optional: Delhi HC Sets Aside SC/ST Act Charge Over Remarks Made Inside an Office",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "SCC Online",
+      "published": "2026-07-28",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNcnFDUThGWjhlZnZ1dFJkXzdfSDFfOUcwS1JVbFB6MnJjN3dKRFVsVGdlN3lyelhPSDhtTGY1U2hoZFdLRzlqNGhEN0Nmd3I2bE9KUDZNZTZPRkYzSVkwWXdzY2FwOEFIcDk1cjhmSmxpVmhSLS1LLThMRkhKSWx1azBEUkxJbUNkLTJaT1NxSW9hM1Q5SjR6OWtWcV8yWTlnbDdRZzN1WWdPQWhUYzM1UjdORHFTSGVjX3ZUcG9vZ0VPWkx6T0szbU5R?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "delhi hc denies anticipatory bail to ajeet bharti in sc st act case read judgment",
+      "headline": "Delhi HC Denies Anticipatory Bail To Ajeet Bharti In SC/ST Act Case [Read Judgment]",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawStreet Journal",
+      "published": "2026-09-25",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQOFJiTlFHVjFjNWdUS29TbVhlQnVQc2xOR1BtMGRhR0IwT0dqVmdSYjNhcnU3dWVIUVdNZ21FeVVxQjhtYmt1cnhwcDNBc2lwVnY2MTFPZnpTZnhqdGVsR0d0RGJ1ZWVxN3dDM20zY1p2NjR4SHlxNWJfVnB5RXJkNE5EREpQS2ZhQ25QbTBfSktyaTRxZ1JoWVRGY1BQZw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "ex cji gavai parliament not courts must fix sc st act misuse",
+      "headline": "Ex-CJI Gavai: Parliament, Not Courts, Must Fix SC/ST Act Misuse",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "illustrated Daily News",
+      "published": "2026-09-25",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPOTM1Z0MyWTBLRTJhY0d4R1V4eS10ajhuSnBLS0ZDQi1Mam9iaU5ZdGpuaHBIMVZNRE5DSGFOT0VnU0JUSUJsaTRrMkZ5VDItR1gyTmh1R3V2MFNmZEhuWFJ2TTlXa2M2TUhHM0JpNkg5NmxQYjV5OXg2QWV5QWt5Vkc1aXM4S3NnYmEtcWw4SFFFbndsaG9HZXphSF9QM1R1YlFYVDhkdkRxWnpxSjRPczR4VdIBuAFBVV95cUxOYWx1WVpnWVBaMmJKcHRpdk1DQkdQYUp1RGFuUkdIMWNsdlcta05DYU9vaWdpZWNBSFFFckQ5WTNlTjZOcl82WEZnbElaNzZUbUdSNWc1bWJDX3kzS19Nem82MXNBRS0wWnM5azR6NDJ0U2diRXFOOW9rZ29Nb0pIdlJvVjk3TXZyZEdDNGsyWEc0U2liSjhXaE9aS3BHWktuQTZycEVsaUtHdkJzTzdZM1dsUGQxMTA2?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "sc declines plea challenging sc st act provisions says safeguards exist for accused",
+      "headline": "SC Declines Plea Challenging SC/ST Act Provisions, Says Safeguards Exist For Accused",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "ABP Live English",
+      "published": "2026-09-22",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPZjhNZldaQ2psa2stdDhqRXlJVkdCUklVOWN3RWpzbllrYnJ6ZkdyZ2x5U1lpTVdybTg4ZFkzWEFMVEJVTmR5MGd2cDV5WDMzU3RZMFhzelV5UHBBZHBRN1hPQVIwUTEyOGl4TERWaVJ6c1JCajdINGxucC12c0hmYWNrdzFDdFdBbnhxXzVmQlVZYkdPS00xM01hdXFaSnZicm91OWwwaWJjczZOVV85d0FvcnlpT2swTmQ2b1pQbGdHUdIBxwFBVV95cUxOM3FKYUpUZGVHTDh0R3NRUnJ3WWdqaTh5ei1nU2dlb0NtZ2JxZnhSOE9UMm1OQmtxUUdoOVN1SnctV0U0U1hBZkloNFFENU5nQ05aMERjaGlxNHlPbFMtOG02djlnVmpQeTNKSHdRMmk4dnR1R1Ytam1nRkl3MkYtaGRLS3RlYjMtU3hYV2c0Zm8wZ2JmLUtZMkt3NzMxVTYzMlJhMlFYVWhSSWJ3QmpLYTA1bExfV2V3OUd5OFZYRFA0Sm9tWmxn?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "to placate protesting upper castes mp cm shivraj singh chouhan announces move to dilute sc",
+      "headline": "To placate protesting upper-castes, MP CM Shivraj Singh Chouhan announces move to dilute SC/ST atrocities law",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Indian Express",
+      "published": "2018-09-21",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOQV9JVUIwdE9nNldxUnVVUTljNmVDR2NLQTdlR1RZM3Vwd3JteDg4cmZUM3VvU1FzdDg2Z1c0enVGVzlHYl9YWmpDVnd2UE5QX0N0dVU0cjEydmJDUmN2Q3RHU0NYSFBrWmJtZm5uUERfSnI4VG9kMDYzRkxyNzFjUkpReHVTZm92czBKTTNxVVYzOXQ5VU5YVHdpNUx0SUQ3QmxnOEpSaXZ0OVI1bWttUUl1VlNXZDBCUmhjQ9IBwwFBVV95cUxOM1o1Zlc5SS1CVXdNMFpYanQwRDNoYmljZjJZX2ZLc3ZSZExQVnd4Vzg3SVZidDR6ZENuOUVROXdqZWMyX0loMmJ6NVRCcUk1ekg2ejhBNTNTdjZmSFdyNmV6aG40Y3c0dnV5VTNSWm9XbC1Qd0tka3cxdS1STml0Vk9vM2plVlpaRXZra0lET2FFa01lOExaV0Y1ZnRUMncxZ3ZQXzRwQ0Z4aWxUNlhLWWNROHljdnpma01hU0pyY19vOU0?oc=5",
+      "queries": [
+        "act-dilution"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "west bengal joins pm shri school scheme centre allocates rs 2 773 56 cr",
+      "headline": "West Bengal joins PM SHRI School scheme; centre allocates Rs 2,773.56 cr",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Careers360",
+      "published": "2026-08-06",
+      "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNQ05ZOWNHclhOSm1zcEpkUkpYbm4yci1yOWZvbUJkS24tdGVMd2tqVGZtSFNMV0FOX0x0cVBDQWZKTEplc1RVd1FJaE9xNC03TFVadk1uemh1Qm5zcW5QaHg4RW0ya1ZjVnpCQTg0bUhMYjNYckMteVgydFhKSzZ6dFBwSjBmc3dQb1hBcVNiSC1CendZdkV2Vzdxc2thVDV0VGM3a2ZOelhaeTF0UjFxd25sRzUzRUJQSG5oaUFKZUVRVV9mcm92OXV6VXFhbUJ0aF9kZk5va2MwdkdGTlFQY1dkbWROTkVuYW5B0gHwAUFVX3lxTE16YjJuZEZGYTdOZ3VLbHV6YmJ0M0R2bV9SSWNjN1RVVlFObzRrWXVhei04RnF5b25rSExNc0pVbXdrYVRRbS0tZDc5OVd2bXFMQlB4cTVoeXl1dkRiQWtuTmo0Nzc1Q3B5UDRhZ3BScFY0ajhmWXNIeG5FVW9IQmJrQWE2OUlhVFo3WG5pYm15R2t1eklnYXdGX0pJaDlLaUllb2RzVjM4ODI2SkROLXdFbUdFSXhSb29jTXplR1JTXzdUQzd1UDczU2tCSllnT3RFUkRneFZDcHdIMk02X2N5bEJySVVDeFFWeHJNa3VQTA?oc=5",
+      "queries": [
+        "shri-sanctioned"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "why kerala has locked horns with centre over the implementation of pm shri scheme",
+      "headline": "Why Kerala has locked horns with Centre over the implementation of PM SHRI scheme",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The Indian Express",
+      "published": "2025-05-12",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9pZUxVMnJzaDZMR01MWk5EOE10WUtMd2YtMmVpeG9lemFFTy1nLTAzMVNPNkdxd2FmTk52Z2J1b05LaDJ6V2JPa3FKSDhRNDY3bk9TYi1IVklMNGVUN21VaGdSSEE2RENnZHRNdXpDN3lhU0UwSmpWbm5BU3dFb2fSAYYBQVVfeXFMTnVuU3NVUHFaZGpxekpTNjZxUDdjaWdMQktidWdPNjl0enlkTUYtUGVWWE5pWGw5YTdhVVBKbTZsdWZMNE80enVfYkh0cURkQlVfdDV6VC15U09Ga0lpQVBmUDM5MXFUQlRFWHpTRUhNNlVWMDRaTl9GVFNLaFVqWEExc1haU0E?oc=5",
+      "queries": [
+        "shri-mou"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "moe responds to tn cm s allegations confirms several letters sent to govt over pm shri sch",
+      "headline": "MoE responds to TN CM’s allegations, confirms several letters sent to govt over PM SHRI Scheme",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Mathrubhumi English",
+      "published": "2025-02-10",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQX3poY1BjbnB6MnlzVjA5RFpDMkQ1RU5MaUdCQUNtNTJjX05UWk02MldoVGZPTG5uTlR2bUdGNGRCZXJHWlozY3JBR3NjeVFLWk94R2o5a016QkZjUHdfWVNNeEY2cnBuSXpOMHJDRWR0NURKRlowZDdnTmNSWGxET3VaMUlhTlF0NkY2T3FMRTUxUS10cHpz0gGcAUFVX3lxTE9MVHVvX25oMXFBc3FPNHdFQ0xyZ2NwOWoyWlZDbjJUaUxFdmgxeHA5YVlhYloydUdVWlBUR1JXbzZ6dW56c1l6TFZmZDExdzNSUWp0Zi02M040cXg5WTV1cldFQkhtY3d6TDVSU25pWjEzZlE0QktWdlRIU0c0XzR0eXRkbTVrbXBHU2c0X3VsRHVvcUZuNElzR3Z2Rg?oc=5",
+      "queries": [
+        "shri-mou"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "never accept pm shri 3 language scheme mdmk s vaiko appeals to cm vijay",
+      "headline": "Never accept PM SHRI 3-language scheme: MDMK's Vaiko appeals to CM Vijay",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "ANI News",
+      "published": "2026-05-21",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNb2NhRVRrcU00WVpjcEFjZUJkS2dGMUFTSW9EQXJRY0ZfNEI5MEpBbXdFVDM4eVM2Z3RjRGV3TjVVVUwxeWZMRzNubmZJa1IyOTc2ci01SXZnUm1BWmdkQVVXeDlJaHYtMTRwT3Uwb19LWU45dlNlR3Zyc0FpZHFjbk1neFV2RzQtV3BhSFdUdWpiUDl0MHIzb1N4M2x6X1U4aDJVUHBXdUVuN2hnZy1kNHNZaHJscnduRy1RVDRMTzN3cDlzMXUtdEpn?oc=5",
+      "queries": [
+        "shri-criticism"
       ],
       "indexes": [
         "google"
