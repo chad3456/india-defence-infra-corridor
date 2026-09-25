@@ -32,7 +32,7 @@
  * corrected to it. Where there is no dedicated article (Mudra's title
  * redirects to a general article on the premiership), or the article's opening
  * never states a launch year at all (PMAY, UDAN, Smart Cities, Bharatmala, Gati
- * Shakti), the entry was removed. The one thing not done was to change a year
+ * Shakti, the National Quantum Mission), the entry was removed. The one thing not done was to change a year
  * to whichever one would pass: that would turn a check into a rubber stamp.
  * Removal is not a judgement on the programme; its sector's numbers still show.
  *
@@ -110,8 +110,6 @@ export const PROGRAMMES: CuratedProgramme[] = [
     article: "Chandrayaan-3", note: "The lunar landing near the south pole." },
   { id: "aditya-l1", stall: "innovation", name: "Aditya-L1", year: 2023, kind: "event",
     article: "Aditya-L1", note: "The solar observatory at the first Lagrange point." },
-  { id: "nqm", stall: "innovation", name: "National Quantum Mission", year: 2023, kind: "mission",
-    article: "National Quantum Mission India", note: "Research funding for quantum technologies." },
 
   /* ── Education ───────────────────────────────────────────────────── */
   { id: "samagra", stall: "education", name: "Samagra Shiksha", year: 2018, kind: "scheme",
