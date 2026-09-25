@@ -1,0 +1,51 @@
+name: Verify the programmes on the mela
+
+# Every programme on /mela was typed in by hand — the step where a 2016
+# becomes a 2015 and nobody notices. This fetches the opening section of the
+# Wikipedia article each one names and checks the stated year appears in it.
+# A programme that fails is not rendered; the page lists it as unverified.
+#
+# Verified means the year appears in the article's opening. It catches typing
+# errors and dead titles. It is not proof of the launch date, and the page
+# says so.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Monthly: articles get renamed and merged, and a title that verified in
+    # March can point at nothing by June.
+    - cron: "35 5 9 * *"
+  push:
+    paths:
+      - "lib/mela-programmes.ts"
+      - "scripts/etl/connectors/mela-verify.ts"
+      - ".github/workflows/mela-verify.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mela-verify
+  # Never cancel a run that commits data: the commit step runs `if: always()`,
+  # so a cancelled run publishes a partial file over a complete one.
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Check each programme against its article
+        run: npm run mela:verify
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/mela/verified.json
+          "data(mela): programme verification $(date -u +'%Y-%m-%d %H:%M')"
