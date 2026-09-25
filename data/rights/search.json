@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-24T23:31:10.697Z",
+  "builtAt": "2026-09-25T05:27:45.693Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,13 +10,13 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 839,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 836,
-    "withOutlet": 798,
+    "items": 844,
+    "addedThisRun": 5,
+    "carriedFromEarlierRuns": 839,
+    "withOutlet": 803,
     "bySubject": {
-      "scst": 546,
-      "pmshri": 293
+      "scst": 550,
+      "pmshri": 294
     },
     "queriesAsked": 20,
     "offSubjectDropped": 313
@@ -24,11 +24,11 @@
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 418
+      "n": 421
     },
     {
       "key": "use",
-      "n": 296
+      "n": 298
     },
     {
       "key": "dispute",
@@ -58,7 +58,7 @@
     },
     {
       "key": "The New Indian Express",
-      "n": 42
+      "n": 43
     },
     {
       "key": "The Hindu",
@@ -101,6 +101,10 @@
       "n": 13
     },
     {
+      "key": "Outlook India",
+      "n": 11
+    },
+    {
       "key": "Court Book",
       "n": 11
     },
@@ -113,7 +117,7 @@
       "n": 10
     },
     {
-      "key": "Outlook India",
+      "key": "SCC Online",
       "n": 10
     },
     {
@@ -131,10 +135,6 @@
     {
       "key": "Careers360",
       "n": 9
-    },
-    {
-      "key": "SCC Online",
-      "n": 8
     },
     {
       "key": "India Legal",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 7
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 7,
+      "bing": 8,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 15
     },
     {
       "id": "act-convicted",
@@ -325,7 +325,7 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 54,
+      "google": 53,
       "bing": 10,
       "kept": 0,
       "offSubject": 7
@@ -335,9 +335,9 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 46,
+      "google": 47,
       "bing": 2,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 13
     },
     {
@@ -345,19 +345,19 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 65,
+      "google": 63,
       "bing": 1,
-      "kept": 2,
-      "offSubject": 25
+      "kept": 1,
+      "offSubject": 24
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 89,
+      "google": 90,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 44
     },
     {
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 41,
+      "google": 40,
       "bing": 2,
       "kept": 0,
       "offSubject": 5
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 33,
+      "google": 34,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -427,8 +427,8 @@
       "expect": "use",
       "google": 46,
       "bing": 2,
-      "kept": 0,
-      "offSubject": 7
+      "kept": 1,
+      "offSubject": 6
     },
     {
       "id": "shri-funds",
@@ -457,7 +457,7 @@
       "expect": "dispute",
       "google": 48,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 45,
+      "google": 46,
       "bing": 1,
       "kept": 0,
-      "offSubject": 35
+      "offSubject": 36
     }
   ],
   "items": [
@@ -14140,6 +14140,86 @@
         "google"
       ],
       "firstSeen": "2026-09-24"
+    },
+    {
+      "id": "sc caste based abuse inside residential house absent public gaze not offence under sc st a",
+      "headline": "SC: Caste-Based Abuse Inside Residential House Absent 'Public Gaze' Not Offence Under SC/ST Act | SCC Times",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "SCC Online",
+      "published": "2026-05-13",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxONDdwUjJBWlpwaGNUbjU3bjcxQjIweVlhemlUS0FibnJ1V2FwT0hZSnJFNnpIWG8zV1lRdFJVMVA5anJQdDZyd001S3JyeFRPM2ZNUHI1d2xHUDRVSDhaRk1qbGQ2WEo3ejFsY2gzcjlwendHN0hUeUNjSWpzZ2s0UDBmaEtfaFAwY0dvdUU4ek5GbXRFVHdJQ3NLZ0o0dWlMZ21kTkxMLS1pdFE2NDdjalRudEdBZVF0eDMtZW1CTQ?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "delhi govt expresses concern over increasing atrocities against sc st community members in",
+      "headline": "Delhi govt expresses concern over 'increasing' atrocities against SC/ST community members in city",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "legal.economictimes.indiatimes.com",
+      "published": "2023-05-23",
+      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQLTJHTjlVdjhpX1dPMlpMMUl6VC1DQ1VCY3doejh3NzQ1Ty03X2Q4LVdRWXFNT2JtQ0ZYWm1Dcjg0WkdsU2NyUjVVZnNGVFg2ckNhdHVqbE5CanRaYjEzdndEQ040X1lheDRDVW1rcGdDNUxMeXppaHRBTDQzaXFNaGRRLUY3ZTYzaDNRaUk1Y1liRl90bkNkQ2FZaTVlbEhhVW9UV2I1TkxJakIzMXVJRDFfUDdEaXZiRTVSak5VZFJTSmNlZmhUeUNRREtzeEJ4VURDeW1ybDFpS1lSWUFMY2E1ZlBCYmRQWGtxZEhZU1VrTzVZd1hR0gH8AUFVX3lxTFBULU1ZNUotaEhKYTFBTU9BNUdSeGZzS0RfZk1pcnlSbnRuVWZ3QUI4bzctY0d3MUJpMkZ4aWRWWXh2Si1yR3NheUpobFBpWnBJckJ0Y0lkTDBOc05xT2pqRVBvZEdNaUNpNG1ET0JIa2FnaGZYT3VDRnBzeFJiWURTMGtxc2pEeElWOERFbnB2ZXpFakM2UHNxYkQ2YmNmSTg3WXU4UGtCbWs2SS02Xzc0NjZSNHZMZ2pZTmZmT3N3NTh5LXYtby0xNVdoV2VObVVubnhJT0FoaGJaQW0yV0pyQUtlY2RkRDMtMi1SSXFqWHF3LUM2R0lNNjNrWg?oc=5",
+      "queries": [
+        "act-compensation"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "how has sc st act evolved what are the outstanding issues in realising its objectives",
+      "headline": "How Has SC/ST Act Evolved, What Are The Outstanding Issues In Realising Its Objectives?",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Outlook India",
+      "published": "2023-04-02",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPLVFhTnhaS2EwSGFiSlpWclhiYXZncUxaQUdHOXhSMXpoLWFwNlFOSlZxbDREM3BHeG5PRl9IT1pjRDNYU1dRM21yaXJkSlhCcnBxQWphRXl4VElaaGRLalZrU3VhN0tEN01SaDVKNjNoQTZNMmFLYVVKM2R3cFZkUEFOcGZzSXdBY1hPUlRPTnVnZ0stZGoyR2xxV0szUmRNQ1NZaGNkLWd0Mm94S0RmUldJYlZEQlV3cEtSNGU4NXZPcG9NMWdKOHhDTy1sVXRpZURabktyclhVNjlwd2VB0gHsAUFVX3lxTE1Hb2RVeTNLQlBReHhjbUNPa05QRTNuQUVBeldaWklKRW5wdFlGQVR1eFNWWWttUkVYYk9XMnRDdlBNMWNFZ2gwbEQ2cVR5NnNMRWVNcDNHNjY0N3I0WlJXclQ2U1NycmwzVkt5S2hCM1dzTzBoSVBkTE8xa0dwcG5iNjBYSjRpVXVIUTU5X0JSdjl4a2tWaXBIU0c3MEFxRERXbjNwYTdlb29LbzJqX0haMHV1U3BYUzRNd2ZGUVFjRnppMk9PNmRzRzdrbXh6OE1oOElscC1iX3hDSXJRQnR2RHRHRVAzMXB3Q202?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "bail without s 15 a 3 sc st act notice to victim s dependent set aside ker hc scc times",
+      "headline": "Bail without S. 15-A(3) SC/ST Act notice to victim's dependent set aside: Ker HC | SCC Times",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "SCC Online",
+      "published": "2026-03-24",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPRVNMcVNrTWZHbkJGZ2hlTWpZNHVsMENidzBiai1vY1l2UlU0cDJad1hna2Z1bUxQdG1SNTRPOUg2Tk1CZnEwdXJsUy1UcFFVZDIxNF84S2NkNkdLQmVVUElpbTg5MTRGUXk1cW9ZcmNDUW9BZV9OZE5nUHpoUGFKSTdNWm9oUVYyajF2bkNsYkQ1TFBqdnNDQzNwV1RQUllZWWlnV2JzajdObzlmdjkyZkFkcGY5VkdweXpERTU4SQ?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
+    },
+    {
+      "id": "832 schools in telangana selected under pm shri scheme",
+      "headline": "832 schools in Telangana selected under PM SHRI scheme",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "The New Indian Express",
+      "published": "2026-04-03",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPaS0xTGdBbFFZRXBBZWhtc1p5RTlvUkJ1MWJYUUpMdWZNTWNxeDluWVBuT0EzOUNsV2xFVktUQ180cUFmSVd4clRmSFBCNzRDdGVkZUswTWw2TEJ2S2RIenNKYnR1T1NiWS1rRDVlUDBLaDBtdUR6a0RpaFlBSVZKRm5zNVc4TFFBTC16WmI1azJUU2ZjTTZUMFVzMUozbVR4QUNGbE9KY2E0VmEzaGNxQ1EyWlhtZW_SAcQBQVVfeXFMUGhSWWMtQ3phMmsyNU9zQ2U5cmhhdTYwcEV2ZHVSZDBJTjdJUVJSQjV1UGUtMUpqLVl2TDQ3WHFGM1hpbW1BeFlGeXpobnNKYmR0V1ozWTNIRjJVZDFNSGxJY04tUFNiNWptSm9MMU5nY0FsY1EzZG1tdF9GcmFsdXhBZUFJTTRFd0NCQ1dsS29zTjY5MU5iTFc3OGJKYWhTaTVoLVY4Nk12d2ZYU0Rya1B4d1ExZXl2bjUtelpqSU1Sd0hFaw?oc=5",
+      "queries": [
+        "shri-sanctioned"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-25"
     }
   ]
 }
