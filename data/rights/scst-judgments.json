@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-25T05:23:11.109Z",
+  "builtAt": "2026-09-25T12:11:40.513Z",
   "source": "Indian Kanoon (indiankanoon.org), the free Indian judgment search. Four queries, each asked with a judgments-only document filter, ten results per request, eight seconds apart.",
   "method": "Indian Kanoon answers roughly ten requests and then stops, so the corpus is built across runs rather than in one: each run walks twelve pages, resumes each query where the last run left it, and merges into what is stored. Queries are asked separately rather than as one broad search, so the rarest category is reached instead of being buried by ranking.",
   "refusal": "No acquittal rate, conviction rate or misuse measure is computed. The outcome words are MENTIONS in a search snippet, not findings: a snippet reading 'the accused was acquitted' may be the court's holding or it reciting a trial court order it goes on to overturn, and ten words of context cannot tell them apart. Every snippet is published beside its flags so a reader checks rather than trusts.",
@@ -14,9 +14,9 @@
     "judgments": 1448,
     "statutes": 0,
     "unknown": 0,
-    "carriedFromEarlierRuns": 1440,
-    "addedThisRun": 8,
-    "pagesThisRun": 5,
+    "carriedFromEarlierRuns": 1448,
+    "addedThisRun": 0,
+    "pagesThisRun": 4,
     "withYear": 1427,
     "withCourt": 1331,
     "withNoMention": 921
@@ -47,9 +47,9 @@
     {
       "id": "false",
       "label": "Complaint found false",
-      "from": 39,
-      "pagesOk": 1,
-      "results": 10,
+      "from": 40,
+      "pagesOk": 0,
+      "results": 0,
       "refusedAt": null
     },
     {
@@ -87,14 +87,7 @@
       "shape": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\"> <html lang=\"en\"> <head> <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"> <link type=\"text/css\" href=\"/static/js/jquery-ui-1.13.2/jquery-ui.min.css\" rel=\"stylesheet\"> <link type=\"text/css\" href=\"/static/js/jquery-ui-1.13.2/jquery-ui.theme.min.css\" rel=\"stylesheet\"> <link type=\"text/css\" href=\"/static/footer.css\" rel=\"stylesheet\"> <link type=\"text/css\" href=\"/static/print.css\" rel=\"stylesheet\"> <LINK REL=\"stylesheet\" TYPE=\"text/css\" HREF=\"/static/search_desktop_v20.css?v=20260623-1\"> <!-- Google tag (gtag.js) --> <TITLE>No Matching results</TITLE> </head> <body class=\"\"> <!-- Skip link for keyboard and screen reader users --> <a href=\"#main-content\" class=\"skip-link\">Skip to main content</a> <header class=\"main-header\" role=\"banner\"> <h1 class=\"sr-only\">Indian Kanoon - Search engine for Indian Law</h1> <div class=\"header-container\"> <!-- Left: Logo (hidden on homepage) --> <div class=\"header-logo\"> <a href=\"/\" aria"
     }
   ],
-  "sampleWindows": [
-    {
-      "query": "false",
-      "title": "Kuldeep Jatav vs The State Of Madhya Pradesh Thr on 13 July, 2018",
-      "court": "Madhya Pradesh High Court",
-      "window": " <h4 class=\"result_title\"> <a href=\"/docfragment/83161887/?formInput=prevention%20of%20atrocities%20act%20false%20complaint%20quashed%20%20doctypes%3A%20judgments\">Kuldeep Jatav vs The State Of Madhya Pradesh Thr on 13 July, 2018</a> </h4> <div class=\"headline\"> Kuldeep Jatav vs The State Of Madhya Pradesh Thr on 13 July, 2018 1 MCRC </div> <div class=\"hlbottom\"> <span class=\"docsource\">Madhya Pradesh High Court</span> <a class=\"cite_tag\" href=\"/search/?formInput=cites:83161887\">Cites 9</a> - <a class=\"cite_tag\" href=\"/search/?formInput=citedby:83161887\">Cited by 8</a> - <a class=\"cite_tag\" href=\"/doc/83161887/\">Full Document</a> </div> "
-    }
-  ],
+  "sampleWindows": [],
   "byYear": [
     {
       "year": 1991,
