@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-25T10:34:01.030Z",
+ "builtAt": "2026-09-25T20:45:24.251Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206518,6 +206518,20 @@
  ],
  "events": [
   {
+   "id": "ev-fhqx9v",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-09-25",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/news/your-military/2026/09/25/desolate-arctic-outpost-likely-to-host-us-troops-under-new-greenland-deal/",
+   "headline": "Desolate Arctic outpost likely to host US troops under new Greenland deal",
+   "primary": false
+  },
+  {
    "id": "ev-11ges4w",
    "kind": "delivery",
    "systems": [],
@@ -207116,35 +207130,6 @@
  ],
  "groups": [
   {
-   "key": "delivery||italy",
-   "systems": [],
-   "countries": [
-    "Italy"
-   ],
-   "kind": "delivery",
-   "events": [
-    {
-     "id": "ev-11ges4w",
-     "kind": "delivery",
-     "systems": [],
-     "countries": [
-      "Italy"
-     ],
-     "value": null,
-     "date": "2026-09-25",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/09/fincantieri-delivers-5th-ppa-domenico-millelire-to-italian-navy/",
-     "headline": "Fincantieri Delivers 5th PPA &#8216;Domenico Millelire&#8217; to Italian Navy",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -207152,6 +207137,20 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-fhqx9v",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-25",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/news/your-military/2026/09/25/desolate-arctic-outpost-likely-to-host-us-troops-under-new-greenland-deal/",
+     "headline": "Desolate Arctic outpost likely to host US troops under new Greenland deal",
+     "primary": false
+    },
     {
      "id": "ev-1dgk4c2",
      "kind": "order",
@@ -207352,12 +207351,41 @@
     }
    ],
    "outlets": [
-    "Defence Blog",
     "Defense News",
+    "Defence Blog",
     "Naval News"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "delivery||italy",
+   "systems": [],
+   "countries": [
+    "Italy"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-11ges4w",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "Italy"
+     ],
+     "value": null,
+     "date": "2026-09-25",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/fincantieri-delivers-5th-ppa-domenico-millelire-to-italian-navy/",
+     "headline": "Fincantieri Delivers 5th PPA &#8216;Domenico Millelire&#8217; to Italian Navy",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order||italy",
