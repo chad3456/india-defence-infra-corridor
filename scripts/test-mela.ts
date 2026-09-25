@@ -7,10 +7,10 @@
  * flatters or libels without anyone typing a wrong digit.
  */
 import {
-  termOf, inTerm, nearest, rungsOf, paceOf, spanWords, fmt, type Obs,
+  termOf, inTerm, nearest, rungsOf, paceOf, spanWords, fmt, obsYear, type Obs,
 } from "../lib/mela-shared";
 import { PROGRAMMES } from "../lib/mela-programmes";
-import { mentionsYear, mapBatch } from "./etl/connectors/mela-verify";
+import { mentionsYear, mapBatch, yearsIn } from "./etl/connectors/mela-verify";
 
 let failures = 0;
 function check(name: string, got: unknown, want: unknown): void {
@@ -51,6 +51,14 @@ console.log("\nRungs are observations, never interpolations");
   const late = [o(2016, 10), o(2020, 20), o(2025, 30)];
   check("no start is taken from after 2014", rungsOf(late)[0]?.obs, null);
 
+  /* A fiscal-year series whose first reading is FY2014-15 shows it — as
+     "First reading", never as "Start", because that year is mostly under
+     the new government. */
+  const fyFirst = rungsOf([o(2015, 1561, "FY2014-15"), o(2026, 2817, "FY2025-26")]);
+  check("a first reading after the change is shown", fyFirst[0]?.obs?.period, "FY2014-15");
+  check("and is not called the start", fyFirst[0]?.label, "First reading");
+  check("a real 2014 reading is called the start", rungsOf([o(2014, 1), o(2020, 2)])[0]?.label, "Start");
+
   const gap = [o(2014, 1), o(2025, 9)];
   const g = rungsOf(gap);
   check("a missing term end is a gap", [g[1]?.obs, g[2]?.obs], [null, null]);
@@ -63,6 +71,19 @@ console.log("\nRungs are observations, never interpolations");
      is what the page prints, not "2013". */
   const fy = rungsOf([o(2013, 91287, "FY2013-14"), o(2024, 146342, "FY2024-25")]);
   check("a fiscal year keeps its label", fy[0]?.obs?.period, "FY2013-14");
+}
+
+console.log("\nPeriod labels become years the way the rungs need");
+{
+  /* A fiscal year is placed where it closes: FY2013-14 ended in March 2014,
+     before the government changed, so it is the baseline. */
+  check("a fiscal year sits at its closing year", obsYear("FY2013-14"), 2014);
+  check("FY2018-19 closes Term I", obsYear("FY2018-19"), 2019);
+  /* A SIPRI five-year window describes the years up to its end. */
+  check("a five-year window sits at its end", obsYear("2010-2014"), 2014);
+  check("a month label keeps its year", obsYear("Mar 2014"), 2014);
+  check("a plain year is a year", obsYear("2024"), 2024);
+  check("a state name is not a year", obsYear("Uttar Pradesh"), null);
 }
 
 console.log("\nThe pace comparison");
@@ -102,6 +123,11 @@ console.log("\nThe pace comparison");
 
   check("no 2004 reading, no comparison", paceOf([o(2014, 1), o(2024, 2)], "pp", "up"), null);
   check("fewer than five years since, no comparison", paceOf([o(2004, 1), o(2014, 2), o(2017, 3)], "pp", "up"), null);
+  /* A difference carries its own unit, and small ones keep two decimals. */
+  check("life expectancy is in years, not points",
+    spanWords("pp", { from: 2004, to: 2014, value: 4.4 }, "years"), "+4.4 years");
+  check("a sub-point difference keeps two decimals",
+    spanWords("pp", { from: 2014, to: 2020, value: -0.053 }), "−0.05 pp");
   check("an unscored direction gets no praise or blame",
     paceOf([o(2004, 2.8), o(2014, 2.5), o(2024, 2.3)], "pp", "neither")?.verdict,
     "moved, in a direction this page does not score");
@@ -153,6 +179,8 @@ console.log("\nVerification reads what it claims to");
   const miss = mapBatch({ query: { pages: [{ title: "Nope", missing: true }] } }, ["Nope"]);
   check("a missing page is missing", miss.get("Nope")?.title, null);
   check("an unreadable response is missing, not verified", mapBatch(null, ["X"]).get("X")?.title, null);
+  check("a failure publishes the years its source does mention",
+    yearsIn("launched in April 2017 under a 2016 policy, population 120165"), [2016, 2017]);
 }
 
 console.log(failures === 0 ? "\nAll mela tests passed." : `\n${failures} mela test(s) failed.`);

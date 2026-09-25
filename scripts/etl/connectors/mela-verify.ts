@@ -99,6 +99,32 @@ async function fetchIntros(titles: string[]): Promise<Map<string, Page>> {
   return all;
 }
 
+/**
+ * Candidate titles for a programme whose article was not found.
+ *
+ * Published so the curated title can be corrected by reading rather than by
+ * a second guess — the first pass had fourteen titles that pointed at
+ * nothing, which is what typing Wikipedia titles from memory produces.
+ */
+async function candidates(name: string): Promise<string[]> {
+  await pace();
+  const qs = new URLSearchParams({
+    action: "query", format: "json", formatversion: "2", list: "search",
+    srsearch: name, srlimit: "5", srnamespace: "0",
+  });
+  const res = await getText(`${API}?${qs.toString()}`, { timeoutMs: 30_000, retries: 1, cacheMs: 0 });
+  if (!res.ok || !res.data) return [];
+  try {
+    const b = JSON.parse(res.data) as { query?: { search?: Array<{ title: string }> } };
+    return (b.query?.search ?? []).map((x) => x.title);
+  } catch { return []; }
+}
+
+/** Every year an opening section mentions, so a wrong year can be corrected by reading it. */
+export function yearsIn(text: string): number[] {
+  return [...new Set([...text.matchAll(/(?<![0-9])(19[4-9]\d|20[0-3]\d)(?![0-9])/g)].map((m) => Number(m[1])))].sort();
+}
+
 async function main(): Promise<void> {
   const today = new Date().toISOString().slice(0, 10);
   const titles = [...new Set(PROGRAMMES.flatMap((p) => [p.article, ...(p.continues ? [p.continues.article] : [])]))];
@@ -121,8 +147,23 @@ async function main(): Promise<void> {
     return {
       id: p.id, status, title: page?.title ?? null, url: page?.url ?? null,
       checkedOn: today, continues,
+      /* What a failure met, so the fix is a reading. Absent on a pass. */
+      ...(status === "year-not-found" ? {
+        yearsInIntro: yearsIn(page?.intro ?? ""),
+        introHead: (page?.intro ?? "").slice(0, 360),
+      } : {}),
     };
   });
+
+  const withCandidates = [];
+  for (const r of results) {
+    if (r.status === "missing-article") {
+      const p = PROGRAMMES.find((x) => x.id === r.id);
+      withCandidates.push({ ...r, candidates: p ? await candidates(p.name) : [] });
+    } else {
+      withCandidates.push(r);
+    }
+  }
 
   const ok = results.filter((r) => r.status === "verified").length;
   if (ok === 0) throw new Error("nothing verified — refusing to publish an empty verification over a good one");
@@ -143,7 +184,7 @@ async function main(): Promise<void> {
       missingArticle: results.filter((r) => r.status === "missing-article").length,
       yearNotFound: results.filter((r) => r.status === "year-not-found").length,
     },
-    results,
+    results: withCandidates,
   }, null, 2) + "\n", "utf8");
   console.log(`\nWrote ${OUT}: ${ok} of ${results.length} verified.`);
 }

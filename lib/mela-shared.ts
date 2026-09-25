@@ -78,6 +78,30 @@ export function inTerm(t: Term, selected: "all" | "I" | "II" | "III"): boolean {
 
 export interface Obs { period: string; year: number; value: number }
 
+/**
+ * The year a period label stands for, on this page.
+ *
+ * A fiscal year is placed at the year it CLOSES. FY2013-14 ended in March
+ * 2014, two months before the government changed, which makes it the right
+ * baseline; FY2018-19 closed just before the first term ended, and FY2023-24
+ * just before the second. Placing fiscal years at their opening year instead
+ * would put FY2019-20 — eleven months of it in the second term — on the rung
+ * labelled "end of Term I".
+ *
+ * A multi-year window such as SIPRI's "2010-2014" is placed at its end, for
+ * the same reason: it describes the five years up to that date. Anything else
+ * takes the first four-digit year it contains, and a label with none is not a
+ * time series.
+ */
+export function obsYear(period: string): number | null {
+  const fy = /FY\s?(\d{4})\s?[-–]\s?(\d{2,4})/i.exec(period);
+  if (fy) return Number(fy[1]) + 1;
+  const win = /^\s*(\d{4})\s*[-–]\s*(\d{4})\s*$/.exec(period);
+  if (win) return Number(win[2]);
+  const y = /(19|20)\d{2}/.exec(period);
+  return y ? Number(y[0]) : null;
+}
+
 export type RungKey = "start" | "termI" | "termII" | "latest";
 
 export interface Rung { key: RungKey; label: string; obs: Obs | null }
@@ -106,7 +130,7 @@ export function nearest(obs: Obs[], target: number, before: number, after: numbe
 /**
  * The four rungs of a series.
  *
- * The start looks back up to two years and never forward, because the start
+ * The start looks back up to three years and never forward, because the start
  * of a record of what a government did must not be a reading from after it
  * took office. The two term ends look two years either side — survey series
  * like the World Bank's account-ownership data are only collected every three
@@ -115,7 +139,7 @@ export function nearest(obs: Obs[], target: number, before: number, after: numbe
  */
 export function rungsOf(obs: Obs[]): Rung[] {
   const sorted = [...obs].sort((a, b) => a.year - b.year);
-  const start = nearest(sorted, 2014, 2, 0);
+  const start = nearest(sorted, 2014, 3, 0);
   const termI = nearest(sorted, 2019, 2, 1);
   const termII = nearest(sorted, 2024, 1, 0);
   const last = sorted[sorted.length - 1] ?? null;
@@ -125,12 +149,19 @@ export function rungsOf(obs: Obs[]): Rung[] {
     used.add(o.period);
     return o;
   };
-  const s = take(start);
+  /*
+   * Where no reading precedes the change of government, the earliest reading
+   * within a year after it is shown instead — and labelled "First reading",
+   * never "Start". FY2014-15 is mostly under the new government, so calling it
+   * the starting point would understate nothing and misdescribe everything.
+   */
+  const first = start === null ? nearest(sorted, 2014, 0, 1) : null;
+  const s = take(start ?? first);
   const a = take(termI);
   const b = take(termII);
   const l = last && (b === null || last.year > b.year) ? take(last) : null;
   return [
-    { key: "start", label: "Start", obs: s },
+    { key: "start", label: start === null && s !== null ? "First reading" : "Start", obs: s },
     { key: "termI", label: "End of Term I", obs: a },
     { key: "termII", label: "End of Term II", obs: b },
     { key: "latest", label: "Latest", obs: l },
@@ -220,12 +251,22 @@ export function paceOf(obs: Obs[], kind: PaceKind, better: Better): Pace | null 
   return { kind, before: span(p04, p14), after: span(p14, last), verdict };
 }
 
-/** A span's value in words, for the bar label. */
-export function spanWords(kind: PaceKind, s: Span): string {
+/**
+ * A span's value in words, for the bar label.
+ *
+ * A difference carries the unit it is a difference in. "Percentage points" is
+ * right for a share and wrong for life expectancy, which rose in years — the
+ * first version printed "+4.4 pp" for it. And a difference under one unit
+ * gets two decimals, because R&D spending moving 0.06 and 0.05 of a point
+ * printed as "−0.1 pp vs −0.1 pp" beside a verdict calling one faster.
+ */
+export function spanWords(kind: PaceKind, s: Span, diffUnit = "pp"): string {
   if (kind === "gap-up") return `closed ${s.value.toFixed(0)}% of the gap`;
   if (kind === "gap-down") return `${s.value <= 0 ? "fell" : "rose"} ${Math.abs(s.value).toFixed(0)}%`;
   if (kind === "multiple") return `×${s.value.toFixed(1)}`;
-  return `${s.value >= 0 ? "+" : "−"}${Math.abs(s.value).toFixed(1)} pp`;
+  const mag = Math.abs(s.value);
+  const n = mag < 1 ? mag.toFixed(2) : mag.toFixed(1);
+  return `${s.value >= 0 ? "+" : "−"}${n}${diffUnit ? ` ${diffUnit}` : ""}`;
 }
 
 /* ── Formatting ───────────────────────────────────────────────────────── */
@@ -256,6 +297,8 @@ export interface Metric {
   better: Better;
   rungs: Rung[];
   pace: Pace | null;
+  /** What a "pp"-kind difference is measured in: "pp" for shares, "years" for life expectancy. */
+  diffUnit: string;
   source: SourceRef | null;
   /** One neutral line on what the series is, or what it cannot say. */
   note?: string;
