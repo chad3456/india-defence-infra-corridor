@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-26T05:26:29.231Z",
+  "builtAt": "2026-09-26T11:45:40.446Z",
   "source": "Indian Kanoon (indiankanoon.org), the free Indian judgment search. Four queries, each asked with a judgments-only document filter, ten results per request, eight seconds apart.",
   "method": "Indian Kanoon answers roughly ten requests and then stops, so the corpus is built across runs rather than in one: each run walks twelve pages, resumes each query where the last run left it, and merges into what is stored. Queries are asked separately rather than as one broad search, so the rarest category is reached instead of being buried by ranking.",
   "refusal": "No acquittal rate, conviction rate or misuse measure is computed. The outcome words are MENTIONS in a search snippet, not findings: a snippet reading 'the accused was acquitted' may be the court's holding or it reciting a trial court order it goes on to overturn, and ten words of context cannot tell them apart. Every snippet is published beside its flags so a reader checks rather than trusts.",
