@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-26T05:33:33.272Z",
+  "builtAt": "2026-09-26T13:25:51.081Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,33 +10,33 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 882,
-    "addedThisRun": 16,
-    "carriedFromEarlierRuns": 866,
-    "withOutlet": 841,
+    "items": 889,
+    "addedThisRun": 7,
+    "carriedFromEarlierRuns": 882,
+    "withOutlet": 846,
     "bySubject": {
-      "scst": 573,
-      "pmshri": 309
+      "scst": 576,
+      "pmshri": 313
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 317
+    "offSubjectDropped": 322
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 444
+      "n": 447
     },
     {
       "key": "use",
-      "n": 306
+      "n": 308
     },
     {
       "key": "dispute",
-      "n": 50
+      "n": 51
     },
     {
       "key": "allegation",
-      "n": 42
+      "n": 43
     },
     {
       "key": "acquittal",
@@ -54,7 +54,7 @@
     },
     {
       "key": "The Indian Express",
-      "n": 49
+      "n": 50
     },
     {
       "key": "The New Indian Express",
@@ -101,11 +101,11 @@
       "n": 13
     },
     {
-      "key": "SCC Online",
-      "n": 12
+      "key": "Careers360",
+      "n": 13
     },
     {
-      "key": "Careers360",
+      "key": "SCC Online",
       "n": 12
     },
     {
@@ -209,6 +209,10 @@
       "n": 5
     },
     {
+      "key": "NewsClick",
+      "n": 5
+    },
+    {
       "key": "Free Press Journal",
       "n": 5
     },
@@ -219,10 +223,6 @@
     {
       "key": "News18",
       "n": 5
-    },
-    {
-      "key": "NewsClick",
-      "n": 4
     },
     {
       "key": "deccanchronicle.com",
@@ -297,8 +297,8 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 7
+      "kept": 0,
+      "offSubject": 6
     },
     {
       "id": "act-registered",
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 8,
-      "kept": 2,
-      "offSubject": 14
+      "bing": 9,
+      "kept": 1,
+      "offSubject": 15
     },
     {
       "id": "act-convicted",
@@ -325,9 +325,9 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 55,
+      "google": 54,
       "bing": 10,
-      "kept": 3,
+      "kept": 0,
       "offSubject": 7
     },
     {
@@ -335,20 +335,20 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 46,
+      "google": 45,
       "bing": 3,
-      "kept": 1,
-      "offSubject": 12
+      "kept": 0,
+      "offSubject": 13
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 68,
+      "google": 67,
       "bing": 1,
       "kept": 0,
-      "offSubject": 26
+      "offSubject": 27
     },
     {
       "id": "act-acquittal",
@@ -357,8 +357,8 @@
       "expect": "acquittal",
       "google": 92,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 45
+      "kept": 0,
+      "offSubject": 44
     },
     {
       "id": "act-hostile",
@@ -387,7 +387,7 @@
       "expect": "allegation",
       "google": 32,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 3
     },
     {
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 48,
+      "google": 49,
       "bing": 2,
       "kept": 1,
-      "offSubject": 19
+      "offSubject": 20
     },
     {
       "id": "act-fabricated",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 5,
+      "kept": 2,
       "offSubject": 1
     },
     {
@@ -435,19 +435,19 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 69,
-      "bing": 1,
-      "kept": 0,
-      "offSubject": 24
+      "google": 70,
+      "bing": 2,
+      "kept": 1,
+      "offSubject": 25
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 52,
+      "google": 53,
       "bing": 3,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 12
     },
     {
@@ -465,10 +465,10 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 28,
+      "google": 29,
       "bing": 1,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 15
     },
     {
       "id": "shri-nep",
@@ -477,7 +477,7 @@
       "expect": "dispute",
       "google": 52,
       "bing": 3,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 11
     },
     {
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 46,
+      "google": 47,
       "bing": 1,
       "kept": 0,
-      "offSubject": 36
+      "offSubject": 37
     }
   ],
   "items": [
@@ -14829,6 +14829,118 @@
       "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxORkRaV1hzeVU0ei0zbzZBbF9oRGFDdmwzMVozYjdLLVphNk9la2hqeDh6dlpUTzNOZ0lIb2d1TkZiR2loV1A1UWh3TGJ0eTJKY3V6N2xDcUVOR1pvU0VkNzZvWUFNWjJVcTZjY2FoZWZDNWl2eE9jcTNxNERYTjhlQUhXODdkVktCaDNLUEt4T1liX0dGTXlXSWt6aDNxQ0HSAZ8BQVVfeXFMTkZEWldYc3lVNHotM282QWxfaERhQ3ZsMzFaM2I3Sy1aYTZPZWtoang4enZaVE8zTmdJSG9ndU5GYkdpaFdQNVFod0xidHkySmN1ejdsQ3FFTkdab1NFZDc2b1lBTVoyVXE2Y2NhaGVmQzVpdnhPY3EzcTREWE44ZUFIVzg3ZFZLQmgzS1BLeE9ZYl9HRk15V0lremgzcUNB?oc=5",
       "queries": [
         "shri-nep"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-26"
+    },
+    {
+      "id": "youtuber uses caste slurs against mp chandrashekhar azad in online video delhi high court ",
+      "headline": "YouTuber Uses Caste Slurs Against MP Chandrashekhar Azad in Online Video; Delhi High Court Says SC/ST Act Prima Facie Applies, Denies Anticipatory Bail",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Raw Law",
+      "published": "2026-09-26",
+      "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxNUjFWU0ZzSG5YOU5uQnNCODVhQXZ4Ny1xMVVIYkd0NUdoUlZZcC1meEtZQkFONXBOTVBvc1Jna21FVi1wZUNfRF8yMjV0MDJRTUZwOF8xblZQeXRBYy1OaUExanNyejMtMU5oaDI2WV9DZmR6VEs1OHpBaHRDTVFrMm1vcENTTEpOTGpTVUxfQ3d0S2RFN1JLN2VTUXk2REhURjBEZ1ZaRm5XV2RGaXVHekdjMEs3OW1oblNidWNDemp0bFI1blpyU2ZGTHJNYkp6Q3IwUTFZUGdsaG56MERkbExKY3J4MGlOclBtTHdmQnFiM3JuWHdCaEhUc0w?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-26"
+    },
+    {
+      "id": "sc st act supreme court recalls directions that diluted arrest provisions",
+      "headline": "SC/ST Act: Supreme Court Recalls Directions That Diluted Arrest Provisions",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "NewsClick",
+      "published": "2019-10-01",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQMzVVMmVjRENJS2ZPZEVPTDBtOFlPM01ZZHdQMlBfNF9jSGFkUUV5V1RHTGJhdjRWdF81LUVwNlcxbHI3blBqUnhhZkprbkRMN1ZPT3F5cW9XMS1relBnOXdsVW1VbWxwbWtPWmYzSTRER21DR0pIMzdONXJNVDlsb3NYZHNOWHI3bzZieWRkc1F1NVRPV3M2ZtIBngFBVV95cUxPX2M2Ukl3MWZPekFSRzhuYnVhbmw3RGhXRVdxbFplUXhKVHRpVThJWGJhdzJMcTJLaTVQd0x3ZmhHX1VLZ3Q5SzhHaVFNbks1VE12RzZqMi1LaFp4LUVSRWNseEItSGh3VmVXSjdRTVZvQWVZNzdaaGNmcjdZdTJqU0x0UURJQzdBQU1SOW9lb2ZkcjJ5TlhCYktrbVhrQQ?oc=5",
+      "queries": [
+        "act-dilution"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-26"
+    },
+    {
+      "id": "karnataka hc says misuse of sc st act ipc clogging justice delivery system",
+      "headline": "Karnataka HC says misuse of SC/ST Act, IPC clogging justice delivery system",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "The Indian Express",
+      "published": "2023-08-08",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNR0VWOFZ2RHBva25PV1h1TmN1MEdqQm1iWWtIQ0d0MHYwNzZ5TGo3WWM0dWFrdkpHaVNLYXgwSkhjcXhscVd1em43TzZRS1dDbTYwNUU0V2pEZ3pxOFUwM1VQVHJZYUwtU21LbVV2VVdRMFJsa0xIWWtXTUh4bUM2V1RHNDZsdkFLMlc5eXRJNkRieE10SHBDRk4tbFdOV2g1QklMbGhQUVRzanFMRnNsNEdIem1ENENNdzNOMGVVbmZWRXRp0gHLAUFVX3lxTE5SRURZcDVhNkVpdjFsc0dsQkduMmtfRDQzNXFodFl6TWNadGVxUTVkUzl5SEpwbWF6c2pUMF9UZVN6TFVXSTR4MUFucDk3ZTUzaXBqU182cWxwNENCZ2VDUFVLWmxFQmppVHNfc2NrQkFtVWVLOEhUT1hIdTJ5WGF2b0RBUFV0WGJkdVRZbXhSSVJZZXFwcHZZblZKQWZTNHB4eGh0cnE3V21kWTFmZ2F6VjM4b29wVHM2Ym5iNVBpck1YeTMxQnI2Q0Jj?oc=5",
+      "queries": [
+        "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-26"
+    },
+    {
+      "id": "kerala minister shaji says he stands by his call to abandon pm shri scheme",
+      "headline": "Kerala minister Shaji says he stands by his call to abandon PM SHRI scheme",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-08-16",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab7c7b407ac4adfb71c167256d3856f&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fkerala-minister-shaji-says-he-stands-by-his-call-to-abandon-pm-shri-scheme%2far-AA2adK8V&c=12955745619589944100&mkt=en-us",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-09-26"
+    },
+    {
+      "id": "pm shri dispute central policy implemented in higher education 500 crore allocated to univ",
+      "headline": "PM-SHRI dispute: Central policy implemented in higher education; ₹500 crore allocated to universities",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": null,
+      "published": "2026-09-16",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab7c7b407ac4adfb71c167256d3856f&url=https%3a%2f%2fenglish.mathrubhumi.com%2feducation%2fnews%2fpm-shri-dispute-kerala-universities-central-education-policy-fl91mb0j&c=5147461767386077808&mkt=en-us",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-09-26"
+    },
+    {
+      "id": "cabinet approves pm shri scheme rs 27 360 crore budget dharmendra pradhan",
+      "headline": "Cabinet approves PM SHRI scheme, Rs 27,360 crore budget: Dharmendra Pradhan",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "Careers360",
+      "published": "2022-09-07",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOWEhzZl9qd0VkaWE4TEQyMkhCdWhEQzZJWlBYMHozdjJYbmo4WGtiTHhuQVVpakhTb2ZHOGVEcElPTWJ4ZjRGRm1uNkJIRldXQzNVbU4tWDVQODVOVW1zQVo5c2NBU0V6UFVOa2JuOWhfdzkzcWNkUS1rOF82X2RBUEJxamlZR2xzeWFER0dCQk1Pb2FaeFhfZFV4TVN2aDRGcDFEd0lOeHlQMGtOSTdSRS1NZmtIQjlEMTBpZGlmOUxzdWp50gHKAUFVX3lxTE5kclFkb1RsRW9yUW5Lcm01OGNqS1BqT0d3bDZBd1R2MWxIWWtBNGxIS2gxRm9vMVBVSkx4NFpQOFREUVFRWkNMSnJCc2lmR2psNTFhbnppX0p1NEFZdF9Ib2hjUUlJRkd5N1hzOFJSaVF6MzUySU9pbUM2Qlc3UVctajRwV0VCMnZQM1p3cm9fVlJkTmZCQUFVaXRxQXVrelE2c2N4bTJ4RFRMM1p2MFJxNmV3UDFnOTNDeU5SOUVVV0QxTnBzSmxteGc?oc=5",
+      "queries": [
+        "shri-funds"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-26"
+    },
+    {
+      "id": "major transformation in sikkim s pm shri schools strengthening education under nep 2020",
+      "headline": "Major Transformation in Sikkim’s PM SHRI Schools: Strengthening Education under NEP 2020",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Entrepreneur India",
+      "published": "2026-04-11",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQeUtzd0xuQkpWZVlzanlPbHU1S1FiSjhPcGRNdy03Z3NIZkphSjQxZFVCU3FKT2N3bW9hUzhNQnVKaXRmZjNXNEhGODVLYktYQnUyNzdsMktoQi01cDBGRUQzS19JUGxQZzVyampxRDMxbmRaV3M5SC1QUnA0SjRmTWxqQ2Y2cVpnRkNDdmtpLUJsN29lbEJPdzRtRS1lTG1CZFRScFUyUEprOUYyQUVmYUl2ajhjSjMzTFhyWlVDWWZMcm1QeGlreVl2S0Z4SUZGWFBxNjZR?oc=5",
+      "queries": [
+        "shri-upgrade"
       ],
       "indexes": [
         "google"
