@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-26T19:26:52.008Z",
+  "builtAt": "2026-09-26T23:12:10.623Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 894,
-    "addedThisRun": 5,
-    "carriedFromEarlierRuns": 889,
-    "withOutlet": 851,
+    "items": 901,
+    "addedThisRun": 7,
+    "carriedFromEarlierRuns": 894,
+    "withOutlet": 858,
     "bySubject": {
-      "scst": 581,
-      "pmshri": 313
+      "scst": 587,
+      "pmshri": 314
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 317
+    "offSubjectDropped": 316
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 449
+      "n": 455
     },
     {
       "key": "use",
-      "n": 310
+      "n": 311
     },
     {
       "key": "dispute",
@@ -54,11 +54,11 @@
     },
     {
       "key": "The Indian Express",
-      "n": 51
+      "n": 52
     },
     {
       "key": "The New Indian Express",
-      "n": 43
+      "n": 44
     },
     {
       "key": "The Hindu",
@@ -82,11 +82,11 @@
     },
     {
       "key": "Verdictum",
-      "n": 21
+      "n": 22
     },
     {
       "key": "opindia.com",
-      "n": 17
+      "n": 18
     },
     {
       "key": "livelaw.in",
@@ -97,16 +97,16 @@
       "n": 16
     },
     {
+      "key": "SCC Online",
+      "n": 13
+    },
+    {
       "key": "ET Education",
       "n": 13
     },
     {
       "key": "Careers360",
       "n": 13
-    },
-    {
-      "key": "SCC Online",
-      "n": 12
     },
     {
       "key": "Deccan Herald",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
+      "kept": 2,
       "offSubject": 6
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 6,
-      "kept": 2,
-      "offSubject": 14
+      "bing": 0,
+      "kept": 1,
+      "offSubject": 15
     },
     {
       "id": "act-convicted",
@@ -317,8 +317,8 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 39
+      "kept": 1,
+      "offSubject": 38
     },
     {
       "id": "act-atrocity",
@@ -327,7 +327,7 @@
       "expect": "use",
       "google": 55,
       "bing": 9,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -345,8 +345,8 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 66,
-      "bing": 1,
+      "google": 61,
+      "bing": 0,
       "kept": 0,
       "offSubject": 26
     },
@@ -358,7 +358,7 @@
       "google": 92,
       "bing": 0,
       "kept": 0,
-      "offSubject": 44
+      "offSubject": 45
     },
     {
       "id": "act-hostile",
@@ -375,17 +375,17 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 44,
-      "bing": 2,
-      "kept": 1,
-      "offSubject": 8
+      "google": 46,
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 9
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 31,
+      "google": 32,
       "bing": 0,
       "kept": 1,
       "offSubject": 3
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 30,
+      "google": 28,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 18
     },
     {
       "id": "shri-general",
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 12,
+      "bing": 0,
       "kept": 0,
       "offSubject": 2
     },
@@ -426,8 +426,8 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 47,
-      "bing": 1,
-      "kept": 0,
+      "bing": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -445,10 +445,10 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 52,
+      "google": 51,
       "bing": 3,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 11
     },
     {
       "id": "shri-mou",
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 47,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 5
     },
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 53,
+      "google": 52,
       "bing": 3,
       "kept": 0,
       "offSubject": 11
@@ -15024,6 +15024,118 @@
       "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPemhjc1p1YW83cnRWNUhwaDRvRV90SkJxWks3ejBFMVNCUHMwd3l4ZDYxdVZQYWpOY3Ntcm56YkU0LWJXWGlXQTdVX0FVTG10UlZCS3dhTE9oM3k3NnhVSDFfSHFvTFFoVVJXUkxZWXFPa2dmUml5bFVCeko0T3JFd0JFNmN1TXlMMDhoSXpRMGE5T3ZnaldlT3FOTlZzUnhUQWxjUG5pZjhoa1licEZpRVJhRDJHNHV2U2hyTUFpT0o5eFE30gHLAUFVX3lxTE9aQUVPMWFNRjFxOHp6UzVVSWRTRE5lYlVFb0puNWZnRXlaMm9tZ2RBbzRZa2FXUnFfVTk0V1ZSeEluekl6U1FBeU5uSUdrOXdDd0gwc1RQRmM5TGNIQXNISU12NVk5U2hKTzZmZzE1ajItVmV2MnNzaGFSRGhVQ2J3eHllTkN6Z3VuNDVsc1hGZnhLbFlUalZiT3IyVWNBQy1HOTFBdS1GWFdFM0dQMERTSzVNcnc0LUhJX0NCS2dna3cxc1gxWXlsaC1r?oc=5",
       "queries": [
         "act-dilution"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-26"
+    },
+    {
+      "id": "poster targeting dalits doesn t attract sc st law iit mandi panel",
+      "headline": "Poster targeting Dalits doesn’t attract SC/ST Law: IIT Mandi panel",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Indian Express",
+      "published": "2026-09-14",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPVi0wY2JlR18tYlFsalItb1JYVVJfT0xhOWRaTlY0TGpGZ3JTQzUtbTV1dTJUYjRJY25XX21KQ09qYUVWV1ZaekQ3ZmQ0dHNwZDBaUmk3UEUzWGNEbXFsVmZNZER3VFFLLUZTTGN4ejhuMThtejQwRUIzQ2xmLTNyOGVldmp1RDRoYUpzQkk5enpxQzFGX2hzSHg2elRaLXltd0N3R2FzLUFFUVFVTkZZMGZzd21KMXhzc29iVkNWQmpmMFN5WklzdnFCdzhiQThIa3hfRTEzUERTbHpzOUMxR9IB5wFBVV95cUxOY0R4NHdNYlNlQVNqTFgwUnV2RlNuUmp0cDVmc3ZvNVVrRTZBTE4wbGVuQVY2a3V6VFdQOFBzdS15YTFiV1lXemo1ZU5YTFhpcmJVbFZ6QVd4bzk0eVBTeVBJdWhRWm5NTUNSYTlwYnRSNXVlLUUtNWRWalpWWXNhSFpmQnFabFRvdkJzS1NDTXBDZ1lrZ0M3U1Zra1pLbHpYSlpwNy04QmdvTFFWZmdZeDJBSHBOZlEweDNOMUxzWVFtZXA3aUViYzl0MjF6eGhBUkQ3bW15eThndmJPT3dOY2p5ZjBrTVU?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-26"
+    },
+    {
+      "id": "caste abuse inside closed room does not invite sc st act supreme court",
+      "headline": "Caste abuse inside closed room does not invite SC/ST Act: Supreme Court",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "opindia.com",
+      "published": "2026-08-21",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQUnljT1p0MDhiT0s2QVVaR1ctSHlwM3Zud0IyaVJHcGNUNk9IWFJETEFtaXktZFpjN0NuZ2h1Ym05Rm84ZmdUNFBTMWVXTmdyQVdlSVZ5MzRKZmxmbTdNU1JHcGRqVDFNZzMwemR1TUl0bnZQSk4zazJ0WjJDVnRMUkxKenBiOG9nVXM0ei1yME4xR2pqWDd0LWZyQzc4OW5NNnBlYUxyNjVEc2REMW82SGg1VVpDeHljdjFCZWRsd1VEa3g4SXBzekEwYmVwVmZXUG93UlJ4M0M2eVlqRHV5eHJNdGpicG8?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-26"
+    },
+    {
+      "id": "no bar on anticipatory bail under sc st act without prima facie disclosure scc times",
+      "headline": "No bar on Anticipatory Bail under SC/ST Act without Prima Facie Disclosure | SCC Times",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "SCC Online",
+      "published": "2026-04-09",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNOEFGVEhUb2xZMmpSZERQaC1fbWNRZ2ZhQ1NITm1SVTI3MnFCRXNvZ0pqRUhodHM5aHFoV0JxSWoycTg5TFF4ZjMxZDBHV1FTNHRNY2x0SlJ3QVZsbFZDdng2a2VRTFZ1bHh6T0FBYTYtY0VXckVWWThXMXNaZEJSckxaaDQzSC10T3paLWx5WlRMVDhjVTlXSkt2WUVQSE1nZzdCYzEwRkRWcUdGRmxDS19fUjJJemg0?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-26"
+    },
+    {
+      "id": "supreme court issues notice in pil challenging mandatory death penalty provision in sc st ",
+      "headline": "Supreme Court Issues Notice In PIL Challenging Mandatory Death Penalty Provision In SC-ST Act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Verdictum",
+      "published": "2023-11-03",
+      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNMzE1V21iLXhIOEhVc1pjUWhOT0p0aG1IeGtlTTQ1QjlzNkt6M2o3enFBbnpYcUlQaTBTNHNrUVNmTVRfTjhBOHBIUm5US2kxRk5wU1hwZS11VXo3UmlVajBKLUstU1VWbEdocklOVTNhbUV5U2RGbVRoNVRrc01BNEl3MEUwdVptTXFzV0RZcUZyRE9Xb0V0N1Rqa1ctRmU5SGdiZ3E5SGpCS2xhUlFWdC1CT1pyT3RZaDd3LTlLWkdlQ3E5QWlUd2xESDFVWXp6bFZlc1c0eGZRVWdUZG12Q1EyZUc1OTJ3RHfSAe8BQVVfeXFMT0k0V0RTRm1PZXotZC1EUlFXRkdLUEljdGJzb21yNWx5TWZQcDlwX0R4QnBib0xzdkRHb2xyYi1tVXBDcjVnNGMyUlVaUnQ0blNOZVZPYWRpU1lkeXFUblN5Ry1IMVZXdGdpaWlvNU9TOFltRjZNYkVqQmZfblFXVnhXZ0dyN2RwSkVWNXZSRXZMTjhNUU9Td3U5NjB2aVhjUXc2WFdCX2J5ejBmVlVHRVN4TDFnNDdYWXhiUmx2ZllhYl9Lal9Vb0d2RmVaUHNWajhDb25CTGh3bHFEYWZIVGxwODFfbWxLc0x4MVk1MWM?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-26"
+    },
+    {
+      "id": "dalit youth brutally assaulted in gujarat s junagadh third such case in 21 days",
+      "headline": "Dalit youth brutally assaulted in Gujarat's Junagadh, third such case in 21 days",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The New Indian Express",
+      "published": "2025-08-18",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPbkdIZlotZGFreFBYNjRDTzM1aWVZdk9LMjVhNHYtb01WZVJaak93cWRFeUdUMmFLaDdsMDBueHJreXlvaWtydm9iUkhQZjNoS29IV29TQzlYRnlsdjI1Y1JkdVRSZnpLemFSRkQ5bmxISW9RU296YW96LXFnVndHYlN2dktrQ3pMWVloWlM3eDlwUmVzSXFDcVpTUVNDOWtQb0tER2JxakJvWDd2dGtCYkFSNmpoVkV4VWxDdjlGSWpkV2k3XzNrNtIB1gFBVV95cUxOWEp2SnQtN3hGQ0EzVTNjdnlGTEJINFBDNWVwV2V5U2I4WThnUGdLRG1Hc09Yd0dnWVlFS2sySmFVN0h4Qm9FOXlCamlncVljODdVMnJJLUFoWk5SRkY5b0M4SnBmUlNSaG90NlRWcjQ1YjdibU0yNmtQN3NLSzduaFRFd2J0Y3Bfd3hxeTFBNDRTa3FfV2ZLb29SWFlNVERRZGQ0YjFBMHFrSVpBdXl5YnltcWRDTkNkWl9DRlJRZjJFNzlDNGdqZWk1MVR4S2tXMVg4SFhR?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-26"
+    },
+    {
+      "id": "supreme court upholds the constitutional validity of section 18 a of the amended sc st act",
+      "headline": "Supreme Court upholds the constitutional validity of Section 18 A of the amended SC/ST Act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Leaflet",
+      "published": "2020-02-10",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNMVE1ZnpZWjlOOVA3eEQ4RjMtRVdmQnpMS1kxYUJUekxveFRJZGN3bzVXVW40c2tmVktnQy1PeUZFTHN1c1FycmtBdDAxTUdnM0liaUM4X0ZDakJIRHk0M2Y3b3lpdVowVmVWenQzU21iZHNVU2FtZEZNMFdVZDBOUV90Ry1WSUx4bmNEbmxjSG1lSW50Q0Q0RE5UYmFVckt6THhHT19NT0NCQkpkZ09mbmRkdDRzamF5LTgyNG1R?oc=5",
+      "queries": [
+        "act-dilution"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-26"
+    },
+    {
+      "id": "centre appoints new nodal officers for pm shri schools inspection across states",
+      "headline": "Centre Appoints New Nodal Officers for PM SHRI Schools Inspection Across States",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "PSU Connect",
+      "published": "2026-03-05",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQVHhqS1RoeTc5TXJ0b01RMU9tLW9QTEdTWC1UZndlS2RHZHpBM2QwU3lMVW51MGtDVUV1ZHRwY2taN05VQjdXNTFlTkRaQ2NxdWZObUJDLTlDM3VybTY1LW1BRGVwby1jRHNQOUN1bldvR2ZXZGVUNXNzVFRHN3lLeHR6RUJudjhyR3FZQlBUOFBHSEZnYzVtd1VqTlJUeTJUY05BcXpIb2swcDJVd1gybTBDejlNeDJq?oc=5",
+      "queries": [
+        "shri-sanctioned"
       ],
       "indexes": [
         "google"
