@@ -1,0 +1,973 @@
+/**
+ * Project Maven, read out of the book and checked back against it.
+ *
+ * `npm run maven:book`. Writes data/defence/maven-book.json. Reads a book
+ * committed to this repository and the world atlas already in node_modules;
+ * touches no network at all.
+ *
+ * ── What this source is ──────────────────────────────────────────────────
+ *
+ * Katrina Manson, *Project Maven: A Marine Colonel, His Team, and the Dawn of
+ * AI Warfare* (W. W. Norton, 2026). A reported history by a defence
+ * correspondent, built — the book's own note on sources says — on
+ * conversations with more than two hundred Maven insiders and opponents and
+ * on nonpublic documents the author reviewed. Much of it is therefore what
+ * participants told her, and participants in a weapons programme have reasons
+ * to remember it kindly. The book says so itself, repeatedly, and so does
+ * every record below: each carries who the claim belongs to.
+ *
+ * ── The five kinds of claim ──────────────────────────────────────────────
+ *
+ *   reported     the author's own finding: "I learned", "I reviewed".
+ *   participant  something a person involved in Maven, its vendors or its
+ *                users told the author. Self-interest is the default.
+ *   document     from a document the author reviewed and describes.
+ *   public       on the public record: a speech, a report, a filing.
+ *   contested    two accounts in the book conflict, and the record keeps
+ *                both rather than choosing.
+ *
+ * ── Why every number is verified, and every quote verbatim ───────────────
+ *
+ * Everything here was typed by hand from the book, which is where a number
+ * turns into a slightly different number. So each record carries a `verify`
+ * phrase that must still appear in the book, plus `also` phrases for any
+ * further number its prose mentions; the run fails if any does not. A quote's
+ * text IS its verify phrase, so a quotation cannot be paraphrased by accident.
+ * The page is never typed: it is read from the nearest print-page anchor in
+ * the EPUB.
+ *
+ * `npm run test:maven-book` repeats the check offline and adds one more: every
+ * figure written in the prose of a record must be found in that record's
+ * verified phrases, in digits or in words. A number the page prints that the
+ * book does not contain cannot pass.
+ */
+import { mkdir, writeFile } from "node:fs/promises";
+import { join } from "node:path";
+import { geoCentroid } from "d3-geo";
+import { feature } from "topojson-client";
+import { findBook, readChapters, locate, type Chapter } from "../lib/epub";
+import { isEntryPoint } from "../lib/entry";
+
+const OUT_DIR = join(process.cwd(), "data", "defence");
+const OUT = join(OUT_DIR, "maven-book.json");
+const BOOK_DIR = join(process.cwd(), "data");
+
+export const CHAPTERS: Record<string, string> = {
+  c2C: "A Note on Sources",
+  c2Z: "Prologue",
+  c39: "Introduction",
+  c4X: "1. Old Wars",
+  c6X: "2. Tilting at Windmills",
+  c86: "3. We Do What We Want",
+  cAF: "4. They Call It Algorithmic Warfare",
+  cD0: "5. The First Mavenites",
+  cER: "6. Relaxed About Fury",
+  cH6: "7. The Colonel and the Math Whiz",
+  cJW: "8. Somalia",
+  cNK: "9. Moral Outrage",
+  cSH: "10. The Algorithms Have No Clue",
+  cVB: "11. Harbinger of Doom",
+  cX9: "12. Arms Race",
+  cZ6: "13. Daddy Karp",
+  c11K: "14. Palantir, Palantir, Palantir",
+  c142: "15. Palantir Splits the Team",
+  c15Y: "16. A Striking Operation",
+  c189: "17. Data Hell",
+  c1BH: "18. We'll Find It and We'll Strike It",
+  c1E0: "19. Nobody Knows Targeting Better Than Trey",
+  c1FP: "20. Kill Chain",
+  c1JP: "21. Ukraine Fights Back",
+  c1MW: "22. Tens of Thousands of Targets",
+  c1PU: "23. We've Drunk the Kool-Aid",
+  c1TA: "24. Machines Shouldn't Kill People",
+  c1V1: "25. Trump's Robots",
+  c1XD: "26. The Winchester House",
+  c1ZY: "Epilogue",
+};
+
+/**
+ * The book's own four parts are the four verbs of the kill chain, and the
+ * page is organised by them. Which chapter falls in which part is read off
+ * the part-title pages in the EPUB, not guessed.
+ */
+export const PARTS = [
+  { id: "find", title: "Find", chapters: ["c4X", "c6X", "c86", "cAF", "cD0", "cER", "cH6", "cJW", "cNK"] },
+  { id: "fix", title: "Fix", chapters: ["cSH", "cVB", "cX9", "cZ6", "c11K", "c142", "c15Y", "c189"] },
+  { id: "finish", title: "Finish", chapters: ["c1BH", "c1E0", "c1FP", "c1JP", "c1MW", "c1PU"] },
+  { id: "feedback", title: "Feedback", chapters: ["c1TA", "c1V1", "c1XD"] },
+] as const;
+
+export const BOOK = {
+  title: "Project Maven: A Marine Colonel, His Team, and the Dawn of AI Warfare",
+  author: "Katrina Manson",
+  publisher: "W. W. Norton",
+  year: 2026,
+  isbn: "978-1-324-12331-6",
+  note:
+    "A reported history built, by the book's own account, on conversations with more than two "
+    + "hundred Maven insiders and opponents and on nonpublic documents the author reviewed. Much "
+    + "of what it records is what participants told the author, and it says so.",
+};
+
+export type Claim = "reported" | "participant" | "document" | "public" | "contested";
+
+/* ── Figures: every number the page draws ─────────────────────────────── */
+
+export interface Figure {
+  id: string;
+  /** Which chart or panel the figure belongs to. */
+  group:
+    | "tempo" | "ukraine" | "accuracy" | "budget" | "scale" | "data" | "pixels"
+    | "deluge" | "autonomy" | "ban" | "throughput";
+  label: string;
+  value: number;
+  unit: string;
+  /** The book's own hedge, kept: "under", "more than", "as low as". */
+  qualifier: "" | "under" | "more than" | "about" | "as low as" | "up to" | "at least" | "nearly" | "close to";
+  /** When the figure applies, as the book states it. */
+  when: string;
+  /** Whose number it is. */
+  who: string;
+  claim: Claim;
+  what: string;
+  verify: string;
+  also?: string[];
+}
+
+export const FIGURES: Figure[] = [
+  /* The headline: targets a day. */
+  {
+    id: "tempo-no-ai", group: "tempo", label: "Without AI", value: 100, unit: "targets a day",
+    qualifier: "under", when: "before computer vision", who: "an NGA official, to the author", claim: "participant",
+    what: "What the US could hit in a day before computer vision, according to an official at the National Geospatial-Intelligence Agency.",
+    verify: "went from being able to hit under a hundred targets a day to being able to hit a thousand",
+  },
+  {
+    id: "tempo-cv", group: "tempo", label: "With computer vision", value: 1000, unit: "targets a day",
+    qualifier: "", when: "with AI computer vision", who: "an NGA official, to the author", claim: "participant",
+    what: "With computer vision.",
+    verify: "went from being able to hit under a hundred targets a day to being able to hit a thousand",
+  },
+  {
+    id: "tempo-llm", group: "tempo", label: "With language models added", value: 5000, unit: "targets a day",
+    qualifier: "", when: "with large language models integrated into Maven", who: "an NGA official, to the author", claim: "participant",
+    what: "With large language models added to the Maven platform: fivefold again.",
+    verify: "that number has risen fivefold to five thousand targets a day",
+  },
+
+  /* Ukraine, 2022 onward. */
+  {
+    id: "ua-first", group: "ukraine", label: "First months", value: 35, unit: "targets a day",
+    qualifier: "up to", when: "2022", who: "the author's reporting", claim: "reported",
+    what: "Targets the 18th Airborne Corps was giving Ukraine each day from its bowling-alley headquarters in Wiesbaden: thirty to thirty-five.",
+    verify: "was soon giving the Ukrainians thirty to thirty-five targets a day",
+    also: ["called back to Fort Bragg at the end of 2022"],
+  },
+  {
+    id: "ua-notch", group: "ukraine", label: "\"Turn it up a notch\"", value: 70, unit: "targets a day",
+    qualifier: "", when: "2022", who: "the author's reporting", claim: "reported",
+    what: "After Ukraine said the information helped, the team started pumping out seventy a day.",
+    verify: "The Maven team started pumping out seventy targets a day",
+    also: ["called back to Fort Bragg at the end of 2022"],
+  },
+  {
+    id: "ua-peak", group: "ukraine", label: "Single-day high", value: 267, unit: "points of interest",
+    qualifier: "", when: "one day in 2022", who: "people the author spoke to", claim: "participant",
+    what: "The most \"points of interest\" passed to Ukraine on one day in 2022.",
+    verify: "rose to a high of 267 on a single",
+    also: ["day in 2022. Two targeting officers"],
+  },
+  {
+    id: "ua-2024", group: "ukraine", label: "By 2024", value: 12, unit: "points of interest a day",
+    qualifier: "about", when: "2024", who: "people the author spoke to", claim: "participant",
+    what: "By 2024 the US was passing only a dozen or so a day — partly because Ukraine had built its own ways of finding targets.",
+    verify: "By 2024, I was told the US was passing the Ukrainians only a dozen or so points of interest a day",
+  },
+  {
+    id: "temple-without", group: "throughput", label: "One officer, an hour, without Maven", value: 30, unit: "targets signed off",
+    qualifier: "", when: "summer 2023", who: "Joey Temple, a targeting officer, to the author", claim: "participant",
+    what: "Targets one 18th Airborne officer could sign off in an hour of work without Maven.",
+    verify: "he could now sign off on as many as eighty targets in an hour of work, rather than thirty without it",
+    also: ["back at Fort Bragg in summer 2023"],
+  },
+  {
+    id: "temple-with", group: "throughput", label: "The same officer, with Maven", value: 80, unit: "targets signed off",
+    qualifier: "up to", when: "summer 2023", who: "Joey Temple, a targeting officer, to the author", claim: "participant",
+    what: "With Maven: up to eighty. \"Accept. Accept. Accept.\"",
+    verify: "he could now sign off on as many as eighty targets in an hour of work, rather than thirty without it",
+    also: ["back at Fort Bragg in summer 2023", "Accept. Accept. Accept."],
+  },
+
+  /* Accuracy is not a property of a model; it is a property of a model somewhere. */
+  {
+    id: "acc-afghanistan", group: "accuracy", label: "Afghanistan", value: 70, unit: "percent detection rate",
+    qualifier: "", when: "as Brian Ward found", who: "the author's reporting", claim: "reported",
+    what: "Detection rates in Afghanistan, where vehicles tended to be white cars and black Toyota Hiluxes against dusty yellow ground.",
+    verify: "success levels dropped from 70 percent detection rates in Afghanistan",
+  },
+  {
+    id: "acc-philippines", group: "accuracy", label: "The Philippines", value: 30, unit: "percent detection rate",
+    qualifier: "as low as", when: "as Brian Ward found", who: "the author's reporting", claim: "reported",
+    what: "The same models in the Philippines, where vehicles were carts topped by umbrellas and people walked under jungle canopy.",
+    verify: "to as low as 30 percent in the Philippines",
+  },
+  {
+    id: "acc-europe-before", group: "accuracy", label: "Europe, before the invasion", value: 70, unit: "percent accuracy score",
+    qualifier: "about", when: "early 2022", who: "a person familiar with US efforts", claim: "participant",
+    what: "Accuracy when the Maven system was set up in Europe.",
+    verify: "run detections with about a 70 percent accuracy score",
+    also: ["It was early February 2022"],
+  },
+  {
+    id: "acc-ukraine-after", group: "accuracy", label: "Days after the invasion", value: 30, unit: "percent accuracy score",
+    qualifier: "", when: "after February 24, 2022", who: "a person familiar with US efforts", claim: "participant",
+    also: ["It was early February 2022", "right up until February 24"],
+    what: "In the days after the invasion — snow instead of desert, tanks with their turrets blown off — scores plummeted to 30 percent, sometimes as low as 10.",
+    verify: "Maven's accuracy scores plummeted to 30 percent, sometimes down to as low as 10 percent",
+  },
+  {
+    id: "acc-ukraine-floor", group: "accuracy", label: "Ukraine, worst days", value: 10, unit: "percent accuracy score",
+    qualifier: "as low as", when: "after February 24, 2022", who: "a person familiar with US efforts", claim: "participant",
+    also: ["It was early February 2022", "right up until February 24"],
+    what: "The floor.",
+    verify: "sometimes down to as low as 10 percent",
+  },
+  {
+    id: "acc-18th-ai", group: "accuracy", label: "18th Airborne: the AI", value: 60, unit: "percent correct",
+    qualifier: "", when: "the 18th Airborne Corps's own comparison", who: "the author's reporting", claim: "reported",
+    what: "Objects correctly identified by AI at the 18th Airborne Corps — farther and quicker than people, but less often right.",
+    verify: "AI could correctly identify objects with 60 percent accuracy, compared with an 84 percent baseline for humans",
+  },
+  {
+    id: "acc-18th-human", group: "accuracy", label: "18th Airborne: its people", value: 84, unit: "percent correct",
+    qualifier: "", when: "the 18th Airborne Corps's own comparison", who: "the author's reporting", claim: "reported",
+    what: "The human baseline in the same comparison.",
+    verify: "compared with an 84 percent baseline for humans at the 18th",
+  },
+
+  /* Money, as the book gives it — including where two chapters disagree. */
+  {
+    id: "budget-2017", group: "budget", label: "2017, the first year", value: 40.8, unit: "million dollars",
+    qualifier: "", when: "2017", who: "a document the author reviewed", claim: "document",
+    what: "Maven began as the Defense Department's largest AI investment to date, with $40.8 million for the first year.",
+    verify: "starting with $40.8 million for the first year",
+    also: ["Work signed the project into existence in a memo outlining its scope on April 26, 2017"],
+  },
+  {
+    id: "budget-2018-ch12", group: "budget", label: "2018, before Google pulled out (ch. 12)", value: 16, unit: "million dollars",
+    qualifier: "", when: "2018", who: "the author's reporting (chapter 12)", claim: "reported",
+    what: "The book's chapter 12 figure for 2018, before Google's withdrawal.",
+    verify: "from $16 million before the Google fiasco in 2018 to $93 million after it in 2019",
+  },
+  {
+    id: "budget-2019-ch12", group: "budget", label: "2019, after (ch. 12)", value: 93, unit: "million dollars",
+    qualifier: "", when: "2019", who: "the author's reporting (chapter 12)", claim: "reported",
+    what: "Chapter 12's figure for 2019, after Google pulled out.",
+    verify: "from $16 million before the Google fiasco in 2018 to $93 million after it in 2019",
+    also: ["Project Maven's budget jumped more than ten times"],
+  },
+  {
+    id: "budget-2019-ch18", group: "budget", label: "2019 (ch. 18)", value: 189.53, unit: "million dollars",
+    qualifier: "", when: "2019", who: "the author's reporting (chapter 18)", claim: "reported",
+    what: "Chapter 18 gives a different figure for 2019. The book does not reconcile them, and neither does this page.",
+    verify: "The biggest bump came in 2019, when Maven's budget rose to $189.53 million",
+  },
+  {
+    id: "budget-2020", group: "budget", label: "2020, the year after", value: 232.96, unit: "million dollars",
+    qualifier: "", when: "the year after 2019", who: "the author's reporting", claim: "reported",
+    what: "The following year.",
+    verify: "to $232.96 million",
+    also: ["The biggest bump came in 2019"],
+  },
+  {
+    id: "budget-2022", group: "budget", label: "2022, a record", value: 275, unit: "million dollars",
+    qualifier: "", when: "2022", who: "the author's reporting", claim: "reported",
+    what: "A record, including a $28 million supplement just for Ukraine.",
+    verify: "spent a record $275 million on Maven",
+    also: ["special supplement of $28 million just for Ukraine", "experienced great improvement during 2022"],
+  },
+  {
+    id: "budget-annual", group: "budget", label: "Annual, by September 2024", value: 250, unit: "million dollars",
+    qualifier: "", when: "September 2024", who: "the author's reporting", claim: "reported",
+    what: "Maven's annual budget by the time it sat at the NGA. Since 2023 the budget has been classified.",
+    verify: "Maven's $250 million annual budget",
+    also: ["in early september 2024 , during the cocktail hour", "as a program of record run since 2023 by a US intelligence agency, its budget is also now classified"],
+  },
+  {
+    id: "budget-tenure", group: "budget", label: "Total under Cukor", value: 1, unit: "billion dollars",
+    qualifier: "", when: "2017 to 2021", who: "the author's reporting", claim: "reported",
+    what: "What the budget totalled over Colonel Cukor's tenure.",
+    verify: "It would rise for the rest of Cukor's tenure, totaling $1 billion",
+    also: ["on April 26, 2017", "Cukor left on the last Friday of October 2021"],
+  },
+  {
+    id: "mss-ceiling", group: "budget", label: "Maven Smart System contract ceiling", value: 1.3, unit: "billion dollars",
+    qualifier: "", when: "spring 2025, running to 2029", who: "the author's reporting", claim: "reported",
+    what: "The Pentagon's ceiling for Palantir's Maven Smart System contract, raised in spring 2025 from $480 million.",
+    verify: "In spring 2025, the Pentagon's contract ceiling for Maven Smart System was raised to $1.3 billion , due to run until 2029",
+    also: ["an Army contract with a $480 million ceiling for Maven Smart System"],
+  },
+
+  /* How big it got. */
+  {
+    id: "scale-users", group: "scale", label: "US personnel using Maven", value: 25000, unit: "people",
+    qualifier: "close to", when: "2025", who: "NGA officials, to the author", claim: "participant",
+    what: "US personnel using Maven, by NGA's count — usage had more than doubled since January.",
+    verify: "close to 25,000 US personnel were using it",
+    also: ["on a hot day in the high summer of 2025"],
+  },
+  {
+    id: "scale-companies", group: "scale", label: "Companies working on Maven", value: 32, unit: "companies",
+    qualifier: "at least", when: "2025", who: "NGA officials, to the author", claim: "participant",
+    what: "Companies working on Maven, by NGA's count.",
+    verify: "At least thirty-two different companies were working on Maven",
+    also: ["on a hot day in the high summer of 2025"],
+  },
+  {
+    id: "scale-detections", group: "scale", label: "AI detections stored", value: 1000000000, unit: "detections",
+    qualifier: "", when: "2025", who: "an NGA official, to the author", claim: "participant",
+    what: "Computer-vision detections accumulated in NGA's data store.",
+    verify: "one billion AI detections in its computer vision data store",
+    also: ["on a hot day in the high summer of 2025"],
+  },
+  {
+    id: "scale-sites", group: "scale", label: "Sites", value: 130, unit: "sites",
+    qualifier: "more than", when: "the two years to 2025", who: "nonpublic documents the author reviewed", claim: "document",
+    what: "Sites Maven was in, among them Australia, Bahrain, Cambodia, Uzbekistan, Vietnam and Yemen, plus 141 exercises and experiments.",
+    verify: "It was in more than 130 sites",
+    also: ["in the two years to 2025, Maven found its way into 141 exercises and"],
+  },
+  {
+    id: "scale-feeds", group: "scale", label: "Live data feeds at Central Command", value: 179, unit: "feeds",
+    qualifier: "", when: "2024", who: "the author's reporting", claim: "reported",
+    what: "Live feeds from land, sea, air, space and cyber pouring into Maven Smart System at US Central Command, which had 13,000 accounts.",
+    verify: "By 2024, the command had 179 different live data feeds",
+    also: ["That region alone had 13,000 accounts"],
+  },
+  {
+    id: "scale-2018-sites", group: "scale", label: "Sites in the first full year", value: 60, unit: "sites",
+    qualifier: "more than", when: "2018", who: "the author's reporting", claim: "reported",
+    what: "Over 2018 Maven's AI found its way into more than sixty sites in multiple countries, including Jordan and the UAE.",
+    verify: "over the course of 2018, Maven's AI furtively found its way into more than sixty sites in multiple countries",
+  },
+
+  /* The raw material. */
+  {
+    id: "data-classes", group: "data", label: "Object classes at launch", value: 38, unit: "classes",
+    qualifier: "", when: "when the project launched", who: "Colonel Cukor, in public", claim: "public",
+    what: "Maven's \"immediate focus\" at launch: algorithms for thirty-eight classes of object.",
+    verify: "developing algorithms for thirty-eight classes of object",
+  },
+  {
+    id: "data-per-model", group: "data", label: "Images to train one algorithm", value: 10000, unit: "images",
+    qualifier: "", when: "early Maven", who: "the author's reporting", claim: "reported",
+    what: "Training a single algorithm could require 10,000 labelled images — and every wrong label made it worse.",
+    verify: "training a single algorithm could require 10,000 images",
+  },
+  {
+    id: "data-frames", group: "data", label: "Frames in one second of drone video", value: 30, unit: "frames",
+    qualifier: "", when: "", who: "the author's reporting", claim: "reported",
+    what: "A second of full-motion video can hold thirty frames. Some annotators labelled every tenth and interpolated a straight line through the nine between.",
+    verify: "Each second of full-motion video from a drone could consist of thirty static frames",
+    also: ["labeling all nine frames in between"],
+  },
+  {
+    id: "data-discarded", group: "data", label: "Military-labelled images thrown away", value: 1000000, unit: "images",
+    qualifier: "more than", when: "2020, \"The Reboot\"", who: "Colonel Cukor, to the author", claim: "participant",
+    what: "The vendors wanted the whole military-labelled training set relabelled. \"We ended up not using any of them,\" Cukor said.",
+    verify: "relabel the entire military-created training set of more than a million images",
+    also: ["in early 2020, a Maven team was visiting"],
+  },
+  {
+    id: "data-labelers", group: "data", label: "Professional labellers", value: 400, unit: "people",
+    qualifier: "", when: "later", who: "a Clarifai scientist, to the author", claim: "participant",
+    what: "Professional data labellers running eight-hour shifts all year round.",
+    verify: "Maven would have four hundred professional",
+    also: ["data labelers running eight-hour shifts all year round"],
+  },
+  {
+    id: "data-store", group: "data", label: "Professionally labelled images", value: 100000000, unit: "images",
+    qualifier: "at least", when: "later", who: "the author's reporting", claim: "reported",
+    what: "Maven's eventual store of professionally labelled images.",
+    verify: "a precious store of at least 100 million professionally labeled images",
+  },
+  {
+    id: "data-tested", group: "data", label: "Algorithms tested", value: 1500, unit: "algorithms",
+    qualifier: "more than", when: "2021 and 2022", who: "the author's reporting", claim: "reported",
+    what: "Algorithms the Maven team tested and evaluated over 2021 and 2022.",
+    verify: "Over the course of 2021 and 2022, the Maven team tested and evaluated more than 1,500 algorithms",
+  },
+  {
+    id: "data-used", group: "data", label: "Made the cut for Ukraine", value: 24, unit: "algorithms",
+    qualifier: "", when: "for Ukraine", who: "the author's reporting", claim: "reported",
+    what: "Two dozen made the cut to be actively used in support of Ukraine.",
+    verify: "Two dozen made the cut to be actively used in support of Ukraine",
+  },
+  {
+    id: "data-sprint", group: "data", label: "Days to ship a new model, wartime", value: 45, unit: "days",
+    qualifier: "", when: "for Ukraine", who: "the author's reporting", claim: "reported",
+    what: "Vendors usually got ninety days to develop, test and deploy a model. For Ukraine — controversially — forty-five.",
+    verify: "they gave them—controversially—only forty-five days",
+    also: ["Usually Project Maven gave vendors ninety days"],
+  },
+
+  /* What the machine is actually looking at. */
+  {
+    id: "px-object", group: "pixels", label: "A sought-after object on a multispectral image", value: 10, unit: "pixels",
+    qualifier: "", when: "", who: "the author's reporting", claim: "reported",
+    what: "A highly sought-after object on a multispectral satellite image might occupy only ten pixels.",
+    verify: "might occupy only ten pixels",
+  },
+  {
+    id: "px-human-lo", group: "pixels", label: "A person, at the low end", value: 50, unit: "pixels",
+    qualifier: "", when: "", who: "the author's reporting", claim: "reported",
+    what: "The low end of the range for a person.",
+    verify: "A human might constitute between fifty and eighty pixels",
+  },
+  {
+    id: "px-human-hi", group: "pixels", label: "A person", value: 80, unit: "pixels",
+    qualifier: "up to", when: "", who: "the author's reporting", claim: "reported",
+    what: "A human might be fifty to eighty pixels — often too few to tell a man from a woman.",
+    verify: "A human might constitute between fifty and eighty pixels",
+  },
+  {
+    id: "px-weapon", group: "pixels", label: "A weapon on a shoulder", value: 3, unit: "pixels",
+    qualifier: "", when: "", who: "the author's reporting", claim: "reported",
+    what: "A weapon on a shoulder might be three pixels.",
+    verify: "A weapon on a shoulder might constitute three pixels",
+  },
+
+  /* Why they needed it. */
+  {
+    id: "sorties-2001", group: "deluge", label: "Battlefield drone sorties, 2001", value: 54, unit: "sorties",
+    qualifier: "", when: "2001", who: "the author's reporting", claim: "reported",
+    what: "Battlefield drone sorties the US flew in 2001.",
+    verify: "From flying fifty-four battlefield drone sorties in 2001",
+  },
+  {
+    id: "sorties-2010", group: "deluge", label: "Battlefield drone sorties, 2010", value: 8000, unit: "sorties",
+    qualifier: "close to", when: "2010", who: "the author's reporting", claim: "reported",
+    what: "Close to eight thousand by 2010.",
+    verify: "the number had reached close to eight thousand in 2010",
+  },
+  {
+    id: "video-2016", group: "deluge", label: "Surveillance footage recorded in 2016", value: 80, unit: "years of video",
+    qualifier: "", when: "2016", who: "the author's reporting", claim: "reported",
+    what: "Surveillance data recorded in a single year, 2016, was the equivalent of eighty full years of video. A senior official learned in Baghdad that no one was even looking at it.",
+    verify: "The intelligence, surveillance, and reconnaissance (ISR) data recorded in 2016 was so overwhelming it was equivalent to eighty full years of video footage",
+  },
+
+  /* Beyond the screen. */
+  {
+    id: "harbinger-models", group: "autonomy", label: "Undersea acoustic models tested", value: 600, unit: "models",
+    qualifier: "more than", when: "spring 2022 to 2025", who: "documents the author reviewed", claim: "document",
+    what: "Australia, the UK and the US pooled sonar data in a shared \"Secret\" cloud; more than 250 users tested more than six hundred models for hunting submarines.",
+    verify: "In the space of three years since the spring of 2022, the allies have tested more than six hundred models",
+    also: ["More than 250 users in Australia, the UK, and US", "In 2025, the process was working"],
+  },
+  {
+    id: "goalkeeper", group: "autonomy", label: "Goalkeeper munitions planned", value: 2100, unit: "munitions",
+    qualifier: "", when: "2024 and 2025 budget documents", who: "the author's reporting", claim: "reported",
+    what: "Goalkeeper: a loitering drone that, once activated, picks its own moving maritime target and fires. The aim was to produce 2,100.",
+    verify: "The aim was to produce 2,100 munitions under Goalkeeper",
+    also: ["Goalkeeper appears in the fine print of 2024 budget documents, and again in 2025 budget documents"],
+  },
+  {
+    id: "whiplash", group: "autonomy", label: "Jet skis for Whiplash", value: 600, unit: "jet skis",
+    qualifier: "", when: "", who: "the author's reporting", claim: "reported",
+    what: "Whiplash intended to turn six hundred jet skis into lethal autonomous surface drones.",
+    verify: "turn six hundred jet skis such as Yamaha WaveRunners into lethal autonomous surface drones",
+  },
+  {
+    id: "autonomy-spend", group: "autonomy", label: "Goalkeeper and Whiplash, combined", value: 588, unit: "million dollars",
+    qualifier: "", when: "2026 budget documents", who: "the author's reporting", claim: "reported",
+    what: "Spending on Goalkeeper and Whiplash combined more than doubled once their names left the budget documents.",
+    verify: "spending allocated to both platforms combined has more than doubled to $588 million",
+    also: ["By the time the 2026 budget documents were published in June 2025"],
+  },
+  {
+    id: "ban-countries", group: "ban", label: "Countries seeking a ban", value: 129, unit: "countries",
+    qualifier: "", when: "May 2025", who: "the author's reporting at the UN", claim: "reported",
+    what: "Countries that had indicated they wanted a ban on lethal autonomous weapons systems. The US opposed one.",
+    verify: "So far, 129 countries had indicated they wanted a ban on lethal autonomous weapons systems",
+    also: ["on the morning of may 12, 2025"],
+  },
+];
+
+/* ── How a network learns to see, in Matt Zeiler's words ──────────────── */
+
+/**
+ * The founder of one of Maven's first four AI vendors explaining to the author
+ * what a convolutional network's layers pick out. The quotations are what the
+ * page shows on each layer, so each is verified whole.
+ */
+export const LAYERS = [
+  { id: "edges", label: "Lines", quote: "filters things into different orientations like a vertical line, a horizontal line" },
+  { id: "shapes", label: "Shapes", quote: "rods and cones and that kind of stuff" },
+  { id: "parts", label: "Parts", quote: "you’ll see an eyeball feature emerge, a finger" },
+  { id: "things", label: "Things", quote: "oh, this is a face or a person" },
+];
+
+/* ── The chain: where the humans are ──────────────────────────────────── */
+
+/**
+ * The joint targeting cycle's six phases, in the book's own paraphrase of the
+ * doctrine, and how many of them Maven took people out of. The positions of
+ * the two human steps that remain are the book's, from the 18th Airborne
+ * Corps; nothing here assigns a step to a machine on its own authority.
+ */
+export const CYCLE = {
+  phases: [
+    { id: "guidance", label: "Commander's guidance", verify: "the commander issues targeting guidance" },
+    { id: "develop", label: "Target development and prioritisation", verify: "a target development and prioritization process rakes through the options" },
+    { id: "capabilities", label: "Capabilities analysis", verify: "during capabilities analysis the best options to go after the targets are evaluated" },
+    { id: "assign", label: "Commander assigns forces", verify: "the commander assigns available forces, sensors, and weapons systems" },
+    { id: "execute", label: "Plan and execute", verify: "forces plan and execute the mission" },
+    { id: "assess", label: "Combat assessment", verify: "then combat assessment determines how effective they've been" },
+  ],
+  removed: {
+    what: "Maven was giving fallible AI the chance to take shortcuts through the decision-making loop, taking humans out of their traditional role in four of the six places.",
+    verify: "plucking humans out from their traditional role in the cycle in four of six places",
+  },
+  remaining: {
+    what: "At the 18th Airborne Corps the human role \"in the loop\" was reduced to two places: the decision to act, and the action itself. Everything else became AI-enabled, with a human \"on the loop\".",
+    verify: "he reduced the human role “in the loop” (meaning a human had to make the decision) to only two places: the decision to act and the action itself",
+  },
+  policy: {
+    what: "US policy does not require a human in or on the loop at all — only \"appropriate levels of human judgment over the use of force.\"",
+    verify: "It states only that “ appropriate levels of human judgment over the use of force ” are required",
+  },
+};
+
+/* ── The sequence ─────────────────────────────────────────────────────── */
+
+export interface Beat {
+  id: string;
+  /** ISO date or year-month, as precise as the book is and no more. */
+  date: string;
+  part: "origins" | "find" | "fix" | "finish" | "feedback";
+  label: string;
+  what: string;
+  claim: Claim;
+  verify: string;
+  also?: string[];
+}
+
+export const BEATS: Beat[] = [
+  {
+    id: "thesis", date: "1997", part: "origins", label: "The white dot",
+    what: "In a 1997 thesis a young Marine officer, Drew Cukor, imagines \"white dots\" on a screen — each a located enemy — fused into an accurate picture of the battlefield.",
+    claim: "document", verify: "White dots fused with an understanding of the enemy and validated by other collection assets",
+    also: ["he wrote in 1997"],
+  },
+  {
+    id: "demo", date: "2017-03", part: "origins", label: "A $120,000 demo",
+    what: "A startup is paid $120,000 to build a model that puts a white dot on drone video every time a chosen object appears. It \"elicited wows\".",
+    claim: "reported", verify: "for $120,000 got them to build a computer vision model for some unclassified video pulled off a drone",
+    also: ["In March 2017, Spirk went to San Francisco"],
+  },
+  {
+    id: "memo", date: "2017-04-26", part: "find", label: "Project Maven is signed into existence",
+    what: "Deputy Defense Secretary Bob Work signs the memo creating the Algorithmic Warfare Cross-Functional Team. Cukor becomes its chief.",
+    claim: "reported", verify: "Work signed the project into existence in a memo outlining its scope on April 26, 2017",
+  },
+  {
+    id: "somalia", date: "2017-12", part: "find", label: "First algorithm in a war zone",
+    what: "Somalia: the first computer-vision algorithm reaches a combat zone within eight months of the project starting. It takes down the network for forty-five minutes, draws boxes so thick they hide what people carry, and flags \"a school bus in the sky\". Operators switch it off.",
+    claim: "participant", verify: "within eight months of starting Project Maven",
+    also: ["We brought the whole fucking thing down for forty-five minutes", "there was a school bus in the sky", "that hot December morning in 2017"],
+  },
+  {
+    id: "google-breaks", date: "2018-03-06", part: "find", label: "Google's role leaks",
+    what: "News of Google's work on Maven breaks. A petition — \"We believe that Google should not be in the business of war\" — follows.",
+    claim: "public", verify: "On March 6, 2018, news of Google's work for Project Maven broke",
+  },
+  {
+    id: "google-out", date: "2018-06", part: "find", label: "Google won't renew",
+    what: "Google says it will not renew its Maven contract and publishes AI principles ruling out weapons. Microsoft and Amazon Web Services step in. In February 2025 Google drops the weapons refusal.",
+    claim: "public", verify: "in June Google announced it wouldn't renew its contract on Project Maven",
+    also: ["Years later, in February 2025, Cukor sent me a link to a news story", "On March 6, 2018, news of Google's work for Project Maven broke"],
+  },
+  {
+    id: "afghanistan", date: "2018", part: "fix", label: "Afghanistan: trees as people",
+    what: "Maven is in eight sites across Afghanistan by the fall. The algorithm identifies trees as people, rocks as buildings, buildings as cars.",
+    claim: "reported", verify: "managed to get Maven into eight sites across the country",
+    also: ["The algorithm would identify trees as people", "By the time Ward arrived in Afghanistan in the fall of 2018"],
+  },
+  {
+    id: "mss", date: "2019", part: "fix", label: "The Maven Smart System",
+    what: "Palantir's platform puts AI detections on maps and video for special operators. Users in Djibouti say it sucks; Palantir makes sixty changes that spring. By mid-2019 it is providing an operations picture in every US war zone.",
+    claim: "reported", verify: "By the middle of 2019, Maven Smart System was providing an operations picture in every war zone where the US was fighting",
+    also: ["That spring of 2019, Palantir made sixty changes to the platform"],
+  },
+  {
+    id: "baghdadi", date: "2019-10", part: "fix", label: "\"Oh look at that dot\"",
+    what: "The raid on Abu Bakr al-Baghdadi's compound in Syria. Maven's AI spots a moving van before the human screeners do; a helicopter strikes it. The first time that commander used AI to help find a target.",
+    claim: "participant", verify: "It was the first time that the commander had ever used AI to help find a target",
+    also: ["hideout in northwest Syria in October 2019"],
+  },
+  {
+    id: "soleimani", date: "2020-01-02", part: "finish", label: "Soleimani",
+    what: "Maven's algorithms are used to track the vehicle carrying Qasem Soleimani from Baghdad airport until after the US fires on it. Maven's own team learns of it weeks later.",
+    claim: "reported", verify: "the algorithms developed under their own program were used to track the vehicle carrying Soleimani",
+    also: ["the January 2, 2020, strike"],
+  },
+  {
+    id: "first-ai-target", date: "2020-08-27", part: "finish", label: "\"The first AI-derived target\"",
+    what: "At Fort Bragg the 18th Airborne Corps fires a HIMARS rocket at an old tank hull the AI found on a satellite image — more than twelve hours after it started looking.",
+    claim: "participant", verify: "On the night of August 27, 2020, the 18th carried out what O'Callaghan calls “the first AI-derived target”",
+    also: ["more than twelve hours after the system had started looking for it"],
+  },
+  {
+    id: "kabul", date: "2021-08-29", part: "finish", label: "Kabul",
+    what: "A US drone strike on a white Toyota Corolla tracked for eight hours kills ten civilians, seven of them children. Maven was not switched on. Rerun afterwards, its models found the adult man and missed the children.",
+    claim: "reported", verify: "It picked out the adult male but it didn't pick out the children",
+    also: ["On August 29, after following a white Toyota Corolla sedan for eight hours", "All ten people killed were civilians, including seven children", "On August 26, 2021"],
+  },
+  {
+    id: "nga", date: "2021-09-03", part: "finish", label: "Maven moves to the spy agency",
+    what: "A memo moves most of Maven to the National Geospatial-Intelligence Agency. Cukor retires at the end of October 2021.",
+    claim: "reported", verify: "On September 3, 2021, a memo supported the transition of Maven's AI training and geospatial data lines of effort to NGA",
+  },
+  {
+    id: "ukraine", date: "2022-02-24", part: "finish", label: "Ukraine",
+    what: "Maven is running in \"the Pit\" at Wiesbaden within three hours. Accuracy collapses, then recovers after little more than two weeks of new imagery and retraining.",
+    claim: "participant", verify: "Within three hours, Maven was up and running in the fusion cell",
+    also: ["It took little more than two weeks of new imagery and retraining", "It was early February 2022", "right up until February 24"],
+  },
+  {
+    id: "program-of-record", date: "2023-11", part: "finish", label: "Program of record",
+    what: "Maven becomes a fully funded line of effort. Its budget is now classified.",
+    claim: "reported", verify: "Maven became a “ program of record ” at the beginning of November 2023",
+  },
+  {
+    id: "centcom", date: "2024-02", part: "finish", label: "Eighty-five targets",
+    what: "US Central Command says Maven's AI helped narrow down more than eighty-five targets US aircraft then struck in Iraq and Syria — public confirmation the US uses AI to identify targets for its own weapons.",
+    claim: "public", verify: "Maven's AI helped narrow down more than eighty-five targets",
+    also: ["In February 2024, the command used Maven Smart System"],
+  },
+  {
+    id: "nato", date: "2025", part: "feedback", label: "NATO buys it",
+    what: "NATO adopts the Maven Smart System in the spring. By October ten member countries have agreed or are seeking national versions.",
+    claim: "participant", verify: "had by October 2025 spurred ten member countries including the UK to agree or seek their own national versions",
+  },
+];
+
+/* ── Scenes: the moments the book reconstructs ────────────────────────── */
+
+export interface Account { who: string; says: string; verify: string }
+
+export interface Scene {
+  id: string;
+  date: string;
+  place: string;
+  title: string;
+  /** What the AI did in this scene, in one word the chart can colour by. */
+  ai: "found" | "missed" | "off" | "failed" | "helped";
+  what: string;
+  accounts: Account[];
+  verify: string;
+  also?: string[];
+}
+
+export const SCENES: Scene[] = [
+  {
+    id: "sangin", date: "2011-04", place: "Sangin, Helmand, Afghanistan", title: "The shot an algorithm would not have taken",
+    ai: "off",
+    what: "Before Maven. A 21-year-old analyst watching a Predator feed types that the three men on screen are shooting west, away from the Marines. His note is not passed on. A Hellfire kills a Marine and a Navy medic — the first known drone-strike fratricide.",
+    accounts: [
+      { who: "Colin Carroll, Maven's later integration lead, who heard the strike", says: "An algorithm would never have taken that shot", verify: "An algorithm would never have taken that shot" },
+      { who: "Carroll, again", says: "We kill the wrong people all the time", verify: "We kill the wrong people all the time" },
+    ],
+    verify: "Fratricide. The first known case involving a drone strike",
+    also: ["a twenty-one-year-old Ward didn't interrupt the mission further", "He saw three men on screen laying prone", "In early April, 2011"],
+  },
+  {
+    id: "farmer", date: "2018", place: "Afghanistan", title: "Forty seconds, or one",
+    ai: "found",
+    what: "Screeners about to launch a strike. An analyst takes forty seconds to spot a farmer with his sheep; the strike is aborted. Replayed with Maven overlaid, the AI detected him within a second of his walking into view. Cukor's response: don't say strike again.",
+    accounts: [
+      { who: "A Maven contractor", says: "as soon as he walked onto the view, within a second, and tracked him the entire time", verify: "as soon as he walked onto the view, within a second, and tracked him the entire time" },
+    ],
+    verify: "It had taken the analyst forty seconds to spot the person, a farmer with a herd of sheep",
+    also: ["in the middle of 2018 as the Google debacle roiled"],
+  },
+  {
+    id: "van", date: "2019-10", place: "Barisha, Idlib, Syria", title: "The van",
+    ai: "found",
+    what: "During the Baghdadi raid, Maven's AI pings on a vehicle before the screeners see it. It turns west at a T-junction toward the raid. The ground commander calls it in; thirty seconds later an attack helicopter fires.",
+    accounts: [
+      { who: "A person who watched the feed", says: "Those were definitely bad guys that the AI ended up picking up", verify: "Those were definitely bad guys that the AI ended up picking up" },
+      { who: "Barakat Ahmad Barakat, who told NPR he was driving home from an olive press with two cousins, both killed", says: "Am I Baghdadi? How is this my fault? I'm just a civilian. I didn't have any weapons", verify: "Am I Baghdadi? How is this my fault? I'm just a civilian. I didn't have any weapons" },
+      { who: "The person who watched the feed, on the AI's part in it", says: "That's a human decision; not an AI decision", verify: "That's a human decision; not an AI decision" },
+    ],
+    verify: "Thirty seconds later an attack helicopter swooped in",
+    also: ["hideout in northwest Syria in October 2019"],
+  },
+  {
+    id: "booby-trap", date: "", place: "Helmand, Afghanistan", title: "Counting Marines in the dust",
+    ai: "helped",
+    what: "A compound wall explodes on a Marine raid. Analysts use the AI's boxes to count every Marine out of the dust cloud — none trapped — and pull grid coordinates off the video within seconds, not minutes, so the air strike hits the bunker and not them.",
+    accounts: [],
+    verify: "Counting out each one with the help of the boxes, the analysts confirmed none was trapped under the collapsed wall",
+    also: ["a process that would usually take minutes to do manually"],
+  },
+  {
+    id: "kabul-rerun", date: "2021-08-29", place: "Kabul, Afghanistan", title: "What the machine could not see",
+    ai: "missed",
+    what: "After the Kabul strike killed ten civilians, an aide asked Brian Ward whether Maven would have seen the children. He ran several models at every sensitivity setting over the drone footage.",
+    accounts: [
+      { who: "Brian Ward, Maven's operations lead", says: "It picked out the adult male but it didn't pick out the children", verify: "It picked out the adult male but it didn't pick out the children" },
+      { who: "An algorithm vendor", says: "It's a probabilistic system", verify: "It's a probabilistic system" },
+    ],
+    verify: "When Ward ran several AI models across the feed, at varying levels of sensitivity",
+    also: ["All ten people killed were civilians, including seven children", "On August 26, 2021", "On August 29"],
+  },
+  {
+    id: "tel", date: "2023", place: "Ukraine", title: "Eighteen minutes",
+    ai: "found",
+    what: "A US team finds a Russian missile launcher with Maven's computer vision and passes it on; Ukrainian forces destroy it eighteen minutes after the Americans first spotted it. Sharing on moving targets was later stopped.",
+    accounts: [],
+    verify: "who destroyed it eighteen minutes after the Americans had first spotted it",
+    also: ["In summer 2023, though, he said the replacement US team"],
+  },
+];
+
+/* ── Voices: verbatim, and attributed ─────────────────────────────────── */
+
+export interface Voice {
+  id: string;
+  who: string;
+  role: string;
+  /** The quotation, exactly as printed. It is also what gets verified. */
+  quote: string;
+  stance: "for" | "against" | "doubt";
+  /**
+   * A longer phrase around the quotation, when the quotation alone would
+   * first match a chapter's epigraph rather than the passage where the person
+   * says it. The page is then read from here.
+   */
+  context?: string;
+}
+
+export const VOICES: Voice[] = [
+  { id: "cukor-strike", who: "Drew Cukor", role: "Maven's founding chief", stance: "for",
+    quote: "I won't lie. That was always in my head, it was in all of our heads" },
+  { id: "cukor-chips", who: "Drew Cukor", role: "on the early algorithms", stance: "doubt",
+    quote: "The AI is just a bag of potato chips",
+    context: "The AI is just a bag of potato chips,” Cukor would tell Ward and others" },
+  { id: "carroll", who: "Colin Carroll", role: "Maven's integration lead", stance: "for",
+    quote: "The machine can't be worse than a human" },
+  { id: "zeiler", who: "Matt Zeiler", role: "Clarifai founder", stance: "for",
+    quote: "It doesn't get tired, it doesn't get hungry, it doesn't get stressed out" },
+  { id: "whittaker", who: "Meredith Whittaker", role: "Google researcher who helped organise the protest", stance: "against",
+    quote: "There are many more Mavens" },
+  { id: "nolan", who: "Laura Nolan", role: "Google engineer who resigned", stance: "against",
+    quote: "People always say it will save lives. And they don't really specify how" },
+  { id: "guterres", who: "António Guterres", role: "UN secretary-general, 2018", stance: "against",
+    quote: "The prospect of machines with the discretion and power to take human life is morally repugnant" },
+  { id: "shanahan-fog", who: "Jack Shanahan", role: "Maven's director, 2019", stance: "doubt",
+    quote: "I'm never going to say that AI is going to eliminate friction, chaos, the fog of war. Never" },
+  { id: "donahue", who: "Christopher Donahue", role: "commanded the 18th Airborne Corps in Ukraine", stance: "doubt",
+    quote: "It just depends on how humans decide to use it" },
+  { id: "donahue-weapon", who: "Christopher Donahue", role: "asked whether Maven is a weapons system", stance: "for",
+    quote: "Oh, absolutely" },
+  { id: "cogbill", who: "John Cogbill", role: "US Central Command, 2024", stance: "for",
+    quote: "Shortening kill chains is universally good",
+    context: "Shortening kill chains is universally good ,” Cogbill said on an April 2024 podcast" },
+  { id: "temple", who: "Joey Temple", role: "18th Airborne targeting officer", stance: "doubt",
+    quote: "I don't ever wanna get caught short" },
+  { id: "pfaff", who: "Anthony Pfaff", role: "military ethicist who advised the 18th", stance: "doubt",
+    quote: "If they're riskless why not use them more? I think that's a legitimate concern" },
+  { id: "pfaff-bias", who: "Anthony Pfaff", role: "on screens full of machine-made targets", stance: "doubt",
+    quote: "It's not hard to get humans to trust machines" },
+  { id: "rogers", who: "Michael Rogers", role: "former NSA director, after visiting Israel", stance: "doubt",
+    quote: "Just because we can do something doesn't mean we should" },
+  { id: "bryant", who: "Wes Bryant", role: "former civilian-harm assessor", stance: "doubt",
+    quote: "This one might not be the right one" },
+  { id: "mcconville", who: "James McConville", role: "former Army chief of staff", stance: "doubt",
+    quote: "who is responsible when AI does the targeting, they do the shooting, and you put a missile into a van with a family? Who owns that?" },
+  { id: "altman", who: "Sam Altman", role: "OpenAI chief executive", stance: "doubt",
+    quote: "I don't think most of the world wants AI making weapons decisions" },
+  { id: "cukor-guardrails", who: "Drew Cukor", role: "on what the tool allows", stance: "doubt",
+    quote: "But can you do something horrific with this technology? Can you take those guardrails off? Yes" },
+  { id: "cukor-custodians", who: "Drew Cukor", role: "the last word in the book", stance: "doubt",
+    quote: "We have all this tech; are we the best custodians of it?" },
+];
+
+/* ── Where the book puts it ───────────────────────────────────────────── */
+
+/**
+ * Countries the book names as places Maven ran, or as where its data came
+ * from. Coordinates are not typed: each is the centroid of the country's
+ * polygon in world-atlas, the same file every map on the site uses. A
+ * country's name here is the book's; nothing is added that the book does not
+ * say.
+ */
+export interface Where {
+  iso: string;
+  name: string;
+  kind: "deployed" | "support" | "watched";
+  verify: string;
+}
+
+export const WHERE: Where[] = [
+  { iso: "706", name: "Somalia", kind: "deployed", verify: "Carroll figured Somalia was a good place for the first Maven algorithm to land" },
+  { iso: "004", name: "Afghanistan", kind: "deployed", verify: "managed to get Maven into eight sites across the country" },
+  { iso: "400", name: "Jordan", kind: "deployed", verify: "more than sixty sites in multiple countries, including Jordan and the UAE" },
+  { iso: "784", name: "United Arab Emirates", kind: "deployed", verify: "more than sixty sites in multiple countries, including Jordan and the UAE" },
+  { iso: "262", name: "Djibouti", kind: "deployed", verify: "The first, primitive version of Maven Smart System was now bound for Djibouti" },
+  { iso: "608", name: "The Philippines", kind: "deployed", verify: "to as low as 30 percent in the Philippines" },
+  { iso: "368", name: "Iraq", kind: "deployed", verify: "He went to Afghanistan, Iraq, Syria, Jordan, Djibouti, and the Philippines for Maven" },
+  { iso: "760", name: "Syria", kind: "deployed", verify: "He went to Afghanistan, Iraq, Syria, Jordan, Djibouti, and the Philippines for Maven" },
+  { iso: "276", name: "Germany", kind: "support", verify: "Within three hours, Maven was up and running in the fusion cell" },
+  { iso: "616", name: "Poland", kind: "support", verify: "US forces ran the border control camera feeds straight into Maven Smart System" },
+  { iso: "804", name: "Ukraine", kind: "support", verify: "the 18th Airborne Corps sent tens of thousands of targets to the Ukrainians with the help of Maven Smart System" },
+  { iso: "887", name: "Yemen", kind: "deployed", verify: "Australia, Bahrain, Cambodia, Uzbekistan, Vietnam, and Yemen among them" },
+  { iso: "036", name: "Australia", kind: "deployed", verify: "Australia, Bahrain, Cambodia, Uzbekistan, Vietnam, and Yemen among them" },
+  { iso: "048", name: "Bahrain", kind: "deployed", verify: "Australia, Bahrain, Cambodia, Uzbekistan, Vietnam, and Yemen among them" },
+  { iso: "116", name: "Cambodia", kind: "deployed", verify: "Australia, Bahrain, Cambodia, Uzbekistan, Vietnam, and Yemen among them" },
+  { iso: "860", name: "Uzbekistan", kind: "deployed", verify: "Australia, Bahrain, Cambodia, Uzbekistan, Vietnam, and Yemen among them" },
+  { iso: "704", name: "Vietnam", kind: "deployed", verify: "Australia, Bahrain, Cambodia, Uzbekistan, Vietnam, and Yemen among them" },
+  { iso: "826", name: "United Kingdom", kind: "deployed", verify: "It was at two sites in the UK" },
+  { iso: "392", name: "Japan", kind: "deployed", verify: "Maven had people based permanently in Japan, Germany, and Qatar" },
+  { iso: "634", name: "Qatar", kind: "deployed", verify: "Maven had people based permanently in Japan, Germany, and Qatar" },
+  { iso: "410", name: "South Korea", kind: "deployed", verify: "rotate people through Jordan, Djibouti, the Republic of Korea, and Poland" },
+  { iso: "840", name: "United States", kind: "deployed", verify: "NORTHCOM, the command for homeland defense, and NORAD" },
+  { iso: "156", name: "China", kind: "watched", verify: "It was analyzing data collected over China and North Korea" },
+  { iso: "408", name: "North Korea", kind: "watched", verify: "It was analyzing data collected over China and North Korea" },
+  { iso: "398", name: "Kazakhstan", kind: "watched", verify: "Kazakhstan and Myanmar, Pakistan and Russia" },
+  { iso: "104", name: "Myanmar", kind: "watched", verify: "Kazakhstan and Myanmar, Pakistan and Russia" },
+  { iso: "586", name: "Pakistan", kind: "watched", verify: "Kazakhstan and Myanmar, Pakistan and Russia" },
+  { iso: "643", name: "Russia", kind: "watched", verify: "Kazakhstan and Myanmar, Pakistan and Russia" },
+];
+
+/* ── Output ───────────────────────────────────────────────────────────── */
+
+const CANNOT_SAY = [
+  "Whether Maven works. The book reports accuracy figures from particular places, times and tests; they move from 70 percent to 10 and back within weeks, and they measure different things. None is a verdict on the system.",
+  "How many people Maven's detections helped kill, or spared. The book names cases on both sides and states plainly that this is not known; the budget has been classified since 2023 and Maven's records are exempt from Freedom of Information requests.",
+  "That a participant's account is true. Much of the book is what people involved told the author, and the record says whose each claim is. A quote verified against the book is a guarantee about the citation, not about the events.",
+  "That the book's figures agree with each other. Chapters 12 and 18 give different budgets for 2019; both are shown, and neither is chosen.",
+];
+
+function cite(chapters: Chapter[], firstAnchor: Map<string, number>, failures: string[]) {
+  return (verify: string, what: string) => {
+    const r = locate(chapters, verify);
+    if (!r.found) failures.push(`${what}: "${verify.slice(0, 70)}" is not in the book`);
+    /*
+     * Text before a chapter's first page anchor sits on the page before that
+     * anchor, which is the chapter's opening page. That is read, not guessed.
+     */
+    const page = r.page ?? (r.found ? (firstAnchor.get(r.chapter) ?? 0) - 1 : null);
+    return { chapter: r.chapterLabel, page: page !== null && page > 0 ? page : null };
+  };
+}
+
+export function firstAnchors(chapters: Chapter[]): Map<string, number> {
+  const m = new Map<string, number>();
+  for (const c of chapters) {
+    const hit = /\[\[p(\d{1,4})\]\]/.exec(c.text);
+    if (hit) m.set(c.id, Number.parseInt(hit[1] ?? "0", 10));
+  }
+  return m;
+}
+
+/**
+ * Centroids from the coarse atlas, and from the finer one only for countries
+ * too small to survive at 110m (Bahrain does not).
+ */
+async function centroids(): Promise<Map<string, [number, number]>> {
+  const coarse = (await import("world-atlas/countries-110m.json", { with: { type: "json" } })).default;
+  const fine = (await import("world-atlas/countries-50m.json", { with: { type: "json" } })).default;
+  const out = new Map<string, [number, number]>();
+  for (const topo of [coarse, fine]) {
+    const fc = feature(topo as never, (topo as never as { objects: { countries: unknown } }).objects.countries as never);
+    for (const f of (fc as unknown as { features: Array<{ id?: string | number }> }).features) {
+      const id = String(f.id ?? "").padStart(3, "0");
+      if (out.has(id)) continue;
+      const [lon, lat] = geoCentroid(f as never);
+      if (Number.isFinite(lon) && Number.isFinite(lat)) out.set(id, [Number(lon.toFixed(2)), Number(lat.toFixed(2))]);
+    }
+  }
+  return out;
+}
+
+async function main(): Promise<void> {
+  const book = findBook(BOOK_DIR, "Project Maven");
+  const chapters = readChapters(book, CHAPTERS);
+  console.log(`Read ${chapters.length} chapters from ${book.split("/").pop()}`);
+
+  const failures: string[] = [];
+  const at = cite(chapters, firstAnchors(chapters), failures);
+  const withAlso = (also: string[] | undefined, what: string) => {
+    for (const a of also ?? []) at(a, `${what} (also)`);
+  };
+
+  const figures = FIGURES.map((f) => { withAlso(f.also, `figure ${f.id}`); return { ...f, ...at(f.verify, `figure ${f.id}`) }; });
+  const beats = BEATS.map((b) => { withAlso(b.also, `beat ${b.id}`); return { ...b, ...at(b.verify, `beat ${b.id}`) }; });
+  const scenes = SCENES.map((s) => {
+    withAlso(s.also, `scene ${s.id}`);
+    return {
+      ...s, ...at(s.verify, `scene ${s.id}`),
+      accounts: s.accounts.map((a, i) => ({ ...a, ...at(a.verify, `scene ${s.id} account ${i}`) })),
+    };
+  });
+  const voices = VOICES.map((v) => {
+    const quoted = at(v.quote, `voice ${v.id}`);
+    return { ...v, ...(v.context ? at(v.context, `voice ${v.id} context`) : quoted) };
+  });
+  const layers = LAYERS.map((l) => ({ ...l, ...at(l.quote, `layer ${l.id}`) }));
+  const cycle = {
+    phases: CYCLE.phases.map((p) => ({ ...p, ...at(p.verify, `phase ${p.id}`) })),
+    removed: { ...CYCLE.removed, ...at(CYCLE.removed.verify, "cycle removed") },
+    remaining: { ...CYCLE.remaining, ...at(CYCLE.remaining.verify, "cycle remaining") },
+    policy: { ...CYCLE.policy, ...at(CYCLE.policy.verify, "cycle policy") },
+  };
+
+  const cents = await centroids();
+  const where = WHERE.map((w) => ({ ...w, ...at(w.verify, `where ${w.iso}`), position: cents.get(w.iso) ?? null }));
+
+  if (failures.length > 0) {
+    console.error("\nEvery fact must still be in the book it is sourced to. These are not:");
+    for (const f of failures) console.error(`  ${f}`);
+    throw new Error(`${failures.length} curated fact(s) no longer verify against the book`);
+  }
+  const unplaced = where.filter((w) => w.position === null);
+  if (unplaced.length > 0) throw new Error(`No atlas polygon for: ${unplaced.map((u) => u.name).join(", ")}`);
+
+  await mkdir(OUT_DIR, { recursive: true });
+  await writeFile(OUT, JSON.stringify({
+    builtAt: new Date().toISOString(),
+    book: BOOK,
+    parts: PARTS.map((p) => ({ ...p, chapters: p.chapters.map((c) => CHAPTERS[c]) })),
+    method:
+      "Facts read out of the book and typed here by hand, then verified: each carries a phrase "
+      + "that must still appear in the book, quotations are verified whole, and any further number "
+      + "a record's prose mentions must be found in one of its verified phrases. Page numbers are "
+      + "not typed — each is read from the print-page anchors in the EPUB. Country positions are "
+      + "polygon centroids from world-atlas, not typed coordinates.",
+    claims: {
+      reported: "The author's own finding.",
+      participant: "What someone involved in Maven, its vendors or its users told the author.",
+      document: "From a document the author reviewed.",
+      public: "On the public record: a speech, a report, a filing.",
+      contested: "Two accounts in the book conflict; both are kept.",
+    },
+    cannotSay: CANNOT_SAY,
+    counts: {
+      figures: figures.length, beats: beats.length, scenes: scenes.length,
+      voices: voices.length, where: where.length,
+    },
+    figures, layers, cycle, beats, scenes, voices, where,
+  }, null, 2) + "\n", "utf8");
+
+  console.log(
+    `\nWrote ${OUT}: ${figures.length} figures, ${beats.length} beats, ${scenes.length} scenes, `
+    + `${voices.length} voices, ${where.length} countries. All verified against the book.`,
+  );
+}
+
+if (isEntryPoint(import.meta.url)) {
+  void main();
+}

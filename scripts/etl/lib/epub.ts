@@ -32,7 +32,13 @@ export function plainText(xhtml: string): string {
   s = s.replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&#8217;|&rsquo;/g, "’")
     .replace(/&#8216;|&lsquo;/g, "‘").replace(/&quot;|&#8220;|&#8221;/g, '"')
     .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&#(\d+);/g, (_, d: string) => String.fromCharCode(Number(d)));
-  return s.replace(/[ \t]+/g, " ").replace(/\n\s*\n+/g, "\n\n").trim();
+  /*
+   * Soft hyphens out. Typeset EPUBs scatter U+00AD through every long word so
+   * a reader can break lines — the Project Maven book carries them even in
+   * its chapter titles, "Chap\u00ADter". Invisible on screen, they make a
+   * copied phrase fail to match the text it was copied from.
+   */
+  return s.replace(/\u00AD/g, "").replace(/[ \t]+/g, " ").replace(/\n\s*\n+/g, "\n\n").trim();
 }
 
 /** The one EPUB in a directory, by a distinguishing fragment of its filename. */

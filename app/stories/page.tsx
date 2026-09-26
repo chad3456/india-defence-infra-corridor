@@ -5,6 +5,8 @@ import { loadSearch, loadCitations, loadJudgments } from "@/lib/rights";
 import { loadBollywood, pooled } from "@/lib/bollywood";
 import { loadSindoorBook } from "@/lib/sindoor-book";
 import { loadMela } from "@/lib/mela";
+import { loadMaven } from "@/lib/maven-book";
+import { byId as mavenFigure, stated as mavenStated } from "@/lib/maven-shared";
 
 /**
  * The index of visual stories.
@@ -160,8 +162,24 @@ export default function StoriesIndex() {
     + book.counts.weapons + book.counts.disputes;
 
   const mela = loadMela();
+  const maven = loadMaven();
+  const mavenFacts = maven.figures.length + maven.beats.length + maven.scenes.length + maven.voices.length;
+  const mavenLow = mavenFigure(maven.figures, "tempo-no-ai");
+  const mavenHigh = mavenFigure(maven.figures, "tempo-llm");
 
   const RIGHTS = [
+    ...(maven.present && mavenLow && mavenHigh ? [{
+      href: "/project-maven",
+      tone: "mid" as const,
+      kicker: "project maven · a book, read and checked",
+      title: "The White Dot: How the Pentagon Taught Machines to Find Targets.",
+      blurb:
+        "Katrina Manson's history of Project Maven as a scrolling 3D explainer — the drone deluge, how a "
+        + "network learns to see, the kill chain losing its people, Ukraine, and the scenes the book "
+        + `reports two ways. ${mavenFacts} figures, dates and quotations, each checked against the book.`,
+      stat: `${mavenStated(mavenLow)} → ${mavenStated(mavenHigh)}`,
+      statLabel: "targets a day, by one official's account",
+    }] : []),
     {
       href: "/mela",
       tone: "cool" as const,

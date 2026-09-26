@@ -859,3 +859,109 @@
   .mela-stall, .manga-ticket { transition: none; }
   .mela-stall:hover, .mela-stall:focus-visible { transform: none; }
 }
+
+/* ── Project Maven: the explainer register ──────────────────────────────
+   A Vox-style explainer inside the story register: heavy type, a yellow
+   highlighter, and one dark "screen" — the three.js stage — that stays
+   dark in both themes because it stands for a sensor feed. The yellow is
+   the book's own: it describes AI boxes as a "clunky, bright yellow line".
+   On the light ground that yellow fails contrast as a bar fill, so bars use
+   a darker amber there and the true yellow only on the dark stage. */
+.mv-root {
+  --mv-ink: var(--story-ink);
+  --mv-ink-2: var(--story-ink-2);
+  --mv-ink-3: var(--story-ink-3);
+  --mv-rule: var(--story-rule);
+  --mv-ai: #a67c00;
+  --mv-human: #2a6fb0;
+  --mv-muted: #b9bac9;
+  --mv-track: rgba(21, 22, 43, 0.07);
+  --mv-hl: #ffe14d;
+}
+@media (prefers-color-scheme: dark) {
+  .story:not([data-theme="light"]) .mv-root {
+    --mv-ai: #e6bf1a;
+    --mv-human: #5aa7e6;
+    --mv-muted: #4a4b5e;
+    --mv-track: rgba(255, 255, 255, 0.08);
+    --mv-hl: rgba(255, 212, 0, 0.34);
+  }
+}
+:root[data-theme="dark"] .mv-root {
+  --mv-ai: #e6bf1a;
+  --mv-human: #5aa7e6;
+  --mv-muted: #4a4b5e;
+  --mv-track: rgba(255, 255, 255, 0.08);
+  --mv-hl: rgba(255, 212, 0, 0.34);
+}
+/* The stage reaches the register's edges; clip so it never scrolls sideways. */
+.story:has(.mv-root) { overflow-x: clip; }
+.mv-display { font-size: clamp(52px, 11vw, 120px); font-weight: 900; letter-spacing: -0.045em; line-height: 0.9; }
+.mv-hl { background: linear-gradient(transparent 52%, var(--mv-hl) 52%, var(--mv-hl) 92%, transparent 92%); padding: 0 0.1em; }
+.mv-card {
+  background: var(--story-card);
+  border: 1px solid var(--mv-rule);
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+.mv-kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mv-ink-2);
+  margin-bottom: 6px;
+}
+.mv-h { font-size: 23px; font-weight: 800; line-height: 1.12; letter-spacing: -0.02em; margin-bottom: 10px; }
+.mv-section { font-size: clamp(26px, 4.4vw, 38px); font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; max-width: 24ch; }
+.mv-lede { margin-top: 12px; max-width: 68ch; font-size: 15.5px; line-height: 1.65; }
+.mv-part-label { font-family: var(--font-mono); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.mv-cite { font-family: var(--font-mono); font-size: 11px; color: var(--mv-ink-3); white-space: nowrap; }
+.mv-q { font-style: normal; }
+.mv-hatch { background: repeating-linear-gradient(135deg, var(--mv-muted) 0 4px, transparent 4px 7px); }
+.mv-tag { display: inline-block; font-family: var(--font-mono); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--mv-rule); }
+.mv-tag-found, .mv-tag-helped { background: var(--mv-hl); color: #15162b; }
+.mv-tag-missed, .mv-tag-failed { background: transparent; color: var(--mv-ink); border: 1.5px dashed var(--mv-ink-2); }
+.mv-tag-off { background: var(--mv-track); color: var(--mv-ink-2); }
+.mv-btn {
+  font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px;
+  border: 1.5px solid var(--mv-ink); background: transparent; color: var(--mv-ink); cursor: pointer;
+}
+.mv-btn[aria-pressed="true"] { background: var(--mv-ink); color: var(--story-card); }
+.mv-btn:focus-visible { outline: 2px solid var(--mv-ai); outline-offset: 2px; }
+.mv-btn-lg { font-size: 15px; padding: 10px 20px; background: #ffd400; color: #15162b; border-color: #ffd400; }
+
+.mv-stage { background: #070b0a; margin-left: -16px; margin-right: -16px; }
+@media (min-width: 640px) { .mv-stage { margin-left: -24px; margin-right: -24px; } }
+@media (min-width: 1024px) { .mv-stage { margin-left: -40px; margin-right: -40px; } }
+.mv-scrolly [data-step] { pointer-events: none; }
+.mv-step { pointer-events: auto; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35); }
+.mv-part {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #9dffb8; background: rgba(7, 11, 10, 0.7); padding: 4px 8px; border-radius: 4px;
+}
+.mv-label {
+  font-family: var(--font-mono); font-size: 11px; line-height: 1.35; color: #e8f5ee;
+  background: rgba(7, 11, 10, 0.72); padding: 3px 7px; border-radius: 4px; white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.mv-big { font-size: 13px; font-weight: 700; }
+.mv-key { color: #9fb8aa; font-size: 10.5px; }
+.mv-ai { color: #ffd400; }
+.mv-quote { white-space: normal; max-width: 170px; text-align: center; }
+.mv-phase { font-weight: 600; white-space: normal; max-width: 150px; text-align: center; }
+.mv-tip {
+  position: absolute; font-family: var(--font-mono); font-size: 12px; color: #e8f5ee;
+  background: rgba(7, 11, 10, 0.92); border: 1px solid #2c4a3b; padding: 4px 8px; border-radius: 4px;
+  pointer-events: none; white-space: nowrap; transition: opacity 0.15s;
+}
+@media (max-width: 640px) {
+  .mv-label { font-size: 9.5px; padding: 2px 5px; }
+  .mv-big { font-size: 11px; }
+  .mv-quote { display: none; }
+  .mv-h { font-size: 20px; }
+}
+@media (max-width: 640px) {
+  .mv-big, .mv-phase { white-space: normal; max-width: 62vw; text-align: center; }
+}

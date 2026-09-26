@@ -23,7 +23,7 @@
     "docs:sync": "tsx scripts/docs/sync-tables.ts",
     "validate": "tsx scripts/validate.ts",
     "registry:audit": "tsx scripts/audit-registry.ts",
-    "test": "npm run validate && npm run test:not-empty && npm run test:mobility && npm run registry:audit && npm run test:schema && npm run test:ingest && npm run test:security && npm run test:epistemic && npm run test:localisation && npm run test:trai && npm run test:stations && npm run test:geo && npm run test:satellites && npm run test:wikitext && npm run test:claims && npm run test:everyday && npm run test:global && npm run test:arsenal && npm run test:sacred && npm run test:disputed && npm run test:footfall && npm run test:semi && npm run test:defence-trade && npm run test:policy && npm run test:drones && npm run test:ascii && npm run test:ai && npm run test:states && npm run test:deals && npm run test:oryx && npm run test:cinema && npm run test:panels && npm run test:shell && npm run test:data-loss && npm run test:airpower && npm run test:sindoor && npm run test:sindoor-book && npm run test:bollywood && npm run test:mela && npm run test:rights && npm run test:feed && npm run test:schemes && npm run test:census && npm run test:overpass && npm run test:elections && npm run test:client && npm run test:pdf && npm run test:sheets && npm run security:check && npm run test:docs && npm run db:seed-check && npm run typecheck",
+    "test": "npm run validate && npm run test:not-empty && npm run test:mobility && npm run registry:audit && npm run test:schema && npm run test:ingest && npm run test:security && npm run test:epistemic && npm run test:localisation && npm run test:trai && npm run test:stations && npm run test:geo && npm run test:satellites && npm run test:wikitext && npm run test:claims && npm run test:everyday && npm run test:global && npm run test:arsenal && npm run test:sacred && npm run test:disputed && npm run test:footfall && npm run test:semi && npm run test:defence-trade && npm run test:policy && npm run test:drones && npm run test:ascii && npm run test:ai && npm run test:states && npm run test:deals && npm run test:oryx && npm run test:cinema && npm run test:panels && npm run test:shell && npm run test:data-loss && npm run test:airpower && npm run test:sindoor && npm run test:sindoor-book && npm run test:bollywood && npm run test:mela && npm run test:maven-book && npm run test:rights && npm run test:feed && npm run test:schemes && npm run test:census && npm run test:overpass && npm run test:elections && npm run test:client && npm run test:pdf && npm run test:sheets && npm run security:check && npm run test:docs && npm run db:seed-check && npm run typecheck",
     "db:push": "tsx scripts/db/sync.ts push",
     "db:pull": "tsx scripts/db/sync.ts pull",
     "db:check": "tsx scripts/db/sync.ts check",
@@ -88,6 +88,8 @@
     "bollywood:ingest": "tsx scripts/etl/connectors/bollywood.ts",
     "mela:verify": "tsx scripts/etl/connectors/mela-verify.ts",
     "test:mela": "tsx scripts/test-mela.ts",
+    "maven:book": "tsx scripts/etl/connectors/maven-book.ts",
+    "test:maven-book": "tsx scripts/test-maven-book.ts",
     "test:bollywood": "tsx scripts/test-bollywood.ts",
     "sindoor:render": "python3 scripts/blender/sindoor-scene.py",
     "test:sindoor-book": "tsx scripts/test-sindoor-book.ts",
@@ -158,6 +160,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",
+    "@types/three": "^0.186.0",
     "d3-array": "^3.2.4",
     "d3-geo": "^3.1.1",
     "d3-scale": "^4.0.2",
@@ -166,6 +169,7 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "satellite.js": "^7.1.0",
+    "three": "^0.186.1",
     "topojson-client": "^3.1.0",
     "world-atlas": "^2.0.2"
   },
