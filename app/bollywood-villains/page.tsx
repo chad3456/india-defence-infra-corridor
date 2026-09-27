@@ -8,6 +8,8 @@ import {
 import { ChartTitle, Caption, DivergingRanks } from "@/components/stories/Charts";
 import GraphCard from "@/components/stories/GraphCard";
 import EvidenceBrowser, { type Row } from "@/components/rights/EvidenceBrowser";
+import { ReelRunGame } from "@/components/bollywood/ReelRunGame";
+import { buildArcade } from "@/lib/bollywood-arcade";
 
 /**
  * Thirty years of Hindi film plots, and what they actually show.
@@ -140,6 +142,9 @@ export default function BollywoodPage() {
           label="reckonings per escape"
           note="The one measure that moves the way the question expected. Endings that answer for the harm, against endings that do not." />
       </div>
+
+      {/* ── Play it first: the same data as a game ──────────────────── */}
+      <ReelRunGame arcade={buildArcade(b)} />
 
       {/* ── The confound, before any finding ───────────────────────── */}
       <section className="mt-16">

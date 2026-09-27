@@ -965,3 +965,68 @@
 @media (max-width: 640px) {
   .mv-big, .mv-phase { white-space: normal; max-width: 62vw; text-align: center; }
 }
+
+/* ── Reel Run: the Bollywood data as an arcade game ──────────────────────
+   A neon filmi night: deep violet ground, magenta/blue/amber lanes (the
+   lane palette is validated for the dark stage in lib/bollywood-arcade.ts),
+   glass panels. The stage is dark in both themes, like a cinema. */
+.rr-stage {
+  height: min(640px, 78svh);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #150a2e;
+  box-shadow: 0 0 0 2px #ff4fb0, 0 0 40px rgba(255, 79, 176, 0.35), 0 20px 60px rgba(21, 10, 46, 0.5);
+  color: #fbeaff;
+}
+@media (max-width: 640px) { .rr-stage { height: 80svh; border-radius: 12px; } }
+.rr-panel {
+  background: rgba(24, 10, 52, 0.84);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(255, 120, 210, 0.55);
+  border-radius: 16px;
+  padding: 18px 20px;
+  color: #fbeaff;
+}
+.rr-title {
+  font-size: clamp(40px, 8vw, 78px); font-weight: 900; letter-spacing: -0.04em; line-height: 0.95;
+  background: linear-gradient(90deg, #ff4fb0, #ffd35a 55%, #4fd6ff);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  margin: 4px 0 8px;
+}
+.rr-kicker { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ffd35a; }
+.rr-hud { background: rgba(21, 10, 46, 0.66); border-radius: 12px; padding: 8px 12px; backdrop-filter: blur(4px); }
+.rr-legend { display: grid; gap: 4px; width: min(420px, calc(100% - 24px)); }
+@media (max-width: 640px) { .rr-legend { bottom: 64px; } }
+.rr-year { font-size: clamp(30px, 6vw, 52px); font-weight: 900; line-height: 1; letter-spacing: -0.03em; color: #fff; text-shadow: 0 0 18px #ff4fb0; }
+.rr-xp { font-family: var(--font-mono); font-weight: 800; color: #ffd35a; }
+.rr-combo { font-family: var(--font-mono); font-size: 12px; color: #9fe8ff; }
+.rr-pop { animation: rr-pop 0.35s ease-out; }
+@keyframes rr-pop { from { transform: scale(1.5); } to { transform: scale(1); } }
+.rr-card {
+  background: rgba(255, 255, 255, 0.95); color: #1c0c33; border-radius: 14px; padding: 12px 14px;
+  box-shadow: 0 10px 40px rgba(255, 79, 176, 0.45); animation: rr-in 0.25s ease-out;
+}
+@keyframes rr-in { from { opacity: 0; transform: translate(-50%, -8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+.rr-btn {
+  font-size: 13px; font-weight: 800; padding: 8px 12px; border-radius: 999px; min-width: 40px;
+  background: rgba(255, 255, 255, 0.12); color: #fff; border: 1.5px solid rgba(255, 255, 255, 0.45); cursor: pointer;
+  touch-action: manipulation;
+}
+.rr-btn:hover { background: rgba(255, 255, 255, 0.22); }
+.rr-btn:focus-visible, .rr-level:focus-visible, .rr-chip:focus-visible { outline: 2px solid #ffd35a; outline-offset: 2px; }
+.rr-btn-lg { font-size: 16px; padding: 10px 18px; }
+.rr-btn-hot { background: #ff4fb0; border-color: #ff4fb0; color: #1c0c33; }
+.rr-level {
+  text-align: left; padding: 12px 14px; border-radius: 14px; cursor: pointer; color: #fbeaff;
+  background: linear-gradient(135deg, rgba(255, 79, 176, 0.18), rgba(79, 214, 255, 0.12));
+  border: 1.5px solid rgba(255, 255, 255, 0.2); transition: transform 0.12s, border-color 0.12s;
+}
+.rr-level:hover { transform: translateY(-2px); border-color: #ffd35a; }
+.rr-badge { padding: 3px 9px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.25); opacity: 0.6; }
+.rr-badge-on { opacity: 1; border-color: #ffd35a; color: #ffd35a; }
+.rr-chip { padding: 4px 10px; border-radius: 999px; border: 1.5px solid var(--story-ink, #333); font-weight: 600; cursor: pointer; }
+.rr-chip[aria-pressed="true"] { background: var(--story-ink, #333); color: var(--story-card, #fff); }
+.rr-tag {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 800; color: #fff; padding: 2px 7px;
+  background: rgba(21, 10, 46, 0.8); border: 1.5px solid; border-radius: 6px; white-space: nowrap;
+}
