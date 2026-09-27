@@ -1,17 +1,15 @@
 {
-  "id": "run-1790457396321",
-  "startedAt": "2026-09-26T21:13:50.195Z",
-  "finishedAt": "2026-09-26T21:16:36.321Z",
+  "id": "run-1790487496049",
+  "startedAt": "2026-09-27T05:22:46.811Z",
+  "finishedAt": "2026-09-27T05:38:16.049Z",
   "status": "partial",
   "connectorsRun": 9,
   "connectorsFailed": 0,
-  "seriesUpdated": 726,
+  "seriesUpdated": 570,
   "messages": [
-    "worldbank: SL.EMP.OWAC.FE.ZS: no Indian observations",
-    "worldbank: SL.EMP.OWAC.MA.ZS: no Indian observations",
+    "worldbank: stopped after 532 of 690 indicators — run budget spent; the rest keep their stored values",
     "satp: terror: https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir -> HTTP 403",
     "satp: terror: no candidate URL yielded a full table; keeping previous data",
-    "ingest: IDRW: HTTP 415",
     "ingest: The Tribune: HTTP 403",
     "ingest: Deccan Herald: HTTP 404",
     "ingest: The New Indian Express: HTTP 404",
@@ -23,14 +21,12 @@
     "ingest: Outlook India: HTTP 404",
     "ingest: Scroll.in: response was not a feed (blocked or interstitial)",
     "ingest: The Wire: response was not a feed (blocked or interstitial)",
-    "ingest: Organiser: HTTP 403",
     "ingest: IndiaSpend: HTTP 404",
     "ingest: FORCE Magazine: HTTP 404",
     "ingest: Defence Aviation Post: HTTP 404",
     "ingest: Daily Excelsior: HTTP 403",
     "ingest: Search: pipelines — gas pipeline India commissioned: feed had no items",
-    "ingest: Search: psu-msme — MSME India cluster launched: feed had no items",
-    "ingest funnel: 1778 items -> 628 candidates -> 67 events (lost: 314 no sector, 163 not an action, 84 no place)",
+    "ingest funnel: 1790 items -> 635 candidates -> 60 events (lost: 326 no sector, 163 not an action, 86 no place)",
     "x: X_BEARER_TOKEN not set — reading X is paid per post since February 2026, so this connector is inactive. Official announcements still arrive via the PIB, PMO and ministry feeds at no cost."
   ]
 }
