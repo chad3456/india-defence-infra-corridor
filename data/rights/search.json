@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-27T19:54:49.270Z",
+  "builtAt": "2026-09-27T23:27:17.062Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,13 +10,13 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 913,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 910,
-    "withOutlet": 868,
+    "items": 917,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 913,
+    "withOutlet": 872,
     "bySubject": {
-      "scst": 596,
-      "pmshri": 317
+      "scst": 599,
+      "pmshri": 318
     },
     "queriesAsked": 20,
     "offSubjectDropped": 316
@@ -24,11 +24,11 @@
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 462
+      "n": 463
     },
     {
       "key": "use",
-      "n": 313
+      "n": 316
     },
     {
       "key": "dispute",
@@ -58,23 +58,23 @@
     },
     {
       "key": "The New Indian Express",
-      "n": 45
+      "n": 46
     },
     {
       "key": "The Hindu",
       "n": 37
     },
     {
+      "key": "Lawtext",
+      "n": 30
+    },
+    {
       "key": "India Today",
       "n": 29
     },
     {
-      "key": "Lawtext",
-      "n": 29
-    },
-    {
       "key": "Hindustan Times",
-      "n": 27
+      "n": 28
     },
     {
       "key": "LawBeat",
@@ -317,7 +317,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 38
     },
     {
@@ -336,9 +336,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 45,
-      "bing": 0,
-      "kept": 0,
-      "offSubject": 13
+      "bing": 2,
+      "kept": 1,
+      "offSubject": 12
     },
     {
       "id": "act-pendency",
@@ -347,7 +347,7 @@
       "expect": "use",
       "google": 62,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 25
     },
     {
@@ -355,7 +355,7 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 95,
+      "google": 94,
       "bing": 0,
       "kept": 0,
       "offSubject": 46
@@ -365,18 +365,18 @@
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 24,
+      "google": 25,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 45,
-      "bing": 3,
+      "google": 43,
+      "bing": 2,
       "kept": 0,
       "offSubject": 8
     },
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 32,
+      "google": 31,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 48,
-      "bing": 0,
+      "google": 47,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 19
     },
     {
       "id": "act-fabricated",
@@ -417,17 +417,17 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 1,
-      "offSubject": 2
+      "kept": 0,
+      "offSubject": 3
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 47,
-      "bing": 0,
-      "kept": 0,
+      "google": 48,
+      "bing": 1,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -435,8 +435,8 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 70,
-      "bing": 0,
+      "google": 69,
+      "bing": 2,
       "kept": 0,
       "offSubject": 24
     },
@@ -476,7 +476,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 51,
-      "bing": 0,
+      "bing": 3,
       "kept": 0,
       "offSubject": 11
     },
@@ -15335,6 +15335,71 @@
       ],
       "indexes": [
         "bing"
+      ],
+      "firstSeen": "2026-09-27"
+    },
+    {
+      "id": "supreme court dismisses pil challenging key provisions of sc st atrocities act india news",
+      "headline": "Supreme Court dismisses PIL challenging key provisions of SC/ST Atrocities Act | India News",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Hindustan Times",
+      "published": "2026-09-23",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNVjB1OFBram9uYkZzQkd1VDhubnk2em5jXzF3NjhtTzltTmJ3VnkzaFRBV09UNzFyeFdVMFJVa0dqUUZyUU1OdFhMdjN5ZEF3ZnJ5cmhHUmRCQXk1TlEwbWZXMEJVMTU4RlVUZHJMTW1saFBWTGs5WnpCVnZrQmlxSXBZU0YwOEVhVEozZzZCdjh3MWdYaVBDLUhLX0lOX0FFMENuejN3Z9IBrAFBVV95cUxOYVZmczlyWGgxV2U4THpHbHlEWnVGVWVzUjNuYkpFaDN4cG1vUVdZTVFGX2RWM1d0MkU0SFhhX0VuTzBTQm9hSE5sMmtVSHY4eWg1WFpGZUlzY2h6ejl6RUNpQzRUZUt1a1JWVUxvYTdkU0FnVDAzaUFJd3RoUHF4SEJmd09ianpfNG1vSkxjYkVpeENaT2hEVHhXNTBRbHlCdHBoTlZtLXIyMHdy?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-27"
+    },
+    {
+      "id": "madras high court suspends sentence of convict in attempt to rape and sc st act case due t",
+      "headline": "Madras High Court Suspends Sentence of Convict in Attempt to Rape and SC/ST Act Case Due to Dispute Over Injury Evidence. Court Directs Production of Accident Register and Medical Records to Verify Injuries Before Deciding Bail Pending Appeal Under",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-09-27",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE4zVF9BSXFfZnF0eVdjMGVPQU9CUk03SmNicmF4azV4bUp5bzhWUWczZVJKalFzTndfdXE0aHVCeUs1bFByMThwellzRmV4RmNSTlo3SjRxV3Qtemh4SUg1d2MyektXQQ?oc=5",
+      "queries": [
+        "act-convicted",
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-27"
+    },
+    {
+      "id": "child rights commission asks states to ensure compensation to pocso sc st victims flags ap",
+      "headline": "Child Rights' Commission asks states to ensure compensation to POCSO SC/ST victims; flags AP, TN",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The New Indian Express",
+      "published": "2024-10-08",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPZ25BVWpoMnU1QnhXUFF0VS1fUlJFeko3WUtxcFFuV2dYSVZTaTYxeFBLOFRpSDZRR29tY2tGa3BNcTVKVFR1OExlZW5LbFNGUHhELTN6M2pIWUVFRVB6THJ1a1A2Z01ma3J2dG4xYlY0SnlyUGQwU0dOTjhKdE84c2Nub3FiMWEyRjhfZF9zc1V0SmRINk5LN1N3UjNNOVRlRWM5QTZ0NGtpZlNCZ0RyOWMxNGY4R3NCN3AwZ1k0ZGt6NHPSAdABQVVfeXFMTllXcXN4Vm9xdUllU1ZjTGdnMGNiemFVQnlNXzhKUU5tX1VFNl9GVE9KQjB2TmZrZ0xEUEpfNV82OWloTi01MjdSaWdsbENTVmtLYUdYdERWOHk5ZG9aczBvcTFNM1hrOXdBUnpKUzQwTEFoeUtvMXlib3B1WlJYQVgyUV81VzJPU3ZJbG5VM1l2bkF0SHBOeW1sWGVFa1pDcDdsckJnYkhjdDFvM0xHRDR6WGtqRS0wT2tJWmNRUktJX2dLcnNsZ1BGSHNkMkxoUA?oc=5",
+      "queries": [
+        "act-compensation"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-27"
+    },
+    {
+      "id": "centre hopeful of pm shri rollout in bengal tamil nadu letters to be sent soon",
+      "headline": "Centre hopeful of PM SHRI rollout in Bengal, Tamil Nadu; letters to be sent soon",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "BusinessLine",
+      "published": "2026-05-06",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPWGxEcUg5YWRKVmRmWmowbWw5emM3Y19LSG5MbS1ta0pCLWhBa2hLMkVqcUFra0xNcEpNaFdMMnlaSklRUk9rYUFVdnZGVkdaWUJkTFVtVlM5djlxV0VDLWdSNzZmWjZQQWJ3VksyeWM0NjZfbF9Oc1NBVmRWUDcwX3BfRnpzbHlYWGxMTk5mVFhmNWd3N3Z5ZWtjQTFjQ21IcGhaVldCZEdEdUc2S2dXX2l5N0lhQmwxUURmZlYxUEpPNWFtVVFGWHNKWlFpZ0NURUF5bEwxSdIB3gFBVV95cUxNU3BxVXRlR2dkT3NYV083dGRrX3JFNFMwVUJsNWpSTTNzbFpVbFlMQkNueFFRcFpYdFpab25qUkJ2NFBiOXBiUXhsQUpXYTc0UWQzVXMzQUFEbkFwOEdfN0lpOVU2UmN5dnJyY0Q4WG5rVkotdkVTZjlrbXI3aGtIdWZ6Qi1nU3hTNFJoazF3ZVJsQTRVc0RzLXFVLXRUcFF0S3o3TkNla1U1eXVhUWY0QW5FZW9qTnphZldqeXlBSkF3YjY4akZOR01QRzlhT2VYRVJha3pYMFg3eFR0Tnc?oc=5",
+      "queries": [
+        "shri-sanctioned"
+      ],
+      "indexes": [
+        "google"
       ],
       "firstSeen": "2026-09-27"
     }
