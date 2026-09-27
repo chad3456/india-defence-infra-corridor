@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-26T23:12:10.623Z",
+  "builtAt": "2026-09-27T05:51:10.235Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 901,
-    "addedThisRun": 7,
-    "carriedFromEarlierRuns": 894,
-    "withOutlet": 858,
+    "items": 904,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 901,
+    "withOutlet": 861,
     "bySubject": {
-      "scst": 587,
-      "pmshri": 314
+      "scst": 589,
+      "pmshri": 315
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 316
+    "offSubjectDropped": 319
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 455
+      "n": 457
     },
     {
       "key": "use",
-      "n": 311
+      "n": 312
     },
     {
       "key": "dispute",
@@ -58,7 +58,7 @@
     },
     {
       "key": "The New Indian Express",
-      "n": 44
+      "n": 45
     },
     {
       "key": "The Hindu",
@@ -90,7 +90,7 @@
     },
     {
       "key": "livelaw.in",
-      "n": 17
+      "n": 18
     },
     {
       "key": "ThePrint",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
-      "kept": 1,
-      "offSubject": 15
+      "bing": 6,
+      "kept": 0,
+      "offSubject": 14
     },
     {
       "id": "act-convicted",
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 0,
       "kept": 1,
-      "offSubject": 38
+      "offSubject": 37
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 55,
-      "bing": 9,
+      "bing": 10,
       "kept": 1,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -338,7 +338,7 @@
       "google": 45,
       "bing": 3,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 11
     },
     {
       "id": "act-pendency",
@@ -346,7 +346,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 61,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 26
     },
@@ -355,7 +355,7 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 92,
+      "google": 94,
       "bing": 0,
       "kept": 0,
       "offSubject": 45
@@ -365,10 +365,10 @@
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 24,
+      "google": 25,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 9
     },
     {
       "id": "act-misuse-claim",
@@ -376,7 +376,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 46,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 9
     },
@@ -385,9 +385,9 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 32,
+      "google": 33,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 3
     },
     {
@@ -398,17 +398,17 @@
       "google": 48,
       "bing": 2,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 20
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 28,
+      "google": 30,
       "bing": 0,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 20
     },
     {
       "id": "shri-general",
@@ -416,8 +416,8 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 0,
-      "kept": 0,
+      "bing": 12,
+      "kept": 1,
       "offSubject": 2
     },
     {
@@ -426,8 +426,8 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 47,
-      "bing": 0,
-      "kept": 1,
+      "bing": 1,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 70,
+      "google": 69,
       "bing": 2,
       "kept": 0,
-      "offSubject": 25
+      "offSubject": 24
     },
     {
       "id": "shri-upgrade",
@@ -456,9 +456,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 47,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 6
     },
     {
       "id": "shri-withheld",
@@ -488,7 +488,7 @@
       "google": 46,
       "bing": 1,
       "kept": 0,
-      "offSubject": 36
+      "offSubject": 37
     }
   ],
   "items": [
@@ -15141,6 +15141,55 @@
         "google"
       ],
       "firstSeen": "2026-09-26"
+    },
+    {
+      "id": "pocso act prevails over sc st act accused entitled to directly approach high court u s 439",
+      "headline": "POCSO Act Prevails Over SC/ST Act; Accused Entitled To Directly Approach High Court U/S 439 CrPC When...",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "livelaw.in",
+      "published": "2022-10-26",
+      "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNZ3hCOUdCT09jR0Rad0FNXzNtZGdsNTNCZ0FXZUVWcGFwbkVoanZ6S3JGSUhQSmVUNFJ6MkFHWUFyOGFhVzM4eU9iZEpybWdyMmYwM3B6OEswQUJLRU1WRC01V1c1N2h2M2R1WXBydTFjUDI0WE1JODVQdlZac3d1d2pKR0ZDVjNRYmxRcjJhSmRqRU40M0ZfYW1IZWNYenh3QUY3a1VFME9GNEZTWi04ak1PVW9uSVgyRFd2cE1MSDNxaDVQdTUxR2t4Y1dkMHFVZnF1NUNwbF82d3JVWFpkV1FVMlQxZXlvRFJGSTFxMGo1elpy0gH6AUFVX3lxTFBNdGIxQ1RKRzdfRThjRHVhY3dVQjVQaEoyVHhwalFUUHU2TU9Fd3R3THlaT1RYSFNSU0ZpR015bHVKbm4xQ09vbVAyaGdEZG55MV9iSXBIRE0tMzlxR2RjNnhlaWR0MERacEV1RWtfTmNrZlAxcE1WZEVOWm9Ha1pRXy1yYUltSXZKTm9MQnRzSzBER1ZoZ2tPNV9PejVzVHd0RkRqMEhvOTFsclp0NUVRUVFlNkpqS3pOZWJOY0RlNW9BTm45UnVfeDlKYWVNcFlrM3BfeGtOSUtkNHdhcFdzS21GNDYxY1JRMEFQb3E2YV82MFlia1RWdlE?oc=5",
+      "queries": [
+        "act-convicted",
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-27"
+    },
+    {
+      "id": "dalit man sets himself ablaze after alleged assault caste abuse in up s muzaffarnagar",
+      "headline": "Dalit man sets himself ablaze after alleged assault, caste abuse in UP's Muzaffarnagar",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The New Indian Express",
+      "published": "2026-04-19",
+      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNeldMeXVnd1duVjZFR2k2Wkstckk0T2s5MWtkTEpubExCaW9zRHVTNVZsWVFMV0pud3J4SjNxTnFpVHZyVEZaNG03RFBxeDJDY1NKYWY1bm44UzYwdVlKVy1mREVDbzB3MVlkWDhnNDhPTVcyaEJXZlR4VWJPYmpURWl5bFhqYWhFVGFsdlpLMHp6aUdfY2Q3TmIwWjJUOGR3Yk0yaExCRDg1Nm4wWlo2WWV4anBFUk5qOVFZNFBRUDU2Ymp2aDgyUzA3NExjeHVHZ3hscnYwUS1RX1hCY0l3elVCZzDSAfIBQVVfeXFMUHpMQ1JwNkdHQXVqMFAwS095UkpLZUdXdEp5S2l0Mkw1aEdmcnRsTWVQVUJrR2h1Vi1XN0FzbzkzVXhtbW55ZVcwWXNEeGtRZUp0dUJwSmFQVzZsZnI2UWJKSUpzUEQtZzVrZVplNnZsYlJhU05WaE5iR1loal9DRmRyZ1dUSENnOVVfeXlBMHRSUmxfT1dSdV9aQjA3Tk1xd0tGUXN2T2VQZlFqOVgtSnk2SWU4Qm90alc2UGZVWkFVSGlsM1RyV3VJUTA3Q1RYaXpqU2xCNnZsaFp4VlhZZTZ3M3l5eXBwby1HNmlYT2d1anc?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-27"
+    },
+    {
+      "id": "pm shri meet kangra chamba school heads get leadership lessons",
+      "headline": "PM SHRI meet: Kangra, Chamba school heads get leadership lessons",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "tribuneindia.com",
+      "published": "2026-09-26",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPUFpqUmd4ZlFUOEZTb0dTTV9PZDg4LXNKQlRtZEQ4T2x0OTE3YjBqTXp0bHZWczlZXzNmWGlJQnI1LTJCNDhiWEZvRENuR2k2ZUU3TFVQTGlMM2pBLXRXZkduU2U2UThkMzI5ZDVuWUxVSVJuV3luVHo3YldFOGRtTFJLOHBBYU1ETy02UFdfVnAweUhGX1VYMVp1SGVuSnQ2NjRqbXdNd2Jwa0FBaEHSAa4BQVVfeXFMT1BaalJneGZRVDhGU29HU01fT2Q4OC1zSkJUbWREOE9sdDkxN2Iwak16dGx2VnM5WV8zZlhpSUJyNS0yQjQ4YlhGb0RDbkdpNmVFN0xVUExpTDNqQS10V2ZHblNlNlE4ZDMyOWQ1bllMVUlSbld5blR6N2JXRThkbUxSSzhwQWFNRE8tNlBXX1ZwMHlIRl9VWDFadUhlbkp0NjY0am13TXdicGtBQWhB?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-27"
     }
   ]
 }
