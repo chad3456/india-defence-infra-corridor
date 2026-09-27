@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-27T14:20:37.922Z",
+  "builtAt": "2026-09-27T19:54:49.270Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 910,
-    "addedThisRun": 6,
-    "carriedFromEarlierRuns": 904,
-    "withOutlet": 866,
+    "items": 913,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 910,
+    "withOutlet": 868,
     "bySubject": {
-      "scst": 594,
-      "pmshri": 316
+      "scst": 596,
+      "pmshri": 317
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 309
+    "offSubjectDropped": 316
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 460
+      "n": 462
     },
     {
       "key": "use",
@@ -32,7 +32,7 @@
     },
     {
       "key": "dispute",
-      "n": 51
+      "n": 52
     },
     {
       "key": "allegation",
@@ -109,11 +109,11 @@
       "n": 13
     },
     {
-      "key": "Deccan Herald",
-      "n": 11
+      "key": "Outlook India",
+      "n": 12
     },
     {
-      "key": "Outlook India",
+      "key": "Deccan Herald",
       "n": 11
     },
     {
@@ -145,12 +145,12 @@
       "n": 10
     },
     {
-      "key": "Onmanorama",
+      "key": "India Legal",
       "n": 9
     },
     {
-      "key": "India Legal",
-      "n": 8
+      "key": "Onmanorama",
+      "n": 9
     },
     {
       "key": "The Statesman",
@@ -308,7 +308,7 @@
       "google": 100,
       "bing": 6,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 15
     },
     {
       "id": "act-convicted",
@@ -318,14 +318,14 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 36
+      "offSubject": 38
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 54,
+      "google": 53,
       "bing": 9,
       "kept": 0,
       "offSubject": 7
@@ -338,16 +338,16 @@
       "google": 45,
       "bing": 0,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 13
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 61,
+      "google": 62,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 25
     },
     {
@@ -357,8 +357,8 @@
       "expect": "acquittal",
       "google": 95,
       "bing": 0,
-      "kept": 2,
-      "offSubject": 45
+      "kept": 0,
+      "offSubject": 46
     },
     {
       "id": "act-hostile",
@@ -375,9 +375,9 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 44,
+      "google": 45,
       "bing": 3,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 8
     },
     {
@@ -396,19 +396,19 @@
       "subject": "scst",
       "expect": "false-finding",
       "google": 48,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 20
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 28,
+      "google": 29,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 17
+      "kept": 0,
+      "offSubject": 19
     },
     {
       "id": "shri-general",
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 12,
       "kept": 1,
       "offSubject": 2
     },
@@ -426,9 +426,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 47,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "shri-funds",
@@ -475,8 +475,8 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 52,
-      "bing": 3,
+      "google": 51,
+      "bing": 0,
       "kept": 0,
       "offSubject": 11
     },
@@ -485,7 +485,7 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 46,
+      "google": 45,
       "bing": 1,
       "kept": 0,
       "offSubject": 36
@@ -8987,7 +8987,8 @@
       "published": "2026-05-15",
       "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOZGJPTm85X2hRaHRLQW82aEFyaDZzOFVWUExnSUY1Y2h1Tk5pektEWlRKWmw0YXJINUZzZkFKdlhpdDJRaHBhYWNKeHNXM0hTTVo0SzBiSjFqdVpTTTkzU3NZMFplR3R5VFlMZ3JFa0k4NGE5cTN5ODVzaVBVeExwTW9oT0o1YUR3WlprUk1lU2JMd2ZhTUgtWm5pWUdmRUQyUnF2ZFFHNHhMZGE3SnJOZFppekF2T183NEwxSEFpY0d1V0hRdkhXNmlZUjBkb3l4VVJnOGUxUTFPUEYzNjJqb2I2SmZYZ0d6YzFEV3gzONIB9AFBVV95cUxQdDZZRmZuXzA2ZEtNMDR3OGwzcUVNS19YQzV1THVFWnlfVTQwMXE4d3FHQ0hCY3pLMXpTY1BVNFJlLWN2aXNSMEZFS2lkcm4yZ3JidW5PaGg4eVpLOWgzUDE3Y0xjeHlvVU8yNVYybmdQbVVPSFVLeThsdmtfeW5mRjJBMmJLbGhSZGVLOFhYblMxNmlKSFlOLUVfNkc0Q0F6WHAzUWxzNmtWb0pPYmFTMlRtR0ZYbFFDTTUta3RMOW5oTDBWRHBMZXJXeTQtXzBURnAwalA4R0ZaeHF3bFZqbm9INi1mcy1nMGRRY0F0UVFkaGV0?oc=5",
       "queries": [
-        "shri-general"
+        "shri-general",
+        "shri-sanctioned"
       ],
       "indexes": [
         "google"
@@ -15285,6 +15286,55 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-09-27"
+    },
+    {
+      "id": "column sc st act when protection becomes a question of equal enforcement",
+      "headline": "Column | SC/ST Act: When Protection Becomes A Question Of Equal Enforcement",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Outlook India",
+      "published": "2026-09-24",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNNEk5VXBKdzVBM2tUYXYyc3VLdlU4dHNST1lHYmlxOS1NVVozUzE2Vnlla3lhdDVwckZHc09fQ3Z1cFIyMlNoa01LUFQxSC1uVTk2OThIN2hrUmtzX0wxV29vRzdITzdGdFBZUWtnY2szYTFBeEdDeTRaNy05dHFieDJheWVJdnJCVm5OTEtrUzJjUmZidVVIVFNqeXN1ZHV3ZDc1M9IBsgFBVV95cUxOc2dFTFRVallxdXpGa2JEaUhleXZIb1FtWmFBYklkbHBhbFp1U25Xcjl6U210NGZXMXBzODM5ZHE0VHV2TzVUYmVud2NnTEdiWFhhei1KNlItbXRZcFRsUmNIVXJPRjZtQ1pHTzNxWlpMMGdNcjdQUzA0ZXNkMVFteDFnWFlJSHhwREt5STlvcFNTZDdtQmdTckFJZjNOdWZmS1NwWVlRVkFRazhRMl9GTXR3?oc=5",
+      "queries": [
+        "act-general",
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-27"
+    },
+    {
+      "id": "allahabad high court disposes of plea to quash proceedings under sc st act",
+      "headline": "Allahabad High Court disposes of plea to quash proceedings under SC/ST Act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "India Legal",
+      "published": "2022-05-30",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOekxOMjRpa0xJdk5vVS1IZjVQUzkzWE5JNmtDZmpRZlRRSnNEOS1ncTJ4OHRIbDV6TVE0M3ZZYzlVenNUMG93VHVqa3lvTG9DMFdDUThTUEZKV2k3MkRfR1RaVFZoa1pHN1YzNHgwb0l3ME5vUUxXY3NKSDlCaXpRMDhTZ0tFb1hhdDVyWWhSOWlSRE9KTUdZOFdEc3BSdDczdEZGR3JZaVZwTVlzZDVkTm9fWnJuYWpleUVXWlB6NkV6WW5FRVBvWHZlWW1tQnVOazE3bw?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-27"
+    },
+    {
+      "id": "kerala halts pm shri scheme after cpi s protest coalition tensions rise",
+      "headline": "Kerala halts PM SHRI scheme after CPI's protest, coalition tensions rise",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": null,
+      "published": "2025-10-29",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab9745f012340cf84bf8e34fdc88a69&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fIndia%2fkerala-halts-pm-shri-scheme-after-cpis-protest-coalition-tensions-rise%2far-AA1PqCUE&c=17709411020755505868&mkt=en-us",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-09-27"
     }
