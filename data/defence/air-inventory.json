@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-21T09:58:56.231Z",
+  "builtAt": "2026-09-28T10:58:03.466Z",
   "source": "English Wikipedia's per-force 'List of active … aircraft' articles, read header-first. Those articles compile mostly from IISS's Military Balance and FlightGlobal's World Air Forces, and carry those publications' lag and their disagreements.",
   "method": "Tables are matched on their headers, never on column position. A table without both an aircraft column and a quantity column is skipped and counted rather than read by guessing. A quantity cell yields a number only when it carries one unambiguously; a range, a dash or prose yields null, which is counted separately and never treated as zero. A force whose quantity cells parsed less than sixty per cent of the time has its fleet total withheld while its list of types is kept.",
   "refusal": "No fleet total is reconciled against another catalogue, and no aircraft is resolved to a base. Every number here says 'a public catalogue lists this many', which is a weaker claim than 'this country has this many' and is the only one the source supports.",
@@ -11,9 +11,9 @@
   ],
   "counts": {
     "forces": 13,
-    "types": 782,
-    "counted": 637,
-    "unreadable": 145,
+    "types": 791,
+    "counted": 643,
+    "unreadable": 148,
     "totalsWithheld": 1,
     "failed": 1
   },
@@ -147,17 +147,17 @@
             "In service",
             "Notes"
           ],
-          "rows": 59,
+          "rows": 69,
           "typeAt": 0,
           "serviceAt": 4,
           "used": true,
-          "filled": 51
+          "filled": 61
         }
       ],
-      "types": 51,
-      "counted": 51,
-      "unreadable": 0,
-      "total": 4268,
+      "types": 61,
+      "counted": 58,
+      "unreadable": 3,
+      "total": 3482,
       "tablesRead": 1,
       "tablesSkipped": 0
     },
@@ -297,11 +297,11 @@
             "Inventory",
             "Notes"
           ],
-          "rows": 73,
+          "rows": 72,
           "typeAt": 0,
           "serviceAt": 7,
           "used": true,
-          "filled": 69
+          "filled": 68
         },
         {
           "headers": [
@@ -396,10 +396,10 @@
           "filled": 1
         }
       ],
-      "types": 187,
-      "counted": 139,
+      "types": 186,
+      "counted": 138,
       "unreadable": 48,
-      "total": 11108,
+      "total": 11103,
       "tablesRead": 6,
       "tablesSkipped": 0
     },
@@ -2846,8 +2846,8 @@
       "origin": "China",
       "role": "",
       "variant": "J-20A/S",
-      "inService": 500,
-      "inServiceRaw": "500+"
+      "inService": null,
+      "inServiceRaw": "last=Bronk |first=Justin |date=January 8, 2026 |title=The Evolution of Russian and Chinese Air Power Threats |url=https://www.rusi.org/explore-our-research/publications/insights-papers/evolution-russian-and-chinese-air-power-threats |access-date=September 23, 2026 |website=Royal United Services Institute (RUSI)}}"
     },
     {
       "iso": "CHN",
@@ -2868,8 +2868,8 @@
       "origin": "China",
       "role": "",
       "variant": "J-11/B/BS/BG",
-      "inService": 445,
-      "inServiceRaw": "445"
+      "inService": 245,
+      "inServiceRaw": "245"
     },
     {
       "iso": "CHN",
@@ -2879,8 +2879,8 @@
       "origin": "China",
       "role": "",
       "variant": "J-16/D",
-      "inService": 450,
-      "inServiceRaw": "450"
+      "inService": 330,
+      "inServiceRaw": "330-450"
     },
     {
       "iso": "CHN",
@@ -2890,8 +2890,8 @@
       "origin": "China",
       "role": "",
       "variant": "J-35A",
-      "inService": 54,
-      "inServiceRaw": "54+"
+      "inService": 4,
+      "inServiceRaw": "4-54+"
     },
     {
       "iso": "CHN",
@@ -3007,6 +3007,17 @@
       "iso": "CHN",
       "country": "China",
       "force": "PLA Air Force",
+      "type": "Boeing 737",
+      "origin": "United States",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
       "type": "KJ-2000",
       "origin": "China / Russia",
       "role": "",
@@ -3022,8 +3033,8 @@
       "origin": "China",
       "role": "",
       "variant": "",
-      "inService": 11,
-      "inServiceRaw": "11"
+      "inService": 4,
+      "inServiceRaw": "4"
     },
     {
       "iso": "CHN",
@@ -3035,6 +3046,17 @@
       "variant": "",
       "inService": 40,
       "inServiceRaw": "40"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
+      "type": "Shaanxi Y-8",
+      "origin": "China",
+      "role": "",
+      "variant": "Y-8T",
+      "inService": 6,
+      "inServiceRaw": "6"
     },
     {
       "iso": "CHN",
@@ -3055,8 +3077,8 @@
       "origin": "China",
       "role": "",
       "variant": "Y-8CB/DZ/G/XZ",
-      "inService": 14,
-      "inServiceRaw": "14"
+      "inService": 17,
+      "inServiceRaw": "17"
     },
     {
       "iso": "CHN",
@@ -3066,8 +3088,8 @@
       "origin": "China",
       "role": "",
       "variant": "Y-9G/XZ",
-      "inService": 5,
-      "inServiceRaw": "5"
+      "inService": 8,
+      "inServiceRaw": "8+"
     },
     {
       "iso": "CHN",
@@ -3084,34 +3106,23 @@
       "iso": "CHN",
       "country": "China",
       "force": "PLA Air Force",
+      "type": "Shaanxi Y-9",
+      "origin": "China",
+      "role": "",
+      "variant": "Y-9LG/X",
+      "inService": 17,
+      "inServiceRaw": "17+"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
       "type": "Tupolev Tu-154",
       "origin": "Soviet Union",
       "role": "",
       "variant": "Tu-154M/D",
       "inService": 4,
       "inServiceRaw": "4"
-    },
-    {
-      "iso": "CHN",
-      "country": "China",
-      "force": "PLA Air Force",
-      "type": "Boeing 737",
-      "origin": "United States",
-      "role": "",
-      "variant": "",
-      "inService": 2,
-      "inServiceRaw": "2"
-    },
-    {
-      "iso": "CHN",
-      "country": "China",
-      "force": "PLA Air Force",
-      "type": "Shaanxi Y-8",
-      "origin": "China",
-      "role": "",
-      "variant": "",
-      "inService": 3,
-      "inServiceRaw": "3"
     },
     {
       "iso": "CHN",
@@ -3139,12 +3150,34 @@
       "iso": "CHN",
       "country": "China",
       "force": "PLA Air Force",
-      "type": "Xian YY-20A",
+      "type": "Xian Y-20",
+      "origin": "China",
+      "role": "",
+      "variant": "YY-20A/B",
+      "inService": 40,
+      "inServiceRaw": "40"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
+      "type": "Airbus A319",
       "origin": "China",
       "role": "",
       "variant": "",
-      "inService": 8,
-      "inServiceRaw": "8"
+      "inService": 3,
+      "inServiceRaw": "3"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
+      "type": "Boeing 737",
+      "origin": "United States",
+      "role": "",
+      "variant": "",
+      "inService": 10,
+      "inServiceRaw": "10"
     },
     {
       "iso": "CHN",
@@ -3153,7 +3186,7 @@
       "type": "Ilyushin Il-76",
       "origin": "Soviet Union",
       "role": "",
-      "variant": "",
+      "variant": "Il-76MD/TD",
       "inService": 20,
       "inServiceRaw": "20"
     },
@@ -3208,7 +3241,7 @@
       "type": "Xian Y-7",
       "origin": "China",
       "role": "",
-      "variant": "Y-7H",
+      "variant": "Y-7/H",
       "inService": 41,
       "inServiceRaw": "41"
     },
@@ -3220,8 +3253,8 @@
       "origin": "China",
       "role": "",
       "variant": "",
-      "inService": 95,
-      "inServiceRaw": "95"
+      "inService": 55,
+      "inServiceRaw": "55"
     },
     {
       "iso": "CHN",
@@ -3232,7 +3265,7 @@
       "role": "",
       "variant": "",
       "inService": 18,
-      "inServiceRaw": "18"
+      "inServiceRaw": "18+"
     },
     {
       "iso": "CHN",
@@ -3243,7 +3276,7 @@
       "role": "",
       "variant": "",
       "inService": 6,
-      "inServiceRaw": "6"
+      "inServiceRaw": "6+"
     },
     {
       "iso": "CHN",
@@ -3275,8 +3308,8 @@
       "origin": "China",
       "role": "",
       "variant": "Z-20S",
-      "inService": 15,
-      "inServiceRaw": "15"
+      "inService": 30,
+      "inServiceRaw": "30+"
     },
     {
       "iso": "CHN",
@@ -3342,7 +3375,7 @@
       "role": "",
       "variant": "CJ-6/A/B",
       "inService": 400,
-      "inServiceRaw": "400+"
+      "inServiceRaw": "400"
     },
     {
       "iso": "CHN",
@@ -3352,8 +3385,85 @@
       "origin": "China",
       "role": "",
       "variant": "",
-      "inService": 15,
-      "inServiceRaw": "15"
+      "inService": 12,
+      "inServiceRaw": "12+"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
+      "type": "AVIC WZ-8",
+      "origin": "China",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2+"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
+      "type": "Chengdu GJ-1",
+      "origin": "China",
+      "role": "",
+      "variant": "",
+      "inService": 12,
+      "inServiceRaw": "12+"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
+      "type": "Chengdu GJ-2",
+      "origin": "China",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "Unknown"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
+      "type": "Chengdu WZ-10",
+      "origin": "China",
+      "role": "",
+      "variant": "",
+      "inService": 8,
+      "inServiceRaw": "8+"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
+      "type": "Guizhou WZ-7",
+      "origin": "China",
+      "role": "",
+      "variant": "",
+      "inService": 24,
+      "inServiceRaw": "24+"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
+      "type": "Hongdu GJ-11",
+      "origin": "China",
+      "role": "",
+      "variant": "",
+      "inService": 2,
+      "inServiceRaw": "2+"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
+      "type": "Shenyang WZ-9",
+      "origin": "China",
+      "role": "",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "Unknown"
     },
     {
       "iso": "RUS",
@@ -3783,17 +3893,6 @@
       "variant": "",
       "inService": 126,
       "inServiceRaw": "126"
-    },
-    {
-      "iso": "USA",
-      "country": "United States",
-      "force": "United States (all services)",
-      "type": "EC-130H Compass Call",
-      "origin": "Lockheed Martin",
-      "role": "Radar jamming / PSYOP",
-      "variant": "",
-      "inService": 5,
-      "inServiceRaw": "5"
     },
     {
       "iso": "USA",
@@ -8248,7 +8347,7 @@
       "role": "",
       "variant": "Block 1",
       "inService": 6,
-      "inServiceRaw": "6 prototypes"
+      "inServiceRaw": "6 prototypes, 1 in service"
     },
     {
       "iso": "KOR",
