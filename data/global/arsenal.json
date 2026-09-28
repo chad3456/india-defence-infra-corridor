@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-28T11:59:34.600Z",
+ "builtAt": "2026-09-28T22:38:27.690Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206497,7 +206497,7 @@
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 20,
+   "items": 19,
    "kept": 0,
    "via": "direct"
   },
@@ -206517,6 +206517,20 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-1qask35",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Indonesia"
+   ],
+   "value": null,
+   "date": "2026-09-28",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/09/fincantieri-and-pt-pal-indonesia-sign-agreement-for-the-modernization-of-ex-giuseppe-garibaldi/",
+   "headline": "Fincantieri and PT PAL Indonesia sign agreement for the modernization of ex-Giuseppe Garibaldi",
+   "primary": false
+  },
   {
    "id": "ev-fhqx9v",
    "kind": "order",
@@ -207129,6 +207143,35 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||indonesia",
+   "systems": [],
+   "countries": [
+    "Indonesia"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1qask35",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Indonesia"
+     ],
+     "value": null,
+     "date": "2026-09-28",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/fincantieri-and-pt-pal-indonesia-sign-agreement-for-the-modernization-of-ex-giuseppe-garibaldi/",
+     "headline": "Fincantieri and PT PAL Indonesia sign agreement for the modernization of ex-Giuseppe Garibaldi",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||united states",
    "systems": [],
