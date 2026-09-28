@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-28T05:56:25.829Z",
+  "builtAt": "2026-09-28T17:04:20.701Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,29 +10,29 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 919,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 917,
-    "withOutlet": 874,
+    "items": 930,
+    "addedThisRun": 11,
+    "carriedFromEarlierRuns": 919,
+    "withOutlet": 884,
     "bySubject": {
-      "scst": 601,
-      "pmshri": 318
+      "scst": 607,
+      "pmshri": 323
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 311
+    "offSubjectDropped": 309
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 463
+      "n": 467
     },
     {
       "key": "use",
-      "n": 317
+      "n": 321
     },
     {
       "key": "dispute",
-      "n": 52
+      "n": 54
     },
     {
       "key": "allegation",
@@ -40,7 +40,7 @@
     },
     {
       "key": "acquittal",
-      "n": 34
+      "n": 35
     },
     {
       "key": "false-finding",
@@ -54,7 +54,7 @@
     },
     {
       "key": "The Indian Express",
-      "n": 52
+      "n": 53
     },
     {
       "key": "The New Indian Express",
@@ -94,7 +94,7 @@
     },
     {
       "key": "ThePrint",
-      "n": 16
+      "n": 17
     },
     {
       "key": "SCC Online",
@@ -149,20 +149,20 @@
       "n": 9
     },
     {
+      "key": "The Economic Times",
+      "n": 9
+    },
+    {
       "key": "Onmanorama",
       "n": 9
     },
     {
+      "key": "The Tribune",
+      "n": 8
+    },
+    {
       "key": "The Statesman",
       "n": 8
-    },
-    {
-      "key": "The Economic Times",
-      "n": 8
-    },
-    {
-      "key": "The Tribune",
-      "n": 7
     },
     {
       "key": "The News Mill",
@@ -225,6 +225,10 @@
       "n": 5
     },
     {
+      "key": "Jagran Josh",
+      "n": 4
+    },
+    {
       "key": "deccanchronicle.com",
       "n": 4
     },
@@ -265,10 +269,6 @@
       "n": 3
     },
     {
-      "key": "Jagran Josh",
-      "n": 3
-    },
-    {
       "key": "theweek.in",
       "n": 3
     },
@@ -298,7 +298,7 @@
       "google": 100,
       "bing": 0,
       "kept": 1,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "act-registered",
@@ -307,8 +307,8 @@
       "expect": "use",
       "google": 100,
       "bing": 6,
-      "kept": 0,
-      "offSubject": 15
+      "kept": 3,
+      "offSubject": 16
     },
     {
       "id": "act-convicted",
@@ -317,15 +317,15 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 37
+      "kept": 0,
+      "offSubject": 39
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 53,
+      "google": 52,
       "bing": 9,
       "kept": 0,
       "offSubject": 7
@@ -335,10 +335,10 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 45,
-      "bing": 2,
+      "google": 44,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 11
     },
     {
       "id": "act-pendency",
@@ -347,28 +347,28 @@
       "expect": "use",
       "google": 60,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 22
+      "kept": 1,
+      "offSubject": 21
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 95,
+      "google": 96,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 45
+      "kept": 1,
+      "offSubject": 47
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 25,
+      "google": 24,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "act-misuse-claim",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 0,
+      "kept": 2,
       "offSubject": 3
     },
     {
@@ -425,9 +425,9 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 48,
+      "google": 47,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -436,9 +436,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 68,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 23
+      "offSubject": 22
     },
     {
       "id": "shri-upgrade",
@@ -446,7 +446,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 50,
-      "bing": 2,
+      "bing": 3,
       "kept": 0,
       "offSubject": 11
     },
@@ -476,7 +476,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 51,
-      "bing": 3,
+      "bing": 0,
       "kept": 0,
       "offSubject": 11
     },
@@ -487,8 +487,8 @@
       "expect": "dispute",
       "google": 45,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 36
+      "kept": 2,
+      "offSubject": 34
     }
   ],
   "items": [
@@ -7895,7 +7895,8 @@
       "published": "2026-08-06",
       "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPZ0p6amxTbVpuR1FiaTdCc1BCYzBPY1F5MmxHaDN4RGgzMGJyVExPQXUzbHd2a29wWFAxS3F3WTg0NXI0YTI5dmYzcXhKay1ackpKV1c5S0pyZUtGNmQ3RzI5a1BBR3E4bkJaUndPWlZ0ZGNodEsyZUVCbmJ6WXIxV3RwY0tXY0lvUzJOa3pFUTRPYncweEJvb1FJY2tVRGllZzNveXdscWhtQWFtVGlXek5HN01CYnpzU0Z1WFIwRHNzTV9CNVVMbDVQR2E3eHJ0SW5GQkM4RkVIZHlsTUHSAeMBQVVfeXFMT2JpeWNTekxMU2tpNWNOR1BuWXdJZmstMVBvNzE2WHJvTm83RWJjcjEydkw2MUxPRHR0bUtfWTRYcUxHXzluemFYRjBVRURsVnZyZDZJTS1sZlRuOUs5MnI4dUowbjlTSDJlZG4tOWJ6cm1mQ0h3Uk9hMU9DYk5iWjBwd3Z6UndoQndFaFY1S3V0TTZHTXBCaTFCcjd4WDR4bUMxbHUyRVl2cjhPRUgzUnlRWVpPbG5yODBVdWFteWZ2Y2hTV2JwTTV4YXd1YUdTbktfS2FpVUswbWxDaW51d0hYUGM?oc=5",
       "queries": [
-        "shri-general"
+        "shri-general",
+        "shri-sanctioned"
       ],
       "indexes": [
         "google"
@@ -15432,6 +15433,182 @@
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBWNW1VckEyTGl3dTYtb2RHRnRscEhJbjROVzRBTkxLREt4SVRnTkVocjNIX2JWaWcyeFU1R2o2OEl4azhMMEdPUE4zY3dWN1cyZXhkTGpRSDZEdWZVRXA4Ri1FaFgzUQ?oc=5",
       "queries": [
         "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-28"
+    },
+    {
+      "id": "casteist remark even on facebook or other social media can fall under sc st act hc",
+      "headline": "Casteist remark even on Facebook or other social media can fall under SC/ST Act: HC",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Economic Times",
+      "published": "2026-09-28",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQQ2NwcnYxR1RBa3dLS2xjbWJLeDl0SUVNcVRQTEhXYkItYUxMYjAwWWpxX3hJWmJkZkhLTXBUVXZyWnlKby00LVhMQ3lyRDN3YnFXd1Z4M2hmN0E4S3FPaE5JMkZmTi00TlQ1QWxEMmVLTVcyc1FwSXllY2wxbmVqbllnUlpZblE3MVJmZjVQel9zWFpJTzd3WWE3VTE2dE40NWJuSUtrcm5POUI1aDVBZnlTUkEtR1duaWQ2VFhmOFNiWWxUVE9mZ2VOXzBPUlRXcklSV2lLRTNUaFdvV0k2a9IB5gFBVV95cUxQNFJNc1ZDMFp3U1lMTlRHaWoyTjlpenVmOFZCZWo0b1NiRTlIZ3JYclF6MG5DSF9LWUNuZW1fU1pGNjUta05BQ1F6N2EwcS15MnFaZXl4TkdTTU1rcVNmeDJZeV9RaU53Z0ItaERJbUs1ZExwekVnSXRscnpCbS1nVWlpVkQ3VlFUMERTTHo0TkZWeUt6ZUhXaWc5aU1Wc2x0aXVFT1hRV0p3c0gtVEV3UFhMLU5Ib3YzVmw0dmc1akFRMTB5ZFV1OTFUTEJfZ2FoVkNkSmJQZzJtQlBQZ1pyY2ZjUnZnQQ?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-28"
+    },
+    {
+      "id": "karnataka high court declines interim protection to pratap simha in sc st act case over ga",
+      "headline": "Karnataka High Court Declines Interim Protection To Pratap Simha In SC/ST Act Case Over Ganesha Procession Speech – The Legal Affair",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Legal Affair",
+      "published": "2026-09-26",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQbzNoZGp2UTFEREJXRXg4OU9xc3BIeGo0ZzRNdl9qQXlYaEE1VEFFZ1ZJTlBCRjBGRGVBaVhIeHZsMUV6MHI4OUZZM1BOT2hyUVhOTXVyd3lUTDVtTHVjSTBWWTBOZEEzbVd1c21LbnJWWUI1RHJLNHdNcHNTVWlhellzQVJRSHNlN1BnOERZSEoxMkxsTDJLTXAteC1kZl9rRXBNOUlrNDhXRkt4V2RRdFZkOG5oQWF6d3VoS19ya2pTek9rbzBmeXJ0bDI3TDJMNk5zeTBnbnpmc1hxdkVF?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-28"
+    },
+    {
+      "id": "iit bombay professor booked under sc st act after student caught using chatgpt in exam",
+      "headline": "IIT Bombay professor booked under SC/ST Act after student caught using ChatGPT in exam",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "newsdrum.in",
+      "published": "2026-09-20",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOZkdic3hXNDY3NHlkWGVrSEtLekZlbFhXOWR5cnVIQ012cnlETGRxRjFFMXpxYmR3aEp3empTTG1VZFJVTWJrTndjRnFYb0tBWHp1OGszZ1Jka05kbFFDWmlydzJtTnEybS01dWxWX2ZyLUxSdzYwdkNtWFdRcVNnMzhWeG5jcnlSZnJrUHpyUEU5M3RIR2JibzJOSUszWDFlX3hSaC12N24teVlHMHBDUExOQmJsbDZaRldoaEU5MjBjOU9aZnfSAcYBQVVfeXFMTmZHYnN4VzQ2NzR5ZFhla0hLS3pGZWxYVzlkeXJ1SENNdnJ5RExkcUYxRTF6cWJkd2hKd3pqU0xtVWRSVU1ia053Y0ZxWG9LQVh6dThrM2dSZGtOZGxRQ1ppcncybU5xMm0tNXVsVl9mci1MUnc2MHZDbVhXUXFTZzM4VnhuY3J5UmZya1B6clBFOTN0SEdiYm8yTklLM1gxZV94UmgtdjduLXlZRzBwQ1BMTkJibGw2WkZXaGhFOTIwYzlPWmZ3?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-28"
+    },
+    {
+      "id": "delhi hc reserves order on youtuber ajeet bharti s plea for anticipatory bail in sc st act",
+      "headline": "Delhi HC reserves order on YouTuber Ajeet Bharti’s plea for anticipatory bail in SC/ST Act case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "ThePrint",
+      "published": "2026-09-16",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPRnpjZW5jM3NCenlQNmlLYWdrQlFFMFcwaC0wLVFscVh6cThXaVJRWFlrdjYxakI4bzVCNlB2b2wxR2UzVWVTYWJoUzlzcDBQTGF6a3NxSzA0Ti1tVjcxdUxBRXc4S0lPeU1KUjRNYS11X2JTYXZGdkx3NkdqRkgxNFhHMFhfemJCelpnN0ZXS2xmdkU0VTkwWGMzeHBIUkk3TWhMMDUxYzBwZ05oSjFrVEgzVGJ1bHRZVExyUmxyQ2pZUnY0NTk2NNIBzgFBVV95cUxOVFBJRldGb2Z1azV2aGgtRHJRTFVHeW9pc2JIbHVYZlFGZ3F6eDlCLWk2bkFJbWtMT1YzSTZuRmhkTE1Rd25ISWg3Y3FNVmRTcy1DdjRMMHNNbHlJMWo5dm5uU0x2Wm9DQlIzNFV0RW94dll6bEc5WnJIM2xXRWZsdzl4Z0YtUGVSQzhUcjU0d011SmRjVUlYX0xYdnMxRFhuMldvclU4eTVQaFVQN3h4VEsxOEQxSDJ5OENDeklvTzctZnYwY3c4VkY0MU45UQ?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-28"
+    },
+    {
+      "id": "sc st court frames attempt to murder charge against former rajasthan mla girraj singh mali",
+      "headline": "SC-ST court frames attempt to murder charge against former Rajasthan MLA Girraj Singh Malinga",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Daijiworld",
+      "published": "2026-01-29",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBYdGJwOFpIV1VqR3FMdjJDX0J5aTVkS2tlVG92YUdTVG5vaDYzZURLa3JHRUgzcFNHNDVhU2FqRmlBXzd5YU9JVXhNY201UHMxRmV4YlFWX1pZaXpjcl9lbzNWcVFXOXQwVmtYTm0xQml4bEpMVDZv?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-28"
+    },
+    {
+      "id": "75 pc people acquitted in sc st act cases mp bar association survey",
+      "headline": "75 pc people acquitted in SC/ST Act cases: MP Bar Association survey",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "India.com",
+      "published": "2018-09-21",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPV0NnNjI1Z1ZMYjZxbzFNUWZ5Z0ZLZ3JudHFyc290WTNkSTZ3RzNYQnJTa1ktV0dwNkswMEhEUDRMRVhzU3k0UkxBUWN5ZUFMelVjZDhjY0ZRWXpObmpKdk5tYlFzYmJCbndZV04yUXkxd0JxZkhYVS1Jc1dORHlwN1I4RU9PTWdHR0h3dGpXTzZHRFhaaTVWX0xDVDJuSTlFbU90bEdUUmpTUdIBqgFBVV95cUxPV0NnNjI1Z1ZMYjZxbzFNUWZ5Z0ZLZ3JudHFyc290WTNkSTZ3RzNYQnJTa1ktV0dwNkswMEhEUDRMRVhzU3k0UkxBUWN5ZUFMelVjZDhjY0ZRWXpObmpKdk5tYlFzYmJCbndZV04yUXkxd0JxZkhYVS1Jc1dORHlwN1I4RU9PTWdHR0h3dGpXTzZHRFhaaTVWX0xDVDJuSTlFbU90bEdUUmpTUQ?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-28"
+    },
+    {
+      "id": "ldf walks out of kerala assembly over pm shri scheme row",
+      "headline": "LDF Walks Out of Kerala Assembly Over PM SHRI Scheme Row",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": "Deccan Chronicle",
+      "published": "2026-06-24",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNSml4X3BWTWRBVUVOUmRuaGZqcUlxS1ZOZlluMFg0eGdGMG9wMXZ2amJEWkg1WEJMU0podGQ0MzJjWGloZTBwY0ZSV1U0dU9UcmpOZFBteEIyNWZkOEdCdHM2UmlsVzZUbFdUc1d3OTkwMy13Z1BYaXFtX2FMTnVGdnpyS2tqUUZiUVRkekdsM2hwd1NxdC1KOEg5RDJySFFoZkVZa1hFWlBWMjUxZkJYZjgxOE1fLURfdWd30gHAAUFVX3lxTFBYQ21qM3hiUmNhWVBzOGwxZElOTDZGSEQyMTJMSElTckQwSVVwSFdMRDdRdDZLNUdkVjA4NW1mTmVTaFhaWnJxVW5aYzN4WnFwNUtPa25BaTIyRDJHNFBjOVB2bnc0LXJtQ2trUXF0cEJmbG5NdlZJc0NvOUJadll2dWdfa0xNdFRLZXVIVTJqV2lxeG9GdnpibmZralNEZVZwdU1HcFMyYUZmamdoanRqaGc1MzFkV2Q4UWJMSlU4Mw?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-28"
+    },
+    {
+      "id": "up govt approves 193 lakh for learning corners in 966 pm shri schools",
+      "headline": "UP Govt Approves ₹193 Lakh For Learning Corners In 966 PM SHRI Schools",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-09-28",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aba9deabe2d40269cfd67ad5e419d96&url=https%3a%2f%2fwww.freepressjournal.in%2futtar-pradesh%2fup-govt-approves-193-lakh-for-learning-corners-in-966-pm-shri-schools&c=13891932532389726413&mkt=en-us",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-09-28"
+    },
+    {
+      "id": "rising star in kangra raja ka talab school selected under pm shri yojana",
+      "headline": "Rising star in Kangra: Raja Ka Talab school selected under PM SHRI Yojana",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "The Tribune",
+      "published": "2025-06-04",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNa2VOX1BYUFd3UEppemcxeTFlOW9sUEpDdFc5ZTRGOWVYVlJOQ1hLVnZHSndmOWliTTRQbTJtTGxzWmd2OWpIUFpyemZ3MEprNktXQUJWbGc0TTZNNFlOZjhEbUc5YUJsQ0hsdVotTDBXRHBLdi01QVNoQlVxMGtEVjBJS3VQWjc5NjBSbXJQWUd3MHl4dlYweGY2RnB5MFI1cDBSRHREYy12QmFDRmJCSUNtcDQ5MnfSAbsBQVVfeXFMTW9LcjJxZE53WWNyRzR2c2EtSDhRTVZVbEtINXlYMHhvQklCVmtYTG14NlBIXzNRR3JzX2NleDRjRVFrOU9FWHhadmNIS1IwMEhyb0ZCOGZBUEZQNzRheVZVWUhtYlJ6REx4WU1abjhZbTVGTk1ySGpneHM5T3NsaFYzNTBFQ203cTUtVkNjTmdiRlNqcDRkSllwU0lCWk5rbXZQUXhSSHlEb1p2b0tFby1QTkVrME1CMmlVQQ?oc=5",
+      "queries": [
+        "shri-sanctioned"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-28"
+    },
+    {
+      "id": "sign mou for pm shri pradhan responds to stalin letter for samagra shiksha funds",
+      "headline": "Sign MoU for PM SHRI: Pradhan responds to Stalin letter for Samagra Shiksha funds",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The Indian Express",
+      "published": "2024-08-31",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPUFoxTWg2cGNiNExuVVJzOEtiMzN6ODVBMXE5R2k0UUNIRVdsWUJHTHlTNEVKYzdFNDdBWVZRdm5QNmZFYXRMV1VjQ0FqaW83TTg4cjdkVXpRWUQ1WkhzeU9kdUZWdXBNSFkwSFNRQkVUSTVRRmlDd05SS0k1MFZpWk0tandNUXhmR09sRWVKQVM5MEVtZk1ud1I0SDlJWmtiOVQ2aXJFX05lZlNNcG8xcUx2ZmREbUJmaDRiem5kVTA0cWZQOGVvNdIBzwFBVV95cUxPamh6YmN4b3hXVGtzWHhNSlZTdU9YcGVSYnpsc2I5VGhEVG9Xa2ZWZjJkZU9RMDBfdzdaOE5mU2g2TnhJeklxV251OXF4amRfcmdQMVQ3M29GaG5uN1ppcFQ5SWtQLUZkVWtDNHpSVW5VUUpueV9rYndBRkFTQVNLbDdFMlFkUi1fTU1QVGg0SHhJOE5lbTVMejEyS3ZwejBfRElmbnhaWC1FTGZSX1l2enJIazBRTzA2QnFMcmtkWGE2RFVBaVdzRHJnVXdleEE?oc=5",
+      "queries": [
+        "shri-criticism"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-28"
+    },
+    {
+      "id": "kerala pm shri row government to decide after cabinet panel report says education minister",
+      "headline": "Kerala PM SHRI Row: Government to Decide After Cabinet Panel Report Says Education Minister",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": "Jagran Josh",
+      "published": "2026-09-07",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQWDl4WDF6YzdZcElpSGlwSFluMzNTNFQ4aFpmQUh6OW8yTWdZVE9RWW5na056T1BMQVItYmJFUFdvSkxuU3RXVnRlRENnMmRFckh4N0dXeDJ3VFJNa0VSYWRnbXpCZkJFa3NzcDVISG5iTXA2V2ZXMkdVWlJFWTgzM0ZHNG5IYmxfWU1EaVR0RzJjN3FuUmgyYnlZQ2FCZ3Y3SGEtRlZXWjk3ajFJeWxSc1lidmpUMk5HT3JRMmhKUnktamp0YVF6MtIBzwFBVV95cUxQTl8yazVwOG5QS2lIdGpiUXVNZkNsOFBvQ1Z0ZU5vZF9BWGFVRmhLeWxpeVd0MWV1NExVcURvajFnU3ZfUTRUR3JxSTNGYWNmdDdabHlJUlZyUnBuQnVGYm9sdEFmWFVCNU1kUWlmb1M5TVRJc2hMbVRUN0FITVpaekdIVXJIdXRXeDRVNlk1TnRhblJwbW1RUkxBXzJlZXk5M0xNb1RaZzYtVWRDd0NkYy1LSzcyM1pyVkx1WGNTMHQycWRUWlFITXVVaUpjXzg?oc=5",
+      "queries": [
+        "shri-criticism"
       ],
       "indexes": [
         "google"
