@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-29T06:17:14.293Z",
+  "builtAt": "2026-09-29T15:08:15.373Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 937,
+    "items": 939,
     "addedThisRun": 2,
-    "carriedFromEarlierRuns": 935,
-    "withOutlet": 888,
+    "carriedFromEarlierRuns": 937,
+    "withOutlet": 890,
     "bySubject": {
-      "scst": 611,
+      "scst": 613,
       "pmshri": 326
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 308
+    "offSubjectDropped": 303
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 469
+      "n": 471
     },
     {
       "key": "use",
@@ -225,6 +225,10 @@
       "n": 5
     },
     {
+      "key": "LawChakra",
+      "n": 5
+    },
+    {
       "key": "Law Trend",
       "n": 4
     },
@@ -246,10 +250,6 @@
     },
     {
       "key": "Kashmir Life",
-      "n": 4
-    },
-    {
-      "key": "LawChakra",
       "n": 4
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 5,
-      "kept": 0,
-      "offSubject": 16
+      "bing": 0,
+      "kept": 2,
+      "offSubject": 13
     },
     {
       "id": "act-convicted",
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 38
+      "offSubject": 39
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 10,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 4
     },
     {
       "id": "act-compensation",
@@ -337,8 +337,8 @@
       "expect": "use",
       "google": 44,
       "bing": 3,
-      "kept": 1,
-      "offSubject": 11
+      "kept": 0,
+      "offSubject": 12
     },
     {
       "id": "act-pendency",
@@ -358,7 +358,7 @@
       "google": 94,
       "bing": 0,
       "kept": 0,
-      "offSubject": 47
+      "offSubject": 46
     },
     {
       "id": "act-hostile",
@@ -375,8 +375,8 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 43,
-      "bing": 1,
+      "google": 41,
+      "bing": 2,
       "kept": 0,
       "offSubject": 8
     },
@@ -386,7 +386,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 28,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 3
     },
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 48,
+      "google": 47,
       "bing": 1,
       "kept": 0,
       "offSubject": 6
@@ -445,8 +445,8 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 50,
-      "bing": 2,
+      "google": 49,
+      "bing": 0,
       "kept": 0,
       "offSubject": 11
     },
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 46,
-      "bing": 1,
+      "bing": 2,
       "kept": 0,
       "offSubject": 5
     },
@@ -475,9 +475,9 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 51,
-      "bing": 3,
-      "kept": 1,
+      "google": 50,
+      "bing": 0,
+      "kept": 0,
       "offSubject": 10
     },
     {
@@ -8370,10 +8370,12 @@
       "published": "2026-08-02",
       "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQenQ3bl9LbHpGTG1LVEtydTlGZlgxTXNSVXJ1S2pBOUF6UGlmcVFQMy1nRmVPWmVXTlhYTmJ3OG9oSllaR3E1cHNCZ3kzbmI0VndwVjZ5ZjVvbDJSTHlWZFhNQUwxWjdjUUhXb3ZiNG50QUFBbzVUdm1za3hpZXh2VXNGXzNPTmR2UGRXTU9qQ3pMdWxmcW03cG5FZ1ZQS2FLbE5XMlRldGo0X000M1JjR21rWklnTmxyVkowSWFLby11ME5UX2VZYdIBzwFBVV95cUxOQTRTQTV2aVdJUFdSRGNiUThUT0NKNUlrRzZBYlhDMmVzSkQwNW1IWVhHMmF1cndBWWdjZXMzQTRwZGR1cW1ETGdyYUVkRmxaeEt4M3MxT2E1ekFRZkVzaUdWN0JGcXlDcVJ2Ung2QVpFd29LSWtBLUpzTmVKZ2JfNkd0bVFxNVpDZGZlWDJIZGNOaWtEbldONThVUVJjcUFES3pvbnN2QmhMVzRsZlRYc2hnVXZ2d083RXBtU3FKcFhacXBFeVg4YTFLZUpIRVk?oc=5",
       "queries": [
-        "shri-general"
+        "shri-general",
+        "shri-mou"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -9318,10 +9320,12 @@
       "published": "2026-09-07",
       "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab22953a93d4c65a0a1085e0af247b5&url=https%3a%2f%2fwww.freepressjournal.in%2feducation%2fkerala-pm-shri-scheme-govt-to-decide-on-implementation-after-cabinet-panel-report-amid-cpi-congress-row-watch&c=3900811080570564932&mkt=en-us",
       "queries": [
-        "shri-general"
+        "shri-general",
+        "shri-criticism"
       ],
       "indexes": [
-        "bing"
+        "bing",
+        "google"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -15259,7 +15263,8 @@
       "published": "2026-09-22",
       "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab925f3abe145918f8d65e391784fc8&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fsc-rejects-pil-challenging-2018-amendment-to-sc-st-act%2far-AA2cO80q&c=1284307472637203240&mkt=en-us",
       "queries": [
-        "act-misuse-claim"
+        "act-misuse-claim",
+        "act-dilution"
       ],
       "indexes": [
         "bing"
@@ -15730,6 +15735,39 @@
       ],
       "indexes": [
         "bing"
+      ],
+      "firstSeen": "2026-09-29"
+    },
+    {
+      "id": "sc st act after cji surya kant s refusal a law that presumes guilt needs review",
+      "headline": "SC/ST Act After CJI Surya Kant’s Refusal: A Law That Presumes Guilt Needs Review",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawChakra",
+      "published": "2026-09-29",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNS2lJVmZfSHBid1FiUVJzT2s0VE9uTU5yZ0k3Z1lldkRDOXlQWEJxYzhyNGNfczlBMXNpVFktV21rZHhhUlBXbXU4RjJBOTJRYkJHWV9xeGRqT3VZN2RJWUFfUTZGd29GOGhVTUZxaHY3VGo5bjNWS3BTVFFrNjZmUW9VUmhMbUQ3ME9BU1UxelkyelE?oc=5",
+      "queries": [
+        "act-registered",
+        "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-29"
+    },
+    {
+      "id": "ajeet bharti moves delhi hc for anticipatory bail in sc st act case",
+      "headline": "Ajeet Bharti moves Delhi HC for anticipatory bail in SC/ST Act case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "newsdrum.in",
+      "published": "2026-09-09",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOaGgyNzI2YmV6clNnMWFHS01zOGJJa1QwQ29zYUtpNTdieTNlNEZrMEZNanY3bHZacFNyUmFqa2REdmJTZ3MyemNGLVNNcngwLXBheHhmUmNhV2JmYTQxd2FGWHpMb0lDWjVJVEo2ZHJGV0Z0V0J5ZzJjRG5abjBXbTN3d0pxZnFlYVd4NkxVVFltMk1PcXJ1MFFCbGk3cjBZNmp4R3RQNWxMdFNK0gGsAUFVX3lxTE5oaDI3MjZiZXpyU2cxYUdLTXM4YklrVDBDb3NhS2k1N2J5M2U0RmswRk1qdjdsdlpwU3JSYWprZER2YlNnczJ6Y0YtU01yeDAtcGF4eGZSY2FXYmZhNDF3YUZYekxvSUNaNUlUSjZkckZXRnRXQnlnMmNEblpuMFdtM3d3SnFmcWVhV3g2TFVUWW0yTU9xcnUwUUJsaTdyMFk2anhHdFA1bEx0U0o?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
       ],
       "firstSeen": "2026-09-29"
     }
