@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-09-29T18:05:38.300Z",
-  "previousBuild": "2026-09-29T10:41:34.937Z",
+  "builtAt": "2026-09-29T23:44:06.048Z",
+  "previousBuild": "2026-09-29T18:05:38.300Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,15 +12,15 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 76,
-    "createdThisRun": 3,
+    "stories": 81,
+    "createdThisRun": 5,
     "corroboratedThisRun": 1,
-    "feedsAnswered": 13,
+    "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 270,
+    "itemsSeen": 284,
     "corroboration": {
-      "one": 67,
-      "two": 7,
+      "one": 71,
+      "two": 8,
       "threePlus": 2
     }
   },
@@ -28,17 +28,17 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 36
+      "n": 40
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 24
+      "n": 26
     },
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 12
+      "n": 13
     },
     {
       "id": "cyber-ew",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 11
+      "n": 12
     },
     {
       "iso": "IND",
@@ -97,8 +97,8 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 35,
-      "kept": 1
+      "items": 39,
+      "kept": 2
     },
     {
       "outlet": "Indian Defence Research Wing",
@@ -128,13 +128,13 @@
       "outlet": "DefenseScoop",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 3
     },
     {
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Defense News",
@@ -146,7 +146,7 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 1
+      "kept": 3
     },
     {
       "outlet": "Defense One",
@@ -156,10 +156,9 @@
     },
     {
       "outlet": "Naval News",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "HTTP 503"
+      "ok": true,
+      "items": 10,
+      "kept": 1
     },
     {
       "outlet": "Defence Blog",
@@ -285,6 +284,33 @@
         {
           "outlet": "Army Times",
           "url": "https://www.armytimes.com/news/pentagon-congress/2026/09/29/pentagon-directs-cyber-intelligence-agencies-to-counter-foreign-election-threats/",
+          "published": "2026-09-29"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/09/29/pentagon-task-force-army-announce-billions-in-counter-drone-tech-awards/",
+      "headline": "Pentagon task force, Army announce billions in counter-drone tech awards",
+      "firstSeen": "2026-09-29",
+      "lastSeen": "2026-09-29",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/09/29/pentagon-task-force-army-announce-billions-in-counter-drone-tech-awards/",
+          "published": "2026-09-29"
+        },
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/09/army-awards-up-to-7b-in-sprawling-counter-drone-idiq/",
           "published": "2026-09-29"
         }
       ]
@@ -509,6 +535,76 @@
         {
           "outlet": "Breaking Defense",
           "url": "https://breakingdefense.com/2026/09/drone-hunting-on-the-border-plus-turmoil-at-an-air-force-think-tank/",
+          "published": "2026-09-29"
+        }
+      ]
+    },
+    {
+      "id": "https://www.twz.com/sea/navy-orders-30-drone-ships-to-finally-advance-its-medium-uncrewed-vessel-ambitions",
+      "headline": "Navy Orders 30 Drone Ships To Finally Advance Its ‘Medium’ Uncrewed Vessel Ambitions",
+      "firstSeen": "2026-09-29",
+      "lastSeen": "2026-09-29",
+      "themes": [
+        "autonomy",
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "The War Zone",
+          "url": "https://www.twz.com/sea/navy-orders-30-drone-ships-to-finally-advance-its-medium-uncrewed-vessel-ambitions",
+          "published": "2026-09-29"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/u-s-navy-awards-production-agreements-for-30-unmanned-surface-vessels-at-40-million-average-cost-targeting-deliveries-by-fiscal-2027/",
+      "headline": "U.S. Navy awards production agreements for 30 unmanned surface vessels at $40 million average cost, targeting deliveries by fiscal 2027",
+      "firstSeen": "2026-09-29",
+      "lastSeen": "2026-09-29",
+      "themes": [
+        "autonomy",
+        "targeting"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-navy-awards-production-agreements-for-30-unmanned-surface-vessels-at-40-million-average-cost-targeting-deliveries-by-fiscal-2027/",
+          "published": "2026-09-29"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/natos-rutte-highlights-stronger-air-defence-and-counter-drone-measures-after-italian-jets-shoot-down-drone-in-lithuanian-airspace/",
+      "headline": "NATO’s Rutte highlights stronger air defence and counter-drone measures after Italian jets shoot down drone in Lithuanian airspace",
+      "firstSeen": "2026-09-29",
+      "lastSeen": "2026-09-29",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/natos-rutte-highlights-stronger-air-defence-and-counter-drone-measures-after-italian-jets-shoot-down-drone-in-lithuanian-airspace/",
+          "published": "2026-09-29"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/09/the-drone-war-will-be-won-on-the-factory-floor-not-just-the-front-line/",
+      "headline": "The drone war will be won on the factory floor, not just the front line",
+      "firstSeen": "2026-09-29",
+      "lastSeen": "2026-09-29",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/09/the-drone-war-will-be-won-on-the-factory-floor-not-just-the-front-line/",
           "published": "2026-09-29"
         }
       ]
