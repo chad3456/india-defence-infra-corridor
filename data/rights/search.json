@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-29T00:36:57.643Z",
+  "builtAt": "2026-09-29T06:17:14.293Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,13 +10,13 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 935,
-    "addedThisRun": 5,
-    "carriedFromEarlierRuns": 930,
-    "withOutlet": 887,
+    "items": 937,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 935,
+    "withOutlet": 888,
     "bySubject": {
-      "scst": 610,
-      "pmshri": 325
+      "scst": 611,
+      "pmshri": 326
     },
     "queriesAsked": 20,
     "offSubjectDropped": 308
@@ -24,11 +24,11 @@
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 468
+      "n": 469
     },
     {
       "key": "use",
-      "n": 324
+      "n": 325
     },
     {
       "key": "dispute",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -317,7 +317,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 38
     },
     {
@@ -327,7 +327,7 @@
       "expect": "use",
       "google": 51,
       "bing": 10,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 7
     },
     {
@@ -336,8 +336,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 44,
-      "bing": 2,
-      "kept": 0,
+      "bing": 3,
+      "kept": 1,
       "offSubject": 11
     },
     {
@@ -355,7 +355,7 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 95,
+      "google": 94,
       "bing": 0,
       "kept": 0,
       "offSubject": 47
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 44,
+      "google": 43,
       "bing": 1,
       "kept": 0,
       "offSubject": 8
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 29,
+      "google": 28,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 29,
+      "google": 30,
       "bing": 0,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 19
     },
     {
       "id": "shri-general",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 3
     },
     {
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 47,
+      "google": 48,
       "bing": 1,
       "kept": 0,
       "offSubject": 6
@@ -435,7 +435,7 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 68,
+      "google": 67,
       "bing": 2,
       "kept": 0,
       "offSubject": 23
@@ -446,7 +446,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 50,
-      "bing": 3,
+      "bing": 2,
       "kept": 0,
       "offSubject": 11
     },
@@ -468,16 +468,16 @@
       "google": 28,
       "bing": 1,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 14
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 50,
+      "google": 51,
       "bing": 3,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 10
     },
     {
@@ -8159,7 +8159,8 @@
         "shri-general"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -11401,7 +11402,8 @@
       "published": "2026-05-16",
       "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQcjhnekk1Zk83cE0xZ09mdXViWUdHa1FaOVlZb255MFVEM0FQY0hFaDlSTU50WlhFdnRzWWRPc1RURDBEb0liVm1uZkwzQXRxVjRNd0dkRHBmSXlCRXQxeEUtQU5VQzhycFRNM1A3bTNfOXU5YTgxYW5GdnBMbW53S05CYlBHVElEZm9HZ2RVUS1PZHlrLXVidEVpYVVCVVJNdEYxMUVzNlZ1dzJkMGIwNEtyRGE0QQ?oc=5",
       "queries": [
-        "shri-mou"
+        "shri-mou",
+        "shri-sanctioned"
       ],
       "indexes": [
         "google"
@@ -15693,6 +15695,38 @@
       "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abb07ff51f14e4cb92adc1de23b860f&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2ffour-learning-corners-to-be-developed-in-966-pm-shri-school-anganwadis%2far-AA2d9HzQ&c=2231699616725548358&mkt=en-us",
       "queries": [
         "shri-general"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-09-29"
+    },
+    {
+      "id": "okay to pay relief after conviction under dalit atrocities act says court",
+      "headline": "Okay To Pay Relief After Conviction Under Dalit Atrocities Act, Says Court",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "NDTV",
+      "published": "2022-08-04",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOT2c3eTljdFVrWGctYnBqYTZBR3E4SGdqUmdTc0lsT01GYWtjX2RtRndFcVRwcDVjbXROdVBKaWJzQlJPN0NYOGFTNFJYdno5bUYxSFdLcUwxV3Y0anM5dWFYbzdtLW9lbV85U2tEWmVkTmZCRk91Qmt6ajVWVkE0RUlzS295ZHQwdmZUbVBKM3NQR0hFUi11SDJRTU82YjVOUUdfLTFnOXJXTE1UZE91NVIxLXVKX256c3AxM21pYWJ1TlNwTVc4?oc=5",
+      "queries": [
+        "act-compensation"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-29"
+    },
+    {
+      "id": "satheesan vijayan spar over pm shri scheme in kerala assembly",
+      "headline": "Satheesan, Vijayan spar over PM SHRI scheme in Kerala Assembly",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-06-24",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abb57e4e13a404d83bc02c21c9f9530&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fIndia%2fsatheesan-vijayan-spar-over-pm-shri-scheme-in-kerala-assembly%2far-AA26rDZ2&c=2605583510516578436&mkt=en-us",
+      "queries": [
+        "shri-nep"
       ],
       "indexes": [
         "bing"
