@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-28T17:04:20.701Z",
+  "builtAt": "2026-09-29T00:36:57.643Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,29 +10,29 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 930,
-    "addedThisRun": 11,
-    "carriedFromEarlierRuns": 919,
-    "withOutlet": 884,
+    "items": 935,
+    "addedThisRun": 5,
+    "carriedFromEarlierRuns": 930,
+    "withOutlet": 887,
     "bySubject": {
-      "scst": 607,
-      "pmshri": 323
+      "scst": 610,
+      "pmshri": 325
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 309
+    "offSubjectDropped": 308
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 467
+      "n": 468
     },
     {
       "key": "use",
-      "n": 321
+      "n": 324
     },
     {
       "key": "dispute",
-      "n": 54
+      "n": 55
     },
     {
       "key": "allegation",
@@ -62,7 +62,7 @@
     },
     {
       "key": "The Hindu",
-      "n": 37
+      "n": 38
     },
     {
       "key": "Lawtext",
@@ -225,6 +225,10 @@
       "n": 5
     },
     {
+      "key": "Law Trend",
+      "n": 4
+    },
+    {
       "key": "Jagran Josh",
       "n": 4
     },
@@ -258,10 +262,6 @@
     },
     {
       "key": "Forward Press",
-      "n": 3
-    },
-    {
-      "key": "Law Trend",
       "n": 3
     },
     {
@@ -306,8 +306,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 6,
-      "kept": 3,
+      "bing": 5,
+      "kept": 0,
       "offSubject": 16
     },
     {
@@ -317,17 +317,17 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 39
+      "kept": 1,
+      "offSubject": 38
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 52,
-      "bing": 9,
-      "kept": 0,
+      "google": 51,
+      "bing": 10,
+      "kept": 1,
       "offSubject": 7
     },
     {
@@ -336,7 +336,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 44,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 11
     },
@@ -345,9 +345,9 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 60,
+      "google": 59,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 21
     },
     {
@@ -355,9 +355,9 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 96,
+      "google": 95,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 47
     },
     {
@@ -376,7 +376,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 44,
-      "bing": 2,
+      "bing": 1,
       "kept": 0,
       "offSubject": 8
     },
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 30,
+      "google": 29,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -408,7 +408,7 @@
       "google": 29,
       "bing": 0,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 18
     },
     {
       "id": "shri-general",
@@ -427,7 +427,7 @@
       "expect": "use",
       "google": 47,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -436,9 +436,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 68,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 22
+      "offSubject": 23
     },
     {
       "id": "shri-upgrade",
@@ -468,17 +468,17 @@
       "google": 28,
       "bing": 1,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 15
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 51,
-      "bing": 0,
+      "google": 50,
+      "bing": 3,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 10
     },
     {
       "id": "shri-criticism",
@@ -487,7 +487,7 @@
       "expect": "dispute",
       "google": 45,
       "bing": 1,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 34
     }
   ],
@@ -7982,7 +7982,8 @@
         "shri-general"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -11117,7 +11118,8 @@
       "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNa2F4Q19lRElpWkZXMzRBallqQjRVNUl5emZIS2FMa0ZBb0RScmplZ2NSRXpnMWk5MVRIRl9pdmQtaVNIOGdHemZRMW53Y1gzdzBIeEJrN2xLc200MmItV3NMYy05QkduMXdXTHpVWk1rUnIzYlJzcGVjRUtfYkN5RVNBVDZnOGVrdWNKOU1KZm90ZUttWjBFd0VtTkd3NVpweXUybU1JcHkwV3o1Zmc?oc=5",
       "queries": [
         "shri-mou",
-        "shri-nep"
+        "shri-nep",
+        "shri-sanctioned"
       ],
       "indexes": [
         "google"
@@ -14707,7 +14709,8 @@
       "published": "2018-09-21",
       "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPVmxlaklsNW4yVXhyM2U4Uk9rTl93TVJTVFNtUmRiNmpfcVc2TFM4OEhuclBZMWN2bDJMZ2JHNkhjWmZSZzVaUlNCUHNlS3FfeU93Z3U4eDdTd0EyZmd0S3BId1cydkhBQ0xnWUkycjRoTTVqWHIxQnl6djJhY3RyZWNwbkstMmxROHI1NW9RMFY1WDRJdFZGWlJNR0txendEZ2QtWFk3SUVnTjFUQzJrNnd2SVptalZYRFBFVFB0cDJ1aTd3MzI00gHOAUFVX3lxTE8yOF9ibzBpUklXT3JFczcxOHpKbkhXS1NVRnQ2WWZQUF92SUxXUDA1RHRvU2RvTmg2RVotdjhfSzl0UVRDMnVNUk5xUFRha2U3cThDNXBVTzdZTnFHRXhGbVVXeFNTa1RIbFcwaVA2S2NCajdJdmw4eVg5T3RWOUJ5UWtnSHpTckFOb212YUFEdFRnQ1FKbEtPS1l2elhMYS1NV1BfU1AzWXNsSGFTY2t6UWRnUGFFcGI2N3QxcnlKTV9Hb1JSQnpwZUhMX0hB?oc=5",
       "queries": [
-        "act-acquittal"
+        "act-acquittal",
+        "act-misuse-claim"
       ],
       "indexes": [
         "google"
@@ -15432,7 +15435,8 @@
       "published": "2026-09-27",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBWNW1VckEyTGl3dTYtb2RHRnRscEhJbjROVzRBTkxLREt4SVRnTkVocjNIX2JWaWcyeFU1R2o2OEl4azhMMEdPUE4zY3dWN1cyZXhkTGpRSDZEdWZVRXA4Ri1FaFgzUQ?oc=5",
       "queries": [
-        "act-convicted"
+        "act-convicted",
+        "act-acquittal"
       ],
       "indexes": [
         "google"
@@ -15614,6 +15618,86 @@
         "google"
       ],
       "firstSeen": "2026-09-28"
+    },
+    {
+      "id": "pm must get fir filed against culprits under sc st act priyanka on kharge purification row",
+      "headline": "PM must get FIR filed against culprits under SC/ST Act: Priyanka on Kharge 'purification' row",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Press Trust Of India",
+      "published": "2026-08-30",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNS3FySVZhTndkMm13UmprSDdNUE9CQ2pKUHctdVV5UHQxMmxBQXNXQ1R1RlYwdUZPTm0xdVd5NHI0bGhQckxTUnBCczNzejZYUXlsY3Q1cUpJazNabDBET0FKX2FLNGZ5SmIxX18xc2h1SHI1V09zaThwT2FUYkdiZmh6U0xxdlJUbTFIS2g1RHZ0cUM1X3BQQXI0WGVlLVdic0U4X2hzdmVwSnRSb2dKcFlJOUV4UlhCZm9CT1JjTUp2RGhfZmI3V2YzYVhpdHhG?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-29"
+    },
+    {
+      "id": "moradabad court sentences man to life imprisonment under sc st act",
+      "headline": "Moradabad Court Sentences Man to Life Imprisonment Under SC-ST Act",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Law Trend",
+      "published": "2024-05-19",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNNWxLYkFaNUg3emlCVm0yYjNfR3VoNmpHTm13WGdFNUJwY2NndndXOVVQci1PTjZtQ3hLSGN2czJSZXVzLWktMGpXbE5ONG8ta1pVNU1tVEtPS2Z0REl3bGxVNmgwcHZOUjZ2RU05VFg5aUNZWVNRVXMtS0lqSGRxQjR3RlpRdFpDSU4xb0VKSmU?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-29"
+    },
+    {
+      "id": "dalit hotel worker beaten up for delay in giving water to wash hands",
+      "headline": "Dalit hotel worker beaten up for delay in giving water to wash hands",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-09-25",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abb07c96c1c49fe83ab4f0e666881bd&url=https%3a%2f%2ftimesofindia.indiatimes.com%2fcity%2fmadurai%2fdalit-hotel-worker-beaten-up-for-delay-in-giving-water-to-wash-hands%2farticleshow%2f134490952.cms&c=12570932702368083507&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-09-29"
+    },
+    {
+      "id": "kerala assembly opposition ldf locks horn with udf over pm shri stages walkout",
+      "headline": "Kerala Assembly: Opposition LDF locks horn with UDF over PM SHRI, stages walkout",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": "The Hindu",
+      "published": "2026-06-24",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOdEJJbHlBQnBEY21kdkRJc3ZoNWhBa2ZGWXpnVEw0bHRuMUJLLUd2OVZsYW9CWEN0anhqdEFvWUdtOXFjTTczQVhrQWtWbXhuMjdTelMtT0xiTUJvRVIwX19fdGNWRDdjaHZIMnNoRHdkRDk3ZXdHbzVaOVJBVWRpQ3Fqekc5NTZiTjVPTmFIZVlBanU1Sm9KSHY0d1JYd2R4VWJSUWNBdUViVmpMRGRqTndLd1BWTjhOdlhDcWZRZmltdWdtSTJRT3ExdkJrck15WVhoZ3hlN3doMVo10gHjAUFVX3lxTE9pRUZ0Q1Vnc2pjaG15ckdkMUppWFgya09DS09RTnBzSm5yMXB1enhXRXc4S3haalpBeEJVRnY4VlhGeklRenRvRjgtQ0prTlBZTEJKNFlOSVNXUW1Xclc2NEprbzlDNlNpLWlnWjEtQ1FJU1FHeFg4cXdVYmRQNGJUS05ySVVMeVU2X09wMllWQ1FVbU8tU1dOUWlzUjJxUXlsejBRZzNOTGd2OTRldmM1WFIyVzY1ZU1TVjJicUZ6Y05pM0NBcnJOZDNGazlRUklybS1oTUpvUk5LWF9IUHRhZFJF?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-29"
+    },
+    {
+      "id": "four learning corners to be developed in 966 pm shri school anganwadis",
+      "headline": "Four learning corners to be developed in 966 PM SHRI school anganwadis",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-09-28",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abb07ff51f14e4cb92adc1de23b860f&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2ffour-learning-corners-to-be-developed-in-966-pm-shri-school-anganwadis%2far-AA2d9HzQ&c=2231699616725548358&mkt=en-us",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-09-29"
     }
   ]
 }
