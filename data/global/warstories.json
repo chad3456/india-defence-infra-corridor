@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-09-29T00:22:30.888Z",
-  "previousBuild": "2026-09-28T16:45:42.036Z",
+  "builtAt": "2026-09-29T10:41:34.937Z",
+  "previousBuild": "2026-09-29T00:22:30.888Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,15 +12,15 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 69,
-    "createdThisRun": 2,
-    "corroboratedThisRun": 0,
-    "feedsAnswered": 14,
+    "stories": 73,
+    "createdThisRun": 4,
+    "corroboratedThisRun": 1,
+    "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 278,
+    "itemsSeen": 269,
     "corroboration": {
-      "one": 62,
-      "two": 5,
+      "one": 65,
+      "two": 6,
       "threePlus": 2
     }
   },
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 32
+      "n": 34
     },
     {
       "id": "autonomy",
@@ -38,12 +38,12 @@
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 11
+      "n": 12
     },
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 8
+      "n": 9
     },
     {
       "id": "military-ai",
@@ -55,12 +55,12 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 9
+      "n": 10
     },
     {
       "iso": "IND",
       "name": "India",
-      "n": 6
+      "n": 7
     },
     {
       "iso": "GBR",
@@ -134,7 +134,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 3
     },
     {
       "outlet": "Defense News",
@@ -151,20 +151,21 @@
     {
       "outlet": "Defense One",
       "ok": true,
-      "items": 19,
-      "kept": 2
+      "items": 20,
+      "kept": 3
     },
     {
       "outlet": "Naval News",
-      "ok": true,
-      "items": 10,
-      "kept": 1
+      "ok": false,
+      "items": 0,
+      "kept": 0,
+      "error": "HTTP 503"
     },
     {
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -236,6 +237,28 @@
           "outlet": "C4ISRNET",
           "url": "https://www.c4isrnet.com/news/your-military/2026/08/21/us-army-to-end-experimental-drone-battalion-in-europe/",
           "published": "2026-08-21"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/hegseth-orders-u-s-cyber-command-and-defense-intelligence-agencies-to-prioritize-foreign-interference-threats-ahead-of-2026-elections/",
+      "headline": "Hegseth orders U.S. Cyber Command and defense intelligence agencies to prioritize foreign interference threats ahead of 2026 elections",
+      "firstSeen": "2026-09-28",
+      "lastSeen": "2026-09-29",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/hegseth-orders-u-s-cyber-command-and-defense-intelligence-agencies-to-prioritize-foreign-interference-threats-ahead-of-2026-elections/",
+          "published": "2026-09-29"
+        },
+        {
+          "outlet": "Defense One",
+          "url": "https://www.defenseone.com/threats/2026/09/hegseth-orders-cyber-intelligence-agencies-prioritize-election-defense/416295/",
+          "published": "2026-09-28"
         }
       ]
     },
@@ -365,6 +388,67 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/sarus-aerospace-delivers-shaurya-uav-to-indian-army/",
+      "headline": "Sarus Aerospace Delivers Shaurya UAV to Indian Army",
+      "firstSeen": "2026-09-29",
+      "lastSeen": "2026-09-29",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/sarus-aerospace-delivers-shaurya-uav-to-indian-army/",
+          "published": "2026-09-29"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/shield-ais-hivemind-coordinates-two-kraken-k3-scout-vessels-in-uk-maritime-surveillance-trial-ahead-of-planned-tests-with-nato-partners/",
+      "headline": "Shield AI’s Hivemind coordinates two Kraken K3 SCOUT vessels in UK maritime surveillance trial ahead of planned tests with NATO partners",
+      "firstSeen": "2026-09-29",
+      "lastSeen": "2026-09-29",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/shield-ais-hivemind-coordinates-two-kraken-k3-scout-vessels-in-uk-maritime-surveillance-trial-ahead-of-planned-tests-with-nato-partners/",
+          "published": "2026-09-29"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/pentagon-orders-more-fuzes-to-turn-hydra-rockets-into-drone-killers/",
+      "headline": "Pentagon orders more fuzes to turn Hydra rockets into drone killers",
+      "firstSeen": "2026-09-29",
+      "lastSeen": "2026-09-29",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/pentagon-orders-more-fuzes-to-turn-hydra-rockets-into-drone-killers/",
+          "published": "2026-09-29"
         }
       ]
     },
