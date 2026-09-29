@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-28T22:38:27.690Z",
+ "builtAt": "2026-09-29T11:34:42.993Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206484,7 +206484,7 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 2,
+   "kept": 3,
    "via": "direct"
   },
   {
@@ -206497,7 +206497,7 @@
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 19,
+   "items": 20,
    "kept": 0,
    "via": "direct"
   },
@@ -206517,6 +206517,21 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-e8jm6z",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Australia",
+    "New Zealand"
+   ],
+   "value": null,
+   "date": "2026-09-29",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/global/asia-pacific/2026/09/29/new-zealand-australia-sign-pact-to-deepen-naval-cooperation/",
+   "headline": "New Zealand, Australia sign pact to deepen naval cooperation",
+   "primary": false
+  },
   {
    "id": "ev-1qask35",
    "kind": "order",
@@ -207143,6 +207158,37 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||australia+new zealand",
+   "systems": [],
+   "countries": [
+    "Australia",
+    "New Zealand"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-e8jm6z",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Australia",
+      "New Zealand"
+     ],
+     "value": null,
+     "date": "2026-09-29",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/global/asia-pacific/2026/09/29/new-zealand-australia-sign-pact-to-deepen-naval-cooperation/",
+     "headline": "New Zealand, Australia sign pact to deepen naval cooperation",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||indonesia",
    "systems": [],
