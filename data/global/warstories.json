@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-09-29T10:41:34.937Z",
-  "previousBuild": "2026-09-29T00:22:30.888Z",
+  "builtAt": "2026-09-29T18:05:38.300Z",
+  "previousBuild": "2026-09-29T10:41:34.937Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,15 +12,15 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 73,
-    "createdThisRun": 4,
+    "stories": 76,
+    "createdThisRun": 3,
     "corroboratedThisRun": 1,
     "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 269,
+    "itemsSeen": 270,
     "corroboration": {
-      "one": 65,
-      "two": 6,
+      "one": 67,
+      "two": 7,
       "threePlus": 2
     }
   },
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 34
+      "n": 36
     },
     {
       "id": "autonomy",
@@ -43,7 +43,7 @@
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 9
+      "n": 10
     },
     {
       "id": "military-ai",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 10
+      "n": 11
     },
     {
       "iso": "IND",
@@ -97,7 +97,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 34,
+      "items": 35,
       "kept": 1
     },
     {
@@ -116,7 +116,7 @@
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "C4ISRNET",
@@ -134,7 +134,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 3
+      "kept": 1
     },
     {
       "outlet": "Defense News",
@@ -259,6 +259,33 @@
           "outlet": "Defense One",
           "url": "https://www.defenseone.com/threats/2026/09/hegseth-orders-cyber-intelligence-agencies-prioritize-election-defense/416295/",
           "published": "2026-09-28"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/news/pentagon-congress/2026/09/29/pentagon-directs-cyber-intelligence-agencies-to-counter-foreign-election-threats/",
+      "headline": "Pentagon directs cyber, intelligence agencies to counter foreign election threats",
+      "firstSeen": "2026-09-29",
+      "lastSeen": "2026-09-29",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/news/pentagon-congress/2026/09/29/pentagon-directs-cyber-intelligence-agencies-to-counter-foreign-election-threats/",
+          "published": "2026-09-29"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/news/pentagon-congress/2026/09/29/pentagon-directs-cyber-intelligence-agencies-to-counter-foreign-election-threats/",
+          "published": "2026-09-29"
         }
       ]
     },
@@ -448,6 +475,40 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/pentagon-orders-more-fuzes-to-turn-hydra-rockets-into-drone-killers/",
+          "published": "2026-09-29"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/northrop-grumman-to-develop-ramjet-propulsion-for-u-s-army-counter-drone-missile-prototypes-aimed-at-extending-air-defense-range/",
+      "headline": "Northrop Grumman to develop ramjet propulsion for U.S. Army counter-drone missile prototypes aimed at extending air defense range",
+      "firstSeen": "2026-09-29",
+      "lastSeen": "2026-09-29",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/northrop-grumman-to-develop-ramjet-propulsion-for-u-s-army-counter-drone-missile-prototypes-aimed-at-extending-air-defense-range/",
+          "published": "2026-09-29"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/09/drone-hunting-on-the-border-plus-turmoil-at-an-air-force-think-tank/",
+      "headline": "Drone-hunting on the border, plus turmoil at an Air Force think tank",
+      "firstSeen": "2026-09-29",
+      "lastSeen": "2026-09-29",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/09/drone-hunting-on-the-border-plus-turmoil-at-an-air-force-think-tank/",
           "published": "2026-09-29"
         }
       ]
