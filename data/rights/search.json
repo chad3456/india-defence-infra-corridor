@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-29T15:08:15.373Z",
+  "builtAt": "2026-09-29T21:06:04.491Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 939,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 937,
-    "withOutlet": 890,
+    "items": 945,
+    "addedThisRun": 6,
+    "carriedFromEarlierRuns": 939,
+    "withOutlet": 891,
     "bySubject": {
-      "scst": 613,
-      "pmshri": 326
+      "scst": 617,
+      "pmshri": 328
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 303
+    "offSubjectDropped": 306
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 471
+      "n": 472
     },
     {
       "key": "use",
-      "n": 325
+      "n": 330
     },
     {
       "key": "dispute",
@@ -58,7 +58,7 @@
     },
     {
       "key": "The New Indian Express",
-      "n": 46
+      "n": 47
     },
     {
       "key": "The Hindu",
@@ -306,7 +306,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 12,
       "kept": 2,
       "offSubject": 13
     },
@@ -325,9 +325,9 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
+      "google": 52,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 4
     },
     {
@@ -336,16 +336,16 @@
       "subject": "scst",
       "expect": "use",
       "google": 44,
-      "bing": 3,
-      "kept": 0,
-      "offSubject": 12
+      "bing": 4,
+      "kept": 1,
+      "offSubject": 11
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 59,
+      "google": 58,
       "bing": 1,
       "kept": 0,
       "offSubject": 21
@@ -355,7 +355,7 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 94,
+      "google": 91,
       "bing": 0,
       "kept": 0,
       "offSubject": 46
@@ -365,18 +365,18 @@
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 24,
+      "google": 25,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 41,
-      "bing": 2,
+      "google": 42,
+      "bing": 1,
       "kept": 0,
       "offSubject": 8
     },
@@ -386,9 +386,9 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 28,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "act-false",
@@ -396,7 +396,7 @@
       "subject": "scst",
       "expect": "false-finding",
       "google": 48,
-      "bing": 2,
+      "bing": 1,
       "kept": 0,
       "offSubject": 19
     },
@@ -416,8 +416,8 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 12,
-      "kept": 0,
+      "bing": 10,
+      "kept": 1,
       "offSubject": 3
     },
     {
@@ -425,10 +425,10 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 47,
-      "bing": 1,
+      "google": 48,
+      "bing": 3,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 5
     },
     {
       "id": "shri-funds",
@@ -438,7 +438,7 @@
       "google": 67,
       "bing": 2,
       "kept": 0,
-      "offSubject": 23
+      "offSubject": 24
     },
     {
       "id": "shri-upgrade",
@@ -446,8 +446,8 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 49,
-      "bing": 0,
-      "kept": 0,
+      "bing": 5,
+      "kept": 1,
       "offSubject": 11
     },
     {
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 46,
-      "bing": 2,
+      "bing": 1,
       "kept": 0,
       "offSubject": 5
     },
@@ -465,18 +465,18 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 28,
-      "bing": 1,
+      "google": 27,
+      "bing": 5,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 18
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 50,
-      "bing": 0,
+      "google": 51,
+      "bing": 3,
       "kept": 0,
       "offSubject": 10
     },
@@ -486,7 +486,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 45,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 34
     }
@@ -1093,7 +1093,8 @@
         "act-registered"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -4952,7 +4953,8 @@
         "act-misuse-claim"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -8031,7 +8033,8 @@
         "shri-general"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -8354,10 +8357,12 @@
       "published": "2026-07-31",
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOLWgyc1VPVHdmNzRPdTlaVFVqS0NtbjJBU0hMUVhBX2k2RDk5YWE5Rmt4LTFtM0hxTFFJc2RMSll2UHVGcVF6LVRhNUNxYUY3NVBZZTdxSEI5Qlk2cUFtRTRHeWpMQ2hRdzJ6WEljcnFuNlpJN19tTEJXWFRvYmVTWS1rR1ZBREptMV9QUFVDbTZrTE1Hc2hvWGgwNTdvemhJajJ3SVlNdlUzVUFzYjNWZTFGVWU0OGFqMVlPSC14TdIBxAFBVV95cUxPUjhkOUhMSWF0MUlpNDE5Z3ZNWnBjRVkwRXNtMVQyZVAwNjlPcFdYWjZYZU9wMWdqM3E0THJLWEFlR3RISmZCcjY3Sjkzai1VeFlkSlYyUk9OMkxEa2w1MDVXREpDZ0VaemI5YndNcHBWM01YcnRFQUVnUHphM0JhT3R4RlJWMmg2TU1RVjBkYXpjcm54cWdnT3B0ZTFxXzhUTXc0Y2ZUeWhVRWU2Y3pnTC10Z3FwRDRCUENnTjk5anhFODkz?oc=5",
       "queries": [
-        "shri-general"
+        "shri-general",
+        "shri-upgrade"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -9354,7 +9359,8 @@
       "published": "2026-09-11",
       "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab22953a93d4c65a0a1085e0af247b5&url=https%3a%2f%2fwww.prokerala.com%2fnews%2farticles%2fa1811332.html&c=13844281747235083251&mkt=en-us",
       "queries": [
-        "shri-general"
+        "shri-general",
+        "shri-sanctioned"
       ],
       "indexes": [
         "bing"
@@ -10843,10 +10849,12 @@
       "published": "2026-09-17",
       "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPa3dWa1QtdXVBU2ZsVENHT2JyR2txZm84Yko5RjJlUExKdkxqbTNUeTR2QUt4WGZFMFNvRU92bVBzd3VIUnVMclpnNVdIRnNiX1o5aFlnSmxrZmpxSDZ0cUU0RFFvWkdmMmloLU9iZjl6LXhwSEtPUkM5djJHQWdMTUpwWkJTNUE?oc=5",
       "queries": [
-        "shri-upgrade"
+        "shri-upgrade",
+        "shri-general"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -13768,7 +13776,8 @@
         "act-registered"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-24"
     },
@@ -14028,7 +14037,8 @@
         "act-registered"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-24"
     },
@@ -14346,10 +14356,12 @@
       "published": "2026-08-06",
       "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNNjc4X1FkRFFXZEtENWZxY2hybEp2U29EZnZTN2NCbFhLZTNYLXpEaUVIdjBKY2RTbzZsMEFrSUY4Nm15ZXFMX19GU1FVUFdINjZFTWw3bV9XWFJiYWVMOVhzeFFEZHRKcEhONHlLbUotSDJ1N192cjdCNm1CV25iQ3BYX29VY2xHajh0MmxqbEhGSzNWT25FSlBSdGNUUWNWcWh6ZnlVZ0xVU3BzelRnNmNtdFgtZkUwMUZZTk1tck5fWThTZGlZbzh5MVJaclXSAdQBQVVfeXFMUEhIQVBRQ2hWWDRrMlhCUjMxSXFFUnA3VmRYRDM4UjNUWm5HN2xnUmVYQV9IeS12OGx4UG5xRnFpRGZENVVlVlR6bENadlA0QkljdXctd3RfUjVhdndUNFJnZjJQNHlLLUVnU1JfdUo4bzRIdkxQdm1PTjZGeFJacW43NGhpeWo4dV9uTTd0ZURXTEZGazJfbi0yYW1ld3ZCZTlTX01BMGp5M25JQTNlWmJORzFPWFE1Qm4yLWFxOHhhZnV5SlM3MVhSWGVGdTRKQ01PWWo?oc=5",
       "queries": [
-        "shri-general"
+        "shri-general",
+        "shri-sanctioned"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-25"
     },
@@ -14429,7 +14441,8 @@
         "act-registered"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-25"
     },
@@ -15619,10 +15632,12 @@
       "published": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQWDl4WDF6YzdZcElpSGlwSFluMzNTNFQ4aFpmQUh6OW8yTWdZVE9RWW5na056T1BMQVItYmJFUFdvSkxuU3RXVnRlRENnMmRFckh4N0dXeDJ3VFJNa0VSYWRnbXpCZkJFa3NzcDVISG5iTXA2V2ZXMkdVWlJFWTgzM0ZHNG5IYmxfWU1EaVR0RzJjN3FuUmgyYnlZQ2FCZ3Y3SGEtRlZXWjk3ajFJeWxSc1lidmpUMk5HT3JRMmhKUnktamp0YVF6MtIBzwFBVV95cUxQTl8yazVwOG5QS2lIdGpiUXVNZkNsOFBvQ1Z0ZU5vZF9BWGFVRmhLeWxpeVd0MWV1NExVcURvajFnU3ZfUTRUR3JxSTNGYWNmdDdabHlJUlZyUnBuQnVGYm9sdEFmWFVCNU1kUWlmb1M5TVRJc2hMbVRUN0FITVpaekdIVXJIdXRXeDRVNlk1TnRhblJwbW1RUkxBXzJlZXk5M0xNb1RaZzYtVWRDd0NkYy1LSzcyM1pyVkx1WGNTMHQycWRUWlFITXVVaUpjXzg?oc=5",
       "queries": [
-        "shri-criticism"
+        "shri-criticism",
+        "shri-nep"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-28"
     },
@@ -15731,10 +15746,12 @@
       "published": "2026-06-24",
       "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abb57e4e13a404d83bc02c21c9f9530&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fIndia%2fsatheesan-vijayan-spar-over-pm-shri-scheme-in-kerala-assembly%2far-AA26rDZ2&c=2605583510516578436&mkt=en-us",
       "queries": [
-        "shri-nep"
+        "shri-nep",
+        "shri-general"
       ],
       "indexes": [
-        "bing"
+        "bing",
+        "google"
       ],
       "firstSeen": "2026-09-29"
     },
@@ -15768,6 +15785,102 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-09-29"
+    },
+    {
+      "id": "samajwadi party mp booked under sc st act files counter fir",
+      "headline": "Samajwadi Party MP booked under SC/ST Act, files counter-FIR",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-09-20",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abc27d0deec4bbcaabf0d76c6fc07bd&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fsamajwadi-party-mp-booked-under-sc-st-act-files-counter-fir%2far-AA2cE1pX&c=657403006338030164&mkt=en-ca",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-09-29"
+    },
+    {
+      "id": "hc refuses immediate arrest protection to youtuber ajeet bharti in sc st act case",
+      "headline": "HC refuses immediate arrest protection to YouTuber Ajeet Bharti in SC/ST Act case",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-09-14",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abc27d0deec4bbcaabf0d76c6fc07bd&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fIndia%2fhc-refuses-immediate-arrest-protection-to-youtuber-ajeet-bharti-in-scst-act-case%2far-AA2caQez&c=1616934887196866083&mkt=en-ca",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-09-29"
+    },
+    {
+      "id": "case filed against gujarat bjp mla s son for assaulting dalit student leader",
+      "headline": "Case filed against Gujarat BJP MLA's son for assaulting Dalit student leader",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The New Indian Express",
+      "published": "2024-06-01",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQVHRqX28tWFBSZ05BVUZwVDc4a2JzOWlDd21PVlJNRURQcUpfVW5LTFRYLTBCR2Y3aHFDT3dWX2duS09adjF5YWtFdkd4WWdiVG1TOV9HXzB6WU5pd25ZRU4yUUF0aUsxOG1ISUZlMDktTlRjR2Y1ODVQcGJJMTZ2Mm51YlFyT29VV1Fua3BndWpOcTNGUGo3RmlqR0xsdTlVczdrVGtXdHo3aE8tQUNrdHB1eFItYmgwZUQ5WnZPX0lyc2JE0gHSAUFVX3lxTE03RFJmOFJoZ3hQQzFPb2N2QVk5ZGZfcjJSdHBJQmZOYXZVY29vc1dVWTNKY1JXdm9aYlg5NnpuckpzTXN1TUMwMVRWcDhHWnFOaGpkdXQyQUh1RXY2MVMzaEZmZ3dzMkxveERyMFNjdno4WnVmZ2k0Tld6SkdRMzdVYlg5MjZwMTdRcFdLMjl1b2haczQyS0dmazRCbmVPZDdnbmtDX25NY3RGUVlkTFIxdzg3OWg1UWVZOEN3MUVJUU1CNmljYWVwTFJ4UjNYRFMtUQ?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-29"
+    },
+    {
+      "id": "fake sc st cases when compensation and justice collide",
+      "headline": "Fake SC/ST Cases: When Compensation and Justice Collide",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-09-08",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abc27e29977471987861cfe818cfe66&url=https%3a%2f%2ftfipost.com%2f2026%2f09%2ffake-sc-st-cases-when-compensation-and-justice-collide%2f&c=6163331303405243707&mkt=en-ca",
+      "queries": [
+        "act-compensation"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-09-29"
+    },
+    {
+      "id": "kerala to decide on central pm shri scheme post sub committee review",
+      "headline": "Kerala to Decide on Central PM SHRI Scheme Post Sub-Committee Review",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-06-07",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abc2812770047e1a101ce48039fc244&url=https%3a%2f%2fwww.jagranjosh.com%2fnews%2fkerala-pm-shri-scheme-implementation-delay-minister-samsudheen-updates-184747&c=2020307286108752173&mkt=en-ca",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-09-29"
+    },
+    {
+      "id": "upgraded a yr ago pm shri school in mandla sans teachers for a year students left to study",
+      "headline": "Upgraded a yr ago, PM Shri School in Mandla sans teachers for a year, students left to study on their own",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-08-25",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abc2824589946ddb2f99792ff1f4ef3&url=https%3a%2f%2ftimesofindia.indiatimes.com%2fcity%2fbhopal%2fupgraded-a-yr-ago-pm-shri-school-in-mandla-sans-teachers-for-a-year-students-left-to-study-on-their-own%2farticleshow%2f133522417.cms&c=9204858853120803651&mkt=en-ca",
+      "queries": [
+        "shri-upgrade"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-09-29"
     }
