@@ -387,6 +387,14 @@ async function nameCounts(): Promise<NameCount[] | null> {
   return out.length ? out : null;
 }
 
+/** This run's stem counts, with any stem it could not count taken from the last run. */
+export function mergeStems(now: NameCount[] | null, before: NameCount[] | null): NameCount[] | null {
+  const byStem = new Map((before ?? []).map((c) => [c.stem, c]));
+  for (const c of now ?? []) byStem.set(c.stem, c);
+  const out = STEMS.map((s) => byStem.get(s)).filter((c): c is NameCount => !!c);
+  return out.length ? out : null;
+}
+
 /* ─────────────────────────── The run ─────────────────────────── */
 
 export async function run(): Promise<void> {
@@ -585,13 +593,20 @@ export async function run(): Promise<void> {
   const roadSets = await roads(states);
   const counts = await nameCounts();
 
+  // Last known good: a busy Overpass must not erase what an earlier run
+  // counted. Roads carry over whole; name counts carry over stem by stem.
+  const previous = await readFile(OUT, "utf8").then((t) => JSON.parse(t) as Namesakes).catch(() => null);
+  const roadsOut = roadSets ?? previous?.roads ?? null;
+  if (!roadSets && previous?.roads) errors.push("roads: Overpass did not answer; kept the previous run's counts");
+  const stemsOut = mergeStems(counts, previous?.nameCounts ?? null);
+
   const out: Namesakes = {
     generatedAt: new Date().toISOString(),
     figures,
     places: kept,
     lookalikes,
-    roads: roadSets,
-    nameCounts: counts,
+    roads: roadsOut,
+    nameCounts: stemsOut,
     funnel,
     errors: errors.slice(0, 200),
   };
