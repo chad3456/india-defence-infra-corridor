@@ -156,6 +156,18 @@ export interface Namesakes {
   errors: string[];
 }
 
+/**
+ * Things that carry a name without being a place or an institution: coins,
+ * medals and stamps that depict a Gandhi, paintings, contests, and the events
+ * of their deaths. Read from the item's name, description and classes.
+ * Foundations and trusts are institutions and stay.
+ */
+const NOT_A_PLACE = /\b(coins?|banknotes?|bank ?notes?|medals?|medallions?|tokens?|bullion|stamps?|paintings?|photographs?|portraits?|edit-a-thon|contest|films?|books?|songs?|assassination|murder|scam|case|festival|boat race|race|series of banknotes|award|prize|fellowship|scholarship|scheme|yojana|pariyojana|programme|program|mission|policy|manifesto|election|numista|num\d+|holiday|online exhibition|branch of)\b/i;
+
+export function notAPlace(name: string, description: string | null, classes: string[]): boolean {
+  return NOT_A_PLACE.test(`${name} ${description ?? ""} ${classes.join(" ")}`) || /\[Num\d+\]/.test(name);
+}
+
 export const TIER_LABEL: Record<Tier, string> = {
   stated: "Wikidata says so",
   quoted: "Wikipedia says so",

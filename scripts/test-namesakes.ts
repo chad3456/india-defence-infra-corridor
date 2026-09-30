@@ -60,6 +60,27 @@ check("mentioned but not as a namesake",
 check("a verb too far from the name",
   hits("The fort was named by the Rathores who ruled it for generations before any temple to Lord Rama was raised.", "rama") === null);
 
+console.log("\nThe sentence must be about the place (rules 5-7)");
+const about = (text: string, id: string, subject: string) => findNamingSentence(text, fig(id), subject);
+check("a festival in the district's article is not the district",
+  about("Every year, the international fair Dussehra is celebrated with local deities in honour of Lord Raghunath.", "rama", "Kullu district") === null);
+check("temples in the village are not the village",
+  about("There are two famous temples named after Lord Shiva (Raghaveswar) and Goddess Kali in the village.", "kali", "Duttabarutia") === null);
+check("the city itself, by its opening",
+  about("According to one legend, the city is named after Lakshmana, a hero of the Hindu epic Ramayana.", "lakshmana", "Lucknow") !== null);
+check("the place itself, by its name",
+  about("Ganeshguri is a locality in Guwahati, Assam, India, and is named after lord Ganesh.", "ganesha", "Ganeshguri") !== null);
+check("a consort is not the god",
+  about("It gets its name from the goddess Valli, consort of Murugan, the Hindu god of war.", "kartikeya", "Valliyur") === null);
+check("the bull of Shiva is not Shiva",
+  about("The town is named after Nandi, the bull of Shiva, and was formerly called Nandigrama.", "shiva", "Nandgaon") === null);
+check("an asura slain by Balarama is not Balarama",
+  about("The town is named after an asura called Palwasura who was slain by Balarama, the brother of Krishna.", "balarama", "Palwal") === null);
+check("a denial is not a naming",
+  about("It has a misleading name, because the temple is not named after goddess Durga.", "durga", "Aihole") === null);
+check("a form of the god still counts",
+  about("This city was named after Lord Tileshwarnath, a form of Lord Shiva.", "shiva", "Tilouthu") !== null);
+
 console.log("\nGandhis");
 check("Rajiv Gandhi, institution name following",
   hits("The airport is named after Rajiv Gandhi, the former Prime Minister of India.", "rajiv") !== null);
@@ -94,6 +115,12 @@ The name is derived from [[Rama|Lord Rama]], who rested here.
 console.log("\nLookalikes");
 check("any namesake sentence is found",
   firstNamingSentence("Krishnagiri is a town. The name means black hill, after the dark granite hills around it.")?.startsWith("The name means") === true);
+check("an Etymology section's opening is preferred, and a bare heading is never the answer",
+  firstNamingSentence(articleText("X is a town. A festival is held here in honour of a poet.\n== Etymology ==\nThe name comes from the black granite hills around the town.\n== History ==\nOld.")) === "The name comes from the black granite hills around the town.");
+check("inside an Etymology section, the god need not follow 'named after'",
+  hits(articleText("Sample is a town.\n== Etymology ==\nThe name is a compound of Rama, the hero of the Ramayana, and tek, a hill.\n"), "rama")?.needsContext === false);
+check("but a relation still disqualifies there",
+  hits(articleText("Sample is a town.\n== Etymology ==\nThe name honours Valli, the consort of Murugan, the Hindu god of war.\n"), "kartikeya") === null);
 
 console.log("\nRoads");
 check("M.G. Road is the Mahatma", roadFigure("M.G. Road") === "mahatma");

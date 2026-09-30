@@ -73,7 +73,7 @@ function GandhiKinds({ v }: { v: NsView }) {
           </div>
         ))}
       </div>
-      <p className="ns-note">{GANDHIS.some((g) => (v.schemes[g] ?? 0) > 0) && <>Not counted here, because they are not places: {GANDHIS.filter((g) => (v.schemes[g] ?? 0) > 0).map((g) => `${fmt(v.schemes[g] ?? 0)} schemes, awards and programmes named after ${count(v, g).name}`).join("; ")}. </>}Counts of places on the board, each counted once per Gandhi. &ldquo;What it is&rdquo; is read from the place&rsquo;s Wikidata class; an item with no usable class is &ldquo;something else&rdquo;.</p>
+      <p className="ns-note">{GANDHIS.some((g) => (v.schemes[g] ?? 0) > 0) && <>Not counted here, because they are not places: {GANDHIS.filter((g) => (v.schemes[g] ?? 0) > 0).map((g) => `${fmt(v.schemes[g] ?? 0)} schemes, awards, coins and other things that carry ${count(v, g).name}’s name`).join("; ")}. </>}Counts of places on the board, each counted once per Gandhi. &ldquo;What it is&rdquo; is read from the place&rsquo;s Wikidata class; an item with no usable class is &ldquo;something else&rdquo;.</p>
     </figure>
   );
 }

@@ -21,7 +21,7 @@ import { feature, mesh } from "topojson-client";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import type { Feature, MultiPolygon, Polygon, Position } from "geojson";
 import {
-  FIGURES, type Category, type Evidence, type Lookalike, type NameCount, type Namesakes,
+  FIGURES, notAPlace, type Category, type Evidence, type Lookalike, type NameCount, type Namesakes,
   type Place, type RoadSet, type Tier,
 } from "./namesakes-shared";
 
@@ -76,7 +76,7 @@ export interface NsView {
   counts: FigureCount[];
   /** Temples dropped from the gods' layer, per god: dedicated, not named after. */
   temples: Record<string, number>;
-  /** Schemes, awards and programmes, per figure: named after, but not places. */
+  /** Schemes, awards, coins, paintings and the like, per figure: named, but not places. */
   schemes: Record<string, number>;
   held: number;
   reviewed: { rejected: number; accepted: number };
@@ -157,17 +157,23 @@ export function loadNamesakes(): NsView {
       ev = ev.filter((e) => !GODS.has(e.figure));
     }
     if (!ev.length) continue;
-    // A scheme or an award carries the name but is not a place or an
-    // institution; it is counted to one side, not listed as one.
-    if (p.category === "scheme") {
+    // A scheme, an award, a coin or a painting carries the name but is not a
+    // place or an institution; it is counted to one side, not listed as one.
+    if (p.category === "scheme" || (p.category === "other" && notAPlace(p.name, p.description, p.classes)) || (p.lat === null && notAPlace(p.name, p.description, p.classes))) {
       for (const f of new Set(ev.map((e) => e.figure))) schemes[f] = (schemes[f] ?? 0) + 1;
       continue;
+    }
+    // An item with no usable class, whose own description says what it is.
+    let category = p.category;
+    if (category === "other" && p.description) {
+      if (/\b(city|town|village|municipality)\b/i.test(p.description)) category = "settlement";
+      else if (/\b(region|district|division)\b/i.test(p.description)) category = "admin";
     }
     ev.sort((a, b) => TIER_ORDER.indexOf(a.tier) - TIER_ORDER.indexOf(b.tier));
     const figures = [...new Set(ev.map((e) => e.figure))];
     const xy = p.lat !== null && p.lon !== null ? project(p.lon, p.lat) : null;
     places.push({
-      i: places.length, qid: p.qid, name: p.name, what: p.description, category: p.category,
+      i: places.length, qid: p.qid, name: p.name, what: p.description, category,
       state: p.state, locatedIn: p.locatedIn, lat: p.lat, lon: p.lon,
       x: xy ? xy[0] : null, y: xy ? xy[1] : null,
       figures, evidence: ev,

@@ -266,7 +266,7 @@ export function articleText(wikitext: string): string {
   for (let k = 0; k < 12 && /\{\{[^{}]*\}\}/.test(s); k++) s = s.replace(/\{\{[^{}]*\}\}/g, " ");
   s = s.replace(/\{\|[\s\S]*?\|\}/g, " ");
   s = s.replace(/\[\[(?:File|Image|Category):[^\[\]]*(?:\[\[[^\]]*\]\][^\[\]]*)*\]\]/gi, " ");
-  s = s.replace(/^=+\s*(.*?)\s*=+\s*$/gm, ". $1. ");
+  s = s.replace(/^=+\s*(.*?)\s*=+\s*$/gm, ". §§$1§§. ");
   s = s.replace(/'{2,}/g, "");
   s = s.replace(/^[*#:;]+\s*/gm, "");
   return plain(s).replace(/\s+/g, " ").replace(/(\.\s*){2,}/g, ". ").trim();
@@ -453,7 +453,7 @@ export async function run(): Promise<void> {
   bump("search hits read", texts.size);
   const matched = [...searched.entries()].filter(([t, figs]) => {
     const text = texts.get(t);
-    return !!text && [...figs].some((id) => findNamingSentence(text, FIGURES.find((f) => f.id === id)!) !== null);
+    return !!text && [...figs].some((id) => findNamingSentence(text, FIGURES.find((f) => f.id === id)!, t) !== null);
   }).map(([t]) => t);
   bump("search hits with a naming sentence", matched.length);
   progress(`${matched.length} of them carry a naming sentence`);
@@ -529,7 +529,7 @@ export async function run(): Promise<void> {
     const text = texts.get(p.enwiki!);
     if (!text) continue;
     for (const f of FIGURES) {
-      const m = findNamingSentence(text, f);
+      const m = findNamingSentence(text, f, p.enwiki!);
       if (!m) continue;
       if (m.needsContext) {
         // Held for review: the name is there, the god is not established. The
@@ -563,7 +563,7 @@ export async function run(): Promise<void> {
       name: e?.labels?.en?.value ?? title,
       lat: c?.lat ?? null, lon: c?.lon ?? null,
       state: c ? stateOf(states, c.lat, c.lon) : null,
-      quote: text ? firstNamingSentence(text) : null,
+      quote: text ? firstNamingSentence(text, title) : null,
       url: wpUrl(title),
     };
   });
