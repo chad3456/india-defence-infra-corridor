@@ -76,6 +76,8 @@ export interface NsView {
   counts: FigureCount[];
   /** Temples dropped from the gods' layer, per god: dedicated, not named after. */
   temples: Record<string, number>;
+  /** Schemes, awards and programmes, per figure: named after, but not places. */
+  schemes: Record<string, number>;
   held: number;
   reviewed: { rejected: number; accepted: number };
   lookalikes: Lookalike[];
@@ -130,7 +132,7 @@ export function loadNamesakes(): NsView {
   const raw = loadNamesakesRaw();
   if (!raw) {
     return {
-      present: false, generatedAt: null, shape, places: [], counts: [], temples: {}, held: 0,
+      present: false, generatedAt: null, shape, places: [], counts: [], temples: {}, schemes: {}, held: 0,
       reviewed: { rejected: 0, accepted: 0 }, lookalikes: [], roads: null, nameCounts: null, funnel: {}, errorCount: 0,
     };
   }
@@ -139,6 +141,7 @@ export function loadNamesakes(): NsView {
   const accepted = new Set(review.filter((r) => r.verdict === "accept").map((r) => `${r.qid}:${r.figure}`));
 
   const temples: Record<string, number> = {};
+  const schemes: Record<string, number> = {};
   const places: NsPlace[] = [];
   let held = 0;
   for (const p of raw.places as Place[]) {
@@ -154,6 +157,12 @@ export function loadNamesakes(): NsView {
       ev = ev.filter((e) => !GODS.has(e.figure));
     }
     if (!ev.length) continue;
+    // A scheme or an award carries the name but is not a place or an
+    // institution; it is counted to one side, not listed as one.
+    if (p.category === "scheme") {
+      for (const f of new Set(ev.map((e) => e.figure))) schemes[f] = (schemes[f] ?? 0) + 1;
+      continue;
+    }
     ev.sort((a, b) => TIER_ORDER.indexOf(a.tier) - TIER_ORDER.indexOf(b.tier));
     const figures = [...new Set(ev.map((e) => e.figure))];
     const xy = p.lat !== null && p.lon !== null ? project(p.lon, p.lat) : null;
@@ -186,6 +195,7 @@ export function loadNamesakes(): NsView {
     places,
     counts,
     temples,
+    schemes,
     held,
     reviewed: { rejected: rejected.size, accepted: accepted.size },
     lookalikes: raw.lookalikes,
