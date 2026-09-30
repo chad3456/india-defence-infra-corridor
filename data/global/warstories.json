@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-09-30T05:32:31.537Z",
-  "previousBuild": "2026-09-29T23:44:06.048Z",
+  "builtAt": "2026-09-30T14:55:40.004Z",
+  "previousBuild": "2026-09-30T05:32:31.537Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 81,
-    "createdThisRun": 0,
+    "stories": 82,
+    "createdThisRun": 1,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 14,
+    "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 285,
+    "itemsSeen": 275,
     "corroboration": {
-      "one": 71,
+      "one": 72,
       "two": 8,
       "threePlus": 2
     }
@@ -33,7 +33,7 @@
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 26
+      "n": 27
     },
     {
       "id": "targeting",
@@ -104,7 +104,7 @@
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Military Times",
@@ -122,7 +122,7 @@
       "outlet": "C4ISRNET",
       "ok": true,
       "items": 25,
-      "kept": 7
+      "kept": 6
     },
     {
       "outlet": "DefenseScoop",
@@ -134,7 +134,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Defense News",
@@ -156,9 +156,10 @@
     },
     {
       "outlet": "Naval News",
-      "ok": true,
-      "items": 10,
-      "kept": 1
+      "ok": false,
+      "items": 0,
+      "kept": 0,
+      "error": "HTTP 503"
     },
     {
       "outlet": "Defence Blog",
@@ -441,6 +442,23 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-navy-orders-10-of-saronics-180-foot-autonomous-ships/",
+      "headline": "U.S. Navy orders 10 of Saronic’s 180-foot autonomous ships",
+      "firstSeen": "2026-09-30",
+      "lastSeen": "2026-09-30",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-navy-orders-10-of-saronics-180-foot-autonomous-ships/",
+          "published": "2026-09-30"
         }
       ]
     },
