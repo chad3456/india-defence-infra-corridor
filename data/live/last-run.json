@@ -1,7 +1,7 @@
 {
-  "id": "run-1790786402459",
-  "startedAt": "2026-09-30T16:36:55.289Z",
-  "finishedAt": "2026-09-30T16:40:02.459Z",
+  "id": "run-1790794598695",
+  "startedAt": "2026-09-30T18:42:03.793Z",
+  "finishedAt": "2026-09-30T18:56:38.695Z",
   "status": "partial",
   "connectorsRun": 9,
   "connectorsFailed": 0,
@@ -11,6 +11,8 @@
     "worldbank: SL.EMP.OWAC.MA.ZS: no Indian observations",
     "satp: terror: https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir -> HTTP 403",
     "satp: terror: no candidate URL yielded a full table; keeping previous data",
+    "satp-states: Jharkhand: header is not a fatality table — ",
+    "satp-states: summed without Jharkhand — the national total is short by their share",
     "ingest: The Tribune: HTTP 403",
     "ingest: Deccan Herald: HTTP 404",
     "ingest: The New Indian Express: HTTP 404",
@@ -27,7 +29,7 @@
     "ingest: Defence Aviation Post: HTTP 404",
     "ingest: Daily Excelsior: HTTP 403",
     "ingest: Search: energy — transmission line India charged: feed had no items",
-    "ingest funnel: 1837 items -> 614 candidates -> 70 events (lost: 288 no sector, 169 not an action, 87 no place)",
+    "ingest funnel: 1816 items -> 601 candidates -> 70 events (lost: 276 no sector, 167 not an action, 88 no place)",
     "x: X_BEARER_TOKEN not set — reading X is paid per post since February 2026, so this connector is inactive. Official announcements still arrive via the PIB, PMO and ministry feeds at no cost."
   ]
 }
