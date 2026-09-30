@@ -1,0 +1,56 @@
+name: Ingest namesakes
+
+# Builds data/namesakes/namesakes.json: places named after Ram, Krishna,
+# Hanuman and the other gods, and places and institutions named after
+# Mahatma, Indira and Rajiv Gandhi.
+#
+# Runs here because the editing sandbox cannot reach Wikidata, Wikipedia or
+# Overpass — the egress proxy answers 403 to CONNECT.
+#
+# Monthly. Names change slowly; the run is long and reads a few thousand
+# articles, and the public APIs it reads cost someone else money to run.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "10 5 3 * *"
+  push:
+    paths:
+      - "scripts/etl/connectors/namesakes.ts"
+      - "scripts/etl/lib/namesake-match.ts"
+      - "lib/namesakes-shared.ts"
+      - ".github/workflows/namesakes.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: namesakes
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Ingest
+        run: npm run namesakes:ingest
+
+      # Checked before it is committed, not after it has shipped.
+      - name: Check
+        run: npm run test:namesakes
+
+      - name: Commit
+        run: >
+          .github/scripts/commit-generated.sh
+          data/namesakes/namesakes.json
+          "data(namesakes): gods and Gandhis $(date -u +'%Y-%m-%d %H:%M')"
