@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-30T13:04:29.500Z",
+  "builtAt": "2026-09-30T22:25:42.665Z",
   "note": "Named things per state, for the map to answer a click with. Each layer records how its rows reached a state and how many did not, because the join is where this kind of file goes wrong invisibly.",
   "refused": [
     {
@@ -25608,8 +25608,8 @@
       "blurb": "Every railway station the mobility dataset holds a coordinate for, placed into the state whose polygon contains it. Presence only — the source carries a name, a station code and a coordinate, and nothing about how many trains stop or how many people pass through, so a count of stations is a count of stations and not of service.",
       "join": "Point-in-polygon against the map's own topology. A station in no polygon is listed unplaced, never assigned to a neighbour.",
       "source": "OpenStreetMap, via the mobility connector.",
-      "total": 10321,
-      "placed": 10150,
+      "total": 10324,
+      "placed": 10153,
       "unplacedCount": 120,
       "deduped": 51,
       "unplaced": [
@@ -74823,6 +74823,13 @@
             "lon": 85.5301
           },
           {
+            "name": "Amha Pipra",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 26.1468,
+            "lon": 86.7957
+          },
+          {
             "name": "Amika Bhawani Halt",
             "why": "Station code AABH.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -75106,8 +75113,8 @@
             "name": "Banmankhi Junction",
             "why": "Station code BNKI.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 25.885,
-            "lon": 87.1944
+            "lat": 25.8851,
+            "lon": 87.1933
           },
           {
             "name": "Banni Mahamman Patti",
@@ -75820,8 +75827,8 @@
             "name": "Dauram Madhepura",
             "why": "Station code DMH.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 25.9085,
-            "lon": 86.7829
+            "lat": 25.9087,
+            "lon": 86.7828
           },
           {
             "name": "Deenapatti",
@@ -77640,7 +77647,7 @@
             "name": "Methai",
             "why": "Station code MEE.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 25.9066,
+            "lat": 25.9067,
             "lon": 86.7252
           },
           {
@@ -78362,7 +78369,7 @@
             "why": "Station code PRNA.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 25.7894,
-            "lon": 87.5192
+            "lon": 87.5189
           },
           {
             "name": "Purushottampur Halt",
@@ -79338,11 +79345,25 @@
             "lon": 86.0661
           },
           {
+            "name": "Triveniganj",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 26.117,
+            "lon": 86.8819
+          },
+          {
             "name": "Trivikramdeo Nagar",
             "why": "Station code TKND.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 26.3024,
             "lon": 84.7093
+          },
+          {
+            "name": "Tumbha",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 26.16,
+            "lon": 86.733
           },
           {
             "name": "Twining Ganj",
