@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-29T21:32:18.656Z",
+ "builtAt": "2026-09-30T11:21:42.732Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206505,18 +206505,78 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 3,
    "via": "direct"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 2,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-z9zyo",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-09-30",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/09/hii-wins-u-s-navy-contract-for-10-romulus-usvs/",
+   "headline": "HII Wins U.S. Navy Contract for 10 ROMULUS USVs",
+   "primary": false
+  },
+  {
+   "id": "ev-3zk23y",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-09-30",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/09/boeing-wins-u-s-navys-f-a-xx-next-generation-fighter-contract/",
+   "headline": "Boeing Wins U.S. Navy&#8217;s F/A-XX Next Generation Fighter Contract",
+   "primary": false
+  },
+  {
+   "id": "ev-z7kqi7",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-09-30",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/u-s-navy-and-u-s-army-order-more-phalanx-guns/",
+   "headline": "U.S. Navy and U.S. Army order more Phalanx guns",
+   "primary": false
+  },
+  {
+   "id": "ev-cci7pe",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": {
+    "amount": 4150000000.0000005,
+    "currency": "USD",
+    "asWritten": "$4.15B"
+   },
+   "date": "2026-09-30",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/u-s-army-signs-4-15b-in-anti-drone-deals-with-10-firms/",
+   "headline": "U.S. Army signs $4.15B in anti-drone deals with 10 firms",
+   "primary": false
+  },
   {
    "id": "ev-e8jm6z",
    "kind": "order",
@@ -207159,66 +207219,6 @@
  ],
  "groups": [
   {
-   "key": "order||australia+new zealand",
-   "systems": [],
-   "countries": [
-    "Australia",
-    "New Zealand"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-e8jm6z",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Australia",
-      "New Zealand"
-     ],
-     "value": null,
-     "date": "2026-09-29",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/global/asia-pacific/2026/09/29/new-zealand-australia-sign-pact-to-deepen-naval-cooperation/",
-     "headline": "New Zealand, Australia sign pact to deepen naval cooperation",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defense News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order||indonesia",
-   "systems": [],
-   "countries": [
-    "Indonesia"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1qask35",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Indonesia"
-     ],
-     "value": null,
-     "date": "2026-09-28",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/09/fincantieri-and-pt-pal-indonesia-sign-agreement-for-the-modernization-of-ex-giuseppe-garibaldi/",
-     "headline": "Fincantieri and PT PAL Indonesia sign agreement for the modernization of ex-Giuseppe Garibaldi",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -207226,6 +207226,66 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-z9zyo",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-30",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/hii-wins-u-s-navy-contract-for-10-romulus-usvs/",
+     "headline": "HII Wins U.S. Navy Contract for 10 ROMULUS USVs",
+     "primary": false
+    },
+    {
+     "id": "ev-3zk23y",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-30",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/boeing-wins-u-s-navys-f-a-xx-next-generation-fighter-contract/",
+     "headline": "Boeing Wins U.S. Navy&#8217;s F/A-XX Next Generation Fighter Contract",
+     "primary": false
+    },
+    {
+     "id": "ev-z7kqi7",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-30",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-navy-and-u-s-army-order-more-phalanx-guns/",
+     "headline": "U.S. Navy and U.S. Army order more Phalanx guns",
+     "primary": false
+    },
+    {
+     "id": "ev-cci7pe",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 4150000000.0000005,
+      "currency": "USD",
+      "asWritten": "$4.15B"
+     },
+     "date": "2026-09-30",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-army-signs-4-15b-in-anti-drone-deals-with-10-firms/",
+     "headline": "U.S. Army signs $4.15B in anti-drone deals with 10 firms",
+     "primary": false
+    },
     {
      "id": "ev-fhqx9v",
      "kind": "order",
@@ -207440,12 +207500,72 @@
     }
    ],
    "outlets": [
-    "Defense News",
+    "Naval News",
     "Defence Blog",
-    "Naval News"
+    "Defense News"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "order||australia+new zealand",
+   "systems": [],
+   "countries": [
+    "Australia",
+    "New Zealand"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-e8jm6z",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Australia",
+      "New Zealand"
+     ],
+     "value": null,
+     "date": "2026-09-29",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/global/asia-pacific/2026/09/29/new-zealand-australia-sign-pact-to-deepen-naval-cooperation/",
+     "headline": "New Zealand, Australia sign pact to deepen naval cooperation",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order||indonesia",
+   "systems": [],
+   "countries": [
+    "Indonesia"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1qask35",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Indonesia"
+     ],
+     "value": null,
+     "date": "2026-09-28",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/fincantieri-and-pt-pal-indonesia-sign-agreement-for-the-modernization-of-ex-giuseppe-garibaldi/",
+     "headline": "Fincantieri and PT PAL Indonesia sign agreement for the modernization of ex-Giuseppe Garibaldi",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "delivery||italy",
