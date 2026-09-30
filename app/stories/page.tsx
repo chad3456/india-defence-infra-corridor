@@ -6,6 +6,7 @@ import { loadBollywood, pooled } from "@/lib/bollywood";
 import { loadSindoorBook } from "@/lib/sindoor-book";
 import { loadMela } from "@/lib/mela";
 import { loadMaven } from "@/lib/maven-book";
+import { loadNamesakes } from "@/lib/namesakes";
 import { byId as mavenFigure, stated as mavenStated } from "@/lib/maven-shared";
 
 /**
@@ -167,7 +168,20 @@ export default function StoriesIndex() {
   const mavenLow = mavenFigure(maven.figures, "tempo-no-ai");
   const mavenHigh = mavenFigure(maven.figures, "tempo-llm");
 
+  const names = loadNamesakes();
+
   const RIGHTS = [
+    ...(names.present ? [{
+      href: "/namesakes",
+      tone: "cool" as const,
+      kicker: "a playable map · gods and gandhis",
+      title: "Named After Whom?",
+      blurb:
+        "A 3D board game of India: towns named after Ram, Krishna and Hanuman, and the airports, universities, "
+        + "hospitals and roads named after Mahatma, Indira and Rajiv Gandhi — each pinned only on proof you can open.",
+      stat: names.places.length.toLocaleString("en-IN"),
+      statLabel: "places, each with its proof",
+    }] : []),
     ...(maven.present && mavenLow && mavenHigh ? [{
       href: "/project-maven",
       tone: "mid" as const,

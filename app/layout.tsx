@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Spectral, Archivo, IBM_Plex_Mono, Caveat, Dela_Gothic_One } from "next/font/google";
+import { Spectral, Archivo, IBM_Plex_Mono, Caveat, Dela_Gothic_One, Titan_One, Nunito } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
@@ -68,6 +68,28 @@ const manga = Dela_Gothic_One({
   display: "swap",
   preload: false,
 });
+/*
+  The board-game faces, for /namesakes only.
+
+  Titan One is a fat, friendly display face for the scores and card titles;
+  Nunito is a rounded sans that keeps the same softness at reading size. The
+  page is a hand-drawn game and its type should look like one. Neither is
+  preloaded: every other page would pay for them.
+*/
+const board = Titan_One({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-ns-display-loaded",
+  display: "swap",
+  preload: false,
+});
+const boardBody = Nunito({
+  weight: ["400", "600", "800"],
+  subsets: ["latin"],
+  variable: "--font-ns-body-loaded",
+  display: "swap",
+  preload: false,
+});
 const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
@@ -93,7 +115,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable} ${hand.variable} ${manga.variable}`}>
+    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable} ${hand.variable} ${manga.variable} ${board.variable} ${boardBody.variable}`}>
       <body>
         <a
           href="#main"

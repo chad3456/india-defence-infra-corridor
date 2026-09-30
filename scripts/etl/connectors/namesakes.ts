@@ -438,8 +438,12 @@ export async function run(): Promise<void> {
       const m = findNamingSentence(text, f);
       if (!m) continue;
       if (m.needsContext) {
-        // Held for review: the name is there, the god is not established.
-        if (!p.evidence.some((x) => x.figure === f.id)) p.review = true;
+        // Held for review: the name is there, the god is not established. The
+        // sentence is kept so the reviewer reads what the article says.
+        if (!p.evidence.some((x) => x.figure === f.id)) {
+          p.review = true;
+          (p.held ??= []).push({ figure: f.id, tier: "quoted", quote: m.sentence, url: wpUrl(p.enwiki!) });
+        }
         bump("sentences held for review");
         continue;
       }

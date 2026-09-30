@@ -114,6 +114,8 @@ export interface Place {
   evidence: Evidence[];
   /** A god matched without devotional context — held for review, never pinned. */
   review?: boolean;
+  /** The sentences that were held, so the review reads them rather than guessing. */
+  held?: Evidence[];
 }
 
 export interface Lookalike {
