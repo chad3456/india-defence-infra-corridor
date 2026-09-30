@@ -7,6 +7,7 @@ import { loadSindoorBook } from "@/lib/sindoor-book";
 import { loadMela } from "@/lib/mela";
 import { loadMaven } from "@/lib/maven-book";
 import { loadNamesakes } from "@/lib/namesakes";
+import { loadChinaExports } from "@/lib/china-exports";
 import { byId as mavenFigure, stated as mavenStated } from "@/lib/maven-shared";
 
 /**
@@ -169,8 +170,21 @@ export default function StoriesIndex() {
   const mavenHigh = mavenFigure(maven.figures, "tempo-llm");
 
   const names = loadNamesakes();
+  const china = loadChinaExports();
+  const chinaTotal = china.products.filter((p) => p.latest?.year === china.latestYear).reduce((s, p) => s + (p.latest?.value ?? 0), 0);
 
   const RIGHTS = [
+    ...(china.present && chinaTotal > 0 ? [{
+      href: "/china-exports",
+      tone: "cool" as const,
+      kicker: "trade · a porcelain dashboard",
+      title: "Made in China, Sold Everywhere.",
+      blurb:
+        "Speakers, headphones, guitars, drones, solar panels, batteries, e-bikes: what China ships and who buys it, "
+        + "as China reports it to the UN and checked against what the world says it bought.",
+      stat: `$${(chinaTotal / 1e9).toFixed(0)} bn`,
+      statLabel: `across ${china.products.length} products, ${china.latestYear}`,
+    }] : []),
     ...(names.present ? [{
       href: "/namesakes",
       tone: "cool" as const,

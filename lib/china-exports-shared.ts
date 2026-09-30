@@ -105,3 +105,40 @@ export const SOURCE = {
   url: "https://comtradeplus.un.org/",
   api: "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
 };
+
+/* ─────────────────────────── What the page draws (built in lib/china-exports.ts) ─────────────────────────── */
+
+export interface MapCountry { id: string; name: string; d: string; cx: number; cy: number }
+
+export interface ProductView {
+  code: string;
+  name: string;
+  group: Group;
+  note: string | null;
+  since: number | null;
+  trend: Array<{ year: number; value: number | null }>;
+  latest: { year: number; value: number } | null;
+  /** Change from the first comparable year to the latest, as a multiple. Derived. */
+  multiple: { from: number; to: number; x: number } | null;
+  /** [atlasId, US$] for every destination on the map. */
+  byCountry: Array<[string, number]>;
+  top: Array<{ name: string; value: number; atlasId: string | null }>;
+  partnerTotal: number;
+  destinations: number;
+  quantity: { value: number; unit: string } | null;
+  share: { year: number; pct: number; reporters: number } | null;
+  mirror: { year: number; china: number | null; world: number; reporters: number } | null;
+}
+
+export interface ChinaView {
+  present: boolean;
+  generatedAt: string | null;
+  latestYear: number | null;
+  calls: number;
+  errorCount: number;
+  map: { countries: MapCountry[]; origin: [number, number] };
+  products: ProductView[];
+  /** Destinations summed across all products, latest year. Derived. */
+  buyers: Array<{ name: string; atlasId: string | null; value: number; products: number }>;
+}
+
