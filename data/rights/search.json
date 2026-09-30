@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-30T06:01:55.829Z",
+  "builtAt": "2026-09-30T15:23:05.032Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,29 +10,29 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 954,
-    "addedThisRun": 9,
-    "carriedFromEarlierRuns": 945,
-    "withOutlet": 899,
+    "items": 959,
+    "addedThisRun": 5,
+    "carriedFromEarlierRuns": 954,
+    "withOutlet": 901,
     "bySubject": {
-      "scst": 626,
-      "pmshri": 328
+      "scst": 629,
+      "pmshri": 330
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 301
+    "offSubjectDropped": 300
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 477
+      "n": 480
     },
     {
       "key": "use",
-      "n": 332
+      "n": 333
     },
     {
       "key": "dispute",
-      "n": 55
+      "n": 56
     },
     {
       "key": "allegation",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 85
+      "n": 86
     },
     {
       "key": "The Indian Express",
@@ -66,7 +66,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 31
+      "n": 32
     },
     {
       "key": "India Today",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 2,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 6,
       "kept": 1,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "act-convicted",
@@ -317,7 +317,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 37
     },
     {
@@ -326,38 +326,38 @@
       "subject": "scst",
       "expect": "use",
       "google": 52,
-      "bing": 8,
-      "kept": 2,
-      "offSubject": 9
+      "bing": 7,
+      "kept": 1,
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 44,
+      "google": 43,
       "bing": 3,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 13
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 58,
-      "bing": 0,
-      "kept": 1,
-      "offSubject": 21
+      "google": 57,
+      "bing": 1,
+      "kept": 0,
+      "offSubject": 20
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 95,
+      "google": 93,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 45
     },
     {
@@ -375,18 +375,18 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 41,
-      "bing": 0,
+      "google": 40,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 6
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 28,
-      "bing": 1,
+      "google": 27,
+      "bing": 0,
       "kept": 0,
       "offSubject": 2
     },
@@ -396,7 +396,7 @@
       "subject": "scst",
       "expect": "false-finding",
       "google": 48,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 19
     },
@@ -436,8 +436,8 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 67,
-      "bing": 0,
-      "kept": 0,
+      "bing": 1,
+      "kept": 1,
       "offSubject": 22
     },
     {
@@ -445,10 +445,10 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 49,
+      "google": 51,
       "bing": 2,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 12
     },
     {
       "id": "shri-mou",
@@ -457,7 +457,7 @@
       "expect": "dispute",
       "google": 46,
       "bing": 2,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 5
     },
     {
@@ -476,7 +476,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 51,
-      "bing": 0,
+      "bing": 3,
       "kept": 0,
       "offSubject": 10
     },
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 45,
-      "bing": 0,
+      "google": 46,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 33
+      "offSubject": 35
     }
   ],
   "items": [
@@ -12278,7 +12278,8 @@
       "published": "2026-09-22",
       "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNTkFBay04TWs5WXR2M3lPVkhNSS1JdU1DWnp4SmJhLWtFRzdRN0xrVklDbEtaTGFlOWxjNVRHUlhBWUxiRTJVLVU0WGx6U2RHc2VQNmFodTNCMzVjZVhRd0hqdXBIMEptbGh0RXZ3ZzJEc0hyT19UdFZaUWg3NjdUaTU0LTM3c3J6Z0Mta0lIcGNyUWVJWWFFeUplTzMxM0HSAaQBQVVfeXFMTmhVS2c5a0JUdVp0UmNkY3Y1bEZ0SFhOYVFmbXVwN3BMbW5rUDVORmRxUmhvc0lQLUNma05mUVhUb3hhX0xOLTZ6LS00ay1UT1dUY0s3YmtNRk5uZGp3QTFWN3ByMEFtZ3h1TzE0MHl6RWhQMy05M1ozSm9LN0NhcTQ0WnJYTHFHT2JoX3RzRmpjNVE4UE5HeXJiMUpwbDFidmdiTjI?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -16032,6 +16033,87 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-09-30"
+    },
+    {
+      "id": "sc st act to be invoked in dr pandya ragging suicide case",
+      "headline": "SC-ST Act to be invoked in Dr Pandya ragging-suicide case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2026-08-14",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNOWpiblVoRWxsdTd3bFJCanZhWnZncEVHUXdCWFlLX2NnVjhvN0k3ZXZlSUFXdExwV2hNM1NtakdITmk2Ull1dHJ6aUdoOGptNzE3ZjhRWkUtcHVEUTQxaml3dUlBNGRJRElzdXJCRmVtZUUyXzVDNWlQVjcySTVjTDJuZjhyNFBuUU9ORnV1eTJaeTlad01KaXA1dzkyOWVJZTdtVm5HZzNSR1JIZ3JoWkhVV195eFVETmRJOU03TGpxaXVON3pNaGVB0gHPAUFVX3lxTE92MkRQZ1Vod2JSUHdBTXFhQzFrSWJjd0VaeHIwal9PcFRCS0M3ZTFrX2RvZ2dIcWNGTlFVQmJrdWtoUERWczZHcE9qODF0eFl4TUU1T3NodVZfRWloelh4aE8zekhFRUhlT0tuUGJOSU1HVmpGMDZiNnFlSE5MOExXUHY1LUVjalNHSzIza1hiN1hNeDJzUkZNUTFKUjhRclp2R25LS3VyUWtxeGRwTDU2UDRRLXRhTXRnWVYwNTlJOWRqYlVpXzlLRzBfR0haZw?oc=5",
+      "queries": [
+        "act-general",
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-30"
+    },
+    {
+      "id": "bombay high court grants bail to accused in sc st act case due to absence of caste based i",
+      "headline": "Bombay High Court Grants Bail to Accused in SC/ST Act Case Due to Absence of Caste-Based Intent. Allegations of Murder and Atrocities Fail to Attract Bar Under Section 18 of SC/ST Act as Incident Arose from Personal Dispute, Not Caste Hatred.",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-09-29",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFB1RnZTZV8xaHd2dXZjcUNmalQ2TzVjdW5xV0owZEMwNExLcUl5UmZTQloteDlkWEFtRHJvUkMyek8xb3JTdFdZWG1idjBWOEFDRWpfWElHRVdHMldMWndaSDcyUFlwclYy?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-30"
+    },
+    {
+      "id": "khairlanji 20 years on ht reinvestigates the dalit massacre that shook india",
+      "headline": "Khairlanji, 20 years on: HT reinvestigates the Dalit massacre that shook India",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-09-29",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abd28f8a8c84e0fba74b6b8e45f7f08&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fkhairlanji-20-years-on-ht-reinvestigates-the-dalit-massacre-that-shook-india%2far-AA2desw9&c=124999691903807633&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-09-30"
+    },
+    {
+      "id": "west bengal joins nep pm shri scheme central funds to be released",
+      "headline": "West Bengal joins NEP, PM-SHRI scheme; central funds to be released",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-07-13",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abd293ab3e1495e8fa9ded0eb9cca2a&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fIndia%2fwest-bengal-joins-nep-pm-shri-scheme-central-funds-to-be-released%2far-AA27Q9zK&c=1287024881188089180&mkt=en-us",
+      "queries": [
+        "shri-funds"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-09-30"
+    },
+    {
+      "id": "congress govt to implement pm shri in kerala with riders it s reignited a political row",
+      "headline": "Congress govt to implement PM-SHRI in Kerala, with riders. It’s reignited a political row",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": null,
+      "published": "2026-06-17",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abd2946fef245ef9522f1410faf20bd&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fIndia%2fcongress-govt-to-implement-pm-shri-in-kerala-with-riders-it-s-reignited-a-political-row%2far-AA25TruG&c=3279581533935511333&mkt=en-us",
+      "queries": [
+        "shri-mou"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-09-30"
     }
