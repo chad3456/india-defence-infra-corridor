@@ -47,6 +47,7 @@ import { feature } from "topojson-client";
 import type { FeatureCollection, Geometry } from "geojson";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import { getText } from "../lib/http";
+import { plain } from "../lib/wikitext";
 import { isEntryPoint } from "../lib/entry";
 import { findNamingSentence, firstNamingSentence, roadFigure, roadKey, clusterRoads } from "../lib/namesake-match";
 import {
@@ -65,8 +66,6 @@ const OVERPASS = ["https://overpass-api.de/api", "https://overpass.kumi.systems/
 const MAX_OFFSET = 9_500;
 /** Politeness between API calls to one host. */
 const GAP_MS = 120;
-/** Articles read in parallel. Low on purpose — this is someone else's server. */
-const READERS = 4;
 /** The generous box used only to decide whether coordinates are believable. */
 const BOX = { minLat: 6, maxLat: 37.6, minLon: 67, maxLon: 97.5 };
 
@@ -240,19 +239,59 @@ async function titlesToQids(titles: string[]): Promise<Map<string, string>> {
   return out;
 }
 
-async function plainText(title: string): Promise<string | null> {
-  const j = await api<{ query?: { pages?: Array<{ extract?: string }> } }>(WP, {
-    action: "query", prop: "extracts", explaintext: "1", exsectionformat: "plain", redirects: "1", titles: title,
-  }, `read ${title}`);
-  return j?.query?.pages?.[0]?.extract ?? null;
+/**
+ * Wikitext to readable prose, well enough to find a sentence in.
+ *
+ * Templates are removed innermost-first until none are left — an infobox holds
+ * templates inside templates, and one pass leaves its skeleton behind as
+ * "text". Tables go whole. Section headings become sentence breaks, so an
+ * "Etymology" heading cannot glue itself to the sentence under it.
+ */
+export function articleText(wikitext: string): string {
+  let s = wikitext;
+  for (let k = 0; k < 12 && /\{\{[^{}]*\}\}/.test(s); k++) s = s.replace(/\{\{[^{}]*\}\}/g, " ");
+  s = s.replace(/\{\|[\s\S]*?\|\}/g, " ");
+  s = s.replace(/\[\[(?:File|Image|Category):[^\[\]]*(?:\[\[[^\]]*\]\][^\[\]]*)*\]\]/gi, " ");
+  s = s.replace(/^=+\s*(.*?)\s*=+\s*$/gm, ". $1. ");
+  s = s.replace(/'{2,}/g, "");
+  s = s.replace(/^[*#:;]+\s*/gm, "");
+  return plain(s).replace(/\s+/g, " ").replace(/(\.\s*){2,}/g, ". ").trim();
 }
 
-async function pool<T, R>(xs: T[], n: number, fn: (x: T) => Promise<R>): Promise<R[]> {
-  const out: R[] = new Array(xs.length);
-  let next = 0;
-  await Promise.all(Array.from({ length: n }, async () => {
-    while (next < xs.length) { const i = next++; out[i] = await fn(xs[i]!); }
-  }));
+/**
+ * Many articles in one request: the revisions API returns the current text of
+ * up to fifty pages at once. The first run read one article per request and
+ * Wikipedia answered 429 to sixteen of them; fifty to a request is two
+ * orders of magnitude fewer calls for the same reading.
+ */
+async function readArticles(titles: string[]): Promise<Map<string, string>> {
+  const out = new Map<string, string>();
+  for (const batch of chunks([...new Set(titles)], 50)) {
+    let j: {
+      query?: {
+        normalized?: Array<{ from: string; to: string }>;
+        redirects?: Array<{ from: string; to: string }>;
+        pages?: Array<{ title: string; revisions?: Array<{ slots?: { main?: { content?: string } } }> }>;
+      };
+    } | null = null;
+    for (let attempt = 0; attempt < 3 && !j; attempt++) {
+      if (attempt) await sleep(30_000 * attempt); // a 429 means slow down, not try again at once
+      j = await api(WP, { action: "query", prop: "revisions", rvprop: "content", rvslots: "main", redirects: "1", titles: batch.join("|") }, `read ${batch.length} articles`);
+    }
+    const q = j?.query;
+    if (!q) continue;
+    const hop = new Map<string, string>();
+    for (const n of q.normalized ?? []) hop.set(n.from, n.to);
+    for (const r of q.redirects ?? []) hop.set(r.from, r.to);
+    const text = new Map((q.pages ?? []).map((p) => [p.title, p.revisions?.[0]?.slots?.main?.content ?? ""]));
+    for (const t of batch) {
+      let cur = t;
+      for (let i = 0; i < 3 && hop.has(cur); i++) cur = hop.get(cur)!;
+      const w = text.get(cur);
+      if (w) out.set(t, articleText(w));
+    }
+    await sleep(400);
+  }
   return out;
 }
 
@@ -297,21 +336,28 @@ async function roads(states: States): Promise<RoadSet[] | null> {
   });
 }
 
+/**
+ * One small query per stem. The first run asked for all nineteen stems in one
+ * case-insensitive regex over every place node in India, and all three
+ * Overpass instances timed out on it. Place names are capitalised in the
+ * data, so the match is case-sensitive, which Overpass can do far faster.
+ */
 async function nameCounts(): Promise<NameCount[] | null> {
-  const stems = STEMS.map((s) => s.toLowerCase()).join("|");
-  const q = `[out:csv(name;false)][timeout:280];area["ISO3166-1"="IN"][admin_level=2]->.in;` +
-    `node[place~"^(city|town|village|hamlet|suburb|neighbourhood|quarter|locality)$"][name~"^(${stems})",i](area.in);out;`;
-  const body = await overpass(q, "place names");
-  if (!body) return null;
-  const names = body.split("\n").map((l) => l.trim()).filter(Boolean);
-  bump("osm place names read", names.length);
-  return STEMS.map((stem) => {
-    const mine = names.filter((n) => n.toLowerCase().startsWith(stem.toLowerCase()));
+  const out: NameCount[] = [];
+  for (const stem of STEMS) {
+    const q = `[out:csv(name;false)][timeout:180];area["ISO3166-1"="IN"][admin_level=2]->.in;` +
+      `node[place~"^(city|town|village|hamlet|suburb|neighbourhood)$"][name~"^${stem}"](area.in);out;`;
+    const body = await overpass(q, `place names ${stem}`);
+    await sleep(8_000);
+    if (!body) continue;
+    const names = body.split("\n").map((l) => l.trim()).filter(Boolean);
+    bump("osm place names read", names.length);
     const freq = new Map<string, number>();
-    for (const n of mine) freq.set(n, (freq.get(n) ?? 0) + 1);
+    for (const n of names) freq.set(n, (freq.get(n) ?? 0) + 1);
     const top = [...freq.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 12);
-    return { stem, places: mine.length, top };
-  });
+    out.push({ stem, places: names.length, top });
+  }
+  return out.length ? out : null;
 }
 
 /* ─────────────────────────── The run ─────────────────────────── */
@@ -345,6 +391,22 @@ export async function run(): Promise<void> {
       phrases.add(`"named for ${w}"`);
       if (f.title) { phrases.add(`"named after ${f.title} ${w}"`); phrases.add(`"name from ${f.title} ${w}"`); }
       if (f.kind === "leader") { phrases.add(`"in memory of ${w}"`); phrases.add(`"in honour of ${w}"`); phrases.add(`"in honor of ${w}"`); phrases.add(`"renamed after ${w}"`); }
+    }
+    /*
+     * The phrase searches alone found 41 articles for Rama. A town's article
+     * rarely says "named after Rama" in exactly those words; it says the name
+     * "is derived from Lord Rama", or tells the legend first and the name
+     * after. So for the gods, every settlement article that mentions the god
+     * is also read, and the sentence rules decide. This widens what is read,
+     * not what is accepted.
+     */
+    if (f.kind === "god") {
+      for (const w of f.search.slice(0, 2)) {
+        phrases.add(`"${f.title} ${w}" hastemplate:"Infobox settlement"`);
+        phrases.add(`"${w}" "named after" hastemplate:"Infobox settlement"`);
+        phrases.add(`"${w}" "derived from" hastemplate:"Infobox settlement"`);
+        phrases.add(`"${w}" "its name" hastemplate:"Infobox settlement"`);
+      }
     }
     let n = 0;
     for (const ph of phrases) {
@@ -431,9 +493,11 @@ export async function run(): Promise<void> {
   // can print the sentence instead of only a link.
   const toRead = places.filter((p) => p.enwiki);
   bump("articles read", toRead.length);
-  await pool(toRead, READERS, async (p) => {
-    const text = await plainText(p.enwiki!);
-    if (!text) return;
+  const texts = await readArticles(toRead.map((p) => p.enwiki!));
+  bump("articles with text", texts.size);
+  for (const p of toRead) {
+    const text = texts.get(p.enwiki!);
+    if (!text) continue;
     for (const f of FIGURES) {
       const m = findNamingSentence(text, f);
       if (!m) continue;
@@ -449,7 +513,7 @@ export async function run(): Promise<void> {
       }
       p.evidence.push({ figure: f.id, tier: "quoted", quote: m.sentence, url: wpUrl(p.enwiki!) });
     }
-  });
+  }
 
   const kept = places.filter((p) => p.evidence.length > 0 || p.review);
   kept.sort((a, b) => a.name.localeCompare(b.name));
@@ -458,11 +522,12 @@ export async function run(): Promise<void> {
   // ── 6. The lookalikes ────────────────────────────────────────────────
   const lookQid = await titlesToQids(LOOKALIKES);
   const lookEnts = await entities([...lookQid.values()], "labels|claims", "lookalike items");
-  const lookalikes: Lookalike[] = await pool(LOOKALIKES, READERS, async (title) => {
+  const lookTexts = await readArticles(LOOKALIKES);
+  const lookalikes: Lookalike[] = LOOKALIKES.map((title) => {
     const qid = lookQid.get(title) ?? null;
     const e = qid ? lookEnts.get(qid) : undefined;
     const c = e ? coord(e) : null;
-    const text = await plainText(title);
+    const text = lookTexts.get(title);
     return {
       title, qid,
       name: e?.labels?.en?.value ?? title,

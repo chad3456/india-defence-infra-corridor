@@ -10,6 +10,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { findNamingSentence, firstNamingSentence, roadFigure, sentences, clusterRoads, type FigureWords } from "./etl/lib/namesake-match";
 import { FIGURES } from "../lib/namesakes-shared";
+import { articleText } from "./etl/connectors/namesakes";
 
 let failed = 0;
 function check(name: string, ok: boolean, detail = ""): void {
@@ -73,6 +74,23 @@ check("Indira Gandhi is not the Mahatma",
 check("Rajiv Gandhi is not Indira",
   hits("It is named after Rajiv Gandhi.", "indira") === null);
 
+console.log("\nWikitext to prose");
+{
+  // A made-up article in real wikitext shapes: an infobox with templates inside
+  // templates, a reference, a heading, a table and an image caption.
+  const text = articleText(`{{Infobox settlement|name = Sample|pop = {{formatnum:22310}}}}
+'''Sample''' is a town.<ref>{{cite web|url=x}}</ref>
+== Etymology ==
+The name is derived from [[Rama|Lord Rama]], who rested here.
+{| class="wikitable"
+| a || b
+|}
+[[File:Sample.jpg|thumb|The [[temple]] at Sample]]`);
+  check("templates, refs, tables and files are gone", !/[{}|]|cite web|thumb/.test(text), text);
+  check("a heading does not glue onto the sentence under it",
+    hits(text, "rama")?.sentence === "The name is derived from Lord Rama, who rested here.");
+}
+
 console.log("\nLookalikes");
 check("any namesake sentence is found",
   firstNamingSentence("Krishnagiri is a town. The name means black hill, after the dark granite hills around it.")?.startsWith("The name means") === true);
@@ -98,14 +116,16 @@ if (!existsSync(FILE)) {
   console.log("  (no data/namesakes/namesakes.json yet — the ingest workflow writes it)");
 } else {
   const d = JSON.parse(readFileSync(FILE, "utf8")) as {
-    places: Array<{ qid: string; name: string; lat: number | null; lon: number | null; evidence: Array<{ figure: string; tier: string; quote?: string; url: string }> }>;
+    places: Array<{ qid: string; name: string; lat: number | null; lon: number | null; review?: boolean; evidence: Array<{ figure: string; tier: string; quote?: string; url: string }> }>;
     figures: Array<{ id: string; qid: string | null }>;
   };
   const ids = new Set(d.figures.map((f) => f.id));
   check("every figure resolved to a Wikidata item", d.figures.every((f) => f.qid && /^Q\d+$/.test(f.qid)),
     d.figures.filter((f) => !f.qid).map((f) => f.id).join(", "));
-  const noEvidence = d.places.filter((p) => p.evidence.length === 0);
-  check("every place carries at least one piece of evidence", noEvidence.length === 0, noEvidence.slice(0, 3).map((p) => p.name).join(", "));
+  // A place held for review has no evidence yet, by design: its sentence is
+  // waiting for a reader. Every other place must carry some.
+  const noEvidence = d.places.filter((p) => p.evidence.length === 0 && !p.review);
+  check("every place carries evidence, or is held for review", noEvidence.length === 0, noEvidence.slice(0, 3).map((p) => p.name).join(", "));
   const badUrl = d.places.flatMap((p) => p.evidence).filter((e) => !/^https:\/\/(www\.wikidata\.org|en\.wikipedia\.org)\//.test(e.url));
   check("every piece of evidence links to its source", badUrl.length === 0, `${badUrl.length} without`);
   const badFig = d.places.flatMap((p) => p.evidence).filter((e) => !ids.has(e.figure));
