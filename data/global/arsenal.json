@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-30T11:21:42.732Z",
+ "builtAt": "2026-09-30T21:32:36.632Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206497,26 +206497,58 @@
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 20,
+   "items": 18,
    "kept": 0,
    "via": "direct"
   },
   {
    "outlet": "Naval News",
-   "ok": true,
-   "items": 10,
-   "kept": 3,
-   "via": "direct"
+   "ok": false,
+   "items": 0,
+   "kept": 0,
+   "via": "unconfigured"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 2,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-zyx0mp",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": {
+    "amount": 2380000000,
+    "currency": "USD",
+    "asWritten": "$2.38B"
+   },
+   "date": "2026-09-30",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/industry/techwatch/2026/09/30/us-air-force-awards-238b-contract-to-boeing-for-22-f-15ex/",
+   "headline": "US Air Force awards $2.38B contract to Boeing for 22 F-15EX",
+   "primary": false
+  },
+  {
+   "id": "ev-z7kqi7",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-09-30",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/u-s-navy-and-u-s-army-order-more-phalanx-guns/",
+   "headline": "U.S. Navy and U.S. Army order more Phalanx guns",
+   "primary": false
+  },
   {
    "id": "ev-z9zyo",
    "kind": "order",
@@ -206543,20 +206575,6 @@
    "outlet": "Naval News",
    "url": "https://www.navalnews.com/naval-news/2026/09/boeing-wins-u-s-navys-f-a-xx-next-generation-fighter-contract/",
    "headline": "Boeing Wins U.S. Navy&#8217;s F/A-XX Next Generation Fighter Contract",
-   "primary": false
-  },
-  {
-   "id": "ev-z7kqi7",
-   "kind": "order",
-   "systems": [],
-   "countries": [
-    "United States"
-   ],
-   "value": null,
-   "date": "2026-09-30",
-   "outlet": "Defence Blog",
-   "url": "https://defence-blog.com/u-s-navy-and-u-s-army-order-more-phalanx-guns/",
-   "headline": "U.S. Navy and U.S. Army order more Phalanx guns",
    "primary": false
   },
   {
@@ -207227,6 +207245,38 @@
    "kind": "order",
    "events": [
     {
+     "id": "ev-zyx0mp",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 2380000000,
+      "currency": "USD",
+      "asWritten": "$2.38B"
+     },
+     "date": "2026-09-30",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/industry/techwatch/2026/09/30/us-air-force-awards-238b-contract-to-boeing-for-22-f-15ex/",
+     "headline": "US Air Force awards $2.38B contract to Boeing for 22 F-15EX",
+     "primary": false
+    },
+    {
+     "id": "ev-z7kqi7",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-30",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-navy-and-u-s-army-order-more-phalanx-guns/",
+     "headline": "U.S. Navy and U.S. Army order more Phalanx guns",
+     "primary": false
+    },
+    {
      "id": "ev-z9zyo",
      "kind": "order",
      "systems": [],
@@ -207252,20 +207302,6 @@
      "outlet": "Naval News",
      "url": "https://www.navalnews.com/naval-news/2026/09/boeing-wins-u-s-navys-f-a-xx-next-generation-fighter-contract/",
      "headline": "Boeing Wins U.S. Navy&#8217;s F/A-XX Next Generation Fighter Contract",
-     "primary": false
-    },
-    {
-     "id": "ev-z7kqi7",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States"
-     ],
-     "value": null,
-     "date": "2026-09-30",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/u-s-navy-and-u-s-army-order-more-phalanx-guns/",
-     "headline": "U.S. Navy and U.S. Army order more Phalanx guns",
      "primary": false
     },
     {
@@ -207500,9 +207536,9 @@
     }
    ],
    "outlets": [
-    "Naval News",
+    "Defense News",
     "Defence Blog",
-    "Defense News"
+    "Naval News"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
