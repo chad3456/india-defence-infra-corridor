@@ -64,6 +64,19 @@ const OVERPASS = ["https://overpass-api.de/api", "https://overpass.kumi.systems/
 
 /** CirrusSearch will not page past 10,000. */
 const MAX_OFFSET = 9_500;
+/**
+ * The broad settlement searches are capped. They find settlements that merely
+ * mention a god, most of which are not named after one; the first two
+ * thousand hits of each are read. Uncapped, the second run was still searching
+ * after eighty minutes and the job was killed with nothing written.
+ */
+const BROAD_OFFSET = 1_500;
+/** Past this, searching and reading stop and the run writes what it has. */
+const BUDGET_MS = 70 * 60_000;
+const STARTED = Date.now();
+const late = () => Date.now() - STARTED > BUDGET_MS;
+const elapsed = () => `${Math.round((Date.now() - STARTED) / 60_000)} min`;
+function progress(msg: string): void { console.log(`  [${elapsed()}] ${msg}`); }
 /** Politeness between API calls to one host. */
 const GAP_MS = 120;
 /** The generous box used only to decide whether coordinates are believable. */
@@ -112,9 +125,10 @@ async function api<T>(base: string, params: Record<string, string>, label: strin
 }
 
 /** Every title a CirrusSearch query returns, paged. */
-async function searchAll(base: string, query: string, label: string): Promise<string[]> {
+async function searchAll(base: string, query: string, label: string, maxOffset = MAX_OFFSET): Promise<string[]> {
   const out: string[] = [];
-  for (let offset = 0; offset <= MAX_OFFSET; offset += 500) {
+  for (let offset = 0; offset <= maxOffset; offset += 500) {
+    if (late()) { errors.push(`${label}: stopped at the time budget`); break; }
     const j = await api<{ query?: { search?: Array<{ title: string }> }; continue?: { sroffset?: number } }>(
       base, { action: "query", list: "search", srsearch: query, srlimit: "500", sroffset: String(offset), srnamespace: "0", srprop: "" }, label);
     const rows = j?.query?.search ?? [];
@@ -267,6 +281,7 @@ export function articleText(wikitext: string): string {
 async function readArticles(titles: string[]): Promise<Map<string, string>> {
   const out = new Map<string, string>();
   for (const batch of chunks([...new Set(titles)], 50)) {
+    if (late()) { errors.push(`reading: stopped at the time budget with ${titles.length - out.size} articles unread`); break; }
     let j: {
       query?: {
         normalized?: Array<{ from: string; to: string }>;
@@ -410,11 +425,12 @@ export async function run(): Promise<void> {
     }
     let n = 0;
     for (const ph of phrases) {
-      const titles = await searchAll(WP, ph, `search ${ph}`);
+      const titles = await searchAll(WP, ph, `search ${ph}`, ph.includes("hastemplate:") ? BROAD_OFFSET : MAX_OFFSET);
       titles.forEach((t) => add(searched, t, f.id));
       n += titles.length;
     }
     bump(`wikipedia phrase hits: ${f.id}`, n);
+    progress(`${f.id}: ${p138.length} on Wikidata, ${n} article hits`);
 
     if (f.kind === "leader" && f.label) {
       for (const w of f.search) {
@@ -427,18 +443,31 @@ export async function run(): Promise<void> {
     }
   }
 
-  // ── 3. Wikipedia titles become items ─────────────────────────────────
-  const titleQid = await titlesToQids([...searched.keys()]);
+  // ── 3. Read the search hits first; only a match becomes an item ──────
+  // Reading is fifty articles a call; looking an item up is one more call per
+  // fifty plus its class labels. Reading first means only the articles that
+  // actually carry a naming sentence cost a lookup.
+  progress(`reading ${searched.size} search hits`);
+  const texts = await readArticles([...searched.keys()]);
+  bump("wikipedia articles found", searched.size);
+  bump("search hits read", texts.size);
+  const matched = [...searched.entries()].filter(([t, figs]) => {
+    const text = texts.get(t);
+    return !!text && [...figs].some((id) => findNamingSentence(text, FIGURES.find((f) => f.id === id)!) !== null);
+  }).map(([t]) => t);
+  bump("search hits with a naming sentence", matched.length);
+  progress(`${matched.length} of them carry a naming sentence`);
+  const titleQid = await titlesToQids(matched);
   const searchedByQid = new Map<string, Set<string>>();
   for (const [t, figs] of searched) {
     const q = titleQid.get(t);
     if (q) for (const f of figs) add(searchedByQid, q, f);
   }
-  bump("wikipedia articles found", searched.size);
 
   // ── 4. Read every candidate item ─────────────────────────────────────
   const all = [...new Set([...stated.keys(), ...labelled.keys(), ...searchedByQid.keys()])].filter((q) => /^Q\d+$/.test(q));
   bump("candidate items", all.length);
+  progress(`looking up ${all.length} items`);
   const ents = await entities(all, "labels|descriptions|claims|sitelinks", "items");
 
   // Class and located-in labels, fetched once for the whole set.
@@ -492,9 +521,10 @@ export async function run(): Promise<void> {
   // hits: a P138 item whose article also says so carries both, and the page
   // can print the sentence instead of only a link.
   const toRead = places.filter((p) => p.enwiki);
+  const unread = toRead.map((p) => p.enwiki!).filter((t) => !texts.has(t));
+  progress(`reading ${unread.length} more articles`);
+  for (const [t, x] of await readArticles(unread)) texts.set(t, x);
   bump("articles read", toRead.length);
-  const texts = await readArticles(toRead.map((p) => p.enwiki!));
-  bump("articles with text", texts.size);
   for (const p of toRead) {
     const text = texts.get(p.enwiki!);
     if (!text) continue;
@@ -539,6 +569,7 @@ export async function run(): Promise<void> {
   });
 
   // ── 7. OpenStreetMap ─────────────────────────────────────────────────
+  progress("OpenStreetMap roads and names");
   const roadSets = await roads(states);
   const counts = await nameCounts();
 
