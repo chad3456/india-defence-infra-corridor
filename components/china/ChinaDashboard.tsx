@@ -156,7 +156,7 @@ export function ChinaDashboard({ v }: { v: ChinaView }) {
           <div className="cx-kpis">
             <div className="cx-kpi"><span className="cx-kpi-num">{usd(total)}</span><span className="cx-kpi-label">these {current.length} products together, {year}</span><span className="cx-kpi-note">Derived: a sum of Comtrade values</span></div>
             {biggest && <div className="cx-kpi"><span className="cx-kpi-num">{usd(biggest.latest!.value)}</span><span className="cx-kpi-label">{biggest.name}, the biggest of them</span></div>}
-            {topShare && <div className="cx-kpi"><span className="cx-kpi-num">{topShare.share!.pct.toFixed(0)}%</span><span className="cx-kpi-label">of the world&rsquo;s {topShare.name.toLowerCase()} exports, {topShare.share!.year}</span><span className="cx-kpi-note">Derived: China ÷ all {topShare.share!.reporters} reporters</span></div>}
+            {topShare && <div className="cx-kpi"><span className="cx-kpi-num">{topShare.share!.pct.toFixed(0)}%</span><span className="cx-kpi-label">of world exports of {topShare.name.toLowerCase()}, {topShare.share!.year} — the highest share here</span><span className="cx-kpi-note">Derived: China ÷ all {topShare.share!.reporters} reporters</span></div>}
             {droneValue > 0 && <div className="cx-kpi"><span className="cx-kpi-num">{usd(droneValue)}</span><span className="cx-kpi-label">of drones, all four weight classes, {year}</span></div>}
           </div>
 
@@ -167,6 +167,10 @@ export function ChinaDashboard({ v }: { v: ChinaView }) {
               <span key={g}><svg width="18" height="18"><rect width="18" height="18" rx="3" fill="#24449a" /><rect width="18" height="18" rx="3" fill={`url(#gz-${g})`} /></svg>{GROUP_LABEL[g]}</span>
             ))}
           </div>
+
+          <h2 className="cx-h2">Zoom in: the sound, the music and the drones</h2>
+          <p className="cx-lede">Next to phones and batteries these are small, so here they are on their own, at the same scale as each other.</p>
+          <Mosaic products={current.filter((p) => p.group === "sound" || p.group === "music" || p.group === "sky")} onTip={setTip} height={420} />
 
           <h2 className="cx-h2">Who buys it: the top destinations across all {current.length} products, {year}</h2>
           <div className="cx-bars">
@@ -202,8 +206,8 @@ export function ChinaDashboard({ v }: { v: ChinaView }) {
                       <div className="cx-card-num">{usd(p.latest?.value)} <small>{p.latest?.year ?? ""}</small></div>
                       <Spark p={p} />
                       <dl className="cx-facts">
-                        {p.multiple && <><dt>Since {p.multiple.from}</dt><dd>×{p.multiple.x.toFixed(p.multiple.x >= 10 ? 0 : 1)} <i>derived</i></dd></>}
-                        {p.share && <><dt>Share of world exports, {p.share.year}</dt><dd>{p.share.pct.toFixed(0)}% <i>derived</i></dd></>}
+                        {p.multiple && <><dt>Change since {p.multiple.from} <i>derived</i></dt><dd>×{p.multiple.x.toFixed(p.multiple.x >= 10 ? 0 : 1)}</dd></>}
+                        {p.share && <><dt>Share of world exports, {p.share.year} <i>derived</i></dt><dd>{p.share.pct.toFixed(0)}%</dd></>}
                         {p.quantity && <><dt>Quantity, {p.latest?.year}</dt><dd>{qty(p.quantity)}</dd></>}
                         {p.top[0] && <><dt>Biggest buyer</dt><dd>{p.top[0].name} · {usd(p.top[0].value)}</dd></>}
                         {p.mirror && <><dt>Check, {p.mirror.year}</dt><dd>China says {usd(p.mirror.china)}; {p.mirror.reporters} importers say {usd(p.mirror.world)}</dd></>}
@@ -226,8 +230,14 @@ export function ChinaDashboard({ v }: { v: ChinaView }) {
   );
 }
 
-function Mosaic({ products, onTip }: { products: ProductView[]; onTip: (t: { x: number; y: number; body: ReactNode } | null) => void }) {
-  const W = 1000, H = 520;
+/** Trim a label to what fits in `w` pixels at the tile's type size. */
+function fit(text: string, w: number, px = 7.6): string {
+  const n = Math.floor((w - 22) / px);
+  return text.length <= n ? text : n > 4 ? `${text.slice(0, n - 1)}…` : "";
+}
+
+function Mosaic({ products, onTip, height = 520 }: { products: ProductView[]; onTip: (t: { x: number; y: number; body: ReactNode } | null) => void; height?: number }) {
+  const W = 1000, H = height;
   const rects = useMemo(() => {
     // Groups first, then products inside each group, so a glaze reads as a region.
     const groups = GROUPS.map((g) => ({ g, v: products.filter((p) => p.group === g).reduce((s, p) => s + (p.latest?.value ?? 0), 0) })).filter((x) => x.v > 0);
@@ -236,11 +246,11 @@ function Mosaic({ products, onTip }: { products: ProductView[]; onTip: (t: { x: 
       products.filter((p) => p.group === o.d && (p.latest?.value ?? 0) > 0).map((p) => ({ v: p.latest!.value, d: p })),
       { x: o.x + 2, y: o.y + 2, w: Math.max(0, o.w - 4), h: Math.max(0, o.h - 4) },
     ));
-  }, [products]);
+  }, [products, H]);
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="cx-mosaic" role="img" aria-label="Products sized by export value">
       {rects.map((r) => {
-        const big = r.w > 110 && r.h > 46;
+        const big = r.w > 70 && r.h > 46;
         return (
           <g key={r.d.code}
             onMouseMove={(e) => onTip({ x: e.clientX, y: e.clientY, body: <><b>{r.d.name}</b><br />{usd(r.v)} · {r.d.latest?.year}{r.d.share ? <><br />{r.d.share.pct.toFixed(0)}% of world exports, {r.d.share.year}</> : null}</> })}
@@ -248,8 +258,8 @@ function Mosaic({ products, onTip }: { products: ProductView[]; onTip: (t: { x: 
             <rect x={r.x + 1} y={r.y + 1} width={Math.max(0, r.w - 2)} height={Math.max(0, r.h - 2)} rx="6" fill="#24449a" />
             <rect x={r.x + 1} y={r.y + 1} width={Math.max(0, r.w - 2)} height={Math.max(0, r.h - 2)} rx="6" fill={`url(#gz-${r.d.group})`} />
             {big && <>
-              <text x={r.x + 12} y={r.y + 26} className="cx-tile-name">{r.d.name}</text>
-              <text x={r.x + 12} y={r.y + 46} className="cx-tile-val">{usd(r.v)}</text>
+              <text x={r.x + 12} y={r.y + 26} className="cx-tile-name">{fit(r.d.name, r.w)}</text>
+              <text x={r.x + 12} y={r.y + 46} className="cx-tile-val">{fit(usd(r.v), r.w)}</text>
             </>}
           </g>
         );
@@ -331,7 +341,7 @@ function MapTab({ v, code, setCode, onTip }: { v: ChinaView; code: string; setCo
           <p className="cx-mapfacts">
             To {p.destinations} destinations{p.quantity ? <> · {qty(p.quantity)}</> : null}{p.share ? <> · {p.share.pct.toFixed(0)}% of world exports in {p.share.year} <i>(derived)</i></> : null}
           </p>
-          {p.mirror && <p className="cx-mapfacts">The check: China reports {usd(p.mirror.china)} for {p.mirror.year}; the {p.mirror.reporters} countries that report buying it from China say {usd(p.mirror.world)}. They never match exactly — importers count freight and insurance, exporters do not, and goods routed through Hong Kong are counted differently at each end.</p>}
+          {p.mirror && <p className="cx-mapfacts">The check: China reports {usd(p.mirror.china)} for {p.mirror.year}; the {p.mirror.reporters} countries that report buying it from China say {usd(p.mirror.world)}. They never match exactly: importers count freight and insurance and exporters do not, goods routed through Hong Kong are counted differently at each end, and the two customs offices can file the same goods under different codes. A gap of more than a third is a sign of that last one.</p>}
           {p.note && <p className="cx-card-note">{p.note}</p>}
         </div>
         <div className="cx-bars">
