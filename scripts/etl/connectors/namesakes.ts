@@ -75,6 +75,14 @@ const BROAD_OFFSET = 1_500;
 const BUDGET_MS = 70 * 60_000;
 const STARTED = Date.now();
 const late = () => Date.now() - STARTED > BUDGET_MS;
+/**
+ * The whole run, OpenStreetMap included, stops asking by here. The budget
+ * above covered Wikipedia only, and a run spent past a hundred minutes
+ * waiting on three busy Overpass instances in turn, one stem at a time —
+ * which the job's own time limit would have killed with nothing committed.
+ */
+const HARD_MS = 100 * 60_000;
+const pastHard = () => Date.now() - STARTED > HARD_MS;
 const elapsed = () => `${Math.round((Date.now() - STARTED) / 60_000)} min`;
 function progress(msg: string): void { console.log(`  [${elapsed()}] ${msg}`); }
 /** Politeness between API calls to one host. */
@@ -316,11 +324,14 @@ const wdUrl = (qid: string) => `https://www.wikidata.org/wiki/${qid}`;
 /* ─────────────────────────── Overpass ─────────────────────────── */
 
 async function overpass(q: string, label: string): Promise<string | null> {
-  for (const base of OVERPASS) {
-    const res = await getText(`${base}/interpreter?data=${encodeURIComponent(q)}`, { timeoutMs: 300_000, retries: 1, cacheMs: 0 });
+  // Two instances at most, one attempt each, three minutes each: a busy
+  // service is skipped for this run, not waited out.
+  for (const base of OVERPASS.slice(0, 2)) {
+    if (pastHard()) { errors.push(`${label}: skipped at the run's hard deadline`); return null; }
+    const res = await getText(`${base}/interpreter?data=${encodeURIComponent(q)}`, { timeoutMs: 180_000, retries: 0, cacheMs: 0 });
     if (res.ok && res.data && !/runtime error|rate_limited/i.test(res.data.slice(0, 2000))) return res.data;
     errors.push(`${label} via ${base}: ${res.error ?? "runtime error or rate limit"}`);
-    await sleep(20_000);
+    await sleep(10_000);
   }
   return null;
 }
@@ -360,6 +371,7 @@ async function roads(states: States): Promise<RoadSet[] | null> {
 async function nameCounts(): Promise<NameCount[] | null> {
   const out: NameCount[] = [];
   for (const stem of STEMS) {
+    if (pastHard()) { errors.push(`place names: stopped at the hard deadline before ${stem}`); break; }
     const q = `[out:csv(name;false)][timeout:180];area["ISO3166-1"="IN"][admin_level=2]->.in;` +
       `node[place~"^(city|town|village|hamlet|suburb|neighbourhood)$"][name~"^${stem}"](area.in);out;`;
     const body = await overpass(q, `place names ${stem}`);
