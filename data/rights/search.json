@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-30T15:23:05.032Z",
+  "builtAt": "2026-09-30T21:03:36.699Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 959,
+    "items": 964,
     "addedThisRun": 5,
-    "carriedFromEarlierRuns": 954,
-    "withOutlet": 901,
+    "carriedFromEarlierRuns": 959,
+    "withOutlet": 906,
     "bySubject": {
-      "scst": 629,
-      "pmshri": 330
+      "scst": 633,
+      "pmshri": 331
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 300
+    "offSubjectDropped": 303
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 480
+      "n": 482
     },
     {
       "key": "use",
-      "n": 333
+      "n": 334
     },
     {
       "key": "dispute",
@@ -40,7 +40,7 @@
     },
     {
       "key": "acquittal",
-      "n": 37
+      "n": 39
     },
     {
       "key": "false-finding",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 86
+      "n": 88
     },
     {
       "key": "The Indian Express",
@@ -66,7 +66,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 32
+      "n": 33
     },
     {
       "key": "India Today",
@@ -113,6 +113,10 @@
       "n": 12
     },
     {
+      "key": "Court Book",
+      "n": 12
+    },
+    {
       "key": "SabrangIndia",
       "n": 12
     },
@@ -122,10 +126,6 @@
     },
     {
       "key": "ANI News",
-      "n": 11
-    },
-    {
-      "key": "Court Book",
       "n": 11
     },
     {
@@ -233,6 +233,10 @@
       "n": 4
     },
     {
+      "key": "The Mooknayak English",
+      "n": 4
+    },
+    {
       "key": "Jagran Josh",
       "n": 4
     },
@@ -265,10 +269,6 @@
       "n": 3
     },
     {
-      "key": "The Mooknayak English",
-      "n": 3
-    },
-    {
       "key": "theweek.in",
       "n": 3
     },
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 6,
+      "bing": 7,
       "kept": 1,
-      "offSubject": 12
+      "offSubject": 13
     },
     {
       "id": "act-convicted",
@@ -317,7 +317,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 37
     },
     {
@@ -325,9 +325,9 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 52,
+      "google": 51,
       "bing": 7,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 8
     },
     {
@@ -336,7 +336,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 43,
-      "bing": 3,
+      "bing": 2,
       "kept": 0,
       "offSubject": 13
     },
@@ -346,7 +346,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 57,
-      "bing": 1,
+      "bing": 2,
       "kept": 0,
       "offSubject": 20
     },
@@ -355,9 +355,9 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 93,
+      "google": 95,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 45
     },
     {
@@ -375,9 +375,9 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 40,
-      "bing": 2,
-      "kept": 0,
+      "google": 41,
+      "bing": 1,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 27,
+      "google": 28,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -428,7 +428,7 @@
       "google": 47,
       "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 6
     },
     {
       "id": "shri-funds",
@@ -436,9 +436,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 67,
-      "bing": 1,
-      "kept": 1,
-      "offSubject": 22
+      "bing": 2,
+      "kept": 0,
+      "offSubject": 23
     },
     {
       "id": "shri-upgrade",
@@ -447,7 +447,7 @@
       "expect": "use",
       "google": 51,
       "bing": 2,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 12
     },
     {
@@ -455,9 +455,9 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 46,
-      "bing": 2,
-      "kept": 1,
+      "google": 45,
+      "bing": 1,
+      "kept": 0,
       "offSubject": 5
     },
     {
@@ -8313,7 +8313,8 @@
         "shri-general"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -16114,6 +16115,87 @@
       ],
       "indexes": [
         "bing"
+      ],
+      "firstSeen": "2026-09-30"
+    },
+    {
+      "id": "2 held for extortion using rape pocso sc st cases",
+      "headline": "2 held for extortion using rape, Pocso, SC/ST cases",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Times of India",
+      "published": "2026-09-30",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQbXU3Y0c3WXVPSlMycTFiU0ZmRUQtdFE1SW1tT1pwelNGR2txUHg0YlQ0Qmlza1NzS25tcjhGTnpnSXFkUjloZXhISGRQaXNWODBBeS1qQW1MXzBoOTZzRDdMZTEtU0pIUjlLVWstU0pkYVFEcWRua3B3dHVFdjl4eU50VmVqb0ZXUnkxQnpRVUZFVENJSWpWOVhIc0h0TFJJNlhpM051bkFlTDhpcjN6R3hBZ3h6UmVOUDJWUzBTbWRKT3o2VUHSAcYBQVVfeXFMUG11N2NHN1l1T0pTMnExYlNGZkVELXRRNUltbU9acHpTRkdrcVB4NGJUNEJpc2tTc0tubXI4Rk56Z0lxZFI5aGV4SEhkUGlzVjgwQXktakFtTF8waDk2c0Q3TGUxLVNKSFI5S1VrLVNKZGFRRHFkbmtwd3R1RXY5eHlOdFZlam9GV1J5MUJ6UVVGRVRDSUlqVjlYSHNIdExSSTZYaTNOdW5BZUw4aXIzekd4QWd4elJlTlAyVlMwU21kSk96NlVB?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-30"
+    },
+    {
+      "id": "madras hc acquits man of sc st act charges retains pocso conviction in minor pregnancy cas",
+      "headline": "Madras HC Acquits Man of SC/ST Act Charges, Retains POCSO Conviction in Minor Pregnancy Case",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Court Book",
+      "published": "2026-06-15",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNSjBjd1c4QU9aUkViMk5Hdmg1Mm9BS3dmQ0lOX3RvUm1WQ3hJTVVfU2NyY292VDZYQlJkQTJWS0hrLWVEYnQxVWgxdHRDdFdieXFsT1A2cDY2OWxTd3h3bjZSaVJsQ0JiUDNfY1l0N3F1WGZHbktlRm9MMENtWkp2Y1BCbHRRUmlCeXBISzhvemd5RHpRSXBhM2E5dWNfWWRLQ3JyRHVGY2t4S1dnWTIzQzA2MDNWRFdkdWFmZWgwRmdZX1otc0RGV2pFdGEwMXR5?oc=5",
+      "queries": [
+        "act-convicted",
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-30"
+    },
+    {
+      "id": "bombay high court upholds conviction of accused for murder and acquittal of co accused in ",
+      "headline": "Bombay High Court Upholds Conviction of Accused for Murder and Acquittal of Co-Accused in SC/ST Act Case — Evidence of Common Intention Lacking for Acquitted Accused. The court confirmed the conviction under Section 302 IPC and Section 3(2)(v) of S",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-09-30",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBXVjhvUWt4WFRrb1JrcmcyMjhGN29TODV3UzR2Q3pkWk1Cc21GQi1QQjM0TGY5b2hTT0NDUlRGenlYREpCaElfM0d5NUVLMndjZGF3R2puZGVXVjJmbmRkOG5QWm5RUQ?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-30"
+    },
+    {
+      "id": "will the public view clause become a new barrier to dalit justice the sc ruling that has l",
+      "headline": "Will the 'Public View' Clause Become a New Barrier to Dalit Justice? The SC Ruling That Has Left the Bahujan Community Worried",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Mooknayak English",
+      "published": "2026-05-13",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQSlRSRmVIdGpVNWsyaWNoMnJLWlNEdl94UlhaR3Z4amgtcVZieXI1RFZUbEZ4dWlQZzJ4YUNsWmFlVkVZeFZldl9BMzBTRWQzc1dhNUw0RDA3ZjdmMWVzTjdBOW50aTFLbDA4UDNkWC03Z21ZVXFndWNQRU1Lb21tRG9panpiX1pIaU5uNVNEbVFoSGxBSlR3OVRFeV9FUW12MmNKalgtWGVDWjE2Um9zajlua1RVbzA2ekx1aVRIN2JvaXQtVUJJSG9HYnpCZGQ1UHlNLWl3elp6YWtBWElsYdIB7gFBVV95cUxQcEFqSjJsM0E1eXJKQXJvSXotX085eVJBWTF6Y0k4X3hrcEVlWlFBQnY4ZjhzU2hFbGNGQklFQW1EM3l0ZHZaTWpEdURtQnd1RDI5WlF3RW53akppNWNoWGZBaGJXaXR3T1NBWHhteUhUaG1XenZxZUVyUGZqM3Z0VW1NenI3REtEVXRrRG9sTWlLckM5YU1kYzhHMzNleFZxQUNScTNYMTlFRW5GYTY3Uk9XN19LTFV0Z2l4UGp1WGJock5uNEpublpOdUtGU0FKQzVrS1dKUVZTV0tTLUs5LUZpNnMxRFowVHZfZTV3?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-09-30"
+    },
+    {
+      "id": "3 new pm shri schools in noida this year",
+      "headline": "3 new PM Shri schools in Noida this year",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2024-04-03",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPNV9tV1lvbGVXMmdGbWs1WW1laHVrczF2VGdJZ1R5cnVvQmE3NTJLZjN6T2Z3OU9fd0tlLUtQaWltWVRIRFRPWHpWX1VXZEkwRHVrS2tsWEtiT1E0cmU3dlM1SnYzQWRBN2dVaFNUeXFadFBpMk5tMjZTVDdaTHd6cDYzeGhGQ0NnWUttNUl2aE9iNU9oTGhEcmZJeTRoVXBnU2hGbVFFaE5UUEhiVlJJ0gG0AUFVX3lxTFBVTHIxcWl1c29KUFFFWmhsNG9KcGU0aFB5cmk5bG9BMmVHdmozZlZJRTVzTDNiUmYtbHRaY0tFRjFMd29UWWtjeHRoTVBZc2xLNUFHc1ZfRHNWUjRyWVdrZEZjLUE4UjF4czV1Z0V5Z1llaVlVWFZhSFJZN3RFVkkwMXh2UUc3c2UtQXNVR2g2NmxsRUJkaHpoWGhIcXEwY2dQajNDMmQ2NThvOURYSjF5SWNmTQ?oc=5",
+      "queries": [
+        "shri-upgrade"
+      ],
+      "indexes": [
+        "google"
       ],
       "firstSeen": "2026-09-30"
     }
