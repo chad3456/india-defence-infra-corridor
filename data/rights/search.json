@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-01T06:36:28.308Z",
+  "builtAt": "2026-10-01T15:43:21.642Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 968,
+    "items": 972,
     "addedThisRun": 4,
-    "carriedFromEarlierRuns": 964,
-    "withOutlet": 909,
+    "carriedFromEarlierRuns": 968,
+    "withOutlet": 913,
     "bySubject": {
-      "scst": 637,
-      "pmshri": 331
+      "scst": 640,
+      "pmshri": 332
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 301
+    "offSubjectDropped": 272
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 337
+      "n": 340
     },
     {
       "key": "dispute",
@@ -40,7 +40,7 @@
     },
     {
       "key": "acquittal",
-      "n": 39
+      "n": 40
     },
     {
       "key": "false-finding",
@@ -66,7 +66,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 34
+      "n": 36
     },
     {
       "key": "India Today",
@@ -307,18 +307,18 @@
       "expect": "use",
       "google": 100,
       "bing": 5,
-      "kept": 2,
-      "offSubject": 13
+      "kept": 3,
+      "offSubject": 14
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 0,
       "bing": 0,
       "kept": 0,
-      "offSubject": 36
+      "offSubject": 0
     },
     {
       "id": "act-atrocity",
@@ -326,26 +326,26 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 8,
-      "kept": 1,
-      "offSubject": 8
+      "bing": 5,
+      "kept": 0,
+      "offSubject": 9
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 43,
+      "google": 42,
       "bing": 2,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 56,
+      "google": 54,
       "bing": 2,
       "kept": 0,
       "offSubject": 20
@@ -355,7 +355,7 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 95,
+      "google": 93,
       "bing": 0,
       "kept": 0,
       "offSubject": 45
@@ -376,8 +376,8 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 41,
-      "bing": 1,
-      "kept": 1,
+      "bing": 3,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -398,7 +398,7 @@
       "google": 48,
       "bing": 2,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 18
     },
     {
       "id": "act-fabricated",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 3
     },
     {
@@ -428,47 +428,47 @@
       "google": 47,
       "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 7
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 68,
+      "google": 69,
       "bing": 1,
       "kept": 0,
-      "offSubject": 23
+      "offSubject": 24
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 51,
+      "google": 50,
       "bing": 3,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 11
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 44,
+      "google": 45,
       "bing": 2,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 6
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 28,
-      "bing": 0,
+      "google": 29,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 16
     },
     {
       "id": "shri-nep",
@@ -488,7 +488,7 @@
       "google": 46,
       "bing": 1,
       "kept": 0,
-      "offSubject": 35
+      "offSubject": 36
     }
   ],
   "items": [
@@ -16258,6 +16258,71 @@
       "url": "https://news.google.com/rss/articles/CBMiugJBVV95cUxOVGhGUUI0cFhWSVJfa0QxX0lSUldITVF4dTg5VEJXTEVpeFZ1REp1Q3hpSi1RTWVzN3Z5LWtUSW52WXZBakViVndQX2phdllTbXVwR1ljQWZPNmNfbGYtZ0dTdkZQSHNrb1hoQkFtT2lnQnM5b1V5R29rOVEyRFdaVk5oejV0VDJOOGlxeTRXaEQwRWdnb2RUUk8zZ3c5TXdNTTJwUlJoVEo5Wnd6cGtmeEdsUzIzMkdSNU9yTXFZZG56b25KeVRXVzNPTGtrYkxmZFBvT2RuN05GRDk2V3ZSejBKZW1id2hMSmRtZnc1M09mdmJxajFmRjExRkV6WlpWTGxxQmFqYTQxdExTYVlQWjFjMW5ySFNuWllfV1YzNHZSUy00cDhRX2tCMEtqOEVzaHFMeTRPcnprQQ?oc=5",
       "queries": [
         "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-01"
+    },
+    {
+      "id": "bombay high court quashes fir against advocate in sc st atrocity case for lack of public v",
+      "headline": "Bombay High Court Quashes FIR Against Advocate in SC/ST Atrocity Case for Lack of Public View. Alleged Caste-Based Insults in Gas Agency Office Not in Public View Under Section 3(1)(r)(s) of SC & ST (Prevention of Atrocities) Act, 1989.",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-10-01",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9jRy1Rck9DcUlXOGxxaGdIMXd6UTlHYnpNaURid2NGd0p6Y09LdE9pV1FFWU5oRlRTR011bGE1V3Q3V0hDVEREb2hndm1hU0ZOc09FY3JXYkxMWm5PMnFOMF9ZUVRBUQ?oc=5",
+      "queries": [
+        "act-registered",
+        "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-01"
+    },
+    {
+      "id": "bombay high court quashes fir against police officer in sc st act case for lack of sanctio",
+      "headline": "Bombay High Court Quashes FIR Against Police Officer in SC/ST Act Case for Lack of Sanction Under Section 197 CrPC. Court Held That Acts Alleged Were in Discharge of Official Duty, Making Sanction Mandatory Before Investigation.",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-09-30",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5uNnk1T1BBYUJuSFRKaUlVclJtSVF1QXV1c1JLT0YtRXJScnlJU28tcUdkbjFienZSMXBRUFRibjJuTEZpeDNEZVZyQXZ4MnpFdUFaZVctODA4SFpyVlVBYlBNWmh1VFZX?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-01"
+    },
+    {
+      "id": "hc refuses to quash sc st act fir questions fairness of probe",
+      "headline": "HC refuses to quash SC/ST Act FIR, questions fairness of probe",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "dailyexcelsior.com",
+      "published": "2026-08-14",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPTkYwVTJHR2FvcEd3c0RoT3N0ZUdUbnEwaGdDZDhLWGMzSHdKVlowQ2hUZVhlY3RyeE5wcmNubU1hM0w0WXIyQmxLSGJac0l0QU1zVzVvVEY3SktXdmtNSVdFVmZRcHYwNG5SREhsUnlyT2IyaXNQcWR2WjltdEtGNGJfLWpnOWNhdXBFWEpuS0U0bmVxYmpZQtIBnAFBVV95cUxQdV9JZ1lmYXM2aGNPSk5FcHduRnhFOVFWdlRINDE4ZGNodktSaXhxMVR6Wk9VLVN2MWV0YkVCbFM2WUxtM0pwcVNhcTM1RERGZlA4WFI0d3FrR21PVTA5eFlLX0FOSnFVR3JBaVduWEVvLWlpcENSWVRpY2pGNm9fTWJsMXhpSlY5UVg3Vi1Edlk1LTZKamt0bDNidGE?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-01"
+    },
+    {
+      "id": "centre approves 243 cr for pm shri schools in j k for 2026 27",
+      "headline": "Centre approves ₹243 cr for PM SHRI Schools in J&K for 2026–27",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "Kashmir Indepth",
+      "published": "2026-04-30",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQNWtoSWFKbFBWQVBMc2ZRNzhHemp2WnF3VXZqLXVFdUMxR1ZjWElCZElPOFdOakFhVFRSTmJpdzYzVDNQZlNUS3A5OEZBa0JPdDVSNml6aFJQakxrczZ5MDBrVE04WGV4UnI2X0ZyWWk5ZFhWcHQzUHg4WV9FLTBTZ1pTaGt3WkF3TzBNQXhmTElNOFB5QlBTWUNSRjZsQ3dSeC1BS2ZCb3J2WXBiQTBlR29B?oc=5",
+      "queries": [
+        "shri-general"
       ],
       "indexes": [
         "google"
