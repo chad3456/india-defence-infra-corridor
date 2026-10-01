@@ -7,7 +7,7 @@
  */
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { ROOMS, FREE_LICENSE, freeYear, type Museum } from "../lib/museum-shared";
+import { ROOMS, FREE_LICENSE, WIKIMEDIA_IMAGE, freeYear, type Museum } from "../lib/museum-shared";
 
 let failed = 0;
 function check(name: string, ok: boolean, detail = ""): void {
@@ -37,9 +37,11 @@ if (!existsSync(FILE)) {
   const works = d.rooms.flatMap((r) => r.works);
   check("every work's licence is free", works.every((w) => FREE_LICENSE.test(w.image.license)),
     works.filter((w) => !FREE_LICENSE.test(w.image.license)).map((w) => w.title).slice(0, 3).join(", "));
-  const offHost = works.filter((w) => !/^https:\/\/upload\.wikimedia\.org\//.test(w.image.thumb));
+  const offHost = works.filter((w) => !WIKIMEDIA_IMAGE.test(w.image.thumb));
   check("every image is served by Wikimedia over https", offHost.length === 0, offHost.slice(0, 3).map((w) => `${w.title}: ${w.image.thumb.slice(0, 50)}`).join("; "));
   check("every work links to its Commons file page", works.every((w) => /^https:\/\/commons\.wikimedia\.org\//.test(w.image.page)));
+  const junk = works.filter((w) => /^https?:|date QS|^user:/i.test(`${w.artist ?? ""} ${w.year ?? ""}`.trim()) || /date QS/i.test(w.year ?? ""));
+  check("no machine residue in a label", junk.length === 0, junk.slice(0, 3).map((w) => `${w.title}: ${w.artist} / ${w.year}`).join("; "));
   check("no work hangs twice in one room", d.rooms.every((r) => new Set(r.works.map((w) => w.qid)).size === r.works.length));
   check("every room in the file is a room on the page", d.rooms.every((r) => ROOMS.some((x) => x.id === r.id)));
   const stillLocked = d.notYet.filter((a) => a.freeIn !== null && a.freeIn <= new Date().getUTCFullYear());

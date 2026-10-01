@@ -24,6 +24,8 @@ export interface Room {
    * because Commons names vary; the ones that do not exist simply add nothing.
    */
   categories?: string[];
+  /** Commons searches, for schools whose categories are thin or misnamed. */
+  searches?: string[];
   /** Wall colour of the room, a museum's paint, not a data encoding. */
   wall: string;
 }
@@ -32,8 +34,8 @@ export const ROOMS: Room[] = [
   { id: "mughal", title: "The Mughal Court", line: "Albums and manuscripts made in the imperial workshops.", movements: ["Mughal painting"], categories: ["Mughal miniatures", "Mughal paintings", "Mughal painting", "Akbarnama", "Padshahnama", "Hamzanama"], wall: "#2f4a3a" },
   { id: "rajput", title: "Rajput Courts", line: "Painting for the kingdoms of Rajasthan and Central India.", movements: ["Rajput painting"], categories: ["Rajput painting", "Rajput paintings", "Rajasthani painting", "Mewar painting", "Bundi painting", "Kishangarh painting", "Kota painting"], wall: "#7a2e2a" },
   { id: "pahari", title: "The Hills", line: "Pahari painting from the Himalayan foothill courts.", movements: ["Pahari painting"], categories: ["Pahari painting", "Pahari paintings", "Kangra painting", "Basohli painting", "Guler painting"], wall: "#33506b" },
-  { id: "deccan", title: "The Deccan", line: "Painting at the sultanate courts of the south.", movements: ["Deccan painting"], categories: ["Deccan painting", "Deccani painting", "Deccani paintings"], wall: "#4b3a5e" },
-  { id: "company", title: "Company Painting", line: "Indian artists painting for British patrons.", movements: ["Company painting"], categories: ["Company painting", "Company style paintings", "Company School paintings", "Company School"], wall: "#5d5040" },
+  { id: "deccan", title: "The Deccan", line: "Painting at the sultanate courts of the south.", movements: ["Deccan painting"], categories: ["Deccan painting", "Deccani painting", "Deccani paintings", "Bijapur painting", "Golconda painting"], searches: ['"Deccani painting"', '"Deccan painting" Bijapur', '"Deccan painting" Golconda'], wall: "#4b3a5e" },
+  { id: "company", title: "Company Painting", line: "Indian artists painting for British patrons.", movements: ["Company painting"], categories: ["Company painting", "Company style paintings", "Company School paintings", "Company School"], searches: ['"Company painting"', '"Company style" painting India', '"Company School" painting'], wall: "#5d5040" },
   { id: "kalighat", title: "Kalighat", line: "Quick, bold pictures sold near the Kalighat temple in Calcutta.", movements: ["Kalighat painting"], categories: ["Kalighat painting", "Kalighat paintings", "Kalighat pat"], wall: "#8a5a1e" },
   { id: "ravivarma", title: "Raja Ravi Varma", line: "Oil painting, the epics, and the printing press.", artists: ["Raja Ravi Varma"], wall: "#6b1f2a" },
   { id: "bengal", title: "The Bengal School", line: "The Tagores and a return to Indian ways of painting.", artists: ["Abanindranath Tagore", "Gaganendranath Tagore", "Rabindranath Tagore"], movements: ["Bengal School of Art"], wall: "#465a3a" },
@@ -96,6 +98,12 @@ export interface Museum {
   notYet: NotYet[];
   errors: string[];
 }
+
+/**
+ * Wikimedia's own image servers. Renditions now come from thumb.wikimedia.org
+ * as well as upload.wikimedia.org; nothing else is ever hotlinked.
+ */
+export const WIKIMEDIA_IMAGE = /^https:\/\/(upload|thumb)\.wikimedia\.org\//;
 
 /** Licences the walls accept, as Commons names them. */
 export const FREE_LICENSE = /^(public domain|pd|cc0|cc[- ]by(-sa)?([ -]\d(\.\d)?)?)/i;

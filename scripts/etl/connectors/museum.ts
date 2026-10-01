@@ -23,7 +23,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getText } from "../lib/http";
 import { isEntryPoint } from "../lib/entry";
-import { ROOMS, NOT_YET, FREE_LICENSE, freeYear, type Museum, type NotYet, type RoomData, type Work } from "../../../lib/museum-shared";
+import { ROOMS, NOT_YET, FREE_LICENSE, WIKIMEDIA_IMAGE, freeYear, type Museum, type NotYet, type RoomData, type Work } from "../../../lib/museum-shared";
 
 const ROOT = process.cwd();
 const OUT = join(ROOT, "data", "art", "museum.json");
@@ -69,6 +69,8 @@ async function sparql(query: string, label: string): Promise<Binding[]> {
 }
 
 const id = (v?: { value: string }) => v?.value.replace(/^https?:\/\/www\.wikidata\.org\/entity\//, "") ?? "";
+/** A label, or null when Wikidata has none in English or the value is "unknown" (a blank node). */
+const labelOf = (v?: { value: string }) => (v && !/^Q\d+$/.test(v.value) && !/^https?:/.test(v.value) ? v.value : null);
 
 /** Candidate works for one room, best-linked first, one row per work. */
 type Candidate = Omit<Work, "image"> & { file: string };
@@ -77,6 +79,8 @@ async function candidates(predicate: "P170" | "P135", target: string, label: str
   const rows = await sparql(`
 SELECT ?p ?pLabel ?img ?inception ?collLabel ?creatorLabel ?materialLabel ?links WHERE {
   ?p wdt:${predicate} wd:${target} ; wdt:P18 ?img ; wikibase:sitelinks ?links .
+  # A school's painters carry the school too, illustrated with their portraits.
+  FILTER NOT EXISTS { ?p wdt:P31 wd:Q5 . }
   OPTIONAL { ?p wdt:P571 ?inception . }
   OPTIONAL { ?p wdt:P195 ?coll . }
   OPTIONAL { ?p wdt:P170 ?creator . }
@@ -94,14 +98,14 @@ LIMIT 300`, label);
     const file = decodeURIComponent((r["img"]?.value ?? "").split("/Special:FilePath/")[1] ?? "").replace(/_/g, " ");
     if (!file) continue;
     const inc = r["inception"]?.value ?? null;
-    const creator = r["creatorLabel"]?.value ?? null;
+    const creator = labelOf(r["creatorLabel"]);
     out.set(q, {
       qid: q, source: "wikidata", title,
-      artist: creator && !/^Q\d+$/.test(creator) && !/^(anonymous|unknown)/i.test(creator) ? creator : null,
+      artist: creator && !/^(anonymous|unknown)/i.test(creator) ? creator : null,
       // Wikidata stores a year as 1st January of it; only the year is claimed.
       year: inc && /^-?\d{4}/.test(inc) ? inc.slice(0, 4).replace(/^0+/, "") : null,
-      medium: r["materialLabel"]?.value && !/^Q\d+$/.test(r["materialLabel"]!.value) ? r["materialLabel"]!.value : null,
-      collection: r["collLabel"]?.value && !/^Q\d+$/.test(r["collLabel"]!.value) ? r["collLabel"]!.value : null,
+      medium: labelOf(r["materialLabel"]),
+      collection: labelOf(r["collLabel"]),
       sitelinks: Number(r["links"]?.value ?? 0),
       file,
     });
@@ -145,12 +149,13 @@ async function images(files: string[]): Promise<Map<string, Work["image"] | "ref
       if (!FREE_LICENSE.test(license)) { out.set(asked, "refused"); continue; }
       const thumb = info.thumburl ?? info.url;
       // Only Wikimedia's own image server: a page must never hotlink elsewhere.
-      if (!/^https:\/\/upload\.wikimedia\.org\//.test(thumb)) { errors.push(`${asked}: image not on upload.wikimedia.org (${thumb.slice(0, 60)})`); continue; }
+      if (!WIKIMEDIA_IMAGE.test(thumb)) { errors.push(`${asked}: image not on a Wikimedia image server (${thumb.slice(0, 60)})`); continue; }
       const short = (v: string) => (v && v.length <= 140 ? v : null);
       meta.set(asked, {
         title: short(strip(m["ObjectName"]?.value)),
         artist: short(strip(m["Artist"]?.value)),
-        date: short(strip(m["DateTimeOriginal"]?.value).replace(/^date\s*/i, "")),
+        // The Artwork template leaves machine residue after the date ("1875date QS:P571,+1875…").
+        date: short(strip(m["DateTimeOriginal"]?.value).replace(/date\s*QS:.*$/i, "").replace(/^date\s*/i, "").trim()),
         credit: short(strip(m["Credit"]?.value)),
       });
       out.set(asked, {
@@ -219,6 +224,31 @@ async function usage(files: string[]): Promise<Map<string, number>> {
   return out;
 }
 
+/** Commons files found by search, ranked later by use. */
+async function searchFiles(queries: string[], cap: number): Promise<string[]> {
+  const files = new Set<string>();
+  for (const q0 of queries) {
+    const q = new URLSearchParams({ action: "query", list: "search", srsearch: `${q0} filetype:bitmap`, srnamespace: "6", srlimit: "200", srprop: "", format: "json", formatversion: "2" });
+    const j = await json<{ query?: { search?: Array<{ title: string }> } }>(`${COMMONS}?${q}`, `search ${q0}`);
+    for (const r of j?.query?.search ?? []) if (/\.(jpe?g|png|tiff?|webp)$/i.test(r.title)) files.add(r.title.replace(/^File:/, ""));
+    if (files.size >= cap) break;
+  }
+  return [...files].slice(0, cap);
+}
+
+/**
+ * Is this Commons file a painting, or a photograph of something? Commons'
+ * description says: a photograph names its uploader as author ("User:…"),
+ * calls itself "own work", or is dated in the photographer's lifetime.
+ */
+function looksLikeAPhoto(m: FileMeta | undefined): boolean {
+  if (!m) return false;
+  if (m.artist && /^user:|^\s*\[?user/i.test(m.artist)) return true;
+  if (m.credit && /own work/i.test(m.credit)) return true;
+  const y = m.date?.match(/\b(1[5-9]\d\d|20\d\d)\b/)?.[1];
+  return !!y && Number(y) >= 1950;
+}
+
 /** A readable title for a Commons-only work, when the file has no ObjectName. */
 function titleFromFile(file: string): string {
   return file.replace(/\.[a-z]+$/i, "").replace(/[_]+/g, " ").replace(/\s*-\s*Google Art Project.*$/i, "").replace(/\s+\(\d+\)$/, "").trim();
@@ -264,7 +294,8 @@ export async function run(): Promise<void> {
     // Schools: Commons categories add what Wikidata does not tag, ranked by use.
     if (room.categories?.length) {
       const have = new Set(ranked.map((w) => w.file));
-      const files = (await categoryFiles(room.categories, 400)).filter((f) => !have.has(f));
+      const found = new Set([...(await categoryFiles(room.categories, 400)), ...(room.searches ? await searchFiles(room.searches, 300) : [])]);
+      const files = [...found].filter((f) => !have.has(f));
       const used = await usage(files);
       const top = files.sort((a, b) => (used.get(b) ?? 0) - (used.get(a) ?? 0)).slice(0, PER_ROOM * 3);
       for (const f of top) ranked.push({ qid: `file:${f}`, source: "commons", usage: used.get(f) ?? 0, title: titleFromFile(f), artist: null, year: null, medium: null, collection: null, sitelinks: 0, file: f });
@@ -281,8 +312,10 @@ export async function run(): Promise<void> {
       if (!im) continue;
       const { file, ...rest } = w;
       if (w.source === "commons") {
-        // A Commons-only work is described by its file page, cleaned.
+        // A Commons-only work is described by its file page, cleaned — and a
+        // photograph of something is not a painting, whatever its category.
         const m = meta.get(file);
+        if (looksLikeAPhoto(m)) continue;
         if (m?.title) rest.title = m.title;
         if (m?.artist && !/^(unknown|anonymous)/i.test(m.artist)) rest.artist = m.artist;
         if (m?.date) rest.year = m.date;
