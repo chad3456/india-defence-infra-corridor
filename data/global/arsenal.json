@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-01T11:48:16.507Z",
+ "builtAt": "2026-10-01T22:00:13.353Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -201628,13 +201628,6 @@
    "source": "List_of_missiles_by_country"
   },
   {
-   "name": "SMART",
-   "key": "smart",
-   "kind": "mixed",
-   "country": "India",
-   "source": "List_of_missiles_by_country"
-  },
-  {
    "name": "Nirbhay",
    "key": "nirbhay",
    "kind": "mixed",
@@ -201714,6 +201707,13 @@
   {
    "name": "LR-AShM",
    "key": "lr ashm",
+   "kind": "mixed",
+   "country": "India",
+   "source": "List_of_missiles_by_country"
+  },
+  {
+   "name": "SMART",
+   "key": "smart",
    "kind": "mixed",
    "country": "India",
    "source": "List_of_missiles_by_country"
@@ -206484,7 +206484,7 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 3,
+   "kept": 2,
    "via": "direct"
   },
   {
@@ -206497,7 +206497,7 @@
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 18,
+   "items": 17,
    "kept": 0,
    "via": "direct"
   },
@@ -206530,6 +206530,20 @@
    "url": "https://www.gov.uk/government/news/30-boost-to-uk-military-transport-aircraft-availability-under-new-deal",
    "headline": "30% boost to UK military transport aircraft availability under new deal",
    "primary": true
+  },
+  {
+   "id": "ev-eoqban",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Sweden"
+   ],
+   "value": null,
+   "date": "2026-10-01",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/10/naval-group-begins-production-of-swedens-first-fdi-frigate-just-one-month-after-contract-signing/",
+   "headline": "Naval Group Begins Production of Sweden&#8217;s First FDI Frigate Just One Month After Contract Signing",
+   "primary": false
   },
   {
    "id": "ev-xhgfn",
@@ -207339,6 +207353,35 @@
    ],
    "value": null,
    "verdict": "from a primary source"
+  },
+  {
+   "key": "order||sweden",
+   "systems": [],
+   "countries": [
+    "Sweden"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-eoqban",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Sweden"
+     ],
+     "value": null,
+     "date": "2026-10-01",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/naval-group-begins-production-of-swedens-first-fdi-frigate-just-one-month-after-contract-signing/",
+     "headline": "Naval Group Begins Production of Sweden&#8217;s First FDI Frigate Just One Month After Contract Signing",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order||turkey",
