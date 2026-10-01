@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-01T15:43:21.642Z",
+  "builtAt": "2026-10-01T21:25:52.677Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 972,
+    "items": 976,
     "addedThisRun": 4,
-    "carriedFromEarlierRuns": 968,
-    "withOutlet": 913,
+    "carriedFromEarlierRuns": 972,
+    "withOutlet": 916,
     "bySubject": {
-      "scst": 640,
-      "pmshri": 332
+      "scst": 643,
+      "pmshri": 333
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 272
+    "offSubjectDropped": 305
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 483
+      "n": 485
     },
     {
       "key": "use",
-      "n": 340
+      "n": 341
     },
     {
       "key": "dispute",
@@ -40,7 +40,7 @@
     },
     {
       "key": "acquittal",
-      "n": 40
+      "n": 41
     },
     {
       "key": "false-finding",
@@ -61,12 +61,12 @@
       "n": 47
     },
     {
-      "key": "The Hindu",
-      "n": 38
+      "key": "Lawtext",
+      "n": 39
     },
     {
-      "key": "Lawtext",
-      "n": 36
+      "key": "The Hindu",
+      "n": 38
     },
     {
       "key": "India Today",
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 100,
       "bing": 5,
-      "kept": 3,
+      "kept": 0,
       "offSubject": 14
     },
     {
@@ -315,10 +315,10 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 0,
+      "google": 100,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 0
+      "kept": 1,
+      "offSubject": 36
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 5,
+      "bing": 8,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 54,
+      "google": 55,
       "bing": 2,
       "kept": 0,
       "offSubject": 20
@@ -355,9 +355,9 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 93,
+      "google": 95,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 45
     },
     {
@@ -376,7 +376,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 41,
-      "bing": 3,
+      "bing": 2,
       "kept": 0,
       "offSubject": 6
     },
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 48,
+      "google": 50,
       "bing": 2,
-      "kept": 0,
-      "offSubject": 18
+      "kept": 1,
+      "offSubject": 19
     },
     {
       "id": "act-fabricated",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 3
     },
     {
@@ -428,7 +428,7 @@
       "google": 47,
       "bing": 1,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "shri-funds",
@@ -437,7 +437,7 @@
       "expect": "use",
       "google": 69,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 24
     },
     {
@@ -445,17 +445,17 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 50,
-      "bing": 3,
+      "google": 51,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 12
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 45,
+      "google": 44,
       "bing": 2,
       "kept": 0,
       "offSubject": 6
@@ -468,7 +468,7 @@
       "google": 29,
       "bing": 1,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 15
     },
     {
       "id": "shri-nep",
@@ -478,17 +478,17 @@
       "google": 51,
       "bing": 3,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 9
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 46,
+      "google": 45,
       "bing": 1,
       "kept": 0,
-      "offSubject": 36
+      "offSubject": 35
     }
   ],
   "items": [
@@ -8444,7 +8444,8 @@
       "published": "2026-08-06",
       "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNcGRfUVdQWXpWNGtuNGIzb1lmMFh0OGVqanN2X21KWkJhMWI4TE1may1BbHJBc25LdlJVeFFEeEtOZUFGV0ZaQ2ctQURjVGJ6MldaSDlZNjVaUkVKcGZiQ2djUk5iZ2U5Vmc3dDZJcVMyRFBPT1B3WW94S1BEdklMX1RBT0RTZzE2b09OaTJFOWp6Zi1PYXFXcDlhNlJTcGNiZ2JweV9hbm5sanJWZlNBMzk1cjFZanhtY2dYTw?oc=5",
       "queries": [
-        "shri-general"
+        "shri-general",
+        "shri-sanctioned"
       ],
       "indexes": [
         "google"
@@ -16326,6 +16327,70 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-10-01"
+    },
+    {
+      "id": "high court of bombay at aurangabad considers appeal against conviction under sections 376 ",
+      "headline": "High Court of Bombay at Aurangabad Considers Appeal Against Conviction Under Sections 376/511 and 506 IPC and SC/ST Act – Appeal Filed Against Conviction Citing Delay in FIR and Inconsistent Evidence",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-09-30",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5MVUtodm0tQm54T3AtdW8yUkJxcF9mTzRGY3pJUnJSQU54ejd3Y1I1WmxPaF9QaWdZYnJEYkc4Yy1oNjJKSEFsOVVKRU94aklCX1pYSXFfUmRYZXk1TU90aWhEMXlPdw?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-01"
+    },
+    {
+      "id": "bombay high court acquits accused in sc st act case due to lack of public view element cas",
+      "headline": "Bombay High Court Acquits Accused in SC/ST Act Case Due to Lack of Public View Element. Caste-Based Insult Allegation Fails as Incident Occurred in Cattle Shed, Not in Public View Under Section 3(1)(x) of SC & ST (Prevention of Atrocities) Act, 1989.",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-09-30",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9EYVB3cU5SSG1PTWVRSTNvQWN4ZHJrblV5M253ZHNNdy0tM3B2T0dZMGZmcm5scUZFT3BZQnFmeDlROFZFSXFnVDlfVTNMdkhsTVUzUjVNcmJVWjZsS0xFMGFhRXF2Qmpx?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-01"
+    },
+    {
+      "id": "supreme court quashes bihar government notification granting scheduled tribe status to loh",
+      "headline": "Supreme Court Quashes Bihar Government Notification Granting Scheduled Tribe Status to Lohar Community as Unconstitutional - State Lacks Authority Under Article 342 of Constitution to Specify Scheduled Tribes, Causing Violation of Fundamental Rights U",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Lawtext",
+      "published": "2026-07-13",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5UOC1TUUtURFgxTFp5VXVfcG9HYWlyb1o0REtyRTZxYmhkd0hYZnpBcnlRd0xpbTZJWGw4Z1JNUm95YmRtT1J2ZlBPVzZ1azkzTVVz?oc=5",
+      "queries": [
+        "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-01"
+    },
+    {
+      "id": "west bengal joins nep and pm shri scheme unlocking central education funds",
+      "headline": "West Bengal joins NEP and PM-SHRI scheme, unlocking central education funds",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-07-13",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abecfc29b56416c8ac1775889b9ae61&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fIndia%2fwest-bengal-joins-nep-and-pm-shri-scheme-unlocking-central-education-funds%2far-AA27ReRO&c=2204898249466414771&mkt=en-us",
+      "queries": [
+        "shri-funds"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-10-01"
     }
