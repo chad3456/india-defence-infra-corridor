@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-30T21:03:36.699Z",
+  "builtAt": "2026-10-01T06:36:28.308Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 964,
-    "addedThisRun": 5,
-    "carriedFromEarlierRuns": 959,
-    "withOutlet": 906,
+    "items": 968,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 964,
+    "withOutlet": 909,
     "bySubject": {
-      "scst": 633,
+      "scst": 637,
       "pmshri": 331
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 303
+    "offSubjectDropped": 301
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 482
+      "n": 483
     },
     {
       "key": "use",
-      "n": 334
+      "n": 337
     },
     {
       "key": "dispute",
@@ -66,7 +66,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 33
+      "n": 34
     },
     {
       "key": "India Today",
@@ -197,6 +197,10 @@
       "n": 6
     },
     {
+      "key": "LawChakra",
+      "n": 6
+    },
+    {
       "key": "Citizens for Justice and Peace | CJP",
       "n": 5
     },
@@ -222,10 +226,6 @@
     },
     {
       "key": "News18",
-      "n": 5
-    },
-    {
-      "key": "LawChakra",
       "n": 5
     },
     {
@@ -306,8 +306,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 7,
-      "kept": 1,
+      "bing": 5,
+      "kept": 2,
       "offSubject": 13
     },
     {
@@ -317,8 +317,8 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 37
+      "kept": 0,
+      "offSubject": 36
     },
     {
       "id": "act-atrocity",
@@ -326,8 +326,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 7,
-      "kept": 0,
+      "bing": 8,
+      "kept": 1,
       "offSubject": 8
     },
     {
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 57,
+      "google": 56,
       "bing": 2,
       "kept": 0,
       "offSubject": 20
@@ -357,7 +357,7 @@
       "expect": "acquittal",
       "google": 95,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 45
     },
     {
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 29,
+      "google": 30,
       "bing": 0,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 19
     },
     {
       "id": "shri-general",
@@ -428,15 +428,15 @@
       "google": 47,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 5
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 67,
-      "bing": 2,
+      "google": 68,
+      "bing": 1,
       "kept": 0,
       "offSubject": 23
     },
@@ -446,8 +446,8 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 51,
-      "bing": 2,
-      "kept": 1,
+      "bing": 3,
+      "kept": 0,
       "offSubject": 12
     },
     {
@@ -455,8 +455,8 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 45,
-      "bing": 1,
+      "google": 44,
+      "bing": 2,
       "kept": 0,
       "offSubject": 5
     },
@@ -465,10 +465,10 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 27,
-      "bing": 1,
+      "google": 28,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 13
     },
     {
       "id": "shri-nep",
@@ -14622,7 +14622,8 @@
       "published": "2026-08-11",
       "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQRFQ2UFdvaUxpcEEwLWVuR1UtanlLRFZmOHJaYXpIQlZCS1hlbGE0dHh3NXJqUzZpY0FnbnVzS2I2ZlBUMGZnS2JVNnZLNzRLanZScTBOUEpuWWJMWFhHeGRlT1NuREFFcFBXcGYtNy11SS11SmRNdTRMQjU0TWs1X3FKZEhNSTl0TzE5dW14alI0WXdYNmJhUllOUQ?oc=5",
       "queries": [
-        "act-general"
+        "act-general",
+        "act-acquittal"
       ],
       "indexes": [
         "google"
@@ -16198,6 +16199,70 @@
         "google"
       ],
       "firstSeen": "2026-09-30"
+    },
+    {
+      "id": "high court grants anticipatory bail to two accused in sc st act case citing delayed fir an",
+      "headline": "High Court Grants Anticipatory Bail to Two Accused in SC/ST Act Case Citing Delayed FIR and Lack of Prima Facie Evidence - Neighborhood Dispute Fails to Establish Caste-Based Atrocities",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-09-30",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5QUTI1aElwRUM3ODJ1UjRtM3htaWdQWGpGamJ2ZjhHcDRJLXVYSHBJUXNZVl90VFI5Q0QyaWlyNDZITGxkMXI4TGdNeUNKUUFpTFd1UXdzR3dmOVJZMVNnbEU4R0pmdw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-01"
+    },
+    {
+      "id": "bombay high court denies anticipatory bail in whatsapp video case sc st act section 18 bar",
+      "headline": "Bombay High Court Denies Anticipatory Bail In WhatsApp Video Case; SC/ST Act Section 18 Bar Applies",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawChakra",
+      "published": "2026-09-29",
+      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQOXN6TXM5bmRtazlpZWR2NC10VDdiQXhkMjJJTnZ5eVNhQ3RHZnRBTWs5MVc4UDJzRVZXWllaMDI2Z3p0U3BvTGgtTUNqcXdydGhKbEZTQUVZNl9vR1Q1Q04wZGVJUXRDQ1BVaU1lSnZXWHpCOUk0UjlHQVJiZi14QVoxZzRjU2UtRlFrdHBQQUJsR2M2QTNqZmRlSWQ0a3NHMXBtZ3p3QlZWWUhpdUF5aTYxY00zXzFmSTlxZFlNQkJoalI1UW9XUVBrcEdGdnptbnVIZXRQdjNtOURlTkpfRTI3SQ?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-01"
+    },
+    {
+      "id": "dalit woman gangrape murder shocker in karnataka 4 arrested after body found in well",
+      "headline": "Dalit woman 'gangrape-murder' shocker in Karnataka: 4 arrested after body found in well",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-08-22",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abdff0c31854cba84ed76371945f3c4&url=https%3a%2f%2fwww.indiablooms.com%2fnews%2fdalit-woman-gangrape-murder-shocker-in-karnataka-4-arrested-after-body-found-in-well%2fdetails&c=10396966807628371574&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-10-01"
+    },
+    {
+      "id": "supreme court quashes criminal proceedings under sc st act alleged offence did not take pl",
+      "headline": "Supreme Court Quashes Criminal Proceedings Under SC-ST Act: “Alleged Offence Did Not Take Place in Public View, Essential Ingredients Not Met; Abuse Inside Office Chamber Does Not Satisfy Legal Requirements for FIR”",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Raw Law",
+      "published": "2025-02-03",
+      "url": "https://news.google.com/rss/articles/CBMiugJBVV95cUxOVGhGUUI0cFhWSVJfa0QxX0lSUldITVF4dTg5VEJXTEVpeFZ1REp1Q3hpSi1RTWVzN3Z5LWtUSW52WXZBakViVndQX2phdllTbXVwR1ljQWZPNmNfbGYtZ0dTdkZQSHNrb1hoQkFtT2lnQnM5b1V5R29rOVEyRFdaVk5oejV0VDJOOGlxeTRXaEQwRWdnb2RUUk8zZ3c5TXdNTTJwUlJoVEo5Wnd6cGtmeEdsUzIzMkdSNU9yTXFZZG56b25KeVRXVzNPTGtrYkxmZFBvT2RuN05GRDk2V3ZSejBKZW1id2hMSmRtZnc1M09mdmJxajFmRjExRkV6WlpWTGxxQmFqYTQxdExTYVlQWjFjMW5ySFNuWllfV1YzNHZSUy00cDhRX2tCMEtqOEVzaHFMeTRPcnprQQ?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-01"
     }
   ]
 }
