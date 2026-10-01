@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-09-30T21:32:36.632Z",
+ "builtAt": "2026-10-01T11:48:16.507Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206470,7 +206470,7 @@
    "outlet": "UK Ministry of Defence",
    "ok": true,
    "items": 50,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
@@ -206503,10 +206503,10 @@
   },
   {
    "outlet": "Naval News",
-   "ok": false,
-   "items": 0,
-   "kept": 0,
-   "via": "unconfigured"
+   "ok": true,
+   "items": 10,
+   "kept": 4,
+   "via": "direct"
   },
   {
    "outlet": "Defence Blog",
@@ -206517,6 +206517,38 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-8yr084",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "value": null,
+   "date": "2026-10-01",
+   "outlet": "UK Ministry of Defence",
+   "url": "https://www.gov.uk/government/news/30-boost-to-uk-military-transport-aircraft-availability-under-new-deal",
+   "headline": "30% boost to UK military transport aircraft availability under new deal",
+   "primary": true
+  },
+  {
+   "id": "ev-xhgfn",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Turkey"
+   ],
+   "value": {
+    "amount": 1470000000,
+    "currency": "USD",
+    "asWritten": "$1.47B"
+   },
+   "date": "2026-10-01",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/turkish-firm-otokar-lands-1-47b-armored-vehicle-deal/",
+   "headline": "Turkish firm Otokar lands $1.47B armored vehicle deal",
+   "primary": false
+  },
   {
    "id": "ev-zyx0mp",
    "kind": "order",
@@ -206536,7 +206568,7 @@
    "primary": false
   },
   {
-   "id": "ev-z7kqi7",
+   "id": "ev-1cwxs4t",
    "kind": "order",
    "systems": [],
    "countries": [
@@ -206544,9 +206576,9 @@
    ],
    "value": null,
    "date": "2026-09-30",
-   "outlet": "Defence Blog",
-   "url": "https://defence-blog.com/u-s-navy-and-u-s-army-order-more-phalanx-guns/",
-   "headline": "U.S. Navy and U.S. Army order more Phalanx guns",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/09/saronic-awarded-production-contract-for-marauder-under-u-s-navys-musv-marketplace/",
+   "headline": "Saronic Awarded Production Contract for Marauder Under U.S. Navy’s MUSV Marketplace",
    "primary": false
   },
   {
@@ -206575,6 +206607,20 @@
    "outlet": "Naval News",
    "url": "https://www.navalnews.com/naval-news/2026/09/boeing-wins-u-s-navys-f-a-xx-next-generation-fighter-contract/",
    "headline": "Boeing Wins U.S. Navy&#8217;s F/A-XX Next Generation Fighter Contract",
+   "primary": false
+  },
+  {
+   "id": "ev-z7kqi7",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-09-30",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/u-s-navy-and-u-s-army-order-more-phalanx-guns/",
+   "headline": "U.S. Navy and U.S. Army order more Phalanx guns",
    "primary": false
   },
   {
@@ -207237,6 +207283,101 @@
  ],
  "groups": [
   {
+   "key": "order||united kingdom",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-8yr084",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-01",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/news/30-boost-to-uk-military-transport-aircraft-availability-under-new-deal",
+     "headline": "30% boost to UK military transport aircraft availability under new deal",
+     "primary": true
+    },
+    {
+     "id": "ev-xithjw",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-09-21",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/publications/design-approved-organization-scheme-daos",
+     "headline": "Design Approved Organization Scheme (DAOS)",
+     "primary": true
+    },
+    {
+     "id": "ev-1tu2uoh",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-09-17",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
+     "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "UK Ministry of Defence",
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "from a primary source"
+  },
+  {
+   "key": "order||turkey",
+   "systems": [],
+   "countries": [
+    "Turkey"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-xhgfn",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Turkey"
+     ],
+     "value": {
+      "amount": 1470000000,
+      "currency": "USD",
+      "asWritten": "$1.47B"
+     },
+     "date": "2026-10-01",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/turkish-firm-otokar-lands-1-47b-armored-vehicle-deal/",
+     "headline": "Turkish firm Otokar lands $1.47B armored vehicle deal",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": {
+    "amount": 1470000000,
+    "currency": "USD",
+    "asWritten": "$1.47B"
+   },
+   "verdict": "a single report, uncorroborated"
+  },
+  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -207263,7 +207404,7 @@
      "primary": false
     },
     {
-     "id": "ev-z7kqi7",
+     "id": "ev-1cwxs4t",
      "kind": "order",
      "systems": [],
      "countries": [
@@ -207271,9 +207412,9 @@
      ],
      "value": null,
      "date": "2026-09-30",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/u-s-navy-and-u-s-army-order-more-phalanx-guns/",
-     "headline": "U.S. Navy and U.S. Army order more Phalanx guns",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/saronic-awarded-production-contract-for-marauder-under-u-s-navys-musv-marketplace/",
+     "headline": "Saronic Awarded Production Contract for Marauder Under U.S. Navy’s MUSV Marketplace",
      "primary": false
     },
     {
@@ -207302,6 +207443,20 @@
      "outlet": "Naval News",
      "url": "https://www.navalnews.com/naval-news/2026/09/boeing-wins-u-s-navys-f-a-xx-next-generation-fighter-contract/",
      "headline": "Boeing Wins U.S. Navy&#8217;s F/A-XX Next Generation Fighter Contract",
+     "primary": false
+    },
+    {
+     "id": "ev-z7kqi7",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-30",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-navy-and-u-s-army-order-more-phalanx-guns/",
+     "headline": "U.S. Navy and U.S. Army order more Phalanx guns",
      "primary": false
     },
     {
@@ -207537,8 +207692,8 @@
    ],
    "outlets": [
     "Defense News",
-    "Defence Blog",
-    "Naval News"
+    "Naval News",
+    "Defence Blog"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
@@ -207741,50 +207896,6 @@
    ],
    "value": null,
    "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order||united kingdom",
-   "systems": [],
-   "countries": [
-    "United Kingdom"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-xithjw",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-09-21",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/publications/design-approved-organization-scheme-daos",
-     "headline": "Design Approved Organization Scheme (DAOS)",
-     "primary": true
-    },
-    {
-     "id": "ev-1tu2uoh",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-09-17",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
-     "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "UK Ministry of Defence",
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "from a primary source"
   },
   {
    "key": "order||denmark",
