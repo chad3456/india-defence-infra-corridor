@@ -1,0 +1,45 @@
+name: Ingest the museum of Indian painting
+
+# Builds data/art/museum.json: paintings Wikidata attributes to each room's
+# artists and schools, with each image's licence checked on Commons. Only
+# free-licensed images hang; nothing is downloaded.
+#
+# Runs here because the editing sandbox cannot reach Wikidata or Commons.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "35 5 12 * *"
+  push:
+    paths:
+      - "scripts/etl/connectors/museum.ts"
+      - "lib/museum-shared.ts"
+      - ".github/workflows/museum.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: museum
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Ingest
+        run: npm run museum:ingest
+      - name: Check
+        run: npm run test:museum
+      - name: Commit
+        run: >
+          .github/scripts/commit-generated.sh
+          data/art/museum.json
+          "data(art): museum of Indian painting $(date -u +'%Y-%m-%d %H:%M')"
