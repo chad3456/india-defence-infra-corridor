@@ -112,6 +112,21 @@ export function createGallery(host: HTMLDivElement, rooms: GalleryRoom[], cb: Ga
   const frameMat = keep(new THREE.MeshStandardMaterial({ color: "#b48a3c", metalness: 0.75, roughness: 0.38 }));
   const innerMat = keep(new THREE.MeshStandardMaterial({ color: "#efe6d2", roughness: 0.9 }));
 
+  // ── The vestibule: somewhere to stand and read the first room's title ─
+  const VEST = 8;
+  {
+    const m = keep(new THREE.MeshStandardMaterial({ color: "#221c16", roughness: 1 }));
+    for (const side of [-1, 1] as const) {
+      const wall = new THREE.Mesh(keep(new THREE.PlaneGeometry(VEST, WALL_H)), m);
+      wall.position.set(side * HALL_W / 2, WALL_H / 2, VEST / 2); wall.rotation.y = -side * Math.PI / 2; scene.add(wall);
+    }
+    const back = new THREE.Mesh(keep(new THREE.PlaneGeometry(HALL_W, WALL_H)), m);
+    back.position.set(0, WALL_H / 2, VEST); back.rotation.y = Math.PI; scene.add(back);
+    const vf = woodFloor(); keep(vf); vf.repeat.set(HALL_W / 3, VEST / 3);
+    const floor = new THREE.Mesh(keep(new THREE.PlaneGeometry(HALL_W, VEST)), keep(new THREE.MeshStandardMaterial({ map: vf, roughness: 0.55 })));
+    floor.rotation.x = -Math.PI / 2; floor.position.set(0, 0, VEST / 2); scene.add(floor);
+  }
+
   // ── Lay out the rooms along −z ───────────────────────────────────────
   const placed: Placed[] = [];
   const roomStart: number[] = [];
@@ -151,7 +166,7 @@ export function createGallery(host: HTMLDivElement, rooms: GalleryRoom[], cb: Ga
     floor.rotation.x = -Math.PI / 2; floor.position.set(0, 0, z - len / 2); scene.add(floor);
     const ceil = new THREE.Mesh(keep(new THREE.PlaneGeometry(HALL_W, len)), keep(new THREE.MeshStandardMaterial({ color: "#efe9df", roughness: 1 })));
     ceil.rotation.x = Math.PI / 2; ceil.position.set(0, WALL_H, z - len / 2); scene.add(ceil);
-    const sky = new THREE.Mesh(keep(new THREE.PlaneGeometry(HALL_W * 0.4, len * 0.9)), keep(new THREE.MeshBasicMaterial({ color: "#fff7e8" })));
+    const sky = new THREE.Mesh(keep(new THREE.PlaneGeometry(HALL_W * 0.22, len * 0.9)), keep(new THREE.MeshBasicMaterial({ color: "#7d7366" })));
     sky.rotation.x = Math.PI / 2; sky.position.set(0, WALL_H - 0.01, z - len / 2); scene.add(sky);
 
     // The title wall: an arch at the room's entrance, lettered like a museum.
@@ -230,24 +245,26 @@ export function createGallery(host: HTMLDivElement, rooms: GalleryRoom[], cb: Ga
   }
 
   // ── Walking and looking ──────────────────────────────────────────────
-  const pos = new THREE.Vector3(0, EYE, 2.5);
+  /** Where a visitor stands to read a room's title: a few steps before its arch. */
+  const STAND = 5.6;
+  const pos = new THREE.Vector3(0, EYE, STAND);
   let yaw = 0, pitch = -0.02;
   let target: { pos: THREE.Vector3; yaw: number; pitch: number } | null = null;
   let currentRoom = -1;
 
   function roomAt(zz: number): number {
     let k = 0;
-    for (let i = 0; i < roomStart.length; i++) if (zz <= roomStart[i]! + 0.5) k = i;
+    for (let i = 0; i < roomStart.length; i++) if (zz <= roomStart[i]! + STAND + 0.5) k = i;
     return k;
   }
   function goRoom(k: number): void {
     const s = roomStart[Math.max(0, Math.min(rooms.length - 1, k))]!;
-    target = { pos: new THREE.Vector3(0, EYE, s + 2.2), yaw: 0, pitch: -0.02 };
+    target = { pos: new THREE.Vector3(0, EYE, s + STAND), yaw: 0, pitch: 0.04 };
     if (reducedMotion) { pos.copy(target.pos); yaw = 0; pitch = -0.02; target = null; }
     cb.onPick(null);
   }
   function step(dir: 1 | -1): void {
-    const nz = Math.min(2.5, Math.max(hallEnd + 2, pos.z - dir * 3.2));
+    const nz = Math.min(STAND, Math.max(hallEnd + 2, pos.z - dir * 3.2));
     target = { pos: new THREE.Vector3(0, EYE, nz), yaw, pitch };
     if (reducedMotion) { pos.copy(target.pos); target = null; }
   }
@@ -284,7 +301,7 @@ export function createGallery(host: HTMLDivElement, rooms: GalleryRoom[], cb: Ga
     const hit = ray.intersectObjects(pickables, false)[0];
     if (hit) { const h = hit.object.userData as Hang; focus(h); cb.onPick(h); } else cb.onPick(null);
   };
-  const onWheel = (e: WheelEvent) => { e.preventDefault(); const nz = Math.min(2.5, Math.max(hallEnd + 2, pos.z + e.deltaY * 0.01)); pos.z = nz; target = null; };
+  const onWheel = (e: WheelEvent) => { e.preventDefault(); const nz = Math.min(STAND, Math.max(hallEnd + 2, pos.z + e.deltaY * 0.01)); pos.z = nz; target = null; };
   el.addEventListener("pointerdown", onDown);
   el.addEventListener("pointermove", onMove);
   el.addEventListener("pointerup", onUp);

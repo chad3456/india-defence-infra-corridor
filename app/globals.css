@@ -1367,7 +1367,8 @@
 .mu-stand { max-width: 680px; margin: 16px auto 0; font-size: 18px; line-height: 1.55; color: var(--mu-ink-2); }
 
 .mu-hall { position: relative; height: min(84vh, 880px); min-height: 520px; border-block: 1px solid var(--mu-rule); overflow: hidden; background: #0f0d0b; }
-.mu-stage { position: absolute; inset: 0; }
+.mu-stage { position: absolute; inset: 0; z-index: 0; }
+.mu-where, .mu-controls, .mu-rooms, .mu-hint, .mu-label, .mu-fallback { z-index: 2; }
 .mu-fallback { position: absolute; inset: 40% 16px auto; text-align: center; }
 .mu-where { position: absolute; left: 20px; top: 18px; display: grid; gap: 2px; pointer-events: none; text-shadow: 0 1px 8px rgba(0,0,0,0.7); }
 .mu-where-n { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mu-brass); }
@@ -1426,7 +1427,8 @@
   .mu-hall { height: 78svh; }
   .mu-hint { display: none; }
   .mu-controls { bottom: 56px; }
-  .mu-controls button { padding: 7px 12px; font-size: 13px; }
+  .mu-controls button { padding: 7px 11px; font-size: 13px; white-space: nowrap; }
+  .mu-controls { gap: 6px; }
   .mu-label { left: 10px; right: 10px; top: auto; bottom: 104px; width: auto; max-height: 55%; }
   .mu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 }

@@ -8,6 +8,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ROOMS, FREE_LICENSE, WIKIMEDIA_IMAGE, freeYear, type Museum } from "../lib/museum-shared";
+import { cleanTitle, cleanYear, cleanArtist, cleanCredit } from "./etl/connectors/museum";
 
 let failed = 0;
 function check(name: string, ok: boolean, detail = ""): void {
@@ -23,6 +24,15 @@ check("still living → no year", freeYear(null) === null);
 console.log("\nLicences the walls accept");
 for (const l of ["Public domain", "CC BY-SA 4.0", "CC BY 2.0", "CC0"]) check(`accepts "${l}"`, FREE_LICENSE.test(l));
 for (const l of ["Fair use", "All rights reserved", "Copyrighted free use? no", ""]) check(`refuses "${l}"`, !FREE_LICENSE.test(l));
+
+console.log("\nCleaning Commons descriptions");
+check("template residue leaves a title", cleanTitle('Prince Aurangzeblabel QS:Len,"Prince Aurangzeb"') === "Prince Aurangzeb");
+check("an upload timestamp leaves a date", cleanYear("1720, 2012-09-07 13:48") === "1720");
+check("a place is not an artist", cleanArtist("(Rajasthan, Kishangarh)") === null && cleanArtist("Made in Kota, Rajasthan, India") === null);
+check("'Indian painter c. 1640' is not a name", cleanArtist("Indischer Maler um 1640") === null);
+check("a named painter stays", cleanArtist("Basawan") === "Basawan");
+check("a URL is not a collection", cleanCredit("http://www.mfa.org/collections/object/x") === null && cleanCredit("Self-scanned") === null);
+check("a museum stays", cleanCredit("National Gallery of Victoria") === "National Gallery of Victoria");
 
 console.log("\nThe rooms");
 check("every room hangs an artist or a school", ROOMS.every((r) => (r.artists?.length ?? 0) + (r.movements?.length ?? 0) > 0));
@@ -40,8 +50,10 @@ if (!existsSync(FILE)) {
   const offHost = works.filter((w) => !WIKIMEDIA_IMAGE.test(w.image.thumb));
   check("every image is served by Wikimedia over https", offHost.length === 0, offHost.slice(0, 3).map((w) => `${w.title}: ${w.image.thumb.slice(0, 50)}`).join("; "));
   check("every work links to its Commons file page", works.every((w) => /^https:\/\/commons\.wikimedia\.org\//.test(w.image.page)));
-  const junk = works.filter((w) => /^https?:|date QS|^user:/i.test(`${w.artist ?? ""} ${w.year ?? ""}`.trim()) || /date QS/i.test(w.year ?? ""));
+  const junk = works.filter((w) => /^https?:|date QS|^user:/i.test(`${w.artist ?? ""} ${w.year ?? ""}`.trim()) || /date QS/i.test(w.year ?? "") || /(label|title)\s*QS:/i.test(w.title) || /https?:/i.test(w.collection ?? ""));
   check("no machine residue in a label", junk.length === 0, junk.slice(0, 3).map((w) => `${w.title}: ${w.artist} / ${w.year}`).join("; "));
+  const files = works.map((w) => w.image.file);
+  check("no picture hangs twice in the museum", new Set(files).size === files.length);
   check("no work hangs twice in one room", d.rooms.every((r) => new Set(r.works.map((w) => w.qid)).size === r.works.length));
   check("every room in the file is a room on the page", d.rooms.every((r) => ROOMS.some((x) => x.id === r.id)));
   const stillLocked = d.notYet.filter((a) => a.freeIn !== null && a.freeIn <= new Date().getUTCFullYear());

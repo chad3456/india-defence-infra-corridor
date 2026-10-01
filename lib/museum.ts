@@ -11,7 +11,12 @@ export type { MuseumView };
 export function loadMuseum(): MuseumView {
   const file = join(process.cwd(), "data", "art", "museum.json");
   const raw = existsSync(file) ? (JSON.parse(readFileSync(file, "utf8")) as Museum) : null;
-  const by = new Map((raw?.rooms ?? []).map((r) => [r.id, r]));
+  // The hand review takes down what the rules let through; see data/art/review.json.
+  const reviewFile = join(process.cwd(), "data", "art", "review.json");
+  const down = new Set(existsSync(reviewFile)
+    ? (JSON.parse(readFileSync(reviewFile, "utf8")) as { entries: Array<{ qid: string; verdict: string }> }).entries.filter((e) => e.verdict === "reject").map((e) => e.qid)
+    : []);
+  const by = new Map((raw?.rooms ?? []).map((r) => [r.id, { ...r, works: r.works.filter((w) => !down.has(w.qid)) }]));
   // A room the record has nothing for is left out rather than hung empty.
   const rooms = ROOMS.map((r) => ({ ...r, works: by.get(r.id)?.works ?? [], found: by.get(r.id)?.found ?? 0, refused: by.get(r.id)?.refused ?? 0 }))
     .filter((r) => r.works.length > 0);

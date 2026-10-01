@@ -249,6 +249,31 @@ function looksLikeAPhoto(m: FileMeta | undefined): boolean {
   return !!y && Number(y) >= 1950;
 }
 
+/*
+ * Commons descriptions are written by many hands, and some fields carry what
+ * is not a label: the Artwork template's machine residue, a URL where a
+ * collection should be, a place or a note where an artist should be. Each is
+ * cleaned or dropped rather than printed.
+ */
+export function cleanTitle(t: string): string {
+  return t.replace(/\s*(label|title)\s*QS:.*$/i, "").replace(/\s+/g, " ").trim();
+}
+export function cleanYear(y: string | null): string | null {
+  if (!y) return null;
+  const v = y.replace(/,\s*\d{4}-\d{2}-\d{2}.*$/, "").replace(/\s*\[\d+\]\s*$/, "").trim();
+  return v || null;
+}
+export function cleanArtist(a: string | null): string | null {
+  if (!a) return null;
+  if (/^user:|\b(india|rajasthan|deccan|punjab|himachal|miniature|school|collections?|unknown|unidentified|anonymous|made in|style|workshop|kalighat|kalighant|maker|term details|maler|painter|artist)\b|^\(/i.test(a)) return null;
+  return a.replace(/^\[attributed to\]\s*/i, "attributed to ").trim() || null;
+}
+export function cleanCredit(c: string | null): string | null {
+  if (!c) return null;
+  if (/https?:|www\.|file:|\[\d\]|self-scanned|source|extracted|yorck|atlas|\blink\b|via:|flickr|photo|scan|sotheby|lot \d/i.test(c)) return null;
+  return c.length <= 70 ? c.trim() : null;
+}
+
 /** A readable title for a Commons-only work, when the file has no ObjectName. */
 function titleFromFile(file: string): string {
   return file.replace(/\.[a-z]+$/i, "").replace(/[_]+/g, " ").replace(/\s*-\s*Google Art Project.*$/i, "").replace(/\s+\(\d+\)$/, "").trim();
@@ -286,6 +311,8 @@ export async function run(): Promise<void> {
   const titles = [...new Set(ROOMS.flatMap((r) => [...(r.artists ?? []), ...(r.movements ?? [])]))];
   const ids = await qids(titles);
   const rooms: RoomData[] = [];
+  /** A picture hangs once in the museum: in the first room that claims it. */
+  const hungAnywhere = new Set<string>();
   for (const room of ROOMS) {
     const pool = new Map<string, Omit<Work, "image"> & { file: string }>();
     for (const a of room.artists ?? []) { const q = ids.get(a); if (q) for (const w of await candidates("P170", q, `${room.id} ${a}`)) pool.set(w.qid, w); }
@@ -309,18 +336,19 @@ export async function run(): Promise<void> {
     for (const w of asked) {
       const im = info.get(w.file);
       if (im === "refused") { refused++; continue; }
-      if (!im) continue;
+      if (!im || hungAnywhere.has(w.file)) continue;
       const { file, ...rest } = w;
       if (w.source === "commons") {
         // A Commons-only work is described by its file page, cleaned — and a
         // photograph of something is not a painting, whatever its category.
         const m = meta.get(file);
         if (looksLikeAPhoto(m)) continue;
-        if (m?.title) rest.title = m.title;
-        if (m?.artist && !/^(unknown|anonymous)/i.test(m.artist)) rest.artist = m.artist;
-        if (m?.date) rest.year = m.date;
-        if (m?.credit) rest.collection = m.credit;
+        if (m?.title) rest.title = cleanTitle(m.title);
+        rest.artist = cleanArtist(m?.artist ?? null);
+        rest.year = cleanYear(m?.date ?? null);
+        rest.collection = cleanCredit(m?.credit ?? null);
       }
+      hungAnywhere.add(file);
       works.push({ ...rest, image: im });
       if (works.length >= PER_ROOM) break;
     }
