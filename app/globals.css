@@ -1337,3 +1337,96 @@
 @media (prefers-reduced-motion: reduce) {
   .cx-arc { animation: none; stroke-dashoffset: 0; }
 }
+
+/* ─────────────────────────── /museum: a gallery after dark ───────────────────────────
+   A museum's own register: dark surround so the paintings carry the colour,
+   serif labels, brass for the furniture. Always dark, in both site modes —
+   the hall is a room, not a theme. */
+.mu {
+  --mu-bg: #14110e;
+  --mu-panel: #1d1914;
+  --mu-ink: #efe6d4;
+  --mu-ink-2: #c7baa2;
+  --mu-muted: #978a74;
+  --mu-brass: #c9a35a;
+  --mu-rule: rgba(239, 230, 212, 0.14);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: -1.5rem;
+  margin-bottom: -5rem;
+  padding-bottom: 5rem;
+  background: var(--mu-bg);
+  color: var(--mu-ink);
+  color-scheme: dark;
+  font-family: var(--font-sans);
+}
+.mu a { color: var(--mu-brass); text-underline-offset: 3px; }
+.mu-top { max-width: 980px; margin: 0 auto; padding: 40px 16px 26px; text-align: center; }
+.mu-kicker { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mu-brass); margin: 0 0 12px; }
+.mu-top h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(38px, 6.4vw, 76px); line-height: 1.04; margin: 0; letter-spacing: -0.01em; }
+.mu-stand { max-width: 680px; margin: 16px auto 0; font-size: 18px; line-height: 1.55; color: var(--mu-ink-2); }
+
+.mu-hall { position: relative; height: min(84vh, 880px); min-height: 520px; border-block: 1px solid var(--mu-rule); overflow: hidden; background: #0f0d0b; }
+.mu-stage { position: absolute; inset: 0; }
+.mu-fallback { position: absolute; inset: 40% 16px auto; text-align: center; }
+.mu-where { position: absolute; left: 20px; top: 18px; display: grid; gap: 2px; pointer-events: none; text-shadow: 0 1px 8px rgba(0,0,0,0.7); }
+.mu-where-n { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mu-brass); }
+.mu-where-t { font-family: var(--font-display); font-size: clamp(22px, 2.6vw, 32px); }
+.mu-controls { position: absolute; left: 50%; bottom: 62px; transform: translateX(-50%); display: flex; gap: 8px; }
+.mu-controls button, .mu-rooms button {
+  font: 500 14px var(--font-sans); color: var(--mu-ink); background: rgba(20, 17, 14, 0.78);
+  border: 1px solid rgba(201, 163, 90, 0.5); border-radius: 999px; padding: 8px 16px; cursor: pointer; backdrop-filter: blur(6px);
+}
+.mu-controls button.on { background: var(--mu-brass); color: #1a140c; border-color: var(--mu-brass); }
+.mu-controls button:disabled { opacity: 0.35; cursor: default; }
+.mu-rooms { position: absolute; left: 0; right: 0; bottom: 14px; display: flex; gap: 6px; overflow-x: auto; padding: 0 16px; scrollbar-width: none; justify-content: safe center; }
+.mu-rooms button { font-size: 12.5px; padding: 5px 11px; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+.mu-rooms button i { width: 9px; height: 9px; border-radius: 50%; border: 1px solid rgba(239,230,212,0.5); }
+.mu-rooms button.on { border-color: var(--mu-ink); }
+.mu-hint { position: absolute; right: 18px; top: 22px; margin: 0; font-size: 12.5px; color: var(--mu-ink-2); text-shadow: 0 1px 6px rgba(0,0,0,0.8); pointer-events: none; }
+.mu-label {
+  position: absolute; right: 18px; top: 60px; width: min(340px, calc(100% - 36px)); max-height: calc(100% - 150px); overflow-y: auto;
+  background: #f6f1e6; color: #241e16; border-radius: 4px; padding: 16px 18px; box-shadow: 0 18px 50px rgba(0,0,0,0.55);
+}
+.mu-label img { display: block; width: 100%; height: auto; max-height: 220px; object-fit: contain; background: #e9e1cf; margin-bottom: 12px; }
+.mu-label h3 { font-family: var(--font-display); font-weight: 500; font-size: 22px; line-height: 1.2; margin: 0 28px 4px 0; }
+.mu-label-by { margin: 0 0 10px; font-style: italic; color: #5b4f3d; }
+.mu-label dl { display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; margin: 0; font-size: 13px; }
+.mu-label dt { color: #8a7b62; }
+.mu-label dd { margin: 0; }
+.mu-label a { color: #7a5418; }
+.mu-label-links { font-size: 13px; margin: 12px 0 0; }
+.mu-close { position: absolute; right: 8px; top: 6px; width: 30px; height: 30px; border-radius: 50%; border: 1px solid #c8bca4; background: #fff; font-size: 18px; line-height: 1; cursor: pointer; color: #241e16; }
+
+.mu-section { max-width: 1180px; margin: 0 auto; padding: 56px 16px 0; }
+.mu-section h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(28px, 3.6vw, 42px); margin: 0 0 8px; }
+.mu-lede { max-width: 760px; color: var(--mu-ink-2); font-size: 16.5px; line-height: 1.55; margin: 0 0 20px; }
+.mu-room { margin-top: 30px; }
+.mu-room h3 { font-family: var(--font-display); font-weight: 500; font-size: 24px; margin: 0 0 14px; padding-left: 12px; border-left: 5px solid; }
+.mu-room h3 small { display: block; font-family: var(--font-sans); font-size: 13.5px; font-style: italic; color: var(--mu-muted); font-weight: 400; margin-top: 2px; }
+.mu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 18px; }
+.mu-card { margin: 0; display: grid; gap: 8px; align-content: start; }
+.mu-frame { display: grid; place-items: center; aspect-ratio: 4 / 5; background: var(--mu-panel); border: 6px solid #3a2f22; outline: 1px solid rgba(201,163,90,0.45); outline-offset: -3px; padding: 10px; }
+.mu-frame img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.mu-card figcaption { display: grid; gap: 2px; font-size: 13px; line-height: 1.35; }
+.mu-card figcaption b { font-family: var(--font-display); font-weight: 500; font-size: 15px; }
+.mu-card figcaption span { color: var(--mu-ink-2); }
+.mu-card .mu-coll { color: var(--mu-muted); font-size: 12px; }
+.mu-card .mu-lic { font-family: var(--font-mono); font-size: 10.5px; color: var(--mu-muted); }
+.mu-notyet { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.mu-ny { display: grid; gap: 2px; padding: 14px 16px; border: 1px dashed rgba(201,163,90,0.45); border-radius: 6px; text-decoration: none; color: var(--mu-ink) !important; }
+.mu-ny b { font-family: var(--font-display); font-weight: 500; font-size: 18px; }
+.mu-ny span { font-family: var(--font-mono); font-size: 12px; color: var(--mu-muted); }
+.mu-ny em { font-style: normal; color: var(--mu-brass); font-size: 13.5px; }
+.mu-sources ul { display: grid; gap: 12px; padding-left: 20px; max-width: 860px; font-size: 15px; line-height: 1.6; color: var(--mu-ink-2); }
+.mu-sources b { color: var(--mu-ink); }
+.mu :focus-visible { outline: 2px solid var(--mu-brass); outline-offset: 2px; }
+
+@media (max-width: 760px) {
+  .mu-hall { height: 78svh; }
+  .mu-hint { display: none; }
+  .mu-controls { bottom: 56px; }
+  .mu-controls button { padding: 7px 12px; font-size: 13px; }
+  .mu-label { left: 10px; right: 10px; top: auto; bottom: 104px; width: auto; max-height: 55%; }
+  .mu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+}

@@ -8,6 +8,7 @@ import { loadMela } from "@/lib/mela";
 import { loadMaven } from "@/lib/maven-book";
 import { loadNamesakes } from "@/lib/namesakes";
 import { loadChinaExports } from "@/lib/china-exports";
+import { loadMuseum } from "@/lib/museum";
 import { byId as mavenFigure, stated as mavenStated } from "@/lib/maven-shared";
 
 /**
@@ -171,9 +172,21 @@ export default function StoriesIndex() {
 
   const names = loadNamesakes();
   const china = loadChinaExports();
+  const museum = loadMuseum();
   const chinaTotal = china.products.filter((p) => p.latest?.year === china.latestYear).reduce((s, p) => s + (p.latest?.value ?? 0), 0);
 
   const RIGHTS = [
+    ...(museum.present ? [{
+      href: "/museum",
+      tone: "mid" as const,
+      kicker: "art · a museum you can walk",
+      title: "The Museum of Indian Painting.",
+      blurb:
+        "A walkable 3D gallery from the Mughal workshops to Amrita Sher-Gil — Rajput and Pahari courts, the Deccan, "
+        + "Company painting, Kalighat, Ravi Varma, the Bengal School — every work free to show and labelled with its source.",
+      stat: String(museum.total),
+      statLabel: `paintings in ${museum.rooms.length} rooms`,
+    }] : []),
     ...(china.present && chinaTotal > 0 ? [{
       href: "/china-exports",
       tone: "cool" as const,
