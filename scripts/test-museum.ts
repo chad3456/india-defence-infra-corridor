@@ -37,7 +37,8 @@ if (!existsSync(FILE)) {
   const works = d.rooms.flatMap((r) => r.works);
   check("every work's licence is free", works.every((w) => FREE_LICENSE.test(w.image.license)),
     works.filter((w) => !FREE_LICENSE.test(w.image.license)).map((w) => w.title).slice(0, 3).join(", "));
-  check("every image is served by Wikimedia over https", works.every((w) => /^https:\/\/upload\.wikimedia\.org\//.test(w.image.thumb)));
+  const offHost = works.filter((w) => !/^https:\/\/upload\.wikimedia\.org\//.test(w.image.thumb));
+  check("every image is served by Wikimedia over https", offHost.length === 0, offHost.slice(0, 3).map((w) => `${w.title}: ${w.image.thumb.slice(0, 50)}`).join("; "));
   check("every work links to its Commons file page", works.every((w) => /^https:\/\/commons\.wikimedia\.org\//.test(w.image.page)));
   check("no work hangs twice in one room", d.rooms.every((r) => new Set(r.works.map((w) => w.qid)).size === r.works.length));
   check("every room in the file is a room on the page", d.rooms.every((r) => ROOMS.some((x) => x.id === r.id)));

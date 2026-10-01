@@ -71,7 +71,9 @@ async function sparql(query: string, label: string): Promise<Binding[]> {
 const id = (v?: { value: string }) => v?.value.replace(/^https?:\/\/www\.wikidata\.org\/entity\//, "") ?? "";
 
 /** Candidate works for one room, best-linked first, one row per work. */
-async function candidates(predicate: "P170" | "P135", target: string, label: string): Promise<Array<Omit<Work, "image"> & { file: string }>> {
+type Candidate = Omit<Work, "image"> & { file: string };
+
+async function candidates(predicate: "P170" | "P135", target: string, label: string): Promise<Candidate[]> {
   const rows = await sparql(`
 SELECT ?p ?pLabel ?img ?inception ?collLabel ?creatorLabel ?materialLabel ?links WHERE {
   ?p wdt:${predicate} wd:${target} ; wdt:P18 ?img ; wikibase:sitelinks ?links .
@@ -83,7 +85,7 @@ SELECT ?p ?pLabel ?img ?inception ?collLabel ?creatorLabel ?materialLabel ?links
 }
 ORDER BY DESC(?links)
 LIMIT 300`, label);
-  const out = new Map<string, Omit<Work, "image"> & { file: string }>();
+  const out = new Map<string, Candidate>();
   for (const r of rows) {
     const q = id(r["p"]);
     if (!q || out.has(q)) continue; // OPTIONALs multiply rows; the first is kept
@@ -94,7 +96,7 @@ LIMIT 300`, label);
     const inc = r["inception"]?.value ?? null;
     const creator = r["creatorLabel"]?.value ?? null;
     out.set(q, {
-      qid: q, title,
+      qid: q, source: "wikidata", title,
       artist: creator && !/^Q\d+$/.test(creator) && !/^(anonymous|unknown)/i.test(creator) ? creator : null,
       // Wikidata stores a year as 1st January of it; only the year is claimed.
       year: inc && /^-?\d{4}/.test(inc) ? inc.slice(0, 4).replace(/^0+/, "") : null,
@@ -106,6 +108,9 @@ LIMIT 300`, label);
   }
   return [...out.values()];
 }
+
+/** Commons' description of a file, for works known only from Commons. */
+interface FileMeta { title: string | null; artist: string | null; date: string | null; credit: string | null }
 
 interface ImageInfo {
   title: string;
@@ -119,12 +124,14 @@ interface ImageInfo {
 const strip = (html?: string) => (html ?? "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 
 /** Commons' own record of each file: URL, rendition, size and licence. */
+const meta = new Map<string, FileMeta>();
+
 async function images(files: string[]): Promise<Map<string, Work["image"] | "refused">> {
   const out = new Map<string, Work["image"] | "refused">();
   for (let i = 0; i < files.length; i += 40) {
     const batch = files.slice(i, i + 40);
     const q = new URLSearchParams({
-      action: "query", prop: "imageinfo", iiprop: "url|size|extmetadata", iiurlwidth: "1000",
+      action: "query", prop: "imageinfo", iiprop: "url|size|extmetadata", iiurlwidth: "1000", uselang: "en",
       titles: batch.map((f) => `File:${f}`).join("|"), format: "json", formatversion: "2",
     });
     const j = await json<{ query?: { normalized?: Array<{ from: string; to: string }>; pages?: ImageInfo[] } }>(`${COMMONS}?${q}`, "commons");
@@ -136,9 +143,19 @@ async function images(files: string[]): Promise<Map<string, Work["image"] | "ref
       const m = info.extmetadata ?? {};
       const license = strip(m["LicenseShortName"]?.value);
       if (!FREE_LICENSE.test(license)) { out.set(asked, "refused"); continue; }
+      const thumb = info.thumburl ?? info.url;
+      // Only Wikimedia's own image server: a page must never hotlink elsewhere.
+      if (!/^https:\/\/upload\.wikimedia\.org\//.test(thumb)) { errors.push(`${asked}: image not on upload.wikimedia.org (${thumb.slice(0, 60)})`); continue; }
+      const short = (v: string) => (v && v.length <= 140 ? v : null);
+      meta.set(asked, {
+        title: short(strip(m["ObjectName"]?.value)),
+        artist: short(strip(m["Artist"]?.value)),
+        date: short(strip(m["DateTimeOriginal"]?.value).replace(/^date\s*/i, "")),
+        credit: short(strip(m["Credit"]?.value)),
+      });
       out.set(asked, {
         file: asked,
-        thumb: info.thumburl ?? info.url,
+        thumb,
         width: info.thumbwidth ?? info.width,
         height: info.thumbheight ?? info.height,
         license,
@@ -148,6 +165,63 @@ async function images(files: string[]): Promise<Map<string, Work["image"] | "ref
     }
   }
   return out;
+}
+
+/** Image files in these Commons categories and two levels of subcategory. */
+async function categoryFiles(cats: string[], cap: number): Promise<string[]> {
+  const files = new Set<string>();
+  const seen = new Set<string>();
+  let frontier = cats.map((c) => `Category:${c}`);
+  for (let depth = 0; depth < 3 && frontier.length && files.size < cap; depth++) {
+    const next: string[] = [];
+    for (const cat of frontier) {
+      if (seen.has(cat) || files.size >= cap) continue;
+      seen.add(cat);
+      let cont: string | undefined;
+      for (let page = 0; page < 4 && files.size < cap; page++) {
+        const q = new URLSearchParams({ action: "query", list: "categorymembers", cmtitle: cat, cmtype: "file|subcat", cmlimit: "500", format: "json", formatversion: "2", ...(cont ? { cmcontinue: cont } : {}) });
+        const j = await json<{ query?: { categorymembers?: Array<{ ns: number; title: string }> }; continue?: { cmcontinue?: string } }>(`${COMMONS}?${q}`, `category ${cat}`);
+        for (const m of j?.query?.categorymembers ?? []) {
+          if (m.ns === 14) next.push(m.title);
+          else if (m.ns === 6 && /\.(jpe?g|png|tiff?|webp)$/i.test(m.title)) files.add(m.title.replace(/^File:/, ""));
+        }
+        cont = j?.continue?.cmcontinue;
+        if (!cont) break;
+      }
+    }
+    frontier = next;
+  }
+  return [...files].slice(0, cap);
+}
+
+/**
+ * How many Wikimedia pages, across every language and project, use each file.
+ * The Commons rooms are ordered by it: a picture the encyclopaedias reach for
+ * most is the nearest thing the record has to a consensus that it matters.
+ */
+async function usage(files: string[]): Promise<Map<string, number>> {
+  const out = new Map<string, number>(files.map((f) => [f, 0]));
+  for (let i = 0; i < files.length; i += 50) {
+    const batch = files.slice(i, i + 50);
+    let cont: Record<string, string> = {};
+    for (let page = 0; page < 8; page++) {
+      const q = new URLSearchParams({ action: "query", prop: "globalusage", gulimit: "500", gufilterlocal: "1", titles: batch.map((f) => `File:${f}`).join("|"), format: "json", formatversion: "2", ...cont });
+      const j = await json<{ query?: { normalized?: Array<{ from: string; to: string }>; pages?: Array<{ title: string; globalusage?: unknown[] }> }; continue?: Record<string, string> }>(`${COMMONS}?${q}`, "usage");
+      const norm = new Map((j?.query?.normalized ?? []).map((n) => [n.to, n.from]));
+      for (const p of j?.query?.pages ?? []) {
+        const f = (norm.get(p.title) ?? p.title).replace(/^File:/, "");
+        out.set(f, (out.get(f) ?? 0) + (p.globalusage?.length ?? 0));
+      }
+      if (!j?.continue) break;
+      cont = j.continue;
+    }
+  }
+  return out;
+}
+
+/** A readable title for a Commons-only work, when the file has no ObjectName. */
+function titleFromFile(file: string): string {
+  return file.replace(/\.[a-z]+$/i, "").replace(/[_]+/g, " ").replace(/\s*-\s*Google Art Project.*$/i, "").replace(/\s+\(\d+\)$/, "").trim();
 }
 
 async function notYet(): Promise<NotYet[]> {
@@ -187,8 +261,17 @@ export async function run(): Promise<void> {
     for (const a of room.artists ?? []) { const q = ids.get(a); if (q) for (const w of await candidates("P170", q, `${room.id} ${a}`)) pool.set(w.qid, w); }
     for (const m of room.movements ?? []) { const q = ids.get(m); if (q) for (const w of await candidates("P135", q, `${room.id} ${m}`)) if (!pool.has(w.qid)) pool.set(w.qid, w); }
     const ranked = [...pool.values()].sort((a, b) => b.sitelinks - a.sitelinks || a.title.localeCompare(b.title));
+    // Schools: Commons categories add what Wikidata does not tag, ranked by use.
+    if (room.categories?.length) {
+      const have = new Set(ranked.map((w) => w.file));
+      const files = (await categoryFiles(room.categories, 400)).filter((f) => !have.has(f));
+      const used = await usage(files);
+      const top = files.sort((a, b) => (used.get(b) ?? 0) - (used.get(a) ?? 0)).slice(0, PER_ROOM * 3);
+      for (const f of top) ranked.push({ qid: `file:${f}`, source: "commons", usage: used.get(f) ?? 0, title: titleFromFile(f), artist: null, year: null, medium: null, collection: null, sitelinks: 0, file: f });
+      console.log(`  ${room.id}: ${files.length} files in its Commons categories`);
+    }
     // Ask Commons about more than will hang: some will be refused.
-    const asked = ranked.slice(0, PER_ROOM * 3);
+    const asked = ranked.slice(0, PER_ROOM * 4);
     const info = await images(asked.map((w) => w.file));
     const works: Work[] = [];
     let refused = 0;
@@ -196,7 +279,15 @@ export async function run(): Promise<void> {
       const im = info.get(w.file);
       if (im === "refused") { refused++; continue; }
       if (!im) continue;
-      const { file: _file, ...rest } = w;
+      const { file, ...rest } = w;
+      if (w.source === "commons") {
+        // A Commons-only work is described by its file page, cleaned.
+        const m = meta.get(file);
+        if (m?.title) rest.title = m.title;
+        if (m?.artist && !/^(unknown|anonymous)/i.test(m.artist)) rest.artist = m.artist;
+        if (m?.date) rest.year = m.date;
+        if (m?.credit) rest.collection = m.credit;
+      }
       works.push({ ...rest, image: im });
       if (works.length >= PER_ROOM) break;
     }

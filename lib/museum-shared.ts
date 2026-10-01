@@ -18,17 +18,23 @@ export interface Room {
   /** Artists (P170) or schools (P135) whose works hang here, by enwiki title. */
   artists?: string[];
   movements?: string[];
+  /**
+   * Commons categories to draw from as well, for schools whose paintings are
+   * rarely tagged with the school on Wikidata. Several spellings are listed
+   * because Commons names vary; the ones that do not exist simply add nothing.
+   */
+  categories?: string[];
   /** Wall colour of the room, a museum's paint, not a data encoding. */
   wall: string;
 }
 
 export const ROOMS: Room[] = [
-  { id: "mughal", title: "The Mughal Court", line: "Albums and manuscripts made in the imperial workshops.", movements: ["Mughal painting"], wall: "#2f4a3a" },
-  { id: "rajput", title: "Rajput Courts", line: "Painting for the kingdoms of Rajasthan and Central India.", movements: ["Rajput painting"], wall: "#7a2e2a" },
-  { id: "pahari", title: "The Hills", line: "Pahari painting from the Himalayan foothill courts.", movements: ["Pahari painting"], wall: "#33506b" },
-  { id: "deccan", title: "The Deccan", line: "Painting at the sultanate courts of the south.", movements: ["Deccan painting"], wall: "#4b3a5e" },
-  { id: "company", title: "Company Painting", line: "Indian artists painting for British patrons.", movements: ["Company painting"], wall: "#5d5040" },
-  { id: "kalighat", title: "Kalighat", line: "Quick, bold pictures sold near the Kalighat temple in Calcutta.", movements: ["Kalighat painting"], wall: "#8a5a1e" },
+  { id: "mughal", title: "The Mughal Court", line: "Albums and manuscripts made in the imperial workshops.", movements: ["Mughal painting"], categories: ["Mughal miniatures", "Mughal paintings", "Mughal painting", "Akbarnama", "Padshahnama", "Hamzanama"], wall: "#2f4a3a" },
+  { id: "rajput", title: "Rajput Courts", line: "Painting for the kingdoms of Rajasthan and Central India.", movements: ["Rajput painting"], categories: ["Rajput painting", "Rajput paintings", "Rajasthani painting", "Mewar painting", "Bundi painting", "Kishangarh painting", "Kota painting"], wall: "#7a2e2a" },
+  { id: "pahari", title: "The Hills", line: "Pahari painting from the Himalayan foothill courts.", movements: ["Pahari painting"], categories: ["Pahari painting", "Pahari paintings", "Kangra painting", "Basohli painting", "Guler painting"], wall: "#33506b" },
+  { id: "deccan", title: "The Deccan", line: "Painting at the sultanate courts of the south.", movements: ["Deccan painting"], categories: ["Deccan painting", "Deccani painting", "Deccani paintings"], wall: "#4b3a5e" },
+  { id: "company", title: "Company Painting", line: "Indian artists painting for British patrons.", movements: ["Company painting"], categories: ["Company painting", "Company style paintings", "Company School paintings", "Company School"], wall: "#5d5040" },
+  { id: "kalighat", title: "Kalighat", line: "Quick, bold pictures sold near the Kalighat temple in Calcutta.", movements: ["Kalighat painting"], categories: ["Kalighat painting", "Kalighat paintings", "Kalighat pat"], wall: "#8a5a1e" },
   { id: "ravivarma", title: "Raja Ravi Varma", line: "Oil painting, the epics, and the printing press.", artists: ["Raja Ravi Varma"], wall: "#6b1f2a" },
   { id: "bengal", title: "The Bengal School", line: "The Tagores and a return to Indian ways of painting.", artists: ["Abanindranath Tagore", "Gaganendranath Tagore", "Rabindranath Tagore"], movements: ["Bengal School of Art"], wall: "#465a3a" },
   { id: "shergil", title: "Amrita Sher-Gil", line: "Paris training, Indian subjects, a short life.", artists: ["Amrita Sher-Gil"], wall: "#2c3e57" },
@@ -47,7 +53,12 @@ export const NOT_YET: string[] = [
 ];
 
 export interface Work {
+  /** A Wikidata id, or "file:<name>" for a work known only from Commons. */
   qid: string;
+  /** Where the work was found, which decides how it was ranked. */
+  source: "wikidata" | "commons";
+  /** Commons only: how many Wikimedia pages use the image — its ranking. */
+  usage?: number;
   title: string;
   artist: string | null;
   year: string | null;
@@ -92,4 +103,16 @@ export const FREE_LICENSE = /^(public domain|pd|cc0|cc[- ]by(-sa)?([ -]\d(\.\d)?
 /** The year a work becomes free in India: death year + 61 (60 years from 1 January after). */
 export function freeYear(died: number | null): number | null {
   return died === null ? null : died + 61;
+}
+
+/** A room as the page draws it: the register entry with what hangs in it. */
+export interface GalleryRoom extends Room { works: Work[]; found: number; refused: number }
+
+export interface MuseumView {
+  present: boolean;
+  generatedAt: string | null;
+  rooms: GalleryRoom[];
+  notYet: NotYet[];
+  total: number;
+  refused: number;
 }
