@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-02T06:17:13.656Z",
+  "builtAt": "2026-10-02T15:03:48.953Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,13 +10,13 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 979,
+    "items": 982,
     "addedThisRun": 3,
-    "carriedFromEarlierRuns": 976,
-    "withOutlet": 919,
+    "carriedFromEarlierRuns": 979,
+    "withOutlet": 922,
     "bySubject": {
-      "scst": 646,
-      "pmshri": 333
+      "scst": 648,
+      "pmshri": 334
     },
     "queriesAsked": 20,
     "offSubjectDropped": 306
@@ -24,11 +24,11 @@
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 485
+      "n": 487
     },
     {
       "key": "use",
-      "n": 343
+      "n": 344
     },
     {
       "key": "dispute",
@@ -273,6 +273,10 @@
       "n": 3
     },
     {
+      "key": "The Caravan",
+      "n": 3
+    },
+    {
       "key": "Firstpost",
       "n": 3
     },
@@ -282,10 +286,6 @@
     },
     {
       "key": "Greater Kashmir",
-      "n": 3
-    },
-    {
-      "key": "ABP Live English",
       "n": 3
     }
   ],
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 5,
-      "kept": 2,
-      "offSubject": 14
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 13
     },
     {
       "id": "act-convicted",
@@ -325,8 +325,8 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 50,
-      "bing": 8,
+      "google": 51,
+      "bing": 7,
       "kept": 1,
       "offSubject": 8
     },
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 54,
+      "google": 53,
       "bing": 2,
       "kept": 0,
       "offSubject": 20
@@ -355,10 +355,10 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 95,
+      "google": 91,
       "bing": 0,
       "kept": 0,
-      "offSubject": 45
+      "offSubject": 43
     },
     {
       "id": "act-hostile",
@@ -386,7 +386,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 27,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 2
     },
@@ -395,7 +395,7 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 48,
+      "google": 49,
       "bing": 2,
       "kept": 0,
       "offSubject": 18
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 30,
+      "google": 29,
       "bing": 0,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 18
     },
     {
       "id": "shri-general",
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 9,
+      "bing": 12,
       "kept": 0,
       "offSubject": 3
     },
@@ -426,7 +426,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 47,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 6
     },
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 68,
+      "google": 69,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 24
+      "kept": 1,
+      "offSubject": 25
     },
     {
       "id": "shri-upgrade",
@@ -448,7 +448,7 @@
       "google": 50,
       "bing": 2,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 13
     },
     {
       "id": "shri-mou",
@@ -465,17 +465,17 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 29,
+      "google": 31,
       "bing": 1,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 17
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 50,
+      "google": 51,
       "bing": 3,
       "kept": 0,
       "offSubject": 9
@@ -486,7 +486,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 45,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 34
     }
@@ -16436,6 +16436,55 @@
       "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPWHBOX0tXak1UOXV3NkJDcUszZ2pIS2g1NnRERGFXczVmYTlVOHhTajhCZ01fN1E1NFJmWGtDUHJ0S2MzWm84UzBEaWFiSU1vZnI1YTFXTVFQN19MeFZHcGRMSVJLMEh1bnhPWGdOeW5KMmFiNlREczRtVlpFcTlvc0NLOXFvMWRJbWdvcXBWWkRxcVNuX1U3MVRJY3RGTmRuOGxFczJwMkt1dzJUVlZjU3JUcDBaNERGS2NvdlNpX0ZSck4wUGFCZS1OanpaMVMydlNya0JOdw?oc=5",
       "queries": [
         "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-02"
+    },
+    {
+      "id": "haldwani row backfires on rahul gandhi sc st act fir filed over purification remark",
+      "headline": "Haldwani row backfires on Rahul Gandhi, SC/ST Act FIR filed over “purification” remark",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "mid-day.com",
+      "published": "2026-08-31",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPc1VDTlZ0MWRsbmNOcHFvMHFIc3MzZ1REakZROGxhSVF1QW9TNVphZy1sY1NvaXBmU1c4dVMyYk91bEs5VFktMUxPLWgzR0NsTDZ1NGlSU0YwTGdLODhIYVdYSHBDWGtzR25Jem4yVDhxX1JXQTdaWUtQSEl5WHYzRWMtUVQ2SXVHbUZ5VUc5QVZOWWdhSHhuWXNubXI2ZXlNTTljdzlKQTRzMWlsR0VlSjZXeXZXekZNMDFDUm5uSnhjY2xRakt6NF9rQ1VVekt1SWNR?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-02"
+    },
+    {
+      "id": "thakur bjp leader in jaunpur accused of breaking dalit reporter s legs attacking his famil",
+      "headline": "Thakur BJP leader in Jaunpur accused of breaking Dalit reporter’s legs, attacking his family",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Caravan",
+      "published": "2021-08-31",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQdHc3MFJjYlpRbVpBUW1ITVhCSVlSbmZzNFhHcmtYLS1OdFFObkNzRUlRdFM1QXVZUnk1NU1lWnNHMHdFMzRiTHpjSFVMckx4M0JReEJpb3Jsa29NOXNSWTRZU0lqbEkzcGk5UVF1Z3d6bm9zbzFxZVlYX1hEVDRQNVV2M1FqQjhlY0VzMklR?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-02"
+    },
+    {
+      "id": "conviction collapsed where compensation began kerala govt makes a u turn after calling pm ",
+      "headline": "\"Conviction collapsed where compensation began\": Kerala govt makes a U-turn after calling PM SHRI a move for “saffronisation of education”, joins the scheme to pay teachers amid fund freeze — what it means, why it resisted, and how NEP shaped the clash",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "satyaagrah.com",
+      "published": "2025-10-21",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE13RDVJNV9DU1Z3TURsRDVrTWY3QnVnakQ4a0t5QnRuWFROWWpGMlFzRTcxdWRRRzIzMXR3MlpOWFo5b0FYTGNYT1hlQk1Rc0tuZS05T19EbUJfN1lnaFppWmF2UUNQZw?oc=5",
+      "queries": [
+        "shri-funds",
+        "shri-mou"
       ],
       "indexes": [
         "google"
