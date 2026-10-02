@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-02T05:37:00.025Z",
-  "previousBuild": "2026-10-01T21:02:05.629Z",
+  "builtAt": "2026-10-02T14:44:47.395Z",
+  "previousBuild": "2026-10-02T05:37:00.025Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,15 +12,15 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 95,
-    "createdThisRun": 1,
+    "stories": 100,
+    "createdThisRun": 5,
     "corroboratedThisRun": 1,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 255,
+    "itemsSeen": 285,
     "corroboration": {
-      "one": 81,
-      "two": 9,
+      "one": 85,
+      "two": 10,
       "threePlus": 5
     }
   },
@@ -28,22 +28,22 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 46
+      "n": 48
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 33
+      "n": 34
     },
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 14
+      "n": 16
     },
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 11
+      "n": 12
     },
     {
       "id": "military-ai",
@@ -75,7 +75,7 @@
     {
       "iso": "FRA",
       "name": "France",
-      "n": 1
+      "n": 2
     },
     {
       "iso": "DEU",
@@ -103,8 +103,8 @@
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
-      "items": 0,
-      "kept": 0
+      "items": 30,
+      "kept": 1
     },
     {
       "outlet": "Military Times",
@@ -122,7 +122,7 @@
       "outlet": "C4ISRNET",
       "ok": true,
       "items": 25,
-      "kept": 7
+      "kept": 8
     },
     {
       "outlet": "DefenseScoop",
@@ -134,13 +134,13 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 3
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Breaking Defense",
@@ -164,7 +164,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -342,6 +342,33 @@
           "outlet": "C4ISRNET",
           "url": "https://www.c4isrnet.com/news/your-military/2026/08/21/us-army-to-end-experimental-drone-battalion-in-europe/",
           "published": "2026-08-21"
+        }
+      ]
+    },
+    {
+      "id": "https://www.c4isrnet.com/global/europe/2026/10/02/french-air-force-plans-loyal-wingman-flight-in-2028-in-sovereign-ai-push/",
+      "headline": "French Air Force plans loyal wingman flight in 2028 in sovereign AI push",
+      "firstSeen": "2026-10-02",
+      "lastSeen": "2026-10-02",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "FRA",
+          "name": "France"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/global/europe/2026/10/02/french-air-force-plans-loyal-wingman-flight-in-2028-in-sovereign-ai-push/",
+          "published": "2026-10-02"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/global/europe/2026/10/02/french-air-force-plans-loyal-wingman-flight-in-2028-in-sovereign-ai-push/",
+          "published": "2026-10-02"
         }
       ]
     },
@@ -565,6 +592,75 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/solar-defence-new-150kg-loitering-munition/",
+      "headline": "Solar Defence Showcase Images of New Heavy Loitering Munition",
+      "firstSeen": "2026-10-02",
+      "lastSeen": "2026-10-02",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/solar-defence-new-150kg-loitering-munition/",
+          "published": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/bae-systems-says-bats-links-drone-detection-to-gun-and-electronic-warfare-engagement-in-successful-two-week-scottish-trials/",
+      "headline": "BAE Systems says BATS links drone detection to gun and electronic warfare engagement in successful two-week Scottish trials",
+      "firstSeen": "2026-10-02",
+      "lastSeen": "2026-10-02",
+      "themes": [
+        "drone",
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/bae-systems-says-bats-links-drone-detection-to-gun-and-electronic-warfare-engagement-in-successful-two-week-scottish-trials/",
+          "published": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/embraer-resumes-military-deliveries-in-third-quarter-targeting-c-390-production-of-six-aircraft-this-year-and-ten-by-2030/",
+      "headline": "Embraer resumes military deliveries in third quarter, targeting C-390 production of six aircraft this year and ten by 2030",
+      "firstSeen": "2026-10-02",
+      "lastSeen": "2026-10-02",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/embraer-resumes-military-deliveries-in-third-quarter-targeting-c-390-production-of-six-aircraft-this-year-and-ten-by-2030/",
+          "published": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/european-defence-fund-draws-record-612-proposals-for-e1-billion-funding-round-targeting-missile-defence-tanks-and-naval-systems/",
+      "headline": "European Defence Fund draws record 612 proposals for €1 billion funding round, targeting missile defence, tanks and naval systems",
+      "firstSeen": "2026-10-02",
+      "lastSeen": "2026-10-02",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/european-defence-fund-draws-record-612-proposals-for-e1-billion-funding-round-targeting-missile-defence-tanks-and-naval-systems/",
+          "published": "2026-10-02"
         }
       ]
     },
