@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-02T15:03:48.953Z",
+  "builtAt": "2026-10-02T21:01:54.252Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 982,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 979,
-    "withOutlet": 922,
+    "items": 987,
+    "addedThisRun": 5,
+    "carriedFromEarlierRuns": 982,
+    "withOutlet": 926,
     "bySubject": {
-      "scst": 648,
-      "pmshri": 334
+      "scst": 649,
+      "pmshri": 338
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 306
+    "offSubjectDropped": 308
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 487
+      "n": 490
     },
     {
       "key": "use",
-      "n": 344
+      "n": 345
     },
     {
       "key": "dispute",
@@ -40,7 +40,7 @@
     },
     {
       "key": "acquittal",
-      "n": 41
+      "n": 42
     },
     {
       "key": "false-finding",
@@ -62,7 +62,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 41
+      "n": 42
     },
     {
       "key": "The Hindu",
@@ -97,15 +97,15 @@
       "n": 17
     },
     {
+      "key": "Careers360",
+      "n": 14
+    },
+    {
       "key": "SCC Online",
       "n": 13
     },
     {
       "key": "ET Education",
-      "n": 13
-    },
-    {
-      "key": "Careers360",
       "n": 13
     },
     {
@@ -165,11 +165,11 @@
       "n": 8
     },
     {
-      "key": "The News Mill",
-      "n": 7
+      "key": "The News Minute",
+      "n": 8
     },
     {
-      "key": "The News Minute",
+      "key": "The News Mill",
       "n": 7
     },
     {
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -306,7 +306,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 5,
       "kept": 0,
       "offSubject": 13
     },
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 37
+      "offSubject": 38
     },
     {
       "id": "act-atrocity",
@@ -327,15 +327,15 @@
       "expect": "use",
       "google": 51,
       "bing": 7,
-      "kept": 1,
-      "offSubject": 8
+      "kept": 0,
+      "offSubject": 9
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 43,
+      "google": 44,
       "bing": 2,
       "kept": 0,
       "offSubject": 14
@@ -355,10 +355,10 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 91,
-      "bing": 0,
-      "kept": 0,
-      "offSubject": 43
+      "google": 94,
+      "bing": 1,
+      "kept": 1,
+      "offSubject": 46
     },
     {
       "id": "act-hostile",
@@ -375,8 +375,8 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 40,
-      "bing": 2,
+      "google": 41,
+      "bing": 3,
       "kept": 0,
       "offSubject": 6
     },
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 29,
+      "google": 28,
       "bing": 0,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 17
     },
     {
       "id": "shri-general",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 0,
+      "kept": 4,
       "offSubject": 3
     },
     {
@@ -425,8 +425,8 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 47,
-      "bing": 0,
+      "google": 46,
+      "bing": 1,
       "kept": 0,
       "offSubject": 6
     },
@@ -435,18 +435,18 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 69,
+      "google": 67,
       "bing": 1,
-      "kept": 1,
-      "offSubject": 25
+      "kept": 0,
+      "offSubject": 24
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 50,
-      "bing": 2,
+      "google": 51,
+      "bing": 3,
       "kept": 0,
       "offSubject": 13
     },
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 45,
-      "bing": 0,
+      "google": 44,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 34
+      "offSubject": 33
     }
   ],
   "items": [
@@ -16488,6 +16488,86 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-10-02"
+    },
+    {
+      "id": "gujarat high court dismisses state appeal against acquittal in atrocity case due to death ",
+      "headline": "Gujarat High Court Dismisses State Appeal Against Acquittal in Atrocity Case Due to Death of Complainant and Lack of Evidence. Appeal under Section 378 CrPC fails as original complainant Shantaben Gulabbhai Bhil died and no other evidence supports co",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-08-20",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5yZUVWb1FiTHNTVVJUdjduUTl0YnlmTkZpczdaR05fQy01WGROVG1EalhXRFlmTE01WklyR2pxd0Uyd21TbW8xVUZzZ04yNGZyY1QxNg?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-02"
+    },
+    {
+      "id": "kerala udf government proceeds with pm shri citing need for union govt funds",
+      "headline": "Kerala: UDF government proceeds with PM SHRI, citing need for Union govt funds",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The News Minute",
+      "published": "2026-07-31",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOLXk4MFprbFpuaDd1WWdZYXVNOGZrc2x4REJBX2cxR1FtWTZVOUo5VHFOR3hEMFhlSkM3Sm54TmVUU0hhaUlfU2tlQnJqTzVGS2l6ZGN6NENobkFYV1d2Ym1qTG5Kb0d0MGlGRjNGV05wUGl0ek93ajl3aDRlVjRwR2pTeVM5UE9JNko5dlF5T2RHYThySFZ0cWg1TmNxZHdOQ05jN2NvcTIwYlVaRDdGZ3h6QdIBwAFBVV95cUxNYkF1SUNGdndMcFpCYmtnT3hGTzhBNThSYlFGT1lhM2FtNm5ya2FjaTJqbGZlS294dGg3QUx5S3hEYUNWWG9hcjFEZE1ncE4xOU5reVhXVkNlT1ZMb2VpT29wdTJJZ1JzQzBaY2M5QWZzLUFtVXR0Vzh1YkZfOXZXbDJ2ZTZyNXRYcV94Ui15T2RQajc1YS1KWEowcmNVSU1RMTE3RDYzam1WbkZWWDRNX1MtZ2JXLUZXTXoteTZ0Q2I?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-02"
+    },
+    {
+      "id": "pm shri scheme kerala can withdraw govt s claim that it cannot back out falls apart no maj",
+      "headline": "PM SHRI Scheme: Kerala can withdraw; govt's claim that it cannot back out falls apart, no major consequences expected",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Kerala Kaumudi",
+      "published": "2026-07-31",
+      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOcWVGNXEzZkswdFFhWnpCOGhVM1ozRkl0ZXpBOG9VWHFqWGlra29MUDBnbExzaHNsMkFqT1AyYjFEYVVPTU5oMjg5QXdhcTdKU21RNXA5RTNBNjNHZW95Q0x1R2NfVU1MbkFYbEhPYXFrOTZjNmJobDFfWThmMllxV0hTSVlCeGMtNHo4ZnFfck5sQ2duT3d2TmNud25LRklfSC1IeThuM1QzZWdxQlp5V05YQTZjZnlqZjJNRmtyTlkxQU1mMVROSDZsdGN4ckdBV29pei0yeVdPdGpSZlhiR0VIbF9uMjlDdFN0YnlPWERHbU12a2lwXw?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-02"
+    },
+    {
+      "id": "rajasthan pm shri govt school students turn journalists to counter lack of newspapers",
+      "headline": "Rajasthan: PM SHRI govt school students turn journalists to counter lack of newspapers",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Careers360",
+      "published": "2026-08-09",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQLXhEdzFzbEd6Z2VSTXRIOEl0NnkwWGREOWlIWDBsa3hQeG9kNWV0TUpzeEFxRXRrQWpxNjNpYzdWd1hLS0h6ZUZaQVUtU3dTTnRiWWlEN3hUOWFobXJIVWNiREtMaFIwYy1WWktxZXNrbTJzY3JaNmxwbjAyWXJvYzU4aGlNRS04Q2RQVG91U3M3ZlNCUGpnYU9lRkFGNlAzaFI1N1Awa1NubVRza3Q2Vmp6TWNyX1Foek9aSnVFSkNpZ0JNQ0F5X0RhMU1SOTc4OWNhUTAxYWZtNHdxRGRB0gHkAUFVX3lxTFBQcUxtNnR5WXJWMGljcW80RnBxSG82cnpMOW12MHMtSkhaNThONS1VOWZsWGo5TVFjcER0OGRVeHFhZWVKUjNNNjRuWjJwc3ZXUHpkU0xKWHhfRkM1RHZRYjY2V2RjSnUya1VoeVYtcWtnWVA5d1ZEbDdGNmpuMURON3BnZEFrdEFnczlDYUZVUU9HTlR4eW4tWjRrRTFiOE1RNjg2bGtXWTlQVHNodERVcGZwNW9FNUdENWl0SUxtcy1vOThScE1WQnVoTV9yam9DQlY0cWp0OGdxa1NsN0hmVVNQYg?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-02"
+    },
+    {
+      "id": "pm shri schools explained what are these special government schools planned for launch in ",
+      "headline": "PM SHRI schools explained: What are these special government schools planned for launch in West Bengal?",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-05-20",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac01b984b34497ea60f17bb26b7acf5&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fIndia%2fpm-shri-schools-explained-what-are-these-special-government-schools-planned-for-launch-in-west-bengal%2far-AA23DWf2&c=6859108776624500379&mkt=en-us",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-10-02"
     }
