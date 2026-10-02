@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-02T11:21:25.913Z",
+ "builtAt": "2026-10-02T21:26:47.073Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206484,14 +206484,14 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 2,
+   "kept": 1,
    "via": "direct"
   },
   {
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
@@ -206505,7 +206505,7 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 4,
+   "kept": 3,
    "via": "direct"
   },
   {
@@ -206530,6 +206530,20 @@
    "url": "https://www.gov.uk/government/news/30-boost-to-uk-military-transport-aircraft-availability-under-new-deal",
    "headline": "30% boost to UK military transport aircraft availability under new deal",
    "primary": true
+  },
+  {
+   "id": "ev-xemcbm",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-10-02",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/10/the-nih-pentagon-deal-isnt-a-cash-grab-its-a-rescue/",
+   "headline": "The NIH-Pentagon deal isn’t a cash grab. It’s a rescue.",
+   "primary": false
   },
   {
    "id": "ev-eoqban",
@@ -207355,72 +207369,6 @@
    "verdict": "from a primary source"
   },
   {
-   "key": "order||sweden",
-   "systems": [],
-   "countries": [
-    "Sweden"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-eoqban",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Sweden"
-     ],
-     "value": null,
-     "date": "2026-10-01",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/10/naval-group-begins-production-of-swedens-first-fdi-frigate-just-one-month-after-contract-signing/",
-     "headline": "Naval Group Begins Production of Sweden&#8217;s First FDI Frigate Just One Month After Contract Signing",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order||turkey",
-   "systems": [],
-   "countries": [
-    "Turkey"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-xhgfn",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Turkey"
-     ],
-     "value": {
-      "amount": 1470000000,
-      "currency": "USD",
-      "asWritten": "$1.47B"
-     },
-     "date": "2026-10-01",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/turkish-firm-otokar-lands-1-47b-armored-vehicle-deal/",
-     "headline": "Turkish firm Otokar lands $1.47B armored vehicle deal",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defence Blog"
-   ],
-   "value": {
-    "amount": 1470000000,
-    "currency": "USD",
-    "asWritten": "$1.47B"
-   },
-   "verdict": "a single report, uncorroborated"
-  },
-  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -207428,6 +207376,20 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-xemcbm",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-10-02",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/10/the-nih-pentagon-deal-isnt-a-cash-grab-its-a-rescue/",
+     "headline": "The NIH-Pentagon deal isn’t a cash grab. It’s a rescue.",
+     "primary": false
+    },
     {
      "id": "ev-zyx0mp",
      "kind": "order",
@@ -207734,12 +207696,79 @@
     }
    ],
    "outlets": [
+    "Breaking Defense",
     "Defense News",
     "Naval News",
     "Defence Blog"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "order||sweden",
+   "systems": [],
+   "countries": [
+    "Sweden"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-eoqban",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Sweden"
+     ],
+     "value": null,
+     "date": "2026-10-01",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/naval-group-begins-production-of-swedens-first-fdi-frigate-just-one-month-after-contract-signing/",
+     "headline": "Naval Group Begins Production of Sweden&#8217;s First FDI Frigate Just One Month After Contract Signing",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order||turkey",
+   "systems": [],
+   "countries": [
+    "Turkey"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-xhgfn",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Turkey"
+     ],
+     "value": {
+      "amount": 1470000000,
+      "currency": "USD",
+      "asWritten": "$1.47B"
+     },
+     "date": "2026-10-01",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/turkish-firm-otokar-lands-1-47b-armored-vehicle-deal/",
+     "headline": "Turkish firm Otokar lands $1.47B armored vehicle deal",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": {
+    "amount": 1470000000,
+    "currency": "USD",
+    "asWritten": "$1.47B"
+   },
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order||australia+new zealand",
