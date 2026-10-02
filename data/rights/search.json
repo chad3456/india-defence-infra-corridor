@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-01T21:25:52.677Z",
+  "builtAt": "2026-10-02T06:17:13.656Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 976,
-    "addedThisRun": 4,
-    "carriedFromEarlierRuns": 972,
-    "withOutlet": 916,
+    "items": 979,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 976,
+    "withOutlet": 919,
     "bySubject": {
-      "scst": 643,
+      "scst": 646,
       "pmshri": 333
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 305
+    "offSubjectDropped": 306
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 341
+      "n": 343
     },
     {
       "key": "dispute",
@@ -36,7 +36,7 @@
     },
     {
       "key": "allegation",
-      "n": 44
+      "n": 45
     },
     {
       "key": "acquittal",
@@ -62,7 +62,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 39
+      "n": 41
     },
     {
       "key": "The Hindu",
@@ -129,6 +129,10 @@
       "n": 11
     },
     {
+      "key": "Maktoob",
+      "n": 11
+    },
+    {
       "key": "ndtv.com",
       "n": 10
     },
@@ -138,10 +142,6 @@
     },
     {
       "key": "lawchakra.in",
-      "n": 10
-    },
-    {
-      "key": "Maktoob",
       "n": 10
     },
     {
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 100,
       "bing": 5,
-      "kept": 0,
+      "kept": 2,
       "offSubject": 14
     },
     {
@@ -317,17 +317,17 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 36
+      "kept": 0,
+      "offSubject": 37
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
+      "google": 50,
       "bing": 8,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 8
     },
     {
@@ -335,17 +335,17 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 42,
+      "google": 43,
       "bing": 2,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 14
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 55,
+      "google": 54,
       "bing": 2,
       "kept": 0,
       "offSubject": 20
@@ -357,7 +357,7 @@
       "expect": "acquittal",
       "google": 95,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 45
     },
     {
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 41,
+      "google": 40,
       "bing": 2,
       "kept": 0,
       "offSubject": 6
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 28,
+      "google": 27,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 50,
+      "google": 48,
       "bing": 2,
-      "kept": 1,
-      "offSubject": 19
+      "kept": 0,
+      "offSubject": 18
     },
     {
       "id": "act-fabricated",
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 12,
+      "bing": 9,
       "kept": 0,
       "offSubject": 3
     },
@@ -435,9 +435,9 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 69,
+      "google": 68,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 24
     },
     {
@@ -445,7 +445,7 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 51,
+      "google": 50,
       "bing": 2,
       "kept": 0,
       "offSubject": 12
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 51,
+      "google": 50,
       "bing": 3,
       "kept": 0,
       "offSubject": 9
@@ -488,7 +488,7 @@
       "google": 45,
       "bing": 1,
       "kept": 0,
-      "offSubject": 35
+      "offSubject": 34
     }
   ],
   "items": [
@@ -16393,6 +16393,54 @@
         "bing"
       ],
       "firstSeen": "2026-10-01"
+    },
+    {
+      "id": "bombay high court quashes fir in sc st act case due to lack of public view element alleged",
+      "headline": "Bombay High Court Quashes FIR in SC/ST Act Case Due to Lack of Public View Element. Alleged Caste-Based Insults Occurred Inside Police Station, Not in Public View, Failing to Attract Section 3(1)(x) of SC & ST (Prevention of Atrocities) Act, 1989.",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-10-01",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1TaTd4MUdtQlo4NnRUTDB0V2dmSDIwWFdUUTlUTlNKY0ppUHlNbzVueHVWM0R5RUU2ZFFwV2JyXzFKNU54ZWtOVFRnUFlmQmh2MnNGUnVOOU5NaUVBd3hEc0hfM0NQQQ?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-02"
+    },
+    {
+      "id": "bombay high court quashes criminal proceedings against headmaster in sc st atrocity case a",
+      "headline": "Bombay High Court Quashes Criminal Proceedings Against Headmaster in SC/ST Atrocity Case — Allegations of Sexual Harassment and Caste-Based Insults Found to Be Misuse of Law. Court Held That Absence of Intent to Humiliate on Ground of Caste and",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "Lawtext",
+      "published": "2026-10-01",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE4wVUJnWjYzOWJFZjRLVG84azZTM293bEtTdUhNVVFLb0w5Q2RhcWMwdzJjcFFhTWJRU0R3amE5eEk1VHFraDhROFlBMnZ5LTVoUHhrUG9vRWRtczNVcWNJYXhQZjJLaTFG?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-02"
+    },
+    {
+      "id": "caste atrocity 250 dalits convert to buddhism in rajasthan idols of hindu gods immersed in",
+      "headline": "Caste atrocity: 250 Dalits convert to Buddhism in Rajasthan, idols of Hindu gods immersed in river",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Maktoob",
+      "published": "2022-10-25",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPWHBOX0tXak1UOXV3NkJDcUszZ2pIS2g1NnRERGFXczVmYTlVOHhTajhCZ01fN1E1NFJmWGtDUHJ0S2MzWm84UzBEaWFiSU1vZnI1YTFXTVFQN19MeFZHcGRMSVJLMEh1bnhPWGdOeW5KMmFiNlREczRtVlpFcTlvc0NLOXFvMWRJbWdvcXBWWkRxcVNuX1U3MVRJY3RGTmRuOGxFczJwMkt1dzJUVlZjU3JUcDBaNERGS2NvdlNpX0ZSck4wUGFCZS1OanpaMVMydlNya0JOdw?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-02"
     }
   ]
 }
