@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-02T14:44:47.395Z",
-  "previousBuild": "2026-10-02T05:37:00.025Z",
+  "builtAt": "2026-10-02T20:45:06.300Z",
+  "previousBuild": "2026-10-02T14:44:47.395Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 100,
-    "createdThisRun": 5,
-    "corroboratedThisRun": 1,
+    "stories": 101,
+    "createdThisRun": 1,
+    "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 285,
+    "itemsSeen": 282,
     "corroboration": {
-      "one": 85,
+      "one": 86,
       "two": 10,
       "threePlus": 5
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 48
+      "n": 49
     },
     {
       "id": "autonomy",
@@ -97,7 +97,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 43,
+      "items": 40,
       "kept": 4
     },
     {
@@ -110,7 +110,7 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Army Times",
@@ -146,7 +146,7 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Defense One",
@@ -660,6 +660,23 @@
         {
           "outlet": "Defence Industry Europe",
           "url": "https://defence-industry.eu/european-defence-fund-draws-record-612-proposals-for-e1-billion-funding-round-targeting-missile-defence-tanks-and-naval-systems/",
+          "published": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/u-s-department-of-war-orders-faster-counter-drone-approvals-with-30-day-escalation-rule-and-limits-on-repeat-safety-reviews/",
+      "headline": "U.S. Department of War orders faster counter-drone approvals, with 30-day escalation rule and limits on repeat safety reviews",
+      "firstSeen": "2026-10-02",
+      "lastSeen": "2026-10-02",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-department-of-war-orders-faster-counter-drone-approvals-with-30-day-escalation-rule-and-limits-on-repeat-safety-reviews/",
           "published": "2026-10-02"
         }
       ]
