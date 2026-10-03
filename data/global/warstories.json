@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-03T13:23:29.366Z",
-  "previousBuild": "2026-10-03T05:18:41.151Z",
+  "builtAt": "2026-10-03T19:13:53.635Z",
+  "previousBuild": "2026-10-03T13:23:29.366Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 107,
-    "createdThisRun": 4,
+    "stories": 109,
+    "createdThisRun": 2,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 285,
+    "itemsSeen": 284,
     "corroboration": {
-      "one": 92,
+      "one": 94,
       "two": 10,
       "threePlus": 5
     }
@@ -33,7 +33,7 @@
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 36
+      "n": 38
     },
     {
       "id": "targeting",
@@ -97,14 +97,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 43,
-      "kept": 4
+      "items": 42,
+      "kept": 5
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "Military Times",
@@ -134,7 +134,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense News",
@@ -158,7 +158,7 @@
       "outlet": "Naval News",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defence Blog",
@@ -664,6 +664,40 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/u-s-navy-triton-spy-drone-gets-stuck-at-runways-end/",
+          "published": "2026-10-03"
+        }
+      ]
+    },
+    {
+      "id": "https://www.twz.com/air/northrop-grummans-talon-blue-collaborative-combat-aircraft-has-flown",
+      "headline": "Northrop Grumman’s Talon Blue Collaborative Combat Aircraft Has Flown",
+      "firstSeen": "2026-10-03",
+      "lastSeen": "2026-10-03",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "The War Zone",
+          "url": "https://www.twz.com/air/northrop-grummans-talon-blue-collaborative-combat-aircraft-has-flown",
+          "published": "2026-10-03"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/u-s-army-directs-creation-of-futures-and-autonomous-systems-command-sets-fiscal-2028-deadline-for-priority-autonomous-systems/",
+      "headline": "U.S. Army directs creation of Futures and Autonomous Systems Command, sets fiscal 2028 deadline for priority autonomous systems",
+      "firstSeen": "2026-10-03",
+      "lastSeen": "2026-10-03",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-army-directs-creation-of-futures-and-autonomous-systems-command-sets-fiscal-2028-deadline-for-priority-autonomous-systems/",
           "published": "2026-10-03"
         }
       ]
