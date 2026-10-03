@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-03T05:48:27.296Z",
+  "builtAt": "2026-10-03T13:57:57.721Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 988,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 987,
-    "withOutlet": 927,
+    "items": 992,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 988,
+    "withOutlet": 931,
     "bySubject": {
-      "scst": 650,
-      "pmshri": 338
+      "scst": 653,
+      "pmshri": 339
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 307
+    "offSubjectDropped": 302
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 490
+      "n": 491
     },
     {
       "key": "use",
-      "n": 346
+      "n": 347
     },
     {
       "key": "dispute",
@@ -36,7 +36,7 @@
     },
     {
       "key": "allegation",
-      "n": 45
+      "n": 47
     },
     {
       "key": "acquittal",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 89
+      "n": 90
     },
     {
       "key": "The Indian Express",
@@ -82,7 +82,7 @@
     },
     {
       "key": "Verdictum",
-      "n": 22
+      "n": 23
     },
     {
       "key": "opindia.com",
@@ -269,6 +269,10 @@
       "n": 3
     },
     {
+      "key": "HinduPost",
+      "n": 3
+    },
+    {
       "key": "theweek.in",
       "n": 3
     },
@@ -283,10 +287,6 @@
     {
       "key": "Drishti IAS",
       "n": 3
-    },
-    {
-      "key": "Greater Kashmir",
-      "n": 3
     }
   ],
   "perQuery": [
@@ -297,8 +297,8 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 5
+      "kept": 0,
+      "offSubject": 6
     },
     {
       "id": "act-registered",
@@ -306,7 +306,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 5,
+      "bing": 0,
       "kept": 0,
       "offSubject": 13
     },
@@ -318,17 +318,17 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 39
+      "offSubject": 40
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
-      "bing": 8,
+      "google": 52,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 5
     },
     {
       "id": "act-compensation",
@@ -336,7 +336,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 44,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
       "offSubject": 14
     },
@@ -345,9 +345,9 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 55,
-      "bing": 2,
-      "kept": 0,
+      "google": 56,
+      "bing": 0,
+      "kept": 1,
       "offSubject": 22
     },
     {
@@ -355,29 +355,29 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 92,
+      "google": 91,
       "bing": 1,
       "kept": 0,
-      "offSubject": 45
+      "offSubject": 44
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 25,
+      "google": 26,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 9
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 41,
+      "google": 42,
       "bing": 2,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -386,7 +386,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 27,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 2
     },
@@ -396,16 +396,16 @@
       "subject": "scst",
       "expect": "false-finding",
       "google": 49,
-      "bing": 2,
-      "kept": 0,
-      "offSubject": 18
+      "bing": 0,
+      "kept": 1,
+      "offSubject": 17
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 28,
+      "google": 29,
       "bing": 0,
       "kept": 0,
       "offSubject": 17
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 12,
+      "bing": 0,
       "kept": 0,
       "offSubject": 3
     },
@@ -425,10 +425,10 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 47,
+      "google": 46,
       "bing": 1,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "shri-funds",
@@ -436,7 +436,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 68,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 24
     },
@@ -445,9 +445,9 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 50,
+      "google": 51,
       "bing": 2,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 12
     },
     {
@@ -466,9 +466,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 31,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 16
     },
     {
       "id": "shri-nep",
@@ -476,7 +476,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 51,
-      "bing": 3,
+      "bing": 0,
       "kept": 0,
       "offSubject": 9
     },
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
-      "bing": 1,
+      "google": 42,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 31
     }
   ],
   "items": [
@@ -16585,6 +16585,71 @@
       "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQWG9DQjhHMTV3My1iSjdqeVZZd3BQOFI0SE56WGZJOEg2VC04QWwxMGpYazM5SlB1SVp5X1RqV1IwWXhqRndFVkRpcnJOYnhNSlJJX2YxTUNJS1FGQ2Ntdnl5bXBLQ0RLcWRWZXJ6djN2RWtTZTRtMjZIcFUyalhBc1VSa0V1cDZoV2NRcFo1eEhDeDhtM2ZCTm9IZERUSC1UN2xHUU0xbE9pb3ZzbUNJTTE4N1QtRlY5elR5eFJ5d2RDLTRQdlVlVXlJdWdjcnpaVFVQQ9IB2gFBVV95cUxNQktVTU94SU5ON3Y0WFkyUzNHZGtPdkE4bDhkU1hWcURKN3ppcGhiUjhhUHVMMzZfQnFjRjhJMjFmSjNHdEtXTUg4SDgyVmZ2bDIwUXRnMUlsZGJGbFBvREduVnB5X3YzQlk4OV9sNmtBOWVvdkpRdlFrNjFvVGNHWVNvVW9xN3NTaUhUWG5GeUpfMTVJTDFxWFNLVE1vLUhHT09vdWNvU05mN09HNk1LY0VHSmpTWTJPSXBwZDMyc2tPYkZ4TFUxbHJuWmVFUTloMVFGQVBiYm9XQQ?oc=5",
       "queries": [
         "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-03"
+    },
+    {
+      "id": "proceedings in sc st act can be quashed u s 482 crpc if there is abuse of process of law a",
+      "headline": "Proceedings In SC-ST Act Can Be Quashed U/S 482 CrPC If There Is Abuse Of Process Of Law: Allahabad HC",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "Verdictum",
+      "published": "2024-12-30",
+      "url": "https://news.google.com/rss/articles/CBMinAJBVV95cUxPajBvdDhCM0dLclh1WDlzelRDSEpIV2phY2pmSXJUWWJYQms1VzNEQlc0V1Rld0hjSGxFMWNrWVo2MkthWlF4bXctemhqRkRHVXI5andVOWZwbDc0TzhaaDNkU1JhRUF5OHFpWk04UGFXT1NldDlHekFHUjk1QUhfQ185MzA3ZFkyWnliMVBRYVlfU3AxakhwREstQkZDTnpRNnhIMDlGT3ZnVDZfSG9udU9iRHVxeDR2YVNZU0p4SXZkSEdDckxOV1lNVTZnMGN0SF9rODI4TTZDR1ZWdDBobm11NEYtTGFzel9kRnY0eFNRZFlEM0cxc3hyNXlNQ005RTBuQi1lem5fd0hVaERPSG9fN0h5SVNZNUZkRNIBogJBVV95cUxOWGUwX3JmUGRaeWs1U2x4YlpUcGZ0Z3F5TjRRU2MxdXRsd2lEOWZJb2t1cllQNlhhcEJ6VHJ5SzBkTTVTaHhuNUFfdnhJUFZJcUVuTjFqTkkzRWZQVGFnUkxnUWVHR01IU3VnZHVFLWhxNy1JdzRUM1YyZEdCZ2JVWFg3MzduTVoxVE1fd1VrUzFGMkl6ZEp3QUNGQVZJd1FodDdqc09OcGgzcVFwUkJ1RTJFOXB3YVZaUXcxMlZrc1k3Yl9adXFQQWdiN0xTVjdGUDVWa2d4aWI5SVA5TjRfOGp4T0NndXZtdTdjLTduTTJ4Y3VfUC1NUy1aTlhZcXRQcUhjOGw4d2R4cGxGZVVSZzNNdllYUkFoT3htNnNTam9aZw?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-03"
+    },
+    {
+      "id": "ls passes bill to restore original provisions of sc st act",
+      "headline": "LS passes bill to restore original provisions of SC/ST Act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2018-08-07",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQeTNLTTkxTkpHQ0kzaXEzQTVHcnJZdFgzZEJnSERzSWF2LU1xbmQ1eUYzYmd5UDhOVWRuSjAwc0pyYlZZek5fU2xZa1dzRlRpWEwxQ1h4TUFmREdsWWdKbURJbHRodWpsdlBHNDFLWnhUWFlmTk9kcVpWSUtFR0E5MDNZYzZ5YndVMTNWM1RZYzlMWU5zQjQ5NzZOcnlnYi1qTDJwZHZZZ3l3OExTRjJTUGstTHRYQ2ZTaTkxSWlyNXdwcFHSAcgBQVVfeXFMUE9nTU81QlN2bThnZjlxNEFQWFVaazdTYjhLUVI2akRESlVJZkozZFV4d3hrVm9HaXhUOFZLSWczYktpT3NsOWwtTVFkUXpXQWdpLThvSHlPWURmTFNyaTBPRkJhQTJrSFpIRkoydzZaNHdsZjkxaUFoNkw5VjdZQXFlaDZuN0wzRXU5UlgwZUVNcGtONjdBdnJTcFR4MjhvclFZTTVIa0ttZWtHWWpIMWFhRlJOaVhROVF5OEhnM0s4clotUk9GOV8?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-03"
+    },
+    {
+      "id": "misuse of the sc st act and why reforms are now essential",
+      "headline": "Misuse of the SC/ST Act and Why Reforms Are Now Essential",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "HinduPost",
+      "published": "2026-10-03",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQTmhiN1poZk8wNEhLT1h3bFh6eUtXV0owcXFqbmF4OWx4Rk1HUXRydDd5dXF2dUhMVWJ6b1dWNmdYdEd0OVJ0YkpVSTN3TVk1TkJqcUVXR2c3SldibXpfWXNvTmlzVGVCb0NmNjFrdk9COFlEdzd1M003c2RqNzZ3d0wxa0d0cnJRRFBsay1B?oc=5",
+      "queries": [
+        "act-false",
+        "act-fabricated"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-03"
+    },
+    {
+      "id": "pune pm shri ghorpadi village high school junior college upgraded with modern learning fac",
+      "headline": "Pune: PM SHRI Ghorpadi Village High School & Junior College Upgraded with Modern Learning Facilities Under PM SHRI Scheme",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "Punekar News",
+      "published": "2026-07-30",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPZmlieHR3ay1Ea3FKWEk4UFpmQVNLX2w4OXhabWU5emk0d2tja0pTenFIRGotanNuZU9EZmlzWjdVcmJQTDFlZzJVWmJQSjduWjJ6ZE5LQkNXSW13dTdnVHFlUkV5dXhwX2cxVG5NTzhEUk51akgwVjJqbU4yUGoycVFoSUxycmtIeWkzUGh0T2xfUTJ3R2Q4bkJ6OE9yRlFXMWE5VUtrSXBiUVZpdUZRNU1TQXlRWUJmOUIwQjRzOGl4eFB4WlVNVm1WcW8zRDN2aW5QdnNOWVRKYm9sWmF3?oc=5",
+      "queries": [
+        "shri-upgrade"
       ],
       "indexes": [
         "google"
