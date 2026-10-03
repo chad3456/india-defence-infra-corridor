@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-02T20:45:06.300Z",
-  "previousBuild": "2026-10-02T14:44:47.395Z",
+  "builtAt": "2026-10-03T05:18:41.151Z",
+  "previousBuild": "2026-10-02T20:45:06.300Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 101,
-    "createdThisRun": 1,
+    "stories": 103,
+    "createdThisRun": 2,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 282,
+    "itemsSeen": 285,
     "corroboration": {
-      "one": 86,
+      "one": 88,
       "two": 10,
       "threePlus": 5
     }
@@ -28,12 +28,12 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 49
+      "n": 50
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 34
+      "n": 35
     },
     {
       "id": "targeting",
@@ -97,7 +97,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 40,
+      "items": 43,
       "kept": 4
     },
     {
@@ -146,7 +146,7 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Defense One",
@@ -677,6 +677,40 @@
         {
           "outlet": "Defence Industry Europe",
           "url": "https://defence-industry.eu/u-s-department-of-war-orders-faster-counter-drone-approvals-with-30-day-escalation-rule-and-limits-on-repeat-safety-reviews/",
+          "published": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/10/02/hegseth-issues-new-directive-to-hasten-counter-drone-pursuits/",
+      "headline": "Hegseth issues new directive to hasten U.S. military’s counter-drone pursuits",
+      "firstSeen": "2026-10-02",
+      "lastSeen": "2026-10-02",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/10/02/hegseth-issues-new-directive-to-hasten-counter-drone-pursuits/",
+          "published": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/10/army-to-establish-new-autonomy-command-acquisition-executive/",
+      "headline": "Army to establish new autonomy command, acquisition executive",
+      "firstSeen": "2026-10-02",
+      "lastSeen": "2026-10-02",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/army-to-establish-new-autonomy-command-acquisition-executive/",
           "published": "2026-10-02"
         }
       ]
