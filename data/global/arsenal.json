@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-02T21:26:47.073Z",
+ "builtAt": "2026-10-03T10:37:07.016Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206518,6 +206518,20 @@
  ],
  "events": [
   {
+   "id": "ev-1vpm5m2",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Vietnam"
+   ],
+   "value": null,
+   "date": "2026-10-03",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/10/metal-shark-awarded-contract-for-13-patrol-boats-for-vietnam/",
+   "headline": "Metal Shark Awarded Contract for 13 Patrol Boats for Vietnam",
+   "primary": false
+  },
+  {
    "id": "ev-8yr084",
    "kind": "order",
    "systems": [],
@@ -207310,6 +207324,35 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||vietnam",
+   "systems": [],
+   "countries": [
+    "Vietnam"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1vpm5m2",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Vietnam"
+     ],
+     "value": null,
+     "date": "2026-10-03",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/metal-shark-awarded-contract-for-13-patrol-boats-for-vietnam/",
+     "headline": "Metal Shark Awarded Contract for 13 Patrol Boats for Vietnam",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||united kingdom",
    "systems": [],
