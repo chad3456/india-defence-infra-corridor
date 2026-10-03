@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-02T21:01:54.252Z",
+  "builtAt": "2026-10-03T05:48:27.296Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 987,
-    "addedThisRun": 5,
-    "carriedFromEarlierRuns": 982,
-    "withOutlet": 926,
+    "items": 988,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 987,
+    "withOutlet": 927,
     "bySubject": {
-      "scst": 649,
+      "scst": 650,
       "pmshri": 338
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 308
+    "offSubjectDropped": 307
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 345
+      "n": 346
     },
     {
       "key": "dispute",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 88
+      "n": 89
     },
     {
       "key": "The Indian Express",
@@ -297,8 +297,8 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 6
+      "kept": 1,
+      "offSubject": 5
     },
     {
       "id": "act-registered",
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 38
+      "offSubject": 39
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 7,
+      "bing": 8,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
@@ -345,20 +345,20 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 53,
+      "google": 55,
       "bing": 2,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 22
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 94,
+      "google": 92,
       "bing": 1,
-      "kept": 1,
-      "offSubject": 46
+      "kept": 0,
+      "offSubject": 45
     },
     {
       "id": "act-hostile",
@@ -376,7 +376,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 41,
-      "bing": 3,
+      "bing": 2,
       "kept": 0,
       "offSubject": 6
     },
@@ -386,7 +386,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 27,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 2
     },
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 4,
+      "kept": 0,
       "offSubject": 3
     },
     {
@@ -425,17 +425,17 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 46,
+      "google": 47,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 67,
+      "google": 68,
       "bing": 1,
       "kept": 0,
       "offSubject": 24
@@ -445,10 +445,10 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 51,
-      "bing": 3,
+      "google": 50,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "shri-mou",
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 44,
+      "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 33
+      "offSubject": 32
     }
   ],
   "items": [
@@ -2647,7 +2647,8 @@
       "published": "2026-04-09",
       "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNOEFGVEhUb2xZMmpSZERQaC1fbWNRZ2ZhQ1NITm1SVTI3MnFCRXNvZ0pqRUhodHM5aHFoV0JxSWoycTg5TFF4ZjMxZDBHV1FTNHRNY2x0SlJ3QVZsbFZDdng2a2VRTFZ1bHh6T0FBYTYtY0VXckVWWThXMXNaZEJSckxaaDQzSC10T3paLWx5WlRMVDhjVTlXSkt2WUVQSE1nZzdCYzEwRkRWcUdGRmxDS19fUjJJemg0?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -5536,7 +5537,8 @@
       "published": "2026-09-08",
       "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOYlQ4b3l5UmNKUUxxa0REMTA4eGJ0RWI1WUhoWmg2U215N2VfclRwN1cyeUJOZV9NdFlkYVFzRl9VdE50Q2paUmw4UFg1YWk3b0ROc3NPZEVmSVZRcUNncERkdWFVNDA0OGk1d2hrbENBTXlmSnhUQUNTM1FVY2lyWnVUTjRxOTNKQlQxdnRicnF6cTRCMWpmVGpB0gGfAUFVX3lxTFB0dllxVTZnRjVmV0lYaUNITkxMM1llNkdCM3hTbmZnanJaZnI0d1NJNUpWNHVWRzlFenJtT0U4OUpwa3BqbU9SeTd0d1llTUloTHBjTjJDWjJoNEJ4N2t4bGhrVHdSU1huMEhtb3hCX1JCTlF0em1UVWM5WVQyN0tfc0I1TUdlZW1tTUFEVE9VUmxwMWNKU1g2OE1iV29Uaw?oc=5",
       "queries": [
-        "act-pendency"
+        "act-pendency",
+        "act-compensation"
       ],
       "indexes": [
         "google"
@@ -14234,7 +14236,8 @@
       "published": "2026-03-24",
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPRVNMcVNrTWZHbkJGZ2hlTWpZNHVsMENidzBiai1vY1l2UlU0cDJad1hna2Z1bUxQdG1SNTRPOUg2Tk1CZnEwdXJsUy1UcFFVZDIxNF84S2NkNkdLQmVVUElpbTg5MTRGUXk1cW9ZcmNDUW9BZV9OZE5nUHpoUGFKSTdNWm9oUVYyajF2bkNsYkQ1TFBqdnNDQzNwV1RQUllZWWlnV2JzajdObzlmdjkyZkFkcGY5VkdweXpERTU4SQ?oc=5",
       "queries": [
-        "act-acquittal"
+        "act-acquittal",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -16113,7 +16116,8 @@
       "published": "2026-06-17",
       "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6abd2946fef245ef9522f1410faf20bd&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fIndia%2fcongress-govt-to-implement-pm-shri-in-kerala-with-riders-it-s-reignited-a-political-row%2far-AA25TruG&c=3279581533935511333&mkt=en-us",
       "queries": [
-        "shri-mou"
+        "shri-mou",
+        "shri-nep"
       ],
       "indexes": [
         "bing"
@@ -16570,6 +16574,22 @@
         "bing"
       ],
       "firstSeen": "2026-10-02"
+    },
+    {
+      "id": "no sc st act offence if slur not aimed at humiliation allahabad high court",
+      "headline": "No SC/ST Act offence if slur not aimed at humiliation: Allahabad high court",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Times of India",
+      "published": "2026-08-21",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQWG9DQjhHMTV3My1iSjdqeVZZd3BQOFI0SE56WGZJOEg2VC04QWwxMGpYazM5SlB1SVp5X1RqV1IwWXhqRndFVkRpcnJOYnhNSlJJX2YxTUNJS1FGQ2Ntdnl5bXBLQ0RLcWRWZXJ6djN2RWtTZTRtMjZIcFUyalhBc1VSa0V1cDZoV2NRcFo1eEhDeDhtM2ZCTm9IZERUSC1UN2xHUU0xbE9pb3ZzbUNJTTE4N1QtRlY5elR5eFJ5d2RDLTRQdlVlVXlJdWdjcnpaVFVQQ9IB2gFBVV95cUxNQktVTU94SU5ON3Y0WFkyUzNHZGtPdkE4bDhkU1hWcURKN3ppcGhiUjhhUHVMMzZfQnFjRjhJMjFmSjNHdEtXTUg4SDgyVmZ2bDIwUXRnMUlsZGJGbFBvREduVnB5X3YzQlk4OV9sNmtBOWVvdkpRdlFrNjFvVGNHWVNvVW9xN3NTaUhUWG5GeUpfMTVJTDFxWFNLVE1vLUhHT09vdWNvU05mN09HNk1LY0VHSmpTWTJPSXBwZDMyc2tPYkZ4TFUxbHJuWmVFUTloMVFGQVBiYm9XQQ?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-03"
     }
   ]
 }
