@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-03T13:57:57.721Z",
+  "builtAt": "2026-10-03T19:29:48.299Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 992,
+    "items": 996,
     "addedThisRun": 4,
-    "carriedFromEarlierRuns": 988,
-    "withOutlet": 931,
+    "carriedFromEarlierRuns": 992,
+    "withOutlet": 934,
     "bySubject": {
-      "scst": 653,
+      "scst": 657,
       "pmshri": 339
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 302
+    "offSubjectDropped": 305
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 491
+      "n": 494
     },
     {
       "key": "use",
@@ -44,7 +44,7 @@
     },
     {
       "key": "false-finding",
-      "n": 9
+      "n": 10
     }
   ],
   "byOutlet": [
@@ -117,6 +117,10 @@
       "n": 12
     },
     {
+      "key": "Maktoob",
+      "n": 12
+    },
+    {
       "key": "SabrangIndia",
       "n": 12
     },
@@ -126,10 +130,6 @@
     },
     {
       "key": "ANI News",
-      "n": 11
-    },
-    {
-      "key": "Maktoob",
       "n": 11
     },
     {
@@ -257,6 +257,10 @@
       "n": 4
     },
     {
+      "key": "Live Law",
+      "n": 4
+    },
+    {
       "key": "Wansom AI",
       "n": 3
     },
@@ -283,10 +287,6 @@
     {
       "key": "Firstpost",
       "n": 3
-    },
-    {
-      "key": "Drishti IAS",
-      "n": 3
     }
   ],
   "perQuery": [
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
+      "kept": 2,
       "offSubject": 6
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 6,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "act-convicted",
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 40
+      "offSubject": 41
     },
     {
       "id": "act-atrocity",
@@ -326,17 +326,17 @@
       "subject": "scst",
       "expect": "use",
       "google": 52,
-      "bing": 0,
-      "kept": 0,
-      "offSubject": 5
+      "bing": 9,
+      "kept": 1,
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 44,
-      "bing": 0,
+      "google": 45,
+      "bing": 2,
       "kept": 0,
       "offSubject": 14
     },
@@ -345,20 +345,20 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 56,
-      "bing": 0,
-      "kept": 1,
-      "offSubject": 22
+      "google": 54,
+      "bing": 2,
+      "kept": 0,
+      "offSubject": 20
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 91,
-      "bing": 1,
+      "google": 90,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 44
+      "offSubject": 42
     },
     {
       "id": "act-hostile",
@@ -375,9 +375,9 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 42,
-      "bing": 2,
-      "kept": 1,
+      "google": 44,
+      "bing": 3,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 27,
+      "google": 26,
       "bing": 1,
       "kept": 0,
       "offSubject": 2
@@ -398,17 +398,17 @@
       "google": 49,
       "bing": 0,
       "kept": 1,
-      "offSubject": 17
+      "offSubject": 18
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 29,
+      "google": 28,
       "bing": 0,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 16
     },
     {
       "id": "shri-general",
@@ -436,26 +436,26 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 68,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 24
+      "offSubject": 25
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 51,
+      "google": 52,
       "bing": 2,
-      "kept": 1,
-      "offSubject": 12
+      "kept": 0,
+      "offSubject": 13
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 44,
+      "google": 45,
       "bing": 2,
       "kept": 0,
       "offSubject": 6
@@ -466,9 +466,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 31,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 17
     },
     {
       "id": "shri-nep",
@@ -476,7 +476,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 51,
-      "bing": 0,
+      "bing": 3,
       "kept": 0,
       "offSubject": 9
     },
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 42,
-      "bing": 0,
+      "google": 43,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 31
+      "offSubject": 32
     }
   ],
   "items": [
@@ -16650,6 +16650,70 @@
       "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPZmlieHR3ay1Ea3FKWEk4UFpmQVNLX2w4OXhabWU5emk0d2tja0pTenFIRGotanNuZU9EZmlzWjdVcmJQTDFlZzJVWmJQSjduWjJ6ZE5LQkNXSW13dTdnVHFlUkV5dXhwX2cxVG5NTzhEUk51akgwVjJqbU4yUGoycVFoSUxycmtIeWkzUGh0T2xfUTJ3R2Q4bkJ6OE9yRlFXMWE5VUtrSXBiUVZpdUZRNU1TQXlRWUJmOUIwQjRzOGl4eFB4WlVNVm1WcW8zRDN2aW5QdnNOWVRKYm9sWmF3?oc=5",
       "queries": [
         "shri-upgrade"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-03"
+    },
+    {
+      "id": "sc st act does not apply to casteist slurs made in private says supreme court",
+      "headline": "SC/ST Act does not apply to casteist slurs made in private, says Supreme Court",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Maktoob",
+      "published": "2026-08-21",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPYXlJZ3dQeHgyVVlYaVhkN3JiNnIzTGVNbkNFM2lfRTJsX2dxN1FCQzNrRGRVUm9EM0YzSFJPWXd2X3MyV0lYYjZfaWRZLTlsbGRtQzBRYWZGbFNQUnZ4Z0RsbWZxd20wV3E2TnpHdDhTeG9yUk1ycWtkdjI3enVjaTZZcEdaZXduZ2ZnUGh2RHBBSnlFSTJpWjJjZ3MxWHJ2a19lS0JHZEg0ODNBV2xyX2FtUHhadmtUS3pubnhwUUxVU0RjaXc?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-03"
+    },
+    {
+      "id": "allahabad hc caste name use alone doesn t invoke sc st act",
+      "headline": "Allahabad HC: Caste name use alone doesn't invoke SC/ST Act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Awaz The Voice",
+      "published": "2026-08-20",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNdXJ5OUE4ZXVxemhPZE5GZHEzbldTRWROdHc2R3NJMll3RlNsUEFia3UyVUctRm10Rl9RdWpySHdVU25zelRsaWFZcUs5d1d6SDdTWWJTcEFNWlNLSHZLRXdjbEYtQWtTZW9fbVpsY3VCQ3lfTVdyMmhEYjNSb2lmRVhVVFdKaE5NUHdZWk9laGpHTkpDLVBIc3JQYUxRTU1KMnhDbHVIMC15RTVf?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-03"
+    },
+    {
+      "id": "ap rising protests against custodial deaths of dalit tribal youths",
+      "headline": "AP: Rising Protests Against Custodial Deaths of Dalit, Tribal Youths",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-10-03",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1574c3abb401c9219008caaaa393b&url=https%3a%2f%2fpeoplesdemocracy.in%2f2026%2f1004_pd%2fap-rising-protests-against-custodial-deaths-dalit-tribal-youths&c=3316210654955646193&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-10-03"
+    },
+    {
+      "id": "don t hesitate to quash false cases kerala hc cautions agencies courts against misuse of s",
+      "headline": "Don't Hesitate To Quash False Cases: Kerala HC Cautions Agencies, Courts Against Misuse Of SC/ST Act By...",
+      "subject": "scst",
+      "facet": "false-finding",
+      "outlet": "Live Law",
+      "published": "2025-02-18",
+      "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNa2JHOFRnM2lPMFJQdEhCX24zQnlQY3RycGl3SGI4OTVHYkkwa0wwTElUSVhBVzZZaVNyMnItNVh3UUxsclFTSHV0Tk9TYmxLWl8zTThhQmhOWUZicjFabUplc0lsUGJFV2tYU0RwZVl0d2J0SEJ1ZVZMNW1jQ3ZRUzJWWWVYWUF4WkFfcm1HcFlQN2hFaUxUaG5jSkdIQ2dpU0VuV1RwSmNTU01NdE1JanJ2WnZwWU9PcjNpdUZGaGhuX0RFX3NOUWY3NXd2MXRNNVdDVFBCeE9FUlJKcUhZVzVMcFc4cHpnT3RR0gHwAUFVX3lxTE1BdXZWSnNYbEtiMFZuZ3hvX09DLXlCcG9jT3JXYk1yajdMVHJsQXZhR3lHZ1BIUHV0eXl6ajVzNGpqdE93TTRXMVZheGUybC1oMEtOczVyRGhHZVhhVkFQQnc3cTRETV85bE9TZkd6eUdYYXc5Y2FzRGdNdnlzWWloeXBxSldqRnRiZ3F6bXd3Y2lPWUJmb1EzSi11ZktMYloxZURNX0hFazNmS29oTTVDZ3V5WmpRdUd6Z29mcVNjbnhfcW0tVlpmY2tVcldQQVd2dldORGtoUFNMMVFVajBKdnZ0TnNVN2hhQXFudzlSNQ?oc=5",
+      "queries": [
+        "act-false"
       ],
       "indexes": [
         "google"
