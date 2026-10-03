@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-03T05:18:41.151Z",
-  "previousBuild": "2026-10-02T20:45:06.300Z",
+  "builtAt": "2026-10-03T13:23:29.366Z",
+  "previousBuild": "2026-10-03T05:18:41.151Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 103,
-    "createdThisRun": 2,
+    "stories": 107,
+    "createdThisRun": 4,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 285,
     "corroboration": {
-      "one": 88,
+      "one": 92,
       "two": 10,
       "threePlus": 5
     }
@@ -28,12 +28,12 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 50
+      "n": 53
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 35
+      "n": 36
     },
     {
       "id": "targeting",
@@ -60,7 +60,7 @@
     {
       "iso": "IND",
       "name": "India",
-      "n": 7
+      "n": 8
     },
     {
       "iso": "UKR",
@@ -104,7 +104,7 @@
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 1
+      "kept": 3
     },
     {
       "outlet": "Military Times",
@@ -134,7 +134,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 3
+      "kept": 0
     },
     {
       "outlet": "Defense News",
@@ -164,7 +164,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -592,6 +592,79 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/sagar-defence-teases-autonomous-helicopter-for-navy-ships/",
+      "headline": "Sagar Defence Teases Autonomous Helicopter for Navy Ships",
+      "firstSeen": "2026-10-03",
+      "lastSeen": "2026-10-03",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/sagar-defence-teases-autonomous-helicopter-for-navy-ships/",
+          "published": "2026-10-03"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/indian-armys-apache-shots-down-target-drone-to-validate-gun-system-for-aerial-combat/",
+      "headline": "Indian Army’s Apache shots down Target drone to validate Gun System for Aerial Combat",
+      "firstSeen": "2026-10-03",
+      "lastSeen": "2026-10-03",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/indian-armys-apache-shots-down-target-drone-to-validate-gun-system-for-aerial-combat/",
+          "published": "2026-10-03"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/microwave-drone-killer-joins-u-s-armys-jailbreak-drill/",
+      "headline": "Microwave drone killer joins U.S. Army’s Jailbreak drill",
+      "firstSeen": "2026-10-03",
+      "lastSeen": "2026-10-03",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/microwave-drone-killer-joins-u-s-armys-jailbreak-drill/",
+          "published": "2026-10-03"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-navy-triton-spy-drone-gets-stuck-at-runways-end/",
+      "headline": "U.S. Navy Triton spy drone gets stuck at runway’s end",
+      "firstSeen": "2026-10-03",
+      "lastSeen": "2026-10-03",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-navy-triton-spy-drone-gets-stuck-at-runways-end/",
+          "published": "2026-10-03"
         }
       ]
     },
