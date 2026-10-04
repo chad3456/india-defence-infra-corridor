@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-04T19:37:43.971Z",
-  "previousBuild": "2026-10-04T14:05:11.323Z",
+  "builtAt": "2026-10-04T23:10:12.615Z",
+  "previousBuild": "2026-10-04T19:37:43.971Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 110,
+    "stories": 111,
     "createdThisRun": 1,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 278,
+    "itemsSeen": 277,
     "corroboration": {
-      "one": 95,
+      "one": 96,
       "two": 10,
       "threePlus": 5
     }
@@ -38,7 +38,7 @@
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 16
+      "n": 17
     },
     {
       "id": "cyber-ew",
@@ -60,7 +60,7 @@
     {
       "iso": "IND",
       "name": "India",
-      "n": 8
+      "n": 9
     },
     {
       "iso": "UKR",
@@ -97,7 +97,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 36,
+      "items": 35,
       "kept": 5
     },
     {
@@ -134,7 +134,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Defense News",
@@ -609,6 +609,28 @@
         {
           "outlet": "Defence Industry Europe",
           "url": "https://defence-industry.eu/u-s-army-establishes-robotics-technician-specialty-to-integrate-autonomous-systems-and-counter-battlefield-electronic-warfare/",
+          "published": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/boeing-p-8i-supports-indian-navy-maritime-patrol-and-reconnaissance-missions-with-12-aircraft-delivered-and-interest-in-more/",
+      "headline": "Boeing P-8I supports Indian Navy maritime patrol and reconnaissance missions, with 12 aircraft delivered and interest in more",
+      "firstSeen": "2026-10-04",
+      "lastSeen": "2026-10-04",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/boeing-p-8i-supports-indian-navy-maritime-patrol-and-reconnaissance-missions-with-12-aircraft-delivered-and-interest-in-more/",
           "published": "2026-10-04"
         }
       ]
