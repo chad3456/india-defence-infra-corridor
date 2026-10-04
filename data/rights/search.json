@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-03T23:22:20.808Z",
+  "builtAt": "2026-10-04T06:24:40.058Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 999,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 996,
-    "withOutlet": 937,
+    "items": 1004,
+    "addedThisRun": 5,
+    "carriedFromEarlierRuns": 999,
+    "withOutlet": 941,
     "bySubject": {
-      "scst": 660,
-      "pmshri": 339
+      "scst": 664,
+      "pmshri": 340
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 300
+    "offSubjectDropped": 301
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 495
+      "n": 496
     },
     {
       "key": "use",
-      "n": 347
+      "n": 350
     },
     {
       "key": "dispute",
@@ -40,7 +40,7 @@
     },
     {
       "key": "acquittal",
-      "n": 43
+      "n": 44
     },
     {
       "key": "false-finding",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 90
+      "n": 91
     },
     {
       "key": "The Indian Express",
@@ -62,7 +62,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 43
+      "n": 44
     },
     {
       "key": "The Hindu",
@@ -74,7 +74,7 @@
     },
     {
       "key": "Hindustan Times",
-      "n": 28
+      "n": 29
     },
     {
       "key": "LawBeat",
@@ -257,6 +257,10 @@
       "n": 4
     },
     {
+      "key": "newsdrum.in",
+      "n": 4
+    },
+    {
       "key": "Live Law",
       "n": 4
     },
@@ -283,10 +287,6 @@
     {
       "key": "The Caravan",
       "n": 3
-    },
-    {
-      "key": "Firstpost",
-      "n": 3
     }
   ],
   "perQuery": [
@@ -298,7 +298,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 5
     },
     {
       "id": "act-registered",
@@ -306,8 +306,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
-      "kept": 0,
+      "bing": 7,
+      "kept": 2,
       "offSubject": 12
     },
     {
@@ -316,9 +316,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 1,
       "kept": 1,
-      "offSubject": 39
+      "offSubject": 40
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 9,
-      "kept": 0,
-      "offSubject": 8
+      "bing": 7,
+      "kept": 1,
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -346,7 +346,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 54,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 20
     },
@@ -355,10 +355,10 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 92,
-      "bing": 0,
+      "google": 91,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 42
+      "offSubject": 44
     },
     {
       "id": "act-hostile",
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 44,
+      "google": 42,
       "bing": 3,
       "kept": 0,
       "offSubject": 6
@@ -387,7 +387,7 @@
       "expect": "allegation",
       "google": 26,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 2
     },
     {
@@ -398,17 +398,17 @@
       "google": 49,
       "bing": 2,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 19
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 29,
+      "google": 28,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 16
+      "kept": 0,
+      "offSubject": 15
     },
     {
       "id": "shri-general",
@@ -425,8 +425,8 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 46,
-      "bing": 0,
+      "google": 44,
+      "bing": 1,
       "kept": 0,
       "offSubject": 6
     },
@@ -438,7 +438,7 @@
       "google": 68,
       "bing": 1,
       "kept": 0,
-      "offSubject": 25
+      "offSubject": 24
     },
     {
       "id": "shri-upgrade",
@@ -447,7 +447,7 @@
       "expect": "use",
       "google": 52,
       "bing": 2,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 13
     },
     {
@@ -455,7 +455,7 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 44,
+      "google": 43,
       "bing": 2,
       "kept": 0,
       "offSubject": 6
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 51,
+      "google": 50,
       "bing": 3,
       "kept": 0,
       "offSubject": 9
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 42,
-      "bing": 0,
+      "google": 43,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 33
     }
   ],
   "items": [
@@ -16769,6 +16769,86 @@
         "google"
       ],
       "firstSeen": "2026-10-03"
+    },
+    {
+      "id": "uttar pradesh sc st court summons so for 5 year delay in dalit atrocity case hindustan tim",
+      "headline": "Uttar Pradesh: SC-ST court summons SO for 5-year delay in Dalit atrocity case | Hindustan Times",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Hindustan Times",
+      "published": "2026-10-04",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPQXZBbFpTeTRVbnhJbEwxendodnVmYlI5Sk9jRGwyVXluYmo1OFNJYjR1amprQ19ZR1JHWmZ6UDAtblN5Y1pTMXNIYTBHMmZfNG5yVjVtXzJ1Y0lGN3ZSbXU5OFZrRlJGZjJpY2l4ekw2UjJ2Q0JUSjdoZXYwMWxHbmpOWEpDaV85RlpuMmpCakRSYVFKUFVCUUJkcGdhczB1V0dKOFMzREp1RXpmRVZQSHdFX0xCVWpfaWRCNHJ4aUFIMUwxblR6cXdXcjA2TGpoeHk5WDJjMTZzVGVDaWtaYjJB0gHnAUFVX3lxTE94ZVY0bEFFbnNfU29vNU0wVGVTWkJidVNraXp1WlZHRlhqR2ltbDYxQjU1bWlsWUVYQ0cyb0hhc0x6Y3NlalZuQnoxWExBZ3BuS3JPWVlBU1puUEJZdFIyMGlFMDc3bmNLYzV6b19GS2ZhYW0xODJfcGFtckltLVJod1ZsbW1sUmpnR2NEQVFXN0lHMmZndUdUSmRySEp0dXdhcFNES2RoNXNTUUZVUGJfWFJTMVJrWEVYVGRhdnFyMmUxUkVfdzZBMGNkRjBLem12R2ZnaVpKXzEtdFR0SDdQNWlVUkdaRQ?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "id": "ajeet bharti booked under sc st act days after leading reservation reform push",
+      "headline": "Ajeet Bharti booked under SC/ST Act days after leading reservation reform push",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "newsdrum.in",
+      "published": "2026-08-24",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPRkNINFlpZWEyeVM1MXQ0MXdPTk1wTTVQX1RTZEdURW42c1Bkbkdla01IYlVCa1pGbFlLYUEyX2JUN1pob2hlSEl2R29QUzk2emVYTkxUTnd1cnNLaTkzUzVDUXJIUlluWjVRWVdNWGlPcTJUUjItb21mZWhUWlVDTjZpT2xTaXpILXpvTWROYVhIcGhxREM0ODBaM2hSU0JkSk1tV1F6RTFsd2Q5OTVjV2w1OHZZM1YtaG0w0gG7AUFVX3lxTE9GQ0g0WWllYTJ5UzUxdDQxd09OTXBNNVBfVFNkR1RFbjZzUGRuR2VrTUhiVUJrWkZsWUthQTJfYlQ3WmhvaGVISXZHb1BTOTZ6ZVhOTFROd3Vyc0tpOTNTNUNRckhSWW5aNVFZV01YaU9xMlRSMi1vbWZlaFRaVUNONmlPbFNpekgtem9NZE5hWEhwaHFEQzQ4MFozaFJTQmRKTW1XUXpFMWx3ZDk5NWNXbDU4dlkzVi1obTA?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "id": "gujarat high court acquits appellant in atrocity case due to compounding of ipc offences a",
+      "headline": "Gujarat High Court Acquits Appellant in Atrocity Case Due to Compounding of IPC Offences and Settlement. Conviction under Section 3(1)(x) of SC/ST Act Set Aside as Complainant Deceased and Parties Compromised for Peaceful Co-existence.",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-10-03",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5acTROYnJkekNJeW5acU9hRG1BY3BGSWxvOUNoOXM4UTdGbkxTNGJYSENOc09fOVFCNVBDcllKSm01alBCeXA0bnpidmdjMllpV1hjNHBzUXU3Q2U5eHlWVlltS1ZiVkJ0?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "id": "uttar pradesh sc st court summons so for 5 year delay in dalit atrocity case",
+      "headline": "Uttar Pradesh: SC-ST court summons SO for 5-year delay in Dalit atrocity case",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-10-03",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1f0c76830443ebfba3319ae81d211&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fIndia%2futtar-pradesh-sc-st-court-summons-so-for-5-year-delay-in-dalit-atrocity-case%2far-AA2dvdua&c=8073028499107657157&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "id": "haryana s 250 pm shri schools in line for digital green overhaul",
+      "headline": "Haryana’s 250 PM SHRI schools in line for digital, green overhaul",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2026-09-22",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOM0tpMU0zZGotVFU5SW1aRy1xT3lFTjFzNW8wZGJRLWhma25jcDNFdzNyUDc2SjczdWstV1p6cTgyZGpHbHFzQVkxYU00cDZwTVRRazU0ZUdmeF9QMHJwNkR0b3NwSWhINlh5bElPaXdvZW00a2otbWVmdTFxcTBydkZkeGVYZUFZTUEtbEVkeGVEN3hKMGY3cTBHdHJnYlFCQWtIUTg3cGtVdWoyZ0JOSy1oY3ZwYnhOMXBDc3lOU1BSVHZXZTgwakxVVHdablk5ZXJEVGd6XzHSAd4BQVVfeXFMTnJ2ZTF4aGd1ajJBREd0WFBqRU9iM1U0ZlBuYmJFODV0cEVrbWZWUDFkMUhzWTdERVRpUkFsX2tKdlktakJWc05zVGl6RGljY3p1QzU3SkVYSDhoWlZWNUVXbTVjdWV1Tm15aGZTSXZNQlFvR1JwZXcxcDl0LWpUbnZBblhfSktIWGExUGFEWmlYMDhQRGo0WWlNVmRkY1FOOUh5MnZrVU9WckVaanZzVXc1b3Q3dmdkenNzS1BBMkt5MVk1RnV3Qzl4a0hnbjRWWU1NTmlWQTNSbGVqbmd3?oc=5",
+      "queries": [
+        "shri-upgrade"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-04"
     }
   ]
 }
