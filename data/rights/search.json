@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-04T19:50:39.364Z",
+  "builtAt": "2026-10-04T23:38:40.103Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1014,
-    "addedThisRun": 4,
-    "carriedFromEarlierRuns": 1010,
-    "withOutlet": 951,
+    "items": 1020,
+    "addedThisRun": 6,
+    "carriedFromEarlierRuns": 1014,
+    "withOutlet": 957,
     "bySubject": {
-      "scst": 673,
+      "scst": 679,
       "pmshri": 341
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 303
+    "offSubjectDropped": 307
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 499
+      "n": 501
     },
     {
       "key": "use",
-      "n": 354
+      "n": 355
     },
     {
       "key": "dispute",
@@ -36,11 +36,11 @@
     },
     {
       "key": "allegation",
-      "n": 49
+      "n": 50
     },
     {
       "key": "acquittal",
-      "n": 46
+      "n": 48
     },
     {
       "key": "false-finding",
@@ -58,7 +58,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 50
+      "n": 51
     },
     {
       "key": "The New Indian Express",
@@ -89,20 +89,20 @@
       "n": 19
     },
     {
+      "key": "ThePrint",
+      "n": 18
+    },
+    {
       "key": "livelaw.in",
       "n": 18
     },
     {
-      "key": "ThePrint",
-      "n": 17
+      "key": "SCC Online",
+      "n": 14
     },
     {
       "key": "Careers360",
       "n": 14
-    },
-    {
-      "key": "SCC Online",
-      "n": 13
     },
     {
       "key": "ET Education",
@@ -169,6 +169,10 @@
       "n": 8
     },
     {
+      "key": "LawChakra",
+      "n": 8
+    },
+    {
       "key": "The News Mill",
       "n": 7
     },
@@ -194,10 +198,6 @@
     },
     {
       "key": "Mathrubhumi English",
-      "n": 6
-    },
-    {
-      "key": "LawChakra",
       "n": 6
     },
     {
@@ -306,7 +306,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 5,
+      "bing": 6,
       "kept": 2,
       "offSubject": 12
     },
@@ -317,7 +317,7 @@
       "expect": "use",
       "google": 100,
       "bing": 1,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 40
     },
     {
@@ -325,8 +325,8 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 52,
-      "bing": 8,
+      "google": 51,
+      "bing": 7,
       "kept": 0,
       "offSubject": 8
     },
@@ -337,15 +337,15 @@
       "expect": "use",
       "google": 45,
       "bing": 2,
-      "kept": 0,
-      "offSubject": 12
+      "kept": 2,
+      "offSubject": 11
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 53,
+      "google": 52,
       "bing": 2,
       "kept": 0,
       "offSubject": 19
@@ -355,9 +355,9 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 93,
+      "google": 94,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 45
     },
     {
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 41,
-      "bing": 2,
+      "google": 42,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "act-dilution",
@@ -397,7 +397,7 @@
       "expect": "false-finding",
       "google": 49,
       "bing": 2,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 19
     },
     {
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 70,
+      "google": 71,
       "bing": 1,
       "kept": 0,
-      "offSubject": 25
+      "offSubject": 26
     },
     {
       "id": "shri-upgrade",
@@ -446,7 +446,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 52,
-      "bing": 3,
+      "bing": 2,
       "kept": 0,
       "offSubject": 12
     },
@@ -458,7 +458,7 @@
       "google": 44,
       "bing": 2,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "shri-withheld",
@@ -475,17 +475,17 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 50,
+      "google": 51,
       "bing": 3,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 11
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 42,
+      "google": 43,
       "bing": 1,
       "kept": 0,
       "offSubject": 31
@@ -17011,6 +17011,103 @@
       "queries": [
         "act-convicted",
         "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "id": "bombay high court dismisses accused s petition to quash fir under sc st act and refusal of",
+      "headline": "Bombay High Court Dismisses Accused's Petition to Quash FIR Under SC/ST Act and Refusal of Discharge. The Court held that mere allegations of malafide and prior enmity do not justify quashing the FIR without trial, applying the stringent test from Bhajanlal'",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-10-02",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9IZEVQZUE5N3A1RlFld2ZSV09ibWtiaEJ2ZnBzdXVPN0xPUWJZUGZqSEFkZjRJODNMNmJzUjZwT1hhb2tTS2N0ZldDNHBrR283UXlhWDNZWXllWjV6OUZheTFIeGhNUDZy?oc=5",
+      "queries": [
+        "act-registered",
+        "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "id": "ajeet bharti moves delhi court for anticipatory bail in sc st act case over video",
+      "headline": "Ajeet Bharti Moves Delhi Court For Anticipatory Bail In SC/ST Act Case Over Video",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawChakra",
+      "published": "2026-08-25",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQLVgwYmo2ckUyMmpvYURvcndKa2FSWmdTZE5WX3V4QnZVSmFUMTN0blRRM3M2eGk4VU80WDlWZ2ItRzE0d0pEcmdSRXp2ZHpFYkJDQ2dDVG9DYmhqZ0swcHNLbEhrcnM0YjFBNDh6WFJyYXRORGExQWliOHhyTmlwakNxdkNWSE9rOWl6NDROTzVFenpnS1QwMTJabVEzY0FTdFBOVjY3OXRtdEZWVjcxa0pvSQ?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "id": "jury urges telangana cm to convene sc st act vigilance panel meet",
+      "headline": "Jury urges Telangana CM to convene SC/ST Act vigilance panel meet",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Hyderabad Mail",
+      "published": "2026-03-17",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQSk9aZ042dzFyaS1pUmNNUnlPQzNmV2dEVVBkMVc2VkU5elB6OVBwV1lMb1ZGek5iTlE4aUdMZVFrQncyUUhrNmpxV0FYTEpyMFduWHVfRUxYN3NDZWZCMWxWMTZpSzRNVWp3SmdQb2R4YkNRUU50V215QmsxY2Z2Z0Vpcw?oc=5",
+      "queries": [
+        "act-compensation"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "id": "sc st act supreme court upholds compensation for dalit couple intellectual property is als",
+      "headline": "SC/ST Act || Supreme Court Upholds Compensation For Dalit Couple: 'Intellectual Property Is Also Property'",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "LawChakra",
+      "published": "2025-01-31",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE02Z0lHQW92aWlTY2VVZ19iQ1VSN2N6M3FwZ1VWWUVXMFpxQ3hRR3FxM3NVdXg3eGZ2djZFbS0xMVg1SHoydzdkM2FfclhrSVRYdmVucGlfZi1aazk0UzVQajdGdk14dGNJb3VKVm5lRUZqMXNqbmFkYzhXRQ?oc=5",
+      "queries": [
+        "act-compensation"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "id": "delhi court convicts aap mla for causing hurt acquits of offences under sc st act",
+      "headline": "Delhi court convicts AAP MLA for causing hurt, acquits of offences under SC-ST Act",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "ThePrint",
+      "published": "2023-03-28",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQclpjTmxtaW5fNGFnLVlJU3haakpseEhEMU5oVnpXQlRyRkZ1YnE1RGpxSFFRcWhZM2hXTmxCYW5FWE9UUGJ3a1gyTGpYYThTcE1sMTRQLXpybmdtbmE2NjZUVG9jRDVkSDRXcWdDR1FnaWtIZDBvQ1pSQ193QTVNVjlWU0VKTEQ1aXdUS2M0Z05lSEFhRW81NS1iSDBDS0QwcmNIbjRnV0Z5dVN6NkV3SDQya1hPZnPSAbwBQVVfeXFMUGFlRHZUVVNkMnpyYnQ4T2JncEVNRDcybVRhc0dJemxhdjRiaVhZTDBpZjg4aEZqV3VENzNlVGpzaGZKUlV4UHd4WWZ6a1E2WFdHVDdlZVZ3dHJLdTJzNklodk1jdmFQR1hkTzdMZmhiSkF4TW54TThMWF8xQ0FSLWRSVU1KamFIbFk0TU9YR1I4QnA0UF92ejFvc1VHazYxbnNEV3RJU2ZvR1hPakY4a2RFWVlBT2tqUEFhS1o?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "id": "cases of this nature where provisions are grossly misused genuine complaints goes into obl",
+      "headline": "‘Cases of this nature where provisions are grossly misused, genuine complaints goes into oblivion’; Jharkhand HC quashes criminal proceedings against man accused under SC/ST Act",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "SCC Online",
+      "published": "2024-11-08",
+      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPT0dQV0xneDRqaS1uQ3RiYl9oTDZOTm1rWjhaTThDdWhkdzU3NmItY3FnMUg1eUdLaGF3TGw4NFJwU09wMXlPalVkcVk0SXRHRVV6VVhlNklXenc3QXBNODcxTkFHV293V0lNVTdMTnVpdjFuRjBkRHJFZ001aDNTZ2ZIcGFLd01SY1JOYkZwRUFNUFo1OVRnMnVLS2VZcmZQNE5kTW1CNTFZRFdONEprLUNadFZjTXZyUjM2MWhOd1F1ZU9GMXpIQXk3U3A3UDlEeGZkS0VFOTg3aFdJYXd4TWlPYTZaZGdTQWk5U2ltOWJsWEh1cmNCZ1hvUWRkNWt2R1E?oc=5",
+      "queries": [
+        "act-false"
       ],
       "indexes": [
         "google"
