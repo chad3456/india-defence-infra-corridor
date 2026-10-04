@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-04T14:25:16.089Z",
+  "builtAt": "2026-10-04T19:50:39.364Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1010,
-    "addedThisRun": 6,
-    "carriedFromEarlierRuns": 1004,
-    "withOutlet": 947,
+    "items": 1014,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 1010,
+    "withOutlet": 951,
     "bySubject": {
-      "scst": 669,
+      "scst": 673,
       "pmshri": 341
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 302
+    "offSubjectDropped": 303
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 498
+      "n": 499
     },
     {
       "key": "use",
-      "n": 352
+      "n": 354
     },
     {
       "key": "dispute",
@@ -36,7 +36,7 @@
     },
     {
       "key": "allegation",
-      "n": 48
+      "n": 49
     },
     {
       "key": "acquittal",
@@ -57,12 +57,12 @@
       "n": 54
     },
     {
-      "key": "The New Indian Express",
-      "n": 48
+      "key": "Lawtext",
+      "n": 50
     },
     {
-      "key": "Lawtext",
-      "n": 47
+      "key": "The New Indian Express",
+      "n": 48
     },
     {
       "key": "The Hindu",
@@ -229,6 +229,10 @@
       "n": 5
     },
     {
+      "key": "ETV Bharat",
+      "n": 5
+    },
+    {
       "key": "News18",
       "n": 5
     },
@@ -250,10 +254,6 @@
     },
     {
       "key": "TheWire.in",
-      "n": 4
-    },
-    {
-      "key": "ETV Bharat",
       "n": 4
     },
     {
@@ -298,7 +298,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 6
     },
     {
       "id": "act-registered",
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 100,
       "bing": 5,
-      "kept": 1,
+      "kept": 2,
       "offSubject": 12
     },
     {
@@ -317,8 +317,8 @@
       "expect": "use",
       "google": 100,
       "bing": 1,
-      "kept": 1,
-      "offSubject": 41
+      "kept": 2,
+      "offSubject": 40
     },
     {
       "id": "act-atrocity",
@@ -328,7 +328,7 @@
       "google": 52,
       "bing": 8,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
@@ -337,7 +337,7 @@
       "expect": "use",
       "google": 45,
       "bing": 2,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 12
     },
     {
@@ -348,17 +348,17 @@
       "google": 53,
       "bing": 2,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 19
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 91,
+      "google": 93,
       "bing": 1,
-      "kept": 2,
-      "offSubject": 44
+      "kept": 0,
+      "offSubject": 45
     },
     {
       "id": "act-hostile",
@@ -375,17 +375,17 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 40,
+      "google": 41,
       "bing": 2,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 26,
+      "google": 27,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -398,7 +398,7 @@
       "google": 49,
       "bing": 2,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 19
     },
     {
       "id": "act-fabricated",
@@ -408,7 +408,7 @@
       "google": 28,
       "bing": 0,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 16
     },
     {
       "id": "shri-general",
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 44,
+      "google": 43,
       "bing": 1,
       "kept": 0,
       "offSubject": 6
@@ -437,7 +437,7 @@
       "expect": "use",
       "google": 70,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 25
     },
     {
@@ -448,7 +448,7 @@
       "google": 52,
       "bing": 3,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "shri-mou",
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 51,
+      "google": 50,
       "bing": 3,
       "kept": 0,
       "offSubject": 9
@@ -7700,7 +7700,8 @@
       "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNWURxTUhGdzNsMEE4eGJKQThWU1dENGNLM0VYVjF4Qzk3U0QwX09QTjJzR3NiMmtaVjRqTElDWUVHNkJoNU9lT0lYamptcHg4aEhYQ05vblB4bm1INGNJN0dxZjRvcDh4alpyaWlheTVMdE1tQUVaQmt0NHN5WS1CZVJ0UUpOb1ZyN09WMzdROW9tZ0w0NnlJMHF3?oc=5",
       "queries": [
         "shri-general",
-        "shri-sanctioned"
+        "shri-sanctioned",
+        "shri-upgrade"
       ],
       "indexes": [
         "google"
@@ -16943,6 +16944,73 @@
       "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOQ2dBUHJoa1I3QW84MEpNX3lwX1BuVTJGZUhXRHQwaXJmbWJ1bEhHTllCdEozSGhxT3BXX0dzbllZMUVrdUtWeDhiMEZVWWRzeGlNT0JkcXZVQU5FZmpDb3BFRHlSMTBTNDJVUUtTMC1fbG4xdWdBWThRalNGVHhaWHMxTGFuVE5pYTAxNUxDa05US1J6RDg2Wll2NTgtbHhZcUg5enFkakdIMndXczIxLVJ2ZDdjcTQyVXphSnRJU09jYzZfQjVLY1llSHptVEhiM0ZSdUJseUt4SWvSAeABQVVfeXFMTXc3NkZNd2tZWG9jVEhLQTgwR2U2d2VGU2ZqYm9UM19kYU84NzF4THpwbWFSZFZON01YeW80OHFaRVVsQzBZbVFHbnBuTTA0X2J1RnlnQWdIVWNhT1ljT21LUldrVlp0cThwSUJNdXVuSWZvOG52ek1yQ1BuX2hHVFFpM1pmLXJNZ1dvYU5vc29OdUE1RVUyRzNYLU9NbktEaEphZkdfRzQ0amh1UW1BLVVPdFdkdzF4YUhrUHZ6QXFSSXltM1VsWm1rTHZPczJ3SThIY3dfenlmOHJGdmNfNFQ?oc=5",
       "queries": [
         "shri-funds"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "id": "bombay high court quashes fir in sc st atrocities case due to lack of public view and inte",
+      "headline": "Bombay High Court Quashes FIR in SC/ST Atrocities Case Due to Lack of Public View and Intent. Alleged Caste-Based Insult in Private Cabin Does Not Attract Section 3(1)(x) of SC & ST (Prevention of Atrocities) Act, 1989.",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-10-03",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBuUVkxazRCM2FsWmNacE1SenpKX1FxSEthd0l1Rnl0Z2xjQUpKMnZVaXQwZTJnVENLOGl0Y0RYcGhmdWZxa2FCWVdpcVVRTURHelR2MkRJX3Fxd3Yydjg5djJWNTN3UQ?oc=5",
+      "queries": [
+        "act-registered",
+        "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "id": "bombay high court quashes fir against sub divisional officer in sc st act case holds alleg",
+      "headline": "Bombay High Court Quashes FIR Against Sub-Divisional Officer in SC/ST Act Case — Holds Allegations of Outraging Modesty Were Abuse of Process. The Court Found That the Complainant, a Tahsildar, Misused Her Gender and Scheduled Caste Status to H",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "Lawtext",
+      "published": "2026-09-30",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBTQ0xnMVZPdDdSeVo0Z1JBWVdtWFhnZS1EWklpb0ROX21nelJBazJoeDdjbzRrc1pONHcwamFzdm5VelhOOVlOdVlxcW0wbWxsenc3ZFFQT3E1RkVvTjR4X0FtMDczUQ?oc=5",
+      "queries": [
+        "act-registered",
+        "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "id": "supreme court modifies conviction from murder to culpable homicide in sudden fight case un",
+      "headline": "Supreme Court Modifies Conviction from Murder to Culpable Homicide in Sudden Fight Case Under Section 304 Part II IPC. Caste-Based Atrocity Conviction Set Aside as Offence Not Committed Solely on Ground of Victim's Caste Under Section 3(2)(v) of SC/",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-08-22",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1SRVZIV2VoQV81bWk4d0l5S1hFdFFfbjJlbjI1ZTdkM1VUZ2dRZTNobTBqd0NYajRLTHFMSHN1MnJvOWdGS1FTQk5ibGw1MDdQSzN1VUpqbWVRODFHbHhYUHFDZ0s?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-04"
+    },
+    {
+      "id": "not on ground of caste sc sets free man accused under sc st act",
+      "headline": "\"Not on ground of caste,\" SC sets free man accused under SC/ST Act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "ETV Bharat",
+      "published": "2024-01-30",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPX1RzUkFrbW9ycjdRSGVQc1FaeVpqVE5DTDNWLXZRSHNZbzZQb3lwMi1RWUtFQ1laU3I5TVNKaVBSc3E4MWpkaTBmanpFUmt0dDg1aW9POHI0UE1xY1BXZmNCZGFtaENScWM0dEpUV1luVDZSX3phSmFOVmFGelpjcXRjQWdEZE9Hb1ZRRmV0aFBFM2xWRGozcmhuZnBfbjRwY1hYUUdYRnBBcmgxSlBIYjFjQkl1RWJJc19lVmY1V1Z1YmhwazRn0gHMAUFVX3lxTE52VWg2YU1oSUo2LVRGQWxvMVBQZmRJRjVsZHV4NndFTWRfaTZmVEplV003ZVRSTk1VMy1FT0tPR0xkaHVXRDRyVXZGT1JQMUk3U25yMWRYenExVXROMG1QeEZBN2tKdkwzQnZvYU5YWnlFbEt3OUIwS1NWQWJDVXdCblZCbWhYWkJEdm14MW9wWTJPSHc0dlljWXhlRXN2Y0xDdGNMVzdCNmpiWm1yUjFrdkZ3SThGYnNtZ2NwRGVwS1pWZnhCWHBDanhGQg?oc=5",
+      "queries": [
+        "act-convicted",
+        "act-acquittal"
       ],
       "indexes": [
         "google"
