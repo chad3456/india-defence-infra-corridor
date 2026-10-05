@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-28T10:58:03.466Z",
+  "builtAt": "2026-10-05T11:32:33.614Z",
   "source": "English Wikipedia's per-force 'List of active … aircraft' articles, read header-first. Those articles compile mostly from IISS's Military Balance and FlightGlobal's World Air Forces, and carry those publications' lag and their disagreements.",
   "method": "Tables are matched on their headers, never on column position. A table without both an aircraft column and a quantity column is skipped and counted rather than read by guessing. A quantity cell yields a number only when it carries one unambiguously; a range, a dash or prose yields null, which is counted separately and never treated as zero. A force whose quantity cells parsed less than sixty per cent of the time has its fleet total withheld while its list of types is kept.",
   "refusal": "No fleet total is reconciled against another catalogue, and no aircraft is resolved to a base. Every number here says 'a public catalogue lists this many', which is a weaker claim than 'this country has this many' and is the only one the source supports.",
@@ -11,9 +11,9 @@
   ],
   "counts": {
     "forces": 13,
-    "types": 791,
+    "types": 792,
     "counted": 643,
-    "unreadable": 148,
+    "unreadable": 149,
     "totalsWithheld": 1,
     "failed": 1
   },
@@ -118,17 +118,17 @@
             "Total (acquired)",
             "Notes"
           ],
-          "rows": 76,
+          "rows": 77,
           "typeAt": 0,
           "serviceAt": 8,
           "used": true,
-          "filled": 51
+          "filled": 52
         }
       ],
-      "types": 69,
-      "counted": 42,
+      "types": 70,
+      "counted": 43,
       "unreadable": 27,
-      "total": 1802,
+      "total": 1804,
       "tablesRead": 1,
       "tablesSkipped": 0
     },
@@ -919,7 +919,7 @@
           "typeAt": 0,
           "serviceAt": 4,
           "used": true,
-          "filled": 18
+          "filled": 17
         },
         {
           "headers": [
@@ -949,9 +949,9 @@
         }
       ],
       "types": 18,
-      "counted": 17,
-      "unreadable": 1,
-      "total": 181,
+      "counted": 16,
+      "unreadable": 2,
+      "total": 175,
       "tablesRead": 1,
       "tablesSkipped": 5
     }
@@ -2450,6 +2450,17 @@
       "origin": "Piper Aircraft",
       "role": "Turboprop",
       "variant": "M600",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "PAK",
+      "country": "Pakistan",
+      "force": "Pakistan Air Force",
+      "type": "Vision SF50",
+      "origin": "Cirrus Design Corporation",
+      "role": "Jet",
+      "variant": "Vision SF50 G2",
       "inService": 2,
       "inServiceRaw": "2"
     },
@@ -9567,8 +9578,8 @@
       "origin": "Turkey",
       "role": "",
       "variant": "",
-      "inService": 6,
-      "inServiceRaw": "6"
+      "inService": null,
+      "inServiceRaw": ""
     },
     {
       "iso": "BGD",
