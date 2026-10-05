@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-05T05:39:33.150Z",
-  "previousBuild": "2026-10-04T23:10:12.615Z",
+  "builtAt": "2026-10-05T17:09:04.879Z",
+  "previousBuild": "2026-10-05T05:39:33.150Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,33 +12,33 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 111,
-    "createdThisRun": 0,
-    "corroboratedThisRun": 0,
+    "stories": 120,
+    "createdThisRun": 9,
+    "corroboratedThisRun": 3,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 275,
     "corroboration": {
-      "one": 96,
-      "two": 10,
-      "threePlus": 5
+      "one": 103,
+      "two": 11,
+      "threePlus": 6
     }
   },
   "byTheme": [
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 53
+      "n": 60
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 39
+      "n": 40
     },
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 17
+      "n": 18
     },
     {
       "id": "cyber-ew",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 16
+      "n": 18
     },
     {
       "iso": "IND",
@@ -65,11 +65,16 @@
     {
       "iso": "UKR",
       "name": "Ukraine",
-      "n": 4
+      "n": 7
     },
     {
       "iso": "GBR",
       "name": "United Kingdom",
+      "n": 3
+    },
+    {
+      "iso": "DEU",
+      "name": "Germany",
       "n": 3
     },
     {
@@ -78,8 +83,8 @@
       "n": 2
     },
     {
-      "iso": "DEU",
-      "name": "Germany",
+      "iso": "AUS",
+      "name": "Australia",
       "n": 1
     },
     {
@@ -116,7 +121,7 @@
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 2
+      "kept": 3
     },
     {
       "outlet": "C4ISRNET",
@@ -134,19 +139,19 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 4
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 2
+      "kept": 4
     },
     {
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 2
+      "kept": 3
     },
     {
       "outlet": "Defense One",
@@ -286,6 +291,38 @@
       ]
     },
     {
+      "id": "https://www.militarytimes.com/news/your-military/2026/10/05/us-army-tests-counter-drone-tech-at-mexican-border-as-cartel-drone-use-rises/",
+      "headline": "US Army tests counter-drone tech at Mexican border as cartel drone use rises",
+      "firstSeen": "2026-10-05",
+      "lastSeen": "2026-10-05",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/news/your-military/2026/10/05/us-army-tests-counter-drone-tech-at-mexican-border-as-cartel-drone-use-rises/",
+          "published": "2026-10-05"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/news/your-military/2026/10/05/us-army-tests-counter-drone-tech-at-mexican-border-as-cartel-drone-use-rises/",
+          "published": "2026-10-05"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/news/your-military/2026/10/05/us-army-tests-counter-drone-tech-at-mexican-border-as-cartel-drone-use-rises/",
+          "published": "2026-10-05"
+        }
+      ]
+    },
+    {
       "id": "https://www.militarytimes.com/unmanned/2026/10/01/neros-perennial-autonomy-lead-in-pentagons-drone-competition/",
       "headline": "Neros, Perennial Autonomy lead in Pentagon’s drone competition",
       "firstSeen": "2026-10-01",
@@ -342,6 +379,37 @@
           "outlet": "C4ISRNET",
           "url": "https://www.c4isrnet.com/news/your-military/2026/08/21/us-army-to-end-experimental-drone-battalion-in-europe/",
           "published": "2026-08-21"
+        }
+      ]
+    },
+    {
+      "id": "https://www.c4isrnet.com/global/europe/2026/10/05/germany-to-set-up-first-drone-regiment-next-year-modeled-after-ukraine-war-lessons/",
+      "headline": "Germany to set up first drone regiment next year, modeled after Ukraine war lessons",
+      "firstSeen": "2026-10-05",
+      "lastSeen": "2026-10-05",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "UKR",
+          "name": "Ukraine"
+        },
+        {
+          "iso": "DEU",
+          "name": "Germany"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/global/europe/2026/10/05/germany-to-set-up-first-drone-regiment-next-year-modeled-after-ukraine-war-lessons/",
+          "published": "2026-10-05"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/global/europe/2026/10/05/germany-to-set-up-first-drone-regiment-next-year-modeled-after-ukraine-war-lessons/",
+          "published": "2026-10-05"
         }
       ]
     },
@@ -592,6 +660,149 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/10/05/kaizen-49m-contract-army-task-order-classified-work/",
+      "headline": "After developing Pentagon’s counter-drone marketplace, Kaizen nabs $49M IDIQ from Army with first task order for classified work",
+      "firstSeen": "2026-10-05",
+      "lastSeen": "2026-10-05",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/10/05/kaizen-49m-contract-army-task-order-classified-work/",
+          "published": "2026-10-05"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/hensoldt-signs-agreement-with-ukraine-for-further-air-defence-radar-deliveries-and-development-of-surveillance-capabilities/",
+      "headline": "Hensoldt signs agreement with Ukraine for further air defence radar deliveries and development of surveillance capabilities",
+      "firstSeen": "2026-10-05",
+      "lastSeen": "2026-10-05",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [
+        {
+          "iso": "UKR",
+          "name": "Ukraine"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/hensoldt-signs-agreement-with-ukraine-for-further-air-defence-radar-deliveries-and-development-of-surveillance-capabilities/",
+          "published": "2026-10-05"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/u-s-navy-delivers-digital-test-range-to-australia-to-prepare-autonomous-aircraft-for-combat-missions-alongside-crewed-fighters/",
+      "headline": "U.S. Navy delivers digital test range to Australia to prepare autonomous aircraft for combat missions alongside crewed fighters",
+      "firstSeen": "2026-10-05",
+      "lastSeen": "2026-10-05",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "AUS",
+          "name": "Australia"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-navy-delivers-digital-test-range-to-australia-to-prepare-autonomous-aircraft-for-combat-missions-alongside-crewed-fighters/",
+          "published": "2026-10-05"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/leonardo-drs-launches-uk-radar-production-to-compete-for-european-air-defense-and-counter-drone-contracts-amid-growing-demand/",
+      "headline": "Leonardo DRS launches UK radar production to compete for European air defense and counter-drone contracts amid growing demand",
+      "firstSeen": "2026-10-05",
+      "lastSeen": "2026-10-05",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/leonardo-drs-launches-uk-radar-production-to-compete-for-european-air-defense-and-counter-drone-contracts-amid-growing-demand/",
+          "published": "2026-10-05"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/lockheed-martin-strengthens-indo-pacific-allies-strike-and-air-defense-capabilities-with-long-range-weapons-and-counter-drone-systems/",
+      "headline": "Lockheed Martin strengthens Indo-Pacific allies’ strike and air defense capabilities with long-range weapons and counter-drone systems",
+      "firstSeen": "2026-10-05",
+      "lastSeen": "2026-10-05",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/lockheed-martin-strengthens-indo-pacific-allies-strike-and-air-defense-capabilities-with-long-range-weapons-and-counter-drone-systems/",
+          "published": "2026-10-05"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/10/germany-pledges-1-1-b-military-aid-package-to-ukraine-flush-with-drone-interceptors/",
+      "headline": "Germany pledges $1.1B military aid package to Ukraine flush with drone interceptors",
+      "firstSeen": "2026-10-05",
+      "lastSeen": "2026-10-05",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "UKR",
+          "name": "Ukraine"
+        },
+        {
+          "iso": "DEU",
+          "name": "Germany"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/germany-pledges-1-1-b-military-aid-package-to-ukraine-flush-with-drone-interceptors/",
+          "published": "2026-10-05"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/second-u-s-navy-carrier-ready-to-fly-mq-25-drone-tanker/",
+      "headline": "Second U.S. Navy carrier ready to fly MQ-25 drone tanker",
+      "firstSeen": "2026-10-05",
+      "lastSeen": "2026-10-05",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/second-u-s-navy-carrier-ready-to-fly-mq-25-drone-tanker/",
+          "published": "2026-10-05"
         }
       ]
     },
