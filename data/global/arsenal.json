@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-05T23:22:11.063Z",
+ "builtAt": "2026-10-06T12:13:32.737Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206503,20 +206503,52 @@
   },
   {
    "outlet": "Naval News",
-   "ok": false,
-   "items": 0,
-   "kept": 0,
-   "via": "unconfigured"
+   "ok": true,
+   "items": 10,
+   "kept": 2,
+   "via": "direct"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-uygxpl",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": {
+    "amount": 1700000000,
+    "currency": "USD",
+    "asWritten": "$1.7 billion"
+   },
+   "date": "2026-10-06",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/u-s-navy-warship-sensor-deal-could-reach-1-7-billion/",
+   "headline": "U.S. Navy warship sensor deal could reach $1.7 billion",
+   "primary": false
+  },
+  {
+   "id": "ev-1gbkgv3",
+   "kind": "test",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-10-05",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/10/u-s-navy-completes-successful-test-flight-of-blackbeard-long-range-hypersonic-strike-missile/",
+   "headline": "U.S. Navy Completes Successful Test Flight of Blackbeard Long-range Hypersonic Strike Missile",
+   "primary": false
+  },
   {
    "id": "ev-1vpm5m2",
    "kind": "order",
@@ -207325,93 +207357,6 @@
  ],
  "groups": [
   {
-   "key": "order||vietnam",
-   "systems": [],
-   "countries": [
-    "Vietnam"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1vpm5m2",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Vietnam"
-     ],
-     "value": null,
-     "date": "2026-10-03",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/10/metal-shark-awarded-contract-for-13-patrol-boats-for-vietnam/",
-     "headline": "Metal Shark Awarded Contract for 13 Patrol Boats for Vietnam",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order||united kingdom",
-   "systems": [],
-   "countries": [
-    "United Kingdom"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-8yr084",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-10-02",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/news/30-boost-to-uk-military-transport-aircraft-availability-under-new-deal",
-     "headline": "30% boost to UK military transport aircraft availability under new deal",
-     "primary": true
-    },
-    {
-     "id": "ev-xithjw",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-09-21",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/publications/design-approved-organization-scheme-daos",
-     "headline": "Design Approved Organization Scheme (DAOS)",
-     "primary": true
-    },
-    {
-     "id": "ev-1tu2uoh",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-09-17",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
-     "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "UK Ministry of Defence",
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "from a primary source"
-  },
-  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -207419,6 +207364,24 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-uygxpl",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 1700000000,
+      "currency": "USD",
+      "asWritten": "$1.7 billion"
+     },
+     "date": "2026-10-06",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-navy-warship-sensor-deal-could-reach-1-7-billion/",
+     "headline": "U.S. Navy warship sensor deal could reach $1.7 billion",
+     "primary": false
+    },
     {
      "id": "ev-xemcbm",
      "kind": "order",
@@ -207739,13 +207702,129 @@
     }
    ],
    "outlets": [
+    "Defence Blog",
     "Breaking Defense",
     "Defense News",
-    "Naval News",
-    "Defence Blog"
+    "Naval News"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "test||united states",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "kind": "test",
+   "events": [
+    {
+     "id": "ev-1gbkgv3",
+     "kind": "test",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-10-05",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/u-s-navy-completes-successful-test-flight-of-blackbeard-long-range-hypersonic-strike-missile/",
+     "headline": "U.S. Navy Completes Successful Test Flight of Blackbeard Long-range Hypersonic Strike Missile",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order||vietnam",
+   "systems": [],
+   "countries": [
+    "Vietnam"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1vpm5m2",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Vietnam"
+     ],
+     "value": null,
+     "date": "2026-10-03",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/metal-shark-awarded-contract-for-13-patrol-boats-for-vietnam/",
+     "headline": "Metal Shark Awarded Contract for 13 Patrol Boats for Vietnam",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order||united kingdom",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-8yr084",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-02",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/news/30-boost-to-uk-military-transport-aircraft-availability-under-new-deal",
+     "headline": "30% boost to UK military transport aircraft availability under new deal",
+     "primary": true
+    },
+    {
+     "id": "ev-xithjw",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-09-21",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/publications/design-approved-organization-scheme-daos",
+     "headline": "Design Approved Organization Scheme (DAOS)",
+     "primary": true
+    },
+    {
+     "id": "ev-1tu2uoh",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-09-17",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
+     "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "UK Ministry of Defence",
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "from a primary source"
   },
   {
    "key": "order||sweden",
