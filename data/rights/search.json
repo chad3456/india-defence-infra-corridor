@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-06T01:31:35.264Z",
+  "builtAt": "2026-10-06T11:34:40.631Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,29 +10,29 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1039,
+    "items": 1045,
     "addedThisRun": 6,
-    "carriedFromEarlierRuns": 1033,
-    "withOutlet": 976,
+    "carriedFromEarlierRuns": 1039,
+    "withOutlet": 982,
     "bySubject": {
-      "scst": 693,
-      "pmshri": 346
+      "scst": 697,
+      "pmshri": 348
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 300
+    "offSubjectDropped": 306
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 506
+      "n": 508
     },
     {
       "key": "use",
-      "n": 367
+      "n": 369
     },
     {
       "key": "dispute",
-      "n": 56
+      "n": 57
     },
     {
       "key": "allegation",
@@ -40,7 +40,7 @@
     },
     {
       "key": "acquittal",
-      "n": 49
+      "n": 50
     },
     {
       "key": "false-finding",
@@ -50,11 +50,11 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 94
+      "n": 95
     },
     {
       "key": "Lawtext",
-      "n": 57
+      "n": 58
     },
     {
       "key": "The Indian Express",
@@ -66,7 +66,7 @@
     },
     {
       "key": "The Hindu",
-      "n": 39
+      "n": 40
     },
     {
       "key": "Hindustan Times",
@@ -133,6 +133,10 @@
       "n": 11
     },
     {
+      "key": "Onmanorama",
+      "n": 11
+    },
+    {
       "key": "ndtv.com",
       "n": 10
     },
@@ -145,15 +149,15 @@
       "n": 10
     },
     {
-      "key": "Onmanorama",
-      "n": 10
-    },
-    {
       "key": "India Legal",
       "n": 9
     },
     {
       "key": "The Economic Times",
+      "n": 9
+    },
+    {
+      "key": "LawChakra",
       "n": 9
     },
     {
@@ -166,10 +170,6 @@
     },
     {
       "key": "The News Minute",
-      "n": 8
-    },
-    {
-      "key": "LawChakra",
       "n": 8
     },
     {
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 6,
+      "bing": 5,
       "kept": 1,
-      "offSubject": 10
+      "offSubject": 11
     },
     {
       "id": "act-convicted",
@@ -317,8 +317,8 @@
       "expect": "use",
       "google": 100,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 38
+      "kept": 1,
+      "offSubject": 37
     },
     {
       "id": "act-atrocity",
@@ -326,8 +326,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 52,
-      "bing": 9,
-      "kept": 1,
+      "bing": 8,
+      "kept": 0,
       "offSubject": 8
     },
     {
@@ -337,7 +337,7 @@
       "expect": "use",
       "google": 46,
       "bing": 2,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 11
     },
     {
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 55,
+      "google": 57,
       "bing": 2,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 21
     },
     {
       "id": "act-acquittal",
@@ -357,7 +357,7 @@
       "expect": "acquittal",
       "google": 98,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 47
     },
     {
@@ -368,14 +368,14 @@
       "google": 25,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 9
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 44,
+      "google": 42,
       "bing": 1,
       "kept": 0,
       "offSubject": 8
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 27,
+      "google": 26,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 28,
+      "google": 29,
       "bing": 0,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 17
     },
     {
       "id": "shri-general",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 3
     },
     {
@@ -425,9 +425,9 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 42,
+      "google": 44,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -435,20 +435,20 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 68,
+      "google": 69,
       "bing": 0,
       "kept": 0,
-      "offSubject": 24
+      "offSubject": 25
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 55,
+      "google": 56,
       "bing": 3,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 16
     },
     {
       "id": "shri-mou",
@@ -457,7 +457,7 @@
       "expect": "dispute",
       "google": 44,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 4
     },
     {
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 54,
+      "google": 55,
       "bing": 2,
       "kept": 0,
       "offSubject": 12
@@ -2049,7 +2049,8 @@
       "published": "2026-09-21",
       "url": "https://news.google.com/rss/articles/CBMioAJBVV95cUxNTFVqT2o5cUJ4RDQtSTk2NTlXNkNrWFBhT0dxd0JWaDZLOTJDU1hIZmI5cjl5LU8wV09YVGhHRGxTRkxYUDIzMVZDYm9nSmRvZjFROVFhclhmaUxFdWY0OWxtTDdqVkxjZWlGT242RG9zZWFtMEJ3YXFVLVNzSDJUQW9MZzA4US16d0s2MHVTV2tQV29CNmpDYmRqMzhNbmJNeE1PdjE2NWY4Z1VSclYtZXRVZkE5UnBWZHpmSzZoZk5qLTJzaWJZN0ZSajFwV3YydTZfLXM4cGZSOEFiUUlJMDJzcThvVlZ6RklGTFVSNGoyUVFfdXJ3eFNPazFPYklWanRhN3M1blFmNjBLa3ZoUlllTDhIY2QtN3k0SVdySEvSAaYCQVVfeXFMT1QyTFRRdHdPUUhRakNPb1FvdjZLX1o2VzhjeGo5cGVTOU5qSGcwSkJkd0lFSGVNMlJWXzJBeUZaLWlhSHRzQUUxaFdMN1JqUy1lTHFnVm5iamo3UFpuWDdPUHhQd2ZxeWt6b2Y0MFltSUQ5emFCTmJRdlpoWldOWnlMamxyVk82aGRpNlRaZlU1WElUSkwtdHcwbk1MM18zdmRGVGo4WThXTy0tWHJzTjNXWXdDeElQb2FYS2hCbVZmUVY2bDhsSjlYVW1pNUZiWVBUM1AwUWdIckhwNldydDQyWGloWWNIXzhJNHh4bC1fMVZmNHFrdllGdjJLZUx6WG9RTU9uWFpXUUx4MGdwNllxUTNVWk52ZGcwZnNTLWRBYTllUjJB?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-general"
       ],
       "indexes": [
         "google",
@@ -17416,6 +17417,102 @@
       "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPY1FmVENWM2U5VW5IdEFycWswdm9HM0xFV3pIY2FobENmQ1FNWkpKWEd2VUk2bVR5d1d2dFlqQnRRT2NIWmUxMkdpTXd5aTFOUGZmS1REWmJncUJYUFBYbmJGQnJ0eG1OVjhONy1wZDZtdzNENlNQMFpQcU9hVHRsOVdiNjgxbURhU0t2ZlF1NTcxYjVmbGc5Q3FrR052SG50UVpfMFFLdkMxUkRJa0o3cUJTdjFCd19YLVJqRXd4Nks3NXJJeDJ0bzd0UlR0bWtWU1RiRUxvdHBpSzIyVlHSAeIBQVVfeXFMT0lPRi0zNlBsdUdaZVUwQlRURkxsVVpZQW5SaGdLQkNFempfQ19NWXpBdTdueHBUdkFxdmVVX3E4LTdXM2lUdWREMjN3WjNsYWtPNHF4UEhmaV8zaGFMUE91LWloRW9TdTAyaUc4V1h1WDFvZlZNVDhVQWc2WFd5LTUyd0dlMkxnWnZibDVpMTZQakZ2UTNta1BiaERhZUhTWU9lWHU2SmRTVTRoekE3cWwzdWpnSENxYkt6dW9TaFNOcFV5cU5TVDFHRzBCa25HMWU3Zks5bWt3SDBheXNwc2ktZw?oc=5",
       "queries": [
         "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-06"
+    },
+    {
+      "id": "sharing obscene clips pics falls within public view under sc st act says hc",
+      "headline": "Sharing obscene clips, pics falls within ‘public view’ under SC/ST Act, says HC",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2026-10-03",
+      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQZnAteU83eUdqX3FYc1UzdVZ1eHFKZk8zWmxIT085S1V6bDI4MFBtQzkyR0RoU1ZuaFc1S1ZWUkpVU3FTUWgyRjhaamt5SHE4bng1WEpKeGRGd2VLM3cwaEViTXRSVlNWMHNMWnRpV0NRTEtOR2JRbTJBYm0tN29lQVNXR2NMZkpPZ0lIb3dvT1c5Z1FzYjg3SVZrQXNQd1JTQlUzaWVHM084Qi1VaUN1LWQtdFp0MXJhcE43dEVfQTlxblR3eWtlNWkzMG9OSjRpal8yUWJYU21YcUNocUZ3Q1RKNNIB6AFBVV95cUxNOU96Q1ptWkduN3pnZWh5Y1NlZk5ObW1sTkUxd0E4d19NQk5UWUEzS2lHUFRaTmNzZHNoWWJVb1c3WlFEYmk4bk55VlhmNlVVS3Bpd2lzR2VxMTh3d0pYa3BUTW4zcUM3Q1VaUE93Q1RfcHdBX3lZcXh1Y2RYQlZwUDRTSnRFbWdFdWRUTUU1RFRwT0lONHdJWFlZTGg4WUhJMC1ReG4wS2Y4anZTWkdHWDltSk1Zcm1KS1k0NnVpbWEwM25SMkloTTZXLXpBNmc3NEQzVjdnV1I0YU4tX0dERFNoVi1zRVNH?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-06"
+    },
+    {
+      "id": "calcutta high court quashes sc st act case against husband in laws for want of public view",
+      "headline": "Calcutta High Court Quashes SC/ST Act Case Against Husband, In-Laws For Want Of Public View Material",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawChakra",
+      "published": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBHNm95MzN4OG5INWdtQ0VtbDM5X2Y4UThvYXNnX1ZoYlVINlh1ZHp5ZzVhVVRuWFRNVzI4TzVLV1ZOUW9LRzdYcUkxY2hmOU9LU3ZDbDNvLUtXZk9nNEl6QnFGdzNxSUpHZl9KcTNKTGtSZnJteVVVLWM2QkpILVk?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-06"
+    },
+    {
+      "id": "six sentenced to two years under sc st act in tiruppur for shunning cook of govt school no",
+      "headline": "Six sentenced to two years under SC/ST Act in Tiruppur for shunning cook of govt. school noon meal centre",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Hindu",
+      "published": "2025-11-28",
+      "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNdm1iTXJsTE5URHBEMng0YkhESXZhY0xjUmdGdlJRWndOV3hDdnlYNVRLbU52NDBObmVnRVlMbXpMS1RKalpFZ0ZOV1ZfSWZ6cEhvRTJvUEtEUWNUSEpmUUw3bEF5enVSTnppMHhRZWVTdHhfMFEtc1VZQXBkUE9RZ1FPakhvZjdTRjNVMG5iZHd3WWVOZ0hIa01KcUdaa2N6SXJmYjFRZnQydDZnR3RFMGdNQTR5elc1LU1URnVZdGRFSXZTS0tCdnRFaktlamVMX3B2UWVnWDBZWllNQXBIeExRY3RSSkl0OHllYy1RUVprVExqemIyLTNQanNoRVdz0gGHAkFVX3lxTE5meDVtVU50azdNaDZwTldQVlFWRV9yc3RMckw0NjZ3cURHZE5WUHZIcGR4azFpam5SelhEZV92QzdEMjRMU1Fjbm1wdTVUeUxXdjhxMlBJMnN0Q3QxSFd4Vm1OWUxjRjVONl9iQ2xrc3JQWktMM2lvaUwzeWdSUnNMcTh4RkVqT3lteGxXMEExbDRVMlkxazJxTDJhQTFRWE42MFBCQnItZ2xLbnJQMHl3RTRBSEFPWWUtbHVBcVJ5YlgybkxUcDcybXZBdU1PWFdnRGhIanlDeGRGRGRjOTh6YW5USWRaWW1jdTFrd3ExRXVWeGlVNHI3S0k2Tkc4aF92aFdwTTBz?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-06"
+    },
+    {
+      "id": "bombay high court acquits accused in rape and atrocities case due to inconsistent evidence",
+      "headline": "Bombay High Court Acquits Accused in Rape and Atrocities Case Due to Inconsistent Evidence and Lack of Corroboration. Alleged Rape of Married Woman Fails as Prosecution Witnesses Contradict Each Other and Medical Evidence Does Not Support Sexu",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE82ekJOQl93ZHhYa29aZTVQaDkwcmhkN3YxdF9NTXVVLWl2WVZoc0FaQ1d6cEVrUVFMX3ppTFc2Nlg4LU82S1lyRnBlR3Zocm1ldUZZeUhHUGxiZUdERlJJQ093MUtiZw?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-06"
+    },
+    {
+      "id": "himanta launches development of 264 schools under pm shri school scheme",
+      "headline": "Himanta launches development of 264 schools under PM Shri school scheme",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "Moneycontrol.com",
+      "published": "2023-11-29",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPV2s0OElESHd6NkRpMlBMWDN3aFF5VjFmWjhLZEl0ZURQMUJULWFDUFpZUVRqZldpY0x5a2o0RU14U2VXQWVQRTY1eUxrNi1aWkpRbExjV3o3eWVzQzRwbEdKeEJtdUlWdjRYRUxHYXM4UTV5RG9FT3dkc2FvRDlzU3NOTW9NTHpNYzFJUEdHR3V0VVJhSDc2ZjNOM3RkZWZFNlhvTTRUSXJYVGt5anpfQ2tqaFNLdjhZbm5LMUJYaHlGNU1OT3FacdIBzgFBVV95cUxPdnhrc2NZbGJDWDRETkhYQlpNOXNKMjV0QjFPMDF2RzhUbVRXRTZzRzdjVUVDVkVIUXFQNXlDeFZ4UFJLVzJOLW9aS05BNGZVVVlKeFFKUHlqRU5rSXBtUEtlZlNNbXIwYzlEYnIyNnYwTDMtUjlOd3NoWExaVW10NmE3eXRFQjVOM3RpYzZtV3N2TTdjN2lDNjFEaUZJYXJhUExvQ3lqWk5zWWhNN01iUUl4Q1NLa3luQjhtXzV2QTZzNlFjNE1jVnp2dHpiZw?oc=5",
+      "queries": [
+        "shri-sanctioned"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-06"
+    },
+    {
+      "id": "cpi wants kerala to exit pm shri cm refuses cpi mulls far reaching steps than just cabinet",
+      "headline": "CPI wants Kerala to exit PM SHRI. CM refuses. CPI mulls far-reaching steps than just Cabinet boycott",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": "Onmanorama",
+      "published": "2025-10-27",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNUzYxOUVLZnNNbHlsSldPUWZUNkR2dG85SUNVdmhDZXgzM3VYdU1yeVgxZ2t5NGhoY1ZrcFhFa2hmaDFFWkVFMVY5Z0t6YUltc2FyUnBsUFZHLXF5M3I0QllDbXdkTzRqdTF2c0lvSWJsd1p6a0g1Y0J3VEVpZ0o2Qm1tM25tUEQwbWR0b3ZDRXJPeUFXbHNKT1hQOEFZY3BzRC1wSHNnZnprV29ma3lj0gGvAUFVX3lxTE1TNjE5RUtmc01seWxKV09RZlQ2RHZ0bzlJQ1V2aENleDMzdVh1TXJ5WDFna3k0aGhjVmtwWEVraGZoMUVaRUUxVjlnS3phSW1zYXJScGxQVkctcXkzcjRCWUNtd2RPNGp1MXZzSW9JYmx3WnprSDVjQndURWlnSjZCbW0zbm1QRDBtZHRvdkNFck95QVdsc0pPWFA4QVljcHNELXBIc2dmemtXb2ZreWM?oc=5",
+      "queries": [
+        "shri-mou"
       ],
       "indexes": [
         "google"
