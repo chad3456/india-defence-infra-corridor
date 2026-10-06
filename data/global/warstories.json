@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-05T17:09:04.879Z",
-  "previousBuild": "2026-10-05T05:39:33.150Z",
+  "builtAt": "2026-10-06T01:18:51.591Z",
+  "previousBuild": "2026-10-05T17:09:04.879Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 120,
-    "createdThisRun": 9,
-    "corroboratedThisRun": 3,
+    "stories": 124,
+    "createdThisRun": 4,
+    "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 275,
+    "itemsSeen": 276,
     "corroboration": {
-      "one": 103,
+      "one": 107,
       "two": 11,
       "threePlus": 6
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 60
+      "n": 64
     },
     {
       "id": "autonomy",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 18
+      "n": 19
     },
     {
       "iso": "IND",
@@ -85,6 +85,11 @@
     {
       "iso": "AUS",
       "name": "Australia",
+      "n": 2
+    },
+    {
+      "iso": "KOR",
+      "name": "South Korea",
       "n": 1
     },
     {
@@ -103,7 +108,7 @@
       "outlet": "The War Zone",
       "ok": true,
       "items": 33,
-      "kept": 5
+      "kept": 4
     },
     {
       "outlet": "Indian Defence Research Wing",
@@ -156,7 +161,7 @@
     {
       "outlet": "Defense One",
       "ok": true,
-      "items": 17,
+      "items": 18,
       "kept": 3
     },
     {
@@ -664,6 +669,28 @@
       ]
     },
     {
+      "id": "https://defence-industry.eu/rheinmetall-and-breaker-demonstrate-voice-controlled-drone-swarms-for-australian-army-boxer-combat-vehicles/",
+      "headline": "Rheinmetall and Breaker demonstrate voice-controlled drone swarms for Australian Army Boxer combat vehicles",
+      "firstSeen": "2026-10-06",
+      "lastSeen": "2026-10-06",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "AUS",
+          "name": "Australia"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/rheinmetall-and-breaker-demonstrate-voice-controlled-drone-swarms-for-australian-army-boxer-combat-vehicles/",
+          "published": "2026-10-06"
+        }
+      ]
+    },
+    {
       "id": "https://defensescoop.com/2026/10/05/kaizen-49m-contract-army-task-order-classified-work/",
       "headline": "After developing Pentagon’s counter-drone marketplace, Kaizen nabs $49M IDIQ from Army with first task order for classified work",
       "firstSeen": "2026-10-05",
@@ -802,6 +829,67 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/second-u-s-navy-carrier-ready-to-fly-mq-25-drone-tanker/",
+          "published": "2026-10-05"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/10/05/air-force-counter-drone-point-defense-modernization-south-korea/",
+      "headline": "7th Air Force seeks new counter-drone capabilities for point defense modernization in South Korea",
+      "firstSeen": "2026-10-05",
+      "lastSeen": "2026-10-05",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "KOR",
+          "name": "South Korea"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/10/05/air-force-counter-drone-point-defense-modernization-south-korea/",
+          "published": "2026-10-05"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/u-s-tests-drone-swarms-for-near-peer-war-cuts-field-to-some-25-firms/",
+      "headline": "U.S. tests drone swarms for near-peer war, cuts field to some 25 firms",
+      "firstSeen": "2026-10-05",
+      "lastSeen": "2026-10-05",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-tests-drone-swarms-for-near-peer-war-cuts-field-to-some-25-firms/",
+          "published": "2026-10-05"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/10/pentagon-picks-4-vendors-for-counter-drone-directed-energy-pilot-program/",
+      "headline": "Pentagon picks 4 vendors for counter-drone directed energy pilot program",
+      "firstSeen": "2026-10-05",
+      "lastSeen": "2026-10-05",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/pentagon-picks-4-vendors-for-counter-drone-directed-energy-pilot-program/",
           "published": "2026-10-05"
         }
       ]
