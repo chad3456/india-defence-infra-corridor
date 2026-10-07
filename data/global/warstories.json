@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-07T15:33:49.961Z",
-  "previousBuild": "2026-10-07T05:59:16.382Z",
+  "builtAt": "2026-10-07T21:19:16.118Z",
+  "previousBuild": "2026-10-07T15:33:49.961Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 130,
-    "createdThisRun": 1,
+    "stories": 133,
+    "createdThisRun": 3,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 279,
+    "itemsSeen": 282,
     "corroboration": {
-      "one": 111,
+      "one": 114,
       "two": 12,
       "threePlus": 7
     }
@@ -28,12 +28,12 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 67
+      "n": 68
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 41
+      "n": 43
     },
     {
       "id": "targeting",
@@ -107,7 +107,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 35,
+      "items": 39,
       "kept": 4
     },
     {
@@ -144,7 +144,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense News",
@@ -161,7 +161,7 @@
     {
       "outlet": "Defense One",
       "ok": true,
-      "items": 19,
+      "items": 18,
       "kept": 4
     },
     {
@@ -757,6 +757,57 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/general-dynamics-puts-u-s-army-drone-defense-on-a-pickup/",
+          "published": "2026-10-07"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/10/07/unmanned-warfare-has-expanded-to-the-high-seas-is-the-us-ready/",
+      "headline": "Unmanned warfare has now expanded to the high seas. Is the U.S. ready?",
+      "firstSeen": "2026-10-07",
+      "lastSeen": "2026-10-07",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/10/07/unmanned-warfare-has-expanded-to-the-high-seas-is-the-us-ready/",
+          "published": "2026-10-07"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/u-s-navy-and-aukus-partners-test-more-than-40-technologies-for-autonomous-maritime-operations-off-california/",
+      "headline": "U.S. Navy and AUKUS partners test more than 40 technologies for autonomous maritime operations off California",
+      "firstSeen": "2026-10-07",
+      "lastSeen": "2026-10-07",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-navy-and-aukus-partners-test-more-than-40-technologies-for-autonomous-maritime-operations-off-california/",
+          "published": "2026-10-07"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/10/urban-warfare-next-falcon-peak-exercise-to-take-counter-drone-tech-to-the-streets/",
+      "headline": "Urban warfare: Next Falcon Peak exercise to take counter-drone tech to the streets",
+      "firstSeen": "2026-10-07",
+      "lastSeen": "2026-10-07",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/urban-warfare-next-falcon-peak-exercise-to-take-counter-drone-tech-to-the-streets/",
           "published": "2026-10-07"
         }
       ]
