@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-06T21:54:01.662Z",
+ "builtAt": "2026-10-07T11:59:59.489Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -205040,14 +205040,14 @@
    "name": "Quds 1",
    "key": "quds 1",
    "kind": "cruise",
-   "country": "Non-state actor",
+   "country": null,
    "source": "List_of_cruise_missiles"
   },
   {
    "name": "DR-3",
    "key": "dr 3",
    "kind": "cruise",
-   "country": "Non-state actor",
+   "country": null,
    "source": "List_of_cruise_missiles"
   },
   {
@@ -206470,7 +206470,7 @@
    "outlet": "UK Ministry of Defence",
    "ok": true,
    "items": 50,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   },
   {
@@ -206497,7 +206497,7 @@
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 18,
+   "items": 19,
    "kept": 0,
    "via": "direct"
   },
@@ -206505,18 +206505,46 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-1p16550",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "value": null,
+   "date": "2026-10-07",
+   "outlet": "UK Ministry of Defence",
+   "url": "https://www.gov.uk/government/publications/list-of-maa-approved-organisations",
+   "headline": "List of MAA approved organizations",
+   "primary": true
+  },
+  {
+   "id": "ev-6f942e",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Croatia"
+   ],
+   "value": null,
+   "date": "2026-10-07",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/10/hd-hyundai-signs-strategic-teaming-agreement-with-croatias-iskra-shipyard-for-multirole-corvettes-and-expanded-maritime-cooperation/",
+   "headline": "HD Hyundai Signs Strategic Teaming Agreement With Croatia’s Iskra Shipyard for Multirole Corvettes and Expanded Maritime Cooperation",
+   "primary": false
+  },
   {
    "id": "ev-uygxpl",
    "kind": "order",
@@ -207357,6 +207385,107 @@
  ],
  "groups": [
   {
+   "key": "order||united kingdom",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1p16550",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-07",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/publications/list-of-maa-approved-organisations",
+     "headline": "List of MAA approved organizations",
+     "primary": true
+    },
+    {
+     "id": "ev-8yr084",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-02",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/news/30-boost-to-uk-military-transport-aircraft-availability-under-new-deal",
+     "headline": "30% boost to UK military transport aircraft availability under new deal",
+     "primary": true
+    },
+    {
+     "id": "ev-xithjw",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-09-21",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/publications/design-approved-organization-scheme-daos",
+     "headline": "Design Approved Organization Scheme (DAOS)",
+     "primary": true
+    },
+    {
+     "id": "ev-1tu2uoh",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-09-17",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
+     "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "UK Ministry of Defence",
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "from a primary source"
+  },
+  {
+   "key": "order||croatia",
+   "systems": [],
+   "countries": [
+    "Croatia"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-6f942e",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Croatia"
+     ],
+     "value": null,
+     "date": "2026-10-07",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/hd-hyundai-signs-strategic-teaming-agreement-with-croatias-iskra-shipyard-for-multirole-corvettes-and-expanded-maritime-cooperation/",
+     "headline": "HD Hyundai Signs Strategic Teaming Agreement With Croatia’s Iskra Shipyard for Multirole Corvettes and Expanded Maritime Cooperation",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -207767,64 +207896,6 @@
    ],
    "value": null,
    "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order||united kingdom",
-   "systems": [],
-   "countries": [
-    "United Kingdom"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-8yr084",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-10-02",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/news/30-boost-to-uk-military-transport-aircraft-availability-under-new-deal",
-     "headline": "30% boost to UK military transport aircraft availability under new deal",
-     "primary": true
-    },
-    {
-     "id": "ev-xithjw",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-09-21",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/publications/design-approved-organization-scheme-daos",
-     "headline": "Design Approved Organization Scheme (DAOS)",
-     "primary": true
-    },
-    {
-     "id": "ev-1tu2uoh",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-09-17",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
-     "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "UK Ministry of Defence",
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "from a primary source"
   },
   {
    "key": "order||sweden",
