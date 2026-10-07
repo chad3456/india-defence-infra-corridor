@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-06T18:40:22.464Z",
+  "builtAt": "2026-10-07T00:11:43.467Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,12 +10,12 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1048,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 1045,
-    "withOutlet": 984,
+    "items": 1052,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 1048,
+    "withOutlet": 988,
     "bySubject": {
-      "scst": 698,
+      "scst": 702,
       "pmshri": 350
     },
     "queriesAsked": 20,
@@ -28,19 +28,19 @@
     },
     {
       "key": "use",
-      "n": 369
+      "n": 371
     },
     {
       "key": "dispute",
       "n": 57
     },
     {
-      "key": "allegation",
-      "n": 51
+      "key": "acquittal",
+      "n": 52
     },
     {
-      "key": "acquittal",
-      "n": 50
+      "key": "allegation",
+      "n": 51
     },
     {
       "key": "false-finding",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 58
+      "n": 61
     },
     {
       "key": "The Indian Express",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -308,7 +308,7 @@
       "google": 100,
       "bing": 6,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 11
     },
     {
       "id": "act-convicted",
@@ -318,14 +318,14 @@
       "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 38
+      "offSubject": 41
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
+      "google": 52,
       "bing": 7,
       "kept": 0,
       "offSubject": 7
@@ -335,10 +335,10 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 47,
-      "bing": 2,
+      "google": 46,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "act-pendency",
@@ -347,17 +347,17 @@
       "expect": "use",
       "google": 58,
       "bing": 2,
-      "kept": 0,
-      "offSubject": 21
+      "kept": 1,
+      "offSubject": 20
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 97,
+      "google": 98,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 46
     },
     {
@@ -367,17 +367,17 @@
       "expect": "acquittal",
       "google": 25,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 9
+      "kept": 1,
+      "offSubject": 8
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 42,
+      "google": 41,
       "bing": 3,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 8
     },
     {
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 26,
+      "google": 27,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -395,7 +395,7 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 49,
+      "google": 48,
       "bing": 2,
       "kept": 0,
       "offSubject": 17
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 41,
+      "google": 42,
       "bing": 1,
       "kept": 0,
       "offSubject": 6
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 69,
+      "google": 68,
       "bing": 0,
       "kept": 0,
-      "offSubject": 25
+      "offSubject": 24
     },
     {
       "id": "shri-upgrade",
@@ -446,7 +446,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 58,
-      "bing": 3,
+      "bing": 2,
       "kept": 0,
       "offSubject": 17
     },
@@ -457,7 +457,7 @@
       "expect": "dispute",
       "google": 44,
       "bing": 2,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 4
     },
     {
@@ -465,10 +465,10 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 29,
+      "google": 30,
       "bing": 1,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 16
     },
     {
       "id": "shri-nep",
@@ -478,7 +478,7 @@
       "google": 54,
       "bing": 3,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 13
     },
     {
       "id": "shri-criticism",
@@ -17566,6 +17566,71 @@
         "google"
       ],
       "firstSeen": "2026-10-06"
+    },
+    {
+      "id": "delhi police strengthens fir against swatantra bhardwaj with sc st act and pocso charges",
+      "headline": "Delhi Police strengthens FIR against Swatantra Bhardwaj with SC/ST Act and POCSO charges",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Muslim Mirror",
+      "published": "2026-09-05",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPa3BEUF9XVmdENWZCVHBYenlyLUs4VW0zRTNjcnJMWjVtY3Z5YTV3UHQta1NPZXB2U0hVMm55Nk9oSHVhLWI4bHNtOFBRMWVJRnQ0NzJrTF9jd0lKbWdYMm1tODJNYVh3THBSVjBvam1iOVBpdGNuVFpCNktENWNlbFhZcDl6QkE3TmpWeTJObXNMamY2T2ljS1dSTWwwUXpTaFRTbGhOVHRVX3N3S2NtOE93elc?oc=5",
+      "queries": [
+        "act-general",
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-07"
+    },
+    {
+      "id": "supreme court quashes conviction in sc st act case based on compromise between parties cou",
+      "headline": "Supreme Court Quashes Conviction in SC/ST Act Case Based on Compromise Between Parties. Court Invoked Article 142 Powers to Override Non-Compoundability Under Section 320 Cr.P.C., Holding That Genuine Settlement in Private Dispute Warrants Qu",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-05-21",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5qcFduRjhYUXhVOGNZMHdibWJfcnhJNk85RnJGbnVSU20zQUpWWGw5ei1sQlFGeWVJM0dhSjkwR1dXODVPS2hLWWJ1akpCUkVaUlY0?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-07"
+    },
+    {
+      "id": "bombay high court upholds acquittal in sc st act case due to lack of public view element c",
+      "headline": "Bombay High Court Upholds Acquittal in SC/ST Act Case Due to Lack of Public View Element. Caste-Based Insult Allegation Fails as Incident Occurred in Private Setting, Not in Public View Under Section 3(1)(x) of SC & ST (Prevention of Atrocities) Act, 1989.",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-09-28",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9vTXpiNVFSSXJxdWNUZ3BiNjdsNWJYM2wtMjQ4MHpGbmlidXZyT2haY1Q2NFRZaHlyVDVRQ1VTWC12Umc4NmVuVUdSV0xPS1JhdXNKaQ?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-07"
+    },
+    {
+      "id": "bombay high court acquits accused in murder and atrocities case due to lack of credible ev",
+      "headline": "Bombay High Court Acquits Accused in Murder and Atrocities Case Due to Lack of Credible Evidence and Doubtful Caste Status of Victim. Conviction under Section 302 IPC and Section 3(2)(v) of SC/ST Act set aside as prosecution failed to prove guilt beyond",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9KaTRoM09IY1hrcjBZM1FxNFNmcW9RSDZuVmwtdVEzVWV2LW5jMExQMGZDNHZzY3htRGREN1pyeVU0VWxzZG5lWnEyeE1GOUwxVmpyU1lHa2NHdm9CWkFodkZjS0w2dw?oc=5",
+      "queries": [
+        "act-hostile"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-07"
     }
   ]
 }
