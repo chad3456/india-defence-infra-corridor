@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-07T05:59:16.382Z",
-  "previousBuild": "2026-10-06T23:48:55.497Z",
+  "builtAt": "2026-10-07T15:33:49.961Z",
+  "previousBuild": "2026-10-07T05:59:16.382Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 129,
+    "stories": 130,
     "createdThisRun": 1,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 280,
+    "itemsSeen": 279,
     "corroboration": {
-      "one": 110,
+      "one": 111,
       "two": 12,
       "threePlus": 7
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 66
+      "n": 67
     },
     {
       "id": "autonomy",
@@ -107,14 +107,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 36,
+      "items": 35,
       "kept": 4
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Military Times",
@@ -126,7 +126,7 @@
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "C4ISRNET",
@@ -144,7 +144,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defense News",
@@ -156,7 +156,7 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "Defense One",
@@ -740,6 +740,23 @@
         {
           "outlet": "Defense One",
           "url": "https://www.defenseone.com/policy/2026/10/pentagon-autonomy-command-patriot-maven/416444/",
+          "published": "2026-10-07"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/general-dynamics-puts-u-s-army-drone-defense-on-a-pickup/",
+      "headline": "General Dynamics puts U.S. Army drone defense on a pickup",
+      "firstSeen": "2026-10-07",
+      "lastSeen": "2026-10-07",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/general-dynamics-puts-u-s-army-drone-defense-on-a-pickup/",
           "published": "2026-10-07"
         }
       ]
