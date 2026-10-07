@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-07T15:49:27.768Z",
+  "builtAt": "2026-10-07T21:38:16.226Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1059,
-    "addedThisRun": 6,
-    "carriedFromEarlierRuns": 1053,
-    "withOutlet": 995,
+    "items": 1062,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 1059,
+    "withOutlet": 997,
     "bySubject": {
-      "scst": 708,
+      "scst": 711,
       "pmshri": 351
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 306
+    "offSubjectDropped": 302
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 512
+      "n": 513
     },
     {
       "key": "use",
-      "n": 375
+      "n": 377
     },
     {
       "key": "dispute",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 64
+      "n": 66
     },
     {
       "key": "The Indian Express",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 4,
+      "bing": 5,
       "kept": 2,
-      "offSubject": 10
+      "offSubject": 9
     },
     {
       "id": "act-convicted",
@@ -316,19 +316,19 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 38
+      "offSubject": 40
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
-      "bing": 7,
-      "kept": 0,
-      "offSubject": 8
+      "google": 52,
+      "bing": 8,
+      "kept": 1,
+      "offSubject": 6
     },
     {
       "id": "act-compensation",
@@ -347,7 +347,7 @@
       "expect": "use",
       "google": 57,
       "bing": 2,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 20
     },
     {
@@ -357,7 +357,7 @@
       "expect": "acquittal",
       "google": 100,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 45
     },
     {
@@ -365,7 +365,7 @@
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 23,
+      "google": 22,
       "bing": 0,
       "kept": 0,
       "offSubject": 7
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 43,
+      "google": 42,
       "bing": 1,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "act-dilution",
@@ -388,14 +388,14 @@
       "google": 25,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 48,
+      "google": 49,
       "bing": 0,
       "kept": 0,
       "offSubject": 19
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 31,
+      "google": 30,
       "bing": 0,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 18
     },
     {
       "id": "shri-general",
@@ -425,9 +425,9 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 40,
-      "bing": 0,
-      "kept": 1,
+      "google": 41,
+      "bing": 1,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -436,7 +436,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 69,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 25
     },
@@ -446,9 +446,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 57,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 15
     },
     {
       "id": "shri-mou",
@@ -465,20 +465,20 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 28,
-      "bing": 0,
+      "google": 29,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 15
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 54,
+      "google": 53,
       "bing": 3,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "shri-criticism",
@@ -17748,6 +17748,54 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-10-07"
+    },
+    {
+      "id": "bombay high court quashes criminal proceedings against police officer in sc st act case fo",
+      "headline": "Bombay High Court Quashes Criminal Proceedings Against Police Officer in SC/ST Act Case for Non-Registration of FIR — Failure to Register FIR Does Not Attract Section 217 IPC Without Intent to Save Offender from Legal Punishment.",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-10-07",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9xakVFdlZkZTB4VElxVkNWOTJMdDR3YTVqSUFpMzFDaTZobkMwOFBHb3prWVhQT1Z2VEZVaS1uOFVZSkxFd0hzQnozWklfSXV0ZG5CRlp6ZzhzeXNJY2p2VkE5bW1la2Zs?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-07"
+    },
+    {
+      "id": "bombay high court grants anticipatory bail in sc st act cases due to lack of prima facie i",
+      "headline": "Bombay High Court Grants Anticipatory Bail in SC/ST Act Cases Due to Lack of Prima Facie Intent and Procedural Lapses. Court held that mere registration of FIR under SC/ST Act does not bar anticipatory bail if no prima facie case of intentional insult or intimi",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-08-30",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1VVm1CTTBfazd1RHduWE5DV1dFSG9CeFI5RE15YTRCR25MUDMyMDNNdk9oa3ZsejNpWS1aVXFMd2tyNUx3WkdxOTdSSXIzdmoyY2F5M1MtQjBuRFJ5NW9ORTRQYnJnUQ?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-07"
+    },
+    {
+      "id": "congress attacks bjp for injustices against dalit muslim women",
+      "headline": "Congress attacks BJP for ‘injustices’ against Dalit, Muslim women",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-09-04",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac6bb67fe574cd695d31a4dd38e2a4e&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fIndia%2fcongress-attacks-bjp-for-injustices-against-dalit-muslim-women%2far-AA2byGtY&c=12022721993965177227&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-10-07"
     }
