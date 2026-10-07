@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-07T00:11:43.467Z",
+  "builtAt": "2026-10-07T06:32:58.436Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1052,
-    "addedThisRun": 4,
-    "carriedFromEarlierRuns": 1048,
-    "withOutlet": 988,
+    "items": 1053,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1052,
+    "withOutlet": 989,
     "bySubject": {
-      "scst": 702,
+      "scst": 703,
       "pmshri": 350
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 308
+    "offSubjectDropped": 302
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 511
+      "n": 512
     },
     {
       "key": "use",
@@ -177,6 +177,10 @@
       "n": 7
     },
     {
+      "key": "Bhaskar English",
+      "n": 7
+    },
+    {
       "key": "EdexLive",
       "n": 7
     },
@@ -186,10 +190,6 @@
     },
     {
       "key": "organiser.org",
-      "n": 6
-    },
-    {
-      "key": "Bhaskar English",
       "n": 6
     },
     {
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 6,
-      "kept": 0,
-      "offSubject": 11
+      "bing": 0,
+      "kept": 1,
+      "offSubject": 10
     },
     {
       "id": "act-convicted",
@@ -316,19 +316,19 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 41
+      "offSubject": 40
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 52,
-      "bing": 7,
+      "google": 51,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 4
     },
     {
       "id": "act-compensation",
@@ -336,7 +336,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 46,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 12
     },
@@ -345,30 +345,30 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 58,
+      "google": 57,
       "bing": 2,
-      "kept": 1,
-      "offSubject": 20
+      "kept": 0,
+      "offSubject": 22
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 98,
+      "google": 99,
       "bing": 1,
-      "kept": 1,
-      "offSubject": 46
+      "kept": 0,
+      "offSubject": 45
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 25,
+      "google": 24,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 8
+      "kept": 0,
+      "offSubject": 7
     },
     {
       "id": "act-misuse-claim",
@@ -376,7 +376,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 41,
-      "bing": 3,
+      "bing": 0,
       "kept": 0,
       "offSubject": 8
     },
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 27,
+      "google": 25,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -396,7 +396,7 @@
       "subject": "scst",
       "expect": "false-finding",
       "google": 48,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
       "offSubject": 17
     },
@@ -405,7 +405,7 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 29,
+      "google": 30,
       "bing": 0,
       "kept": 0,
       "offSubject": 17
@@ -425,8 +425,8 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 42,
-      "bing": 1,
+      "google": 41,
+      "bing": 0,
       "kept": 0,
       "offSubject": 6
     },
@@ -436,7 +436,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 68,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 24
     },
@@ -446,7 +446,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 58,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
       "offSubject": 17
     },
@@ -456,26 +456,26 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 44,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 5
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 30,
+      "google": 28,
       "bing": 1,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 14
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 54,
+      "google": 55,
       "bing": 3,
       "kept": 0,
       "offSubject": 13
@@ -486,7 +486,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 42,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 29
     }
@@ -7803,10 +7803,12 @@
       "published": "2026-09-09",
       "url": "https://news.google.com/rss/articles/CBMipgJBVV95cUxNSzBFczA2UHZGRDAtbm9PTFJPWS1XXzZOOERUc1FXVVh3dUhwNWticXh2R0IteTVQclpQa05TWjYxc1B5WkZpUE9kQVc4U0dOdWJTX2FHS2ZYSTJ1MlY1aUNuZVZMX1V5M2xrUmpiWm5kdjhxaVJGXzl0eF94cnhjNWwwMUNHMUFRd3YwODJsNzI5a1JEMElSR3pmamc2UXc3TDJOeC01MGg5N1hWbFVrSnluVXpmZGRuUkR3QmRWc0RNOS16MVNXX0NDd2pWUXpBelNhek10UHB4UmlaWG4xdFNPd2dNZERueEpJSm9aMnNSU0NycWFjMng1Q3UxM2ZkaF9NRkhlX1Rmd3dVTktCdDY3cmlEdEd0Ml9pVm1fejBMWXlYWHfSAasCQVVfeXFMTmpUMFBWTEZsTG9fNTRNM2tqOGQzdDllekYzUTdrNllTclU0NnlnTU9OVEVtYU50Wmo1LUk0X1ZWYkhWeklJV1lwRU9ndTRpeWtlaVRpODBpazZybmxhYms2Zk03N0hYMENET2xHZ1QxbXRjcWpkTGxUU1M3OXI4a2RJQUtwc3JPNEVpOTlOUVh5cExNR044bERBQUtqRG9UVXFtRERvMElrMXRBdXNBWFhwcGg5RjVrR2c5bE9MYmtSMjg2ellrRzhSMkEtU3NpcXdDRmNPeVdUVzVOYWpObXNCVVBsd3otRS1tQXJkbVJsU0dzSktuS3VzX2FwM0lqTXhoaXBQc2ZGVUQ3bHhkSGpLOWlHUVNNR3hkOERlZ2VnVkhIMEZQS1JUZjQ?oc=5",
       "queries": [
-        "shri-general"
+        "shri-general",
+        "shri-funds"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -17544,7 +17546,8 @@
       "published": "2025-10-23",
       "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxON0h6cnpBbE9uODJiQlRLM3Y3ZkRKV0lQb3otRm9XeFVtdlZ4b24yZ1pUOFc4Y1BUMzZwUlpkQUFQZGZLT0daSTh5N0dObHlKS3dNWk9Wcm01TmtTRlk4X082ZXN5MlpaMWlaTHpvMU40dlhGUUh3cGR0X2lPR0UycGJFeGVNWDVmYWV3NDdiMVZsLUlZNWtkMDV30gGaAUFVX3lxTE43SHpyekFsT244MmJCVEszdjdmREpXSVBvei1Gb1d4VW12VnhvbjJnWlQ4VzhjUFQzNnBSWmRBQVBkZktPR1pJOHk3R05seUpLd01aT1ZybTVOa1NGWThfTzZlc3kyWloxaVpMem8xTjR2WEZRSHdwZHRfaU9HRTJwYkV4ZU1YNWZhZXc0N2IxVmwtSVk1a2QwNXc?oc=5",
       "queries": [
-        "shri-mou"
+        "shri-mou",
+        "shri-nep"
       ],
       "indexes": [
         "google"
@@ -17593,7 +17596,8 @@
       "published": "2026-05-21",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5qcFduRjhYUXhVOGNZMHdibWJfcnhJNk85RnJGbnVSU20zQUpWWGw5ei1sQlFGeWVJM0dhSjkwR1dXODVPS2hLWWJ1akpCUkVaUlY0?oc=5",
       "queries": [
-        "act-pendency"
+        "act-pendency",
+        "act-convicted"
       ],
       "indexes": [
         "google"
@@ -17625,7 +17629,24 @@
       "published": "2026-10-06",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9KaTRoM09IY1hrcjBZM1FxNFNmcW9RSDZuVmwtdVEzVWV2LW5jMExQMGZDNHZzY3htRGREN1pyeVU0VWxzZG5lWnEyeE1GOUwxVmpyU1lHa2NHdm9CWkFodkZjS0w2dw?oc=5",
       "queries": [
-        "act-hostile"
+        "act-hostile",
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-07"
+    },
+    {
+      "id": "bihar gang arranges fake sc st cases for 2 5 lakh wives file complaints husbands arrange w",
+      "headline": "Bihar gang arranges fake SC/ST cases for ₹2.5 lakh: Wives file complaints, husbands arrange witnesses; agen...",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Bhaskar English",
+      "published": "2026-10-07",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPQ2poOWYwRF9RbUdHcDRSR19zdlJ2cU42U0hCY1dwT0E5SEJmMHBSVXh6NGNvMENZV3NicG9kM1QtNWZqTVBxMkxoRkFaWFNoQ0lycTEyMms1VUlUSEZHWWx1QzBtc1JPbTNDSTF5ZjZ6aFgzOUhQeWMwNjVxdlBubmE4dUNzOUFyaG91bzc0Rmh3a2xrWnRGVTBIVWU2a2MyMnl6aHFOTkZIM2RKMEVnMtIBtgFBVV95cUxPYW5wNV9nZmJjckxEVlZ5SnZQSHhFZklmZmdnUU50YVhINUdhazhTc0dYSWJYbnN6SWt4a3hkS0xWd1J1emg2dzNJTnBRWnZuaU9yMUw0cGRBSERGWWcyWmFHWnlKMGJ3OXppcml3NmFWZUdCNC1oOG5LdHNKdzVtZUJnRmlyQ1Q2cmZ0UjFFMlluUEVqUldMam11ZmhJWFdQYnFKTm9HZmxDVzNpZnVrLUlrb2Zydw?oc=5",
+      "queries": [
+        "act-registered"
       ],
       "indexes": [
         "google"
