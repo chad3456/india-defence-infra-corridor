@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-07T11:59:59.489Z",
+ "builtAt": "2026-10-07T22:16:22.621Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206484,7 +206484,7 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
@@ -206497,7 +206497,7 @@
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 19,
+   "items": 18,
    "kept": 0,
    "via": "direct"
   },
@@ -206530,6 +206530,24 @@
    "url": "https://www.gov.uk/government/publications/list-of-maa-approved-organisations",
    "headline": "List of MAA approved organizations",
    "primary": true
+  },
+  {
+   "id": "ev-1e6fqfs",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "India"
+   ],
+   "value": {
+    "amount": 10500000000,
+    "currency": "USD",
+    "asWritten": "$10.5B"
+   },
+   "date": "2026-10-07",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/global/asia-pacific/2026/10/07/embraer-lockheed-martin-vie-for-indias-105b-military-transport-aircraft-deal/",
+   "headline": "Embraer, Lockheed Martin vie for India’s $10.5B military transport aircraft deal",
+   "primary": false
   },
   {
    "id": "ev-6f942e",
@@ -207455,6 +207473,43 @@
    ],
    "value": null,
    "verdict": "from a primary source"
+  },
+  {
+   "key": "order||india",
+   "systems": [],
+   "countries": [
+    "India"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1e6fqfs",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "India"
+     ],
+     "value": {
+      "amount": 10500000000,
+      "currency": "USD",
+      "asWritten": "$10.5B"
+     },
+     "date": "2026-10-07",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/global/asia-pacific/2026/10/07/embraer-lockheed-martin-vie-for-indias-105b-military-transport-aircraft-deal/",
+     "headline": "Embraer, Lockheed Martin vie for India’s $10.5B military transport aircraft deal",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News"
+   ],
+   "value": {
+    "amount": 10500000000,
+    "currency": "USD",
+    "asWritten": "$10.5B"
+   },
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order||croatia",
