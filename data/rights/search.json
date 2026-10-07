@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-07T06:32:58.436Z",
+  "builtAt": "2026-10-07T15:49:27.768Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1053,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1052,
-    "withOutlet": 989,
+    "items": 1059,
+    "addedThisRun": 6,
+    "carriedFromEarlierRuns": 1053,
+    "withOutlet": 995,
     "bySubject": {
-      "scst": 703,
-      "pmshri": 350
+      "scst": 708,
+      "pmshri": 351
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 302
+    "offSubjectDropped": 306
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 371
+      "n": 375
     },
     {
       "key": "dispute",
@@ -36,11 +36,11 @@
     },
     {
       "key": "acquittal",
-      "n": 52
+      "n": 53
     },
     {
       "key": "allegation",
-      "n": 51
+      "n": 52
     },
     {
       "key": "false-finding",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 61
+      "n": 64
     },
     {
       "key": "The Indian Express",
@@ -70,7 +70,7 @@
     },
     {
       "key": "Hindustan Times",
-      "n": 30
+      "n": 31
     },
     {
       "key": "India Today",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -306,8 +306,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
-      "kept": 1,
+      "bing": 4,
+      "kept": 2,
       "offSubject": 10
     },
     {
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 40
+      "offSubject": 38
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 0,
+      "bing": 7,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
@@ -347,17 +347,17 @@
       "expect": "use",
       "google": 57,
       "bing": 2,
-      "kept": 0,
-      "offSubject": 22
+      "kept": 1,
+      "offSubject": 20
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 99,
+      "google": 100,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 45
     },
     {
@@ -365,7 +365,7 @@
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 24,
+      "google": 23,
       "bing": 0,
       "kept": 0,
       "offSubject": 7
@@ -375,8 +375,8 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 41,
-      "bing": 0,
+      "google": 43,
+      "bing": 1,
       "kept": 0,
       "offSubject": 8
     },
@@ -388,7 +388,7 @@
       "google": 25,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "act-false",
@@ -398,17 +398,17 @@
       "google": 48,
       "bing": 0,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 19
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 30,
+      "google": 31,
       "bing": 0,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 19
     },
     {
       "id": "shri-general",
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 12,
+      "bing": 11,
       "kept": 0,
       "offSubject": 4
     },
@@ -425,9 +425,9 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 41,
+      "google": 40,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -435,20 +435,20 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 68,
-      "bing": 1,
+      "google": 69,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 24
+      "offSubject": 25
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 58,
+      "google": 57,
       "bing": 0,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 16
     },
     {
       "id": "shri-mou",
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 44,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 5
     },
@@ -466,16 +466,16 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 28,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 13
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 55,
+      "google": 54,
       "bing": 3,
       "kept": 0,
       "offSubject": 13
@@ -486,7 +486,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 42,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 29
     }
@@ -17047,7 +17047,8 @@
       "published": "2026-08-25",
       "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQLVgwYmo2ckUyMmpvYURvcndKa2FSWmdTZE5WX3V4QnZVSmFUMTN0blRRM3M2eGk4VU80WDlWZ2ItRzE0d0pEcmdSRXp2ZHpFYkJDQ2dDVG9DYmhqZ0swcHNLbEhrcnM0YjFBNDh6WFJyYXRORGExQWliOHhyTmlwakNxdkNWSE9rOWl6NDROTzVFenpnS1QwMTJabVEzY0FTdFBOVjY3OXRtdEZWVjcxa0pvSQ?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -17647,6 +17648,103 @@
       "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPQ2poOWYwRF9RbUdHcDRSR19zdlJ2cU42U0hCY1dwT0E5SEJmMHBSVXh6NGNvMENZV3NicG9kM1QtNWZqTVBxMkxoRkFaWFNoQ0lycTEyMms1VUlUSEZHWWx1QzBtc1JPbTNDSTF5ZjZ6aFgzOUhQeWMwNjVxdlBubmE4dUNzOUFyaG91bzc0Rmh3a2xrWnRGVTBIVWU2a2MyMnl6aHFOTkZIM2RKMEVnMtIBtgFBVV95cUxPYW5wNV9nZmJjckxEVlZ5SnZQSHhFZklmZmdnUU50YVhINUdhazhTc0dYSWJYbnN6SWt4a3hkS0xWd1J1emg2dzNJTnBRWnZuaU9yMUw0cGRBSERGWWcyWmFHWnlKMGJ3OXppcml3NmFWZUdCNC1oOG5LdHNKdzVtZUJnRmlyQ1Q2cmZ0UjFFMlluUEVqUldMam11ZmhJWFdQYnFKTm9HZmxDVzNpZnVrLUlrb2Zydw?oc=5",
       "queries": [
         "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-07"
+    },
+    {
+      "id": "the structural flaw in the prevention of atrocities act hindustan times",
+      "headline": "The structural flaw in the Prevention of Atrocities Act | Hindustan Times",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Hindustan Times",
+      "published": "2026-09-17",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQSmdXa2tkMHRGNFZxS0hjc0ZIMERiMXdmVE4zQzVQbWZhVHFoMHJkSDNaQzdHNkJwcGUxQXFPWlgwOEFhR1lfVGlWdzBac3NNc2dYTEtqYS1vOE1wcFo4ZXFvQ0dXbFNfZ1dsOHRoclZfUVYtcnFzeFlFNjloQm9DNWVRYThPU21rTWdqbXhiMXdEN3p6dHI3VjJCVnVGSTJrSTduY1ZjZDhQSkFYR1BOajlkWHNzQdIBuwFBVV95cUxOMWVGb2tuUnVsc1lObU0zTGFHaFFvcWhvRDRtUklWQm5LY2tUUmMxWjFVaG9wVExXOG4tWkU3am9tcHJBbzFKNjRFT0I4UXBwNGVtcTB4TVdENDg2Nk8ta2wxU2Jvd0pQckk3Z3JVTTBhaGwtcWRVcktTVVg5bVVVdU41SzNETEdJdW94ak9VMlM1ZEVoN2UzeERRYk1BanJVVXFpQlU0NHdCMi10LS1VaGFTajRfeFJDMlk4?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-07"
+    },
+    {
+      "id": "bihar man sc wife misuse sc st act for extortion and compensation",
+      "headline": "Bihar man-SC wife misuse SC/ST Act for extortion and compensation",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "OpIndia",
+      "published": "2026-10-07",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQRzhUdzFTeUxiZVk0eXlwRmx4czhWa2U5NW1aWWJTS2d6bzVHZVZ2bjFEVGJvTTRsZHRNWVFoRDZVQVN0RU1pNENJanczNXhNS0xLX1JKdEczamdmdmppUFJyMlg3TS1VT3JqOE16MVNEdlR5REc1WEcwSTJTRXJ5UWxLUy1VNU1NM0JGb2lySmhrdE9XRTVEaXJFTjRLeWhkWlp4TmFiV0hRTVNlTGtHdTh4dGF2dzU4eGUwdHRsNTI1eUs2QWc?oc=5",
+      "queries": [
+        "act-registered",
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-07"
+    },
+    {
+      "id": "bombay high court quashes fir in sc st act case due to withdrawal of supplementary stateme",
+      "headline": "Bombay High Court Quashes FIR in SC/ST Act Case Due to Withdrawal of Supplementary Statement by Complainant. Original Complaint Lacked Caste Reference; Word Used Was 'Bhamtya' (Deceiver), Not a Caste Slur.",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1CSmsxWE04Vl9KSkh5OVAwMEFhMUt2OXk4b25fXzRYcVpiSmhjRjNnX2I2MGhsM3JFWDY2eTBMTjdYckZ1UllUV0p5cmZjLWt6eDhyVlFERU5jdGUtQmhWSkRBVjh5Zw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-07"
+    },
+    {
+      "id": "high court of andhra pradesh suspends look out circular and directs passport renewal in sc",
+      "headline": "High Court of Andhra Pradesh Suspends Look-Out Circular and Directs Passport Renewal in SC/ST Atrocities Case. Passport Renewal Directed Under Passports Act, 1967 Section 6(2)(f) Despite Pending Non-Bailable Warrant and Look-Out Circular Issued U",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1VOXpwWkJpdDlSRGNXaTRvWllFbHdTNFEteXdKMjZ4Nm1RTF9WakJUMTNfOHVMWFBlSlZjMWYxdUZremdFb2x2VnZvRlVqc0Q2RkduODR4MzZRUjJVQWVGOVFtNFpZSUpm?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-07"
+    },
+    {
+      "id": "bombay high court dismisses state appeal against acquittal in sc st act and ipc case due t",
+      "headline": "Bombay High Court Dismisses State Appeal Against Acquittal in SC/ST Act and IPC Case Due to Unreliable Witnesses and Lack of Corroboration. Acquittal of accused for offences under Section 3(1)(xi) of SC & ST (Prevention of Atrocities) Act, 1989 and Secti",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBXdTdmdjU4UzdidFBUVE1STXNmcXVodDZnSFo0RzRwa2hWNWt0MjNDTUtTSjYydXNralFIdGx5X19PbHhxWG5YeFV3a1FuTDJxQ3c3ZW5SUmFsb2pKWnpOQUZXc0k5bEZF?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-07"
+    },
+    {
+      "id": "haryana completes selection of 250 pm shri schools to strengthen govt education",
+      "headline": "Haryana completes selection of 250 PM Shri schools to strengthen govt education",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "Punjab Newsline",
+      "published": "2026-03-11",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPUUlhQklSdnd5QWZtMVhFU09jLWpsOVRSYk55OHBUelE2MUZCVXIxa2xnbXllbkhZcFBNb0wyaS1odDVwcTFqXzdMbXpmSmxnSDM2RlBWdGNuc3FKNVc3dUxGYlAwSzQzb3VCbjA4Y1F6dFRtaW5pRDdtY0UxNTRjWU1JX3dGWGlLQXdESTdwZ2tQUk0zOWRsdmw2QXJtLW9VWkR6U1QxeG8yUGE1MjRuZQ?oc=5",
+      "queries": [
+        "shri-sanctioned"
       ],
       "indexes": [
         "google"
