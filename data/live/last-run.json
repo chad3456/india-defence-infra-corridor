@@ -1,19 +1,18 @@
 {
-  "id": "run-1791353751623",
-  "startedAt": "2026-10-07T06:05:36.649Z",
-  "finishedAt": "2026-10-07T06:15:51.623Z",
+  "id": "run-1791380086390",
+  "startedAt": "2026-10-07T13:30:16.166Z",
+  "finishedAt": "2026-10-07T13:34:46.390Z",
   "status": "partial",
   "connectorsRun": 9,
   "connectorsFailed": 0,
-  "seriesUpdated": 719,
+  "seriesUpdated": 720,
   "messages": [
     "worldbank: SL.EMP.OWAC.FE.ZS: no Indian observations",
     "worldbank: SL.EMP.OWAC.MA.ZS: no Indian observations",
     "satp: terror: https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir -> HTTP 403",
     "satp: terror: no candidate URL yielded a full table; keeping previous data",
-    "who: SDGSUICIDE: filtered: invalid JSON: Unexpected token '<', \" <!DOCTYPE \"... is not valid JSON; unfiltered: invalid JSON: Unexpected token '<', \" <!DOCTYPE \"... is not valid JSON",
+    "who: SDGSUICIDE: filtered: HTTP 502; unfiltered: HTTP 502",
     "who: SDGSUICIDE: no age-banded observations found",
-    "who: MH_12: filtered: invalid JSON: Unexpected token '<', \" <!DOCTYPE \"... is not valid JSON; unfiltered: invalid JSON: Unexpected token '<', \" <!DOCTYPE \"... is not valid JSON",
     "ingest: The Tribune: HTTP 403",
     "ingest: Deccan Herald: HTTP 404",
     "ingest: The New Indian Express: HTTP 404",
@@ -28,9 +27,9 @@
     "ingest: IndiaSpend: HTTP 404",
     "ingest: FORCE Magazine: HTTP 404",
     "ingest: Defence Aviation Post: HTTP 404",
-    "ingest: Greater Kashmir: HTTP 404",
     "ingest: Daily Excelsior: HTTP 403",
-    "ingest funnel: 1792 items -> 590 candidates -> 50 events (lost: 271 no sector, 159 not an action, 110 no place)",
+    "ingest: Search: pipelines — gas pipeline India commissioned: feed had no items",
+    "ingest funnel: 1831 items -> 584 candidates -> 50 events (lost: 272 no sector, 162 not an action, 100 no place)",
     "x: X_BEARER_TOKEN not set — reading X is paid per post since February 2026, so this connector is inactive. Official announcements still arrive via the PIB, PMO and ministry feeds at no cost."
   ]
 }
