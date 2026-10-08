@@ -72,8 +72,8 @@ const say = (s: string) => console.log(s);
 
 /* ── World Bank ─────────────────────────────────────────────────────────── */
 
-interface WbRow { countryiso3code?: string; date?: string; value?: number | null; indicator?: { value?: string } }
-interface WbMeta { id: string; name: string; region?: { id?: string; value?: string }; incomeLevel?: { value?: string } }
+interface WbRow { countryiso3code?: string; country?: { id?: string }; date?: string; value?: number | null; indicator?: { value?: string } }
+interface WbMeta { id: string; iso2Code?: string; name: string; region?: { id?: string; value?: string }; incomeLevel?: { value?: string } }
 
 async function worldBank(): Promise<InternetData["worldBank"]> {
   const meta = await getJson<[unknown, WbMeta[]]>("https://api.worldbank.org/v2/country?format=json&per_page=400", { timeoutMs: 60_000, retries: 3, cacheMs: 0 });
@@ -85,6 +85,9 @@ async function worldBank(): Promise<InternetData["worldBank"]> {
     countries[c.id] = { name: c.name, region: c.region?.value?.trim() ?? "", income: c.incomeLevel?.value ?? "" };
   }
   const keep = new Set([...Object.keys(countries), ...Object.keys(aggregates)]);
+  // Income-group rows come back with an empty ISO3 code and their two-letter
+  // id ("XD" for high income); map those back to the three-letter code.
+  const byIso2 = new Map(meta.data[1].filter((c) => c.iso2Code).map((c) => [c.iso2Code!, c.id]));
   const indicators: Record<string, WbIndicator> = {};
   const year = new Date().getUTCFullYear();
   for (const code of WB_INDICATORS) {
@@ -94,7 +97,7 @@ async function worldBank(): Promise<InternetData["worldBank"]> {
     if (!res.ok || !rows) { errors.push(`worldbank ${code}: ${res.error}`); continue; }
     const values: Record<string, YearSeries> = {};
     for (const r of rows) {
-      const iso = r.countryiso3code ?? "";
+      const iso = r.countryiso3code || byIso2.get(r.country?.id ?? "") || "";
       if (!keep.has(iso) || typeof r.value !== "number") continue;
       (values[iso] ??= []).push([Number(r.date), r.value]);
     }
@@ -158,7 +161,7 @@ export function readPlans(t: SheetTable, isoOf: (economy: string) => string | nu
 
 const BASKET_KEEP = /data-only|mobile-broadband|fixed-broadband/i;
 
-async function itu(): Promise<InternetData["itu"]> {
+async function itu(fallbackIso: (n: string) => string | null): Promise<InternetData["itu"]> {
   const book = await workbook(ITU_BASKETS);
   if (!book) return null;
   const eco = book.find((t) => /^economies/i.test(t.sheet));
@@ -198,7 +201,9 @@ async function itu(): Promise<InternetData["itu"]> {
   say(`  itu baskets: ${baskets.length} rows, ${medians.length} median rows, ${isoByName.size} economies named`);
 
   const allowance = await workbook(ITU_ALLOWANCE);
-  const isoOf = (e: string) => isoByName.get(norm(e)) ?? null;
+  // The allowance sheets name economies, sometimes differently from the
+  // economies sheet ("Turkey", "Palestine*"); fall back to the map's names.
+  const isoOf = (e: string) => isoByName.get(norm(e)) ?? fallbackIso(e.replace(/\*+$/, "")) ?? null;
   let mobile: ItuPlan[] = [], fixed: ItuPlan[] = [], mobileTitle = "", fixedTitle = "";
   if (allowance) {
     for (const [sheet, set] of [["MobileBB", (t: string, p: ItuPlan[]) => { mobile = p; mobileTitle = t; }], ["FixedBB", (t: string, p: ItuPlan[]) => { fixed = p; fixedTitle = t; }]] as const) {
@@ -232,8 +237,11 @@ async function peeringdb(iso2to3: Map<string, string>): Promise<InternetData["pe
 
 /** "Mumbai, India" → "India". TeleGeography writes the country last. */
 export function countryOfLanding(name: string): string {
-  const parts = name.split(",");
-  return (parts[parts.length - 1] ?? "").trim();
+  const parts = name.split(",").map((p) => p.trim());
+  const last = parts[parts.length - 1] ?? "";
+  // World Bank-style names carry their own comma: "Congo, Dem. Rep.".
+  if (/^(Dem\. )?Rep\.$|^The$/i.test(last) && parts.length >= 2) return `${parts[parts.length - 2]}, ${last}`;
+  return last;
 }
 
 async function cables(isoByName: (n: string) => string | null): Promise<InternetData["cables"]> {
@@ -350,7 +358,9 @@ const ALIASES: Record<string, string> = {
   "north macedonia": "MKD", "bosnia and herzegovina": "BIH", "saint kitts and nevis": "KNA", "saint lucia": "LCA",
   "saint vincent and the grenadines": "VCT", "st kitts and nevis": "KNA", "st lucia": "LCA", "st vincent and the grenadines": "VCT",
   "trinidad and tobago": "TTO", "antigua and barbuda": "ATG", "papua new guinea": "PNG", "solomon islands": "SLB",
-  "marshall islands": "MHL", "faroe islands": "FRO", "canary islands spain": "ESP", "azores portugal": "PRT", "madeira portugal": "PRT",
+  "marshall islands": "MHL", "faroe islands": "FRO", "virgin islands u k": "VGB",
+  "falkland malvinas is": "FLK", "falkland islands": "FLK", "christmas island": "CXR", "cocos keeling islands": "CCK",
+  "bonaire sint eustatius and saba": "BES", "sint eustatius and saba": "BES", "ascension and tristan da cunha": "SHN", "tokelau": "TKL", "canary islands spain": "ESP", "azores portugal": "PRT", "madeira portugal": "PRT",
 };
 
 async function main(): Promise<void> {
@@ -365,7 +375,7 @@ async function main(): Promise<void> {
 
   const previous: InternetData | null = existsSync(OUT) ? (JSON.parse(await readFile(OUT, "utf8")) as InternetData) : null;
   say("World Bank"); const wb = await worldBank();
-  say("ITU"); const ituData = await itu();
+  say("ITU"); const ituData = await itu(isoByName);
   say("PeeringDB"); const pdb = await peeringdb(iso2to3);
   say("Submarine cables"); const cab = await cables(isoByName);
   say("SATCAT"); const sat = await satcat();

@@ -9,6 +9,7 @@ import { loadMaven } from "@/lib/maven-book";
 import { loadNamesakes } from "@/lib/namesakes";
 import { loadChinaExports } from "@/lib/china-exports";
 import { loadMuseum } from "@/lib/museum";
+import { loadInternet } from "@/lib/internet";
 import { byId as mavenFigure, stated as mavenStated } from "@/lib/maven-shared";
 
 /**
@@ -173,9 +174,22 @@ export default function StoriesIndex() {
   const names = loadNamesakes();
   const china = loadChinaExports();
   const museum = loadMuseum();
+  const internet = loadInternet();
+  const skyShare = internet.headline.find((h) => h.label === "Working satellites that are Starlink");
   const chinaTotal = china.products.filter((p) => p.latest?.year === china.latestYear).reduce((s, p) => s + (p.latest?.value ?? 0), 0);
 
   const RIGHTS = [
+    ...(internet.present ? [{
+      href: "/internet",
+      tone: "cool" as const,
+      kicker: "internet · a visual essay",
+      title: "Signal and Sovereignty.",
+      blurb:
+        "Twenty charts on who is online, how fast, what a gigabyte costs and where the cables land — "
+        + "and seven documented cases on why a constellation owned by one foreign company is a question about who governs a country.",
+      stat: skyShare?.value ?? "20",
+      statLabel: skyShare ? "of working satellites are Starlink's" : "charts",
+    }] : []),
     ...(museum.present ? [{
       href: "/museum",
       tone: "mid" as const,

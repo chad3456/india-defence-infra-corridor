@@ -233,6 +233,7 @@ export type ChartBody =
   | { kind: "scatter"; data: ScatterDatum[]; x: string; y: string; logX?: boolean; logY?: boolean; reference?: { x?: number; y?: number; label: string } }
   | { kind: "lines"; series: LineSeries[]; unit: string; reference?: { value: number; label: string } }
   | { kind: "columns"; data: Array<{ label: string; value: number; value2?: number }>; unit: string; labels?: [string, string]; claim?: boolean }
+  | { kind: "waffle"; cells: Array<{ label: string; value: number; tone: "red" | "blue" | "grey" }>; per: number; unit: string }
   | { kind: "awaiting"; reason: string };
 
 export interface ChartView {
@@ -246,6 +247,8 @@ export interface ChartView {
   sourceUrl: string;
   derived?: string;
   note?: string;
+  /** Further sources for a claim the dek makes beyond the chart's own data. */
+  also?: Array<{ label: string; url: string }>;
 }
 
 export interface InternetView {

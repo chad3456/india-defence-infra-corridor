@@ -41,6 +41,7 @@ console.log("\nparsers");
   ok("SATCAT: a quoted name keeps its owner column", s.activeByOwner.IND === 1, JSON.stringify(s.activeByOwner));
   ok("SATCAT: launches by year", st.launchedByYear["2019"] === 2 && st.launchedByYear["2024"] === 1);
   ok("landing country is the last comma part", countryOfLanding("Chennai, Tamil Nadu, India") === "India");
+  ok("a country name with its own comma survives", countryOfLanding("Muanda, Congo, Dem. Rep.") === "Congo, Dem. Rep.");
   const sheet = {
     sheet: "MobileBB", header: [], yearRows: [], blocks: [],
     rows: [
