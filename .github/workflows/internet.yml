@@ -1,0 +1,46 @@
+name: Ingest the state of the internet
+
+# Builds data/internet/internet.json: World Bank access indicators, the ITU
+# price baskets and plan allowances, PeeringDB exchanges, TeleGeography's
+# cable map and CelesTrak's satellite catalogue.
+#
+# Runs here because the editing sandbox cannot reach those hosts. Weekly:
+# SATCAT changes daily, everything else yearly.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "40 5 * * 1"
+  push:
+    paths:
+      - "scripts/etl/connectors/internet.ts"
+      - "lib/internet-shared.ts"
+      - ".github/workflows/internet.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: internet
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Ingest
+        run: npm run internet:ingest
+      - name: Check
+        run: npm run test:internet
+      - name: Commit
+        run: >
+          .github/scripts/commit-generated.sh
+          data/internet/internet.json
+          "data(internet): state of the internet $(date -u +'%Y-%m-%d %H:%M')"

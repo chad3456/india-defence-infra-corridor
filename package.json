@@ -23,7 +23,7 @@
     "docs:sync": "tsx scripts/docs/sync-tables.ts",
     "validate": "tsx scripts/validate.ts",
     "registry:audit": "tsx scripts/audit-registry.ts",
-    "test": "npm run validate && npm run test:not-empty && npm run test:mobility && npm run registry:audit && npm run test:schema && npm run test:ingest && npm run test:security && npm run test:epistemic && npm run test:localisation && npm run test:trai && npm run test:stations && npm run test:geo && npm run test:satellites && npm run test:wikitext && npm run test:claims && npm run test:everyday && npm run test:global && npm run test:arsenal && npm run test:sacred && npm run test:namesakes && npm run test:china-exports && npm run test:museum && npm run test:disputed && npm run test:footfall && npm run test:semi && npm run test:defence-trade && npm run test:policy && npm run test:drones && npm run test:ascii && npm run test:ai && npm run test:states && npm run test:deals && npm run test:oryx && npm run test:cinema && npm run test:panels && npm run test:shell && npm run test:data-loss && npm run test:airpower && npm run test:sindoor && npm run test:sindoor-book && npm run test:bollywood && npm run test:bollywood-arcade && npm run test:mela && npm run test:maven-book && npm run test:rights && npm run test:feed && npm run test:schemes && npm run test:census && npm run test:overpass && npm run test:elections && npm run test:client && npm run test:pdf && npm run test:sheets && npm run security:check && npm run test:docs && npm run db:seed-check && npm run typecheck",
+    "test": "npm run validate && npm run test:not-empty && npm run test:mobility && npm run registry:audit && npm run test:schema && npm run test:ingest && npm run test:security && npm run test:epistemic && npm run test:localisation && npm run test:trai && npm run test:stations && npm run test:geo && npm run test:satellites && npm run test:wikitext && npm run test:claims && npm run test:everyday && npm run test:global && npm run test:arsenal && npm run test:sacred && npm run test:namesakes && npm run test:china-exports && npm run test:museum && npm run test:internet && npm run test:disputed && npm run test:footfall && npm run test:semi && npm run test:defence-trade && npm run test:policy && npm run test:drones && npm run test:ascii && npm run test:ai && npm run test:states && npm run test:deals && npm run test:oryx && npm run test:cinema && npm run test:panels && npm run test:shell && npm run test:data-loss && npm run test:airpower && npm run test:sindoor && npm run test:sindoor-book && npm run test:bollywood && npm run test:bollywood-arcade && npm run test:mela && npm run test:maven-book && npm run test:rights && npm run test:feed && npm run test:schemes && npm run test:census && npm run test:overpass && npm run test:elections && npm run test:client && npm run test:pdf && npm run test:sheets && npm run security:check && npm run test:docs && npm run db:seed-check && npm run typecheck",
     "db:push": "tsx scripts/db/sync.ts push",
     "db:pull": "tsx scripts/db/sync.ts pull",
     "db:check": "tsx scripts/db/sync.ts check",
@@ -164,7 +164,10 @@
     "vande:ingest": "tsx scripts/etl/ingest-vande.ts",
     "census:ingest": "tsx scripts/etl/ingest-census.ts",
     "trade:universe": "tsx scripts/etl/build-hs6-universe.ts",
-    "trade:ingest": "tsx scripts/etl/ingest-trade.ts"
+    "trade:ingest": "tsx scripts/etl/ingest-trade.ts",
+    "geo:world": "tsx scripts/geo/build-world.ts",
+    "internet:ingest": "tsx scripts/etl/connectors/internet.ts",
+    "test:internet": "tsx scripts/test-internet.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",
