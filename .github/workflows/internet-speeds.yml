@@ -1,0 +1,37 @@
+name: Internet speeds by country (Ookla open data)
+
+# Builds data/internet/speeds.json: fixed and mobile download, upload and
+# latency by country, aggregated from Ookla's open speed-test tiles for the
+# latest quarter. Quarterly source, so monthly is often enough.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 7 20 * *"
+  push:
+    paths:
+      - "scripts/etl/ookla_speeds.py"
+      - ".github/workflows/internet-speeds.yml"
+
+permissions:
+  contents: write
+concurrency:
+  group: internet-speeds
+  cancel-in-progress: false
+
+jobs:
+  speeds:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install duckdb==1.1.3 geopandas==1.0.1 pyarrow pandas
+      - name: Aggregate
+        run: python scripts/etl/ookla_speeds.py
+      - name: Commit
+        run: >
+          .github/scripts/commit-generated.sh
+          data/internet/speeds.json
+          "data(internet): speeds by country $(date -u +'%Y-%m-%d %H:%M')"
