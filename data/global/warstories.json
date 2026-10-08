@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-08T15:36:56.637Z",
-  "previousBuild": "2026-10-08T06:03:50.180Z",
+  "builtAt": "2026-10-08T21:20:09.845Z",
+  "previousBuild": "2026-10-08T15:36:56.637Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 138,
-    "createdThisRun": 5,
-    "corroboratedThisRun": 2,
-    "feedsAnswered": 14,
+    "stories": 141,
+    "createdThisRun": 3,
+    "corroboratedThisRun": 0,
+    "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 282,
+    "itemsSeen": 275,
     "corroboration": {
-      "one": 118,
+      "one": 121,
       "two": 12,
       "threePlus": 8
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 73
+      "n": 75
     },
     {
       "id": "autonomy",
@@ -43,7 +43,7 @@
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 14
+      "n": 15
     },
     {
       "id": "military-ai",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 22
+      "n": 24
     },
     {
       "iso": "IND",
@@ -112,8 +112,8 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 39,
-      "kept": 4
+      "items": 42,
+      "kept": 5
     },
     {
       "outlet": "Indian Defence Research Wing",
@@ -131,7 +131,7 @@
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "C4ISRNET",
@@ -143,7 +143,7 @@
       "outlet": "DefenseScoop",
       "ok": true,
       "items": 10,
-      "kept": 4
+      "kept": 5
     },
     {
       "outlet": "Defence Industry Europe",
@@ -171,15 +171,16 @@
     },
     {
       "outlet": "Naval News",
-      "ok": true,
-      "items": 10,
-      "kept": 0
+      "ok": false,
+      "items": 0,
+      "kept": 0,
+      "error": "HTTP 503"
     },
     {
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -832,6 +833,67 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/spains-army-gets-its-first-aracne-anti-drone-vehicles/",
+          "published": "2026-10-08"
+        }
+      ]
+    },
+    {
+      "id": "https://www.twz.com/news-features/navy-doubles-down-on-x-bat-vtol-fighter-drone-development",
+      "headline": "Navy Doubles Down On X-BAT VTOL ‘Fighter’ Drone Development",
+      "firstSeen": "2026-10-08",
+      "lastSeen": "2026-10-08",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "The War Zone",
+          "url": "https://www.twz.com/news-features/navy-doubles-down-on-x-bat-vtol-fighter-drone-development",
+          "published": "2026-10-08"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/10/08/elbridge-colby-pentagon-cyber-operations-peculiar-awards-program/",
+      "headline": "Colby approves Pentagon policy for ‘cyber operations-peculiar’ monetary awards",
+      "firstSeen": "2026-10-08",
+      "lastSeen": "2026-10-08",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/10/08/elbridge-colby-pentagon-cyber-operations-peculiar-awards-program/",
+          "published": "2026-10-08"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/blades-hunter-wolf-drone-heads-to-pentagon-field-trial/",
+      "headline": "BLADE’s Hunter WOLF drone heads to Pentagon field trial",
+      "firstSeen": "2026-10-08",
+      "lastSeen": "2026-10-08",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/blades-hunter-wolf-drone-heads-to-pentagon-field-trial/",
           "published": "2026-10-08"
         }
       ]
