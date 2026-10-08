@@ -110,7 +110,8 @@ else {
   ok("World Bank: internet users for 150+ economies", !!users && Object.keys(users.values).length >= 150, String(users && Object.keys(users.values).length));
   ok("World Bank: shares between 0 and 100", !!users && Object.values(users.values).every((s) => s.every(([, v]) => v >= 0 && v <= 100)));
   ok("World Bank: India has a recent value", !!users?.values.IND?.some(([y]) => y >= 2022));
-  ok("World Bank: world aggregate present", !!users?.values.WLD?.length);
+  const aggs = ["WLD", "HIC", "UMC", "LMC", "LIC"];
+  ok("World Bank: world and income-group aggregates present", aggs.every((k) => !!users?.values[k]?.length), aggs.filter((k) => !users?.values[k]?.length).join(","));
   const mob = d.itu?.mobile ?? [];
   ok("ITU: 150+ mobile plans", mob.length >= 150, String(mob.length));
   ok("ITU: most plan names matched to a code", mob.filter((p) => p.iso3).length >= mob.length * 0.9, `${mob.filter((p) => !p.iso3).map((p) => p.economy).join(", ")}`);
