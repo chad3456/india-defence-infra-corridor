@@ -11,8 +11,8 @@ each average (CC BY-NC-SA 4.0). Ookla does not publish country figures in that
 dataset, so this script makes them, and the page labels them as derived:
 
   * each tile is placed in a country by its centre point, using Natural
-    Earth's 1:50m borders drawn from India's point of view (the borders the
-    rest of this site uses);
+    Earth's 1:10m borders drawn from India's point of view (the borders the
+    rest of this site uses), or the 1:50m default view if that file moves;
   * a country's figure is the mean of its tiles' averages weighted by their
     test counts — the mean speed of the tests run there, not a median, and not
     Ookla's own Speedtest Global Index, which uses a different method and will
@@ -35,7 +35,12 @@ import pandas as pd
 
 ROOT = os.getcwd()
 OUT = os.path.join(ROOT, "data", "internet", "speeds.json")
-BORDERS = "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_0_countries_ind.geojson"
+# Natural Earth publishes India's point of view only at 1:10m; the 1:50m
+# default-view file is the fallback if that one ever moves.
+BORDERS = [
+    "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_0_countries_ind.geojson",
+    "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_0_countries.geojson",
+]
 BASE = "https://ookla-open-data.s3.amazonaws.com/parquet/performance/type={t}/year={y}/quarter={q}/{y}-{m:02d}-01_performance_{t}_tiles.parquet"
 MIN_TESTS = {"fixed": 2000, "mobile": 1000}
 CELL = 0.02
@@ -63,13 +68,23 @@ def latest_quarter() -> tuple[int, int]:
     raise SystemExit("no Ookla quarter found in the last two years")
 
 
-def borders() -> gpd.GeoDataFrame:
-    gdf = gpd.read_file(BORDERS)
+def borders() -> tuple[gpd.GeoDataFrame, str]:
+    last: Exception | None = None
+    for url in BORDERS:
+        try:
+            gdf = gpd.read_file(url)
+            break
+        except Exception as e:  # try the next file
+            print(f"  borders unavailable at {url}: {e}", flush=True)
+            last = e
+    else:
+        raise SystemExit(f"no border file could be read: {last}")
+    print(f"  borders: {len(gdf)} countries from {url}", flush=True)
     keep = gdf[["ADM0_A3", "ISO_A3", "ISO_N3", "NAME", "geometry"]].copy()
     # Natural Earth marks a few ISO codes as -99; its own ADM0_A3 is always set.
     keep["iso3"] = keep.apply(lambda r: r["ISO_A3"] if r["ISO_A3"] not in ("-99", None) else r["ADM0_A3"], axis=1)
     keep["isoN"] = keep["ISO_N3"].astype(str).str.zfill(3)
-    return keep.to_crs("EPSG:4326")
+    return keep.to_crs("EPSG:4326"), url
 
 
 def country_means(kind: str, y: int, q: int, countries: gpd.GeoDataFrame) -> dict:
@@ -103,19 +118,20 @@ def country_means(kind: str, y: int, q: int, countries: gpd.GeoDataFrame) -> dic
             "tests": int(r.tests),
             "tiles": int(r.tiles),
         }
-    print(f"  {kind}: {len(out)} countries with ≥{MIN_TESTS[kind]} tests; {unplaced:,} tiles fell outside every border (sea, or a coastline at 1:50m)", flush=True)
+    print(f"  {kind}: {len(out)} countries with ≥{MIN_TESTS[kind]} tests; {unplaced:,} tiles fell outside every border (sea, or a generalised coastline)", flush=True)
     return {"countries": out, "tiles": total_tiles, "tests": int(df["tests"].sum()), "unplacedTiles": int(unplaced), "url": url}
 
 
 def main() -> None:
     y, q = latest_quarter()
-    countries = borders()
+    countries, border_url = borders()
     data = {
         "generatedAt": datetime.now(timezone.utc).isoformat(),
         "year": y,
         "quarter": q,
         "source": "Ookla Open Data — Speedtest performance tiles (CC BY-NC-SA 4.0), https://github.com/teamookla/ookla-open-data",
-        "method": "Tiles summed into 0.02-degree cells, each cell placed by its centre in Natural Earth 1:50m borders (India's point of view); test-weighted mean of tile averages; countries under the minimum test count omitted.",
+        "method": "Tiles summed into 0.02-degree cells, each cell placed by its centre in Natural Earth borders (the 1:10m India-view file where available); test-weighted mean of tile averages; countries under the minimum test count omitted.",
+        "borders": border_url,
         "minTests": MIN_TESTS,
         "fixed": country_means("fixed", y, q, countries),
         "mobile": country_means("mobile", y, q, countries),
