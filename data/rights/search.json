@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-08T15:54:24.978Z",
+  "builtAt": "2026-10-08T21:33:42.108Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1070,
-    "addedThisRun": 6,
-    "carriedFromEarlierRuns": 1064,
-    "withOutlet": 1004,
+    "items": 1075,
+    "addedThisRun": 5,
+    "carriedFromEarlierRuns": 1070,
+    "withOutlet": 1009,
     "bySubject": {
-      "scst": 717,
+      "scst": 722,
       "pmshri": 353
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 291
+    "offSubjectDropped": 311
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 516
+      "n": 519
     },
     {
       "key": "use",
-      "n": 379
+      "n": 381
     },
     {
       "key": "dispute",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 68
+      "n": 71
     },
     {
       "key": "The Indian Express",
@@ -137,6 +137,10 @@
       "n": 11
     },
     {
+      "key": "LawChakra",
+      "n": 11
+    },
+    {
       "key": "ndtv.com",
       "n": 10
     },
@@ -146,10 +150,6 @@
     },
     {
       "key": "lawchakra.in",
-      "n": 10
-    },
-    {
-      "key": "LawChakra",
       "n": 10
     },
     {
@@ -237,6 +237,10 @@
       "n": 5
     },
     {
+      "key": "Live Law",
+      "n": 5
+    },
+    {
       "key": "Law Trend",
       "n": 4
     },
@@ -266,10 +270,6 @@
     },
     {
       "key": "newsdrum.in",
-      "n": 4
-    },
-    {
-      "key": "Live Law",
       "n": 4
     },
     {
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 100,
       "bing": 4,
-      "kept": 0,
+      "kept": 5,
       "offSubject": 9
     },
     {
@@ -325,10 +325,10 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
-      "bing": 0,
+      "google": 52,
+      "bing": 7,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 6
     },
     {
       "id": "act-compensation",
@@ -346,7 +346,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 59,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 21
     },
@@ -356,26 +356,26 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 100,
-      "bing": 0,
-      "kept": 2,
-      "offSubject": 44
+      "bing": 2,
+      "kept": 0,
+      "offSubject": 45
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 22,
+      "google": 21,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 43,
+      "google": 44,
       "bing": 1,
       "kept": 0,
       "offSubject": 8
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 25,
+      "google": 24,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -397,7 +397,7 @@
       "expect": "false-finding",
       "google": 49,
       "bing": 0,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 18
     },
     {
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 31,
+      "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 21
     },
     {
       "id": "shri-general",
@@ -425,9 +425,9 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 41,
+      "google": 42,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -435,20 +435,20 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 68,
-      "bing": 0,
+      "google": 69,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 25
+      "offSubject": 26
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 0,
-      "bing": 0,
+      "google": 56,
+      "bing": 3,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 16
     },
     {
       "id": "shri-mou",
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 44,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 5
     },
@@ -477,7 +477,7 @@
       "expect": "dispute",
       "google": 53,
       "bing": 3,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 11
     },
     {
@@ -850,7 +850,8 @@
       "published": "2026-07-31",
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNS01pTVpVWlVyUzg2QkR1VEdQUDNOQVFXRE03blFOQUdHTEhCVTNUd3l4Ukw4VFlBNlItcFRDMlhnOXNGeUxGT19GQmY4clFqNFV1QXp0akF2WmpaNWtCb0U0aHVIazhwa3Itci1pUUdNb0JNS3liWmlwTXhYS213NXVSYnlvQ19sLW9kc3c2LTdObXRXVkpsUGhjVnhOc0U2QzJn?oc=5",
       "queries": [
-        "act-general"
+        "act-general",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -17921,6 +17922,86 @@
       "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQZEtlME51VjA5ODdzczZWTVhqYlVhel90ODl1azlzWXVUZzdHVmd1My12SmxqS2dCRU9mX00ycklDN1pWTm9RYVhsdFdJNUxDMmwycXlsRUVRS0N2RWxqR1M3QUdoenhjTFRsSkxNTF9vRkJkVU5mZEtMMlR6Z2NqSGRGZlR3cXhJVzEwRndVRDRuV2RucjRTQkFObzlqd0tMcHVCUktpZk9mQQ?oc=5",
       "queries": [
         "shri-nep"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-08"
+    },
+    {
+      "id": "blue shawl remark bengaluru special court grants anticipatory bail to former mp prathap si",
+      "headline": "'Blue Shawl' Remark: Bengaluru Special Court Grants Anticipatory Bail To Former MP Prathap Simha In SC/ST ...",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Live Law",
+      "published": "2026-10-08",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxONlZGc3BlWmNwWjlnNkRMX3M0Ny1VMEVoalFrbTAwS05mMEZCd1hlVzZXc0tGdEwySDFlcUZkY3VNRjVsWXJPSDZBWU9TNjlQYW9LblI5VkMxWFQyWWJfeFh3SFFRLU5mZVZwTzZmN2EyUHQtT3hUbmlfRFMweUp0UDd1N2pOWjFsdjVvQTd4WnFHaEVXTnAteVhpUHAxTnpjMU85LWxZY29YdTZKOE84LVdwU3NyXzRLaEhTbFZKWjhDSE1QV3JxdzNreUliZ9IBzgFBVV95cUxONlZGc3BlWmNwWjlnNkRMX3M0Ny1VMEVoalFrbTAwS05mMEZCd1hlVzZXc0tGdEwySDFlcUZkY3VNRjVsWXJPSDZBWU9TNjlQYW9LblI5VkMxWFQyWWJfeFh3SFFRLU5mZVZwTzZmN2EyUHQtT3hUbmlfRFMweUp0UDd1N2pOWjFsdjVvQTd4WnFHaEVXTnAteVhpUHAxTnpjMU85LWxZY29YdTZKOE84LVdwU3NyXzRLaEhTbFZKWjhDSE1QV3JxdzNreUliZw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-08"
+    },
+    {
+      "id": "high court of karnataka quashes fir in sc st act case rent dispute not caste based allegat",
+      "headline": "High Court of Karnataka Quashes FIR in SC/ST Act Case — Rent Dispute Not Caste-Based. Allegations of Abusive Language Without Caste Reference Do Not Attract Sections 3(1)(r) and 3(1)(s) of SC/ST (POA) Amendment Act, 2015.",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-10-08",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5HWXhhWFdGOVhFMHhpTlJYYld0OFlyOWlIZUFoLU9uQlRSTTFKTmZIUW5oQ21vS0FaRzctb05HOWdkUjNhems3eElDMVhoQ0c3TWZBdl9TMjVqNVNIUlhUcDRWWUJmUQ?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-08"
+    },
+    {
+      "id": "bengaluru special court grants former mp prathap simha anticipatory bail in blue shawl rem",
+      "headline": "Bengaluru Special Court Grants Former MP Prathap Simha Anticipatory Bail In ‘Blue Shawl’ Remark SC/ST Act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawChakra",
+      "published": "2026-10-08",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9pa1pHcjc2VkkyajU3SUxJSlhza0dRWnlxcEJ1UlRVRGxsQy1vbF9mV004RkdZRzcwdFZOY0pzR3RTVUJsS1RkNUdoZE9XN3ozd3VmWG1ZaTBRMDh1UmxpQnBBY2Y2N2FUTU83V1RKZVNXN2tw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-08"
+    },
+    {
+      "id": "bombay high court grants anticipatory bail to applicant in sc st act case due to lack of p",
+      "headline": "Bombay High Court Grants Anticipatory Bail to Applicant in SC/ST Act Case Due to Lack of Public View Element. Alleged Caste-Based Insult Over Phone Not in Public View, Fails to Attract Section 3(1)(x) of SC & ST (Prevention of Atrocities) Act, 1989.",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-10-07",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFA5dDVjUTktRmNvdm5RdnBIeTB6SG5yTlRUYnhoOHlteTE3ZmdVWkZndGZPY21zVEZSZ2pyaFFSalM5U0NwYjJqaHMwZnI1QWtVelpEaGwxUzVPOUx5ZzBqbFFuWEtmdnhV?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-08"
+    },
+    {
+      "id": "supreme court allows appeal in sc st act case summoning order under section 319 crpc set a",
+      "headline": "Supreme Court Allows Appeal in SC/ST Act Case — Summoning Order Under Section 319 CrPC Set Aside for Lack of Sufficient Evidence. Court holds that mere naming of accused in witness deposition without corroboration or satisfaction of higher standard u",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Lawtext",
+      "published": "2026-10-04",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBTRnFSNnhINFlCTWxPNFdTSGpHRzVMc1dSQVRzWGJBU2lsMFFGUGNtUy1JVW1Pa19JZTAyVjZTTDVIdnJfZGxoeHo2UjMydVNvemNLSjNDUERGY21MYm5FU1RzTWI?oc=5",
+      "queries": [
+        "act-registered"
       ],
       "indexes": [
         "google"
