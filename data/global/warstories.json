@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-08T06:03:50.180Z",
-  "previousBuild": "2026-10-07T21:19:16.118Z",
+  "builtAt": "2026-10-08T15:36:56.637Z",
+  "previousBuild": "2026-10-08T06:03:50.180Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,23 +12,23 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 133,
-    "createdThisRun": 0,
-    "corroboratedThisRun": 0,
+    "stories": 138,
+    "createdThisRun": 5,
+    "corroboratedThisRun": 2,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 282,
     "corroboration": {
-      "one": 114,
+      "one": 118,
       "two": 12,
-      "threePlus": 7
+      "threePlus": 8
     }
   },
   "byTheme": [
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 68
+      "n": 73
     },
     {
       "id": "autonomy",
@@ -55,12 +55,12 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 21
+      "n": 22
     },
     {
       "iso": "IND",
       "name": "India",
-      "n": 9
+      "n": 10
     },
     {
       "iso": "UKR",
@@ -86,6 +86,11 @@
       "iso": "AUS",
       "name": "Australia",
       "n": 2
+    },
+    {
+      "iso": "PAK",
+      "name": "Pakistan",
+      "n": 1
     },
     {
       "iso": "KOR",
@@ -114,7 +119,7 @@
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "Military Times",
@@ -126,7 +131,7 @@
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 2
+      "kept": 3
     },
     {
       "outlet": "C4ISRNET",
@@ -144,7 +149,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defense News",
@@ -292,6 +297,38 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/ai-military-targeting-may-move-faster-than-humans-can-authenticate-critics-warn/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/news/your-military/2026/10/08/pentagon-recruits-drone-pilots-from-across-services-for-upcoming-competition/",
+      "headline": "Pentagon recruits drone pilots from across services for upcoming competition",
+      "firstSeen": "2026-10-08",
+      "lastSeen": "2026-10-08",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/news/your-military/2026/10/08/pentagon-recruits-drone-pilots-from-across-services-for-upcoming-competition/",
+          "published": "2026-10-08"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/news/your-military/2026/10/08/pentagon-recruits-drone-pilots-from-across-services-for-upcoming-competition/",
+          "published": "2026-10-08"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/news/your-military/2026/10/08/pentagon-recruits-drone-pilots-from-across-services-for-upcoming-competition/",
+          "published": "2026-10-08"
         }
       ]
     },
@@ -719,6 +756,83 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/aksi-aerospace-loitering-munition-concept/",
+      "headline": "AKSI Aerospace Unveils ” Agni Kalash ” Loitering Munition Concept",
+      "firstSeen": "2026-10-08",
+      "lastSeen": "2026-10-08",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/aksi-aerospace-loitering-munition-concept/",
+          "published": "2026-10-08"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/azerbaijan-sends-dt-001-drone-system-to-pakistan-amid-india-armenia-defence-ties/",
+      "headline": "Azerbaijan Sends DT-001 Drone System to Pakistan Amid India-Armenia Defence Ties",
+      "firstSeen": "2026-10-08",
+      "lastSeen": "2026-10-08",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        },
+        {
+          "iso": "PAK",
+          "name": "Pakistan"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/azerbaijan-sends-dt-001-drone-system-to-pakistan-amid-india-armenia-defence-ties/",
+          "published": "2026-10-08"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/10/navy-shield-ai-pour-big-bucks-into-x-bat-drone-development/",
+      "headline": "Navy, Shield AI pour big bucks into X-BAT drone development",
+      "firstSeen": "2026-10-08",
+      "lastSeen": "2026-10-08",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/navy-shield-ai-pour-big-bucks-into-x-bat-drone-development/",
+          "published": "2026-10-08"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/spains-army-gets-its-first-aracne-anti-drone-vehicles/",
+      "headline": "Spain’s army gets its first Aracne anti-drone vehicles",
+      "firstSeen": "2026-10-08",
+      "lastSeen": "2026-10-08",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/spains-army-gets-its-first-aracne-anti-drone-vehicles/",
+          "published": "2026-10-08"
         }
       ]
     },
