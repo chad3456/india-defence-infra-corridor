@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-08T06:42:30.475Z",
+  "builtAt": "2026-10-08T15:54:24.978Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1064,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1062,
-    "withOutlet": 998,
+    "items": 1070,
+    "addedThisRun": 6,
+    "carriedFromEarlierRuns": 1064,
+    "withOutlet": 1004,
     "bySubject": {
-      "scst": 713,
-      "pmshri": 351
+      "scst": 717,
+      "pmshri": 353
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 308
+    "offSubjectDropped": 291
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 513
+      "n": 516
     },
     {
       "key": "use",
-      "n": 378
+      "n": 379
     },
     {
       "key": "dispute",
@@ -36,7 +36,7 @@
     },
     {
       "key": "acquittal",
-      "n": 54
+      "n": 56
     },
     {
       "key": "allegation",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 66
+      "n": 68
     },
     {
       "key": "The Indian Express",
@@ -149,15 +149,15 @@
       "n": 10
     },
     {
+      "key": "LawChakra",
+      "n": 10
+    },
+    {
       "key": "India Legal",
       "n": 9
     },
     {
       "key": "The Economic Times",
-      "n": 9
-    },
-    {
-      "key": "LawChakra",
       "n": 9
     },
     {
@@ -306,7 +306,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 5,
+      "bing": 4,
       "kept": 0,
       "offSubject": 9
     },
@@ -318,17 +318,17 @@
       "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 40
+      "offSubject": 41
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 52,
-      "bing": 8,
-      "kept": 1,
-      "offSubject": 6
+      "google": 51,
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 4
     },
     {
       "id": "act-compensation",
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 57,
-      "bing": 2,
+      "google": 59,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 21
     },
     {
       "id": "act-acquittal",
@@ -356,9 +356,9 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 100,
-      "bing": 2,
-      "kept": 1,
-      "offSubject": 46
+      "bing": 0,
+      "kept": 2,
+      "offSubject": 44
     },
     {
       "id": "act-hostile",
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 41,
+      "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 8
     },
     {
       "id": "act-dilution",
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 48,
+      "google": 49,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 19
+      "kept": 2,
+      "offSubject": 18
     },
     {
       "id": "act-fabricated",
@@ -425,9 +425,9 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 40,
+      "google": 41,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -436,7 +436,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 68,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 25
     },
@@ -445,10 +445,10 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 57,
-      "bing": 3,
+      "google": 0,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 0
     },
     {
       "id": "shri-mou",
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 44,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
       "offSubject": 5
     },
@@ -477,18 +477,18 @@
       "expect": "dispute",
       "google": 53,
       "bing": 3,
-      "kept": 0,
-      "offSubject": 12
+      "kept": 1,
+      "offSubject": 11
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 42,
+      "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 29
+      "offSubject": 30
     }
   ],
   "items": [
@@ -17828,6 +17828,102 @@
       ],
       "indexes": [
         "bing"
+      ],
+      "firstSeen": "2026-10-08"
+    },
+    {
+      "id": "gujarat high court upholds sc st act acquittal no public view eyewitness did not back pros",
+      "headline": "Gujarat High Court Upholds SC/ST Act Acquittal: No Public View, Eyewitness Did Not Back Prosecution",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "LawChakra",
+      "published": "2026-10-08",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNaFVvMlhVV1ZqV0xpWi1zdVc0RnRtM3dDT083M092ckh1MmJxSkxFUlNsUGQ4RlEzOXBkbnVxNTRDSWtxWEVlNWQ0b2hQcUpoQmdEVVBtc2FOUjNXUmlUZVF3Zm9CeW0yQXJieTltVHFtTHFOUXItVHRlOHBsWHJhRHlUbzRCUQ?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-08"
+    },
+    {
+      "id": "gujarat high court upholds acquittal in atrocity case due to lack of public view evidence ",
+      "headline": "Gujarat High Court Upholds Acquittal in Atrocity Case Due to Lack of Public View Evidence. Caste-Based Insult Allegation Fails as Incident Occurred Inside House, Not in Public View Under Section 3(1)(10) of SC & ST (Prevention of Atrocities) Act, 1989.",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-10-07",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5QcV9uNVlTakVIN1drUW92Q1hkMUp2Ymd3cTlmazhCSVlFcjJkNGM1dkx4TWZ2MElVSjMyVHl3UlpvRkUzRkxxUjdWS3l4RDI1NHpjSTVPS1prejl6alk1ZWxIal9rUQ?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-08"
+    },
+    {
+      "id": "high court of karnataka quashes complaint against accused no 4 in sc st act case for lack ",
+      "headline": "High Court of Karnataka Quashes Complaint Against Accused No.4 in SC/ST Act Case for Lack of Hearing Under Section 340 Cr.P.C. — Opportunity of hearing is mandatory before making a complaint under Section 340 Cr.P.C. for offences relating to false evi",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Lawtext",
+      "published": "2026-10-07",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBjX2FJek55TFM3ZUxhRE9kNDFZOWtnWENjZDFwNXVDT3B3S01YcHljODFJUlZaNzU2SEd6ZWxtUy1yM29lbjVVd3pOemo1ZGd2RndpZ2RxS21UN2RuZG5zalBWME9SQQ?oc=5",
+      "queries": [
+        "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-08"
+    },
+    {
+      "id": "delhi high court professional rivalry among doctors masquerading as caste bias fir under s",
+      "headline": "Delhi High Court: Professional Rivalry Among Doctors Masquerading as Caste Bias – FIR Under SC/ST Act Quashed, Allegations Fail to Meet Statutory Criteria",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Raw Law",
+      "published": "2024-12-10",
+      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxON09rVjhpRFdpbE01eVM3VmZOUlliNUFpdXR2TDRpM0dUeEY0Q2RWclBSd25WcjFydW1wSW1WMFVJajZKdDRLWHdwRFpYMEtvVFlJbzNtTzQzLW54NGRoeWxCZkRKVVJxY3d3bjZNT19iZGxzUGdJNVAySWk5QmZ5Y2JUWHVZMVZVMzRGNXZWRDZJM0t6MUMteTdOYWNWZmlNZEZDU0JSSzBrR3lIYjhCaUkwejZDWDJYemV6c0EtVndsd2NvT3RPekUwZEtWdkliN3I1eW5PZ2xPR1FPWVJ4bUtiZ1Ntbl9wV1JUcklMTFpNbjI2RlhlNkoyRTdSdw?oc=5",
+      "queries": [
+        "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-08"
+    },
+    {
+      "id": "recruitment in pm shri schools orders issued for appointment of yoga and sports instructor",
+      "headline": "Recruitment in PM SHRI Schools Orders Issued for Appointment of Yoga and Sports Instructors",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Sakshi Education",
+      "published": "2025-10-31",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxORmdFNDhKV1dnU1N0UzBKX1NWdHhyeXdNdWpZaUd1NWNhMVpLelc3dk96b3FOVEhvZndfemJKNHBEcEFBUmhWdDl5cWpMdExSc0pLaFkzcmY4c3c0OGZZOUw1MS16S3JyUXQ1V0tkSWNEeVVocHBvaDByWGpPZWFhWWpKbzRlSXY4OXphSHJ5OUdUTWtyMXBRMVRHNGJPamxDLW9aWnJMbGN3Qm5qckFoRmMzUkVvcnliRnNmMFQtSlkzaERyS3M2eWRud05jbXVRX0NKR1p0RQ?oc=5",
+      "queries": [
+        "shri-sanctioned"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-08"
+    },
+    {
+      "id": "kerala reaffirms stand against nep despite signing pm shri mou",
+      "headline": "Kerala Reaffirms Stand Against NEP Despite Signing PM SHRI MoU",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Oneindia",
+      "published": "2025-10-28",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQZEtlME51VjA5ODdzczZWTVhqYlVhel90ODl1azlzWXVUZzdHVmd1My12SmxqS2dCRU9mX00ycklDN1pWTm9RYVhsdFdJNUxDMmwycXlsRUVRS0N2RWxqR1M3QUdoenhjTFRsSkxNTF9vRkJkVU5mZEtMMlR6Z2NqSGRGZlR3cXhJVzEwRndVRDRuV2RucjRTQkFObzlqd0tMcHVCUktpZk9mQQ?oc=5",
+      "queries": [
+        "shri-nep"
+      ],
+      "indexes": [
+        "google"
       ],
       "firstSeen": "2026-10-08"
     }
