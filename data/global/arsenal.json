@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-07T22:16:22.621Z",
+ "builtAt": "2026-10-08T12:14:39.440Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206503,20 +206503,37 @@
   },
   {
    "outlet": "Naval News",
-   "ok": true,
-   "items": 10,
-   "kept": 2,
-   "via": "direct"
+   "ok": false,
+   "items": 0,
+   "kept": 0,
+   "via": "unconfigured"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-fkqmyt",
+   "kind": "delivery",
+   "systems": [
+    "Iron Dome"
+   ],
+   "countries": [
+    "United States",
+    "Israel"
+   ],
+   "value": null,
+   "date": "2026-10-08",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/first-u-s-built-iron-dome-interceptor-delivered-to-israel/",
+   "headline": "First U.S.-built Iron Dome interceptor delivered to Israel",
+   "primary": false
+  },
   {
    "id": "ev-1p16550",
    "kind": "order",
@@ -207402,6 +207419,41 @@
   }
  ],
  "groups": [
+  {
+   "key": "delivery|iron dome|israel+united states",
+   "systems": [
+    "Iron Dome"
+   ],
+   "countries": [
+    "United States",
+    "Israel"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-fkqmyt",
+     "kind": "delivery",
+     "systems": [
+      "Iron Dome"
+     ],
+     "countries": [
+      "United States",
+      "Israel"
+     ],
+     "value": null,
+     "date": "2026-10-08",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/first-u-s-built-iron-dome-interceptor-delivered-to-israel/",
+     "headline": "First U.S.-built Iron Dome interceptor delivered to Israel",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||united kingdom",
    "systems": [],
