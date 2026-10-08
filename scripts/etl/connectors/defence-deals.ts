@@ -56,7 +56,7 @@
  * Where a release states two different figures, both are kept and the row is
  * marked ambiguous rather than one being chosen.
  */
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getText } from "../lib/http";
 import { isEntryPoint } from "../lib/entry";
@@ -215,8 +215,28 @@ export function textOf(html: string): string {
 }
 
 export function titleOf(html: string): string {
-  const h = /<h2[^>]*>([\s\S]*?)<\/h2>/i.exec(html) ?? /<title>([\s\S]*?)<\/title>/i.exec(html);
-  return h ? textOf(h[1] ?? "").slice(0, 220) : "";
+  return titleCandidates(html)[0] ?? "";
+}
+
+/**
+ * Every place a release's headline might be, in order of trust.
+ *
+ * The first <h2> was the headline until it was not: on 6 October 2026 the
+ * same 137 releases that had yielded 26 deals a week earlier yielded none,
+ * with "announced no event" doubling — the shape of a page that gained an
+ * earlier heading. The page's own og:title is the publisher naming the
+ * release, so it comes first; then each <h2>, <h1> and the <title>.
+ */
+export function titleCandidates(html: string): string[] {
+  const out: string[] = [];
+  const og = /<meta[^>]+property=["']og:title["'][^>]*content=["']([^"']+)["']/i.exec(html)
+    ?? /<meta[^>]+content=["']([^"']+)["'][^>]*property=["']og:title["']/i.exec(html);
+  if (og?.[1]) out.push(og[1]);
+  for (const m of html.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/gi)) { out.push(m[1] ?? ""); if (out.length > 8) break; }
+  for (const m of html.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/gi)) out.push(m[1] ?? "");
+  const t = /<title>([\s\S]*?)<\/title>/i.exec(html);
+  if (t?.[1]) out.push(t[1]);
+  return out.map((x) => textOf(x).slice(0, 220)).filter((x) => x.length > 8);
 }
 
 const MONTHS = [
@@ -434,13 +454,17 @@ export async function run(): Promise<void> {
      * headline names none of the four events is counted as not-an-event rather
      * than filed under whichever measure its body happened to mention.
      */
-    const { measure, cue } = classify(titleOf(html));
-    if (measure === "unclassified") { notAnEvent++; continue; }
+    // The first candidate that names one of the four events is the headline.
+    const candidates = titleCandidates(html);
+    const hit = candidates.map((t) => ({ t, ...classify(t) })).find((c) => c.measure !== "unclassified");
+    if (!hit) { notAnEvent++; continue; }
+    const { measure, cue } = hit;
+    const headline = hit.t;
     const money = moneyIn(body);
     deals.push({
       prid,
       url: `${PIB}${prid}`,
-      title: titleOf(html),
+      title: headline,
       date: dateOf(body),
       ministry: ministryOf(body),
       measure,
@@ -469,6 +493,18 @@ export async function run(): Promise<void> {
     };
   }
 
+  /*
+   * Last known good. The 6 October run wrote an empty ledger over 26 deals:
+   * an upstream page change, not a week in which India signed nothing. A
+   * result that has lost half the previous ledger or more is a broken reader,
+   * so the previous file is kept and the run says so instead.
+   */
+  const previous = await readFile(OUT, "utf8").then((t) => (JSON.parse(t) as { deals?: unknown[] }).deals?.length ?? 0).catch(() => 0);
+  if (previous > 0 && deals.length < Math.max(1, previous / 2)) {
+    console.error(`\nREFUSED: ${deals.length} deals against ${previous} last time — keeping the previous ledger. ` +
+      `${notAnEvent} releases had no event in any headline candidate; check how PIB marks its headline.`);
+    return;
+  }
   await save(deals, meta());
 
   const m = meta();

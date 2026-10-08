@@ -12,13 +12,29 @@
  */
 import { existsSync, readFileSync } from "node:fs";
 import {
-  classify, dateOf, moneyIn, pridsIn, isDefenceAcquisition, distinctValues, textOf,
+  classify, dateOf, moneyIn, pridsIn, isDefenceAcquisition, distinctValues, textOf, titleCandidates,
 } from "./etl/connectors/defence-deals";
 
 let bad = 0;
 function ok(name: string, cond: boolean, detail = ""): void {
   if (!cond) bad++;
   console.log(`  ${cond ? "ok  " : "FAIL"} ${name}${cond ? "" : "  " + detail}`);
+}
+
+console.log("\nFinding the headline when the page grows an earlier heading");
+{
+  // The shape that emptied the ledger on 6 October 2026: a site heading
+  // before the release's own. The release must still be found.
+  const page = `<html><head><title>Press Information Bureau</title>
+    <meta property="og:title" content="MoD inks two contracts worth Rs 62,700 crore with HAL" /></head>
+    <body><h2>Ministry of Defence</h2><h2>MoD inks two contracts worth Rs 62,700 crore with HAL</h2></body></html>`;
+  const cands = titleCandidates(page);
+  ok("og:title comes first", cands[0]?.startsWith("MoD inks two contracts") === true, cands[0]);
+  const hit = cands.map((t) => classify(t)).find((c) => c.measure !== "unclassified");
+  ok("a release behind a site heading still classifies", !!hit && hit.measure === "contract", JSON.stringify(hit));
+  const noOg = page.replace(/<meta[^>]+>/, "");
+  const hit2 = titleCandidates(noOg).map((t) => classify(t)).find((c) => c.measure !== "unclassified");
+  ok("…and without og:title, the second <h2> is found", !!hit2, JSON.stringify(titleCandidates(noOg)));
 }
 
 console.log("\nFinding the citations");
