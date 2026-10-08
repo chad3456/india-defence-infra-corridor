@@ -1,0 +1,35 @@
+name: Probe internet sources
+
+# What the internet essay's sources return — ITU price workbooks, World Bank,
+# APNIC IPv6, PeeringDB, TeleGeography, CelesTrak, Access Now, Ookla — before
+# any parser is written against them. Publishes no series.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-internet.ts"
+      - ".github/workflows/probe-internet.yml"
+
+permissions:
+  contents: write
+concurrency:
+  group: probe-internet
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npm run internet:probe
+      - name: Commit
+        if: always()
+        run: >
+          .github/scripts/commit-generated.sh
+          data/live/internet-probe.json
+          "chore(sources): internet source probe $(date -u +'%Y-%m-%d %H:%M')"
