@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-07T21:38:16.226Z",
+  "builtAt": "2026-10-08T06:42:30.475Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1062,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 1059,
-    "withOutlet": 997,
+    "items": 1064,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1062,
+    "withOutlet": 998,
     "bySubject": {
-      "scst": 711,
+      "scst": 713,
       "pmshri": 351
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 302
+    "offSubjectDropped": 308
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 377
+      "n": 378
     },
     {
       "key": "dispute",
@@ -36,7 +36,7 @@
     },
     {
       "key": "acquittal",
-      "n": 53
+      "n": 54
     },
     {
       "key": "allegation",
@@ -109,15 +109,15 @@
       "n": 13
     },
     {
+      "key": "Maktoob",
+      "n": 13
+    },
+    {
       "key": "Outlook India",
       "n": 12
     },
     {
       "key": "Court Book",
-      "n": 12
-    },
-    {
-      "key": "Maktoob",
       "n": 12
     },
     {
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 100,
       "bing": 5,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 9
     },
     {
@@ -356,9 +356,9 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 100,
-      "bing": 1,
-      "kept": 0,
-      "offSubject": 45
+      "bing": 2,
+      "kept": 1,
+      "offSubject": 46
     },
     {
       "id": "act-hostile",
@@ -368,17 +368,17 @@
       "google": 22,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 42,
+      "google": 41,
       "bing": 1,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "act-dilution",
@@ -388,14 +388,14 @@
       "google": 25,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 49,
+      "google": 48,
       "bing": 0,
       "kept": 0,
       "offSubject": 19
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 30,
+      "google": 31,
       "bing": 0,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 20
     },
     {
       "id": "shri-general",
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 41,
+      "google": 40,
       "bing": 1,
       "kept": 0,
       "offSubject": 6
@@ -435,7 +435,7 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 69,
+      "google": 68,
       "bing": 1,
       "kept": 0,
       "offSubject": 25
@@ -446,9 +446,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 57,
-      "bing": 2,
+      "bing": 3,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 16
     },
     {
       "id": "shri-mou",
@@ -465,10 +465,10 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 29,
+      "google": 30,
       "bing": 1,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 16
     },
     {
       "id": "shri-nep",
@@ -17798,6 +17798,38 @@
         "bing"
       ],
       "firstSeen": "2026-10-07"
+    },
+    {
+      "id": "dalit youth brutally attacked robbed in gujarat third caste based atrocity in 21 days",
+      "headline": "Dalit youth brutally attacked, robbed in Gujarat, third caste-based atrocity in 21 days",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Maktoob",
+      "published": "2025-08-19",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQNnpERVZ3TmJnS2RqdjJRaUdBMUFFMnNLdEhFVDF2UXJkakNWcktrZXJXVUtwaVJzNW53dm9IVUZET05IWWZ1THJEYkx6d3VscmlsMkRqdmpjVHpPbWRMNlllZF9LX3NmSUJvbDlNRFAwdk12V3VSb0JrelRnX1ZycTZoTkNtdU1fU1pkclZ1SVVmc054NmJTaU5tN0Q1djZ0ZEdOTkgtQTFEV016Q28zaC13YTVOeVIyaDdkNHlhOVV3alNmT2xUSVlR?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-08"
+    },
+    {
+      "id": "caste based insult not in public view eyewitness didn t support prosecution gujarat high c",
+      "headline": "Caste-Based Insult Not In 'Public View', Eyewitness Didn't Support Prosecution: Gujarat High Court Upholds SC/ST Act Acquittal",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": null,
+      "published": "2026-10-07",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac73b0886e44534a607ff90639b2ca4&url=https%3a%2f%2fwww.livelaw.in%2fhigh-court%2fgujarat-high-court%2fgujarat-high-court-upholds-acquittal-of-three-accused-of-using-caste-based-slurs-553614&c=8644061342599421570&mkt=en-us",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-10-08"
     }
   ]
 }
