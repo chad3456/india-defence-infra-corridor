@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-09T06:08:34.831Z",
-  "previousBuild": "2026-10-08T21:20:09.845Z",
+  "builtAt": "2026-10-09T15:18:42.549Z",
+  "previousBuild": "2026-10-09T06:08:34.831Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 141,
-    "createdThisRun": 0,
+    "stories": 145,
+    "createdThisRun": 4,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 13,
+    "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 274,
+    "itemsSeen": 284,
     "corroboration": {
-      "one": 121,
+      "one": 125,
       "two": 12,
       "threePlus": 8
     }
@@ -28,12 +28,12 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 75
+      "n": 77
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 43
+      "n": 44
     },
     {
       "id": "targeting",
@@ -48,7 +48,7 @@
     {
       "id": "military-ai",
       "label": "AI in military use",
-      "n": 3
+      "n": 4
     }
   ],
   "byCountry": [
@@ -70,7 +70,7 @@
     {
       "iso": "GBR",
       "name": "United Kingdom",
-      "n": 3
+      "n": 4
     },
     {
       "iso": "DEU",
@@ -119,7 +119,7 @@
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Military Times",
@@ -149,44 +149,43 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 4
+      "kept": 3
     },
     {
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Defense One",
       "ok": true,
       "items": 18,
-      "kept": 4
+      "kept": 5
     },
     {
       "outlet": "Naval News",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "HTTP 503"
+      "ok": true,
+      "items": 10,
+      "kept": 0
     },
     {
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "UK Ministry of Defence",
       "ok": true,
       "items": 20,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Press Information Bureau (India)",
@@ -757,6 +756,79 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/eos-signs-conditional-370-million-contract-for-nationwide-counter-drone-defence-system-in-an-unnamed-gulf-state/",
+      "headline": "EOS signs conditional £370 million contract for nationwide counter-drone defence system in an unnamed Gulf state",
+      "firstSeen": "2026-10-09",
+      "lastSeen": "2026-10-09",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/eos-signs-conditional-370-million-contract-for-nationwide-counter-drone-defence-system-in-an-unnamed-gulf-state/",
+          "published": "2026-10-09"
+        }
+      ]
+    },
+    {
+      "id": "https://www.defenseone.com/technology/2026/10/armys-new-command-plans-streamline-autonomous-warfare-acquisition/416523/",
+      "headline": "Army’s new command plans to streamline autonomous warfare acquisition",
+      "firstSeen": "2026-10-09",
+      "lastSeen": "2026-10-09",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defense One",
+          "url": "https://www.defenseone.com/technology/2026/10/armys-new-command-plans-streamline-autonomous-warfare-acquisition/416523/",
+          "published": "2026-10-09"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-army-seeks-drone-defense-for-its-lightest-units/",
+      "headline": "U.S. Army seeks drone defense for its lightest units",
+      "firstSeen": "2026-10-09",
+      "lastSeen": "2026-10-09",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-army-seeks-drone-defense-for-its-lightest-units/",
+          "published": "2026-10-09"
+        }
+      ]
+    },
+    {
+      "id": "https://www.gov.uk/government/news/100-new-uk-jobs-created-as-kuwait-buys-british-made-ai-enabled-air-defence-systems",
+      "headline": "100 new UK jobs created as Kuwait buys British-made AI-enabled air defence systems",
+      "firstSeen": "2026-10-09",
+      "lastSeen": "2026-10-09",
+      "themes": [
+        "military-ai"
+      ],
+      "countries": [
+        {
+          "iso": "GBR",
+          "name": "United Kingdom"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "UK Ministry of Defence",
+          "url": "https://www.gov.uk/government/news/100-new-uk-jobs-created-as-kuwait-buys-british-made-ai-enabled-air-defence-systems",
+          "published": "2026-10-09"
         }
       ]
     },
