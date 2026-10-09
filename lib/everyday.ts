@@ -193,23 +193,15 @@ export function byTheme(theme: EverydayTheme): EverydayIndicator[] {
 /**
  * Indicators measured too rarely to draw a trend through, and why.
  *
- * These are not broken series. Poverty and inequality both come from household
- * consumption surveys, which most countries run every five to ten years and
- * India has run less often than that — the World Bank's Indian series carries
- * 2004, 2009, 2011 and then nothing until 2022. Slum share is thinner still.
- *
- * The temptation is to drop them for failing a density check, and that would
- * be exactly backwards: on a page asking whether growth reaches ordinary
- * people, these are the two that answer it most directly. So they stay, and
- * the page labels them rather than drawing a confident line through four
- * points spread over eighteen years.
+ * These are not broken series, only thin ones. Poverty and inequality were
+ * listed here until the World Bank added a 2023 reading in 2026, giving them
+ * five; slum share, with two readings a year apart, remains. The page labels
+ * such a series rather than drawing a confident line through a few points.
  *
  * Listed explicitly so that adding a sparse indicator is a decision somebody
  * makes, not something that slips in.
  */
 export const SPARSE: Record<string, string> = {
-  "wdi-extreme-poverty": "From household consumption surveys, which India runs rarely — four readings since 2004, with an eleven-year gap in the middle.",
-  "wdi-gini": "The same survey as poverty above, so the same four years and the same gap.",
   "wdi-slum-population": "Two readings, a year apart. Enough for a comparison, not for a trend.",
 };
 
