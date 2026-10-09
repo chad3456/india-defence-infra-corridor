@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-09T15:18:42.549Z",
-  "previousBuild": "2026-10-09T06:08:34.831Z",
+  "builtAt": "2026-10-09T20:54:38.821Z",
+  "previousBuild": "2026-10-09T15:18:42.549Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 145,
-    "createdThisRun": 4,
+    "stories": 147,
+    "createdThisRun": 2,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 284,
+    "itemsSeen": 283,
     "corroboration": {
-      "one": 125,
+      "one": 127,
       "two": 12,
       "threePlus": 8
     }
@@ -33,17 +33,17 @@
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 44
+      "n": 45
     },
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 19
+      "n": 20
     },
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 15
+      "n": 16
     },
     {
       "id": "military-ai",
@@ -112,26 +112,26 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 41,
+      "items": 40,
       "kept": 5
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "C4ISRNET",
@@ -143,7 +143,7 @@
       "outlet": "DefenseScoop",
       "ok": true,
       "items": 10,
-      "kept": 4
+      "kept": 3
     },
     {
       "outlet": "Defence Industry Europe",
@@ -155,7 +155,7 @@
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "Breaking Defense",
@@ -828,6 +828,41 @@
         {
           "outlet": "UK Ministry of Defence",
           "url": "https://www.gov.uk/government/news/100-new-uk-jobs-created-as-kuwait-buys-british-made-ai-enabled-air-defence-systems",
+          "published": "2026-10-09"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/l3harris-completes-60-wolf-pack-flight-tests-spanning-strike-and-electronic-warfare-capabilities/",
+      "headline": "L3Harris completes 60 Wolf Pack flight tests spanning strike and electronic warfare capabilities",
+      "firstSeen": "2026-10-09",
+      "lastSeen": "2026-10-09",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/l3harris-completes-60-wolf-pack-flight-tests-spanning-strike-and-electronic-warfare-capabilities/",
+          "published": "2026-10-09"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/10/drones-and-autonomous-warfare-one-way-attack-and-reshaping-isr/",
+      "headline": "Drones and autonomous warfare: ‘One-way attack’ and reshaping ISR",
+      "firstSeen": "2026-10-09",
+      "lastSeen": "2026-10-09",
+      "themes": [
+        "autonomy",
+        "targeting"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/drones-and-autonomous-warfare-one-way-attack-and-reshaping-isr/",
           "published": "2026-10-09"
         }
       ]
