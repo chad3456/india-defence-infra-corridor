@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-09T15:41:27.734Z",
+  "builtAt": "2026-10-09T21:21:08.252Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,33 +10,33 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1080,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1079,
-    "withOutlet": 1013,
+    "items": 1085,
+    "addedThisRun": 5,
+    "carriedFromEarlierRuns": 1080,
+    "withOutlet": 1018,
     "bySubject": {
-      "scst": 726,
-      "pmshri": 354
+      "scst": 729,
+      "pmshri": 356
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 4
+    "offSubjectDropped": 317
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 521
+      "n": 524
     },
     {
       "key": "use",
       "n": 383
     },
     {
-      "key": "dispute",
+      "key": "acquittal",
       "n": 58
     },
     {
-      "key": "acquittal",
-      "n": 56
+      "key": "dispute",
+      "n": 58
     },
     {
       "key": "allegation",
@@ -74,7 +74,7 @@
     },
     {
       "key": "India Today",
-      "n": 29
+      "n": 30
     },
     {
       "key": "LawBeat",
@@ -129,15 +129,15 @@
       "n": 12
     },
     {
+      "key": "LawChakra",
+      "n": 12
+    },
+    {
       "key": "Deccan Herald",
       "n": 11
     },
     {
       "key": "ANI News",
-      "n": 11
-    },
-    {
-      "key": "LawChakra",
       "n": 11
     },
     {
@@ -197,11 +197,19 @@
       "n": 6
     },
     {
+      "key": "The Mooknayak English",
+      "n": 6
+    },
+    {
       "key": "News18",
       "n": 6
     },
     {
       "key": "Mathrubhumi English",
+      "n": 6
+    },
+    {
+      "key": "Live Law",
       "n": 6
     },
     {
@@ -225,19 +233,11 @@
       "n": 5
     },
     {
-      "key": "The Mooknayak English",
-      "n": 5
-    },
-    {
       "key": "Business Standard",
       "n": 5
     },
     {
       "key": "ETV Bharat",
-      "n": 5
-    },
-    {
-      "key": "Live Law",
       "n": 5
     },
     {
@@ -295,200 +295,200 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 0,
+      "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 6
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 0,
-      "bing": 3,
+      "google": 100,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 10
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 0,
+      "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 40
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 0,
-      "bing": 0,
+      "google": 51,
+      "bing": 8,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 0,
+      "google": 47,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 14
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 0,
-      "bing": 0,
+      "google": 59,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 21
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 0,
+      "google": 100,
       "bing": 2,
-      "kept": 0,
-      "offSubject": 1
+      "kept": 2,
+      "offSubject": 46
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 0,
+      "google": 22,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 7
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 0,
-      "bing": 0,
+      "google": 48,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 9
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 0,
+      "google": 24,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 0
+      "kept": 1,
+      "offSubject": 2
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 0,
+      "google": 48,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 17
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 0,
+      "google": 31,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 20
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 0,
-      "bing": 0,
-      "kept": 0,
-      "offSubject": 0
+      "google": 100,
+      "bing": 11,
+      "kept": 1,
+      "offSubject": 4
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 0,
+      "google": 42,
       "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 7
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 0,
+      "google": 67,
       "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 26
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 0,
+      "google": 55,
       "bing": 3,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 16
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 0,
+      "google": 45,
       "bing": 2,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 4
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 0,
-      "bing": 0,
+      "google": 30,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 18
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 0,
+      "google": 52,
       "bing": 3,
       "kept": 1,
-      "offSubject": 1
+      "offSubject": 10
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 0,
-      "bing": 0,
+      "google": 43,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 32
     }
   ],
   "items": [
@@ -5831,7 +5831,8 @@
       "published": "2025-01-28",
       "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNNERjUDVEeHpiNDVsZ21LNHhsZ0VPUEM0MGJncERLQXJkcGRqZlMzNlNhNlhIWE5FTTltYlJSZWpCZ0FxbHRtVzVmd1NVb21rV2ctakxoN19rVUY5Ql9GRHFmNng4WVRrb3NVUzRLNU8zX21xa3hzbExmZVk2bkRBb3pjR2lLcnVUZGs5OC01MlZoV1NJcmh3LVZUQ2VPOV8zdlE?oc=5",
       "queries": [
-        "act-pendency"
+        "act-pendency",
+        "act-misuse-claim"
       ],
       "indexes": [
         "google"
@@ -18086,6 +18087,86 @@
       ],
       "indexes": [
         "bing"
+      ],
+      "firstSeen": "2026-10-09"
+    },
+    {
+      "id": "2009 sc st atrocity case karnataka high court upholds acquittal of 26 booked for pulling d",
+      "headline": "2009 SC/ST Atrocity Case: Karnataka High Court Upholds Acquittal Of 26 Booked For Pulling Down Dr BR...",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Live Law",
+      "published": "2026-10-09",
+      "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxObFFEWFlyUnlZdE10dFJFbnB0ZU9BV3hyVjZieVVzcTFUVmszalVFNFk1QlhqMVNldm5nWE95SDF5NWkyeDA0QlF5YjhPYWl5MHNRa3hVVVB0VXdsb2xKblc4WUtJRmVBTW9Mak5obU9heDgxdjh1UnFLMUthSWlWQXhDR0RqZkZhZ3hYQ3JjY0QzTFI5TFloWngxY3N4dHJ2elNqdktkaElNZThNWXB1R2h1UEQ5MlNBQjh4UVI3a1R2bzRMdURMWWROY1NhZmtON0Nid1JOWEJZQnY1SVlVVl96TEpJbnF0WGk2ZENlZ0Y1MzhJ0gH0AUFVX3lxTE5sUURYWXJSeVl0TXR0UkVucHRlT0FXeHJWNmJ5VXNxMVRWazNqVUU0WTVCWGoxU2V2bmdYT3lIMXk1aTJ4MDRCUXliOE9haXkwc1FreFVVUHRVd2xvbEpuVzhZS0lGZUFNb0xqTmhtT2F4ODF2OHVScUsxS2FJaVZBeENHRGpmRmFneFhDcmNjRDNMUjlMWWhaeDFjc3h0cnZ6U2p2S2RoSU1lOE1ZcHVHaHVQRDkyU0FCOHhRUjdrVHZvNEx1RExZZE5jU2Fma043Q2J3Uk5YQllCdjVJWVVWX3pMSklucXRYaTZkQ2VnRjUzOEk?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-09"
+    },
+    {
+      "id": "karnataka high court upholds acquittal of 26 in 2009 sc st atrocities case over ambedkar p",
+      "headline": "Karnataka High Court Upholds Acquittal Of 26 In 2009 SC/ST Atrocities Case Over Ambedkar Portrait",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "LawChakra",
+      "published": "2026-10-09",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQRGNjQlE2ZHVDNXlyRXFRSEQtY0d1d1hhNnhyUG1OanZtMzQ4NUY2ZHpqVDNXbnI2VnhSOTRNQ1N4YXoxWmNtOV9SVF9KSkFMZ05WQlBKRnJIaWNFbDlPVmI1dmxMRXF2Y3VlTGwxbXhaOFVOenFUR3Fad0RKMHBVTHpLaDRBdnVWSTZsRDQ4a2RzOURjaURZ?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-09"
+    },
+    {
+      "id": "sc st act from dilution to restoration in 5 months",
+      "headline": "SC/ST Act: From dilution to restoration in 5 months",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "India Today",
+      "published": "2018-08-02",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxONGl3dTdqcWdQNUpTN0pxYmpBLURkUTBFYUNLSHRRbVYtTm1zc25RdWV0MjF1TEhHMUxkLTVzYzcyQlFpNEVmZUtFdzQzeUx2Vl9hRnFHV2dzemxWLU9OQk80dGZOQ0pJSXdMeHJiYnlFTEFsUFl4c2xaWTlWZHZxUU4wZlI0OV9rX01wRG9qT2lIcFRKb2t5NVAySl9YU1AtX0Znd1VmYjV2dzDSAbABQVVfeXFMTjZsQUgwRnVicWIwQkQzRS1tX19SbnVKSUZqYkk4SzFKQk9uRkxVaDZlVXc5Skp5ZjVMaUs1dUtyemNSODE4NVMwNmcybmtJbUpYdTktRFJfU2lhcmpfTkNMZWFTdEpTc0N2T08yVHFoSi1kX1VfckVLaWpKVEdLNncxb0VEcHZiMTE1VWZPR0pxaVZrRENJa1BnRkJET3o3RHJhYWF2cUYtZjBMd1RXUWc?oc=5",
+      "queries": [
+        "act-dilution"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-09"
+    },
+    {
+      "id": "bse odisha secretary visits pm shri bilesu high school commends student talent and innovat",
+      "headline": "BSE Odisha Secretary visits PM SHRI Bilesu High School; Commends student talent and innovative academic initiatives",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Odisha Barta",
+      "published": "2026-10-09",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNWmhyRW94YVpnOE95ZnJkVVVRaWxFTHBfbERoX0JLb1ZBUzlKVEhNMnlwM1dGVl9TVHpOdXoxVmlRWVZjakVIRFpneGZiOGk5UURrVHZobmZwbG0yS3p4S0NMNFdkRmFqNzFLenh3RFpLNFNuR0doNHp1VXpIU252ZDFmb2NkY0lCbEhrQkZCZW1rQ080NlpvR0xzYjUwY3VmejdNYnRIa1R4ZEZLS2R3U1lwR1ZKeEFFRldYRHowRGpBWW5lTVpKYXQwX2FFdzMzOS05bzFR?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-09"
+    },
+    {
+      "id": "kerala pm shri adoption congress criticism overlooks its own nep rollouts in rajasthan chh",
+      "headline": "Kerala PM SHRI Adoption: Congress' Criticism Overlooks Its Own NEP Rollouts in Rajasthan, Chhattisgarh, and Himachal Pradesh",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The Mooknayak English",
+      "published": "2025-10-23",
+      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOOV92X19hRHJEUFFvZElsaTNub3pZLTVqbTFtSks3ZzVZZUNFYTc1VW1DYi1SOGxYOVFTNHRBVHNfOHkyUlQ5RTRPYllmdnFKNWZDM0xnTmNvM0N1UHJvcnVMZmVJR0FvLURjc19EZElxVXpiNjZGQzhUUkFqT0k4Q2JBVmkzYmlod25tajAxTDFmNk5nNUtiTHZQVjN6eG1sVHhGNm9xOTl0aGNaWjRpZTNsUGJiVDU2dkt3cnVGRDJtM1pVczVyeXhKdFEzWUpTXzlDWlBxRDJHVUpNRk1GN0ZxMzVTdTFDdF8tQmlWRdIB_AFBVV95cUxQVUNJVUlDMGx3X0V3SHFZdjl0V1NQY0hjSlhaRFNnd2JPczBuczlySlJNYklWY05QQ3l2T3MwMzFpRExIeGd0WDRoUHJ1SGJfV2lvSndhWUNBdW9TLUw3Um00cGs1eFNneWVhVU1nQm1vb2R1NGRMbmdxb0dsc2k0WG0tbGZFRUEwQ1l1SGpCXzFLYWxEQTFJSkZoVWRSNUloLVc0WUQ1MVRpRUVZWnZ1Zlh1MWJtZExLX190UkszZFhtVzBqUjBGWm1JZ05PaDEtN1VZSGluQl9WNzYtWkNMZHNlN3hmSElJeUhXemtBaENzM001VnRfZnRxaGc?oc=5",
+      "queries": [
+        "shri-nep"
+      ],
+      "indexes": [
+        "google"
       ],
       "firstSeen": "2026-10-09"
     }
