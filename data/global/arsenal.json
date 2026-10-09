@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-08T22:28:08.676Z",
+ "builtAt": "2026-10-09T12:06:09.927Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206491,7 +206491,7 @@
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   },
   {
@@ -206517,6 +206517,34 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-i9za4s",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-10-09",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/10/pentagon-lockheed-weigh-multi-year-f-35-production-sustainment-deal/",
+   "headline": "Pentagon, Lockheed weigh multi-year F-35 production, sustainment deal",
+   "primary": false
+  },
+  {
+   "id": "ev-kogrv1",
+   "kind": "delivery",
+   "systems": [],
+   "countries": [
+    "Latvia"
+   ],
+   "value": null,
+   "date": "2026-10-09",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/latvian-army-takes-delivery-of-first-hunter-fighting-vehicle/",
+   "headline": "Latvian army takes delivery of first Hunter fighting vehicle",
+   "primary": false
+  },
   {
    "id": "ev-1c6m1ge",
    "kind": "order",
@@ -207460,6 +207488,20 @@
    "kind": "order",
    "events": [
     {
+     "id": "ev-i9za4s",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-10-09",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/10/pentagon-lockheed-weigh-multi-year-f-35-production-sustainment-deal/",
+     "headline": "Pentagon, Lockheed weigh multi-year F-35 production, sustainment deal",
+     "primary": false
+    },
+    {
      "id": "ev-1c6m1ge",
      "kind": "order",
      "systems": [],
@@ -207822,6 +207864,35 @@
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "delivery||latvia",
+   "systems": [],
+   "countries": [
+    "Latvia"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-kogrv1",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "Latvia"
+     ],
+     "value": null,
+     "date": "2026-10-09",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/latvian-army-takes-delivery-of-first-hunter-fighting-vehicle/",
+     "headline": "Latvian army takes delivery of first Hunter fighting vehicle",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order||germany",
