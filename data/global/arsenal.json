@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-09T12:06:09.927Z",
+ "builtAt": "2026-10-09T21:53:03.754Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206484,7 +206484,7 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   },
   {
@@ -206518,7 +206518,25 @@
  ],
  "events": [
   {
-   "id": "ev-i9za4s",
+   "id": "ev-yguoa8",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": {
+    "amount": 6300000000,
+    "currency": "USD",
+    "asWritten": "$6.3B"
+   },
+   "date": "2026-10-09",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/missile-defense/2026/10/09/pentagon-raytheon-sign-63b-deal-to-replenish-us-missile-interceptor-supply/",
+   "headline": "Pentagon, Raytheon sign $6.3B deal to replenish US missile interceptor supply",
+   "primary": false
+  },
+  {
+   "id": "ev-o7m75u",
    "kind": "order",
    "systems": [],
    "countries": [
@@ -206528,7 +206546,7 @@
    "date": "2026-10-09",
    "outlet": "Breaking Defense",
    "url": "https://breakingdefense.com/2026/10/pentagon-lockheed-weigh-multi-year-f-35-production-sustainment-deal/",
-   "headline": "Pentagon, Lockheed weigh multi-year F-35 production, sustainment deal",
+   "headline": "EXCLUSIVE: Pentagon, Lockheed weigh multi-year F-35 production, sustainment deal",
    "primary": false
   },
   {
@@ -206543,6 +206561,20 @@
    "outlet": "Defence Blog",
    "url": "https://defence-blog.com/latvian-army-takes-delivery-of-first-hunter-fighting-vehicle/",
    "headline": "Latvian army takes delivery of first Hunter fighting vehicle",
+   "primary": false
+  },
+  {
+   "id": "ev-i9za4s",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-10-09",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/10/pentagon-lockheed-weigh-multi-year-f-35-production-sustainment-deal/",
+   "headline": "Pentagon, Lockheed weigh multi-year F-35 production, sustainment deal",
    "primary": false
   },
   {
@@ -207488,6 +207520,38 @@
    "kind": "order",
    "events": [
     {
+     "id": "ev-yguoa8",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 6300000000,
+      "currency": "USD",
+      "asWritten": "$6.3B"
+     },
+     "date": "2026-10-09",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/missile-defense/2026/10/09/pentagon-raytheon-sign-63b-deal-to-replenish-us-missile-interceptor-supply/",
+     "headline": "Pentagon, Raytheon sign $6.3B deal to replenish US missile interceptor supply",
+     "primary": false
+    },
+    {
+     "id": "ev-o7m75u",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-10-09",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/10/pentagon-lockheed-weigh-multi-year-f-35-production-sustainment-deal/",
+     "headline": "EXCLUSIVE: Pentagon, Lockheed weigh multi-year F-35 production, sustainment deal",
+     "primary": false
+    },
+    {
      "id": "ev-i9za4s",
      "kind": "order",
      "systems": [],
@@ -207857,9 +207921,9 @@
     }
    ],
    "outlets": [
+    "Defense News",
     "Breaking Defense",
     "Defence Blog",
-    "Defense News",
     "Naval News"
    ],
    "value": null,
