@@ -195,16 +195,16 @@ export function byTheme(theme: EverydayTheme): EverydayIndicator[] {
  *
  * These are not broken series, only thin ones. Inequality left this list when
  * the World Bank added a 2023 reading in 2026, giving it five. Extreme poverty
- * gained the same reading and then lost it again in a later revision, so it is
- * back to four and back on the list; slum share, with two readings a year
- * apart, remains. The page labels
+ * gained the same reading, lost it in one refresh of October 2026 and regained
+ * it in the next — the API has been serving it intermittently — so its listing
+ * here follows whatever the committed data holds; slum share, with two
+ * readings a year apart, remains. The page labels
  * such a series rather than drawing a confident line through a few points.
  *
  * Listed explicitly so that adding a sparse indicator is a decision somebody
  * makes, not something that slips in.
  */
 export const SPARSE: Record<string, string> = {
-  "wdi-extreme-poverty": "Four household surveys in two decades (2004, 2009, 2011, 2022), with an eleven-year gap. Enough to show the fall, not its shape.",
   "wdi-slum-population": "Two readings, a year apart. Enough for a comparison, not for a trend.",
 };
 
