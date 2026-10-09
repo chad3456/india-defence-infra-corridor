@@ -10,6 +10,7 @@ import { loadNamesakes } from "@/lib/namesakes";
 import { loadChinaExports } from "@/lib/china-exports";
 import { loadMuseum } from "@/lib/museum";
 import { loadInternet } from "@/lib/internet";
+import { loadBreakneck } from "@/lib/breakneck";
 import { byId as mavenFigure, stated as mavenStated } from "@/lib/maven-shared";
 
 /**
@@ -175,10 +176,22 @@ export default function StoriesIndex() {
   const china = loadChinaExports();
   const museum = loadMuseum();
   const internet = loadInternet();
+  const breakneck = loadBreakneck();
   const skyShare = internet.headline.find((h) => h.label === "Working satellites that are Starlink");
   const chinaTotal = china.products.filter((p) => p.latest?.year === china.latestYear).reduce((s, p) => s + (p.latest?.value ?? 0), 0);
 
   const RIGHTS = [
+    {
+      href: "/breakneck",
+      tone: "cool" as const,
+      kicker: "books · a visual study guide",
+      title: "Breakneck, by the Numbers.",
+      blurb:
+        "Dan Wang's engineering state against the lawyerly society, chapter by chapter: high-speed rail, Guizhou's bridges, "
+        + "the iPhone, the one-child policy, zero-Covid and Fortress China — every figure checked against the book and cited to its page.",
+      stat: String(breakneck.figures.length),
+      statLabel: "figures from the book, each with its page",
+    },
     ...(internet.present ? [{
       href: "/internet",
       tone: "cool" as const,
