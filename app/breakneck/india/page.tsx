@@ -206,6 +206,7 @@ export default function BreakneckIndiaPage() {
   const aiRows = live.filter((r) => r.ai).sort((a, b) => (b.world ?? 0) - (a.world ?? 0));
   const sectorsSorted = [...sectors].filter((s) => s.chinaShare !== null).sort((a, b) => b.chinaShare! - a.chinaShare!);
   const phoneParts = ["851713", "854231", "854232", "852492", "853400", "853224", "850760", "900219", "852589", "851829", "851810", "852352"].map(R);
+  const phoneIn = phoneParts.filter((r) => r.hs !== "851713" && r.indiaFromChina !== null);
   const droneParts = ["880622", "880621", "850131", "850760", "852589", "852691", "854231", "880730"].map(R);
   const indiaMostExported = [...live].sort((a, b) => (b.indiaExports ?? 0) - (a.indiaExports ?? 0)).slice(0, 8);
   const sm = live.find((r) => r.hs === "851713");
@@ -531,7 +532,7 @@ export default function BreakneckIndiaPage() {
                     ))}
                   </tbody>
                 </table>
-                <figcaption><span className="bk-note">Chips are where export shares mislead most: Taiwan, the largest maker of advanced processors, does not report to Comtrade, and its exports appear only as &ldquo;Other Asia, nes&rdquo; where partners record them. Hong Kong and Singapore re-export chips made elsewhere.</span><span className="bk-cite">UN Comtrade, {atlas.year}</span></figcaption>
+                <figcaption><span className="bk-note">Chips are where export shares mislead most. Taiwan&rsquo;s trade is in Comtrade under the name &ldquo;Other Asia, nes&rdquo;, shown here as Taiwan. Hong Kong and Singapore re-export chips made elsewhere, so a re-exporter can lead a line it does not make, and the same chip can be counted twice in the world total.</span><span className="bk-cite">UN Comtrade, {atlas.year}</span></figcaption>
               </figure>
 
               <h3 className="in-h3">Explore every line</h3>
@@ -550,20 +551,20 @@ export default function BreakneckIndiaPage() {
               <li>
                 <b>India assembles; China supplies.</b> India is the world&rsquo;s {sm.indiaRank ? `number ${sm.indiaRank}` : "—"} exporter of smartphones
                 ({pct(sm.indiaShare, 1)} of world exports, against China&rsquo;s {pct(sm.chinaShare)}), yet across the {live.length} lines of this atlas, {pct(impAll ? (impCn / impAll) * 100 : null)} of
-                what India imports comes from China. The phone leaves India; much of what is inside it arrived from China.
+                what India imports comes from China. The phone leaves India; of the {phoneIn.length} phone parts drawn above, India gets more than half its imports of {phoneIn.filter((r) => (r.indiaFromChina ?? 0) > 50).length} from China.
               </li>
               <li>
                 <b>Where India already competes:</b> India is a top-ten exporter in {indiaTop10.length} of {live.length} lines
-                {indiaTop10.length > 0 ? ` — ${indiaTop10.slice(0, 5).map((r) => `${r.name.toLowerCase()} (#${r.indiaRank})`).join(", ")}` : ""}.
+                {indiaTop10.length > 0 ? ` — ${indiaTop10.slice(0, 5).map((r) => `${r.name} (#${r.indiaRank})`).join(", ")}` : ""}.
               </li>
               <li>
                 <b>Where India depends most:</b> in {mostReliant.length} lines India imports at least $20m a year and gets three-quarters or more of it from China
-                {mostReliant.length > 0 ? ` — among them ${mostReliant.slice(0, 4).map((r) => r.name.toLowerCase()).join(", ")}` : ""}.
+                {mostReliant.length > 0 ? ` — among them ${mostReliant.slice(0, 4).map((r) => r.name).join("; ")}` : ""}.
               </li>
               <li>
                 <b>China&rsquo;s near-monopolies:</b> China sells half or more of world exports in {chinaHalf.length} lines
-                {chinaHalf.length > 0 ? `, ${[...chinaHalf].sort((a, b) => b.chinaShare! - a.chinaShare!).slice(0, 4).map((r) => `${r.name.toLowerCase()} (${pct(r.chinaShare)})`).join(", ")}` : ""}.
-                Those are the lines where an Indian factory has no second supplier to turn to.
+                {chinaHalf.length > 0 ? `, ${[...chinaHalf].sort((a, b) => b.chinaShare! - a.chinaShare!).slice(0, 4).map((r) => `${r.name} (${pct(r.chinaShare)})`).join("; ")}` : ""}.
+                In these lines an Indian factory has the fewest alternatives to buying Chinese.
               </li>
             </ul>
           )}
@@ -619,8 +620,9 @@ export default function BreakneckIndiaPage() {
           </p>
           <p>
             <b>The atlas</b> measures trade, not production. China&rsquo;s share is its share of world exports, summed over every country that reported to UN Comtrade for the year;
-            that differs from a production share wherever a country keeps what it makes or re-exports what others made. Taiwan does not report, so lines where it is large — chips
-            above all — understate the world total and overstate everyone else&rsquo;s share. Hong Kong, Singapore and the Netherlands re-export. India&rsquo;s imports are valued at the
+            that differs from a production share wherever a country keeps what it makes or re-exports what others made. Re-exporters — Hong Kong, Singapore, the
+            Netherlands — count goods again as they pass through, which inflates the world total and lets a trading hub lead a line it does not make; chips are most
+            affected. Taiwan&rsquo;s trade appears in Comtrade as &ldquo;Other Asia, nes&rdquo; and is named Taiwan here. India&rsquo;s imports are valued at the
             border including freight and insurance; China&rsquo;s exports are valued without them, so the two ends of the same trade never match exactly. A line with no data shows a
             dash, never a zero.
           </p>

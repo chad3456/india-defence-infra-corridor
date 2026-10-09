@@ -9,8 +9,9 @@
  * is the best public measure of who supplies the world, and it differs from a
  * production share wherever a country makes things for itself (China builds
  * most of its own EVs and keeps them) or re-exports what others made (Hong
- * Kong, the Netherlands, Singapore). Taiwan does not report to Comtrade, so
- * lines where Taiwan is large — chips above all — understate the world total.
+ * Kong, the Netherlands, Singapore), which also counts the same goods twice
+ * in a world total. Taiwan's trade is in Comtrade as "Other Asia, nes"
+ * (code 490), and the page names it Taiwan.
  * The page says all of this beside the numbers.
  *
  * Every entry carries `key`, a word that must appear in the official HS
