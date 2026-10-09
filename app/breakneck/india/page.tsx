@@ -64,7 +64,9 @@ function ICard({ m, fs, title, children, derived, wdis = [], wide }: {
           <span className="bk-cite in-src">
             India:{" "}
             {m.sources.map((s, i) => (
-              <span key={s.url}>{i > 0 ? " · " : ""}<a href={s.url} rel="noopener noreferrer" target="_blank">{s.publisher}</a></span>
+              <span key={s.url}>{i > 0 ? " · " : ""}<a href={s.url} rel="noopener noreferrer" target="_blank">
+                {m.sources.filter((o) => o.publisher === s.publisher).length > 1 ? `${s.publisher}: ${s.title}` : s.publisher}
+              </a></span>
             ))}
           </span>
         )}
@@ -165,6 +167,29 @@ export default function BreakneckIndiaPage() {
   const lawPer = pop2023 ? (V(law, 0).value / pop2023) * law.perCapita!.per : null;
   const boysPer100 = (1000 / V(sex, 0).value) * 100;
   const usJobs = sv(F("us-mfg-jobs"), "2025");
+  const mfg2001 = wdiAt("wdi-manufacturing-gdp", "2001");
+
+  type StripRow = { what: string; cn: number | null; us: number | null; in: number | null; f: (v: number) => string; note?: string };
+  const stripRows: StripRow[] = [
+            { what: "Reactors under construction", cn: F("nuclear-building").value, us: F("nuclear-building").value2!, in: V(nb, 0).value, f: (v) => String(v) },
+            { what: "New wind capacity, 2023 (GW)", cn: F("wind-2023").value2!, us: F("wind-2023").value, in: V(wind, 0).value, f: (v) => String(v) },
+            { what: "Manufacturing, % of GDP", cn: wv(W.mfg, "CHN"), us: wv(W.mfg, "USA"), in: wv(W.mfg, "IND"), f: (v) => `${v.toFixed(1)}%`, note: `World Bank; US ${wp(W.mfg, "USA")}` },
+            { what: "Investment (capital formation), % of GDP", cn: wv(W.gcf, "CHN"), us: wv(W.gcf, "USA"), in: wv(W.gcf, "IND"), f: (v) => `${v.toFixed(1)}%`, note: "World Bank" },
+            { what: "High-technology exports", cn: wv(W.ht, "CHN"), us: wv(W.ht, "USA"), in: wv(W.ht, "IND"), f: usd, note: `World Bank, ${wp(W.ht, "IND")}` },
+            { what: "Researchers per million people", cn: wv(W.rd, "CHN"), us: wv(W.rd, "USA"), in: wv(W.rd, "IND"), f: (v) => Math.round(v).toLocaleString("en-US"), note: `World Bank; India ${wp(W.rd, "IND")}` },
+            { what: "Urban share of population", cn: wv(W.urban, "CHN"), us: wv(W.urban, "USA"), in: wv(W.urban, "IND"), f: (v) => `${v.toFixed(0)}%`, note: "World Bank" },
+            { what: "Children per woman", cn: wv(W.tfr, "CHN"), us: wv(W.tfr, "USA"), in: wv(W.tfr, "IND"), f: (v) => v.toFixed(2), note: `World Bank, ${wp(W.tfr, "IND")}` },
+            { what: "Lawyers per 100,000 people", cn: null, us: F("lawyers-per-100k").value, in: lawPer, f: (v) => String(Math.round(v)), note: "India: enrolled advocates, derived" },
+          ];
+  // Where India falls against the two, counted from the rows themselves.
+  const strip = { between: 0, below: 0, above: 0, us: 0 };
+  for (const r of stripRows) {
+    if (r.in === null) continue;
+    if (r.cn === null || r.us === null) { strip.us++; continue; }
+    if (r.in < Math.min(r.cn, r.us)) strip.below++;
+    else if (r.in > Math.max(r.cn, r.us)) strip.above++;
+    else strip.between++;
+  }
 
   /* ── the atlas ── */
   const { atlas, rows, sectors } = loadAtlas();
@@ -219,20 +244,11 @@ export default function BreakneckIndiaPage() {
         <section id="sits" className="bk-score">
           <h2>Where India sits</h2>
           <p className="bk-lede">
-            On the measures where all three countries can be compared like for like, India is rarely between the two. It sits closer to America than to China on
-            building and making — and below both on most of them.
+            {stripRows.length} measures on which India can be set beside the book&rsquo;s two countries. Of those with all three, India sits between China and
+            America on {strip.between}, below both on {strip.below} and above both on {strip.above}.{strip.us ? " On lawyers the book gives only America's figure." : ""}
+            It is rarely the engineering state and rarely the lawyerly society: mostly, it is a poorer country than either.
           </p>
-          <Strip rows={[
-            { what: "Reactors under construction", cn: F("nuclear-building").value, us: F("nuclear-building").value2!, in: V(nb, 0).value, f: (v) => String(v) },
-            { what: "New wind capacity, 2023 (GW)", cn: F("wind-2023").value2!, us: F("wind-2023").value, in: V(wind, 0).value, f: (v) => String(v) },
-            { what: "Manufacturing, % of GDP", cn: wv(W.mfg, "CHN"), us: wv(W.mfg, "USA"), in: wv(W.mfg, "IND"), f: (v) => `${v.toFixed(1)}%`, note: `World Bank; US ${wp(W.mfg, "USA")}` },
-            { what: "Investment (capital formation), % of GDP", cn: wv(W.gcf, "CHN"), us: wv(W.gcf, "USA"), in: wv(W.gcf, "IND"), f: (v) => `${v.toFixed(1)}%`, note: "World Bank" },
-            { what: "High-technology exports", cn: wv(W.ht, "CHN"), us: wv(W.ht, "USA"), in: wv(W.ht, "IND"), f: usd, note: `World Bank, ${wp(W.ht, "IND")}` },
-            { what: "Researchers per million people", cn: wv(W.rd, "CHN"), us: wv(W.rd, "USA"), in: wv(W.rd, "IND"), f: (v) => Math.round(v).toLocaleString("en-US"), note: `World Bank; India ${wp(W.rd, "IND")}` },
-            { what: "Urban share of population", cn: wv(W.urban, "CHN"), us: wv(W.urban, "USA"), in: wv(W.urban, "IND"), f: (v) => `${v.toFixed(0)}%`, note: "World Bank" },
-            { what: "Children per woman", cn: wv(W.tfr, "CHN"), us: wv(W.tfr, "USA"), in: wv(W.tfr, "IND"), f: (v) => v.toFixed(2), note: `World Bank, ${wp(W.tfr, "IND")}` },
-            { what: "Lawyers per 100,000 people", cn: null, us: F("lawyers-per-100k").value, in: lawPer, f: (v) => String(Math.round(v)), note: "India: enrolled advocates, derived" },
-          ]} />
+          <Strip rows={stripRows} />
           <p className="bk-cite">Book: {[F("nuclear-building"), F("wind-2023"), F("lawyers-per-100k")].map((f) => cite(f)).join(" · ")} · World Bank, World Development Indicators, read {W.mfg.lastVerified} · India sources on each card below</p>
         </section>
 
@@ -240,7 +256,7 @@ export default function BreakneckIndiaPage() {
         <section id="build" className="in-part">
           <p className="bk-kicker">Part one · Building</p>
           <h2>Concrete, steel and rail</h2>
-          <p className="bk-lede">The book&rsquo;s second chapter: China builds at a scale and price America cannot. India has doubled or quadrupled its stock of nearly everything since 2014 — from a far lower base, and still far below China&rsquo;s pace.</p>
+          <p className="bk-lede">The book&rsquo;s second chapter: China builds at a scale and price America cannot. Since 2014 India has grown its metro network {(V(metro, 1).value / V(metro, 5).value).toFixed(1)}-fold and its national highways by {(((V(hw, 0).value - V(hw, 1).value) / V(hw, 1).value) * 100).toFixed(0)}% — from a far lower base, and still well short of China&rsquo;s pace.</p>
           <div className="bk-cards">
             <ICard m={metro} fs={[F("subway-cities")]} derived={`${(V(metro, 1).value / V(metro, 5).value).toFixed(1)}× the 2014 network length: ${V(metro, 1).value.toLocaleString("en-US")} km ÷ ${V(metro, 5).value} km.`}>
               <Bars unit="" rows={[
@@ -277,7 +293,7 @@ export default function BreakneckIndiaPage() {
                 { label: "India", value: V(nb, 0).value, ink: "in" },
                 { label: "United States", value: F("nuclear-building").value2!, ink: "us" },
               ]} />
-              <p className="bk-note">India&rsquo;s eight add {V(nb, 1).value.toLocaleString("en-US")} MW. On this measure India is closer to China than to America.</p>
+              <p className="bk-note">India&rsquo;s eight add {V(nb, 1).value.toLocaleString("en-US")} MW.</p>
             </ICard>
 
             <ICard m={nf} fs={[F("nuclear-plants")]}>
@@ -325,7 +341,7 @@ export default function BreakneckIndiaPage() {
         <section id="make" className="in-part">
           <p className="bk-kicker">Part two · Making</p>
           <h2>Factories and process knowledge</h2>
-          <p className="bk-lede">The book&rsquo;s third chapter: technology lives in workforces that learn by doing. India is where China was early in that story — assembling more iPhones each year, with most of the value still made elsewhere.</p>
+          <p className="bk-lede">The book&rsquo;s third chapter: technology lives in workforces that learn by doing. India is where China was early in that story — assembling more iPhones each year. How much of each phone&rsquo;s value is added in India is not published.</p>
           <div className="bk-cards">
             <ICard title="Manufacturing as a share of GDP" fs={[F("mfg-share")]} wdis={[W.mfg]}>
               <Bars unit="%" rows={[
@@ -334,7 +350,7 @@ export default function BreakneckIndiaPage() {
                 { label: `India, World Bank ${wp(W.mfg, "IND")}`, value: wv(W.mfg, "IND") ?? 0, ink: "in", text: `${(wv(W.mfg, "IND") ?? 0).toFixed(1)}%` },
                 { label: `US, World Bank ${wp(W.mfg, "USA")}`, value: wv(W.mfg, "USA") ?? 0, ink: "us", text: `${(wv(W.mfg, "USA") ?? 0).toFixed(1)}%` },
               ]} />
-              <p className="bk-note">India&rsquo;s share has not risen in two decades: this site&rsquo;s record shows it lower than in 2001. The book&rsquo;s 28% for China is an older reading than the World Bank&rsquo;s latest.</p>
+              {mfg2001 !== null && <p className="bk-note">India&rsquo;s share was {mfg2001.toFixed(1)}% in 2001 and {(wv(W.mfg, "IND") ?? 0).toFixed(1)}% in {wp(W.mfg, "IND")}{(wv(W.mfg, "IND") ?? 0) < mfg2001 ? ": lower, despite two decades of industrial policy" : ""}. The book&rsquo;s 28% for China is an older reading than the World Bank&rsquo;s latest.</p>}
             </ICard>
 
             <ICard m={mw} fs={[F("mfg-workforce"), F("us-mfg-jobs")]} wdis={[W.ind]}>
@@ -551,7 +567,7 @@ export default function BreakneckIndiaPage() {
               </li>
             </ul>
           )}
-          <p className="in-sub">These sentences are written from the data: when the atlas is refreshed, they change with it.</p>
+          {atlas && <p className="in-sub">These sentences are written from the data: when the atlas is refreshed, they change with it.</p>}
 
           {atlas && (
             <div className="bk-cards">
@@ -586,7 +602,7 @@ export default function BreakneckIndiaPage() {
             {data.electronics.map((c) => (
               <ICard key={c.id} m={c} fs={[]}>
                 <ul className="bk-facts">
-                  {c.india.map((v) => <li key={v.label}><b>{v.hedge ? `${v.hedge} ` : ""}{fmtIn(v)}</b> {v.label.toLowerCase()}{v.year && v.unit !== "year" && !v.label.includes(v.year) ? ` (${v.year})` : ""}</li>)}
+                  {c.india.map((v) => <li key={v.label}><b>{v.hedge ? `${v.hedge} ` : ""}{fmtIn(v)}</b> {v.label.charAt(0).toLowerCase() + v.label.slice(1)}{v.year && v.unit !== "year" && !v.label.includes(v.year) ? ` (${v.year})` : ""}</li>)}
                 </ul>
               </ICard>
             ))}

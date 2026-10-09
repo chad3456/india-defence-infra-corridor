@@ -1952,6 +1952,7 @@ figcaption .bk-note { margin: 0; font-size: 12px; }
 .in-dot { position: absolute; top: 50%; width: 24px; height: 24px; margin: -12px 0 0 -12px; border-radius: 50%; display: grid; place-items: center;
   font: 700 9px var(--font-mono); font-style: normal; color: #fff; border: 2px solid var(--bk-card); }
 .in-dot.in { z-index: 2; }
+.in-root .in-dot { color: #fff; }
 .in-strip-vals { display: flex; flex-wrap: wrap; gap: 2px 10px; font: 600 12px var(--font-mono); }
 .in-strip-vals em { flex-basis: 100%; font: 11px var(--font-sans); color: var(--bk-muted); }
 
