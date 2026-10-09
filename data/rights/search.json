@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-08T21:33:42.108Z",
+  "builtAt": "2026-10-09T06:48:27.256Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1075,
-    "addedThisRun": 5,
-    "carriedFromEarlierRuns": 1070,
-    "withOutlet": 1009,
+    "items": 1079,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 1075,
+    "withOutlet": 1013,
     "bySubject": {
-      "scst": 722,
+      "scst": 726,
       "pmshri": 353
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 311
+    "offSubjectDropped": 314
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 519
+      "n": 521
     },
     {
       "key": "use",
-      "n": 381
+      "n": 383
     },
     {
       "key": "dispute",
@@ -54,15 +54,15 @@
     },
     {
       "key": "Lawtext",
-      "n": 71
+      "n": 72
     },
     {
       "key": "The Indian Express",
-      "n": 55
+      "n": 56
     },
     {
       "key": "The New Indian Express",
-      "n": 48
+      "n": 49
     },
     {
       "key": "The Hindu",
@@ -197,6 +197,10 @@
       "n": 6
     },
     {
+      "key": "News18",
+      "n": 6
+    },
+    {
       "key": "Mathrubhumi English",
       "n": 6
     },
@@ -230,10 +234,6 @@
     },
     {
       "key": "ETV Bharat",
-      "n": 5
-    },
-    {
-      "key": "News18",
       "n": 5
     },
     {
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 100,
       "bing": 4,
-      "kept": 5,
+      "kept": 1,
       "offSubject": 9
     },
     {
@@ -317,8 +317,8 @@
       "expect": "use",
       "google": 100,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 41
+      "kept": 1,
+      "offSubject": 42
     },
     {
       "id": "act-atrocity",
@@ -327,18 +327,18 @@
       "expect": "use",
       "google": 52,
       "bing": 7,
-      "kept": 0,
-      "offSubject": 6
+      "kept": 1,
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 46,
+      "google": 47,
       "bing": 0,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 14
     },
     {
       "id": "act-pendency",
@@ -358,7 +358,7 @@
       "google": 100,
       "bing": 2,
       "kept": 0,
-      "offSubject": 45
+      "offSubject": 46
     },
     {
       "id": "act-hostile",
@@ -375,9 +375,9 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 44,
+      "google": 47,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 8
     },
     {
@@ -388,7 +388,7 @@
       "google": 24,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "act-false",
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 31,
       "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 20
     },
     {
       "id": "shri-general",
@@ -435,7 +435,7 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 69,
+      "google": 68,
       "bing": 1,
       "kept": 0,
       "offSubject": 26
@@ -465,7 +465,7 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 30,
+      "google": 29,
       "bing": 1,
       "kept": 0,
       "offSubject": 16
@@ -17953,7 +17953,8 @@
       "published": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5HWXhhWFdGOVhFMHhpTlJYYld0OFlyOWlIZUFoLU9uQlRSTTFKTmZIUW5oQ21vS0FaRzctb05HOWdkUjNhems3eElDMVhoQ0c3TWZBdl9TMjVqNVNIUlhUcDRWWUJmUQ?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-misuse-claim"
       ],
       "indexes": [
         "google"
@@ -18007,6 +18008,70 @@
         "google"
       ],
       "firstSeen": "2026-10-08"
+    },
+    {
+      "id": "high court quashes fir in sc st act case due to civil dispute and lack of atrocity element",
+      "headline": "High Court Quashes FIR in SC/ST Act Case Due to Civil Dispute and Lack of Atrocity Elements. Allegations of Caste-Based Insults and Intimidation Found to be Vague and Motivated by Property Dispute, Not Attracting Sections 3(i), 3(iv), 3(xiii) of SC/ST Act.",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-10-08",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5rUWN3aEJFd1pEeGE4RWRibVJwc19VVUdZczJiY2h2RmNCQTZOTmJ4MzFYams4RVBlRW1jNllhWmFHclQ2Z0xtc2RqMTRwbWp2RFlfS0Y0Njg4TFRUUG9KcmlFSWt6dw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-09"
+    },
+    {
+      "id": "lucknow court jails woman for filing false rape sc st cases to trap ex boyfriend",
+      "headline": "Lucknow Court Jails Woman For Filing False Rape, SC-ST Cases To ‘Trap’ Ex-Boyfriend",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "News18",
+      "published": "2025-11-19",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNTUMwQzVDZHhTMEhPUHZyallOdDNIekpfV09XM01yeUNZTTBXZWdNOHZaRWdWa01XUUgzRnA4TkFRbF9tY2VhMlk0NVdDc00wcVRIdkhTUUFDRnFpM2xNaWxqS1BMVFZPd1FtQmFDdHBrRG9sNmN6dnIzODRPdmgyaDRwZkIzc09uZ0VaVFU3Rm8zVkk5YU93WG5NbTMwSUtlekR0S2RTeHZONHF0VEVNSUxfTjJvVnBsekgwVU1fbk52RnhiT1Y40gHMAUFVX3lxTE04NlhURUZuSkxUTDZrT1d1QWp1WEU4UTNnQ0c1MnFDdEVJTTVQak5Gd1U3UzQydlFVWlR4UGppTVJQMzJuT3Z4aUdiaktWeDlKdzVLcXV0MzlHUG5ZUnBsejdMUnIya3dSeWp2T0lpclhjSDFhVVFpNVVjSm1oOExZTjNmWEZIc1ZEdmNmYVRRdjVJN1NJWmFnQWMyQndBelZQbi04ellmYkVUMEN1aVV6UlVwTjFzVlFCaE40eFd2QjJaZkpiSEZwUmxQMg?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-09"
+    },
+    {
+      "id": "dalit flogging a year later una victims want cases to be withdrawn",
+      "headline": "Dalit flogging: A year later, Una victims want cases to be withdrawn",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Indian Express",
+      "published": "2019-07-15",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPTjFtWVRXTG11ZmtXWHJobWhTRGR4aURzTW9BaW15bWVnYTFMeUxXNVZyeC03SnRZRHBVN1hCYVp3RHp5OWVORXI5blBvaWxsYk5kMUtRTmticE96X21TczdLTXpwcGhFZG9weDI4bHJ2VkZVb001aGtROEdvZkRvQjN2QXE3SE9uNW1pTlB4RFBTbExyR3RhNVB5blo5QlJYU19MbWUxbWJyVUlVZHZtOWtXV2Z6QdIBvAFBVV95cUxPdjloRUFNWUk5eXRHSUpJWFJ1blkzUVZRaVdCaDl3bDhjTVJRNnlEUTVxM0VvV24wN3FJX2E2dm94QjFrYzVSODVOajBiLUtEZUJEM2NCZWlQRFRjU3ppYTZXa05lYjZBbkpaeTRPNW5xbFItWHY5Nm5reWtpUmtjRDRTamg5T1o0bzNCWURKVlp5bk8yQ3RZLUd4QUFPQmc0MGg4M0U4SjU1Q0RNd2JlaFY1T1pqWF90V3c2Sw?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-09"
+    },
+    {
+      "id": "sc st act ramdas athawale rules out withdrawal of amendment",
+      "headline": "SC/ST Act: Ramdas Athawale rules out withdrawal of amendment",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The New Indian Express",
+      "published": "2018-09-09",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQS2hkWXpjR0pLWnVrLU9nS25kX1NGSmxuYUk1STd6TzNwUzY0dm1jNUl1YmJ6WnZVVkc1QnRBZjd3LTBSSHBuWld5ODFyUkQzLUFreEU1WXpCUG1ETXVncl9DNVIyTEk3cF9wRmlESnNrZzIxU2xIREZOeW84dEM3WVlVTHVLNUs5bUFLdFJuS2liTmlGUUU5UkdENWNQM1llM3NVajhZZHNwWlZsSW5lWHEtTWhPQ0RZY3lMc0pYMEJJV1ZPYWNuUXd4MTjSAcwBQVVfeXFMUEtoZFl6Y0dKS1p1ay1PZ0tuZF9TRkpsbmFJNUk3ek8zcFM2NHZtYzVJdWJielp2VVZHNUJ0QWY3dy0wUkhwblpXeTgxclJEMy1Ba3hFNVl6QlBtRE11Z3JfQzVSMkxJN3BfcEZpREpza2cyMVNsSERGTnlvOHRDN1lZVUx1SzVLOW1BS3RSbktpYk5pRlFFOVJHRDVjUDNZZTNzVWo4WWRzcFpWbEluZVhxLU1oT0NEWWN5THNKWDBCSVdWT2FjblF3eDE4?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-09"
     }
   ]
 }
