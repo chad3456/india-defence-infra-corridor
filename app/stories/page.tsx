@@ -11,6 +11,7 @@ import { loadChinaExports } from "@/lib/china-exports";
 import { loadMuseum } from "@/lib/museum";
 import { loadInternet } from "@/lib/internet";
 import { loadBreakneck } from "@/lib/breakneck";
+import { CATALOGUE } from "@/lib/electronics-catalogue";
 import { byId as mavenFigure, stated as mavenStated } from "@/lib/maven-shared";
 
 /**
@@ -191,6 +192,17 @@ export default function StoriesIndex() {
         + "the iPhone, the one-child policy, zero-Covid and Fortress China — every figure checked against the book and cited to its page.",
       stat: String(breakneck.figures.length),
       statLabel: "figures from the book, each with its page",
+    },
+    {
+      href: "/breakneck/india",
+      tone: "cool" as const,
+      kicker: "books · India against the book",
+      title: "Breakneck, Measured Against India.",
+      blurb:
+        "The book's China-and-America figures with India set beside them — metros, bullet trains, reactors, factories, lawyers, births — "
+        + "then an atlas of electronics from phone parts to drones and AI hardware: who exports each, and how much of India's comes from China.",
+      stat: String(CATALOGUE.length),
+      statLabel: "electronics lines in the atlas",
     },
     ...(internet.present ? [{
       href: "/internet",

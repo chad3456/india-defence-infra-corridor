@@ -5,12 +5,15 @@ name: Ingest the electronics atlas
 # imports from China — from UN Comtrade.
 #
 # Runs here because the editing sandbox cannot reach comtradeapi.un.org.
-# Monthly: annual trade data arrives once a year per reporter, and late.
+# Daily, because the anonymous Comtrade endpoint rations calls: a run that
+# hits the limit commits what it has and the next one resumes from there.
+# Once every line is in for the year the run makes no calls at all, until the
+# file is 25 days old and a fresh pass begins.
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "40 7 12 * *"
+    - cron: "40 7 * * *"
   push:
     paths:
       - "scripts/etl/connectors/electronics-atlas.ts"
@@ -27,7 +30,7 @@ concurrency:
 jobs:
   ingest:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

@@ -37,7 +37,7 @@ if (!existsSync(file)) console.log("  (not yet generated)");
 else {
   const d = JSON.parse(readFileSync(file, "utf8")) as ElectronicsAtlas;
   const lines = Object.values(d.lines);
-  ok("most catalogue lines have data", lines.length >= CATALOGUE.length * 0.8, `${lines.length}/${CATALOGUE.length}`);
+  ok("at least half the catalogue lines have data (runs resume until all do)", lines.length >= CATALOGUE.length * 0.5, `${lines.length}/${CATALOGUE.length}`);
   ok("a recent year", d.year >= new Date().getUTCFullYear() - 3, String(d.year));
   ok("China and India never exceed the world", lines.every((l) => l.china <= l.world + 1 && l.india <= l.world + 1), lines.filter((l) => l.china > l.world + 1 || l.india > l.world + 1).map((l) => l.hs).join(","));
   ok("leaders are in descending order", lines.every((l) => l.top.every((t, i) => i === 0 || t.value <= l.top[i - 1]!.value)));

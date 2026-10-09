@@ -54,3 +54,14 @@ export interface AtlasRow {
   indiaImports: number | null;
   top: Array<{ name: string; share: number }>;
 }
+
+/** US$ as the page prints it. */
+export function usd(v: number): string {
+  const n = Math.abs(v);
+  const t = (x: number) => (x >= 100 ? x.toFixed(0) : x >= 10 ? x.toFixed(1) : x.toFixed(2)).replace(/\.?0+$/, "");
+  if (n >= 1e12) return `$${t(v / 1e12)} trillion`;
+  if (n >= 1e9) return `$${t(v / 1e9)}bn`;
+  if (n >= 1e6) return `$${t(v / 1e6)}m`;
+  if (n >= 1e3) return `$${t(v / 1e3)}k`;
+  return `$${Math.round(v)}`;
+}

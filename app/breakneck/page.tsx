@@ -249,6 +249,7 @@ export default function BreakneckPage() {
             {v.chapters.filter((c) => c.id !== "intro").map((c) => <a key={c.id} href={`#${c.id}`}><b>{c.n}</b> {c.title}</a>)}
             <a href="#scorecard"><b>⚖</b> Scorecard</a>
             <a href="#test"><b>?</b> Test yourself</a>
+            <a href="/breakneck/india"><b>→</b> Measured against India</a>
           </nav>
         </div>
       </header>

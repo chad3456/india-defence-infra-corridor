@@ -14,8 +14,8 @@
 import type { ReactNode } from "react";
 import { cite, fmt, show, type BkEvent, type BkFigure } from "@/lib/breakneck";
 
-export type Ink = "cn" | "us" | "x" | "warn";
-const INK: Record<Ink, string> = { cn: "#1f5a9e", us: "#b8432a", x: "#8a8f9c", warn: "#b8432a" };
+export type Ink = "cn" | "us" | "x" | "warn" | "in";
+export const INK: Record<Ink, string> = { cn: "#1f5a9e", us: "#b8432a", x: "#8a8f9c", warn: "#b8432a", in: "#0b8a6f" };
 
 export function Cite({ fs }: { fs: BkFigure[] }) {
   const uniq = [...new Map(fs.map((f) => [`${f.page}|${f.credit}`, f])).values()];

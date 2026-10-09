@@ -1,0 +1,830 @@
+{
+  "about": "India measured on the metrics Dan Wang's Breakneck uses for China and the United States. Each India figure is cited to the publisher it was read from. 'comparable' says how far the India number measures the same thing as the book's: direct (same measure), approximate (close, with a stated difference) or context (a different measure, shown for orientation only). Figures from the World Bank are not repeated here; the page reads them from data/series/wdi.json.",
+  "accessed": "2026-10-09",
+  "metrics": [
+    {
+      "id": "metro",
+      "theme": "build",
+      "title": "Cities with an urban metro",
+      "book": [
+        "subway-cities"
+      ],
+      "comparable": "approximate",
+      "india": [
+        {
+          "label": "Cities with an operating metro, March 2026",
+          "value": 26,
+          "unit": "cities",
+          "year": "2026",
+          "src": 0
+        },
+        {
+          "label": "Operating metro network, March 2026",
+          "value": 1095,
+          "unit": "km",
+          "year": "2026",
+          "src": 0
+        },
+        {
+          "label": "Operating metro network, May 2025",
+          "value": 1013,
+          "unit": "km",
+          "year": "2025",
+          "src": 1
+        },
+        {
+          "label": "Cities with an operating metro, May 2025",
+          "value": 23,
+          "unit": "cities",
+          "year": "2025",
+          "src": 1
+        },
+        {
+          "label": "Cities with a metro in 2014",
+          "value": 5,
+          "unit": "cities",
+          "year": "2014",
+          "src": 0
+        },
+        {
+          "label": "Operating metro network in 2014",
+          "value": 248,
+          "unit": "km",
+          "year": "2014",
+          "src": 0
+        }
+      ],
+      "note": "India's count includes elevated and light-metro lines; the book counts Chinese cities with subways. The government describes India's network as the world's third-largest by length.",
+      "sources": [
+        {
+          "publisher": "Press Information Bureau, Government of India",
+          "title": "Metro rail backgrounder, March 2026",
+          "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/mar/doc2026315824501.pdf"
+        },
+        {
+          "publisher": "Press Information Bureau, Government of India",
+          "title": "Metro rail backgrounder, August 2025",
+          "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/aug/doc202589603901.pdf"
+        }
+      ]
+    },
+    {
+      "id": "hsr",
+      "theme": "build",
+      "title": "High-speed rail",
+      "book": [
+        "rail-length",
+        "ca-opening",
+        "hsr-trips"
+      ],
+      "comparable": "context",
+      "india": [
+        {
+          "label": "High-speed rail in operation",
+          "value": 0,
+          "unit": "km",
+          "year": "2026",
+          "src": 0
+        },
+        {
+          "label": "Mumbai–Ahmedabad corridor under construction",
+          "value": 508,
+          "unit": "km",
+          "year": "2026",
+          "src": 0
+        },
+        {
+          "label": "Physical progress on the corridor, April 2026",
+          "value": 59.1,
+          "unit": "%",
+          "year": "2026",
+          "src": 0
+        },
+        {
+          "label": "First section (Surat–Vapi, about 100 km) planned to open",
+          "value": 2027,
+          "unit": "year",
+          "src": 1
+        },
+        {
+          "label": "Full corridor planned to open",
+          "value": 2029,
+          "unit": "year",
+          "src": 1
+        }
+      ],
+      "note": "India's first line is shorter than either line the book compares, and like California's is a promise rather than a service. Opening dates are official targets, not achievements.",
+      "sources": [
+        {
+          "publisher": "Indian Infrastructure",
+          "title": "59.1 per cent physical progress achieved on Mumbai–Ahmedabad HSR corridor",
+          "url": "https://indianinfrastructure.com/2026/04/29/59-1-per-cent-physical-progress-achieved-on-mumbai-ahmedabad-hsr-corridor-project-in-maharashtra-gujarat/"
+        },
+        {
+          "publisher": "Swarajya",
+          "title": "Mumbai–Ahmedabad bullet train advances with 359 km of viaducts",
+          "url": "https://swarajyamag.com/infrastructure/mumbai-ahmedabad-bullet-train-indias-first-high-speed-rail-corridor-advances-with-359-km-viaducts-453-km-pier-work-completed"
+        }
+      ]
+    },
+    {
+      "id": "highways",
+      "theme": "build",
+      "title": "Highways",
+      "book": [
+        "expressway-pace",
+        "highways-vs-us"
+      ],
+      "comparable": "context",
+      "india": [
+        {
+          "label": "National highway network, December 2024",
+          "value": 146195,
+          "unit": "km",
+          "year": "2024",
+          "src": 0
+        },
+        {
+          "label": "National highway network, 2014",
+          "value": 91000,
+          "unit": "km",
+          "hedge": "about",
+          "year": "2014",
+          "src": 0
+        },
+        {
+          "label": "National highways built in 2023–24",
+          "value": 12349,
+          "unit": "km",
+          "year": "2023–24",
+          "src": 1
+        },
+        {
+          "label": "Record construction pace, 2020–21",
+          "value": 37,
+          "unit": "km a day",
+          "year": "2020–21",
+          "src": 1
+        }
+      ],
+      "note": "India's national highways are mostly two- and four-lane roads, not access-controlled expressways like the US interstates or China's expressway network, so the lengths do not compare like for like.",
+      "sources": [
+        {
+          "publisher": "NBM&CW",
+          "title": "India's national highway network expands to 1,46,195 km",
+          "url": "https://www.nbmcw.com/news/indias-national-highway-network-expands-to-1-46-195-km.html"
+        },
+        {
+          "publisher": "Outlook Business",
+          "title": "Pace of NH construction in April–October FY24",
+          "url": "https://www.outlookbusiness.com/news/pace-of-nh-construction-at-2078-kmday-in-apr-oct-fy24"
+        }
+      ]
+    },
+    {
+      "id": "nuclear-building",
+      "theme": "build",
+      "title": "Nuclear reactors under construction",
+      "book": [
+        "nuclear-building"
+      ],
+      "comparable": "direct",
+      "india": [
+        {
+          "label": "Reactors under construction",
+          "value": 8,
+          "unit": "reactors",
+          "year": "2025",
+          "src": 0
+        },
+        {
+          "label": "Capacity under construction",
+          "value": 6800,
+          "unit": "MW",
+          "year": "2025",
+          "src": 0
+        }
+      ],
+      "note": "The same measure as the book's: reactors being built.",
+      "sources": [
+        {
+          "publisher": "Nuclear Engineering International",
+          "title": "India's nuclear programme",
+          "url": "https://neimagazine.com/?p=89290"
+        }
+      ]
+    },
+    {
+      "id": "nuclear-fleet",
+      "theme": "build",
+      "title": "Nuclear fleet in operation",
+      "book": [
+        "nuclear-plants"
+      ],
+      "comparable": "approximate",
+      "india": [
+        {
+          "label": "Reactors in operation",
+          "value": 24,
+          "unit": "reactors",
+          "year": "2025",
+          "src": 0
+        },
+        {
+          "label": "Installed nuclear capacity",
+          "value": 8180,
+          "unit": "MW",
+          "year": "2025",
+          "src": 0
+        },
+        {
+          "label": "Installed capacity in a December 2025 parliamentary reply",
+          "value": 8780,
+          "unit": "MW",
+          "year": "2025",
+          "src": 1
+        }
+      ],
+      "note": "India's figure counts reactors; the book counts plants, and a US plant often holds more than one reactor. The two capacity figures differ by one 700 MW unit, depending on whether it is counted before commercial operation.",
+      "sources": [
+        {
+          "publisher": "Nuclear Engineering International",
+          "title": "India's nuclear programme",
+          "url": "https://neimagazine.com/?p=89290"
+        },
+        {
+          "publisher": "KNN India",
+          "title": "India's nuclear power capacity at 8,780 MW, 8 reactors under construction",
+          "url": "https://knnindia.co.in/news/newsdetails/sectors/indias-nuclear-power-capacity-at-8780-mw-8-reactors-under-construction-10-more-planned-jitendra-singh"
+        }
+      ]
+    },
+    {
+      "id": "wind",
+      "theme": "build",
+      "title": "New wind capacity in 2023",
+      "book": [
+        "wind-2023"
+      ],
+      "comparable": "direct",
+      "india": [
+        {
+          "label": "Wind capacity added in calendar 2023",
+          "value": 2.8,
+          "unit": "GW",
+          "year": "2023",
+          "src": 0
+        },
+        {
+          "label": "Solar capacity added in calendar 2023",
+          "value": 10,
+          "unit": "GW",
+          "hedge": "about",
+          "year": "2023",
+          "src": 0
+        }
+      ],
+      "note": "Same measure, same year. India builds far more solar than wind; the book's comparison is wind alone.",
+      "sources": [
+        {
+          "publisher": "JMK Research",
+          "title": "India added 12.9 GW of RE capacity in CY2023",
+          "url": "https://jmkresearch.com/india-added-12-9-gw-of-re-capacity-in-cy2023-a-decline-of-18/"
+        }
+      ]
+    },
+    {
+      "id": "cement",
+      "theme": "build",
+      "title": "Cement",
+      "book": [
+        "cement"
+      ],
+      "comparable": "approximate",
+      "india": [
+        {
+          "label": "Cement produced in 2023–24",
+          "value": 427,
+          "unit": "million tonnes",
+          "hedge": "about",
+          "year": "2023–24",
+          "src": 0
+        }
+      ],
+      "note": "The book's figure is two years of Chinese output; India's is one fiscal year.",
+      "sources": [
+        {
+          "publisher": "Outlook Business",
+          "title": "India's cement industry projected to grow by FY29 (citing the Economic Survey 2023–24)",
+          "url": "https://www.outlookbusiness.com/news/indias-cement-industry-projected-to-hit-5-billion-tonnes-by-fy29-amid-govts-infra-push"
+        }
+      ]
+    },
+    {
+      "id": "infra-gdp",
+      "theme": "build",
+      "title": "Spending on building, as a share of GDP",
+      "book": [
+        "infra-gdp"
+      ],
+      "comparable": "context",
+      "india": [
+        {
+          "label": "Central government capital expenditure, 2024–25 budget",
+          "value": 3.4,
+          "unit": "% of GDP",
+          "year": "2024–25",
+          "src": 0
+        }
+      ],
+      "note": "Central government only, and a budget estimate: it leaves out states, public enterprises and private investment, and includes capital spending that is not infrastructure. It is not the book's measure; the World Bank's gross capital formation, shown alongside, is the closer like-for-like.",
+      "sources": [
+        {
+          "publisher": "Scroll",
+          "title": "Budget 2024: Centre hikes capital expenditure target by 11.1% to Rs 11.11 lakh crore",
+          "url": "https://scroll.in/latest/1063058/budget-2024-centre-hikes-capital-expenditure-target-by-11-1-to-rs-11-11-lakh-crore"
+        }
+      ]
+    },
+    {
+      "id": "ships",
+      "theme": "make",
+      "title": "Shipbuilding",
+      "book": [
+        "ships"
+      ],
+      "comparable": "context",
+      "india": [
+        {
+          "label": "India's share of the global shipbuilding market",
+          "value": 0.06,
+          "unit": "%",
+          "hedge": "about",
+          "year": "2024",
+          "src": 0
+        }
+      ],
+      "note": "No published count of ships under construction in Indian yards was found, so the book's measure cannot be repeated; market share is the nearest available figure.",
+      "sources": [
+        {
+          "publisher": "Drishti IAS",
+          "title": "Boosting India's shipbuilding industry",
+          "url": "https://www.drishtiias.com/daily-updates/daily-news-editorials/moosting-india-s-shipbuilding-industry"
+        }
+      ]
+    },
+    {
+      "id": "mfg-workforce",
+      "theme": "make",
+      "title": "Factory workforce",
+      "book": [
+        "mfg-workforce"
+      ],
+      "comparable": "context",
+      "india": [
+        {
+          "label": "Employed in registered factories, 2023–24 (Annual Survey of Industries)",
+          "value": 19500000,
+          "unit": "workers",
+          "year": "2023–24",
+          "src": 0
+        },
+        {
+          "label": "The year before",
+          "value": 18400000,
+          "unit": "workers",
+          "year": "2022–23",
+          "src": 0
+        }
+      ],
+      "note": "The Annual Survey of Industries covers registered factories only. Most Indian manufacturing employment is in small unregistered workshops it does not count, so this understates India's manufacturing workforce.",
+      "sources": [
+        {
+          "publisher": "All Things Talent",
+          "title": "Industrial employment rises 5.92% to 1.95 crore, survey highlights",
+          "url": "https://allthingstalent.org/industrial-employment-rises-5-92-to-1-95-crore-as-survey-highlights-robust-growth/2025/08/28/"
+        }
+      ]
+    },
+    {
+      "id": "apple-suppliers",
+      "theme": "make",
+      "title": "Apple's suppliers",
+      "book": [
+        "apple-suppliers"
+      ],
+      "comparable": "approximate",
+      "india": [
+        {
+          "label": "Apple suppliers with a site in India, 2023",
+          "value": 14,
+          "unit": "suppliers",
+          "year": "2023",
+          "src": 0
+        },
+        {
+          "label": "Apple suppliers with a site in India, 2018",
+          "value": 8,
+          "unit": "suppliers",
+          "year": "2018",
+          "src": 0
+        },
+        {
+          "label": "Apple supplier sites in India reported in 2025, not confirmed by Apple",
+          "value": 40,
+          "unit": "suppliers",
+          "hedge": "more than",
+          "year": "2025",
+          "src": 1
+        }
+      ],
+      "note": "From Apple's published supplier list, which in 2023 named about 187 suppliers; the book counts the top 200. Press reports of 40 or more Indian supplier sites in 2025 have not been confirmed by Apple.",
+      "sources": [
+        {
+          "publisher": "HDFC Sky",
+          "title": "Apple's India supplier base nearly doubles since 2018",
+          "url": "https://hdfcsky.com/news/apples-india-supplier-base-nearly-doubles-since-2018"
+        },
+        {
+          "publisher": "Angel One",
+          "title": "India overtakes Vietnam in Apple supplier count",
+          "url": "https://www.angelone.in/news/global-market/india-overtakes-vietnam-in-apple-supplier-count-exports-2-5-billion-components-to-china"
+        }
+      ]
+    },
+    {
+      "id": "iphone",
+      "theme": "make",
+      "title": "The iPhone",
+      "book": [
+        "iphone-2007",
+        "iphone-x"
+      ],
+      "comparable": "context",
+      "india": [
+        {
+          "label": "iPhones made in India, 2024–25 (factory value)",
+          "value": 22,
+          "unit": "US$ bn",
+          "year": "2024–25",
+          "src": 0
+        },
+        {
+          "label": "iPhones exported from India, 2024–25",
+          "value": 17.5,
+          "unit": "US$ bn",
+          "year": "2024–25",
+          "src": 0
+        },
+        {
+          "label": "India's share of global iPhone assembly, as reported",
+          "value": 20,
+          "unit": "%",
+          "hedge": "about",
+          "year": "2024–25",
+          "src": 1
+        }
+      ],
+      "note": "The book measures the share of an iPhone's value added in China; India's figures are assembly output and exports, which include imported parts. A rising assembly share is where China's own share of value started in 2007.",
+      "sources": [
+        {
+          "publisher": "Storyboard18",
+          "title": "Apple hits record iPhone exports from India",
+          "url": "https://www.storyboard18.com/brand-marketing/apple-hits-record-10-billion-in-iphone-exports-from-india-eyes-another-billion-with-iphone-17-82447.htm"
+        },
+        {
+          "publisher": "Communications Today",
+          "title": "iPhone production in India",
+          "url": "https://www.communicationstoday.co.in/?p=348977"
+        }
+      ]
+    },
+    {
+      "id": "lawyers",
+      "theme": "people",
+      "title": "Lawyers",
+      "book": [
+        "lawyers-per-100k"
+      ],
+      "comparable": "approximate",
+      "india": [
+        {
+          "label": "Advocates enrolled with state bar councils, August 2023",
+          "value": 2013081,
+          "unit": "advocates",
+          "year": "2023",
+          "src": 0
+        }
+      ],
+      "perCapita": {
+        "series": "wdi-population",
+        "period": "2023",
+        "per": 100000
+      },
+      "note": "Enrolment is not practice: the rolls include advocates who have stopped practising, so the per-head figure is an upper bound.",
+      "sources": [
+        {
+          "publisher": "Law Insider India (citing the Ministry of Law and Justice)",
+          "title": "What is the total number of advocates in India today?",
+          "url": "https://lawinsider.in/report/what-is-the-total-number-of-advocates-in-india-today"
+        }
+      ]
+    },
+    {
+      "id": "vehicles",
+      "theme": "people",
+      "title": "Vehicles",
+      "book": [
+        "cars"
+      ],
+      "comparable": "context",
+      "india": [
+        {
+          "label": "Registered motor vehicles of every kind, 30 November 2024",
+          "value": 385100000,
+          "unit": "vehicles",
+          "year": "2024",
+          "src": 0
+        }
+      ],
+      "note": "Every kind of motor vehicle on the Vahan register, most of them two-wheelers, and including vehicles long off the road that were never deregistered. The book counts cars.",
+      "sources": [
+        {
+          "publisher": "Lok Sabha",
+          "title": "Unstarred question 1807: registered motor vehicles",
+          "url": "https://eparlib.sansad.in/bitstream/123456789/2999912/1/AU1807_HihZsz.pdf"
+        }
+      ]
+    },
+    {
+      "id": "sex-ratio",
+      "theme": "people",
+      "title": "Sex ratio at birth",
+      "book": [
+        "sex-ratio"
+      ],
+      "comparable": "direct",
+      "india": [
+        {
+          "label": "Girls born per 1,000 boys, 2019–21 (Sample Registration System)",
+          "value": 913,
+          "unit": "girls per 1,000 boys",
+          "year": "2019–21",
+          "src": 0
+        }
+      ],
+      "invert": {
+        "per": 100,
+        "unit": "boys per 100 girls"
+      },
+      "note": "India publishes girls per 1,000 boys; the page inverts it to the book's boys per 100 girls. The National Family Health Survey gives 929 for the same period.",
+      "sources": [
+        {
+          "publisher": "Vision IAS",
+          "title": "Sample Registration System report 2021 released",
+          "url": "https://visionias.in/current-affairs/news-today/2025-05-12/society/sample-registration-system-srs-report-2021-released"
+        }
+      ]
+    },
+    {
+      "id": "covid",
+      "theme": "people",
+      "title": "Covid deaths: the official count and the estimate",
+      "book": [
+        "covid-deaths"
+      ],
+      "comparable": "direct",
+      "india": [
+        {
+          "label": "Official Covid deaths to the end of 2021",
+          "value": 481080,
+          "unit": "deaths",
+          "year": "2021",
+          "src": 0
+        },
+        {
+          "label": "WHO estimate of excess deaths, 2020–21",
+          "value": 4700000,
+          "unit": "deaths",
+          "year": "2020–21",
+          "src": 0
+        }
+      ],
+      "note": "The same gap the book describes for China. India's government rejects the WHO's method.",
+      "sources": [
+        {
+          "publisher": "Down To Earth",
+          "title": "India may have seen most Covid-19 related deaths globally",
+          "url": "https://www.downtoearth.org.in/amp/story/health/india-may-have-seen-most-covid-19-related-deaths-globally-close-to-5-million-89546"
+        }
+      ]
+    },
+    {
+      "id": "millionaires",
+      "theme": "people",
+      "title": "Millionaires leaving",
+      "book": [
+        "millionaires"
+      ],
+      "comparable": "direct",
+      "india": [
+        {
+          "label": "Millionaires projected to leave India in 2024",
+          "value": 4300,
+          "unit": "millionaires",
+          "year": "2024",
+          "src": 0
+        }
+      ],
+      "note": "A projection by Henley & Partners, the UK-based emigration firm the book cites for China's figure, not a count.",
+      "sources": [
+        {
+          "publisher": "Scroll",
+          "title": "4,300 millionaires likely to move out of India in 2024: report",
+          "url": "https://scroll.in/latest/1069529/4300-millionaires-likely-to-move-out-of-india-in-2024-report"
+        }
+      ]
+    }
+  ],
+  "wdi": [
+    {
+      "series": "wdi-manufacturing-gdp",
+      "book": [
+        "mfg-share"
+      ],
+      "title": "Manufacturing, % of GDP",
+      "note": "The book's 28% for China is an older reading than the World Bank's latest."
+    },
+    {
+      "series": "wdi-population",
+      "book": [
+        "pop-ratio"
+      ],
+      "title": "Population"
+    },
+    {
+      "series": "wdi-fertility",
+      "book": [
+        "tfr"
+      ],
+      "title": "Children per woman"
+    },
+    {
+      "series": "wdi-urban-population",
+      "book": [
+        "urban-growth"
+      ],
+      "title": "Urban population, % of total"
+    },
+    {
+      "series": "wdi-researchers",
+      "book": [
+        "stem-phd"
+      ],
+      "title": "Researchers per million people"
+    },
+    {
+      "series": "wdi-hightech-exports-usd",
+      "book": [
+        "trade-surplus"
+      ],
+      "title": "High-technology exports, US$"
+    },
+    {
+      "series": "wdi-gross-capital-formation",
+      "book": [
+        "infra-gdp"
+      ],
+      "title": "Gross capital formation, % of GDP"
+    },
+    {
+      "series": "wdi-industry-employment",
+      "book": [
+        "mfg-workforce"
+      ],
+      "title": "Employment in industry, % of all employment"
+    }
+  ],
+  "electronics": [
+    {
+      "id": "electronics-production",
+      "title": "Electronics made in India, 2024–25",
+      "india": [
+        {
+          "label": "Electronics production",
+          "value": 11.3,
+          "unit": "Rs lakh crore",
+          "year": "2024–25",
+          "src": 0
+        },
+        {
+          "label": "Electronics exports",
+          "value": 3.27,
+          "unit": "Rs lakh crore",
+          "year": "2024–25",
+          "src": 0
+        },
+        {
+          "label": "Mobile phone production",
+          "value": 5.45,
+          "unit": "Rs lakh crore",
+          "year": "2024–25",
+          "src": 0
+        },
+        {
+          "label": "Smartphone exports",
+          "value": 2,
+          "unit": "Rs lakh crore",
+          "year": "2024–25",
+          "src": 1
+        }
+      ],
+      "note": "Production values are factory output including imported components; they say how much is assembled in India, not how much of each phone is made here. The government describes India as the world's second-largest maker of mobile phones.",
+      "sources": [
+        {
+          "publisher": "Press Information Bureau, Government of India",
+          "title": "Electronics manufacturing backgrounder, September 2025",
+          "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc2025918639901.pdf"
+        },
+        {
+          "publisher": "Punjab Kesari",
+          "title": "India's smartphone exports soar to Rs 2 lakh crore in FY 2024–25",
+          "url": "https://english.punjabkesari.com/tech/2025/04/12/indias-smartphone-exports-soar-to-rs-2-lakh-crore-in-fy-2024-25"
+        }
+      ]
+    },
+    {
+      "id": "semiconductor-mission",
+      "title": "Chips: the India Semiconductor Mission",
+      "india": [
+        {
+          "label": "Tata–PSMC fab at Dholera, approved February 2024",
+          "value": 91000,
+          "unit": "Rs crore",
+          "year": "2024",
+          "src": 0
+        },
+        {
+          "label": "Planned fab capacity at 28 nm and above",
+          "value": 50000,
+          "unit": "wafers a month",
+          "year": "2024",
+          "src": 0
+        },
+        {
+          "label": "Approved semiconductor projects",
+          "value": 12,
+          "unit": "projects",
+          "hedge": "about",
+          "year": "2025",
+          "src": 1
+        }
+      ],
+      "note": "Approvals, not output: no commercial wafer has yet come out of an Indian fab. Most approved projects, including Micron's at Sanand, are assembly and test plants, which package chips designed and made elsewhere.",
+      "sources": [
+        {
+          "publisher": "The Tribune",
+          "title": "Government clears 3 semiconductor plants with investment of Rs 1.26 lakh crore",
+          "url": "https://www.tribuneindia.com/news/india/government-clears-3-semiconductor-plants-with-investment-of-rs-1-26-lakh-crore-595790"
+        },
+        {
+          "publisher": "Ananta IAS",
+          "title": "Semiconductor Mission India",
+          "url": "https://anantamias.com/semiconductor-mission-india/"
+        }
+      ]
+    },
+    {
+      "id": "drones",
+      "title": "Drones: an import ban and a subsidy",
+      "india": [
+        {
+          "label": "Import of foreign-made drones banned from",
+          "value": 2022,
+          "unit": "year",
+          "src": 1
+        },
+        {
+          "label": "Production-linked incentive for drones and drone parts",
+          "value": 120,
+          "unit": "Rs crore",
+          "year": "2021",
+          "src": 0
+        }
+      ],
+      "note": "The ban, from 9 February 2022, covers finished drones; components remain importable, so Chinese motors, batteries and flight controllers still reach Indian assemblers. The atlas below shows how much.",
+      "sources": [
+        {
+          "publisher": "Drishti IAS",
+          "title": "India bans import of foreign drones",
+          "url": "https://www.drishtiias.com/daily-updates/daily-news-analysis/india-bans-import-of-foreign-drones/print_manually"
+        },
+        {
+          "publisher": "Caixin Global",
+          "title": "India bans drone imports, blocking emerging market for China's DJI",
+          "url": "https://www.caixinglobal.com/2022-02-11/india-bans-drone-imports-blocking-emerging-market-for-chinas-dji-101840126.html"
+        }
+      ]
+    }
+  ]
+}
