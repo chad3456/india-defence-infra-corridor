@@ -165,12 +165,16 @@ console.log("\nIndia's own fleet");
   // group and its country filter returned nothing when probed. That cuts one
   // way on purpose: a missed satellite is absent from the Indian view, never
   // counted as somebody else's.
-  for (const n of ["CARTOSAT-3", "RISAT-2B", "EOS-04", "GSAT-30", "IRNSS-1I",
+  for (const n of ["CARTOSAT-3", "RISAT-2B", "EOS-04", "GSAT-30", "GSAT-N2 (GSAT-20)", "NVS-01 (IRNSS-1J)", "IRNSS-1I",
                    "ASTROSAT", "CHANDRAYAAN-2 O", "ADITYA-L1", "XPOSAT", "OCEANSAT-3"]) {
     ok(`${n} is recognised as Indian`, isIndianSatellite(n));
   }
   for (const n of ["STARLINK-1007", "ISS (ZARYA)", "NOAA 19", "COSMOS 2251",
-                   "SENTINEL-2A", "LANDSAT 9", "GPS BIIR-2  (PRN 13)"]) {
+                   "SENTINEL-2A", "LANDSAT 9", "GPS BIIR-2  (PRN 13)",
+                   // Galileo's catalogue names begin GSAT, without India's hyphen.
+                   "GSAT0101 (GALILEO-PFM)", "GSAT0234 (GALILEO 34)",
+                   // Spent stages and debris are objects, not satellites.
+                   "PSLV R/B", "PSLV DEB", "INSAT-1B R/B [PAM-D]", "CARTOSAT-2 DEB"]) {
     ok(`${n} is not claimed as Indian`, !isIndianSatellite(n));
   }
   ok("matching is case-insensitive", isIndianSatellite("cartosat-2f"));
@@ -205,7 +209,10 @@ console.log("\nThe feed and its weekly snapshot");
       return !pv || typeof pv.position !== "object";
     });
     ok("every element set propagates at its own snapshot time", unusable.length <= snap.satellites.length * 0.01, `${unusable.length}: ${unusable.slice(0, 5).map((r) => r.name).join(", ")}`);
-    ok("no snapshot record is flagged Indian without an Indian name", snap.satellites.every((r) => r.indian === isIndianSatellite(r.name) || r.group !== "Indian fleet"));
+    const wrong = snap.satellites.filter((r) => r.indian !== isIndianSatellite(r.name));
+    ok("every snapshot record's Indian flag follows from its name", wrong.length === 0, wrong.slice(0, 5).map((r) => r.name).join(", "));
+    const strays = snap.satellites.filter((r) => r.group === "Indian fleet" && !r.indian);
+    ok("nothing sits in the Indian fleet that is not Indian", strays.length === 0, strays.slice(0, 5).map((r) => r.name).join(", "));
   }
 }
 

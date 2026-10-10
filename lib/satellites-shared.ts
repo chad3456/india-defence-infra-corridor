@@ -175,16 +175,26 @@ export function elevationDegrees(
  * name does not begin with one of these is missed, never misattributed. An
  * Indian satellite absent from this list is absent from the Indian view, not
  * quietly counted as someone else's.
+ *
+ * Two prefixes were once looser and claimed things that are not India's.
+ * "GSAT" without its hyphen matched Europe's Galileo satellites, whose
+ * catalogue names run GSAT0101 to GSAT0234; India's are GSAT-8, GSAT-30 and
+ * so on. "PSLV" and "SSLV" returned only spent rocket stages and debris, never
+ * a satellite, so they are gone, and anything named as a rocket body or
+ * debris is excluded whatever its prefix.
  */
 export const INDIAN_PREFIXES = [
-  "CARTOSAT", "RISAT", "RESOURCESAT", "OCEANSAT", "INSAT", "GSAT", "IRNSS",
+  "CARTOSAT", "RISAT", "RESOURCESAT", "OCEANSAT", "INSAT", "GSAT-", "IRNSS",
   "NVS-", "EOS-", "HYSIS", "MEGHA-TROPIQUES", "SCATSAT", "ASTROSAT",
-  "CHANDRAYAAN", "ADITYA", "SARAL", "KALPANA", "MICROSAT", "RESOURCESAT",
-  "PSLV", "SSLV", "XPOSAT", "INS-",
+  "CHANDRAYAAN", "ADITYA", "SARAL", "KALPANA", "MICROSAT", "XPOSAT", "INS-",
 ] as const;
+
+/** Spent stages and fragments: catalogued objects, not satellites. */
+const NOT_A_SATELLITE = /\bR\/B\b|\bDEB\b|\bAKM\b|\bPAM-D\b/;
 
 /** Does this catalogue name belong to an Indian satellite, by prefix? */
 export function isIndianSatellite(name: string): boolean {
   const n = name.trim().toUpperCase();
+  if (NOT_A_SATELLITE.test(n)) return false;
   return INDIAN_PREFIXES.some((p) => n.startsWith(p));
 }

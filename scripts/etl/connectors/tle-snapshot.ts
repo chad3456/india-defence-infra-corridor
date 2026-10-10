@@ -43,6 +43,8 @@ export async function run(): Promise<void> {
   for (const r of feedRequests()) {
     const res = await getText(r.url, { timeoutMs: 60_000, retries: 3, cacheMs: 0 });
     if (res.ok && res.data) answers.push({ label: r.label, text: res.data });
+    // CelesTrak answers 404 to a name that matches nothing: empty, not failed.
+    else if (res.error === "HTTP 404" && r.key.startsWith("name:")) console.log(`  ${r.key}: no objects by that name`);
     else failed.push(`${r.key}: ${res.error ?? "no data"}`);
     await new Promise((s) => setTimeout(s, GAP_MS));
   }

@@ -20,8 +20,8 @@
  * Which groups are carried, and why Starlink is not, is in lib/tle-source.ts.
  */
 import { NextResponse } from "next/server";
-import { epochAgeDays } from "@/lib/satellites-shared";
-import { buildRecords, feedRequests, summarise, USER_AGENT, type SatRecord, type TleFeed } from "@/lib/tle-source";
+import { epochAgeDays, isIndianSatellite } from "@/lib/satellites-shared";
+import { buildRecords, feedRequests, summarise, INDIAN_FLEET, USER_AGENT, type SatRecord, type TleFeed } from "@/lib/tle-source";
 import snapshot from "@/data/live/tle-snapshot.json";
 
 export type { SatRecord, TleFeed };
@@ -31,10 +31,13 @@ export const revalidate = 21_600;
 
 async function fetchTle(url: string): Promise<string | null> {
   try {
-    const res = await fetch(url, { headers: { "user-agent": USER_AGENT }, next: { revalidate } });
+    const res = await fetch(url, { headers: { "user-agent": USER_AGENT }, next: { revalidate }, signal: AbortSignal.timeout(10_000) });
+    // CelesTrak answers 404 to a name that matches nothing — a decayed or
+    // deep-space mission. That is an answer, and it is empty.
+    if (res.status === 404) return "";
     if (!res.ok) return null;
     const text = await res.text();
-    return text.includes("\n1 ") ? text : null;
+    return text.includes("\n1 ") || text.trim() === "" || /No GP data found/i.test(text) ? text : null;
   } catch {
     return null;
   }
@@ -45,17 +48,18 @@ export async function GET(): Promise<NextResponse> {
   const requests = feedRequests();
   const texts = await Promise.all(requests.map((r) => fetchTle(r.url)));
   const answers = requests.flatMap((r, i) => (texts[i] ? [{ label: r.label, text: texts[i]! }] : []));
-  const failed = requests.filter((_, i) => !texts[i]).map((r) => r.key);
+  const failed = requests.filter((_, i) => texts[i] === null).map((r) => r.key);
   const live = buildRecords(answers, now);
 
   // Groups that did not answer are filled from the weekly snapshot, with each
   // record's age recomputed against now so an old orbit reads as old.
   const snap = snapshot as TleFeed;
-  const failedLabels = new Set(requests.filter((_, i) => !texts[i]).map((r) => r.label));
+  const failedLabels = new Set(requests.filter((_, i) => texts[i] === null).map((r) => r.label));
   const have = new Set(live.map((s) => s.noradId));
   const filled = snap.satellites
     .filter((s) => failedLabels.has(s.group) && !have.has(s.noradId))
-    .map((s) => ({ ...s, epochAgeDays: epochAgeDays(s.line1, now) }));
+    .filter((s) => s.group !== INDIAN_FLEET || isIndianSatellite(s.name))
+    .map((s) => ({ ...s, indian: isIndianSatellite(s.name), epochAgeDays: epochAgeDays(s.line1, now) }));
   const satellites = [...live, ...filled];
 
   // An empty answer must not render as "nothing is up there".
