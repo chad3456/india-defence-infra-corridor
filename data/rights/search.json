@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-09T21:21:08.252Z",
+  "builtAt": "2026-10-10T06:26:20.567Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1085,
-    "addedThisRun": 5,
-    "carriedFromEarlierRuns": 1080,
-    "withOutlet": 1018,
+    "items": 1088,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 1085,
+    "withOutlet": 1021,
     "bySubject": {
-      "scst": 729,
+      "scst": 732,
       "pmshri": 356
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 317
+    "offSubjectDropped": 301
   },
   "byFacet": [
     {
@@ -28,11 +28,11 @@
     },
     {
       "key": "use",
-      "n": 383
+      "n": 384
     },
     {
       "key": "acquittal",
-      "n": 58
+      "n": 60
     },
     {
       "key": "dispute",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 72
+      "n": 74
     },
     {
       "key": "The Indian Express",
@@ -249,6 +249,10 @@
       "n": 4
     },
     {
+      "key": "The Siasat Daily",
+      "n": 4
+    },
+    {
       "key": "The Legal Affair",
       "n": 4
     },
@@ -283,10 +287,6 @@
     {
       "key": "Swarajya",
       "n": 3
-    },
-    {
-      "key": "Forward Press",
-      "n": 3
     }
   ],
   "perQuery": [
@@ -306,7 +306,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 2,
+      "bing": 1,
       "kept": 0,
       "offSubject": 10
     },
@@ -316,19 +316,19 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 1,
-      "kept": 0,
-      "offSubject": 40
+      "bing": 0,
+      "kept": 1,
+      "offSubject": 36
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
-      "bing": 8,
-      "kept": 0,
-      "offSubject": 8
+      "google": 52,
+      "bing": 0,
+      "kept": 1,
+      "offSubject": 4
     },
     {
       "id": "act-compensation",
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 59,
-      "bing": 2,
+      "google": 58,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 19
     },
     {
       "id": "act-acquittal",
@@ -357,15 +357,15 @@
       "expect": "acquittal",
       "google": 100,
       "bing": 2,
-      "kept": 2,
-      "offSubject": 46
+      "kept": 1,
+      "offSubject": 43
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 22,
+      "google": 23,
       "bing": 0,
       "kept": 0,
       "offSubject": 7
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 48,
+      "google": 49,
       "bing": 1,
       "kept": 0,
       "offSubject": 9
@@ -387,7 +387,7 @@
       "expect": "allegation",
       "google": 24,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 2
     },
     {
@@ -416,16 +416,16 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 11,
-      "kept": 1,
-      "offSubject": 4
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 3
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 42,
+      "google": 43,
       "bing": 1,
       "kept": 0,
       "offSubject": 7
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 67,
+      "google": 66,
       "bing": 1,
       "kept": 0,
-      "offSubject": 26
+      "offSubject": 25
     },
     {
       "id": "shri-upgrade",
@@ -455,20 +455,20 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 45,
+      "google": 46,
       "bing": 2,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 5
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 30,
-      "bing": 1,
+      "google": 29,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 17
     },
     {
       "id": "shri-nep",
@@ -476,9 +476,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 52,
-      "bing": 3,
-      "kept": 1,
-      "offSubject": 10
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 9
     },
     {
       "id": "shri-criticism",
@@ -486,7 +486,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 43,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 32
     }
@@ -17682,7 +17682,8 @@
       "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQRzhUdzFTeUxiZVk0eXlwRmx4czhWa2U5NW1aWWJTS2d6bzVHZVZ2bjFEVGJvTTRsZHRNWVFoRDZVQVN0RU1pNENJanczNXhNS0xLX1JKdEczamdmdmppUFJyMlg3TS1VT3JqOE16MVNEdlR5REc1WEcwSTJTRXJ5UWxLUy1VNU1NM0JGb2lySmhrdE9XRTVEaXJFTjRLeWhkWlp4TmFiV0hRTVNlTGtHdTh4dGF2dzU4eGUwdHRsNTI1eUs2QWc?oc=5",
       "queries": [
         "act-registered",
-        "act-misuse-claim"
+        "act-misuse-claim",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -18169,6 +18170,55 @@
         "google"
       ],
       "firstSeen": "2026-10-09"
+    },
+    {
+      "id": "high court of karnataka acquits accused in abetment of suicide and sc st act case due to l",
+      "headline": "High Court of Karnataka Acquits Accused in Abetment of Suicide and SC/ST Act Case Due to Lack of Evidence of Instigation. Allegations of Caste-Based Insult and Harassment Not Proven Beyond Reasonable Doubt Under Sections 306, 323, 324, 354 IPC an",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-10-02",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1oTHNUWENiWF8wejRZSmlETTFGQ0xOV3U5ZlZ5NU9vd2UteWNWbVhBZUdta0RMTjdkelpmcG1qdDVITDFTZTlMUk1SSGdwcEVvT1NaUkNQaDlJejk2eXd2U2MwZkpIZw?oc=5",
+      "queries": [
+        "act-convicted",
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-10"
+    },
+    {
+      "id": "dalit youth forced to lick shoes fir filed 12 days later",
+      "headline": "Dalit youth forced to lick shoes, FIR filed 12 days later",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Siasat Daily",
+      "published": "2025-10-20",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNVDVOTzJSLTFDa19Ma3ZLVk96czJOd2RGNFh0RWNuc3NsYlRINzE4ajFyZnlodFBYaU9FS0gwQ0lfbXR3WTNlV3RHRVpVcUtlTG1rSVprV1FYamQtT0Zhd0FKLUhsdjQzc2N0TnRaS2ZmNE9BS3FJZl83aVRJT1FQcGN4YUFwZkFiSDFkZUZxYTMzQdIBlwFBVV95cUxPWkpsYTY0YlNzLUd5bEIzanB1VGd0YzVOakczekpvSGptUS0wcXd1akRBRTlQLXZZRGp4MGM2bWx0NGxZaXJ3Ujl5MTBnYnNqME1BWDJCbFowQnhXUWlCSld4Ull1ZWh0Z2dZdGpjb05qQTV0bWdKeVc3Rzg0TC1wMnh5M3hSSzU3SmhfODVyRDNOU3d6Q2Q0?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-10"
+    },
+    {
+      "id": "gujarat high court dismisses state appeal against acquittal in atrocity case no evidence o",
+      "headline": "Gujarat High Court Dismisses State Appeal Against Acquittal in Atrocity Case — No Evidence of Caste-Based Insult in Public View. Acquittal under Section 3(1)(10) of SC/ST Act upheld as incident occurred in private construction site, not in public view.",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-09-01",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFB5ZlpyamR5eGJvN2JwOWM0S3d2enNOUFZIeHFnbUl3YXE1ZmFKY3F1UEdoSUdROThoTkRWdnNDN3JTZWh2ekVxRGVlOEdsUWwxY3R0Mm1TejRlX0dpTW5lcU5NejhpUQ?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-10"
     }
   ]
 }
