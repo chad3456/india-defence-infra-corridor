@@ -1,0 +1,50 @@
+name: Snapshot satellite element sets
+
+# Writes data/live/tle-snapshot.json: the element sets /satellites carries,
+# taken from CelesTrak, as a last-known-good copy for when the live fetch in
+# app/api/tle/route.ts fails.
+#
+# Runs here because the editing sandbox cannot reach celestrak.org.
+#
+# Weekly. The page fetches live; this copy only has to be recent enough that a
+# fallback map is roughly right, and each commit is about two hundred
+# kilobytes of text that changes completely every time.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "25 4 * * 1"
+  push:
+    paths:
+      - "scripts/etl/connectors/tle-snapshot.ts"
+      - "lib/tle-source.ts"
+      - ".github/workflows/tle-snapshot.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tle-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Snapshot
+        run: npm run tle:snapshot
+      # Checked before it is committed, not after it has shipped.
+      - name: Check
+        run: npm run test:satellites
+      - name: Commit
+        run: >
+          .github/scripts/commit-generated.sh
+          data/live/tle-snapshot.json
+          "data(live): satellite element-set snapshot $(date -u +'%Y-%m-%d %H:%M')"

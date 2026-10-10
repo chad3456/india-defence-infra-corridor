@@ -15,8 +15,10 @@ import * as satellite from "satellite.js";
 import {
   parseTle, tleEpoch, epochAgeDays, footprintRadiusKm,
   distanceKm, isOverIndia, elevationDegrees, EARTH_RADIUS_KM,
-  isIndianSatellite,
+  isIndianSatellite, INDIAN_PREFIXES,
 } from "../lib/satellites-shared";
+import { GROUPS, INDIAN_FLEET, buildRecords, feedRequests, type TleFeed } from "../lib/tle-source";
+import { validate as validateSnapshot } from "./etl/connectors/tle-snapshot";
 
 let bad = 0;
 function ok(name: string, cond: boolean, detail = ""): void {
@@ -177,6 +179,34 @@ console.log("\nIndia's own fleet");
   // in its name would be claimed.
   ok("a prefix in the middle of a name does not match",
     !isIndianSatellite("EUTELSAT INSAT LOOKALIKE"));
+}
+
+console.log("\nThe feed and its weekly snapshot");
+{
+  const reqs = feedRequests();
+  ok("every carried group is requested", GROUPS.every((g) => reqs.some((r) => r.key === g.id)));
+  ok("Starlink is not carried", !reqs.some((r) => /starlink/i.test(r.url)));
+  ok("India's fleet is requested by every prefix", INDIAN_PREFIXES.every((p) => reqs.some((r) => r.key === `name:${p}`)));
+  const recs = buildRecords([{ label: "Space stations", text: ISS }, { label: "Indian fleet", text: ISS.replace("ISS (ZARYA)", "CARTOSAT-3") }], new Date("2024-04-10T12:00:00Z"));
+  ok("a satellite found twice is kept once, in its first group", recs.length === 1 && recs[0]?.group === "Space stations", JSON.stringify(recs.map((r) => r.group)));
+  ok("element-set age is carried on each record", near(recs[0]?.epochAgeDays ?? -1, 1, 0.01), String(recs[0]?.epochAgeDays));
+
+  const snap = JSON.parse(readFileSync("data/live/tle-snapshot.json", "utf8")) as TleFeed;
+  if (snap.satellites.length === 0) {
+    ok("an empty snapshot says why", snap.snapshotAt === null && snap.failed.length > 0);
+  } else {
+    const problems = validateSnapshot(snap);
+    ok("the snapshot passes the connector's own checks", problems.length === 0, problems.join("; "));
+    const labels = new Set<string>([...GROUPS.map((g) => g.label), INDIAN_FLEET]);
+    ok("every record is in a known group", snap.satellites.every((r) => labels.has(r.group)));
+    const unusable = snap.satellites.filter((r) => {
+      const rec = satellite.twoline2satrec(r.line1, r.line2);
+      const pv = satellite.propagate(rec, new Date(snap.snapshotAt!));
+      return !pv || typeof pv.position !== "object";
+    });
+    ok("every element set propagates at its own snapshot time", unusable.length <= snap.satellites.length * 0.01, `${unusable.length}: ${unusable.slice(0, 5).map((r) => r.name).join(", ")}`);
+    ok("no snapshot record is flagged Indian without an Indian name", snap.satellites.every((r) => r.indian === isIndianSatellite(r.name) || r.group !== "Indian fleet"));
+  }
 }
 
 if (bad > 0) { console.error(`\n${bad} satellite test(s) failed.`); process.exit(1); }
