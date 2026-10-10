@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-10T20:21:49.691Z",
+  "builtAt": "2026-10-10T23:53:51.739Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -11,8 +11,8 @@
   ],
   "counts": {
     "items": 1091,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1090,
+    "addedThisRun": 0,
+    "carriedFromEarlierRuns": 1091,
     "withOutlet": 1023,
     "bySubject": {
       "scst": 734,
@@ -306,7 +306,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 3,
+      "bing": 0,
       "kept": 0,
       "offSubject": 10
     },
@@ -316,9 +316,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 34
+      "offSubject": 36
     },
     {
       "id": "act-atrocity",
@@ -338,7 +338,7 @@
       "google": 48,
       "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 14
     },
     {
       "id": "act-pendency",
@@ -395,17 +395,17 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 50,
+      "google": 49,
       "bing": 0,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 17
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 31,
+      "google": 32,
       "bing": 0,
       "kept": 0,
       "offSubject": 20
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 11,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 4
     },
     {
@@ -435,8 +435,8 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 67,
-      "bing": 1,
+      "google": 68,
+      "bing": 0,
       "kept": 0,
       "offSubject": 25
     },
@@ -445,18 +445,18 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 58,
+      "google": 57,
       "bing": 0,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 16
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 47,
-      "bing": 2,
+      "google": 45,
+      "bing": 0,
       "kept": 0,
       "offSubject": 4
     },
@@ -465,17 +465,17 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 29,
-      "bing": 1,
+      "google": 30,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 17
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 52,
+      "google": 53,
       "bing": 3,
       "kept": 0,
       "offSubject": 12
