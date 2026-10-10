@@ -181,10 +181,12 @@ export function elevationDegrees(
  * catalogue names run GSAT0101 to GSAT0234; India's are GSAT-8, GSAT-30 and
  * so on. "PSLV" and "SSLV" returned only spent rocket stages and debris, never
  * a satellite, so they are gone, and anything named as a rocket body or
- * debris is excluded whatever its prefix.
+ * debris is excluded whatever its prefix. "IRS-" was added when the first
+ * snapshot showed IRS-P6 (RESOURCESAT-1) arriving under a name that begins
+ * with the older programme's.
  */
 export const INDIAN_PREFIXES = [
-  "CARTOSAT", "RISAT", "RESOURCESAT", "OCEANSAT", "INSAT", "GSAT-", "IRNSS",
+  "CARTOSAT", "RISAT", "RESOURCESAT", "OCEANSAT", "INSAT", "GSAT-", "IRNSS", "IRS-",
   "NVS-", "EOS-", "HYSIS", "MEGHA-TROPIQUES", "SCATSAT", "ASTROSAT",
   "CHANDRAYAAN", "ADITYA", "SARAL", "KALPANA", "MICROSAT", "XPOSAT", "INS-",
 ] as const;

@@ -166,7 +166,8 @@ console.log("\nIndia's own fleet");
   // way on purpose: a missed satellite is absent from the Indian view, never
   // counted as somebody else's.
   for (const n of ["CARTOSAT-3", "RISAT-2B", "EOS-04", "GSAT-30", "GSAT-N2 (GSAT-20)", "NVS-01 (IRNSS-1J)", "IRNSS-1I",
-                   "ASTROSAT", "CHANDRAYAAN-2 O", "ADITYA-L1", "XPOSAT", "OCEANSAT-3"]) {
+                   "ASTROSAT", "CHANDRAYAAN-2 O", "ADITYA-L1", "XPOSAT", "OCEANSAT-3",
+                   "IRS-P6 (RESOURCESAT-1)", "IRS-P5 (CARTOSAT-1)"]) {
     ok(`${n} is recognised as Indian`, isIndianSatellite(n));
   }
   for (const n of ["STARLINK-1007", "ISS (ZARYA)", "NOAA 19", "COSMOS 2251",
@@ -174,7 +175,9 @@ console.log("\nIndia's own fleet");
                    // Galileo's catalogue names begin GSAT, without India's hyphen.
                    "GSAT0101 (GALILEO-PFM)", "GSAT0234 (GALILEO 34)",
                    // Spent stages and debris are objects, not satellites.
-                   "PSLV R/B", "PSLV DEB", "INSAT-1B R/B [PAM-D]", "CARTOSAT-2 DEB"]) {
+                   "PSLV R/B", "PSLV DEB", "INSAT-1B R/B [PAM-D]", "CARTOSAT-2 DEB",
+                   // CelesTrak's name search is a substring match: RISAT returns these.
+                   "MARISAT 1", "TIGRISAT"]) {
     ok(`${n} is not claimed as Indian`, !isIndianSatellite(n));
   }
   ok("matching is case-insensitive", isIndianSatellite("cartosat-2f"));
@@ -222,6 +225,8 @@ console.log("\nThe feed and its weekly snapshot");
   const recs = buildRecords([{ label: "Space stations", text: ISS }, { label: "Indian fleet", text: ISS.replace("ISS (ZARYA)", "CARTOSAT-3") }], new Date("2024-04-10T12:00:00Z"));
   ok("a satellite found twice is kept once, in its first group", recs.length === 1 && recs[0]?.group === "Space stations", JSON.stringify(recs.map((r) => r.group)));
   ok("element-set age is carried on each record", near(recs[0]?.epochAgeDays ?? -1, 1, 0.01), String(recs[0]?.epochAgeDays));
+  const swept = buildRecords([{ label: "Indian fleet", text: ISS.replace("ISS (ZARYA)", "MARISAT 1") }], new Date("2024-04-10T12:00:00Z"));
+  ok("a substring hit from the fleet sweep is dropped, not filed as Indian", swept.length === 0, JSON.stringify(swept.map((r) => r.name)));
 
   const snap = JSON.parse(readFileSync("data/live/tle-snapshot.json", "utf8")) as TleFeed;
   if (snap.satellites.length === 0) {

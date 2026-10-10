@@ -80,6 +80,10 @@ export function buildRecords(answers: Array<{ label: string; text: string }>, no
   const byId = new Map<number, SatRecord>();
   for (const a of answers) {
     for (const t of parseTle(a.text)) {
+      // CelesTrak's name search matches anywhere in the name, not at the
+      // start: RISAT also returns MARISAT and TIGRISAT. The fleet sweep keeps
+      // only what the prefix test calls Indian.
+      if (a.label === INDIAN_FLEET && !isIndianSatellite(t.name)) continue;
       const existing = byId.get(t.noradId);
       if (existing) { existing.indian = existing.indian || isIndianSatellite(t.name); continue; }
       byId.set(t.noradId, {
