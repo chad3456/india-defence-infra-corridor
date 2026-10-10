@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-09T21:53:03.754Z",
+ "builtAt": "2026-10-10T11:22:44.158Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206470,7 +206470,7 @@
    "outlet": "UK Ministry of Defence",
    "ok": true,
    "items": 50,
-   "kept": 2,
+   "kept": 3,
    "via": "direct"
   },
   {
@@ -206498,7 +206498,7 @@
    "outlet": "Defense One",
    "ok": true,
    "items": 18,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
@@ -206512,11 +206512,39 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-1x1xxwv",
+   "kind": "delivery",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "value": null,
+   "date": "2026-10-10",
+   "outlet": "UK Ministry of Defence",
+   "url": "https://www.gov.uk/government/news/faster-front-line-delivery-with-new-testing-and-evaluation-programme",
+   "headline": "Faster front-line delivery with new Testing and Evaluation programme",
+   "primary": true
+  },
+  {
+   "id": "ev-n7ddhs",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-10-10",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/u-s-navy-warship-gun-program-heads-toward-new-contract/",
+   "headline": "U.S. Navy warship gun program heads toward new contract",
+   "primary": false
+  },
   {
    "id": "ev-yguoa8",
    "kind": "order",
@@ -206547,6 +206575,24 @@
    "outlet": "Breaking Defense",
    "url": "https://breakingdefense.com/2026/10/pentagon-lockheed-weigh-multi-year-f-35-production-sustainment-deal/",
    "headline": "EXCLUSIVE: Pentagon, Lockheed weigh multi-year F-35 production, sustainment deal",
+   "primary": false
+  },
+  {
+   "id": "ev-17cl2er",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": {
+    "amount": 350000000,
+    "currency": "USD",
+    "asWritten": "$350M"
+   },
+   "date": "2026-10-09",
+   "outlet": "Defense One",
+   "url": "https://www.defenseone.com/policy/2026/10/pentagon-350-million-contracts-official/416543/",
+   "headline": "The Pentagon awarded $350M to a firm tied to a senior DOD official",
    "primary": false
   },
   {
@@ -207512,6 +207558,35 @@
  ],
  "groups": [
   {
+   "key": "delivery||united kingdom",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-1x1xxwv",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-10",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/news/faster-front-line-delivery-with-new-testing-and-evaluation-programme",
+     "headline": "Faster front-line delivery with new Testing and Evaluation programme",
+     "primary": true
+    }
+   ],
+   "outlets": [
+    "UK Ministry of Defence"
+   ],
+   "value": null,
+   "verdict": "from a primary source"
+  },
+  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -207519,6 +207594,20 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-n7ddhs",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-10-10",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-navy-warship-gun-program-heads-toward-new-contract/",
+     "headline": "U.S. Navy warship gun program heads toward new contract",
+     "primary": false
+    },
     {
      "id": "ev-yguoa8",
      "kind": "order",
@@ -207549,6 +207638,24 @@
      "outlet": "Breaking Defense",
      "url": "https://breakingdefense.com/2026/10/pentagon-lockheed-weigh-multi-year-f-35-production-sustainment-deal/",
      "headline": "EXCLUSIVE: Pentagon, Lockheed weigh multi-year F-35 production, sustainment deal",
+     "primary": false
+    },
+    {
+     "id": "ev-17cl2er",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 350000000,
+      "currency": "USD",
+      "asWritten": "$350M"
+     },
+     "date": "2026-10-09",
+     "outlet": "Defense One",
+     "url": "https://www.defenseone.com/policy/2026/10/pentagon-350-million-contracts-official/416543/",
+     "headline": "The Pentagon awarded $350M to a firm tied to a senior DOD official",
      "primary": false
     },
     {
@@ -207921,9 +208028,10 @@
     }
    ],
    "outlets": [
+    "Defence Blog",
     "Defense News",
     "Breaking Defense",
-    "Defence Blog",
+    "Defense One",
     "Naval News"
    ],
    "value": null,
