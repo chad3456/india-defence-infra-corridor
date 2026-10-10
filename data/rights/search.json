@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-10T14:47:57.997Z",
+  "builtAt": "2026-10-10T20:21:49.691Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,13 +10,13 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1090,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1088,
-    "withOutlet": 1022,
+    "items": 1091,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1090,
+    "withOutlet": 1023,
     "bySubject": {
       "scst": 734,
-      "pmshri": 356
+      "pmshri": 357
     },
     "queriesAsked": 20,
     "offSubjectDropped": 308
@@ -24,7 +24,7 @@
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 524
+      "n": 525
     },
     {
       "key": "use",
@@ -277,15 +277,15 @@
       "n": 4
     },
     {
+      "key": "NDTV",
+      "n": 4
+    },
+    {
       "key": "India.com",
       "n": 4
     },
     {
       "key": "Wansom AI",
-      "n": 3
-    },
-    {
-      "key": "Swarajya",
       "n": 3
     }
   ],
@@ -306,8 +306,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 2,
-      "kept": 1,
+      "bing": 3,
+      "kept": 0,
       "offSubject": 10
     },
     {
@@ -316,9 +316,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 37
+      "offSubject": 34
     },
     {
       "id": "act-atrocity",
@@ -326,29 +326,29 @@
       "subject": "scst",
       "expect": "use",
       "google": 52,
-      "bing": 6,
+      "bing": 7,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 47,
+      "google": 48,
       "bing": 0,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 13
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 59,
+      "google": 58,
       "bing": 2,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 19
     },
     {
       "id": "act-acquittal",
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 48,
+      "google": 49,
       "bing": 1,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 9
     },
     {
       "id": "act-dilution",
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 48,
+      "google": 50,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 17
+      "kept": 0,
+      "offSubject": 18
     },
     {
       "id": "act-fabricated",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 11,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 4
     },
     {
@@ -425,17 +425,17 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 43,
+      "google": 44,
       "bing": 1,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 66,
+      "google": 67,
       "bing": 1,
       "kept": 0,
       "offSubject": 25
@@ -445,17 +445,17 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 55,
-      "bing": 4,
+      "google": 58,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 17
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 46,
+      "google": 47,
       "bing": 2,
       "kept": 0,
       "offSubject": 4
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 44,
       "bing": 1,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 33
     }
   ],
   "items": [
@@ -10980,7 +10980,8 @@
       "published": "2024-03-16",
       "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQS0dXZVpQc0taWmhjUEJuRE9JeEtJczAzZVpRX21HNnhsZ1F5UUFmb2x0bTRXMzJfWnppTG9rMnJtWHNZUnp0b280NFVQaTJoUU50ZVdFelpFYmZ2dWQ1bm5Ud0Y4Z2Zlb3RrUnpOb2ptWjcxcXlvWGRWd1VYeEh4MTQ4VnprR3l4ZnZtelVJUVB2NGgwV0dvRzltenNWTXp0UUV3dGFJLXVaRVpnbjg4TnJhcWxlQdIBuwFBVV95cUxQSEZyOWszaUpQcDhOSE4yVDRLMHJfMHctOGpiejYxU05VOVFMNU1RRDF1NVQzM2dlWVVXQzNVaDl4NW9BZGZBZ3M5cURCcC15bTkzVk9hWW5OaUh4ZlRqcXl3aVN0ZU1adGZ2T2M3UDJSWnRHODdRVFM0VS1JelpUSlNKRWpIWVEzUzQxSEVKYU5yaWpiSEZJcmZZYXZyT0ZBNUI5WTh5TGZOTEhzZTNPZlE5OGk1dzlCVXRB?oc=5",
       "queries": [
-        "shri-upgrade"
+        "shri-upgrade",
+        "shri-sanctioned"
       ],
       "indexes": [
         "google"
@@ -18247,6 +18248,22 @@
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE80d3ozeDRUMng2MHVYXzJjMzhLMmEwdmJmTG1WVGlnRk0wb3dMaHNIbklQMUVidkJPamI4VVdocFNjUWMyeGZJZDUwaVU4UWQwYjd5c0l0RURfdmdfdnhmOF9DUy0?oc=5",
       "queries": [
         "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-10"
+    },
+    {
+      "id": "udf ldf clash over pm shri accuse each other of yielding ground to centre",
+      "headline": "UDF, LDF Clash Over PM SHRI, Accuse Each Other Of Yielding Ground To Centre",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "NDTV",
+      "published": "2026-06-24",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNZWY4dVhvMDdtOHBHTmpiM09keXZZTXo3dzR0dzdlMFgyWklyOHBDcDlwQzdFampPenZQRDNZQ0lmeXNfRjJRcHhpRXlMdlNfY001czNONDQ2YXVxaEVTRGhobkFYTmdkOGZlTGh0YnpUdmotT0pCVkJGZkc1Y0FCNHhBZjFmcUZJWUduaUNpVGRmN3FMRXZTWXM2QTk3UEZyUThNQWFOZ2p5Y0F1cDlQcXh3Z1hzQU5KNHg4alVFeWd6XzVqWGZQcUtRcV9GLUx4eGZF0gHbAUFVX3lxTFBzcEJsd2FxUUp3S1lLS3ZGd01MVTVpanF0SWstcWNVc3drMGdpeXBoNGpVMzlNbURtQ1RjTW1rdTN4MnlfaGpBZEl3YWIyZHNWV3paV2lZeWxuWDlVaU1fa3dTdTFvcnROZXJQb3h5UnExQk5CZ2N6MjEyaUNCVzZtOEFWS2ZObEpxOXFnOGs5NWRsRXJNTUo3WnVOb3g5RTZ2T1Bxb3FIc05KenE2ekhyMVZITkd2UDNSMXdxTndrRExTLXV0c3RVUEpZTEwxNmNxWjVWVkNsd2ZsQQ?oc=5",
+      "queries": [
+        "shri-general"
       ],
       "indexes": [
         "google"
