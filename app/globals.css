@@ -2190,3 +2190,53 @@ figcaption .bk-note { margin: 0; font-size: 12px; }
   .pr-wire li { grid-template-columns: 3.2em 1fr; }
   .pr-wire span { grid-column: 2; white-space: normal; }
 }
+
+/* ── /protests charts ── */
+.pc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+.pc-card { margin: 14px 0 0; background: var(--story-card); border: 1px solid var(--story-rule); border-radius: 8px; padding: 14px 16px; min-width: 0; }
+.pc-grid .pc-card { margin: 0; }
+.pc-card figcaption h4 { margin: 0; font-size: 15px; font-weight: 700; color: var(--story-ink); }
+.pc-card figcaption p { margin: 4px 0 10px; font-size: 12.5px; line-height: 1.5; color: var(--story-ink-3); }
+.pc-wrap { position: relative; }
+.pc-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.pc-grid line.pc-grid, .pc-svg .pc-grid { stroke: var(--story-rule); }
+.pc-svg .pc-base { stroke: var(--story-ink-3); }
+.pc-svg .pc-tick { font: 11.5px var(--font-sans, system-ui); fill: var(--story-ink-3); }
+.pc-multi .pc-svg .pc-tick { font-size: 10px; }
+.pc-svg .pc-mark { stroke: var(--story-ink-2); stroke-dasharray: 3 3; }
+.pc-svg .pc-mark-label { font: 600 10.5px var(--font-sans, system-ui); fill: var(--story-ink-2); }
+.pc-svg .pc-point-label { font: 600 11.5px var(--font-mono, ui-monospace); fill: var(--story-ink); paint-order: stroke; stroke: var(--story-card); stroke-width: 3px; }
+.pc-svg rect, .pc-svg circle { cursor: default; }
+.pc-svg rect:hover, .pc-svg circle:hover { opacity: 0.8; }
+.pc-tip { position: absolute; z-index: 4; pointer-events: none; display: flex; flex-direction: column; gap: 2px; max-width: 260px; padding: 7px 10px; border-radius: 6px; background: var(--story-card); border: 1px solid var(--story-rule); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12); font-size: 12.5px; color: var(--story-ink); }
+.pc-tip span { color: var(--story-ink-2); font-size: 12px; }
+.pc-tip em { font-style: normal; color: var(--story-ink-3); font-size: 11.5px; line-height: 1.4; }
+.pc-empty { font-size: 13px; color: var(--story-ink-3); }
+
+.pc-multi { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 18px; }
+.pc-mini { position: relative; min-width: 0; }
+.pc-mini > p { margin: 0 0 4px; font-size: 12.5px; color: var(--story-ink); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 8px; }
+.pc-mini > p span { color: var(--story-ink-3); font-variant-numeric: tabular-nums; }
+.pc-mini .pc-words { display: block; margin: 4px 0 0; font-size: 10.5px; line-height: 1.4; color: var(--story-ink-3); }
+
+.pc-bars { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+.pc-bars li { display: grid; grid-template-columns: minmax(90px, 11em) 1fr 2.5em; gap: 8px; align-items: center; font-size: 12.5px; }
+.pc-bar-l { color: var(--story-ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pc-bar-t { position: relative; height: 12px; background: var(--story-bg); border-radius: 3px; }
+.pc-bar-t i { position: absolute; inset: 0 auto 0 0; border-radius: 3px; }
+.pc-bar-v { text-align: right; font-variant-numeric: tabular-nums; color: var(--story-ink); }
+
+.pc-gantt { position: relative; display: flex; flex-direction: column; gap: 8px; }
+.pc-gantt-row, .pc-gantt-axis { display: grid; grid-template-columns: minmax(110px, 12em) 1fr; gap: 10px; align-items: center; font-size: 12.5px; }
+.pc-gantt-l { color: var(--story-ink-2); }
+.pc-gantt-t { position: relative; height: 16px; background: var(--story-bg); border-radius: 3px; }
+.pc-gantt-t i { position: absolute; top: 0; bottom: 0; border-radius: 3px; min-width: 4px; }
+.pc-gantt-t i.open { border-top-right-radius: 0; border-bottom-right-radius: 0; mask-image: linear-gradient(90deg, #000 85%, transparent); }
+.pc-gantt-days { position: relative; height: 14px; }
+.pc-gantt-days i { position: absolute; transform: translateX(-50%); font: 10.5px var(--font-sans, system-ui); font-style: normal; color: var(--story-ink-3); white-space: nowrap; }
+
+@media (max-width: 760px) {
+  .pc-grid { grid-template-columns: 1fr; }
+  .pc-multi { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pc-gantt-days i:nth-child(odd) { display: none; }
+}

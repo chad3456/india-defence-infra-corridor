@@ -5,6 +5,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { isAboutProtest, mergeWire } from "./etl/connectors/delhi-protest-news";
+import { buildCharts, headlineFigure, THEMES } from "../lib/protest-charts";
 import type { ProtestRecord, ProtestWire, Voice, WireItem } from "../lib/protest-shared";
 
 let failures = 0;
@@ -79,6 +80,30 @@ if (existsSync(wireFile)) {
   check("the queries asked are published with their yields", w.queries.length > 0);
 } else {
   console.log("  (no wire yet: the first scheduled run writes it)");
+}
+
+console.log("\nThe charts count what they say they count");
+const fig: Array<[string, number | null]> = [
+  ["Delhi Clampdown: 7,000 Detained, Jantar Mantar Empty", 7000],
+  ["CJP stir against CEC: Delhi Police detains more than 3,000 protesters", 3000],
+  ["Around 200 Punjab students detained in Delhi during CJP protest", 200],
+  ["Full clampdown in Delhi, no signs of protest as cops detain 2000 including CJP leaders", 2000],
+  ["Anti-CEC protest: What happened moments before CJP leaders were detained inside AI 2428", null],
+  ["Four Cockroach Janta Party volunteers from Telangana detained in Bhopal ahead of October 10 Delhi protest", null],
+  ["Why have hundreds of 'cockroach' protesters been detained in Delhi", null],
+  ["Internet suspended within 4 km of Jantar Mantar for 24 hours", null],
+];
+for (const [t, want] of fig) check(`figure ${want ?? "none"} from "${t.slice(0, 48)}…"`, headlineFigure(t) === want, String(headlineFigure(t)));
+check("every theme says which words it counts", THEMES.every((t) => t.words.trim().length > 0));
+if (existsSync(wireFile)) {
+  const w = JSON.parse(readFileSync(wireFile, "utf8")) as ProtestWire;
+  const c = buildCharts(w, Date.parse(w.updatedAt));
+  const binned = c.hours.reduce((a, h) => a + h.total, 0);
+  const inWindow = w.items.filter((i) => Date.parse(i.publishedAt) >= c.from && Date.parse(i.publishedAt) < c.from + c.hours.length * 3_600_000).length;
+  check("hourly bins add up to the headlines in the window", binned === inWindow, `${binned} vs ${inWindow}`);
+  check("no theme counts more headlines than an hour holds", c.hours.every((h) => Object.values(h.byTheme).every((v) => v <= h.total)));
+  check("every charted figure comes from a headline on the wire", c.figures.every((f) => w.items.some((i) => i.title === f.title && headlineFigure(i.title) === f.value)));
+  check("publisher counts add up to the wire", c.publishers.reduce((a, p) => a + p.value, 0) === w.items.length);
 }
 
 console.log("\nThe page shows only what the record holds");

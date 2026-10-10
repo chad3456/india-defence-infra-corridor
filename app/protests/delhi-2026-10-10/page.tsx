@@ -1,6 +1,8 @@
 import { loadProtest, type ProtestAccount, type ProtestRecord, type Voice } from "@/lib/protest";
 import { Eyebrow, Standfirst, Sources, WhatThisCannotSay } from "@/components/stories/Kit";
 import { ProtestMap, ProtestMapLegend } from "@/components/protests/ProtestMap";
+import { Frame, FigureChart, HourlyChart, PublisherBars, RestrictionGantt, ThemeMultiples } from "@/components/protests/ProtestCharts";
+import { buildCharts, THEMES } from "@/lib/protest-charts";
 
 /**
  * Delhi, 10 October 2026: the Cockroach Janta Party protest and the police
@@ -63,6 +65,15 @@ function Account({ a, rec }: { a: ProtestAccount; rec: ProtestRecord }) {
 export default function DelhiProtestPage() {
   const { record: rec, wire } = loadProtest();
   const central = rec.places.filter((p) => p.lon > 77.17 && p.lon < 77.27 && p.lat > 28.585 && p.lat < 28.655);
+  const charts = wire ? buildCharts(wire) : null;
+  // IST instants for the restrictions whose times were reported.
+  const ist = (d: string, hh = 0, mm = 0) => Date.parse(`${d}T${String(hh).padStart(2, "0")}:${String(mm).padStart(2, "0")}:00+05:30`);
+  const gantt = [
+    { label: "Section 163 prohibitory order", start: ist("2026-10-02"), end: null, note: "In force from the first protests of the campaign; the police said on 3 and 9 October it remained in force." },
+    { label: "Mobile data suspended, 4 km", start: ist("2026-10-09", 22), end: ist("2026-10-10", 22), note: "Within 4 km of the Janpath–Kartavya Path crossing, by the Union Home Secretary's order." },
+    { label: "45 metro stations closed", start: ist("2026-10-10"), end: ist("2026-10-10", 22), note: "Start time not reported, so drawn from midnight; the Namo Bharat closures ran until 10 pm." },
+    { label: "Permission refused for 11 October", start: ist("2026-10-10", 21), end: ist("2026-10-11", 23, 59), note: "Delhi Police refused permission for the resumed march and issued a traffic advisory." },
+  ];
   const counted = rec.counts.filter((c) => c.figure !== null).sort((a, b) => a.figure! - b.figure!);
   const wireDays = new Map<string, NonNullable<typeof wire>["items"]>();
   for (const it of wire?.items.slice(0, 60) ?? []) {
@@ -84,6 +95,34 @@ export default function DelhiProtestPage() {
           says, in its own words and with its source, and what everyone&rsquo;s reports agree on: where, when, and under which orders.
         </Standfirst>
       </header>
+
+
+      {/* ── the day in charts ── */}
+      {charts && (
+        <section className="pr-section">
+          <Eyebrow>the day in charts · from {charts.totalItems} headlines on the wire</Eyebrow>
+          <p className="pr-lede">Everything charted here counts headlines — what the news index returned for the wire&rsquo;s searches — not people, events or opinions. A spike says outlets published a lot in that hour. Hover any bar or point for the headline behind it.</p>
+          <div className="pc-grid">
+            <Frame title="Headlines per hour, IST" note="The news cycle: quiet until the evening before, then a surge as detentions began on the morning of the 10th.">
+              <HourlyChart hours={charts.hours} marks={[{ t: ist("2026-10-09", 22), label: "mobile data off" }, { t: ist("2026-10-10", 22), label: "mobile data back" }]} />
+            </Frame>
+            <Frame title="The detention figure, as headlines stated it" note={<>Each point is one headline that put a number on the detained, placed at the time it was published. They count different things — a street, a group of students, the whole city — so the rise shows the figure reported growing through the day, not a measured trend. Log scale. No figure from Delhi Police itself was found.</>}>
+              <FigureChart figures={charts.figures} from={charts.from} to={charts.to} />
+            </Frame>
+          </div>
+          <Frame title="What the headlines named, hour by hour" note="Each panel counts headlines using the words listed under it; a headline can count in several. Each panel has its own vertical scale.">
+            <ThemeMultiples hours={charts.hours} themes={THEMES.map((t) => ({ id: t.id, label: t.label, words: t.words }))} />
+          </Frame>
+          <div className="pc-grid">
+            <Frame title="The restrictions in force" note="From the record above. Hover a bar for its source's detail.">
+              <RestrictionGantt rows={gantt} from={ist("2026-10-02")} to={ist("2026-10-12")} />
+            </Frame>
+            <Frame title={`Who published: the ${Math.min(15, charts.publishers.length)} busiest of ${charts.publishers.length} outlets`} note="Headlines on the wire by outlet. A measure of what the index carries and ranks, not of how much each outlet wrote.">
+              <PublisherBars rows={charts.publishers.slice(0, 15)} total={charts.totalItems} />
+            </Frame>
+          </div>
+        </section>
+      )}
 
       {/* ── the numbers ── */}
       <section className="pr-section">
