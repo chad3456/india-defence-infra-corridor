@@ -154,6 +154,17 @@ from the snapshot and how old each is. India's fleet is matched by catalogue nam
 CelesTrak publishes no operator list, so a satellite named otherwise is missed, never
 misattributed — Galileo's `GSAT0101`-style names, rocket bodies and debris are excluded.
 
+### Protest records
+
+`/protests/delhi-2026-10-10` is a register of attributed accounts, not an account:
+`data/protests/delhi-2026-10-10.json` holds what was reported about the Cockroach Janta Party
+protest of 10 October 2026 and the police operation that prevented it, each claim filed under
+whoever made it (police, government, organisers, opposition, rights groups) and linked to where it
+was reported. Detention counts are kept as each reporter's own figure; no official count was found.
+A coverage wire, `data/protests/delhi-2026-10-10-news.json`, is written every half hour by
+`npm run protest:news` in GitHub Actions from Google News's keyless RSS search. Headlines are
+context and never become numbers. Private individuals are not named.
+
 ### Think tanks and analysis
 
 | Provider | Used for | Provenance |

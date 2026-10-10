@@ -1,0 +1,51 @@
+name: Protest coverage wire (Delhi, 10 October 2026)
+
+# Builds data/protests/delhi-2026-10-10-news.json: headlines naming the
+# Cockroach Janta Party protest and the police operation against it, from
+# Google News's keyless RSS search, accumulated across runs.
+#
+# Headlines are context, never data: nothing written here becomes a number on
+# the page. Runs here because the editing sandbox cannot reach the news index.
+#
+# Every thirty minutes while the story is moving. The connector writes only
+# when the register changed, so a quiet half hour costs one workflow minute
+# and no commit.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+  push:
+    paths:
+      - "scripts/etl/connectors/delhi-protest-news.ts"
+      - ".github/workflows/protest-news.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: protest-news
+  cancel-in-progress: false
+
+jobs:
+  wire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Search
+        run: npm run protest:news
+      - name: Check
+        run: npm run test:protest
+      - name: Commit
+        run: |
+          if [ -n "$(git status --porcelain data/protests/delhi-2026-10-10-news.json)" ]; then
+            .github/scripts/commit-generated.sh data/protests/delhi-2026-10-10-news.json "data(protests): Delhi 10 October coverage wire $(date -u +'%Y-%m-%d %H:%M')"
+          else
+            echo "no new headlines; nothing to commit"
+          fi

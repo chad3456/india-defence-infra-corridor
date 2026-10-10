@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "delhi-protest-2026-10-10",
+    title: "Delhi, 10 October",
+    blurb:
+      "The Cockroach Janta Party protest and the police operation that stopped it: where, under which " +
+      "orders, detention counts by source, and each side's account in its own words, with a live wire.",
+    href: "/protests/delhi-2026-10-10",
+    since: "2026-10-10",
+  },
+  {
     id: "satellites-live-2026-10",
     title: "Satellites, live",
     blurb:
