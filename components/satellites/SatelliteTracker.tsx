@@ -18,7 +18,9 @@
  * thousand dots cannot be told apart.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import * as satellite from "satellite.js";
+// Not "satellite.js": its root drags an unbuildable WebAssembly loader into
+// the bundle. See lib/sgp4.ts.
+import * as satellite from "@/lib/sgp4";
 import { geoCircle, geoEquirectangular, geoGraticule10, geoMercator, geoPath, type GeoProjection } from "d3-geo";
 import { feature } from "topojson-client";
 import type { Feature, FeatureCollection, Geometry, LineString } from "geojson";

@@ -7,7 +7,7 @@
  * wrong sign still renders. These cases pin them to values that can be
  * checked independently.
  */
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync, statSync } from "node:fs";
 import { feature } from "topojson-client";
 import type { FeatureCollection, Geometry } from "geojson";
 import type { Topology, GeometryCollection } from "topojson-specification";
@@ -247,6 +247,22 @@ console.log("\nThe feed and its weekly snapshot");
     const strays = snap.satellites.filter((r) => r.group === "Indian fleet" && !r.indian);
     ok("nothing sits in the Indian fleet that is not Indian", strays.length === 0, strays.slice(0, 5).map((r) => r.name).join(", "));
   }
+}
+
+console.log("\nThe browser bundle stays buildable");
+{
+  // satellite.js's package root pulls a WebAssembly loader whose files the
+  // published package does not ship; bundling it stalled every Vercel build
+  // until the 45-minute limit. Client code must go through lib/sgp4.ts.
+  const walk = (d: string): string[] => readdirSync(d).flatMap((n) => {
+    const p = `${d}/${n}`;
+    return statSync(p).isDirectory() ? walk(p) : /\.(tsx?|jsx?)$/.test(n) ? [p] : [];
+  });
+  const offenders = [...walk("components"), ...walk("app")].filter((f) => {
+    const src = readFileSync(f, "utf8");
+    return /^["']use client["']/m.test(src) && /from\s+["']satellite\.js["']/.test(src.replace(/import type[^;]+;/g, ""));
+  });
+  ok("no client component imports the satellite.js package root", offenders.length === 0, offenders.join(", "));
 }
 
 if (bad > 0) { console.error(`\n${bad} satellite test(s) failed.`); process.exit(1); }
