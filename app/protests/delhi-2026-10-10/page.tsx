@@ -32,6 +32,7 @@ const VOICES: Array<{ voice: Voice; title: string; note: string }> = [
   { voice: "government", title: "The government and ruling party", note: "Statements from the BJP and from officials." },
   { voice: "organisers", title: "The organisers", note: "The Cockroach Janta Party's statements and claims." },
   { voice: "opposition", title: "Opposition parties", note: "Statements by opposition leaders." },
+  { voice: "courts", title: "The courts", note: "What judges said or decided, as reported." },
   { voice: "rights", title: "Rights groups, lawyers and press bodies", note: "Statements by civil-society, legal and journalists' organisations." },
 ];
 
@@ -196,7 +197,7 @@ export default function DelhiProtestPage() {
 
       <WhatThisCannotSay
         items={[
-          { q: "Whether the detentions were lawful", a: <>That turns on the prohibitory order, how detainees were held and for how long, and is for courts to decide. Bar associations have asked the Chief Justice to intervene; no court ruling on 10 October had been reported when this record was read.</> },
+          { q: "Whether the detentions were lawful", a: <>That turns on the prohibitory order, how detainees were held and for how long, and is for courts to decide. On 10 October the Chief Justice asked for detained lawyers to be released, and a Delhi court rejected one detainee&rsquo;s plea for an FIR against the officers who held her; neither is a ruling on the operation as a whole.</> },
           { q: "Whether the operation kept order or suppressed a protest", a: <>That is the disagreement itself. The police and the ruling party describe a ban on an unpermitted gathering enforced to keep public order; the organisers, opposition and rights groups describe the prevention of a peaceful protest. Both are recorded above; neither is this site&rsquo;s view.</> },
           { q: "How many people were detained", a: <>No official count was found. The figures above range from one street&rsquo;s to the organisers&rsquo; nationwide claim, and measure different things.</> },
           { q: "Whether violence was planned", a: <>The BJP&rsquo;s spokesperson accused protesters of planning to provoke arson and violence. No report read for this record documented arson or violence on 10 October; the accusation is recorded as a claim.</> },

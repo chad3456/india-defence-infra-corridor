@@ -9,7 +9,7 @@
 
 export interface ProtestSource { publisher: string; title: string; url: string }
 
-export type Voice = "police" | "government" | "organisers" | "opposition" | "rights";
+export type Voice = "police" | "government" | "organisers" | "opposition" | "rights" | "courts";
 
 export interface ProtestAccount { voice: Voice; who: string; date: string; text: string; sources: string[] }
 

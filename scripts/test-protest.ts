@@ -35,7 +35,7 @@ check("nothing in the record lacks a source", [...rec.places, ...rec.counts, ...
 check("the accessed date is ISO", /^\d{4}-\d{2}-\d{2}$/.test(rec.accessed));
 
 console.log("\nThe voices are kept apart, and all of them are heard");
-const VOICES: Voice[] = ["police", "government", "organisers", "opposition", "rights"];
+const VOICES: Voice[] = ["police", "government", "organisers", "opposition", "rights", "courts"];
 check("every account has a known voice", rec.accounts.every((a) => VOICES.includes(a.voice)));
 for (const v of VOICES) check(`at least one account from: ${v}`, rec.accounts.some((a) => a.voice === v));
 check("the police's own stated reasons are recorded (at least three)", rec.accounts.filter((a) => a.voice === "police").length >= 3);
