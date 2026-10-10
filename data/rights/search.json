@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-10T06:26:20.567Z",
+  "builtAt": "2026-10-10T14:47:57.997Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1088,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 1085,
-    "withOutlet": 1021,
+    "items": 1090,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1088,
+    "withOutlet": 1022,
     "bySubject": {
-      "scst": 732,
+      "scst": 734,
       "pmshri": 356
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 301
+    "offSubjectDropped": 308
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 384
+      "n": 386
     },
     {
       "key": "acquittal",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 74
+      "n": 75
     },
     {
       "key": "The Indian Express",
@@ -306,8 +306,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 1,
-      "kept": 0,
+      "bing": 2,
+      "kept": 1,
       "offSubject": 10
     },
     {
@@ -316,9 +316,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
-      "kept": 1,
-      "offSubject": 36
+      "bing": 1,
+      "kept": 0,
+      "offSubject": 37
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 52,
-      "bing": 0,
-      "kept": 1,
-      "offSubject": 4
+      "bing": 6,
+      "kept": 0,
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 58,
-      "bing": 0,
+      "google": 59,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 20
     },
     {
       "id": "act-acquittal",
@@ -357,7 +357,7 @@
       "expect": "acquittal",
       "google": 100,
       "bing": 2,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 43
     },
     {
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 49,
+      "google": 48,
       "bing": 1,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 8
     },
     {
       "id": "act-dilution",
@@ -397,7 +397,7 @@
       "expect": "false-finding",
       "google": 48,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 17
     },
     {
@@ -416,9 +416,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 11,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 4
     },
     {
       "id": "shri-sanctioned",
@@ -446,9 +446,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 55,
-      "bing": 3,
+      "bing": 4,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 15
     },
     {
       "id": "shri-mou",
@@ -458,7 +458,7 @@
       "google": 46,
       "bing": 2,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 4
     },
     {
       "id": "shri-withheld",
@@ -466,9 +466,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 29,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 18
     },
     {
       "id": "shri-nep",
@@ -476,9 +476,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 52,
-      "bing": 0,
+      "bing": 3,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 12
     },
     {
       "id": "shri-criticism",
@@ -486,7 +486,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 43,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 32
     }
@@ -7674,7 +7674,8 @@
         "shri-mou"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -18214,6 +18215,38 @@
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFB5ZlpyamR5eGJvN2JwOWM0S3d2enNOUFZIeHFnbUl3YXE1ZmFKY3F1UEdoSUdROThoTkRWdnNDN3JTZWh2ekVxRGVlOEdsUWwxY3R0Mm1TejRlX0dpTW5lcU5NejhpUQ?oc=5",
       "queries": [
         "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-10"
+    },
+    {
+      "id": "haryana ips officer suicide sc st act invoked in y puran kumar case after wife s request f",
+      "headline": "Haryana IPS officer 'suicide': SC/ST Act invoked in Y Puran Kumar case after wife’s request; FIR updated",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2025-10-12",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aca4fb15be04fc69cdfaf91f7a47bfa&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fharyana-ips-officer-suicide-sc-st-act-invoked-in-y-puran-kumar-case-after-wife-s-request-fir-updated%2far-AA1OjoQ8&c=8641849380701271633&mkt=en-us",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-10-10"
+    },
+    {
+      "id": "supreme court reverses high court s quashing of fir and summons in sc st act case due to e",
+      "headline": "Supreme Court Reverses High Court's Quashing of FIR and Summons in SC/ST Act Case Due to Erroneous Interpretation of Magistrate's Jurisdiction and Sanction Requirements. Magistrate Retains Power to Take Cognizance Under Amended Section 14 of S",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-05-29",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE80d3ozeDRUMng2MHVYXzJjMzhLMmEwdmJmTG1WVGlnRk0wb3dMaHNIbklQMUVidkJPamI4VVdocFNjUWMyeGZJZDUwaVU4UWQwYjd5c0l0RURfdmdfdnhmOF9DUy0?oc=5",
+      "queries": [
+        "act-false"
       ],
       "indexes": [
         "google"
