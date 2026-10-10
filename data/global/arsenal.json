@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-10T11:22:44.158Z",
+ "builtAt": "2026-10-10T20:42:20.421Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206532,6 +206532,21 @@
    "primary": true
   },
   {
+   "id": "ev-dlrho0",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Japan",
+    "Ukraine"
+   ],
+   "value": null,
+   "date": "2026-10-10",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/japan-signs-deal-for-ukrainian-skyfall-interceptor-drones/",
+   "headline": "Japan signs deal for Ukrainian SkyFall interceptor drones",
+   "primary": false
+  },
+  {
    "id": "ev-n7ddhs",
    "kind": "order",
    "systems": [],
@@ -207585,6 +207600,37 @@
    ],
    "value": null,
    "verdict": "from a primary source"
+  },
+  {
+   "key": "order||japan+ukraine",
+   "systems": [],
+   "countries": [
+    "Japan",
+    "Ukraine"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-dlrho0",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Japan",
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-10-10",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/japan-signs-deal-for-ukrainian-skyfall-interceptor-drones/",
+     "headline": "Japan signs deal for Ukrainian SkyFall interceptor drones",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order||united states",
