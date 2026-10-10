@@ -140,6 +140,20 @@ State boundaries and corridor geometry live in `data/geo/india-states.topo.json`
 segments — they are schematic, not surveyed alignments, and the map says so. The opening years
 are the load-bearing fact.
 
+### CelesTrak — satellite orbits
+
+The live tracker at `/satellites` draws no stored positions. It fetches CelesTrak's general
+perturbations element sets (`celestrak.org/NORAD/elements/gp.php`) through `/api/tle`, cached six
+hours, and runs SGP4 in the reader's browser against the clock. The groups carried, and the name
+prefixes that assemble India's fleet, are in `lib/tle-source.ts` and `lib/satellites-shared.ts`;
+Starlink is excluded on purpose.
+
+A weekly copy, `data/live/tle-snapshot.json`, is written by `npm run tle:snapshot` in GitHub
+Actions and used only for a group CelesTrak does not answer; the page then says which orbits are
+from the snapshot and how old each is. India's fleet is matched by catalogue name because
+CelesTrak publishes no operator list, so a satellite named otherwise is missed, never
+misattributed — Galileo's `GSAT0101`-style names, rocket bodies and debris are excluded.
+
 ### Think tanks and analysis
 
 | Provider | Used for | Provenance |

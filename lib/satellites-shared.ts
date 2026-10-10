@@ -198,3 +198,66 @@ export function isIndianSatellite(name: string): boolean {
   if (NOT_A_SATELLITE.test(n)) return false;
   return INDIAN_PREFIXES.some((p) => n.startsWith(p));
 }
+
+/** Inclination of the orbit to the equator, degrees, from columns 9-16 of line 2. */
+export function inclinationDeg(line2: string): number | null {
+  const v = Number(line2.slice(8, 16));
+  return Number.isFinite(v) ? v : null;
+}
+
+/** Minutes per orbit, from the mean motion in columns 53-63 of line 2 (revolutions a day). */
+export function periodMinutes(line2: string): number | null {
+  const n = Number(line2.slice(52, 63));
+  return Number.isFinite(n) && n > 0 ? 1440 / n : null;
+}
+
+export type Regime = "LEO" | "MEO" | "GEO" | "Near-GEO" | "Elliptical";
+
+/** Eccentricity, from columns 27-33 of line 2 (a leading decimal point is implied). */
+export function eccentricity(line2: string): number | null {
+  const raw = line2.slice(26, 33).trim();
+  if (!/^\d+$/.test(raw)) return null;
+  return Number(`0.${raw}`);
+}
+
+/**
+ * The orbit's class.
+ *
+ * Strongly elliptical first, by eccentricity: a Molniya orbit at apogee is as
+ * high as a geostationary one and would otherwise pass as one. Then
+ * geosynchronous: a period of about a sidereal day at about the right height.
+ * Anything else that high is either near-geostationary — a dead satellite
+ * drifting, or one parked in the graveyard just above the belt — or, if its
+ * orbit is noticeably oval, elliptical: GSAT-6A, lost while raising its orbit
+ * in 2018, is stranded at eccentricity 0.13. Below that, low orbit stops at
+ * 2,000 km, the usual line, and medium orbit is the rest.
+ */
+export function orbitRegime(altKm: number, periodMin: number | null, ecc: number | null = null): Regime {
+  if (ecc !== null && ecc > 0.25) return "Elliptical";
+  if (periodMin !== null && Math.abs(periodMin - 1436) < 30 && altKm > 34_000 && altKm < 37_500) return "GEO";
+  if (altKm > 30_000 || (periodMin !== null && periodMin > 1300 && periodMin < 1600)) return (ecc ?? 0) > 0.1 ? "Elliptical" : "Near-GEO";
+  return altKm < 2_000 ? "LEO" : "MEO";
+}
+
+/**
+ * The point on Earth where the sun is directly overhead, [lon, lat] degrees.
+ *
+ * The low-precision solar position from the Astronomical Almanac — good to
+ * about a hundredth of a degree in declination this century, which is far
+ * finer than a map's day-night line needs. Used only to shade the night side.
+ */
+export function subsolarPoint(when: Date): [number, number] {
+  const d = when.getTime() / 86_400_000 + 2440587.5 - 2451545.0;
+  const rad = Math.PI / 180;
+  const g = (357.529 + 0.98560028 * d) * rad;
+  const q = 280.459 + 0.98564736 * d;
+  const L = (q + 1.915 * Math.sin(g) + 0.02 * Math.sin(2 * g)) * rad;
+  const e = (23.439 - 0.00000036 * d) * rad;
+  const ra = Math.atan2(Math.cos(e) * Math.sin(L), Math.cos(L)) / rad;
+  const dec = Math.asin(Math.sin(e) * Math.sin(L)) / rad;
+  const gmst = 280.46061837 + 360.98564736629 * d;
+  let lon = (ra - gmst) % 360;
+  if (lon < -180) lon += 360;
+  if (lon > 180) lon -= 360;
+  return [lon, dec];
+}

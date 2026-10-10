@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "satellites-live-2026-10",
+    title: "Satellites, live",
+    blurb:
+      "Where a thousand satellites are this second, India's fleet among them, predicted in your " +
+      "browser from published orbits — what is over India now and what is above your city.",
+    href: "/satellites",
+    since: "2026-10-10",
+  },
+  {
     id: "world-tracker-2026-09",
     title: "World tracker",
     blurb:

@@ -12,6 +12,7 @@ import { loadMuseum } from "@/lib/museum";
 import { loadInternet } from "@/lib/internet";
 import { loadBreakneck } from "@/lib/breakneck";
 import { CATALOGUE } from "@/lib/electronics-catalogue";
+import tleSnapshot from "@/data/live/tle-snapshot.json";
 import { byId as mavenFigure, stated as mavenStated } from "@/lib/maven-shared";
 
 /**
@@ -178,6 +179,8 @@ export default function StoriesIndex() {
   const museum = loadMuseum();
   const internet = loadInternet();
   const breakneck = loadBreakneck();
+  // The weekly snapshot's count: the live page tracks the same groups.
+  const snapshotCount = tleSnapshot.satellites.length;
   const skyShare = internet.headline.find((h) => h.label === "Working satellites that are Starlink");
   const chinaTotal = china.products.filter((p) => p.latest?.year === china.latestYear).reduce((s, p) => s + (p.latest?.value ?? 0), 0);
 
@@ -192,6 +195,17 @@ export default function StoriesIndex() {
         + "the iPhone, the one-child policy, zero-Covid and Fortress China — every figure checked against the book and cited to its page.",
       stat: String(breakneck.figures.length),
       statLabel: "figures from the book, each with its page",
+    },
+    {
+      href: "/satellites",
+      tone: "cool" as const,
+      kicker: "space · live",
+      title: "What Is Overhead, This Second.",
+      blurb:
+        "A thousand satellites — space stations, Earth observation, navigation, weather, geostationary, and India's own fleet — "
+        + "placed by running their published orbits in your browser: what is over India now, what is above your city, and what each can see.",
+      stat: String(snapshotCount),
+      statLabel: "satellites tracked, from CelesTrak's orbits",
     },
     {
       href: "/breakneck/india",

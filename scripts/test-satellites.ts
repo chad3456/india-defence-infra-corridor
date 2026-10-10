@@ -15,7 +15,7 @@ import * as satellite from "satellite.js";
 import {
   parseTle, tleEpoch, epochAgeDays, footprintRadiusKm,
   distanceKm, isOverIndia, elevationDegrees, EARTH_RADIUS_KM,
-  isIndianSatellite, INDIAN_PREFIXES,
+  isIndianSatellite, INDIAN_PREFIXES, inclinationDeg, periodMinutes, orbitRegime, subsolarPoint, eccentricity,
 } from "../lib/satellites-shared";
 import { GROUPS, INDIAN_FLEET, buildRecords, feedRequests, type TleFeed } from "../lib/tle-source";
 import { validate as validateSnapshot } from "./etl/connectors/tle-snapshot";
@@ -183,6 +183,34 @@ console.log("\nIndia's own fleet");
   // in its name would be claimed.
   ok("a prefix in the middle of a name does not match",
     !isIndianSatellite("EUTELSAT INSAT LOOKALIKE"));
+}
+
+console.log("\nOrbit shape and the sun");
+{
+  const l2 = ISS.split("\n")[2]!;
+  ok("ISS inclination is read", near(inclinationDeg(l2) ?? 0, 51.64, 0.01), String(inclinationDeg(l2)));
+  ok("ISS period is about 92.9 minutes", near(periodMinutes(l2) ?? 0, 92.9, 0.2), String(periodMinutes(l2)));
+  ok("the ISS is in low orbit", orbitRegime(420, periodMinutes(l2)) === "LEO");
+  ok("a GPS satellite is in medium orbit", orbitRegime(20_200, 718) === "MEO");
+  ok("a geostationary satellite is GEO", orbitRegime(35_786, 1436.1) === "GEO");
+  ok("ISS eccentricity is read", near(eccentricity(l2) ?? 1, 0.0006703, 1e-7), String(eccentricity(l2)));
+  ok("a Molniya orbit at apogee is not called GEO", orbitRegime(39_000, 718, 0.72) === "Elliptical");
+  ok("a near-circular geostationary orbit stays GEO", orbitRegime(35_786, 1436.1, 0.0002) === "GEO");
+  // GSAT-1, dead since 2001: 1,387 minutes a lap at about 35,400 km.
+  ok("a satellite drifting below the belt is near-GEO, not MEO", orbitRegime(35_409, 1387, 0.023) === "Near-GEO");
+  // GSAT-6A, lost during orbit raising: 1,207 minutes, eccentricity 0.13.
+  ok("a stranded elliptical orbit at GEO height is elliptical, not MEO", orbitRegime(36_150, 1207, 0.132) === "Elliptical");
+  // At the March equinox the sun is over the equator. Apparent noon at
+  // Greenwich that day is about 12:07 UTC (the equation of time is about -7.5
+  // minutes), so at 12:00 UTC the sun has not yet reached the meridian: it is
+  // about 1.9 degrees east of it.
+  const [eqLon, eqLat] = subsolarPoint(new Date("2024-03-20T12:00:00Z"));
+  ok("equinox: the sun is over the equator", Math.abs(eqLat) < 0.3, eqLat.toFixed(3));
+  ok("equinox noon UTC: the sun is about 1.9 degrees east of Greenwich", near(eqLon, 1.9, 0.3), eqLon.toFixed(2));
+  const [, solLat] = subsolarPoint(new Date("2024-06-20T20:51:00Z"));
+  ok("June solstice: the sun is over the Tropic of Cancer", near(solLat, 23.44, 0.05), solLat.toFixed(3));
+  const [, decLat] = subsolarPoint(new Date("2024-12-21T09:20:00Z"));
+  ok("December solstice: over the Tropic of Capricorn", near(decLat, -23.44, 0.05), decLat.toFixed(3));
 }
 
 console.log("\nThe feed and its weekly snapshot");
