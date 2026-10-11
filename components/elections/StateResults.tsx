@@ -9,6 +9,8 @@ export interface CompactSeat {
   name: string;
   final: boolean;
   status?: string;
+  /** "hi" when only ECI's Hindi page was archived: names are as printed there. */
+  language?: "hi";
   url: string;
   c: Array<[string, string, number, number?, number?]>;
 }
@@ -94,7 +96,7 @@ export default function StateResults({ results, stateName }: { results: CompactR
   if (!r || !a) {
     return <p className="rounded-lg border border-gridline bg-surface-2 p-5 text-sm text-ink-2">No archived ECI results have been read for {stateName} yet.</p>;
   }
-  const abbr = (p: string) => r.abbreviations[p] || (p === "Independent" ? "IND" : p === NOTA ? "NOTA" : p.length > 18 ? p.replace(/[^A-Za-z\s]/g, " ").split(/\s+/).filter((w) => w && !/^(of|and|the)$/i.test(w)).map((w) => w[0]).join("").toUpperCase() : p);
+  const abbr = (p: string) => r.abbreviations[p] || (p === "Independent" ? "IND" : p === NOTA ? "NOTA" : p.length > 18 ? (p.replace(/[^A-Za-z\s]/g, " ").split(/\s+/).filter((w) => w && !/^(of|and|the)$/i.test(w)).map((w) => w[0]).join("").toUpperCase() || `${p.slice(0, 14)}…`) : p);
   const notFinal = a.seats.filter((s) => !s.seat.final).length;
   const leader = a.parties[0]!;
   const majority = r.expectedSeats ? Math.floor(r.expectedSeats / 2) + 1 : null;
@@ -274,7 +276,7 @@ export default function StateResults({ results, stateName }: { results: CompactR
               {rows.map((s) => (
                 <tr key={s.seat.no} onClick={() => setPicked(s.seat.no)} className={`cursor-pointer border-t border-gridline hover:bg-surface-2 ${picked === s.seat.no ? "bg-surface-2" : ""}`}>
                   <td className="px-2 py-1 tabular-nums text-ink-muted">{s.seat.no}</td>
-                  <td className="px-2 py-1 text-ink">{s.seat.name}{!s.seat.final && <span className="ml-1 text-[10px] text-ink-muted">(mid-count)</span>}</td>
+                  <td className="px-2 py-1 text-ink">{s.seat.name}{!s.seat.final && <span className="ml-1 text-[10px] text-ink-muted">(mid-count)</span>}{s.seat.language === "hi" && <span className="ml-1 text-[10px] text-ink-muted" title="Only ECI's Hindi page of this seat was archived">(हिन्दी)</span>}</td>
                   <td className="px-2 py-1"><span className="mr-1 inline-block h-2.5 w-2.5 rounded-sm align-middle" style={{ background: a.colour(s.winner.party) }} /><span className="text-ink">{s.winner.name}</span> <span className="text-ink-muted">{abbr(s.winner.party)}</span></td>
                   <td className="hidden px-2 py-1 text-ink-2 sm:table-cell">{s.runner ? `${s.runner.name} (${abbr(s.runner.party)})` : "—"}</td>
                   <td className="px-2 py-1 text-right font-mono tabular-nums text-ink">{s.runner ? fmt(s.winner.votes - s.runner.votes) : s.total === 0 ? "unopposed" : "—"}</td>
@@ -329,6 +331,7 @@ function SeatDetail({ s, abbr, colour, onClose }: { s: SeatView; abbr: (p: strin
         ))}
       </ol>
       <p className="mt-2 text-[11px] text-ink-muted">
+        {s.seat.language === "hi" && <>Only ECI&rsquo;s Hindi page of this seat was archived, so candidate and seat names are as printed there; party names are paired with ECI&rsquo;s English ones by matching vote counts on seats archived in both languages. </>}
         Read from <a href={s.seat.url} className="underline" target="_blank" rel="noopener noreferrer">ECI&rsquo;s result page as archived</a> on{" "}
         {`${s.seat.url.match(/\/web\/(\d{4})(\d{2})(\d{2})/)?.slice(1).reverse().join("/") ?? ""}`}. ECI notes these pages are as filled in by Returning Officers; the final record is Form-20.
       </p>

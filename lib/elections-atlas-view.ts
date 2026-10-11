@@ -55,7 +55,7 @@ export function compactResults(st: AtlasState): CompactResult[] {
       folder: r.folder, house: r.house, label: r.label, date: r.date, expectedSeats: r.expectedSeats, partyTally: r.partyTally,
       abbreviations,
       seats: r.seats.map((s) => ({
-        no: s.no, name: s.name, url: s.url, status: s.status,
+        no: s.no, name: s.name, url: s.url, status: s.status, ...(s.language ? { language: s.language } : {}),
         final: !(s.status ?? "").startsWith("not final"),
         c: s.candidates.map((c) => (c.evm != null ? [c.name, c.party, c.votes, c.evm, c.postal] : [c.name, c.party, c.votes]) as CompactResult["seats"][number]["c"][number]),
       })),

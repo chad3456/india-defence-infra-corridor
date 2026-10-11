@@ -161,6 +161,8 @@ export interface Seat {
   snapshot: string;
   /** ECI's own status line, when the page carries one ("Result Declared" …). */
   status?: string;
+  /** Set when the archive kept only ECI's Hindi page: names are as printed there. */
+  language?: "hi";
 }
 
 export interface StateResult {

@@ -105,6 +105,15 @@ if (existsSync(join(S, "wayback-ResultAcGenMay2026-ConstituencywiseS2210.htm")))
     const kp = parsePartyPage(sample2("wayback-ResultAcGenMay2023-partywiseresult-S10.htm?st=S10%0A%0A%0AKarnataka"));
     ok("2023 party page: 224 seats, tally sums to the house", kp?.seats === 224 && kp.tally.reduce((a, b) => a + b.won, 0) === 224);
   }
+  if (existsSync(join(S, "wayback-AcResultGenDecNew2023-hi-candidateswise-S1249.htm"))) {
+    // December 2023 survives mostly as ECI's Hindi pages: no seat number in the
+    // heading, labels in Hindi, but the status class and the numbers are the same.
+    const hp = sample2("wayback-AcResultGenDecNew2023-hi-candidateswise-S1249.htm");
+    const hh = parseHead(hp, 49), hc = parseCardPage(hp);
+    ok("Hindi page: seat number from the URL, rounds and Hindi date stamp read", hh?.no === 49 && hh.rounds?.[0] === 19 && hh.updated === "2023-12-04", JSON.stringify(hh));
+    ok("Hindi page: winner from the status class, margin reconciles", hc?.declared === true && !hc.problem && [...hc.candidates].sort((a, b) => b.votes - a.votes)[0]?.votes === 69668);
+    ok("Hindi page: NOTA recognised from its image, not its Hindi label", hc?.candidates.some((c) => c.party === "None of the Above" && c.votes === 2135) === true);
+  }
   if (existsSync(join(S, "wayback-ResultAcGenMar2022-ConstituencywiseS051.htm?ac=1"))) {
     const g = parseHead(sample2("wayback-ResultAcGenMar2022-ConstituencywiseS051.htm?ac=1"), 1);
     ok("2022 template ('GEN ELECTION', no seat number in the caption): seat number from the URL", g?.no === 1 && g.name === "Mandrem" && g.stateName === "Goa", JSON.stringify(g));

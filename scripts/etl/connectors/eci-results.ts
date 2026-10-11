@@ -62,6 +62,7 @@ export const FOLDERS: Array<{ folder: string; house: House }> = [
 
 const decode = (s: string) => s
   .replace(/<[^>]+>/g, " ")
+  .replace(/&#(\d+);/g, (_, n: string) => String.fromCharCode(Number(n)))
   .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&#39;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">")
   .replace(/\s+/g, " ").trim();
 const int = (s: string | undefined) => {
@@ -82,8 +83,9 @@ export interface PageHead {
 }
 
 export function parseHead(html: string, seatNo?: number): PageHead | null {
-  const r = /(?:Status of EVM Round|Status as on Round)[^<]*<span>\s*(\d+)\s*<\/span>\s*\/\s*(\d+)/i.exec(html);
-  const u = /Last Updated at[^<]*?On\s*(\d{2})\/(\d{2})\/(\d{4})/i.exec(html);
+  const r = /class=['"]round-status['"][^>]*>[^<]*<span>\s*(\d+)\s*<\/span>\s*\/\s*(\d+)/i.exec(html);
+  // English "Last Updated at 08:55 am On 05/06/2024"; Hindi "पिछली बार दिनांक 04/12/2023 को".
+  const u = /Last Updated at[^<]*?On\s*(\d{2})\/(\d{2})\/(\d{4})/i.exec(html) ?? /दिनांक\s*(\d{2})\/(\d{2})\/(\d{4})/.exec(html);
   const common = { rounds: r ? [Number(r[1]), Number(r[2])] as [number, number] : undefined, updated: u ? `${u[3]}-${u[2]}-${u[1]}` : undefined };
   // 2024 onwards: <h1>General Election to …: Trends & Results May-2026</h1>
   //               <h2>Assembly Constituency <span> 10 - NAME <strong>(State)</strong>
@@ -102,6 +104,11 @@ export function parseHead(html: string, seatNo?: number): PageHead | null {
     if (!m || no == null) return null;
     const title = decode(h3[1]!).replace(/^GEN(?:ERAL)? ELECTION TO (?:VIDHAN SABHA|LOK SABHA)\s*/i, "").replace(/\bTRENDS & RESULT\b/i, "Trends & Results");
     return { title, no, name: m[2]!.trim(), stateName: m[1]!.trim(), ...common };
+  }
+  // ECI's Hindi pages: <h2>विधानसभा क्षेत्र <span> चांदला<Strong> (मध्य प्रदेश)</Strong> — no seat number.
+  const hi = /<h2>[^<]*<span>\s*([^<]+?)\s*<Strong>\s*\(([^)]+)\)/i.exec(html);
+  if (h1 && hi && seatNo != null && /[\u0900-\u097F]/.test(hi[1]!)) {
+    return { title: decode(h1[1]!), no: seatNo, name: decode(hi[1]!), stateName: decode(hi[2]!), ...common };
   }
   return null;
 }
@@ -146,7 +153,9 @@ export function parseCardPage(html: string): { candidates: Candidate[]; declared
     const name = /<h5>([\s\S]*?)<\/h5>/i.exec(c)?.[1];
     const party = /<h6>([\s\S]*?)<\/h6>/i.exec(c)?.[1];
     if (!block || !name) continue;
-    out.push({ name: decode(name), party: decode(party ?? ""), votes: int(block[3]) ?? -1, status: decode(block[2]!).toLowerCase(), margin: int(block[5]) });
+    // The status class (won/lost/leading/trailing) is English on both language versions; the label is not.
+    const nota = /nota\.(?:jpg|png)/i.test(c);
+    out.push({ name: nota ? "NOTA" : decode(name), party: nota ? "None of the Above" : decode(party ?? ""), votes: int(block[3]) ?? -1, status: block[1]!.toLowerCase(), margin: int(block[5]) });
   }
   // A seat with one candidate, declared won and no vote count, was returned
   // unopposed: ECI prints the winner and nothing to count.
@@ -210,7 +219,7 @@ async function listFolder(folder: string): Promise<Map<string, Array<{ ts: strin
   for (const [original, ts] of rows) {
     const page = /\/((?:Constituencywise|candidateswise-|partywiseresult-)[SU]\d{2}\d*\.htm)/i.exec(original ?? "")?.[1];
     if (!page || !ts) continue;
-    const key = page.replace(/^constituencywise/i, "Constituencywise").replace(/^candidateswise-/i, "candidateswise-");
+    const key = (/\/hi\//i.test(original!) ? "hi:" : "") + page.replace(/^constituencywise/i, "Constituencywise").replace(/^candidateswise-/i, "candidateswise-");
     pages.set(key, [...(pages.get(key) ?? []), { ts, original: original! }]);
   }
   for (const list of pages.values()) list.sort((a, b) => b.ts.localeCompare(a.ts));
@@ -234,9 +243,9 @@ async function pool<T>(items: T[], n: number, fn: (t: T) => Promise<void>): Prom
  */
 const savedFailures = new Set<string>();
 async function keepFailure(original: string, html: string): Promise<void> {
-  const m = /results\.eci\.gov\.in\/([^/]+)\/(Constituencywise|candidateswise-)/i.exec(original);
-  const key = m ? `${m[1]}-${m[2]}` : original;
-  if (savedFailures.has(key)) return;
+  const m = /results\.eci\.gov\.in\/([^/]+)\/(hi\/)?(Constituencywise|candidateswise-)/i.exec(original);
+  const key = m ? `${m[1]}-${m[2] ?? ""}${m[3]}` : "other";
+  if (savedFailures.has(key) || savedFailures.size >= 6) return;
   savedFailures.add(key);
   const dir = join(process.cwd(), "data", "live", "election-atlas-samples");
   await mkdir(dir, { recursive: true });
@@ -245,9 +254,10 @@ async function keepFailure(original: string, html: string): Promise<void> {
 
 interface SeatDraft extends Seat { final: boolean; updated?: string; title: string; stateName: string }
 
-async function readSeat(pages: Map<string, Array<{ ts: string; original: string }>>, state: string, no: string, problems: string[]): Promise<SeatDraft | null> {
-  const table = pages.get(`Constituencywise${state}${no}.htm`) ?? [];
-  const cards = pages.get(`candidateswise-${state}${no}.htm`) ?? [];
+async function readSeat(pages: Map<string, Array<{ ts: string; original: string }>>, state: string, no: string, problems: string[], lang: "" | "hi:" = ""): Promise<SeatDraft | null> {
+  // Hindi table pages are not read: their column headers differ and the card view carries the same numbers.
+  const table = lang ? [] : pages.get(`Constituencywise${state}${no}.htm`) ?? [];
+  const cards = pages.get(`${lang}candidateswise-${state}${no}.htm`) ?? [];
   // Newest table snapshot that passes its own arithmetic; at most three tries.
   let fallback: SeatDraft | null = null;
   for (const snap of table.slice(0, 3)) {
@@ -256,6 +266,10 @@ async function readSeat(pages: Map<string, Array<{ ts: string; original: string 
     const head = parseHead(html, Number(no)), t = parseTablePage(html);
     if (!head || !t) { await keepFailure(snap.original, html); continue; }
     if (t.problem) { problems.push(`${state}${no} table ${snap.ts}: ${t.problem}`); continue; }
+    // One candidate and no poll: returned unopposed. A contested seat always has two or more.
+    if (t.total === 0 && t.candidates.filter((c) => c.party !== "None of the Above").length === 1) {
+      return { no: head.no, name: head.name, candidates: t.candidates.filter((c) => c.party !== "None of the Above"), url: `https://web.archive.org/web/${snap.ts}/${snap.original}`, snapshot: snap.ts, status: "uncontested", final: true, updated: head.updated, title: head.title, stateName: head.stateName };
+    }
     // Counting not begun, or the poll countermanded: a page of zeros names no winner.
     if (t.total === 0) { problems.push(`${state}${no} table ${snap.ts}: no votes counted on the archived page`); continue; }
     const final = head.rounds ? head.rounds[0] === head.rounds[1] && head.rounds[1] > 0 : false;
@@ -272,9 +286,46 @@ async function readSeat(pages: Map<string, Array<{ ts: string; original: string 
     if (c.problem) { problems.push(`${state}${no} cards ${snap.ts}: ${c.problem}`); continue; }
     if (!c.uncontested && c.candidates.every((x) => x.votes === 0)) { problems.push(`${state}${no} cards ${snap.ts}: no votes counted on the archived page`); continue; }
     if (!c.declared && fallback) return fallback;
-    return { no: head.no, name: head.name, candidates: c.candidates, url: `https://web.archive.org/web/${snap.ts}/${snap.original}`, snapshot: snap.ts, status: c.uncontested ? "uncontested" : c.declared ? "won declared" : head.rounds ? `round ${head.rounds[0]}/${head.rounds[1]}` : "in progress", final: c.declared, updated: head.updated, title: head.title, stateName: head.stateName };
+    return { ...(lang ? { language: "hi" as const } : {}), no: head.no, name: head.name, candidates: c.candidates, url: `https://web.archive.org/web/${snap.ts}/${snap.original}`, snapshot: snap.ts, status: c.uncontested ? "uncontested" : c.declared ? "won declared" : head.rounds ? `round ${head.rounds[0]}/${head.rounds[1]}` : "in progress", final: c.declared, updated: head.updated, title: head.title, stateName: head.stateName };
   }
   return fallback;
+}
+
+/**
+ * Seats read from ECI's Hindi pages carry party names in Hindi. Their English
+ * names are learned from ECI's own pages, never supplied here: for seats the
+ * archive kept in both languages, each candidate is paired with the one on the
+ * English page polling exactly the same votes, and a Hindi party name is
+ * mapped only if every pairing agrees. Names that cannot be paired stay as ECI
+ * printed them. Candidate and seat names stay in Hindi: there is no ECI page
+ * that pairs them for these seats.
+ */
+async function translateParties(pages: Map<string, Array<{ ts: string; original: string }>>, state: string, drafts: SeatDraft[], problems: string[]): Promise<void> {
+  const map = new Map<string, Set<string>>();
+  const learnFrom = drafts.filter((d) => !d.language && pages.has(`hi:candidateswise-${state}${d.no}.htm`)).slice(0, 25);
+  for (const en of learnFrom) {
+    const snap = pages.get(`hi:candidateswise-${state}${en.no}.htm`)![0]!;
+    const html = await snapshot(snap.ts, snap.original);
+    const c = html ? parseCardPage(html) : null;
+    if (!c) continue;
+    for (const h of c.candidates) {
+      const match = en.candidates.filter((x) => x.votes === h.votes);
+      if (match.length === 1 && h.votes > 0) map.set(h.party, (map.get(h.party) ?? new Set()).add(match[0]!.party));
+    }
+  }
+  const sure = new Map([...map].filter(([, s]) => s.size === 1).map(([hi, s]) => [hi, [...s][0]!]));
+  const unmapped = new Set<string>();
+  const englishTitle = drafts.find((d) => !d.language)?.title;
+  for (const d of drafts) {
+    if (d.language !== "hi") continue;
+    for (const c of d.candidates) {
+      const en = sure.get(c.party);
+      if (en) c.party = en;
+      else if (c.party !== "None of the Above") unmapped.add(c.party);
+    }
+    if (englishTitle) d.title = englishTitle;
+  }
+  problems.push(`Hindi pages: ${drafts.filter((d) => d.language === "hi").length} seats read from ECI's Hindi pages; ${sure.size} party names paired with English from ${learnFrom.length} seats in both languages; ${unmapped.size} left as printed`);
 }
 
 /** "Trends & Results May-2026" → "2026-05". */
@@ -291,7 +342,7 @@ export async function runFolder(folder: string, house: House, only?: Set<string>
   if (!pages) return { entry: null, errors: [`${folder}: archive index did not answer`] };
   const byState = new Map<string, Set<string>>();
   for (const key of pages.keys()) {
-    const m = /^(?:Constituencywise|candidateswise-)([SU]\d{2})(\d+)\.htm$/.exec(key);
+    const m = /^(?:hi:)?(?:Constituencywise|candidateswise-)([SU]\d{2})(\d+)\.htm$/.exec(key);
     if (m && (!only || only.has(m[1]!))) byState.set(m[1]!, (byState.get(m[1]!) ?? new Set()).add(m[2]!));
   }
   // ECI's seat numbers run 1..N; the state code is the first three characters
@@ -304,11 +355,13 @@ export async function runFolder(folder: string, house: House, only?: Set<string>
     const drafts: SeatDraft[] = [];
     const nos = [...seatNos].sort((a, b) => Number(a) - Number(b));
     await pool(nos, 4, async (no) => {
-      const s = await readSeat(pages, state, no, problems);
+      // English first; ECI's Hindi page of the same seat when that is all the archive kept.
+      const s = await readSeat(pages, state, no, problems) ?? (pages.has(`hi:candidateswise-${state}${no}.htm`) ? await readSeat(pages, state, no, problems, "hi:") : null);
       if (s) drafts.push(s);
       else problems.push(`${state}${no}: no archived page passed its checks`);
     });
     if (drafts.length === 0) { errors.push(`${folder} ${state}: no seats read`); continue; }
+    if (drafts.some((d) => d.language === "hi")) await translateParties(pages, state, drafts, problems);
     // Counting day is the day the archive first saved any constituency page
     // in the folder (they exist only once counting starts); a page whose own
     // "Last Updated" stamp is a later day was written after counting closed.
@@ -337,6 +390,21 @@ export async function runFolder(folder: string, house: House, only?: Set<string>
       }
       if (partyTally.every((t) => (won.get(t.party) ?? 0) === t.won) && [...won.values()].reduce((a, b) => a + b, 0) === partyTally.reduce((a, t) => a + t.won, 0)) {
         for (const d of drafts) if (!d.final) { d.final = true; d.status = `${d.status ?? ""}; matches ECI's completed party tally`.replace(/^; /, ""); }
+      }
+    } else if (partyTally && expected && drafts.length < expected) {
+      // Some seats unread: the rest are final if no party has more wins here
+      // than ECI's completed tally gives it, and the shortfall is exactly the
+      // seats not read.
+      const won = new Map<string, number>();
+      for (const d of drafts) {
+        const w = d.candidates.filter((c) => c.party !== "None of the Above").sort((a, b) => b.votes - a.votes)[0];
+        if (w) won.set(w.party, (won.get(w.party) ?? 0) + 1);
+      }
+      const tallied = new Map(partyTally.map((t) => [t.party, t.won]));
+      const fits = [...won].every(([p, n]) => n <= (tallied.get(p) ?? -1));
+      const short = partyTally.reduce((a, t) => a + t.won, 0) - [...won.values()].reduce((a, b) => a + b, 0);
+      if (fits && short === expected - drafts.length) {
+        for (const d of drafts) if (!d.final) { d.final = true; d.status = `${d.status ?? ""}; consistent with ECI's completed party tally (${short} seat${short === 1 ? "" : "s"} unread)`.replace(/^; /, ""); }
       }
     }
     const first = drafts[0]!;
