@@ -107,6 +107,7 @@ if (existsSync(RES)) {
       ok(`${tag}: state code resolves`, ATLAS_STATES.some((s) => s.eci === r.state));
       ok(`${tag}: never more seats than the house`, !r.expectedSeats || r.seats.length <= r.expectedSeats, `${r.seats.length} > ${r.expectedSeats}`);
       ok(`${tag}: seat numbers unique`, new Set(r.seats.map((s) => s.no)).size === r.seats.length);
+      ok(`${tag}: no seat names a winner from a page of zeros`, r.seats.every((s) => s.status === "uncontested" || s.candidates.some((c) => c.votes > 0)), r.seats.filter((s) => s.status !== "uncontested" && !s.candidates.some((c) => c.votes > 0)).map((s) => `${s.no} ${s.name}`).join(", "));
       ok(`${tag}: every seat links its archived ECI page`, r.seats.every((s) => s.url.startsWith("https://web.archive.org/web/") && s.url.includes("results.eci.gov.in")));
       ok(`${tag}: every seat has candidates with whole-number votes`, r.seats.every((s) => s.candidates.length >= 1 && s.candidates.every((c) => Number.isInteger(c.votes) && c.votes >= 0)));
     }

@@ -165,6 +165,32 @@ A coverage wire, `data/protests/delhi-2026-10-10-news.json`, is written every ha
 `npm run protest:news` in GitHub Actions from Google News's keyless RSS search. Headlines are
 context and never become numbers. Private individuals are not named.
 
+### Election atlas
+
+`/elections/atlas` holds three layers with three different provenances, kept apart on the page.
+
+**Results** are the Election Commission's own constituency pages. ECI's results portal keeps only
+the count in progress and every earlier folder answers 404, but the Internet Archive saved the
+portal on and after counting day, and an archived page is ECI's page as served. `npm run
+eci:results` lists each general-election folder's archived pages through the archive's CDX index,
+reads the newest snapshot of each constituency, and keeps a seat only if the page reconciles with
+itself: each candidate's EVM plus postal votes equals their total, and the candidates sum to ECI's
+printed total (on the candidate-card view, the winner's printed margin must equal the gap to the
+runner-up). Pages archived mid-count are marked, not dropped; seats never archived are missing, not
+estimated. ECI's party-wise page, where archived, supplies the house size, a tally cross-check and
+the party abbreviations. Files: `data/elections/results/{folder}/{state}.json`, one Actions job per
+folder. ECI's own caveat stands: these pages are as entered by Returning Officers; Form-20 is final.
+
+**Who governs** is `data/elections/governs.json`, read weekly by `npm run governs:ingest` from
+Wikipedia's current chief-minister table. ECI publishes results, not governments. The file is
+written only if all 31 legislatures parse.
+
+**SIR deletions** are `data/elections/sir.json`: names left out of each state's draft roll in the
+Special Intensive Revision, by the reason ECI or the state CEO gave, as reported in the press and
+linked per figure, because ECI's press notes refuse automated requests. Where the reasons reported
+do not sum to the total, the remainder is shown as not attributed, never shared out.
+`npm run test:election-atlas` fails if a figure loses its source or the reasons exceed the total.
+
 ### Think tanks and analysis
 
 | Provider | Used for | Provenance |

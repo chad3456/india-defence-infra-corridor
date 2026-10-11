@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "election-atlas-2026-10",
+    title: "Election atlas",
+    blurb:
+      "India shaded by who governs each state. Every state opens its Assembly and Lok Sabha results " +
+      "seat by seat from ECI's own archived pages, and the SIR's roll deletions by the reason given.",
+    href: "/elections/atlas",
+    since: "2026-10-11",
+  },
+  {
     id: "delhi-protest-2026-10-10",
     title: "Delhi, 10 October",
     blurb:

@@ -187,3 +187,24 @@ export interface ElectionIndexEntry {
   /** ECI state code → seats read. */
   states: Record<string, number>;
 }
+
+/**
+ * The site's first three categorical slots, which pass its colour checks in
+ * both themes. Alliance, not party: a state's map colour says which side of
+ * national politics its government sits on.
+ */
+export const ALLIANCE_COLOUR: Record<Alliance, string> = {
+  NDA: "var(--series-2)",
+  INDIA: "var(--series-1)",
+  Other: "var(--series-3)",
+  None: "var(--series-3)",
+};
+export const ALLIANCE_LABEL: Record<Alliance, string> = {
+  NDA: "NDA",
+  INDIA: "INDIA bloc",
+  Other: "Neither alliance",
+  None: "Neither alliance",
+};
+
+/** Indian number words, for large counts in prose and labels. */
+export const lakh = (n: number) => (n >= 1e7 ? `${(n / 1e7).toFixed(2)} crore` : n >= 1e5 ? `${(n / 1e5).toFixed(1)} lakh` : n.toLocaleString("en-IN"));

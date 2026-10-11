@@ -83,22 +83,20 @@ export default function ElectionsPage() {
             <h2 className="text-sm font-semibold text-ink">What this does not show</h2>
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               <div className="rounded-lg border border-gridline bg-surface-1 p-4">
-                <p className="text-sm font-medium text-ink">Who won</p>
+                <p className="text-sm font-medium text-ink">Who won, seat by seat</p>
                 <p className="mt-1 text-xs leading-snug text-ink-2">
-                  Party vote shares are in the same articles but in a different table, one that
-                  carries no arithmetic to check itself against. Turnout has electors and voters
-                  sitting beside the percentage; a vote share has nothing but the share. Until
-                  there is something to verify it with, it is not here.
+                  Party vote shares here would have nothing to check them against. Constituency results
+                  read from ECI&rsquo;s own archived result pages, each reconciled with its printed total, are
+                  in the <Link href="/elections/atlas" className="underline">election atlas</Link>.
                 </p>
               </div>
               <div className="rounded-lg border border-gridline bg-surface-1 p-4">
                 <p className="text-sm font-medium text-ink">Roll revisions and deletions</p>
                 <p className="mt-1 text-xs leading-snug text-ink-2">
-                  Statewise deletions from the Special Intensive Revision are not published as a
-                  table anywhere reachable. The open-data catalogue lists electoral-roll datasets
-                  but returns HTTP 400 to every request without an API key. Reported figures
-                  circulate in press coverage; a number assembled from those is a press estimate,
-                  not a roll.
+                  The Special Intensive Revision&rsquo;s deletions by reason are in the{" "}
+                  <Link href="/elections/atlas" className="underline">election atlas</Link>, as ECI and state
+                  CEO figures reported in the press and linked per figure: ECI&rsquo;s own press notes refuse
+                  automated requests, and the open-data catalogue has no table of them.
                 </p>
               </div>
               <div className="rounded-lg border border-gridline bg-surface-1 p-4">

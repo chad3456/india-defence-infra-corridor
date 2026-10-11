@@ -123,16 +123,22 @@ export function parseTablePage(html: string): { candidates: Candidate[]; total: 
 }
 
 /** The candidate-card view: name, party, votes and won/lost. Null if the winner's margin does not reconcile. */
-export function parseCardPage(html: string): { candidates: Candidate[]; declared: boolean; problem?: string } | null {
+export function parseCardPage(html: string): { candidates: Candidate[]; declared: boolean; uncontested?: boolean; problem?: string } | null {
   const cards = html.split(/<div class=['"]cand-box['"]>/i).slice(1);
   const out: Array<Candidate & { status: string; margin: number | null }> = [];
   for (const c of cards) {
-    const status = /<div class=['"]status\s+(\w+)['"]>\s*<div[^>]*>([\s\S]*?)<\/div>\s*<div>\s*([\d,]+)\s*<span>\s*\(\s*([+-]?)\s*([\d,]+)\s*\)/i.exec(c);
+    const block = /<div class=['"]status\s+(\w+)['"]>\s*<div[^>]*>([\s\S]*?)<\/div>\s*(?:<div>\s*([\d,]+)\s*(?:<span>\s*\(\s*([+-]?)\s*([\d,]+)\s*\))?)?/i.exec(c);
     const name = /<h5>([\s\S]*?)<\/h5>/i.exec(c)?.[1];
     const party = /<h6>([\s\S]*?)<\/h6>/i.exec(c)?.[1];
-    if (!status || !name) continue;
-    out.push({ name: decode(name), party: decode(party ?? ""), votes: int(status[3])!, status: decode(status[2]!).toLowerCase(), margin: int(status[5]) });
+    if (!block || !name) continue;
+    out.push({ name: decode(name), party: decode(party ?? ""), votes: int(block[3]) ?? -1, status: decode(block[2]!).toLowerCase(), margin: int(block[5]) });
   }
+  // A seat with one candidate, declared won and no vote count, was returned
+  // unopposed: ECI prints the winner and nothing to count.
+  if (out.length === 1 && out[0]!.votes < 0 && /won|elected|uncontested/.test(out[0]!.status)) {
+    return { candidates: [{ name: out[0]!.name, party: out[0]!.party, votes: 0 }], declared: true, uncontested: true };
+  }
+  if (out.some((c) => c.votes < 0)) return null;
   if (out.length === 0) return null;
   const sorted = [...out].sort((a, b) => b.votes - a.votes);
   const declared = out.some((c) => c.status === "won");
@@ -217,6 +223,8 @@ async function readSeat(pages: Map<string, Array<{ ts: string; original: string 
     const head = parseHead(html), t = parseTablePage(html);
     if (!head || !t) continue;
     if (t.problem) { problems.push(`${state}${no} table ${snap.ts}: ${t.problem}`); continue; }
+    // Counting not begun, or the poll countermanded: a page of zeros names no winner.
+    if (t.total === 0) { problems.push(`${state}${no} table ${snap.ts}: no votes counted on the archived page`); continue; }
     const final = head.rounds ? head.rounds[0] === head.rounds[1] && head.rounds[1] > 0 : false;
     const seat: SeatDraft = { no: head.no, name: head.name, candidates: t.candidates, url: `https://web.archive.org/web/${snap.ts}/${snap.original}`, snapshot: snap.ts, status: head.rounds ? `EVM round ${head.rounds[0]}/${head.rounds[1]}` : head.updated ? `updated ${head.updated}` : undefined, final, updated: head.updated, title: head.title, stateName: head.stateName };
     if (final || !head.rounds) return seat; // no round line: finality is decided from the update stamp later
@@ -229,8 +237,9 @@ async function readSeat(pages: Map<string, Array<{ ts: string; original: string 
     const head = parseHead(html), c = parseCardPage(html);
     if (!head || !c) continue;
     if (c.problem) { problems.push(`${state}${no} cards ${snap.ts}: ${c.problem}`); continue; }
+    if (!c.uncontested && c.candidates.every((x) => x.votes === 0)) { problems.push(`${state}${no} cards ${snap.ts}: no votes counted on the archived page`); continue; }
     if (!c.declared && fallback) return fallback;
-    return { no: head.no, name: head.name, candidates: c.candidates, url: `https://web.archive.org/web/${snap.ts}/${snap.original}`, snapshot: snap.ts, status: c.declared ? "won declared" : head.rounds ? `round ${head.rounds[0]}/${head.rounds[1]}` : "in progress", final: c.declared, updated: head.updated, title: head.title, stateName: head.stateName };
+    return { no: head.no, name: head.name, candidates: c.candidates, url: `https://web.archive.org/web/${snap.ts}/${snap.original}`, snapshot: snap.ts, status: c.uncontested ? "uncontested" : c.declared ? "won declared" : head.rounds ? `round ${head.rounds[0]}/${head.rounds[1]}` : "in progress", final: c.declared, updated: head.updated, title: head.title, stateName: head.stateName };
   }
   return fallback;
 }
@@ -272,16 +281,15 @@ export async function runFolder(folder: string, house: House, only?: Set<string>
     for (const d of drafts) if (!d.final && d.updated && countingDay && d.updated > countingDay) d.final = true;
 
     // ECI's own tally and house size, from the party-wise page's newest snapshot.
-    let partyTally: StateResult["partyTally"]; let expected: number | undefined; let abbr: Record<string, string> = {};
-    const party = pages.get(`partywiseresult-${state}.htm`)?.[0];
-    if (party) {
-      const html = await snapshot(party.ts, party.original);
+    let partyTally: StateResult["partyTally"]; let expected: number | undefined; const abbr: Record<string, string> = {};
+    // The newest snapshots are often from counting morning; walk back to one with nothing still leading.
+    for (const snap of (pages.get(`partywiseresult-${state}.htm`) ?? []).slice(0, 4)) {
+      const html = await snapshot(snap.ts, snap.original);
       const p = html ? parsePartyPage(html) : null;
-      if (p) {
-        expected = p.seats ?? undefined;
-        abbr = Object.fromEntries(p.tally.filter((t) => t.abbr).map((t) => [t.party, t.abbr]));
-        if (p.tally.every((t) => t.leading === 0)) partyTally = p.tally.map((t) => ({ party: t.party, won: t.won }));
-      }
+      if (!p) continue;
+      Object.assign(abbr, Object.fromEntries(p.tally.filter((t) => t.abbr).map((t) => [t.party, t.abbr])));
+      expected ??= p.seats ?? undefined;
+      if (p.tally.every((t) => t.leading === 0)) { partyTally = p.tally.map((t) => ({ party: t.party, won: t.won })); expected = p.seats ?? expected; break; }
     }
     const first = drafts[0]!;
     const seats: Seat[] = drafts.sort((a, b) => a.no - b.no).map(({ final, updated, title, stateName, ...seat }) => ({
