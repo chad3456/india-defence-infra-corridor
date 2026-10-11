@@ -58,20 +58,19 @@ async function latest(url: string): Promise<{ ts: string; html: string } | null>
 async function samplePages(): Promise<void> {
   // Keep the folder listing and coverage from the full run.
   try { Object.assign(out, JSON.parse(await readFile(OUT, "utf8")), { samplesProbedAt: new Date().toISOString() }); } catch { /* first run */ }
-  const want: Array<[string, string]> = [
-    ["PcResultGenJune2024", "S2110"], ["PcResultGenJune2024", "S041"],
-    ["ResultAcGenNov2025", "S04101"], ["ResultAcGenMay2026", "S2210"], ["ResultAcGenFeb2025", "U0540"],
-    ["AcResultGenDecNew2023", "S1210"], ["AcResultGenJune2024", "S0110"], ["AcResultGen2ndJune2024", "S2110"],
-  ];
+  // The 2022–23 folders use an older template; take one page of each kind from each.
   const samples: Array<Record<string, unknown>> = [];
   await mkdir(SAMPLES, { recursive: true });
-  for (const [f, code] of want) {
-    const state = code.slice(0, 3);
-    for (const page of [`Constituencywise${code}.htm`, `candidateswise-${code}.htm`, `partywiseresult-${state}.htm`]) {
-      const got = await latest(`results.eci.gov.in/${f}/${page}`);
-      samples.push({ folder: f, page, ts: got?.ts, bytes: got?.html.length });
-      console.log(`  ${f}/${page}: ${got ? `${got.ts} ${got.html.length}b` : "none"}`);
-      if (got) await writeFile(join(SAMPLES, `wayback-${f}-${page}`), got.html.slice(0, 150_000), "utf8");
+  for (const f of ["ResultAcGenMay2023", "ResultAcGenMar2023", "ResultAcGenDec2022", "ResultAcGenMar2022"]) {
+    for (const kind of ["Constituencywise", "candidateswise-", "partywiseresult-"]) {
+      const rows = await cdx({ url: `results.eci.gov.in/${f}/${kind}`, matchType: "prefix", fl: "original,timestamp", filter: "statuscode:200", limit: "40" });
+      const pick = (rows ?? []).sort((a, b) => b[1]!.localeCompare(a[1]!))[0];
+      if (!pick) { samples.push({ folder: f, kind, found: false }); continue; }
+      await sleep(1500);
+      const res = await getText(`https://web.archive.org/web/${pick[1]}id_/${pick[0]}`, { timeoutMs: 60_000, retries: 2, cacheMs: 0 });
+      samples.push({ folder: f, kind, url: pick[0], ts: pick[1], bytes: res.data?.length });
+      console.log(`  ${f} ${kind}: ${pick[0]} ${res.data?.length ?? res.error}`);
+      if (res.ok && res.data) await writeFile(join(SAMPLES, `wayback-${f}-${pick[0]!.split("/").pop()}`), res.data.slice(0, 150_000), "utf8");
     }
   }
   out.pageSamples = samples;
