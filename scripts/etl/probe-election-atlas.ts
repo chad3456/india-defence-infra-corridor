@@ -67,7 +67,47 @@ function guessedFolders(): string[] {
   return out;
 }
 
+/** URLs search engines show answering, fetched raw so their status codes are recorded. */
+const KNOWN = [
+  "https://results.eci.gov.in/ResultAcByeOct2026/index.htm",
+  "https://results.eci.gov.in/ResultAcGenMay2026/index.htm",
+  "https://results.eci.gov.in/ResultAcGenMay2026/statewiseS252.htm",
+  "https://results.eci.gov.in/ResultAcGenMay2026/ConstituencywiseS25158.htm",
+  "https://results.eci.gov.in/ResultAcGenNov2025/index.htm",
+  "https://results.eci.gov.in/ResultAcGenNov2025/ConstituencywiseS048.htm",
+  "https://results.eci.gov.in/ResultAcGenNov2025/candidateswise-S0412.htm",
+  "https://results.eci.gov.in/ResultAcGenMar2023/ConstituencywiseS237.htm",
+  "https://results.eci.gov.in/ResultAcGenMar2022/ConstituencywiseS1935.htm",
+  "https://results.eci.gov.in/AcResultGenDecNew2023/index.htm",
+  "https://results.eci.gov.in/PcResultGenJune2024/index.htm",
+];
+
+/** One raw fetch with the status and the headers that say who answered. */
+async function raw(url: string, headers: Record<string, string>) {
+  await sleep(800);
+  try {
+    const res = await fetch(url, { headers, redirect: "manual", signal: AbortSignal.timeout(30_000) });
+    const body = await res.text();
+    return { url, status: res.status, bytes: body.length, server: res.headers.get("server"), location: res.headers.get("location"), title: titleOf(body), head: body.slice(0, 300) };
+  } catch (e) {
+    return { url, status: 0, error: e instanceof Error ? `${e.name}: ${e.message}` : String(e) };
+  }
+}
+
 export async function run(): Promise<void> {
+  for (const url of KNOWN) {
+    for (const [label, h] of [["browser", BROWSER], ["bare", {} as Record<string, string>]] as const) {
+      const r = await raw(url, h);
+      out.other.push({ what: `known (${label})`, ...r });
+      console.log(`  ${label} ${r.status} ${url}`);
+      if (label === "browser" && r.status === 200 && "head" in r) {
+        const full = await fetchPage(url);
+        if (full.ok && full.data) await sample(url.split("/").slice(-2).join("-"), full.data);
+      }
+    }
+  }
+  await flush();
+
   // ── 1. index pages ────────────────────────────────────────────────────
   const folders = new Set<string>();
   for (const idx of ["/", "/index1.html", "/index.htm", "/index.html"]) {
@@ -75,6 +115,7 @@ export async function run(): Promise<void> {
     out.other.push({ what: `portal ${idx}`, ok: res.ok, status: res.ok ? "200" : res.error, bytes: res.data?.length, title: res.data ? titleOf(res.data) : undefined });
     if (!res.ok || !res.data) continue;
     await sample(`index${idx.replace(/\W/g, "_")}.html`, res.data);
+    for (const m of res.data.matchAll(/url\s*=\s*https?:\/\/results\.eci\.gov\.in\/([A-Za-z0-9]+\d{4})\//g)) folders.add(m[1]!);
     for (const m of res.data.matchAll(/href=["']?(?:https?:\/\/results\.eci\.gov\.in)?\/?([A-Za-z0-9]+(?:Gen|Bye)[A-Za-z0-9]*\d{4})\/?/g)) folders.add(m[1]!);
   }
   out.indexLinks = [...folders].sort();
@@ -89,7 +130,7 @@ export async function run(): Promise<void> {
     tried.add(folder);
     const res = await fetchPage(`${PORTAL}/${folder}/index.htm`);
     if (!res.ok || !res.data) {
-      if (folders.has(folder)) out.folders.push({ folder, ok: false, status: res.error ?? "no data" });
+      if (folders.has(folder) || out.folders.length < 20) out.folders.push({ folder, ok: false, status: res.error ?? "no data" });
       continue;
     }
     const html = res.data;
@@ -116,8 +157,8 @@ export async function run(): Promise<void> {
   }
 
   // ── 3. who governs, and SIR, on Wikipedia ─────────────────────────────
-  for (const page of ["List of current Indian chief ministers", "Special Intensive Revision", "Special Intensive Revision of electoral rolls in Bihar"]) {
-    const res = await getText(`${WIKI}?action=parse&page=${encodeURIComponent(page)}&prop=wikitext&formatversion=2&format=json`, { timeoutMs: 30_000, retries: 2, cacheMs: 0 });
+  for (const page of ["Chief minister (India)", "Special Intensive Revision", "2025 Bihar Special Intensive Revision"]) {
+    const res = await getText(`${WIKI}?action=parse&page=${encodeURIComponent(page)}&prop=wikitext&formatversion=2&format=json&redirects=1`, { timeoutMs: 30_000, retries: 2, cacheMs: 0 });
     if (!res.ok || !res.data) { out.other.push({ what: `wikipedia: ${page}`, ok: false, status: res.error }); continue; }
     const wt = (JSON.parse(res.data) as { parse?: { wikitext?: string } }).parse?.wikitext ?? "";
     const tables = parseTables(wt);
