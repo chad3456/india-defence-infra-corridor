@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-10T23:53:51.739Z",
+  "builtAt": "2026-10-11T06:31:23.623Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1091,
-    "addedThisRun": 0,
+    "items": 1093,
+    "addedThisRun": 2,
     "carriedFromEarlierRuns": 1091,
-    "withOutlet": 1023,
+    "withOutlet": 1024,
     "bySubject": {
-      "scst": 734,
+      "scst": 736,
       "pmshri": 357
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 308
+    "offSubjectDropped": 310
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 386
+      "n": 387
     },
     {
       "key": "acquittal",
@@ -40,7 +40,7 @@
     },
     {
       "key": "allegation",
-      "n": 52
+      "n": 53
     },
     {
       "key": "false-finding",
@@ -241,6 +241,10 @@
       "n": 5
     },
     {
+      "key": "NDTV",
+      "n": 5
+    },
+    {
       "key": "Law Trend",
       "n": 4
     },
@@ -277,10 +281,6 @@
       "n": 4
     },
     {
-      "key": "NDTV",
-      "n": 4
-    },
-    {
       "key": "India.com",
       "n": 4
     },
@@ -306,7 +306,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 10
     },
@@ -325,10 +325,10 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 52,
-      "bing": 7,
-      "kept": 0,
-      "offSubject": 8
+      "google": 51,
+      "bing": 8,
+      "kept": 1,
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 58,
+      "google": 57,
       "bing": 2,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 18
     },
     {
       "id": "act-acquittal",
@@ -358,7 +358,7 @@
       "google": 100,
       "bing": 2,
       "kept": 0,
-      "offSubject": 43
+      "offSubject": 44
     },
     {
       "id": "act-hostile",
@@ -377,7 +377,7 @@
       "expect": "allegation",
       "google": 49,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 9
     },
     {
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 44,
+      "google": 43,
       "bing": 1,
       "kept": 0,
       "offSubject": 6
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 68,
-      "bing": 0,
+      "google": 69,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 25
+      "offSubject": 26
     },
     {
       "id": "shri-upgrade",
@@ -446,17 +446,17 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 57,
-      "bing": 0,
+      "bing": 3,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 17
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 45,
-      "bing": 0,
+      "google": 47,
+      "bing": 2,
       "kept": 0,
       "offSubject": 4
     },
@@ -465,10 +465,10 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 30,
-      "bing": 0,
+      "google": 29,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 18
     },
     {
       "id": "shri-nep",
@@ -12430,7 +12430,8 @@
       "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPSlJfMjRqeHc0bDFnclBZLWdER3VuXy1LaTFUUUZBclA0LXhxTU1nRmVNdFQ4N0FWZVl6VEF5OU02Y2hTQXNwNzVpTmRjT25WT09kUEpST3AycWprdlZlNmhVNVB3Yi01Ukh1OTUtOWk3aUtJaDB6N3BLdElCTTJDVTRoc1lFRGNPYmpEV0ZSVkYxVDhKV2w2NmZCOWdiSzVsY0hUSWU1ZnVleUJnN1dPM1A4UXdjdkUwMjE3Mmc1eXBiN2daSjNhaDdleGJ2VFYyaGZN0gHYAUFVX3lxTE1FRU1IWUhfcjlObnl6ZmV5MUV4Qm4yLUR6cDVYVC1PN01GWUU4eVc3bFNnMjVRQ21pOC12Q29tSE5jeTYtTUt1VnYySTBVZ2IxMTI3dkkxcklQQWRCNzRwaWhjZDloZmQtTzhYbk0yWTZrY0tVdFR5X0pVNVg0S19zaDFFbUhaS0dPS1F2ZFpORlZiU2tocWNDbi1ibW9nM21RZ2NTbG10akdDZkZ1dWEtYkduaC1ZYkdnY1lQMTYwd0J4d1VzLVd1eWFISWJMRGVtQ21JTlRrSQ?oc=5",
       "queries": [
         "act-misuse-claim",
-        "act-false"
+        "act-false",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -18269,6 +18270,38 @@
         "google"
       ],
       "firstSeen": "2026-10-10"
+    },
+    {
+      "id": "dalit woman assault accused held",
+      "headline": "Dalit woman assault: Accused held",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2018-06-28",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6acb2cdb85b84d18b95f7b3a803921b0&url=https%3a%2f%2fwww.india.com%2fnews%2fdalit-woman-assault-accused-held-3136362%2f&c=247994535750717081&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-10-11"
+    },
+    {
+      "id": "video br gavai on sc st act i have seen the provisions being misused",
+      "headline": "Video | BR Gavai On SC/ST Act: \"I Have Seen The Provisions Being Misused\"",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "NDTV",
+      "published": "2026-09-23",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQZkt1Z0tvSjZhYVRnUHR0WXpQWGVHNjFHNXdnQ2VvTmZwM0xqT1FTQS05Q1FUWk9BMEItNnp3VDFXSlJRTmkxcFg1bHFNWEdfUXdyVmVjbS1RYVZaQXFsSTdNMWlGaHVqNm1JTGRLRFlJY05YWXNLQVdMOEJIcExJVXY0dWJpVVB3WkhtRGhmX3I3YnpQSmxRYmIwZl9BUQ?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-11"
     }
   ]
 }
