@@ -61,7 +61,7 @@ async function samplePages(): Promise<void> {
   // The 2022–23 folders use an older template; take one page of each kind from each.
   const samples: Array<Record<string, unknown>> = [];
   await mkdir(SAMPLES, { recursive: true });
-  for (const f of ["ResultAcGenMay2023", "ResultAcGenMar2023", "ResultAcGenDec2022", "ResultAcGenMar2022"]) {
+  for (const f of ["ResultAcGenMay2023", "ResultAcGenMar2023", "ResultAcGenDec2022", "ResultAcGenMar2022", "AcResultGenDecNew2023"]) {
     for (const kind of ["Constituencywise", "candidateswise-", "partywiseresult-"]) {
       const rows = await cdx({ url: `results.eci.gov.in/${f}/${kind}`, matchType: "prefix", fl: "original,timestamp", filter: "statuscode:200", limit: "40" });
       const pick = (rows ?? []).sort((a, b) => b[1]!.localeCompare(a[1]!))[0];

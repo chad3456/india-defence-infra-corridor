@@ -264,6 +264,8 @@ export async function runFolder(folder: string, house: House, only?: Set<string>
   // ECI's seat numbers run 1..N; the state code is the first three characters
   // of the page id, and the seat number the rest. Codes are always [SU] + 2 digits.
   const entry: ElectionIndexEntry = { folder, house, label: "", date: "", states: {} };
+  const firstTs = [...pages.entries()].filter(([k]) => !k.startsWith("partywise")).flatMap(([, v]) => v.map((x) => x.ts)).sort()[0];
+  const countingDay = firstTs ? `${firstTs.slice(0, 4)}-${firstTs.slice(4, 6)}-${firstTs.slice(6, 8)}` : undefined;
   for (const [state, seatNos] of [...byState.entries()].sort()) {
     const problems: string[] = [];
     const drafts: SeatDraft[] = [];
@@ -274,10 +276,9 @@ export async function runFolder(folder: string, house: House, only?: Set<string>
       else problems.push(`${state}${no}: no archived page passed its checks`);
     });
     if (drafts.length === 0) { errors.push(`${folder} ${state}: no seats read`); continue; }
-    // Counting day is the earliest update stamp in the state; a page stamped
-    // on a later day was saved after counting closed.
-    const days = drafts.map((d) => d.updated).filter((d): d is string => !!d).sort();
-    const countingDay = days[0];
+    // Counting day is the day the archive first saved any constituency page
+    // in the folder (they exist only once counting starts); a page whose own
+    // "Last Updated" stamp is a later day was written after counting closed.
     for (const d of drafts) if (!d.final && d.updated && countingDay && d.updated > countingDay) d.final = true;
 
     // ECI's own tally and house size, from the party-wise page's newest snapshot.
