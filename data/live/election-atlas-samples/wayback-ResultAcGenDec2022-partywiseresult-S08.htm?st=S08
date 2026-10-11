@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Election Commission of India</title>
+    <meta http-equiv='Content-Language' content='en-us'>
+    <meta charset='UTF-8'>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=7'>
+    <meta http-equiv='Cache-Control' content='no-cache, no-store, must-revalidate'>
+    <meta http-equiv='Pragma' content='no-cache'>
+    <meta http-equiv='Expires' content='0'>
+    <meta http-equiv='refresh' content='300'>
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+
+    <script type='text/javascript'>
+
+    </script>
+   <style type='text/css'>
+        body{
+        font-family: Verdana;Arial, Helvetica, sans-serif; font-size: 13px;
+        width: 1024px;
+        padding: 0px;
+        margin: 0 auto;
+        background:#105980;
+    }
+    .wrap-sec{
+        text-align:center;
+                width:1024px;
+    }
+    .tabc{
+        background-color: #fff;
+        width:1024px;
+    }
+    
+    .tabc h1{
+         font-size: 26px;
+         font-weight: bold;
+    }
+    .tabc h4{
+        font-size: 16px;
+        font-weight: bold;
+        margin:0;
+    }
+        .ctl00_Menu1_0 {
+            background-color: white;
+            visibility: hidden;
+            display: none;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+
+        .ctl00_Menu1_1 {
+            color: #fff;
+            font-family: Verdana;
+            text-decoration: none;
+            background:#e91e63;
+            padding:10px 15px;  
+        }
+       
+        .ctl00_Menu1_1:hover{
+            background:#105980;
+        }
+        .ctl00_Menu1_2 {
+            color: #7C6F57;
+            background-color: transparent;
+            font-family: Verdana;
+        }
+
+        .ctl00_Menu1_3 {
+            text-decoration: none;
+        }
+
+        .ctl00_Menu1_4 {
+            padding: 2px 5px 2px 5px;
+        }
+
+        .ctl00_Menu1_12 {
+            color: white;
+        }
+
+        .ctl00_Menu1_13 {
+            background-color: #7c6f57;
+            color: white;
+        }
+
+        .ctl00_Menu1_14 {
+            color: white;
+        }
+
+        .ctl00_Menu1_15 {
+            background-color: #7c6f57;
+            color: white;
+        }
+        .table-party{
+          margin:0 auto;
+          width: 100%;
+          font-family: Verdana;
+          border: 1px solid #ddd;
+          font-weight:normal; 
+        }
+        .table-party tr td, .table-party tr th{
+            padding:10px 15px;
+        }
+        .table-party tr th{
+            color: #fff;
+            background:#105980;
+        }
+        .table-party p{
+            padding:5px;
+            margin:0;
+            font-size:16px;
+        }
+        .text-uper{
+            text-transform:uppercase;
+        }
+            .refresh{
+                background: linear-gradient(to right, rgb(179, 220, 237) 0%, rgb(41, 184, 229) 50%, rgb(105, 146, 162) 100%);
+                padding-bottom:15px;
+                width:100%;
+                padding:5px 15px;
+                max-width:994px;
+                position:fixed;
+                top: 0;
+                z-index: 999;
+                
+            }    
+            .refresh-lft{
+                float:left;
+            }    
+            .refresh-rgt{
+                float:right;
+                text-align:right;
+            }
+            .refresh-rgt, .refresh-rgt a{
+                color:#fff;
+                text-decoration:none;
+            }  
+            .refresh-rgt a:hover{
+                    color: #e91e63;
+            }
+            .refresh-lft button{
+                background: #e91e63;
+                font-weight: bold;
+                color: #fff;
+                padding: 10px 15px;
+                box-shadow: none;
+                border: none;
+                cursor:pointer;
+                float:left;
+                margin-right: 5px;
+            }
+            .refresh-lft button:hover{
+                background: #105980;
+            }
+            .clear{
+                clear:both;
+            }
+
+            /*span.textmsg {
+                float: left;
+                padding: 10px;
+                font-size: 10px;
+                color: #105980;
+                font-weight: bold;
+            }*/
+            .aclink {
+                margin-top: 30px;
+                margin-right: -110px;
+            }
+            .btn-blank{
+               float:right; padding-right:0;font-size:15px; margin-top: 10px;
+               margin-bottom: 10px;
+               margin-right: 10px;
+            }
+            .btn-blank a{
+               text-decoration:none; border:1px solid #105980; padding:4px 10px; color:#105980;     
+            }            
+            .btn-blank a:hover{
+                   background-color:#105980; color:#fff;     
+            } 
+            .disclaimer-wide {
+                margin: 0 auto 0.5rem;
+                padding: 5px;
+                text-align: center;
+                width: 88.50%;
+                float: none;
+                border: 1px solid #ddd;
+                background: #f4f4f4;
+                font-weight: 900;
+                line-height: 21px;
+                position: relative;
+                font-size: 12px;
+            }
+          .disclmr h3 {margin: 0 auto 0.25rem;}  
+                
+.gap-between{margin-top: 11.85rem;}
+@media screen and (max-width: 1023px) {
+ .wrap-sec, .refresh, body, .tabc {
+    width: 100%;
+}
+body{
+    padding:0 15px;
+}
+.refresh-rgt {
+    padding-right: 25px;
+}
+}
+
+.refresh-rft{
+                background: #e91e63;
+                font-weight: bold;
+                color: #fff;
+                padding: 10px 15px;
+                box-shadow: none;
+                border: none;
+                cursor:pointer;
+                float:right;
+               
+            }
+    </style>
+  <style>
+#divChart {
+
+  margin: auto;
+  width: 73%;
+   border: 3px solid white;
+  
+   border:1px solid #ddd
+}
+
+#divChart1 {
+
+  margin: auto;
+  width: 70%;
+
+}
+
+</style>
+<script type='text/javascript'>
+        google.load('visualization', '1.0', { packages: ['corechart'] });
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var chart=null;
+            var data = null;
+            var options=null;
+
+            if(document.getElementById('piecharts26')!=null)
+            {
+                data = new google.visualization.DataTable();
+                data.addColumn('string', 'PartyName');
+                data.addColumn('number', 'Votes Wise(%)');
+                
+                data.addRows([['AAAP{1.10%}',46270],['BJP{43.00%}',1814530],['BSP{0.35%}',14613],['CPI{0.01%}',627],['CPI(M){0.66%}',27817],['INC{43.90%}',1852504],['NOTA{0.59%}',24861],['Other{10.39%}',438413],]);
+               
+                options = {
+                    legend: {position: 'left',textStyle: {fontName: 'Arial', fontSize: 13}},
+                    titleTextStyle:{fontName: 'Arial', fontSize: 13,bold:false},
+                    tooltip:{textStyle: {fontName: 'Arial', fontSize: 11,bold:false}},
+                    is3D: true,
+                    title: 'Please move your mouse over the chart or legend to view more details. Party {Votes%,Vote Count}',
+                    width: 700,
+                    height: 400,
+                    sliceVisibilityThreshold:0,
+            
+                  slices:{ 0:{color:'#0fb40c'},1:{color:'#FF6600'},2:{color:'#000078'},3:{color:'#FF3366'},4:{color:'#EA8456'},5:{color:'#AA0078'},6:{color:'#9CFF00'},7:{color:'#C0C0C0'}, }
+                 // slices: {0:{color: '#AA0078'},1:{color: '#FF6600'}}
+                
+                };
+                chart = new google.visualization.PieChart(document.getElementById('piecharts26'));
+                chart.draw(data, options);
+            }
+
+
+        }
+    </script>
+</head>
+<body>
+<div class='wrap-sec'>
+            <div class='refresh'>
+             <div class='refresh-lft'>
+                <img alt="Election Commission of India" class="ipsImage ipsImage_thumbnailed" data-extension="core_Attachment" data-fileid="118" data-unique="cexgozu84" src="img/logo.png" style="height: auto;"> 
+              </div>
+             
+            <div class='refresh-rgt'>
+                 <b>English</b>
+
+                            <span>|</span>
+                           
+                            <a href='hi/partywiseresult-S06.htm' style='font-size:18px'><b>हिन्दी</b></a>
+                <div class='aclink refresh-lft'>
+                  <a href='search.htm'><button value='Refresh Page' class='refresh-rft'>Search</button></a>
+                 <button  value='Refresh Page' onClick='window.location.href=window.location.href'>Refresh Page</button>
+                </div>
+           </div>
+            <div class='clear'></div>
+            <div class='disclmr'>
+            	<h3>Disclaimer</h3>
+                <p class="disclaimer-wide">ECI is displaying the information as being filled in the system by the Returning Officers from their respective Counting Centres. The final data for each AC/PC will be shared in Form-20.</p>
+            </div>
+         </div>
+         <div class='gap-between'></div>
+            <table class='tabc'>
+               <tbody>
+               
+                <tr>
+                    <td style='text-align: center; font-size: 16px; font-weight: bold'>
+                        <h3> GENERAL ELECTION TO VIDHAN SABHA TRENDS & RESULT DECEMBER-2022 </h3>
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td style='font-weight: bolder; font-family: Verdana' width='20%' valign='top' align='center'>
+                        <br>
+                        <div style='font-size: 12px'>
+                            Click links below for
+                        </div>
+                        <br/>
+                        <table id='ctl00_Menu1' class='ctl00_Menu1_2' cellspacing='0' cellpadding='0' border='0'>
+                            <tbody><tr>
+                                                        
+                                <td id='ctl00_Menu1n0'>
+                                    <table class='ctl00_Menu1_4' width='100%' cellspacing='0' cellpadding='0' border='0'>
+                                        <tbody><tr>
+                                            <td style='white-space: nowrap;'>
+                                                    <a class='ctl00_Menu1_1 ctl00_Menu1_3' href='partywiseresult-S06.htm '> Partywise</a>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                               </td>
+                                <td style='width: 3px;'></td>
+                                <td id='ctl00_Menu1n1'>
+                                    <table class='ctl00_Menu1_4' width='100%' cellspacing='0' cellpadding='0' border='0'>
+                                        <tbody><tr>
+                                            <td style='white-space: nowrap;'>
+                                                 <a class='ctl00_Menu1_1 ctl00_Menu1_3' href='ConstituencywiseS061.htm'>
+                                                      Constituencywise-All Candidates
+                                                    </a>
+
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                                <td style='width: 3px;'></td>
+                                <td id='ctl00_Menu1n2'>
+                                    <table class='ctl00_Menu1_4' width='100%' cellspacing='0' cellpadding='0' border='0'>
+                                        <tbody><tr>
+                                           <td style='white-space: nowrap;'>
+                                                    <a class='ctl00_Menu1_1 ctl00_Menu1_3' href='statewiseS061.htm'>Constituencywise Trends</a>
+                                           </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        <br>
+                    </td>
+                </tr>
+                <tr style='height: 5px'>
+                    <td>  <div id='divChart'>
+			      <div id='divChart1'>
+				  <h3><u> Himachal Pradesh </u></h3> 
+                                 <canvas id='myChart'  ></canvas> 
+                               </div>
+                               
+                              <!-- <h5> MAJORITY-36 </h5> -->
+                               
+                            </div>
+                               </td>
+                </tr>
+              
+                <tr>
+                    <td width='80%' valign='top'>
+                        <table width='100%'>
+                            <tbody><tr>
+                                <td>
+                                    <table style='margin: auto; width: 75%; font-family: Verdana; border: solid 1px black;
+                                    font-weight: lighter'>
+                                        <tbody><tr>
+                                            <td colspan='2' style='font-size: 16px; font-weight: bold' align='center'>
+                                                Partywise Trends &amp; Result
+                                            </td>
+                                        </tr>
+                       
+                                        <tr style='text-align:center;Background-color:#FFC0CD;color:Maroon;font-size:medium;Font-Names:Calibri;' align='center'>
+                                            <td style='font-weight: 700' colspan='2'>
+                                                <b>Select State</b>&nbsp;
+                                               
+                                                <select style='width: 250px; height: 25px' id='ctl00_ContentPlaceHolder1_Result1_ddlState' onchange='return GetResult(this)' name='state'> <option value="S06">Gujarat</option><option value="S08">Himachal Pradesh</option></select> 
+
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align='center'>
+                                    <table width='75%'>
+                                        <tbody><tr>
+                                      
+                                        </tr>
+                                        <tr>
+                                            <td style='width: 100%'>
+                                                <div id='div1' style='border-style: none; table-layout: auto;'>
+                                                    <br> <table style='margin: auto; width: 100%; font-family: Verdana; border: solid 1px black;font-weight:lighter;' cellspacing='0' cellpadding='5' border='1'>  <tbody><tr> <td colspan='4' style='color:black;text-align:center;Background-color:#FFC0CD;font-size:medium;Font-Names:Calibri;font-weight:bold;' align='center'> 
+                
+                       Himachal Pradesh 
+              <br>Result Status <div id='divStatusHR' style='font-size: 10px;'></div></td> </tr>  <tr style='text-align:center;Background-color:#FFC0CD;color:Maroon;font-size:medium;Font-Names:Calibri; color:black' align='center'><td colspan='4' align='center'><b><div style='font-size: 10px; font-weight: bold' id='divStatus'> Status Known For 68 out of 68 Constituencies</div></b></td></tr><tr style='text-align:center;Background-color:#FFC0CD;color:Maroon;font-size:medium;Font-Names:Calibri;' align='center;color:black'> <th align='left'>Party</th> <th>Won</th><th>Leading</th><th>Total</th></tr>
+<tr style='font-size:12px;'>
+<td align='left' style='font-weight:bold;'>Bharatiya Janata Party</td><td align='center' style='font-weight:bold;'>25</td><td align='center' style='font-weight:bold;'>0</td>
+<td align='center' style='font-weight:bold;'>25</td>
+</tr><tr style='font-size:12px;'>
+<td align='left' style='font-weight:bold;'>Independent</td><td align='center' style='font-weight:bold;'>3</td><td align='center' style='font-weight:bold;'>0</td>
+<td align='center' style='font-weight:bold;'>3</td>
+</tr><tr style='font-size:12px;'>
+<td align='left' style='font-weight:bold;'>Indian National Congress</td><td align='center' style='font-weight:bold;'>40</td><td align='center' style='font-weight:bold;'>0</td>
+<td align='center' style='font-weight:bold;'>40</td>
+</tr>
+<tr style='font-size:12px;font-weight:bold;color:#FFF;text-align:center;Background-color:#FFC0CD'><td style='color:#000'  align='left'>Total</td><td style='color:#000' align='center'>68</td><td style='color:#000' align='center'>0</td><td style='color:#000' align='center'>68</td></tr>
+
+        </tbody></table>
+                                </td>
+                            </tr>
+                            <tr id='customMessage' style='display: none'>
+                                <td align='center'>
+                                    
+                                    <br>
+                                </td>
+                            </tr>
+                            <tr>
+
+                     <td align='center' style='border:1px solid #ddd' colspan='4'>
+
+                    <p style='font-style: normal;font-weight:bold'>Partywise Vote Share</p>
+                       <div  id='piecharts26'></div>
+ 
+
+                   </td>
+               </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                <tr>
+<td style='font-weight: bold' align='center'>&nbsp;</td></tr>
+                 <tr>
+                    <td align='center' style='position:relative'>
+                       <div style="margin-top:18px;text-align: center;font-size:16px;font-weight:600;margin-bottom:17px;">Download Voter helpline app to see results on mobile</div><div style="position:absolute;top:0;right:13%;"><a target="_blank" href="https://play.google.com/store/apps/details?id=com.eci.citizen&hl=en_IN"><img alt="Android"  src="img/android.png"  height"50px" width="50px"></a> &nbsp;<a target="_blank" href="https://apps.apple.com/us/app/voter-helpline/id1456535004"><img alt="Apple"  src="img/apple.png" height"50px" width="50px"></a></div> 
+                       </td>
+                </tr>
+<!--
+           <tr><td style='font-weight: bold' align='center'>Disclaimer</td></tr>
+           <tr>
+                <td style='font-weight: normal; margin-bottom:10px;' align='center'>
+                <p class="disclaimer-wide">ECI is displaying the information as being filled in the system by the Returning Officers from their respective Counting Centres. The final data for each AC/PC will be shared in Form-20.</p>
+                </td>
+            </tr>
+            -->
+            
+                 <tr>
+                    <td align='center'>
+                        
+                       
+                              Last Updated at  10:40 pm On 08/12/2022 
+
+                    </td>
+                </tr> 
+            </tbody></table>
+           
+                
+
+
+        </div>
+        <script type='text/javascript'>
+            function GetResult(ddstate) {
+                var statecode = ddstate.value;
+                if (statecode != 'Select State')
+                    location.href = 'partywiseresult-' + statecode + '.htm?st=' + statecode;
+                else
+                    location.href = 'PartyWiseResult' + ddstate.options[1].value + '.htm?st=' + ddstate.options[1].value;
+            }
+            function SetSelectedSate() {
+                var ddlState = document.getElementById('ctl00_ContentPlaceHolder1_Result1_ddlState');
+                var stateCode = '';
+                var queryString = location.search.substring(1);
+                if (queryString != null && queryString != '') {
+                    stateCode = queryString.split('=')[1];
+                }
+                if (ddlState != null)
+                    for (var index = 0; index < ddlState.options.length; index++) {
+                        if (ddlState.options[index].value == stateCode) {
+                            ddlState.options[index].selected = true;
+                        }
+                    }
+            }
+            onload = SetSelectedSate;
+
+        </script>
+        <script type='text/javascript'>
+            //<![CDATA[
+            var ctl00_Menu1_Data = new Object();
+            ctl00_Menu1_Data.disappearAfter = 500;
+            ctl00_Menu1_Data.horizontalOffset = 2;
+            ctl00_Menu1_Data.verticalOffset = 0;
+            ctl00_Menu1_Data.hoverClass = 'ctl00_Menu1_15';
+            ctl00_Menu1_Data.hoverHyperLinkClass = 'ctl00_Menu1_14';
+            ctl00_Menu1_Data.staticHoverClass = 'ctl00_Menu1_13';
+            ctl00_Menu1_Data.staticHoverHyperLinkClass = 'ctl00_Menu1_12';
+        </script>
+        <script type='text/javascript'>
+            function ScollToBottom() {
+                window.scrollTo(0, document.body.scrollHeight);
+                return false;
+            }
+            function ScollToTop() {
+                window.scrollTo(0, 0);
+            }
+        </script>
+        <script language='javascript' type='text/javascript'>
+            var currentPageName = window.location.pathname.toLowerCase();
+            if (currentPageName != null && ((currentPageName.indexOf('partywiseresults20.htm') != -1) || (currentPageName.indexOf('partywiseresult.htm') != -1))) {
+                document.getElementById('customMessage').style.display = 'block';
+            }
+        </script>
+		
+		
+	  <script src='Chart.js'></script>	
+		<script > 
+
+
+	Chart.pluginService.register({
+		beforeDraw: function (chart) {
+			if (chart.config.options.elements.center) {
+        //Get ctx from string
+        var ctx = chart.chart.ctx;
+        
+				//Get options from the center object in options
+        var centerConfig = chart.config.options.elements.center;
+      	var fontStyle = centerConfig.fontStyle || 'Arial';
+				var txt = centerConfig.text;
+        var color = centerConfig.color || '#000';
+        var sidePadding = centerConfig.sidePadding || 20;
+        var sidePaddingCalculated = (sidePadding/100) * (chart.innerRadius * 2)
+        //Start with a base font of 30px
+        ctx.font = '30px ' + fontStyle;
+        
+				//Get the width of the string and also the width of the element minus 10 to give it 5px side padding
+        var stringWidth = ctx.measureText(txt).width;
+        var elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+
+        // Find out how much the font can grow in width.
+        var widthRatio = elementWidth / stringWidth;
+        var newFontSize = Math.floor(30 * widthRatio);
+        var elementHeight = (chart.innerRadius * 2);
+
+        // Pick a new font size so it will not be larger than the height of label.
+        var fontSizeToUse = Math.min(newFontSize, elementHeight);
+
+				//Set font settings to draw it correctly.
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        var centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
+        var centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 1.09);
+        ctx.font = fontSizeToUse+'px ' + fontStyle;
+        ctx.fillStyle = color;
+        
+        //Draw text in center
+        ctx.fillText(txt, centerX, centerY);
+			}
+		}
+	});
+
+
+var data = {
+    labels: ['BJP','INC','IND',],
+    datasets: [
+        {
+            data: [25,40,3,],
+            backgroundColor: ['#FF6600','#AA0078','#117700',],
+            hoverBackgroundColor: [
+             
+            ]
+        }]
+};
+
+var ctx = document.getElementById('myChart');
+
+// And for a doughnut chart
+var myDoughnutChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: data,
+    options: {
+    	rotation: 1 * Math.PI,
+      circumference: 1 * Math.PI,
+	  elements: {
+				center: {
+					text: ' 68/68',
+          color: '#FF6384', // Default is #000000
+          fontStyle: 'Arial', // Default is Arial
+          sidePadding: 20 // Defualt is 20 (as a percentage)
+				}
+			},
+	  legend: {
+        position: 'bottom'
+     },
+	 labels: {
+    render: 'label'
+  }
+    }
+});
+</script>
+		
+	
+   
+</body></html>

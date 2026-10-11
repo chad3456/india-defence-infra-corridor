@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+                    <html><head>
+    <title>Election Commission of India</title>
+    <meta http-equiv='Content-Language' content='en-us'>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=7'>
+    <meta http-equiv='Cache-Control' content='no-cache, no-store, must-revalidate'>
+    <meta http-equiv='Pragma' content='no-cache'>
+    <meta http-equiv='Expires' content='0'>
+    <meta http-equiv='refresh' content='300'>
+   
+    <style type='text/css'>
+          body{
+        font-family: Verdana;Arial, Helvetica, sans-serif; font-size: 13px;
+        width: 1024px;
+        padding: 0px;
+        margin: 0 auto;
+        background:#105980;
+    }
+    .wrap-sec{
+        text-align:center;
+                width:1024px;
+    }
+    .tabc{
+        background-color: #fff;
+        width:1024px;
+    }
+    
+    .tabc h1{
+         font-size: 26px;
+         font-weight: bold;
+    }
+    .tabc h4{
+        font-size: 16px;
+        font-weight: bold;
+        margin:0;
+    }
+        .ctl00_Menu1_0 {
+            background-color: white;
+            visibility: hidden;
+            display: none;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+
+        .ctl00_Menu1_1 {
+            color: #fff;
+            font-family: Verdana;
+            text-decoration: none;
+            background:#e91e63;
+            padding:10px 15px;  
+        }
+       
+        .ctl00_Menu1_1:hover{
+            background:#105980;
+        }
+        .ctl00_Menu1_2 {
+            color: #7C6F57;
+            background-color: transparent;
+            font-family: Verdana;
+        }
+
+        .ctl00_Menu1_3 {
+            text-decoration: none;
+        }
+
+        .ctl00_Menu1_4 {
+            padding: 2px 5px 2px 5px;
+        }
+
+        .ctl00_Menu1_12 {
+            color: white;
+        }
+
+        .ctl00_Menu1_13 {
+            background-color: #7c6f57;
+            color: white;
+        }
+
+        .ctl00_Menu1_14 {
+            color: white;
+        }
+
+        .ctl00_Menu1_15 {
+            background-color: #7c6f57;
+            color: white;
+        }
+        .table-party{
+          margin:0 auto;
+          width: 100%;
+          font-family: Verdana;
+          border: 1px solid #ddd;
+          font-weight:normal; 
+        }
+        .table-party tr td, .table-party tr th{
+            padding:10px 15px;
+        }
+        .table-party tr th{
+            color: #fff;
+            background:#105980;
+        }
+        .table-party p{
+            padding:5px;
+            margin:0;
+            font-size:16px;
+        }
+        .text-uper{
+            text-transform:uppercase;
+        }
+             .refresh{
+                background: linear-gradient(to right, rgb(179, 220, 237) 0%, rgb(41, 184, 229) 50%, rgb(105, 146, 162) 100%);
+                padding-bottom:15px;
+                width:100%;
+                padding:5px 15px;
+                max-width:994px;
+                position:fixed;
+                top: 0;
+                z-index: 999;
+                
+            }       
+            .refresh-lft{
+                float:left;
+            }    
+            .refresh-rgt{
+                float:right;
+                text-align:right;
+            }
+            .refresh-rgt, .refresh-rgt a{
+                color:#fff;
+                text-decoration:none;
+            }  
+            .refresh-rgt a:hover{
+                    color: #e91e63;
+            }
+            .refresh-lft button{
+                background: #e91e63;
+                font-weight: bold;
+                color: #fff;
+                padding: 10px 15px;
+                box-shadow: none;
+                border: none;
+                cursor: pointer;
+                float: left;
+                margin-right: 5px;
+            }
+            .refresh-lft button:hover{
+                background: #105980;
+            }
+            .clear{
+                clear:both;
+            }
+
+            /*span.textmsg {
+                float: left;
+                padding: 10px;
+                font-size: 10px;
+                color: #105980;
+                font-weight: bold;
+            }*/
+            .aclink {
+                margin-top: 30px;
+                margin-right: -110px;
+            }
+            .btn-blank{
+                 float:right; padding-right:0;font-size:15px; margin-top: 10px;
+                 margin-bottom: 10px;
+                  margin-right: 10px;
+            }
+            .btn-blank a{
+               text-decoration:none; border:1px solid #105980; padding:4px 10px; color:#105980;     
+            }            
+            .btn-blank a:hover{
+                   background-color:#105980; color:#fff;     
+            }             
+         
+   .disclaimer-wide {
+                margin: 0 auto 0.5rem;
+                padding: 5px;
+                text-align: center;
+                width: 88.50%;
+                float: none;
+                border: 1px solid #ddd;
+                background: #f4f4f4;
+                font-weight: 900;
+                line-height: 21px;
+                position: relative;
+                font-size: 12px;
+            }
+
+ .disclmr h3 {margin: 0 auto 0.25rem;}  
+.gap-between{margin-top: 11.8rem;}
+@media screen and (max-width: 1023px) {
+ .wrap-sec, .refresh, body, .tabc {
+    width: 100%;
+}
+body{
+    padding:0 15px;
+}
+.refresh-rgt {
+    padding-right: 25px;
+}
+}
+.refresh-rft{
+                background: #e91e63;
+                font-weight: bold;
+                color: #fff;
+                padding: 10px 15px;
+                box-shadow: none;
+                border: none;
+                cursor:pointer;
+                float:right;
+            }
+
+.round-s a{
+    text-decoration: none;
+    color:#4cb305;
+    float: right;
+    font-size: 14px;
+    border: 1px solid#7b7b7b;
+    padding: 5px 10px;
+}
+
+    </style>
+
+                              <script>!function(a){var e="https://s.go-mpulse.net/boomerang/",t="addEventListener";if("False"=="True")a.BOOMR_config=a.BOOMR_config||{},a.BOOMR_config.PageParams=a.BOOMR_config.PageParams||{},a.BOOMR_config.PageParams.pci=!0,e="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="C8JDA-BHWH8-9MQ5M-HKZCP-GH7SB",function(){function n(e){a.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}if(!a.BOOMR||!a.BOOMR.version&&!a.BOOMR.snippetExecuted){a.BOOMR=a.BOOMR||{},a.BOOMR.snippetExecuted=!0;var i,_,o,r=document.createElement("iframe");if(a[t])a[t]("load",n,!1);else if(a.attachEvent)a.attachEvent("onload",n);r.src="javascript:void(0)",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="width:0;height:0;border:0;display:none;",o=document.getElementsByTagName("script")[0],o.parentNode.insertBefore(r,o);try{_=r.contentWindow.document}catch(O){i=document.domain,r.src="javascript:var d=document.open();d.domain='"+i+"';void(0);",_=r.contentWindow.document}_.open()._l=function(){var a=this.createElement("script");if(i)this.domain=i;a.id="boomr-if-as",a.src=e+"C8JDA-BHWH8-9MQ5M-HKZCP-GH7SB",BOOMR_lstart=(new Date).getTime(),this.body.appendChild(a)},_.write("<bo"+'dy onload="document._l();">'),_.close()}}(),"".length>0)if(a&&"performance"in a&&a.performance&&"function"==typeof a.performance.setResourceTimingBufferSize)a.performance.setResourceTimingBufferSize();!function(){if(BOOMR=a.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var e=""=="true"?1:0,t="",n="cjqq4wyxh3tko2gdhgaq-f-6fe2b408a-clientnsv4-s.akamaihd.net",i="false"=="true"?2:1,_={"ak.v":"39","ak.cp":"1109753","ak.ai":parseInt("537121",10),"ak.ol":"0","ak.cr":1,"ak.ipv":4,"ak.proto":"h2","ak.rid":"13ab2db8","ak.r":38225,"ak.a2":e,"ak.m":"b","ak.n":"ff","ak.bpcip":"18.97.14.0","ak.cport":56404,"ak.gh":"23.61.10.135","ak.quicv":"","ak.tlsv":"tls1.3","ak.0rtt":"","ak.0rtt.ed":"","ak.csrc":"-","ak.acc":"","ak.t":"1757624705","ak.ak":"hOBiQwZUYzCg5VSAfCLimQ==fagN6g2oqJ9W+9RFl8ECJFVZoDBV39v12wrEpATYHZ45b+zJhMQJsEmVoaqH3Cl9TwzGav+UaSV1IQTaoppLsTR54BWPXRMq1TNVGD6MW6IBzRJIgZvLryG3Xa6/jOk0KgYM65A7W6ZpMdMaubWEL6ckDWAto9XQU34Gilx3y9ZPTtk+WGKjd1oL2L/oxHtXxRKAR5dXyZkSZAcsjr+3OF+Mg5G4dGIiQlwK36IwIR/srwlyHMFBnh1K3bnZrXUAbJGfee4DkY52Ou0iAn49CK8/PS1V5We5MPtv+aMDRvFByBJLeBrQQGZmovD1FJh6XWVWsFaCehAgd1+/H0Bzg1qu0P93ahqESvg9NtYhwPzuWcqQv0lz/PA7w3SQ9laLQGcG90KSX6Piph9m28GT7g12TIbiCBN+PfUAsc7TnDQ=","ak.pv":"107","ak.dpoabenc":"","ak.tf":i};if(""!==t)_["ak.ruds"]=t;var o={i:!1,av:function(e){var t="http.initiator";if(e&&(!e[t]||"spa_hard"===e[t]))_["ak.feo"]=void 0!==a.aFeoApplied?1:0,BOOMR.addVar(_)},rv:function(){var a=["ak.bpcip","ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.0rtt.ed","ak.r","ak.acc","ak.t","ak.tf"];BOOMR.removeVar(a)}};BOOMR.plugins.AK={akVars:_,akDNSPreFetchDomain:n,init:function(){if(!o.i){var a=BOOMR.subscribe;a("before_beacon",o.av,null,null),a("onbeacon",o.rv,null,null),o.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script></head>
+<body>
+  
+        <div>   
+       
+            <input type="hidden" id="S10" value="34,Afzalpur;46,Aland;177,Anekal;8,Arabhavi;198,Arkalgud;194,Arsikere;3,Athani;52,Aurad;172,B.T.M Layout;29,Babaleshwar;23,Badami;24,Bagalkot;140,Bagepalli;16,Bailhongal;176,Bangalore South;147,Bangarapet;205,Bantval;47,Basavakalyan;28,Basavana  Bagevadi;170,Basavanagudi;12,Belgaum Dakshin;13,Belgaum Rural;11,Belgaum Uttar;93,Bellary;94,Bellary City;200,Belthangady;195,Belur;112,Bhadravati;51,Bhalki;79,Bhatkal;50,Bidar;49,Bidar South;30,Bijapur City;22,Bilgi;175,Bommanahalli;85,Byadgi;152,Byatarayanapura;118,Byndoor;161,C.V. Raman Nagar;98,Challakere;217,Chamaraja;223,Chamarajanagar;168,Chamrajpet;215,Chamundeshwari;109,Channagiri;185,Channapatna;169,Chickpet;141,Chikkaballapur;128,Chikkanayakanahalli;2,Chikkodi-Sadalga;125,Chikmagalur;42,Chincholi;143,Chintamani;99,Chitradurga;40,Chittapur;155,Dasarahalli;106,Davanagere North;107,Davanagere South;56,Devadurga;179,Devanahalli;27,Devar Hippargi;71,Dharwad;180,Doddaballapur;66,Gadag;164,Gandhi Nagar;62,Gangawati;139,Gauribidanur;9,Gokak;166,Govindraj Nagar;135,Gubbi;44,Gulbarga Dakshin;43,Gulbarga Rural;45,Gulbarga Uttar;224,Gundlupet;39,Gurmitkal;88,Hadagalli;89,Hagaribommanahalli;76,Haliyal;82,Hangal;221,Hanur;104,Harapanahalli;105,Harihar;196,Hassan;84,Haveri;158,Hebbal;213,Heggadadevankote;86,Hirekerur;100,Hiriyur;102,Holalkere;197,Holenarasipur;48,Homnabad;110,Honnali;101,Hosadurga;178,Hosakote;73,Hubli-Dharwad-Central;72,Hubli-Dharwad-East;74,Hubli-Dharwad-West;7,Hukkeri;25,Hungund;212,Hunsur;32,Indi;103,Jagalur;21,Jamkhandi;173,Jayanagar;35,Jewargi;151,K.R. Pura;127,Kadur;4,Kagwad;75,Kalghatgi;91,Kampli;61,Kanakagiri;184,Kanakapura;121,Kapu;122,Karkal;77,Karwar;14,Khanapur;15,Kittur;148,Kolar;146,Kolar Gold Field;222,Kollegal;64,Koppal;134,Koratagere;216,Krishnaraja;211,Krishnarajanagara;192,Krishnarajpet;5,Kudachi;96,Kudligi;78,Kumta;119,Kundapura;70,Kundgol;131,Kunigal;60,Kushtagi;57,Lingsugur;187,Maddur;138,Madhugiri;208,Madikeri;182,Magadi;174,Mahadevapura;156,Mahalakshmi Layout;186,Malavalli;157,Malleshwaram;149,Malur;189,Mandya;204,Mangalore;202,Mangalore City North;203,Mangalore City South;55,Manvi;59,Maski;108,Mayakonda;188,Melukote;97,Molakalmuru;201,Moodabidri;26,Muddebihal;19,Mudhol;124,Mudigere;145,Mulbagal;191,Nagamangala;31,Nagthan;214,Nanjangud;218,Narasimharaja;68,Nargund;69,Navalgund;181,Nelamangala;1,Nippani;171,Padmanaba Nagar;137,Pavagada;210,Piriyapatna;159,Pulakeshinagar;206,Puttur;54,Raichur;53,Raichur Rural;165,Rajaji Nagar;154,Rajarajeshwarinagar;183,Ramanagaram;18,Ramdurg;87,Ranibennur;6,Raybag;67,Ron;117,Sagar;199,Sakleshpur;95,Sandur;160,Sarvagnanagar;17,Saundatti Yellamma;41,Sedam;37,Shahapur;163,Shanti Nagar;83,Shiggaon;115,Shikaripura;113,Shimoga;111,Shimoga Rural;65,Shirahatti;162,Shivajinagar;36,Shorapur;193,Shravanabelagola;142,Sidlaghatta;33,Sindgi;58,Sindhanur;136,Sira;80,Sirsi;92,Siruguppa;116,Sorab;123,Sringeri;144,Srinivaspur;190,Srirangapatna;207,Sullia;220,T.Narasipur;126,Tarikere;20,Terdal;129,Tiptur;114,Tirthahalli;132,Tumkur City;133,Tumkur Rural;130,Turuvekere;120,Udupi;219,Varuna;167,Vijay Nagar;90,Vijayanagara;209,Virajpet;38,Yadgir;150,Yelahanka;63,Yelburga;81,Yellapur;10,Yemkanmardi;153,Yeshvanthapura;" />
+<input type="hidden" id="S15" value="23,Sohiong;" />
+
+ 
+        </div>
+
+        <div class='wrap-sec'>
+            <div class='refresh'>
+             <div class='refresh-lft'>
+                <img alt="Election Commission of India" class="ipsImage ipsImage_thumbnailed" data-extension="core_Attachment" data-fileid="118" data-unique="cexgozu84" src="img/logo.png" style="height: auto;"> 
+              </div>
+             
+            <div class='refresh-rgt'>
+                 <b>English</b>
+
+                            <span>|</span>
+                           
+                             <a href='hi/ConstituencywiseS101.htm' style='font-size:18px'><b>हिन्दी</b></a>
+
+                <div class='aclink refresh-lft'>
+                  <a href='search.htm'><button value='Refresh Page' class='refresh-rft'>Search</button></a>
+                 <button  value='Refresh Page' onClick='window.location.href=window.location.href'>Refresh Page</button>
+                </div>
+           </div>
+            <div class='clear'></div>
+            <div class='disclmr'>
+            	<h3>Disclaimer</h3>
+                <p class="disclaimer-wide">ECI is displaying the information as being filled in the system by the Returning Officers from their respective Counting Centres. The final data for each AC/PC will be shared in Form-20.</p>
+            </div>
+         </div>
+         <div class='gap-between'></div>
+        
+            <table class='tabc'>
+                <tbody>
+                
+                 
+                <tr>
+                    <td style='font-size: 16px; font-weight: bold; text-align: center;'>
+                       <h3> GENERAL ELECTION TO VIDHAN SABHA TRENDS & RESULT MAY-2023 </h3>
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td style='font-weight: bolder; font-family: Verdana' width='20%' valign='top' align='center'>
+                        <br>
+                        <div style='font-size: 12px'>
+                             Click links below for
+                        </div>
+                        <br/>
+                        <table id='ctl00_Menu1' class='ctl00_Menu1_2' cellspacing='0' cellpadding='0' border='0'>
+                            <tbody><tr>
+                            
+                              
+                                
+
+                                <td id='ctl00_Menu1n0'>
+                                    <table class='ctl00_Menu1_4' width='100%' cellspacing='0' cellpadding='0' border='0'>
+                                        <tbody><tr>
+                                            <td style='white-space: nowrap;'>
+                                                    <a class='ctl00_Menu1_1 ctl00_Menu1_3' href='partywiseresult-S10.htm'> Partywise</a>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                                <td style='width: 3px;'></td>
+                                <td id='ctl00_Menu1n1'>
+                                    <table class='ctl00_Menu1_4' width='100%' cellspacing='0' cellpadding='0' border='0'>
+                                        <tbody><tr>
+                                            <td style='white-space: nowrap;'>
+                                               <a class='ctl00_Menu1_1 ctl00_Menu1_3' href='ConstituencywiseS101.htm'>
+                                                      Constituencywise-All Candidates
+                                               </a>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                                <td style='width: 3px;'></td>
+                                <td id='ctl00_Menu1n2'>
+                                    <table class='ctl00_Menu1_4' width='100%' cellspacing='0' cellpadding='0' border='0'>
+                                        <tbody><tr>
+                                           <td style='white-space: nowrap;'>
+                                                    <a class='ctl00_Menu1_1 ctl00_Menu1_3' href='statewiseS101.htm'>Constituencywise Trends</a>
+                                          </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        <a id='ctl00_Menu1_SkipLink'></a>
+                        <br>
+                    </td>
+                </tr>
+              
+                <tr>
+                    <td width='80%' valign='top'>
+                        <script language='javascript' type='text/javascript'>
+
+                            function AddItem() {
+                                ///Read the query string
+                                var queryString = location.search.substring(1);
+                                var constituencyCode = '';
+                                var stateCode = '';
+                                var pageURL = '';
+                                if (queryString != null && queryString != '') {
+                                    constituencyCode = queryString.split('=')[1];
+                                }
+
+                                var len = document.getElementById('ddlAC').options.length;
+                                for (i = len - 1; i >= 0; i--) {
+                                    var optiontoremove = document.getElementById('ddlAC').options[0];
+                                    document.getElementById('ddlAC').removeChild(optiontoremove);
+                                }
+
+                                var opt = document.createElement('option');
+                                document.getElementById('ddlAC').options.add(opt);
+                                opt.text = 'Select Constituency';
+
+                                var st = document.getElementById('ddlState');
+                                var strValues = '';
+                                
+                                if (st.value == 'S10') 
+                                   {
+                                    strValues = document.getElementById('S10').value;
+                                   }if (st.value == 'S15') 
+                                   {
+                                    strValues = document.getElementById('S15').value;
+                                   } 
+                                
+                                stateCode = st.value;
+                                var strac = strValues.split(';');
+                                var i = 0;
+                                for (i = 0; i < strac.length - 1; i++) {
+                                    var AC = strac[i].split(',');
+                                    var opt = document.createElement('option');
+                                    document.getElementById('ddlAC').options.add(opt);
+                                    opt.text = AC[1] + - + AC[0];
+                                    opt.value = AC[0];
+                                    if (constituencyCode != null && constituencyCode != '' && constituencyCode == TrimString(opt.value)) {
+                                        document.getElementById('ddlAC').options[i + 1].selected = true;
+                                    }
+                                    else if (constituencyCode == null || constituencyCode == '') {
+                                        document.getElementById('ddlAC').options[1].selected = true;
+                                        constituencyCode = strac[0].split(',')[0];
+                                    }
+                                }
+                                if (stateCode == 'Select State') {
+                                    location.href = 'ConstituencywiseS2653.htm';
+                                    return;
+                                }
+                                //if (parseInt(constituencyCode) > strac.length)
+                                //    constituencyCode = strac[0].split(',')[0];
+                                pageURL = 'Constituencywise' + TrimString(stateCode) + TrimString(constituencyCode) + '.htm';
+                                if (pageURL != null && pageURL != '' && window.location.pathname.indexOf(pageURL) == -1)
+                                    location.href = pageURL + '?ac=' + TrimString(constituencyCode);
+                            }
+
+                            function GetResult(ddlac) {
+                                var ac = ddlac.value;
+                                if (ac == 'Select Constituency' || ac == '')
+                                    ac = ddlac.options[1].value; //IF option is select constituency then make first constituency selected
+                                var st = document.getElementById('ddlState');
+                                location.href = 'Constituencywise' + TrimString(st.value) + TrimString(ac) + '.htm?ac=' + TrimString(ac);
+                            }
+
+                            ///TO trim the leading and trailing space
+                            function TrimString(value) {
+                                if (typeof String.prototype.trim !== 'function') {
+                                    return value.replace(/^\s+|\s+$/, '');
+                                }
+                                else
+                                    return value.trim();
+                            }
+
+                            ///Set the first constituency name selected on state dropdown selection change.
+                            function ChangeState(ddlState) {
+                                var state = ddlState.value;
+                                var strValues = '';
+                                if (state == 'Select State' || state == '')
+                                    state = ddlState.options[1].value; //IF option is select state then make first state selected
+
+                                
+                                if(state == 'S10') {
+                                    strValues = document.getElementById('S10').value;
+                                }if(state == 'S15') {
+                                    strValues = document.getElementById('S15').value;
+                                }
+                                    
+                                var strac = strValues.split(';');
+                                location.href = 'Constituencywise' + TrimString(state) + TrimString(strac[0].split(',')[0]) + '.htm?ac=' + TrimString(strac[0].split(',')[0]);
+                            }
+                        </script>
+                        <table style='margin: auto; width: 80%; font-family: Verdana; border: solid 1px black;
+                        font-weight: lighter'>
+                            <tbody><tr>
+                                <td colspan='2' style='font-size: large;' align='center'>
+                                    Constituencywise-All Candidates
+                                </td>
+                            </tr>
+ 
+                            <tr style='height: 20px; background-color: #FFC0CD; color: Black'>
+                                <td style='width: 50%; font-weight: 700;' colspan='2' align='center'>
+                                    <b>Select State</b>
+                                    <select name='' id='ddlState' onchange='return ChangeState(this);' style='width: 250px; height: 25px'>
+                                        <option value='Select State'>Select State</option>   
+                                        
+                                       <option value='S10' >Karnataka</option><option value='S15' >Meghalaya (Adjourned AC)</option>
+                                        
+                                        
+                                    </select>
+                                    <b>Select Constituency </b>
+                                    <select name='' onchange='return GetResult(this);' id='ddlAC' style='width: 250px; height: 25px'>
+                                        
+                                    <option>Select Constituency</option>
+                                    
+
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        <table style='margin: auto;' width='80%'>
+                            <tbody><tr>
+                                <td colspan='2' align='center'>
+                                    <div id='divState' style='font-size: 16px; display: none; font-weight: bold; background-color: #FFC0CD;; width: 50%' align='center'>
+                                    </div>
+                                    <div id='divACStatus' style='font-size: 13px; display: none; font-weight: bold; background-color: #FFC0CD;;
+                                    width: 50%' align='center'>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class='round-s'>
+                                   <a href='RoundwiseS101.htm'>Roundwise-All Candidates </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        <table width='100%'>
+                            <tbody>
+                            <tr>
+                                <td align='center'>
+                                
+                                    <table width='80%'>
+                                        <tbody><tr>
+                                            <td style='width: 100%'>
+                                                <div id='div1' style='border-style: none; table-layout: auto;'>
+                                                    <table cellpadding='5' cellspacing='0' style='margin: auto; width: 100%; font-family: Verdana; border: solid 1px black;font-weight:lighter' border='1'><tbody>
+                                                    <tr style='height: 20px; background-color:#FFC0CD; color:Black; font-weight: bold'>
+                                                    <td colspan='9' align='center'>
+                                                  Karnataka-Nippani -1
+                                                
+
+</td></tr>
+<tr style='height: 20px; background-color:#FFC0CD; color:Black; font-weight: bold'>
+<td colspan='9' align='center'> Result Status  </td>
+</tr>
+
+<tr style='height: 20px; background-color: #FFC0CD; color:Black;'> 
+<th align='center'>S.N.</th> 
+<th align='left' style='width:50px;'>Candidate</th> 
+<th align='left'>Party</th>
+<th align='right'>EVM Votes</th> 
+<th align='right'>Postal Votes</th>
+<th align='right' >Total Votes</th>
+<th align='right'>% of Votes</th>
+<!--<th align='right'>Result</th> -->
+</tr> 
+
+<tr style='font-size:12px;'><td align='center' style='width:10%; font-weight:bold;'>1</td><td align='left'  style='width:18%;font-weight:bold;'>KAKASAHEB P. PATIL</td><td align='left'  style='width:0%;font-weight:bold;'>Indian National Congress</td><td align='right' style='width:13%;font-weight:bold;'>43932</td><td align='right' style='width:18%;font-weight:bold;'>175</td><td align='right' style='width:13%;font-weight:bold;'>44107</td><td align='right' style='width:18%;font-weight:bold;'>23.53</td></tr> <tr style='font-size:12px;'><td align='center' style='width:10%; font-weight:bold;'>2</td><td align='left'  style='width:18%;font-weight:bold;'>RAJARAM URF RAJU  POWAR</td><td align='left'  style='width:0%;font-weight:bold;'>Janata Dal  (Secular)</td><td align='right' style='width:13%;font-weight:bold;'>610</td><td align='right' style='width:18%;font-weight:bold;'>1</td><td align='right' style='width:13%;font-weight:bold;'>611</td><td align='right' style='width:18%;font-weight:bold;'>0.33</td></tr> <tr style='font-size:12px;'><td align='center' style='width:10%; font-weight:bold;'>3</td><td align='left'  style='width:18%;font-weight:bold;'>RAJESH  BANAVANNA</td><td align='left'  style='width:0%;font-weight:bold;'>Aam Aadmi Party</td><td align='right' style='width:13%;font-weight:bold;'>557</td><td align='right' style='width:18%;font-weight:bold;'>15</td><td align='right' style='width:13%;font-weight:bold;'>572</td><td align='right' style='width:18%;font-weight:bold;'>0.31</td></tr> <tr style='font-size:12px;'><td align='center' style='width:10%; font-weight:bold;'>4</td><td align='left'  style='width:18%;font-weight:bold;'>JOLLE SHASHIKALA ANNASAHEB</td><td align='left'  style='width:0%;font-weight:bold;'>Bharatiya Janata Party</td><td align='right' style='width:13%;font-weight:bold;'>72952</td><td align='right' style='width:18%;font-weight:bold;'>396</td><td align='right' style='width:13%;font-weight:bold;'>73348</td><td align='right' style='width:18%;font-weight:bold;'>39.14</td></tr> <tr style='font-size:12px;'><td align='center' style='width:10%; font-weight:bold;'>5</td><td align='left'  style='width:18%;font-weight:bold;'>UTTAM RAOSAHEB PATIL</td><td align='left'  style='width:0%;font-weight:bold;'>Nationalist Congress Party</td><td align='right' style='width:13%;font-weight:bold;'>65614</td><td align='right' style='width:18%;font-weight:bold;'>442</td><td align='right' style='width:13%;font-weight:bold;'>66056</td><td align='right' style='width:18%;font-weight:bold;'>35.25</td></tr> <tr style='font-size:12px;'><td align='center' style='width:10%; font-weight:bold;'>6</td><td align='left'  style='width:18%;font-weight:bold;'>SHAKUNTALA ASHOK TELI</td><td align='left'  style='width:0%;font-weight:bold;'>Kalyana Rajya Pragathi Paksha</td><td align='right' style='width:13%;font-weight:bold;'>645</td><td align='right' style='width:18%;font-weight:bold;'>1</td><td align='right' style='width:13%;font-weight:bold;'>646</td><td align='right' style='width:18%;font-weight:bold;'>0.34</td></tr> <tr style='font-size:12px;'><td align='center' style='width:10%; font-weight:bold;'>7</td><td align='left'  style='width:18%;font-weight:bold;'>JAYARAM  MIRAJKAR</td><td align='left'  style='width:0%;font-weight:bold;'>Independent</td><td align='right' style='width:13%;font-weight:bold;'>369</td><td align='right' style='width:18%;font-weight:bold;'>2</td><td align='right' style='width:13%;font-weight:bold;'>371</td><td align='right' style='width:18%;font-weight:bold;'>0.2</td></tr> <tr style='font-size:12px;'><td align='center' style='width:10%; font-weight:bold;'>8</td><td align='left'  style='width:18%;font-weight:bold;'>JITENDRA SUBHASH NERLE</td><td align='left'  style='width:0%;font-weight:bold;'>Independent</td><td align='right' style='width:13%;font-weight:bold;'>288</td><td align='right' style='width:18%;font-weight:bold;'>1</td><td align='right' style='width:13%;font-weight:bold;'>289</td><td align='right' style='width:18%;font-weight:bold;'>0.15</td></tr> <tr style='font-size:12px;'><td align='center' style='width:10%; font-weight:bold;'>9</td><td align='left'  style='width:18%;font-weight:bold;'>RAGHUNATH MALAKARI ARAGE</td><td align='left'  style='width:0%;font-weight:bold;'>Independent</td><td align='right' style='width:13%;font-weight:bold;'>199</td><td align='right' style='width:18%;font-weight:bold;'>3</td><td align='right' style='width:13%;font-weight:bold;'>202</td><td align='right' style='width:18%;font-weight:bold;'>0.11</td></tr> <tr style='font-size:12px;'><td align='center' style='width:10%; font-weight:bold;'>10</td><td align='left'  style='width:18%;font-weight:bold;'>SAMBHAJIDADA BAPUSO THORAVAT</td><td align='left'  style='width:0%;font-weight:bold;'>Independent</td><td align='right' style='width:13%;font-weight:bold;'>287</td><td align='right' style='width:18%;font-weight:bold;'>4</td><td align='right' style='width:13%;font-weight:bold;'>291</td><td align='right' style='width:18%;font-weight:bold;'>0.16</td></tr> <tr style='font-size:12px;'><td align='center' style='width:10%; font-weight:bold;'>11</td><td align='left'  style='width:18%;font-weight:bold;'>NOTA</td><td align='left'  style='width:0%;font-weight:bold;'>None of the Above</td><td align='right' style='width:13%;font-weight:bold;'>914</td><td align='right' style='width:18%;font-weight:bold;'>5</td><td align='right' style='width:13%;font-weight:bold;'>919</td><td align='right' style='width:18%;font-weight:bold;'>0.49</td></tr>  <tr style='color:#000000;background-color:White;border-color:#673033;border-width:1px;border-style:Solid;font-family:Calibri;font-size:Small;background-color: pink'>
+                    <td style='width:8%; font-weight:bold;' align='center'></td><td style='width:21%;font-weight:bold;' align='left'>Total</td><td style='width:12%; font-weight:bold;' align='center'>&nbsp;</td><td style='width:12%;font-weight:bold;' align='center'>186367</td><td style='width:12%;font-weight:bold;' align='center'>1045</td><td style='width:12%;font-weight:bold;' align='center'>187412</td><td style='width:12%;font-weight:bold;' align='center'></td>
+                </tr>
+</tbody>
+</table>
+
+<table><tbody><tr><td></td></tr></tbody></table><script language='javascript' type='text/javascript'> document.getElementById('ddlState').value='S10';AddItem();</script>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                 <tr id='customMessage' style='display: none'>
+                     <td align='center'>
+                         <table width='100%'>
+                             <tbody><tr>
+                              
+                             </tr>
+                         </tbody></table>
+                         <br>
+                     </td>
+                 </tr>
+                <tr style='height: 100px'>
+                    <td></td>
+                </tr>
+               <tr>
+            <td style='font-weight: bold' align='center'>&nbsp;</td></tr>
+            <!--
+                       <tr><td style='font-weight: bold' align='center'>Disclaimer</td></tr>
+                       <tr>
+                            <td style='font-weight: normal' align='center'>
+                            <p class="disclaimer-wide">ECI is displaying the information as being filled in the system by the Returning Officers from their respective Counting Centres. The final data for each AC/PC will be shared in Form-20.</p>
+                            </td>
+                        </tr>
+                        -->
+                <tr>
+                      <tr>
+                                    <td style='font-weight: normal' align='center'>
+                                  
+                                        Last Updated at  08:30 am On 14/05/2023 
+                                    </td>
+                                </tr>
+                </tr>
+            </tbody></table>
+        </div>
+        <script language='javascript' type='text/javascript'>
+            var currentpagename = window.location.pathname.toLowerCase();
+            if (currentpagename != null && ((currentpagename.indexOf('constituencywises2067.htm') != -1) || (currentpagename.indexOf('constituencywises2067.htm') != -1))) {
+                document.getElementById('customMessage').style.display = 'block';
+            }
+        </script>
+   
+
+</body></html>
