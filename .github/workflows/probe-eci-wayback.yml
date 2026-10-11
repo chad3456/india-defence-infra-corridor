@@ -1,8 +1,8 @@
 name: Probe ECI results in the Wayback Machine
 
-# ECI's results portal keeps only the election being counted; this finds
-# where seat-by-seat results can still be read: ECI's datasets on
-# data.gov.in, eci.gov.in itself, and Wikipedia's tables as a cross-check.
+# ECI's results portal keeps only the election being counted; this asks the
+# Internet Archive which past result folders it saved, how many constituency
+# pages each holds per state, and what a late snapshot of one looks like.
 # Writes data/live/eci-wayback-probe.json and samples. Publishes nothing.
 
 on:
@@ -28,7 +28,10 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: "22", cache: npm }
       - run: npm ci
+      # The folder listing is committed; this run fetches one page of each kind.
       - run: npm run eci:wayback:probe
+        env:
+          WAYBACK_SAMPLES: "1"
       - name: Commit
         if: always()
         run: |

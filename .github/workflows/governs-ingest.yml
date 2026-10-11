@@ -1,0 +1,41 @@
+name: Ingest who governs each state
+
+# Chief minister, party and national alliance for every state and UT with a
+# legislature, read from the current-office-holders table on Wikipedia. Weekly,
+# because governments change between elections too. The file is written only
+# if all 31 governments parse; otherwise last week's stays.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 4 * * 1"
+  push:
+    paths:
+      - "scripts/etl/connectors/governs.ts"
+      - ".github/workflows/governs-ingest.yml"
+
+permissions:
+  contents: write
+concurrency:
+  group: governs-ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npm run governs:ingest
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/elections/governs.json 2>/dev/null || true
+          if git diff --staged --quiet; then echo unchanged; exit 0; fi
+          git commit -m "chore(elections): who governs $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do git push && break; sleep $((2**i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true; done

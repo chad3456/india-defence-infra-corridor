@@ -16,7 +16,7 @@
  *      rebuild every seat?
  *   3. What does a late snapshot of a constituency page contain?
  */
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getText } from "./lib/http";
 import { isEntryPoint } from "./lib/entry";
@@ -38,6 +38,57 @@ async function cdx(params: Record<string, string>): Promise<string[][] | null> {
   const res = await getText(`${CDX}?${qs}`, { timeoutMs: 120_000, retries: 3, cacheMs: 0 });
   if (!res.ok || !res.data) { console.log(`  cdx ${JSON.stringify(params)}: ${res.error}`); return null; }
   try { const rows = JSON.parse(res.data) as string[][]; return rows.slice(1); } catch { return []; }
+}
+
+/** One archived page: the latest 200 snapshot of an exact URL, fetched raw. */
+async function latest(url: string): Promise<{ ts: string; html: string } | null> {
+  const rows = await cdx({ url, fl: "timestamp,statuscode", filter: "statuscode:200", limit: "200" });
+  const ts = (rows ?? []).map((r) => r[0]!).sort().at(-1);
+  if (!ts) return null;
+  await sleep(1500);
+  const res = await getText(`https://web.archive.org/web/${ts}id_/https://${url}`, { timeoutMs: 60_000, retries: 2, cacheMs: 0 });
+  return res.ok && res.data ? { ts, html: res.data } : null;
+}
+
+/**
+ * Step 3 on its own (WAYBACK_SAMPLES=1): one page of each kind from the
+ * folders the results connector will read, so its parser is written against
+ * ECI's real markup in each year's template.
+ */
+async function samplePages(): Promise<void> {
+  // Keep the folder listing and coverage from the full run.
+  try { Object.assign(out, JSON.parse(await readFile(OUT, "utf8")), { samplesProbedAt: new Date().toISOString() }); } catch { /* first run */ }
+  const want: Array<[string, string]> = [
+    ["PcResultGenJune2024", "S2110"], ["PcResultGenJune2024", "S041"],
+    ["ResultAcGenNov2025", "S04101"], ["ResultAcGenMay2026", "S2210"], ["ResultAcGenFeb2025", "U0540"],
+    ["AcResultGenDecNew2023", "S1210"], ["AcResultGenJune2024", "S0110"], ["AcResultGen2ndJune2024", "S2110"],
+  ];
+  const samples: Array<Record<string, unknown>> = [];
+  await mkdir(SAMPLES, { recursive: true });
+  for (const [f, code] of want) {
+    const state = code.slice(0, 3);
+    for (const page of [`Constituencywise${code}.htm`, `candidateswise-${code}.htm`, `partywiseresult-${state}.htm`]) {
+      const got = await latest(`results.eci.gov.in/${f}/${page}`);
+      samples.push({ folder: f, page, ts: got?.ts, bytes: got?.html.length });
+      console.log(`  ${f}/${page}: ${got ? `${got.ts} ${got.html.length}b` : "none"}`);
+      if (got) await writeFile(join(SAMPLES, `wayback-${f}-${page}`), got.html.slice(0, 150_000), "utf8");
+    }
+  }
+  out.pageSamples = samples;
+  // Older folders the index listing did not name: are their pages archived?
+  const older: Array<Record<string, unknown>> = [];
+  for (const f of ["ResultAcGenMar2022", "ResultAcGenDec2022", "ResultAcGenMay2023", "ResultAcGenMar2023", "AcResultGenMar2022", "AcResultGenDec2022", "AcResultGenMay2023", "AcResultGenMar2023"]) {
+    const rows = await cdx({ url: `results.eci.gov.in/${f}/`, matchType: "prefix", fl: "original", filter: "statuscode:200", collapse: "urlkey", limit: "20000" });
+    const byState = new Map<string, Set<string>>();
+    for (const [orig] of rows ?? []) {
+      const m = /(?:Constituencywise|candidateswise-)([SU]\d{2})(\d+)\.htm/i.exec(orig ?? "");
+      if (m) byState.set(m[1]!, (byState.get(m[1]!) ?? new Set()).add(m[2]!));
+    }
+    older.push({ folder: f, pages: rows?.length ?? null, seatsPerState: Object.fromEntries([...byState].map(([s, set]) => [s, set.size])) });
+    console.log(`  ${f}: ${rows?.length ?? "error"} pages`);
+  }
+  out.older = older;
+  await flush();
 }
 
 export async function run(): Promise<void> {
@@ -102,4 +153,4 @@ export async function run(): Promise<void> {
   console.log("done");
 }
 
-if (isEntryPoint(import.meta.url)) run().catch(async (e) => { console.error(e); await flush(); process.exit(1); });
+if (isEntryPoint(import.meta.url)) (process.env.WAYBACK_SAMPLES ? samplePages() : run()).catch(async (e) => { console.error(e); await flush(); process.exit(1); });
