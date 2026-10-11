@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-11T06:31:23.623Z",
+  "builtAt": "2026-10-11T15:07:47.220Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1093,
+    "items": 1095,
     "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1091,
-    "withOutlet": 1024,
+    "carriedFromEarlierRuns": 1093,
+    "withOutlet": 1026,
     "bySubject": {
-      "scst": 736,
-      "pmshri": 357
+      "scst": 737,
+      "pmshri": 358
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 310
+    "offSubjectDropped": 306
   },
   "byFacet": [
     {
@@ -32,11 +32,11 @@
     },
     {
       "key": "acquittal",
-      "n": 60
+      "n": 61
     },
     {
       "key": "dispute",
-      "n": 58
+      "n": 59
     },
     {
       "key": "allegation",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 75
+      "n": 76
     },
     {
       "key": "The Indian Express",
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 2,
+      "bing": 3,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 11
     },
     {
       "id": "act-convicted",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 8,
-      "kept": 1,
-      "offSubject": 7
+      "bing": 7,
+      "kept": 0,
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 57,
-      "bing": 2,
+      "google": 56,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 17
     },
     {
       "id": "act-acquittal",
@@ -357,27 +357,27 @@
       "expect": "acquittal",
       "google": 100,
       "bing": 2,
-      "kept": 0,
-      "offSubject": 44
+      "kept": 1,
+      "offSubject": 42
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 23,
+      "google": 24,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 49,
+      "google": 48,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 9
     },
     {
@@ -395,20 +395,20 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 49,
+      "google": 48,
       "bing": 0,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 18
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 31,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 19
     },
     {
       "id": "shri-general",
@@ -416,16 +416,16 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 11,
-      "kept": 0,
-      "offSubject": 4
+      "bing": 0,
+      "kept": 1,
+      "offSubject": 3
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 43,
+      "google": 42,
       "bing": 1,
       "kept": 0,
       "offSubject": 6
@@ -435,27 +435,27 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 69,
+      "google": 71,
       "bing": 1,
       "kept": 0,
-      "offSubject": 26
+      "offSubject": 27
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 57,
+      "google": 55,
       "bing": 3,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 15
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 47,
+      "google": 46,
       "bing": 2,
       "kept": 0,
       "offSubject": 4
@@ -465,10 +465,10 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 29,
-      "bing": 1,
+      "google": 30,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 17
     },
     {
       "id": "shri-nep",
@@ -476,7 +476,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 53,
-      "bing": 3,
+      "bing": 4,
       "kept": 0,
       "offSubject": 12
     },
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 44,
+      "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 33
+      "offSubject": 32
     }
   ],
   "items": [
@@ -18297,6 +18297,38 @@
       "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQZkt1Z0tvSjZhYVRnUHR0WXpQWGVHNjFHNXdnQ2VvTmZwM0xqT1FTQS05Q1FUWk9BMEItNnp3VDFXSlJRTmkxcFg1bHFNWEdfUXdyVmVjbS1RYVZaQXFsSTdNMWlGaHVqNm1JTGRLRFlJY05YWXNLQVdMOEJIcExJVXY0dWJpVVB3WkhtRGhmX3I3YnpQSmxRYmIwZl9BUQ?oc=5",
       "queries": [
         "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-11"
+    },
+    {
+      "id": "bombay high court upholds conviction of two accused for murder acquits others in sc st act",
+      "headline": "Bombay High Court Upholds Conviction of Two Accused for Murder, Acquits Others in SC/ST Act Case Due to Lack of Evidence. Conviction under Section 302 IPC read with Section 34 IPC sustained for accused who inflicted fatal injuries, while others acquitte",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-10-10",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1fbktRRzVaMjc0QVlqM3pIZndPelRLUnhZeS1GczZLUzF2cWhzb2FTYmlWSmh4aW8tRUtCbVpULTRwbjJWZjZzcU4yV0RjNmRvOG1jcVJPcGQ2M3RkRHVVNVhDLXZHdw?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-11"
+    },
+    {
+      "id": "keralam udf partner iuml opposes pm shri putting political opposition ahead of school deve",
+      "headline": "Keralam: UDF partner IUML opposes PM SHRI, putting political opposition ahead of school development",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": "Organiser Weekly",
+      "published": "2026-09-14",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNVWFnMV9aT2hpamlaMFNxUzlsMTNjT1FLOHROUjNTYnI0LTItMk9uX0YySmdZT0xSNkI2akJ5OS1VVzZCRlpCVkhUQk82NW9mRFVTN0dnaEdRZW1hSWJPUWtQdlpBSmhGYjVuOFJmbFByX1hYQVFtWmdISGQ1S01ERXpmeE53eHltdUFrenZiNTNRaWpoVzBadUNCMlVubnBIZGU2OW5EbVEzZlNqM05OSTVabGVBVzYtR2tjUGhtSk5sNVBtVEVtQ0RSZWhJZWNwTExWYXFmbnMxQVZCVmfSAeMBQVVfeXFMTm5nWXRPR3JvbjZiRTV1WXd6Q3ZsVWRFcWhtTVdpRmJXT0VNel9SenNNek1WckR1YVVmLWRCWl9nMkR1aGktRXJuZ1RwTENjTVdQLTV6d0ZiQXpza25VMW96Q1ZCX1lzNDZ1STd1UjF5MVZndU9sR3FxS1haZlAtaXZWUUFJc0RpYjdsQkU2by1WZ2dSTzBxb3dNR1E0WGlpV2F2LUlsWHdWa0c2X0JuWlI5b1VCS2wtMnBpTnVCd1lrVEFEMXdmU1Z0WldCZjRoLUN6R2UzbEI0aDJTNk9PRVBvVXc?oc=5",
+      "queries": [
+        "shri-general"
       ],
       "indexes": [
         "google"
