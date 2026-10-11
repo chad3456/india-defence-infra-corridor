@@ -61,8 +61,8 @@ export interface AtlasState {
   slug: string;
   /** The name pages use. */
   name: string;
-  /** Name of the polygon in data/geo/india-states.topo.json, which predates the 2019 and 2020 boundary changes. */
-  topo: string;
+  /** Polygon name(s) in data/geo/india-states.topo.json, which predates the 2019 and 2020 boundary changes. */
+  topo: string[];
   /** ECI's state code on its results pages (S04 = Bihar …). */
   eci: string;
   legislature: boolean;
@@ -104,13 +104,21 @@ export const ATLAS_STATES: AtlasState[] = [
   ["telangana", "Telangana", "Telangana", "S29", true],
   ["andaman-and-nicobar-islands", "Andaman and Nicobar Islands", "Andaman & Nicobar Island", "U01", false],
   ["chandigarh", "Chandigarh", "Chandigarh", "U02", false],
-  ["dadra-nagar-haveli-daman-diu", "Dadra and Nagar Haveli and Daman and Diu", "Dadara & Nagar Havelli", "U03", false],
+  ["dadra-nagar-haveli-daman-diu", "Dadra and Nagar Haveli and Daman and Diu", "Dadara & Nagar Havelli|Daman & Diu", "U03", false],
   ["delhi", "Delhi", "NCT of Delhi", "U05", true],
   ["lakshadweep", "Lakshadweep", "Lakshadweep", "U06", false],
   ["puducherry", "Puducherry", "Puducherry", "U07", true],
   ["jammu-and-kashmir", "Jammu and Kashmir", "Jammu & Kashmir", "U08", true],
   ["ladakh", "Ladakh", "Jammu & Kashmir", "U09", false],
-].map(([slug, name, topo, eci, legislature]) => ({ slug, name, topo, eci, legislature } as AtlasState));
+].map(([slug, name, topo, eci, legislature]) => ({ slug, name, topo: String(topo).split("|"), eci, legislature } as AtlasState));
+
+/** The atlas state a polygon of the boundary file is drawn for. Ladakh shares J&K's polygon, so J&K is returned. */
+export function stateForPolygon(polygon: string): AtlasState | undefined {
+  return ATLAS_STATES.find((s) => s.legislature && s.topo.includes(polygon)) ?? ATLAS_STATES.find((s) => s.topo.includes(polygon));
+}
+export function atlasStateByEci(code: string): AtlasState | undefined {
+  return ATLAS_STATES.find((s) => s.eci === code);
+}
 
 const norm = (s: string) => s.toLowerCase().replace(/&/g, "and").replace(/^nct of /, "").replace(/[^a-z]/g, "");
 const BY_NORM = new Map(ATLAS_STATES.map((s) => [norm(s.name), s]));
@@ -128,4 +136,54 @@ export function reasonGap(stage: SirStage | undefined): { attributed: number; un
   if (!stage?.reasons || stage.leftOut == null) return null;
   const attributed = Object.values(stage.reasons).reduce((a, b) => a + (b ?? 0), 0);
   return { attributed, unattributed: stage.leftOut - attributed };
+}
+
+/* ── Results, seat by seat ── */
+export type House = "AC" | "PC";
+
+export interface Candidate {
+  name: string;
+  party: string;
+  /** Total votes, as ECI prints them (EVM plus postal). */
+  votes: number;
+  evm?: number;
+  postal?: number;
+}
+
+export interface Seat {
+  no: number;
+  name: string;
+  /** Candidates in ECI's order, NOTA included as party "None of the Above". */
+  candidates: Candidate[];
+  /** The archived ECI page this seat was read from. */
+  url: string;
+  /** Wayback timestamp of that page (yyyymmddhhmmss). */
+  snapshot: string;
+  /** ECI's own status line, when the page carries one ("Result Declared" …). */
+  status?: string;
+}
+
+export interface StateResult {
+  folder: string;
+  house: House;
+  /** ECI state code. */
+  state: string;
+  label: string;
+  /** Counting day. */
+  date: string;
+  seats: Seat[];
+  /** Seats in the house for this state, where ECI's page listing says so. */
+  expectedSeats?: number;
+  /** Party tally from ECI's own party-wise page, kept as a cross-check of the seats above. */
+  partyTally?: Array<{ party: string; won: number }>;
+  fetchedAt: string;
+}
+
+export interface ElectionIndexEntry {
+  folder: string;
+  house: House;
+  label: string;
+  date: string;
+  /** ECI state code → seats read. */
+  states: Record<string, number>;
 }

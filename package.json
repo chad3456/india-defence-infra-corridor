@@ -180,7 +180,8 @@
     "test:atlas": "tsx scripts/test-electronics-atlas.ts",
     "test:india-bk": "tsx scripts/test-india-breakneck.ts",
     "governs:ingest": "tsx scripts/etl/connectors/governs.ts",
-    "test:election-atlas": "tsx scripts/test-election-atlas.ts"
+    "test:election-atlas": "tsx scripts/test-election-atlas.ts",
+    "eci:results": "tsx scripts/etl/connectors/eci-results.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",

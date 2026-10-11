@@ -9,6 +9,9 @@ import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { ATLAS_STATES, atlasState, reasonGap, type GovernsFile, type SirFile } from "../lib/elections-atlas-shared";
 import { parseGoverns, validateGoverns, WITH_LEGISLATURE } from "./etl/connectors/governs";
+import { parseCardPage, parseHead, parsePartyPage, parseTablePage } from "./etl/connectors/eci-results";
+import { readdirSync } from "node:fs";
+import type { StateResult } from "../lib/elections-atlas-shared";
 
 let failed = 0;
 function ok(name: string, cond: boolean, detail = ""): void {
@@ -70,6 +73,45 @@ for (const [k, s] of Object.entries(sir.sources)) ok(`source ${k} is https`, s.u
 const orphans = Object.keys(sir.sources).filter((k) => !cited.has(k));
 ok("every declared SIR source is cited somewhere", orphans.length === 0, orphans.join(", "));
 ok("SIR accessed date is ISO", /^\d{4}-\d{2}-\d{2}$/.test(sir.accessed));
+
+console.log("\nECI result pages (archived samples)");
+const S = join(process.cwd(), "data/live/election-atlas-samples");
+const sample2 = (f: string) => readFileSync(join(S, f), "utf8");
+if (existsSync(join(S, "wayback-ResultAcGenMay2026-ConstituencywiseS2210.htm"))) {
+  const h = sample2("wayback-ResultAcGenMay2026-ConstituencywiseS2210.htm");
+  const head = parseHead(h), t = parseTablePage(h);
+  ok("constituency number and name read from the heading", head?.no === 10 && head.name === "THIRUVOTTIYUR" && head.stateName === "Tamil Nadu", JSON.stringify(head));
+  ok("EVM rounds read (26 of 26)", head?.rounds?.[0] === 26 && head.rounds[1] === 26);
+  ok("all 16 rows read, NOTA included", t?.candidates.length === 16 && t.candidates.some((c) => c.party === "None of the Above"));
+  ok("the table reconciles with ECI's printed total", t?.total === 207088 && !t.problem, t?.problem);
+  // Tamper with one row: the arithmetic check must catch it.
+  const bad = parseTablePage(h.replace("<td align='right'>110067</td>", "<td align='right'>110068</td>"));
+  ok("a single-vote discrepancy is caught", !!bad?.problem);
+  const cards = parseCardPage(sample2("wayback-ResultAcGenMay2026-candidateswise-S2210.htm"));
+  ok("the card page names the same winner as the table", cards?.declared === true && [...cards.candidates].sort((a, b) => b.votes - a.votes)[0]?.name === [...t!.candidates].sort((a, b) => b.votes - a.votes)[0]?.name);
+  const pc = parseHead(sample2("wayback-PcResultGenJune2024-ConstituencywiseS041.htm"));
+  ok("Lok Sabha pages carry an update stamp instead of rounds", pc?.updated === "2024-06-05" && !pc.rounds, JSON.stringify(pc));
+  const party = parsePartyPage(sample2("wayback-ResultAcGenMay2026-partywiseresult-S22.htm"));
+  ok("party page: house size and full tally", party?.seats === 234 && party.tally.reduce((a, b) => a + b.won, 0) === 234);
+  const older = parsePartyPage(sample2("wayback-AcResultGen2ndJune2024-partywiseresult-S21.htm"));
+  ok("older party page: house size from the footer", older?.seats === 32);
+}
+
+console.log("\nResults on disk");
+const RES = join(process.cwd(), "data/elections/results");
+if (existsSync(RES)) {
+  for (const folder of readdirSync(RES, { withFileTypes: true }).filter((d) => d.isDirectory())) {
+    for (const f of readdirSync(join(RES, folder.name)).filter((f) => f.endsWith(".json"))) {
+      const r = JSON.parse(readFileSync(join(RES, folder.name, f), "utf8")) as StateResult;
+      const tag = `${folder.name}/${f}`;
+      ok(`${tag}: state code resolves`, ATLAS_STATES.some((s) => s.eci === r.state));
+      ok(`${tag}: never more seats than the house`, !r.expectedSeats || r.seats.length <= r.expectedSeats, `${r.seats.length} > ${r.expectedSeats}`);
+      ok(`${tag}: seat numbers unique`, new Set(r.seats.map((s) => s.no)).size === r.seats.length);
+      ok(`${tag}: every seat links its archived ECI page`, r.seats.every((s) => s.url.startsWith("https://web.archive.org/web/") && s.url.includes("results.eci.gov.in")));
+      ok(`${tag}: every seat has candidates with whole-number votes`, r.seats.every((s) => s.candidates.length >= 1 && s.candidates.every((c) => Number.isInteger(c.votes) && c.votes >= 0)));
+    }
+  }
+}
 
 console.log(failed ? `\n${failed} failed` : "\nall passed");
 process.exit(failed ? 1 : 0);

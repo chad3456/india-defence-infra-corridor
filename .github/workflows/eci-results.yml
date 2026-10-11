@@ -1,0 +1,72 @@
+name: Ingest ECI results seat by seat
+
+# Assembly and Lok Sabha results for every constituency, read from ECI's own
+# result pages as the Internet Archive saved them. One job per election folder,
+# a few at a time so the archive is asked politely; each job commits its own
+# files, so a folder that times out does not cost the others.
+
+on:
+  workflow_dispatch:
+    inputs:
+      folders:
+        description: "Comma-separated folders (blank = all)"
+        required: false
+  push:
+    paths:
+      - "scripts/etl/connectors/eci-results.ts"
+      - ".github/workflows/eci-results.yml"
+
+permissions:
+  contents: write
+concurrency:
+  group: eci-results
+  cancel-in-progress: false
+
+jobs:
+  folder:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        folder:
+          - PcResultGenJune2024
+          - ResultAcGenMay2026
+          - ResultAcGenNov2025
+          - ResultAcGenFeb2025
+          - ResultAcGenNov2024
+          - AcResultGenOct2024
+          - AcResultGenJune2024
+          - AcResultGen2ndJune2024
+          - AcResultGenDecNew2023
+          - ResultAcGenMay2023
+          - ResultAcGenMar2023
+          - ResultAcGenDec2022
+          - ResultAcGenMar2022
+    steps:
+      - name: Skip folders not asked for
+        id: want
+        run: |
+          W="${{ github.event.inputs.folders }}"
+          if [ -z "$W" ] || echo ",$W," | grep -q ",${{ matrix.folder }},"; then echo "run=1" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/checkout@v4
+        if: steps.want.outputs.run == '1'
+      - uses: actions/setup-node@v4
+        if: steps.want.outputs.run == '1'
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+        if: steps.want.outputs.run == '1'
+      - run: npm run eci:results
+        if: steps.want.outputs.run == '1'
+        env:
+          ECI_FOLDERS: ${{ matrix.folder }}
+      - name: Commit
+        if: always() && steps.want.outputs.run == '1'
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/elections/results 2>/dev/null || true
+          if git diff --staged --quiet; then echo unchanged; exit 0; fi
+          git commit -m "chore(elections): ECI results ${{ matrix.folder }} $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4 5 6; do git pull --rebase -q origin "${GITHUB_REF_NAME}" && git push && break; sleep $((2**i)); done
