@@ -1,0 +1,40 @@
+name: Probe ECI data routes
+
+# ECI's results portal keeps only the election being counted; this finds
+# where seat-by-seat results can still be read: ECI's datasets on
+# data.gov.in, eci.gov.in itself, and Wikipedia's tables as a cross-check.
+# Writes data/live/eci-data-probe.json and samples. Publishes nothing.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-eci-data.ts"
+      - ".github/workflows/probe-eci-data.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-eci-data
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npm run eci:probe
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name  "bharat-tracker-bot"
+          git config user.email "actions@github.com"
+          git add data/live/eci-data-probe.json data/live/election-atlas-samples 2>/dev/null || true
+          if git diff --staged --quiet; then echo unchanged; exit 0; fi
+          git commit -m "chore(probe): ECI data routes $(date -u +'%Y-%m-%d %H:%M')"
+          for i in 1 2 3 4; do git push && break; sleep $((2**i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true; done
