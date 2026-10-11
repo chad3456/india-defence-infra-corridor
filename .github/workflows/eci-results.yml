@@ -2,8 +2,12 @@ name: Ingest ECI results seat by seat
 
 # Assembly and Lok Sabha results for every constituency, read from ECI's own
 # result pages as the Internet Archive saved them. One job per election folder,
-# a few at a time so the archive is asked politely; each job commits its own
-# files, so a folder that times out does not cost the others.
+# a few at a time so the archive is asked politely. Each job hands its files to
+# a final job as an artifact, and that job makes one commit for the whole run:
+# thirteen commits a run, pushed separately, were thirteen Vercel deployments,
+# and four runs in a day used up the Hobby plan's daily deployment allowance.
+# A folder that times out still does not cost the others: its artifact is
+# simply absent and its committed files stay as they were.
 
 on:
   workflow_dispatch:
@@ -18,9 +22,11 @@ on:
 
 permissions:
   contents: write
+# A newer run supersedes an older one: the run commits once at the end, so a
+# cancelled run leaves the committed files as they were.
 concurrency:
   group: eci-results
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   folder:
@@ -61,12 +67,42 @@ jobs:
         if: steps.want.outputs.run == '1'
         env:
           ECI_FOLDERS: ${{ matrix.folder }}
-      - name: Commit
-        if: always() && steps.want.outputs.run == '1'
+      # Staged under one fixed root, so the artifact always unpacks as data/...
+      - name: Stage the folder's files
+        if: ${{ !cancelled() && steps.want.outputs.run == '1' }}
         run: |
+          mkdir -p out/data/elections/results out/data/live/election-atlas-samples
+          cp -r "data/elections/results/${{ matrix.folder }}" out/data/elections/results/ 2>/dev/null || true
+          cp data/live/election-atlas-samples/unparsed-* out/data/live/election-atlas-samples/ 2>/dev/null || true
+      - name: Hand them to the commit job
+        if: ${{ !cancelled() && steps.want.outputs.run == '1' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: results-${{ matrix.folder }}
+          path: out
+          if-no-files-found: ignore
+          retention-days: 3
+
+  commit:
+    needs: folder
+    # Runs when some folders failed (their files stay as committed), never when
+    # the run was cancelled: a superseded run publishes nothing.
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: results-*
+          path: incoming
+      - name: One commit for the whole run
+        run: |
+          shopt -s nullglob
+          for d in incoming/results-*/data; do cp -r "$d/." data/; done
           git config user.name  "bharat-tracker-bot"
           git config user.email "actions@github.com"
           git add data/elections/results data/live/election-atlas-samples 2>/dev/null || true
           if git diff --staged --quiet; then echo unchanged; exit 0; fi
-          git commit -m "chore(elections): ECI results ${{ matrix.folder }} $(date -u +'%Y-%m-%d %H:%M')"
+          git commit -m "chore(elections): ECI results $(date -u +'%Y-%m-%d %H:%M')"
           for i in 1 2 3 4 5 6; do git pull --rebase -q origin "${GITHUB_REF_NAME}" && git push && break; sleep $((2**i)); done
