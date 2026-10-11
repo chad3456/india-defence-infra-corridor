@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import HoverCard, { useHoverCard } from "@/components/charts/HoverCard";
+import { OTHER_PARTY_COLOUR, mainElection, partyColours } from "@/lib/elections-atlas-shared";
 
 /** A seat as the page receives it: candidates as [name, party, votes, evm?, postal?]. */
 export interface CompactSeat {
@@ -26,8 +27,7 @@ export interface CompactResult {
 }
 
 const NOTA = "None of the Above";
-const SLOTS = ["var(--series-1)", "var(--series-2)", "var(--series-3)", "var(--series-4)"];
-const OTHER = "var(--color-ink-muted)";
+const OTHER = OTHER_PARTY_COLOUR;
 const fmt = (n: number) => n.toLocaleString("en-IN");
 const pct = (n: number) => `${n.toFixed(1)}%`;
 
@@ -69,15 +69,9 @@ function analyse(r: CompactResult) {
   const parties = [...new Set([...won.keys(), ...votes.keys()])]
     .map((p) => ({ party: p, won: won.get(p) ?? 0, votes: votes.get(p) ?? 0, share: allVotes ? ((votes.get(p) ?? 0) / allVotes) * 100 : 0 }))
     .sort((a, b) => b.won - a.won || b.votes - a.votes);
-  // Colours: the four parties with most seats (Independents and NOTA never take
-  // a slot). BJP and INC keep the same hue wherever they place, so a reader
-  // moving between states does not have to relearn them.
-  const top = parties.filter((p) => p.won > 0 && p.party !== "Independent" && p.party !== NOTA).slice(0, 4).map((p) => p.party);
-  const colour = new Map<string, string>();
-  const fixed: Record<string, number> = { "Indian National Congress": 0, "Bharatiya Janata Party": 1 };
-  const free = [0, 1, 2, 3].filter((i) => !top.some((p) => fixed[p] === i));
-  for (const p of top) colour.set(p, fixed[p] !== undefined ? SLOTS[fixed[p]!]! : SLOTS[free.shift()!]!);
-  return { seats, parties, allVotes, colour: (p: string) => colour.get(p) ?? OTHER, top };
+  const top = parties.filter((p) => p.won > 0 && p.party !== "Independent" && p.party !== NOTA).map((p) => p.party).slice(0, 4);
+  const colourOf = partyColours(parties.map((p) => p.party));
+  return { seats, parties, allVotes, colour: colourOf, top: top.filter((p) => colourOf(p) !== OTHER) };
 }
 
 export default function StateResults({ results, stateName }: { results: CompactResult[]; stateName: string }) {
@@ -85,7 +79,7 @@ export default function StateResults({ results, stateName }: { results: CompactR
   const [house, setHouse] = useState<"AC" | "PC">(houses[0] ?? "AC");
   const ofHouse = results.filter((r) => r.house === house).sort((a, b) => b.date.localeCompare(a.date));
   const [folder, setFolder] = useState<string | null>(null);
-  const r = ofHouse.find((x) => x.folder === folder) ?? ofHouse[0];
+  const r = ofHouse.find((x) => x.folder === folder) ?? mainElection(ofHouse);
   const [picked, setPicked] = useState<number | null>(null);
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<"no" | "margin">("no");

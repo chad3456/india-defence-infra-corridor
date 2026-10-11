@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import NewBadge from "./NewBadge";
 
 /**
- * Fifteen destinations, grouped into four.
+ * The destinations, grouped into five.
  *
  * The bar carried all fifteen in one row. It fit — just — after the body face
  * changed to a narrower grotesque, but fitting was never the problem: a flat
@@ -15,8 +15,8 @@ import NewBadge from "./NewBadge";
  * it said that Growth and Everyday are the same kind of thing and Charts is
  * not.
  *
- * Four groups, named for what a reader is looking for rather than for how the
- * site is built: the country, the world it is measured against, the raw
+ * Five groups, named for what a reader is looking for rather than for how the
+ * site is built: the country, its elections, the world it is measured against, the raw
  * catalogue, and how the whole thing works. Each opens on click and stays open
  * until it is dismissed, because a hover menu on a page full of hoverable
  * charts fires when nobody asked it to.
@@ -27,9 +27,9 @@ import NewBadge from "./NewBadge";
  *
  * ── Below the small breakpoint ───────────────────────────────────────────
  *
- * The brand and four group buttons overflowed a 390px screen — the page
+ * The brand and the group buttons overflowed a 390px screen — the page
  * scrolled sideways and the bar wrapped to two lines. So the groups collapse
- * to one control there, and the panel it opens carries all four groups as
+ * to one control there, and the panel it opens carries every group as
  * headed sections. Same destinations, one column, no horizontal scroll.
  */
 
@@ -55,10 +55,20 @@ const GROUPS: Group[] = [
       { href: "/atlas", label: "Atlas", blurb: "The statewise picture" },
       { href: "/sacred", label: "Sacred landscape", blurb: "Temples, deities, heritage and place-names" },
       { href: "/disputed", label: "A disputed list", blurb: "One contested 1990 catalogue, read as a claim" },
-      { href: "/elections/atlas", label: "Election atlas", blurb: "Who governs, every seat's result, and SIR deletions by reason" },
-      { href: "/elections", label: "Turnout", blurb: "Turnout and voting patterns by state" },
       { href: "/protests/delhi-2026-10-10", label: "Delhi, 10 October", blurb: "The protest and the police operation: every side's account, sourced" },
       { href: "/map", label: "Map", blurb: "Corridors and the highway timelapse" },
+    ],
+  },
+  {
+    id: "elections",
+    label: "Elections",
+    items: [
+      { href: "/elections", label: "Overview", blurb: "Who governs, every result and the roll revision, on one page" },
+      { href: "/elections/atlas", label: "Election atlas", blurb: "India by who governs; every state opens seat by seat" },
+      { href: "/elections/lok-sabha-2024", label: "Lok Sabha 2024", blurb: "All 543 seats: the chamber, seats against votes, every state" },
+      { href: "/elections/assemblies", label: "Assemblies", blurb: "Every state assembly as it was elected, against the majority line" },
+      { href: "/elections/sir", label: "Roll revision (SIR)", blurb: "Names left off draft rolls, by the reason given" },
+      { href: "/elections/turnout", label: "Turnout", blurb: "Turnout and electors by state, 2014 to 2024" },
     ],
   },
   {
@@ -119,7 +129,8 @@ export default function Nav() {
     };
   }, [open]);
 
-  const activeGroup = GROUPS.find((g) => g.items.some((i) => i.href === pathname))?.id;
+  // A section is active on its own pages and anything under them (a state's atlas page lights Elections).
+  const activeGroup = GROUPS.find((g) => g.items.some((i) => i.href === pathname || (pathname ?? "").startsWith(`${i.href}/`)))?.id;
 
   return (
     <header className="sticky top-0 z-40 border-b border-[color:var(--hairline)] bg-[var(--plane)]/85 backdrop-blur-md">

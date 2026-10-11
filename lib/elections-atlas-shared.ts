@@ -210,3 +210,64 @@ export const ALLIANCE_LABEL: Record<Alliance, string> = {
 
 /** Indian number words, for large counts in prose and labels. */
 export const lakh = (n: number) => (n >= 1e7 ? `${(n / 1e7).toFixed(2)} crore` : n >= 1e5 ? `${(n / 1e5).toFixed(1)} lakh` : n.toLocaleString("en-IN"));
+
+/* ── Party colours ── */
+const PARTY_SLOTS = ["var(--series-1)", "var(--series-2)", "var(--series-3)", "var(--series-4)"];
+export const OTHER_PARTY_COLOUR = "var(--color-ink-muted)";
+
+/**
+ * Colours for a ranked list of parties, from the site's four validated
+ * categorical slots: Congress blue and BJP orange wherever they appear, so a
+ * reader moving between charts never relearns them; the two other parties
+ * with most seats take the remaining slots (Independents and NOTA never do).
+ * Everything else is neutral, and every chart labels parties by name.
+ */
+export function partyColours(rankedParties: string[]): (party: string) => string {
+  // Blue is only ever Congress and orange only ever BJP, even where neither
+  // places: lending BJP's orange to Kerala's CPI(M) would say something false
+  // at a glance. The other two slots go to the next two parties by seats.
+  const map = new Map<string, string>([["Indian National Congress", PARTY_SLOTS[0]!], ["Bharatiya Janata Party", PARTY_SLOTS[1]!]]);
+  const others = rankedParties.filter((p) => !map.has(p) && p !== "Independent" && p !== "None of the Above").slice(0, 2);
+  others.forEach((p, i) => map.set(p, PARTY_SLOTS[2 + i]!));
+  return (p) => map.get(p) ?? OTHER_PARTY_COLOUR;
+}
+
+/** One party's showing in one result: seats won and votes polled. */
+export interface PartyRow { party: string; abbr: string; won: number; votes: number; share: number }
+
+/** What the dashboards need from one state's result, computed from its seats. */
+export interface ResultSummary {
+  folder: string;
+  house: House;
+  state: string;
+  slug: string;
+  stateName: string;
+  date: string;
+  seatsRead: number;
+  expectedSeats?: number;
+  votes: number;
+  parties: PartyRow[];
+  /** ECI's completed party tally agrees with the seats read, party for party. */
+  tallyMatches: boolean | null;
+  closest: { no: number; name: string; winner: string; party: string; margin: number; marginPct: number } | null;
+  /** The ten closest seats in this result, closest first. */
+  closestTen: Array<{ no: number; name: string; winner: string; party: string; margin: number; marginPct: number }>;
+  notFinal: number;
+  hindi: number;
+}
+
+const MONTH_ABBR = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+/** "2026-05" → "May 2026". */
+export const monthLabel = (d: string) => { const [y, m] = d.split("-"); return `${MONTH_ABBR[Number(m) - 1] ?? ""} ${y}`; };
+
+/**
+ * The election a dashboard should show for a house: the newest one that
+ * covers at least half as many seats as the largest held. A separately held
+ * adjourned poll (Meghalaya's Sohiong, May 2023) is newer than the general
+ * election but is one seat, and must not stand in for the house.
+ */
+export function mainElection<T extends { date: string; seats: { length: number } | number }>(results: T[]): T | undefined {
+  const n = (r: T) => (typeof r.seats === "number" ? r.seats : r.seats.length);
+  const max = Math.max(0, ...results.map(n));
+  return [...results].sort((a, b) => b.date.localeCompare(a.date)).find((r) => n(r) >= max / 2);
+}

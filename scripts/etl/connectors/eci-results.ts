@@ -25,7 +25,7 @@
  *
  * The connector never throws: a folder that fails leaves its previous files.
  */
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getText } from "../lib/http";
 import { isEntryPoint } from "../lib/entry";
@@ -422,10 +422,20 @@ export async function runFolder(folder: string, house: House, only?: Set<string>
       }
     }
     const first = drafts[0]!;
-    const seats: Seat[] = drafts.sort((a, b) => a.no - b.no).map(({ final, updated, title, stateName, ...seat }) => ({
+    // Last-known-good, seat by seat: a seat verified on an earlier run whose
+    // archived page failed to fetch this time is carried over, not dropped.
+    // The archive does not revise a snapshot, so the earlier reading stands.
+    let carried: Seat[] = [];
+    try {
+      const prev = JSON.parse(await readFile(join(ROOT, folder, `${state}.json`), "utf8")) as StateResult;
+      const have = new Set(drafts.map((d) => d.no));
+      carried = prev.seats.filter((s) => !have.has(s.no));
+      if (carried.length) problems.push(`${carried.length} seat${carried.length === 1 ? "" : "s"} not re-read this run, carried over from ${prev.fetchedAt.slice(0, 10)}: ${carried.map((s) => s.no).join(", ")}`);
+    } catch { /* first run for this state */ }
+    const seats: Seat[] = (drafts.sort((a, b) => a.no - b.no) as SeatDraft[]).map(({ final, updated, title, stateName, ...seat }) => ({
       ...seat,
       status: final ? (seat.status ?? "final") : `not final: ${seat.status ?? "count in progress"}`,
-    }));
+    }) as Seat).concat(carried).sort((a, b) => a.no - b.no);
     const result: StateResult & { stateName: string; abbreviations: Record<string, string>; problems: string[] } = {
       folder, house, state, stateName: first.stateName, label: first.title, date: monthOf(first.title),
       seats, expectedSeats: expected, partyTally, abbreviations: abbr, problems: problems.slice(0, 200), fetchedAt: new Date().toISOString(),

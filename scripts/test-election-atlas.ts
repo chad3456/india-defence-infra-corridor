@@ -7,7 +7,8 @@
  */
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
-import { ATLAS_STATES, atlasState, reasonGap, type GovernsFile, type SirFile } from "../lib/elections-atlas-shared";
+import { ATLAS_STATES, atlasState, mainElection, partyColours, reasonGap, type GovernsFile, type SirFile } from "../lib/elections-atlas-shared";
+import { allSummaries } from "../lib/elections-summary";
 import { parseGoverns, validateGoverns, WITH_LEGISLATURE } from "./etl/connectors/governs";
 import { parseCardPage, parseHead, parsePartyPage, parseTablePage } from "./etl/connectors/eci-results";
 import { readdirSync } from "node:fs";
@@ -135,6 +136,17 @@ if (existsSync(RES)) {
       ok(`${tag}: every seat has candidates with whole-number votes`, r.seats.every((s) => s.candidates.length >= 1 && s.candidates.every((c) => Number.isInteger(c.votes) && c.votes >= 0)));
     }
   }
+}
+
+console.log("\nDashboards");
+{
+  const pick = mainElection([{ date: "2023-05", seats: 1 }, { date: "2023-03", seats: 59 }, { date: "2018-03", seats: 59 }]);
+  ok("a one-seat adjourned poll does not stand in for the house (Meghalaya)", pick?.date === "2023-03", JSON.stringify(pick));
+  const c = partyColours(["Indian National Congress", "Communist Party of India (Marxist)", "Indian Union Muslim League"]);
+  ok("BJP's colour is never lent to another party (Kerala)", c("Communist Party of India (Marxist)") !== "var(--series-2)" && c("Bharatiya Janata Party") === "var(--series-2)");
+  const { lokSabha, assemblies } = allSummaries();
+  ok("dashboards see every Lok Sabha state", lokSabha.length === 36, String(lokSabha.length));
+  ok("no assembly summary is a one-seat poll", assemblies.every((a) => a.seatsRead > 1), assemblies.filter((a) => a.seatsRead <= 1).map((a) => a.stateName).join(", "));
 }
 
 console.log(failed ? `\n${failed} failed` : "\nall passed");

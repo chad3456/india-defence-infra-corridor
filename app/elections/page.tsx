@@ -1,137 +1,96 @@
 import Link from "next/link";
-import { loadElections, nationalTurnout, LOK_SABHA_SEATS } from "@/lib/elections";
-import ElectionMap from "@/components/map/ElectionMap";
+import AtlasMap from "@/components/elections/AtlasMap";
+import { Hemicycle, HouseStrips } from "@/components/elections/Dashboards";
+import { lakh, loadGoverns, loadSir } from "@/lib/elections-atlas";
+import { mapRows } from "@/lib/elections-atlas-view";
+import { allSummaries, nationalLokSabha } from "@/lib/elections-summary";
 
-/**
- * Statewise voting patterns for the last three general elections.
- *
- * The page states its own provenance prominently because the provenance is
- * unusual for this site: every other number here is read from the body that
- * produced it, and this one is not. The Election Commission's results portal
- * answers an automated request with a JavaScript shell, so these figures are
- * read from Wikipedia's per-election tables, which carry the ECI numbers. That
- * is a real step of remove and the reader is told about it rather than shown a
- * commission logo over a number that came from somewhere else.
- */
+/** The elections section's front page: one visual from each dashboard, each linking to it. */
 
 export const metadata = {
-  title: "How India voted, state by state",
-  description:
-    "Turnout, electors and seats by state for the 2014, 2019 and 2024 general elections, with every row checked against its own arithmetic.",
+  title: "Elections: who governs, every result, and the roll revision",
+  description: "India's elections from ECI's own result pages: the map of who governs, Lok Sabha 2024 and every state assembly seat by seat, the SIR's deletions by reason, and turnout.",
 };
 
-export default function ElectionsPage() {
-  const data = loadElections();
-  const latest = data.years[data.years.length - 1];
-  const first = data.years[0];
+export default function ElectionsOverview() {
+  const rows = mapRows();
+  const gov = loadGoverns();
+  const sir = loadSir();
+  const { assemblies, lokSabha, abbr } = allSummaries();
+  const nat = nationalLokSabha(lokSabha, abbr);
+  const seatsRead = assemblies.reduce((a, b) => a + b.seatsRead, 0) + nat.seats;
+  const sirTotal = (sir?.states ?? []).reduce((a, s) => a + (s.draft?.leftOut ?? 0), 0);
+  const recent = [...assemblies].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 6);
+  const count = (al: string[]) => rows.filter((r) => r.alliance && al.includes(r.alliance)).length;
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
       <header className="mb-8">
         <p className="text-[11px] uppercase tracking-[0.14em] text-ink-muted">Elections</p>
-        <h1 className="display mt-4 max-w-[22ch] text-[32px] leading-[1.07] text-ink sm:text-[42px]">
-          How India voted, state by state
-        </h1>
+        <h1 className="display mt-4 max-w-[24ch] text-[32px] leading-[1.07] text-ink sm:text-[42px]">India&rsquo;s elections, seat by seat</h1>
         <p className="mt-4 max-w-2xl text-ink-2">
-          Turnout, the size of the roll, and the seats each state sends, for the three most
-          recent general elections. The interesting number is rarely the national one.
+          Results read from the Election Commission&rsquo;s own constituency pages and checked against their printed
+          totals; who governs each state today; and the Special Intensive Revision&rsquo;s deletions by reason.
         </p>
       </header>
 
-      {data.present && latest && first ? (
-        <>
-          <section className="mb-8 rounded-lg border border-gridline bg-surface-1 p-5">
-            <h2 className="text-sm font-semibold text-ink">Where these numbers come from</h2>
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink-2">
-              Not, as it happens, from the Election Commission — not directly. Its results portal
-              answers an automated request with about a kilobyte of JavaScript and no data, and
-              Lok Dhaba, the Trivedi Centre&rsquo;s cleaned compilation of Indian results, does the
-              same. So these are read from Wikipedia&rsquo;s per-election tables, which carry the
-              ECI figures. That is one step of remove from the source, and saying so is the point:
-              the numbers are the commission&rsquo;s, the reading of them is not.
-            </p>
-            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-2">
-              Which is why every row is checked against itself. The table prints a turnout
-              percentage next to the electors and voters it was computed from, so voters divided by
-              electors has to reproduce it — within a fifth of a percentage point, or the row is
-              dropped and the discrepancy recorded. A transposed column still yields a
-              plausible-looking number, and that is exactly the error a source at one remove is
-              most likely to introduce.
-            </p>
-          </section>
+      <section className="mb-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <Stat href="/elections/atlas" value={`${count(["NDA"])} · ${count(["INDIA"])} · ${count(["Other", "None"])}`} label="NDA · INDIA · neither" note={`state governments${gov ? `, as of ${gov.fetchedAt.slice(0, 10)}` : ""}`} />
+        <Stat href="/elections/lok-sabha-2024" value={`${nat.seats} / 543`} label="Lok Sabha 2024 seats read" />
+        <Stat href="/elections/assemblies" value={seatsRead.toLocaleString("en-IN")} label="constituency results" note={`${assemblies.length} assemblies and the Lok Sabha`} />
+        <Stat href="/elections/sir" value={sirTotal ? lakh(sirTotal) : "—"} label="left out of SIR drafts" note="by reason given" />
+      </section>
 
-          <section className="mb-8 grid gap-3 sm:grid-cols-3">
-            {data.years.map((y) => (
-              <div key={y.year} className="rounded-lg border border-gridline bg-surface-2 p-4">
-                <p className="text-[11px] uppercase tracking-wide text-ink-muted">{y.year}</p>
-                <p className="mt-1 text-2xl font-semibold tabular-nums text-ink">
-                  {nationalTurnout(y).toFixed(1)}%
-                </p>
-                <p className="mt-1 text-xs leading-snug text-ink-2">
-                  National turnout, recomputed from {y.rows.length} states rather than taken from
-                  the summary row. {y.seatsTotal} of {LOK_SABHA_SEATS} seats covered.
-                </p>
-              </div>
-            ))}
-          </section>
+      <div className="grid gap-10 lg:grid-cols-2">
+        <Panel href="/elections/atlas" title="Who governs, state by state" cta="Open the atlas">
+          <AtlasMap rows={rows} />
+        </Panel>
+        <div className="space-y-10">
+          <Panel href="/elections/lok-sabha-2024" title="Lok Sabha 2024" cta="Every seat, every state">
+            <Hemicycle parties={nat.parties} total={nat.seats} label="Lok Sabha 2024 seats by winning party" />
+          </Panel>
+          <Panel href="/elections/assemblies" title="The latest assembly elections" cta={`All ${assemblies.length} assemblies`}>
+            <HouseStrips results={recent} />
+          </Panel>
+        </div>
+      </div>
 
-          <section className="mb-10">
-            <ElectionMap years={data.years} />
-          </section>
-
-          <section className="mb-10">
-            <h2 className="text-sm font-semibold text-ink">What this does not show</h2>
-            <div className="mt-3 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-lg border border-gridline bg-surface-1 p-4">
-                <p className="text-sm font-medium text-ink">Who won, seat by seat</p>
-                <p className="mt-1 text-xs leading-snug text-ink-2">
-                  Party vote shares here would have nothing to check them against. Constituency results
-                  read from ECI&rsquo;s own archived result pages, each reconciled with its printed total, are
-                  in the <Link href="/elections/atlas" className="underline">election atlas</Link>.
-                </p>
-              </div>
-              <div className="rounded-lg border border-gridline bg-surface-1 p-4">
-                <p className="text-sm font-medium text-ink">Roll revisions and deletions</p>
-                <p className="mt-1 text-xs leading-snug text-ink-2">
-                  The Special Intensive Revision&rsquo;s deletions by reason are in the{" "}
-                  <Link href="/elections/atlas" className="underline">election atlas</Link>, as ECI and state
-                  CEO figures reported in the press and linked per figure: ECI&rsquo;s own press notes refuse
-                  automated requests, and the open-data catalogue has no table of them.
-                </p>
-              </div>
-              <div className="rounded-lg border border-gridline bg-surface-1 p-4">
-                <p className="text-sm font-medium text-ink">Constituencies</p>
-                <p className="mt-1 text-xs leading-snug text-ink-2">
-                  This is state-level. Constituency results exist in these articles too, but the
-                  boundary file here has state polygons only, so a constituency map would be a
-                  table pretending to be a map.
-                </p>
-              </div>
-              <div className="rounded-lg border border-gridline bg-surface-1 p-4">
-                <p className="text-sm font-medium text-ink">Anything before 2014</p>
-                <p className="mt-1 text-xs leading-snug text-ink-2">
-                  Earlier elections are readable, but the states are not: Telangana was created in
-                  2014, and going further back crosses the 2000 creation of Jharkhand,
-                  Chhattisgarh and Uttarakhand. Comparing turnout across a boundary change means
-                  comparing different places with the same name.
-                </p>
-              </div>
-            </div>
-          </section>
-        </>
-      ) : (
-        <p className="rounded-lg border border-gridline bg-surface-2 p-5 text-sm text-ink-2">
-          No election data has been ingested yet. The connector runs in CI and commits what it
-          reads; this page fills in on the next run.
-        </p>
-      )}
-
-      <footer className="mt-10 border-t border-gridline pt-4 text-xs text-ink-muted">
-        Figures published by the Election Commission of India, read from Wikipedia&rsquo;s
-        per-election result tables. ·{" "}
-        <Link href="/methodology" className="underline">Method</Link> ·{" "}
-        <Link href="/atlas" className="underline">Atlas</Link>
-      </footer>
+      <section className="mt-12 grid gap-3 sm:grid-cols-3">
+        <Card href="/elections/sir" title="The roll revision" text="Names left out of each draft roll in the SIR, split by dead, shifted, absent and duplicate, with the sources for every figure." />
+        <Card href="/elections/turnout" title="Turnout by state" text="Turnout, electors and seats for the 2014, 2019 and 2024 general elections, every row checked against its own arithmetic." />
+        <Card href="/elections/atlas" title="Any state, seat by seat" text="Open a state for its assembly and Lok Sabha results: every constituency, every candidate, the archived ECI page it was read from." />
+      </section>
     </main>
+  );
+}
+
+function Stat({ href, value, label, note }: { href: string; value: string; label: string; note?: string }) {
+  return (
+    <Link href={href} className="rounded-lg border border-gridline bg-surface-2 p-4 hover:border-[color:var(--color-ink-2)]">
+      <p className="text-2xl font-semibold tabular-nums text-ink">{value}</p>
+      <p className="mt-1 text-xs text-ink">{label}</p>
+      {note && <p className="mt-0.5 text-[11px] text-ink-muted">{note}</p>}
+    </Link>
+  );
+}
+
+function Panel({ href, title, cta, children }: { href: string; title: string; cta: string; children: React.ReactNode }) {
+  return (
+    <section>
+      <div className="mb-3 flex items-baseline gap-3">
+        <h2 className="text-sm font-semibold text-ink">{title}</h2>
+        <Link href={href} className="ml-auto text-xs text-ink-2 underline hover:text-ink">{cta} →</Link>
+      </div>
+      {children}
+    </section>
+  );
+}
+
+function Card({ href, title, text }: { href: string; title: string; text: string }) {
+  return (
+    <Link href={href} className="rounded-lg border border-gridline bg-surface-1 p-4 hover:border-[color:var(--color-ink-2)]">
+      <p className="text-sm font-medium text-ink">{title} →</p>
+      <p className="mt-1 text-xs leading-snug text-ink-2">{text}</p>
+    </Link>
   );
 }

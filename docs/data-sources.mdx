@@ -181,6 +181,12 @@ estimated. ECI's party-wise page, where archived, supplies the house size, a tal
 the party abbreviations. Files: `data/elections/results/{folder}/{state}.json`, one Actions job per
 folder. ECI's own caveat stands: these pages are as entered by Returning Officers; Form-20 is final.
 
+The section's dashboards (`/elections`, `/elections/lok-sabha-2024`, `/elections/assemblies`,
+`/elections/sir`) add these files up in `lib/elections-summary.ts`: seats are counted winners,
+vote shares are sums over the seats read with NOTA included, and both are labelled derived. Each
+house is shown at its latest election covering most of its seats, so a separately held adjourned
+poll (Meghalaya's Sohiong, May 2023) does not stand in for the assembly.
+
 **Who governs** is `data/elections/governs.json`, read weekly by `npm run governs:ingest` from
 Wikipedia's current chief-minister table. ECI publishes results, not governments. The file is
 written only if all 31 legislatures parse.

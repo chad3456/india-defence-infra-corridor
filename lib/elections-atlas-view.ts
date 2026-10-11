@@ -3,7 +3,7 @@
  * components: one row per state for the map, and a compact form of each
  * state's results (candidates as tuples) so a 403-seat state stays small.
  */
-import { ATLAS_STATES, atlasState, loadGoverns, loadResultsForState, loadSir, type AtlasState, type SirState, type StateResult } from "./elections-atlas";
+import { ATLAS_STATES, atlasState, mainElection, loadGoverns, loadResultsForState, loadSir, type AtlasState, type SirState, type StateResult } from "./elections-atlas";
 import type { AtlasMapRow } from "@/components/elections/AtlasMap";
 import type { CompactResult } from "@/components/elections/StateResults";
 
@@ -20,7 +20,7 @@ export function mapRows(): AtlasMapRow[] {
     const g = gov?.states.find((x) => atlasState(x.state)?.slug === st.slug);
     const sir = sirFor(st);
     const results = loadResultsForState(st.eci);
-    const ac = results.find((r) => r.house === "AC"), pc = results.find((r) => r.house === "PC");
+    const ac = mainElection(results.filter((r) => r.house === "AC")), pc = mainElection(results.filter((r) => r.house === "PC"));
     const leftOut = sir?.draft?.leftOut;
     return {
       slug: st.slug, name: st.name, legislature: st.legislature,

@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "elections-section-2026-10",
+    title: "Elections",
+    blurb:
+      "Elections now has its own section: an overview, Lok Sabha 2024 as a chamber of 543 seats, every " +
+      "state assembly against its majority line, and the SIR's roll deletions by reason.",
+    href: "/elections",
+    since: "2026-10-11",
+  },
+  {
     id: "election-atlas-2026-10",
     title: "Election atlas",
     blurb:

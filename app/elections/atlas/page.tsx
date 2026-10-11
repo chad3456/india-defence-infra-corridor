@@ -137,7 +137,7 @@ export default function ElectionAtlasPage() {
       <footer className="mt-10 border-t border-gridline pt-4 text-xs text-ink-muted">
         Results: Election Commission of India, results.eci.gov.in, as archived by the Internet Archive. Governments:
         Wikipedia. SIR: ECI and CEO figures as reported, each linked. ·{" "}
-        <Link href="/elections" className="underline">Turnout by state</Link> · <Link href="/methodology" className="underline">Method</Link>
+        <Link href="/elections/turnout" className="underline">Turnout by state</Link> · <Link href="/methodology" className="underline">Method</Link>
       </footer>
     </main>
   );
