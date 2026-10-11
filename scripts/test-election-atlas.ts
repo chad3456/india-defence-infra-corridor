@@ -95,6 +95,20 @@ if (existsSync(join(S, "wayback-ResultAcGenMay2026-ConstituencywiseS2210.htm")))
   ok("party page: house size and full tally", party?.seats === 234 && party.tally.reduce((a, b) => a + b.won, 0) === 234);
   const older = parsePartyPage(sample2("wayback-AcResultGen2ndJune2024-partywiseresult-S21.htm"));
   ok("older party page: house size from the footer", older?.seats === 32);
+  // The 2022–23 template: the same columns inside layout tables, the seat
+  // named "State-Name -N", the total as a body row rather than a footer.
+  if (existsSync(join(S, "wayback-ResultAcGenMay2023-ConstituencywiseS101.htm"))) {
+    const k = sample2("wayback-ResultAcGenMay2023-ConstituencywiseS101.htm");
+    const kh = parseHead(k, 1), kt = parseTablePage(k);
+    ok("2023 template: seat, state and month read", kh?.no === 1 && kh.name === "Nippani" && kh.stateName === "Karnataka" && /MAY-2023/i.test(kh.title), JSON.stringify(kh));
+    ok("2023 template: table reconciles with its Total row", kt?.total === 187412 && !kt.problem && kt.candidates.length === 11, kt?.problem);
+    const kp = parsePartyPage(sample2("wayback-ResultAcGenMay2023-partywiseresult-S10.htm?st=S10%0A%0A%0AKarnataka"));
+    ok("2023 party page: 224 seats, tally sums to the house", kp?.seats === 224 && kp.tally.reduce((a, b) => a + b.won, 0) === 224);
+  }
+  if (existsSync(join(S, "wayback-ResultAcGenMar2022-ConstituencywiseS051.htm?ac=1"))) {
+    const g = parseHead(sample2("wayback-ResultAcGenMar2022-ConstituencywiseS051.htm?ac=1"), 1);
+    ok("2022 template ('GEN ELECTION', no seat number in the caption): seat number from the URL", g?.no === 1 && g.name === "Mandrem" && g.stateName === "Goa", JSON.stringify(g));
+  }
 }
 
 console.log("\nResults on disk");

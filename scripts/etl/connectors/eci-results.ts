@@ -81,39 +81,54 @@ export interface PageHead {
   updated?: string;
 }
 
-export function parseHead(html: string): PageHead | null {
-  const h1 = /<h1[^>]*>([\s\S]*?)<\/h1>/i.exec(html);
-  const h2 = /<h2[^>]*>[\s\S]*?Constituency\s*<span>\s*(\d+)\s*-\s*([\s\S]*?)<strong>\s*\(([^)]+)\)/i.exec(html);
-  if (!h1 || !h2) return null;
+export function parseHead(html: string, seatNo?: number): PageHead | null {
   const r = /(?:Status of EVM Round|Status as on Round)[^<]*<span>\s*(\d+)\s*<\/span>\s*\/\s*(\d+)/i.exec(html);
   const u = /Last Updated at[^<]*?On\s*(\d{2})\/(\d{2})\/(\d{4})/i.exec(html);
-  const title = decode(h1[1]!).replace(/^General Elections? to (?:Assembly|Parliamentary) Constituencies:\s*/i, "");
-  return {
-    title,
-    no: Number(h2[1]),
-    name: decode(h2[2]!),
-    stateName: decode(h2[3]!),
-    rounds: r ? [Number(r[1]), Number(r[2])] : undefined,
-    updated: u ? `${u[3]}-${u[2]}-${u[1]}` : undefined,
-  };
+  const common = { rounds: r ? [Number(r[1]), Number(r[2])] as [number, number] : undefined, updated: u ? `${u[3]}-${u[2]}-${u[1]}` : undefined };
+  // 2024 onwards: <h1>General Election to …: Trends & Results May-2026</h1>
+  //               <h2>Assembly Constituency <span> 10 - NAME <strong>(State)</strong>
+  const h1 = /<h1[^>]*>([\s\S]*?)<\/h1>/i.exec(html);
+  const h2 = /<h2[^>]*>[\s\S]*?Constituency\s*<span>\s*(\d+)\s*-\s*([\s\S]*?)<strong>\s*\(([^)]+)\)/i.exec(html);
+  if (h1 && h2) {
+    return { title: decode(h1[1]!).replace(/^General Elections? to (?:Assembly|Parliamentary) Constituencies:\s*/i, ""), no: Number(h2[1]), name: decode(h2[2]!), stateName: decode(h2[3]!), ...common };
+  }
+  // 2022–23: <h3>GENERAL ELECTION TO VIDHAN SABHA TRENDS & RESULT MAY-2023</h3>
+  //          <td colspan='9'>Karnataka-Nippani -1</td> (the number is sometimes absent)
+  const h3 = /<h3>\s*(GEN(?:ERAL)? ELECTION[^<]*?)\s*<\/h3>/i.exec(html);
+  const cap = /<td colspan='9' align='center'>\s*([^<]+?)\s*<\/td><\/tr>\s*<tr[^>]*>\s*<td colspan='9' align='center'>\s*Result Status/i.exec(html);
+  if (h3 && cap) {
+    const m = /^(.*?)-(.*?)(?:\s+-\s*(\d+))?$/.exec(decode(cap[1]!));
+    const no = m?.[3] ? Number(m[3]) : seatNo;
+    if (!m || no == null) return null;
+    const title = decode(h3[1]!).replace(/^GEN(?:ERAL)? ELECTION TO (?:VIDHAN SABHA|LOK SABHA)\s*/i, "").replace(/\bTRENDS & RESULT\b/i, "Trends & Results");
+    return { title, no, name: m[2]!.trim(), stateName: m[1]!.trim(), ...common };
+  }
+  return null;
 }
 
 /** The table view: every candidate with EVM, postal and total votes. Null if the page fails its own arithmetic. */
 export function parseTablePage(html: string): { candidates: Candidate[]; total: number; problem?: string } | null {
-  const table = /<table[^>]*>[\s\S]*?Candidate[\s\S]*?Total Votes[\s\S]*?<\/table>/i.exec(html)?.[0];
-  if (!table) return null;
-  const body = /<tbody>([\s\S]*?)<\/tbody>/i.exec(table)?.[1] ?? "";
+  // The innermost table whose header names Candidate and Total Votes. The
+  // 2022–23 pages nest it inside layout tables, so take the last <table> opening
+  // before the header and run to the next </table>.
+  const hdr = html.search(/<th[^>]*>\s*Candidate\s*<\/th>/i);
+  if (hdr < 0 || !/Total Votes/i.test(html.slice(hdr, hdr + 2000))) return null;
+  const open = html.lastIndexOf("<table", hdr);
+  const close = html.indexOf("</table>", hdr);
+  const table = html.slice(open, close);
   const candidates: Candidate[] = [];
-  for (const tr of body.split(/<tr[^>]*>/i).slice(1)) {
+  let printedTotal: number | null = null;
+  for (const tr of table.slice(hdr - open).split(/<tr[^>]*>/i).slice(1)) {
     const td = [...tr.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map((m) => m[1]!);
     if (td.length < 6) continue;
+    if (/^total$/i.test(decode(td[1]!))) { printedTotal = int(td[5]); continue; }
     const evm = int(td[3]), postal = int(td[4]), votes = int(td[5]);
     if (votes == null) continue;
     candidates.push({ name: decode(td[1]!), party: decode(td[2]!), votes, ...(evm != null ? { evm } : {}), ...(postal != null ? { postal } : {}) });
   }
-  const foot = /<tfoot>([\s\S]*?)<\/tfoot>/i.exec(table)?.[1] ?? "";
+  const foot = /<tfoot>([\s\S]*?)<\/tfoot>/i.exec(html.slice(open, html.indexOf("</table>", close + 1) > 0 ? close + 400 : close))?.[1] ?? /<tfoot>([\s\S]*?)<\/tfoot>/i.exec(table)?.[1] ?? "";
   const th = [...foot.matchAll(/<th[^>]*>([\s\S]*?)<\/th>/gi)].map((m) => m[1]!);
-  const total = int(th[5]) ?? candidates.reduce((a, c) => a + c.votes, 0);
+  const total = printedTotal ?? int(th[5]) ?? candidates.reduce((a, c) => a + c.votes, 0);
   if (candidates.length === 0) return null;
   const sum = candidates.reduce((a, c) => a + c.votes, 0);
   const rowBad = candidates.find((c) => c.evm != null && c.postal != null && c.evm + c.postal !== c.votes);
@@ -151,9 +166,11 @@ export function parseCardPage(html: string): { candidates: Candidate[]; declared
 
 /** The party-wise page: ECI's own tally, its party abbreviations, and the size of the house. */
 export function parsePartyPage(html: string): { tally: Array<{ party: string; abbr: string; won: number; leading: number }>; seats: number | null } | null {
-  const seats = /\(Total (?:AC|PC)\s*:\s*(\d+)\)/i.exec(html);
+  // 2024 on: "(Total AC : 234)"; 2022–23: "Status Known For 224 out of 224 Constituencies".
+  const seats = /\(Total (?:AC|PC)\s*:\s*(\d+)\)/i.exec(html) ?? /Status Known For\s*\d+\s*out of\s*(\d+)\s*Constituencies/i.exec(html);
   const tally: Array<{ party: string; abbr: string; won: number; leading: number }> = [];
-  const table = /Party Wise Results[\s\S]*?<tbody>([\s\S]*?)<\/tbody>/i.exec(html)?.[1] ?? "";
+  const table = /Party Wise Results[\s\S]*?<tbody>([\s\S]*?)<\/tbody>/i.exec(html)?.[1]
+    ?? /<th[^>]*>\s*Party\s*<\/th>\s*<th[^>]*>\s*Won\s*<\/th>([\s\S]*?)<\/table>/i.exec(html)?.[1] ?? "";
   for (const tr of table.split(/<tr[^>]*>/i).slice(1)) {
     const td = [...tr.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map((m) => decode(m[1]!));
     if (td.length < 4 || /^total$/i.test(td[0]!)) continue;
@@ -210,6 +227,22 @@ async function pool<T>(items: T[], n: number, fn: (t: T) => Promise<void>): Prom
 
 /* ── One folder ───────────────────────────────────────────────────────── */
 
+/**
+ * The first page of each kind that fails to parse in a folder is kept under
+ * data/live/election-atlas-samples/, so a template change is diagnosed from
+ * the page itself rather than guessed at.
+ */
+const savedFailures = new Set<string>();
+async function keepFailure(original: string, html: string): Promise<void> {
+  const m = /results\.eci\.gov\.in\/([^/]+)\/(Constituencywise|candidateswise-)/i.exec(original);
+  const key = m ? `${m[1]}-${m[2]}` : original;
+  if (savedFailures.has(key)) return;
+  savedFailures.add(key);
+  const dir = join(process.cwd(), "data", "live", "election-atlas-samples");
+  await mkdir(dir, { recursive: true });
+  await writeFile(join(dir, `unparsed-${original.split("/").slice(-2).join("-").replace(/[?%=]/g, "_")}`), html.slice(0, 150_000), "utf8");
+}
+
 interface SeatDraft extends Seat { final: boolean; updated?: string; title: string; stateName: string }
 
 async function readSeat(pages: Map<string, Array<{ ts: string; original: string }>>, state: string, no: string, problems: string[]): Promise<SeatDraft | null> {
@@ -220,8 +253,8 @@ async function readSeat(pages: Map<string, Array<{ ts: string; original: string 
   for (const snap of table.slice(0, 3)) {
     const html = await snapshot(snap.ts, snap.original);
     if (!html) continue;
-    const head = parseHead(html), t = parseTablePage(html);
-    if (!head || !t) continue;
+    const head = parseHead(html, Number(no)), t = parseTablePage(html);
+    if (!head || !t) { await keepFailure(snap.original, html); continue; }
     if (t.problem) { problems.push(`${state}${no} table ${snap.ts}: ${t.problem}`); continue; }
     // Counting not begun, or the poll countermanded: a page of zeros names no winner.
     if (t.total === 0) { problems.push(`${state}${no} table ${snap.ts}: no votes counted on the archived page`); continue; }
@@ -234,8 +267,8 @@ async function readSeat(pages: Map<string, Array<{ ts: string; original: string 
   for (const snap of cards.slice(0, 3)) {
     const html = await snapshot(snap.ts, snap.original);
     if (!html) continue;
-    const head = parseHead(html), c = parseCardPage(html);
-    if (!head || !c) continue;
+    const head = parseHead(html, Number(no)), c = parseCardPage(html);
+    if (!head || !c) { await keepFailure(snap.original, html); continue; }
     if (c.problem) { problems.push(`${state}${no} cards ${snap.ts}: ${c.problem}`); continue; }
     if (!c.uncontested && c.candidates.every((x) => x.votes === 0)) { problems.push(`${state}${no} cards ${snap.ts}: no votes counted on the archived page`); continue; }
     if (!c.declared && fallback) return fallback;
@@ -291,6 +324,20 @@ export async function runFolder(folder: string, house: House, only?: Set<string>
       Object.assign(abbr, Object.fromEntries(p.tally.filter((t) => t.abbr).map((t) => [t.party, t.abbr])));
       expected ??= p.seats ?? undefined;
       if (p.tally.every((t) => t.leading === 0)) { partyTally = p.tally.map((t) => ({ party: t.party, won: t.won })); expected = p.seats ?? expected; break; }
+    }
+    // Pages with no round counter and a same-day stamp cannot show their own
+    // finality. ECI's party tally taken after counting closed can: if it names
+    // the same winners, party for party, across every seat in the house, the
+    // seats read are the declared result.
+    if (partyTally && expected && drafts.length === expected) {
+      const won = new Map<string, number>();
+      for (const d of drafts) {
+        const w = d.candidates.filter((c) => c.party !== "None of the Above").sort((a, b) => b.votes - a.votes)[0];
+        if (w) won.set(w.party, (won.get(w.party) ?? 0) + 1);
+      }
+      if (partyTally.every((t) => (won.get(t.party) ?? 0) === t.won) && [...won.values()].reduce((a, b) => a + b, 0) === partyTally.reduce((a, t) => a + t.won, 0)) {
+        for (const d of drafts) if (!d.final) { d.final = true; d.status = `${d.status ?? ""}; matches ECI's completed party tally`.replace(/^; /, ""); }
+      }
     }
     const first = drafts[0]!;
     const seats: Seat[] = drafts.sort((a, b) => a.no - b.no).map(({ final, updated, title, stateName, ...seat }) => ({
