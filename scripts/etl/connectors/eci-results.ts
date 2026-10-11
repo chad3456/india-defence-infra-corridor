@@ -174,19 +174,23 @@ export function parseCardPage(html: string): { candidates: Candidate[]; declared
 }
 
 /** The party-wise page: ECI's own tally, its party abbreviations, and the size of the house. */
-export function parsePartyPage(html: string): { tally: Array<{ party: string; abbr: string; won: number; leading: number }>; seats: number | null } | null {
+export function parsePartyPage(html: string): { tally: Array<{ party: string; abbr: string; won: number; leading: number; id?: string }>; seats: number | null } | null {
   // 2024 on: "(Total AC : 234)"; 2022–23: "Status Known For 224 out of 224 Constituencies".
   const seats = /\(Total (?:AC|PC)\s*:\s*(\d+)\)/i.exec(html) ?? /Status Known For\s*\d+\s*out of\s*(\d+)\s*Constituencies/i.exec(html);
-  const tally: Array<{ party: string; abbr: string; won: number; leading: number }> = [];
+  const tally: Array<{ party: string; abbr: string; won: number; leading: number; id?: string }> = [];
   const table = /Party Wise Results[\s\S]*?<tbody>([\s\S]*?)<\/tbody>/i.exec(html)?.[1]
-    ?? /<th[^>]*>\s*Party\s*<\/th>\s*<th[^>]*>\s*Won\s*<\/th>([\s\S]*?)<\/table>/i.exec(html)?.[1] ?? "";
-  for (const tr of table.split(/<tr[^>]*>/i).slice(1)) {
+    ?? /<th[^>]*>\s*Party\s*<\/th>\s*<th[^>]*>\s*Won\s*<\/th>([\s\S]*?)<\/table>/i.exec(html)?.[1]
+    // Hindi pages: headers are in Hindi, but each party row still links its id.
+    ?? (/partywisewinresult-\d+/i.test(html) ? html.slice(html.search(/<tr[^>]*>\s*<td[^>]*>[^<]*<\/td>\s*<td[^>]*>\s*<a href=["']partywisewinresult-/i)) : "");
+  for (const tr of (table.startsWith("<tr") ? table.split(/<tr[^>]*>/i) : table.split(/<tr[^>]*>/i).slice(1))) {
     const td = [...tr.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map((m) => decode(m[1]!));
     if (td.length < 4 || /^total$/i.test(td[0]!)) continue;
     const m = /^(.*?)\s+-\s+([^-]+)$/.exec(td[0]!);
     const won = int(td[1]), leading = int(td[2]);
     if (won == null) continue;
-    tally.push({ party: m ? m[1]!.trim() : td[0]!, abbr: m ? m[2]!.trim() : "", won, leading: leading ?? 0 });
+    // ECI's party id, the same on the English and Hindi pages: partywisewinresult-369S22.htm.
+    const id = /partywise(?:win|lead)result-(\d+)[SU]\d{2}/i.exec(tr)?.[1];
+    tally.push({ party: m ? m[1]!.trim() : td[0]!, abbr: m ? m[2]!.trim() : "", won, leading: leading ?? 0, ...(id ? { id } : {}) });
   }
   // Older pages print no house size; their footer row totals won plus leading,
   // which is the house once nothing is still leading.
@@ -311,6 +315,16 @@ async function translateParties(pages: Map<string, Array<{ ts: string; original:
     for (const h of c.candidates) {
       const match = en.candidates.filter((x) => x.votes === h.votes);
       if (match.length === 1 && h.votes > 0) map.set(h.party, (map.get(h.party) ?? new Set()).add(match[0]!.party));
+    }
+  }
+  // ECI's party-wise pages in both languages name each party by the same id.
+  const en = pages.get(`partywiseresult-${state}.htm`)?.[0], hiP = pages.get(`hi:partywiseresult-${state}.htm`)?.[0];
+  if (en && hiP) {
+    const [eh, hh] = [await snapshot(en.ts, en.original), await snapshot(hiP.ts, hiP.original)];
+    const ep = eh ? parsePartyPage(eh) : null, hp = hh ? parsePartyPage(hh) : null;
+    for (const h of hp?.tally ?? []) {
+      const e = ep?.tally.find((x) => x.id && x.id === h.id);
+      if (e) map.set(h.party, (map.get(h.party) ?? new Set()).add(e.party));
     }
   }
   const sure = new Map([...map].filter(([, s]) => s.size === 1).map(([hi, s]) => [hi, [...s][0]!]));
