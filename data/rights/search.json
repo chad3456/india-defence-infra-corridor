@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-11T15:07:47.220Z",
+  "builtAt": "2026-10-11T20:37:43.779Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1095,
+    "items": 1097,
     "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1093,
-    "withOutlet": 1026,
+    "carriedFromEarlierRuns": 1095,
+    "withOutlet": 1028,
     "bySubject": {
-      "scst": 737,
+      "scst": 739,
       "pmshri": 358
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 306
+    "offSubjectDropped": 303
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 525
+      "n": 526
     },
     {
       "key": "use",
-      "n": 387
+      "n": 388
     },
     {
       "key": "acquittal",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 76
+      "n": 77
     },
     {
       "key": "The Indian Express",
@@ -245,6 +245,10 @@
       "n": 5
     },
     {
+      "key": "Wansom AI",
+      "n": 4
+    },
+    {
       "key": "Law Trend",
       "n": 4
     },
@@ -283,10 +287,6 @@
     {
       "key": "India.com",
       "n": 4
-    },
-    {
-      "key": "Wansom AI",
-      "n": 3
     }
   ],
   "perQuery": [
@@ -306,8 +306,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 3,
-      "kept": 0,
+      "bing": 2,
+      "kept": 1,
       "offSubject": 11
     },
     {
@@ -316,9 +316,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 1,
-      "kept": 0,
-      "offSubject": 36
+      "bing": 0,
+      "kept": 1,
+      "offSubject": 34
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 7,
+      "bing": 8,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -346,7 +346,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 56,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 17
     },
@@ -357,7 +357,7 @@
       "expect": "acquittal",
       "google": 100,
       "bing": 2,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 42
     },
     {
@@ -388,27 +388,27 @@
       "google": 24,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 48,
+      "google": 49,
       "bing": 0,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 17
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 31,
+      "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 20
     },
     {
       "id": "shri-general",
@@ -416,9 +416,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 0,
-      "kept": 1,
-      "offSubject": 3
+      "bing": 11,
+      "kept": 0,
+      "offSubject": 4
     },
     {
       "id": "shri-sanctioned",
@@ -428,7 +428,7 @@
       "google": 42,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 5
     },
     {
       "id": "shri-funds",
@@ -445,10 +445,10 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 55,
+      "google": 54,
       "bing": 3,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 14
     },
     {
       "id": "shri-mou",
@@ -466,16 +466,16 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 30,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 18
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 53,
+      "google": 52,
       "bing": 4,
       "kept": 0,
       "offSubject": 12
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 42,
       "bing": 1,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 31
     }
   ],
   "items": [
@@ -18329,6 +18329,38 @@
       "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNVWFnMV9aT2hpamlaMFNxUzlsMTNjT1FLOHROUjNTYnI0LTItMk9uX0YySmdZT0xSNkI2akJ5OS1VVzZCRlpCVkhUQk82NW9mRFVTN0dnaEdRZW1hSWJPUWtQdlpBSmhGYjVuOFJmbFByX1hYQVFtWmdISGQ1S01ERXpmeE53eHltdUFrenZiNTNRaWpoVzBadUNCMlVubnBIZGU2OW5EbVEzZlNqM05OSTVabGVBVzYtR2tjUGhtSk5sNVBtVEVtQ0RSZWhJZWNwTExWYXFmbnMxQVZCVmfSAeMBQVVfeXFMTm5nWXRPR3JvbjZiRTV1WXd6Q3ZsVWRFcWhtTVdpRmJXT0VNel9SenNNek1WckR1YVVmLWRCWl9nMkR1aGktRXJuZ1RwTENjTVdQLTV6d0ZiQXpza25VMW96Q1ZCX1lzNDZ1STd1UjF5MVZndU9sR3FxS1haZlAtaXZWUUFJc0RpYjdsQkU2by1WZ2dSTzBxb3dNR1E0WGlpV2F2LUlsWHdWa0c2X0JuWlI5b1VCS2wtMnBpTnVCd1lrVEFEMXdmU1Z0WldCZjRoLUN6R2UzbEI0aDJTNk9PRVBvVXc?oc=5",
       "queries": [
         "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-11"
+    },
+    {
+      "id": "supreme court sc st act administrative enquiry mandatory for public servants",
+      "headline": "Supreme Court: SC/ST Act Administrative Enquiry Mandatory for Public Servants",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Wansom AI",
+      "published": "2026-09-22",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNTFZwVGxIdWVycUtueFdGR2hrRGxrMGJOYS12Q010WUd6XzBvMHFHbkFHaC1ySzlsYmZMaEFvUDhaQUNDR0FFd1N2OWxlVUR0YkdtTkdsOHpGV3dtVERwUEM3ZlpWT1F6RjlPNmZyVTJaYUZlS1RRMEpGMTlzOGdBNGZkTE1WTC00TXh4OE1vQ0dhMTZyaEdTQXdpVXVqemdsZU5OWWVBZ2c5RzFGMEo3WlNKNHI2bW1rT0N4d21icmgzY04tSzdIXzVn?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-11"
+    },
+    {
+      "id": "supreme court restores minimum sentence under sc st act high court cannot reduce sentence ",
+      "headline": "Supreme Court Restores Minimum Sentence Under SC/ST Act: High Court Cannot Reduce Sentence Below Statutory Minimum. The Court held that the High Court erred in reducing the sentence of six months rigorous imprisonment to the period already under",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-10-10",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE8yMXY0VFRhS0xFSnFxdUVEOGFiVUhYcEZvNG9NeEU3VHZCamR2R21sNHV5bThGRHpDQ2xWN0Zvbm9TNmtVMDBDTWVqVjhCTFQ0eURnVlpEb1Y5U2NDOUxJNGplS08?oc=5",
+      "queries": [
+        "act-convicted"
       ],
       "indexes": [
         "google"
