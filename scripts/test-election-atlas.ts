@@ -10,6 +10,8 @@ import { join } from "node:path";
 import { ATLAS_STATES, atlasState, mainElection, partyColours, reasonGap, type GovernsFile, type SirFile } from "../lib/elections-atlas-shared";
 import { allSummaries } from "../lib/elections-summary";
 import { seatPattern, statePattern } from "../lib/elections-pattern";
+import { districtsOfState, loadAcDistricts, loadCensus, resolveDistrict } from "../lib/elections-census";
+import { checkDistricts } from "./etl/connectors/census-districts";
 import { parseGoverns, validateGoverns, WITH_LEGISLATURE } from "./etl/connectors/governs";
 import { parseCardPage, parseHead, parsePartyPage, parseTablePage } from "./etl/connectors/eci-results";
 import { readdirSync } from "node:fs";
@@ -187,6 +189,23 @@ console.log("\nElectorate (ECI statistical report 15, 2024)");
     ok(`${a.name}: segment electors agree with the statewise 2024 total within 0.5%`, Math.abs(sum - row.electors) / row.electors < 0.005, `${sum} vs ${row.electors}`);
   }
   ok("the cross-check covered most states", compared >= 30, String(compared));
+}
+
+console.log("\nCensus 2011 districts and constituency placement");
+{
+  const c = loadCensus()!;
+  ok("640 census districts", c.districts.length === 640, String(c.districts.length));
+  const p = checkDistricts(c.districts);
+  ok("districts reproduce the census's national totals, and every district's religions and genders sum to its population", p.length === 0, p.slice(0, 3).join("; "));
+  const ap = districtsOfState("S01"), tg = districtsOfState("S29");
+  const undivided = c.districts.filter((d) => d.state.toLowerCase().replace(/[^a-z]/g, "") === "andhrapradesh");
+  ok("Andhra Pradesh and Telangana split undivided Andhra's 2011 districts without overlap or loss",
+    ap.length + tg.length === undivided.length && !ap.some((d) => tg.includes(d)), `${ap.length} + ${tg.length} of ${undivided.length}`);
+  const acs = loadAcDistricts()!;
+  const placed = Object.entries(acs.states).flatMap(([code, rows]) => rows.map((r) => resolveDistrict(code, r.district))).filter(Boolean).length;
+  ok("most constituencies sit in a resolved census district", placed >= 3300, String(placed));
+  // Constituency rows carry a place and nothing else ("Hindupur" is a seat, so match on fields, not text).
+  ok("no religion or caste figure is stored per constituency", Object.values(acs.states).flat().every((r) => Object.keys(r).sort().join() === "district,how,name,no"));
 }
 
 console.log(failed ? `\n${failed} failed` : "\nall passed");

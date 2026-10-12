@@ -8,6 +8,7 @@ import type { AtlasMapRow } from "@/components/elections/AtlasMap";
 import type { CompactResult, ElectorateMedians, SeatElectorate } from "@/components/elections/StateResults";
 import { joinElectors, loadElectors, pcElectors } from "./elections-electors";
 import { median } from "./elections-pattern";
+import { districtsOfState, profile, seatDistricts, type DistrictProfile } from "./elections-census";
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const short = (r: StateResult) => { const [y, m] = r.date.split("-"); return `${MONTHS[Number(m) - 1]} ${y}, ${r.seats.length}${r.expectedSeats ? `/${r.expectedSeats}` : ""} seats`; };
@@ -51,6 +52,7 @@ export function compactResults(st: AtlasState): CompactResult[] {
   const global = allAbbreviations();
   return loadResultsForState(st.eci).map((r) => {
     const joined = r.house === "AC" ? joinElectors(st.eci, r.seats) : null;
+    const dists = r.house === "AC" ? seatDistricts(st.eci) : null;
     const electorateOf = (s: { no: number; name: string }): SeatElectorate | undefined => {
       if (joined) {
         const j = joined.get(s.no);
@@ -70,6 +72,7 @@ export function compactResults(st: AtlasState): CompactResult[] {
         final: !(s.status ?? "").startsWith("not final"),
         c: s.candidates.map((c) => (c.evm != null ? [c.name, c.party, c.votes, c.evm, c.postal] : [c.name, c.party, c.votes]) as CompactResult["seats"][number]["c"][number]),
         ...((): { el?: SeatElectorate } => { const el = electorateOf(s); return el ? { el } : {}; })(),
+        ...(dists?.get(s.no) ? { dist: dists.get(s.no)!.district } : {}),
       })),
     };
   });
@@ -85,4 +88,9 @@ export function electorateMedians(st: AtlasState): ElectorateMedians | null {
     electors: median(segs.map((s) => s.electors)),
     n: segs.length,
   };
+}
+
+/** Census 2011 profiles of every district in the state, by district name. */
+export function districtProfiles(st: AtlasState): Record<string, DistrictProfile> {
+  return Object.fromEntries(districtsOfState(st.eci).map((d) => [d.district, profile(d)]));
 }

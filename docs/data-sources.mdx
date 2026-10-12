@@ -203,6 +203,20 @@ turnout from this report excludes postal ballots and is labelled EVM turnout. Vo
 measures on each state page (winner's share, margin, effective number of candidates, NOTA, postal
 share) are computed from the seat pages in `lib/elections-pattern.ts` and labelled derived.
 
+**Religion, Scheduled Castes and Tribes** are not in any Election Commission record: the
+electoral roll holds a name, a relative's name, age, gender and address. The official count is the
+2011 Census (the last taken), by district: `npm run census:districts` writes
+`data/census/districts-2011.json` from a district-level compilation of the Primary Census Abstract
+and table C-01 (religion), refused unless its districts reproduce the census's published national
+totals for population, SC, ST and each religion exactly, and unless every district's religions and
+genders sum to its population. Constituencies are placed in districts by DataMeet's
+assembly-constituency layer (scraped from ECI's polling-station locator, CC BY 2.5 IN), kept only
+where its constituency name matches ECI's results page for the same number, or is unique in the
+state; renamed districts are mapped by a written list in `lib/elections-census.ts`. A constituency
+is shown its district's census profile, labelled as the district's; no religion or caste figure is
+estimated for a constituency or a voter, and none is inferred from names. Ward results (State
+Election Commissions) and booth-level rolls (lists of named people) are out of scope.
+
 **Who governs** is `data/elections/governs.json`, read weekly by `npm run governs:ingest` from
 Wikipedia's current chief-minister table. ECI publishes results, not governments. The file is
 written only if all 31 legislatures parse.

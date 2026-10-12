@@ -15,6 +15,7 @@ export const ELECTION_TABS = [
   { href: "/elections/atlas", label: "Atlas" },
   { href: "/elections/lok-sabha-2024", label: "Lok Sabha 2024" },
   { href: "/elections/assemblies", label: "Assemblies" },
+  { href: "/elections/electorate", label: "Electorate" },
   { href: "/elections/sir", label: "SIR" },
   { href: "/elections/turnout", label: "Turnout" },
 ];

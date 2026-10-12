@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import HoverCard, { useHoverCard } from "@/components/charts/HoverCard";
 import { OTHER_PARTY_COLOUR, mainElection, partyColours } from "@/lib/elections-atlas-shared";
 import { seatPattern, statePattern, type StatePattern } from "@/lib/elections-pattern";
-import { PatternSection, SeatElectorateView, SeatProfile } from "./VotingPattern";
+import { DistrictCensus, PatternSection, SeatElectorateView, SeatProfile } from "./VotingPattern";
+import type { DistrictProfile } from "@/lib/elections-census-shared";
 
 /** A seat as the page receives it: candidates as [name, party, votes, evm?, postal?]. */
 export interface CompactSeat {
@@ -18,6 +19,8 @@ export interface CompactSeat {
   c: Array<[string, string, number, number?, number?]>;
   /** The seat's electorate at the 2024 Lok Sabha election, from ECI's statistical report 15. */
   el?: SeatElectorate;
+  /** The census district the seat lies in, where it could be placed. */
+  dist?: string;
 }
 export interface SeatElectorate {
   m: number; f: number; tg: number; nri: number; service: number; electors: number; polledEvm: number;
@@ -86,7 +89,7 @@ function analyse(r: CompactResult) {
   return { seats, parties, allVotes, colour: colourOf, top: top.filter((p) => colourOf(p) !== OTHER) };
 }
 
-export default function StateResults({ results, stateName, medians }: { results: CompactResult[]; stateName: string; medians?: ElectorateMedians | null }) {
+export default function StateResults({ results, stateName, medians, districts }: { results: CompactResult[]; stateName: string; medians?: ElectorateMedians | null; districts?: Record<string, DistrictProfile> }) {
   const houses = (["AC", "PC"] as const).filter((h) => results.some((r) => r.house === h));
   const [house, setHouse] = useState<"AC" | "PC">(houses[0] ?? "AC");
   const ofHouse = results.filter((r) => r.house === house).sort((a, b) => b.date.localeCompare(a.date));
@@ -209,7 +212,7 @@ export default function StateResults({ results, stateName, medians }: { results:
         </div>
       </section>
 
-      {pickedSeat && <SeatDetail s={pickedSeat} abbr={abbr} colour={a.colour} onClose={() => setPicked(null)} pattern={pattern} medians={medians ?? null} house={r.house} />}
+      {pickedSeat && <SeatDetail s={pickedSeat} abbr={abbr} colour={a.colour} onClose={() => setPicked(null)} pattern={pattern} medians={medians ?? null} house={r.house} district={pickedSeat.seat.dist ? districts?.[pickedSeat.seat.dist] : undefined} />}
 
       <section>
         <h3 className="text-sm font-semibold text-ink">Seats won against votes won</h3>
@@ -315,7 +318,7 @@ function Kpi({ label, value, note, colour }: { label: string; value: string; not
   );
 }
 
-function SeatDetail({ s, abbr, colour, onClose, pattern, medians, house }: { s: SeatView; abbr: (p: string) => string; colour: (p: string) => string; onClose: () => void; pattern: StatePattern; medians: ElectorateMedians | null; house: "AC" | "PC" }) {
+function SeatDetail({ s, abbr, colour, onClose, pattern, medians, house, district }: { s: SeatView; abbr: (p: string) => string; colour: (p: string) => string; onClose: () => void; pattern: StatePattern; medians: ElectorateMedians | null; house: "AC" | "PC"; district?: DistrictProfile }) {
   const seatP = pattern.seats.find((x) => x.no === s.seat.no);
   const cands = [...s.seat.c].sort((a, b) => b[2] - a[2]);
   const max = cands[0]?.[2] ?? 1;
@@ -347,6 +350,7 @@ function SeatDetail({ s, abbr, colour, onClose, pattern, medians, house }: { s: 
       {s.seat.el ? <SeatElectorateView el={s.seat.el} medians={house === "AC" ? medians : null} /> : (
         <p className="mt-4 text-[11px] text-ink-muted">This seat could not be matched by name to ECI&rsquo;s 2024 segment-wise electors report{s.seat.language === "hi" ? " (its name survives only in Hindi)" : ""}, so its electorate is not shown.</p>
       )}
+      {district && <DistrictCensus d={district} />}
       <p className="mt-2 text-[11px] text-ink-muted">
         {s.seat.language === "hi" && <>Only ECI&rsquo;s Hindi page of this seat was archived, so candidate and seat names are as printed there; party names are paired with ECI&rsquo;s English ones by matching vote counts on seats archived in both languages. </>}
         Read from <a href={s.seat.url} className="underline" target="_blank" rel="noopener noreferrer">ECI&rsquo;s result page as archived</a> on{" "}

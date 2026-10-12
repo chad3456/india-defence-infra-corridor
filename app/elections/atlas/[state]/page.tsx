@@ -2,9 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import StateResults from "@/components/elections/StateResults";
 import Electorate from "@/components/elections/Electorate";
+import CensusDistricts from "@/components/elections/CensusDistricts";
 import { SirStateDetail } from "@/components/elections/SirCharts";
 import { ALLIANCE_COLOUR, ALLIANCE_LABEL, ATLAS_STATES, atlasState, atlasStateBySlug, loadGoverns, loadSir } from "@/lib/elections-atlas";
-import { compactResults, electorateMedians, sirFor } from "@/lib/elections-atlas-view";
+import { compactResults, districtProfiles, electorateMedians, sirFor } from "@/lib/elections-atlas-view";
 
 /** One state's tool: who governs, every seat in its Assembly and Lok Sabha elections, and its SIR. */
 
@@ -57,13 +58,19 @@ export default async function StateAtlasPage({ params }: { params: Promise<{ sta
 
       <section className="mb-12">
         <h2 className="mb-4 text-lg font-semibold text-ink">Results, seat by seat</h2>
-        <StateResults results={results} stateName={st.name} medians={electorateMedians(st)} />
+        <StateResults results={results} stateName={st.name} medians={electorateMedians(st)} districts={districtProfiles(st)} />
       </section>
 
       <section className="mb-12">
         <h2 className="text-lg font-semibold text-ink">The electorate</h2>
         <p className="mb-4 mt-1 text-sm text-ink-2">How many people are on {st.name}&rsquo;s roll, and how many voted, at the last three general elections.</p>
         <Electorate st={st} />
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-lg font-semibold text-ink">Who lives here</h2>
+        <p className="mb-4 mt-1 text-sm text-ink-2">Religion, Scheduled Castes and Tribes, gender and literacy in {st.name}&rsquo;s districts, from the 2011 Census.</p>
+        <CensusDistricts st={st} />
       </section>
 
       <section className="mb-12">

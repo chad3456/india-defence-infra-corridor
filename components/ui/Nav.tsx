@@ -67,6 +67,7 @@ const GROUPS: Group[] = [
       { href: "/elections/atlas", label: "Election atlas", blurb: "India by who governs; every state opens seat by seat" },
       { href: "/elections/lok-sabha-2024", label: "Lok Sabha 2024", blurb: "All 543 seats: the chamber, seats against votes, every state" },
       { href: "/elections/assemblies", label: "Assemblies", blurb: "Every state assembly as it was elected, against the majority line" },
+      { href: "/elections/electorate", label: "Electorate", blurb: "The roll by gender; religion, SC and ST by district (Census 2011)" },
       { href: "/elections/sir", label: "Roll revision (SIR)", blurb: "Names left off draft rolls, by the reason given" },
       { href: "/elections/turnout", label: "Turnout", blurb: "Turnout and electors by state, 2014 to 2024" },
     ],

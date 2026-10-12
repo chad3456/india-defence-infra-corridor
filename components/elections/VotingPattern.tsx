@@ -3,6 +3,7 @@
 import HoverCard, { useHoverCard } from "@/components/charts/HoverCard";
 import { median, rankOf, voteShares, type SeatPattern, type StatePattern } from "@/lib/elections-pattern";
 import type { CompactResult, ElectorateMedians, SeatElectorate } from "./StateResults";
+import type { DistrictProfile } from "@/lib/elections-census-shared";
 
 const pct = (n: number, d = 1) => `${n.toFixed(d)}%`;
 const fmt = (n: number) => n.toLocaleString("en-IN");
@@ -222,6 +223,49 @@ export function SeatElectorateView({ el, medians }: { el: SeatElectorate; median
         ECI, General Election 2024, statistical report 15 (assembly segment wise electors).
         {el.match === "spelling" ? " Matched to this seat by a near-identical spelling of its name." : el.match === "order" ? " Matched to this seat by its position among its Lok Sabha seat's segments, which ECI lists in constituency order." : ""}
         {medians ? " The roll is the 2024 one; the assembly election shown may be from another year." : ""}
+      </p>
+    </div>
+  );
+}
+
+/**
+ * The census profile of the district a constituency lies in. ECI records no
+ * religion or caste, so this is the only official count there is: the 2011
+ * Census, by district. It describes the district, not the constituency.
+ */
+export function DistrictCensus({ d }: { d: DistrictProfile }) {
+  const shades = ["var(--seq-700)", "var(--seq-550)", "var(--seq-400)", "var(--seq-250)", "var(--seq-100)"];
+  const ranked = [...d.religion].sort((a, b) => b[1] - a[1]);
+  const shown = ranked.filter(([, v]) => v >= 1).slice(0, 4);
+  const rest = 100 - shown.reduce((a, [, v]) => a + v, 0);
+  const segs: Array<[string, number]> = rest > 0.05 ? [...shown, ["All others", rest]] : shown;
+  return (
+    <div className="mt-5">
+      <p className="text-[11px] uppercase tracking-wide text-ink-muted">The district · {d.district} · Census 2011</p>
+      <div className="mt-2 flex h-4 overflow-hidden rounded-sm" role="img" aria-label={`Religion in ${d.district} district, Census 2011`}>
+        {segs.map(([k, v], i) => <span key={k} title={`${k}: ${v.toFixed(1)}%`} style={{ width: `${v}%`, background: shades[i] }} />)}
+      </div>
+      <p className="mt-1 text-[11px] text-ink-2">
+        {segs.map(([k, v], i) => <span key={k}>{i > 0 && " · "}<span className="mr-1 inline-block h-2 w-2 rounded-sm align-middle" style={{ background: shades[i] }} />{k} {v.toFixed(1)}%</span>)}
+      </p>
+      <dl className="mt-3 grid gap-x-6 gap-y-1.5 text-xs sm:grid-cols-2">
+        {([
+          ["Population", fmt(d.population), "2011"],
+          ["Scheduled Castes", pct(d.sc), "of the district's population"],
+          ["Scheduled Tribes", pct(d.st), "of the district's population"],
+          ["Women per 1,000 men", String(d.sexRatio), "whole population, not only electors (derived)"],
+          ["Literate", pct(d.literacy), `of all ages, under-7s included, so below the official literacy rate; women ${pct(d.femaleLiteracy)} (derived)`],
+        ] as Array<[string, string, string]>).map(([k, v, note]) => (
+          <div key={k} className="flex items-baseline gap-2 border-b border-gridline pb-1">
+            <dt className="w-32 shrink-0 text-ink-2">{k}</dt>
+            <dd className="min-w-0"><span className="font-medium tabular-nums text-ink">{v}</span> <span className="text-ink-muted">· {note}</span></dd>
+          </div>
+        ))}
+      </dl>
+      <p className="mt-1.5 text-[11px] text-ink-muted">
+        District figures, not this constituency&rsquo;s: the Election Commission records no one&rsquo;s religion or caste, and the census
+        publishes religion by district, not by constituency. Scheduled Castes and Tribes are the only castes the census counts.
+        Census of India 2011, the last census taken.
       </p>
     </div>
   );
