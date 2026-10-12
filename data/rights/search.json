@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-12T06:36:07.866Z",
+  "builtAt": "2026-10-12T18:15:44.027Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1100,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1099,
-    "withOutlet": 1031,
+    "items": 1103,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 1100,
+    "withOutlet": 1034,
     "bySubject": {
-      "scst": 740,
+      "scst": 743,
       "pmshri": 360
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 304
+    "offSubjectDropped": 306
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 528
+      "n": 530
     },
     {
       "key": "use",
-      "n": 389
+      "n": 390
     },
     {
       "key": "acquittal",
@@ -50,11 +50,11 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 95
+      "n": 96
     },
     {
       "key": "Lawtext",
-      "n": 78
+      "n": 79
     },
     {
       "key": "The Indian Express",
@@ -185,6 +185,10 @@
       "n": 7
     },
     {
+      "key": "Live Law",
+      "n": 7
+    },
+    {
       "key": "LawStreet Journal",
       "n": 6
     },
@@ -206,10 +210,6 @@
     },
     {
       "key": "Mathrubhumi English",
-      "n": 6
-    },
-    {
-      "key": "Live Law",
       "n": 6
     },
     {
@@ -307,8 +307,8 @@
       "expect": "use",
       "google": 100,
       "bing": 2,
-      "kept": 0,
-      "offSubject": 9
+      "kept": 2,
+      "offSubject": 10
     },
     {
       "id": "act-convicted",
@@ -318,15 +318,15 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 35
+      "offSubject": 34
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
-      "bing": 7,
+      "google": 52,
+      "bing": 9,
       "kept": 0,
       "offSubject": 8
     },
@@ -335,20 +335,20 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 48,
+      "google": 49,
       "bing": 0,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 15
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 56,
+      "google": 57,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 17
+      "kept": 1,
+      "offSubject": 18
     },
     {
       "id": "act-acquittal",
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 49,
+      "google": 48,
       "bing": 2,
       "kept": 0,
       "offSubject": 10
@@ -388,17 +388,17 @@
       "google": 24,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 49,
-      "bing": 0,
+      "google": 50,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 17
     },
     {
       "id": "act-fabricated",
@@ -416,16 +416,16 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 11,
+      "bing": 12,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 42,
+      "google": 43,
       "bing": 1,
       "kept": 0,
       "offSubject": 5
@@ -445,9 +445,9 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 54,
+      "google": 53,
       "bing": 3,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 13
     },
     {
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 42,
       "bing": 1,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 31
     }
   ],
   "items": [
@@ -18409,6 +18409,54 @@
       "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNY2VuNjd5aXZKdUh5VktkbWVYVVdxaXVSZ3BIcndWUjN6OUdnc2x3S0Y2bXJjTXVVMHhIRVF6UERhbDZTNzlTTnhTZzhweFAzZWY4aVhySFdzVHYzSzVFN3djVkpnanVraDdSYTZRNFpZeTJWMEp5bUFITVpFa2taejVTQ1JPWW50RDVIb19vLUhuLXNqSDk0aUlNOTRnTmw5RmhQQWsyRWg5NGFyeUotN1NMVzduRlpZQ2xjQUJRblVsUW9WaDlqSGM0ZTdhRTlFTzRKOHlZLTJnMy15M3lyMlNNaUZUM0luNUlfeGN4YlJhckZw?oc=5",
       "queries": [
         "shri-upgrade"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-12"
+    },
+    {
+      "id": "caste abuse against woman does not attract sc st act merely because husband belongs to sc ",
+      "headline": "Caste Abuse Against Woman Does Not Attract SC/ST Act Merely Because Husband Belongs To SC Community:...",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Live Law",
+      "published": "2026-10-12",
+      "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNQzU1aUtoaEdGcDNwaWxxblVfY0RLWW9pMHRsVVUyZWsyTlRSckxMT3N2azlTcS1kYnhpdGFLVHh3aDhwUVJTZmExR0JNUlE2c05CMDI3aGNkVHc1RTBVMHBCRVZrN3phMXk4VEFFdmxvX0VueUk1ODRQX25lVVQyZFRRNmVDWmxicE9TU3BVMHBSWmZ4SzNxaHJYMFhuR2tvUTJYNkZhT2lVSzhGOW9xZTVmV2ttS3lWSDlRZ0s4YXVTaHhmWTBtdE1nalZRclRxeXVRRjZRall4RDA3c2ttZ3VNSklsUGMtdkZtLWZtT1E5QdIB8gFBVV95cUxNQzU1aUtoaEdGcDNwaWxxblVfY0RLWW9pMHRsVVUyZWsyTlRSckxMT3N2azlTcS1kYnhpdGFLVHh3aDhwUVJTZmExR0JNUlE2c05CMDI3aGNkVHc1RTBVMHBCRVZrN3phMXk4VEFFdmxvX0VueUk1ODRQX25lVVQyZFRRNmVDWmxicE9TU3BVMHBSWmZ4SzNxaHJYMFhuR2tvUTJYNkZhT2lVSzhGOW9xZTVmV2ttS3lWSDlRZ0s4YXVTaHhmWTBtdE1nalZRclRxeXVRRjZRall4RDA3c2ttZ3VNSklsUGMtdkZtLWZtT1E5QQ?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-12"
+    },
+    {
+      "id": "bombay high court dismisses petition seeking transfer of investigation in sc st act case d",
+      "headline": "Bombay High Court Dismisses Petition Seeking Transfer of Investigation in SC/ST Act Case Due to Lack of Evidence of Bias. Court holds that mere registration of multiple FIRs does not establish mala fides or warrant investigation transfer under Article 226 of th",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Lawtext",
+      "published": "2026-10-12",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9LY1JPWDRUM2FrVWpQNmlsVEQzN3A4TjdLNUI0MFIwM3d1ZGtYLTV4dEpIZG5BVTBBdFEtQks0X3VVbkI4VTUzakFibW5hUGRUc094QmpHYmVJWXdQX2dTYVNjdlJaZw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-12"
+    },
+    {
+      "id": "hathras court orders recovery of sc st act compensation in 9 cases",
+      "headline": "Hathras court orders recovery of SC/ST Act compensation in 9 cases",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Times of India",
+      "published": "2026-10-12",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQYXpNU1QzaEs5SzlhNG9sR3ZtVWRPQUpIU1ZTWllGUm5oQVk2UDhVZGNuV3Y0RjZZTG4yaWxsSF83VE5MM2NOMjhZWUY2bjFZQUwydWh4dmJ2SlRnbkdqRFdyS2JMMkY4YUtBSEhsTGpRTVZPRHg1SXB2MEtHSzBGVjhTczVsZGZBRlZ5eFJ1b1dUUTQ4eHlyaEZXcUg5RWItWEFZSS04cjdVc0JvWE4yM2FSSE9ad3ZISC1xWFIwcmhGTGNfNnpWeEZ0V0g3TkFPZVZkR9IB2gFBVV95cUxQUFhyNDdlRDlBM0laanFyNGNnR3UzVzRiNlhYVXNGSnNIeS1zbkFyYmc4LWdCakxsbm9VeDNBQ213a0tkcXZZSXdRcWdEZUpuWmZvT1Frd3RyejFJMDFleERzT0VqOVNOZ3dleDlVNGh1N1d4Y0laVHNWaGdFVzl2UDFoLUxlY01MR192SmhQMUxRWTVlaVRjTHJwSU9SZzh6M1I5S2tDdTZwNUhIbDllV2c5Q3RPbi1EMWJ5N3MteGtLODE3VjJTQXdfcEo1SE1yY2E1ZVpDTXZoZw?oc=5",
+      "queries": [
+        "act-pendency"
       ],
       "indexes": [
         "google"
