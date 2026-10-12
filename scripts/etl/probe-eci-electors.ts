@@ -103,4 +103,45 @@ export async function run(): Promise<void> {
   console.log("done");
 }
 
-if (isEntryPoint(import.meta.url)) run().catch(async (e) => { console.error(e); await flush(); process.exit(1); });
+/**
+ * ECI_FETCH=1: list every ECI report file the archive holds, and download the
+ * 2024 Lok Sabha report that gives the electorate of every assembly segment
+ * into data/pdf/, where the repository's PDF tooling can read it and the
+ * figures stay pinned to the exact bytes they came from. Electoral-roll PDFs
+ * (ER/…: lists of individual voters) are never fetched.
+ */
+const PDF_DIR = join(process.cwd(), "data", "pdf");
+const WANT: Array<[RegExp, string]> = [
+  [/GE-2024-statistical-report\/15-Assembly-SegmentWise-Information-Electors\.pdf$/i, "eci-ge2024-15-assembly-segment-electors.pdf"],
+];
+export async function fetchReports(): Promise<void> {
+  const listing: string[] = [];
+  for (const url of ["eci.gov.in/eci-backend/public/all_files/", "eci.gov.in/eci-backend/public//all_files/", "www.eci.gov.in/eci-backend/public/all_files/"]) {
+    const rows = await cdx({ url, matchType: "prefix", fl: "original,timestamp,length,statuscode", filter: "statuscode:200", collapse: "urlkey", limit: "20000" });
+    for (const [o, ts, len] of rows ?? []) listing.push(`${ts} ${len} ${o}`);
+    console.log(`  ${url}: ${rows?.length ?? "error"}`);
+  }
+  out.reportFiles = [...new Set(listing)].sort();
+  await flush();
+  const got: Array<Record<string, unknown>> = [];
+  for (const [re, name] of WANT) {
+    const hit = listing.map((l) => l.split(" ")).filter(([, , o]) => re.test(o ?? "")).sort((a, b) => b[0]!.localeCompare(a[0]!))[0];
+    if (!hit) { got.push({ name, found: false }); continue; }
+    const [ts, len, orig] = hit;
+    if (Number(len) > 60_000_000) { got.push({ name, orig, len, skipped: "too large to commit" }); continue; }
+    await sleep(1500);
+    try {
+      const res = await fetch(`https://web.archive.org/web/${ts}id_/${orig}`, { signal: AbortSignal.timeout(300_000) });
+      const buf = Buffer.from(await res.arrayBuffer());
+      const isPdf = buf.subarray(0, 5).toString() === "%PDF-";
+      got.push({ name, orig, ts, status: res.status, bytes: buf.length, isPdf });
+      if (res.ok && isPdf) { await mkdir(PDF_DIR, { recursive: true }); await writeFile(join(PDF_DIR, name), buf); }
+    } catch (e) { got.push({ name, orig, error: String(e) }); }
+  }
+  out.fetched = got;
+  await flush();
+  console.log(JSON.stringify(got, null, 1));
+}
+
+if (isEntryPoint(import.meta.url) && process.env.ECI_FETCH) fetchReports().catch(async (e) => { console.error(e); await flush(); process.exit(1); });
+else if (isEntryPoint(import.meta.url)) run().catch(async (e) => { console.error(e); await flush(); process.exit(1); });
