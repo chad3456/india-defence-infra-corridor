@@ -1,19 +1,16 @@
 {
-  "id": "run-1791805348318",
-  "startedAt": "2026-10-12T11:24:01.238Z",
-  "finishedAt": "2026-10-12T11:42:28.318Z",
+  "id": "run-1791812964656",
+  "startedAt": "2026-10-12T13:32:58.148Z",
+  "finishedAt": "2026-10-12T13:49:24.656Z",
   "status": "partial",
   "connectorsRun": 9,
   "connectorsFailed": 0,
-  "seriesUpdated": 390,
+  "seriesUpdated": 510,
   "messages": [
-    "worldbank: stopped after 352 of 690 indicators — run budget spent; the rest keep their stored values",
+    "worldbank: stopped after 472 of 690 indicators — run budget spent; the rest keep their stored values",
     "satp: terror: https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir -> HTTP 403",
     "satp: terror: no candidate URL yielded a full table; keeping previous data",
-    "satp: punjab: https://www.satp.org/datasheet-terrorist-attack/fatalities/india-punjab -> HTTP 403",
-    "satp: punjab: no candidate URL yielded a full table; keeping previous data",
-    "satp-states: Andhra Pradesh: HTTP 503",
-    "satp-states: summed without Andhra Pradesh — the national total is short by their share",
+    "ingest: Press Information Bureau: response was not a feed (blocked or interstitial)",
     "ingest: The Tribune: HTTP 403",
     "ingest: Deccan Herald: HTTP 404",
     "ingest: The New Indian Express: HTTP 404",
@@ -25,7 +22,6 @@
     "ingest: Outlook India: HTTP 404",
     "ingest: Scroll.in: response was not a feed (blocked or interstitial)",
     "ingest: The Wire: response was not a feed (blocked or interstitial)",
-    "ingest: Moneycontrol: response was not a feed (blocked or interstitial)",
     "ingest: IndiaSpend: HTTP 404",
     "ingest: FORCE Magazine: HTTP 404",
     "ingest: Defence Aviation Post: HTTP 404",
@@ -34,7 +30,7 @@
     "ingest: Search: ports — port India commissioned cargo: feed had no items",
     "ingest: Search: pipelines — gas pipeline India commissioned: feed had no items",
     "ingest: Search: psu-msme — MSME India cluster launched: feed had no items",
-    "ingest funnel: 1668 items -> 605 candidates -> 49 events (lost: 325 no sector, 153 not an action, 78 no place)",
+    "ingest funnel: 1686 items -> 608 candidates -> 59 events (lost: 330 no sector, 147 not an action, 72 no place)",
     "x: X_BEARER_TOKEN not set — reading X is paid per post since February 2026, so this connector is inactive. Official announcements still arrive via the PIB, PMO and ministry feeds at no cost."
   ]
 }
