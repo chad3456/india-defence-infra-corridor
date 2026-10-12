@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-11T21:04:01.905Z",
+ "builtAt": "2026-10-12T13:31:23.550Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -205772,6 +205772,13 @@
    "source": "List_of_surface-to-air_missiles"
   },
   {
+   "name": "Steelfin",
+   "key": "steelfin",
+   "kind": "surface-to-air",
+   "country": "United States",
+   "source": "List_of_surface-to-air_missiles"
+  },
+  {
    "name": "2K11 Krug/SA-4 \"Ganef\"",
    "key": "2k11 krug sa 4 ganef",
    "kind": "surface-to-air",
@@ -206491,7 +206498,7 @@
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 2,
+   "kept": 0,
    "via": "direct"
   },
   {
@@ -206505,18 +206512,32 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 2,
+   "kept": 1,
    "via": "direct"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-hshsnq",
+   "kind": "delivery",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-10-12",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/u-s-army-takes-delivery-of-first-korean-built-wheeled-howitzer/",
+   "headline": "U.S. Army takes delivery of first Korean-built wheeled howitzer",
+   "primary": false
+  },
   {
    "id": "ev-1x1xxwv",
    "kind": "delivery",
@@ -206579,20 +206600,6 @@
    "primary": false
   },
   {
-   "id": "ev-o7m75u",
-   "kind": "order",
-   "systems": [],
-   "countries": [
-    "United States"
-   ],
-   "value": null,
-   "date": "2026-10-09",
-   "outlet": "Breaking Defense",
-   "url": "https://breakingdefense.com/2026/10/pentagon-lockheed-weigh-multi-year-f-35-production-sustainment-deal/",
-   "headline": "EXCLUSIVE: Pentagon, Lockheed weigh multi-year F-35 production, sustainment deal",
-   "primary": false
-  },
-  {
    "id": "ev-17cl2er",
    "kind": "order",
    "systems": [],
@@ -206608,6 +206615,20 @@
    "outlet": "Defense One",
    "url": "https://www.defenseone.com/policy/2026/10/pentagon-350-million-contracts-official/416543/",
    "headline": "The Pentagon awarded $350M to a firm tied to a senior DOD official",
+   "primary": false
+  },
+  {
+   "id": "ev-o7m75u",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-10-09",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/10/pentagon-lockheed-weigh-multi-year-f-35-production-sustainment-deal/",
+   "headline": "EXCLUSIVE: Pentagon, Lockheed weigh multi-year F-35 production, sustainment deal",
    "primary": false
   },
   {
@@ -206639,6 +206660,20 @@
    "primary": false
   },
   {
+   "id": "ev-mn8k8k",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Germany"
+   ],
+   "value": null,
+   "date": "2026-10-08",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/10/german-budget-committee-approves-procurement-of-four-additional-meko-a-200-deu-class-frigates/",
+   "headline": "German Budget Committee approves procurement of four additional MEKO A-200 DEU-class frigates",
+   "primary": false
+  },
+  {
    "id": "ev-1c6m1ge",
    "kind": "order",
    "systems": [],
@@ -206654,20 +206689,6 @@
    "outlet": "Breaking Defense",
    "url": "https://breakingdefense.com/2026/10/pentagon-raytheon-ink-up-to-6-3-billion-multi-year-contract-for-sm-3-ib-missiles/",
    "headline": "Pentagon, Raytheon ink up to $6.3 billion multi-year contract for SM-3 IB missiles",
-   "primary": false
-  },
-  {
-   "id": "ev-mn8k8k",
-   "kind": "order",
-   "systems": [],
-   "countries": [
-    "Germany"
-   ],
-   "value": null,
-   "date": "2026-10-08",
-   "outlet": "Naval News",
-   "url": "https://www.navalnews.com/naval-news/2026/10/german-budget-committee-approves-procurement-of-four-additional-meko-a-200-deu-class-frigates/",
-   "headline": "German Budget Committee approves procurement of four additional MEKO A-200 DEU-class frigates",
    "primary": false
   },
   {
@@ -207573,6 +207594,35 @@
  ],
  "groups": [
   {
+   "key": "delivery||united states",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-hshsnq",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-10-12",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-army-takes-delivery-of-first-korean-built-wheeled-howitzer/",
+     "headline": "U.S. Army takes delivery of first Korean-built wheeled howitzer",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
    "key": "delivery||united kingdom",
    "systems": [],
    "countries": [
@@ -207673,20 +207723,6 @@
      "primary": false
     },
     {
-     "id": "ev-o7m75u",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States"
-     ],
-     "value": null,
-     "date": "2026-10-09",
-     "outlet": "Breaking Defense",
-     "url": "https://breakingdefense.com/2026/10/pentagon-lockheed-weigh-multi-year-f-35-production-sustainment-deal/",
-     "headline": "EXCLUSIVE: Pentagon, Lockheed weigh multi-year F-35 production, sustainment deal",
-     "primary": false
-    },
-    {
      "id": "ev-17cl2er",
      "kind": "order",
      "systems": [],
@@ -207702,6 +207738,20 @@
      "outlet": "Defense One",
      "url": "https://www.defenseone.com/policy/2026/10/pentagon-350-million-contracts-official/416543/",
      "headline": "The Pentagon awarded $350M to a firm tied to a senior DOD official",
+     "primary": false
+    },
+    {
+     "id": "ev-o7m75u",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-10-09",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/10/pentagon-lockheed-weigh-multi-year-f-35-production-sustainment-deal/",
+     "headline": "EXCLUSIVE: Pentagon, Lockheed weigh multi-year F-35 production, sustainment deal",
      "primary": false
     },
     {
@@ -208076,8 +208126,8 @@
    "outlets": [
     "Defence Blog",
     "Defense News",
-    "Breaking Defense",
     "Defense One",
+    "Breaking Defense",
     "Naval News"
    ],
    "value": null,
