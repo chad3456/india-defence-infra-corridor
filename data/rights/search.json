@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-11T20:37:43.779Z",
+  "builtAt": "2026-10-12T00:02:03.824Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1097,
+    "items": 1099,
     "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1095,
-    "withOutlet": 1028,
+    "carriedFromEarlierRuns": 1097,
+    "withOutlet": 1030,
     "bySubject": {
-      "scst": 739,
-      "pmshri": 358
+      "scst": 740,
+      "pmshri": 359
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 303
+    "offSubjectDropped": 302
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 526
+      "n": 527
     },
     {
       "key": "use",
-      "n": 388
+      "n": 389
     },
     {
       "key": "acquittal",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 77
+      "n": 78
     },
     {
       "key": "The Indian Express",
@@ -173,15 +173,15 @@
       "n": 8
     },
     {
+      "key": "EdexLive",
+      "n": 8
+    },
+    {
       "key": "The News Mill",
       "n": 7
     },
     {
       "key": "Bhaskar English",
-      "n": 7
-    },
-    {
-      "key": "EdexLive",
       "n": 7
     },
     {
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 100,
       "bing": 2,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 11
     },
     {
@@ -317,7 +317,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 34
     },
     {
@@ -326,7 +326,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 8,
+      "bing": 6,
       "kept": 0,
       "offSubject": 7
     },
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 48,
+      "google": 49,
       "bing": 1,
       "kept": 0,
       "offSubject": 9
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 24,
+      "google": 23,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -395,9 +395,9 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 49,
+      "google": 50,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 17
     },
     {
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 31,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 19
     },
     {
       "id": "shri-general",
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 42,
+      "google": 43,
       "bing": 1,
       "kept": 0,
       "offSubject": 5
@@ -447,7 +447,7 @@
       "expect": "use",
       "google": 54,
       "bing": 3,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 14
     },
     {
@@ -18366,6 +18366,38 @@
         "google"
       ],
       "firstSeen": "2026-10-11"
+    },
+    {
+      "id": "high court of karnataka quashes criminal proceedings against teacher for alleged false cas",
+      "headline": "High Court of Karnataka Quashes Criminal Proceedings Against Teacher for Alleged False Caste Certificate — Lack of Sanction Under SC/ST Act Renders Prosecution Invalid. Petitioner's Appointment Based on Caste Certificate Issued by Competent Authority",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Lawtext",
+      "published": "2026-10-10",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBDbGhwLXV2RFl1NXhXQjh3U3ZzUHEtMXBwNFh3Zy15bjRFb1hWLXNlWENKaEN1eUh6UUFYak5XQWpKeExvRVZIUWx4NWhCNGI4eHRYNjVPb0VNTGkxeGVmMEN5TlMxQQ?oc=5",
+      "queries": [
+        "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-12"
+    },
+    {
+      "id": "uttar pradesh 1 753 schools to be upgraded under the pm shri scheme",
+      "headline": "Uttar Pradesh: 1,753 schools to be upgraded under the PM SHRI scheme",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "EdexLive",
+      "published": "2023-02-27",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNb2FCOFhZTDl3SU41anp1Q2ZKZm5vT195Vi0tS1llaHVhZXdUcG9VUlBjZGZNVVR6d3F4ZXI4eDVNMVNyUnMzUzl1YzN6cjF1NGhRdTg1eEpDZ1Bsbzc3Zm50VlQweUtoVDI5bjBwZjRwTEpWaWZydEw1MGhCQkRna3g1OVJqRmJVNk5fdDNLVUZ6MHUyMFN0bm1UdnpFQlRnT0lzVjkySVF0MEHSAbgBQVVfeXFMTWU5MENERk1RZjc0cTBBODNlcmVveW1iRFo0X09ac0FiRnBjaEcydFJpQnd1cUpHZGFaQ1JSY19ET0JHckxkZmxxYkZFdTU5cHhUZUpDaG9LTkRMekhCRTcxZnBEYTZ0YkZlMFZzTFk0SE02dm9YREtENTJBSlp1eTRPUlo0a1VXZlV5V2RLWWZYOV9tZF9DaFl0b2lXM19wWFc4c0d5czFKaHpsSUxyMXBlN2dWWVQ1dw?oc=5",
+      "queries": [
+        "shri-upgrade"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-12"
     }
   ]
 }
