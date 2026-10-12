@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-12T00:02:03.824Z",
+  "builtAt": "2026-10-12T06:36:07.866Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1099,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1097,
-    "withOutlet": 1030,
+    "items": 1100,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1099,
+    "withOutlet": 1031,
     "bySubject": {
       "scst": 740,
-      "pmshri": 359
+      "pmshri": 360
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 302
+    "offSubjectDropped": 304
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 527
+      "n": 528
     },
     {
       "key": "use",
@@ -308,7 +308,7 @@
       "google": 100,
       "bing": 2,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 9
     },
     {
       "id": "act-convicted",
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 34
+      "offSubject": 35
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 6,
+      "bing": 7,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
@@ -346,7 +346,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 56,
-      "bing": 2,
+      "bing": 1,
       "kept": 0,
       "offSubject": 17
     },
@@ -358,7 +358,7 @@
       "google": 100,
       "bing": 2,
       "kept": 0,
-      "offSubject": 42
+      "offSubject": 41
     },
     {
       "id": "act-hostile",
@@ -376,16 +376,16 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 49,
-      "bing": 1,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 10
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 23,
+      "google": 24,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -395,20 +395,20 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 50,
+      "google": 49,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 17
+      "kept": 0,
+      "offSubject": 16
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 31,
+      "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 20
     },
     {
       "id": "shri-general",
@@ -418,14 +418,14 @@
       "google": 100,
       "bing": 11,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 6
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 43,
+      "google": 42,
       "bing": 1,
       "kept": 0,
       "offSubject": 5
@@ -448,14 +448,14 @@
       "google": 54,
       "bing": 3,
       "kept": 1,
-      "offSubject": 14
+      "offSubject": 13
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 46,
+      "google": 45,
       "bing": 2,
       "kept": 0,
       "offSubject": 4
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 52,
+      "google": 54,
       "bing": 4,
       "kept": 0,
       "offSubject": 12
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 42,
+      "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 31
+      "offSubject": 32
     }
   ],
   "items": [
@@ -18391,6 +18391,22 @@
       "outlet": "EdexLive",
       "published": "2023-02-27",
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNb2FCOFhZTDl3SU41anp1Q2ZKZm5vT195Vi0tS1llaHVhZXdUcG9VUlBjZGZNVVR6d3F4ZXI4eDVNMVNyUnMzUzl1YzN6cjF1NGhRdTg1eEpDZ1Bsbzc3Zm50VlQweUtoVDI5bjBwZjRwTEpWaWZydEw1MGhCQkRna3g1OVJqRmJVNk5fdDNLVUZ6MHUyMFN0bm1UdnpFQlRnT0lzVjkySVF0MEHSAbgBQVVfeXFMTWU5MENERk1RZjc0cTBBODNlcmVveW1iRFo0X09ac0FiRnBjaEcydFJpQnd1cUpHZGFaQ1JSY19ET0JHckxkZmxxYkZFdTU5cHhUZUpDaG9LTkRMekhCRTcxZnBEYTZ0YkZlMFZzTFk0SE02dm9YREtENTJBSlp1eTRPUlo0a1VXZlV5V2RLWWZYOV9tZF9DaFl0b2lXM19wWFc4c0d5czFKaHpsSUxyMXBlN2dWWVQ1dw?oc=5",
+      "queries": [
+        "shri-upgrade"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-12"
+    },
+    {
+      "id": "rewa pm shri school inspection commissioner collector interact with students",
+      "headline": "Rewa PM Shri School Inspection: Commissioner, Collector Interact With Students",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Dainik Jagran MP CG",
+      "published": "2026-09-21",
+      "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNY2VuNjd5aXZKdUh5VktkbWVYVVdxaXVSZ3BIcndWUjN6OUdnc2x3S0Y2bXJjTXVVMHhIRVF6UERhbDZTNzlTTnhTZzhweFAzZWY4aVhySFdzVHYzSzVFN3djVkpnanVraDdSYTZRNFpZeTJWMEp5bUFITVpFa2taejVTQ1JPWW50RDVIb19vLUhuLXNqSDk0aUlNOTRnTmw5RmhQQWsyRWg5NGFyeUotN1NMVzduRlpZQ2xjQUJRblVsUW9WaDlqSGM0ZTdhRTlFTzRKOHlZLTJnMy15M3lyMlNNaUZUM0luNUlfeGN4YlJhckZw?oc=5",
       "queries": [
         "shri-upgrade"
       ],
