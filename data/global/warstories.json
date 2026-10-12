@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-12T05:57:30.274Z",
-  "previousBuild": "2026-10-11T23:41:31.285Z",
+  "builtAt": "2026-10-12T17:54:26.255Z",
+  "previousBuild": "2026-10-12T05:57:30.274Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 152,
-    "createdThisRun": 1,
+    "stories": 155,
+    "createdThisRun": 3,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 273,
+    "itemsSeen": 275,
     "corroboration": {
-      "one": 132,
+      "one": 135,
       "two": 12,
       "threePlus": 8
     }
@@ -28,12 +28,12 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 79
+      "n": 80
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 46
+      "n": 48
     },
     {
       "id": "targeting",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 24
+      "n": 25
     },
     {
       "iso": "IND",
@@ -112,14 +112,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 30,
+      "items": 32,
       "kept": 2
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Military Times",
@@ -131,13 +131,13 @@
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "C4ISRNET",
       "ok": true,
       "items": 25,
-      "kept": 8
+      "kept": 7
     },
     {
       "outlet": "DefenseScoop",
@@ -149,19 +149,19 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 2
+      "kept": 0
     },
     {
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Defense One",
@@ -173,13 +173,13 @@
       "outlet": "Naval News",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -777,6 +777,62 @@
         {
           "outlet": "Indian Defence Research Wing",
           "url": "https://idrw.org/indian-navy-seeks-shakti-ew-system-to-replace-ellora-mk-ii/",
+          "published": "2026-10-12"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/airbus-and-kratos-complete-first-european-flight-of-u740-valkyrie-uncrewed-combat-aircraft/",
+      "headline": "Airbus and Kratos complete first European flight of U740 Valkyrie uncrewed combat aircraft",
+      "firstSeen": "2026-10-12",
+      "lastSeen": "2026-10-12",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/airbus-and-kratos-complete-first-european-flight-of-u740-valkyrie-uncrewed-combat-aircraft/",
+          "published": "2026-10-12"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/10/us-norwegian-startup-heaviside-launches-tyr-loitering-munition/",
+      "headline": "US-Norwegian startup Heaviside launches Tyr loitering munition",
+      "firstSeen": "2026-10-12",
+      "lastSeen": "2026-10-12",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/us-norwegian-startup-heaviside-launches-tyr-loitering-munition/",
+          "published": "2026-10-12"
+        }
+      ]
+    },
+    {
+      "id": "https://www.navalnews.com/event-news/euronaval-2026/2026/10/exail-starts-production-of-unmanned-mcm-system-for-indonesian-navy/",
+      "headline": "Exail Starts Production of Unmanned MCM System for Indonesian Navy",
+      "firstSeen": "2026-10-12",
+      "lastSeen": "2026-10-12",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Naval News",
+          "url": "https://www.navalnews.com/event-news/euronaval-2026/2026/10/exail-starts-production-of-unmanned-mcm-system-for-indonesian-navy/",
           "published": "2026-10-12"
         }
       ]
