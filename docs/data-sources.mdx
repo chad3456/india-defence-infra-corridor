@@ -187,6 +187,22 @@ vote shares are sums over the seats read with NOTA included, and both are labell
 house is shown at its latest election covering most of its seats, so a separately held adjourned
 poll (Meghalaya's Sohiong, May 2023) does not stand in for the assembly.
 
+**The electorate, constituency by constituency**, is ECI's own *General Election 2024
+Statistical Report 15: Assembly Segment Wise Information of Electors*: for every assembly segment,
+general electors by gender (men, women, third gender), overseas and service electors, and votes
+polled on EVMs. eci.gov.in refuses this pipeline, so the PDF was fetched from the Internet
+Archive's copy by `npm run eci:electors:probe` and committed at
+`data/pdf/eci-ge2024-15-assembly-segment-electors.pdf`; `npm run eci:electors` reads it offline
+into `data/elections/electors-ge2024.json`. A row is kept only if its parts add up, and every Lok
+Sabha seat's subtotal must equal the sum of its segments; `npm run test:election-atlas` also checks
+each state's segment total against the statewise 2024 figure from the separate turnout table,
+within 0.5%. The report names segments but does not number them, so they are joined to the results
+by name (exact, then a near-identical spelling, then position within their Lok Sabha seat, each
+only where unambiguous); seats that cannot be matched say so. Votes polled are EVM votes only, so
+turnout from this report excludes postal ballots and is labelled EVM turnout. Voting-pattern
+measures on each state page (winner's share, margin, effective number of candidates, NOTA, postal
+share) are computed from the seat pages in `lib/elections-pattern.ts` and labelled derived.
+
 **Who governs** is `data/elections/governs.json`, read weekly by `npm run governs:ingest` from
 Wikipedia's current chief-minister table. ECI publishes results, not governments. The file is
 written only if all 31 legislatures parse.

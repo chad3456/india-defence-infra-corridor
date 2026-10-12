@@ -5,7 +5,9 @@
  */
 import { ATLAS_STATES, atlasState, mainElection, loadGoverns, loadResultsForState, loadSir, type AtlasState, type SirState, type StateResult } from "./elections-atlas";
 import type { AtlasMapRow } from "@/components/elections/AtlasMap";
-import type { CompactResult } from "@/components/elections/StateResults";
+import type { CompactResult, ElectorateMedians, SeatElectorate } from "@/components/elections/StateResults";
+import { joinElectors, loadElectors, pcElectors } from "./elections-electors";
+import { median } from "./elections-pattern";
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const short = (r: StateResult) => { const [y, m] = r.date.split("-"); return `${MONTHS[Number(m) - 1]} ${y}, ${r.seats.length}${r.expectedSeats ? `/${r.expectedSeats}` : ""} seats`; };
@@ -48,6 +50,15 @@ function allAbbreviations(): Record<string, string> {
 export function compactResults(st: AtlasState): CompactResult[] {
   const global = allAbbreviations();
   return loadResultsForState(st.eci).map((r) => {
+    const joined = r.house === "AC" ? joinElectors(st.eci, r.seats) : null;
+    const electorateOf = (s: { no: number; name: string }): SeatElectorate | undefined => {
+      if (joined) {
+        const j = joined.get(s.no);
+        return j ? { m: j.seg.m, f: j.seg.f, tg: j.seg.tg, nri: j.seg.nri, service: j.seg.serviceM + j.seg.serviceF, electors: j.seg.electors, polledEvm: j.seg.polledEvm, match: j.match, pc: j.seg.pc } : undefined;
+      }
+      const p = pcElectors(st.eci, s.name);
+      return p ? { m: p.m, f: p.f, tg: p.tg, nri: p.nri, service: p.service, electors: p.electors, polledEvm: p.polledEvm, match: "seat" } : undefined;
+    };
     const extra = r as StateResult & { abbreviations?: Record<string, string> };
     const used = new Set(r.seats.flatMap((s) => s.candidates.map((c) => c.party)));
     const abbreviations = Object.fromEntries([...used].map((p) => [p, extra.abbreviations?.[p] ?? global[p]]).filter((x): x is [string, string] => !!x[1]));
@@ -58,7 +69,20 @@ export function compactResults(st: AtlasState): CompactResult[] {
         no: s.no, name: s.name, url: s.url, status: s.status, ...(s.language ? { language: s.language } : {}),
         final: !(s.status ?? "").startsWith("not final"),
         c: s.candidates.map((c) => (c.evm != null ? [c.name, c.party, c.votes, c.evm, c.postal] : [c.name, c.party, c.votes]) as CompactResult["seats"][number]["c"][number]),
+        ...((): { el?: SeatElectorate } => { const el = electorateOf(s); return el ? { el } : {}; })(),
       })),
     };
   });
+}
+
+/** Medians across a state's 2024 segments, for the seat panel's comparisons. */
+export function electorateMedians(st: AtlasState): ElectorateMedians | null {
+  const segs = loadElectors()?.states[st.eci]?.segments ?? [];
+  if (!segs.length) return null;
+  return {
+    turnout: median(segs.map((s) => (s.polledEvm / s.electors) * 100)),
+    womenPer1000: median(segs.map((s) => (s.f / s.m) * 1000)),
+    electors: median(segs.map((s) => s.electors)),
+    n: segs.length,
+  };
 }

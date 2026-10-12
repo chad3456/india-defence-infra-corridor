@@ -9,6 +9,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { ATLAS_STATES, atlasState, mainElection, partyColours, reasonGap, type GovernsFile, type SirFile } from "../lib/elections-atlas-shared";
 import { allSummaries } from "../lib/elections-summary";
+import { seatPattern, statePattern } from "../lib/elections-pattern";
 import { parseGoverns, validateGoverns, WITH_LEGISLATURE } from "./etl/connectors/governs";
 import { parseCardPage, parseHead, parsePartyPage, parseTablePage } from "./etl/connectors/eci-results";
 import { readdirSync } from "node:fs";
@@ -147,6 +148,45 @@ console.log("\nDashboards");
   const { lokSabha, assemblies } = allSummaries();
   ok("dashboards see every Lok Sabha state", lokSabha.length === 36, String(lokSabha.length));
   ok("no assembly summary is a one-seat poll", assemblies.every((a) => a.seatsRead > 1), assemblies.filter((a) => a.seatsRead <= 1).map((a) => a.stateName).join(", "));
+}
+
+console.log("\nVoting patterns");
+{
+  const two = seatPattern(1, "Somewhere (SC)", [["A", "P", 600], ["B", "Q", 400], ["NOTA", "None of the Above", 0]]);
+  ok("two equal-ish candidates: effective number near 2", Math.abs(two.effective - 1 / (0.36 + 0.16)) < 1e-9, String(two.effective));
+  ok("winner share and margin in points of all votes", two.winnerShare === 60 && Math.abs(two.marginPct - 20) < 1e-9);
+  ok("reserved category read from ECI's '(SC)' suffix", two.reserved === "SC");
+  const nota = seatPattern(2, "Elsewhere", [["A", "P", 500, 490, 10], ["B", "Q", 400, 395, 5], ["NOTA", "None of the Above", 100, 100, 0]]);
+  ok("NOTA counts in the denominator but never as a candidate", nota.candidates === 2 && nota.notaShare === 10 && nota.winnerShare === 50);
+  ok("postal share where the page splits EVM and postal", nota.postalShare === 1.5);
+  ok("no reserved marker means not known, not general", nota.reserved === null);
+  const st = statePattern([two, nota, seatPattern(3, "Unopposed", [["C", "P", 0]])]);
+  ok("an unopposed seat is excluded from the medians", st.contested.length === 2 && st.seats.length === 3);
+  ok("outright wins are over half the votes", st.majorityWins === 1);
+}
+
+console.log("\nElectorate (ECI statistical report 15, 2024)");
+{
+  const ef = JSON.parse(readFileSync(join(process.cwd(), "data/elections/electors-ge2024.json"), "utf8")) as { states: Record<string, { segments: Array<{ ac: string; m: number; f: number; tg: number; nri: number; serviceM: number; serviceF: number; electors: number; polledEvm: number }> }>; problems: string[] };
+  const segs = Object.values(ef.states).flatMap((s) => s.segments);
+  ok("about 4,120 segments read", segs.length >= 4100 && segs.length <= 4140, String(segs.length));
+  ok("the extractor reported no row or subtotal that failed to add up", ef.problems.length === 0, ef.problems.slice(0, 3).join("; "));
+  ok("every segment adds up", segs.every((s) => s.m + s.f + s.tg + s.nri + s.serviceM + s.serviceF === s.electors && s.polledEvm <= s.electors));
+  // Two independent routes to the same number: ECI's segment report summed by
+  // state, and the statewise 2024 table read from another source entirely.
+  const statewise = JSON.parse(readFileSync(join(process.cwd(), "data/elections/statewise.json"), "utf8")) as { years: Array<{ year: number; rows: Array<{ state: string; electors: number }> }> };
+  const y24 = statewise.years.find((y) => y.year === 2024)!;
+  let compared = 0;
+  for (const [code, st] of Object.entries(ef.states)) {
+    const a = ATLAS_STATES.find((s) => s.eci === code);
+    if (!a || a.topo[0] === "Jammu & Kashmir" || a.slug === "dadra-nagar-haveli-daman-diu") continue; // shared polygons fold neighbours in
+    const row = y24.rows.find((r) => a.topo.includes(r.state));
+    if (!row) continue;
+    const sum = st.segments.reduce((x, s) => x + s.electors, 0);
+    compared++;
+    ok(`${a.name}: segment electors agree with the statewise 2024 total within 0.5%`, Math.abs(sum - row.electors) / row.electors < 0.005, `${sum} vs ${row.electors}`);
+  }
+  ok("the cross-check covered most states", compared >= 30, String(compared));
 }
 
 console.log(failed ? `\n${failed} failed` : "\nall passed");

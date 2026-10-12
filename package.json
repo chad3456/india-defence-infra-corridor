@@ -182,7 +182,8 @@
     "governs:ingest": "tsx scripts/etl/connectors/governs.ts",
     "test:election-atlas": "tsx scripts/test-election-atlas.ts",
     "eci:results": "tsx scripts/etl/connectors/eci-results.ts",
-    "eci:electors:probe": "tsx scripts/etl/probe-eci-electors.ts"
+    "eci:electors:probe": "tsx scripts/etl/probe-eci-electors.ts",
+    "eci:electors": "tsx scripts/etl/connectors/eci-electors.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",

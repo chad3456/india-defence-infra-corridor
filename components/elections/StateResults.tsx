@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import HoverCard, { useHoverCard } from "@/components/charts/HoverCard";
 import { OTHER_PARTY_COLOUR, mainElection, partyColours } from "@/lib/elections-atlas-shared";
+import { seatPattern, statePattern, type StatePattern } from "@/lib/elections-pattern";
+import { PatternSection, SeatElectorateView, SeatProfile } from "./VotingPattern";
 
 /** A seat as the page receives it: candidates as [name, party, votes, evm?, postal?]. */
 export interface CompactSeat {
@@ -14,7 +16,17 @@ export interface CompactSeat {
   language?: "hi";
   url: string;
   c: Array<[string, string, number, number?, number?]>;
+  /** The seat's electorate at the 2024 Lok Sabha election, from ECI's statistical report 15. */
+  el?: SeatElectorate;
 }
+export interface SeatElectorate {
+  m: number; f: number; tg: number; nri: number; service: number; electors: number; polledEvm: number;
+  /** How the seat was matched to the report's segment (or, for a Lok Sabha seat, its segments added up). */
+  match: "name" | "spelling" | "order" | "seat";
+  pc?: string;
+}
+/** State medians across its segments, for comparing one seat against the rest. */
+export interface ElectorateMedians { turnout: number; womenPer1000: number; electors: number; n: number }
 export interface CompactResult {
   folder: string;
   house: "AC" | "PC";
@@ -74,7 +86,7 @@ function analyse(r: CompactResult) {
   return { seats, parties, allVotes, colour: colourOf, top: top.filter((p) => colourOf(p) !== OTHER) };
 }
 
-export default function StateResults({ results, stateName }: { results: CompactResult[]; stateName: string }) {
+export default function StateResults({ results, stateName, medians }: { results: CompactResult[]; stateName: string; medians?: ElectorateMedians | null }) {
   const houses = (["AC", "PC"] as const).filter((h) => results.some((r) => r.house === h));
   const [house, setHouse] = useState<"AC" | "PC">(houses[0] ?? "AC");
   const ofHouse = results.filter((r) => r.house === house).sort((a, b) => b.date.localeCompare(a.date));
@@ -87,7 +99,10 @@ export default function StateResults({ results, stateName }: { results: CompactR
   const card = useHoverCard();
 
   const a = useMemo(() => (r ? analyse(r) : null), [r]);
-  if (!r || !a) {
+  const pattern = useMemo(() => (r ? statePattern(r.seats.map((s) => seatPattern(s.no, s.name, s.c))) : null), [r]);
+  // The other house's main election in this state, for the cross-election comparison.
+  const other = mainElection(results.filter((x) => x.house !== house));
+  if (!r || !a || !pattern) {
     return <p className="rounded-lg border border-gridline bg-surface-2 p-5 text-sm text-ink-2">No archived ECI results have been read for {stateName} yet.</p>;
   }
   const abbr = (p: string) => r.abbreviations[p] || (p === "Independent" ? "IND" : p === NOTA ? "NOTA" : p.length > 18 ? (p.replace(/[^A-Za-z\s]/g, " ").split(/\s+/).filter((w) => w && !/^(of|and|the)$/i.test(w)).map((w) => w[0]).join("").toUpperCase() || `${p.slice(0, 14)}…`) : p);
@@ -194,7 +209,7 @@ export default function StateResults({ results, stateName }: { results: CompactR
         </div>
       </section>
 
-      {pickedSeat && <SeatDetail s={pickedSeat} abbr={abbr} colour={a.colour} onClose={() => setPicked(null)} />}
+      {pickedSeat && <SeatDetail s={pickedSeat} abbr={abbr} colour={a.colour} onClose={() => setPicked(null)} pattern={pattern} medians={medians ?? null} house={r.house} />}
 
       <section>
         <h3 className="text-sm font-semibold text-ink">Seats won against votes won</h3>
@@ -250,6 +265,9 @@ export default function StateResults({ results, stateName }: { results: CompactR
         </svg>
       </section>
 
+      <PatternSection r={r} other={other} otherLabel={other ? electionName(other).replace(/^(Assembly|Lok Sabha)/, (m) => `the ${m}`) : undefined} pattern={pattern}
+        ctx={{ colour: a.colour, abbr, onPick: (no) => { setPicked(no); if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" }); } }} />
+
       <section>
         <div className="flex flex-wrap items-end gap-3">
           <h3 className="text-sm font-semibold text-ink">All {r.seats.length} seats</h3>
@@ -297,7 +315,8 @@ function Kpi({ label, value, note, colour }: { label: string; value: string; not
   );
 }
 
-function SeatDetail({ s, abbr, colour, onClose }: { s: SeatView; abbr: (p: string) => string; colour: (p: string) => string; onClose: () => void }) {
+function SeatDetail({ s, abbr, colour, onClose, pattern, medians, house }: { s: SeatView; abbr: (p: string) => string; colour: (p: string) => string; onClose: () => void; pattern: StatePattern; medians: ElectorateMedians | null; house: "AC" | "PC" }) {
+  const seatP = pattern.seats.find((x) => x.no === s.seat.no);
   const cands = [...s.seat.c].sort((a, b) => b[2] - a[2]);
   const max = cands[0]?.[2] ?? 1;
   const postal = cands.reduce((a, c) => a + (c[4] ?? 0), 0);
@@ -318,12 +337,16 @@ function SeatDetail({ s, abbr, colour, onClose }: { s: SeatView; abbr: (p: strin
           <li key={`${c[0]}-${i}`} className="grid grid-cols-1 gap-0.5 sm:grid-cols-[16rem_minmax(0,1fr)] sm:items-center sm:gap-3">
             <span className="truncate text-xs text-ink"><strong className={i === 0 ? "" : "font-normal"}>{c[0]}</strong> <span className="text-ink-muted">{abbr(c[1])}</span></span>
             <span className="flex min-w-0 items-center gap-2">
-              <span className="h-3 shrink-0 rounded-sm" style={{ width: `${Math.max(0.5, (c[2] / max) * 70)}%`, background: c[1] === "None of the Above" ? "var(--gridline)" : colour(c[1]), opacity: i === 0 ? 1 : 0.75 }} />
-              <span className="whitespace-nowrap text-[11px] tabular-nums text-ink-2">{fmt(c[2])} · {s.total ? ((c[2] / s.total) * 100).toFixed(1) : "—"}%{c[4] != null ? ` · ${fmt(c[4])} postal` : ""}</span>
+              <span className="h-3 shrink-0 rounded-sm" style={{ width: `${Math.max(0.5, (c[2] / max) * 55)}%`, background: c[1] === "None of the Above" ? "var(--gridline)" : colour(c[1]), opacity: i === 0 ? 1 : 0.75 }} />
+              <span className="min-w-0 text-[11px] tabular-nums text-ink-2 sm:whitespace-nowrap">{fmt(c[2])} · {s.total ? ((c[2] / s.total) * 100).toFixed(1) : "—"}%{c[4] != null ? ` · ${fmt(c[4])} postal` : ""}</span>
             </span>
           </li>
         ))}
       </ol>
+      {seatP && <SeatProfile seat={seatP} pattern={pattern} />}
+      {s.seat.el ? <SeatElectorateView el={s.seat.el} medians={house === "AC" ? medians : null} /> : (
+        <p className="mt-4 text-[11px] text-ink-muted">This seat could not be matched by name to ECI&rsquo;s 2024 segment-wise electors report{s.seat.language === "hi" ? " (its name survives only in Hindi)" : ""}, so its electorate is not shown.</p>
+      )}
       <p className="mt-2 text-[11px] text-ink-muted">
         {s.seat.language === "hi" && <>Only ECI&rsquo;s Hindi page of this seat was archived, so candidate and seat names are as printed there; party names are paired with ECI&rsquo;s English ones by matching vote counts on seats archived in both languages. </>}
         Read from <a href={s.seat.url} className="underline" target="_blank" rel="noopener noreferrer">ECI&rsquo;s result page as archived</a> on{" "}
