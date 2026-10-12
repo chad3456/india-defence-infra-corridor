@@ -24,7 +24,7 @@
  * needs, and no other free source publishes Indian LWE fatalities by state and
  * year.
  */
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { Series, DataPoint } from "../../../lib/types";
 import { ALL_SECURITY_SPECS, type SecuritySeriesSpec } from "../../../lib/security-catalogue";
@@ -265,7 +265,20 @@ export async function runSatpStates(
   // The per-state rows are what the map draws. Written whether or not the sum
   // was published, because a state breakdown is useful even when three states
   // are missing — it just cannot stand in for a national total.
+  //
+  // Last-known-good, per state: a state whose sheet failed this run keeps the
+  // rows the previous run read for it, and is named as carried over. Dropping
+  // them published a map with Andhra Pradesh blank after one failed fetch.
   await mkdir(join(root, "data/security"), { recursive: true });
+  const carriedOver: string[] = [];
+  try {
+    const prev = JSON.parse(await readFile(join(root, "data/security/lwe-states.json"), "utf8")) as { rows: typeof stateRows };
+    for (const state of missing) {
+      const kept = prev.rows.filter((r) => r.state === state);
+      if (kept.length) { stateRows.push(...kept); carriedOver.push(state); }
+    }
+  } catch { /* first run */ }
+  if (carriedOver.length) log(`  carried over previous rows for ${carriedOver.join(", ")}`);
   await writeFile(
     join(root, "data/security/lwe-states.json"),
     JSON.stringify(
@@ -274,6 +287,7 @@ export async function runSatpStates(
         statesOk,
         statesTotal: LWE_STATES.length,
         missing,
+        ...(carriedOver.length ? { carriedOver } : {}),
         rows: stateRows.sort((a, b) => a.year - b.year || a.state.localeCompare(b.state)),
       },
       null,
