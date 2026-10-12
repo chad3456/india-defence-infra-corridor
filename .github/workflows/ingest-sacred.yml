@@ -53,3 +53,15 @@ jobs:
           .github/scripts/commit-generated.sh
           data/sacred/atlas.json
           "chore(sacred): atlas refresh $(date -u +'%Y-%m-%d %H:%M')"
+
+      # The map's sacred layer is built from the atlas. Rebuilt and committed
+      # with it, or the committed layers go stale and test:ascii (which rebuilds
+      # them and compares) fails for whoever pushes next.
+      - name: Rebuild the map layers
+        run: npm run geo:layers
+
+      - name: Commit the map layers
+        run: >
+          .github/scripts/commit-generated.sh
+          data/geo/state-layers.json
+          "chore(sacred): map layers $(date -u +'%Y-%m-%d %H:%M')"
