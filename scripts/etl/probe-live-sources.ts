@@ -8,16 +8,15 @@ import { join } from "node:path";
 import { isEntryPoint } from "./lib/entry";
 
 const SOURCES: Array<[string, string]> = [
-  ["yahoo nifty", "https://query1.finance.yahoo.com/v8/finance/chart/%5ENSEI?interval=5m&range=1d"],
-  ["yahoo usdinr", "https://query1.finance.yahoo.com/v8/finance/chart/INR%3DX?interval=5m&range=1d"],
-  ["yahoo brent", "https://query1.finance.yahoo.com/v8/finance/chart/BZ%3DF?interval=5m&range=1d"],
-  ["yahoo query2 sensex", "https://query2.finance.yahoo.com/v8/finance/chart/%5EBSESN?interval=5m&range=1d"],
-  ["er-api usd", "https://open.er-api.com/v6/latest/USD"],
-  ["frankfurter", "https://api.frankfurter.app/latest?from=USD&to=INR,EUR,CNY"],
-  ["adsb.lol mil", "https://api.adsb.lol/v2/mil"],
-  ["adsb.fi mil", "https://opendata.adsb.fi/api/v2/mil"],
-  ["gnews economy", "https://news.google.com/rss/search?q=India+economy+when:1d&hl=en-IN&gl=IN&ceid=IN:en"],
-  ["gnews defence", "https://news.google.com/rss/search?q=India+defence+military+when:1d&hl=en-IN&gl=IN&ceid=IN:en"],
+  ["stooq nifty", "https://stooq.com/q/l/?s=^nsei&f=sd2t2ohlcvp&h&e=csv"],
+  ["stooq multi", "https://stooq.com/q/l/?s=^nsei+^bsesn+cb.f+gc.f+ng.f+usdinr+eurinr+^spx&f=sd2t2ohlcvp&h&e=csv"],
+  ["stooq intraday nifty", "https://stooq.com/q/d/l/?s=^nsei&i=5"],
+  ["moneycontrol nifty", "https://priceapi.moneycontrol.com/pricefeed/notapplicable/inidicesindia/in%3BNSX"],
+  ["moneycontrol sensex", "https://priceapi.moneycontrol.com/pricefeed/notapplicable/inidicesindia/in%3BSEN"],
+  ["google finance nifty", "https://www.google.com/finance/quote/NIFTY_50:INDEXNSE"],
+  ["google finance brent", "https://www.google.com/finance/quote/BZW00:NYMEX"],
+  ["yahoo spark", "https://query1.finance.yahoo.com/v7/finance/spark?symbols=%5ENSEI&range=1d&interval=5m"],
+  ["er-api inr", "https://open.er-api.com/v6/latest/INR"],
 ];
 
 export async function run(): Promise<void> {
