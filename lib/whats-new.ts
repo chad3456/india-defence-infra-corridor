@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "public-order-2026-10",
+    title: "Protest and public order",
+    blurb:
+      "Thirty-four charts on riots since 2004, what police recorded them as being about, cases for destroying " +
+      "public property, police and civilians killed and injured, and twenty-one major episodes — every figure checked against its source's text.",
+    href: "/protests",
+    since: "2026-10-13",
+  },
+  {
     id: "live-tracker-2026-10",
     title: "Live",
     blurb:

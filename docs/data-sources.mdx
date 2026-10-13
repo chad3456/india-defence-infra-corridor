@@ -179,6 +179,25 @@ an earlier reading. Yahoo Finance answers 429 to data-centre addresses and no ke
 answered (`data/live/live-sources-probe.json`), so neither is used. Live readings are labelled
 unverified and never become series; the annual baseline beside them is the committed WDI record.
 
+### Protest and public order
+
+`/protests` charts riots, damage to public property, police firing and casualties, communal violence
+and twenty-one major episodes since 2004. Its figures are in
+`data/protests/public-order.json`, written by `scripts/etl/public-order/gen.py` and reviewed by hand:
+each is read by an explicit rule (a table row matched by label, a value taken by column, the row's
+printed total checked where the table prints one) or quoted from an article, and each carries the
+id of a document and a verbatim quote from it. `npm run public-order:probe` (run in Actions, where the hosts answer) downloads those
+documents and keeps their text in `data/protests/public-order-probe.json`. The documents are NCRB's
+Crime in India volumes (from NCRB, the OpenCity mirror, or the Wayback Machine for years NCRB no
+longer serves), Home Ministry answers laid in Parliament, and the press reports of official
+statements. `npm run test:public-order` fails the build unless every quote is found in its
+document's text and contains the figure it is cited for, and unless rioting by motive adds up to
+rioting in total for every year both are printed; the page draws only figures that pass. NCRB's
+rioting total runs 2004–2024 except 2019, whose volume has not been read; the Home Ministry's
+communal-incident series stops at 2017, where its releases stop. No national body publishes the
+rupee value of public property destroyed, so losses appear only where a government, court or
+commission stated one for a single episode.
+
 ### Election atlas
 
 `/elections/atlas` holds three layers with three different provenances, kept apart on the page.
