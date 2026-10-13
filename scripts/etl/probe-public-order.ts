@@ -228,13 +228,13 @@ function anchors(html: string, base: string): Array<{ href: string; text: string
 }
 
 async function download(url: string): Promise<{ ok: boolean; status: string; buf?: Buffer; type?: string }> {
-  for (let attempt = 0; attempt < 3; attempt++) {
+  for (let attempt = 0; attempt < 2; attempt++) {
     try {
-      const res = await fetch(url, { headers: { "User-Agent": UA, Accept: "*/*" }, signal: AbortSignal.timeout(120_000), redirect: "follow" });
-      if (!res.ok) { if (attempt === 2 || res.status < 500) return { ok: false, status: `HTTP ${res.status}` }; continue; }
+      const res = await fetch(url, { headers: { "User-Agent": UA, Accept: "*/*" }, signal: AbortSignal.timeout(90_000), redirect: "follow" });
+      if (!res.ok) { if (attempt === 1 || res.status < 500) return { ok: false, status: `HTTP ${res.status}` }; continue; }
       return { ok: true, status: `HTTP ${res.status}`, buf: Buffer.from(await res.arrayBuffer()), type: res.headers.get("content-type") ?? "" };
     } catch (e) {
-      if (attempt === 2) return { ok: false, status: (e as Error).message };
+      if (attempt === 1) return { ok: false, status: (e as Error).message };
     }
     await new Promise((r) => setTimeout(r, 3000 * (attempt + 1)));
   }
@@ -246,7 +246,7 @@ function curlDownload(url: string): { ok: boolean; status: string; buf?: Buffer 
   const dir = mkdtempSync(join(tmpdir(), "po-curl-"));
   const out = join(dir, "body");
   try {
-    execFileSync("curl", ["-sSL", "--max-time", "120", "--retry", "2", "-A", UA, "-o", out, url], { stdio: "ignore", timeout: 300_000 });
+    execFileSync("curl", ["-sSL", "--connect-timeout", "20", "--max-time", "75", "-A", UA, "-o", out, url], { stdio: "ignore", timeout: 90_000 });
     return existsSync(out) ? { ok: true, status: "curl", buf: readFileSync(out) } : { ok: false, status: "curl: no body" };
   } catch (e) { return { ok: false, status: `curl: ${(e as Error).message.slice(0, 120)}` }; }
 }
@@ -291,38 +291,54 @@ async function main(): Promise<void> {
     console.log(`  ${l.id}: ${byHref.size} documents`);
   } catch (e) { errors.push(`${l.id}: ${(e as Error).stack ?? e}`); }
 
-  const documents: unknown[] = [];
-  for (const d of DOCS) try {
-    await new Promise((r) => setTimeout(r, 1500));
+  // What earlier runs read is kept, and not fetched again: a document read
+  // whole once does not need reading every run. One whose pages were cut at
+  // the old 9,000-character limit is read again.
+  type Doc = { id: string; ok: boolean; url: string; readAt?: string; kept?: Kept[]; pdf?: boolean };
+  let prev: Doc[] = [];
+  let prevAt: string | undefined;
+  try { const f = JSON.parse(readFileSync(OUT, "utf8")) as { probedAt?: string; documents?: Doc[] }; prev = f.documents ?? []; prevAt = f.probedAt; } catch { /* first run */ }
+  const prevById = new Map(prev.map((x) => [x.id, x]));
+  const reusable = (d: { id: string; url: string }) => {
+    const o = prevById.get(d.id);
+    return !!o && o.ok && o.url === d.url && !(o.pdf && (o.kept ?? []).some((k) => k.text.length === 9000));
+  };
+  const results = new Map<string, Doc>();
+  for (const o of prev) if (o.ok) results.set(o.id, { ...o, readAt: o.readAt ?? prevAt });
+
+  const save = async () => {
+    await mkdir(dirname(OUT), { recursive: true });
+    await writeFile(OUT, JSON.stringify({ probedAt: new Date().toISOString(), refusal: "Source text for checking, not data. Nothing here is rendered.", errors, listings, documents: [...results.values()] }, null, 1));
+  };
+
+  const queue = DOCS.filter((d) => !reusable(d));
+  console.log(`  ${DOCS.length - queue.length} documents already read; fetching ${queue.length}`);
+  const one = async (d: (typeof DOCS)[number]) => {
     let got: { ok: boolean; status: string; buf?: Buffer } = await download(d.url);
     if (!got.ok) { const c = curlDownload(d.url); if (c.ok) got = c; else got = { ok: false, status: `${got.status}; ${c.status}` }; }
-    if (!got.ok || !got.buf) { documents.push({ id: d.id, what: d.what, url: d.url, ok: false, status: got.status }); console.log(`  ${d.id}: ${got.status}`); continue; }
+    if (!got.ok || !got.buf) { if (!results.get(d.id)?.ok) results.set(d.id, { id: d.id, url: d.url, ok: false, ...{ what: d.what, status: got.status } } as Doc); console.log(`  ${d.id}: ${got.status}`); return; }
     let pages: string[] = [];
     const isPdf = got.buf.subarray(0, 5).toString() === "%PDF-";
     try { pages = isPdf ? pdfPages(got.buf) : [got.buf.toString("utf8").replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").replace(/[ \t]+/g, " ")]; }
-    catch (e) { documents.push({ id: d.id, what: d.what, url: d.url, ok: false, status: `extract: ${(e as Error).message}` }); continue; }
+    catch (e) { errors.push(`${d.id}: extract: ${(e as Error).message}`); return; }
     const kept: Kept[] = [];
     // A web page is one article: keep its text whole. A PDF keeps the pages on topic.
     if (!isPdf) kept.push({ page: 1, text: (pages[0] ?? "").replace(/\s*\n\s*/g, "\n").slice(0, 60000) });
     else pages.forEach((t, i) => { if ((d.topic ?? TOPIC).test(t) && kept.length < (d.pages ?? 12)) kept.push({ page: i + 1, text: t.slice(0, 40000) }); });
-    documents.push({ id: d.id, what: d.what, url: d.url, ok: true, pdf: isPdf, bytes: got.buf.length, pagesTotal: pages.length, kept });
+    results.set(d.id, { id: d.id, what: d.what, url: d.url, ok: true, pdf: isPdf, bytes: got.buf.length, pagesTotal: pages.length, kept, readAt: new Date().toISOString() } as Doc);
     console.log(`  ${d.id}: ${pages.length} pages, ${kept.length} kept`);
-  } catch (e) { errors.push(`${d.id}: ${(e as Error).stack ?? e}`); }
-
-  // Keep what earlier runs read: a document that failed this time, or is no
-  // longer listed, stays as it was last read, with the date it was read.
-  try {
-    const prev = JSON.parse(readFileSync(OUT, "utf8")) as { probedAt?: string; documents?: Array<{ id: string; ok: boolean; readAt?: string }> };
-    const now = new Map((documents as Array<{ id: string; ok: boolean }>).map((x) => [x.id, x]));
-    for (const old of prev.documents ?? []) {
-      const cur = now.get(old.id);
-      if (old.ok && (!cur || !cur.ok)) { const i = documents.indexOf(cur as unknown); const kept = { ...old, readAt: old.readAt ?? prev.probedAt }; if (i >= 0) documents[i] = kept; else documents.push(kept); }
+  };
+  // Four at a time, saving after each, so a run stopped by its time limit
+  // still leaves everything it finished.
+  let next = 0;
+  await Promise.all(Array.from({ length: 4 }, async () => {
+    while (next < queue.length) {
+      const d = queue[next++]!;
+      try { await one(d); } catch (e) { errors.push(`${d.id}: ${(e as Error).stack ?? e}`); }
+      await save();
     }
-  } catch { /* first run */ }
-  for (const x of documents as Array<{ ok: boolean; readAt?: string }>) if (x.ok && !x.readAt) x.readAt = new Date().toISOString();
-
-  await mkdir(dirname(OUT), { recursive: true });
-  await writeFile(OUT, JSON.stringify({ probedAt: new Date().toISOString(), refusal: "Source text for checking, not data. Nothing here is rendered.", errors, listings, documents }, null, 1));
+  }));
+  await save();
 }
 
 // A fatal error leaves the previous file in place rather than replacing what

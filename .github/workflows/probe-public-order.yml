@@ -21,7 +21,7 @@ concurrency:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -29,6 +29,9 @@ jobs:
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
       - run: npm ci
       - run: npm run public-order:probe 2>&1 | tee data/protests/public-order-probe.log
+        # Its own limit, short of the job's, so the commit below still runs
+        # and keeps every document the probe finished.
+        timeout-minutes: 32
       - name: Commit
         if: ${{ !cancelled() }}
         run: >
