@@ -23,10 +23,10 @@ export const INDICES: IndexInstrument[] = [
   { id: "vix", symbol: "in;IDXN", label: "India VIX", what: "expected Nifty volatility over the next 30 days" },
 ];
 
-/** Currencies against the rupee, from the ECB's daily reference rates. */
+/** Currencies against the rupee, from the ECB's daily reference rates. Only currencies the ECB publishes: it has no UAE dirham or Saudi riyal. */
 export const CURRENCIES: Array<{ code: string; label: string }> = [
   { code: "USD", label: "US dollar" }, { code: "EUR", label: "Euro" }, { code: "GBP", label: "Pound sterling" },
-  { code: "CNY", label: "Chinese yuan" }, { code: "JPY", label: "Japanese yen" }, { code: "AED", label: "UAE dirham" },
+  { code: "CNY", label: "Chinese yuan" }, { code: "JPY", label: "Japanese yen" }, { code: "SGD", label: "Singapore dollar" },
 ];
 
 export interface IndexQuote {
