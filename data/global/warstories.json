@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-13T02:01:07.599Z",
-  "previousBuild": "2026-10-12T17:54:26.255Z",
+  "builtAt": "2026-10-13T11:48:06.228Z",
+  "previousBuild": "2026-10-13T02:01:07.599Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 158,
-    "createdThisRun": 3,
-    "corroboratedThisRun": 2,
+    "stories": 163,
+    "createdThisRun": 5,
+    "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 273,
     "corroboration": {
-      "one": 137,
+      "one": 142,
       "two": 12,
       "threePlus": 9
     }
@@ -28,12 +28,12 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 83
+      "n": 87
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 48
+      "n": 49
     },
     {
       "id": "targeting",
@@ -48,7 +48,7 @@
     {
       "id": "military-ai",
       "label": "AI in military use",
-      "n": 5
+      "n": 6
     }
   ],
   "byCountry": [
@@ -179,7 +179,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 4
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -788,6 +788,92 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/flying-wedge-unveils-fwd-supreme-autonomous-ai-combat-wingman/",
+      "headline": "Flying Wedge Unveils Supreme Autonomous AI Combat Wingman",
+      "firstSeen": "2026-10-13",
+      "lastSeen": "2026-10-13",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/flying-wedge-unveils-fwd-supreme-autonomous-ai-combat-wingman/",
+          "published": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/ex-italian-navy-officer-launches-maritime-drone-company/",
+      "headline": "Ex-Italian Navy officer launches maritime drone company",
+      "firstSeen": "2026-10-13",
+      "lastSeen": "2026-10-13",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/ex-italian-navy-officer-launches-maritime-drone-company/",
+          "published": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/drone-boats-used-by-u-s-navy-get-ai-powered-vision/",
+      "headline": "Drone boats used by U.S. Navy get AI-powered vision",
+      "firstSeen": "2026-10-13",
+      "lastSeen": "2026-10-13",
+      "themes": [
+        "military-ai",
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/drone-boats-used-by-u-s-navy-get-ai-powered-vision/",
+          "published": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/czech-mars-4x4-gets-twin-machine-guns-for-drone-defense/",
+      "headline": "Czech Mars 4×4 gets twin machine guns for drone defense",
+      "firstSeen": "2026-10-13",
+      "lastSeen": "2026-10-13",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/czech-mars-4x4-gets-twin-machine-guns-for-drone-defense/",
+          "published": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/wheel-powered-drone-makes-the-cut-in-u-s-army-trials/",
+      "headline": "Wheel-powered drone makes the cut in U.S. Army trials",
+      "firstSeen": "2026-10-13",
+      "lastSeen": "2026-10-13",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/wheel-powered-drone-makes-the-cut-in-u-s-army-trials/",
+          "published": "2026-10-13"
         }
       ]
     },
