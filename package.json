@@ -186,7 +186,8 @@
     "eci:electors": "tsx scripts/etl/connectors/eci-electors.ts",
     "census:districts": "tsx scripts/etl/connectors/census-districts.ts",
     "live:probe": "tsx scripts/etl/probe-live-sources.ts",
-    "test:live": "tsx scripts/test-live.ts"
+    "test:live": "tsx scripts/test-live.ts",
+    "public-order:probe": "tsx scripts/etl/probe-public-order.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",

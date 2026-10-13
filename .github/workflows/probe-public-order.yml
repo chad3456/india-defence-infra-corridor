@@ -1,0 +1,37 @@
+name: Probe public-order documents
+
+# Reads the official documents behind /protests/public-order — NCRB volumes,
+# answers laid in Parliament, Home Ministry reports — into text, so every
+# figure on the page can be checked against its source's words.
+# Writes data/protests/public-order-probe.json. Publishes no figure.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-public-order.ts"
+      - ".github/workflows/probe-public-order.yml"
+
+permissions:
+  contents: write
+concurrency:
+  group: probe-public-order
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: sudo apt-get install -y -qq poppler-utils >/dev/null
+      - run: npm ci
+      - run: npm run public-order:probe
+      - name: Commit
+        if: ${{ !cancelled() }}
+        run: >
+          .github/scripts/commit-generated.sh
+          data/protests/public-order-probe.json
+          "chore(probe): public-order documents $(date -u +'%Y-%m-%d %H:%M')"
