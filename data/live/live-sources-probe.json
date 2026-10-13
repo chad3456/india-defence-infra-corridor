@@ -1,95 +1,77 @@
 {
- "probedAt": "2026-10-13T10:00:39.531Z",
+ "probedAt": "2026-10-13T10:03:28.297Z",
  "sources": [
   {
-   "name": "yahoo nifty",
-   "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENSEI?interval=5m&range=1d",
-   "status": 429,
-   "ms": 100,
-   "bytes": 19,
-   "cors": null,
-   "head": "Too Many Requests\r\n"
+   "name": "stooq nifty",
+   "url": "https://stooq.com/q/l/?s=^nsei&f=sd2t2ohlcvp&h&e=csv",
+   "status": 0,
+   "error": "TypeError: fetch failed"
   },
   {
-   "name": "yahoo usdinr",
-   "url": "https://query1.finance.yahoo.com/v8/finance/chart/INR%3DX?interval=5m&range=1d",
-   "status": 429,
-   "ms": 54,
-   "bytes": 19,
-   "cors": null,
-   "head": "Too Many Requests\r\n"
+   "name": "stooq multi",
+   "url": "https://stooq.com/q/l/?s=^nsei+^bsesn+cb.f+gc.f+ng.f+usdinr+eurinr+^spx&f=sd2t2ohlcvp&h&e=csv",
+   "status": 0,
+   "error": "TypeError: fetch failed"
   },
   {
-   "name": "yahoo brent",
-   "url": "https://query1.finance.yahoo.com/v8/finance/chart/BZ%3DF?interval=5m&range=1d",
-   "status": 429,
-   "ms": 30,
-   "bytes": 19,
-   "cors": null,
-   "head": "Too Many Requests\r\n"
+   "name": "stooq intraday nifty",
+   "url": "https://stooq.com/q/d/l/?s=^nsei&i=5",
+   "status": 0,
+   "error": "TypeError: fetch failed"
   },
   {
-   "name": "yahoo query2 sensex",
-   "url": "https://query2.finance.yahoo.com/v8/finance/chart/%5EBSESN?interval=5m&range=1d",
-   "status": 429,
-   "ms": 81,
-   "bytes": 19,
-   "cors": null,
-   "head": "Too Many Requests\r\n"
-  },
-  {
-   "name": "er-api usd",
-   "url": "https://open.er-api.com/v6/latest/USD",
+   "name": "moneycontrol nifty",
+   "url": "https://priceapi.moneycontrol.com/pricefeed/notapplicable/inidicesindia/in%3BNSX",
    "status": 200,
-   "ms": 87,
-   "bytes": 2967,
+   "ms": 357,
+   "bytes": 1820,
    "cors": "*",
-   "head": "{\"result\":\"success\",\"provider\":\"https://www.exchangerate-api.com\",\"documentation\":\"https://www.exchangerate-api.com/docs/free\",\"terms_of_use\":\"https://www.exchangerate-api.com/terms\",\"time_last_update_unix\":1791849451,\"time_last_update_utc\":\"Mon, 12 Oct 2026 23:57:31 +0000\",\"time_next_update_unix\":1791936721,\"time_next_update_utc\":\"Wed, 14 Oct 2026 00:12:01 +0000\",\"time_eol_unix\":0,\"base_code\":\"USD\",\"rates\":{\"USD\":1,\"AED\":3.6725,\"AFN\":64.924614,\"ALL\":81.907653,\"AMD\":362.201696,\"ANG\":1.79,\"AOA\":928.339731,\"ARS\":1515.8766,\"AUD\":1.436501,\"AWG\":1.79,\"AZN\":1.699787,\"BAM\":1.750825,\"BBD\":2,\"BDT\":123.198998,\"BGN\":1.750825,\"BHD\":0.376,\"BIF\":3001.103523,\"BMD\":1,\"BND\":1.280792,\"BOB\":11.842148,\"BRL\":4.989911,\"BSD\":1,\"BTN\":95.913362,\"BWP\":13.974043,\"BYN\":3.011836,\"BZD\":2,\"CAD\":1.427373,\"CDF\":2312.138431,\"CHF\":0.834009,\"CLF\":0.024719,\"CLP\":977.033618,\"CNH\":6.694513,\"CNY\":6.70582,\"COP\":3198.099135,\"CRC\":455.303365,\"CUP\":24,\"CVE\":98.707321,\"CZK\":21.829017,\"DJF\":177.721,\"DKK\":6.684975,\"DOP\":60.873077,\"DZD\":134.631082,\"EGP\":52.658715,\"ERN\":15,\"ETB\":161.476064,\"EUR\":0.895156,\"FJD\":2.248408,\"FKP\":0.75643,\"FOK\":6.686339,\"GBP\":0.756615,\"GEL\":2.596409,\"GGP\":0.75643,\"GHS\":11.772815,\"GIP\":0.75643,\"GMD\":74."
+   "head": "{\"code\":\"200\",\"message\":\"Success\",\"data\":{\"HIGH\":\"22721.95\",\"decl\":8.0,\"ty\":\"5\",\"1mthCh\":\"-755.250\",\"HN\":\"निफ्टी 50\",\"cl1wDt\":\"2026-10-06\",\"cl5yDt\":\"2021-10-13\",\"YTD\":-13.041340089400519,\"cl5yPerChange\":\"25.1100\",\"cl1yPerChange\":\"-9.9300\",\"cl3yVal\":\"19751.05\",\"1yr\":\"-11.400\",\"cl3mVal\":\"24211.0\",\"3yr\":\"13.000\",\"cl1mDt\":\"2026-09-11\",\"cl1mPerChange\":\"-2.8900\",\"5yr\":\"24.300\",\"3d\":\"-56.800\",\"ind_id\":\"9\",\"3mth\":\"-7.600\",\"3yrCh\":\"2569.350\",\"clYtdPerChange\":\"-13.0400\",\"cl2yDt\":\"2024-10-11\",\"52wkhi\":\"26373.20\",\"EXCHANGE\":\"N\",\"cl2yVal\":\"24964.25\",\"cl5yVal\":\"18161.75\",\"PERCCHANGE\":1.6,\"30d\":23221.85,\"clYtdVal\":\"26129.6\",\"cl2yPerChange\":\"-8.9800\",\"50d\":23687.39,\"6mthCh\":\"-1479.300\",\"cl6mDt\":\"2026-04-13\",\"cl1wVal\":\"22776.1\",\"3mthCh\":\"-1847.650\",\"5yrCh\":\"4371.400\",\"6mth\":\"-6.200\",\"ytdCh\":\"-3766.250\",\"VOL\":\"0\",\"adv\":41.0,\"LOW\":\"22288.45\",\"cl1mChange\":\"-676.15\",\"cl3mChange\":\"-1489.05\",\"52wklow\":\"22179.90\",\"clYtdChange\":\"-3407.65\",\"cl1wChange\":\"-54.15\",\"clYtdDt\":\"2025-12-31\",\"cl3yPerChange\":\"15.0400\",\"1wk\":\"-0.900\",\"cl3yDt\":\"2023-10-13\",\"1mth\":\"-3.300\",\"cl3mPerChange\":\"-6.1500\",\"cl3mDt\":\"2026-07-13\",\"2yr\":\"-11.000\",\"cl1yChange\":\"-2505.40\",\"unchg\":1.0,\"3dCh\":\"-157.100\",\"cl2yChange\":\"-2242.30\",\"150d\""
   },
   {
-   "name": "frankfurter",
-   "url": "https://api.frankfurter.app/latest?from=USD&to=INR,EUR,CNY",
+   "name": "moneycontrol sensex",
+   "url": "https://priceapi.moneycontrol.com/pricefeed/notapplicable/inidicesindia/in%3BSEN",
    "status": 200,
-   "ms": 6908,
-   "bytes": 96,
-   "cors": null,
-   "head": "{\"amount\":1.0,\"base\":\"USD\",\"date\":\"2026-10-12\",\"rates\":{\"CNY\":6.6928,\"EUR\":0.89437,\"INR\":95.78}}"
+   "ms": 257,
+   "bytes": 1854,
+   "cors": "*",
+   "head": "{\"code\":\"200\",\"message\":\"Success\",\"data\":{\"HIGH\":\"73045.67\",\"decl\":5.0,\"ty\":\"5\",\"1mthCh\":\"-2079.140\",\"HN\":\"बीएसई संवेदी सूचकांक\",\"cl1wDt\":\"2026-10-06\",\"cl5yDt\":\"2021-10-13\",\"YTD\":-14.300321753191136,\"cl5yPerChange\":\"20.2500\",\"cl1yPerChange\":\"-11.2900\",\"cl3yVal\":\"66282.74\",\"1yr\":\"-12.600\",\"cl3mVal\":\"77616.4\",\"3yr\":\"8.300\",\"cl1mDt\":\"2026-09-11\",\"cl1mPerChange\":\"-2.3400\",\"5yr\":\"19.300\",\"3d\":\"-59.800\",\"ind_id\":\"4\",\"3mth\":\"-7.300\",\"3yrCh\":\"5516.290\",\"clYtdPerChange\":\"-14.3000\",\"cl2yDt\":\"2024-10-11\",\"52wkhi\":\"86159.02\",\"EXCHANGE\":\"B\",\"cl2yVal\":\"81381.36\",\"cl5yVal\":\"60737.05\",\"PERCCHANGE\":1.54,\"30d\":74299.2,\"clYtdVal\":\"85220.6\",\"cl2yPerChange\":\"-10.2600\",\"50d\":75746.19,\"6mthCh\":\"-4922.890\",\"cl6mDt\":\"2026-04-13\",\"cl1wVal\":\"73067.81\",\"3mthCh\":\"-5691.720\",\"5yrCh\":\"11640.370\",\"6mth\":\"-6.400\",\"ytdCh\":\"-13295.920\",\"VOL\":\"0\",\"adv\":25.0,\"LOW\":\"71703.56\",\"cl1mChange\":\"-1747.98\",\"cl3mChange\":\"-4582.62\",\"52wklow\":\"71292.88\",\"clYtdChange\":\"-12186.82\",\"cl1wChange\":\"-34.03\",\"clYtdDt\":\"2025-12-31\",\"cl3yPerChange\":\"10.1900\",\"1wk\":\"-0.600\",\"cl3yDt\":\"2023-10-13\",\"1mth\":\"-2.800\",\"cl3mPerChange\":\"-5.9000\",\"cl3mDt\":\"2026-07-13\",\"2yr\":\"-12.300\",\"cl1yChange\":\"-9293.27\",\"unchg\":0.0,\"3dCh\":\"-547.650\",\"cl2yChange\""
   },
   {
-   "name": "adsb.lol mil",
-   "url": "https://api.adsb.lol/v2/mil",
+   "name": "google finance nifty",
+   "url": "https://www.google.com/finance/quote/NIFTY_50:INDEXNSE",
    "status": 200,
-   "ms": 432,
-   "bytes": 103404,
+   "ms": 274,
+   "bytes": 1189195,
    "cors": null,
-   "head": "{\"ac\":[\n{\"hex\":\"ae49c6\",\"type\":\"mlat\",\"flight\":\"RCH200  \",\"r\":\"09-9210\",\"t\":\"C17\",\"dbFlags\":1,\"alt_baro\":37000,\"gs\":250.0,\"track\":141.00,\"baro_rate\":0,\"squawk\":\"7242\",\"lat\":42.192149,\"lon\":-95.737145,\"nic\":0,\"rc\":0,\"seen_pos\":1.516,\"alert\":0,\"spi\":0,\"mlat\":[\"callsign\",\"gs\",\"track\",\"baro_rate\",\"lat\",\"lon\",\"nic\",\"rc\"],\"tisb\":[],\"messages\":28537,\"seen\":1.5,\"rssi\":-8.4},\n{\"hex\":\"ae63b1\",\"type\":\"mlat\",\"flight\":\"WINK12  \",\"r\":\"19-46069\",\"t\":\"B762\",\"dbFlags\":1,\"alt_baro\":33975,\"gs\":215.0,\"track\":262.00,\"baro_rate\":0,\"squawk\":\"1652\",\"lat\":39.614717,\"lon\":-91.985794,\"nic\":0,\"rc\":0,\"seen_pos\":2.429,\"alert\":0,\"spi\":0,\"mlat\":[\"callsign\",\"gs\",\"track\",\"baro_rate\",\"squawk\",\"lat\",\"lon\",\"nic\",\"rc\"],\"tisb\":[],\"messages\":73400,\"seen\":0.4,\"rssi\":-21.6},\n{\"hex\":\"ae07e5\",\"type\":\"adsb_icao\",\"flight\":\"BANNR28 \",\"r\":\"95-0102\",\"t\":\"C17\",\"dbFlags\":1,\"alt_baro\":17800,\"alt_geom\":18700,\"gs\":356.5,\"track\":119.59,\"geom_rate\":-2304,\"squawk\":\"6005\",\"emergency\":\"none\",\"category\":\"A5\",\"lat\":33.373947,\"lon\":-81.041364,\"nic\":8,\"rc\":186,\"seen_pos\":0.189,\"version\":2,\"nic_baro\":1,\"nac_p\":10,\"nac_v\":2,\"sil\":3,\"sil_type\":\"perhour\",\"gva\":2,\"sda\":2,\"alert\":0,\"spi\":0,\"mlat\":[],\"tisb\":[],\"messages\":133254,\"seen\":0.0,\"rssi\":-4.6"
+   "head": "<!doctype html><html lang=\"en-US\" dir=\"ltr\"><head><base href=\"https://www.google.com/finance/\"><link rel=\"preconnect\" href=\"//www.gstatic.com\"><meta name=\"referrer\" content=\"origin\"><script nonce=\"jCZ-IRLkN7vsBputYamQ4A\">window['ppConfig'] = {productName: 'FinHubUi', deleteIsEnforced:  true , sealIsEnforced:  true , heartbeatRate:  0.5 , periodicReportingRateMillis:  60000.0 , disableAllReporting:  false };(function(){'use strict';function k(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}}function l(a){var b=typeof Symbol!=\"undefined\"&&Symbol.iterator&&a[Symbol.iterator];if(b)return b.call(a);if(typeof a.length==\"number\")return{next:k(a)};throw Error(String(a)+\" is not an iterable or ArrayLike\");}function m(a,b){var c;b&&!b.done&&(c=a[\"return\"])&&c.call(a)}\nvar n=typeof Object.defineProperties==\"function\"?Object.defineProperty:function(a,b,c){if(a==Array.prototype||a==Object.prototype)return a;a[b]=c.value;return a};function p(a){a=[\"object\"==typeof globalThis&&globalThis,a,\"object\"==typeof window&&window,\"object\"==typeof self&&self,\"object\"==typeof global&&global];for(var b=0;b<a.length;++b){var c=a[b];if(c&&c.Math==Math)return c}throw Error(\"Canno"
   },
   {
-   "name": "adsb.fi mil",
-   "url": "https://opendata.adsb.fi/api/v2/mil",
+   "name": "google finance brent",
+   "url": "https://www.google.com/finance/quote/BZW00:NYMEX",
    "status": 200,
-   "ms": 279,
-   "bytes": 121764,
+   "ms": 303,
+   "bytes": 1177876,
    "cors": null,
-   "head": "{\"ac\":[\n{\"hex\":\"ae1f56\",\"type\":\"adsb_icao\",\"flight\":\"G72071  \",\"r\":\"08-72071\",\"t\":\"EC45\",\"dbFlags\":1,\"desc\":\"Airbus Helicopters UH-72A Lakota\",\"alt_baro\":4800,\"alt_geom\":4875,\"gs\":101.2,\"track\":313.00,\"baro_rate\":-192,\"squawk\":\"1200\",\"emergency\":\"none\",\"category\":\"A7\",\"nav_qnh\":1016.8,\"lat\":31.192094,\"lon\":-105.767908,\"nic\":9,\"rc\":75,\"seen_pos\":0.000,\"version\":2,\"nic_baro\":1,\"nac_p\":10,\"nac_v\":2,\"sil\":3,\"sil_type\":\"perhour\",\"gva\":2,\"sda\":2,\"alert\":0,\"spi\":0,\"mlat\":[],\"tisb\":[],\"messages\":29301,\"seen\":0.0,\"rssi\":-15.1},\n{\"hex\":\"ae49c6\",\"type\":\"mlat\",\"flight\":\"RCH200  \",\"r\":\"09-9210\",\"t\":\"C17\",\"dbFlags\":1,\"desc\":\"Boeing C-17A Globemaster III\",\"alt_baro\":37000,\"calc_track\":136,\"baro_rate\":0,\"squawk\":\"7242\",\"lat\":42.217823,\"lon\":-95.757666,\"nic\":0,\"rc\":0,\"seen_pos\":15.917,\"alert\":0,\"spi\":0,\"mlat\":[\"callsign\",\"baro_rate\",\"lat\",\"lon\",\"nic\",\"rc\"],\"tisb\":[],\"messages\":8921,\"seen\":0.9,\"rssi\":-6.2},\n{\"hex\":\"ae63b1\",\"type\":\"mlat\",\"flight\":\"WINK12  \",\"r\":\"19-46069\",\"t\":\"B762\",\"dbFlags\":1,\"desc\":\"Boeing KC-46A Pegasus\",\"alt_baro\":33975,\"gs\":419.0,\"track\":262.00,\"baro_rate\":0,\"squawk\":\"1652\",\"lat\":39.615387,\"lon\":-91.978118,\"nic\":0,\"rc\":0,\"seen_pos\":5.257,\"alert\":0,\"spi\":0,\"mlat\":[\"callsign\",\"gs"
+   "head": "<!doctype html><html lang=\"en-US\" dir=\"ltr\"><head><base href=\"https://www.google.com/finance/\"><link rel=\"preconnect\" href=\"//www.gstatic.com\"><meta name=\"referrer\" content=\"origin\"><script nonce=\"PcrwvwTDXKBX2R9qI-2U6w\">window['ppConfig'] = {productName: 'FinHubUi', deleteIsEnforced:  true , sealIsEnforced:  true , heartbeatRate:  0.5 , periodicReportingRateMillis:  60000.0 , disableAllReporting:  false };(function(){'use strict';function k(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}}function l(a){var b=typeof Symbol!=\"undefined\"&&Symbol.iterator&&a[Symbol.iterator];if(b)return b.call(a);if(typeof a.length==\"number\")return{next:k(a)};throw Error(String(a)+\" is not an iterable or ArrayLike\");}function m(a,b){var c;b&&!b.done&&(c=a[\"return\"])&&c.call(a)}\nvar n=typeof Object.defineProperties==\"function\"?Object.defineProperty:function(a,b,c){if(a==Array.prototype||a==Object.prototype)return a;a[b]=c.value;return a};function p(a){a=[\"object\"==typeof globalThis&&globalThis,a,\"object\"==typeof window&&window,\"object\"==typeof self&&self,\"object\"==typeof global&&global];for(var b=0;b<a.length;++b){var c=a[b];if(c&&c.Math==Math)return c}throw Error(\"Canno"
   },
   {
-   "name": "gnews economy",
-   "url": "https://news.google.com/rss/search?q=India+economy+when:1d&hl=en-IN&gl=IN&ceid=IN:en",
-   "status": 200,
-   "ms": 476,
-   "bytes": 200096,
+   "name": "yahoo spark",
+   "url": "https://query1.finance.yahoo.com/v7/finance/spark?symbols=%5ENSEI&range=1d&interval=5m",
+   "status": 429,
+   "ms": 63,
+   "bytes": 19,
    "cors": null,
-   "head": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><rss version=\"2.0\" xmlns:media=\"http://search.yahoo.com/mrss/\"><channel><generator>NFE/5.0</generator><title>\"India economy when:1d\" - Google News</title><link>https://news.google.com/search?q=India+economy+when:1d&amp;hl=en-IN&amp;gl=IN&amp;ceid=IN:en</link><language>en-IN</language><webMaster>news-webmaster@google.com</webMaster><copyright>Copyright © 2026 Google. All rights reserved. This XML feed is made available solely for the purpose of rendering Google News results within a personal feed reader for personal, non-commercial use. Any other use of the feed is expressly prohibited. By accessing this feed or using these results in any manner whatsoever, you agree to be bound by the foregoing restrictions.</copyright><lastBuildDate>Tue, 13 Oct 2026 10:00:39 GMT</lastBuildDate><image><title>Google News</title><url>https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w256</url><link>https://news.google.com/</link><height>256</height><width>256</width></image><description>Google News</description><item><title>PM addresses the Bloomberg New Economy Forum - PM India</title><lin"
+   "head": "Too Many Requests\r\n"
   },
   {
-   "name": "gnews defence",
-   "url": "https://news.google.com/rss/search?q=India+defence+military+when:1d&hl=en-IN&gl=IN&ceid=IN:en",
+   "name": "er-api inr",
+   "url": "https://open.er-api.com/v6/latest/INR",
    "status": 200,
-   "ms": 312,
-   "bytes": 70109,
-   "cors": null,
-   "head": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><rss version=\"2.0\" xmlns:media=\"http://search.yahoo.com/mrss/\"><channel><generator>NFE/5.0</generator><title>\"India defence military when:1d\" - Google News</title><link>https://news.google.com/search?q=India+defence+military+when:1d&amp;hl=en-IN&amp;gl=IN&amp;ceid=IN:en</link><language>en-IN</language><webMaster>news-webmaster@google.com</webMaster><copyright>Copyright © 2026 Google. All rights reserved. This XML feed is made available solely for the purpose of rendering Google News results within a personal feed reader for personal, non-commercial use. Any other use of the feed is expressly prohibited. By accessing this feed or using these results in any manner whatsoever, you agree to be bound by the foregoing restrictions.</copyright><lastBuildDate>Tue, 13 Oct 2026 10:00:39 GMT</lastBuildDate><image><title>Google News</title><url>https://lh3.googleusercontent.com/-DR60l-K8vnyi99NZovm9HlXyZwQ85GMDxiwJWzoasZYCUrPuUM_P_4Rb7ei03j-0nRs0c4F=w256</url><link>https://news.google.com/</link><height>256</height><width>256</width></image><description>Google News</description><item><title>Bharat Rice for troops: Army taps FCI warehouses "
+   "ms": 92,
+   "bytes": 2905,
+   "cors": "*",
+   "head": "{\"result\":\"success\",\"provider\":\"https://www.exchangerate-api.com\",\"documentation\":\"https://www.exchangerate-api.com/docs/free\",\"terms_of_use\":\"https://www.exchangerate-api.com/terms\",\"time_last_update_unix\":1791849451,\"time_last_update_utc\":\"Mon, 12 Oct 2026 23:57:31 +0000\",\"time_next_update_unix\":1791936721,\"time_next_update_utc\":\"Wed, 14 Oct 2026 00:12:01 +0000\",\"time_eol_unix\":0,\"base_code\":\"INR\",\"rates\":{\"INR\":1,\"AED\":0.038289,\"AFN\":0.677353,\"ALL\":0.855117,\"AMD\":3.782072,\"ANG\":0.018663,\"AOA\":9.89374,\"ARS\":15.804524,\"AUD\":0.014976,\"AWG\":0.018663,\"AZN\":0.017746,\"BAM\":0.018288,\"BBD\":0.020852,\"BDT\":1.286394,\"BGN\":0.018288,\"BHD\":0.00392,\"BIF\":31.23301,\"BMD\":0.010426,\"BND\":0.013369,\"BOB\":0.123608,\"BRL\":0.052105,\"BSD\":0.010426,\"BTN\":1,\"BWP\":0.145912,\"BYN\":0.031436,\"BZD\":0.020852,\"CAD\":0.014897,\"CDF\":24.18797,\"CHF\":0.008702,\"CLF\":0.000258,\"CLP\":10.202472,\"CNH\":0.069959,\"CNY\":0.069168,\"COP\":33.382677,\"CRC\":4.753297,\"CUP\":0.250224,\"CVE\":1.031052,\"CZK\":0.227901,\"DJF\":1.852918,\"DKK\":0.069817,\"DOP\":0.635636,\"DZD\":1.405588,\"EGP\":0.549884,\"ERN\":0.15639,\"ETB\":1.686059,\"EUR\":0.009351,\"FJD\":0.023434,\"FKP\":0.007894,\"FOK\":0.069817,\"GBP\":0.007895,\"GEL\":0.027105,\"GGP\":0.007894,\"GHS\":0.122909,\"GIP\":0"
   }
  ]
 }
