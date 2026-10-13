@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-13T02:17:13.106Z",
+  "builtAt": "2026-10-13T12:14:02.928Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1108,
-    "addedThisRun": 5,
-    "carriedFromEarlierRuns": 1103,
-    "withOutlet": 1039,
+    "items": 1110,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1108,
+    "withOutlet": 1041,
     "bySubject": {
-      "scst": 748,
+      "scst": 750,
       "pmshri": 360
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 307
+    "offSubjectDropped": 308
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 533
+      "n": 535
     },
     {
       "key": "use",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 79
+      "n": 80
     },
     {
       "key": "The Indian Express",
@@ -217,6 +217,10 @@
       "n": 5
     },
     {
+      "key": "Wansom AI",
+      "n": 5
+    },
+    {
       "key": "The Federal",
       "n": 5
     },
@@ -243,10 +247,6 @@
     {
       "key": "NDTV",
       "n": 5
-    },
-    {
-      "key": "Wansom AI",
-      "n": 4
     },
     {
       "key": "Law Trend",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 11
     },
     {
       "id": "act-convicted",
@@ -325,10 +325,10 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 52,
-      "bing": 7,
-      "kept": 1,
-      "offSubject": 8
+      "google": 53,
+      "bing": 6,
+      "kept": 0,
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -337,7 +337,7 @@
       "expect": "use",
       "google": 49,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 16
     },
     {
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 56,
-      "bing": 1,
-      "kept": 2,
-      "offSubject": 18
+      "google": 57,
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 20
     },
     {
       "id": "act-acquittal",
@@ -356,9 +356,9 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 100,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 42
+      "offSubject": 41
     },
     {
       "id": "act-hostile",
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 47,
+      "google": 49,
       "bing": 2,
-      "kept": 1,
-      "offSubject": 9
+      "kept": 0,
+      "offSubject": 10
     },
     {
       "id": "act-dilution",
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 49,
+      "google": 50,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 17
+      "kept": 1,
+      "offSubject": 16
     },
     {
       "id": "act-fabricated",
@@ -418,14 +418,14 @@
       "google": 100,
       "bing": 12,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 43,
+      "google": 42,
       "bing": 1,
       "kept": 0,
       "offSubject": 5
@@ -445,7 +445,7 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 53,
+      "google": 52,
       "bing": 4,
       "kept": 0,
       "offSubject": 13
@@ -475,10 +475,10 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 55,
-      "bing": 4,
+      "google": 56,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "shri-criticism",
@@ -15010,7 +15010,8 @@
       "published": "2026-09-26",
       "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPMFh2bXdvb01hd3Mxb1lVcTdjQ2NuSlhwcDRZaHZlS0tJNFBSbTllNzUyUTVpRXJITzc5ekNLQXBWV3RPeUdzWjVGcVdQVVMyakQwTC1WNXpaRm81OXhBcGtmcGFVMFVnVnhXMUYwZ1cyeXpQUl9kYkczVDNWOE9CeGpSZFVzeENENGZzRWFLaE95MjBXRUR2Umlqa1lfVnk2dlNYXzVjTnllNjF2V1diVFJhNF9mOGlsQ3o2alA4R1o2dHI0V3o5TnJIaDV6YWdobENDU3kzMnNLbGZjYVpB0gHkAUFVX3lxTE9GS1dZRVhMQ2xsU1B3aFk1enBvY2dlTEN6aVJfYmtwR21iZExxRzRldm1ZdnU3Skd4TUpYRXhLNFVvTlNfemxleDRub3pMQW5PMGo2aTBKajJPOGlCSk1uLTdZWFd2SWtibDd0VERHTlJyZE9pS2tYVDNTUUJPVkpMX2o1US1hMDRRd1gyNVpfdjVxNjVPRDFNaEV1emJUQlBELTN2TkNPS1JBc2FobnZySUNVYW5yY2EzNVJqMXVFcHFIWXdzd3hUT2ZWU1B4MDI3TUhWaXlBQ2FScmsyMlNtLUJRNw?oc=5",
       "queries": [
-        "act-general"
+        "act-general",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -15790,7 +15791,8 @@
       "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNS2lJVmZfSHBid1FiUVJzT2s0VE9uTU5yZ0k3Z1lldkRDOXlQWEJxYzhyNGNfczlBMXNpVFktV21rZHhhUlBXbXU4RjJBOTJRYkJHWV9xeGRqT3VZN2RJWUFfUTZGd29GOGhVTUZxaHY3VGo5bjNWS3BTVFFrNjZmUW9VUmhMbUQ3ME9BU1UxelkyelE?oc=5",
       "queries": [
         "act-registered",
-        "act-false"
+        "act-false",
+        "act-misuse-claim"
       ],
       "indexes": [
         "google"
@@ -18537,6 +18539,38 @@
       "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPbE5Ob01XQzZ0MDBzQWNRWWdRMTZ1Tkc4MFJJQXdfcHh1THdHWHJlczFGVjd4bGhCd0NVbXJlUV95blBPNWJHWWNyVTlqek15SkItOHVPa2lCOXF4b1Z6OUs4OUhlRnpSQnAzejQ5Rk1ablpYRHBxclJsQ2E1U2xqM2xxaU5aOVFhNDJWTXpyOV9BTHRSSXZLWXBNcWg2ZWpHU2xsNFd3MDg?oc=5",
       "queries": [
         "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-13"
+    },
+    {
+      "id": "supreme court upholds 2018 sc st act amendment validity",
+      "headline": "Supreme Court: Upholds 2018 SC/ST Act Amendment Validity",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Wansom AI",
+      "published": "2026-09-22",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNY01qTUltZlNZbjFvbzJsZ1h5UE5oUkdDVk5tZFo5di1pbURiSFNkR1pPamhkMmozSmJCbGE0WnRnV0xLSF84eWwtcENGaGV4ejJkTzlqZ1hQZlVBb2JzN2dKcjlFLUZuWFRkLUpBY3daZFBZaEstVHdxZ3lkT00xdFBEa0JyRS1oeklVanFfTmNON1NvWVJMOHhlNUFuRDB1TW1xbWp1eTVIN2ZUR29va3dvcXFoTHlNOWVYREpHTEsyb0V1c0E?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-13"
+    },
+    {
+      "id": "bombay high court quashes criminal proceedings against college principal and employees in ",
+      "headline": "Bombay High Court Quashes Criminal Proceedings Against College Principal and Employees in SC/ST Act Case Due to Lack of Prima Facie Evidence and Malicious Prosecution. The court found that the police enquiry had already determined the complaint to",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Lawtext",
+      "published": "2026-10-12",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1CSnFHdndkOFpqYTg0LTVKVTB6RmlZNDlDb0RFYVFmeExzQ1l3djJtNmp3dUo3T3lhRUN4cm1PSlZTNTA2Q0YzSFhCdUNsRGNyWVBqLW90RkpkMGRMSFdURk5mZ3dsaW50?oc=5",
+      "queries": [
+        "act-false"
       ],
       "indexes": [
         "google"
