@@ -41,6 +41,7 @@ const GROUPS: Group[] = [
     id: "india",
     label: "India",
     items: [
+      { href: "/live", label: "Live", blurb: "Markets, the rupee, military aircraft and the news, refreshed while you watch" },
       { href: "/stories", label: "Visual stories", blurb: "Short, data-led arguments — semiconductors, defence, farming" },
       { href: "/growth", label: "Growth", blurb: "Digital payments, literacy, space, defence industry" },
       { href: "/growth-100", label: "A hundred indicators", blurb: "India across a hundred series, whichever way they point" },

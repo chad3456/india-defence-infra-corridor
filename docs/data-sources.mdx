@@ -165,6 +165,20 @@ A coverage wire, `data/protests/delhi-2026-10-10-news.json`, is written every ha
 `npm run protest:news` in GitHub Actions from Google News's keyless RSS search. Headlines are
 context and never become numbers. Private individuals are not named.
 
+### Live tracker
+
+`/live` reads its sources when someone opens it, through three server routes cached for 30 seconds
+to two minutes, and stores nothing. Index prices (Nifty 50, Sensex, Nifty Bank, India VIX) come from
+Moneycontrol's public price feed, with the exchange's own open/closed state and print time; currency
+rates are the European Central Bank's daily reference rates via Frankfurter, cross-checked against
+ExchangeRate-API's open feed; military aircraft are adsb.lol's and adsb.fi's `/v2/mil` answers,
+merged by transponder address, cut to 0–40°N, 60–100°E and rounded to a tenth of a degree, with no
+track history; headlines are Google News's keyless RSS search for the last day, beside the official
+feeds already in the source register. A source that does not answer shows as unavailable — never as
+an earlier reading. Yahoo Finance answers 429 to data-centre addresses and no keyless commodity source
+answered (`data/live/live-sources-probe.json`), so neither is used. Live readings are labelled
+unverified and never become series; the annual baseline beside them is the committed WDI record.
+
 ### Election atlas
 
 `/elections/atlas` holds three layers with three different provenances, kept apart on the page.

@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "live-tracker-2026-10",
+    title: "Live",
+    blurb:
+      "India's market indices and the rupee, military aircraft broadcasting over South Asia, and the last day's " +
+      "economy and defence headlines — refreshed while the page is open, and labelled as live readings, not the record.",
+    href: "/live",
+    since: "2026-10-13",
+  },
+  {
     id: "elections-section-2026-10",
     title: "Elections",
     blurb:
