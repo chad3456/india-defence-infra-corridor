@@ -64,6 +64,79 @@ const DOCS: Array<{ id: string; url: string; what: string; pages?: number; topic
   { id: "ncrb:2023:v1", what: "NCRB Crime in India 2023, Volume 1 (OpenCity mirror)", url: `${OC}40449a25-7fb3-4e38-91b9-f834af6078e2/resource/b7c71212-9463-4407-ab63-f349403a75b6/download/4f02eaf8-5d55-43d9-9a23-09cd724b5566.pdf`, pages: 40, topic: NCRB_V1 },
   { id: "ncrb:2024:v1", what: "NCRB Crime in India 2024, Volume 1 (OpenCity mirror)", url: `${OC}7d883875-921a-4820-b298-713c6219bd90/resource/46f760f4-dcf4-4f95-85c9-2225e2f7bbe8/download/vol1-crimeinindia2024.pdf`, pages: 40, topic: NCRB_V1 },
   { id: "ncrb:2024:v3", what: "NCRB Crime in India 2024, Volume 3 (OpenCity mirror)", url: `${OC}7d883875-921a-4820-b298-713c6219bd90/resource/38167e0c-6c5c-45fb-9cd4-3dc4f9d15754/download/2crimeinindia2024-volumeii.pdf`, pages: 40, topic: NCRB_V3 },
+  { id: "ncrb-old:2004:t17.12", what: "NCRB Crime in India 2004, Table 17.12.pdf (Wayback)", url: "https://web.archive.org/web/20140630090442id_/http://ncrb.nic.in:80/ciiprevious/data/cd-CII2004/cii-2004/Table%2017.12.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2005:t17.1", what: "NCRB Crime in India 2005, Table 17.1.pdf (Wayback)", url: "https://web.archive.org/web/20180712193535id_/http://ncrb.gov.in:80/StatPublications/CII/CII2005/cii-2005/Table%2017.1.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2005:t17.11", what: "NCRB Crime in India 2005, Table 17.11.pdf (Wayback)", url: "https://web.archive.org/web/20180712184051id_/http://ncrb.gov.in:80/StatPublications/CII/CII2005/cii-2005/Table%2017.11.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2005:t17.3", what: "NCRB Crime in India 2005, Table 17.3.pdf (Wayback)", url: "https://web.archive.org/web/20180712183055id_/http://ncrb.gov.in:80/StatPublications/CII/CII2005/cii-2005/Table%2017.3.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2005:t17.4", what: "NCRB Crime in India 2005, Table 17.4.pdf (Wayback)", url: "https://web.archive.org/web/20180712193541id_/http://ncrb.gov.in:80/StatPublications/CII/CII2005/cii-2005/Table%2017.4.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2005:t17.6", what: "NCRB Crime in India 2005, Table 17.6.pdf (Wayback)", url: "https://web.archive.org/web/20180712193550id_/http://ncrb.gov.in:80/StatPublications/CII/CII2005/cii-2005/Table%2017.6.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2005:t17.8", what: "NCRB Crime in India 2005, Table 17.8.pdf (Wayback)", url: "https://web.archive.org/web/20180712191504id_/http://ncrb.gov.in:80/StatPublications/CII/CII2005/cii-2005/Table%2017.8.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2007:t17.1", what: "NCRB Crime in India 2007, Table 17.1.pdf (Wayback)", url: "https://web.archive.org/web/20090410002150id_/http://ncrb.nic.in/CII2007/cii-2007/Table%2017.1.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2007:t17.10", what: "NCRB Crime in India 2007, Table 17.10.pdf (Wayback)", url: "https://web.archive.org/web/20090410002132id_/http://ncrb.nic.in/CII2007/cii-2007/Table%2017.10.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2007:t17.11", what: "NCRB Crime in India 2007, Table 17.11.pdf (Wayback)", url: "https://web.archive.org/web/20090410002050id_/http://ncrb.nic.in/CII2007/cii-2007/Table%2017.11.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2007:t17.12", what: "NCRB Crime in India 2007, Table 17.12.pdf (Wayback)", url: "https://web.archive.org/web/20090410002142id_/http://ncrb.nic.in/CII2007/cii-2007/Table%2017.12.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2007:t17.2", what: "NCRB Crime in India 2007, Table 17.2.pdf (Wayback)", url: "https://web.archive.org/web/20090410002033id_/http://ncrb.nic.in/CII2007/cii-2007/Table%2017.2.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2007:t17.3", what: "NCRB Crime in India 2007, Table 17.3.pdf (Wayback)", url: "https://web.archive.org/web/20090410002200id_/http://ncrb.nic.in/CII2007/cii-2007/Table%2017.3.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2007:t17.4", what: "NCRB Crime in India 2007, Table 17.4.pdf (Wayback)", url: "https://web.archive.org/web/20090410002058id_/http://ncrb.nic.in/CII2007/cii-2007/Table%2017.4.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2007:t17.5", what: "NCRB Crime in India 2007, Table 17.5.pdf (Wayback)", url: "https://web.archive.org/web/20090410002121id_/http://ncrb.nic.in/CII2007/cii-2007/Table%2017.5.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2007:t17.6", what: "NCRB Crime in India 2007, Table 17.6.pdf (Wayback)", url: "https://web.archive.org/web/20090410002106id_/http://ncrb.nic.in/CII2007/cii-2007/Table%2017.6.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2007:t17.7", what: "NCRB Crime in India 2007, Table 17.7.pdf (Wayback)", url: "https://web.archive.org/web/20090410002042id_/http://ncrb.nic.in/CII2007/cii-2007/Table%2017.7.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2007:t17.8", what: "NCRB Crime in India 2007, Table 17.8.pdf (Wayback)", url: "https://web.archive.org/web/20090410002114id_/http://ncrb.nic.in/CII2007/cii-2007/Table%2017.8.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2007:t17.9", what: "NCRB Crime in India 2007, Table 17.9.pdf (Wayback)", url: "https://web.archive.org/web/20090410002025id_/http://ncrb.nic.in/CII2007/cii-2007/Table%2017.9.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2008:chapter1", what: "NCRB Crime in India 2008, Chapter 1.pdf (Wayback)", url: "https://web.archive.org/web/20100816051202id_/http://ncrb.nic.in:80/CII2008/cii-2008/Chapter%201.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2008:chapter17", what: "NCRB Crime in India 2008, Chapter 17.pdf (Wayback)", url: "https://web.archive.org/web/20100816051305id_/http://ncrb.nic.in:80/CII2008/cii-2008/Chapter%2017.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2008:chapter18", what: "NCRB Crime in India 2008, Chapter 18.pdf (Wayback)", url: "https://web.archive.org/web/20100816051307id_/http://ncrb.nic.in:80/CII2008/cii-2008/Chapter%2018.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2009:chapter1", what: "NCRB Crime in India 2009, Chapter 1.pdf (Wayback)", url: "https://web.archive.org/web/20110125101050id_/http://ncrb.nic.in:80/CII%202009/cii-2009/Chapter%201.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2009:chapter17", what: "NCRB Crime in India 2009, Chapter 17.pdf (Wayback)", url: "https://web.archive.org/web/20110125101140id_/http://ncrb.nic.in:80/CII%202009/cii-2009/Chapter%2017.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2009:chapter18", what: "NCRB Crime in India 2009, Chapter 18.pdf (Wayback)", url: "https://web.archive.org/web/20150624165606id_/http://ncrb.nic.in/CII%202009/cii-2009/Chapter%2018.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2010:chapter1", what: "NCRB Crime in India 2010, Chapter 1.pdf (Wayback)", url: "https://web.archive.org/web/20111110085644id_/http://ncrb.nic.in:80/CII2010/cii-2010/Chapter%201.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2010:chapter17", what: "NCRB Crime in India 2010, Chapter 17.pdf (Wayback)", url: "https://web.archive.org/web/20111110085726id_/http://ncrb.nic.in:80/CII2010/cii-2010/Chapter%2017.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2010:chapter18", what: "NCRB Crime in India 2010, Chapter 18.pdf (Wayback)", url: "https://web.archive.org/web/20111110085728id_/http://ncrb.nic.in:80/CII2010/cii-2010/Chapter%2018.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2011:chapter1", what: "NCRB Crime in India 2011, Chapter 1.pdf (Wayback)", url: "https://web.archive.org/web/20160909012642id_/http://ncrb.gov.in:80/StatPublications/CII/CII2011/cii-2011/Chapter%201.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2011:chapter17", what: "NCRB Crime in India 2011, Chapter 17.pdf (Wayback)", url: "https://web.archive.org/web/20160909012659id_/http://ncrb.gov.in:80/StatPublications/CII/CII2011/cii-2011/Chapter%2017.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2011:chapter18", what: "NCRB Crime in India 2011, Chapter 18.pdf (Wayback)", url: "https://web.archive.org/web/20160909012704id_/http://ncrb.gov.in:80/StatPublications/CII/CII2011/cii-2011/Chapter%2018.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2012:chapter1", what: "NCRB Crime in India 2012, Chapter 1.pdf (Wayback)", url: "https://web.archive.org/web/20160909012747id_/http://ncrb.gov.in:80/StatPublications/CII/CII2012/cii-2012/Chapter%201.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2012:chapter17", what: "NCRB Crime in India 2012, Chapter 17.pdf (Wayback)", url: "https://web.archive.org/web/20160909012811id_/http://ncrb.gov.in:80/StatPublications/CII/CII2012/cii-2012/Chapter%2017.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2012:chapter18", what: "NCRB Crime in India 2012, Chapter 18.pdf (Wayback)", url: "https://web.archive.org/web/20160909012815id_/http://ncrb.gov.in:80/StatPublications/CII/CII2012/cii-2012/Chapter%2018.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2013:ch14", what: "NCRB Crime in India 2013, 14-Police firing and casualties.pdf (Wayback)", url: "https://web.archive.org/web/20160909011256id_/http://ncrb.gov.in:80/StatPublications/CII/CII2013/Chapters/14-Police%20firing%20and%20casualties.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2013:ch15", what: "NCRB Crime in India 2013, 15-Police Casualties.pdf (Wayback)", url: "https://web.archive.org/web/20160909011300id_/http://ncrb.gov.in:80/StatPublications/CII/CII2013/Chapters/15-Police%20Casualties.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2014:chapter18", what: "NCRB Crime in India 2014, Chapter 18.pdf (Wayback)", url: "https://web.archive.org/web/20160910043635id_/http://ncrb.gov.in:80/StatPublications/CII/CII2014/chapters/Chapter%2018.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2014:chapter19", what: "NCRB Crime in India 2014, Chapter 19.pdf (Wayback)", url: "https://web.archive.org/web/20160909013013id_/http://ncrb.gov.in:80/StatPublications/CII/CII2014/chapters/Chapter%2019.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2014:chapter20", what: "NCRB Crime in India 2014, Chapter 20.pdf (Wayback)", url: "https://web.archive.org/web/20160909013018id_/http://ncrb.gov.in:80/StatPublications/CII/CII2014/chapters/Chapter%2020.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2014:chapter21", what: "NCRB Crime in India 2014, Chapter 21.pdf (Wayback)", url: "https://web.archive.org/web/20160909013028id_/http://ncrb.gov.in:80/StatPublications/CII/CII2014/chapters/Chapter%2021.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2014:chapter22", what: "NCRB Crime in India 2014, Chapter 22.pdf (Wayback)", url: "https://web.archive.org/web/20160909013030id_/http://ncrb.gov.in:80/StatPublications/CII/CII2014/chapters/Chapter%2022.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2014:chapter23", what: "NCRB Crime in India 2014, Chapter 23.pdf (Wayback)", url: "https://web.archive.org/web/20160910045939id_/http://ncrb.gov.in:80/StatPublications/CII/CII2014/chapters/Chapter%2023.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2014:chapter24", what: "NCRB Crime in India 2014, Chapter 24.pdf (Wayback)", url: "https://web.archive.org/web/20160909011412id_/http://ncrb.gov.in:80/StatPublications/CII/CII2014/chapters/Chapter%2024.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2014:chapter25", what: "NCRB Crime in India 2014, Chapter 25.pdf (Wayback)", url: "https://web.archive.org/web/20160909013036id_/http://ncrb.gov.in:80/StatPublications/CII/CII2014/chapters/Chapter%2025.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2015:chapter18", what: "NCRB Crime in India 2015, Chapter 18-15.11.16.pdf (Wayback)", url: "https://web.archive.org/web/20170516192303id_/http://ncrb.gov.in:80/StatPublications/CII/CII2015/chapters/Chapter%2018-15.11.16.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2015:chapter19", what: "NCRB Crime in India 2015, Chapter 19-15.11.16.pdf (Wayback)", url: "https://web.archive.org/web/20180205125744id_/http://ncrb.gov.in:80/StatPublications/CII/CII2015/chapters/Chapter%2019-15.11.16.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2015:chapter20", what: "NCRB Crime in India 2015, Chapter 20-15.11.16.pdf (Wayback)", url: "https://web.archive.org/web/20171215192952id_/http://www.ncrb.gov.in:80/StatPublications/CII/CII2015/chapters/Chapter%2020-15.11.16.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2015:chapter21", what: "NCRB Crime in India 2015, Chapter 21-15.11.16.pdf (Wayback)", url: "https://web.archive.org/web/20180205125801id_/http://ncrb.gov.in:80/StatPublications/CII/CII2015/chapters/Chapter%2021-15.11.16.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2015:chapter22", what: "NCRB Crime in India 2015, Chapter 22-15.11.16.pdf (Wayback)", url: "https://web.archive.org/web/20180205213738id_/http://ncrb.gov.in:80/StatPublications/CII/CII2015/chapters/Chapter%2022-15.11.16.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2015:chapter23", what: "NCRB Crime in India 2015, Chapter 23-15.11.16.pdf (Wayback)", url: "https://web.archive.org/web/20180205213744id_/http://ncrb.gov.in:80/StatPublications/CII/CII2015/chapters/Chapter%2023-15.11.16.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2015:chapter24", what: "NCRB Crime in India 2015, Chapter 24-15.11.16.pdf (Wayback)", url: "https://web.archive.org/web/20180205130114id_/http://ncrb.gov.in:80/StatPublications/CII/CII2015/chapters/Chapter%2024-15.11.16.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb-old:2015:chapter25", what: "NCRB Crime in India 2015, Chapter 25-15.11.16.pdf (Wayback)", url: "https://web.archive.org/web/20180205213748id_/http://ncrb.gov.in:80/StatPublications/CII/CII2015/chapters/Chapter%2025-15.11.16.pdf", pages: 14, topic: /Police|Firing|Riot|Killed|Injured|Casualt/i },
+  { id: "ncrb:2019:v1", what: "NCRB Crime in India 2019, Volume 1 (Wayback)", url: "https://web.archive.org/web/2022id_/https://ncrb.gov.in/sites/default/files/CII%202019%20Volume%201.pdf", pages: 40, topic: NCRB_V1 },
+  { id: "ncrb:2019:v3", what: "NCRB Crime in India 2019, Volume 3 (Wayback)", url: "https://web.archive.org/web/2022id_/https://ncrb.gov.in/sites/default/files/CII%202019%20Volume%203.pdf", pages: 40, topic: NCRB_V3 },
+  { id: "ncrb:2020:v1", what: "NCRB Crime in India 2020, Volume 1 (Wayback)", url: "https://web.archive.org/web/2022id_/https://ncrb.gov.in/sites/default/files/CII%202020%20Volume%201.pdf", pages: 40, topic: NCRB_V1 },
+  { id: "ncrb:2020:v3", what: "NCRB Crime in India 2020, Volume 3 (Wayback)", url: "https://web.archive.org/web/2022id_/https://ncrb.gov.in/sites/default/files/CII%202020%20Volume%203.pdf", pages: 40, topic: NCRB_V3 },
+  { id: "ncrb:2021:v1", what: "NCRB Crime in India 2021, Volume 1 (Wayback)", url: "https://web.archive.org/web/2023id_/https://ncrb.gov.in/sites/default/files/CII-2021/CII_2021Volume%201.pdf", pages: 40, topic: NCRB_V1 },
+  { id: "ncrb:2021:v3", what: "NCRB Crime in India 2021, Volume 3 (Wayback)", url: "https://web.archive.org/web/2023id_/https://ncrb.gov.in/sites/default/files/CII-2021/CII_2021Volume%203.pdf", pages: 40, topic: NCRB_V3 },
+  { id: "press:arunachal-commemoration-188", what: "Police Commemoration Day 2023: 188 policemen (Arunachal Times/PTI)", url: "https://arunachaltimes.in/index.php/2023/10/22/188-policemen-made-supreme-sacrifice-in-last-one-year-shah/" },
+  { id: "press:arunachal-commemoration-188-p", what: "Police Commemoration Day 2023 (Arunachal Times, by id)", url: "https://arunachaltimes.in/?p=226851" },
+  { id: "press:organiser-commemoration-2020", what: "Police Commemoration Day 2020 (Organiser)", url: "https://organiser.org/2020/10/21/131162/bharat/police-commemoration-day/" },
+  { id: "press:orissapost-commemoration-2021", what: "Police Commemoration Day 2021 (Orissa Post)", url: "https://www.orissapost.com/police-commemoration-day-tributes-paid-to-bravehearts/" },
+  { id: "official:tripura-commemoration-2022", what: "Police Commemoration Day 2022 (Tripura ICA)", url: "https://ica.tripura.gov.in/sites/default/files/6804_22.pdf" },
+  { id: "press:wire-amp-no-big-riot", what: "Over 389 died in communal riots in four years (The Wire, AMP)", url: "https://m.thewire.in/article/communalism/no-big-communal-riot-in-last-four-years-says-bjp-minister/amp" },
+  { id: "press:bs-riots-2014", what: "90 dead in riots in 2014 (Business Standard/PTI)", url: "https://www.business-standard.com/article/pti-stories/90-dead-in-riots-in-2014-govt-claims-19-pc-decline-in-violence-114112600873_1.html" },
+  { id: "press:tnm-communal-2015", what: "Communal incidents see 17 pc rise in 2015 (The News Minute)", url: "https://www.thenewsminute.com/news/communal-incidents-see-17-pc-rise-2015-max-mha-39351" },
+  { id: "press:indiatv-communal-2015", what: "UP saw maximum communal incidents in 2015 (India TV)", url: "https://www.indiatvnews.com/news/india/up-saw-maximum-communal-incidents-deaths-in-2015-mha-57876.html" },
+  { id: "press:hrw-delhi-2020", what: "Delhi riots (HRW)", url: "https://www.hrw.org/news/2020/04/10/shoot-traitors/discrimination-against-muslims-under-indias-new-citizenship-policy" },
+  { id: "ls:120995", what: "Lok Sabha answer (railway losses to agitations)", url: "https://eparlib.nic.in/bitstream/123456789/619689/1/120995.pdf" },
+  { id: "ls:28295", what: "Lok Sabha answer (railway property damage)", url: "https://eparlib.sansad.in/bitstream/123456789/527763/1/28295.pdf" },
+  { id: "ls:147151", what: "Lok Sabha answer (railways and agitations)", url: "https://eparlib.nic.in/bitstream/123456789/647899/1/147151.pdf" },
+  { id: "ls:68296", what: "Lok Sabha answer (Gujjar agitation railway damage)", url: "https://eparlib.nic.in/bitstream/123456789/569451/1/68296.pdf" },
+  { id: "ls:125663", what: "Lok Sabha answer (Assam 2012)", url: "https://eparlib.nic.in/bitstream/123456789/624806/1/125663.pdf" },
   { id: "press:csw-kandhamal", what: "Kandhamal: Supreme Court orders re-investigation (CSW)", url: "https://www.csw.org.uk/2016/08/24/press/3231/article.htm" },
   { id: "press:arabnews-gujjar", what: "Gujjar agitation spreads; death toll reaches 37 (Arab News)", url: "https://www.arabnews.com/node/312297" },
   { id: "press:aj-gujjar", what: "India caste riot toll rises (Al Jazeera, 2008)", url: "https://www.aljazeera.com/news/2008/5/25/india-caste-riot-toll-rises" },
@@ -168,6 +241,16 @@ async function download(url: string): Promise<{ ok: boolean; status: string; buf
   return { ok: false, status: "unreachable" };
 }
 
+/** Some hosts (the Lok Sabha archive) break Node's HTTP parser; curl reads them. */
+function curlDownload(url: string): { ok: boolean; status: string; buf?: Buffer } {
+  const dir = mkdtempSync(join(tmpdir(), "po-curl-"));
+  const out = join(dir, "body");
+  try {
+    execFileSync("curl", ["-sSL", "--max-time", "120", "--retry", "2", "-A", UA, "-o", out, url], { stdio: "ignore", timeout: 300_000 });
+    return existsSync(out) ? { ok: true, status: "curl", buf: readFileSync(out) } : { ok: false, status: "curl: no body" };
+  } catch (e) { return { ok: false, status: `curl: ${(e as Error).message.slice(0, 120)}` }; }
+}
+
 function pdfPages(buf: Buffer): string[] {
   const dir = mkdtempSync(join(tmpdir(), "po-"));
   const pdf = join(dir, "doc.pdf"), txt = join(dir, "doc.txt");
@@ -211,7 +294,8 @@ async function main(): Promise<void> {
   const documents: unknown[] = [];
   for (const d of DOCS) try {
     await new Promise((r) => setTimeout(r, 1500));
-    const got = await download(d.url);
+    let got: { ok: boolean; status: string; buf?: Buffer } = await download(d.url);
+    if (!got.ok) { const c = curlDownload(d.url); if (c.ok) got = c; else got = { ok: false, status: `${got.status}; ${c.status}` }; }
     if (!got.ok || !got.buf) { documents.push({ id: d.id, what: d.what, url: d.url, ok: false, status: got.status }); console.log(`  ${d.id}: ${got.status}`); continue; }
     let pages: string[] = [];
     const isPdf = got.buf.subarray(0, 5).toString() === "%PDF-";
@@ -220,7 +304,7 @@ async function main(): Promise<void> {
     const kept: Kept[] = [];
     // A web page is one article: keep its text whole. A PDF keeps the pages on topic.
     if (!isPdf) kept.push({ page: 1, text: (pages[0] ?? "").replace(/\s*\n\s*/g, "\n").slice(0, 60000) });
-    else pages.forEach((t, i) => { if ((d.topic ?? TOPIC).test(t) && kept.length < (d.pages ?? 12)) kept.push({ page: i + 1, text: t.slice(0, 9000) }); });
+    else pages.forEach((t, i) => { if ((d.topic ?? TOPIC).test(t) && kept.length < (d.pages ?? 12)) kept.push({ page: i + 1, text: t.slice(0, 40000) }); });
     documents.push({ id: d.id, what: d.what, url: d.url, ok: true, pdf: isPdf, bytes: got.buf.length, pagesTotal: pages.length, kept });
     console.log(`  ${d.id}: ${pages.length} pages, ${kept.length} kept`);
   } catch (e) { errors.push(`${d.id}: ${(e as Error).stack ?? e}`); }
