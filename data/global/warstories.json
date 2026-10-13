@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-13T11:48:06.228Z",
-  "previousBuild": "2026-10-13T02:01:07.599Z",
+  "builtAt": "2026-10-13T19:17:34.508Z",
+  "previousBuild": "2026-10-13T11:48:06.228Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,28 +12,28 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 163,
-    "createdThisRun": 5,
-    "corroboratedThisRun": 0,
+    "stories": 166,
+    "createdThisRun": 3,
+    "corroboratedThisRun": 5,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 273,
+    "itemsSeen": 275,
     "corroboration": {
-      "one": 142,
+      "one": 143,
       "two": 12,
-      "threePlus": 9
+      "threePlus": 11
     }
   },
   "byTheme": [
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 87
+      "n": 89
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 49
+      "n": 50
     },
     {
       "id": "targeting",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 27
+      "n": 28
     },
     {
       "iso": "IND",
@@ -112,8 +112,8 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 29,
-      "kept": 2
+      "items": 31,
+      "kept": 1
     },
     {
       "outlet": "Indian Defence Research Wing",
@@ -125,13 +125,13 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 1
+      "kept": 3
     },
     {
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 1
+      "kept": 3
     },
     {
       "outlet": "C4ISRNET",
@@ -149,19 +149,19 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 1
+      "kept": 3
     },
     {
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Defense One",
@@ -179,7 +179,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 4
+      "kept": 0
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -195,6 +195,38 @@
     }
   ],
   "stories": [
+    {
+      "id": "https://www.defenseone.com/technology/2026/10/armys-new-command-plans-streamline-autonomous-warfare-acquisition/416523/",
+      "headline": "Army’s new command plans to streamline autonomous warfare acquisition",
+      "firstSeen": "2026-10-09",
+      "lastSeen": "2026-10-13",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defense One",
+          "url": "https://www.defenseone.com/technology/2026/10/armys-new-command-plans-streamline-autonomous-warfare-acquisition/416523/",
+          "published": "2026-10-09"
+        },
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/news/your-military/2026/10/13/us-army-to-stand-up-command-for-unmanned-and-autonomous-warfare/",
+          "published": "2026-10-13"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/news/your-military/2026/10/13/us-army-to-stand-up-command-for-unmanned-and-autonomous-warfare/",
+          "published": "2026-10-13"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/news/your-military/2026/10/13/us-army-to-stand-up-command-for-unmanned-and-autonomous-warfare/",
+          "published": "2026-10-13"
+        }
+      ]
+    },
     {
       "id": "https://www.militarytimes.com/news/your-military/2026/09/22/royal-navy-successfully-launches-us-mk-48-torpedo-from-uncrewed-submersible/",
       "headline": "Royal Navy successfully launches US Mk 48 torpedo from uncrewed submersible",
@@ -297,6 +329,38 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/ai-military-targeting-may-move-faster-than-humans-can-authenticate-critics-warn/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/industry/techwatch/2026/10/13/us-army-targets-2028-for-first-high-energy-laser-counter-drone-weapons/",
+      "headline": "US Army targets 2028 for first high-energy laser counter-drone weapons",
+      "firstSeen": "2026-10-13",
+      "lastSeen": "2026-10-13",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/industry/techwatch/2026/10/13/us-army-targets-2028-for-first-high-energy-laser-counter-drone-weapons/",
+          "published": "2026-10-13"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/industry/techwatch/2026/10/13/us-army-targets-2028-for-first-high-energy-laser-counter-drone-weapons/",
+          "published": "2026-10-13"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/industry/techwatch/2026/10/13/us-army-targets-2028-for-first-high-energy-laser-counter-drone-weapons/",
+          "published": "2026-10-13"
         }
       ]
     },
@@ -878,6 +942,40 @@
       ]
     },
     {
+      "id": "https://breakingdefense.com/2026/10/laneve-redesignates-armys-futures-and-concepts-command-as-new-fascom-autonomy-command/",
+      "headline": "LaNeve ‘redesignates’ Army’s Futures and Concepts Command as new FASCOM autonomy command",
+      "firstSeen": "2026-10-13",
+      "lastSeen": "2026-10-13",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/laneve-redesignates-armys-futures-and-concepts-command-as-new-fascom-autonomy-command/",
+          "published": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/10/teledyne-flir-defense-releases-new-compact-counter-uas-radar/",
+      "headline": "Teledyne FLIR Defense releases new compact counter-UAS radar",
+      "firstSeen": "2026-10-13",
+      "lastSeen": "2026-10-13",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/teledyne-flir-defense-releases-new-compact-counter-uas-radar/",
+          "published": "2026-10-13"
+        }
+      ]
+    },
+    {
       "id": "https://idrw.org/indian-navy-seeks-shakti-ew-system-to-replace-ellora-mk-ii/",
       "headline": "Indian Navy Seeks Shakti EW System to Replace Ellora Mk-II",
       "firstSeen": "2026-10-12",
@@ -1111,23 +1209,6 @@
         {
           "outlet": "Defence Industry Europe",
           "url": "https://defence-industry.eu/eos-signs-conditional-370-million-contract-for-nationwide-counter-drone-defence-system-in-an-unnamed-gulf-state/",
-          "published": "2026-10-09"
-        }
-      ]
-    },
-    {
-      "id": "https://www.defenseone.com/technology/2026/10/armys-new-command-plans-streamline-autonomous-warfare-acquisition/416523/",
-      "headline": "Army’s new command plans to streamline autonomous warfare acquisition",
-      "firstSeen": "2026-10-09",
-      "lastSeen": "2026-10-09",
-      "themes": [
-        "autonomy"
-      ],
-      "countries": [],
-      "sources": [
-        {
-          "outlet": "Defense One",
-          "url": "https://www.defenseone.com/technology/2026/10/armys-new-command-plans-streamline-autonomous-warfare-acquisition/416523/",
           "published": "2026-10-09"
         }
       ]
