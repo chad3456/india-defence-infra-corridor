@@ -35,13 +35,56 @@ const LISTINGS: Array<{ id: string; url: string }> = [
   { id: "ncrb:en-index", url: "https://www.ncrb.gov.in/en/crime-in-india.html" },
   { id: "ncrb:tables", url: "https://www.ncrb.gov.in/crime-in-india-table-content.html" },
   { id: "opencity:ckan", url: "https://data.opencity.in/api/3/action/package_search?q=%22crime+in+india%22&rows=60" },
+  { id: "opencity:ckan-ncrb", url: "https://data.opencity.in/api/3/action/package_search?q=ncrb&rows=100" },
+  ...[2016, 2017, 2018, 2019, 2020, 2021, 2023].map((y) => ({ id: `opencity:ckan-${y}`, url: `https://data.opencity.in/api/3/action/package_show?id=crime-in-india-${y}` })),
+  ...["2019", "2020", "2021", "2023"].map((y) => ({ id: `pari:${y}-v3`, url: `https://ruralindiaonline.org/en/library/resource/crime-in-india-${y}-volume-iii/` })),
+  { id: "wayback:ncrb-nic", url: "https://web.archive.org/cdx/search/cdx?url=ncrb.nic.in/CII*&output=json&fl=original,timestamp&filter=mimetype:application/pdf&collapse=urlkey&limit=4000" },
+  { id: "wayback:ncrb-gov-stat", url: "https://web.archive.org/cdx/search/cdx?url=ncrb.gov.in/StatPublications/CII/*&output=json&fl=original,timestamp&filter=mimetype:application/pdf&collapse=urlkey&limit=4000" },
 ];
 
 /** What a kept page must mention. */
 const TOPIC = /riot|damage to public property|police firing|lathi|police personnel killed|killed or injured|casualt|communal|agitation|stone[- ]pelting|public order/i;
 
 /** Documents to read. `pages` caps how many matching pages are kept. */
-const DOCS: Array<{ id: string; url: string; what: string; pages?: number }> = [
+const NCRB_V1 = /Rioting|\bRiots\b|Damage to Public Property|Offences against the State/i;
+const NCRB_V3 = /Police Firing|Lathi|Police Personnel (?:Killed|Injured)|Casualties|Killed or Injured|Civilians/i;
+const NCRB = "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/";
+const OC = "https://data.opencity.in/dataset/";
+
+const DOCS: Array<{ id: string; url: string; what: string; pages?: number; topic?: RegExp }> = [
+  { id: "ncrb:2014:1953-2014", what: "NCRB Crime in India 2014, excerpts: national IPC crimes 1953-2014", url: `${NCRB}1653897427_1953-2014.pdf`, pages: 80, topic: /./ },
+  { id: "ncrb:2015:excerpts", what: "NCRB Crime in India 2015, excerpts: national", url: `${NCRB}1653896209_Excerpts%20National_0.pdf`, pages: 80, topic: /./ },
+  { id: "ncrb:2016:full", what: "NCRB Crime in India 2016, full publication", url: `${NCRB}1653886924_Crime%20in%20India%20-%202016%20Complete%20PDF%20291117.pdf`, pages: 70, topic: new RegExp(`${NCRB_V1.source}|${NCRB_V3.source}`, "i") },
+  { id: "ncrb:2017:v1", what: "NCRB Crime in India 2017, Volume 1", url: `${NCRB}1653885627_Crime%20in%20India%202017%20-%20Volume%201_0_0.pdf`, pages: 40, topic: NCRB_V1 },
+  { id: "ncrb:2017:v3", what: "NCRB Crime in India 2017, Volume 3", url: "https://www.ncrb.gov.in/uploads/files/CII-2017Volume3.pdf", pages: 40, topic: NCRB_V3 },
+  { id: "ncrb:2018:v1", what: "NCRB Crime in India 2018, Volume 1", url: `${NCRB}1653734481_Crime%20in%20India%202018%20-%20Volume%201_3_0_0.pdf`, pages: 40, topic: NCRB_V1 },
+  { id: "ncrb:2018:v3", what: "NCRB Crime in India 2018, Volume 3", url: "https://www.ncrb.gov.in/uploads/files/CII-2018Volume3.pdf", pages: 40, topic: NCRB_V3 },
+  { id: "ncrb:2022:v1", what: "NCRB Crime in India 2022, Volume 1 (OpenCity mirror)", url: `${OC}b2d3ff5c-b109-42ad-afe0-b244c26505cd/resource/b70cf1ea-442a-4b23-9216-399f07e6379b/download/2f0461a6-7f09-47f1-ae1e-43b68d888599.pdf`, pages: 40, topic: NCRB_V1 },
+  { id: "ncrb:2022:v3", what: "NCRB Crime in India 2022, Volume 3 (OpenCity mirror)", url: `${OC}b2d3ff5c-b109-42ad-afe0-b244c26505cd/resource/2b5bbab1-902b-4821-9e69-69d2b195fc09/download/d4b642dc-035b-4743-8515-efd09a17c9ed.pdf`, pages: 40, topic: NCRB_V3 },
+  { id: "ncrb:2023:v1", what: "NCRB Crime in India 2023, Volume 1 (OpenCity mirror)", url: `${OC}40449a25-7fb3-4e38-91b9-f834af6078e2/resource/b7c71212-9463-4407-ab63-f349403a75b6/download/4f02eaf8-5d55-43d9-9a23-09cd724b5566.pdf`, pages: 40, topic: NCRB_V1 },
+  { id: "ncrb:2024:v1", what: "NCRB Crime in India 2024, Volume 1 (OpenCity mirror)", url: `${OC}7d883875-921a-4820-b298-713c6219bd90/resource/46f760f4-dcf4-4f95-85c9-2225e2f7bbe8/download/vol1-crimeinindia2024.pdf`, pages: 40, topic: NCRB_V1 },
+  { id: "ncrb:2024:v3", what: "NCRB Crime in India 2024, Volume 3 (OpenCity mirror)", url: `${OC}7d883875-921a-4820-b298-713c6219bd90/resource/38167e0c-6c5c-45fb-9cd4-3dc4f9d15754/download/2crimeinindia2024-volumeii.pdf`, pages: 40, topic: NCRB_V3 },
+  { id: "press:csw-kandhamal", what: "Kandhamal: Supreme Court orders re-investigation (CSW)", url: "https://www.csw.org.uk/2016/08/24/press/3231/article.htm" },
+  { id: "press:arabnews-gujjar", what: "Gujjar agitation spreads; death toll reaches 37 (Arab News)", url: "https://www.arabnews.com/node/312297" },
+  { id: "press:aj-gujjar", what: "India caste riot toll rises (Al Jazeera, 2008)", url: "https://www.aljazeera.com/news/2008/5/25/india-caste-riot-toll-rises" },
+  { id: "press:outlook-assam-2012", what: "A Turf War: Assam 2012 (Outlook)", url: "https://www.outlookindia.com/national/a-turf-war-news-281788" },
+  { id: "press:aj-assam-2012", what: "India's PM promises help to riot victims (Al Jazeera)", url: "https://www.aljazeera.com/news/2012/7/28/indias-pm-promises-help-to-riot-victims" },
+  { id: "press:bt-sambhal", what: "Sambhal: 4 dead (Business Today)", url: "https://www.businesstoday.in/india/story/sambhal-riots-in-up-4-dead-internet-shutdown-amid-clashes-over-mosque-survey-heres-what-we-know-so-far-454978-2024-11-25" },
+  { id: "press:aj-sambhal", what: "Arrests after Muslims killed in Sambhal (Al Jazeera)", url: "https://www.aljazeera.com/news/2024/11/25/arrests-after-muslims-killed-in-mosque-survey-violence-in-indias-sambhal" },
+  { id: "press:fpj-sambhal-panel", what: "Sambhal judicial commission report (Free Press Journal)", url: "https://www.freepressjournal.in/india/sambhal-mosque-survey-violence-was-pre-planned-conspiracy-says-judicial-commission-report" },
+  { id: "press:dh-caa-up-15", what: "CAA row: UP death toll rises to 15 (Deccan Herald)", url: "https://www.deccanherald.com/india/caa-row-up-death-toll-rises-to-15-protests-continue-787604.html" },
+  { id: "press:wire-caa-25", what: "The 25 people killed during anti-CAA protests (The Wire, AMP)", url: "https://m.thewire.in/article/rights/anti-caa-protest-deaths/amp" },
+  { id: "press:govnow-patidar", what: "Patel quota stir toll rises to 8 (Governance Now)", url: "https://www.governancenow.com/news/regular-story/gujarat-tense-death-patel-quota-stir-rises-8-army-streets" },
+  { id: "press:quint-patidar-14", what: "Families of the 14 killed in the Patidar agitation (The Quint)", url: "https://www.thequint.com/gujarat-elections/hardik-patel-patidar-andolan-movement-protests-bjp-families-of-14-who-died-killed-police-firing-2015-2017-2022" },
+  { id: "press:bs-murshidabad", what: "Murshidabad: 150 held, central forces deployed (Business Standard)", url: "https://www.business-standard.com/india-news/west-bengal-murshidabad-waqf-act-protests-violence-arrests-deaths-tmc-bjp-125041300242_1.html" },
+  { id: "press:sabrang-murshidabad", what: "Waqf protests escalate in West Bengal (Sabrang)", url: "https://sabrangindia.in/protests-over-waqf-amendment-act-escalate-into-violence-in-west-bengal-calcutta-hc-intervenes/" },
+  { id: "press:tnm-bengaluru-2020", what: "Bengaluru violence: damages to be recovered (The News Minute)", url: "https://www.thenewsminute.com/karnataka/bengaluru-violence-karnataka-govt-moves-recover-damages-culprits-130923" },
+  { id: "press:hitavada-bengaluru-2020", what: "3 killed in police firing in Bengaluru (The Hitavada/PTI)", url: "https://www.thehitavada.com/Encyc/2020/8/13/3-killed-in-police-firing-in-violence-over-social-media-post-in-B-luru.html" },
+  { id: "press:wire-amp-prakash-singh", what: "Prakash Singh committee report (The Wire, AMP)", url: "https://m.thewire.in/article/politics/the-prakash-singh-committee-report-administrative-failure-and-other-learnings-from-haryanas-jat-riots/amp" },
+  { id: "press:wire-amp-delhi-affidavit", what: "Delhi Police affidavit (The Wire, AMP)", url: "https://m.thewire.in/article/communalism/delhi-police-affidavit-shows-muslims-bore-brunt-of-riots-silent-on-who-targeted-them-and-why/amp" },
+  { id: "press:wire-amp-dera-report", what: "Haryana report to Centre on Dera violence (The Wire, AMP)", url: "https://m.thewire.in/article/politics/gurmeet-ram-rahim-dera-sacha-sauda-haryana-government/amp" },
+  { id: "press:wire-amp-communal-rti", what: "Over 1600 killed in communal clashes 2004-2017 (The Wire, AMP)", url: "https://m.thewire.in/article/politics/communal-clashes-data-killed/amp" },
+  { id: "press:wire-amp-communal-2016-20", what: "Communal riots 2016-2020 (The Wire, AMP)", url: "https://m.thewire.in/article/government/india-commuanl-religious-riots-2016-2020/amp" },
   { id: "ncrb:2022:v3", what: "Crime in India 2022, Volume III (police, casualties)", url: "https://data.opencity.in/dataset/fcb23738-6a70-42d4-9aa9-6a5e1aa5ce18/resource/d4b642dc-035b-4743-8515-efd09a17c9ed/download/1701608543crimeinindia2022book3.pdf", pages: 40 },
   { id: "ls:5195", what: "Lok Sabha answer (communal incidents)", url: "https://eparlib.nic.in/bitstream/123456789/727282/1/5195.pdf" },
   { id: "ls:20238", what: "Lok Sabha answer", url: "https://eparlib.sansad.in/bitstream/123456789/519754/1/20238.pdf" },
@@ -143,10 +186,17 @@ async function main(): Promise<void> {
     await new Promise((r) => setTimeout(r, 1500));
     const res = await getText(l.url, { timeoutMs: 45_000, retries: 1, cacheMs: 0 });
     if (!res.ok || !res.data) { listings.push({ id: l.id, url: l.url, ok: false, status: res.error ?? "no body" }); console.log(`  ${l.id}: ${res.error}`); continue; }
-    if (l.id === "opencity:ckan") {
+    if (l.id.startsWith("wayback:")) {
+      try { const rows = JSON.parse(res.data) as string[][]; listings.push({ id: l.id, url: l.url, ok: true, links: rows.slice(1).map((r) => ({ href: r[0], text: r[1] })) }); }
+      catch (e) { listings.push({ id: l.id, url: l.url, ok: false, status: (e as Error).message }); }
+      continue;
+    }
+    if (l.id.startsWith("opencity:")) {
       try {
-        const j = JSON.parse(res.data) as { result?: { results?: Array<{ name: string; title: string; resources?: Array<{ name: string; url: string }> }> } };
-        const pk = (j.result?.results ?? []).map((p) => ({ name: p.name, title: p.title, resources: (p.resources ?? []).map((r) => ({ name: r.name, url: r.url })) }));
+        type Pk = { name: string; title: string; resources?: Array<{ name: string; url: string }> };
+        const j = JSON.parse(res.data) as { result?: { results?: Pk[] } & Partial<Pk> };
+        const list: Pk[] = j.result?.results ?? (j.result?.name ? [j.result as Pk] : []);
+        const pk = list.map((p) => ({ name: p.name, title: p.title, resources: (p.resources ?? []).map((r) => ({ name: r.name, url: r.url })) }));
         listings.push({ id: l.id, url: l.url, ok: true, packages: pk });
       } catch (e) { listings.push({ id: l.id, url: l.url, ok: false, status: (e as Error).message }); }
       continue;
@@ -170,18 +220,27 @@ async function main(): Promise<void> {
     const kept: Kept[] = [];
     // A web page is one article: keep its text whole. A PDF keeps the pages on topic.
     if (!isPdf) kept.push({ page: 1, text: (pages[0] ?? "").replace(/\s*\n\s*/g, "\n").slice(0, 60000) });
-    else pages.forEach((t, i) => { if (TOPIC.test(t) && kept.length < (d.pages ?? 12)) kept.push({ page: i + 1, text: t.slice(0, 9000) }); });
+    else pages.forEach((t, i) => { if ((d.topic ?? TOPIC).test(t) && kept.length < (d.pages ?? 12)) kept.push({ page: i + 1, text: t.slice(0, 9000) }); });
     documents.push({ id: d.id, what: d.what, url: d.url, ok: true, pdf: isPdf, bytes: got.buf.length, pagesTotal: pages.length, kept });
     console.log(`  ${d.id}: ${pages.length} pages, ${kept.length} kept`);
   } catch (e) { errors.push(`${d.id}: ${(e as Error).stack ?? e}`); }
+
+  // Keep what earlier runs read: a document that failed this time, or is no
+  // longer listed, stays as it was last read, with the date it was read.
+  try {
+    const prev = JSON.parse(readFileSync(OUT, "utf8")) as { probedAt?: string; documents?: Array<{ id: string; ok: boolean; readAt?: string }> };
+    const now = new Map((documents as Array<{ id: string; ok: boolean }>).map((x) => [x.id, x]));
+    for (const old of prev.documents ?? []) {
+      const cur = now.get(old.id);
+      if (old.ok && (!cur || !cur.ok)) { const i = documents.indexOf(cur as unknown); const kept = { ...old, readAt: old.readAt ?? prev.probedAt }; if (i >= 0) documents[i] = kept; else documents.push(kept); }
+    }
+  } catch { /* first run */ }
+  for (const x of documents as Array<{ ok: boolean; readAt?: string }>) if (x.ok && !x.readAt) x.readAt = new Date().toISOString();
 
   await mkdir(dirname(OUT), { recursive: true });
   await writeFile(OUT, JSON.stringify({ probedAt: new Date().toISOString(), refusal: "Source text for checking, not data. Nothing here is rendered.", errors, listings, documents }, null, 1));
 }
 
-// Never exits non-zero before writing: what failed is recorded in the file.
-main().catch(async (e) => {
-  console.error(e);
-  await mkdir(dirname(OUT), { recursive: true });
-  await writeFile(OUT, JSON.stringify({ probedAt: new Date().toISOString(), fatal: String((e as Error).stack ?? e), errors }, null, 1));
-});
+// A fatal error leaves the previous file in place rather than replacing what
+// earlier runs read with an error message.
+main().catch((e) => { console.error(e); });
