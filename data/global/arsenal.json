@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-13T12:57:42.077Z",
+ "builtAt": "2026-10-13T21:57:30.664Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206491,7 +206491,7 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   },
   {
@@ -206519,11 +206519,43 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-1lcwg5z",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-10-13",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/industry/techwatch/2026/10/13/anduril-awarded-contract-to-expand-us-armys-next-gen-battlefield-command-system/",
+   "headline": "Anduril awarded contract to expand US Army’s next-gen battlefield command system",
+   "primary": false
+  },
+  {
+   "id": "ev-1m5ni86",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": {
+    "amount": 63000000,
+    "currency": "USD",
+    "asWritten": "$63M"
+   },
+   "date": "2026-10-13",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/leonardo-drs-wins-63m-u-s-army-thermal-sight-order/",
+   "headline": "Leonardo DRS wins $63M U.S. Army thermal sight order",
+   "primary": false
+  },
   {
    "id": "ev-1smxsp5",
    "kind": "order",
@@ -207609,185 +207641,6 @@
  ],
  "groups": [
   {
-   "key": "order||saudi arabia+united states",
-   "systems": [],
-   "countries": [
-    "United States",
-    "Saudi Arabia"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1smxsp5",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States",
-      "Saudi Arabia"
-     ],
-     "value": null,
-     "date": "2026-10-12",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/news/your-military/2026/10/12/3-us-soldiers-awarded-purple-hearts-after-missile-attack-on-saudi-arabia-base/",
-     "headline": "3 US soldiers awarded Purple Hearts after March missile attack on Saudi Arabia base",
-     "primary": false
-    },
-    {
-     "id": "ev-11v23bm",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States",
-      "Saudi Arabia"
-     ],
-     "value": {
-      "amount": 24300000000,
-      "currency": "USD",
-      "asWritten": "$24.3 billion"
-     },
-     "date": "2026-09-18",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/industry/techwatch/2026/09/18/us-clears-way-for-243-billion-fighter-jet-sale-to-saudi-arabia/",
-     "headline": "US clears way for $24.3 billion fighter jet sale to Saudi Arabia",
-     "primary": false
-    },
-    {
-     "id": "ev-25d1fk",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States",
-      "Saudi Arabia"
-     ],
-     "value": {
-      "amount": 24000000000,
-      "currency": "USD",
-      "asWritten": "$24B"
-     },
-     "date": "2026-09-17",
-     "outlet": "Breaking Defense",
-     "url": "https://breakingdefense.com/2026/09/us-clears-24b-f-35-sale-for-saudi-arabia/",
-     "headline": "US clears $24B F-35 sale for Saudi Arabia",
-     "primary": false
-    },
-    {
-     "id": "ev-1t7bgpc",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States",
-      "Saudi Arabia"
-     ],
-     "value": null,
-     "date": "2026-09-17",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/u-s-approves-saudi-f-35-sale-after-year-of-signals/",
-     "headline": "U.S. approves Saudi F-35 sale after year of signals",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defense News",
-    "Breaking Defense",
-    "Defence Blog"
-   ],
-   "value": {
-    "amount": 24300000000,
-    "currency": "USD",
-    "asWritten": "$24.3 billion"
-   },
-   "verdict": "corroborated by independent outlets"
-  },
-  {
-   "key": "delivery||united states",
-   "systems": [],
-   "countries": [
-    "United States"
-   ],
-   "kind": "delivery",
-   "events": [
-    {
-     "id": "ev-hshsnq",
-     "kind": "delivery",
-     "systems": [],
-     "countries": [
-      "United States"
-     ],
-     "value": null,
-     "date": "2026-10-12",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/u-s-army-takes-delivery-of-first-korean-built-wheeled-howitzer/",
-     "headline": "U.S. Army takes delivery of first Korean-built wheeled howitzer",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defence Blog"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "delivery||united kingdom",
-   "systems": [],
-   "countries": [
-    "United Kingdom"
-   ],
-   "kind": "delivery",
-   "events": [
-    {
-     "id": "ev-1x1xxwv",
-     "kind": "delivery",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-10-10",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/news/faster-front-line-delivery-with-new-testing-and-evaluation-programme",
-     "headline": "Faster front-line delivery with new Testing and Evaluation programme",
-     "primary": true
-    }
-   ],
-   "outlets": [
-    "UK Ministry of Defence"
-   ],
-   "value": null,
-   "verdict": "from a primary source"
-  },
-  {
-   "key": "order||japan+ukraine",
-   "systems": [],
-   "countries": [
-    "Japan",
-    "Ukraine"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-dlrho0",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Japan",
-      "Ukraine"
-     ],
-     "value": null,
-     "date": "2026-10-10",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/japan-signs-deal-for-ukrainian-skyfall-interceptor-drones/",
-     "headline": "Japan signs deal for Ukrainian SkyFall interceptor drones",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defence Blog"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -207795,6 +207648,38 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-1lcwg5z",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-10-13",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/industry/techwatch/2026/10/13/anduril-awarded-contract-to-expand-us-armys-next-gen-battlefield-command-system/",
+     "headline": "Anduril awarded contract to expand US Army’s next-gen battlefield command system",
+     "primary": false
+    },
+    {
+     "id": "ev-1m5ni86",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 63000000,
+      "currency": "USD",
+      "asWritten": "$63M"
+     },
+     "date": "2026-10-13",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/leonardo-drs-wins-63m-u-s-army-thermal-sight-order/",
+     "headline": "Leonardo DRS wins $63M U.S. Army thermal sight order",
+     "primary": false
+    },
     {
      "id": "ev-n7ddhs",
      "kind": "order",
@@ -208229,14 +208114,193 @@
     }
    ],
    "outlets": [
+    "Defense News",
     "Defence Blog",
     "Defense One",
-    "Defense News",
     "Breaking Defense",
     "Naval News"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "order||saudi arabia+united states",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Saudi Arabia"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1smxsp5",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Saudi Arabia"
+     ],
+     "value": null,
+     "date": "2026-10-12",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/news/your-military/2026/10/12/3-us-soldiers-awarded-purple-hearts-after-missile-attack-on-saudi-arabia-base/",
+     "headline": "3 US soldiers awarded Purple Hearts after March missile attack on Saudi Arabia base",
+     "primary": false
+    },
+    {
+     "id": "ev-11v23bm",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Saudi Arabia"
+     ],
+     "value": {
+      "amount": 24300000000,
+      "currency": "USD",
+      "asWritten": "$24.3 billion"
+     },
+     "date": "2026-09-18",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/industry/techwatch/2026/09/18/us-clears-way-for-243-billion-fighter-jet-sale-to-saudi-arabia/",
+     "headline": "US clears way for $24.3 billion fighter jet sale to Saudi Arabia",
+     "primary": false
+    },
+    {
+     "id": "ev-25d1fk",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Saudi Arabia"
+     ],
+     "value": {
+      "amount": 24000000000,
+      "currency": "USD",
+      "asWritten": "$24B"
+     },
+     "date": "2026-09-17",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/09/us-clears-24b-f-35-sale-for-saudi-arabia/",
+     "headline": "US clears $24B F-35 sale for Saudi Arabia",
+     "primary": false
+    },
+    {
+     "id": "ev-1t7bgpc",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Saudi Arabia"
+     ],
+     "value": null,
+     "date": "2026-09-17",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-approves-saudi-f-35-sale-after-year-of-signals/",
+     "headline": "U.S. approves Saudi F-35 sale after year of signals",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News",
+    "Breaking Defense",
+    "Defence Blog"
+   ],
+   "value": {
+    "amount": 24300000000,
+    "currency": "USD",
+    "asWritten": "$24.3 billion"
+   },
+   "verdict": "corroborated by independent outlets"
+  },
+  {
+   "key": "delivery||united states",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-hshsnq",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-10-12",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-army-takes-delivery-of-first-korean-built-wheeled-howitzer/",
+     "headline": "U.S. Army takes delivery of first Korean-built wheeled howitzer",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "delivery||united kingdom",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-1x1xxwv",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-10",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/news/faster-front-line-delivery-with-new-testing-and-evaluation-programme",
+     "headline": "Faster front-line delivery with new Testing and Evaluation programme",
+     "primary": true
+    }
+   ],
+   "outlets": [
+    "UK Ministry of Defence"
+   ],
+   "value": null,
+   "verdict": "from a primary source"
+  },
+  {
+   "key": "order||japan+ukraine",
+   "systems": [],
+   "countries": [
+    "Japan",
+    "Ukraine"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-dlrho0",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Japan",
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-10-10",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/japan-signs-deal-for-ukrainian-skyfall-interceptor-drones/",
+     "headline": "Japan signs deal for Ukrainian SkyFall interceptor drones",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "delivery||latvia",
