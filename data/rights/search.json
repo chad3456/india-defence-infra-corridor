@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-12T18:15:44.027Z",
+  "builtAt": "2026-10-13T02:17:13.106Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1103,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 1100,
-    "withOutlet": 1034,
+    "items": 1108,
+    "addedThisRun": 5,
+    "carriedFromEarlierRuns": 1103,
+    "withOutlet": 1039,
     "bySubject": {
-      "scst": 743,
+      "scst": 748,
       "pmshri": 360
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 306
+    "offSubjectDropped": 307
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 530
+      "n": 533
     },
     {
       "key": "use",
-      "n": 390
+      "n": 391
     },
     {
       "key": "acquittal",
@@ -40,7 +40,7 @@
     },
     {
       "key": "allegation",
-      "n": 53
+      "n": 54
     },
     {
       "key": "false-finding",
@@ -62,7 +62,7 @@
     },
     {
       "key": "The New Indian Express",
-      "n": 49
+      "n": 50
     },
     {
       "key": "The Hindu",
@@ -78,11 +78,11 @@
     },
     {
       "key": "LawBeat",
-      "n": 26
+      "n": 27
     },
     {
       "key": "Verdictum",
-      "n": 23
+      "n": 24
     },
     {
       "key": "opindia.com",
@@ -277,15 +277,15 @@
       "n": 4
     },
     {
+      "key": "The Caravan",
+      "n": 4
+    },
+    {
       "key": "Kashmir Life",
       "n": 4
     },
     {
       "key": "newsdrum.in",
-      "n": 4
-    },
-    {
-      "key": "India.com",
       "n": 4
     }
   ],
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 100,
       "bing": 2,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 10
     },
     {
@@ -326,8 +326,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 52,
-      "bing": 9,
-      "kept": 0,
+      "bing": 7,
+      "kept": 1,
       "offSubject": 8
     },
     {
@@ -337,17 +337,17 @@
       "expect": "use",
       "google": 49,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 15
+      "kept": 1,
+      "offSubject": 16
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 57,
+      "google": 56,
       "bing": 1,
-      "kept": 1,
+      "kept": 2,
       "offSubject": 18
     },
     {
@@ -358,34 +358,34 @@
       "google": 100,
       "bing": 2,
       "kept": 0,
-      "offSubject": 41
+      "offSubject": 42
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 24,
+      "google": 23,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 48,
+      "google": 47,
       "bing": 2,
-      "kept": 0,
-      "offSubject": 10
+      "kept": 1,
+      "offSubject": 9
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 24,
+      "google": 22,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -395,7 +395,7 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 50,
+      "google": 49,
       "bing": 1,
       "kept": 0,
       "offSubject": 17
@@ -418,7 +418,7 @@
       "google": 100,
       "bing": 12,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "shri-sanctioned",
@@ -446,7 +446,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 53,
-      "bing": 3,
+      "bing": 4,
       "kept": 0,
       "offSubject": 13
     },
@@ -475,10 +475,10 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 54,
+      "google": 55,
       "bing": 4,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 13
     },
     {
       "id": "shri-criticism",
@@ -488,7 +488,7 @@
       "google": 42,
       "bing": 1,
       "kept": 0,
-      "offSubject": 31
+      "offSubject": 32
     }
   ],
   "items": [
@@ -18462,6 +18462,86 @@
         "google"
       ],
       "firstSeen": "2026-10-12"
+    },
+    {
+      "id": "thakurs unleash anti dalit violence in up during the lockdown police accused of bias",
+      "headline": "Thakurs unleash anti-Dalit violence in UP during the lockdown, police accused of bias",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Caravan",
+      "published": "2020-08-17",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOaXgtWXJYdml6Nk55QjdKV2xIOTFjV1hwRGpzSlIyalVfNkxWTGJ2ZEFjNUNzRkhkTWJSWjRHUEhOQ1pKNHVieHRLb2pLQ1M5YzJEbEkyMl92S0RDU2NHWUhQenVBVHlEUUo4RFhiWXpDbklGX3B6bDNaeWRLSjdINFU1bkNuSnFVSHdDWA?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-13"
+    },
+    {
+      "id": "hathras gang rape can state deny any of the reliefs to victim s family as provided under s",
+      "headline": "[Hathras Gang Rape] 'Can State deny any of the reliefs to victim's family as provided under SC/ST (PoA)...",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "LawBeat",
+      "published": "2021-11-25",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOTG9BUkYyYmpLUE40R0lXeGk2Q3Q4NTg4cUpwQkFMV3JhSVRmSE85V1BzVnhZYzY2R3RxdUVpQjBBRHdsYUgwLU1FMWxhY0hlSTcwaEFMZTFNYWFFMXo1emVIWnR6WmZWZ2VSd0ZjRlh3Vmtyakc0VXdzMV8wdzJya0ZyVlQ0d3FLR0h1bmpUbkowOUhfc2w1ZmlQYklaMDU4N2dTUWtaSGRZV213aUx4UGh1dGHSAboBQVVfeXFMTzBGUmUzc0swZ1NrWWlSNjNydl9LdG9MN2YtQ3BqUnRnenJKSlJLU3QzVWRqcVQ2NzZob244cXpISlEyVFgtSF9qVENzTHk4aDdDSHVWOUh5NmFXYXNrZE8xY3hHOFl5Z0dEOFZOTTBXRnZHVGpKMTdyWDhIbkNacW9fd19KVUMzMm5jQ2ZicUkxNkloQzM5YlJUdEgyZmNxWExERWtrNG5ZRXdic2doa2ZMakFURjc2TUln?oc=5",
+      "queries": [
+        "act-compensation"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-13"
+    },
+    {
+      "id": "misuse of provisions of sc st atrocities act karnataka hc quashes proceedings against two ",
+      "headline": "Misuse Of Provisions Of SC/ST Atrocities Act: Karnataka HC Quashes Proceedings Against Two Accused...",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "Verdictum",
+      "published": "2023-08-07",
+      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPUXZnSm5DTEtOSEJ5NEZxS0RfMG15bThVdXZUdVlOaU9ZMVB5MEFDOEJETHBFeXRTT3U0a1BIYXVJUDF1S0R5VDY4cUtackZYeWhWMnE1SWpYZVZ5dEVUWmh4eUo1c3FrTnphdlpyV0FaSGIycmFlbWVwc21obmpYUnJvSHZ1TVhvMmRXMWd2WlZJZEE1c1lmMG9NcGJlcEo3Q0s5cl9YREFVcnpOMlIxdG10MnBKbjhwbTBLdlE0bFJ1ekhzYW94eDY3cHVkMVp2ZVA0YTdfTm5sLVZDV1ROVUVLWdIB6AFBVV95cUxNYUtVaGxiVlBwMXdtNGdqcjE5MnpZVkwtQi1QWVVJcFBUN2R5aWVBTW0tczZvc3ZndXV1YlpUVEdRREM5WmEyLWZSMWNUa3N0ZTNKdHUxTEJIVWcxbWZhaHpfU1kyd095dW1KdnJreDFlNllmdi1Ec3pROElCaHFwM1FBNVNLMFFaMG1vQ1Y4ZkdCdHM1QTAySHp6N2s1R3gxR2FoVmJVVC1MdEtJbTgzQlZhUVpXcjNmM2FFR0dfWkwxbXQxRDBHeVB6cVpFWnZsR2ZQTi1vRU1JV1NYTlZFd25nUXhpS1pU?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-13"
+    },
+    {
+      "id": "telangana hc quashes sc st case against cm revanth",
+      "headline": "Telangana HC quashes SC/ST case against CM Revanth",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The New Indian Express",
+      "published": "2025-07-18",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNamtJMFdSd3M4dVFRcjZFRVg5ajhKeG4yZkhSMXFDV3JJUEt1eFRHQy03UTlVNlQ2TzFNWTZHaXQyWTh4dGF1b3Jydm14dUh4Y0JvUjNqOGxOb05HMWdwTEZqNUNWZnBqRm9GWmMwV3V0d0xvMllwNHZtaFAtb0h3N2JLc0hyTzdJOUxDeXAtRk9JRW1oZmVWckJxdmVMcWRRNWRFN3d6dkJCTFBOdTctUdIBvgFBVV95cUxNa0MzclZFalBVckF2LTZxNlgxSDd4VWJhZ1Z6TWc2TTc3ZzN2RnhBT1RRRHBSOVI3Z0FsR2hEeGRRM3dxempabm5uTXFCUnM1cG9zMXNSWVd0U2lLLVY0Z3ctb2xDZ1dMMUVrMlZNTzRDUUw1TDFkcE4wcWdiV2E3QXN3OENXVGdfQnR2ZEhfSTA2aVl3Zm9nTVNjbGswQmJBZWFUdEFXaUZZSzJkUnlGY2tiRWJubDVRVUEzOHJn?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-13"
+    },
+    {
+      "id": "the wire demands reservations for dalit christians in propaganda article",
+      "headline": "The Wire demands reservations for Dalit Christians in propaganda article",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "OpIndia",
+      "published": "2026-04-10",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPbE5Ob01XQzZ0MDBzQWNRWWdRMTZ1Tkc4MFJJQXdfcHh1THdHWHJlczFGVjd4bGhCd0NVbXJlUV95blBPNWJHWWNyVTlqek15SkItOHVPa2lCOXF4b1Z6OUs4OUhlRnpSQnAzejQ5Rk1ablpYRHBxclJsQ2E1U2xqM2xxaU5aOVFhNDJWTXpyOV9BTHRSSXZLWXBNcWg2ZWpHU2xsNFd3MDg?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-13"
     }
   ]
 }
