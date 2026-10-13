@@ -1,0 +1,33 @@
+name: Probe live sources
+
+# Which live market, ADS-B and news endpoints answer, and in what shape,
+# before the /live page relies on them. Writes data/live/live-sources-probe.json.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-live-sources.ts"
+      - ".github/workflows/probe-live-sources.yml"
+
+permissions:
+  contents: write
+concurrency:
+  group: probe-live-sources
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npm run live:probe
+      - name: Commit
+        run: >
+          .github/scripts/commit-generated.sh
+          data/live/live-sources-probe.json
+          "chore(probe): live sources $(date -u +'%Y-%m-%d %H:%M')"
