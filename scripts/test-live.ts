@@ -2,7 +2,9 @@
  * The live tracker's parsers, against what the sources actually returned.
  *
  * The live routes read sources this sandbox cannot reach, so the parsers are
- * pinned to the answers the probe recorded (data/live/live-sources-probe.json).
+ * pinned to an answer the probe recorded, kept as a fixture
+ * (scripts/__fixtures__/moneycontrol-nifty.json) so a later probe run that
+ * records something else cannot take the test's input away.
  * The rules that matter most are the ones a live page is tempted to break: a
  * source that fails is unavailable, never a stale number; positions are
  * rounded; two aggregators seeing one aircraft count it once.
@@ -15,14 +17,12 @@ let failed = 0;
 const ok = (name: string, cond: boolean, detail = "") => { if (!cond) failed++; console.log(`  ${cond ? "ok  " : "FAIL"} ${name}${cond ? "" : "  " + detail}`); };
 
 console.log("\nMarket quotes");
-const probe = JSON.parse(readFileSync(join(process.cwd(), "data/live/live-sources-probe.json"), "utf8")) as { sources: Array<{ name: string; status: number; head?: string }> };
-const mc = probe.sources.find((s) => s.name === "moneycontrol nifty" && s.status === 200);
-if (mc?.head) {
-  const q = parseMoneycontrol("nifty", JSON.parse(mc.head));
+{
+  const q = parseMoneycontrol("nifty", JSON.parse(readFileSync(join(process.cwd(), "scripts/__fixtures__/moneycontrol-nifty.json"), "utf8")));
   ok("Moneycontrol: price, previous close and change read", q.ok && q.price! > 1000 && q.previousClose! > 1000 && q.change != null, JSON.stringify(q));
   ok("the change reconciles with price minus previous close", Math.abs(q.price! - q.previousClose! - q.change!) < 0.05, `${q.price} - ${q.previousClose} vs ${q.change}`);
   ok("the exchange's own state and time are carried", !!q.marketState && !!q.updated);
-} else ok("the probe recorded a Moneycontrol answer to test against", false);
+}
 ok("an empty answer is unavailable, not zero", parseMoneycontrol("x", {}).ok === false && parseMoneycontrol("x", { data: { pricecurrent: "" } }).ok === false);
 
 const fx = parseFrankfurter({ date: "2026-10-12", rates: { USD: 0.010441, EUR: 0.009338 } });
