@@ -134,6 +134,8 @@ function pdfPages(buf: Buffer): string[] {
 }
 
 const errors: string[] = [];
+process.on("unhandledRejection", (e) => { errors.push(`unhandled: ${(e as Error)?.stack ?? e}`); console.error("unhandled", e); });
+process.on("uncaughtException", (e) => { errors.push(`uncaught: ${e.stack ?? e}`); console.error("uncaught", e); });
 
 async function main(): Promise<void> {
   const listings: unknown[] = [];
