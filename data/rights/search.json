@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-13T19:35:11.588Z",
+  "builtAt": "2026-10-13T23:58:07.442Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1110,
-    "addedThisRun": 0,
+    "items": 1111,
+    "addedThisRun": 1,
     "carriedFromEarlierRuns": 1110,
     "withOutlet": 1041,
     "bySubject": {
-      "scst": 750,
+      "scst": 751,
       "pmshri": 360
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 302
+    "offSubjectDropped": 310
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 391
+      "n": 392
     },
     {
       "key": "acquittal",
@@ -298,7 +298,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 6
     },
     {
       "id": "act-registered",
@@ -306,7 +306,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 11
     },
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 52,
-      "bing": 0,
-      "kept": 0,
-      "offSubject": 4
+      "bing": 9,
+      "kept": 1,
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -336,7 +336,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 49,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 16
     },
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 58,
+      "google": 59,
       "bing": 0,
       "kept": 0,
       "offSubject": 21
@@ -356,9 +356,9 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 100,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 42
+      "offSubject": 43
     },
     {
       "id": "act-hostile",
@@ -376,7 +376,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 47,
-      "bing": 4,
+      "bing": 2,
       "kept": 0,
       "offSubject": 9
     },
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 25,
+      "google": 22,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -396,7 +396,7 @@
       "subject": "scst",
       "expect": "false-finding",
       "google": 51,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 17
     },
@@ -405,7 +405,7 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 31,
       "bing": 0,
       "kept": 0,
       "offSubject": 20
@@ -416,9 +416,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 12,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 6
     },
     {
       "id": "shri-sanctioned",
@@ -426,7 +426,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 42,
-      "bing": 3,
+      "bing": 1,
       "kept": 0,
       "offSubject": 5
     },
@@ -436,7 +436,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 71,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 27
     },
@@ -445,10 +445,10 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 53,
-      "bing": 0,
+      "google": 52,
+      "bing": 4,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 13
     },
     {
       "id": "shri-mou",
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 45,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 4
     },
@@ -466,9 +466,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 30,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 17
     },
     {
       "id": "shri-nep",
@@ -476,7 +476,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 57,
-      "bing": 5,
+      "bing": 4,
       "kept": 0,
       "offSubject": 13
     },
@@ -486,7 +486,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 43,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 32
     }
@@ -18584,6 +18584,22 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-10-13"
+    },
+    {
+      "id": "jharkhand 5 booked for assaulting dalit woman preventing her from fetching water from well",
+      "headline": "Jharkhand: 5 booked for assaulting Dalit woman, preventing her from fetching water from well",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-10-13",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6acec52fa238408a8a625e023c946e42&url=https%3a%2f%2fwww.thehindu.com%2fnews%2fnational%2fjharkhand%2fjharkhand-5-booked-for-assaulting-dalit-woman-preventing-her-from-fetching-water-from-well%2farticle71579236.ece&c=6443290312286438994&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-10-13"
     }
