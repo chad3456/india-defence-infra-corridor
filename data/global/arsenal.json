@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-14T10:36:34.689Z",
+ "builtAt": "2026-10-14T20:58:42.143Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206395,6 +206395,13 @@
    "source": "Hypersonic_weapon"
   },
   {
+   "name": "DGA",
+   "key": "dga",
+   "kind": "hypersonic",
+   "country": "France",
+   "source": "Hypersonic_weapon"
+  },
+  {
    "name": "BM-04",
    "key": "bm 04",
    "kind": "hypersonic",
@@ -206477,13 +206484,13 @@
    "outlet": "UK Ministry of Defence",
    "ok": true,
    "items": 50,
-   "kept": 3,
+   "kept": 4,
    "via": "direct"
   },
   {
    "outlet": "Press Information Bureau (India)",
    "ok": true,
-   "items": 20,
+   "items": 0,
    "kept": 0,
    "via": "direct"
   },
@@ -206504,7 +206511,7 @@
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 19,
+   "items": 20,
    "kept": 1,
    "via": "direct"
   },
@@ -206524,6 +206531,20 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-13pp620",
+   "kind": "delivery",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "value": null,
+   "date": "2026-10-14",
+   "outlet": "UK Ministry of Defence",
+   "url": "https://www.gov.uk/government/news/dsei-uk-27-mod-leaders-focus-on-speed-innovation-and-readiness",
+   "headline": "NAD and CDS want capability delivered faster as DSEI 27 launched",
+   "primary": true
+  },
   {
    "id": "ev-18gp7zp",
    "kind": "order",
@@ -207655,6 +207676,49 @@
  ],
  "groups": [
   {
+   "key": "delivery||united kingdom",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-13pp620",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-14",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/news/dsei-uk-27-mod-leaders-focus-on-speed-innovation-and-readiness",
+     "headline": "NAD and CDS want capability delivered faster as DSEI 27 launched",
+     "primary": true
+    },
+    {
+     "id": "ev-1x1xxwv",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-10",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/news/faster-front-line-delivery-with-new-testing-and-evaluation-programme",
+     "headline": "Faster front-line delivery with new Testing and Evaluation programme",
+     "primary": true
+    }
+   ],
+   "outlets": [
+    "UK Ministry of Defence"
+   ],
+   "value": null,
+   "verdict": "from a primary source"
+  },
+  {
    "key": "order||greece",
    "systems": [],
    "countries": [
@@ -208284,35 +208348,6 @@
    ],
    "value": null,
    "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "delivery||united kingdom",
-   "systems": [],
-   "countries": [
-    "United Kingdom"
-   ],
-   "kind": "delivery",
-   "events": [
-    {
-     "id": "ev-1x1xxwv",
-     "kind": "delivery",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-10-10",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/news/faster-front-line-delivery-with-new-testing-and-evaluation-programme",
-     "headline": "Faster front-line delivery with new Testing and Evaluation programme",
-     "primary": true
-    }
-   ],
-   "outlets": [
-    "UK Ministry of Defence"
-   ],
-   "value": null,
-   "verdict": "from a primary source"
   },
   {
    "key": "order||japan+ukraine",
