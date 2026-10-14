@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-14T05:28:03.941Z",
+  "builtAt": "2026-10-14T14:05:50.661Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1112,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1111,
-    "withOutlet": 1042,
+    "items": 1116,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 1112,
+    "withOutlet": 1046,
     "bySubject": {
-      "scst": 752,
-      "pmshri": 360
+      "scst": 755,
+      "pmshri": 361
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 309
+    "offSubjectDropped": 308
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 536
+      "n": 539
     },
     {
       "key": "use",
-      "n": 392
+      "n": 393
     },
     {
       "key": "acquittal",
@@ -50,11 +50,11 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 96
+      "n": 97
     },
     {
       "key": "Lawtext",
-      "n": 80
+      "n": 81
     },
     {
       "key": "The Indian Express",
@@ -177,15 +177,15 @@
       "n": 8
     },
     {
+      "key": "Live Law",
+      "n": 8
+    },
+    {
       "key": "The News Mill",
       "n": 7
     },
     {
       "key": "Bhaskar English",
-      "n": 7
-    },
-    {
-      "key": "Live Law",
       "n": 7
     },
     {
@@ -298,7 +298,7 @@
       "google": 100,
       "bing": 0,
       "kept": 1,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "act-registered",
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 2,
-      "kept": 0,
-      "offSubject": 10
+      "bing": 3,
+      "kept": 1,
+      "offSubject": 11
     },
     {
       "id": "act-convicted",
@@ -317,7 +317,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 34
     },
     {
@@ -328,7 +328,7 @@
       "google": 52,
       "bing": 7,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 5
     },
     {
       "id": "act-compensation",
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 58,
+      "google": 60,
       "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 23
     },
     {
       "id": "act-acquittal",
@@ -356,7 +356,7 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 100,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
       "offSubject": 43
     },
@@ -375,17 +375,17 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 47,
-      "bing": 2,
+      "google": 48,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 10
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 22,
+      "google": 23,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -398,17 +398,17 @@
       "google": 51,
       "bing": 1,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 18
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 31,
+      "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 21
     },
     {
       "id": "shri-general",
@@ -416,9 +416,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 12,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 5
     },
     {
       "id": "shri-sanctioned",
@@ -437,7 +437,7 @@
       "expect": "use",
       "google": 71,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 27
     },
     {
@@ -446,17 +446,17 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 51,
-      "bing": 4,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 45,
-      "bing": 2,
+      "google": 44,
+      "bing": 0,
       "kept": 0,
       "offSubject": 3
     },
@@ -476,9 +476,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 56,
-      "bing": 4,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "shri-criticism",
@@ -488,7 +488,7 @@
       "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 33
+      "offSubject": 32
     }
   ],
   "items": [
@@ -9262,7 +9262,8 @@
       "published": "2026-05-06",
       "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOYVJGQURrWWFXVWk2YlpBRkVhN2wtM2Y2TE9tUWNPR2NWQjdxMDRWcldST19jLS1HTnY2ZldWX1F0UTZZeVBfZ3ZkQ0ZpUUdxOEJZNnpmVVB6LXVWMkJzRGs4NERRRnNlZE1ZQV9BY0hzc09RZ1BzcEZ0Z29xZVQ2VGU2dmlGenlsQ0FNeWtsY0NfalIycnB1NjFDaUhBSkQtM2dXRmFPU1o3dE96ZjY4dDZzdHdJc2xhZVZ4bURMb1BvdHk0NUQ4UTc2V2ZQZV9NeGRlai0wc9IB3AFBVV95cUxNbjRoUEE2VDVrWG8tMHFRM1BYRENTb2JEWUNjSDRMN1U1bjRPNTR5S2tjNWNLZ1ZBX2M0eUxEWkNKdTMycHdXY2VweXF0VjA2ZWh3TTJ4Nkw1RDh4V0FIWEwtQkdoRFhTTHUyZTU5ajMwNnBJX1lBOWVHN1pKU2x5R0R0aG8wc2dnVldaT3FyazktWWdlQ2JxbGpOelIwV0tOQU9YZDhaQVRBWWVEVThHOHBTZEZLLUttbWttNlZ3NXJJNi1Za2NhNFhIaGQ0VVpEWnp0NnplV1hVc2Vu?oc=5",
       "queries": [
-        "shri-general"
+        "shri-general",
+        "shri-criticism"
       ],
       "indexes": [
         "google"
@@ -18613,6 +18614,72 @@
       "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNOGI0LXlLaU8wZGxZdkFLYlN1YnJlSFBQdTNtbDhVdGlyRGFRa1llRURJUDZwek82OHVVVndYcHlhdHpsdXcwNUo4cE5ZOXRYWkRQYmZKWFBsWHF5NzcxcmoxZV9NUWt6NVJMNUwyZXR5dE8yQk5RcmFGeHRocmN3aURkemVXZ0Qzdy1DUy1DdW5RMU03c2xVWHJUQnpCMDRGNGFVOGExTWwtWERBaWFBMmhPX3RJLUhRdXl2Mi1QTi1WYXdvTlZF?oc=5",
       "queries": [
         "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "delhi protest journalists slapped with sc st act for casteist slur against acp on duty",
+      "headline": "Delhi protest: Journalists slapped with SC/ST Act for casteist slur against ACP on duty",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2026-10-14",
+      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOMHNJaXF3cFRhRzJpRUNUMnVaaVIyV0dnOWtVcUJ0S1lXOGFpOS1xcUdYX1J6NExFQTVqNmdzWWtZdDM3c1p2VG84c1lxSzdJdUpWQWRwbFlVWG1ZMDhXaG9HRHdIcG85enl4SXBMd2R1SmhVRlVTdW0xNGptZWlMVHJzOWthUW53VWduSk14N19fcGJUVUczbFhNdnlJT3UxYVNzMGs5OUx4UzlWOUF2X09KTWQ3V3d0REU4dmpMRDBhNVNvZ2RWbkwzT2RfSllGaFppXzAzOGp5MS1jRHFtYk9mVWJKeGszMnfSAe8BQVVfeXFMUGZVUFNES3JIY1I0M2NrZEtWTlZkbGJCd0Q3UWlzUnRkRjhaRXlJRC05UFJfaVZERTRzNWNiNFlWcGFPbEozc2JzSm4tcWpZd0xVREpPc0ttMGxucVlFRE8xZFNVbnMtOUkteHFoT2tlYjhFb2RBU0dUZGlNdHNKVV9iNDdaVUNWTk4yZmZuOEhndnJPUWpQSUg3NFlOOEdNb2pWZ3RzSVVETzFWbTMzM3ZEb29uQXVYaG9YbTl5c0ZXQWJTY1I1X1J4R2ZMdXJkYk5uSjl0OXoxbWNHUE1KZHdkYWwycDlQbHlIS245VTQ?oc=5",
+      "queries": [
+        "act-general",
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "s 4 sc st act dissatisfaction with police probe alone no ground to prosecute cops for wilf",
+      "headline": "S. 4 SC/ST Act | Dissatisfaction With Police Probe Alone No Ground To Prosecute Cops For Wilful Neglect:...",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Live Law",
+      "published": "2026-10-14",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPai1pQlBJWlFvV2RMRUlabXZnSEZnaEFSMUc4QTRZV0FxdDExTE9mbHY4MzBURl9wWlhsc3VtMVRpU3drSEkwcjNqakhUOWNpZG5XRDBfVi1qN3JwU1JKMU9ZalpPNGVrYVZ2VlM3dWtiYzRLZC1NWWp5NHctMzM2WjgzMXJuQnhJdUNiVFNzSHAxcVU0ajZhYk5KczgxbWx2TDVXNm5IYWZhWk9pZE5mY0dHZjBwU2pSQlNhT0c3LTNhdWd6S0R3T3BUR3BOTGpVRzA4ZFhhbE81Y3RvbGtPQ0hB0gHiAUFVX3lxTE9qLWlCUElaUW9XZExFSVptdmdIRmdoQVIxRzhBNFlXQXF0MTFMT2ZsdjgzMFRGX3BaWGxzdW0xVGlTd2tISTByM2pqSFQ5Y2lkbldEMF9WLWo3cnBTUkoxT1lqWk80ZWthVnZWUzd1a2JjNEtkLU1Zank0dy0zMzZaODMxcm5CeEl1Q2JUU3NIcDFxVTRqNmFiTkpzODFtbHZMNVc2bkhhZmFaT2lkTmZjR0dmMHBTalJCU2FPRzctM2F1Z3pLRHdPcFRHcE5MalVHMDhkWGFsTzVjdG9sa09DSEE?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google",
+        "bing"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "high court of karnataka upholds conviction of accused in sc st act case caste based insult",
+      "headline": "High Court of Karnataka Upholds Conviction of Accused in SC/ST Act Case — Caste-Based Insults and Assault Proven. Concurrent Findings of Fact Cannot Be Interfered With in Revision Under Section 397 Cr.P.C. Unless Perverse.",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-10-13",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1scDY0Ri10Y1JOREE4RS1GcWZMOXRKZ2hsa0JoLUJSM29zanJsUXBMNi11Ym5tSHFJVGF0NlpBOXlFVWREejU2ZmNVeU5yM2RMNEttWnFmVUJTdjlYeGE3Z3dzcDhNRGNI?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "signing pm shri strategic move to secure central funds kerala minister sivankutty",
+      "headline": "Signing PM SHRI strategic move to secure central funds: Kerala Minister Sivankutty",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Metro Vaartha",
+      "published": "2025-10-24",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNZW4xMVQzS1ZCRzhhNjdsaWRZektKOU1yaFJ1YVo3Nl80eDNkVU9Ka09xT3BRbmlnTk1HTGNKeFhxUGduZngtcnl3S0M0R0p4bmRpcXFDSlVKSnEyMzR4dUxNa2l0RHR5bWdoUDRmY01aZTd6TzBuMUtrVU81M3dnMFZXNUw5YU44dlJGTV9md2JnRTEwNnBCZDVubEd5OEszaGZyWXB3UjNfZl81TVVQVng4VnNfb1dXcUR2TmdqQ0pISWli0gHSAUFVX3lxTE96TER2VElFSzNZLVk5NDJuczNPNjRrcTc4MkE2VWpRT0ZSQThUcm50VjNEVmVWNXV6LW1CbUh4QXBaUk9UWHVWVUNQUzlVR296NzdmWlozQnI0ZjNCXzB3MnJXZlEwbGE1TDFwTDgxZGhXc1c4UkhKbjZUeUtqOFVsaGpGd2NzX0JCS2VpVWdaZGVYdW5qbmtNR29oYmVFb3I0eEFrNmFmUlNBeC0yVjBodDh5dnZ6SnF3RXlFVTQ3bk1GRnFBd2V1U2p0ZkZRaUhaUQ?oc=5",
+      "queries": [
+        "shri-funds"
       ],
       "indexes": [
         "google"
