@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-14T13:43:51.203Z",
-  "previousBuild": "2026-10-14T04:53:22.806Z",
+  "builtAt": "2026-10-14T20:12:39.801Z",
+  "previousBuild": "2026-10-14T13:43:51.203Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,38 +12,38 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 173,
-    "createdThisRun": 4,
-    "corroboratedThisRun": 0,
-    "feedsAnswered": 14,
+    "stories": 180,
+    "createdThisRun": 7,
+    "corroboratedThisRun": 10,
+    "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 279,
+    "itemsSeen": 273,
     "corroboration": {
-      "one": 148,
+      "one": 151,
       "two": 13,
-      "threePlus": 12
+      "threePlus": 16
     }
   },
   "byTheme": [
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 93
+      "n": 94
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 53
+      "n": 56
     },
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 20
+      "n": 21
     },
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 17
+      "n": 19
     },
     {
       "id": "military-ai",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 29
+      "n": 30
     },
     {
       "iso": "IND",
@@ -112,7 +112,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 35,
+      "items": 38,
       "kept": 1
     },
     {
@@ -125,19 +125,19 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 3
+      "kept": 6
     },
     {
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 3
+      "kept": 7
     },
     {
       "outlet": "C4ISRNET",
       "ok": true,
       "items": 25,
-      "kept": 7
+      "kept": 9
     },
     {
       "outlet": "DefenseScoop",
@@ -149,31 +149,32 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 3
+      "kept": 6
     },
     {
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 3
+      "kept": 4
     },
     {
       "outlet": "Defense One",
       "ok": true,
-      "items": 19,
-      "kept": 5
+      "items": 20,
+      "kept": 6
     },
     {
       "outlet": "Naval News",
-      "ok": true,
-      "items": 10,
-      "kept": 0
+      "ok": false,
+      "items": 0,
+      "kept": 0,
+      "error": "HTTP 503"
     },
     {
       "outlet": "Defence Blog",
@@ -195,6 +196,80 @@
     }
   ],
   "stories": [
+    {
+      "id": "https://defensescoop.com/2026/10/05/kaizen-49m-contract-army-task-order-classified-work/",
+      "headline": "After developing Pentagon’s counter-drone marketplace, Kaizen nabs $49M IDIQ from Army with first task order for classified work",
+      "firstSeen": "2026-10-05",
+      "lastSeen": "2026-10-14",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/10/05/kaizen-49m-contract-army-task-order-classified-work/",
+          "published": "2026-10-05"
+        },
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/news/your-military/2026/10/14/us-army-expands-drone-marketplace-to-33-nations/",
+          "published": "2026-10-14"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/news/your-military/2026/10/14/us-army-expands-drone-marketplace-to-33-nations/",
+          "published": "2026-10-14"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/news/your-military/2026/10/14/us-army-expands-drone-marketplace-to-33-nations/",
+          "published": "2026-10-14"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/industry/techwatch/2026/10/14/us-army-taps-9-companies-to-build-next-gen-command-and-control-software/",
+      "headline": "US Army taps 9 companies to build next-gen command and control software",
+      "firstSeen": "2026-10-14",
+      "lastSeen": "2026-10-14",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/industry/techwatch/2026/10/14/us-army-taps-9-companies-to-build-next-gen-command-and-control-software/",
+          "published": "2026-10-14"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/industry/techwatch/2026/10/14/us-army-taps-9-companies-to-build-next-gen-command-and-control-software/",
+          "published": "2026-10-14"
+        },
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/industry/techwatch/2026/10/14/us-army-taps-9-companies-to-build-next-gen-command-and-control-software/",
+          "published": "2026-10-14"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/industry/techwatch/2026/10/14/us-army-taps-9-companies-to-build-next-gen-command-and-control-software/",
+          "published": "2026-10-14"
+        }
+      ]
+    },
     {
       "id": "https://www.defenseone.com/technology/2026/10/armys-new-command-plans-streamline-autonomous-warfare-acquisition/416523/",
       "headline": "Army’s new command plans to streamline autonomous warfare acquisition",
@@ -360,6 +435,60 @@
         {
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/industry/techwatch/2026/10/14/us-army-hackathon-sets-backdrop-for-an-ausa-focused-on-autonomy/",
+          "published": "2026-10-14"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/industry/techwatch/2026/10/14/nobodys-losing-pay-army-cyber-command-head-says-new-tech-mastery-program-wont-affect-troop-wages/",
+      "headline": "‘Nobody’s losing pay’: Army Cyber Command head says new tech mastery program won’t affect troop wages",
+      "firstSeen": "2026-10-14",
+      "lastSeen": "2026-10-14",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/industry/techwatch/2026/10/14/nobodys-losing-pay-army-cyber-command-head-says-new-tech-mastery-program-wont-affect-troop-wages/",
+          "published": "2026-10-14"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/industry/techwatch/2026/10/14/nobodys-losing-pay-army-cyber-command-head-says-new-tech-mastery-program-wont-affect-troop-wages/",
+          "published": "2026-10-14"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/industry/techwatch/2026/10/14/nobodys-losing-pay-army-cyber-command-head-says-new-tech-mastery-program-wont-affect-troop-wages/",
+          "published": "2026-10-14"
+        }
+      ]
+    },
+    {
+      "id": "https://www.armytimes.com/digital-show-dailies/ausa/2026/10/14/watch-live-hegseth-speaks-on-autonomous-warfare-panel-at-ausa-annual-2026/",
+      "headline": "Watch live: Hegseth speaks on autonomous warfare panel at AUSA Annual 2026",
+      "firstSeen": "2026-10-14",
+      "lastSeen": "2026-10-14",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/digital-show-dailies/ausa/2026/10/14/watch-live-hegseth-speaks-on-autonomous-warfare-panel-at-ausa-annual-2026/",
+          "published": "2026-10-14"
+        },
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/digital-show-dailies/ausa/2026/10/14/watch-live-hegseth-speaks-on-autonomous-warfare-panel-at-ausa-annual-2026/",
+          "published": "2026-10-14"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/breaking-news/2026/10/14/pete-hegseth-to-discuss-autonomous-warfare-at-ausa-annual-2026-on-oct-14-at-10am-est/",
           "published": "2026-10-14"
         }
       ]
@@ -995,6 +1124,74 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/german-startup-tests-rdx-1-tracked-ground-drone-with-troops/",
+          "published": "2026-10-14"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/10/14/military-drone-tech-task-force-easy/",
+      "headline": "U.S. military debuts new Task Force Easy to enable drone tech ‘adaptation dominance’",
+      "firstSeen": "2026-10-14",
+      "lastSeen": "2026-10-14",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/10/14/military-drone-tech-task-force-easy/",
+          "published": "2026-10-14"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/10/northcoms-joint-task-force-gold-to-coordinate-cyber-warfare-for-golden-dome/",
+      "headline": "NORTHCOM’s Joint Task Force-Gold to coordinate cyber warfare for Golden Dome",
+      "firstSeen": "2026-10-14",
+      "lastSeen": "2026-10-14",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/northcoms-joint-task-force-gold-to-coordinate-cyber-warfare-for-golden-dome/",
+          "published": "2026-10-14"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/10/hegseth-uses-ausa-spotlight-to-highlight-autonomy-generational-defense-investment/",
+      "headline": "Hegseth uses AUSA spotlight to push autonomy, ‘generational’ defense investment",
+      "firstSeen": "2026-10-14",
+      "lastSeen": "2026-10-14",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/hegseth-uses-ausa-spotlight-to-highlight-autonomy-generational-defense-investment/",
+          "published": "2026-10-14"
+        }
+      ]
+    },
+    {
+      "id": "https://www.defenseone.com/policy/2026/10/hegseth-service-secretaries-discuss-generational-change-autonomous-warfare-command/416586/",
+      "headline": "Hegseth, service secretaries discuss ‘generational change’ of Autonomous Warfare Command",
+      "firstSeen": "2026-10-14",
+      "lastSeen": "2026-10-14",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defense One",
+          "url": "https://www.defenseone.com/policy/2026/10/hegseth-service-secretaries-discuss-generational-change-autonomous-warfare-command/416586/",
           "published": "2026-10-14"
         }
       ]
@@ -1717,28 +1914,6 @@
           "outlet": "DefenseScoop",
           "url": "https://defensescoop.com/2026/10/06/pentagon-drpm-uxs-drone-acquisition-bonnie-evangelista/",
           "published": "2026-10-06"
-        }
-      ]
-    },
-    {
-      "id": "https://defensescoop.com/2026/10/05/kaizen-49m-contract-army-task-order-classified-work/",
-      "headline": "After developing Pentagon’s counter-drone marketplace, Kaizen nabs $49M IDIQ from Army with first task order for classified work",
-      "firstSeen": "2026-10-05",
-      "lastSeen": "2026-10-05",
-      "themes": [
-        "drone"
-      ],
-      "countries": [
-        {
-          "iso": "USA",
-          "name": "United States"
-        }
-      ],
-      "sources": [
-        {
-          "outlet": "DefenseScoop",
-          "url": "https://defensescoop.com/2026/10/05/kaizen-49m-contract-army-task-order-classified-work/",
-          "published": "2026-10-05"
         }
       ]
     },
