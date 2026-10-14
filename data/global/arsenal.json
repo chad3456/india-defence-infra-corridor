@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-13T21:57:30.664Z",
+ "builtAt": "2026-10-14T10:36:34.689Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206491,7 +206491,7 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 2,
+   "kept": 1,
    "via": "direct"
   },
   {
@@ -206512,18 +206512,32 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-18gp7zp",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Greece"
+   ],
+   "value": null,
+   "date": "2026-10-14",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/10/hellenic-navy-tests-saronics-corsair-usv-ahead-of-major-order/",
+   "headline": "Hellenic Navy Tests SARONIC’s Corsair USV Ahead of Major Order",
+   "primary": false
+  },
   {
    "id": "ev-1lcwg5z",
    "kind": "order",
@@ -207640,6 +207654,35 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||greece",
+   "systems": [],
+   "countries": [
+    "Greece"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-18gp7zp",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Greece"
+     ],
+     "value": null,
+     "date": "2026-10-14",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/hellenic-navy-tests-saronics-corsair-usv-ahead-of-major-order/",
+     "headline": "Hellenic Navy Tests SARONIC’s Corsair USV Ahead of Major Order",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||united states",
    "systems": [],
