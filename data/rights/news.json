@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-13T22:55:26.919Z",
+  "builtAt": "2026-10-14T05:03:03.268Z",
   "source": "5 Indian newsrooms, read as RSS. Each was probed before being added.",
   "method": "Headlines are matched to a subject and then to one of four things: the law or scheme operating, a court acquitting, somebody alleging misuse, or a court finding a specific complaint false. Near-duplicate headlines are folded together and the independent newsrooms behind each are counted. The register accumulates across scheduled runs.",
   "refusal": "An acquittal is not recorded as misuse. An acquittal under this Act can follow from a false complaint and can equally follow from a hostile witness, from intimidation of the complainant, from an investigation that never gathered the evidence the statute requires, or from a compromise outside court — and no public dataset separates them. Only a court or agency finding a specific complaint false is filed as evidence of misuse, and somebody saying the law is misused is filed as somebody saying so.",
@@ -10,20 +10,20 @@
     "Anything from before this register started. It accumulates forward from its first run."
   ],
   "counts": {
-    "items": 19,
-    "createdThisRun": 0,
+    "items": 20,
+    "createdThisRun": 1,
     "corroboratedThisRun": 0,
     "feedsAnswered": 5,
     "feedsTried": 5,
-    "itemsSeen": 196,
+    "itemsSeen": 197,
     "bySubject": {
-      "scst": 19,
+      "scst": 20,
       "pmshri": 0
     }
   },
   "facets": {
     "scst": {
-      "use": 3,
+      "use": 4,
       "acquittal": 0,
       "allegation": 0,
       "false-finding": 0,
@@ -44,13 +44,13 @@
       "outlet": "The Hindu",
       "ok": true,
       "items": 60,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Hindustan Times",
       "ok": true,
       "items": 100,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Mint",
@@ -67,7 +67,7 @@
     {
       "outlet": "Newslaundry",
       "ok": true,
-      "items": 0,
+      "items": 1,
       "kept": 0
     }
   ],
@@ -103,6 +103,21 @@
         {
           "outlet": "Hindustan Times",
           "url": "https://www.hindustantimes.com/india-news/bjps-vajpayee-era-dalit-face-from-jharkhand-named-odisha-governor-who-is-brajmohan-ram-101791861020786.html",
+          "published": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "https://www.thehindu.com/news/cities/bangalore/scst-voices-condemn-karnataka-hight-court-verdict-striking-down-enhanced-reservation/article71580352.ece",
+      "headline": "SC/ST voices condemn Karnataka Hight Court verdict striking down enhanced reservation",
+      "subject": "scst",
+      "facet": "use",
+      "firstSeen": "2026-10-13",
+      "lastSeen": "2026-10-13",
+      "sources": [
+        {
+          "outlet": "The Hindu",
+          "url": "https://www.thehindu.com/news/cities/bangalore/scst-voices-condemn-karnataka-hight-court-verdict-striking-down-enhanced-reservation/article71580352.ece",
           "published": "2026-10-13"
         }
       ]
