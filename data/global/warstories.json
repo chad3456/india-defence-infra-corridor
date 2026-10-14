@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-13T23:44:08.081Z",
-  "previousBuild": "2026-10-13T19:17:34.508Z",
+  "builtAt": "2026-10-14T04:53:22.806Z",
+  "previousBuild": "2026-10-13T23:44:08.081Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,16 +12,16 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 167,
-    "createdThisRun": 1,
-    "corroboratedThisRun": 0,
+    "stories": 169,
+    "createdThisRun": 2,
+    "corroboratedThisRun": 3,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 278,
     "corroboration": {
       "one": 144,
-      "two": 12,
-      "threePlus": 11
+      "two": 13,
+      "threePlus": 12
     }
   },
   "byTheme": [
@@ -33,7 +33,7 @@
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 51
+      "n": 53
     },
     {
       "id": "targeting",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 28
+      "n": 29
     },
     {
       "iso": "IND",
@@ -125,13 +125,13 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 3
+      "kept": 4
     },
     {
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 3
+      "kept": 4
     },
     {
       "outlet": "C4ISRNET",
@@ -161,13 +161,13 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 2
+      "kept": 3
     },
     {
       "outlet": "Defense One",
       "ok": true,
       "items": 19,
-      "kept": 4
+      "kept": 5
     },
     {
       "outlet": "Naval News",
@@ -329,6 +329,38 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/ai-military-targeting-may-move-faster-than-humans-can-authenticate-critics-warn/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/industry/techwatch/2026/10/14/us-army-hackathon-sets-backdrop-for-an-ausa-focused-on-autonomy/",
+      "headline": "US Army hackathon sets backdrop for an AUSA focused on autonomy",
+      "firstSeen": "2026-10-14",
+      "lastSeen": "2026-10-14",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/industry/techwatch/2026/10/14/us-army-hackathon-sets-backdrop-for-an-ausa-focused-on-autonomy/",
+          "published": "2026-10-14"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/industry/techwatch/2026/10/14/us-army-hackathon-sets-backdrop-for-an-ausa-focused-on-autonomy/",
+          "published": "2026-10-14"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/industry/techwatch/2026/10/14/us-army-hackathon-sets-backdrop-for-an-ausa-focused-on-autonomy/",
+          "published": "2026-10-14"
         }
       ]
     },
@@ -549,6 +581,28 @@
           "outlet": "C4ISRNET",
           "url": "https://www.c4isrnet.com/news/your-military/2026/08/21/us-army-to-end-experimental-drone-battalion-in-europe/",
           "published": "2026-08-21"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/10/laneve-redesignates-armys-futures-and-concepts-command-as-new-fascom-autonomy-command/",
+      "headline": "LaNeve ‘redesignates’ Army’s Futures and Concepts Command as new FASCOM autonomy command",
+      "firstSeen": "2026-10-13",
+      "lastSeen": "2026-10-14",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/laneve-redesignates-armys-futures-and-concepts-command-as-new-fascom-autonomy-command/",
+          "published": "2026-10-13"
+        },
+        {
+          "outlet": "Defense One",
+          "url": "https://www.defenseone.com/technology/2026/10/army-converts-futures-and-concepts-command-futures-and-autonomy-command/416576/",
+          "published": "2026-10-14"
         }
       ]
     },
@@ -856,6 +910,23 @@
       ]
     },
     {
+      "id": "https://breakingdefense.com/2026/10/army-doubles-down-on-autonomy-stakes-out-indo-pacific-role-ausa-day-2/",
+      "headline": "Army doubles down on autonomy, stakes out Indo-Pacific role: AUSA Day 2",
+      "firstSeen": "2026-10-14",
+      "lastSeen": "2026-10-14",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/army-doubles-down-on-autonomy-stakes-out-indo-pacific-role-ausa-day-2/",
+          "published": "2026-10-14"
+        }
+      ]
+    },
+    {
       "id": "https://idrw.org/flying-wedge-unveils-fwd-supreme-autonomous-ai-combat-wingman/",
       "headline": "Flying Wedge Unveils Supreme Autonomous AI Combat Wingman",
       "firstSeen": "2026-10-13",
@@ -937,23 +1008,6 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/wheel-powered-drone-makes-the-cut-in-u-s-army-trials/",
-          "published": "2026-10-13"
-        }
-      ]
-    },
-    {
-      "id": "https://breakingdefense.com/2026/10/laneve-redesignates-armys-futures-and-concepts-command-as-new-fascom-autonomy-command/",
-      "headline": "LaNeve ‘redesignates’ Army’s Futures and Concepts Command as new FASCOM autonomy command",
-      "firstSeen": "2026-10-13",
-      "lastSeen": "2026-10-13",
-      "themes": [
-        "autonomy"
-      ],
-      "countries": [],
-      "sources": [
-        {
-          "outlet": "Breaking Defense",
-          "url": "https://breakingdefense.com/2026/10/laneve-redesignates-armys-futures-and-concepts-command-as-new-fascom-autonomy-command/",
           "published": "2026-10-13"
         }
       ]
