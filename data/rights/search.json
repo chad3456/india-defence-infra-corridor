@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-14T20:22:30.113Z",
+  "builtAt": "2026-10-14T23:29:40.435Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1129,
-    "addedThisRun": 13,
-    "carriedFromEarlierRuns": 1116,
+    "items": 1130,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1129,
     "withOutlet": 1059,
     "bySubject": {
-      "scst": 766,
+      "scst": 767,
       "pmshri": 363
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 311
+    "offSubjectDropped": 313
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 397
+      "n": 398
     },
     {
       "key": "acquittal",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 3,
+      "kept": 0,
       "offSubject": 7
     },
     {
@@ -306,8 +306,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 3,
-      "kept": 4,
+      "bing": 4,
+      "kept": 1,
       "offSubject": 10
     },
     {
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 33
+      "offSubject": 32
     },
     {
       "id": "act-atrocity",
@@ -347,7 +347,7 @@
       "expect": "use",
       "google": 66,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 26
     },
     {
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 48,
+      "google": 49,
       "bing": 2,
-      "kept": 1,
-      "offSubject": 9
+      "kept": 0,
+      "offSubject": 10
     },
     {
       "id": "act-dilution",
@@ -387,7 +387,7 @@
       "expect": "allegation",
       "google": 24,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 2
     },
     {
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 50,
+      "google": 51,
       "bing": 1,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 18
     },
     {
       "id": "act-fabricated",
@@ -407,7 +407,7 @@
       "expect": "false-finding",
       "google": 32,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 20
     },
     {
@@ -417,8 +417,8 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 1,
-      "offSubject": 6
+      "kept": 0,
+      "offSubject": 5
     },
     {
       "id": "shri-sanctioned",
@@ -427,7 +427,7 @@
       "expect": "use",
       "google": 41,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 5
     },
     {
@@ -458,7 +458,7 @@
       "google": 44,
       "bing": 2,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 4
     },
     {
       "id": "shri-withheld",
@@ -466,9 +466,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 30,
-      "bing": 1,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 18
     },
     {
       "id": "shri-nep",
@@ -486,7 +486,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 43,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 32
     }
@@ -18727,7 +18727,8 @@
       "published": "2026-10-14",
       "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNY0JGQ1YtV0NWS2lIRkI0a2N2N2dQbGlfV1FKenRzeW5aZlppSG9HZmtLajA3ZjdCcVVmNmFZbU5RS2tSMUl0dmstOFR5ZXA5NkRnZVQ1bEJCdGZuT2x1Y2tnWGtRWGhDa3VyN0ZLY3otZmlBZG5hRjR0TDllaXFLc0dDeEdGZnY1SXhDeWQ4TVJtdllzc1c5VU50ZmFDVGl3SndwZ2xrUm5xeVkySjZKdmthN1h6ZUJLWXkwY1pTNGprRWNKQWx1d0lR0gHPAUFVX3lxTE0xdXBOcXBoTG5KMFFqQ2trdG1HRWJXU0VXb3RPRlZCN3VVMXR3QUxKam5WMjJiUDFnSFBrUWVidWVsR3FOdUFVTzNQQmZhUVFRekJKU3NFcnJxVkhrdUtRTmNqTFBWNXlOcm9JNW40bXBmVUxSRzY5WXh2UmpybWY3ZXZEbnY5YUlMVG0zN2dLQ3hjOGZTSXc1blNTZks3LUo5S0FNUUJoNC1VTmtXUjZCbnJ6YVNxT01FQUhoUkp3QzhkZFVrZndTTF9pYWZ3Yw?oc=5",
       "queries": [
-        "act-general"
+        "act-general",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -18775,7 +18776,8 @@
       "published": "2026-10-14",
       "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPUmFJcGtDNm9RNnRIclY2ejVmZ3Y4RjJLLWR3MTlTanJCOTZ1LTFTWmFPNGhkby02NzFydnloUEdhNGwxSmNpU2NFYVE2QTE3bVRrbkVpUnZUMF9kNzVLbkp0QW1mRmZ5T2ZQNVVhTWs5UXlHd3FCbTVEQ3NvaVM1azRlSzB4Q3QyMUQ5ZHEyemFoQ0tDWjNtSWdWMGtVanNLS1AtVFBET0hLYTFSZlM5NGlldFFuOENNa3poajl4UEI0dWRyODZYd2hFdzljdnc5RUFKcEl6TDJYRmJfd0V3?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-general"
       ],
       "indexes": [
         "google",
@@ -18892,6 +18894,22 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "india news delhi police register fir under sc st act over alleged casteist remarks against",
+      "headline": "India News | Delhi Police Register FIR Under SC/ST Act over Alleged Casteist Remarks Against ACP",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-10-14",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ad00ff8013e449c898e99522f48261d&url=https%3a%2f%2fwww.latestly.com%2fagency-news%2findia-news-delhi-police-register-fir-under-scst-act-over-alleged-casteist-remarks-against-acp-7644797.html&c=7259286553629709831&mkt=en-us",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-10-14"
     }
