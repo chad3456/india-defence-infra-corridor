@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-14T20:12:39.801Z",
-  "previousBuild": "2026-10-14T13:43:51.203Z",
+  "builtAt": "2026-10-14T23:14:36.892Z",
+  "previousBuild": "2026-10-14T20:12:39.801Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,23 +12,23 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 180,
-    "createdThisRun": 7,
-    "corroboratedThisRun": 10,
-    "feedsAnswered": 13,
+    "stories": 182,
+    "createdThisRun": 2,
+    "corroboratedThisRun": 3,
+    "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 273,
+    "itemsSeen": 285,
     "corroboration": {
-      "one": 151,
+      "one": 152,
       "two": 13,
-      "threePlus": 16
+      "threePlus": 17
     }
   },
   "byTheme": [
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 94
+      "n": 96
     },
     {
       "id": "autonomy",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 30
+      "n": 31
     },
     {
       "iso": "IND",
@@ -112,8 +112,8 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 38,
-      "kept": 1
+      "items": 40,
+      "kept": 2
     },
     {
       "outlet": "Indian Defence Research Wing",
@@ -125,7 +125,7 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 6
+      "kept": 5
     },
     {
       "outlet": "Army Times",
@@ -137,7 +137,7 @@
       "outlet": "C4ISRNET",
       "ok": true,
       "items": 25,
-      "kept": 9
+      "kept": 10
     },
     {
       "outlet": "DefenseScoop",
@@ -155,26 +155,25 @@
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 6
+      "kept": 7
     },
     {
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 4
+      "kept": 3
     },
     {
       "outlet": "Defense One",
       "ok": true,
       "items": 20,
-      "kept": 6
+      "kept": 5
     },
     {
       "outlet": "Naval News",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "HTTP 503"
+      "ok": true,
+      "items": 10,
+      "kept": 0
     },
     {
       "outlet": "Defence Blog",
@@ -266,6 +265,43 @@
         {
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/industry/techwatch/2026/10/14/us-army-taps-9-companies-to-build-next-gen-command-and-control-software/",
+          "published": "2026-10-14"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/news/pentagon-congress/2026/10/14/pentagon-needs-50b-for-mass-drone-production-hegseth-says/",
+      "headline": "Pentagon needs $50B for mass drone production, Hegseth says",
+      "firstSeen": "2026-10-14",
+      "lastSeen": "2026-10-14",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/news/pentagon-congress/2026/10/14/pentagon-needs-50b-for-mass-drone-production-hegseth-says/",
+          "published": "2026-10-14"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/news/pentagon-congress/2026/10/14/pentagon-needs-50b-for-mass-drone-production-hegseth-says/",
+          "published": "2026-10-14"
+        },
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/news/pentagon-congress/2026/10/14/pentagon-needs-50b-for-mass-drone-production-hegseth-says/",
+          "published": "2026-10-14"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/news/pentagon-congress/2026/10/14/pentagon-needs-50b-for-mass-drone-production-hegseth-says/",
           "published": "2026-10-14"
         }
       ]
@@ -1192,6 +1228,23 @@
         {
           "outlet": "Defense One",
           "url": "https://www.defenseone.com/policy/2026/10/hegseth-service-secretaries-discuss-generational-change-autonomous-warfare-command/416586/",
+          "published": "2026-10-14"
+        }
+      ]
+    },
+    {
+      "id": "https://www.twz.com/news-features/army-explains-how-merops-interceptor-drone-became-program-of-record-in-just-142-days",
+      "headline": "Army Explains How Merops Interceptor Drone Became Program Of Record In Just 142 Days",
+      "firstSeen": "2026-10-14",
+      "lastSeen": "2026-10-14",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "The War Zone",
+          "url": "https://www.twz.com/news-features/army-explains-how-merops-interceptor-drone-became-program-of-record-in-just-142-days",
           "published": "2026-10-14"
         }
       ]
