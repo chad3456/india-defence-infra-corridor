@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-14T14:05:50.661Z",
+  "builtAt": "2026-10-14T20:22:30.113Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1116,
-    "addedThisRun": 4,
-    "carriedFromEarlierRuns": 1112,
-    "withOutlet": 1046,
+    "items": 1129,
+    "addedThisRun": 13,
+    "carriedFromEarlierRuns": 1116,
+    "withOutlet": 1059,
     "bySubject": {
-      "scst": 755,
-      "pmshri": 361
+      "scst": 766,
+      "pmshri": 363
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 308
+    "offSubjectDropped": 311
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 539
+      "n": 548
     },
     {
       "key": "use",
-      "n": 393
+      "n": 397
     },
     {
       "key": "acquittal",
@@ -50,15 +50,15 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 97
+      "n": 99
     },
     {
       "key": "Lawtext",
-      "n": 81
+      "n": 82
     },
     {
       "key": "The Indian Express",
-      "n": 56
+      "n": 57
     },
     {
       "key": "The New Indian Express",
@@ -66,7 +66,7 @@
     },
     {
       "key": "The Hindu",
-      "n": 40
+      "n": 41
     },
     {
       "key": "Hindustan Times",
@@ -82,15 +82,15 @@
     },
     {
       "key": "Verdictum",
-      "n": 24
+      "n": 25
+    },
+    {
+      "key": "ThePrint",
+      "n": 19
     },
     {
       "key": "opindia.com",
       "n": 19
-    },
-    {
-      "key": "ThePrint",
-      "n": 18
     },
     {
       "key": "livelaw.in",
@@ -113,7 +113,15 @@
       "n": 13
     },
     {
+      "key": "LawChakra",
+      "n": 13
+    },
+    {
       "key": "Outlook India",
+      "n": 12
+    },
+    {
+      "key": "ANI News",
       "n": 12
     },
     {
@@ -129,15 +137,7 @@
       "n": 12
     },
     {
-      "key": "LawChakra",
-      "n": 12
-    },
-    {
       "key": "Deccan Herald",
-      "n": 11
-    },
-    {
-      "key": "ANI News",
       "n": 11
     },
     {
@@ -213,6 +213,10 @@
       "n": 6
     },
     {
+      "key": "NDTV",
+      "n": 6
+    },
+    {
       "key": "Citizens for Justice and Peace | CJP",
       "n": 5
     },
@@ -242,10 +246,6 @@
     },
     {
       "key": "ETV Bharat",
-      "n": 5
-    },
-    {
-      "key": "NDTV",
       "n": 5
     },
     {
@@ -297,8 +297,8 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 6
+      "kept": 3,
+      "offSubject": 7
     },
     {
       "id": "act-registered",
@@ -307,8 +307,8 @@
       "expect": "use",
       "google": 100,
       "bing": 3,
-      "kept": 1,
-      "offSubject": 11
+      "kept": 4,
+      "offSubject": 10
     },
     {
       "id": "act-convicted",
@@ -317,8 +317,8 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 34
+      "kept": 0,
+      "offSubject": 33
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 52,
-      "bing": 7,
+      "bing": 9,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 60,
+      "google": 66,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 23
+      "kept": 1,
+      "offSubject": 26
     },
     {
       "id": "act-acquittal",
@@ -356,7 +356,7 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 100,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 43
     },
@@ -376,18 +376,18 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 48,
-      "bing": 0,
-      "kept": 0,
-      "offSubject": 10
+      "bing": 2,
+      "kept": 1,
+      "offSubject": 9
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 23,
+      "google": 24,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 2
     },
     {
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 51,
+      "google": 50,
       "bing": 1,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 17
     },
     {
       "id": "act-fabricated",
@@ -407,8 +407,8 @@
       "expect": "false-finding",
       "google": 32,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 21
+      "kept": 1,
+      "offSubject": 20
     },
     {
       "id": "shri-general",
@@ -416,18 +416,18 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 0,
-      "kept": 0,
-      "offSubject": 5
+      "bing": 12,
+      "kept": 1,
+      "offSubject": 6
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 42,
+      "google": 41,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 5
     },
     {
@@ -437,7 +437,7 @@
       "expect": "use",
       "google": 71,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 27
     },
     {
@@ -446,9 +446,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 51,
-      "bing": 0,
+      "bing": 4,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 13
     },
     {
       "id": "shri-mou",
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 44,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 3
     },
@@ -476,7 +476,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 56,
-      "bing": 0,
+      "bing": 3,
       "kept": 0,
       "offSubject": 12
     },
@@ -486,7 +486,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 43,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 32
     }
@@ -18680,6 +18680,215 @@
       "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNZW4xMVQzS1ZCRzhhNjdsaWRZektKOU1yaFJ1YVo3Nl80eDNkVU9Ka09xT3BRbmlnTk1HTGNKeFhxUGduZngtcnl3S0M0R0p4bmRpcXFDSlVKSnEyMzR4dUxNa2l0RHR5bWdoUDRmY01aZTd6TzBuMUtrVU81M3dnMFZXNUw5YU44dlJGTV9md2JnRTEwNnBCZDVubEd5OEszaGZyWXB3UjNfZl81TVVQVng4VnNfb1dXcUR2TmdqQ0pISWli0gHSAUFVX3lxTE96TER2VElFSzNZLVk5NDJuczNPNjRrcTc4MkE2VWpRT0ZSQThUcm50VjNEVmVWNXV6LW1CbUh4QXBaUk9UWHVWVUNQUzlVR296NzdmWlozQnI0ZjNCXzB3MnJXZlEwbGE1TDFwTDgxZGhXc1c4UkhKbjZUeUtqOFVsaGpGd2NzX0JCS2VpVWdaZGVYdW5qbmtNR29oYmVFb3I0eEFrNmFmUlNBeC0yVjBodDh5dnZ6SnF3RXlFVTQ3bk1GRnFBd2V1U2p0ZkZRaUhaUQ?oc=5",
       "queries": [
         "shri-funds"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "accused of sex abuse during protest delhi cop files case against journalist under sc st ac",
+      "headline": "Accused Of Sex Abuse During Protest, Delhi Cop Files Case Against Journalist Under SC/ST Act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "NDTV",
+      "published": "2026-10-14",
+      "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQSUo2SElacTZYZ2NxalZ4ZTRINlJJUzlOaFFZQXBaNDVic05CSUxLZG5ralNhcExyQkJTdGs5OGtERzNjUjhBR3pUbXhpR1pGV0ZMMjZSb2M5Nm5BcjR2NktwMnd3dUpGQmhoQ3VGeGE5V2diSlhsOGh0RTlYU1FOaHlTVkpzQTBHNjVHbkJSUU9IcHNzdVozRWF2bUJ3dEtNeERlQUd2MXg1M0xDM0p3NW1xWVdVWVFoS2o3YnVVRU0zYUxuUFZRQWEwb2ZYb1pNV0tMeTlOUDB5SG4tZDBEM05VTG15MmxZUjVaal9naFhud9IB-gFBVV95cUxQdU81RV9MOE91bWtaMTRVZFN3TXFGX01RaUNEYjlyU2lmdDltbmNTWGxFMVBEamU2R0xLTl9adEtoTVZhSEs3a3hOTmtNM2QtWDNSUUtOUUV4S19JZVlTaEV0cVhYdTlvdXVkTmNNTmphNmRMeFVPYWx3cE5hcl9UWVBoTmxkeUJZbEdNeklvNW5RZGU5TllRY3hnNWtlLTJCdkY3SG1DT193dk50ZHBwbE1iSkp5aTJKM1Z1d3BXcmRUUzAwRk80NEJJdEdISk1ZN0FUTE9Zc3AwcVctN0lPY3NpZGk0YlBoWG5wcWdiNlhNbmNrcFhpWFhB?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "exclusive acp accused of molesting journalist accuses her of casteist slurs fir under sc s",
+      "headline": "Exclusive: ACP accused of molesting journalist accuses her of ‘casteist slurs’, FIR under SC/ST Act",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "ThePrint",
+      "published": "2026-10-14",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQUlgyVjNLSkpYQmZlVFo0N05TTkxDTW5NRnNaS2pwSjBodlJXdFZlVlN2bUw1MUFUaGZleHBUeV9rS2JNZ19JaG53WFBZcEF4ZnU3WmxxNW9ndmpMdzU1V0t6QUdfcTBRd0dVSGg3aEtYRGo5WndNSkszMWN1YnN2MV9qTjVnOUFDM3VMYUFWOV9JV1l5RlQ5MVpzY0NPMjRoUVV5RFgxaWU1Wl95STRwV21SVE8zSm5tQndBc0ZUeWRYUUtoSXpvenZR0gHPAUFVX3lxTE5HLWwwVHFiT3hWUDE5THRKSW9ocWd3RGJERlRTY0FNcW5LSGxyeDVCUHVrUW5VcXczdHJLekM1aXljLU1KNzNGNVd6OFJ5TEQxQlNmU2ppMWMwWGUwSHdmQmhXTmdPT0VGM3FNdHplS2Ywb08yTlBybm9wRFhQQUpZTFlPdVNBbVR3MVlvZEtYaVZyRUxoMEtHeHVGLXhXTW1uOG5YTnFQODBGYlpsc3JwV1Q1Y3ZvZ1ZzT1l1Znl6RnVtdkNVdjUzOGE5clhLcw?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "two youtubers booked under sc st act after acp s complaint",
+      "headline": "Two YouTubers booked under SC/ST Act after ACP’s complaint",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Times of India",
+      "published": "2026-10-14",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNY0JGQ1YtV0NWS2lIRkI0a2N2N2dQbGlfV1FKenRzeW5aZlppSG9HZmtLajA3ZjdCcVVmNmFZbU5RS2tSMUl0dmstOFR5ZXA5NkRnZVQ1bEJCdGZuT2x1Y2tnWGtRWGhDa3VyN0ZLY3otZmlBZG5hRjR0TDllaXFLc0dDeEdGZnY1SXhDeWQ4TVJtdllzc1c5VU50ZmFDVGl3SndwZ2xrUm5xeVkySjZKdmthN1h6ZUJLWXkwY1pTNGprRWNKQWx1d0lR0gHPAUFVX3lxTE0xdXBOcXBoTG5KMFFqQ2trdG1HRWJXU0VXb3RPRlZCN3VVMXR3QUxKam5WMjJiUDFnSFBrUWVidWVsR3FOdUFVTzNQQmZhUVFRekJKU3NFcnJxVkhrdUtRTmNqTFBWNXlOcm9JNW40bXBmVUxSRzY5WXh2UmpybWY3ZXZEbnY5YUlMVG0zN2dLQ3hjOGZTSXc1blNTZks3LUo5S0FNUUJoNC1VTmtXUjZCbnJ6YVNxT01FQUhoUkp3QzhkZFVrZndTTF9pYWZ3Yw?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "delhi journalist who accused acp of sexual harassment slapped with sc st act over casteist",
+      "headline": "Delhi journalist who accused ACP of sexual harassment slapped with SC/ST Act over ‘casteist remarks’",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Hindu",
+      "published": "2026-10-14",
+      "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQa1RTcjEyYjF6RTNNaHNkb1VxZXFQbnVaLXY4OGRGWFNNMV9VMUNIc0pUbjBCSmhHQlNSWTlfSXFXaWFFeUtaNTltWjIxand1WTFGbmRBUjBrSXE2YzJYMHA0S0JvRFVXOFZMU1QtOGFYbjZwQVpVY1pPb19vUV9ERTNrN2hJLURkYklMWS1aMGQ4Zjg4QzcwWS1xNmcxOVhVbGdxd0hQQmdveUxBenZKMS1HdmlBUThVcmpRaEs5VnVsRkdYNGxuS1FOeEhsSUxEbTVOc21UcmhNMDdNRVhfeVY3Q0FYWEVES0txNnJwOHhmZ9IB-AFBVV95cUxQR0JRWEVfV1JGUzRFNGNkVGhiWXhFT01MUENQVzg3eWdCRGN3ZzNmazRVU25NeVlOT1Roc3FnaFgxdkVPNEhiUjBjckJ3NmQ4UGd2N1A5Ny0xbXRSNkt5ZDRpT1ZiZmF0bFNucnoyOC1uMVhYcmJNOGhUejcwWmZQbVc5aWp5NVMyeUVuUHJZd09XR28yOVQyc1BLR2UwUEQ4YlNIcjlDaGcwWFdpanl4VktWbUNGM2lGOTczWkY0S2tnUFE1U1cwNG5PajREcUtESGY1RjhrMTRXRkhMSWtxSks5aHF3Wl9QTWZGdWY0WUtPNjM2cUFmWg?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "dissatisfaction with outcome or manner of investigation does not by itself attract section",
+      "headline": "Dissatisfaction With Outcome Or Manner Of Investigation Does Not By Itself Attract Section 4 SC/ST Act:...",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Verdictum",
+      "published": "2026-10-14",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPTTRsQnJmOWZ0Wk1BWEh1cjFGWk1xQTBBcW1IWVlaQXozTTJNOUI2dVFUSTJYbUZMR3plNXBlUHJ1dEZfeXBtd055eVE5bjhiS2xpSFJMdy1wUUlwY0pTNGlOUV82UlI3NXRQcTgxMWFMWmlwdW0tTU9lcDN1N1pjSjlQRFg3MTY0MnJlRlZURjB5a01oYWF6QmpLYnVzUHExSjFNaXJrdkRlbkxlMndDYmJsTEk3NENpUVRaVkE5cV96a1ppZDhQV1lZZDJWdG_SAdQBQVVfeXFMTkFrd2czZm9zX1g4Sk96anBHQlRZMnlNU2Fac2YwU3hHbE5DRmJuUEliQ1JrQXZaaEoyekhydG1lTHYwbndraC14dTk4aXUyZzRLa20xQjBQeTlOTk9GYXJLY3hQQW5GaUE3ZjhZalduWlc5QWJxa29SYW9BcDBEcHRvMWt4ZHhOc29sSUd2dlU0ZHo4dzhQT3hZOE9YclJVRzRaNXkxS2VxYm1vOVF4VWZtUzk5ODIyR05obU94MXFhTHl1eFo2V3JfeFpsZTg0cFlxX3I?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "delhi police register fir under sc st act over alleged casteist remarks against acp",
+      "headline": "Delhi Police register FIR under SC/ST Act over alleged casteist remarks against ACP",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "ANI News",
+      "published": "2026-10-14",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPUmFJcGtDNm9RNnRIclY2ejVmZ3Y4RjJLLWR3MTlTanJCOTZ1LTFTWmFPNGhkby02NzFydnloUEdhNGwxSmNpU2NFYVE2QTE3bVRrbkVpUnZUMF9kNzVLbkp0QW1mRmZ5T2ZQNVVhTWs5UXlHd3FCbTVEQ3NvaVM1azRlSzB4Q3QyMUQ5ZHEyemFoQ0tDWjNtSWdWMGtVanNLS1AtVFBET0hLYTFSZlM5NGlldFFuOENNa3poajl4UEI0dWRyODZYd2hFdzljdnc5RUFKcEl6TDJYRmJfd0V3?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google",
+        "bing"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "delhi journalist who accused acp of sexual harassment booked under sc st act over alleged ",
+      "headline": "Delhi journalist who accused ACP of sexual harassment booked under SC/ST Act over alleged caste remarks",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Moneycontrol.com",
+      "published": "2026-10-14",
+      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQMHg2dVh0djAxY2Y0SUMxNFFHd0ZjT29Vdk5aeUdNTFBHOGRuZS01Y0lUMElrd05WWEUzZTF0VHJoZFNOUUZQeElVeEw1clp3NklIQkczRlFLbHFkLWtYNnl0Mk5EVV9xaWV5WDVhd1B0OG5uMlZoN2pWbkpyTEcyTVlfWlJJY1VneUZGQkhvRDg1RzZQYVBGaFFmSjhuNU41cF9XdVBWU2FaalRYSFRvMnVRTXpFX0EyR2kyYV8taTNCZlF1bGhQVVdMUXZ4bm9UYnRuY0hDSHl5X2ZBeHFvZFN0MFBEMDVQYzRaOdIB8gFBVV95cUxOYzFfUk5oZTBzZ0o4TEhYYnVUT240U2VPaVJxbF91OWx4TlA2REFoTkRfa05zc2JhalY2X01DVWV0UkZtS21CMTRNUld5di1OMFNIalZjQ2xvUk9aR0pwZ1Zmc25XdzFyUXN5MkRFVFg0M2lQdG9EdjVOeVZqaURPXzN0V2V2bzhqOWpUQ1BxUWFXZXhsVVNBU2xLYU5vZVg0TnlXSDBEbDFYQWpSaDBOUktRR0ktUl9IVGJwWEVFLUpyWUUwTzJSWndkT3JFRDRlcjgyMW04elRwQ3o3RkN1c29fU1VDeDlYV2h6VGdqcHlGdw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "high court quashes criminal proceedings against accused in sc st act case finding abuse of",
+      "headline": "High Court Quashes Criminal Proceedings Against Accused in SC/ST Act Case Finding Abuse of Process by Complainant. Dispute Pertaining to Property Ownership and Possession Found to be Purely Civil in Nature, Not Criminal, Under Sections 465, 468, 4",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Lawtext",
+      "published": "2026-08-06",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE91S095S3BWaVp2ME0yRGhLb093QUJyQmFPRUpManEyYndZeWhkRUxubW1IUHZKaHMzeEpzcWU3LUlTYmhKMFJjU1ZBbHhWbWkwQmR5Mg?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "supreme court quashes sc st act charge abuse inside home not within public view",
+      "headline": "Supreme Court Quashes SC/ST Act Charge: “Abuse Inside Home Not Within Public View\"",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawChakra",
+      "published": "2025-10-28",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5PYlBSSzBRWjFORXU4ZVVKS3RXOU0xUkhuZVRldC0zd1lRdzhyUUxjR3E1SlVHcTM4NGg1SnlJSkF2MUdfTzZNM010OVhicHlEeGE0cjNSU1VEWEpTTmt1eDFJMlFGYTZMN3VUUXJZbExoN0ozRGR6bHp3?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "won t allow dilution of sc st act pm modi",
+      "headline": "Won’t allow dilution of SC/ST Act: PM Modi",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2018-04-14",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOQUMyNDRLajZyYk56OGpZRDE5T1FlVzFHRUJTQ1J2V1dQbVpDM2hPOEdXdTVRQ0NqM3BQa2hyY25DcTR6NlkzWk9qZ2xoTThDTnQwLWhMaFFjSDJGMnVPMFptaUlWd2VMLW5PZlROaWlhWkFLZkRuN1JsaHdUUUpYU0VaRHVoOTA3QjJvdVFfSnc5ZkN3cDFyWjYyUDBqQko2X0JfbHhieS03Ym8?oc=5",
+      "queries": [
+        "act-dilution"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "delhi acp vivek bhagat files sc st act case against journalist who accused him of sexual h",
+      "headline": "Delhi ACP Vivek Bhagat Files SC/ST Act Case Against Journalist Who Accused Him Of Sexual Harassment",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Daily Jagran",
+      "published": "2026-10-14",
+      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOXzNIVmZ5Y3ZvUDdjdEw3bF9TanctaWR0dzg1TlBaNDRqUDFGcWg1ekJpcmFmcFYzVElZdndaQVlHS0pvOS1sWEtxTl9KY3kzOWZNeklyTjFhaXBEd19HLVV1ZmlkUDV2UDVyQnNQUm1VNmVpUTRvb0dMeVlidXVoU0kzVFQxS25acVVoUVNvVDVEZnFwUVVaZzktaFdEdzFOTUZMU096cDJ5S05aOEhTMHctNUY3eDEwSEw3RWdFTFZBMHJYRzVKYlhOTWxKU081QjY0d3BESnFmRmQwY1IzMkpsNNIB6gFBVV95cUxNVllnTjJtekg2VE1RLXpPWnJ4azZHY2I2OUJKNjRYOTlRUHl4d2N1eXZXLW1pZ2FCcUhuaGt5WEZqUTVRSXdFeDhXcVhjMTZwajJBaXVZQlpuNjZyTEExQzRyZ0Viby11cWNSbTdLN0EyekI2NV9uNUZCbkJxc2RwQWVIeXkzcDViek9lOUoyTFNMaXg4QlFJWUZCQl9KUm5TS2F2WUZuSzYwY3BQLWt3QVRXYUZuV2hETTQ5LXRqOXUyRHZGV0ZqUGhFM0ZfRkJ5cnRZZmxmeHJ2djF0dHVvZmRMS3pCNnY5UEE?oc=5",
+      "queries": [
+        "act-fabricated"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "special story pm shri scheme widens education network across uts and states including jhar",
+      "headline": "Special Story-PM-SHRI scheme widens education network across UTs and States including Jharkhand",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Jharkhand State News",
+      "published": "2026-09-10",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNMGRPV010dmtCQVF3TFgtWlJSZHRSMzFodzg3SWo4dV9BZ1pQYXMydm9KTU9JTTFLVWVCSWhwMUFDbWY4OGNSN3pLbzhFQWxSS3MzcGt1dTU3bkxnTXRzeVNkUnJOdTVlZ1NWRDBOSEZkU0FMYjV2YTdURWxYUmhRUEp3T2k5YVZ5OTFHNzAxS0J4TUs1dlJRVkxTRzJaXzgyS1A3OTJfdEVtTndDeXprTkpoYVRKc3VaUFVqN0psYnRWTTlRRFNCR1NtcjVhcHRqeVNtRXBUaEF3Zk1yV2J2MmJlWXRHc3M?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "kerala signs mou with centre to join pm shri schools scheme",
+      "headline": "Kerala signs MoU with Centre to join PM SHRI Schools scheme",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The Indian Express",
+      "published": "2025-10-25",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOSjJYOHNQTHFxTnFqWGpSUnkyMDltZFd6QnFDY09aMnlFR080S1F1bFJnWDhHZEhwY2RWcC1oZHBwODdZbWZlVFRxeDl0bjlHYTRGRGZ3allaQUp5Uy1MLWtZRGVHQUt5R2tBNGpGZGNaV2c3YmlCZFZXZ0RseUNFRnRaOXFOZEpKaTNlb0tDYzA3ckhDRWl2QnpzbXFVbW1adnQ5LUtDVXJITDdrUm1ua0tqQkxUbG9EcmZMdF9vOTVVQkHSAcoBQVVfeXFMTzk5QjJWRFg3VzVyNnl3eDVSWUtmWDlxU1BTajEwV05WMW5feDV4bXdodWxnaUtWZmxENk1nTnhlMXB4OVRiMkk4SWFCaFBTNWFobUxEakhxUGRyZ2w5QndQYlZtcVRteDdqZVJTYi1qYnlsWlRab0Q5ZWtEMkZTMmRCMUJVckdvZkZKajdLb293SnYwN3lrQlBKSlFRMzZuc3Bzb0JMX0pUSi1PMXdnY0JELW0yWFF1TG84Nm1JN00zS1J1R2VLTl93UQ?oc=5",
+      "queries": [
+        "shri-sanctioned"
       ],
       "indexes": [
         "google"
