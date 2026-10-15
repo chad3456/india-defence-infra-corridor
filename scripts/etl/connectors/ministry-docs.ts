@@ -159,7 +159,7 @@ interface ArchiveState { listings: Record<string, Array<{ id: string; title: str
 
 const WB = (ts: string, url: string) => `https://web.archive.org/web/${ts}id_/${url}`;
 /** The monthly foreign-trade release, under the titles it has carried since 2004. */
-const TRADE_TITLE = /foreign trade|india.?s trade|exports? (?:and|&) imports?|trade (?:data|figures|performance)|merchandise trade/i;
+const TRADE_TITLE = /india\W{0,2}s?\s+foreign trade(?!\s+policy)|foreign trade data|trade data for april/i;
 
 async function wbText(url: string): Promise<string | null> {
   for (let attempt = 0; attempt < 2; attempt++) {
@@ -174,9 +174,11 @@ async function wbText(url: string): Promise<string | null> {
 /**
  * The pre-2017 commerce.nic.in site listed each month's releases on a page of
  * its own; Wayback kept 183 of them. Read the listings, keep the trade
- * releases, and fetch those release pages. Then the 2020-2024 PDFs Wayback
- * kept from the WordPress site. One request every eight seconds, saving as it
- * goes, stopping at a deadline; the next run carries on where this one ended.
+ * releases, and fetch those release pages. The 2020-2024 PDFs Wayback kept
+ * from the WordPress site go first, because they join the API's run of months;
+ * then release pages from listings already read; then more listings. One
+ * request every eight seconds, saving as it goes, stopping at a deadline; the
+ * next run carries on where this one ended.
  */
 async function commerceArchive(deadline: number) {
   const probe = JSON.parse(readFileSync(join(ROOT, "data", "ministry", "docs-probe.json"), "utf8")) as { cdx: Record<string, { rows?: string[][] }> };
@@ -185,7 +187,12 @@ async function commerceArchive(deadline: number) {
   const save = () => writeFileSync(stateFile, JSON.stringify(state, null, 1));
   const pace = () => new Promise((r) => setTimeout(r, 8000));
 
-  // 1. Monthly listing pages.
+  const outJson = join(ROOT, "data", "ministry", "commerce-docs.json");
+  const file: DocsFile & { errors?: string[] } = JSON.parse(readFileSync(outJson, "utf8"));
+  const have = () => new Set(file.docs.filter((d) => d.ok).map((d) => d.id));
+
+  // Monthly listing pages.
+  const readListings = async () => {
   const listings = (probe.cdx["nic-all"]?.rows ?? []).filter((r) => /pressrelease_year\.asp\?year\d*=\d{4}&month=\d+/i.test(r[0]!));
   const seenKey = new Set<string>();
   for (const [orig, ts] of listings) {
@@ -202,17 +209,17 @@ async function commerceArchive(deadline: number) {
     console.log(`  listing ${key}: ${items.length} releases, ${items.filter((i) => TRADE_TITLE.test(i.title)).length} on trade`);
     save();
   }
+  };
 
-  // 2. The trade releases among them, as archived pages.
+  // The trade releases among them, as archived pages.
+  const readDetails = async () => {
   const detailTs = new Map((probe.cdx["nic-detail"]?.rows ?? []).map((r) => [r[0]!.match(/id=(\d+)/)?.[1] ?? "", r]));
   const want = new Map<string, { title: string; month: string }>();
   for (const [key, items] of Object.entries(state.listings)) for (const i of items) if (TRADE_TITLE.test(i.title)) want.set(i.id, { title: i.title, month: key });
-  const outJson = join(ROOT, "data", "ministry", "commerce-docs.json");
-  const file: DocsFile & { errors?: string[] } = JSON.parse(readFileSync(outJson, "utf8"));
-  const have = new Set(file.docs.filter((d) => d.ok).map((d) => d.id));
+  const got = have();
   for (const [nid, meta] of want) {
     const id = `nic-${nid}`;
-    if (have.has(id) || Date.now() > deadline) continue;
+    if (got.has(id) || state.failed[id] === "not archived" || Date.now() > deadline) continue;
     const row = detailTs.get(nid);
     if (!row) { state.failed[id] = "not archived"; continue; }
     await pace();
@@ -228,14 +235,16 @@ async function commerceArchive(deadline: number) {
     console.log(`  ${id}: ${meta.title.slice(0, 70)}`);
     writeFileSync(outJson, JSON.stringify(file, null, 1)); save();
   }
+  };
 
-  // 3. The 2020-2024 monthly PDFs Wayback kept from the WordPress uploads.
-  const pdfRows = (probe.cdx["gov-wp-uploads"]?.rows ?? []).filter((r) => r[2] === "application/pdf" && /(Press[-_]Release[-_](January|February|March|April|May|June|July|August|September|October|November|December)[-_]\d{4}|PIB[-_]?(Press[-_])?Release)/i.test(r[0]!.split("/").pop()!));
+  // The 2020-2024 monthly PDFs Wayback kept from the WordPress uploads.
+  const readPdfs = async () => {
+  const pdfRows = (probe.cdx["gov-wp-uploads"]?.rows ?? []).filter((r) => r[2] === "application/pdf" && /(Press[-_]Release[-_](January|February|March|April|May|June|July|August|September|October|November|December)[-_]\d{4}|PIB[-_]?(Press[-_])?Release)/i.test(r[0]!.split("/").pop()!) && !/round|meeting|negotiat|visit/i.test(r[0]!.split("/").pop()!));
   for (const [orig, ts] of pdfRows) {
     const base = orig!.split("/").pop()!.replace(/\.pdf$/i, "");
     const ym = orig!.match(/uploads\/(\d{4})\/(\d{2})\//);
     const id = `wp-${ym ? `${ym[1]}${ym[2]}-` : ""}${slug(base)}`;
-    if (have.has(id) || file.docs.some((d) => d.id === id && d.ok) || Date.now() > deadline) continue;
+    if (file.docs.some((d) => d.id === id && d.ok) || Date.now() > deadline) continue;
     await pace();
     const got = await download(WB(ts!, orig!));
     if (typeof got === "string") { state.failed[id] = got; save(); if (/429/.test(got)) await new Promise((r) => setTimeout(r, 90_000)); continue; }
@@ -248,6 +257,12 @@ async function commerceArchive(deadline: number) {
     console.log(`  ${id}: ${pages.length} pages`);
     writeFileSync(outJson, JSON.stringify(file, null, 1)); save();
   }
+  };
+
+  await readPdfs();
+  await readDetails();
+  await readListings();
+  await readDetails();
   save();
 }
 
