@@ -13,7 +13,7 @@ first estimate and the revision can be told apart.
 Rules, all explicit:
   * Table 1 "Trade during <Month YYYY>" and Table 2 "Trade during April-<Month>
     YYYY-YY": rows Merchandise / Services / Total Trade, each Exports and
-    Imports, and Total Trade Balance; column one is the period named, column
+    Imports, and Total Trade Balance ("Overall Trade" in releases up to 2023); column one is the period named, column
     two the same period a year earlier.
   * A table is kept only if Total = Merchandise + Services for exports and
     imports, and Balance = Total exports - Total imports, each within 0.03.
@@ -72,8 +72,8 @@ def tables(doc):
         for ln in block.split('\n'):
             l = ln.strip()
             if re.match(r'^Merchandise\b', l): cat = 'merch'
-            elif re.match(r'^Services', l): cat = 'services'
-            elif re.match(r'^Total Trade', l) or re.match(r'^\(Merchandise', l): cat = 'total'
+            elif re.match(r'^Services(?!\s*\))', l): cat = 'services'   # not "Services) *", the end of the total's label
+            elif re.match(r'^(?:Total|Overall)\s+Trade', l) or re.match(r'^\(Merchandise', l): cat = 'total'   # "Overall Trade" until 2023
             mm = re.search(r'\b(Exports|Imports|Trade Balance)\s+' + NUM + r'\s+' + NUM + r'\s*$', l)
             if mm and cat:
                 meas = {'Exports': 'exports', 'Imports': 'imports', 'Trade Balance': 'balance'}[mm.group(1)]
