@@ -1,7 +1,7 @@
 {
-  "id": "run-1792058102389",
-  "startedAt": "2026-10-15T09:52:11.687Z",
-  "finishedAt": "2026-10-15T09:55:02.389Z",
+  "id": "run-1792060592701",
+  "startedAt": "2026-10-15T10:33:34.877Z",
+  "finishedAt": "2026-10-15T10:36:32.701Z",
   "status": "partial",
   "connectorsRun": 9,
   "connectorsFailed": 0,
@@ -11,6 +11,7 @@
     "worldbank: SL.EMP.OWAC.MA.ZS: no Indian observations",
     "satp: terror: https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir -> HTTP 403",
     "satp: terror: no candidate URL yielded a full table; keeping previous data",
+    "ingest: Press Information Bureau: response was not a feed (blocked or interstitial)",
     "ingest: The Tribune: HTTP 403",
     "ingest: Deccan Herald: HTTP 404",
     "ingest: The New Indian Express: HTTP 404",
@@ -27,7 +28,7 @@
     "ingest: Defence Aviation Post: HTTP 404",
     "ingest: Daily Excelsior: HTTP 403",
     "ingest: Search: psu-msme — MSME India cluster launched: feed had no items",
-    "ingest funnel: 1886 items -> 766 candidates -> 99 events (lost: 367 no sector, 191 not an action, 109 no place)",
+    "ingest funnel: 1859 items -> 756 candidates -> 99 events (lost: 361 no sector, 191 not an action, 105 no place)",
     "x: X_BEARER_TOKEN not set — reading X is paid per post since February 2026, so this connector is inactive. Official announcements still arrive via the PIB, PMO and ministry feeds at no cost."
   ]
 }
