@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-15T19:53:49.505Z",
-  "previousBuild": "2026-10-15T13:26:20.651Z",
+  "builtAt": "2026-10-15T23:04:50.275Z",
+  "previousBuild": "2026-10-15T19:53:49.505Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,23 +12,23 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 188,
+    "stories": 191,
     "createdThisRun": 3,
-    "corroboratedThisRun": 4,
+    "corroboratedThisRun": 2,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 284,
+    "itemsSeen": 285,
     "corroboration": {
-      "one": 156,
+      "one": 158,
       "two": 14,
-      "threePlus": 18
+      "threePlus": 19
     }
   },
   "byTheme": [
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 100
+      "n": 102
     },
     {
       "id": "autonomy",
@@ -43,7 +43,7 @@
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 20
+      "n": 21
     },
     {
       "id": "military-ai",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 32
+      "n": 34
     },
     {
       "iso": "IND",
@@ -112,8 +112,8 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 39,
-      "kept": 2
+      "items": 40,
+      "kept": 3
     },
     {
       "outlet": "Indian Defence Research Wing",
@@ -125,13 +125,13 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 6
+      "kept": 5
     },
     {
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 7
+      "kept": 6
     },
     {
       "outlet": "C4ISRNET",
@@ -143,25 +143,25 @@
       "outlet": "DefenseScoop",
       "ok": true,
       "items": 10,
-      "kept": 3
+      "kept": 4
     },
     {
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 5
+      "kept": 4
     },
     {
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "Defense One",
@@ -477,6 +477,38 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/ai-military-targeting-may-move-faster-than-humans-can-authenticate-critics-warn/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/industry/techwatch/2026/10/15/us-army-eyes-developing-soldier-worn-drone-detection-gear/",
+      "headline": "US Army eyes developing soldier-worn drone detection gear",
+      "firstSeen": "2026-10-15",
+      "lastSeen": "2026-10-15",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/industry/techwatch/2026/10/15/us-army-eyes-developing-soldier-worn-drone-detection-gear/",
+          "published": "2026-10-15"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/industry/techwatch/2026/10/15/us-army-eyes-developing-soldier-worn-drone-detection-gear/",
+          "published": "2026-10-15"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/industry/techwatch/2026/10/15/us-army-eyes-developing-soldier-worn-drone-detection-gear/",
+          "published": "2026-10-15"
         }
       ]
     },
@@ -1207,6 +1239,45 @@
         {
           "outlet": "Indian Defence Research Wing",
           "url": "https://idrw.org/five-indian-combat-drone-projects-target-different-roles/",
+          "published": "2026-10-15"
+        }
+      ]
+    },
+    {
+      "id": "https://www.twz.com/air/mq-72c-cargo-helicopter-drone-capabilities-demonstrated-for-u-s-army",
+      "headline": "MQ-72C Cargo Helicopter Drone Capabilities Demonstrated For U.S. Army",
+      "firstSeen": "2026-10-15",
+      "lastSeen": "2026-10-15",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "The War Zone",
+          "url": "https://www.twz.com/air/mq-72c-cargo-helicopter-drone-capabilities-demonstrated-for-u-s-army",
+          "published": "2026-10-15"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/10/15/pentagon-cyber-pay-c-mip-transition-plan/",
+      "headline": "Pentagon averts cyber pay cuts — for now — with one-year C-MIP ‘transition plan’",
+      "firstSeen": "2026-10-15",
+      "lastSeen": "2026-10-15",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/10/15/pentagon-cyber-pay-c-mip-transition-plan/",
           "published": "2026-10-15"
         }
       ]
