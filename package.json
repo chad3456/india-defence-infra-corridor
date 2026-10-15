@@ -188,7 +188,8 @@
     "live:probe": "tsx scripts/etl/probe-live-sources.ts",
     "test:live": "tsx scripts/test-live.ts",
     "public-order:probe": "tsx scripts/etl/probe-public-order.ts",
-    "test:public-order": "tsx scripts/test-public-order.ts"
+    "test:public-order": "tsx scripts/test-public-order.ts",
+    "ministry:docs": "tsx scripts/etl/connectors/ministry-docs.ts all"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",
