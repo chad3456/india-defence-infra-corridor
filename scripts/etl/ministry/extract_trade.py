@@ -81,6 +81,29 @@ def tables(doc):
             if len(rows) >= 7: break
         yield kind, period, prev, rows, False, m.group(0)
 
+# Releases before the tables (commerce.nic.in, 2000-2016) state the figures in
+# sentences, in US$ million: "Exports during March 2012 were valued at US $
+# 28684.67 million", and "...exports for the period April-March 2011-12 was
+# US $ 303719.27 million". Merchandise only. The sentence names the flow, the
+# period and the figure together, so nothing is inferred from position.
+MON = r'(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\.?'
+USD = r'US\s?\$\s?([\d,]+(?:\.\d+)?)\s*(million|billion)'
+MONTH_SENT = re.compile(r'\b(Exports|Imports)\s+(?:during|in|for)\s+(?:the\s+month\s+of\s+)?' + MON + r',?\s+(\d{4})\s+(?:were|was|are|is)\s+(?:valued\s+at\s+|estimated\s+(?:at|to\s+be)\s+)?' + USD, re.I)
+CUM_SENT = re.compile(r'\b(exports|imports)\s+(?:for|during|in)\s+(?:the\s+period\s+)?April\s*-\s*' + MON + r',?\s+(\d{4})\s*-\s*(\d{2,4})\s+(?:was|were|is|are)\s+(?:valued\s+at\s+|estimated\s+(?:at|to\s+be)\s+)?' + USD, re.I)
+
+def sentence_obs(d):
+    text = norm('\n'.join(d['pages']))
+    out = []
+    for m in MONTH_SENT.finditer(text):
+        flow, mon, yr, val, unit = m.groups()
+        q = text[max(0, m.start()):m.end()]
+        out.append({'series': f'merch-{flow.lower()}', 'kind': 'month', 'period': month_key(mon, yr), 'v': float(val.replace(',', '')), 'unit': f'US$ {unit.lower()}', 'quote': q})
+    for m in CUM_SENT.finditer(text):
+        flow, mon, y0, y1, val, unit = m.groups()
+        thr = mon[:3].title()
+        out.append({'series': f'merch-{flow.lower()}', 'kind': 'ytd', 'period': f'FY{y0}-{y1[-2:]}:Apr-{thr}', 'v': float(val.replace(',', '')), 'unit': f'US$ {unit.lower()}', 'quote': text[m.start():m.end()]})
+    return out
+
 def consistent(rows):
     need = [('merch','exports'),('merch','imports'),('services','exports'),('services','imports'),('total','exports'),('total','imports'),('total','balance')]
     if not all(k in rows for k in need): return False, 'missing rows'
@@ -104,6 +127,13 @@ def main():
                 q = norm(line)
                 for per, v, role in ((period, cur, 'current'), (prev, pre, 'year-earlier')):
                     obs.append({'series': cat if excl else f'{cat}-{meas}', 'kind': kind, 'period': per, 'v': v, 'src': d['id'], 'quote': q, 'table': norm(head), 'role': role, 'released': d.get('published')})
+        if d['id'].startswith('nic-'):
+            got = sentence_obs(d)
+            if got: sources[d['id']] = {k: d.get(k) for k in ('title', 'url', 'published', 'file', 'sha256')}
+            for o in got:
+                o.update({'src': d['id'], 'table': 'stated in the release text', 'role': 'current', 'released': d.get('published')})
+                if o['unit'] == 'US$ billion': del o['unit']
+                obs.append(o)
     obs.sort(key=lambda o: (o['series'], o['period'], o['released'] or ''))
     json.dump({'source': 'Department of Commerce, monthly press releases on India\'s foreign trade', 'unit': 'US$ billion', 'observations': obs, 'sources': sources, 'rejected': rejected}, open(OUT, 'w'), indent=1, ensure_ascii=False)
     months = sorted({o['period'] for o in obs if o['kind'] == 'month'})
