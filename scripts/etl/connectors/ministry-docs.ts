@@ -253,6 +253,8 @@ async function commerceArchive(deadline: number) {
   // The 2020-2024 monthly PDFs Wayback kept from the WordPress uploads.
   const readPdfs = async () => {
   const pdfRows = (probe.cdx["gov-wp-uploads"]?.rows ?? []).filter((r) => r[2] === "application/pdf" && /(Press[-_]Release[-_](January|February|March|April|May|June|July|August|September|October|November|December)[-_]\d{4}|PIB[-_]?(Press[-_])?Release)/i.test(r[0]!.split("/").pop()!) && !/round|meeting|negotiat|visit/i.test(r[0]!.split("/").pop()!));
+  // Newest first: the months next to the API's run matter most, and Wayback may stop answering partway.
+  pdfRows.sort((a, b) => (b[0]!.match(/uploads\/(\d{4}\/\d{2})\//)?.[1] ?? "").localeCompare(a[0]!.match(/uploads\/(\d{4}\/\d{2})\//)?.[1] ?? ""));
   for (const [orig, ts] of pdfRows) {
     const base = orig!.split("/").pop()!.replace(/\.pdf$/i, "");
     const ym = orig!.match(/uploads\/(\d{4})\/(\d{2})\//);
