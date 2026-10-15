@@ -1,0 +1,28 @@
+{
+ "probedAt": "2026-10-15T09:35:50.789Z",
+ "around": [
+  ")]})}function bA(){return e.jsx(e.Fragment,{children:e.jsx(vh,{children:e.jsx(ae,{path:\"/*\",element:e.jsx(NA,{})})})})}const F2=Ls({reducerPath:\"apiExternal\",baseQuery:Ps({baseUrl:\"undefined/\"}),endpoints:a=>({getParliamentaryQuestions:a.query({query:()=>\"\"})})}),CA=\"fFUUZ6xbJefU1QUIzRKbN7tOsh_blSbAy-VIQljhC8B6wVoJDw8YeJYsf7tN1z2lnGz4bzOY5w1Q_5DUm5N790tq5iyN8EC47tiMudEY1Q7zdzbeZ-z7TwlhBBRVraeQK6SSJZxAisNzBWw_-qNT-SlbrZkWEVQYRHs0HGYePjC8sgZZlIa_uQZ9f44YVHQXkkPTmyb9OKw1qDNG-hXyWjPiK219j9K3SQPHGHZsicx-D6v9qWVpUKoOdGAFf70HZyljEJR2QTUJBYldm4QgAli_LoCXmM6bEL_5m1A6EiA\",yA=\"https://archive.pib.gov.in/apipibcommerce/api/\",V2=Ls({reducerPath:\"apiPib\",baseQuery:Ps({baseUrl:yA,prepareHeaders:a=>(a.set(\"Authorization\",`Bearer ${CA}`),a)}),endpoints:a=>({getLanguages:a.query({query:()=>({url:\"getlanguage\",method:\"POST\"})}),getTop15DaysReleases:a.query({query:({langid:n})=>({url:\"Gettop15daysrel\",method:\"POST\",body:{langid:n}})}),getReleaseDescription:a.query({query:({id:n})=>({url:\"getreldescription\",method:\"POST\",body:{id:n}})}),searchReleases:a.query({query:n=>({url:\"Getsearch\",method:\"POST\",body:n})})})}),Z2=Ls({reducerPath:\"apiSocialMedia\",baseQuery:Ps({baseUrl:`${window.location.origin}/ministryofcommerc"
+ ],
+ "calls": [
+  {
+   "url": "https://archive.pib.gov.in/apipibcommerce/api/Gettop15daysrel",
+   "ok": false,
+   "status": "fetch failed"
+  },
+  {
+   "url": "https://archive.pib.gov.in/apipibcommerce/api/Getsearch?searchtext=foreign%20trade",
+   "ok": false,
+   "status": "fetch failed"
+  },
+  {
+   "url": "https://archive.pib.gov.in/apipibcommerce/api/Getsearch?search=India%27s%20Foreign%20Trade",
+   "ok": false,
+   "status": "fetch failed"
+  },
+  {
+   "url": "https://archive.pib.gov.in/apipibcommerce/api/Getsearch?keyword=foreign%20trade&fromdate=01/01/2005&todate=31/12/2005",
+   "ok": false,
+   "status": "fetch failed"
+  }
+ ]
+}
