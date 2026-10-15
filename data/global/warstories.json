@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-15T13:26:20.651Z",
-  "previousBuild": "2026-10-15T04:38:25.041Z",
+  "builtAt": "2026-10-15T19:53:49.505Z",
+  "previousBuild": "2026-10-15T13:26:20.651Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,23 +12,23 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 185,
+    "stories": 188,
     "createdThisRun": 3,
-    "corroboratedThisRun": 0,
+    "corroboratedThisRun": 4,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 284,
     "corroboration": {
-      "one": 155,
-      "two": 13,
-      "threePlus": 17
+      "one": 156,
+      "two": 14,
+      "threePlus": 18
     }
   },
   "byTheme": [
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 98
+      "n": 100
     },
     {
       "id": "autonomy",
@@ -43,7 +43,7 @@
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 19
+      "n": 20
     },
     {
       "id": "military-ai",
@@ -55,12 +55,12 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 31
+      "n": 32
     },
     {
       "iso": "IND",
       "name": "India",
-      "n": 15
+      "n": 16
     },
     {
       "iso": "UKR",
@@ -119,25 +119,25 @@
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 5
+      "kept": 6
     },
     {
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 6
+      "kept": 7
     },
     {
       "outlet": "C4ISRNET",
       "ok": true,
       "items": 25,
-      "kept": 10
+      "kept": 11
     },
     {
       "outlet": "DefenseScoop",
@@ -155,7 +155,7 @@
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 6
+      "kept": 5
     },
     {
       "outlet": "Breaking Defense",
@@ -167,7 +167,7 @@
       "outlet": "Defense One",
       "ok": true,
       "items": 20,
-      "kept": 5
+      "kept": 4
     },
     {
       "outlet": "Naval News",
@@ -179,7 +179,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -195,6 +195,43 @@
     }
   ],
   "stories": [
+    {
+      "id": "https://www.militarytimes.com/industry/techwatch/2026/10/14/us-army-to-stand-up-second-expeditionary-cyber-battalion-in-coming-months/",
+      "headline": "US Army to stand up second expeditionary cyber battalion in coming months",
+      "firstSeen": "2026-10-15",
+      "lastSeen": "2026-10-15",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/industry/techwatch/2026/10/14/us-army-to-stand-up-second-expeditionary-cyber-battalion-in-coming-months/",
+          "published": "2026-10-15"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/industry/techwatch/2026/10/14/us-army-to-stand-up-second-expeditionary-cyber-battalion-in-coming-months/",
+          "published": "2026-10-15"
+        },
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/industry/techwatch/2026/10/14/us-army-to-stand-up-second-expeditionary-cyber-battalion-in-coming-months/",
+          "published": "2026-10-15"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/industry/techwatch/2026/10/14/us-army-to-stand-up-second-expeditionary-cyber-battalion-in-coming-months/",
+          "published": "2026-10-15"
+        }
+      ]
+    },
     {
       "id": "https://defensescoop.com/2026/10/05/kaizen-49m-contract-army-task-order-classified-work/",
       "headline": "After developing Pentagon’s counter-drone marketplace, Kaizen nabs $49M IDIQ from Army with first task order for classified work",
@@ -750,6 +787,28 @@
       ]
     },
     {
+      "id": "https://www.militarytimes.com/industry/techwatch/2026/10/15/kratos-combat-drone-completes-first-euro-flight-advances-turbojet-engine-production/",
+      "headline": "Kratos combat drone completes first Euro flight, advances turbojet engine production",
+      "firstSeen": "2026-10-15",
+      "lastSeen": "2026-10-15",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/industry/techwatch/2026/10/15/kratos-combat-drone-completes-first-euro-flight-advances-turbojet-engine-production/",
+          "published": "2026-10-15"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/industry/techwatch/2026/10/15/kratos-combat-drone-completes-first-euro-flight-advances-turbojet-engine-production/",
+          "published": "2026-10-15"
+        }
+      ]
+    },
+    {
       "id": "https://breakingdefense.com/2026/10/laneve-redesignates-armys-futures-and-concepts-command-as-new-fascom-autonomy-command/",
       "headline": "LaNeve ‘redesignates’ Army’s Futures and Concepts Command as new FASCOM autonomy command",
       "firstSeen": "2026-10-13",
@@ -1126,6 +1185,28 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/romanian-ground-drone-that-fights-fires-gets-military-role/",
+          "published": "2026-10-15"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/five-indian-combat-drone-projects-target-different-roles/",
+      "headline": "Five Indian Combat Drone Projects Target Different Roles",
+      "firstSeen": "2026-10-15",
+      "lastSeen": "2026-10-15",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/five-indian-combat-drone-projects-target-different-roles/",
           "published": "2026-10-15"
         }
       ]
