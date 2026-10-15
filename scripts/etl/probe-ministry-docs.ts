@@ -17,6 +17,15 @@ import { getText } from "./lib/http";
 const OUT = join(process.cwd(), "data", "ministry", "docs-probe.json");
 const C = "https://www.commerce.gov.in";
 
+/** Wayback listings kept whole (the commerce archive across its three sites). */
+const CDX: Array<{ id: string; url: string; keep: RegExp }> = [
+  { id: "nic-detail", url: "https://web.archive.org/cdx/search/cdx?url=commerce.nic.in/pressrelease/pressrelease_detail.asp*&output=json&fl=original,timestamp,mimetype&collapse=urlkey&limit=20000", keep: /id=\d+/i },
+  { id: "nic-detail2", url: "https://web.archive.org/cdx/search/cdx?url=commerce.nic.in/PressRelease/pressrelease_detail.asp*&output=json&fl=original,timestamp,mimetype&collapse=urlkey&limit=20000", keep: /id=\d+/i },
+  { id: "gov-writereaddata-pr", url: "https://web.archive.org/cdx/search/cdx?url=commerce.gov.in/writereaddata/*&output=json&fl=original,timestamp,mimetype&collapse=urlkey&limit=20000", keep: /press|trade|release|PR/i },
+  { id: "gov-wp-uploads", url: "https://web.archive.org/cdx/search/cdx?url=commerce.gov.in/wp-content/uploads/*&output=json&fl=original,timestamp,mimetype&collapse=urlkey&limit=20000", keep: /\.pdf/i },
+  { id: "gov-press-releases", url: "https://web.archive.org/cdx/search/cdx?url=commerce.gov.in/press-releases/*&output=json&fl=original,timestamp,mimetype&collapse=urlkey&limit=20000", keep: /trade/i },
+];
+
 const TARGETS: string[] = [
   `${C}/`,
   `${C}/wp-json/`,
@@ -61,17 +70,28 @@ async function main() {
     console.log(`  ${url}: ${body.length} bytes, ${docs.length} links, ${scripts.length} scripts`);
     // The commerce front end: read its bundles for the API it calls.
     if (url === `${C}/`) {
-      for (const s of scripts.filter((s): s is string => !!s && /main|app|chunk|runtime|polyfill|scripts/i.test(s)).slice(0, 6)) {
+      for (const s of scripts.filter((s): s is string => !!s && /main|app|chunk|runtime|index-|assets\//i.test(s)).slice(0, 6)) {
         const js = await getText(s, { timeoutMs: 45_000, retries: 1, cacheMs: 0 });
         if (!js.ok || !js.data) { results.push({ url: s, ok: false, status: js.error }); continue; }
         const apis = [...new Set([...js.data.matchAll(/["'`](https?:\/\/[^"'`\s]{6,200}|\/(?:api|wp-json|backend|webapi|admin)[^"'`\s]{0,160})["'`]/g)].map((m) => m[1]))].slice(0, 300);
-        const near = [...js.data.matchAll(/.{0,120}(?:press-releases|data-related|documents\/).{0,160}/g)].map((m) => m[0]).slice(0, 40);
+        const near = [...js.data.matchAll(/.{0,200}(?:press-releases|data-related|documents\/|baseURL|baseUrl|axios|fetch\().{0,240}/g)].map((m) => m[0]).slice(0, 80);
         results.push({ url: s, ok: true, bytes: js.data.length, apis, near });
         console.log(`  bundle ${s}: ${apis.length} api strings`);
       }
     }
   }
+  const cdx: Record<string, unknown> = {};
+  for (const c of CDX) {
+    await new Promise((r) => setTimeout(r, 4000));
+    const res = await getText(c.url, { timeoutMs: 90_000, retries: 2, cacheMs: 0 });
+    if (!res.ok || !res.data) { cdx[c.id] = { ok: false, status: res.error }; continue; }
+    try {
+      const rows = (JSON.parse(res.data) as string[][]).slice(1).filter((r) => c.keep.test(r[0] ?? ""));
+      cdx[c.id] = { ok: true, rows };
+      console.log(`  cdx ${c.id}: ${rows.length}`);
+    } catch (e) { cdx[c.id] = { ok: false, status: (e as Error).message }; }
+  }
   await mkdir(dirname(OUT), { recursive: true });
-  await writeFile(OUT, JSON.stringify({ probedAt: new Date().toISOString(), results }, null, 1));
+  await writeFile(OUT, JSON.stringify({ probedAt: new Date().toISOString(), results, cdx }, null, 1));
 }
 main().catch((e) => { console.error(e); });
