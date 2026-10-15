@@ -1,0 +1,35 @@
+name: Probe ministry document listings
+
+# Where commerce.gov.in and mha.gov.in keep their monthly releases, and in what
+# shape. Writes data/ministry/docs-probe.json. Downloads no PDF.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-ministry-docs.ts"
+      - ".github/workflows/probe-ministry-docs.yml"
+
+permissions:
+  contents: write
+concurrency:
+  group: probe-ministry-docs
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - run: npm ci
+      - run: npx tsx scripts/etl/probe-ministry-docs.ts
+        timeout-minutes: 15
+      - name: Commit
+        if: ${{ !cancelled() }}
+        run: >
+          .github/scripts/commit-generated.sh
+          data/ministry/docs-probe.json
+          "chore(probe): ministry document listings $(date -u +'%Y-%m-%d %H:%M')"
