@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-15T10:18:05.000Z",
+ "builtAt": "2026-10-15T20:32:41.430Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206519,7 +206519,7 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 3,
    "via": "direct"
   },
   {
@@ -206531,6 +206531,34 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-1ov4wm3",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Taiwan"
+   ],
+   "value": null,
+   "date": "2026-10-15",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/10/av-and-thunder-tiger-sign-mou-to-explore-uncrewed-systems-integration-and-co-production-in-taiwan/",
+   "headline": "AV and Thunder Tiger Sign MOU to Explore Uncrewed Systems Integration and Co-Production in Taiwan",
+   "primary": false
+  },
+  {
+   "id": "ev-16hxq3v",
+   "kind": "delivery",
+   "systems": [],
+   "countries": [
+    "Taiwan"
+   ],
+   "value": null,
+   "date": "2026-10-15",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/10/shield-ai-delivers-first-v-bat-to-taiwan-coast-guard/",
+   "headline": "Shield AI Delivers First V-BAT to Taiwan Coast Guard",
+   "primary": false
+  },
   {
    "id": "ev-13pp620",
    "kind": "delivery",
@@ -207675,6 +207703,64 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||taiwan",
+   "systems": [],
+   "countries": [
+    "Taiwan"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1ov4wm3",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Taiwan"
+     ],
+     "value": null,
+     "date": "2026-10-15",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/av-and-thunder-tiger-sign-mou-to-explore-uncrewed-systems-integration-and-co-production-in-taiwan/",
+     "headline": "AV and Thunder Tiger Sign MOU to Explore Uncrewed Systems Integration and Co-Production in Taiwan",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "delivery||taiwan",
+   "systems": [],
+   "countries": [
+    "Taiwan"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-16hxq3v",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "Taiwan"
+     ],
+     "value": null,
+     "date": "2026-10-15",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/shield-ai-delivers-first-v-bat-to-taiwan-coast-guard/",
+     "headline": "Shield AI Delivers First V-BAT to Taiwan Coast Guard",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "delivery||united kingdom",
    "systems": [],
