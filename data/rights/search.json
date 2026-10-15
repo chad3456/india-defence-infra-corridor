@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-15T13:44:34.713Z",
+  "builtAt": "2026-10-15T20:05:17.747Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1144,
-    "addedThisRun": 14,
-    "carriedFromEarlierRuns": 1130,
-    "withOutlet": 1069,
+    "items": 1152,
+    "addedThisRun": 8,
+    "carriedFromEarlierRuns": 1144,
+    "withOutlet": 1077,
     "bySubject": {
-      "scst": 775,
-      "pmshri": 369
+      "scst": 779,
+      "pmshri": 373
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 313
+    "offSubjectDropped": 309
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 558
+      "n": 563
     },
     {
       "key": "use",
-      "n": 402
+      "n": 404
     },
     {
       "key": "acquittal",
@@ -36,7 +36,7 @@
     },
     {
       "key": "dispute",
-      "n": 59
+      "n": 60
     },
     {
       "key": "allegation",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 99
+      "n": 100
     },
     {
       "key": "Lawtext",
@@ -86,7 +86,7 @@
     },
     {
       "key": "ThePrint",
-      "n": 19
+      "n": 20
     },
     {
       "key": "opindia.com",
@@ -157,16 +157,20 @@
       "n": 9
     },
     {
+      "key": "The Tribune",
+      "n": 9
+    },
+    {
       "key": "The Economic Times",
+      "n": 9
+    },
+    {
+      "key": "EdexLive",
       "n": 9
     },
     {
       "key": "Live Law",
       "n": 9
-    },
-    {
-      "key": "The Tribune",
-      "n": 8
     },
     {
       "key": "The Statesman",
@@ -181,7 +185,7 @@
       "n": 8
     },
     {
-      "key": "EdexLive",
+      "key": "Mathrubhumi English",
       "n": 8
     },
     {
@@ -206,10 +210,6 @@
     },
     {
       "key": "News18",
-      "n": 6
-    },
-    {
-      "key": "Mathrubhumi English",
       "n": 6
     },
     {
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
+      "kept": 2,
       "offSubject": 7
     },
     {
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 100,
       "bing": 5,
-      "kept": 7,
+      "kept": 1,
       "offSubject": 9
     },
     {
@@ -316,16 +316,16 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 34
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
+      "google": 53,
       "bing": 9,
       "kept": 0,
       "offSubject": 6
@@ -365,10 +365,10 @@
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 25,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 3
     },
     {
       "id": "act-misuse-claim",
@@ -385,9 +385,9 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 26,
+      "google": 27,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 3
     },
     {
@@ -408,7 +408,7 @@
       "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 20
     },
     {
       "id": "shri-general",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 6,
+      "kept": 4,
       "offSubject": 4
     },
     {
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 46,
+      "google": 47,
       "bing": 2,
       "kept": 0,
       "offSubject": 5
@@ -435,7 +435,7 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 71,
+      "google": 70,
       "bing": 1,
       "kept": 0,
       "offSubject": 27
@@ -478,7 +478,7 @@
       "google": 54,
       "bing": 3,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 11
     },
     {
       "id": "shri-criticism",
@@ -9298,7 +9298,8 @@
         "shri-general"
       ],
       "indexes": [
-        "bing"
+        "bing",
+        "google"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -9331,7 +9332,8 @@
         "shri-general"
       ],
       "indexes": [
-        "bing"
+        "bing",
+        "google"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -19144,6 +19146,136 @@
       ],
       "indexes": [
         "bing"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "anti cec protest sc grants interim protection to woman journalist in sc st act case filed ",
+      "headline": "Anti-CEC protest: SC grants interim protection to woman journalist in SC/ST Act case filed by Delhi Police ACP",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Tribune",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOa3I0UDZYcWhXX0otY0JIZEFOLWt1MzZGczhZa01TX3UzZjdlVWZ4VGl3bTFaZnkzdVJncUtKbllpRzRHWGxOcGRaMFdXbVVhckNTSWRVRC1BbENEb09IaWZsTDBxN1JncVFDZk13WHd3NHVqVU0tN1hscTIxVy1LdGhLSzJtaDZxbHVDei1XbDFlZnQ3aWlsVnYxaUZwZ1dXWmJTdW1iSmNyTVRRN1EwWURiTWxNLUtJNHdPdmJjWEROSjVMSVhKOU5yOTJXWUhDVFluV2M2ZHNuc0Y4SlZCVURhY3fSAegBQVVfeXFMTzFrOFRDc3M3VEozTDlKdnl2ZlZaakpKZWdIU1Jwc0hBTFdHRzBpRnNSXzNmVUFWVDhZSHJQc2F5dlY2aWM1SU5OY0FON19lZUVybjhLa21meS0yYUp4RlBMTkJZMmVJd0pSR1FFNnpud3ExSTRlWFVjRjFlcnlUTEJjblNHd2syYWlrcWZOSzR5LUxpNHNNNDNkVWJOcVV2R2xGYWpIN3FtdFdIRGg5VWtWWGpaX1o5d0tzTHZwbncwM09XbTJIY2NiY3BnSDJrYXNyUEFIOXJHaGdfOWtqdUw0U0JxUEZtUg?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "acp accused of molesting journalist accuses her of casteist slurs fir under sc st act",
+      "headline": "ACP accused of molesting journalist accuses her of ‘casteist slurs’, FIR under SC/ST Act",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "ThePrint",
+      "published": "2026-10-14",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQUlgyVjNLSkpYQmZlVFo0N05TTkxDTW5NRnNaS2pwSjBodlJXdFZlVlN2bUw1MUFUaGZleHBUeV9rS2JNZ19JaG53WFBZcEF4ZnU3WmxxNW9ndmpMdzU1V0t6QUdfcTBRd0dVSGg3aEtYRGo5WndNSkszMWN1YnN2MV9qTjVnOUFDM3VMYUFWOV9JV1l5RlQ5MVpzY0NPMjRoUVV5RFgxaWU1Wl95STRwV21SVE8zSm5tQndBc0ZUeWRYUUtoSXpvenZR0gHPAUFVX3lxTE5HLWwwVHFiT3hWUDE5THRKSW9ocWd3RGJERlRTY0FNcW5LSGxyeDVCUHVrUW5VcXczdHJLekM1aXljLU1KNzNGNVd6OFJ5TEQxQlNmU2ppMWMwWGUwSHdmQmhXTmdPT0VGM3FNdHplS2Ywb08yTlBybm9wRFhQQUpZTFlPdVNBbVR3MVlvZEtYaVZyRUxoMEtHeHVGLXhXTW1uOG5YTnFQODBGYlpsc3JwV1Q1Y3ZvZ1ZzT1l1Znl6RnVtdkNVdjUzOGE5clhLcw?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "how can delhi police stoop so low that they filed a sc st case on a female in revenge reta",
+      "headline": "How Can Delhi Police Stoop So Low That They Filed A SC/ST Case On A Female In Revenge & Retaliation",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Inventiva",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOdnMyQzh3QWpDSWJuWnNESnNWcUxjRERRaWZDZ0ZMcHpDOVlKS0lKX2YxWVJsd0QtekdPWmRrUmYwZmVES1BoNmIzcS0zdUprTlRSbHhIWGE2MUFxQVZBQ2lLeTFUenl4QnRhMjljZzFYZjlxUDM4SGVVXzZCZUFVZjUtM3lSLUNpRndGQVNDV2x4dXpWWUUxdmV2VjU0Nm81QUNraW9ON0tSVDdvLWlRRE5wZkp2d2VCdndBbkdzN2lURkdZdGFyU3pWcTYxZw?oc=5",
+      "queries": [
+        "act-registered",
+        "act-fabricated"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "mp polls how sc st amendment act reopened mp s caste divide",
+      "headline": "MP polls: How SC/ST Amendment Act reopened MP's caste divide",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2018-11-24",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQQnJrTzNmS1JnN0VwYUlsZkN5Q0taWTBuSzlBeU9PTG8zdzFVYllYQTJpS29leFpHRXAwMlo5Wnl1VUZyTXpOa1FxcXlXeUVhVzFyM0F5TmxnTVJCSERMUi1hcHg2VzhPcDVCWkN3RkVmZXJOazN6MDBTd25yVU1Pa1lZOTF1eVdBUXFwMjgzMHdnOFZ0b0dHMzctZ2lWTUc3eC1KWlRodjNuRzUwcTRnRVRtVUpuSC1JVDZaUnRydHpCV28?oc=5",
+      "queries": [
+        "act-dilution"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "keralam to decide on pm shri scheme after sub committee report minister",
+      "headline": "Keralam to decide on PM SHRI scheme after sub-committee report: Minister",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "EdexLive",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxONGRiV3NOY0c2STdSd2R3THdoRnlzVDFrMFBPLXk4UklSQkhuNVdHM2lkS0lEY1BMeFFja1Fqdng0Y1RfaXZBbFNYdEoxN1U1M0FwX1JYVHJUUDAyTG1uTVBDSGVDYUFleFZiVF9DVHZyd0Jya3IxSU5BbGhPekhGSWUxUzFXSlVMX3A5b2FlbFNPWC1raExuc05admZwYjNIOGVEekNxZ3ZHYU9KRWI4bmJn0gG_AUFVX3lxTE9DaG9KQW1jV0stcnBuSUxnYlo3cFFtOUhIX3EtTnl2YWdRQUFHRXNoNE83amZodGZhZ2pMMHNPUjZjOVpUNHF2S2JoOER2U25sZG9CMUdoaXB5cF9ROU9DZHBNdzV0TXFXWFp3Skx1MDREU2NIbzlrVVNYQ2lxQlpvRmVGQ2xvR1VyNDl1bnFpSzh3MWZpRGdjVHJZYzI0ampVSndnQ004VWg4X0cwYzlGWTUybzd2YlRSazZjTnpv?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google",
+        "bing"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "what prompted this u turn vijayan questions udf on pm shri",
+      "headline": "'What prompted this U-turn?' Vijayan questions UDF on PM SHRI",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Mathrubhumi English",
+      "published": "2026-08-01",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQb2hpbDZVWHlpem05aHZqYzNMUFdvN2lXUlFvem5KWlRvSlJlRlhvdl9GamNkV1ZMYjBTUWttNkdVaDRiVnRaSlh2ZERNTUd5TXFhOV9KSndBNUdQbVhuSzJWVEpJeHRNbVV6X2JScnVnNllUaWQxb0ozbjQ3QWNnbk01ZVNaQ2lnVG85b2FPcXhCbGZHMzdjTTR4cGtaamJwaFktWkx1T0MxR1VWZ2UwbNIBtgFBVV95cUxONTM4d0ZKU2FaYkIyYmt2NmJTSUZxa3pBR2NsTUwzQUszRUdkM2lFZnB0YnpYWDdiN1JlWEtITFBsS2FybFhHNm4xUmdnY245X2tweVd1dXpFbE9LeWt0Y1MyUE1GU3RTTTdyc3I3SzIzMWNTQzNjZDFBVG8tT25xLXVuYTV4X0xMb29wRmFpMzV3MERwOE5ac0xZQzBQckJoMDNSVkRxSnFaMzJqaUQ5a2Y2WHBxQQ?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "rs 2 000 crore at risk why is kerala rethinking pm shri scheme",
+      "headline": "Rs 2,000 crore at risk: Why is Kerala rethinking PM SHRI scheme?",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "The Financial Express",
+      "published": "2026-06-29",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNYkx6Nk81N3NNNXZXRjlNd2Nhb25OeDQxOThqZTFZWnNvS2NDVU56dE9XVmJ3RkwyY3REcFFvQjdCbmpONnRMOFJBRFNxaDNpU2tNMEs1UmVBSXBPbFlPczFUb1JqcjBYWjZGYWRjeVVxOWdULVRieTFPQVBZNEFoX3c0MXFWM2paMlJJdmlSWURRdEJ1VUJGNTFnWXh4X2FLT2Y5RUR2V0pZSHg1SHN5alRaMzTSAbsBQVVfeXFMTVlRQjdUQzhJa1AwQTI3ZVhhbmkxODhqVTNTeU0zV0otSFc5anRUNU1GdVBUdUJHUmdOYVE0RlFmRVNhMUp6dHNsSEk3azN5SnNUWXpJV19aZk5xZUVSTE1LNW5CMVJ5eDl3V3J5YWxDYXBGU29HZVNqbzF2dFN2eGlHbFdtWW5CUWJGYm5wcUZ5RWFNVGF4d1Q0ODJIcVJCVEtSTFNkUjFPSVg2QlQydUJWVUx0eDhoaERPTQ?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "kerala pm shri row iuml raises concerns as state govt weighs scheme s future",
+      "headline": "Kerala PM SHRI row: IUML raises concerns as state govt weighs scheme's future",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": "Mathrubhumi English",
+      "published": "2026-07-06",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOU0hrdVBkaWQ4RUF6ak10N0VNcUNBTmJzdWV1MGgzc05INVdsbDVCMUVsWF90RzlId0V1TFJEaTAtRzlwU2g4eVNTakswbTNsNlVUc0cxZ2k1MFQ2Wm1pR0phREhqVHUzcTVrdUZrc29icUtvOGJQR1ZzdmZSS3NBblZIWndPVTVLWC1uNm5KdEdkX0xJT0Mta0hteFEydGROWGY0Qk00QnRGSnA4QXNMZGVWeFlqUUppV01zVFQ3Zy1GNk8yOWl30gHMAUFVX3lxTE9yQTVicEV5OWtKakRrZ3YyUjg2UFRKYlFsM2wyVmpaVHVpSFl2UnZTOG9mV3ZnWHlkSDZMdmpwMDc4VzU4QmdyUHhYQ1RLaDhuZXlQS25MV1lOaEhXa2N1YW5kV1k5OWVzZlRPRUhSNXNNUGhVMVRKYVk5VVMyN0R4eVBCZnc0cmhJLVMyQVFrQk9hdXM5MkhvNGN5dDVSVlVpRGkzNVBMdVpjRThrYVlxc0xEUEc2Xy1oWVRaWmhPbHdoZ1gtNFBYYnYxRQ?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
       ],
       "firstSeen": "2026-10-15"
     }
