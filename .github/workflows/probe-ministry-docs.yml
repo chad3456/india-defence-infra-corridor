@@ -8,6 +8,7 @@ on:
   push:
     paths:
       - "scripts/etl/probe-ministry-docs.ts"
+      - "scripts/etl/probe-commerce-api.ts"
       - ".github/workflows/probe-ministry-docs.yml"
 
 permissions:
@@ -25,6 +26,8 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: "22", cache: npm }
       - run: npm ci
+      - run: npx tsx scripts/etl/probe-commerce-api.ts
+        timeout-minutes: 10
       - run: npx tsx scripts/etl/probe-ministry-docs.ts
         timeout-minutes: 15
       - name: Commit
@@ -33,3 +36,9 @@ jobs:
           .github/scripts/commit-generated.sh
           data/ministry/docs-probe.json
           "chore(probe): ministry document listings $(date -u +'%Y-%m-%d %H:%M')"
+      - name: Commit the API probe
+        if: ${{ !cancelled() }}
+        run: >
+          .github/scripts/commit-generated.sh
+          data/ministry/commerce-api-probe.json
+          "chore(probe): commerce API $(date -u +'%Y-%m-%d %H:%M')"
