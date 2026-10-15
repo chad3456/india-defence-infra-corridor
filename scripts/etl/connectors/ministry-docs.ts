@@ -44,6 +44,8 @@ export interface MinistryDoc {
   pages: string[];
   ok: boolean;
   status?: string;
+  /** The PDF is a scan with no text layer; `pages` is tesseract's reading of it. */
+  ocr?: boolean;
 }
 export interface DocsFile { ministry: string; updatedAt: string; source: string; listed: number; docs: MinistryDoc[] }
 
@@ -151,8 +153,136 @@ async function pin(ministry: "commerce" | "mha", listed: Array<{ id: string; tit
   console.log(`${ministry}: ${listed.length} listed, ${docs.filter((d) => d.ok).length} pinned (${fetched} new), ${docs.filter((d) => !d.ok).length} failed`);
 }
 
+/* ── Commerce before the API: Wayback copies of the old sites ───────────── */
+
+interface ArchiveState { listings: Record<string, Array<{ id: string; title: string }>>; failed: Record<string, string> }
+
+const WB = (ts: string, url: string) => `https://web.archive.org/web/${ts}id_/${url}`;
+/** The monthly foreign-trade release, under the titles it has carried since 2004. */
+const TRADE_TITLE = /foreign trade|india.?s trade|exports? (?:and|&) imports?|trade (?:data|figures|performance)|merchandise trade/i;
+
+async function wbText(url: string): Promise<string | null> {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const res = await getText(url, { timeoutMs: 60_000, retries: 0, cacheMs: 0 });
+    if (res.ok && res.data) return res.data;
+    if (!/429|fetch failed/.test(String(res.error)) || attempt) return null;
+    await new Promise((r) => setTimeout(r, 90_000));
+  }
+  return null;
+}
+
+/**
+ * The pre-2017 commerce.nic.in site listed each month's releases on a page of
+ * its own; Wayback kept 183 of them. Read the listings, keep the trade
+ * releases, and fetch those release pages. Then the 2020-2024 PDFs Wayback
+ * kept from the WordPress site. One request every eight seconds, saving as it
+ * goes, stopping at a deadline; the next run carries on where this one ended.
+ */
+async function commerceArchive(deadline: number) {
+  const probe = JSON.parse(readFileSync(join(ROOT, "data", "ministry", "docs-probe.json"), "utf8")) as { cdx: Record<string, { rows?: string[][] }> };
+  const stateFile = join(ROOT, "data", "ministry", "commerce-archive-state.json");
+  const state: ArchiveState = existsSync(stateFile) ? JSON.parse(readFileSync(stateFile, "utf8")) : { listings: {}, failed: {} };
+  const save = () => writeFileSync(stateFile, JSON.stringify(state, null, 1));
+  const pace = () => new Promise((r) => setTimeout(r, 8000));
+
+  // 1. Monthly listing pages.
+  const listings = (probe.cdx["nic-all"]?.rows ?? []).filter((r) => /pressrelease_year\.asp\?year\d*=\d{4}&month=\d+/i.test(r[0]!));
+  const seenKey = new Set<string>();
+  for (const [orig, ts] of listings) {
+    const key = orig!.match(/year\d*=(\d{4})&month=(\d+)/i)!.slice(1).join("-");
+    if (seenKey.has(key) || state.listings[key]) { seenKey.add(key); continue; }
+    seenKey.add(key);
+    if (Date.now() > deadline) break;
+    await pace();
+    const html = await wbText(WB(ts!, orig!));
+    if (!html) { state.failed[`listing:${key}`] = "unreachable"; continue; }
+    const items = [...html.matchAll(/pressrelease_detail\.asp\?id=(\d+)[^>]*>([\s\S]*?)<\/a>/gi)].map((m) => ({ id: m[1]!, title: m[2]!.replace(/<[^>]+>/g, " ").replace(/&nbsp;|&amp;/g, " ").replace(/\s+/g, " ").trim() }));
+    state.listings[key] = items;
+    delete state.failed[`listing:${key}`];
+    console.log(`  listing ${key}: ${items.length} releases, ${items.filter((i) => TRADE_TITLE.test(i.title)).length} on trade`);
+    save();
+  }
+
+  // 2. The trade releases among them, as archived pages.
+  const detailTs = new Map((probe.cdx["nic-detail"]?.rows ?? []).map((r) => [r[0]!.match(/id=(\d+)/)?.[1] ?? "", r]));
+  const want = new Map<string, { title: string; month: string }>();
+  for (const [key, items] of Object.entries(state.listings)) for (const i of items) if (TRADE_TITLE.test(i.title)) want.set(i.id, { title: i.title, month: key });
+  const outJson = join(ROOT, "data", "ministry", "commerce-docs.json");
+  const file: DocsFile & { errors?: string[] } = JSON.parse(readFileSync(outJson, "utf8"));
+  const have = new Set(file.docs.filter((d) => d.ok).map((d) => d.id));
+  for (const [nid, meta] of want) {
+    const id = `nic-${nid}`;
+    if (have.has(id) || Date.now() > deadline) continue;
+    const row = detailTs.get(nid);
+    if (!row) { state.failed[id] = "not archived"; continue; }
+    await pace();
+    const html = await wbText(WB(row[1]!, row[0]!));
+    if (!html) { state.failed[id] = "unreachable"; save(); continue; }
+    const text = html.replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ").replace(/<br\s*\/?>|<\/p>|<\/tr>/gi, "\n").replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/[ \t]+/g, " ").replace(/\n\s*\n+/g, "\n");
+    const rel = join("data", "pdf", "commerce", `${id}.html`);
+    mkdirSync(dirname(join(ROOT, rel)), { recursive: true });
+    writeFileSync(join(ROOT, rel), html);
+    const published = (() => { const m = text.match(/(\d{1,2})(?:st|nd|rd|th)?[ .,-]+(January|February|March|April|May|June|July|August|September|October|November|December)[ .,-]+(\d{4})/i); if (!m) return null; const mo = ["january","february","march","april","may","june","july","august","september","october","november","december"].indexOf(m[2]!.toLowerCase()) + 1; return `${m[3]}-${String(mo).padStart(2, "0")}-${m[1]!.padStart(2, "0")}`; })();
+    file.docs.push({ id, ministry: "commerce", title: meta.title, published: published ?? `${meta.month.split("-")[0]}-${meta.month.split("-")[1]!.padStart(2, "0")}-15`, url: row[0]!, file: rel, sha256: createHash("sha256").update(html).digest("hex"), bytes: html.length, pages: [text], ok: true, status: `Wayback snapshot ${row[1]}` });
+    delete state.failed[id];
+    console.log(`  ${id}: ${meta.title.slice(0, 70)}`);
+    writeFileSync(outJson, JSON.stringify(file, null, 1)); save();
+  }
+
+  // 3. The 2020-2024 monthly PDFs Wayback kept from the WordPress uploads.
+  const pdfRows = (probe.cdx["gov-wp-uploads"]?.rows ?? []).filter((r) => r[2] === "application/pdf" && /(Press[-_]Release[-_](January|February|March|April|May|June|July|August|September|October|November|December)[-_]\d{4}|PIB[-_]?(Press[-_])?Release)/i.test(r[0]!.split("/").pop()!));
+  for (const [orig, ts] of pdfRows) {
+    const base = orig!.split("/").pop()!.replace(/\.pdf$/i, "");
+    const ym = orig!.match(/uploads\/(\d{4})\/(\d{2})\//);
+    const id = `wp-${ym ? `${ym[1]}${ym[2]}-` : ""}${slug(base)}`;
+    if (have.has(id) || file.docs.some((d) => d.id === id && d.ok) || Date.now() > deadline) continue;
+    await pace();
+    const got = await download(WB(ts!, orig!));
+    if (typeof got === "string") { state.failed[id] = got; save(); if (/429/.test(got)) await new Promise((r) => setTimeout(r, 90_000)); continue; }
+    const rel = join("data", "pdf", "commerce", `${id}.pdf`);
+    writeFileSync(join(ROOT, rel), got);
+    let pages: string[] = [];
+    try { pages = pdfPages(got); } catch { /* recorded as empty */ }
+    file.docs.push({ id, ministry: "commerce", title: base.replace(/[-_]+/g, " "), published: ym ? `${ym[1]}-${ym[2]}-15` : null, url: orig!, file: rel, sha256: createHash("sha256").update(got).digest("hex"), bytes: got.length, pages, ok: true, status: `Wayback snapshot ${ts}` });
+    delete state.failed[id];
+    console.log(`  ${id}: ${pages.length} pages`);
+    writeFileSync(outJson, JSON.stringify(file, null, 1)); save();
+  }
+  save();
+}
+
+/**
+ * Scanned PDFs: render each page at 300 dpi and read it with tesseract. The
+ * result is marked `ocr`, and figures read from it are labelled as OCR'd on
+ * the page — a scan read by a machine can misread a digit, and the check
+ * against the text only proves the quote matches the machine's reading.
+ */
+function ocrPdf(file: string): string[] {
+  const dir = mkdtempSync(join(tmpdir(), "ocr-"));
+  execFileSync("pdftoppm", ["-r", "300", "-gray", "-png", file, join(dir, "p")], { stdio: "ignore", timeout: 600_000 });
+  const pngs = execFileSync("ls", [dir]).toString().split("\n").filter((f) => f.endsWith(".png")).sort();
+  return pngs.map((png) => {
+    try { return execFileSync("tesseract", [join(dir, png), "-", "-l", "eng", "--psm", "4"], { timeout: 180_000, maxBuffer: 1 << 26 }).toString(); }
+    catch { return ""; }
+  });
+}
+
+function ocrStage(ministry: "mha" | "commerce", deadline: number) {
+  const outJson = join(ROOT, "data", "ministry", `${ministry}-docs.json`);
+  const file = JSON.parse(readFileSync(outJson, "utf8")) as DocsFile;
+  for (const d of file.docs) {
+    if (!d.ok || !d.file?.endsWith(".pdf") || d.ocr || Date.now() > deadline) continue;
+    if (d.pages.join("").replace(/\s/g, "").length >= 300) continue;
+    try { d.pages = ocrPdf(join(ROOT, d.file)); d.ocr = true; console.log(`  ocr ${d.id}: ${d.pages.join("").length} chars`); }
+    catch (e) { console.log(`  ocr ${d.id}: ${(e as Error).message}`); }
+    writeFileSync(outJson, JSON.stringify(file, null, 1));
+  }
+}
+
 async function main() {
   const which = process.argv[2] ?? "all";
+  if (which === "ocr") { ocrStage("mha", Date.now() + 40 * 60_000); ocrStage("commerce", Date.now() + 10 * 60_000); return; }
+  if (which === "archive") { await commerceArchive(Date.now() + Number(process.env.ARCHIVE_MINUTES ?? 40) * 60_000); return; }
   if (which === "all" || which === "commerce") {
     const { rows, errors } = await commerceIndex();
     writeFileSync(join(ROOT, "data", "ministry", "commerce-index.json"), JSON.stringify({ updatedAt: new Date().toISOString(), rows }, null, 1));

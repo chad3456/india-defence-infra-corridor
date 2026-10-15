@@ -12,6 +12,7 @@ on:
   push:
     paths:
       - "scripts/etl/connectors/ministry-docs.ts"
+      - "data/ministry/docs-probe.json"
       - ".github/workflows/ministry-docs.yml"
 
 permissions:
