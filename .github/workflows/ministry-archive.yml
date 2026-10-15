@@ -15,6 +15,7 @@ on:
   push:
     paths:
       - ".github/workflows/ministry-archive.yml"
+      - "scripts/etl/connectors/ministry-docs.ts"
 
 permissions:
   contents: write

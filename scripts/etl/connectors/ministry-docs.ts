@@ -186,6 +186,17 @@ async function commerceArchive(deadline: number) {
   const state: ArchiveState = existsSync(stateFile) ? JSON.parse(readFileSync(stateFile, "utf8")) : { listings: {}, failed: {} };
   const save = () => writeFileSync(stateFile, JSON.stringify(state, null, 1));
   const pace = () => new Promise((r) => setTimeout(r, 8000));
+  // Wayback throttles by address. Three refusals in a row: wait five minutes
+  // once; refused again, leave Wayback alone until the next run.
+  let refused = 0, rested = false;
+  const throttled = async (why: string | null): Promise<boolean> => {
+    if (!why || !/429|fetch failed|unreachable/.test(why)) { refused = 0; return false; }
+    if (++refused < 3) return false;
+    if (!rested) { rested = true; refused = 0; console.log("  Wayback refusing; resting five minutes"); await new Promise((r) => setTimeout(r, 300_000)); return false; }
+    console.log("  Wayback still refusing; stopping until the next run");
+    return true;
+  };
+  let stop = false;
 
   const outJson = join(ROOT, "data", "ministry", "commerce-docs.json");
   const file: DocsFile & { errors?: string[] } = JSON.parse(readFileSync(outJson, "utf8"));
@@ -199,10 +210,11 @@ async function commerceArchive(deadline: number) {
     const key = orig!.match(/year\d*=(\d{4})&month=(\d+)/i)!.slice(1).join("-");
     if (seenKey.has(key) || state.listings[key]) { seenKey.add(key); continue; }
     seenKey.add(key);
-    if (Date.now() > deadline) break;
+    if (Date.now() > deadline || stop) break;
     await pace();
     const html = await wbText(WB(ts!, orig!));
-    if (!html) { state.failed[`listing:${key}`] = "unreachable"; continue; }
+    if (!html) { state.failed[`listing:${key}`] = "unreachable"; stop = await throttled("unreachable"); continue; }
+    refused = 0;
     const items = [...html.matchAll(/pressrelease_detail\.asp\?id=(\d+)[^>]*>([\s\S]*?)<\/a>/gi)].map((m) => ({ id: m[1]!, title: m[2]!.replace(/<[^>]+>/g, " ").replace(/&nbsp;|&amp;/g, " ").replace(/\s+/g, " ").trim() }));
     state.listings[key] = items;
     delete state.failed[`listing:${key}`];
@@ -219,12 +231,13 @@ async function commerceArchive(deadline: number) {
   const got = have();
   for (const [nid, meta] of want) {
     const id = `nic-${nid}`;
-    if (got.has(id) || state.failed[id] === "not archived" || Date.now() > deadline) continue;
+    if (got.has(id) || state.failed[id] === "not archived" || Date.now() > deadline || stop) continue;
     const row = detailTs.get(nid);
     if (!row) { state.failed[id] = "not archived"; continue; }
     await pace();
     const html = await wbText(WB(row[1]!, row[0]!));
-    if (!html) { state.failed[id] = "unreachable"; save(); continue; }
+    if (!html) { state.failed[id] = "unreachable"; save(); stop = await throttled("unreachable"); continue; }
+    refused = 0;
     const text = html.replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ").replace(/<br\s*\/?>|<\/p>|<\/tr>/gi, "\n").replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/[ \t]+/g, " ").replace(/\n\s*\n+/g, "\n");
     const rel = join("data", "pdf", "commerce", `${id}.html`);
     mkdirSync(dirname(join(ROOT, rel)), { recursive: true });
@@ -244,15 +257,22 @@ async function commerceArchive(deadline: number) {
     const base = orig!.split("/").pop()!.replace(/\.pdf$/i, "");
     const ym = orig!.match(/uploads\/(\d{4})\/(\d{2})\//);
     const id = `wp-${ym ? `${ym[1]}${ym[2]}-` : ""}${slug(base)}`;
-    if (file.docs.some((d) => d.id === id && d.ok) || Date.now() > deadline) continue;
-    await pace();
-    const got = await download(WB(ts!, orig!));
-    if (typeof got === "string") { state.failed[id] = got; save(); if (/429/.test(got)) await new Promise((r) => setTimeout(r, 90_000)); continue; }
+    if (file.docs.some((d) => d.id === id && d.ok) || Date.now() > deadline || stop) continue;
+    // The ministry's own server first: the uploads may still be there.
+    let got = await download(orig!.replace(/^http:/, "https:"));
+    let via = "the ministry's server";
+    if (typeof got === "string") {
+      await pace();
+      got = await download(WB(ts!, orig!));
+      via = `Wayback snapshot ${ts}`;
+      if (typeof got === "string") { state.failed[id] = got; save(); stop = await throttled(got); continue; }
+    }
+    refused = 0;
     const rel = join("data", "pdf", "commerce", `${id}.pdf`);
     writeFileSync(join(ROOT, rel), got);
     let pages: string[] = [];
     try { pages = pdfPages(got); } catch { /* recorded as empty */ }
-    file.docs.push({ id, ministry: "commerce", title: base.replace(/[-_]+/g, " "), published: ym ? `${ym[1]}-${ym[2]}-15` : null, url: orig!, file: rel, sha256: createHash("sha256").update(got).digest("hex"), bytes: got.length, pages, ok: true, status: `Wayback snapshot ${ts}` });
+    file.docs.push({ id, ministry: "commerce", title: base.replace(/[-_]+/g, " "), published: ym ? `${ym[1]}-${ym[2]}-15` : null, url: orig!, file: rel, sha256: createHash("sha256").update(got).digest("hex"), bytes: got.length, pages, ok: true, status: via });
     delete state.failed[id];
     console.log(`  ${id}: ${pages.length} pages`);
     writeFileSync(outJson, JSON.stringify(file, null, 1)); save();
