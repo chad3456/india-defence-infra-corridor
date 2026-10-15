@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-15T05:17:45.431Z",
+  "builtAt": "2026-10-15T13:44:34.713Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1130,
-    "addedThisRun": 0,
+    "items": 1144,
+    "addedThisRun": 14,
     "carriedFromEarlierRuns": 1130,
-    "withOutlet": 1059,
+    "withOutlet": 1069,
     "bySubject": {
-      "scst": 767,
-      "pmshri": 363
+      "scst": 775,
+      "pmshri": 369
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 315
+    "offSubjectDropped": 313
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 548
+      "n": 558
     },
     {
       "key": "use",
-      "n": 398
+      "n": 402
     },
     {
       "key": "acquittal",
@@ -78,7 +78,7 @@
     },
     {
       "key": "LawBeat",
-      "n": 27
+      "n": 28
     },
     {
       "key": "Verdictum",
@@ -102,10 +102,18 @@
     },
     {
       "key": "Careers360",
-      "n": 14
+      "n": 15
+    },
+    {
+      "key": "LawChakra",
+      "n": 15
     },
     {
       "key": "ET Education",
+      "n": 13
+    },
+    {
+      "key": "ANI News",
       "n": 13
     },
     {
@@ -113,15 +121,7 @@
       "n": 13
     },
     {
-      "key": "LawChakra",
-      "n": 13
-    },
-    {
       "key": "Outlook India",
-      "n": 12
-    },
-    {
-      "key": "ANI News",
       "n": 12
     },
     {
@@ -141,11 +141,11 @@
       "n": 11
     },
     {
-      "key": "ndtv.com",
-      "n": 10
+      "key": "Telegraph India",
+      "n": 11
     },
     {
-      "key": "Telegraph India",
+      "key": "ndtv.com",
       "n": 10
     },
     {
@@ -161,11 +161,19 @@
       "n": 9
     },
     {
+      "key": "Live Law",
+      "n": 9
+    },
+    {
       "key": "The Tribune",
       "n": 8
     },
     {
       "key": "The Statesman",
+      "n": 8
+    },
+    {
+      "key": "The News Mill",
       "n": 8
     },
     {
@@ -175,14 +183,6 @@
     {
       "key": "EdexLive",
       "n": 8
-    },
-    {
-      "key": "Live Law",
-      "n": 8
-    },
-    {
-      "key": "The News Mill",
-      "n": 7
     },
     {
       "key": "Bhaskar English",
@@ -249,6 +249,10 @@
       "n": 5
     },
     {
+      "key": "Bar and Bench",
+      "n": 4
+    },
+    {
       "key": "Law Trend",
       "n": 4
     },
@@ -283,10 +287,6 @@
     {
       "key": "Kashmir Life",
       "n": 4
-    },
-    {
-      "key": "newsdrum.in",
-      "n": 4
     }
   ],
   "perQuery": [
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 7
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 4,
-      "kept": 0,
-      "offSubject": 10
+      "bing": 5,
+      "kept": 7,
+      "offSubject": 9
     },
     {
       "id": "act-convicted",
@@ -318,17 +318,17 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 33
+      "offSubject": 32
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 52,
+      "google": 51,
       "bing": 9,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "act-compensation",
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 66,
+      "google": 73,
       "bing": 0,
       "kept": 0,
-      "offSubject": 27
+      "offSubject": 28
     },
     {
       "id": "act-acquittal",
@@ -365,7 +365,7 @@
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 23,
+      "google": 25,
       "bing": 0,
       "kept": 0,
       "offSubject": 7
@@ -375,20 +375,20 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 46,
+      "google": 48,
       "bing": 2,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 9
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 25,
+      "google": 26,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "act-false",
@@ -408,7 +408,7 @@
       "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 21
     },
     {
       "id": "shri-general",
@@ -417,16 +417,16 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 0,
-      "offSubject": 6
+      "kept": 6,
+      "offSubject": 4
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 41,
-      "bing": 1,
+      "google": 46,
+      "bing": 2,
       "kept": 0,
       "offSubject": 5
     },
@@ -435,7 +435,7 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 70,
+      "google": 71,
       "bing": 1,
       "kept": 0,
       "offSubject": 27
@@ -468,7 +468,7 @@
       "google": 30,
       "bing": 2,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 17
     },
     {
       "id": "shri-nep",
@@ -9398,7 +9398,8 @@
         "shri-general"
       ],
       "indexes": [
-        "bing"
+        "bing",
+        "google"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -18696,7 +18697,8 @@
       "published": "2026-10-14",
       "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQSUo2SElacTZYZ2NxalZ4ZTRINlJJUzlOaFFZQXBaNDVic05CSUxLZG5ralNhcExyQkJTdGs5OGtERzNjUjhBR3pUbXhpR1pGV0ZMMjZSb2M5Nm5BcjR2NktwMnd3dUpGQmhoQ3VGeGE5V2diSlhsOGh0RTlYU1FOaHlTVkpzQTBHNjVHbkJSUU9IcHNzdVozRWF2bUJ3dEtNeERlQUd2MXg1M0xDM0p3NW1xWVdVWVFoS2o3YnVVRU0zYUxuUFZRQWEwb2ZYb1pNV0tMeTlOUDB5SG4tZDBEM05VTG15MmxZUjVaal9naFhud9IB-gFBVV95cUxQdU81RV9MOE91bWtaMTRVZFN3TXFGX01RaUNEYjlyU2lmdDltbmNTWGxFMVBEamU2R0xLTl9adEtoTVZhSEs3a3hOTmtNM2QtWDNSUUtOUUV4S19JZVlTaEV0cVhYdTlvdXVkTmNNTmphNmRMeFVPYWx3cE5hcl9UWVBoTmxkeUJZbEdNeklvNW5RZGU5TllRY3hnNWtlLTJCdkY3SG1DT193dk50ZHBwbE1iSkp5aTJKM1Z1d3BXcmRUUzAwRk80NEJJdEdISk1ZN0FUTE9Zc3AwcVctN0lPY3NpZGk0YlBoWG5wcWdiNlhNbmNrcFhpWFhB?oc=5",
       "queries": [
-        "act-general"
+        "act-general",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -18913,6 +18915,237 @@
         "bing"
       ],
       "firstSeen": "2026-10-14"
+    },
+    {
+      "id": "supreme court protects journalist booked under sc st act after sexual harassment complaint",
+      "headline": "Supreme Court protects journalist booked under SC/ST Act after sexual harassment complaint against cop",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Telegraph India",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOQU94RlNDTkZCLXNnVWhmUlk5V1p1X3FZVGVwcEVJcDhDVjRpeTFZaTRMOURTWUZfa3p4ajBDRFktWlRUYVNxZUxESE9fYW41MXl6UExpeUpvTlN0STloc2tIS3VGLTljVTdLQkR3QXpHc1dWdWVsMDFXVl9LYy12bmktT2pDUFBZZGlGWElqWmZ0RmpxWXFDYzJnNzVtVlV5TTd2dkFtR09JNmNQdEp3TENJZ1doNzBLNTlXaXE2cDViODFkcVJmRjJwalo3YU5UQ2p2blVTenZxLTVKV0ZIODNWOXh4QdIB6wFBVV95cUxQM05VaGNqT3ZCeWpWRkVITlpVNjVxNFpsMDNPdXhoWGpXOHFuZGNXNlpHWHJLcGlvZUxSSHlzQ0R1ZENFa2xhZUZwMmZ5NzhYQjc4OThxT0VTR2R4QXhLaW5kcGZsdWFFdTc4ckV4bzNtNkVCMjZDX19xZmhoRTlfQWd2OUIzTjh0SVBIRDRGU0N1ZnZTanYxN1VSR2FfN1NIQ3gwWnhVOGNhV3ZyR1NBQXpCV2tsR0kxeFNoRlJsR0o1dGF1VXNibkVOTm1wUHlhekt5ZFppdjE5ejdNeXppbmM2TnprdEh2TUtV?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "supreme court grants relief to journalist booked in sc st case after she accused cop of se",
+      "headline": "Supreme Court grants relief to journalist booked in SC/ST case after she accused cop of sexual harassment",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Bar and Bench",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNZDFjRDRMNWRMVEMwZG5UYzhHNFVMcHVMRWhRRWJiNktuVDdUcGpVTU8wMTQ4X1VBYkFtRk1TQU5EZ2RYZDZET2RNLWJIb05TbU11d3dBV0Q2djFsdFI0WmtoQWI1aWdxUzRCSEliTDU2cUtYaWNNTzRQTWZWMUg0NFl0cHhHcGI4dEVlTmRhcTlyTEs1RzFNeC1xdmptbllKOTkycEVSTHMxekpTcU9LTWJ2YW4tS0Q0VWswR3pxWnVfZjN1enpwMWExQU1TTU9OSW5Z0gHgAUFVX3lxTFBDOENISjBFY3ZTN0daeGRhWVpKa0VyTlN0TzJOMFczeDFmTGxQM1NzMkMwZFJ4UXVwNXR1Ykg4dFFCNXlCOTFpVWpEQ3lzb21CbU1DcmVqbGJLV2dNTWc5VEZGR0Y1SE4wM0xHbTJDYWY4TUJFR1FHNDRSdDM3OTBEeG93S3RpWW0yVG9wMTUxYW1xU2l3aDBYbmdyUHdXLW9Ic0ZfU2MtdkxMVE1SWDlHV0tzTGdaMW56NG0xeGdtU1hkQ0xJS1VQbVpJRjF1NndaV3RTenRMTEFvWlZLcDZE?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "journalist facing sc st act fir after accusing delhi police acp of sexual harassment moves",
+      "headline": "Journalist Facing SC/ST Act FIR After Accusing Delhi Police ACP Of Sexual Harassment Moves Delhi HC...",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "LawBeat",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNTTBzeTljcjI0OUhnMkNFYXlhMXZQckZiWkt2andhVEdjM3dONE0tTTZ6c0p4aFRxM2xpSG1EbUpzYUZXamJoTEdKMExIV2J6T0pSNGhxWk1QbkpkRzg5U2pFZ21hSElFX0FGWGlWZTQ4eDZEdHVfVUR1WUE2aENWUzFCZmJta0NWcU1CRERQQTQwZG80WnRvOVRXNFlCZXh0SWNsc3AtbEdESTdqN3FtbmYyejhsU05qczZNUFlKNEIyZDJpTTlxYlJ1bVEwNTd2dXlVUk1Rbm5FeVdENlBiRTBreTdVMW81OWRCSVpYODFQajc4aXo2U3BjM2JuUdIBgwJBVV95cUxONEd4aWNBNWFFcEZDdy1OaWxUa0J5NS1FVS1HOXJDUGY4LVhlQU1HVkdmVENadFh4RHp6akhNZEI5akVkQVc2bGZUa2tTUlVpTmtTbDVPUndOVkUzWjNsNGEzQjl4eVBad256VlBacGdRcWFOeC1iRThTdE81SjF2R1lZaDdlRjhldVFENHE5Z0JRWUNhaFo2c2NzRTdsRkdYUUZ3aUhjMWRsRHVfeVlveEt5WnJoU0FJVlVrT2JPV2FfZ1NwRWIzSVRKeEFQVzVvbjVLX1ExUDctRkdEbG9aVGt0MWM0a1VURmpERms1bGhtcldQbUhoblBtcDBsbzlzQmxv?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "delhi protest supreme court orders no coercive action in sc st case against woman journali",
+      "headline": "Delhi Protest | Supreme Court Orders No Coercive Action In SC/ST Case Against Woman Journalist Who...",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Live Law",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOaTJSbTVYdzJuTGNLRU5lbTNETUZtb1VZVUQ4MWFlazQ0a2ZES1A3Q1pHbW5zekJFUHRWV2V6bFFiUmJFdWZNSG9sQXVqWi1PU2VmNGNIT2dST2ZhTVBhSVFVMXB3MDJHeHBZQ1pORnAyUkc5elRFNzA5TXd2cGYydWtmVnE2TE44R0Fqa0VxMlREaDhweWd5bnpnTDdDUXc1bzE3RDl0d3VDa1FMQWhqTHRJcE85TGd3dmUxelNfYVU1YlpkSXQzUVZ1UkxDellkTUphdlQtUlhLYjktaFlSbllmZU9jaDRITXFUWFNweHpfRGNyZ3Vwa0xHUldqR1o4UzBoQ1d4SGZwWU1w0gGMAkFVX3lxTE5pMlJtNVh3Mm5MY0tFTmVtM0RNRm1vVVlVRDgxYWVrNDRrZkRLUDdDWkdtbnN6QkVQdFZXZXpsUWJSYkV1Zk1Ib2xBdWpaLU9TZWY0Y0hPZ1JPZmFNUGFJUVUxcHcwMkd4cFlDWk5GcDJSRzl6VEU3MDlNd3ZwZjJ1a2ZWcTZMTjhHQWprRXEyVERoOHB5Z3luemdMN0NRdzVvMTdEOXR3dUNrUUxBaGpMdElwTzlMZ3d2ZTF6U19hVTViWmRJdDNRVnVSTEN6WWRNSmF2VC1SWEtiOS1oWVJuWWZlT2NoNEhNcVRYU3B4el9EY3JndXBrTEdSV2pHWjhTMGhDV3hIZnBZTXA?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "delhi high court declines urgent hearing of journalist s plea for protection in acp vivek ",
+      "headline": "Delhi High Court Declines Urgent Hearing Of Journalist’s Plea For Protection In ACP Vivek Bhagat’s SC/ST Act Case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawChakra",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9qWlh2Q3dqdllQY0pXMzRBUm5VSmNCNVROQjd2LWJaVERrRkFoRjluQk53bXJVOVRibTNIUmtzbDYyYkUxZGI5MGNwVk4zY3RyUWpDclMyLUlEZ2ZtUk44M2JlcklGQllHajBmZ3RFR0ZFSzBQVGRqM09n?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "delhi protest journalist moves delhi high court in sc st act case for comments on cop",
+      "headline": "Delhi Protest: Journalist moves Delhi High Court in SC/ST Act case for comments on cop",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Bar and Bench",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNNEVTZUx2OUNKN1BkYkdaUzZlQkMyMkdPVWVIS0tmQ3dSYVlUdS16ZlJVY2FoTk5JVG1EWnVrTWdRb3BqUl82NUs5UmV1Y01HbmxCdVQyc3drZFRDeFdkNElJdXB2d0hGT2tRdHRZbzBjclByV091RVJ3RVBfb2JTZTlseXhRWUZ2N2RwUUxBLUo0TEVESnFuaGlSMzdPNzBTbXB0VktObDFUWlF4OEJ4UDNVVFJUcTln0gHGAUFVX3lxTE96ZDBEZVVwUUltVUJaSkVJV2ZsR2lpYXRxRWRSSDJrMXBHSTNqM0N0N08zeTNwM2VjRlVJYVVDNXByT1hmMVVUQWFUWFM2MjAxeVBYaGFuTmNYZkc5V043T1VpQWNvc3VIeTFPWngzS1VpRHY2U0pzbFdFNHlaR2E1NzFta3JUVm5nZDZVdUE0M2JUcDlXb3VpSGZQa2xwU0c2dV9qRG5BbjU4ZDdoRTR1U3A1ZGQ5NGZLTmVlaEdKR092Y0wyZw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google",
+        "bing"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "delhi high court declines urgent hearing of journalist s plea for protection from arrest i",
+      "headline": "Delhi High Court Declines Urgent Hearing Of Journalist’s Plea For Protection From Arrest In SC/ST Case",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "LawChakra",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQeER3SGJEc0NDWFNzV281emtYbGd6Z0I3NXBhUUJMTWxvRzdGYkxtcGItcjNNY2xKbk1HdWk1aF9rNS1vQVphekdCeDh6aWFRNWo4aHlYa2xOcWdhWUZrNEpkSXZzTzlRcGhDSDI1OVhCclgxTXFsT1FrRU4xN1lKN0RFYjF5THZkbEpv?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "delhi hc declines urgent hearing for journalist in sc st act case",
+      "headline": "Delhi HC declines urgent hearing for journalist in SC/ST Act case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-10-15",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ad0d8562b3f4fce96549630ac600a3d&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fdelhi-hc-declines-urgent-hearing-for-journalist-in-sc-st-act-case%2far-AA2ehhQv&c=14579626328735130047&mkt=en-us",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "keralam to decide on pm shri scheme after sub committee report education minister samsudhe",
+      "headline": "Keralam to decide on PM SHRI scheme after sub-committee report: Education minister Samsudheen",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Careers360",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPRFdjSkdxcVFNaDN6X2dReTZ6dFFlM0hpVUtSZEJKM1AyYnBfaW52ZUVhbnhMR1BqdXQyczdRb2dSRnRRLUducDhHdlFScHJJU3NtNEJFWG9EelJaZDNTY0VOX0xkU0xkVXFCYnFnS0RFYThKa0M4ZkV4YkhBSzktRTB6Y1Fua3FtUFRPYVp0YnR0YVJXalA3UHFSYTdfcHhPUEZMRWNfamdabHNYMk5vemJQb2VhMnBW0gG-AUFVX3lxTE1oN1lWRldTcFhVRDEzc21GZnFvRC1peHZoRGhLdkRUS1dHMlZJUTlOS2FSajNIMXltQ1l6aVR1TV9BelhPZ3h0amFaUHllSm9VbDZnTDJvR2x1b01EV193QWk5TTI2d3lUb1NTd1ZMM1laNTVtZGQtVUNaNlB0WTVobndKclBIeFcyYkFVa1BDMXZoT3B6VGppRGMyQmdJc0U5SVQ4NWNsdmFPYWJXMlRKVmQxT0ZxdTJvTTBpRkE?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google",
+        "bing"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "kerala cannot exit pm shri scheme unilaterally education minister",
+      "headline": "Kerala cannot exit PM SHRI scheme unilaterally: Education Minister",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The News Mill",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQMkpTbVJScXl4Ulc3bW1CQU9mODVOMWF5ZExIOFBFVS1ycHE1VmpwTGk2Z0VvYnVRNm91LVN5VllSeE5TVnNCRXh1N25fZk1zb21ra3hiM3h0WWJIdmZTVU0wamU0RU16QkNwdDA4SFNfNUxtbS1MVGRZY3pHTDhGMGx5ZmZOWW4tZFpEMTBLWm9rWXpFY0t5NzRoVFNBems?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "keralam cannot unilaterally withdraw from pm shri scheme under mou state minister n samsud",
+      "headline": "Keralam cannot unilaterally withdraw from PM SHRI scheme under MoU: State Minister N Samsudheen",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "ANI News",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPV1drNVVSeVgzMGRxYkJrcm8yQ0VWckZTNVBTODVDMmp1bzRfMDF5cGNJXzFqZzBZbmlINkxIRm1Kb0lHOTJzSUlOT09TSkdweHVhZEtPZzc2SVlPbHJoYnczdHZjR2JwZ1hDQndzWXJGdDFjQWREdmozYWlkclhtbVBJYXZpVDlxb2Y3Z1FkOEVodmVCaG9PVjdlVU5lQW91bC14dnpnUFc5SzZqQ05lQWMxMV9OV2hVaGJoUHdnZXpiUF9Mam9lb1Z2RGtMWlVnMlB2UEc3cGN1MlNGTWNkaGhxUkVhR1BiaFpPbU1zNA?oc=5",
+      "queries": [
+        "shri-general",
+        "shri-sanctioned"
+      ],
+      "indexes": [
+        "google",
+        "bing"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "pm shri scheme a visionary initiative in the education sector",
+      "headline": "PM SHRI scheme : A visionary initiative in the education sector",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-10-15",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ad0d898f2054f788376d34940db16d0&url=https%3a%2f%2fnagalandpost.com%2fpm-shri-scheme-a-visionary-initiative-in-the-education-sector-2%2f&c=3670147728209661689&mkt=en-us",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "kerala can t unilaterally exit pm shri scheme says education minister",
+      "headline": "Kerala can't unilaterally exit PM SHRI scheme, says education minister",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-10-15",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ad0d898f2054f788376d34940db16d0&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fkerala-can-t-unilaterally-exit-pm-shri-scheme-says-education-minister%2far-AA2ehRGR&c=1089519277599349428&mkt=en-us",
+      "queries": [
+        "shri-general",
+        "shri-sanctioned",
+        "shri-mou",
+        "shri-withheld"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "keralam to decide on pm shri scheme after sub committee report minister samsudheen",
+      "headline": "Keralam to decide on PM SHRI scheme after sub-committee report: Minister Samsudheen",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-10-14",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ad0d898f2054f788376d34940db16d0&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fkeralam-to-decide-on-pm-shri-scheme-after-sub-committee-report-minister-samsudheen%2far-AA2ehUjT&c=8548325904320381337&mkt=en-us",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-10-15"
     }
   ]
 }
