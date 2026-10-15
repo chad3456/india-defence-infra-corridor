@@ -35,9 +35,14 @@ jobs:
         timeout-minutes: 25
       - run: ARCHIVE_MINUTES=35 npx tsx scripts/etl/connectors/ministry-docs.ts archive
         timeout-minutes: 40
+      # Re-read every pinned document into figures; the loader re-checks each
+      # quote, so a rule that misreads a new document draws nothing rather than a wrong number.
+      - name: Read the documents
+        if: ${{ !cancelled() }}
+        run: python3 scripts/etl/ministry/extract_trade.py && python3 scripts/etl/ministry/extract_mha.py
       - name: Commit
         if: ${{ !cancelled() }}
         run: >
           .github/scripts/commit-generated-paths.sh
           "data(ministry): archived and OCR'd documents $(date -u +'%Y-%m-%d %H:%M')"
-          data/pdf/commerce data/ministry/commerce-docs.json data/ministry/mha-docs.json data/ministry/commerce-archive-state.json
+          data/pdf/commerce data/ministry/commerce-docs.json data/ministry/mha-docs.json data/ministry/trade.json data/ministry/mha.json data/ministry/commerce-archive-state.json

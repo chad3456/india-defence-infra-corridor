@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "ministries-2026-10",
+    title: "Ministries' own records",
+    blurb:
+      "India's monthly trade read from the Commerce Ministry's releases, and ten years of the Home Ministry's " +
+      "monthly reports read item by item — each document pinned in the repository and every figure checked against its text.",
+    href: "/ministries",
+    since: "2026-10-15",
+  },
+  {
     id: "public-order-2026-10",
     title: "Protest and public order",
     blurb:

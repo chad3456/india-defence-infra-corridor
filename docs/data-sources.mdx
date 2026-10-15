@@ -198,6 +198,26 @@ communal-incident series stops at 2017, where its releases stop. No national bod
 rupee value of public property destroyed, so losses appear only where a government, court or
 commission stated one for a single episode.
 
+### Ministries' own records
+
+`/ministries` reads two ministries' recurring publications directly. A scheduled job
+(`npm run ministry:docs`, in Actions) downloads each document — the Department of Commerce's
+monthly press release on India's foreign trade, and the Home Ministry's *Monthly Major
+Achievements* — saves the file under `data/pdf/commerce/` or `data/pdf/mha/` with its SHA-256, and
+keeps its text in `data/ministry/commerce-docs.json` and `data/ministry/mha-docs.json`. Releases the
+Commerce Ministry's site no longer lists are taken from the Internet Archive's copies; scans with no
+text layer are read by OCR and marked as such.
+
+Trade figures (`data/ministry/trade.json`, written by `scripts/etl/ministry/extract_trade.py`) are
+read from each release's tables by explicit rules; a table is kept only if merchandise plus services
+equals the total and exports minus imports equals the balance, as printed. Each month appears twice —
+in its own release and a year later as the comparison column — and both are kept, so the first
+estimate and the revision can be told apart. The Home Ministry's reports are prose, so
+`scripts/etl/ministry/extract_mha.py` reads only what can be counted or quoted exactly: numbered items,
+subjects by printed keyword rules, Bills given assent, UAPA actions, figures stated in a repeated form,
+and rupee amounts, which are listed and never summed. `npm run test:ministry` fails the build unless
+every pinned file still has its checksum and every quote is found in its document and contains its figure.
+
 ### Election atlas
 
 `/elections/atlas` holds three layers with three different provenances, kept apart on the page.

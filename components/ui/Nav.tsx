@@ -57,6 +57,7 @@ const GROUPS: Group[] = [
       { href: "/sacred", label: "Sacred landscape", blurb: "Temples, deities, heritage and place-names" },
       { href: "/disputed", label: "A disputed list", blurb: "One contested 1990 catalogue, read as a claim" },
       { href: "/protests", label: "Protest and public order", blurb: "Riots, public property, police firing and casualties since 2004, every figure checked" },
+      { href: "/ministries", label: "Ministries' own records", blurb: "Commerce's monthly trade releases and the Home Ministry's monthly reports, pinned and read" },
       { href: "/protests/delhi-2026-10-10", label: "Delhi, 10 October", blurb: "The protest and the police operation: every side's account, sourced" },
       { href: "/map", label: "Map", blurb: "Corridors and the highway timelapse" },
     ],

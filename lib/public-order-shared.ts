@@ -113,9 +113,14 @@ export function spellings(v: number): string[] {
     out.add(v.toLocaleString("en-IN"));
   }
   // A rate printed to one decimal place: 3 is "3.0" in the table.
-  if (Number.isInteger(v) && Math.abs(v) < 1000) out.add(`${v}.0`);
+  if (Number.isInteger(v) && Math.abs(v) < 1000) { out.add(`${v}.0`); out.add(`${v}.00`); }
+  // "07 accused persons"; "Rs. 3338.00 crore".
+  if (Number.isInteger(v) && v >= 0 && v < 10) out.add(`0${v}`);
+  if (Number.isInteger(v) && Math.abs(v) >= 1000) { out.add(`${v}.00`); out.add(`${v.toLocaleString("en-US")}.00`); out.add(`${v.toLocaleString("en-IN")}.00`); }
   if (!Number.isInteger(v)) {
     for (const dp of [1, 2]) out.add(v.toFixed(dp));
+    // 1,912.99 and 11,718.24 as the ministries print rupee crore.
+    if (Math.abs(v) >= 1000) for (const dp of [1, 2, 3]) if (Number(v.toFixed(dp)) === v) { out.add(v.toLocaleString("en-US", { minimumFractionDigits: dp, maximumFractionDigits: dp })); out.add(v.toLocaleString("en-IN", { minimumFractionDigits: dp, maximumFractionDigits: dp })); }
   }
   return [...out];
 }
@@ -127,11 +132,11 @@ export function spellings(v: number): string[] {
  */
 const WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"];
 
-/** The quote contains the figure as a whole number, not as part of a longer one. */
+/** The quote contains the figure as a whole number, not as part of a longer one ("Rs.99.82" is 99.82; "0.5" is not 5). */
 export function quoteHasValue(quote: string, v: number): boolean {
   const q = normalise(quote);
   if (Number.isInteger(v) && v > 0 && v < WORDS.length && new RegExp(`\\b${WORDS[v]}\\b`, "i").test(q)) return true;
-  return spellings(v).some((s) => new RegExp(`(?<![\\d.,])${s.replace(/[.,]/g, (c) => `\\${c}`)}(?![\\d]|[.,]\\d)`).test(q));
+  return spellings(v).some((s) => new RegExp(`(?<![\\d,]|\\d\\.)${s.replace(/[.,]/g, (c) => `\\${c}`)}(?![\\d]|[.,]\\d)`).test(q));
 }
 
 export type Verdict = { ok: true } | { ok: false; why: string };
