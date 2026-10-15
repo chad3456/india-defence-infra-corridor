@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-15T20:05:17.747Z",
+  "builtAt": "2026-10-15T23:20:44.398Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1152,
-    "addedThisRun": 8,
-    "carriedFromEarlierRuns": 1144,
-    "withOutlet": 1077,
+    "items": 1153,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1152,
+    "withOutlet": 1078,
     "bySubject": {
-      "scst": 779,
+      "scst": 780,
       "pmshri": 373
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 309
+    "offSubjectDropped": 311
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 563
+      "n": 564
     },
     {
       "key": "use",
@@ -165,6 +165,10 @@
       "n": 9
     },
     {
+      "key": "The News Mill",
+      "n": 9
+    },
+    {
       "key": "EdexLive",
       "n": 9
     },
@@ -174,10 +178,6 @@
     },
     {
       "key": "The Statesman",
-      "n": 8
-    },
-    {
-      "key": "The News Mill",
       "n": 8
     },
     {
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 7
     },
     {
@@ -316,7 +316,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 34
     },
@@ -325,7 +325,7 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 53,
+      "google": 52,
       "bing": 9,
       "kept": 0,
       "offSubject": 6
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 73,
+      "google": 71,
       "bing": 0,
       "kept": 0,
       "offSubject": 28
@@ -356,19 +356,19 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 100,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 43
+      "offSubject": 42
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 10,
+      "google": 25,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 7
     },
     {
       "id": "act-misuse-claim",
@@ -376,7 +376,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 48,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
       "offSubject": 9
     },
@@ -387,7 +387,7 @@
       "expect": "allegation",
       "google": 27,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 3
     },
     {
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 4,
+      "kept": 0,
       "offSubject": 4
     },
     {
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 47,
+      "google": 46,
       "bing": 2,
       "kept": 0,
       "offSubject": 5
@@ -445,17 +445,17 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 51,
-      "bing": 4,
+      "google": 49,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 44,
+      "google": 43,
       "bing": 2,
       "kept": 0,
       "offSubject": 4
@@ -476,7 +476,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 54,
-      "bing": 3,
+      "bing": 0,
       "kept": 0,
       "offSubject": 11
     },
@@ -19273,6 +19273,22 @@
       "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOU0hrdVBkaWQ4RUF6ak10N0VNcUNBTmJzdWV1MGgzc05INVdsbDVCMUVsWF90RzlId0V1TFJEaTAtRzlwU2g4eVNTakswbTNsNlVUc0cxZ2k1MFQ2Wm1pR0phREhqVHUzcTVrdUZrc29icUtvOGJQR1ZzdmZSS3NBblZIWndPVTVLWC1uNm5KdEdkX0xJT0Mta0hteFEydGROWGY0Qk00QnRGSnA4QXNMZGVWeFlqUUppV01zVFQ3Zy1GNk8yOWl30gHMAUFVX3lxTE9yQTVicEV5OWtKakRrZ3YyUjg2UFRKYlFsM2wyVmpaVHVpSFl2UnZTOG9mV3ZnWHlkSDZMdmpwMDc4VzU4QmdyUHhYQ1RLaDhuZXlQS25MV1lOaEhXa2N1YW5kV1k5OWVzZlRPRUhSNXNNUGhVMVRKYVk5VVMyN0R4eVBCZnc0cmhJLVMyQVFrQk9hdXM5MkhvNGN5dDVSVlVpRGkzNVBMdVpjRThrYVlxc0xEUEc2Xy1oWVRaWmhPbHdoZ1gtNFBYYnYxRQ?oc=5",
       "queries": [
         "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "supreme court prevents coercive action against journalist accused under sc st act in sexua",
+      "headline": "Supreme Court prevents coercive action against journalist accused under SC/ST Act in sexual harassment case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The News Mill",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPVEpsN2NsUGs5ek91Qy1YMzJKVG1tdngxZ24yN0UtLURHcElYY2FUUmdDTHBBWEs5cDVUeC02V08yRWt6QkxmUUdVUHpRNUNobnU4dlhfMmxWbGdxV09YQWt2dWRDcUpEQWNTOWlTVE5YYkhVcktreF9KNURUYW1LbVRsTWNLV09POV9ZbHFVTHlKOGpJeXlXVUluNEh4MGlvTHpBZUQ2NjBHOHY5bG5vOHFUZGNEWFd1Ymh1R3AwaXg1bkljcTVNeTBmZF9SdWllUl8yNTAzcw?oc=5",
+      "queries": [
+        "act-registered"
       ],
       "indexes": [
         "google"
