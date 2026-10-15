@@ -28,17 +28,15 @@ jobs:
       - run: npm ci
       - run: npx tsx scripts/etl/probe-commerce-api.ts
         timeout-minutes: 10
-      - run: npx tsx scripts/etl/probe-ministry-docs.ts
-        timeout-minutes: 15
-      - name: Commit
-        if: ${{ !cancelled() }}
-        run: >
-          .github/scripts/commit-generated.sh
-          data/ministry/docs-probe.json
-          "chore(probe): ministry document listings $(date -u +'%Y-%m-%d %H:%M')"
       - name: Commit the API probe
         if: ${{ !cancelled() }}
         run: >
           .github/scripts/commit-generated.sh
           data/ministry/commerce-api-probe.json
           "chore(probe): commerce API $(date -u +'%Y-%m-%d %H:%M')"
+      - name: Commit the PIB probe
+        if: ${{ !cancelled() }}
+        run: >
+          .github/scripts/commit-generated.sh
+          data/ministry/pib-api-probe.json
+          "chore(probe): PIB API $(date -u +'%Y-%m-%d %H:%M')"

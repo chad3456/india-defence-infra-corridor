@@ -38,3 +38,28 @@ async function main() {
   await writeFile(OUT, JSON.stringify({ probedAt: new Date().toISOString(), bundle: src, queries, keyCount: keys.length, drr, calls }, null, 1));
 }
 main().catch((e) => { console.error(e); });
+
+/* ── The PIB API the commerce site uses for its general releases ───────── */
+async function pib() {
+  const home = await getText("https://www.commerce.gov.in/", { timeoutMs: 45_000, retries: 1, cacheMs: 0 });
+  const src = home.data?.match(/src="(\/assets\/index-[^"]+\.js)"/)?.[1];
+  const js = src ? (await getText(`https://www.commerce.gov.in${src}`, { timeoutMs: 60_000, retries: 1, cacheMs: 0 })).data ?? "" : "";
+  const around = [...js.matchAll(/.{0,600}(?:apipibcommerce|Getsearch|getreldescription|Gettop15daysrel).{0,600}/g)].map((m) => m[0]).slice(0, 12);
+  const base = "https://archive.pib.gov.in/apipibcommerce/api/";
+  const tries = [
+    `${base}Gettop15daysrel`,
+    `${base}Getsearch?searchtext=foreign%20trade`,
+    `${base}Getsearch?search=India%27s%20Foreign%20Trade`,
+    `${base}Getsearch?keyword=foreign%20trade&fromdate=01/01/2005&todate=31/12/2005`,
+  ];
+  const calls: unknown[] = [];
+  for (const u of tries) {
+    await new Promise((r) => setTimeout(r, 1500));
+    const res = await getText(u, { timeoutMs: 45_000, retries: 0, cacheMs: 0 });
+    calls.push({ url: u, ok: res.ok, status: res.error, bytes: res.data?.length, head: res.data?.slice(0, 2500) });
+    console.log(`  ${u}: ${res.ok ? res.data?.length : res.error}`);
+  }
+  const out = join(process.cwd(), "data", "ministry", "pib-api-probe.json");
+  await writeFile(out, JSON.stringify({ probedAt: new Date().toISOString(), around, calls }, null, 1));
+}
+pib().catch((e) => console.error(e));
