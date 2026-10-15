@@ -1,7 +1,8 @@
 name: Ministry documents from the archive
 
 # Two slow stages that each pick up where the last run stopped:
-#   archive  the Commerce Ministry's pre-2024 trade releases from Wayback
+#   archive  the Commerce Ministry's pre-2024 trade releases from Wayback:
+#            the 2020-2024 PDFs first, then the 2000-2016 release pages
 #            (one request every eight seconds; Wayback refuses faster)
 #   ocr      the scanned MHA monthly reports, read with tesseract
 # Every three hours until there is nothing left to do, when a run takes a
