@@ -99,7 +99,7 @@ THEMES = [
 THEME_RX = [(k, re.compile(r'\b(?:' + rx + r')\b', re.I)) for k, _, rx in THEMES]
 
 AMOUNT = re.compile(r'(?:Rs\.?|₹|INR)\s*([\d,]+(?:\.\d+)?)\s*(lakh crores?|lakh|crores?|Cr\b\.?)', re.I)
-BILL = re.compile(r"((?:The |the )?[A-Z][A-Za-z&'(),. -]{4,160}?\bBill,?\s*(?:No\.?\s*\d+\s*of\s*)?\d{4})")
+BILL = re.compile(r"((?:The |the )?[A-Z][A-Za-z&'(),. -]{4,280}?\bBill,?\s*(?:No\.?\s*\d+\s*of\s*)?\d{4})")
 COUNTS = [
     ('pap', 'Protected Area Permit applications granted', re.compile(r'([\d,]+)\s+Protected Area Permit \(PAP\) applications were granted', re.I)),
     ('uapa-sanction', 'Accused persons for whom prosecution sanction was accorded under UAPA', re.compile(r'sanction for prosecution[^.]{0,80}?against\s+([\d,]+)\s+accused[^.]{0,120}?(?:Unlawful Activities|UAPA)', re.I)),
@@ -134,8 +134,12 @@ def main():
                 for m in BILL.finditer(body):
                     name = re.sub(r'^(?:[ivx]+[.)]|\(?[ivx]+\)|\d+[.)])\s*', '', m.group(1).strip(' ,-')).strip()
                     name = re.sub(r'^.*?\b(?:On \d{1,2}\.\d{1,2}\.\d{2,4}\s*-\s*|assented to (?:the )?(?:following bills?[^-:]*[-:]\s*)?)', '', name, flags=re.I).strip()
+                    name = re.sub(r'^.*\((?:[ivx]+|\d+)\)\s*', '', name).strip()   # the last list marker, "(ii) "
+                    name = re.sub(r"^.*\b(?:assent(?:ed)?(?: to)?|namely,?|viz\.?)\s+", '', name, flags=re.I).strip()   # "...has given his assent to The ..."
+                    name = re.sub(r'^T h e ', '', name)                        # a scan's letter-spaced "The"
                     key = name.lower()
-                    if len(name) < 12 or key in seen or not re.search(r'Bill', name): continue
+                    # A name starts as a title does; "Amendment) Bill, 2022" is a fragment of one.
+                    if len(name) < 12 or key in seen or not re.match(r'(?:The |the )?[A-Z]', name) or re.match(r"(?:the )?Hon'?ble|President", name) or not re.search(r'Bill', name): continue
                     seen.add(key)
                     bills.append({'src': d['id'], 'month': month, 'name': name, 'quote': name})
             if re.search(r'Unlawful Activities \(Prevention\)|\bUAPA\b', body):

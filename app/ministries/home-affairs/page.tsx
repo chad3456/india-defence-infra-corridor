@@ -93,6 +93,9 @@ export default function HomeAffairsPage() {
   const bigAmounts = [...r.amounts].sort((a, b) => crore(b) - crore(a)).slice(0, 30);
   const ocr = all.docs.filter((d) => d.ocr).length;
   const docOf = (src: string) => r.docs.get(src);
+  const isOcr = (src: string) => !!r.docs.get(src)?.ocr;
+  const ocrN = (rows: Array<{ src: string }>) => rows.filter((x) => isOcr(x.src)).length;
+  const Tag = ({ src }: { src: string }) => (isOcr(src) ? <span className="mono ml-1 text-[9.5px]" style={{ color: "var(--s-hot)" }} title="Read from a scan by OCR: the quote matches the machine's reading of the page.">OCR</span> : null);
 
   let n = 0;
   return (
@@ -116,7 +119,7 @@ export default function HomeAffairsPage() {
         <Card n={++n} title="Reports pinned, by year" what="Monthly reports the ministry has published and this repository holds. Twelve is a complete year." foot={`${all.docs.length} PDFs · mha.gov.in`}>
           <LabelBars bars={pinnedByYear} colour={C1} format={int} />
         </Card>
-        <Card n={++n} title="Reports whose items could be read" what="Reports with an English text layer (or a legible scan) whose numbered paragraphs could be followed in order." read="Many reports from 2016–2019 are image-only scans with no text; the OCR stage reads those it can, and the rest are counted here as unread rather than guessed." foot={`${read.length} of ${all.docs.length} reports`}>
+        <Card n={++n} title="Reports whose items could be read" what="Reports with an English text layer (or a legible scan) whose numbered paragraphs could be followed in order." read={`${ocr} reports are image-only scans with no text layer. They were read by OCR, and every figure taken from one is marked OCR: a machine can misread a digit, and the check only proves the quote matches its reading. Reports that still could not be followed are counted as unread rather than guessed.`} foot={`${read.length} of ${all.docs.length} reports`}>
           <LabelBars bars={readByYear} colour={C3} format={int} />
         </Card>
         <Card n={++n} wide title="Items reported, each month" what="The number of the last numbered paragraph in each report — a count anyone can redo by opening the PDF. Derived here." read="A count of entries, not a measure of work: one item can be a single meeting or a cabinet decision covering every state. Where a scan's text layer misreads a paragraph number, that paragraph is read with the one before it; the count is still the report's own last number. Gaps are months with no readable report." foot={`${read.length} reports · derived count`}>
@@ -125,13 +128,13 @@ export default function HomeAffairsPage() {
         <Card n={++n} title="What the items are about" what="Items mentioning each subject, all years. An item can mention several subjects, or none. Hover a label for the keyword rule." read={`${quoted.filter((i) => !i.themes.length).length} items match no rule. The rules are keyword lists, printed in the table below; they classify what an item mentions, not what it achieved.`} foot={`${quoted.length} items · keyword rules, derived`}>
           <HBars rows={themeTotals} colour={C1} />
         </Card>
-        <Card n={++n} title="Bills given the President's assent, as the reports list them" what="Bills named in items about Presidential assent — mostly State Bills reserved for the President's consideration under Article 201, many on concurrent-list subjects." read="Counted only in reports that could be read; a year with few readable reports undercounts." foot={`${r.bills.length} Bills, each quoted · derived count`}>
+        <Card n={++n} title="Bills given the President's assent, as the reports list them" what="Bills named in items about Presidential assent — mostly State Bills reserved for the President's consideration under Article 201, many on concurrent-list subjects." read="Counted only in reports that could be read; a year with few readable reports undercounts." foot={`${r.bills.length} Bills, each quoted · ${ocrN(r.bills)} by OCR · derived count`}>
           <LabelBars bars={billsByYear} colour={C2} format={int} />
         </Card>
         <Card n={++n} title="Whose Bills they were" what="The State named in each Bill's title. Top 14." foot={`${r.bills.length} Bills · derived`}>
           <HBars rows={stateRows} colour={C2} />
         </Card>
-        <Card n={++n} wide title="Accused persons against whom prosecution was sanctioned under UAPA" what="The figure each report states for the month: “sanction for prosecution … against N accused persons … under the Unlawful Activities (Prevention) Act”." read={`Only months whose report states the figure. No report read after ${sanction.at(-1)?.month ?? "—"} states it; that is a change in what is reported, not evidence that sanctions stopped.`} foot={`${sanction.length} monthly figures, each quoted`}>
+        <Card n={++n} wide title="Accused persons against whom prosecution was sanctioned under UAPA" what="The figure each report states for the month: “sanction for prosecution … against N accused persons … under the Unlawful Activities (Prevention) Act”." read={`Only months whose report states the figure. No report read after ${sanction.at(-1)?.month ?? "—"} states it; that is a change in what is reported, not evidence that sanctions stopped.`} foot={`${sanction.length} monthly figures, each quoted · ${ocrN(sanction)} read from scans by OCR`}>
           <MonthLines wide unit="persons" format={int} lines={[{ label: "Accused", colour: C4, points: sanction.map((s) => ({ m: s.month, v: s.v })) }]} />
         </Card>
         <Card n={++n} title="The same, totalled by year" what="Sum of the monthly figures the reports state, derived here. The bracket gives the number of months with a figure." read="A total over the months reported, not a year's total: a year with five reported months is five months' worth." foot="derived sum">
@@ -140,13 +143,13 @@ export default function HomeAffairsPage() {
         <Card n={++n} title="Items invoking the UAPA, by what they record" what="Items naming the Unlawful Activities (Prevention) Act, sorted by printed rules: prosecution sanctioned; individuals designated terrorists; ban extended; declared unlawful." foot={`${r.uapa.length} items · keyword rules`}>
           <HBars rows={uapaKinds} colour={C4} />
         </Card>
-        <Card n={++n} title="Rupee figures stated, by subject" what="How many crore or lakh amounts the items state, by the subject of the item. Counted, not summed: the amounts are sanctioned, released, recommended or project costs, and adding them would mix kinds." foot={`${r.amounts.length} amounts, each quoted`}>
+        <Card n={++n} title="Rupee figures stated, by subject" what="How many crore or lakh amounts the items state, by the subject of the item. Counted, not summed: the amounts are sanctioned, released, recommended or project costs, and adding them would mix kinds." foot={`${r.amounts.length} amounts, each quoted · ${ocrN(r.amounts)} by OCR`}>
           <HBars rows={amountsByTheme} colour={C3} />
         </Card>
-        <Card n={++n} title="Protected Area Permit applications granted" what="Permits for foreigners to visit protected areas, as the report states for its month." foot={`${stated("pap").length} monthly figures, each quoted`}>
+        <Card n={++n} title="Protected Area Permit applications granted" what="Permits for foreigners to visit protected areas, as the report states for its month." foot={`${stated("pap").length} monthly figures, each quoted · ${ocrN(stated("pap"))} by OCR`}>
           <LabelBars bars={stated("pap").map((s) => ({ label: s.month, v: s.v }))} colour={C1} format={int} />
         </Card>
-        <Card n={++n} title="OCI cards issued in the month" what="Overseas Citizen of India cards, where a report states the month's total (cards issued in lieu of PIO cards excluded)." foot={`${stated("oci").length} monthly figures, each quoted`}>
+        <Card n={++n} title="OCI cards issued in the month" what="Overseas Citizen of India cards, where a report states the month's total (cards issued in lieu of PIO cards excluded)." foot={`${stated("oci").length} monthly figures, each quoted · ${ocrN(stated("oci"))} by OCR`}>
           <LabelBars bars={stated("oci").map((s) => ({ label: s.month, v: s.v }))} colour={C3} format={int} />
         </Card>
       </div>
@@ -191,7 +194,7 @@ export default function HomeAffairsPage() {
               {bigAmounts.map((a, i) => (
                 <tr key={i} className="border-t align-top" style={{ borderColor: "var(--story-rule)" }}>
                   <td className="mono py-1 pr-3">{a.month}</td>
-                  <td className="mono pr-3 text-right font-semibold">{int(crore(a))}</td>
+                  <td className="mono pr-3 text-right font-semibold">{int(crore(a))}<Tag src={a.src} /></td>
                   <td className="pr-3" style={{ color: "var(--story-ink-2)" }}>&ldquo;…{a.quote}…&rdquo;</td>
                   <td><a className="underline decoration-dotted" href={docOf(a.src)?.url} target="_blank" rel="noopener noreferrer">PDF</a></td>
                 </tr>
@@ -209,7 +212,7 @@ export default function HomeAffairsPage() {
             <tbody>
               {[...r.bills].sort((a, b) => b.month.localeCompare(a.month)).map((b, i) => (
                 <tr key={i} className="border-t" style={{ borderColor: "var(--story-rule)" }}>
-                  <td className="mono py-1 pr-3">{b.month}</td><td className="pr-3">{b.name}</td>
+                  <td className="mono py-1 pr-3">{b.month}</td><td className="pr-3">{b.name}<Tag src={b.src} /></td>
                   <td><a className="underline decoration-dotted" href={docOf(b.src)?.url} target="_blank" rel="noopener noreferrer">PDF</a></td>
                 </tr>
               ))}
@@ -226,7 +229,7 @@ export default function HomeAffairsPage() {
             <tbody>
               {[...r.uapa].filter((u) => u.kind !== "prosecution sanctioned").sort((a, b) => b.month.localeCompare(a.month)).map((u, i) => (
                 <tr key={i} className="border-t align-top" style={{ borderColor: "var(--story-rule)" }}>
-                  <td className="mono py-1 pr-3">{u.month}</td><td className="pr-3">{u.kind}</td>
+                  <td className="mono py-1 pr-3">{u.month}</td><td className="pr-3">{u.kind}<Tag src={u.src} /></td>
                   <td style={{ color: "var(--story-ink-2)" }}>&ldquo;{u.quote}…&rdquo; <a className="underline decoration-dotted" href={docOf(u.src)?.url} target="_blank" rel="noopener noreferrer">PDF</a></td>
                 </tr>
               ))}
