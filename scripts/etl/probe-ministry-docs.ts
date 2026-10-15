@@ -19,6 +19,9 @@ const C = "https://www.commerce.gov.in";
 
 /** Wayback listings kept whole (the commerce archive across its three sites). */
 const CDX: Array<{ id: string; url: string; keep: RegExp }> = [
+  { id: "nic-all", url: "https://web.archive.org/cdx/search/cdx?url=commerce.nic.in/pressrelease/*&output=json&fl=original,timestamp,mimetype&collapse=urlkey&limit=20000", keep: /^(?!.*detail)(?!.*\.(gif|jpg|png|css|js)).*/i },
+  { id: "nic-all-caps", url: "https://web.archive.org/cdx/search/cdx?url=commerce.nic.in/PressRelease/*&output=json&fl=original,timestamp,mimetype&collapse=urlkey&limit=20000", keep: /^(?!.*detail)(?!.*\.(gif|jpg|png|css|js)).*/i },
+  { id: "nic-root-trade", url: "https://web.archive.org/cdx/search/cdx?url=commerce.nic.in/*&output=json&fl=original,timestamp,mimetype&collapse=urlkey&limit=50000&filter=original:.*(?i)(trade|press).*", keep: /./ },
   { id: "nic-detail", url: "https://web.archive.org/cdx/search/cdx?url=commerce.nic.in/pressrelease/pressrelease_detail.asp*&output=json&fl=original,timestamp,mimetype&collapse=urlkey&limit=20000", keep: /id=\d+/i },
   { id: "nic-detail2", url: "https://web.archive.org/cdx/search/cdx?url=commerce.nic.in/PressRelease/pressrelease_detail.asp*&output=json&fl=original,timestamp,mimetype&collapse=urlkey&limit=20000", keep: /id=\d+/i },
   { id: "gov-writereaddata-pr", url: "https://web.archive.org/cdx/search/cdx?url=commerce.gov.in/writereaddata/*&output=json&fl=original,timestamp,mimetype&collapse=urlkey&limit=20000", keep: /press|trade|release|PR/i },

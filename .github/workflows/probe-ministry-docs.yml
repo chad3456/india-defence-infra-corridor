@@ -26,8 +26,14 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: "22", cache: npm }
       - run: npm ci
-      - run: npx tsx scripts/etl/probe-commerce-api.ts
-        timeout-minutes: 10
+      - run: npx tsx scripts/etl/probe-ministry-docs.ts
+        timeout-minutes: 15
+      - name: Commit the listings
+        if: ${{ !cancelled() }}
+        run: >
+          .github/scripts/commit-generated.sh
+          data/ministry/docs-probe.json
+          "chore(probe): ministry document listings $(date -u +'%Y-%m-%d %H:%M')"
       - name: Commit the API probe
         if: ${{ !cancelled() }}
         run: >
