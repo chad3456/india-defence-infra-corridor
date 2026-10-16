@@ -31,9 +31,21 @@ import NewBadge from "./NewBadge";
  * scrolled sideways and the bar wrapped to two lines. So the groups collapse
  * to one control there, and the panel it opens carries every group as
  * headed sections. Same destinations, one column, no horizontal scroll.
+ *
+ * ── Dashboards ───────────────────────────────────────────────────────────
+ *
+ * A few destinations are not one page but a section of many charts with
+ * sub-pages of their own. In a list of twenty one-line links they read as one
+ * more line. Marking one `dashboard` lifts it into a block at the top of its
+ * group, with an accent bar, a tag, and links straight to its sub-pages. The
+ * block leads the menu and links into the section's sub-pages.
  */
 
-interface Item { href: string; label: string; blurb: string }
+interface Item {
+  href: string; label: string; blurb: string;
+  /** A multi-page dashboard: shown first in its group, with its sub-pages linked directly. */
+  dashboard?: { parts?: Array<{ href: string; label: string }> };
+}
 interface Group { id: string; label: string; items: Item[] }
 
 const GROUPS: Group[] = [
@@ -41,7 +53,11 @@ const GROUPS: Group[] = [
     id: "india",
     label: "India",
     items: [
-      { href: "/live", label: "Live", blurb: "Markets, the rupee, military aircraft and the news, refreshed while you watch" },
+      { href: "/ministries", label: "Ministries' own records", blurb: "India's trade from the Commerce Ministry's releases; ten years of the Home Ministry's monthly reports, read",
+        dashboard: { parts: [{ href: "/ministries/commerce", label: "Commerce: trade" }, { href: "/ministries/home-affairs", label: "Home Affairs: reports" }] } },
+      { href: "/protests", label: "Protest and public order", blurb: "Riots, public property, police firing and casualties since 2004, every figure checked",
+        dashboard: { parts: [{ href: "/protests/delhi-2026-10-10", label: "Delhi, 10 October" }] } },
+      { href: "/live", label: "Live", blurb: "Markets, the rupee, military aircraft and the news, refreshed while you watch", dashboard: {} },
       { href: "/stories", label: "Visual stories", blurb: "Short, data-led arguments — semiconductors, defence, farming" },
       { href: "/growth", label: "Growth", blurb: "Digital payments, literacy, space, defence industry" },
       { href: "/growth-100", label: "A hundred indicators", blurb: "India across a hundred series, whichever way they point" },
@@ -56,9 +72,6 @@ const GROUPS: Group[] = [
       { href: "/atlas", label: "Atlas", blurb: "The statewise picture" },
       { href: "/sacred", label: "Sacred landscape", blurb: "Temples, deities, heritage and place-names" },
       { href: "/disputed", label: "A disputed list", blurb: "One contested 1990 catalogue, read as a claim" },
-      { href: "/protests", label: "Protest and public order", blurb: "Riots, public property, police firing and casualties since 2004, every figure checked" },
-      { href: "/ministries", label: "Ministries' own records", blurb: "Commerce's monthly trade releases and the Home Ministry's monthly reports, pinned and read" },
-      { href: "/protests/delhi-2026-10-10", label: "Delhi, 10 October", blurb: "The protest and the police operation: every side's account, sourced" },
       { href: "/map", label: "Map", blurb: "Corridors and the highway timelapse" },
     ],
   },
@@ -111,6 +124,53 @@ const GROUPS: Group[] = [
   },
 ];
 
+const hrefsOf = (i: Item) => [i.href, ...(i.dashboard?.parts ?? []).map((p) => p.href)];
+
+/** The "Dashboard" tag: outlined, so it never competes with the filled "New" marker beside it. */
+function DashTag() {
+  return (
+    <span
+      className="ml-1.5 inline-flex shrink-0 items-center rounded-[3px] border px-1 py-px align-middle text-[9px] font-semibold uppercase leading-[1.35] tracking-[0.08em]"
+      style={{ borderColor: "var(--series-1)", color: "var(--series-1)" }}
+    >
+      Dashboard
+    </span>
+  );
+}
+
+/** One dashboard in a menu: the section's own link, then its sub-pages. Links side by side, never nested. */
+function DashboardEntry({ it, pathname, compact }: { it: Item; pathname: string | null; compact?: boolean }) {
+  const here = hrefsOf(it).includes(pathname ?? "");
+  return (
+    <div
+      className="border-b border-[color:var(--hairline)]"
+      style={{ boxShadow: "inset 3px 0 0 var(--series-1)", background: here ? "var(--surface-2)" : undefined }}
+    >
+      <Link href={it.href} role="menuitem" className="flex flex-col px-3.5 pt-2 transition-colors hover:bg-[var(--surface-2)]">
+        <span className="text-[12.5px] font-semibold leading-snug">
+          {it.label}
+          <DashTag />
+          <NewBadge href={it.href} />
+        </span>
+        {!compact && <span className="text-[11px] leading-snug text-[color:var(--text-muted)]">{it.blurb}</span>}
+      </Link>
+      <div className="flex flex-wrap gap-x-3 gap-y-1 px-3.5 pb-2 pt-1">
+        {(it.dashboard?.parts ?? []).map((p) => (
+          <Link key={p.href} href={p.href} role="menuitem" className="text-[11px] font-medium underline decoration-dotted underline-offset-2"
+            style={{ color: pathname === p.href ? "var(--text-primary)" : "var(--series-1)" }}>
+            {p.label} →
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** A group's items: its dashboards in a block of their own, then everything else. */
+function split(g: Group) {
+  return { dash: g.items.filter((i) => i.dashboard), rest: g.items.filter((i) => !i.dashboard) };
+}
+
 export default function Nav() {
   const [open, setOpen] = useState<string | null>(null);
   const pathname = usePathname();
@@ -134,7 +194,7 @@ export default function Nav() {
   }, [open]);
 
   // A section is active on its own pages and anything under them (a state's atlas page lights Elections).
-  const activeGroup = GROUPS.find((g) => g.items.some((i) => i.href === pathname || (pathname ?? "").startsWith(`${i.href}/`)))?.id;
+  const activeGroup = GROUPS.find((g) => g.items.some((i) => hrefsOf(i).some((h) => h === pathname || (pathname ?? "").startsWith(`${h}/`))))?.id;
 
   return (
     <header className="sticky top-0 z-40 border-b border-[color:var(--hairline)] bg-[var(--plane)]/85 backdrop-blur-md">
@@ -169,7 +229,8 @@ export default function Nav() {
                   <p className="eyebrow border-b border-[color:var(--hairline)] bg-[var(--surface-2)] px-3.5 py-1.5">
                     {g.label}
                   </p>
-                  {g.items.map((it) => (
+                  {split(g).dash.map((it) => <DashboardEntry key={it.href} it={it} pathname={pathname} compact />)}
+                  {split(g).rest.map((it) => (
                     <Link
                       key={it.href}
                       href={it.href}
@@ -212,10 +273,17 @@ export default function Nav() {
 
                 {isOpen && (
                   <div
-                    className="absolute right-0 top-[calc(100%+6px)] z-50 w-[17.5rem] overflow-hidden rounded-lg border border-[color:var(--gridline)] bg-[var(--surface-1)] shadow-lg"
+                    className={`absolute right-0 top-[calc(100%+6px)] z-50 max-h-[calc(100vh-5rem)] overflow-y-auto rounded-lg border border-[color:var(--gridline)] bg-[var(--surface-1)] shadow-lg ${split(g).dash.length ? "w-[21rem]" : "w-[17.5rem]"}`}
                     role="menu"
                   >
-                    {g.items.map((it) => (
+                    {split(g).dash.length > 0 && (
+                      <>
+                        <p className="eyebrow border-b border-[color:var(--hairline)] px-3.5 py-1.5" style={{ color: "var(--series-1)" }}>Dashboards</p>
+                        {split(g).dash.map((it) => <DashboardEntry key={it.href} it={it} pathname={pathname} />)}
+                        <p className="eyebrow border-b border-[color:var(--hairline)] bg-[var(--surface-2)] px-3.5 py-1.5">More on {g.label}</p>
+                      </>
+                    )}
+                    {split(g).rest.map((it) => (
                       <Link
                         key={it.href}
                         href={it.href}
