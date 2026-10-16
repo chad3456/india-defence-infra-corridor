@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-15T23:20:44.398Z",
+  "builtAt": "2026-10-16T05:05:59.674Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1153,
+    "items": 1154,
     "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1152,
+    "carriedFromEarlierRuns": 1153,
     "withOutlet": 1078,
     "bySubject": {
       "scst": 780,
-      "pmshri": 373
+      "pmshri": 374
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 311
+    "offSubjectDropped": 312
   },
   "byFacet": [
     {
@@ -36,7 +36,7 @@
     },
     {
       "key": "dispute",
-      "n": 60
+      "n": 61
     },
     {
       "key": "allegation",
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 100,
       "bing": 5,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 9
     },
     {
@@ -316,16 +316,16 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 34
+      "offSubject": 35
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 52,
+      "google": 51,
       "bing": 9,
       "kept": 0,
       "offSubject": 6
@@ -356,9 +356,9 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 100,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 42
+      "offSubject": 43
     },
     {
       "id": "act-hostile",
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 48,
-      "bing": 0,
+      "google": 47,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 8
     },
     {
       "id": "act-dilution",
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 31,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 19
     },
     {
       "id": "shri-general",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 4
     },
     {
@@ -446,9 +446,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 49,
-      "bing": 0,
+      "bing": 4,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 13
     },
     {
       "id": "shri-mou",
@@ -466,9 +466,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 30,
-      "bing": 2,
+      "bing": 3,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 18
     },
     {
       "id": "shri-nep",
@@ -476,7 +476,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 54,
-      "bing": 0,
+      "bing": 3,
       "kept": 0,
       "offSubject": 11
     },
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 42,
       "bing": 1,
       "kept": 0,
-      "offSubject": 33
+      "offSubject": 32
     }
   ],
   "items": [
@@ -19294,6 +19294,22 @@
         "google"
       ],
       "firstSeen": "2026-10-15"
+    },
+    {
+      "id": "pm shri scheme row triggers new political storm in kerala",
+      "headline": "PM SHRI scheme row triggers new political storm in Kerala",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": null,
+      "published": "2026-06-18",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ad1b08d47f740728e674fbe43b857b3&url=https%3a%2f%2fwww.millenniumpost.in%2fnation%2fpm-shri-scheme-row-triggers-new-political-storm-in-kerala-664840&c=15393455554624965143&mkt=en-us",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-10-16"
     }
   ]
 }
