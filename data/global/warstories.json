@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-16T04:31:44.562Z",
-  "previousBuild": "2026-10-15T23:04:50.275Z",
+  "builtAt": "2026-10-16T13:15:55.192Z",
+  "previousBuild": "2026-10-16T04:31:44.562Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,28 +12,28 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 191,
-    "createdThisRun": 0,
-    "corroboratedThisRun": 0,
+    "stories": 197,
+    "createdThisRun": 6,
+    "corroboratedThisRun": 4,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 284,
     "corroboration": {
-      "one": 158,
+      "one": 162,
       "two": 14,
-      "threePlus": 19
+      "threePlus": 21
     }
   },
   "byTheme": [
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 102
+      "n": 104
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 57
+      "n": 61
     },
     {
       "id": "targeting",
@@ -55,12 +55,12 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 34
+      "n": 36
     },
     {
       "iso": "IND",
       "name": "India",
-      "n": 16
+      "n": 17
     },
     {
       "iso": "UKR",
@@ -68,13 +68,13 @@
       "n": 7
     },
     {
-      "iso": "GBR",
-      "name": "United Kingdom",
-      "n": 4
-    },
-    {
       "iso": "DEU",
       "name": "Germany",
+      "n": 5
+    },
+    {
+      "iso": "GBR",
+      "name": "United Kingdom",
       "n": 4
     },
     {
@@ -125,13 +125,13 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 4
+      "kept": 6
     },
     {
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 6
+      "kept": 5
     },
     {
       "outlet": "C4ISRNET",
@@ -149,13 +149,13 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 4
+      "kept": 6
     },
     {
       "outlet": "Breaking Defense",
@@ -179,7 +179,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -477,6 +477,70 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/ai-military-targeting-may-move-faster-than-humans-can-authenticate-critics-warn/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/recap/ausa/2026/10/16/recap-autonomy-dominates-the-us-armys-2026-conference-in-washington/",
+      "headline": "Recap: Autonomy dominates the US Army’s 2026 conference in Washington",
+      "firstSeen": "2026-10-16",
+      "lastSeen": "2026-10-16",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/recap/ausa/2026/10/16/recap-autonomy-dominates-the-us-armys-2026-conference-in-washington/",
+          "published": "2026-10-16"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/recap/ausa/2026/10/16/recap-autonomy-dominates-the-us-armys-2026-conference-in-washington/",
+          "published": "2026-10-16"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/recap/ausa/2026/10/16/recap-autonomy-dominates-the-us-armys-2026-conference-in-washington/",
+          "published": "2026-10-16"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/news/your-military/2026/10/14/blood-supplies-autonomous-systems-shape-us-armys-indo-pacific-combat-care-plans/",
+      "headline": "Blood supplies, autonomous systems shape US Army’s Indo-Pacific combat care plans",
+      "firstSeen": "2026-10-16",
+      "lastSeen": "2026-10-16",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/news/your-military/2026/10/14/blood-supplies-autonomous-systems-shape-us-armys-indo-pacific-combat-care-plans/",
+          "published": "2026-10-16"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/news/your-military/2026/10/14/blood-supplies-autonomous-systems-shape-us-armys-indo-pacific-combat-care-plans/",
+          "published": "2026-10-16"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/news/your-military/2026/10/14/blood-supplies-autonomous-systems-shape-us-armys-indo-pacific-combat-care-plans/",
+          "published": "2026-10-16"
         }
       ]
     },
@@ -1162,6 +1226,84 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/endureair-alakh-kamikaze-uav-delivery/",
+      "headline": "EndureAir Delivers ALAKH Kamikaze UAV to Indian Army",
+      "firstSeen": "2026-10-16",
+      "lastSeen": "2026-10-16",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/endureair-alakh-kamikaze-uav-delivery/",
+          "published": "2026-10-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/saab-and-swedish-defence-authorities-complete-sea-trials-of-large-underwater-drone-demonstrator-within-a-year-of-contract-award/",
+      "headline": "Saab and Swedish defence authorities complete sea trials of large underwater drone demonstrator within a year of contract award",
+      "firstSeen": "2026-10-16",
+      "lastSeen": "2026-10-16",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/saab-and-swedish-defence-authorities-complete-sea-trials-of-large-underwater-drone-demonstrator-within-a-year-of-contract-award/",
+          "published": "2026-10-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/european-defence-agency-begins-new-research-phase-with-spain-germany-and-belgium-on-automated-mid-air-refuelling-of-unmanned-aircraft/",
+      "headline": "European Defence Agency begins new research phase with Spain, Germany and Belgium on automated mid-air refuelling of unmanned aircraft",
+      "firstSeen": "2026-10-16",
+      "lastSeen": "2026-10-16",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "DEU",
+          "name": "Germany"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/european-defence-agency-begins-new-research-phase-with-spain-germany-and-belgium-on-automated-mid-air-refuelling-of-unmanned-aircraft/",
+          "published": "2026-10-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-army-wants-autonomous-missile-launchers-ready-by-august-2027/",
+      "headline": "U.S. Army wants autonomous missile launchers ready by August 2027",
+      "firstSeen": "2026-10-16",
+      "lastSeen": "2026-10-16",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-army-wants-autonomous-missile-launchers-ready-by-august-2027/",
+          "published": "2026-10-16"
         }
       ]
     },
