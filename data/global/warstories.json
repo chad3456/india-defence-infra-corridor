@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-16T13:15:55.192Z",
-  "previousBuild": "2026-10-16T04:31:44.562Z",
+  "builtAt": "2026-10-16T19:33:44.844Z",
+  "previousBuild": "2026-10-16T13:15:55.192Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 197,
-    "createdThisRun": 6,
-    "corroboratedThisRun": 4,
+    "stories": 200,
+    "createdThisRun": 3,
+    "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 284,
+    "itemsSeen": 286,
     "corroboration": {
-      "one": 162,
+      "one": 165,
       "two": 14,
       "threePlus": 21
     }
@@ -28,12 +28,12 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 104
+      "n": 107
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 61
+      "n": 62
     },
     {
       "id": "targeting",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 36
+      "n": 37
     },
     {
       "iso": "IND",
@@ -112,8 +112,8 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 39,
-      "kept": 3
+      "items": 41,
+      "kept": 4
     },
     {
       "outlet": "Indian Defence Research Wing",
@@ -125,7 +125,7 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 6
+      "kept": 5
     },
     {
       "outlet": "Army Times",
@@ -149,7 +149,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 0
     },
     {
       "outlet": "Defense News",
@@ -167,7 +167,7 @@
       "outlet": "Defense One",
       "ok": true,
       "items": 20,
-      "kept": 4
+      "kept": 3
     },
     {
       "outlet": "Naval News",
@@ -1303,6 +1303,63 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/u-s-army-wants-autonomous-missile-launchers-ready-by-august-2027/",
+          "published": "2026-10-16"
+        }
+      ]
+    },
+    {
+      "id": "https://www.twz.com/sponsored-content/leonardo-drs-explains-how-army-counter-uas-mission-is-evolving",
+      "headline": "Leonardo DRS Explains How Army Counter-UAS Mission Is Evolving",
+      "firstSeen": "2026-10-16",
+      "lastSeen": "2026-10-16",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "The War Zone",
+          "url": "https://www.twz.com/sponsored-content/leonardo-drs-explains-how-army-counter-uas-mission-is-evolving",
+          "published": "2026-10-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/10/16/us-navy-deploys-unmanned-maritime-drone-to-support-carrier-strike-group-in-historic-first/",
+      "headline": "US Navy deploys unmanned maritime drone to support carrier strike group in historic first",
+      "firstSeen": "2026-10-16",
+      "lastSeen": "2026-10-16",
+      "themes": [
+        "autonomy",
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/10/16/us-navy-deploys-unmanned-maritime-drone-to-support-carrier-strike-group-in-historic-first/",
+          "published": "2026-10-16"
+        }
+      ]
+    },
+    {
+      "id": "https://www.defensenews.com/global/europe/2026/10/16/bulgaria-seeks-nato-anti-drone-systems-defense-minister-says/",
+      "headline": "Bulgaria seeks NATO anti-drone systems, defense minister says",
+      "firstSeen": "2026-10-16",
+      "lastSeen": "2026-10-16",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/global/europe/2026/10/16/bulgaria-seeks-nato-anti-drone-systems-defense-minister-says/",
           "published": "2026-10-16"
         }
       ]
