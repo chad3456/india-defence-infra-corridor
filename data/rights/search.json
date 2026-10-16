@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-16T19:45:06.329Z",
+  "builtAt": "2026-10-16T23:04:24.266Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1163,
-    "addedThisRun": 7,
-    "carriedFromEarlierRuns": 1156,
-    "withOutlet": 1085,
+    "items": 1165,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1163,
+    "withOutlet": 1086,
     "bySubject": {
-      "scst": 788,
-      "pmshri": 375
+      "scst": 789,
+      "pmshri": 376
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 310
+    "offSubjectDropped": 292
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 569
+      "n": 571
     },
     {
       "key": "use",
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 100,
       "bing": 5,
-      "kept": 5,
+      "kept": 1,
       "offSubject": 9
     },
     {
@@ -327,7 +327,7 @@
       "expect": "use",
       "google": 51,
       "bing": 10,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 7
     },
     {
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 67,
+      "google": 65,
       "bing": 0,
       "kept": 0,
       "offSubject": 26
@@ -356,9 +356,9 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 100,
-      "bing": 2,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 43
+      "offSubject": 42
     },
     {
       "id": "act-hostile",
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 4
     },
     {
       "id": "shri-general",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 5
     },
     {
@@ -425,9 +425,9 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 45,
+      "google": 46,
       "bing": 2,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 5
     },
     {
@@ -445,7 +445,7 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 50,
+      "google": 49,
       "bing": 4,
       "kept": 0,
       "offSubject": 13
@@ -465,10 +465,10 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 29,
-      "bing": 3,
+      "google": 30,
+      "bing": 4,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 17
     },
     {
       "id": "shri-nep",
@@ -476,7 +476,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 54,
-      "bing": 3,
+      "bing": 4,
       "kept": 0,
       "offSubject": 11
     },
@@ -19454,6 +19454,40 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-10-16"
+    },
+    {
+      "id": "delhi high court refuses to stay probe against woman journalist in sc st act case",
+      "headline": "Delhi High Court Refuses to Stay Probe Against Woman Journalist in SC/ST Act Case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Hindusthan Samachar English",
+      "published": "2026-10-16",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOVWdhc0VtQVk2SlA5VDdEWmMzdUUtMnZKSWtuWlZSQTA2UFVpcHBQRjVMV0RGQlk4UURtTUhGd293YVlBcDBGOGFpZUJZdUdqbnFmNENBTHhFOHp3LWdZWGFqekdPRV9qblZRSnlhSGo2dnBUbnEwaER1eTNVenRnME5LV1VLMlJTT2tOUE83SUVPS0E?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-16"
+    },
+    {
+      "id": "keralam cannot withdraw unilaterally from pm shri mou minister",
+      "headline": "Keralam cannot withdraw unilaterally from PM-SHRI MoU: Minister",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-10-15",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ad2ad4eac53415c83ac17e897e24904&url=https%3a%2f%2ftheprint.in%2findia%2fkeralam-cannot-withdraw-unilaterally-from-pm-shri-mou-minister%2f3072938%2f&c=1576469573236208505&mkt=en-us",
+      "queries": [
+        "shri-general",
+        "shri-withheld",
+        "shri-nep"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-10-16"
     }
