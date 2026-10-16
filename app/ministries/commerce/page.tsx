@@ -3,6 +3,7 @@ import { Eyebrow, Standfirst, Stat } from "@/components/stories/Kit";
 import { ChartTitle, Caption } from "@/components/stories/Charts";
 import { MonthLines, LabelBars } from "@/components/ministry/MonthCharts";
 import { MinistryTabs } from "@/components/ministry/Tabs";
+import CommerceGlance from "@/components/ministry/CommerceGlance";
 
 /**
  * India's foreign trade, month by month, read out of the Commerce Ministry's
@@ -94,8 +95,18 @@ export default function CommercePage() {
   return (
     <article className="pt-6">
       <MinistryTabs active="commerce" />
-      <Eyebrow tone="hot">Department of Commerce · monthly releases</Eyebrow>
-      <h1 className="story-display mt-3 max-w-[22ch] text-[32px] sm:text-[44px]">India&apos;s trade, from the ministry&apos;s own releases</h1>
+      <Eyebrow tone="hot">Ministry of Commerce &amp; Industry · Department of Commerce</Eyebrow>
+      <h1 className="story-display mt-3 max-w-[22ch] text-[32px] sm:text-[44px]">What India sells, what it buys, and how the year is going</h1>
+      <Standfirst>
+        The Department of Commerce publishes India&apos;s trade with the world every month. Start with the questions below; underneath them is every monthly figure,
+        read from the ministry&apos;s releases.
+      </Standfirst>
+      <CommerceGlance />
+
+      <section className="mt-14 border-t pt-8" style={{ borderColor: "var(--story-rule)" }}>
+        <Eyebrow>The detail · every release, month by month</Eyebrow>
+        <h2 className="story-display mt-3 max-w-[30ch] text-[24px] sm:text-[30px]">India&apos;s trade, from the ministry&apos;s own releases</h2>
+      </section>
       <Standfirst>
         Every figure here is read from the Department of Commerce&apos;s monthly press release on India&apos;s foreign trade — {v.releases.length} releases,
         pinned in this repository with their checksums — and checked against the release&apos;s own text before it is drawn. {v.verified.length} figures

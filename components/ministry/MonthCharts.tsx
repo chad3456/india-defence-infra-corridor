@@ -77,13 +77,15 @@ export function MonthLines({ lines, height = 250, unit = "US$ bn", format = fmt,
 export function LabelBars({ bars, height = 220, colour = "var(--series-1)", format = fmt }: { bars: Array<{ label: string; v: number; mark?: boolean }>; height?: number; colour?: string; format?: (v: number) => string }) {
   if (bars.length === 0) return <p className="mono text-[11px]" style={{ color: "var(--story-ink-3)" }}>No verified figures yet.</p>;
   const lo = Math.min(0, ...bars.map((b) => b.v)), hi = Math.max(0, ...bars.map((b) => b.v));
-  const padT = 20, padB = 30, W = Math.max(560, bars.length * 44 + 12);
+  // A negative bar's value sits under it, so leave room for it above the column labels.
+  // Width follows the number of bars, so three fiscal years fit a phone without scrolling.
+  const padT = 20, padB = lo < 0 ? 44 : 30, W = Math.max(320, bars.length * 44 + 12);
   const ph = height - padT - padB;
   const sy = (v: number) => padT + ((hi - v) / (hi - lo || 1)) * ph;
   const stepX = (W - 12) / bars.length, col = Math.min(36, stepX * 0.75);
   return (
     <div className="overflow-x-auto">
-      <svg viewBox={`0 0 ${W} ${height}`} style={{ width: "100%", minWidth: 400, height: "auto" }} role="img" aria-label={bars.map((b) => `${b.label}: ${format(b.v)}`).join("; ")}>
+      <svg viewBox={`0 0 ${W} ${height}`} style={{ width: "100%", minWidth: Math.min(400, W * 0.8), height: "auto" }} role="img" aria-label={bars.map((b) => `${b.label}: ${format(b.v)}`).join("; ")}>
         <line x1={6} x2={W - 6} y1={sy(0)} y2={sy(0)} stroke="var(--story-ink-3)" />
         {bars.map((b, i) => {
           const x = 6 + i * stepX + (stepX - col) / 2;

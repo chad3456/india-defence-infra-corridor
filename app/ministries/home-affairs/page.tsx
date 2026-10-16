@@ -3,6 +3,7 @@ import { Eyebrow, Standfirst, Stat } from "@/components/stories/Kit";
 import { ChartTitle, Caption } from "@/components/stories/Charts";
 import { MonthLines, LabelBars } from "@/components/ministry/MonthCharts";
 import { MinistryTabs } from "@/components/ministry/Tabs";
+import HomeGlance from "@/components/ministry/HomeGlance";
 
 /**
  * The Home Ministry's monthly reports, as data. The reports are prose — a
@@ -101,8 +102,18 @@ export default function HomeAffairsPage() {
   return (
     <article className="pt-6">
       <MinistryTabs active="home" />
-      <Eyebrow tone="hot">Ministry of Home Affairs · Monthly Major Achievements</Eyebrow>
-      <h1 className="story-display mt-3 max-w-[24ch] text-[32px] sm:text-[44px]">Ten years of the Home Ministry&apos;s monthly reports, read</h1>
+      <Eyebrow tone="hot">Ministry of Home Affairs</Eyebrow>
+      <h1 className="story-display mt-3 max-w-[24ch] text-[32px] sm:text-[44px]">Riots, police, security and what the Home Ministry does, in plain numbers</h1>
+      <Standfirst>
+        The Home Ministry looks after policing, internal security, borders, disasters and citizenship. Start with the questions below; underneath them is the record they rest on —
+        ten years of the ministry&apos;s own monthly reports, read line by line.
+      </Standfirst>
+      <HomeGlance />
+
+      <section className="mt-14 border-t pt-8" style={{ borderColor: "var(--story-rule)" }}>
+        <Eyebrow>The detail · the ministry&apos;s monthly reports, item by item</Eyebrow>
+        <h2 className="story-display mt-3 max-w-[30ch] text-[24px] sm:text-[30px]">Ten years of Monthly Major Achievements, read</h2>
+      </section>
       <Standfirst>
         Each month the Home Ministry publishes a numbered list of what it did. {all.docs.length} of those reports, from {reports[0]?.month} to {reports.at(-1)?.month},
         are pinned in this repository as the PDFs the ministry published. The reports are prose, not statistics, so this page draws only what can be counted or quoted

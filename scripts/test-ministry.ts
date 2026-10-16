@@ -77,5 +77,22 @@ if (mr) {
   ok("amounts are listed, in crore or lakh", mr.amounts.every((a) => ["crore", "lakh", "lakh crore"].includes(a.unit)));
 }
 
+void (async () => {
+console.log("\nThe plain-language summaries");
+{
+  // The sentences are written by code from the data; render them and look for arithmetic gone wrong.
+  const { renderToStaticMarkup } = await import("react-dom/server");
+  const { createElement } = await import("react");
+  const Home = (await import("../components/ministry/HomeGlance")).default;
+  const Commerce = (await import("../components/ministry/CommerceGlance")).default;
+  for (const [name, C, must] of [["Home Affairs", Home, ["How many riots", "public property", "police die on duty", "Jammu &amp; Kashmir"]], ["Commerce", Commerce, ["sell to the rest of the world", "sell more than it buys", "oil and gold"]]] as const) {
+    const html = renderToStaticMarkup(createElement(C));
+    const text = html.replace(/<[^>]+>/g, " ");
+    ok(`${name}: no NaN, undefined or Infinity in what the summary says`, !/\b(NaN|undefined|Infinity)\b/.test(text), (text.match(/.{40}\b(NaN|undefined|Infinity)\b.{20}/) ?? [""])[0]);
+    for (const m of must) ok(`${name}: answers "${m.replace("&amp;", "&")}"`, html.includes(m));
+  }
+}
+
 console.log(failed ? `\n${failed} failed` : "\nall passed");
 process.exit(failed ? 1 : 0);
+})();

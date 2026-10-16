@@ -25,11 +25,11 @@ export default function MinistriesPage() {
       <div className="mt-7 grid gap-3 sm:grid-cols-2">
         <Link href="/ministries/commerce" className="block">
           <Stat size="md" tone="hot" label="Commerce · trade releases" value={String(t.releases.length)} unit="releases"
-            note={<>{t.verified.length} figures checked{fy ? <>; total exports in FY {fy.fy}: ${fy.v.toFixed(0)} bn</> : null}. Open the trade dashboard →</>} />
+            note={<>What India sells and buys, in plain numbers{fy ? <> — ${fy.v.toFixed(0)} bn of exports in {fy.fy}</> : null}; {t.verified.length} figures checked. Open →</>} />
         </Link>
         <Link href="/ministries/home-affairs" className="block">
           <Stat size="md" label="Home Affairs · monthly reports" value={String(m.docs.length)} unit="reports"
-            note={<>{m.byMonth[0]?.m} to {m.byMonth.at(-1)?.m}; {m.docs.filter((d) => d.ocr).length} were scans, read by OCR. Open the reports dashboard →</>} />
+            note={<>Riots, police, security and what the ministry does, in plain numbers; {m.byMonth[0]?.m} to {m.byMonth.at(-1)?.m}. Open →</>} />
         </Link>
       </div>
     </article>
