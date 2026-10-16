@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-16T20:03:25.881Z",
+  "builtAt": "2026-10-16T22:59:53.178Z",
   "source": "adsb.lol and adsb.fi, two independent community ADS-B aggregators, each reading its /v2/mil endpoint. Both decide for themselves which ICAO addresses are military, from community-maintained lists that do not agree with each other.",
   "method": "Both feeds are read at each snapshot and combined by ICAO hex. How far they agree is recorded rather than averaged away. Positions are rounded to a tenth of a degree — about eleven kilometres — which is the resolution the claim 'there is military air activity over this region' can carry. Registrations are not kept, and no aircraft is counted against a named installation.",
   "refusal": "Absence from these feeds is not absence from the sky, and nothing here may be read as a count of what is flying. Military aircraft are not obliged to broadcast ADS-B and routinely do not.",
@@ -9,7 +9,7 @@
     "Anything about a specific airfield. At this sample size a count near any one place is small enough to be noise and precise enough to be believed, which is the worst combination a statistic can have.",
     "What an aircraft is. The type code comes from the feed and is only as good as the community database behind it; a blank or wrong type is common and is left blank rather than guessed."
   ],
-  "keptSnapshots": 140,
+  "keptSnapshots": 141,
   "keepLimit": 336,
   "snapshots": [
     {
@@ -129282,6 +129282,615 @@
         [
           100.6,
           13.9
+        ]
+      ]
+    },
+    {
+      "at": "2026-10-16T22:59:53.164Z",
+      "perFeed": [
+        {
+          "id": "adsb.lol",
+          "ok": true,
+          "aircraft": 132,
+          "withPosition": 92
+        },
+        {
+          "id": "adsb.fi",
+          "ok": true,
+          "aircraft": 142,
+          "withPosition": 102
+        }
+      ],
+      "agreement": {
+        "both": 126,
+        "onlyFirst": 6,
+        "onlySecond": 16
+      },
+      "aircraft": 148,
+      "byRegion": [
+        {
+          "region": "North America",
+          "n": 91
+        },
+        {
+          "region": "Europe",
+          "n": 3
+        },
+        {
+          "region": "Pacific",
+          "n": 2
+        },
+        {
+          "region": "West Asia and the Gulf",
+          "n": 1
+        },
+        {
+          "region": "Southeast Asia and Australasia",
+          "n": 1
+        },
+        {
+          "region": "East Asia",
+          "n": 1
+        }
+      ],
+      "byType": [
+        {
+          "type": "TEX2",
+          "n": 19
+        },
+        {
+          "type": "H60",
+          "n": 13
+        },
+        {
+          "type": "C30J",
+          "n": 12
+        },
+        {
+          "type": "C17",
+          "n": 8
+        },
+        {
+          "type": "TWR",
+          "n": 7
+        },
+        {
+          "type": "AS65",
+          "n": 6
+        },
+        {
+          "type": "EC45",
+          "n": 6
+        },
+        {
+          "type": "BE20",
+          "n": 5
+        },
+        {
+          "type": "T38",
+          "n": 5
+        },
+        {
+          "type": "C130",
+          "n": 3
+        },
+        {
+          "type": "H53S",
+          "n": 3
+        },
+        {
+          "type": "B737",
+          "n": 3
+        },
+        {
+          "type": "C150",
+          "n": 3
+        },
+        {
+          "type": "DG1T",
+          "n": 3
+        },
+        {
+          "type": "GLF5",
+          "n": 3
+        },
+        {
+          "type": "C5M",
+          "n": 2
+        },
+        {
+          "type": "P8",
+          "n": 2
+        },
+        {
+          "type": "B742",
+          "n": 2
+        },
+        {
+          "type": "P8 ?",
+          "n": 1
+        },
+        {
+          "type": "BT7",
+          "n": 1
+        },
+        {
+          "type": "B736",
+          "n": 1
+        },
+        {
+          "type": "B350",
+          "n": 1
+        },
+        {
+          "type": "C172",
+          "n": 1
+        },
+        {
+          "type": "BE9L",
+          "n": 1
+        },
+        {
+          "type": "C560",
+          "n": 1
+        },
+        {
+          "type": "K35R",
+          "n": 1
+        },
+        {
+          "type": "V22",
+          "n": 1
+        },
+        {
+          "type": "C27J",
+          "n": 1
+        },
+        {
+          "type": "D328",
+          "n": 1
+        },
+        {
+          "type": "B788",
+          "n": 1
+        },
+        {
+          "type": "B734",
+          "n": 1
+        },
+        {
+          "type": "GLEX",
+          "n": 1
+        },
+        {
+          "type": "C295",
+          "n": 1
+        },
+        {
+          "type": "E135",
+          "n": 1
+        },
+        {
+          "type": "A139",
+          "n": 1
+        },
+        {
+          "type": "BTB2",
+          "n": 1
+        },
+        {
+          "type": "GLF6",
+          "n": 1
+        },
+        {
+          "type": "C208",
+          "n": 1
+        },
+        {
+          "type": "NH90",
+          "n": 1
+        },
+        {
+          "type": "CN35",
+          "n": 1
+        }
+      ],
+      "points": [
+        [
+          -158.2,
+          21.4
+        ],
+        [
+          -157.2,
+          63.1
+        ],
+        [
+          -150.4,
+          61.8
+        ],
+        [
+          -148.8,
+          61.5
+        ],
+        [
+          -123.9,
+          46.5
+        ],
+        [
+          -122.8,
+          48.4
+        ],
+        [
+          -121.2,
+          37.9
+        ],
+        [
+          -120.2,
+          38.2
+        ],
+        [
+          -119.3,
+          34.3
+        ],
+        [
+          -118.2,
+          33.2
+        ],
+        [
+          -117.9,
+          33.2
+        ],
+        [
+          -117.8,
+          34.2
+        ],
+        [
+          -117.4,
+          35.1
+        ],
+        [
+          -117.3,
+          35.1
+        ],
+        [
+          -117.3,
+          32.6
+        ],
+        [
+          -117.2,
+          32.6
+        ],
+        [
+          -117.2,
+          32.7
+        ],
+        [
+          -116.8,
+          36.9
+        ],
+        [
+          -115.7,
+          31.5
+        ],
+        [
+          -115.1,
+          43.5
+        ],
+        [
+          -115,
+          33.5
+        ],
+        [
+          -112.7,
+          34.9
+        ],
+        [
+          -111.7,
+          35
+        ],
+        [
+          -110.9,
+          33.2
+        ],
+        [
+          -109.8,
+          34.9
+        ],
+        [
+          -107.1,
+          32.6
+        ],
+        [
+          -105.8,
+          49.9
+        ],
+        [
+          -105.2,
+          40.4
+        ],
+        [
+          -105.2,
+          40.4
+        ],
+        [
+          -105.2,
+          40.5
+        ],
+        [
+          -104.9,
+          39
+        ],
+        [
+          -104.9,
+          39
+        ],
+        [
+          -104.8,
+          39
+        ],
+        [
+          -104.7,
+          38.8
+        ],
+        [
+          -104.4,
+          38.8
+        ],
+        [
+          -100.8,
+          29.4
+        ],
+        [
+          -100.3,
+          29.7
+        ],
+        [
+          -98.2,
+          33.9
+        ],
+        [
+          -97.9,
+          36.3
+        ],
+        [
+          -97.8,
+          36
+        ],
+        [
+          -97.7,
+          32.8
+        ],
+        [
+          -97.6,
+          38.9
+        ],
+        [
+          -97.6,
+          36.5
+        ],
+        [
+          -97.5,
+          36.3
+        ],
+        [
+          -97.4,
+          43.8
+        ],
+        [
+          -96.3,
+          41.1
+        ],
+        [
+          -95.6,
+          36.8
+        ],
+        [
+          -95.5,
+          29.9
+        ],
+        [
+          -95.5,
+          36.8
+        ],
+        [
+          -95.5,
+          29.9
+        ],
+        [
+          -94.3,
+          36.2
+        ],
+        [
+          -94.2,
+          36.1
+        ],
+        [
+          -93,
+          38
+        ],
+        [
+          -91.6,
+          34.7
+        ],
+        [
+          -91.3,
+          30.6
+        ],
+        [
+          -90.3,
+          30.5
+        ],
+        [
+          -89.8,
+          29.7
+        ],
+        [
+          -88,
+          35.8
+        ],
+        [
+          -87.9,
+          42.4
+        ],
+        [
+          -87.2,
+          38.7
+        ],
+        [
+          -87.1,
+          35.9
+        ],
+        [
+          -86.9,
+          35.8
+        ],
+        [
+          -86.8,
+          34.5
+        ],
+        [
+          -86.7,
+          34.4
+        ],
+        [
+          -86.4,
+          36.1
+        ],
+        [
+          -86.4,
+          33.9
+        ],
+        [
+          -86.3,
+          32.4
+        ],
+        [
+          -84.7,
+          33.7
+        ],
+        [
+          -84.3,
+          39.6
+        ],
+        [
+          -84.3,
+          34
+        ],
+        [
+          -83.2,
+          32
+        ],
+        [
+          -82.5,
+          33.6
+        ],
+        [
+          -80.9,
+          33.1
+        ],
+        [
+          -80.4,
+          37.2
+        ],
+        [
+          -80.1,
+          27.1
+        ],
+        [
+          -79.9,
+          34.7
+        ],
+        [
+          -79.9,
+          32.8
+        ],
+        [
+          -79.2,
+          35
+        ],
+        [
+          -78.1,
+          38.9
+        ],
+        [
+          -77.8,
+          39.1
+        ],
+        [
+          -77.3,
+          37.9
+        ],
+        [
+          -76.4,
+          36.9
+        ],
+        [
+          -74.5,
+          40
+        ],
+        [
+          -74.5,
+          40
+        ],
+        [
+          -70.9,
+          43
+        ],
+        [
+          -5.2,
+          55.4
+        ],
+        [
+          1.3,
+          39.1
+        ],
+        [
+          10.4,
+          49.8
+        ],
+        [
+          54.3,
+          24.7
+        ],
+        [
+          111.9,
+          -7.1
+        ],
+        [
+          127.3,
+          36.9
+        ],
+        [
+          150.5,
+          -32.7
+        ],
+        [
+          -105.6,
+          50
+        ],
+        [
+          -105.4,
+          50.5
+        ],
+        [
+          -96.8,
+          28.2
+        ],
+        [
+          -90.5,
+          14.7
+        ],
+        [
+          -81.6,
+          30
+        ],
+        [
+          -80.2,
+          35.4
+        ],
+        [
+          175.3,
+          -40.9
         ]
       ]
     }
