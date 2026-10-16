@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-16T05:05:59.674Z",
+  "builtAt": "2026-10-16T13:34:41.867Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,12 +10,12 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1154,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1153,
-    "withOutlet": 1078,
+    "items": 1156,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1154,
+    "withOutlet": 1080,
     "bySubject": {
-      "scst": 780,
+      "scst": 782,
       "pmshri": 374
     },
     "queriesAsked": 20,
@@ -24,7 +24,7 @@
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 564
+      "n": 566
     },
     {
       "key": "use",
@@ -153,6 +153,10 @@
       "n": 10
     },
     {
+      "key": "The News Mill",
+      "n": 10
+    },
+    {
       "key": "India Legal",
       "n": 9
     },
@@ -162,10 +166,6 @@
     },
     {
       "key": "The Economic Times",
-      "n": 9
-    },
-    {
-      "key": "The News Mill",
       "n": 9
     },
     {
@@ -201,6 +201,10 @@
       "n": 6
     },
     {
+      "key": "Daily Pioneer",
+      "n": 6
+    },
+    {
       "key": "The South First",
       "n": 6
     },
@@ -226,10 +230,6 @@
     },
     {
       "key": "The Federal",
-      "n": 5
-    },
-    {
-      "key": "Daily Pioneer",
       "n": 5
     },
     {
@@ -307,8 +307,8 @@
       "expect": "use",
       "google": 100,
       "bing": 5,
-      "kept": 0,
-      "offSubject": 9
+      "kept": 1,
+      "offSubject": 10
     },
     {
       "id": "act-convicted",
@@ -325,10 +325,10 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
-      "bing": 9,
+      "google": 52,
+      "bing": 10,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -347,7 +347,7 @@
       "expect": "use",
       "google": 71,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 28
     },
     {
@@ -356,16 +356,16 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 100,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 43
+      "offSubject": 42
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 25,
+      "google": 24,
       "bing": 0,
       "kept": 0,
       "offSubject": 7
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 47,
-      "bing": 2,
+      "google": 46,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "act-dilution",
@@ -398,17 +398,17 @@
       "google": 50,
       "bing": 1,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 19
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 31,
+      "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 20
     },
     {
       "id": "shri-general",
@@ -416,9 +416,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 12,
-      "kept": 1,
-      "offSubject": 4
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 5
     },
     {
       "id": "shri-sanctioned",
@@ -435,17 +435,17 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 70,
-      "bing": 1,
+      "google": 69,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 27
+      "offSubject": 26
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 49,
+      "google": 50,
       "bing": 4,
       "kept": 0,
       "offSubject": 13
@@ -466,9 +466,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 30,
-      "bing": 3,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 16
     },
     {
       "id": "shri-nep",
@@ -9884,10 +9884,12 @@
       "published": "2026-08-05",
       "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab22959714140b3bcc5f5543bd0b283&url=https%3a%2f%2fwww.msn.com%2fen-in%2feducation-and-learning%2fprimary-education%2f13-092-schools-selected-as-pm-shri-schools-across-states-uts-government%2far-AA29v3iM&c=7351188927998558598&mkt=en-us",
       "queries": [
-        "shri-sanctioned"
+        "shri-sanctioned",
+        "shri-general"
       ],
       "indexes": [
-        "bing"
+        "bing",
+        "google"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -19308,6 +19310,38 @@
       ],
       "indexes": [
         "bing"
+      ],
+      "firstSeen": "2026-10-16"
+    },
+    {
+      "id": "delhi high court refuses anticipatory bail to youtuber ajeet bharti in sc st act case",
+      "headline": "Delhi High Court refuses anticipatory bail to YouTuber Ajeet Bharti in SC/ST Act case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The News Mill",
+      "published": "2026-09-24",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNM25kZHd5Z1VNV0RWc3VOR3RRbWZVQnhpajgySVV5UEVna2J4Tm1fb3NrNkd0alIzN1lBNElrS1ZKU1c0NjhTS1Nia2dsb0M4WHFpREtpMDAxRmJNQWxLX3pFRFlLaXE1ZUxiWFd3eDFWQ1FGUXlWUXZZNlBEOUM3UXFtakkwQkVDRjQwbXhvdlF4TFM5bHFvd2xLRVRMSldRaWl6bTFnWXhGdGNhSUh3RXRsZUdHb2stOUE?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-16"
+    },
+    {
+      "id": "maharashtra cabinet approves new courts under ndps sc st act",
+      "headline": "Maharashtra Cabinet approves new courts under NDPS, SC-ST Act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Daily Pioneer",
+      "published": "2026-07-29",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOc1lkNFQ5VjYxdDBxUmFzcVFrbTRhaEp4MGFIc3JvSGpJVnlyMjZUa09oeHVnOUZ0a0dOTlU2eFlkcTlURDNBZkdfMDZFNlFsYnV1cEdsRGZmYllaVmQ0blNOS1hRcllndGdsODFtQjdtSHRGWlFkeUhwZFprZDRHS0YxVkM4S0UwUUdWVnRJekdyQXJBWTgzMXIzS3FuMEEzZE5j0gGjAUFVX3lxTE5zWWQ0VDlWNjF0MHFSYXNxUWttNGFoSngwYUhzcm9IaklWeXIyNlRrT2h4dWc5RnRrR05OVTZ4WWRxOVREM0FmR18wNkU2UWxidXVwR2xEZmZiWVpWZDRuU05LWFFyWWd0Z2w4MW1CN21IdEZaUWR5SHBkWmtkNEdLRjFWQzhLRTBRR1ZWdEl6R3JBckFZODMxcjNLcW4wQTNkTmM?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
       ],
       "firstSeen": "2026-10-16"
     }
