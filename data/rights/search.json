@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-17T18:53:02.648Z",
+  "builtAt": "2026-10-17T22:43:17.202Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,32 +10,32 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1179,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1178,
-    "withOutlet": 1100,
+    "items": 1182,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 1179,
+    "withOutlet": 1103,
     "bySubject": {
-      "scst": 797,
-      "pmshri": 382
+      "scst": 799,
+      "pmshri": 383
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 303
+    "offSubjectDropped": 305
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 578
+      "n": 580
     },
     {
       "key": "use",
       "n": 413
     },
     {
-      "key": "acquittal",
-      "n": 62
+      "key": "dispute",
+      "n": 63
     },
     {
-      "key": "dispute",
+      "key": "acquittal",
       "n": 62
     },
     {
@@ -97,11 +97,11 @@
       "n": 18
     },
     {
-      "key": "SCC Online",
-      "n": 15
+      "key": "Careers360",
+      "n": 16
     },
     {
-      "key": "Careers360",
+      "key": "SCC Online",
       "n": 15
     },
     {
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
+      "kept": 2,
       "offSubject": 7
     },
     {
@@ -318,17 +318,17 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 34
+      "offSubject": 33
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
-      "bing": 0,
-      "kept": 1,
-      "offSubject": 4
+      "google": 50,
+      "bing": 10,
+      "kept": 0,
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 62,
+      "google": 63,
       "bing": 0,
       "kept": 0,
       "offSubject": 24
@@ -356,7 +356,7 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 100,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 41
     },
@@ -376,7 +376,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 46,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 6
     },
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 26,
+      "google": 29,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 33,
+      "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 20
     },
     {
       "id": "shri-general",
@@ -425,8 +425,8 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 46,
-      "bing": 0,
+      "google": 47,
+      "bing": 2,
       "kept": 0,
       "offSubject": 6
     },
@@ -435,7 +435,7 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 69,
+      "google": 70,
       "bing": 1,
       "kept": 0,
       "offSubject": 26
@@ -446,9 +446,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 49,
-      "bing": 0,
+      "bing": 4,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 13
     },
     {
       "id": "shri-mou",
@@ -467,7 +467,7 @@
       "expect": "dispute",
       "google": 31,
       "bing": 3,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 17
     },
     {
@@ -475,8 +475,8 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 54,
-      "bing": 0,
+      "google": 53,
+      "bing": 4,
       "kept": 0,
       "offSubject": 11
     },
@@ -486,7 +486,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 42,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 31
     }
@@ -19711,6 +19711,54 @@
       "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQWG9MXzd4ZzNEWXBEQXkxekozTzJ5b0d2MVFneEFjdk5RcmQzUnVTMms2eEV3cHJoM3dWNFFMWUVPRnFKV1FJZk9zMjRscTRrOEh6UVRfNzRoVnVCUTVOZTVBRU1uT3FMUWYyMjdzNVBKNEh2NTlWZFJlSVZPZ3lCZHgxZDA2YWU4QWZScmV6djlPenM1VXBEYtIBngFBVV95cUxQVmphM0I4NHFvUXZnOHlvd2pFUVd1cFZ4WUlfUUstRl95d1c2N05hRHA3OWgwVFA4QmdqaEpMZmRsV3JST2ltbGs4VzFid3ZjdWxUcmNlNmZyNmd6Sk8yTWM4ZU83NTU4MWY0WHY0amt4VnNIZHRRWkwzam9wZnV1OWZqR0M3dlczLVB4SDVEbVVZN05vVk9Nc1BIM2dxQQ?oc=5",
       "queries": [
         "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "facing sexual harassment charges delhi police books victim under sc st act",
+      "headline": "Facing sexual harassment charges, Delhi Police books victim under SC/ST Act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "DNA India",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxObTlzYVR3VWJ2bF9wUkdYMVBaZW04RHJiSHB1a0pFd0NTSlNsamZhSjFHbW9GVnNfbGpuUG9EVVAtV0xuM0pwUkNUZmM3VG9ERnJRUmhCaVQ5R0tvaEd3WEs3bTB1THRBRzhvZnU1MDI1T1RNcjdNTFFsWEtrMDdjTzU2dkpUVkNqOHdzalhUYS1YdkxFRy1xcXl2Ynl3azNaUGY4WDBYeHBsZzZkQWJtME4zVnFFX3J6Umpn0gHAAUFVX3lxTE81UWM0ZmlJTkgzZGNVTEx5aEtBTXVDRms3c2VJWnEwcFVGSzVCNUV6bmxHZ1QtNUpJeU41cENrV0Z4eVBQMnVQSU9Semw5OFNTT0dPVzNiRG9sZk9BX2ZhU09fMUhXd2JZbWRmSlgydzRiSEkybHdMNEduWklkd0xLMjhoYkFwN0wxdzVUNzctMDVjQm92SXc4V21xVkoxaEVxZGlTbi1pSDNhaU0yMGlrRVZUY0pTX2Z6OTQ2MFFNeA?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "sc st act irrelevant if caste slurs are made privately supreme court",
+      "headline": "SC/ST Act irrelevant if caste slurs are made privately: Supreme Court",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Madhyamam",
+      "published": "2026-08-21",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOOVdTNVJwWWZ0Zm96Sjk0WXRCQkN4MTZuaENIR2gtQzROWDNUWm5wMEZQdnM1eS1aTFI5WWFjV2wyMzJSZnFOekFCWE1YZTlBMm9VMGdBMGlRdWI0enJwY3VBWnNFRVhvbS1hZDlPNjBfc1hSM2c3bHctcEh2aTJRUlZZcWJTNjJXaElOT3ZlMGF4bkNfOTJYUFVNZkt0YUd2V3BtdkVTUWtfQ2Jtd1HSAbMBQVVfeXFMTjBqZERmY0NzUWIyM1ljSzRLX0ZqQ1RKLTRVVERXSm1hek5tc29qZFVON21pekdROEhleEtEQ0I3TmNYOE1DaU51RWtzTWlzQUNBQjVHSUh1Y3BqdmswY3otck83X18tdURjak9OdldULWxaanFsOC1FMERISEFOdVk1NTBLdnBZRVRnWURDNlZlNEFJRVBEVmszZm5TLTVqdU9naUpFc3VwUnh0c01UbUxBRkU?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "ssa stars funds withheld despite kerala agreeing to pm shri v sivankutty",
+      "headline": "SSA, STARS funds withheld despite Kerala agreeing to PM Shri: V Sivankutty",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": "Careers360",
+      "published": "2024-08-07",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPMVQtc0dNZGdyXzFfeXpNbnJKNWhJcl9tbXJpWUEwZTFyeXJ6UmF2ZXM4UWdxUXZxZFVEQUozRGJ4VmRubVE5OGhRVk5pVUdMa2xIOEtfQVgwTng5S000d2JaLTJHcXNSdk9QRS1UM3Z1S3RVRWhqUlZiZHJ0a0ZGZ0l6clhYd2taMmpZWE9TOG8ybWxtN01oTXhNZ1FwUkQweHJva2tnZFdadnp1bFg0aTlkbERXWjU5QjJYN0V1UHhNRE5ZMi1XcVRWZXJFazUwMVlLLWtR0gHbAUFVX3lxTE44TkRXeXJtMEt1TzNFdTRqazBlM2xKUEtSTjU4ZjNkWGNuYVE0Q2tMOHJHZ3RXNlQtSmJlbjZ4ZmZud3R0UHhMVXJIQkM1RXBHMHhFSVJOT21qT2xXZnJiU3E3NDdkMjRxYlRTOFZJMUdQTUEwYVN6cEotdHdaQ21Rb0M5LTczSVJkZHRkWDl1TjZoRE0tTnBUTm04VEJ6clUtUlExQURMX3JMa1hqNVdZbGRXeWUxZ1pGSU5FZnZLMVMtVm9leEFZaFFjWVdnRk9ETHpvV09Pa0VOYw?oc=5",
+      "queries": [
+        "shri-withheld"
       ],
       "indexes": [
         "google"
