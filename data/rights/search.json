@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-17T05:03:08.330Z",
+  "builtAt": "2026-10-17T12:28:02.199Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,33 +10,33 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1168,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 1165,
-    "withOutlet": 1089,
+    "items": 1174,
+    "addedThisRun": 6,
+    "carriedFromEarlierRuns": 1168,
+    "withOutlet": 1095,
     "bySubject": {
-      "scst": 791,
-      "pmshri": 377
+      "scst": 794,
+      "pmshri": 380
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 303
+    "offSubjectDropped": 300
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 573
+      "n": 576
     },
     {
       "key": "use",
-      "n": 409
+      "n": 410
     },
     {
       "key": "acquittal",
-      "n": 61
+      "n": 62
     },
     {
       "key": "dispute",
-      "n": 61
+      "n": 62
     },
     {
       "key": "allegation",
@@ -50,11 +50,11 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 101
+      "n": 102
     },
     {
       "key": "Lawtext",
-      "n": 82
+      "n": 84
     },
     {
       "key": "The Indian Express",
@@ -193,6 +193,10 @@
       "n": 7
     },
     {
+      "key": "The South First",
+      "n": 7
+    },
+    {
       "key": "LawStreet Journal",
       "n": 6
     },
@@ -202,10 +206,6 @@
     },
     {
       "key": "Daily Pioneer",
-      "n": 6
-    },
-    {
-      "key": "The South First",
       "n": 6
     },
     {
@@ -307,8 +307,8 @@
       "expect": "use",
       "google": 100,
       "bing": 5,
-      "kept": 0,
-      "offSubject": 9
+      "kept": 1,
+      "offSubject": 8
     },
     {
       "id": "act-convicted",
@@ -317,18 +317,18 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 32
+      "kept": 0,
+      "offSubject": 31
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 50,
-      "bing": 10,
+      "google": 51,
+      "bing": 9,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 64,
+      "google": 62,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 25
+      "kept": 1,
+      "offSubject": 24
     },
     {
       "id": "act-acquittal",
@@ -357,8 +357,8 @@
       "expect": "acquittal",
       "google": 100,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 41
+      "kept": 1,
+      "offSubject": 40
     },
     {
       "id": "act-hostile",
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 44,
+      "google": 45,
       "bing": 2,
       "kept": 0,
       "offSubject": 6
@@ -385,9 +385,9 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 26,
+      "google": 25,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 3
     },
     {
@@ -416,26 +416,26 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 12,
-      "kept": 1,
-      "offSubject": 5
+      "bing": 11,
+      "kept": 0,
+      "offSubject": 4
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 45,
+      "google": 46,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 5
+      "kept": 1,
+      "offSubject": 6
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 69,
+      "google": 70,
       "bing": 1,
       "kept": 0,
       "offSubject": 26
@@ -465,9 +465,9 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 30,
+      "google": 31,
       "bing": 3,
-      "kept": 0,
+      "kept": 2,
       "offSubject": 16
     },
     {
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 53,
+      "google": 54,
       "bing": 4,
       "kept": 0,
       "offSubject": 11
@@ -7621,7 +7621,8 @@
       "published": "2025-03-03",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE95T250NUFvdkNOTXRUQU5YUng1OXYwajhEVUNfSFJZN0k5cjlPU1kyV21IY01SbXdYbjFvbkdFb1hWd3p2c09Ed2R4TENScWRaQ2NVcFBKRC1aa1BpN1BsMzhQNW1rUnYwa3pYblBmYThNMFBFLUE?oc=5",
       "queries": [
-        "act-fabricated"
+        "act-fabricated",
+        "act-false"
       ],
       "indexes": [
         "google"
@@ -11554,7 +11555,8 @@
       "published": "2026-06-08",
       "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNM2RrY3JFT1JTSTY4a3BZTC1VV2ViUFBHZm5qejVwbkFkT2o1TG5uMExRM2lsWFNJZUg5UFlfbFVqUFR2alU2bk5QSVdpNkpWRjRwQkZqY2VUZ1dmYUZYbW1FMHlfYy1USHhEUTBtUlphVlA1UGhWQjRNZFNvZWFtN3RCWGtka1ZVX1NGQ3RnN29WS0t3SWdadFBXM1gxQTd1R2dfOXN30gGoAUFVX3lxTE5LVjgzZEQzeklVamZMb2swSWRfZHVNMkRodkRJeUhYb0tRWnF6YkRkaWZYSWJFT3JFUk1Fb3ViNzlQNHVsTTNRQm9MakFXVVdTNWlSWkpuRWdNVkZ2YUhRQ3I1MVpyNlIySzNGZ194c0hHUkdyNC02YUxCbnJpTGxUYWE3TEJiekdHWDlUX3owWFRDSVBRbU1WazZuU3JidWdydWZscGhlaA?oc=5",
       "queries": [
-        "shri-nep"
+        "shri-nep",
+        "shri-funds"
       ],
       "indexes": [
         "google"
@@ -19533,6 +19535,102 @@
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOUkt3cVk5eUZRTldyaUNMZXBKSUR6Y0tOSGw2ZUl3ZF9PUDN3NjFSeVJSMmpGSDZ2bnhEQVBuNmM2a1M1S3U2WDFEVFgyaUxZVG14UENPVFM4amppZHotc2dSQTF2bkdsbktoRW1xeTZWX2FRVFZEMmduOFR4bUtZdlFqaHd5VVBsaVFyb2JFZlRlWllRaHdtX21TUFpTQ3gtLW52bzVPSm9QMjg?oc=5",
       "queries": [
         "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "supreme court quashes criminal proceedings in sc st act case due to lack of caste based al",
+      "headline": "Supreme Court Quashes Criminal Proceedings in SC/ST Act Case Due to Lack of Caste-Based Allegations. Allegations of caste-based discrimination were found insufficient to justify criminal prosecution under the Scheduled Caste and Scheduled Tribes (Prev",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Lawtext",
+      "published": "2026-10-16",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5WdWxwbG1tWGMtRXJ4OVI5R1h4NEVaaHY4ZUtsMWR1dTRkZEdQbVpmamRnUDVzd0F4bUN0YmQ5V2dHd3Q4cGozYkZDWWNzdzZLSVRxRzVvUFJ5cnNtQ2ljbWZId0xSQkdz?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "officials of essar oil face charges under sc st act",
+      "headline": "Officials of Essar Oil face charges under SC/ST act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2016-07-12",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQQ0Q2N1FsWXZWX2ZHMVRORGNQT281Sks4aUFXdy1hTU9ad2FhX0JPU1VxZjh6NHh4enZBb185anE0dFhDVGdxR3Z0SGRxdHQ0SnU5cWI3dGVka3YwZkpudXZwb0ktaUJuUENubTVIVVpSOVFiY1Q4RDJmUXROXzN4aTl3M2tfZmxSQmF4X2lrcjN3TDY2Y3FJZ2VXV3dVYWs1NElhYXFGNXRVUDNaRHV5eUpQRk5qbGNacnJnRnhxb0hsd9IBxwFBVV95cUxOa1F0VGgyYllpLURNRU5XTjJDOUJKMDljczBmVVR5YjU0NGYyQ1dadUtOdHlrc0tmb2FvU3o0aWhyV2lGaFRmSmJMbUVvTEtXM2otYzVuUEE2S3lkUDR3WU5qTnJSa2pabE02Q3loM2E3XzBSYUN4S2NzVFVqUlZNNHY4ckFTMmNldjNLam00ZmxQS1o3RmZMbDVpZk4zLUhFT3laT0R1Qm9RRDg1R1BzRGtJUHFxbnhIWG9mTklrQUlnNURVVFow?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "bombay high court upholds acquittal of accused in rape and atrocities case due to inconsis",
+      "headline": "Bombay High Court Upholds Acquittal of Accused in Rape and Atrocities Case Due to Inconsistent Evidence and Lack of Corroboration. Prosecution Failed to Prove Rape Under Section 376 IPC and Caste-Based Insult Under SC/ST Act Beyond Reasonable D",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-10-16",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE55eUU2TGNYYi1LXzZSek1kekNaSGJkLW0tUmcwT2pkb05QenVQdU5ycjF5QlVrS2FaM19uN1MzR0dMRllVbVNzbE56U2NzS2Z3RGFFZEZvTE5raWwzSkh5N3JqazdBZw?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "pm shri schools launched in up for educational infrastructure boost",
+      "headline": "PM SHRI schools launched in UP for educational infrastructure boost",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "DD News",
+      "published": "2024-01-05",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPTjBaYUdVQ1NCQjFlZEM1UjFqWk8zXzg2SUY3YmRpQjZMU19Nc0thUDB5cC1aZUN4UHp6eFJ4dVVSdmZidm5TVDNzX2wwbVN0cGk2TEE3Z1Q3SHlORXo3Q3BkNTdWWnBwUk9WT1l5ZzIxN0FwdFJ6VmN0QTExczNCd0hBX3NMRGNLTS1UUkhybU5MMFFqRUdkUA?oc=5",
+      "queries": [
+        "shri-sanctioned"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "fissures in left front as centre tightens purse strings for pm shri in kerala",
+      "headline": "Fissures in Left Front as Centre tightens purse strings for PM SHRI in Kerala",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The South First",
+      "published": "2025-05-01",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxONHdISklFV2g4RWNZTDJBM3FqOXd4SklKelpEaVdFSUVpMkttOEoxa2tSWTl3Wm5fcEJCTDhVeGduT0lnODRacFJqWnpibU9zeDU1MmNVTTMxalJXUXkxUWRZS0FVTDFWcVl5QjNCLUVkZjhxU1B6VGgtazB4a1pMR3JQWWpIczl2WUhkdHRXVVltZUtkdXBwVmIyOVVzRlVlUDY2VkpDT1BqOElHVEplejRB?oc=5",
+      "queries": [
+        "shri-withheld"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "kerala govt to pursue legal route to secure rs 1 500 crore withheld by centre over pm shri",
+      "headline": "Kerala govt to pursue legal route to secure Rs 1,500 crore withheld by Centre over PM SHRI issue",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": "English Varthabharati",
+      "published": "2025-05-13",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOUVZ4NHlmMUI2Mkk3U0RDWEpVS20yNlhGSy1CWFdMNzZtMllKdEZENXB6UjVYaEY3WVhZUWdxbGJOZVowTnkydG1FbFBaV2xtdW5qSnF5ZHZjNmJFU0RfTmhmNHR5OENoWU9sX3duZGw4Yk8taTBUZGNreDJQcy15Mzl2NTQ1d1dVVHVPeG9nUU1ZUEU4WWpGOVpnYWhZd3NTTmw3dW9rRHM0VERZakRWVk84d3pVbTVvenZGQ0J0c2Q2akdSQVJldF9jcEhnSWPSAdQBQVVfeXFMUDRHWVBIQnlRWkY0eVpfOGkxUVJza1lweE1mbHNlb2t1QmJHNG1RVzVLOEg1Q3JMc0hWZm93TmJVQ1dsbDQwLXM5bTNZdEZadTBLLUNSZHdua0hxbENhaDdMelg0dlM3OUN0M2lRbVY0Y1BvQW84Ym5wLXdkYXBaeUdTVndWUE9hekJBS09GaXJlR2JhWjlNaHdNUC1FbHFtbzNtYkxQN282ckRqc21hV2VuVlFrWHJtWWJ3N1NNd2lvd29IZmlwN1E0RGdTaWxxQzI5Z0E?oc=5",
+      "queries": [
+        "shri-withheld"
       ],
       "indexes": [
         "google"
