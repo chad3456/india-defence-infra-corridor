@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-16T23:04:24.266Z",
+  "builtAt": "2026-10-17T05:03:08.330Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1165,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1163,
-    "withOutlet": 1086,
+    "items": 1168,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 1165,
+    "withOutlet": 1089,
     "bySubject": {
-      "scst": 789,
-      "pmshri": 376
+      "scst": 791,
+      "pmshri": 377
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 292
+    "offSubjectDropped": 303
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 571
+      "n": 573
     },
     {
       "key": "use",
-      "n": 408
+      "n": 409
     },
     {
       "key": "acquittal",
@@ -86,7 +86,7 @@
     },
     {
       "key": "ThePrint",
-      "n": 20
+      "n": 21
     },
     {
       "key": "opindia.com",
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 100,
       "bing": 5,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 9
     },
     {
@@ -317,15 +317,15 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 33
+      "kept": 1,
+      "offSubject": 32
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
+      "google": 50,
       "bing": 10,
       "kept": 0,
       "offSubject": 7
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 65,
+      "google": 64,
       "bing": 0,
       "kept": 0,
-      "offSubject": 26
+      "offSubject": 25
     },
     {
       "id": "act-acquittal",
@@ -358,7 +358,7 @@
       "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 42
+      "offSubject": 41
     },
     {
       "id": "act-hostile",
@@ -387,7 +387,7 @@
       "expect": "allegation",
       "google": 26,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 3
     },
     {
@@ -398,17 +398,17 @@
       "google": 51,
       "bing": 1,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 20
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 10,
+      "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 20
     },
     {
       "id": "shri-general",
@@ -425,8 +425,8 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 46,
-      "bing": 2,
+      "google": 45,
+      "bing": 1,
       "kept": 0,
       "offSubject": 5
     },
@@ -466,16 +466,16 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 30,
-      "bing": 4,
+      "bing": 3,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 16
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 54,
+      "google": 53,
       "bing": 4,
       "kept": 0,
       "offSubject": 11
@@ -488,7 +488,7 @@
       "google": 42,
       "bing": 1,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 30
     }
   ],
   "items": [
@@ -19490,6 +19490,54 @@
         "bing"
       ],
       "firstSeen": "2026-10-16"
+    },
+    {
+      "id": "up court sentences five to life in 2001 dalit murder case",
+      "headline": "UP Court Sentences Five to Life in 2001 Dalit Murder Case",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Rediff",
+      "published": "2026-03-27",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQbVFlUEtkMFB4M3pnVzBDc2VTcl9zSU01ejM5TFowdG4tOUNGd3JzV0JfdExLRGttcDc3RDZiTE56VlJfdlVYZXdwLXJjLTY2c0pHOWtrb1NIVjdzYXpkcm5HQTBhTHJSQkw2WmZLdTRxOVljcTJZdTBMRkRwdDQ4MXZ2R0JXOFNaQkpiZl9iZETSAZMBQVVfeXFMTWxHUnhtcmFUbHdvTmNRRVZxZWlvd1Q5RzNUYktWbmxVZG1ITk8yX1NkcjY1azlwZW1GYlk1Mzc5ZDM2ZERMZmpMTi1EMVRSajVRRmItaWxvN0tRU3BCelJRMEItTTlzUm9rNDFfY0ZPek1vTmh0RzVtZmVZWU9WbVU2UHFWQ2I4WEswaWVVR0JLa2Q4?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "govt moves to control damage asks top court to recall sc st act order",
+      "headline": "Govt moves to control damage, asks top court to recall SC/ST Act order",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "ThePrint",
+      "published": "2018-04-12",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQLXBQcjdVLW52MXc4NjdvdmhPMXl4UVBILWN6UHlicjVWWWRMcUhSQXhvdnlIYjBjcFh4V2ZvLVpmYXpPOWxwOEhoRUJ0LUQtUkhfbzJmYTFYekZXMEVLSHdlblN2Qkd5RFlFRTZzcENPT0Zzek9RRXNCR1Zqd1Vsajh3LUh6eks3ZThLZ0E4RXhPS3UtNXB3UElpZFJ5UzkxMVdKdHZrVFlpeXNWUEFfbXhVRdIBuAFBVV95cUxPZV9UY2t5dnZaM0tpVjdfVWxQX29UVE1WTmNraDJqNjRXTEtEejJKUHlrTktEMFVKRkpZakJXU0RMWkxNcVJlbldESi1RZFR4LWdUVzVoNnZKNm5ObGJ1RFJicndjTW5ubnRDdDdjTDdTaVVVdWtuWi1GajRNVkxZY09LWTVKRDBZRlBDeG9fQkM4bnR5eEl0TmgwMnh6UkZOakhUZlFwaFdXanI3QUgyQ0swQWpWWF9v?oc=5",
+      "queries": [
+        "act-dilution"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "baseless satheesan denies pm shri talks with rahul gandhi",
+      "headline": "‘Baseless’: Satheesan denies PM SHRI talks with Rahul Gandhi",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Awaz The Voice",
+      "published": "2026-09-09",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOUkt3cVk5eUZRTldyaUNMZXBKSUR6Y0tOSGw2ZUl3ZF9PUDN3NjFSeVJSMmpGSDZ2bnhEQVBuNmM2a1M1S3U2WDFEVFgyaUxZVG14UENPVFM4amppZHotc2dSQTF2bkdsbktoRW1xeTZWX2FRVFZEMmduOFR4bUtZdlFqaHd5VVBsaVFyb2JFZlRlWllRaHdtX21TUFpTQ3gtLW52bzVPSm9QMjg?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
     }
   ]
 }
