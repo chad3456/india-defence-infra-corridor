@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-17T12:28:02.199Z",
+  "builtAt": "2026-10-17T15:59:12.391Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1174,
-    "addedThisRun": 6,
-    "carriedFromEarlierRuns": 1168,
-    "withOutlet": 1095,
+    "items": 1178,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 1174,
+    "withOutlet": 1099,
     "bySubject": {
-      "scst": 794,
-      "pmshri": 380
+      "scst": 796,
+      "pmshri": 382
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 300
+    "offSubjectDropped": 305
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 576
+      "n": 578
     },
     {
       "key": "use",
-      "n": 410
+      "n": 412
     },
     {
       "key": "acquittal",
@@ -189,6 +189,10 @@
       "n": 8
     },
     {
+      "key": "Daily Pioneer",
+      "n": 7
+    },
+    {
       "key": "Bhaskar English",
       "n": 7
     },
@@ -202,10 +206,6 @@
     },
     {
       "key": "organiser.org",
-      "n": 6
-    },
-    {
-      "key": "Daily Pioneer",
       "n": 6
     },
     {
@@ -253,6 +253,10 @@
       "n": 5
     },
     {
+      "key": "Moneycontrol.com",
+      "n": 5
+    },
+    {
       "key": "Law Trend",
       "n": 4
     },
@@ -282,10 +286,6 @@
     },
     {
       "key": "The Caravan",
-      "n": 4
-    },
-    {
-      "key": "Kashmir Life",
       "n": 4
     }
   ],
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 31
+      "offSubject": 34
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 9,
+      "bing": 10,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -337,7 +337,7 @@
       "expect": "use",
       "google": 49,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 15
     },
     {
@@ -347,7 +347,7 @@
       "expect": "use",
       "google": 62,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 24
     },
     {
@@ -357,7 +357,7 @@
       "expect": "acquittal",
       "google": 100,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 40
     },
     {
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 33,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 21
     },
     {
       "id": "shri-general",
@@ -416,9 +416,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 11,
-      "kept": 0,
-      "offSubject": 4
+      "bing": 12,
+      "kept": 1,
+      "offSubject": 5
     },
     {
       "id": "shri-sanctioned",
@@ -426,8 +426,8 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 46,
-      "bing": 1,
-      "kept": 1,
+      "bing": 2,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -435,9 +435,9 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 70,
+      "google": 71,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 26
     },
     {
@@ -465,10 +465,10 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 31,
+      "google": 30,
       "bing": 3,
-      "kept": 2,
-      "offSubject": 16
+      "kept": 0,
+      "offSubject": 17
     },
     {
       "id": "shri-nep",
@@ -19631,6 +19631,70 @@
       "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOUVZ4NHlmMUI2Mkk3U0RDWEpVS20yNlhGSy1CWFdMNzZtMllKdEZENXB6UjVYaEY3WVhZUWdxbGJOZVowTnkydG1FbFBaV2xtdW5qSnF5ZHZjNmJFU0RfTmhmNHR5OENoWU9sX3duZGw4Yk8taTBUZGNreDJQcy15Mzl2NTQ1d1dVVHVPeG9nUU1ZUEU4WWpGOVpnYWhZd3NTTmw3dW9rRHM0VERZakRWVk84d3pVbTVvenZGQ0J0c2Q2akdSQVJldF9jcEhnSWPSAdQBQVVfeXFMUDRHWVBIQnlRWkY0eVpfOGkxUVJza1lweE1mbHNlb2t1QmJHNG1RVzVLOEg1Q3JMc0hWZm93TmJVQ1dsbDQwLXM5bTNZdEZadTBLLUNSZHdua0hxbENhaDdMelg0dlM3OUN0M2lRbVY0Y1BvQW84Ym5wLXdkYXBaeUdTVndWUE9hekJBS09GaXJlR2JhWjlNaHdNUC1FbHFtbzNtYkxQN282ckRqc21hV2VuVlFrWHJtWWJ3N1NNd2lvd29IZmlwN1E0RGdTaWxxQzI5Z0E?oc=5",
       "queries": [
         "shri-withheld"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "sc directs no coercive action against journalist in sc st act case weighs panel on assault",
+      "headline": "SC directs no coercive action against journalist in SC/ST Act case, weighs panel on assault claims",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Moneycontrol.com",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNbDlncTl2b0VORExueW1lVGdfYTZmeFMwa2dWcWtNcFphbDMzSHRwWjJ0cUpiOUhfNkZiSUxVT21HYTdmaEVqVWVTZFRoQlBPYVg4MjA5VS1idUhGemswOXNaa1llODk0TTdiMDB1UTg0QUQ1Zkx3SUJnalRoNU9mcVFJUUJpNnBOUFk2RTlNRnFoRTlWdzA0Ry0zQmlnVXRqeFdrc1BVYVppSkZab1RNN0t2WmQwbVV6MnhxSmlqclB4ZEpIMXUyTE5jUXPSAdIBQVVfeXFMT1hVbnpKY29nWFNaNUNVZWZEd3Y3U2JobVo0ZDN2RVRNWllQcDlIWENyWTBZbW9fdmZ1TGxYZ0llWk5CaWhJdXdVdDliRTNjNUlFeGJrQ0Y3LUNRNU9ncXVlaGJ2ZUJXTDJVMjZSR29QMk9SUXVtMnVBek5EZDhUTjFJMGdxWmRYMDhBeVJmTGl4bHhGaDhGYnhzWGUwMlNpQnhCMHpKWXQ5elRCbXowQlo3Wk1XRFdfN1pkY1RVYS1uZndXUklHNVRUcGlMTmxwNk1R?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "crux rajiv gandhi enacted sc st act why does ajeet bharti call it modi act",
+      "headline": "Crux: Rajiv Gandhi enacted SC/ST Act. Why does Ajeet Bharti call it ‘Modi Act’?",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "NewsDrum",
+      "published": "2026-09-12",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQYXd5aGg2VVRyYmhyd1lUSHR3eVdZVDdhZVdpWV9JVVhhMnRMNFQxN0d3X2VJaU5pUFBHYU9mcnZLdDRkTVNtaVdJd2NfLXNTRmQwcGZ6dDRCS2NpekQzSEdYQjEwamJJdjFScUFTYmMwdnhTNkZnOW9pSkpaa0I3NS1oTEVIVk45QTFJanljU1FwN1N4dzZMdDd3NGNWUFEwWEs4cXVqRUw1Z9IBqgFBVV95cUxQYXd5aGg2VVRyYmhyd1lUSHR3eVdZVDdhZVdpWV9JVVhhMnRMNFQxN0d3X2VJaU5pUFBHYU9mcnZLdDRkTVNtaVdJd2NfLXNTRmQwcGZ6dDRCS2NpekQzSEdYQjEwamJJdjFScUFTYmMwdnhTNkZnOW9pSkpaa0I3NS1oTEVIVk45QTFJanljU1FwN1N4dzZMdDd3NGNWUFEwWEs4cXVqRUw1Zw?oc=5",
+      "queries": [
+        "act-compensation"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "west bengal government signs mou to implement pm shri schools scheme",
+      "headline": "West Bengal Government signs MoU to implement PM SHRI Schools scheme",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Daily Pioneer",
+      "published": "2026-05-16",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOY3ZCS3p6d1g3Q1JvNkIwTWdlOTdaZVJ0WVhJcW4zeW1reFE2MVBCbzhrdUVaR2hHeGF3YWU1STRrZGVYSXF4bE4yWDBsRlRCMnI5VVQ2LWNUeWJkVlc1aXdtMHFvX1BTTE1XcHNFRHAzM1lac0Q4dXRkRmRkZEV5VG81NXRIdVdEZHNwRjlmNmIwcEV3b2VfWnF4TklGNVpy0gGuAUFVX3lxTFBEUVMybVBvNS1BSWpRZGtfbUduTnp2Z1lYNUJUS3ZnSWc4UHRWbFFMNmRrcDdGSHNBYUk3RTliNDJKMXV6VUNkQ3dqS1pBMmRVYm1ZdDhzbnRTLXZZd0htb203aHZmVkdvUllyVU44NEljbjlleC1KUDF5REJpSGxJN083RlJNczNOd1BiZkYtSFZPbHlzM0p3Y0RwSmR3NUstZXpvVGE2ZGF0Mjh1Zw?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "cm majhi grants rs 1 cr for cuttack s kamalakanta high school pledges modern upgrades with",
+      "headline": "CM Majhi Grants Rs 1 Cr for Cuttack's Kamalakanta High School, Pledges Modern Upgrades With PM-SHRI",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "Pragativadi",
+      "published": "2025-08-22",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOZ3RnWHBPMVRSZWNRTGtmN1o2Q0l3aHExUlJrTjdNbWxiMzdqZVVLMHh1ZzVRN3VsOTBSZWYyZ2tjbEVxY29uQk9IQXpXSXhublNrbkRqaHRqMk1vUkloSGtaN3NJVmZuREpCcXViM29Qa3VRX0xEcmxQREh6UHdOM0dDWjlicS1ES015QXljc3UzNTF3S0JsQzRlWHlFU09rWTdXeDV2d3hXTHlEZVBERk5hczRBbzBVc05US3hjRQ?oc=5",
+      "queries": [
+        "shri-funds"
       ],
       "indexes": [
         "google"
