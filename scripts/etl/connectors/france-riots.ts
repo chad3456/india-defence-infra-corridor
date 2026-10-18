@@ -209,8 +209,16 @@ export async function run(): Promise<void> {
   // ── X ──
   await searchX(reg, status);
 
+  // ── The site's own live route: is what readers see answering? ──
+  const site = process.env.SITE_URL ?? "https://india-defence-infra-corridor.vercel.app";
+  const live = await getJson<{ headlines?: unknown[]; videos?: unknown[]; status?: Array<{ ok: boolean }> }>(`${site}/api/france-riots`, { timeoutMs: 45_000, retries: 1, cacheMs: 0 });
+  const answering = live.ok ? (live.data?.status ?? []).filter((x) => x.ok).length : 0;
+  status.push({ id: "site-route", label: `This site's live feed (${answering} of ${live.data?.status?.length ?? 0} sources answering, ${live.data?.videos?.length ?? 0} videos)`, ok: live.ok && (live.data?.headlines?.length ?? 0) > 0, count: live.data?.headlines?.length ?? 0, ...(live.ok ? {} : { error: live.error }) });
+
   reg.status = status;
-  const changed = JSON.stringify({ ...previous, updatedAt: "", status: [] }) !== JSON.stringify({ ...reg, updatedAt: "", status: [] });
+  // A change in the sources' health is worth a commit too: the page shows it.
+  const health = (st: SourceStatus[] | undefined) => JSON.stringify((st ?? []).map((x) => [x.id, x.ok]));
+  const changed = JSON.stringify({ ...previous, updatedAt: "", status: [] }) !== JSON.stringify({ ...reg, updatedAt: "", status: [] }) || health(previous?.status) !== health(status);
   if (previous && !changed) { console.log("no change; nothing written"); return; }
   reg.updatedAt = now();
   await mkdir(join(process.cwd(), "data", "france-riots"), { recursive: true });
