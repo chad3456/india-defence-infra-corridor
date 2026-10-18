@@ -12,7 +12,7 @@
  * fetched from the repository itself so it is never older than the job's last
  * run, not the last deployment's: GDELT's article index, coverage pulse and
  * places; officials' figures quoted from articles; the Interior Ministry's
- * press page; and X post ids.
+ * places the headlines name; and X post ids.
  *
  * A source that does not answer is reported as unavailable. Nothing here is
  * stored, nothing is verified, and nothing becomes a number on the site.
@@ -22,7 +22,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { FRANCE_RIOTS } from "@/lib/sources";
 import {
-  parseGoogleNews, parseYouTube, parseGovUkAdvice, channelIdFromPage, isAboutRiots, inWindow, mergeBy, headlineKey,
+  parseGoogleNews, parseYouTube, parseGovUkAdvice, channelIdFromPage, isAboutRiots, isOfficialRelevant, inWindow, mergeBy, headlineKey,
   type FranceLivePayload, type FranceRegister, type Headline, type SourceStatus, type Video, type Advisory,
 } from "@/lib/france-riots-shared";
 
@@ -51,13 +51,14 @@ async function news(q: string, lang: "fr" | "en", kind: Headline["kind"]): Promi
   const r = await get(GN(q, lang), 60);
   if (!r) return { items: [], ok: false };
   const items = parseGoogleNews(await r.text(), lang, kind, q);
-  return { items: kind === "official" ? items : items.filter((h) => isAboutRiots(h.title)), ok: true };
+  return { items: items.filter((h) => (kind === "official" ? isOfficialRelevant(h.title) : isAboutRiots(h.title))), ok: true };
 }
 
-async function channel(handle: string, name: string, known: string | null | undefined): Promise<{ videos: Video[]; ok: boolean; error?: string }> {
+async function channel(handles: readonly string[], name: string, known: string | null | undefined): Promise<{ videos: Video[]; ok: boolean; error?: string }> {
   let id = known ?? null;
+  const handle = handles[0]!;
   if (!id) {
-    // Not yet resolved by the scheduled job: read the channel page once a day.
+    // Not yet resolved by the scheduled job: read the first handle's channel page, once a day.
     const page = await get(`https://www.youtube.com/@${handle}`, 86_400, 8_000);
     id = page ? channelIdFromPage(await page.text()) : null;
     if (!id) return { videos: [], ok: false, error: "channel id not resolved" };
@@ -83,7 +84,7 @@ export async function GET(): Promise<NextResponse> {
   ];
   const [newsRes, ytRes, advRes] = await Promise.all([
     Promise.all(qs.map(([q, l, k]) => news(q, l, k))),
-    Promise.all(FRANCE_RIOTS.youtube.map((c) => channel(c.handle, c.name, reg?.youtubeChannels?.[c.handle]?.id))),
+    Promise.all(FRANCE_RIOTS.youtube.map((c) => channel(c.handles, c.name, reg?.youtubeChannels?.[c.handles[0]]?.id))),
     Promise.all(FRANCE_RIOTS.advisories.map(advisory)),
   ]);
 

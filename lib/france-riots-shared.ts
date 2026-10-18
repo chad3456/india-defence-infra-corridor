@@ -26,7 +26,6 @@ export interface PulsePoint { t: string; v: number }
 export interface Place { name: string; lat: number; lon: number; count: number }
 export type StatementKind = "arrests" | "injured" | "deaths" | "protesters" | "damage" | "other";
 export interface Statement { quote: string; numbers: string[]; kind: StatementKind; who: string | null; outlet: string; url: string; seen: string | null; lang: string }
-export interface OfficialItem { source: string; title: string; url: string; date: string | null; relevant: boolean }
 export interface Advisory { id: string; name: string; page: string; updatedAt: string | null; change: string | null; excerpt: string | null }
 export interface XPost { id: string; handle: string; createdAt: string; video: boolean }
 /** Metropolitan France as one SVG path, with the projection that drew it (lib/france-outline.ts). */
@@ -42,7 +41,6 @@ export interface FranceRegister {
   pulse: PulsePoint[];
   places: Place[];
   statements: Statement[];
-  official: OfficialItem[];
   advisories: Advisory[];
   readUrls: string[];
   x: { active: boolean; reason?: string; day: string; readsToday: number; budgetPerDay: number; costUsdToday: number; lastAt?: string; posts: XPost[] };
@@ -67,6 +65,16 @@ const PLACE = /france|français|française|french|paris|lyon|marseille|bordeaux|
 /** A headline, title or video belongs if it names unrest and places it in France. */
 export function isAboutRiots(text: string): boolean {
   return TOPIC.test(text) && PLACE.test(text);
+}
+
+/**
+ * A government-site item belongs if it concerns demonstrations or public order:
+ * the search restricted to government sites also returns job offers, search
+ * pages and everything else those sites publish.
+ */
+const OFFICIAL = /manifest|rassemblement|émeut|emeut|violences urbaines|ordre public|couvre-feu|casseur|black ?bloc|dégradations? (?:urbaines|de biens publics)|protest|riot|gilets jaunes|\bGJ\b|blocages?\b|bloquons/i;
+export function isOfficialRelevant(title: string): boolean {
+  return OFFICIAL.test(title) && !/manifestations? d.int[ée]r[êe]t/i.test(title) && !/^(résultats de recherche|untitled|offres d.emploi)/i.test(title.trim());
 }
 
 /** Within the story's window. Undated items are kept: absence of a date is not evidence of age. */
@@ -97,12 +105,22 @@ function unescape(s: string): string {
 const tag = (xml: string, name: string) => { const m = new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name}>`, "i").exec(xml); return m ? unescape(m[1]!.replace(/<[^>]+>/g, "")) : null; };
 const iso = (raw: string | null) => { if (!raw) return null; const t = Date.parse(raw); return Number.isFinite(t) ? new Date(t).toISOString() : null; };
 
+/**
+ * Text that was UTF-8 read as Latin-1 somewhere upstream ("ArrÃªtÃ©"), put
+ * back. Left alone unless every character fits in a byte and the bytes decode.
+ */
+export function fixMojibake(t: string): string {
+  if (!/Ã[\u0080-\u00bf]/.test(t) || [...t].some((c) => c.charCodeAt(0) > 255)) return t;
+  try { return new TextDecoder("utf-8", { fatal: true }).decode(Uint8Array.from([...t].map((c) => c.charCodeAt(0)))); } catch { return t; }
+}
+
 /** Google News RSS. Titles end " - Outlet"; the <source> element names the outlet too. */
 export function parseGoogleNews(xml: string, lang: "fr" | "en", kind: Headline["kind"], query: string): Headline[] {
   return [...xml.matchAll(/<item[\s>][\s\S]*?<\/item>/gi)].flatMap((m) => {
     const b = m[0];
-    const raw = tag(b, "title"), url = tag(b, "link");
-    if (!raw || !url) return [];
+    const t0 = tag(b, "title"), url = tag(b, "link");
+    if (!t0 || !url) return [];
+    const raw = fixMojibake(t0);
     const source = tag(b, "source");
     const i = raw.lastIndexOf(" - ");
     const title = i > 10 ? raw.slice(0, i).trim() : raw;
@@ -156,23 +174,41 @@ export function parseGdeltTimeline(body: unknown): PulsePoint[] {
   return [...byHour].map(([t, v]) => ({ t, v })).sort((a, b) => a.t.localeCompare(b.t));
 }
 
+/**
+ * French cities, with their coordinates, for counting which places the
+ * headlines name. Matched case-sensitively as whole words, so "Nice" the city
+ * is not "nice" the adjective and "Tours" is not "tours".
+ */
+export const CITIES: Array<{ name: string; lat: number; lon: number; alt?: string[] }> = [
+  { name: "Paris", lat: 48.8566, lon: 2.3522 }, { name: "Marseille", lat: 43.2965, lon: 5.3698 }, { name: "Lyon", lat: 45.764, lon: 4.8357 },
+  { name: "Toulouse", lat: 43.6047, lon: 1.4442 }, { name: "Nice", lat: 43.7102, lon: 7.262 }, { name: "Nantes", lat: 47.2184, lon: -1.5536 },
+  { name: "Montpellier", lat: 43.6108, lon: 3.8767 }, { name: "Strasbourg", lat: 48.5734, lon: 7.7521 }, { name: "Bordeaux", lat: 44.8378, lon: -0.5792 },
+  { name: "Lille", lat: 50.6292, lon: 3.0573 }, { name: "Rennes", lat: 48.1173, lon: -1.6778 }, { name: "Reims", lat: 49.2583, lon: 4.0317 },
+  { name: "Toulon", lat: 43.1242, lon: 5.928 }, { name: "Saint-Étienne", lat: 45.4397, lon: 4.3872, alt: ["Saint-Etienne"] }, { name: "Le Havre", lat: 49.4944, lon: 0.1079 },
+  { name: "Grenoble", lat: 45.1885, lon: 5.7245 }, { name: "Dijon", lat: 47.322, lon: 5.0415 }, { name: "Angers", lat: 47.4784, lon: -0.5632 },
+  { name: "Nîmes", lat: 43.8367, lon: 4.3601, alt: ["Nimes"] }, { name: "Clermont-Ferrand", lat: 45.7772, lon: 3.087 }, { name: "Limoges", lat: 45.8336, lon: 1.2611 },
+  { name: "Tours", lat: 47.3941, lon: 0.6848 }, { name: "Amiens", lat: 49.8941, lon: 2.2958 }, { name: "Metz", lat: 49.1193, lon: 6.1757 },
+  { name: "Besançon", lat: 47.2378, lon: 6.0241, alt: ["Besancon"] }, { name: "Perpignan", lat: 42.6887, lon: 2.8948 }, { name: "Orléans", lat: 47.903, lon: 1.9093, alt: ["Orleans"] },
+  { name: "Rouen", lat: 49.4432, lon: 1.0999 }, { name: "Mulhouse", lat: 47.7508, lon: 7.3359 }, { name: "Caen", lat: 49.1829, lon: -0.3707 },
+  { name: "Nancy", lat: 48.6921, lon: 6.1844 }, { name: "Avignon", lat: 43.9493, lon: 4.8055 }, { name: "Poitiers", lat: 46.5802, lon: 0.3404 },
+  { name: "Brest", lat: 48.3904, lon: -4.4861 }, { name: "Ajaccio", lat: 41.9192, lon: 8.7386 }, { name: "Bastia", lat: 42.697, lon: 9.45 },
+  { name: "Pau", lat: 43.2951, lon: -0.3708 }, { name: "La Rochelle", lat: 46.1603, lon: -1.1511 }, { name: "Nanterre", lat: 48.8924, lon: 2.2071 },
+  { name: "Saint-Denis", lat: 48.9362, lon: 2.3574 }, { name: "Créteil", lat: 48.7904, lon: 2.4556, alt: ["Creteil"] }, { name: "Bobigny", lat: 48.9077, lon: 2.4396 },
+  { name: "Argenteuil", lat: 48.9472, lon: 2.2467 }, { name: "Villeurbanne", lat: 45.7667, lon: 4.88 }, { name: "Roubaix", lat: 50.6942, lon: 3.1746 },
+  { name: "Tourcoing", lat: 50.7239, lon: 3.1612 }, { name: "Valence", lat: 44.9334, lon: 4.8924 }, { name: "Chambéry", lat: 45.5646, lon: 5.9178, alt: ["Chambery"] },
+  { name: "Annecy", lat: 45.8992, lon: 6.1294 }, { name: "Lorient", lat: 47.7483, lon: -3.37 }, { name: "Quimper", lat: 47.996, lon: -4.102 },
+  { name: "Bayonne", lat: 43.4929, lon: -1.4748 }, { name: "Calais", lat: 50.9513, lon: 1.8587 }, { name: "Dunkerque", lat: 51.0343, lon: 2.3768, alt: ["Dunkirk"] },
+];
+
+/** How many headlines name each city: where the reporting is about, not where the most happened. */
+export function placesFromHeadlines(titles: string[]): Place[] {
+  const res = CITIES.map((c) => ({ c, re: new RegExp(`(?<![\\p{L}-])(?:${[c.name, ...(c.alt ?? [])].join("|")})(?![\\p{L}-])`, "u") }));
+  return res.map(({ c, re }) => ({ name: c.name, lat: c.lat, lon: c.lon, count: titles.filter((t) => re.test(t)).length }))
+    .filter((p) => p.count > 0).sort((a, b) => b.count - a.count);
+}
+
 /** Metropolitan France, with a margin: GDELT places outside it are not drawn on this map. */
 export const FRANCE_BOX = { west: -5.6, east: 9.8, south: 41.2, north: 51.3 };
-
-/** GDELT GEO 2.0 GeoJSON: places named in the matching coverage, with how often. */
-export function parseGdeltGeo(body: unknown): Place[] {
-  const feats = (body as { features?: Array<{ properties?: Record<string, unknown>; geometry?: { coordinates?: number[] } }> })?.features ?? [];
-  const out: Place[] = [];
-  for (const f of feats) {
-    const [lon, lat] = f.geometry?.coordinates ?? [];
-    const name = String(f.properties?.name ?? "").trim();
-    const count = Number(f.properties?.count ?? 0);
-    if (typeof lon !== "number" || typeof lat !== "number" || !name || !(count > 0)) continue;
-    if (lon < FRANCE_BOX.west || lon > FRANCE_BOX.east || lat < FRANCE_BOX.south || lat > FRANCE_BOX.north) continue;
-    out.push({ name: name.replace(/,\s*France$/i, ""), lat, lon, count });
-  }
-  return out.sort((a, b) => b.count - a.count);
-}
 
 /** gov.uk's content API for a travel-advice page: the latest change and when it was made. */
 export function parseGovUkAdvice(body: unknown, meta: { id: string; name: string; page: string }): Advisory {
@@ -181,23 +217,6 @@ export function parseGovUkAdvice(body: unknown, meta: { id: string; name: string
   const paras = [...safety.matchAll(/<p>([\s\S]*?)<\/p>/gi)].map((m) => unescape(m[1]!.replace(/<[^>]+>/g, "")));
   const excerpt = paras.find((p) => /protest|demonstrat|riot|strike|unrest/i.test(p)) ?? null;
   return { ...meta, updatedAt: iso(b?.public_updated_at ?? null), change: b?.details?.change_description?.trim() || null, excerpt: excerpt && excerpt.length > 500 ? `${excerpt.slice(0, 497)}…` : excerpt };
-}
-
-/** Links on a government press page: title and address, newest as the page orders them. */
-export function parseOfficialLinks(html: string, base: string, source: string): OfficialItem[] {
-  const out: OfficialItem[] = [];
-  const seen = new Set<string>();
-  for (const m of html.matchAll(/<a[^>]+href="([^"#]+)"[^>]*>([\s\S]*?)<\/a>/gi)) {
-    const title = unescape(m[2]!.replace(/<[^>]+>/g, " "));
-    if (title.length < 25 || title.length > 300) continue;
-    let url: string;
-    try { url = new URL(m[1]!, base).toString(); } catch { continue; }
-    if (!/\/actualites\/|\/communique|\/presse\//i.test(url) || seen.has(url) || url === base) continue;
-    seen.add(url);
-    const date = /(\d{1,2})[/.](\d{1,2})[/.](20\d{2})/.exec(title);
-    out.push({ source, title, url, date: date ? `${date[3]}-${date[2]!.padStart(2, "0")}-${date[1]!.padStart(2, "0")}` : null, relevant: TOPIC.test(title) });
-  }
-  return out.slice(0, 25);
 }
 
 /* ── Official figures, as sentences ───────────────────────────────────── */

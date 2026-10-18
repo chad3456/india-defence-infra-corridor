@@ -9,8 +9,8 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
-  isAboutRiots, parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseGdeltTimeline, parseGdeltGeo,
-  parseGovUkAdvice, parseOfficialLinks, articleText, extractStatements, countsIn, statementKind, mergeBy, headlineKey, inWindow,
+  isAboutRiots, parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseGdeltTimeline,
+  parseGovUkAdvice, articleText, isOfficialRelevant, placesFromHeadlines, fixMojibake, extractStatements, countsIn, statementKind, mergeBy, headlineKey, inWindow,
   type FranceRegister,
 } from "../lib/france-riots-shared";
 import { FRANCE_RIOTS } from "../lib/sources";
@@ -36,12 +36,14 @@ const ga = parseGdeltArticles({ articles: [{ url: "https://x.fr/a", title: " Vio
 ok("GDELT articles: date and fields", ga.length === 1 && ga[0]!.seen === "2026-10-17T21:30:00Z" && ga[0]!.image === null && ga[0]!.title === "Violences à Nantes");
 const gt = parseGdeltTimeline({ timeline: [{ series: "Article Count", data: [{ date: "20261017T200000Z", value: 3 }, { date: "20261017T201500Z", value: 4 }, { date: "20261017T210000Z", value: 9 }] }] });
 ok("GDELT pulse: summed to the hour", gt.length === 2 && gt[0]!.v === 7 && gt[1]!.v === 9, JSON.stringify(gt));
-const gg = parseGdeltGeo({ features: [{ properties: { name: "Lyon, Rhône-Alpes, France", count: 12 }, geometry: { coordinates: [4.85, 45.75] } }, { properties: { name: "Nouméa", count: 5 }, geometry: { coordinates: [166.4, -22.3] } }] });
-ok("GDELT places: metropolitan France only", gg.length === 1 && gg[0]!.name.startsWith("Lyon"));
 const adv = parseGovUkAdvice({ public_updated_at: "2026-10-17T18:00:00Z", details: { change_description: "Latest update: protests in France", parts: [{ slug: "safety-and-security", body: "<p>Intro.</p><p>Large protests are taking place across France. Avoid demonstrations.</p>" }] } }, { id: "uk", name: "UK", page: "p" });
 ok("gov.uk advice: change, date and the protest paragraph", adv.change === "Latest update: protests in France" && adv.updatedAt === "2026-10-17T18:00:00.000Z" && !!adv.excerpt?.startsWith("Large protests"));
-const off = parseOfficialLinks(`<a href="/actualites/communiques/bilan-des-manifestations-du-17-octobre-2026">Bilan des manifestations et des violences du 17/10/2026</a><a href="/contact">Contact</a>`, "https://www.interieur.gouv.fr/actualites/presse", "MI");
-ok("press page: press links kept, others dropped, date read", off.length === 1 && off[0]!.date === "2026-10-17" && off[0]!.relevant);
+ok("government items: a prefect's ban on a demonstration is kept", isOfficialRelevant("CABINET DU PRÉFET Arrêté n°2026-01342 portant interdiction partielle d’une manifestation"));
+ok("government items: a call for expressions of interest is not a demonstration", !isOfficialRelevant("APPEL A MANIFESTATION D’INTERET"));
+ok("titles mis-encoded upstream are repaired, others left alone", fixMojibake("ArrÃªtÃ© 2026-01351") === "Arrêté 2026-01351" && fixMojibake("Arrêté déjà") === "Arrêté déjà");
+ok("government items: job offers and search pages are not", !isOfficialRelevant("Offres d'emploi") && !isOfficialRelevant("Résultats de recherche pour : manifestation"));
+const pl = placesFromHeadlines(["Riots in Paris and Lyon", "Nice: shops looted", "What a nice evening", "Saint-Étienne et Saint-Denis"]);
+ok("places: cities counted by headline, case-sensitively", pl.find((p) => p.name === "Paris")?.count === 1 && pl.find((p) => p.name === "Nice")?.count === 1 && !!pl.find((p) => p.name === "Saint-Étienne") && !!pl.find((p) => p.name === "Saint-Denis"), JSON.stringify(pl));
 ok("article text: paragraphs only", articleText(`<script>var a="<p>no</p>"</script><p>Short</p><p>Le ministre de l'Intérieur a annoncé 1 800 interpellations dans toute la France.</p>`) === "Le ministre de l'Intérieur a annoncé 1 800 interpellations dans toute la France.");
 
 console.log("\nOfficials' figures, quoted");
@@ -64,6 +66,7 @@ ok("X posts come only from the listed institutions, officials and newsrooms", re
 ok("every quoted figure names who gave it", reg.statements.every((s) => !!s.who && s.numbers.length > 0 && s.quote.length >= 40));
 ok("headlines and videos are inside the window", reg.headlines.every((h) => inWindow(h.published, FRANCE_RIOTS.since)) && reg.videos.every((v) => inWindow(v.published, FRANCE_RIOTS.since)));
 ok("press headlines name unrest in France", reg.headlines.filter((h) => h.kind === "press").every((h) => isAboutRiots(h.title)));
+ok("government-site items concern demonstrations or public order", reg.headlines.filter((h) => h.kind === "official").every((h) => isOfficialRelevant(h.title)));
 ok("X spending stays within the day's budget", reg.x.readsToday <= Math.max(reg.x.budgetPerDay, 0) + 100);
 
 console.log(failed ? `\n${failed} failed` : "\nall passed");

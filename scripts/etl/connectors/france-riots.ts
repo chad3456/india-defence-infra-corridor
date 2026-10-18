@@ -8,12 +8,14 @@
  * request. This job does what a request cannot afford or must not repeat:
  *
  *   - resolves each newsroom's YouTube handle to the channel id its feed needs;
- *   - asks GDELT for the latest matching articles, the coverage pulse and the
- *     places named — GDELT allows one request every five seconds, so a page
- *     view cannot ask it three things at once;
+ *   - asks GDELT for the latest matching articles and the coverage pulse —
+ *     GDELT allows one request every five seconds, so a page view cannot;
+ *   - counts the French cities the collected headlines name, for the map;
  *   - reads new articles and keeps sentences in which an official, the police
  *     or the organisers give a figure, quoted word for word;
- *   - reads the Interior Ministry's press page and the UK's travel advice;
+ *   - reads the UK's travel advice (the Interior Ministry's press page refuses
+ *     automated readers, so its announcements arrive through the search
+ *     restricted to government sites);
  *   - searches X — only institutions, public officials and newsrooms, only
  *     within a daily budget, and stores post ids, never text;
  *   - accumulates headlines and videos, because a search feed only carries the
@@ -29,8 +31,8 @@ import { getText, getJson } from "../lib/http";
 import { isEntryPoint } from "../lib/entry";
 import { FRANCE_RIOTS } from "../../../lib/sources";
 import {
-  parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseGdeltTimeline, parseGdeltGeo, parseGovUkAdvice,
-  parseOfficialLinks, articleText, extractStatements, isAboutRiots, inWindow, mergeBy, headlineKey,
+  parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseGdeltTimeline, parseGovUkAdvice,
+  articleText, extractStatements, isAboutRiots, isOfficialRelevant, inWindow, mergeBy, headlineKey, placesFromHeadlines,
   type FranceRegister, type Headline, type SourceStatus, type Statement, type Video, type XPost,
 } from "../../../lib/france-riots-shared";
 
@@ -47,11 +49,10 @@ const GN = (q: string, lang: "fr" | "en") => lang === "fr"
   ? `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=fr&gl=FR&ceid=FR:fr`
   : `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en-GB&gl=GB&ceid=GB:en`;
 const GDELT = (mode: string, extra: string) => `https://api.gdeltproject.org/api/v2/doc/doc?query=${encodeURIComponent(FRANCE_RIOTS.gdeltQuery)}&mode=${mode}&format=json${extra}`;
-const GDELT_GEO = `https://api.gdeltproject.org/api/v2/geo/geo?query=${encodeURIComponent(FRANCE_RIOTS.gdeltQuery)}&format=GeoJSON&timespan=48h`;
 
 export function emptyRegister(): FranceRegister {
   return {
-    updatedAt: now(), youtubeChannels: {}, headlines: [], videos: [], articles: [], pulse: [], places: [], statements: [], official: [], advisories: [], readUrls: [],
+    updatedAt: now(), youtubeChannels: {}, headlines: [], videos: [], articles: [], pulse: [], places: [], statements: [], advisories: [], readUrls: [],
     x: { active: false, reason: "not yet run", day: now().slice(0, 10), readsToday: 0, budgetPerDay: 0, costUsdToday: 0, posts: [] },
     status: [],
   };
@@ -113,46 +114,54 @@ export async function run(): Promise<void> {
     if (!r.ok || !r.data) continue;
     gnOk++;
     const items = parseGoogleNews(r.data, lang, kind, q);
-    fresh.push(...(kind === "official" ? items : items.filter((h) => isAboutRiots(h.title))).filter((h) => inWindow(h.published, since)));
+    fresh.push(...items.filter((h) => (kind === "official" ? isOfficialRelevant(h.title) : isAboutRiots(h.title)) && inWindow(h.published, since)));
   }
-  reg.headlines = mergeBy(reg.headlines, fresh, headlineKey, 600);
+  // Government-site items kept before the relevance rule existed are re-checked against it.
+  reg.headlines = mergeBy(reg.headlines.filter((h) => h.kind !== "official" || isOfficialRelevant(h.title)), fresh, headlineKey, 600);
+  reg.places = placesFromHeadlines(reg.headlines.filter((h) => h.kind === "press").map((h) => h.title));
   status.push({ id: "gnews", label: "Google News", ok: gnOk > 0, count: fresh.length, ...(gnOk < queries.length ? { error: `${queries.length - gnOk} of ${queries.length} queries failed` } : {}) });
 
   // ── YouTube: resolve handles, then read feeds ──
   const vids: Video[] = [];
   let ytOk = 0;
   for (const c of FRANCE_RIOTS.youtube) {
-    const known = reg.youtubeChannels[c.handle];
-    const stale = !known?.id && (!known?.resolvedAt || Date.now() - Date.parse(known.resolvedAt) > 6 * 3600_000);
-    if (!known?.id && (stale || !known)) {
-      const page = await getText(`https://www.youtube.com/@${c.handle}`, { timeoutMs: 30_000, retries: 1, cacheMs: 0, headers: { cookie: "CONSENT=YES+1" } });
-      const id = page.ok && page.data ? channelIdFromPage(page.data) : null;
-      reg.youtubeChannels[c.handle] = { id, name: c.name, resolvedAt: now(), ...(id ? {} : { error: page.ok ? "no channel id on the page" : page.error }) };
-      await sleep(GAP);
+    const key = c.handles[0]!;
+    const known = reg.youtubeChannels[key];
+    const retry = !known?.id && (!known?.resolvedAt || Date.now() - Date.parse(known.resolvedAt) > 6 * 3600_000);
+    if (retry) {
+      let id: string | null = null, error = "";
+      // The first handle that leads to a channel page with an id wins.
+      for (const h of c.handles) {
+        const page = await getText(`https://www.youtube.com/@${h}`, { timeoutMs: 30_000, retries: 1, cacheMs: 0, headers: { cookie: "CONSENT=YES+1" } });
+        await sleep(GAP);
+        id = page.ok && page.data ? channelIdFromPage(page.data) : null;
+        if (id) break;
+        error = `@${h}: ${page.ok ? "no channel id on the page" : page.error}`;
+      }
+      reg.youtubeChannels[key] = { id, name: c.name, resolvedAt: now(), ...(id ? {} : { error }) };
     }
-    const id = reg.youtubeChannels[c.handle]?.id;
+    const id = reg.youtubeChannels[key]?.id;
     if (!id) continue;
     const feed = await getText(`https://www.youtube.com/feeds/videos.xml?channel_id=${id}`, { timeoutMs: 30_000, retries: 1, cacheMs: 0 });
     await sleep(500);
     if (!feed.ok || !feed.data) continue;
     ytOk++;
-    vids.push(...parseYouTube(feed.data, c.handle, c.name).filter((v) => isAboutRiots(v.title) && inWindow(v.published, since)));
+    vids.push(...parseYouTube(feed.data, key, c.name).filter((v) => isAboutRiots(v.title) && inWindow(v.published, since)));
   }
   reg.videos = mergeBy(reg.videos, vids, (v) => v.id, 300);
   status.push({ id: "youtube", label: `YouTube (${ytOk} of ${FRANCE_RIOTS.youtube.length} channels)`, ok: ytOk > 0, count: vids.length });
 
-  // ── GDELT: articles, pulse, places — one request every six seconds ──
-  const arts = await getJson<unknown>(GDELT("ArtList", "&maxrecords=75&sort=DateDesc&timespan=24h"), { timeoutMs: 45_000, retries: 1, cacheMs: 0 });
-  if (arts.ok) reg.articles = mergeBy(reg.articles, parseGdeltArticles(arts.data).filter((a) => inWindow(a.seen, since)), (a) => a.url, 200);
-  status.push({ id: "gdelt-articles", label: "GDELT article index", ok: arts.ok, count: reg.articles.length, ...(arts.ok ? {} : { error: arts.error }) });
-  await sleep(GDELT_GAP);
-  const tl = await getJson<unknown>(GDELT("TimelineVolRaw", "&timespan=7d"), { timeoutMs: 45_000, retries: 1, cacheMs: 0 });
+  // ── GDELT: pulse, then articles — one request every six seconds ──
+  const tl = await getJson<unknown>(GDELT("TimelineVolRaw", "&timespan=7d"), { timeoutMs: 60_000, retries: 2, cacheMs: 0 });
   if (tl.ok) { const p = parseGdeltTimeline(tl.data); if (p.length) reg.pulse = p; }
   status.push({ id: "gdelt-pulse", label: "GDELT coverage pulse", ok: tl.ok, count: reg.pulse.length, ...(tl.ok ? {} : { error: tl.error }) });
-  await sleep(GDELT_GAP);
-  const geo = await getJson<unknown>(GDELT_GEO, { timeoutMs: 45_000, retries: 1, cacheMs: 0 });
-  if (geo.ok) { const pl = parseGdeltGeo(geo.data); if (pl.length) reg.places = pl.slice(0, 150); }
-  status.push({ id: "gdelt-geo", label: "GDELT places", ok: geo.ok, count: reg.places.length, ...(geo.ok ? {} : { error: geo.error }) });
+  let arts: Awaited<ReturnType<typeof getJson<unknown>>> = { ok: false, data: null, error: "not asked" };
+  for (let attempt = 0; attempt < 3 && !arts.ok; attempt++) {
+    await sleep(GDELT_GAP * (attempt + 1));
+    arts = await getJson<unknown>(GDELT("ArtList", "&maxrecords=75&sort=DateDesc&timespan=24h"), { timeoutMs: 60_000, retries: 0, cacheMs: 0 });
+  }
+  if (arts.ok) reg.articles = mergeBy(reg.articles, parseGdeltArticles(arts.data).filter((a) => inWindow(a.seen, since)), (a) => a.url, 200);
+  status.push({ id: "gdelt-articles", label: "GDELT article index", ok: arts.ok, count: reg.articles.length, ...(arts.ok ? {} : { error: arts.error }) });
 
   // ── Officials' figures, quoted from new articles ──
   const read = new Set(reg.readUrls);
@@ -174,13 +183,6 @@ export async function run(): Promise<void> {
   status.push({ id: "statements", label: `Officials' figures in articles (${readOk} of ${todo.length} articles read)`, ok: todo.length === 0 || readOk > 0, count: found.length });
 
   // ── Government pages and foreign advice ──
-  for (const p of FRANCE_RIOTS.officialPages) {
-    const r = await getText(p.url, { timeoutMs: 30_000, retries: 1, cacheMs: 0 });
-    const items = r.ok && r.data ? parseOfficialLinks(r.data, p.url, p.name) : [];
-    // The page's own order is newest first; earlier items the page has since dropped are kept below.
-    if (items.length) reg.official = [...items, ...reg.official.filter((o) => o.source !== p.name || !items.some((i) => i.url === o.url))].slice(0, 60);
-    status.push({ id: p.id, label: p.name, ok: items.length > 0, count: items.length, ...(items.length ? {} : { error: r.ok ? "no press links found on the page" : r.error }) });
-  }
   for (const a of FRANCE_RIOTS.advisories) {
     const r = await getJson<unknown>(a.url, { timeoutMs: 30_000, retries: 1, cacheMs: 0 });
     if (r.ok) reg.advisories = [parseGovUkAdvice(r.data, { id: a.id, name: a.name, page: a.page }), ...reg.advisories.filter((x) => x.id !== a.id)];

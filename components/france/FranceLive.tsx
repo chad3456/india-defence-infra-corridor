@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { geoMercator } from "d3-geo";
 import {
-  KIND_LABEL, X_LIVE_SEARCHES, xSearchUrl, mergeBy, headlineKey,
+  KIND_LABEL, X_LIVE_SEARCHES, xSearchUrl, mergeBy, headlineKey, placesFromHeadlines,
   type FranceLivePayload, type Headline, type Outline, type Statement, type StatementKind, type Video, type XPost,
 } from "@/lib/france-riots-shared";
 
@@ -127,7 +127,7 @@ function FranceMap({ outline, places }: { outline: Outline; places: Array<{ name
             <span className="mono w-10 text-right text-[11px] tabular-nums">{p.count}</span>
           </li>
         ))}
-        {!top.length && <li style={{ color: "var(--story-ink-3)" }}>No places yet: the map fills after the scheduled job&apos;s first run.</li>}
+        {!top.length && <li style={{ color: "var(--story-ink-3)" }}>No French city named in the headlines yet.</li>}
       </ol>
     </div>
   );
@@ -231,6 +231,8 @@ export default function FranceLive({ initial, outline }: { initial: FranceLivePa
   const headlines = useMemo(() => mergeBy(data.headlines, reg?.headlines ?? [], headlineKey, 600), [data, reg]);
   const videos = useMemo(() => mergeBy(data.videos, reg?.videos ?? [], (v) => v.id, 300), [data, reg]);
   const statements = reg?.statements ?? [];
+  const places = useMemo(() => placesFromHeadlines(headlines.filter((h) => h.kind === "press").map((h) => h.title)), [headlines]);
+  const official = headlines.filter((h) => h.kind === "official");
   const keyOf = (h: Headline) => headlineKey(h);
   // What was on the page at first load; anything else that arrives is new.
   if (firstSeen.current === null && state !== "loading") firstSeen.current = new Set([...headlines.map(keyOf), ...videos.map((v) => v.id), ...statements.map((s) => s.quote)]);
@@ -290,8 +292,8 @@ export default function FranceLive({ initial, outline }: { initial: FranceLivePa
       </Section>
 
       <Section id="map" title="Where it is being reported from"
-        note={<>Places in metropolitan France named in matching coverage over the last 48 hours, sized by how often, as GDELT geocodes them. A place named in many articles is not necessarily where the most happened.</>}>
-        <FranceMap outline={outline} places={reg?.places ?? []} />
+        note={<>French cities named in the {headlines.filter((h) => h.kind === "press").length} headlines collected here, sized by how many name them, recounted every minute. Where the reporting is about, not where the most happened: Paris is named in stories about the whole country.</>}>
+        <FranceMap outline={outline} places={places} />
       </Section>
 
       <Section id="videos" title="Videos from newsrooms"
@@ -324,7 +326,7 @@ export default function FranceLive({ initial, outline }: { initial: FranceLivePa
       </Section>
 
       <Section id="government" title="Government announcements and travel advice"
-        note={<>What governments are telling people: the French Interior Ministry&apos;s press page, announcements on French government sites, and foreign governments&apos; travel advice for France.</>}>
+        note={<>What governments are telling people: announcements on French government sites (the Interior Ministry, the Paris police prefecture, the Élysée, the government portal) about demonstrations and public order, and foreign governments&apos; travel advice for France.</>}>
         <div className="grid gap-3 lg:grid-cols-2">
           {(data.advisories.length ? data.advisories : reg?.advisories ?? []).map((a) => (
             <figure key={a.id} className="story-card min-w-0 p-4">
@@ -335,17 +337,17 @@ export default function FranceLive({ initial, outline }: { initial: FranceLivePa
             </figure>
           ))}
           <figure className="story-card min-w-0 p-4">
-            <p className="text-[10.5px] font-bold uppercase tracking-[0.08em]" style={{ color: C1 }}>Ministère de l&apos;Intérieur · press</p>
+            <p className="text-[10.5px] font-bold uppercase tracking-[0.08em]" style={{ color: C1 }}>French government sites · demonstrations and public order</p>
             <ul className="mt-2 space-y-1.5">
-              {(reg?.official ?? []).slice(0, 10).map((o) => (
-                <li key={o.url} className="text-[13px] leading-snug">
-                  <a href={o.url} target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ fontWeight: o.relevant ? 650 : 400 }}>{o.title}</a>
-                  {o.date && <span className="mono ml-1.5 text-[10.5px]" style={{ color: "var(--story-ink-3)" }}>{o.date}</span>}
+              {official.slice(0, 10).map((o) => (
+                <li key={keyOf(o)} className="text-[13px] leading-snug">
+                  <a href={o.url} target="_blank" rel="noopener noreferrer" className="hover:underline">{o.title}</a>{isNew(keyOf(o)) && <NewTag />}
+                  <span className="mono ml-1.5 text-[10.5px]" style={{ color: "var(--story-ink-3)" }}>{o.outlet} · {ago(o.published, now)}</span>
                 </li>
               ))}
-              {!(reg?.official ?? []).length && <li className="text-[12.5px]" style={{ color: "var(--story-ink-3)" }}>The ministry&apos;s press page has not been read yet.</li>}
+              {!official.length && <li className="text-[12.5px]" style={{ color: "var(--story-ink-3)" }}>Nothing from government sites about demonstrations yet.</li>}
             </ul>
-            <p className="mt-2 text-[11px]" style={{ color: "var(--story-ink-3)" }}>Bold: titles about demonstrations or violence.</p>
+            <p className="mt-2 text-[11px]" style={{ color: "var(--story-ink-3)" }}>As indexed by Google News; prefectoral orders banning a demonstration appear here.</p>
           </figure>
         </div>
       </Section>

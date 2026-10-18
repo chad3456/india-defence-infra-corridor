@@ -733,24 +733,27 @@ export const FRANCE_RIOTS = {
   officialSites: ["interieur.gouv.fr", "elysee.fr", "info.gouv.fr", "prefecturedepolice.interieur.gouv.fr", "gendarmerie.interieur.gouv.fr"],
   /** GDELT DOC 2.0 query: multilingual, every outlet GDELT monitors. */
   gdeltQuery: '(émeutes OR émeutiers OR "riots" OR "rioters" OR "violences urbaines") (France OR Paris OR Lyon OR Marseille OR Bordeaux OR Lille OR Nantes OR Toulouse)',
-  /** Outlets' YouTube channels, by public handle; the scheduled job resolves each to its channel id. */
+  /**
+   * Outlets' YouTube channels, by public handle; the scheduled job resolves each
+   * to the channel id its feed needs, trying the handles in order.
+   */
   youtube: [
-    { handle: "FRANCE24English", name: "FRANCE 24 English" },
-    { handle: "FRANCE24", name: "FRANCE 24 (français)" },
-    { handle: "BFMTV", name: "BFMTV" },
-    { handle: "franceinfo", name: "franceinfo" },
-    { handle: "LeMonde", name: "Le Monde" },
-    { handle: "LeParisien", name: "Le Parisien" },
-    { handle: "euronews", name: "euronews" },
-    { handle: "euronewsfr", name: "euronews (en français)" },
-    { handle: "Reuters", name: "Reuters" },
-    { handle: "AP", name: "Associated Press" },
-    { handle: "AFPnewsagency", name: "AFP News Agency" },
-    { handle: "aljazeeraenglish", name: "Al Jazeera English" },
-    { handle: "guardiannews", name: "Guardian News" },
-    { handle: "SkyNews", name: "Sky News" },
-    { handle: "BBCNews", name: "BBC News" },
-    { handle: "dwnews", name: "DW News" },
+    { handles: ["France24_en", "FRANCE24English", "france24english"], name: "FRANCE 24 English" },
+    { handles: ["FRANCE24"], name: "FRANCE 24 (français)" },
+    { handles: ["BFMTV"], name: "BFMTV" },
+    { handles: ["franceinfo"], name: "franceinfo" },
+    { handles: ["lemondefr", "LeMonde", "lemonde"], name: "Le Monde" },
+    { handles: ["LeParisien"], name: "Le Parisien" },
+    { handles: ["euronews"], name: "euronews" },
+    { handles: ["euronewsfr"], name: "euronews (en français)" },
+    { handles: ["Reuters"], name: "Reuters" },
+    { handles: ["AP"], name: "Associated Press" },
+    { handles: ["AFP", "afpnewsagency", "AFPTV", "afpfr"], name: "AFP" },
+    { handles: ["aljazeeraenglish"], name: "Al Jazeera English" },
+    { handles: ["guardiannews"], name: "Guardian News" },
+    { handles: ["SkyNews"], name: "Sky News" },
+    { handles: ["BBCNews"], name: "BBC News" },
+    { handles: ["dwnews"], name: "DW News" },
   ],
   /**
    * X accounts searched for posts about the riots: French institutions, public
@@ -761,10 +764,6 @@ export const FRANCE_RIOTS = {
   xAccounts: [
     "Interieur_Gouv", "prefpolice", "PoliceNationale", "Gendarmerie", "Elysee", "EmmanuelMacron",
     "AFP", "afpfr", "Reuters", "FRANCE24", "France24_en", "BFMTV", "franceinfo", "lemondefr", "Le_Figaro", "le_Parisien", "euronews",
-  ],
-  /** Government pages read directly by the scheduled job. */
-  officialPages: [
-    { id: "interieur-presse", name: "Ministère de l'Intérieur — presse", url: "https://www.interieur.gouv.fr/actualites/presse" },
   ],
   /** Foreign governments' travel advice for France: what they tell their citizens. */
   advisories: [
