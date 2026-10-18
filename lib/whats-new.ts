@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "france-riots-2026-10",
+    title: "France riots, live",
+    blurb:
+      "The October 2026 riots in France as they are reported: French and English headlines, newsroom videos, " +
+      "officials' figures quoted from the reporting, coverage by hour and place, and government notices — refreshed every minute.",
+    href: "/france-riots",
+    since: "2026-10-18",
+  },
+  {
     id: "ministries-2026-10",
     title: "Ministries' own records",
     blurb:

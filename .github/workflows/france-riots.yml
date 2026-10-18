@@ -1,0 +1,74 @@
+name: France riots tracker (October 2026)
+
+# Builds data/france-riots/register.json for /france-riots: GDELT's article
+# index, coverage pulse and places; officials' figures quoted from articles;
+# the Interior Ministry's press page; the UK's travel advice; newsroom videos;
+# accumulated headlines; and, when X_BEARER_TOKEN is set, X post ids from
+# institutions, officials and newsrooms within a daily budget.
+#
+# The live route reads the register straight from this branch, so a run is on
+# the page within a minute of its commit, without waiting for a deployment.
+#
+# Every twenty minutes while the story is moving; GDELT itself updates every
+# fifteen. A run that changes nothing commits nothing. After STOP_AFTER the job
+# does nothing, so a finished story does not keep a scheduler busy.
+#
+# X costs money per post read. X_FRANCE_POSTS_PER_DAY (a repository variable,
+# default 100, about $0.50 a day) caps it; set it to 0 to stop reading X.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/20 * * * *"
+  push:
+    paths:
+      - "scripts/etl/connectors/france-riots.ts"
+      - "lib/france-riots-shared.ts"
+      - ".github/workflows/france-riots.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: france-riots
+  cancel-in-progress: false
+
+env:
+  STOP_AFTER: "2026-12-31"
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Still running?
+        id: window
+        run: |
+          if [ "$(date -u +%F)" \> "$STOP_AFTER" ]; then echo "past $STOP_AFTER; nothing to do"; echo "go=no" >> "$GITHUB_OUTPUT"; else echo "go=yes" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/checkout@v4
+        if: steps.window.outputs.go == 'yes'
+        with: { ref: "${{ github.ref_name }}" }
+      - uses: actions/setup-node@v4
+        if: steps.window.outputs.go == 'yes'
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+        if: steps.window.outputs.go == 'yes'
+      - name: Read the sources
+        if: steps.window.outputs.go == 'yes'
+        env:
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          X_FRANCE_POSTS_PER_DAY: ${{ vars.X_FRANCE_POSTS_PER_DAY || '100' }}
+        run: npm run france:riots
+      - name: Check
+        if: steps.window.outputs.go == 'yes'
+        run: npm run test:france
+      - name: Commit
+        if: steps.window.outputs.go == 'yes'
+        run: |
+          if [ -n "$(git status --porcelain data/france-riots/register.json)" ]; then
+            .github/scripts/commit-generated.sh data/france-riots/register.json "data(france): riots tracker register $(date -u +'%Y-%m-%d %H:%M')"
+          else
+            echo "nothing changed; nothing to commit"
+          fi

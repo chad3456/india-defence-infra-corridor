@@ -198,6 +198,25 @@ communal-incident series stops at 2017, where its releases stop. No national bod
 rupee value of public property destroyed, so losses appear only where a government, court or
 commission stated one for a single episode.
 
+### France riots, live (October 2026)
+
+`/france-riots` tracks the October 2026 riots in France as they are reported. It has two speeds.
+`/api/france-riots`, asked every minute by the open page and cached for sixty seconds, reads Google
+News's keyless RSS search in French and English (plus the same search restricted to French government
+sites), the latest videos on newsrooms' YouTube channels, and the UK Foreign Office's travel advice
+through gov.uk's content API. A scheduled job (`npm run france:riots`, every twenty minutes in
+Actions) writes `data/france-riots/register.json`: GDELT's article index, hourly coverage pulse and
+the places its coverage names; sentences from new articles in which a named official, the police,
+prosecutors or organisers give a figure, quoted word for word; the Interior Ministry's press page;
+and, when `X_BEARER_TOKEN` is set, posts on X from a fixed list of French institutions, public
+officials and newsrooms, within a daily budget (`X_FRANCE_POSTS_PER_DAY`, default 100 posts, about
+$0.50). Only X post ids are stored, never text; the post is rendered by X's own embed when a reader
+asks for it. The route reads the register from the repository itself, so a run reaches the page
+without a deployment. Everything on the page is a report: no figure from it enters the site's record,
+none is summed, and a source that stops answering is shown as unavailable. `npm run test:france`
+checks the parsers against samples of each format and that the register stores no X text and
+attributes every quoted figure.
+
 ### Ministries' own records
 
 `/ministries` reads two ministries' recurring publications directly. A scheduled job

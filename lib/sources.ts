@@ -712,3 +712,62 @@ export const X_HANDLES: Array<{ handle: string; name: string; kind: SourceKind }
   { handle: "mnreindia", name: "Ministry of New & Renewable Energy", kind: "official" },
   { handle: "PIB_India", name: "PIB India", kind: "official" },
 ];
+
+/**
+ * The live France riots tracker (/france-riots), October 2026.
+ *
+ * Kept apart from FEEDS: these are not sector feeds for the development map and
+ * are not counted towards any sector's publisher floor. Every source is asked
+ * at run time; nothing about a publisher is assumed to work until a run says so,
+ * and a source that stops answering is shown as unavailable.
+ */
+export const FRANCE_RIOTS = {
+  /** The story's start: the student protests that preceded the riots. Older items are another story. */
+  since: "2026-10-01T00:00:00Z",
+  /** Google News keyless RSS, asked in French and in English. */
+  newsQueries: {
+    fr: ["émeutes France", "manifestations violences France", "interpellations manifestation Paris", "Nuñez bilan manifestations", "mobilisation étudiants vie chère"],
+    en: ["France riots", "France protests violence", "Paris protests arrests", "France student protests cost of living"],
+  },
+  /** Google News restricted to government sites: their own announcements, as indexed. */
+  officialSites: ["interieur.gouv.fr", "elysee.fr", "info.gouv.fr", "prefecturedepolice.interieur.gouv.fr", "gendarmerie.interieur.gouv.fr"],
+  /** GDELT DOC 2.0 query: multilingual, every outlet GDELT monitors. */
+  gdeltQuery: '(émeutes OR émeutiers OR "riots" OR "rioters" OR "violences urbaines") (France OR Paris OR Lyon OR Marseille OR Bordeaux OR Lille OR Nantes OR Toulouse)',
+  /** Outlets' YouTube channels, by public handle; the scheduled job resolves each to its channel id. */
+  youtube: [
+    { handle: "FRANCE24English", name: "FRANCE 24 English" },
+    { handle: "FRANCE24", name: "FRANCE 24 (français)" },
+    { handle: "BFMTV", name: "BFMTV" },
+    { handle: "franceinfo", name: "franceinfo" },
+    { handle: "LeMonde", name: "Le Monde" },
+    { handle: "LeParisien", name: "Le Parisien" },
+    { handle: "euronews", name: "euronews" },
+    { handle: "euronewsfr", name: "euronews (en français)" },
+    { handle: "Reuters", name: "Reuters" },
+    { handle: "AP", name: "Associated Press" },
+    { handle: "AFPnewsagency", name: "AFP News Agency" },
+    { handle: "aljazeeraenglish", name: "Al Jazeera English" },
+    { handle: "guardiannews", name: "Guardian News" },
+    { handle: "SkyNews", name: "Sky News" },
+    { handle: "BBCNews", name: "BBC News" },
+    { handle: "dwnews", name: "DW News" },
+  ],
+  /**
+   * X accounts searched for posts about the riots: French institutions, public
+   * officials and newsrooms only. Private individuals are not searched, so the
+   * tracker never names one. Read only with X_BEARER_TOKEN and within the
+   * daily budget; only post ids are stored, never text.
+   */
+  xAccounts: [
+    "Interieur_Gouv", "prefpolice", "PoliceNationale", "Gendarmerie", "Elysee", "EmmanuelMacron",
+    "AFP", "afpfr", "Reuters", "FRANCE24", "France24_en", "BFMTV", "franceinfo", "lemondefr", "Le_Figaro", "le_Parisien", "euronews",
+  ],
+  /** Government pages read directly by the scheduled job. */
+  officialPages: [
+    { id: "interieur-presse", name: "Ministère de l'Intérieur — presse", url: "https://www.interieur.gouv.fr/actualites/presse" },
+  ],
+  /** Foreign governments' travel advice for France: what they tell their citizens. */
+  advisories: [
+    { id: "uk-fcdo", name: "UK Foreign, Commonwealth & Development Office", url: "https://www.gov.uk/api/content/foreign-travel-advice/france", page: "https://www.gov.uk/foreign-travel-advice/france" },
+  ],
+} as const;

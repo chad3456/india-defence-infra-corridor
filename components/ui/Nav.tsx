@@ -92,6 +92,7 @@ const GROUPS: Group[] = [
     id: "world",
     label: "The world",
     items: [
+      { href: "/france-riots", label: "France riots, live", blurb: "October 2026: headlines, newsroom video, officials' figures and government notices, every minute", dashboard: {} },
       { href: "/world", label: "World tracker", blurb: "Every Our World in Data indicator, mapped one at a time" },
       { href: "/global", label: "Global economy", blurb: "India against the economies it is compared with" },
       { href: "/arsenal", label: "Arsenal", blurb: "Missiles by nation, and who is buying what" },
