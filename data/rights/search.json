@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-18T12:50:07.064Z",
+  "builtAt": "2026-10-18T16:11:30.881Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1186,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1184,
-    "withOutlet": 1107,
+    "items": 1187,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1186,
+    "withOutlet": 1108,
     "bySubject": {
-      "scst": 802,
+      "scst": 803,
       "pmshri": 384
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 303
+    "offSubjectDropped": 307
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 581
+      "n": 582
     },
     {
       "key": "use",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 85
+      "n": 86
     },
     {
       "key": "The Indian Express",
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 5,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 8
     },
     {
       "id": "act-convicted",
@@ -318,24 +318,24 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 36
+      "offSubject": 38
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
-      "bing": 0,
-      "kept": 1,
-      "offSubject": 4
+      "google": 52,
+      "bing": 6,
+      "kept": 0,
+      "offSubject": 5
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 49,
+      "google": 48,
       "bing": 0,
       "kept": 0,
       "offSubject": 15
@@ -345,9 +345,9 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 59,
+      "google": 60,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 21
     },
     {
@@ -356,19 +356,19 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 100,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 40
+      "offSubject": 42
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 25,
+      "google": 26,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 9
     },
     {
       "id": "act-misuse-claim",
@@ -376,7 +376,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 46,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 7
     },
@@ -395,9 +395,9 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 49,
+      "google": 50,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 18
     },
     {
@@ -445,7 +445,7 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 49,
+      "google": 48,
       "bing": 4,
       "kept": 0,
       "offSubject": 13
@@ -455,7 +455,7 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 44,
       "bing": 2,
       "kept": 0,
       "offSubject": 4
@@ -466,16 +466,16 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 31,
-      "bing": 3,
+      "bing": 4,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 19
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 53,
+      "google": 54,
       "bing": 4,
       "kept": 0,
       "offSubject": 11
@@ -486,9 +486,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 43,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 31
     }
   ],
   "items": [
@@ -19825,6 +19825,22 @@
       "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQZFdYa19wLTZUSEppMTZBbkxXM2VJMzcwclI2MUdHcXNsX1pUVE11bDlMNlhQMi1iZGV2Q25RV2U4elVwbWNNLXNGOE9RR19lUTg1QnJmQ2laSUItb1NaUmhIaU9ZcWZRS20ySDU3cTlPZlp6Q052NGhXM1Z4QjRpQkVrUi0yaU5fSGZ3RXRQZy1uSUxvWHdqUWZmZ0lBVTFIY3c1eV9WQzhIUE1VRjRwR0FGU3FZaDkzakVWYUkyM2tTeEI3bW5IWGJ3?oc=5",
       "queries": [
         "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-18"
+    },
+    {
+      "id": "bombay high court quashes criminal proceedings against office bearers of cooperative housi",
+      "headline": "Bombay High Court Quashes Criminal Proceedings Against Office-Bearers of Cooperative Housing Society; Holds Absence of Prima Facie Case Under SC/ST Act and MCOCA for Civil Dispute",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Lawtext",
+      "published": "2026-09-18",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5vSnN4MEhaQWttVXJZbXVrX3dibjhfeHNOaFpqYkVaaWI3aDJmQmhfVkJ5Z1pUZ095Rkc0cWVCZXZtS01LVTVGNDh5R19aZEdFaFMtMHpHcHZvRHkwVGpDWVd0NkZJdw?oc=5",
+      "queries": [
+        "act-pendency"
       ],
       "indexes": [
         "google"
