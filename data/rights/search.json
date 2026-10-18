@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-17T22:43:17.202Z",
+  "builtAt": "2026-10-18T05:12:58.637Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1182,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 1179,
-    "withOutlet": 1103,
+    "items": 1184,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1182,
+    "withOutlet": 1105,
     "bySubject": {
-      "scst": 799,
-      "pmshri": 383
+      "scst": 800,
+      "pmshri": 384
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 305
+    "offSubjectDropped": 304
   },
   "byFacet": [
     {
@@ -28,11 +28,11 @@
     },
     {
       "key": "use",
-      "n": 413
+      "n": 414
     },
     {
       "key": "dispute",
-      "n": 63
+      "n": 64
     },
     {
       "key": "acquittal",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 84
+      "n": 85
     },
     {
       "key": "The Indian Express",
@@ -121,6 +121,10 @@
       "n": 13
     },
     {
+      "key": "Onmanorama",
+      "n": 13
+    },
+    {
       "key": "Outlook India",
       "n": 12
     },
@@ -130,10 +134,6 @@
     },
     {
       "key": "SabrangIndia",
-      "n": 12
-    },
-    {
-      "key": "Onmanorama",
       "n": 12
     },
     {
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 7
     },
     {
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 100,
       "bing": 5,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 8
     },
     {
@@ -318,17 +318,17 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 33
+      "offSubject": 34
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 50,
-      "bing": 10,
+      "google": 51,
+      "bing": 9,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 46,
+      "google": 47,
       "bing": 2,
       "kept": 0,
       "offSubject": 6
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 29,
+      "google": 25,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -395,20 +395,20 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 51,
+      "google": 50,
       "bing": 1,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 18
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 33,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 21
     },
     {
       "id": "shri-general",
@@ -418,17 +418,17 @@
       "google": 100,
       "bing": 12,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 4
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 47,
-      "bing": 2,
+      "google": 46,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 5
     },
     {
       "id": "shri-funds",
@@ -455,7 +455,7 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 44,
       "bing": 2,
       "kept": 0,
       "offSubject": 4
@@ -467,17 +467,17 @@
       "expect": "dispute",
       "google": 31,
       "bing": 3,
-      "kept": 1,
-      "offSubject": 17
+      "kept": 0,
+      "offSubject": 18
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 53,
+      "google": 54,
       "bing": 4,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 11
     },
     {
@@ -488,7 +488,7 @@
       "google": 42,
       "bing": 1,
       "kept": 0,
-      "offSubject": 31
+      "offSubject": 30
     }
   ],
   "items": [
@@ -19764,6 +19764,39 @@
         "google"
       ],
       "firstSeen": "2026-10-17"
+    },
+    {
+      "id": "bombay high court quashes fir against doctor in sc st act case allegations of caste based ",
+      "headline": "Bombay High Court Quashes FIR Against Doctor in SC/ST Act Case — Allegations of Caste-Based Insult Found Baseless as Incident Occurred in Private Hospital Cabin, Not in Public View. Court holds that for an offence under Section 3(1)(x) of the Scheduled",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-09-28",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5oVW5pRVdvenVXS3ZyYlpNYTQ5QUF5Ym9IUXhxMEFmMHVIdi1SVWt5MHB0NDROSVhUb2tKd2JsMndfTW1tOEZySkt0TGJIMTlVZXpaUDNRa2J2LWJMU043MzBmTFEyTnRw?oc=5",
+      "queries": [
+        "act-registered",
+        "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-18"
+    },
+    {
+      "id": "cpi strengthens opposition to pm shri scheme as congress intensifies attack on ldf govt",
+      "headline": "CPI strengthens opposition to PM SHRI scheme as Congress intensifies attack on LDF govt",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": "Onmanorama",
+      "published": "2025-10-22",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPVUJpSmJaMnEzNFcwVVZtUzFxeHgwVXhPUTYxU1FyYVBXSlNESHgxQ3B2LWFoNkpRejZ4RExRUE4tdjc4N2s4Q1JXUTlZaFFvRW5CdDcwN29hZnNUR3J3WWNHckNRUWY1WFJVcDFRd2k5NS1XWWlTazRFSHN0QzBBOWc3SUdlYU5mM3R1NTRSaEo1SWV5bkRnR0dHN0VTOFhHY05CMVUwOWtvQdIBqgFBVV95cUxPVUJpSmJaMnEzNFcwVVZtUzFxeHgwVXhPUTYxU1FyYVBXSlNESHgxQ3B2LWFoNkpRejZ4RExRUE4tdjc4N2s4Q1JXUTlZaFFvRW5CdDcwN29hZnNUR3J3WWNHckNRUWY1WFJVcDFRd2k5NS1XWWlTazRFSHN0QzBBOWc3SUdlYU5mM3R1NTRSaEo1SWV5bkRnR0dHN0VTOFhHY05CMVUwOWtvQQ?oc=5",
+      "queries": [
+        "shri-nep"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-18"
     }
   ]
 }
