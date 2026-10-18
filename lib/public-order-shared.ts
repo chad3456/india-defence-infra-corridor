@@ -116,7 +116,7 @@ export function spellings(v: number): string[] {
   if (Number.isInteger(v) && Math.abs(v) < 1000) { out.add(`${v}.0`); out.add(`${v}.00`); }
   // "07 accused persons"; "Rs. 3338.00 crore".
   if (Number.isInteger(v) && v >= 0 && v < 10) out.add(`0${v}`);
-  if (Number.isInteger(v) && Math.abs(v) >= 1000) { out.add(`${v}.00`); out.add(`${v.toLocaleString("en-US")}.00`); out.add(`${v.toLocaleString("en-IN")}.00`); }
+  if (Number.isInteger(v) && Math.abs(v) >= 1000) for (const z of [".0", ".00"]) { out.add(`${v}${z}`); out.add(`${v.toLocaleString("en-US")}${z}`); out.add(`${v.toLocaleString("en-IN")}${z}`); }
   if (!Number.isInteger(v)) {
     for (const dp of [1, 2]) out.add(v.toFixed(dp));
     // 1,912.99 and 11,718.24 as the ministries print rupee crore.

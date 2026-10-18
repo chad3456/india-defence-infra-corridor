@@ -49,6 +49,22 @@ for (const [k, g] of groups) {
   if (!e(val("merch-exports")! + val("services-exports")!, val("total-exports")!) || !e(val("merch-imports")! + val("services-imports")!, val("total-imports")!) || !e(val("total-exports")! - val("total-imports")!, val("total-balance")!)) bad.push(k);
 }
 ok(`every one of ${tables} release tables adds up as printed`, bad.length === 0, bad.slice(0, 4).join("; "));
+// Releases before 2017 state figures in sentences. A sentence about a component
+// ("Oil imports during May 2011 were...") once passed the quote check and was
+// filed as total imports; the word before the flow is now checked here too.
+{
+  const lead = (o: TradeObs) => {
+    const d = v.docs.get(o.src); if (!d) return "";
+    const t = d.pages.join("\n").replace(/\s+/g, " "), i = t.indexOf(o.quote);
+    return (/([A-Za-z][A-Za-z-]*)\W*$/.exec(t.slice(Math.max(0, i - 30), i))?.[1] ?? "").toLowerCase();
+  };
+  const sentence = v.verified.filter((o) => o.table === "stated in the release text");
+  const component = sentence.filter((o) => /^(oil|petroleum|crude|pol|gold|silver)$/.test(lead(o)));
+  ok(`no figure read from a sentence is a component filed as a total (${sentence.length} read from sentences)`, component.length === 0, component.slice(0, 3).map((o) => `${o.src} ${o.series} ${o.period}: "${lead(o)} ${o.quote}"`).join("; "));
+  const same = new Map(v.verified.map((o) => [`${o.src}|${o.series}|${o.period}`, o.v]));
+  const inverted = v.verified.filter((o) => o.series === "nonpetro-imports" && (same.get(`${o.src}|merch-imports|${o.period}`) ?? Infinity) <= o.v);
+  ok("imports excluding petroleum never exceed total imports in the same release", inverted.length === 0, inverted.slice(0, 3).map((o) => `${o.src} ${o.period}`).join(", "));
+}
 const months = new Set(v.verified.filter((o) => o.kind === "month").map((o) => o.period));
 ok(`at least 24 months covered (${months.size})`, months.size >= 24);
 

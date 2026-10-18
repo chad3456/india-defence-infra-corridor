@@ -91,17 +91,37 @@ USD = r'US\s?\$\s?([\d,]+(?:\.\d+)?)\s*(million|billion)'
 MONTH_SENT = re.compile(r'\b(Exports|Imports)\s+(?:during|in|for)\s+(?:the\s+month\s+of\s+)?' + MON + r',?\s+(\d{4})\s+(?:were|was|are|is)\s+(?:valued\s+at\s+|estimated\s+(?:at|to\s+be)\s+)?' + USD, re.I)
 CUM_SENT = re.compile(r'\b(exports|imports)\s+(?:for|during|in)\s+(?:the\s+period\s+)?April\s*-\s*' + MON + r',?\s+(\d{4})\s*-\s*(\d{2,4})\s+(?:was|were|is|are)\s+(?:valued\s+at\s+|estimated\s+(?:at|to\s+be)\s+)?' + USD, re.I)
 
+# The word before "exports"/"imports" decides which flow a sentence is about.
+# "Oil imports during May 2011 were valued at..." is a component, not the total;
+# "Non-oil imports" is the ministry's imports-excluding-petroleum. Only words that
+# leave the sentence about the whole merchandise flow are accepted as the total;
+# anything unrecognised is refused rather than guessed.
+TOTAL_LEAD = {'', 's', 'of', 'the', 'merchandise', 'total', 'overall', 'cumulative', 'india', 'delhi', 'imports', 'exports', 'and'}
+NONPETRO_LEAD = {'non-oil', 'non-petroleum', 'non-pol'}
+
+def flow_series(text, start, flow):
+    """The series a sentence's flow belongs to, from the word before it, or None to refuse it."""
+    lead = re.findall(r"([A-Za-z][A-Za-z-]*)\W*$", text[max(0, start - 30):start])
+    w = lead[0].lower() if lead else ''
+    if w in NONPETRO_LEAD: return f'nonpetro-{flow.lower()}'
+    if w in TOTAL_LEAD: return f'merch-{flow.lower()}'
+    return None
+
 def sentence_obs(d):
     text = norm('\n'.join(d['pages']))
     out = []
     for m in MONTH_SENT.finditer(text):
         flow, mon, yr, val, unit = m.groups()
+        series = flow_series(text, m.start(), flow)
+        if not series: continue
         q = text[max(0, m.start()):m.end()]
-        out.append({'series': f'merch-{flow.lower()}', 'kind': 'month', 'period': month_key(mon, yr), 'v': float(val.replace(',', '')), 'unit': f'US$ {unit.lower()}', 'quote': q})
+        out.append({'series': series, 'kind': 'month', 'period': month_key(mon, yr), 'v': float(val.replace(',', '')), 'unit': f'US$ {unit.lower()}', 'quote': q})
     for m in CUM_SENT.finditer(text):
         flow, mon, y0, y1, val, unit = m.groups()
+        series = flow_series(text, m.start(), flow)
+        if not series: continue
         thr = mon[:3].title()
-        out.append({'series': f'merch-{flow.lower()}', 'kind': 'ytd', 'period': f'FY{y0}-{y1[-2:]}:Apr-{thr}', 'v': float(val.replace(',', '')), 'unit': f'US$ {unit.lower()}', 'quote': text[m.start():m.end()]})
+        out.append({'series': series, 'kind': 'ytd', 'period': f'FY{y0}-{y1[-2:]}:Apr-{thr}', 'v': float(val.replace(',', '')), 'unit': f'US$ {unit.lower()}', 'quote': text[m.start():m.end()]})
     return out
 
 def consistent(rows):
