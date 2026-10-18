@@ -3,8 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { geoMercator } from "d3-geo";
 import {
-  KIND_LABEL, X_LIVE_SEARCHES, xSearchUrl, mergeBy, headlineKey, placesFromHeadlines,
-  type FranceLivePayload, type Headline, type Outline, type Statement, type StatementKind, type Video, type XPost,
+  KIND_LABEL, X_LIVE_SEARCHES, xSearchUrl, mergeBy, headlineKey, placesFromHeadlines, isParis, inFocus,
+  type FranceLivePayload, type Headline, type Outline, type EmbeddedPost, type Statement, type StatementKind, type Video, type XPost,
 } from "@/lib/france-riots-shared";
 
 /**
@@ -205,16 +205,121 @@ function XPosts({ posts, active, reason, readsToday, budget }: { posts: XPost[];
   );
 }
 
-export default function FranceLive({ initial, outline }: { initial: FranceLivePayload; outline: Outline }) {
+const parisParts = (iso: string) => {
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Paris", day: "2-digit", month: "short", hour: "2-digit", hourCycle: "h23", weekday: "short" }).formatToParts(new Date(iso)).map((x) => [x.type, x.value]));
+  return { day: `${p.weekday} ${p.day} ${p.month}`, hour: Number(p.hour) };
+};
+
+/** Headlines per hour across the focus days, Paris time, with the first reports of each three-hour block. */
+function HourByHour({ headlines, window }: { headlines: Headline[]; window: { from: string; to: string } }) {
+  const hours: Array<{ t: string; day: string; hour: number; items: Headline[] }> = [];
+  for (let t = Date.parse(window.from); t < Date.parse(window.to); t += 3600_000) {
+    const iso = new Date(t).toISOString();
+    hours.push({ t: iso, ...parisParts(iso), items: [] });
+  }
+  for (const h of headlines) {
+    if (!h.published) continue;
+    const i = Math.floor((Date.parse(h.published) - Date.parse(window.from)) / 3600_000);
+    if (i >= 0 && i < hours.length) hours[i]!.items.push(h);
+  }
+  const max = Math.max(1, ...hours.map((h) => h.items.length));
+  const W = 900, H = 150, pl = 28, step = (W - pl) / hours.length;
+  const blocks: Array<{ label: string; items: Headline[] }> = [];
+  for (let i = 0; i < hours.length; i += 3) {
+    const g = hours.slice(i, i + 3);
+    const items = g.flatMap((x) => x.items).sort((a, b) => (a.published ?? "").localeCompare(b.published ?? ""));
+    if (items.length) blocks.push({ label: `${g[0]!.day}, ${String(g[0]!.hour).padStart(2, "0")}:00–${String((g.at(-1)!.hour + 1) % 24).padStart(2, "0")}:00`, items });
+  }
+  return (
+    <div>
+      <div className="overflow-x-auto">
+        <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", minWidth: 520, height: "auto" }} role="img" aria-label="Headlines per hour, Paris time">
+          <line x1={pl} x2={W} y1={H - 22} y2={H - 22} stroke="var(--story-ink-3)" />
+          <text x={pl - 4} y={14} textAnchor="end" fontSize="10" fill="var(--story-ink-3)">{max}</text>
+          {hours.map((h, i) => {
+            const bh = ((H - 40) * h.items.length) / max;
+            return (
+              <g key={h.t}>
+                {h.items.length > 0 && <rect x={pl + i * step + 0.5} y={H - 22 - bh} width={Math.max(1, step - 1)} height={bh} rx={1.5} fill={HOT}><title>{`${h.day}, ${String(h.hour).padStart(2, "0")}:00 Paris: ${h.items.length} headlines`}</title></rect>}
+                {h.hour === 0 && <><line x1={pl + i * step} x2={pl + i * step} y1={10} y2={H - 22} stroke="var(--story-rule)" /><text x={pl + i * step + 3} y={H - 8} fontSize="10" fill="var(--story-ink-3)">{h.day}</text></>}
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+      <ol className="mt-4 space-y-3">
+        {blocks.map((b) => (
+          <li key={b.label} className="grid gap-1 sm:grid-cols-[11rem_minmax(0,1fr)]">
+            <span className="mono text-[11px] font-semibold" style={{ color: "var(--story-ink-2)" }}>{b.label} · {b.items.length}</span>
+            <ul className="space-y-0.5">
+              {b.items.slice(0, 3).map((h) => (
+                <li key={headlineKey(h)} className="text-[12.5px] leading-snug"><a className="hover:underline" href={h.url} target="_blank" rel="noopener noreferrer">{h.title}</a> <span style={{ color: "var(--story-ink-3)" }}>— {h.outlet}</span></li>
+              ))}
+            </ul>
+          </li>
+        ))}
+        {!blocks.length && <li className="text-[13px]" style={{ color: "var(--story-ink-3)" }}>No dated headlines in this view.</li>}
+      </ol>
+    </div>
+  );
+}
+
+/** Posts on X that newsrooms embedded in their reporting, shown through X's own embed when asked for. */
+function EmbeddedPosts({ posts }: { posts: EmbeddedPost[] }) {
+  const [show, setShow] = useState(false);
+  const [n, setN] = useState(12);
+  const box = useRef<HTMLDivElement>(null);
+  const list = posts.slice(0, n);
+  useEffect(() => {
+    if (!show) return;
+    const run = () => window.twttr?.widgets?.load(box.current);
+    if (window.twttr?.widgets) { run(); return; }
+    const s = document.createElement("script");
+    s.src = "https://platform.twitter.com/widgets.js"; s.async = true; s.onload = run;
+    document.body.appendChild(s);
+  }, [show, n]);
+  if (!posts.length) return <p className="text-[13px]" style={{ color: "var(--story-ink-3)" }}>No embedded posts in this view yet. The job reads up to 35 new articles every twenty minutes and collects the posts on X they embed.</p>;
+  return (
+    <div>
+      {!show ? (
+        <button type="button" onClick={() => setShow(true)} className="rounded-md border px-3 py-1.5 text-[12.5px] font-semibold" style={{ borderColor: "var(--story-ink)" }}>Show {posts.length} posts from X (loads content from x.com)</button>
+      ) : (
+        <>
+          <div ref={box} className="grid gap-4 md:grid-cols-2">
+            {list.map((p) => (
+              <figure key={p.id} className="min-w-0">
+                <blockquote className="twitter-tweet" data-dnt="true" data-conversation="none">
+                  <a href={`https://twitter.com/${p.handle}/status/${p.id}`}>View the post on X</a>
+                </blockquote>
+                <figcaption className="mono -mt-1 text-[10.5px] leading-[1.5]" style={{ color: "var(--story-ink-3)" }}>
+                  Posted {paris(p.createdAt)} · embedded by {p.outlet} in <a className="underline decoration-dotted" href={p.articleUrl} target="_blank" rel="noopener noreferrer">“{p.articleTitle.slice(0, 90)}{p.articleTitle.length > 90 ? "…" : ""}”</a>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          {n < posts.length && <button type="button" onClick={() => setN((x) => x + 12)} className="mt-4 rounded-md border px-3 py-1.5 text-[12.5px]" style={{ borderColor: "var(--story-rule)" }}>Show more ({posts.length - n} left)</button>}
+        </>
+      )}
+    </div>
+  );
+}
+
+export default function FranceLive({ initial, outline, focus }: { initial: FranceLivePayload; outline: Outline; focus: { from: string; to: string; label: string } }) {
   const [data, setData] = useState<FranceLivePayload>(initial);
   const [state, setState] = useState<"loading" | "ok" | "failed">("loading");
   const [paused, setPaused] = useState(false);
-  const [now, setNow] = useState(() => Date.now());
+  // Server and browser must render the same "x ago", so the clock starts at the data's own time
+  // and moves to the real time once the page is running.
+  const [now, setNow] = useState(() => Date.parse(initial.fetchedAt) || 0);
   const [lastAsk, setLastAsk] = useState<number | null>(null);
   const firstSeen = useRef<Set<string> | null>(null);
   const [lang, setLang] = useState<"all" | "fr" | "en" | "official">("all");
   const [kind, setKind] = useState<"all" | StatementKind>("all");
   const [channel, setChannel] = useState("all");
+  const [span, setSpan] = useState<"focus" | "all">("focus");
+  const [where, setWhere] = useState<"all" | "paris">("all");
+  /** The page's two lenses: the focus days or the whole month, and Paris or all of France. */
+  const pass = (when: string | null | undefined, text: string) => (span === "all" || inFocus(when, focus)) && (where === "all" || isParis(text));
 
   const load = async () => {
     try {
@@ -224,14 +329,18 @@ export default function FranceLive({ initial, outline }: { initial: FranceLivePa
       setData(j); setState("ok"); setLastAsk(Date.now());
     } catch { setState((s) => (s === "ok" ? "ok" : "failed")); setLastAsk(Date.now()); }
   };
-  useEffect(() => { void load(); const t = setInterval(() => setNow(Date.now()), 10_000); return () => clearInterval(t); }, []);
+  useEffect(() => { setNow(Date.now()); void load(); const t = setInterval(() => setNow(Date.now()), 10_000); return () => clearInterval(t); }, []);
   useEffect(() => { if (paused) return; const t = setInterval(() => { void load(); }, POLL_MS); return () => clearInterval(t); }, [paused]);
 
   const reg = data.register;
   const headlines = useMemo(() => mergeBy(data.headlines, reg?.headlines ?? [], headlineKey, 600), [data, reg]);
   const videos = useMemo(() => mergeBy(data.videos, reg?.videos ?? [], (v) => v.id, 300), [data, reg]);
-  const statements = reg?.statements ?? [];
-  const places = useMemo(() => placesFromHeadlines(headlines.filter((h) => h.kind === "press").map((h) => h.title)), [headlines]);
+  const allStatements = reg?.statements ?? [];
+  const statements = allStatements.filter((s) => pass(s.seen, `${s.quote} ${s.url}`));
+  const press = headlines.filter((h) => h.kind === "press");
+  // The map follows the days chosen but not the Paris lens, which would leave one dot.
+  const places = useMemo(() => placesFromHeadlines(press.filter((h) => span === "all" || inFocus(h.published, focus)).map((h) => h.title)), [headlines, span]);
+  const embedded = (reg?.embedded ?? []).filter((p) => pass(p.createdAt, `${p.articleTitle} ${p.articleUrl}`));
   const official = headlines.filter((h) => h.kind === "official");
   const keyOf = (h: Headline) => headlineKey(h);
   // What was on the page at first load; anything else that arrives is new.
@@ -239,11 +348,12 @@ export default function FranceLive({ initial, outline }: { initial: FranceLivePa
   const isNew = (k: string) => !!firstSeen.current && !firstSeen.current.has(k);
   const newCount = [...headlines.map(keyOf), ...videos.map((v) => v.id), ...statements.map((s) => s.quote)].filter(isNew).length;
 
-  const shownHeadlines = headlines.filter((h) => lang === "all" ? h.kind === "press" : lang === "official" ? h.kind === "official" : h.kind === "press" && h.lang === lang).slice(0, 60);
+  const inView = headlines.filter((h) => pass(h.published, h.title));
+  const shownHeadlines = inView.filter((h) => lang === "all" ? h.kind === "press" : lang === "official" ? h.kind === "official" : h.kind === "press" && h.lang === lang).slice(0, 60);
   const kinds = (Object.keys(KIND_LABEL) as StatementKind[]).filter((k) => statements.some((s) => s.kind === k));
   const shownStatements = statements.filter((s) => kind === "all" || s.kind === kind).slice(0, 30);
   const channels = [...new Set(videos.map((v) => v.channel))];
-  const shownVideos = videos.filter((v) => channel === "all" || v.channel === channel).slice(0, 24);
+  const shownVideos = videos.filter((v) => pass(v.published, v.title) && (channel === "all" || v.channel === channel)).slice(0, 24);
   const ok = data.status.filter((s) => s.ok).length;
 
   return (
@@ -265,10 +375,27 @@ export default function FranceLive({ initial, outline }: { initial: FranceLivePa
       </div>
 
       <nav aria-label="On this page" className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[12.5px]">
-        {[["figures", "Officials' figures"], ["pulse", "Coverage pulse"], ["map", "Where"], ["videos", "Videos"], ["x", "Posts on X"], ["headlines", "Headlines"], ["government", "Government & advisories"], ["world", "World coverage"], ["sources", "Sources"]].map(([id, label]) => (
+        {[["hours", "Hour by hour"], ["embedded", "Posts newsrooms embedded"], ["figures", "Officials' figures"], ["pulse", "Coverage pulse"], ["map", "Where"], ["videos", "Videos"], ["x", "Posts on X"], ["headlines", "Headlines"], ["government", "Government & advisories"], ["world", "World coverage"], ["sources", "Sources"]].map(([id, label]) => (
           <a key={id} href={`#${id}`} className="underline decoration-dotted underline-offset-2">{label}</a>
         ))}
       </nav>
+
+      <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-lg border px-4 py-3" style={{ borderColor: "var(--story-rule)", background: "var(--story-card)" }}>
+        <span className="text-[12px] font-semibold">Showing</span>
+        <Tabs value={span} onChange={setSpan} options={[["focus", `${focus.label} (Paris time)`], ["all", "All of October"]]} />
+        <Tabs value={where} onChange={setWhere} options={[["all", "All of France"], ["paris", "Paris & Île-de-France"]]} />
+        <span className="text-[11.5px]" style={{ color: "var(--story-ink-3)" }}>Applies to every section below. Undated items appear only under &ldquo;All of October&rdquo;.</span>
+      </div>
+
+      <Section id="hours" title={span === "focus" ? `${focus.label}, hour by hour` : "Hour by hour"}
+        note={<>How many of the headlines collected here were published in each hour, Paris time, with the first reports of every three-hour block. It shows when the reporting surged, which follows events with a lag; it is not a count of incidents.</>}>
+        <HourByHour headlines={inView.filter((h) => h.kind === "press")} window={span === "focus" ? focus : { from: (reg?.headlines ?? []).map((h) => h.published ?? "").filter(Boolean).sort()[0] ?? focus.from, to: new Date(now).toISOString() }} />
+      </Section>
+
+      <Section id="embedded" title="Posts on X that newsrooms embedded"
+        note={<>Posts on X — eyewitness video, police and ministry statements, reporters on the ground — that news sites and live blogs placed in their own coverage, found by reading those articles. The post appears through X&apos;s own embed; this site stores only its id, and its time is read from the id. A newsroom choosing to embed a post is not a verification of what it shows.</>}>
+        <EmbeddedPosts posts={embedded} />
+      </Section>
 
       <Section id="figures" title="What officials have said, in their words"
         note={<>Sentences from news articles in which a minister, prefecture, the police, prosecutors or the organisers give a figure — quoted word for word, with who said it. Figures rise through a night and organisers and police count differently; nothing here is added up or confirmed by this site.</>}
@@ -304,7 +431,7 @@ export default function FranceLive({ initial, outline }: { initial: FranceLivePa
         ) : <p className="text-[13px]" style={{ color: "var(--story-ink-3)" }}>No matching videos yet from the listed channels.</p>}
       </Section>
 
-      <Section id="x" title="Posts on X" note={<>From French institutions (the Interior Ministry, the Paris police prefecture, the national police and gendarmerie, the Élysée), public officials and newsrooms. Private individuals are not searched or shown.</>}>
+      <Section id="x" title="Posts on X from institutions and newsrooms" note={<>From French institutions (the Interior Ministry, the Paris police prefecture, the national police and gendarmerie, the Élysée), public officials and newsrooms. Private individuals are not searched or shown.</>}>
         <XPosts posts={reg?.x.posts ?? []} active={!!reg?.x.active} reason={reg?.x.reason} readsToday={reg?.x.readsToday ?? 0} budget={reg?.x.budgetPerDay ?? 0} />
       </Section>
 

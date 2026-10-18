@@ -10,7 +10,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
   isAboutRiots, parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseGdeltTimeline,
-  parseGovUkAdvice, articleText, isOfficialRelevant, placesFromHeadlines, fixMojibake, parseBingNews, attribution, unescape, extractStatements, countsIn, statementKind, mergeBy, headlineKey, inWindow,
+  parseGovUkAdvice, articleText, tweetsInHtml, tweetTime, isParis, inFocus, isOfficialRelevant, placesFromHeadlines, fixMojibake, parseBingNews, attribution, unescape, extractStatements, countsIn, statementKind, mergeBy, headlineKey, inWindow,
   type FranceRegister,
 } from "../lib/france-riots-shared";
 import { FRANCE_RIOTS } from "../lib/sources";
@@ -48,6 +48,15 @@ const pl = placesFromHeadlines(["Riots in Paris and Lyon", "Nice: shops looted",
 ok("places: cities counted by headline, case-sensitively", pl.find((p) => p.name === "Paris")?.count === 1 && pl.find((p) => p.name === "Nice")?.count === 1 && !!pl.find((p) => p.name === "Saint-Étienne") && !!pl.find((p) => p.name === "Saint-Denis"), JSON.stringify(pl));
 ok("article text: paragraphs only", articleText(`<script>var a="<p>no</p>"</script><p>Short</p><p>Le ministre de l'Intérieur a annoncé 1 800 interpellations dans toute la France.</p>`) === "Le ministre de l'Intérieur a annoncé 1 800 interpellations dans toute la France.");
 
+console.log("\nPosts on X that newsrooms embedded");
+const html = `<blockquote class="twitter-tweet"><p lang="fr">texte du post</p>&mdash; Préfecture de police (@prefpolice) <a href="https://twitter.com/prefpolice/status/1979512345678901234?ref_src=twsrc%5Etfw">October 17, 2026</a></blockquote><a href="https://x.com/intent/tweet?url=x">share</a><a href="https://x.com/i/status/1979512345678901299">i</a><a href="https://x.com/lemondefr">follow</a>`;
+const tw = tweetsInHtml(html);
+ok("embedded posts: status links read, share/follow/intent links ignored", tw.length === 1 && tw[0]!.id === "1979512345678901234" && tw[0]!.handle === "prefpolice", JSON.stringify(tw));
+ok("embedded posts: nothing of the post's text is taken", JSON.stringify(tw).indexOf("texte") === -1);
+ok("a post's time is read from its id", tweetTime("1850000000000000000") === "2024-10-26T02:22:25.994Z" && tweetTime("abc") === null);
+ok("Paris lens: suburbs and the prefecture count, Lyon does not", isParis("Violences à Bobigny") && isParis("selon la préfecture de police") && !isParis("Émeutes à Lyon"));
+ok("focus window: 17 October inside, 19 October and undated outside", inFocus("2026-10-17T20:00:00Z", FRANCE_RIOTS.focus) && !inFocus("2026-10-19T08:00:00Z", FRANCE_RIOTS.focus) && !inFocus(null, FRANCE_RIOTS.focus));
+
 console.log("\nOfficials' figures, quoted");
 const meta = { outlet: "o", url: "u", seen: null, lang: "fr" };
 const st = extractStatements("Le ministre de l'Intérieur Laurent Nuñez a fait état de 1 800 interpellations dans toute la France. Des manifestants ont défilé le 17 octobre à Paris, selon la police. Au moins 120 policiers et gendarmes ont été blessés, selon la préfecture de police. Il y avait beaucoup de monde.", meta);
@@ -73,6 +82,8 @@ const reg = JSON.parse(readFileSync(join(process.cwd(), "data", "france-riots", 
 ok("X posts carry ids, never text", reg.x.posts.every((p) => /^\d+$/.test(p.id) && Object.keys(p).every((k) => ["id", "handle", "createdAt", "video"].includes(k))));
 const accounts = new Set<string>(FRANCE_RIOTS.xAccounts.map((h) => h.toLowerCase()));
 ok("X posts come only from the listed institutions, officials and newsrooms", reg.x.posts.every((p) => !p.handle || accounts.has(p.handle.toLowerCase())), reg.x.posts.filter((p) => p.handle && !accounts.has(p.handle.toLowerCase())).map((p) => p.handle).join(", "));
+ok("embedded posts carry ids, handles, times and the article that embedded them — never text", (reg.embedded ?? []).every((p) => Object.keys(p).every((k) => ["id", "handle", "createdAt", "outlet", "articleUrl", "articleTitle"].includes(k))));
+ok("each embedded post's time is the one its id encodes, inside the story's window", (reg.embedded ?? []).every((p) => p.createdAt === tweetTime(p.id) && inWindow(p.createdAt, FRANCE_RIOTS.since)));
 ok("every quoted figure names who gave it", reg.statements.every((s) => !!s.who && s.numbers.length > 0 && s.quote.length >= 40));
 ok("no quote carries an undecoded HTML entity", reg.statements.every((s) => !/&(?:[a-z]+|#x?[0-9a-f]+);/i.test(s.quote)), reg.statements.filter((s) => /&(?:[a-z]+|#x?[0-9a-f]+);/i.test(s.quote)).slice(0, 2).map((s) => s.quote.slice(0, 80)).join(" | "));
 ok("headlines and videos are inside the window", reg.headlines.every((h) => inWindow(h.published, FRANCE_RIOTS.since)) && reg.videos.every((v) => inWindow(v.published, FRANCE_RIOTS.since)));

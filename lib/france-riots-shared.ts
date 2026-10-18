@@ -28,6 +28,8 @@ export type StatementKind = "arrests" | "injured" | "deaths" | "protesters" | "d
 export interface Statement { quote: string; numbers: string[]; kind: StatementKind; who: string | null; outlet: string; url: string; seen: string | null; lang: string }
 export interface Advisory { id: string; name: string; page: string; updatedAt: string | null; change: string | null; excerpt: string | null }
 export interface XPost { id: string; handle: string; createdAt: string; video: boolean }
+/** A post on X that a newsroom embedded in its own article: found there, never searched for. */
+export interface EmbeddedPost { id: string; handle: string; createdAt: string; outlet: string; articleUrl: string; articleTitle: string }
 /** Metropolitan France as one SVG path, with the projection that drew it (lib/france-outline.ts). */
 export interface Outline { d: string; scale: number; translate: [number, number]; width: number; height: number }
 export interface SourceStatus { id: string; label: string; ok: boolean; count: number; error?: string }
@@ -42,7 +44,9 @@ export interface FranceRegister {
   places: Place[];
   statements: Statement[];
   advisories: Advisory[];
-  readUrls: string[];
+  /** Articles already read for figures and embedded posts. */
+  scanned: string[];
+  embedded: EmbeddedPost[];
   x: { active: boolean; reason?: string; day: string; readsToday: number; budgetPerDay: number; costUsdToday: number; lastAt?: string; posts: XPost[] };
   status: SourceStatus[];
 }
@@ -75,6 +79,40 @@ export function isAboutRiots(text: string): boolean {
 const OFFICIAL = /manifest|rassemblement|émeut|emeut|violences urbaines|ordre public|couvre-feu|casseur|black ?bloc|dégradations? (?:urbaines|de biens publics)|protest|riot|gilets jaunes|\bGJ\b|blocages?\b|bloquons/i;
 export function isOfficialRelevant(title: string): boolean {
   return OFFICIAL.test(title) && !/manifestations? d.int[ée]r[êe]t/i.test(title) && !/^(résultats de recherche|untitled|offres d.emploi)/i.test(title.trim());
+}
+
+/** Paris and the Île-de-France: the capital, its suburbs and the places in it reporting names. */
+const PARIS = /paris|parisien|île-de-france|ile-de-france|seine-saint-denis|hauts-de-seine|val-de-marne|val-d.oise|essonne|yvelines|nanterre|saint-denis|bobigny|créteil|creteil|argenteuil|champs-élysées|champs-elysees|bastille|république|place de la nation|châtelet|chatelet|les halles|préfecture de police|prefecture de police|prefpolice/i;
+export const isParis = (text: string) => PARIS.test(text);
+
+/** Inside a window [from, to). Undated items are outside a focus window: a focus is a claim about time. */
+export const inFocus = (iso: string | null | undefined, w: { from: string; to: string }) => !!iso && iso >= w.from && iso < w.to;
+
+/**
+ * When a post on X was made, from its id: X ids are "snowflakes" whose high
+ * bits are milliseconds since 4 November 2010. The time is read from the id
+ * itself, not from anything the post says.
+ */
+export function tweetTime(id: string): string | null {
+  if (!/^\d{15,20}$/.test(id)) return null;
+  const ms = Number(BigInt(id) >> 22n) + 1288834974657;
+  return ms > 1.3e12 && ms < 4.1e12 ? new Date(ms).toISOString() : null;
+}
+
+const NOT_A_USER = new Set(["i", "intent", "share", "home", "search", "hashtag", "explore", "settings", "login", "signup", "web"]);
+/**
+ * Posts on X an article embeds: status links in the page, typically inside
+ * <blockquote class="twitter-tweet">. Ids and handles only; the post's text in
+ * the page is not kept.
+ */
+export function tweetsInHtml(html: string): Array<{ id: string; handle: string }> {
+  const out = new Map<string, { id: string; handle: string }>();
+  for (const m of html.matchAll(/(?:twitter|x)\.com\/(?:#!\/)?([A-Za-z0-9_]{1,15})\/status(?:es)?\/(\d{15,20})/g)) {
+    const handle = m[1]!, id = m[2]!;
+    if (NOT_A_USER.has(handle.toLowerCase()) || !tweetTime(id)) continue;
+    if (!out.has(id)) out.set(id, { id, handle });
+  }
+  return [...out.values()];
 }
 
 /** Within the story's window. Undated items are kept: absence of a date is not evidence of age. */

@@ -16,6 +16,9 @@
  *   - reads the UK's travel advice (the Interior Ministry's press page refuses
  *     automated readers, so its announcements arrive through the search
  *     restricted to government sites);
+ *   - collects the posts on X that newsrooms embedded in those articles —
+ *     the free, legitimate route to posts about the riots: X sells search by
+ *     the post and forbids scraping. Ids and handles only, never text;
  *   - searches X — only institutions, public officials and newsrooms, only
  *     within a daily budget, and stores post ids, never text;
  *   - accumulates headlines and videos, because a search feed only carries the
@@ -32,15 +35,15 @@ import { isEntryPoint } from "../lib/entry";
 import { FRANCE_RIOTS } from "../../../lib/sources";
 import {
   parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseBingNews, parseGdeltTimeline, parseGovUkAdvice,
-  articleText, extractStatements, attribution, statementKind, countsIn, hasEntity, isAboutRiots, isOfficialRelevant, inWindow, mergeBy, headlineKey, placesFromHeadlines,
-  type FranceRegister, type Headline, type SourceStatus, type Statement, type Video, type XPost,
+  articleText, extractStatements, tweetsInHtml, tweetTime, attribution, statementKind, countsIn, hasEntity, isAboutRiots, isOfficialRelevant, inWindow, mergeBy, headlineKey, placesFromHeadlines,
+  type FranceRegister, type Headline, type SourceStatus, type Statement, type Video, type XPost, type EmbeddedPost,
 } from "../../../lib/france-riots-shared";
 
 const OUT = join(process.cwd(), "data", "france-riots", "register.json");
 const GAP = 2_000;
 /** GDELT asks for no more than one request every five seconds. */
 const GDELT_GAP = 6_000;
-const ARTICLES_PER_RUN = 25;
+const ARTICLES_PER_RUN = 35;
 const X_USD_PER_POST = 0.005;
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const now = () => new Date().toISOString();
@@ -52,7 +55,7 @@ const GDELT = (mode: string, extra: string) => `https://api.gdeltproject.org/api
 
 export function emptyRegister(): FranceRegister {
   return {
-    updatedAt: now(), youtubeChannels: {}, headlines: [], videos: [], articles: [], pulse: [], places: [], statements: [], advisories: [], readUrls: [],
+    updatedAt: now(), youtubeChannels: {}, headlines: [], videos: [], articles: [], pulse: [], places: [], statements: [], advisories: [], scanned: [], embedded: [],
     x: { active: false, reason: "not yet run", day: now().slice(0, 10), readsToday: 0, budgetPerDay: 0, costUsdToday: 0, posts: [] },
     status: [],
   };
@@ -180,10 +183,12 @@ export async function run(): Promise<void> {
   }
   status.push({ id: "bing", label: "Bing News (article addresses)", ok: bingOk > 0, count: bingN });
 
-  // ── Officials' figures, quoted from new articles ──
-  const read = new Set(reg.readUrls);
+  // ── Articles: officials' figures, and the posts on X newsrooms embedded ──
+  // Articles read before embedded posts were collected are read once more.
+  const read = new Set(reg.scanned ?? []);
   const todo = reg.articles.filter((a) => !read.has(a.url) && /^(French|English)$/i.test(a.language)).slice(0, ARTICLES_PER_RUN);
   const found: Statement[] = [];
+  const posts: EmbeddedPost[] = [];
   let readOk = 0;
   for (const a of todo) {
     read.add(a.url);
@@ -194,8 +199,18 @@ export async function run(): Promise<void> {
     const text = articleText(page.data);
     if (!isAboutRiots(text.slice(0, 4000))) continue;
     found.push(...extractStatements(text, { outlet: a.domain, url: a.url, seen: a.seen, lang: /french/i.test(a.language) ? "fr" : "en" }));
+    for (const t of tweetsInHtml(page.data)) {
+      const at = tweetTime(t.id);
+      // Only posts made during the story: an article's sidebar can embed anything.
+      if (at && inWindow(at, since)) posts.push({ id: t.id, handle: t.handle, createdAt: at, outlet: a.domain, articleUrl: a.url, articleTitle: a.title });
+    }
   }
-  reg.readUrls = [...read].slice(-3000);
+  reg.scanned = [...read].slice(-3000);
+  delete (reg as { readUrls?: unknown }).readUrls;
+  const byPost = new Map<string, EmbeddedPost>();
+  for (const p of [...(reg.embedded ?? []), ...posts]) if (!byPost.has(p.id)) byPost.set(p.id, p);
+  reg.embedded = [...byPost.values()].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 500);
+  status.push({ id: "embedded", label: "Posts on X embedded in the articles read", ok: true, count: reg.embedded.length });
   // Stored quotes are re-read with today's rules, so a tightened rule corrects old rows too.
   const reread = reg.statements.flatMap((s) => { const who = attribution(s.quote); return who && !hasEntity(s.quote) ? [{ ...s, who, kind: statementKind(s.quote), numbers: countsIn(s.quote) }] : []; }).filter((s) => s.numbers.length);
   reg.statements = mergeBy(reread, found, (s) => s.quote, 400);

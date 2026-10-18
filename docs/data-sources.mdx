@@ -211,11 +211,15 @@ announcements arrive through the government-sites search. A scheduled job (`npm 
 Actions) writes `data/france-riots/register.json`: GDELT's article index and hourly coverage pulse;
 article addresses from Bing News's RSS search, whose links (unlike Google News's) can be read;
 sentences from those articles in which a named official, the police, prosecutors or organisers give
-a figure, quoted word for word; and, when `X_BEARER_TOKEN` is set, posts on X from a fixed list of French institutions, public
+a figure, quoted word for word; the posts on X those articles embed — eyewitness video, police and
+ministry statements, reporters on the ground — collected as post ids with the article that embedded
+each and the time encoded in the id, never their text (X sells search by the post and forbids
+scraping, so this is the free route to the posts newsrooms judged worth showing); and, when `X_BEARER_TOKEN` is set, posts on X from a fixed list of French institutions, public
 officials and newsrooms, within a daily budget (`X_FRANCE_POSTS_PER_DAY`, default 100 posts, about
 $0.50). Only X post ids are stored, never text; the post is rendered by X's own embed when a reader
 asks for it. The route reads the register from the repository itself, so a run reaches the page
-without a deployment. Everything on the page is a report: no figure from it enters the site's record,
+without a deployment. The page opens on 16–18 October (Paris time) and can narrow every section to Paris and the
+Île-de-France. Everything on the page is a report: no figure from it enters the site's record,
 none is summed, and a source that stops answering is shown as unavailable. `npm run test:france`
 checks the parsers against samples of each format and that the register stores no X text and
 attributes every quoted figure.

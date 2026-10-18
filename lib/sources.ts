@@ -724,17 +724,19 @@ export const X_HANDLES: Array<{ handle: string; name: string; kind: SourceKind }
 export const FRANCE_RIOTS = {
   /** The story's start: the student protests that preceded the riots. Older items are another story. */
   since: "2026-10-01T00:00:00Z",
+  /** The days the page opens on: Friday 16 to Sunday 18 October, Paris time (UTC+2). */
+  focus: { from: "2026-10-15T22:00:00Z", to: "2026-10-18T22:00:00Z", label: "16–18 October" },
   /** Google News keyless RSS, asked in French and in English. */
   newsQueries: {
-    fr: ["émeutes France", "manifestations violences France", "interpellations manifestation Paris", "Nuñez bilan manifestations", "mobilisation étudiants vie chère"],
-    en: ["France riots", "France protests violence", "Paris protests arrests", "France student protests cost of living"],
+    fr: ["émeutes France", "manifestations violences France", "interpellations manifestation Paris", "Nuñez bilan manifestations", "mobilisation étudiants vie chère", "Paris casseurs pillages", "Paris violences nuit 17 octobre"],
+    en: ["France riots", "France protests violence", "Paris protests arrests", "France student protests cost of living", "Paris riots looting", "Paris clashes police tear gas"],
   },
   /** Google News restricted to government sites: their own announcements, as indexed. */
   officialSites: ["interieur.gouv.fr", "elysee.fr", "info.gouv.fr", "prefecturedepolice.interieur.gouv.fr", "gendarmerie.interieur.gouv.fr"],
   /** Bing News RSS, asked for article addresses the job can read for officials' figures. */
   bingQueries: {
-    fr: ["émeutes interpellations bilan", "violences manifestations ministre de l'Intérieur", "manifestation 17 octobre bilan blessés"],
-    en: ["France riots arrests interior minister", "France protests injured police", "Paris riots damage"],
+    fr: ["émeutes interpellations bilan", "violences manifestations ministre de l'Intérieur", "manifestation 17 octobre bilan blessés", "en direct manifestation 17 octobre", "Paris émeutes vidéos", "direct violences Paris manifestation"],
+    en: ["France riots arrests interior minister", "France protests injured police", "Paris riots damage", "France protests live updates", "Paris riots video", "Paris riots live"],
   },
   /** GDELT DOC 2.0 query: multilingual, every outlet GDELT monitors. */
   gdeltQuery: '(émeutes OR émeutiers OR "riots" OR "rioters" OR "violences urbaines") (France OR Paris OR Lyon OR Marseille OR Bordeaux OR Lille OR Nantes OR Toulouse)',
