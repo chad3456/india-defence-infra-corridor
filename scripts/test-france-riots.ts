@@ -60,6 +60,7 @@ ok("kinds: arrests, damage, turnout", statementKind("400 people were arrested") 
 ok("a sentence with two sources names both, in order", attribution("According to the Ministry of the Interior, 550,000 people took to the streets; the CGT union puts the number at 800,000.") === "the Interior Ministry; organisers or unions");
 ok("people injured are not a source: 'firefighters' injured is not 'according to firefighters'", attribution("Interior Minister Laurent Nuñez has reported 1,800 arrests and 500 injured police officers and firefighters so far.") === "Interior Minister (Laurent Nuñez)");
 ok("a burned town hall is not a mayor speaking", attribution("La mairie de Limoges a été incendiée, 40 interpellations selon la police.") === "police");
+ok("'according to authorities' is a source", attribution("About 550,000 people took part in protests across France, according to authorities, while organizers counted about 800,000.") === "the authorities; organisers or unions");
 ok("turnout includes 'participated'", statementKind("The CGT trade union estimated that as many as 800,000 people participated.") === "protesters");
 ok("entities decoded: &nbsp; &ldquo; &#x27;", unescape("Laurent Nuñez&nbsp;said &ldquo;500&rdquo; France&#x27;s") === "Laurent Nuñez said “500” France's");
 ok("accented letters decoded by name: &ntilde; &Eacute; &ccedil; &oelig;", unescape("Nu&ntilde;ez &Eacute;lys&eacute;e fran&ccedil;ais c&oelig;ur") === "Nuñez Élysée français cœur");

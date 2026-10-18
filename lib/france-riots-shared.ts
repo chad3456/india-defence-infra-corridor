@@ -280,6 +280,7 @@ const WHO: Array<[RegExp, string]> = [
   [/gendarmerie/i, "the Gendarmerie"],
   [/police nationale|national police|police said|selon la police|according to (?:the )?police|police sources?/i, "police"],
   [/organisateurs|organisers|organizers|syndicat|union|CGT|CFDT|FO\b|intersyndicale/i, "organisers or unions"],
+  [/according to (?:the )?authorities|authorities said|selon les autorités|les autorités ont/i, "the authorities"],
   [/selon les (?:sapeurs-)?pompiers|les pompiers ont (?:indiqué|annoncé|précisé)|firefighters said|according to (?:the )?(?:firefighters|fire service)|fire service said/i, "firefighters"],
   [/selon (?:le|la) maire|selon la mairie|(?:le|la) maire\b.{0,40}\ba (?:déclaré|annoncé|indiqué|dénoncé)|mayor (?:said|told|announced|denounced)|according to the mayor/i, "a mayor"],
 ];
