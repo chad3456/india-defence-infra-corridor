@@ -62,6 +62,8 @@ ok("people injured are not a source: 'firefighters' injured is not 'according to
 ok("a burned town hall is not a mayor speaking", attribution("La mairie de Limoges a été incendiée, 40 interpellations selon la police.") === "police");
 ok("turnout includes 'participated'", statementKind("The CGT trade union estimated that as many as 800,000 people participated.") === "protesters");
 ok("entities decoded: &nbsp; &ldquo; &#x27;", unescape("Laurent Nuñez&nbsp;said &ldquo;500&rdquo; France&#x27;s") === "Laurent Nuñez said “500” France's");
+ok("accented letters decoded by name: &ntilde; &Eacute; &ccedil; &oelig;", unescape("Nu&ntilde;ez &Eacute;lys&eacute;e fran&ccedil;ais c&oelig;ur") === "Nuñez Élysée français cœur");
+ok("a sentence with an entity that cannot be decoded is not kept", extractStatements("Le ministre de l'Intérieur a annoncé 400 interpellations &zzz; dans la nuit.", meta).length === 0);
 const merged = mergeBy([{ ...gn[0]! }], [{ ...gn[0]!, published: "2026-10-18T00:00:00Z" }], headlineKey, 10);
 ok("merge: one entry per headline, first sighting kept", merged.length === 1 && merged[0]!.published === "2026-10-17T21:04:00.000Z");
 

@@ -98,14 +98,30 @@ export const headlineKey = (h: Headline) => `${norm(h.outlet)}|${norm(h.title)}`
 
 /* ── Parsers ──────────────────────────────────────────────────────────── */
 
-const NAMED: Record<string, string> = { nbsp: " ", ldquo: "“", rdquo: "”", lsquo: "‘", rsquo: "’", laquo: "«", raquo: "»", hellip: "…", ndash: "–", mdash: "—", eacute: "é", egrave: "è", agrave: "à", ccedil: "ç", ecirc: "ê", ocirc: "ô", euro: "€", deg: "°", nnbsp: " " };
+const NAMED: Record<string, string> = {
+  nbsp: " ", nnbsp: " ", ensp: " ", emsp: " ", thinsp: " ", ldquo: "“", rdquo: "”", lsquo: "‘", rsquo: "’", sbquo: "‚", bdquo: "„", laquo: "«", raquo: "»",
+  hellip: "…", ndash: "–", mdash: "—", euro: "€", pound: "£", deg: "°", copy: "©", reg: "®", trade: "™", middot: "·", bull: "•", times: "×", divide: "÷",
+  szlig: "ß", aelig: "æ", AElig: "Æ", oelig: "œ", OElig: "Œ", oslash: "ø", Oslash: "Ø", eth: "ð", thorn: "þ", iexcl: "¡", iquest: "¿", sect: "§", para: "¶", shy: "",
+  ordm: "º", ordf: "ª", sup2: "²", sup3: "³", frac12: "½", frac14: "¼", frac34: "¾", percnt: "%", num: "#", dollar: "$", comma: ",", period: ".", colon: ":", semi: ";", apos: "'",
+};
+/** Accented letters by their entity names: "eacute" is e + acute, rebuilt with Unicode normalisation. */
+const MARKS: Record<string, string> = { acute: "\u0301", grave: "\u0300", circ: "\u0302", tilde: "\u0303", uml: "\u0308", cedil: "\u0327", ring: "\u030a" };
+function entity(name: string): string | null {
+  if (name in NAMED) return NAMED[name]!;
+  const lower = name.toLowerCase();
+  if (lower in NAMED && name === lower) return NAMED[lower]!;
+  const m = /^([a-zA-Z])(acute|grave|circ|tilde|uml|cedil|ring)$/.exec(name);
+  return m ? (m[1]! + MARKS[m[2]!]!).normalize("NFC") : null;
+}
+/** Is any entity still undecoded in this text? */
+export const hasEntity = (t: string) => /&(?:[a-zA-Z][a-zA-Z0-9]*|#x?[0-9a-fA-F]+);/.test(t);
 
 /** Entities decoded, CDATA unwrapped, whitespace collapsed: text as a reader sees it. */
 export function unescape(s: string): string {
   return s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"')
     .replace(/&#39;|&apos;/g, "'").replace(/&#(\d+);/g, (_, n: string) => String.fromCodePoint(Number(n)))
     .replace(/&#x([0-9a-f]+);/gi, (_, h: string) => String.fromCodePoint(parseInt(h, 16)))
-    .replace(/&([a-z]+);/gi, (m, e: string) => NAMED[e.toLowerCase()] ?? m)
+    .replace(/&([a-zA-Z][a-zA-Z0-9]*);/g, (m, e: string) => (e === "amp" ? m : entity(e) ?? m))
     .replace(/&amp;/g, "&").replace(/[\s\u00a0\u202f]+/g, " ").trim();
 }
 const tag = (xml: string, name: string) => { const m = new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name}>`, "i").exec(xml); return m ? unescape(m[1]!.replace(/<[^>]+>/g, "")) : null; };
@@ -330,6 +346,8 @@ export function extractStatements(text: string, meta: { outlet: string; url: str
     if (!numbers.length) continue;
     const who = attribution(s);
     if (!who) continue;
+    // A quote is shown as printed; one that cannot be decoded cleanly is not shown at all.
+    if (hasEntity(s)) continue;
     seen.add(s);
     out.push({ quote: s, numbers, kind: statementKind(s), who, ...meta });
   }
