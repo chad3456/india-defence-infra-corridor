@@ -98,9 +98,15 @@ export const headlineKey = (h: Headline) => `${norm(h.outlet)}|${norm(h.title)}`
 
 /* ── Parsers ──────────────────────────────────────────────────────────── */
 
-function unescape(s: string): string {
+const NAMED: Record<string, string> = { nbsp: " ", ldquo: "“", rdquo: "”", lsquo: "‘", rsquo: "’", laquo: "«", raquo: "»", hellip: "…", ndash: "–", mdash: "—", eacute: "é", egrave: "è", agrave: "à", ccedil: "ç", ecirc: "ê", ocirc: "ô", euro: "€", deg: "°", nnbsp: " " };
+
+/** Entities decoded, CDATA unwrapped, whitespace collapsed: text as a reader sees it. */
+export function unescape(s: string): string {
   return s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"')
-    .replace(/&#39;|&apos;/g, "'").replace(/&#(\d+);/g, (_, n: string) => String.fromCodePoint(Number(n))).replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+    .replace(/&#39;|&apos;/g, "'").replace(/&#(\d+);/g, (_, n: string) => String.fromCodePoint(Number(n)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, h: string) => String.fromCodePoint(parseInt(h, 16)))
+    .replace(/&([a-z]+);/gi, (m, e: string) => NAMED[e.toLowerCase()] ?? m)
+    .replace(/&amp;/g, "&").replace(/[\s\u00a0\u202f]+/g, " ").trim();
 }
 const tag = (xml: string, name: string) => { const m = new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name}>`, "i").exec(xml); return m ? unescape(m[1]!.replace(/<[^>]+>/g, "")) : null; };
 const iso = (raw: string | null) => { if (!raw) return null; const t = Date.parse(raw); return Number.isFinite(t) ? new Date(t).toISOString() : null; };
@@ -249,7 +255,7 @@ export function articleText(html: string): string {
 const COUNT = /interpell|arrest|gardes? à vue|en garde|détenu|detain|blessé|injur|hurt|hospital|policiers?|gendarmes?|officers?|forces de l.ordre|véhicules?|voitures?|cars?\b|vehicles?|incendi|burn|torched|manifestants|protesters|demonstrators|people|personnes|bâtiments?|buildings?|commerces?|shops?|magasins?|mort|morts|dead|killed|tués?|décès|died/i;
 const WHO: Array<[RegExp, string]> = [
   [/nu[ñn]ez/i, "Interior Minister (Laurent Nuñez)"],
-  [/ministère de l.intérieur|ministre de l.intérieur|interior minist/i, "Interior Ministry"],
+  [/ministère de l.intérieur|ministre de l.intérieur|interior minist|ministry of the interior|minister of the interior/i, "the Interior Ministry"],
   [/préfecture de police|prefecture de police|paris police (?:prefecture|headquarters)|préfet de police/i, "Paris Police Prefecture"],
   [/préfe|prefect/i, "a prefecture"],
   [/macron|élysée|elysee/i, "the President"],
@@ -258,9 +264,26 @@ const WHO: Array<[RegExp, string]> = [
   [/gendarmerie/i, "the Gendarmerie"],
   [/police nationale|national police|police said|selon la police|according to (?:the )?police|police sources?/i, "police"],
   [/organisateurs|organisers|organizers|syndicat|union|CGT|CFDT|FO\b|intersyndicale/i, "organisers or unions"],
-  [/pompiers|firefighters|fire service/i, "firefighters"],
-  [/mairie|maire|mayor/i, "a mayor"],
+  [/selon les (?:sapeurs-)?pompiers|les pompiers ont (?:indiqué|annoncé|précisé)|firefighters said|according to (?:the )?(?:firefighters|fire service)|fire service said/i, "firefighters"],
+  [/selon (?:le|la) maire|selon la mairie|(?:le|la) maire\b.{0,40}\ba (?:déclaré|annoncé|indiqué|dénoncé)|mayor (?:said|told|announced|denounced)|according to the mayor/i, "a mayor"],
 ];
+/**
+ * Every source a sentence names, in the order it names them: "550,000 according
+ * to the ministry; the CGT puts it at 800,000" is two sources, not one.
+ */
+export function attribution(s: string): string | null {
+  const found: Array<[number, string]> = [];
+  for (const [re, label] of WHO) {
+    const m = new RegExp(re.source, "i").exec(s);
+    if (m && !found.some(([, l]) => l === label)) found.push([m.index, label]);
+  }
+  // A specific source makes the general one it implies redundant.
+  const labels = found.sort((a, b) => a[0] - b[0]).map(([, l]) => l);
+  const covers: Record<string, string> = { "Interior Minister (Laurent Nuñez)": "the Interior Ministry", "Paris Police Prefecture": "a prefecture" };
+  const out = labels.filter((l) => !Object.entries(covers).some(([specific, general]) => l === general && labels.includes(specific)));
+  return out.length ? out.join("; ") : null;
+}
+
 const NUMBER = /\b\d{1,3}(?:[  ,.]\d{3})+\b|\b\d{2,}\b|\b(?:dozens|hundreds|thousands|dizaines|centaines|milliers)\b/gi;
 
 const MONTH = "janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout|septembre|octobre|novembre|décembre|decembre|january|february|march|april|may|june|july|august|september|october|november|december";
@@ -282,7 +305,7 @@ export function statementKind(s: string): StatementKind {
   if (/interpell|arrest|gardes? à vue|en garde|détenu|detain/i.test(s)) return "arrests";
   if (/\bmorts?\b|dead|killed|tués?|décès|died/i.test(s)) return "deaths";
   if (/blessé|injur|hurt|hospital/i.test(s)) return "injured";
-  if (/manifestants|protesters|demonstrators|défilé|marched|took to the streets|dans la rue/i.test(s)) return "protesters";
+  if (/manifestants|protesters|demonstrators|défilé|marched|took to the streets|dans la rue|particip|took part|attended|ont manifesté|mobilisés/i.test(s)) return "protesters";
   if (/véhicules?|voitures?|cars?\b|vehicles?|incendi|burn|torched|bâtiments?|buildings?|commerces?|shops?|magasins?|pillag|loot|dégradation/i.test(s)) return "damage";
   return "other";
 }
@@ -305,7 +328,7 @@ export function extractStatements(text: string, meta: { outlet: string; url: str
     if (!COUNT.test(s)) continue;
     const numbers = countsIn(s);
     if (!numbers.length) continue;
-    const who = WHO.find(([re]) => re.test(s))?.[1] ?? null;
+    const who = attribution(s);
     if (!who) continue;
     seen.add(s);
     out.push({ quote: s, numbers, kind: statementKind(s), who, ...meta });

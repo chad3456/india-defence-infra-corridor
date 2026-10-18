@@ -10,7 +10,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
   isAboutRiots, parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseGdeltTimeline,
-  parseGovUkAdvice, articleText, isOfficialRelevant, placesFromHeadlines, fixMojibake, parseBingNews, extractStatements, countsIn, statementKind, mergeBy, headlineKey, inWindow,
+  parseGovUkAdvice, articleText, isOfficialRelevant, placesFromHeadlines, fixMojibake, parseBingNews, attribution, unescape, extractStatements, countsIn, statementKind, mergeBy, headlineKey, inWindow,
   type FranceRegister,
 } from "../lib/france-riots-shared";
 import { FRANCE_RIOTS } from "../lib/sources";
@@ -57,6 +57,11 @@ ok("a date is not a count: no statement from the date-only sentence", !st.some((
 ok("a sentence naming no source is not kept", extractStatements("Some 300 cars were torched overnight across the country.", meta).length === 0);
 ok("years, days and times are not counts", countsIn("En 2026, le 17 octobre à 22h, 450 personnes") .join() === "450");
 ok("kinds: arrests, damage, turnout", statementKind("400 people were arrested") === "arrests" && statementKind("200 cars torched") === "damage" && statementKind("550,000 protesters") === "protesters");
+ok("a sentence with two sources names both, in order", attribution("According to the Ministry of the Interior, 550,000 people took to the streets; the CGT union puts the number at 800,000.") === "the Interior Ministry; organisers or unions");
+ok("people injured are not a source: 'firefighters' injured is not 'according to firefighters'", attribution("Interior Minister Laurent Nuñez has reported 1,800 arrests and 500 injured police officers and firefighters so far.") === "Interior Minister (Laurent Nuñez)");
+ok("a burned town hall is not a mayor speaking", attribution("La mairie de Limoges a été incendiée, 40 interpellations selon la police.") === "police");
+ok("turnout includes 'participated'", statementKind("The CGT trade union estimated that as many as 800,000 people participated.") === "protesters");
+ok("entities decoded: &nbsp; &ldquo; &#x27;", unescape("Laurent Nuñez&nbsp;said &ldquo;500&rdquo; France&#x27;s") === "Laurent Nuñez said “500” France's");
 const merged = mergeBy([{ ...gn[0]! }], [{ ...gn[0]!, published: "2026-10-18T00:00:00Z" }], headlineKey, 10);
 ok("merge: one entry per headline, first sighting kept", merged.length === 1 && merged[0]!.published === "2026-10-17T21:04:00.000Z");
 
@@ -66,6 +71,7 @@ ok("X posts carry ids, never text", reg.x.posts.every((p) => /^\d+$/.test(p.id) 
 const accounts = new Set<string>(FRANCE_RIOTS.xAccounts.map((h) => h.toLowerCase()));
 ok("X posts come only from the listed institutions, officials and newsrooms", reg.x.posts.every((p) => !p.handle || accounts.has(p.handle.toLowerCase())), reg.x.posts.filter((p) => p.handle && !accounts.has(p.handle.toLowerCase())).map((p) => p.handle).join(", "));
 ok("every quoted figure names who gave it", reg.statements.every((s) => !!s.who && s.numbers.length > 0 && s.quote.length >= 40));
+ok("no quote carries an undecoded HTML entity", reg.statements.every((s) => !/&(?:[a-z]+|#x?[0-9a-f]+);/i.test(s.quote)), reg.statements.filter((s) => /&(?:[a-z]+|#x?[0-9a-f]+);/i.test(s.quote)).slice(0, 2).map((s) => s.quote.slice(0, 80)).join(" | "));
 ok("headlines and videos are inside the window", reg.headlines.every((h) => inWindow(h.published, FRANCE_RIOTS.since)) && reg.videos.every((v) => inWindow(v.published, FRANCE_RIOTS.since)));
 ok("press headlines name unrest in France", reg.headlines.filter((h) => h.kind === "press").every((h) => isAboutRiots(h.title)));
 ok("government-site items concern demonstrations or public order", reg.headlines.filter((h) => h.kind === "official").every((h) => isOfficialRelevant(h.title)));
