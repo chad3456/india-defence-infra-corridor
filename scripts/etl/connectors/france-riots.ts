@@ -31,7 +31,7 @@ import { getText, getJson } from "../lib/http";
 import { isEntryPoint } from "../lib/entry";
 import { FRANCE_RIOTS } from "../../../lib/sources";
 import {
-  parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseGdeltTimeline, parseGovUkAdvice,
+  parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseBingNews, parseGdeltTimeline, parseGovUkAdvice,
   articleText, extractStatements, isAboutRiots, isOfficialRelevant, inWindow, mergeBy, headlineKey, placesFromHeadlines,
   type FranceRegister, type Headline, type SourceStatus, type Statement, type Video, type XPost,
 } from "../../../lib/france-riots-shared";
@@ -149,12 +149,15 @@ export async function run(): Promise<void> {
     vids.push(...parseYouTube(feed.data, key, c.name).filter((v) => isAboutRiots(v.title) && inWindow(v.published, since)));
   }
   reg.videos = mergeBy(reg.videos, vids, (v) => v.id, 300);
+  // Channels listed under a handle that is no longer the first one tried are dropped.
+  const keys = new Set<string>(FRANCE_RIOTS.youtube.map((c) => c.handles[0]!));
+  for (const k of Object.keys(reg.youtubeChannels)) if (!keys.has(k)) delete reg.youtubeChannels[k];
   status.push({ id: "youtube", label: `YouTube (${ytOk} of ${FRANCE_RIOTS.youtube.length} channels)`, ok: ytOk > 0, count: vids.length });
 
   // ── GDELT: pulse, then articles — one request every six seconds ──
   const tl = await getJson<unknown>(GDELT("TimelineVolRaw", "&timespan=7d"), { timeoutMs: 60_000, retries: 2, cacheMs: 0 });
   if (tl.ok) { const p = parseGdeltTimeline(tl.data); if (p.length) reg.pulse = p; }
-  status.push({ id: "gdelt-pulse", label: "GDELT coverage pulse", ok: tl.ok, count: reg.pulse.length, ...(tl.ok ? {} : { error: tl.error }) });
+  status.push({ id: "gdelt-pulse", label: "GDELT coverage pulse", ok: tl.ok, count: reg.pulse.length, ...(tl.ok ? {} : { error: `${tl.error}; the last pulse read is kept` }) });
   let arts: Awaited<ReturnType<typeof getJson<unknown>>> = { ok: false, data: null, error: "not asked" };
   for (let attempt = 0; attempt < 3 && !arts.ok; attempt++) {
     await sleep(GDELT_GAP * (attempt + 1));
@@ -162,6 +165,20 @@ export async function run(): Promise<void> {
   }
   if (arts.ok) reg.articles = mergeBy(reg.articles, parseGdeltArticles(arts.data).filter((a) => inWindow(a.seen, since)), (a) => a.url, 200);
   status.push({ id: "gdelt-articles", label: "GDELT article index", ok: arts.ok, count: reg.articles.length, ...(arts.ok ? {} : { error: arts.error }) });
+
+  // ── Bing News: article addresses that can be read, whatever GDELT does ──
+  let bingOk = 0, bingN = 0;
+  const bing = [...FRANCE_RIOTS.bingQueries.fr.map((q) => [q, "fr"] as const), ...FRANCE_RIOTS.bingQueries.en.map((q) => [q, "en"] as const)];
+  for (const [q, lang] of bing) {
+    const r = await getText(`https://www.bing.com/news/search?q=${encodeURIComponent(q)}&format=rss&setlang=${lang}&cc=${lang === "fr" ? "FR" : "GB"}`, { timeoutMs: 30_000, retries: 1, cacheMs: 0 });
+    await sleep(GAP);
+    if (!r.ok || !r.data) continue;
+    bingOk++;
+    const found = parseBingNews(r.data, lang).filter((a) => isAboutRiots(a.title) && inWindow(a.seen, since));
+    bingN += found.length;
+    reg.articles = mergeBy(reg.articles, found, (a) => a.url, 250);
+  }
+  status.push({ id: "bing", label: "Bing News (article addresses)", ok: bingOk > 0, count: bingN });
 
   // ── Officials' figures, quoted from new articles ──
   const read = new Set(reg.readUrls);

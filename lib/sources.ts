@@ -731,6 +731,11 @@ export const FRANCE_RIOTS = {
   },
   /** Google News restricted to government sites: their own announcements, as indexed. */
   officialSites: ["interieur.gouv.fr", "elysee.fr", "info.gouv.fr", "prefecturedepolice.interieur.gouv.fr", "gendarmerie.interieur.gouv.fr"],
+  /** Bing News RSS, asked for article addresses the job can read for officials' figures. */
+  bingQueries: {
+    fr: ["émeutes interpellations bilan", "violences manifestations ministre de l'Intérieur", "manifestation 17 octobre bilan blessés"],
+    en: ["France riots arrests interior minister", "France protests injured police", "Paris riots damage"],
+  },
   /** GDELT DOC 2.0 query: multilingual, every outlet GDELT monitors. */
   gdeltQuery: '(émeutes OR émeutiers OR "riots" OR "rioters" OR "violences urbaines") (France OR Paris OR Lyon OR Marseille OR Bordeaux OR Lille OR Nantes OR Toulouse)',
   /**

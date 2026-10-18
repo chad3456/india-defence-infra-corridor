@@ -161,6 +161,24 @@ export function parseGdeltArticles(body: unknown): Article[] {
   });
 }
 
+/**
+ * Bing News RSS: headlines whose links carry the article's own address in a
+ * `url=` parameter, so the article can be read — Google News's links cannot.
+ */
+export function parseBingNews(xml: string, lang: "fr" | "en"): Article[] {
+  return [...xml.matchAll(/<item[\s>][\s\S]*?<\/item>/gi)].flatMap((m) => {
+    const b = m[0];
+    const title = tag(b, "title"), link = tag(b, "link");
+    if (!title || !link) return [];
+    let url = link;
+    try { const u = new URL(link); const inner = u.searchParams.get("url"); if (inner && /^https?:\/\//.test(inner)) url = inner; } catch { return []; }
+    if (/(^|\.)bing\.com\//.test(url.replace(/^https?:\/\//, ""))) return [];
+    let domain = "";
+    try { domain = new URL(url).hostname.replace(/^www\./, ""); } catch { return []; }
+    return [{ url, title: fixMojibake(title), domain, language: lang === "fr" ? "French" : "English", country: "", seen: iso(tag(b, "pubDate")), image: null }];
+  });
+}
+
 /** GDELT DOC 2.0, TimelineVolRaw mode: articles matching the query, per interval, summed to the hour. */
 export function parseGdeltTimeline(body: unknown): PulsePoint[] {
   const series = (body as { timeline?: Array<{ data?: Array<{ date?: string; value?: number }> }> })?.timeline?.[0]?.data ?? [];

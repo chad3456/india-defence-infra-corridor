@@ -10,7 +10,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
   isAboutRiots, parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseGdeltTimeline,
-  parseGovUkAdvice, articleText, isOfficialRelevant, placesFromHeadlines, fixMojibake, extractStatements, countsIn, statementKind, mergeBy, headlineKey, inWindow,
+  parseGovUkAdvice, articleText, isOfficialRelevant, placesFromHeadlines, fixMojibake, parseBingNews, extractStatements, countsIn, statementKind, mergeBy, headlineKey, inWindow,
   type FranceRegister,
 } from "../lib/france-riots-shared";
 import { FRANCE_RIOTS } from "../lib/sources";
@@ -34,6 +34,8 @@ ok("YouTube: video id, title, channel; malformed ids dropped", yt.length === 1 &
 ok("YouTube: channel id read from the channel page", channelIdFromPage(`..."externalId":"UCQfwfsi5VrQ8yKZ-UWmAEFg"...`) === "UCQfwfsi5VrQ8yKZ-UWmAEFg");
 const ga = parseGdeltArticles({ articles: [{ url: "https://x.fr/a", title: " Violences à Nantes ", seendate: "20261017T213000Z", domain: "x.fr", language: "French", sourcecountry: "France", socialimage: "" }] });
 ok("GDELT articles: date and fields", ga.length === 1 && ga[0]!.seen === "2026-10-17T21:30:00Z" && ga[0]!.image === null && ga[0]!.title === "Violences à Nantes");
+const bn = parseBingNews(`<rss><channel><item><title>Émeutes : 855 interpellations à Paris</title><link>http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;aid=&amp;tid=x&amp;url=https%3a%2f%2fwww.lemonde.fr%2fsociete%2farticle%2f2026%2f10%2f18%2fx.html&amp;c=1</link><pubDate>Sun, 18 Oct 2026 08:00:00 GMT</pubDate></item></channel></rss>`, "fr");
+ok("Bing News: the article's own address read out of the redirect", bn.length === 1 && bn[0]!.url === "https://www.lemonde.fr/societe/article/2026/10/18/x.html" && bn[0]!.domain === "lemonde.fr" && bn[0]!.language === "French", JSON.stringify(bn));
 const gt = parseGdeltTimeline({ timeline: [{ series: "Article Count", data: [{ date: "20261017T200000Z", value: 3 }, { date: "20261017T201500Z", value: 4 }, { date: "20261017T210000Z", value: 9 }] }] });
 ok("GDELT pulse: summed to the hour", gt.length === 2 && gt[0]!.v === 7 && gt[1]!.v === 9, JSON.stringify(gt));
 const adv = parseGovUkAdvice({ public_updated_at: "2026-10-17T18:00:00Z", details: { change_description: "Latest update: protests in France", parts: [{ slug: "safety-and-security", body: "<p>Intro.</p><p>Large protests are taking place across France. Avoid demonstrations.</p>" }] } }, { id: "uk", name: "UK", page: "p" });
