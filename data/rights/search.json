@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-18T05:12:58.637Z",
+  "builtAt": "2026-10-18T12:50:07.064Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1184,
+    "items": 1186,
     "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1182,
-    "withOutlet": 1105,
+    "carriedFromEarlierRuns": 1184,
+    "withOutlet": 1107,
     "bySubject": {
-      "scst": 800,
+      "scst": 802,
       "pmshri": 384
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 304
+    "offSubjectDropped": 303
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 580
+      "n": 581
     },
     {
       "key": "use",
@@ -40,7 +40,7 @@
     },
     {
       "key": "allegation",
-      "n": 54
+      "n": 55
     },
     {
       "key": "false-finding",
@@ -58,7 +58,7 @@
     },
     {
       "key": "The Indian Express",
-      "n": 57
+      "n": 58
     },
     {
       "key": "The New Indian Express",
@@ -97,12 +97,12 @@
       "n": 18
     },
     {
-      "key": "Careers360",
+      "key": "SCC Online",
       "n": 16
     },
     {
-      "key": "SCC Online",
-      "n": 15
+      "key": "Careers360",
+      "n": 16
     },
     {
       "key": "LawChakra",
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 5,
-      "kept": 1,
-      "offSubject": 8
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 10
     },
     {
       "id": "act-convicted",
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 34
+      "offSubject": 36
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 9,
-      "kept": 0,
-      "offSubject": 8
+      "bing": 0,
+      "kept": 1,
+      "offSubject": 4
     },
     {
       "id": "act-compensation",
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 63,
+      "google": 59,
       "bing": 0,
       "kept": 0,
-      "offSubject": 24
+      "offSubject": 21
     },
     {
       "id": "act-acquittal",
@@ -356,9 +356,9 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 100,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 41
+      "offSubject": 40
     },
     {
       "id": "act-hostile",
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 47,
-      "bing": 2,
+      "google": 46,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "act-dilution",
@@ -395,9 +395,9 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 50,
+      "google": 49,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 18
     },
     {
@@ -408,7 +408,7 @@
       "google": 33,
       "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 22
     },
     {
       "id": "shri-general",
@@ -426,7 +426,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 46,
-      "bing": 1,
+      "bing": 2,
       "kept": 0,
       "offSubject": 5
     },
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 70,
+      "google": 69,
       "bing": 1,
       "kept": 0,
-      "offSubject": 26
+      "offSubject": 25
     },
     {
       "id": "shri-upgrade",
@@ -455,7 +455,7 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 44,
+      "google": 43,
       "bing": 2,
       "kept": 0,
       "offSubject": 4
@@ -475,9 +475,9 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 54,
+      "google": 53,
       "bing": 4,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 11
     },
     {
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 42,
-      "bing": 1,
+      "google": 43,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 30
+      "offSubject": 32
     }
   ],
   "items": [
@@ -19646,7 +19646,8 @@
       "published": "2026-10-15",
       "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNbDlncTl2b0VORExueW1lVGdfYTZmeFMwa2dWcWtNcFphbDMzSHRwWjJ0cUpiOUhfNkZiSUxVT21HYTdmaEVqVWVTZFRoQlBPYVg4MjA5VS1idUhGemswOXNaa1llODk0TTdiMDB1UTg0QUQ1Zkx3SUJnalRoNU9mcVFJUUJpNnBOUFk2RTlNRnFoRTlWdzA0Ry0zQmlnVXRqeFdrc1BVYVppSkZab1RNN0t2WmQwbVV6MnhxSmlqclB4ZEpIMXUyTE5jUXPSAdIBQVVfeXFMT1hVbnpKY29nWFNaNUNVZWZEd3Y3U2JobVo0ZDN2RVRNWllQcDlIWENyWTBZbW9fdmZ1TGxYZ0llWk5CaWhJdXdVdDliRTNjNUlFeGJrQ0Y3LUNRNU9ncXVlaGJ2ZUJXTDJVMjZSR29QMk9SUXVtMnVBek5EZDhUTjFJMGdxWmRYMDhBeVJmTGl4bHhGaDhGYnhzWGUwMlNpQnhCMHpKWXQ5elRCbXowQlo3Wk1XRFdfN1pkY1RVYS1uZndXUklHNVRUcGlMTmxwNk1R?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -19792,6 +19793,38 @@
       "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPVUJpSmJaMnEzNFcwVVZtUzFxeHgwVXhPUTYxU1FyYVBXSlNESHgxQ3B2LWFoNkpRejZ4RExRUE4tdjc4N2s4Q1JXUTlZaFFvRW5CdDcwN29hZnNUR3J3WWNHckNRUWY1WFJVcDFRd2k5NS1XWWlTazRFSHN0QzBBOWc3SUdlYU5mM3R1NTRSaEo1SWV5bkRnR0dHN0VTOFhHY05CMVUwOWtvQdIBqgFBVV95cUxPVUJpSmJaMnEzNFcwVVZtUzFxeHgwVXhPUTYxU1FyYVBXSlNESHgxQ3B2LWFoNkpRejZ4RExRUE4tdjc4N2s4Q1JXUTlZaFFvRW5CdDcwN29hZnNUR3J3WWNHckNRUWY1WFJVcDFRd2k5NS1XWWlTazRFSHN0QzBBOWc3SUdlYU5mM3R1NTRSaEo1SWV5bkRnR0dHN0VTOFhHY05CMVUwOWtvQQ?oc=5",
       "queries": [
         "shri-nep"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-18"
+    },
+    {
+      "id": "70 brahmins booked in darbhanga bihar minister warns against misuse of sc st act will affe",
+      "headline": "70 Brahmins booked in Darbhanga, Bihar minister warns against ‘misuse’ of SC/ST Act: ‘Will affect social camaraderie’",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "The Indian Express",
+      "published": "2026-02-07",
+      "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQMlBZaFZrVm9JZDAtWkhTWjNaMlIzbjNFMXRyQjNMU1ZnUlQtSEFYdGZvWVpCR2U5WWVOVWdWMU92bmYwWnZYNzFFUGtIM0M2SmNlT3VOQ3VIN3RBTDhPbDF1aHhiOEs1V2RJdm5NNjNmWnBNaFphSk9FbEJsWlhrbjlfTlA5UGFob1ZqeFdiTFB0b0RlNDRpRXZfRUh5clNOaWZoUTRTek5Wa1phS2IwQTRHLWFQWEZZeUI5Qm9rWmk1R3lCVkx3QjJCVFVacjdodThtS3VsZnFaanN0TkFERVVoa3dkNXV1UVVfR1NCbDdHOWPSAfoBQVVfeXFMUERMMUJETWZrQlNYbVpSSzBVODZwZzBwTm1YUUYwTm54aWlfTDVtOFdkQmNldXItTEpINEs2Q0ZueGpfQzk0NFNrRmh2Q2tfSlk2Z0hRMTBzdGcwZFdrSWhWbXl3bjRnTlBTR3ltcXRLRERnOHd6RWpwVzlQU2MxdjBlcm8tWHNQSzFHTzdZUXFnZmR5ckVvNUNBWG00cDBiNUZlQTU5bzVzaGczV25PNHdNM3JjV2dWVmRRNHhoZ0o0QXJMbWhBV2JkTDU5ZzlyNVZQa0NPTWhxV1NtNTBGcDJQTUhmZkNobDM2UG1vbWtuakdLNE5nQ2h0Zw?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-18"
+    },
+    {
+      "id": "criminal proceedings against victim must be initiated in cases of false firs filed under p",
+      "headline": "Criminal Proceedings against victim must be initiated in cases of false FIRs filed under POCSO and SC/ST Act: Allahabad High Court",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "SCC Online",
+      "published": "2023-08-12",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQZFdYa19wLTZUSEppMTZBbkxXM2VJMzcwclI2MUdHcXNsX1pUVE11bDlMNlhQMi1iZGV2Q25RV2U4elVwbWNNLXNGOE9RR19lUTg1QnJmQ2laSUItb1NaUmhIaU9ZcWZRS20ySDU3cTlPZlp6Q052NGhXM1Z4QjRpQkVrUi0yaU5fSGZ3RXRQZy1uSUxvWHdqUWZmZ0lBVTFIY3c1eV9WQzhIUE1VRjRwR0FGU3FZaDkzakVWYUkyM2tTeEI3bW5IWGJ3?oc=5",
+      "queries": [
+        "act-false"
       ],
       "indexes": [
         "google"
