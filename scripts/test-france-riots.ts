@@ -21,6 +21,7 @@ const ok = (name: string, cond: boolean, detail = "") => { if (!cond) failed++; 
 console.log("\nWhat belongs on the tracker");
 ok("a French riot headline belongs", isAboutRiots("Émeutes à Lyon : l'office de tourisme incendié"));
 ok("an English one does", isAboutRiots("Police clash with protesters during huge demonstrations across France"));
+ok("'les violences du 17 octobre' belongs: the date is this story's name", isAboutRiots("Violences du 17 octobre : Yaël Braun-Pivet veut une commission d'enquête"));
 ok("unrest elsewhere does not", !isAboutRiots("Riots in Nairobi after disputed vote"));
 ok("French news without unrest does not", !isAboutRiots("Paris : la tour Eiffel rouvre après travaux"));
 ok("undated items are kept in the window", inWindow(null, FRANCE_RIOTS.since));
@@ -51,7 +52,8 @@ ok("article text: paragraphs only", articleText(`<script>var a="<p>no</p>"</scri
 console.log("\nPosts on X that newsrooms embedded");
 const html = `<blockquote class="twitter-tweet"><p lang="fr">texte du post</p>&mdash; Préfecture de police (@prefpolice) <a href="https://twitter.com/prefpolice/status/1979512345678901234?ref_src=twsrc%5Etfw">October 17, 2026</a></blockquote><a href="https://x.com/intent/tweet?url=x">share</a><a href="https://x.com/i/status/1979512345678901299">i</a><a href="https://x.com/lemondefr">follow</a>`;
 const tw = tweetsInHtml(html);
-ok("embedded posts: status links read, share/follow/intent links ignored", tw.length === 1 && tw[0]!.id === "1979512345678901234" && tw[0]!.handle === "prefpolice", JSON.stringify(tw));
+ok("embedded posts: status links read, share and follow links ignored", tw.length === 2 && tw[0]!.id === "1979512345678901234" && tw[0]!.handle === "prefpolice", JSON.stringify(tw));
+ok("a link that names no author keeps the post, with no handle", tw[1]!.id === "1979512345678901299" && tw[1]!.handle === "");
 ok("embedded posts: nothing of the post's text is taken", JSON.stringify(tw).indexOf("texte") === -1);
 ok("a post's time is read from its id", tweetTime("1850000000000000000") === "2024-10-26T02:22:25.994Z" && tweetTime("abc") === null);
 ok("Paris lens: suburbs and the prefecture count, Lyon does not", isParis("Violences à Bobigny") && isParis("selon la préfecture de police") && !isParis("Émeutes à Lyon"));
@@ -83,6 +85,7 @@ ok("X posts carry ids, never text", reg.x.posts.every((p) => /^\d+$/.test(p.id) 
 const accounts = new Set<string>(FRANCE_RIOTS.xAccounts.map((h) => h.toLowerCase()));
 ok("X posts come only from the listed institutions, officials and newsrooms", reg.x.posts.every((p) => !p.handle || accounts.has(p.handle.toLowerCase())), reg.x.posts.filter((p) => p.handle && !accounts.has(p.handle.toLowerCase())).map((p) => p.handle).join(", "));
 ok("embedded posts carry ids, handles, times and the article that embedded them — never text", (reg.embedded ?? []).every((p) => Object.keys(p).every((k) => ["id", "handle", "createdAt", "outlet", "articleUrl", "articleTitle"].includes(k))));
+ok("every embedded post comes from an article whose title names unrest in France", (reg.embedded ?? []).every((p) => isAboutRiots(p.articleTitle)));
 ok("each embedded post's time is the one its id encodes, inside the story's window", (reg.embedded ?? []).every((p) => p.createdAt === tweetTime(p.id) && inWindow(p.createdAt, FRANCE_RIOTS.since)));
 ok("every quoted figure names who gave it", reg.statements.every((s) => !!s.who && s.numbers.length > 0 && s.quote.length >= 40));
 ok("no quote carries an undecoded HTML entity", reg.statements.every((s) => !/&(?:[a-z]+|#x?[0-9a-f]+);/i.test(s.quote)), reg.statements.filter((s) => /&(?:[a-z]+|#x?[0-9a-f]+);/i.test(s.quote)).slice(0, 2).map((s) => s.quote.slice(0, 80)).join(" | "));

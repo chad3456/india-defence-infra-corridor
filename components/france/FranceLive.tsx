@@ -289,7 +289,7 @@ function EmbeddedPosts({ posts }: { posts: EmbeddedPost[] }) {
             {list.map((p) => (
               <figure key={p.id} className="min-w-0">
                 <blockquote className="twitter-tweet" data-dnt="true" data-conversation="none">
-                  <a href={`https://twitter.com/${p.handle}/status/${p.id}`}>View the post on X</a>
+                  <a href={`https://twitter.com/${p.handle || "i"}/status/${p.id}`}>View the post on X</a>
                 </blockquote>
                 <figcaption className="mono -mt-1 text-[10.5px] leading-[1.5]" style={{ color: "var(--story-ink-3)" }}>
                   Posted {paris(p.createdAt)} · embedded by {p.outlet} in <a className="underline decoration-dotted" href={p.articleUrl} target="_blank" rel="noopener noreferrer">“{p.articleTitle.slice(0, 90)}{p.articleTitle.length > 90 ? "…" : ""}”</a>

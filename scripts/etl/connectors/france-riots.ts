@@ -166,7 +166,7 @@ export async function run(): Promise<void> {
     await sleep(GDELT_GAP * (attempt + 1));
     arts = await getJson<unknown>(GDELT("ArtList", "&maxrecords=75&sort=DateDesc&timespan=24h"), { timeoutMs: 60_000, retries: 0, cacheMs: 0 });
   }
-  if (arts.ok) reg.articles = mergeBy(reg.articles, parseGdeltArticles(arts.data).filter((a) => inWindow(a.seen, since)), (a) => a.url, 200);
+  if (arts.ok) reg.articles = mergeBy(reg.articles, parseGdeltArticles(arts.data).filter((a) => isAboutRiots(a.title) && inWindow(a.seen, since)), (a) => a.url, 250);
   status.push({ id: "gdelt-articles", label: "GDELT article index", ok: arts.ok, count: reg.articles.length, ...(arts.ok ? {} : { error: arts.error }) });
 
   // ── Bing News: article addresses that can be read, whatever GDELT does ──
@@ -182,6 +182,11 @@ export async function run(): Promise<void> {
     reg.articles = mergeBy(reg.articles, found, (a) => a.url, 250);
   }
   status.push({ id: "bing", label: "Bing News (article addresses)", ok: bingOk > 0, count: bingN });
+
+  // Every article, from whichever index, must name unrest in France in its title; rows kept before
+  // the rule applied to every index are re-checked, and posts found in failing articles go with them.
+  reg.articles = reg.articles.filter((a) => isAboutRiots(a.title));
+  reg.embedded = (reg.embedded ?? []).filter((p) => isAboutRiots(p.articleTitle)).map((p) => (/^(i|user|web|x|twitter)$/i.test(p.handle) ? { ...p, handle: "" } : p));
 
   // ── Articles: officials' figures, and the posts on X newsrooms embedded ──
   // Articles read before embedded posts were collected are read once more.
@@ -199,6 +204,7 @@ export async function run(): Promise<void> {
     const text = articleText(page.data);
     if (!isAboutRiots(text.slice(0, 4000))) continue;
     found.push(...extractStatements(text, { outlet: a.domain, url: a.url, seen: a.seen, lang: /french/i.test(a.language) ? "fr" : "en" }));
+    if (!isAboutRiots(a.title)) continue;
     for (const t of tweetsInHtml(page.data)) {
       const at = tweetTime(t.id);
       // Only posts made during the story: an article's sidebar can embed anything.

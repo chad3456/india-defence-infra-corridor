@@ -64,7 +64,7 @@ export interface FranceLivePayload {
 /* ── What belongs on the tracker ──────────────────────────────────────── */
 
 const TOPIC = /émeut|riot|casseur|pillag|loot|violen|affront|clash|incendi|arson|interpell|arrest|gardes? à vue|manifest|protest|mobilis|grève|strike|blocage|lacrymo|tear ?gas|black ?bloc|couvre-feu|curfew|bloquons|dégradation|vandal/i;
-const PLACE = /france|français|française|french|paris|lyon|marseille|bordeaux|lille|nantes|toulouse|rennes|strasbourg|montpellier|nice\b|grenoble|rouen|toulon|saint-étienne|dijon|macron|nuñez|nunez|préfe|prefect|gendarm|\bCRS\b|élysée|elysee|matignon/i;
+const PLACE = /france|français|française|french|paris|lyon|marseille|bordeaux|lille|nantes|toulouse|rennes|strasbourg|montpellier|nice\b|grenoble|rouen|toulon|saint-étienne|dijon|macron|nuñez|nunez|lecornu|préfe|prefect|gendarm|\bCRS\b|élysée|elysee|matignon|1[678] octobre|october 1[678]|1[678] october|oct\.? 1[678]\b/i;
 
 /** A headline, title or video belongs if it names unrest and places it in France. */
 export function isAboutRiots(text: string): boolean {
@@ -99,7 +99,9 @@ export function tweetTime(id: string): string | null {
   return ms > 1.3e12 && ms < 4.1e12 ? new Date(ms).toISOString() : null;
 }
 
-const NOT_A_USER = new Set(["i", "intent", "share", "home", "search", "hashtag", "explore", "settings", "login", "signup", "web"]);
+const NOT_A_USER = new Set(["intent", "share", "home", "search", "hashtag", "explore", "settings", "login", "signup"]);
+/** Links that name a post but not its author ("x.com/i/status/…"): the post is real, the handle is unknown. */
+const GENERIC = new Set(["i", "user", "web", "x", "twitter"]);
 /**
  * Posts on X an article embeds: status links in the page, typically inside
  * <blockquote class="twitter-tweet">. Ids and handles only; the post's text in
@@ -110,7 +112,7 @@ export function tweetsInHtml(html: string): Array<{ id: string; handle: string }
   for (const m of html.matchAll(/(?:twitter|x)\.com\/(?:#!\/)?([A-Za-z0-9_]{1,15})\/status(?:es)?\/(\d{15,20})/g)) {
     const handle = m[1]!, id = m[2]!;
     if (NOT_A_USER.has(handle.toLowerCase()) || !tweetTime(id)) continue;
-    if (!out.has(id)) out.set(id, { id, handle });
+    if (!out.has(id)) out.set(id, { id, handle: GENERIC.has(handle.toLowerCase()) ? "" : handle });
   }
   return [...out.values()];
 }
