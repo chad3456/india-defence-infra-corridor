@@ -32,7 +32,7 @@ import { isEntryPoint } from "../lib/entry";
 import { FRANCE_RIOTS } from "../../../lib/sources";
 import {
   parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseBingNews, parseGdeltTimeline, parseGovUkAdvice,
-  articleText, extractStatements, isAboutRiots, isOfficialRelevant, inWindow, mergeBy, headlineKey, placesFromHeadlines,
+  articleText, extractStatements, attribution, statementKind, countsIn, hasEntity, isAboutRiots, isOfficialRelevant, inWindow, mergeBy, headlineKey, placesFromHeadlines,
   type FranceRegister, type Headline, type SourceStatus, type Statement, type Video, type XPost,
 } from "../../../lib/france-riots-shared";
 
@@ -196,7 +196,9 @@ export async function run(): Promise<void> {
     found.push(...extractStatements(text, { outlet: a.domain, url: a.url, seen: a.seen, lang: /french/i.test(a.language) ? "fr" : "en" }));
   }
   reg.readUrls = [...read].slice(-3000);
-  reg.statements = mergeBy(reg.statements, found, (s) => s.quote, 400);
+  // Stored quotes are re-read with today's rules, so a tightened rule corrects old rows too.
+  const reread = reg.statements.flatMap((s) => { const who = attribution(s.quote); return who && !hasEntity(s.quote) ? [{ ...s, who, kind: statementKind(s.quote), numbers: countsIn(s.quote) }] : []; }).filter((s) => s.numbers.length);
+  reg.statements = mergeBy(reread, found, (s) => s.quote, 400);
   status.push({ id: "statements", label: `Officials' figures in articles (${readOk} of ${todo.length} articles read)`, ok: todo.length === 0 || readOk > 0, count: found.length });
 
   // ── Government pages and foreign advice ──
