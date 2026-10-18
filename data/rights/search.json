@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-18T18:59:29.951Z",
+  "builtAt": "2026-10-18T22:39:06.299Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -19,7 +19,7 @@
       "pmshri": 384
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 302
+    "offSubjectDropped": 281
   },
   "byFacet": [
     {
@@ -318,24 +318,24 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 37
+      "offSubject": 38
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 52,
-      "bing": 6,
+      "google": 53,
+      "bing": 7,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 6
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 48,
+      "google": 49,
       "bing": 0,
       "kept": 0,
       "offSubject": 15
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 60,
+      "google": 18,
       "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 2
     },
     {
       "id": "act-acquittal",
@@ -358,7 +358,7 @@
       "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 41
+      "offSubject": 40
     },
     {
       "id": "act-hostile",
@@ -398,17 +398,17 @@
       "google": 50,
       "bing": 1,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 18
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 33,
+      "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 22
+      "offSubject": 21
     },
     {
       "id": "shri-general",
@@ -418,7 +418,7 @@
       "google": 100,
       "bing": 12,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 4
     },
     {
       "id": "shri-sanctioned",
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 69,
+      "google": 68,
       "bing": 1,
       "kept": 0,
-      "offSubject": 25
+      "offSubject": 24
     },
     {
       "id": "shri-upgrade",
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 54,
+      "google": 53,
       "bing": 4,
       "kept": 0,
       "offSubject": 11
@@ -488,7 +488,7 @@
       "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 31
     }
   ],
   "items": [
