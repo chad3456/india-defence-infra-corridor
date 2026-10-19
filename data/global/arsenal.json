@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-18T19:41:17.504Z",
+ "builtAt": "2026-10-19T11:15:40.961Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206484,7 +206484,7 @@
    "outlet": "UK Ministry of Defence",
    "ok": true,
    "items": 50,
-   "kept": 3,
+   "kept": 2,
    "via": "direct"
   },
   {
@@ -206519,18 +206519,36 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-1yfmc1a",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Israel"
+   ],
+   "value": {
+    "amount": 235000000,
+    "currency": "USD",
+    "asWritten": "$235M"
+   },
+   "date": "2026-10-19",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/mystery-european-buyer-signs-235m-israeli-rocket-deal/",
+   "headline": "Mystery European buyer signs $235M Israeli rocket deal",
+   "primary": false
+  },
   {
    "id": "ev-1knubzj",
    "kind": "order",
@@ -207735,6 +207753,43 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||israel",
+   "systems": [],
+   "countries": [
+    "Israel"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1yfmc1a",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Israel"
+     ],
+     "value": {
+      "amount": 235000000,
+      "currency": "USD",
+      "asWritten": "$235M"
+     },
+     "date": "2026-10-19",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/mystery-european-buyer-signs-235m-israeli-rocket-deal/",
+     "headline": "Mystery European buyer signs $235M Israeli rocket deal",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": {
+    "amount": 235000000,
+    "currency": "USD",
+    "asWritten": "$235M"
+   },
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||canada",
    "systems": [],
