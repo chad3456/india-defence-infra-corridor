@@ -52,6 +52,7 @@ GDELT = {"french": "fr", "english": "en", "german": "de", "spanish": "es", "ital
          "polish": "pl", "swedish": "sv", "danish": "da", "norwegian": "nb", "finnish": "fi", "albanian": "sq", "romanian": "ro",
          "czech": "cs", "greek": "el", "turkish": "tr", "arabic": "ar", "russian": "ru", "ukrainian": "uk", "hungarian": "hu"}
 FRENCH_WORDS = re.compile(r"\b(?:les|des|une|été|dans|avec|pour|qui|sont|ont|selon|lors|après|été|depuis|leurs?)\b", re.I)
+QUOTES = str.maketrans({"’": "'", "‘": "'", "“": '"', "”": '"', "«": '"', "»": '"'})
 SENTENCE = re.compile(r"(?<=[.!?…»”])\s+(?=[A-ZÀ-ÖØ-Þ«“\"])")
 
 
@@ -123,9 +124,11 @@ def model_dir(lang: str) -> pathlib.Path | None:
             # extractall refuses absolute paths and "..": the archive cannot write outside `home`.
             z.extractall(home)
         model = next((p.parent for p in home.rglob("model.bin")), None)
-        sp = next(iter(home.rglob("sentencepiece.model")), None)
+        sp = next(iter(home.rglob("sentencepiece.model")), None) or next((p for p in home.rglob("*.model") if "spm" in p.name or "sentencepiece" in p.name), None)
         if not model or not sp:
-            raise RuntimeError("package has no model.bin or sentencepiece.model")
+            files = sorted(str(p.relative_to(home)) for p in home.rglob("*") if p.is_file())[:40]
+            shutil.rmtree(home, ignore_errors=True)
+            raise RuntimeError(f"package has no model.bin or sentencepiece.model; it holds {files}")
         (home / "ok.json").write_text(json.dumps({"model": str(model.relative_to(home)), "sp": str(sp.relative_to(home)), "version": pkg.get("package_version")}))
         return home
     finally:
@@ -148,7 +151,9 @@ class Translator:
     def __call__(self, texts: list[str]) -> list[str]:
         pieces: list[tuple[int, list[str]]] = []
         for i, t in enumerate(texts):
-            for s in SENTENCE.split(t.strip()) or [t]:
+            # Curly quotes are straightened first: some models drop whatever follows one.
+            plain = t.strip().translate(QUOTES)
+            for s in SENTENCE.split(plain) or [plain]:
                 if s.strip():
                     pieces.append((i, self.sp.encode(s.strip(), out_type=str)))
         out: list[list[str]] = [[] for _ in texts]
@@ -156,8 +161,10 @@ class Translator:
             chunk = pieces[start:start + 32]
             res = self.tr.translate_batch([p for _, p in chunk], beam_size=2, max_decoding_length=256)
             for (i, _), r in zip(chunk, res):
-                out[i].append(self.sp.decode(r.hypotheses[0]))
-        return [" ".join(x).strip() for x in out]
+                # Joined as pieces, the way Argos does: decoding through the source model leaves
+                # target-only pieces with their "▁" word marks showing.
+                out[i].append("".join(r.hypotheses[0]).replace("▁", " ").strip())
+        return [re.sub(r"\s+([,.;:!?])", r"\1", re.sub(r"\s+", " ", " ".join(x))).strip() for x in out]
 
 
 class Fake:
@@ -187,7 +194,8 @@ def main() -> int:
     # What is already known, by language and text: the same headline often reappears as an article title.
     known: dict[tuple[str, str], str] = {}
     for lang, text, item in jobs(reg):
-        if lang != "en" and isinstance(item.get("en"), str) and item["en"].strip():
+        # A translation still carrying "▁" word marks was decoded wrongly and is made again.
+        if lang != "en" and isinstance(item.get("en"), str) and item["en"].strip() and "▁" not in item["en"]:
             known[(lang, text)] = item["en"]
 
     pending: dict[str, list[str]] = {}
@@ -197,7 +205,9 @@ def main() -> int:
             continue
         if (lang, text) in known:
             item["en"] = known[(lang, text)]
-        elif text not in pending.setdefault(lang, []):
+        else:
+            item.pop("en", None)
+        if (lang, text) not in known and text not in pending.setdefault(lang, []):
             pending[lang].append(text)
 
     budget, made, failed = MAX_NEW, 0, []

@@ -586,7 +586,7 @@ export const BRANDS: Array<[string, RegExp]> = [
   ["Longchamp", /\bLongchamp\b/], ["Saint Laurent", /Yves Saint[- ]Laurent|\bYSL\b|maison Saint Laurent/], ["Gucci", /\bGucci\b/], ["Prada", /\bPrada\b/],
   ["Balenciaga", /Balenciaga/], ["Bulgari", /Bulgari|Bvlgari/], ["Tiffany & Co.", /\bTiffany\b/], ["Omega", /\bOmega\b(?! 3)/], ["Nespresso", /Nespresso/], ["Ladurée", /Ladur[ée]e/],
   ["Casino", /Géant Casino|Petit Casino|supermarché Casino|magasin Casino|Casino supermarket/], ["Système U", /Super U\b|Hyper U\b|Système U\b|Systeme U\b|\bU Express\b/],
-  ["Picard", /\bPicard\b(?! \p{Lu})/u], ["Leroy Merlin", /Leroy Merlin/], ["Castorama", /Castorama/], ["Ikea", /\bIkea\b|\bIKEA\b/], ["Action", /magasin Action\b|enseigne Action\b|Action store|(?<=, )Action(?=,| and | et )/], ["Hugo Boss", /Hugo Boss/], ["The Kooples", /The Kooples/], ["Zadig & Voltaire", /Zadig ?(?:&|et) ?Voltaire/],
+  ["Picard", /\bPicard\b(?! \p{Lu})/u], ["Leroy Merlin", /Leroy Merlin/], ["Castorama", /Castorama/], ["Ikea", /\bIkea\b|\bIKEA\b/], ["Action", /magasin Action\b|enseigne Action\b|Action store|(?<=, )Action(?=,| and | et )/], ["Hugo Boss", /Hugo Boss/], ["Citadium", /Citadium/], ["The Kooples", /The Kooples/], ["Zadig & Voltaire", /Zadig ?(?:&|et) ?Voltaire/],
   ["Samsung", /\bSamsung\b/], ["Boulangerie Paul", /boulangerie Paul\b|Paul bakery/], ["TotalEnergies", /TotalEnergies|station Total\b/], ["Renault", /\bRenault\b/],
   ["Peugeot", /\bPeugeot\b/], ["Citroën", /Citro[ëe]n/], ["BMW", /\bBMW\b/], ["Mercedes", /\bMercedes\b/], ["Lime", /trottinettes? Lime|Lime scooters?/], ["Vélib'", /V[ée]lib/],
   ["JCDecaux", /JC ?Decaux/], ["RATP", /\bRATP\b/], ["SNCF", /\bSNCF\b/], ["La Poste", /bureaux? de [Pp]oste|\bLa Poste\b/], ["France Travail", /France Travail|P[ôo]le emploi/],
@@ -595,7 +595,7 @@ export const BRANDS: Array<[string, RegExp]> = [
 export const BRAND_SECTOR: Record<string, string> = Object.fromEntries(([
   ["Fast food and cafés", ["McDonald's", "Burger King", "KFC", "Starbucks", "Boulangerie Paul", "Ladurée", "Nespresso"]],
   ["Sportswear and trainers", ["Nike", "Adidas", "Foot Locker", "Courir", "Snipes", "JD Sports", "Decathlon", "Intersport", "Go Sport", "Lacoste"]],
-  ["Fashion", ["Hugo Boss", "The Kooples", "Zadig & Voltaire", "Zara", "H&M", "Uniqlo", "Primark", "Celio", "Kiabi", "Mango", "Bershka", "Pull&Bear"]],
+  ["Fashion", ["Citadium", "Hugo Boss", "The Kooples", "Zadig & Voltaire", "Zara", "H&M", "Uniqlo", "Primark", "Celio", "Kiabi", "Mango", "Bershka", "Pull&Bear"]],
   ["Luxury and jewellery", ["Louis Vuitton", "Dior", "Chanel", "Hermès", "Cartier", "Rolex", "Saint Laurent", "Gucci", "Prada", "Balenciaga", "Bulgari", "Tiffany & Co.", "Omega", "Swarovski", "Pandora", "Longchamp"]],
   ["Department stores and beauty", ["Galeries Lafayette", "Printemps", "Sephora"]],
   ["Electronics and phones", ["Apple Store", "Fnac", "Darty", "Boulanger", "Samsung", "Orange", "SFR", "Bouygues Telecom", "Free"]],
