@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-12T12:03:38.864Z",
+  "builtAt": "2026-10-19T09:57:22.796Z",
   "source": "English Wikipedia's per-force 'List of active … aircraft' articles, read header-first. Those articles compile mostly from IISS's Military Balance and FlightGlobal's World Air Forces, and carry those publications' lag and their disagreements.",
   "method": "Tables are matched on their headers, never on column position. A table without both an aircraft column and a quantity column is skipped and counted rather than read by guessing. A quantity cell yields a number only when it carries one unambiguously; a range, a dash or prose yields null, which is counted separately and never treated as zero. A force whose quantity cells parsed less than sixty per cent of the time has its fleet total withheld while its list of types is kept.",
   "refusal": "No fleet total is reconciled against another catalogue, and no aircraft is resolved to a base. Every number here says 'a public catalogue lists this many', which is a weaker claim than 'this country has this many' and is the only one the source supports.",
@@ -2424,28 +2424,6 @@
       "iso": "PAK",
       "country": "Pakistan",
       "force": "Pakistan Air Force",
-      "type": "Citation Excel",
-      "origin": "Cessna",
-      "role": "Turboprop",
-      "variant": "560XL",
-      "inService": 2,
-      "inServiceRaw": "2"
-    },
-    {
-      "iso": "PAK",
-      "country": "Pakistan",
-      "force": "Pakistan Air Force",
-      "type": "172N Skykawk",
-      "origin": "Cessna",
-      "role": "Turboprop",
-      "variant": "172N",
-      "inService": 4,
-      "inServiceRaw": "4"
-    },
-    {
-      "iso": "PAK",
-      "country": "Pakistan",
-      "force": "Pakistan Air Force",
       "type": "Piper M-Class",
       "origin": "Piper Aircraft",
       "role": "Turboprop",
@@ -2460,9 +2438,20 @@
       "type": "Vision SF50",
       "origin": "Cirrus Design Corporation",
       "role": "Jet",
-      "variant": "Vision SF50 G2",
+      "variant": "G2",
       "inService": 2,
       "inServiceRaw": "2"
+    },
+    {
+      "iso": "PAK",
+      "country": "Pakistan",
+      "force": "Pakistan Air Force",
+      "type": "172 Skyhawk",
+      "origin": "Cessna",
+      "role": "Turboprop",
+      "variant": "172N",
+      "inService": 4,
+      "inServiceRaw": "4"
     },
     {
       "iso": "PAK",
@@ -2490,6 +2479,17 @@
       "iso": "PAK",
       "country": "Pakistan",
       "force": "Pakistan Air Force",
+      "type": "Citation Excel",
+      "origin": "Cessna",
+      "role": "Jet",
+      "variant": "560XL",
+      "inService": 2,
+      "inServiceRaw": "2"
+    },
+    {
+      "iso": "PAK",
+      "country": "Pakistan",
+      "force": "Pakistan Air Force",
       "type": "Falcon 20",
       "origin": "Dassault Aviation",
       "role": "Jet",
@@ -2501,10 +2501,10 @@
       "iso": "PAK",
       "country": "Pakistan",
       "force": "Pakistan Air Force",
-      "type": "EMB-500",
+      "type": "Phenom 100",
       "origin": "Embraer",
       "role": "Jet",
-      "variant": "Phenom 100",
+      "variant": "Phenom 100E",
       "inService": 6,
       "inServiceRaw": "6"
     },
@@ -2526,7 +2526,7 @@
       "type": "KJ-500",
       "origin": "Shaanxi Aircraft Corporation",
       "role": "Turboprop",
-      "variant": "",
+      "variant": "KJ-500A",
       "inService": 0,
       "inServiceRaw": "0"
     },
@@ -2677,28 +2677,6 @@
       "iso": "PAK",
       "country": "Pakistan",
       "force": "Pakistan Air Force",
-      "type": "YIHA-III",
-      "origin": "NASTP / Baykar",
-      "role": "Loitering munition, UAV",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": "Unknown"
-    },
-    {
-      "iso": "PAK",
-      "country": "Pakistan",
-      "force": "Pakistan Air Force",
-      "type": "Baykar K2",
-      "origin": "Baykar",
-      "role": "Loitering munition, UAV",
-      "variant": "",
-      "inService": null,
-      "inServiceRaw": "Unknown"
-    },
-    {
-      "iso": "PAK",
-      "country": "Pakistan",
-      "force": "Pakistan Air Force",
       "type": "Bayraktar Akıncı",
       "origin": "Baykar",
       "role": "HALE, UCAV, UAV",
@@ -2716,6 +2694,28 @@
       "variant": "",
       "inService": 24,
       "inServiceRaw": "24"
+    },
+    {
+      "iso": "PAK",
+      "country": "Pakistan",
+      "force": "Pakistan Air Force",
+      "type": "Baykar K2",
+      "origin": "Baykar",
+      "role": "Loitering munition, UAV",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "Unknown"
+    },
+    {
+      "iso": "PAK",
+      "country": "Pakistan",
+      "force": "Pakistan Air Force",
+      "type": "YIHA-III",
+      "origin": "Baykar",
+      "role": "Loitering munition, UAV",
+      "variant": "",
+      "inService": null,
+      "inServiceRaw": "Unknown"
     },
     {
       "iso": "PAK",
@@ -7850,7 +7850,7 @@
       "type": "AH-64 Apache",
       "origin": "United States",
       "role": "",
-      "variant": "|AH-64A/D",
+      "variant": "AH-64A/D",
       "inService": 48,
       "inServiceRaw": "48"
     },
