@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-18T22:39:06.299Z",
+  "builtAt": "2026-10-19T05:23:39.073Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1187,
-    "addedThisRun": 0,
+    "items": 1188,
+    "addedThisRun": 1,
     "carriedFromEarlierRuns": 1187,
-    "withOutlet": 1108,
+    "withOutlet": 1109,
     "bySubject": {
-      "scst": 803,
+      "scst": 804,
       "pmshri": 384
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 281
+    "offSubjectDropped": 306
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 414
+      "n": 415
     },
     {
       "key": "dispute",
@@ -201,6 +201,10 @@
       "n": 7
     },
     {
+      "key": "Wansom AI",
+      "n": 6
+    },
+    {
       "key": "LawStreet Journal",
       "n": 6
     },
@@ -222,10 +226,6 @@
     },
     {
       "key": "Citizens for Justice and Peace | CJP",
-      "n": 5
-    },
-    {
-      "key": "Wansom AI",
       "n": 5
     },
     {
@@ -318,15 +318,15 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 38
+      "offSubject": 40
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 53,
-      "bing": 7,
+      "google": 52,
+      "bing": 5,
       "kept": 0,
       "offSubject": 6
     },
@@ -335,7 +335,7 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 49,
+      "google": 48,
       "bing": 0,
       "kept": 0,
       "offSubject": 15
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 18,
+      "google": 60,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 22
     },
     {
       "id": "act-acquittal",
@@ -358,14 +358,14 @@
       "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 40
+      "offSubject": 42
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 26,
+      "google": 25,
       "bing": 0,
       "kept": 0,
       "offSubject": 9
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 46,
+      "google": 45,
       "bing": 2,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 5
     },
     {
       "id": "act-dilution",
@@ -398,17 +398,17 @@
       "google": 50,
       "bing": 1,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 17
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 33,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 21
+      "kept": 1,
+      "offSubject": 22
     },
     {
       "id": "shri-general",
@@ -418,7 +418,7 @@
       "google": 100,
       "bing": 12,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 5
     },
     {
       "id": "shri-sanctioned",
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 68,
+      "google": 71,
       "bing": 1,
       "kept": 0,
-      "offSubject": 24
+      "offSubject": 25
     },
     {
       "id": "shri-upgrade",
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 53,
+      "google": 54,
       "bing": 4,
       "kept": 0,
       "offSubject": 11
@@ -8905,7 +8905,8 @@
       "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQcGVMVkg0dlMzUUs4TGowSVdmX2lScFBHMW9CQ19EcXBGdTEtZVp3ZU9MVk9NNXh6M0RoaXlFRGMyMVctR25faFdwdE9FVWRxVUVIaUMxUDhLcF9iVlJpUlpfLWFtajBQUVVJUW5PVUQ4X3FsWm5vYmR6QUhJWWF5NURYLVozQWNGd19mdFd2M2Q2QjlIM0VNczVERkdjS1ZMdGRfaFR4cHQwV05QdXVDTUppUFVCckRJWlNCMElmNFFyZ0NSNHI2c2ZqVGHSAdQBQVVfeXFMTUFKdWdZVWJ3X3lfZ0JuMzB6aGsxOVAtMnU2S0dLYnVxNXlfMGV4YzVSTTdRMW1JZnhGaEpQVzBRMS16Z0lrLTFBdlR2SWthbW1ndWpDQ09jdG5pejVqeldLZl9GZHUwalJmUTRzX0p5XzNiQzhjdDlzbllQbjhEM3JzWnhucjN4S2xuUXUzbUdtdFptbnJwQUhVWVEwQ1JfTU5tWUFNRjNfLUJ1RWxWUTNYWkJoTzN4SmpvUmZ0R2JLSEl3LU56dHJKZHg4dFM1a2JrMjg?oc=5",
       "queries": [
         "shri-general",
-        "shri-funds"
+        "shri-funds",
+        "shri-sanctioned"
       ],
       "indexes": [
         "google"
@@ -19847,6 +19848,22 @@
         "google"
       ],
       "firstSeen": "2026-10-18"
+    },
+    {
+      "id": "supreme court pil on fake rape sc st cases to be heard",
+      "headline": "Supreme Court: PIL on Fake Rape & SC/ST Cases to Be Heard",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Wansom AI",
+      "published": "2026-09-24",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQeGlxYS1ZSTVwblc3elBJNGpDRjYtODV0S29mcUp5ODVYRVN4cDNWY1R1NTNNeFlFZTNoNEY4VlNDVE1laFNORVhqR0doZEhGdmdKMVZ6X2IwT3M0d3RJajJ6WWQ3ZDVtbmFWdHJWcHh2ZklsajFtdjhTYzdSMEFJT3g4VUplWm1PUVppcmZJRkd0TzhjTFNoVGdLNVdCU0tSX3hhV1BqYi10UV9UbENJVllGdkJxQ0dHV0lF?oc=5",
+      "queries": [
+        "act-fabricated"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-19"
     }
   ]
 }
