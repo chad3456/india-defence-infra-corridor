@@ -1,10 +1,14 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { KeyFigures, IncidentMap, Businesses, Claims, Economy, LiveStreams, Accounts } from "./FranceSections";
+import { KeyFigures, Businesses, Claims, Economy, LiveStreams, Accounts } from "./FranceSections";
+import { PixelDefs, PixelFrance, PixelParis } from "./PixelMaps";
+import { DamageRegister } from "./Damage";
+import { Gallery } from "./Gallery";
+import { Translated, translateUrl } from "./Translated";
 import {
-  KIND_LABEL, X_LIVE_SEARCHES, xSearchUrl, mergeBy, headlineKey, isParis, inFocus,
-  type FranceLivePayload, type Headline, type Outline, type EmbeddedPost, type Statement, type StatementKind, type Video, type XPost,
+  KIND_LABEL, X_LIVE_SEARCHES, xSearchUrl, mergeBy, headlineKey, isParis, inFocus, langCode, langName,
+  type FranceLivePayload, type Headline, type Outline, type EmbeddedPost, type Statement, type StatementKind, type Video, type XPost, type MediaPage,
 } from "@/lib/france-riots-shared";
 
 /**
@@ -116,7 +120,7 @@ function VideoCard({ v, now, isNew }: { v: Video; now: number; isNew: boolean })
         )}
       </div>
       <figcaption className="p-3">
-        <p className="text-[13px] font-semibold leading-snug">{v.title}{isNew && <NewTag />}</p>
+        <p className="text-[13px] font-semibold leading-snug"><Translated text={v.title} en={v.en} lang={v.lang ?? "en"} />{isNew && <NewTag />}</p>
         <p className="mono mt-1 text-[10.5px]" style={{ color: "var(--story-ink-3)" }}>{v.channel} · {ago(v.published, now)} · <a className="underline decoration-dotted" href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer">YouTube</a></p>
       </figcaption>
     </figure>
@@ -273,12 +277,13 @@ function EmbeddedPosts({ posts }: { posts: EmbeddedPost[] }) {
 
 interface Config {
   focus: { from: string; to: string; label: string };
+  damageWindow: { from: string; to: string; label: string };
   accounts: ReadonlyArray<{ group: string; list: ReadonlyArray<readonly [string, string, string]> }>;
   liveStreams: ReadonlyArray<readonly [string, string]>;
   webcams: ReadonlyArray<{ name: string; url: string }>;
 }
 
-export default function FranceLive({ initial, outline, config }: { initial: FranceLivePayload; outline: Outline; config: Config }) {
+export default function FranceLive({ initial, outline, config, media }: { initial: FranceLivePayload; outline: Outline; config: Config; media: MediaPage }) {
   const { focus } = config;
   const [data, setData] = useState<FranceLivePayload>(initial);
   const [state, setState] = useState<"loading" | "ok" | "failed">("loading");
@@ -288,7 +293,7 @@ export default function FranceLive({ initial, outline, config }: { initial: Fran
   const [now, setNow] = useState(() => Date.parse(initial.fetchedAt) || 0);
   const [lastAsk, setLastAsk] = useState<number | null>(null);
   const firstSeen = useRef<Set<string> | null>(null);
-  const [lang, setLang] = useState<"all" | "fr" | "en" | "official">("all");
+  const [lang, setLang] = useState<"all" | "fr" | "en" | "other" | "official">("all");
   const [kind, setKind] = useState<"all" | StatementKind>("all");
   const [channel, setChannel] = useState("all");
   const [span, setSpan] = useState<"focus" | "all">("focus");
@@ -308,7 +313,11 @@ export default function FranceLive({ initial, outline, config }: { initial: Fran
   useEffect(() => { if (paused) return; const t = setInterval(() => { void load(); }, POLL_MS); return () => clearInterval(t); }, [paused]);
 
   const reg = data.register;
-  const headlines = useMemo(() => mergeBy(data.headlines, reg?.headlines ?? [], headlineKey, 600), [data, reg]);
+  // Live headlines arrive untranslated; the English the scheduled job made for the same title is carried over.
+  const headlines = useMemo(() => {
+    const en = new Map((reg?.headlines ?? []).filter((h) => h.en).map((h) => [h.title, h.en!]));
+    return mergeBy(data.headlines.map((h) => (!h.en && en.has(h.title) ? { ...h, en: en.get(h.title) } : h)), reg?.headlines ?? [], headlineKey, 900);
+  }, [data, reg]);
   const videos = useMemo(() => mergeBy(data.videos, reg?.videos ?? [], (v) => v.id, 300), [data, reg]);
   const allStatements = reg?.statements ?? [];
   const statements = allStatements.filter((s) => pass(s.seen, `${s.quote} ${s.url}`));
@@ -325,7 +334,17 @@ export default function FranceLive({ initial, outline, config }: { initial: Fran
   const newCount = [...headlines.map(keyOf), ...videos.map((v) => v.id), ...statements.map((s) => s.quote)].filter(isNew).length;
 
   const inView = headlines.filter((h) => pass(h.published, h.title));
-  const shownHeadlines = inView.filter((h) => lang === "all" ? h.kind === "press" : lang === "official" ? h.kind === "official" : h.kind === "press" && h.lang === lang).slice(0, 60);
+  const shownHeadlines = inView.filter((h) => lang === "all" ? h.kind === "press" : lang === "official" ? h.kind === "official" : lang === "other" ? h.kind === "press" && h.lang !== "fr" && h.lang !== "en" : h.kind === "press" && h.lang === lang).slice(0, 80);
+  const otherLangs = [...new Set(inView.filter((h) => h.lang !== "fr" && h.lang !== "en").map((h) => langName(h.lang)))];
+  const damage = (reg?.damage ?? []).filter((d) => where === "all" || isParis(`${d.quote} ${d.en ?? ""} ${d.city ?? ""} ${d.url}`));
+  const businessesAll = (reg?.businesses ?? []).filter((b) => where === "all" || isParis(`${b.quote} ${b.city ?? ""} ${b.url}`));
+  const damageInSpan = damage.filter((d) => pass(d.seen, `${d.quote} ${d.en ?? ""} ${d.city ?? ""} ${d.url}`));
+  const parisItems = [
+    ...pressInSpan.map((h) => ({ text: h.title, en: h.en, url: h.url, outlet: h.outlet, source: "headline" as const })),
+    ...(reg?.damage ?? []).filter((d) => span === "all" || inFocus(d.seen, focus)).map((d) => ({ text: d.quote, en: d.en, url: d.url, outlet: d.outlet, source: "damage" as const, categories: d.categories })),
+    ...(reg?.statements ?? []).filter((s) => span === "all" || inFocus(s.seen, focus)).map((s) => ({ text: s.quote, en: s.en, url: s.url, outlet: s.outlet, source: "statement" as const })),
+  ];
+  const tr = reg?.translation;
   const kinds = (Object.keys(KIND_LABEL) as StatementKind[]).filter((k) => statements.some((s) => s.kind === k));
   const shownStatements = statements.filter((s) => kind === "all" || s.kind === kind).slice(0, 30);
   const channels = [...new Set(videos.map((v) => v.channel))];
@@ -334,6 +353,7 @@ export default function FranceLive({ initial, outline, config }: { initial: Fran
 
   return (
     <div>
+      <PixelDefs />
       {/* Status strip */}
       <div className="sticky top-[52px] z-30 -mx-4 mt-6 flex flex-wrap items-center gap-x-4 gap-y-1 border-y px-4 py-2 text-[12px] backdrop-blur-md sm:mx-0 sm:rounded-lg sm:border"
         style={{ borderColor: "var(--story-rule)", background: "color-mix(in srgb, var(--story-card) 88%, transparent)" }}>
@@ -351,7 +371,7 @@ export default function FranceLive({ initial, outline, config }: { initial: Fran
       </div>
 
       <nav aria-label="On this page" className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[12.5px]">
-        {[["key", "Key figures"], ["live", "Live streams"], ["hours", "Hour by hour"], ["embedded", "Posts newsrooms embedded"], ["accounts", "Accounts on X"], ["figures", "Officials' figures"], ["map", "Where"], ["businesses", "Businesses hit"], ["claims", "Claimed causes"], ["economy", "Economy"], ["pulse", "Coverage pulse"], ["videos", "Videos"], ["x", "Posts on X"], ["headlines", "Headlines"], ["government", "Government & advisories"], ["world", "World coverage"], ["sources", "Sources"]].map(([id, label]) => (
+        {[["key", "Key figures"], ["live", "Live streams"], ["hours", "Hour by hour"], ["embedded", "Posts newsrooms embedded"], ["accounts", "Accounts on X"], ["figures", "Officials' figures"], ["map", "Pixel map"], ["paris", "Paris, street by street"], ["damage", "Damage & brands"], ["gallery", "Photos & videos"], ["businesses", "Businesses hit"], ["claims", "Claimed causes"], ["economy", "Economy"], ["pulse", "Coverage pulse"], ["videos", "Videos"], ["x", "Posts on X"], ["headlines", "Headlines"], ["government", "Government & advisories"], ["world", "World coverage"], ["sources", "Sources"]].map(([id, label]) => (
           <a key={id} href={`#${id}`} className="underline decoration-dotted underline-offset-2">{label}</a>
         ))}
       </nav>
@@ -397,6 +417,9 @@ export default function FranceLive({ initial, outline, config }: { initial: Fran
               <figure key={s.quote} className="story-card min-w-0 p-4">
                 <p className="text-[10.5px] font-bold uppercase tracking-[0.08em]" style={{ color: HOT }}>{KIND_LABEL[s.kind]} · according to {s.who}{isNew(s.quote) && <NewTag />}</p>
                 <blockquote className="mt-2 text-[14px] leading-[1.55]">&ldquo;<Quote s={s} />&rdquo;</blockquote>
+                {s.lang !== "en" && (s.en
+                  ? <p className="mt-1.5 text-[13px] leading-[1.5]" style={{ color: "var(--story-ink-2)" }}><span className="text-[9.5px] font-semibold uppercase tracking-[0.06em]" style={{ color: "var(--story-ink-3)" }}>English, machine translation · </span>{s.en}</p>
+                  : <a className="mt-1 inline-block text-[10.5px] underline decoration-dotted" style={{ color: "var(--story-ink-3)" }} href={translateUrl(s.quote, s.lang)} target="_blank" rel="noopener noreferrer">{langName(s.lang)} · translate ↗</a>)}
                 <figcaption className="mono mt-2 text-[10.5px]" style={{ color: "var(--story-ink-3)" }}>{s.outlet} · {ago(s.seen, now)} · <a className="underline decoration-dotted" href={s.url} target="_blank" rel="noopener noreferrer">read the article ↗</a></figcaption>
               </figure>
             ))}
@@ -409,9 +432,19 @@ export default function FranceLive({ initial, outline, config }: { initial: Fran
         <Pulse points={reg?.pulse ?? []} />
       </Section>
 
-      <Section id="map" title="Where: fires, looting, attacks on buildings, clashes"
-        note={<>French cities named in the {pressInSpan.length} headlines in this view, by what those headlines report there — fires, looting, attacks on public buildings, clashes, casualties — recounted every minute. A count of headlines, not of incidents: one fire reported by twenty outlets is twenty.</>}>
-        <IncidentMap outline={outline} headlines={pressInSpan} />
+      <Section id="map" title="Where: the riots as a pixel map"
+        note={<>France in 8-pixel cells, with a sprite for each thing the {pressInSpan.length} headlines and {damageInSpan.length} damage reports in this view say happened in each city — rioters, fires, looted shops, shopping centres, banks, burned cars, town halls, police vans, tear gas, casualties. Press a city for what was reported there. A picture of the reporting, not of events: one fire reported by twenty outlets weighs as twenty.</>}>
+        <PixelFrance outline={outline} headlines={pressInSpan} damage={damageInSpan} statements={statements} />
+      </Section>
+
+      <Section id="paris" title="Paris, street by street"
+        note={<>A schematic pixel Paris — the périphérique, the Seine, its squares, stations and suburbs — with sprites where the headlines, quoted figures and damage reports in this view name a place: the Champs-Élysées, Châtelet–Les Halles, République, Bastille, an arrondissement, Saint-Denis. Shopping centres, the police prefecture and town halls are drawn faintly until reporting names them.</>}>
+        <PixelParis items={parisItems} />
+      </Section>
+
+      <Section id="damage" title="Property damage and brands affected"
+        note={<>Every sentence in the articles read that reports property attacked, looted or burned — town halls, police stations, shops and shopping centres, banks, restaurants, cars, buses and stations, street furniture, homes, monuments — with the brands and buildings it names, the city, any number it gives, and the article. It opens on the nights of 17 and 18 October; the list downloads as CSV. Rows count sentences, not objects, and are never totalled.</>}>
+        <DamageRegister items={damage} businesses={businessesAll} window={config.damageWindow} />
       </Section>
 
       <Section id="businesses" title="Shops, chains and banks reported attacked"
@@ -429,6 +462,11 @@ export default function FranceLive({ initial, outline, config }: { initial: Fran
         <Economy markets={reg?.markets} statements={statements.filter((s) => s.kind === "cost" || s.kind === "economy")} now={now} />
       </Section>
 
+      <Section id="gallery" title="Photos and videos"
+        note={<>Pictures and videos from the riots as they were published: the lead photo each article declares for link previews, the photos and videos inside it, freely licensed photographs on Wikimedia Commons, and the newsrooms&apos; own YouTube videos. Each is shown from where it was published, credited, and linked; nothing is copied here. Scroll and it keeps loading until the collection runs out — it grows each time the scheduled job reads new articles.</>}>
+        <Gallery initial={media} />
+      </Section>
+
       <Section id="videos" title="Videos from newsrooms"
         note={<>The latest videos on {channels.length || "the listed"} newsrooms&apos; YouTube channels whose titles name unrest in France. Footage is the newsroom&apos;s; it plays from YouTube when you press play.</>}
         right={channels.length > 1 ? <Tabs value={channel} onChange={setChannel} options={[["all", `All · ${videos.length}`], ...channels.slice(0, 8).map((c) => [c, c] as [string, string])]} /> : null}>
@@ -442,15 +480,15 @@ export default function FranceLive({ initial, outline, config }: { initial: Fran
       </Section>
 
       <Section id="headlines" title="Headlines, as they are published"
-        note={<>From Google News&apos;s search, asked in French and in English every minute while this page is open, and kept by the scheduled job so the record outlasts the search&apos;s one-day memory. A headline is a pointer to a report, not a fact.</>}
-        right={<Tabs value={lang} onChange={setLang} options={[["all", "All"], ["fr", "Français"], ["en", "English"], ["official", "Government sites"]]} />}>
+        note={<>From Google News&apos;s search, asked in French and in English every minute while this page is open, and by the scheduled job in ten more languages{otherLangs.length ? ` (${otherLangs.join(", ")} in this view)` : ""}, kept so the record outlasts the search&apos;s one-day memory. Headlines in other languages are shown in English, machine-translated{tr ? ` by ${tr.engine}` : ""}, with the original beneath. A headline is a pointer to a report, not a fact.</>}
+        right={<Tabs value={lang} onChange={setLang} options={[["all", "All"], ["en", "English"], ["fr", "French"], ["other", "Other languages"], ["official", "Government sites"]]} />}>
         <ul className="divide-y" style={{ borderColor: "var(--story-rule)" }}>
           {shownHeadlines.map((h) => (
             <li key={keyOf(h)} className="flex gap-3 py-2" style={{ borderColor: "var(--story-rule)" }}>
               <span className="mono w-16 shrink-0 pt-0.5 text-[10.5px]" style={{ color: "var(--story-ink-3)" }}>{ago(h.published, now)}</span>
               <span className="min-w-0">
-                <a href={h.url} target="_blank" rel="noopener noreferrer" className="text-[13.5px] font-medium leading-snug hover:underline">{h.title}</a>{isNew(keyOf(h)) && <NewTag />}
-                <span className="block text-[11px]" style={{ color: "var(--story-ink-3)" }}>{h.outlet || "—"} · {h.lang === "fr" ? "French" : "English"} · {paris(h.published)}</span>
+                <a href={h.url} target="_blank" rel="noopener noreferrer" className="text-[13.5px] font-medium leading-snug hover:underline"><Translated text={h.title} en={h.en} lang={h.lang} inLink /></a>{isNew(keyOf(h)) && <NewTag />}
+                <span className="block text-[11px]" style={{ color: "var(--story-ink-3)" }}>{h.outlet || "—"} · {langName(h.lang)} · {paris(h.published)}</span>
               </span>
             </li>
           ))}
@@ -490,7 +528,7 @@ export default function FranceLive({ initial, outline, config }: { initial: Fran
         <ul className="grid gap-x-6 gap-y-2 md:grid-cols-2">
           {(reg?.articles ?? []).slice(0, 30).map((a) => (
             <li key={a.url} className="min-w-0 text-[13px] leading-snug">
-              <a href={a.url} target="_blank" rel="noopener noreferrer" className="hover:underline">{a.title}</a>
+              <a href={a.url} target="_blank" rel="noopener noreferrer" className="hover:underline"><Translated text={a.title} en={a.en} lang={langCode(a.language)} inLink /></a>
               <span className="block text-[11px]" style={{ color: "var(--story-ink-3)" }}>{a.domain} · {a.country || "—"} · {a.language} · {ago(a.seen, now)}</span>
             </li>
           ))}

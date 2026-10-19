@@ -21,6 +21,11 @@
  *     the post and forbids scraping. Ids and handles only, never text;
  *   - searches X — only institutions, public officials and newsrooms, only
  *     within a daily budget, and stores post ids, never text;
+ *   - asks Google News in ten more languages, whose headlines the translation
+ *     step (scripts/etl/france/translate.py) then puts into English;
+ *   - reads new articles for the property they report damaged — what kind,
+ *     which brand or named building, which city — and for the pictures and
+ *     videos they publish; searches Wikimedia Commons for freely licensed ones;
  *   - accumulates headlines and videos, because a search feed only carries the
  *     last day or so and the story is longer than that.
  *
@@ -35,29 +40,29 @@ import { isEntryPoint } from "../lib/entry";
 import { FRANCE_RIOTS } from "../../../lib/sources";
 import {
   parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseBingNews, parseGdeltTimeline, parseGovUkAdvice,
-  articleText, extractStatements, extractClaims, extractBusinessReports, parseStooq, tweetsInHtml, tweetTime, attribution, statementKind, countsIn, hasEntity, isAboutRiots, isOfficialRelevant, inWindow, mergeBy, headlineKey, placesFromHeadlines,
-  type FranceRegister, type Headline, type SourceStatus, type Statement, type Video, type XPost, type EmbeddedPost, type Claim, type BusinessReport, type MarketPoint,
+  articleText, extractStatements, extractClaims, extractBusinessReports, extractDamage, mediaInHtml, parseCommons, langCode, parseStooq, tweetsInHtml, tweetTime, attribution, statementKind, countsIn, hasEntity, isAboutRiots, isOfficialRelevant, inWindow, mergeBy, headlineKey, placesFromHeadlines,
+  type FranceRegister, type Headline, type SourceStatus, type Statement, type Video, type XPost, type EmbeddedPost, type Claim, type BusinessReport, type MarketPoint, type DamageItem, type MediaItem,
 } from "../../../lib/france-riots-shared";
 
 const OUT = join(process.cwd(), "data", "france-riots", "register.json");
 const GAP = 2_000;
 /** GDELT asks for no more than one request every five seconds. */
 const GDELT_GAP = 6_000;
-const ARTICLES_PER_RUN = 45;
-/** Version 3: articles are also read for claims about causes and for named businesses. */
-const SCAN_VERSION = 3;
+const ARTICLES_PER_RUN = 60;
+/** Version 4: articles are also read for property damage, pictures and videos, in every language. */
+const SCAN_VERSION = 4;
 const X_USD_PER_POST = 0.005;
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const now = () => new Date().toISOString();
 
-const GN = (q: string, lang: "fr" | "en") => lang === "fr"
-  ? `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=fr&gl=FR&ceid=FR:fr`
-  : `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en-GB&gl=GB&ceid=GB:en`;
+type Edition = { hl: string; gl: string; ceid: string };
+const EDITION: Record<"fr" | "en", Edition> = { fr: { hl: "fr", gl: "FR", ceid: "FR:fr" }, en: { hl: "en-GB", gl: "GB", ceid: "GB:en" } };
+const GN = (q: string, e: Edition) => `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=${e.hl}&gl=${e.gl}&ceid=${e.ceid}`;
 const GDELT = (mode: string, extra: string) => `https://api.gdeltproject.org/api/v2/doc/doc?query=${encodeURIComponent(FRANCE_RIOTS.gdeltQuery)}&mode=${mode}&format=json${extra}`;
 
 export function emptyRegister(): FranceRegister {
   return {
-    updatedAt: now(), youtubeChannels: {}, headlines: [], videos: [], articles: [], pulse: [], places: [], statements: [], advisories: [], scanned: [], embedded: [], claims: [], businesses: [], markets: { cac40: [], eurusd: [] }, scanVersion: SCAN_VERSION,
+    updatedAt: now(), youtubeChannels: {}, headlines: [], videos: [], articles: [], pulse: [], places: [], statements: [], advisories: [], scanned: [], embedded: [], claims: [], businesses: [], markets: { cac40: [], eurusd: [] }, damage: [], media: [], scanVersion: SCAN_VERSION,
     x: { active: false, reason: "not yet run", day: now().slice(0, 10), readsToday: 0, budgetPerDay: 0, costUsdToday: 0, posts: [] },
     status: [],
   };
@@ -108,23 +113,28 @@ export async function run(): Promise<void> {
   // ── Headlines ──
   const fresh: Headline[] = [];
   let gnOk = 0;
-  const queries: Array<[string, "fr" | "en", Headline["kind"]]> = [
-    ...FRANCE_RIOTS.newsQueries.fr.map((q) => [`${q} when:7d`, "fr", "press"] as [string, "fr", "press"]),
-    ...FRANCE_RIOTS.newsQueries.en.map((q) => [`${q} when:7d`, "en", "press"] as [string, "en", "press"]),
-    ...FRANCE_RIOTS.officialSites.map((d) => [`site:${d} when:14d`, "fr", "official"] as [string, "fr", "official"]),
+  const queries: Array<[string, string, Edition, Headline["kind"]]> = [
+    ...FRANCE_RIOTS.newsQueries.fr.map((q) => [`${q} when:7d`, "fr", EDITION.fr, "press"] as [string, string, Edition, "press"]),
+    ...FRANCE_RIOTS.newsQueries.en.map((q) => [`${q} when:7d`, "en", EDITION.en, "press"] as [string, string, Edition, "press"]),
+    ...FRANCE_RIOTS.officialSites.map((d) => [`site:${d} when:14d`, "fr", EDITION.fr, "official"] as [string, string, Edition, "official"]),
+    ...FRANCE_RIOTS.otherEditions.flatMap((e) => e.q.map((q) => [`${q} when:7d`, e.lang, e, "press"] as [string, string, Edition, "press"])),
   ];
-  for (const [q, lang, kind] of queries) {
-    const r = await getText(GN(q, lang), { timeoutMs: 30_000, retries: 2, cacheMs: 0 });
+  const perLang = new Map<string, number>();
+  for (const [q, lang, edition, kind] of queries) {
+    const r = await getText(GN(q, edition), { timeoutMs: 30_000, retries: 2, cacheMs: 0 });
     await sleep(GAP);
     if (!r.ok || !r.data) continue;
     gnOk++;
-    const items = parseGoogleNews(r.data, lang, kind, q);
-    fresh.push(...items.filter((h) => (kind === "official" ? isOfficialRelevant(h.title) : isAboutRiots(h.title)) && inWindow(h.published, since)));
+    const items = parseGoogleNews(r.data, lang, kind, q).filter((h) => (kind === "official" ? isOfficialRelevant(h.title) : isAboutRiots(h.title)) && inWindow(h.published, since));
+    perLang.set(lang, (perLang.get(lang) ?? 0) + items.length);
+    fresh.push(...items);
   }
   // Government-site items kept before the relevance rule existed are re-checked against it.
   reg.headlines = mergeBy(reg.headlines.filter((h) => h.kind !== "official" || isOfficialRelevant(h.title)), fresh, headlineKey, 600);
   reg.places = placesFromHeadlines(reg.headlines.filter((h) => h.kind === "press").map((h) => h.title));
   status.push({ id: "gnews", label: "Google News", ok: gnOk > 0, count: fresh.length, ...(gnOk < queries.length ? { error: `${queries.length - gnOk} of ${queries.length} queries failed` } : {}) });
+  const others = FRANCE_RIOTS.otherEditions.map((e) => `${e.lang} ${perLang.get(e.lang) ?? 0}`).join(", ");
+  status.push({ id: "gnews-other", label: `Google News in other languages (${others})`, ok: FRANCE_RIOTS.otherEditions.some((e) => (perLang.get(e.lang) ?? 0) > 0), count: FRANCE_RIOTS.otherEditions.reduce((a, e) => a + (perLang.get(e.lang) ?? 0), 0) });
 
   // ── YouTube: resolve handles, then read feeds ──
   const vids: Video[] = [];
@@ -151,9 +161,13 @@ export async function run(): Promise<void> {
     await sleep(500);
     if (!feed.ok || !feed.data) continue;
     ytOk++;
-    vids.push(...parseYouTube(feed.data, key, c.name).filter((v) => isAboutRiots(v.title) && inWindow(v.published, since)));
+    const lang = "lang" in c ? c.lang : "en";
+    vids.push(...parseYouTube(feed.data, key, c.name).filter((v) => isAboutRiots(v.title) && inWindow(v.published, since)).map((v) => ({ ...v, lang })));
   }
   reg.videos = mergeBy(reg.videos, vids, (v) => v.id, 300);
+  // Each video carries its channel's language, so the translation step knows what to translate.
+  const channelLang = new Map<string, string>(FRANCE_RIOTS.youtube.map((c) => [c.handles[0]!, "lang" in c ? c.lang : "en"]));
+  reg.videos = reg.videos.filter((v) => isAboutRiots(v.title)).map((v) => ({ ...v, lang: channelLang.get(v.handle) ?? v.lang ?? "en" }));
   // Channels listed under a handle that is no longer the first one tried are dropped.
   const keys = new Set<string>(FRANCE_RIOTS.youtube.map((c) => c.handles[0]!));
   for (const k of Object.keys(reg.youtubeChannels)) if (!keys.has(k)) delete reg.youtubeChannels[k];
@@ -196,7 +210,11 @@ export async function run(): Promise<void> {
   const read = new Set(reg.scanned ?? []);
   const claims: Claim[] = [];
   const biz: BusinessReport[] = [];
-  const todo = reg.articles.filter((a) => !read.has(a.url) && /^(French|English)$/i.test(a.language)).slice(0, ARTICLES_PER_RUN);
+  const dmg: DamageItem[] = [];
+  const media: MediaItem[] = [];
+  // Every language is read for pictures, videos and embedded posts; figures, claims and damage are
+  // read from French and English text only, because the rules that find them are written in those.
+  const todo = reg.articles.filter((a) => !read.has(a.url)).slice(0, ARTICLES_PER_RUN);
   const found: Statement[] = [];
   const posts: EmbeddedPost[] = [];
   let readOk = 0;
@@ -206,13 +224,19 @@ export async function run(): Promise<void> {
     await sleep(800);
     if (!page.ok || !page.data) continue;
     readOk++;
-    const text = articleText(page.data);
-    if (!isAboutRiots(text.slice(0, 4000))) continue;
-    const meta = { outlet: a.domain, url: a.url, seen: a.seen, lang: /french/i.test(a.language) ? "fr" : "en" };
-    found.push(...extractStatements(text, meta));
-    claims.push(...extractClaims(text, meta));
-    biz.push(...extractBusinessReports(text, { outlet: a.domain, url: a.url, seen: a.seen }));
+    const lang = langCode(a.language);
     if (!isAboutRiots(a.title)) continue;
+    for (const m of mediaInHtml(page.data, a.url)) {
+      media.push({ kind: m.kind, src: m.src, page: a.url, title: m.caption ?? a.title, credit: a.domain, via: "article", seen: a.seen, lang, ...(m.videoId ? { videoId: m.videoId } : {}) });
+    }
+    const text = articleText(page.data);
+    if (/^(fr|en)$/.test(lang) && isAboutRiots(text.slice(0, 4000))) {
+      const meta = { outlet: a.domain, url: a.url, seen: a.seen, lang };
+      found.push(...extractStatements(text, meta));
+      claims.push(...extractClaims(text, meta));
+      biz.push(...extractBusinessReports(text, { outlet: a.domain, url: a.url, seen: a.seen }).map((b) => ({ ...b, lang })));
+      dmg.push(...extractDamage(text, meta));
+    }
     for (const t of tweetsInHtml(page.data)) {
       const at = tweetTime(t.id);
       // Only posts made during the story: an article's sidebar can embed anything.
@@ -220,12 +244,39 @@ export async function run(): Promise<void> {
     }
   }
   reg.scanned = [...read].slice(-3000);
-  const rereadClaims = (reg.claims ?? []).flatMap((c) => extractClaims(c.quote, { outlet: c.outlet, url: c.url, seen: c.seen, lang: c.lang }));
+  // Translations travel with a quote through the re-read: the quote is unchanged, so is its English.
+  const rereadClaims = (reg.claims ?? []).flatMap((c) => extractClaims(c.quote, { outlet: c.outlet, url: c.url, seen: c.seen, lang: c.lang }).map((x) => (c.en ? { ...x, en: c.en } : x)));
   reg.claims = mergeBy(rereadClaims, claims, (c) => c.quote, 400);
-  reg.businesses = (reg.businesses ?? []).filter((b) => !hasEntity(b.quote));
+  // Stored rows are re-read with today's rules, so a tightened rule removes the rows it should never have made.
+  reg.businesses = (reg.businesses ?? []).filter((b) => !hasEntity(b.quote) && extractBusinessReports(b.quote, b).some((x) => x.brand === b.brand));
   reg.businesses = mergeBy(reg.businesses ?? [], biz, (b) => `${b.brand}|${b.quote}`, 400);
   status.push({ id: "claims", label: "Claims about causes, credited to their speakers", ok: true, count: reg.claims.length });
   status.push({ id: "businesses", label: "Named businesses reported attacked", ok: true, count: reg.businesses.length });
+  const rereadDamage = (reg.damage ?? []).flatMap((d) => extractDamage(d.quote, { outlet: d.outlet, url: d.url, seen: d.seen, lang: d.lang }).map((x) => (d.en ? { ...x, en: d.en } : x)));
+  reg.damage = mergeBy(rereadDamage, dmg, (d) => d.quote, 900);
+  status.push({ id: "damage", label: "Property reported damaged (sentences)", ok: true, count: reg.damage.length });
+
+  // ── Pictures and videos: from the articles read, GDELT's preview images, and Wikimedia Commons ──
+  const gdeltImages: MediaItem[] = reg.articles.flatMap((a) => (a.image && !/logo|icon|default/i.test(a.image) ? [{ kind: "image" as const, src: a.image, page: a.url, title: a.title, credit: a.domain, via: "gdelt" as const, seen: a.seen, lang: langCode(a.language) }] : []));
+  let commonsOk = 0;
+  const commons: MediaItem[] = [];
+  for (const q of FRANCE_RIOTS.commonsQueries) {
+    const url = `https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrsearch=${encodeURIComponent(q)}&gsrnamespace=6&gsrlimit=40&gsrsort=create_timestamp_desc&prop=imageinfo&iiprop=url%7Cextmetadata%7Ctimestamp%7Cmime&iiurlwidth=640&iiextmetadatafilter=ImageDescription%7CArtist%7CLicenseShortName%7CDateTimeOriginal`;
+    const r = await getJson<unknown>(url, { timeoutMs: 30_000, retries: 1, cacheMs: 0 });
+    await sleep(1_000);
+    if (!r.ok) continue;
+    commonsOk++;
+    commons.push(...parseCommons(r.data, since).filter((m) => isAboutRiots(`${m.title} France`) || /manifest|protest|émeut|riot|demonstrat|grève|strike/i.test(m.title)));
+  }
+  // An image is one item wherever it was found; the first source to report it keeps it.
+  const byMedia = new Map<string, MediaItem>();
+  for (const m of [...(reg.media ?? []), ...media, ...gdeltImages, ...commons]) {
+    const k = m.videoId ?? m.src.replace(/[?#].*$/, "");
+    if (!byMedia.has(k)) byMedia.set(k, m);
+  }
+  reg.media = [...byMedia.values()].sort((a, b) => (b.seen ?? "").localeCompare(a.seen ?? "")).slice(0, 2000);
+  status.push({ id: "media", label: `Pictures and videos (${reg.media.filter((m) => m.via === "commons").length} from Wikimedia Commons)`, ok: true, count: reg.media.length });
+  status.push({ id: "commons", label: "Wikimedia Commons search", ok: commonsOk > 0, count: commons.length });
   delete (reg as { readUrls?: unknown }).readUrls;
   const byPost = new Map<string, EmbeddedPost>();
   for (const p of [...(reg.embedded ?? []), ...posts]) if (!byPost.has(p.id)) byPost.set(p.id, p);

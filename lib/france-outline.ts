@@ -6,13 +6,13 @@
  */
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { geoMercator, geoPath, geoCentroid } from "d3-geo";
+import { geoMercator, geoPath, geoCentroid, geoContains, geoBounds } from "d3-geo";
 import { feature } from "topojson-client";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import type { Feature, MultiPolygon, Polygon } from "geojson";
-import { FRANCE_BOX, type Outline } from "./france-riots-shared";
+import { FRANCE_BOX, type Outline, type LandGrid } from "./france-riots-shared";
 
-export type { Outline };
+export type { Outline, LandGrid };
 
 let cached: Outline | null = null;
 
@@ -29,6 +29,22 @@ export function franceOutline(width = 520, height = 520): Outline {
   });
   const shape: Feature<MultiPolygon> = { type: "Feature", properties: {}, geometry: { type: "MultiPolygon", coordinates: metro } };
   const proj = geoMercator().fitExtent([[16, 16], [width - 16, height - 16]], shape);
-  cached = { d: geoPath(proj)(shape) ?? "", scale: proj.scale(), translate: proj.translate() as [number, number], width, height };
+  // The pixel map: a cell is France when its centre is, tested against the same outline; "2" is a
+  // neighbouring country, "0" the sea.
+  const neighbours = all.features.filter((f) => {
+    if (String(f.id) === "250") return false;
+    const [[w, s], [e, n]] = geoBounds(f);
+    return e > FRANCE_BOX.west - 4 && w < FRANCE_BOX.east + 4 && n > FRANCE_BOX.south - 3 && s < FRANCE_BOX.north + 3;
+  });
+  const cell = 8, cols = Math.floor(width / cell), rows = Math.floor(height / cell);
+  let land = "";
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const ll = proj.invert?.([c * cell + cell / 2, r * cell + cell / 2]);
+      land += !ll ? "0" : geoContains(shape, ll) ? "1" : neighbours.some((f) => geoContains(f, ll)) ? "2" : "0";
+    }
+  }
+  const grid: LandGrid = { cell, cols, rows, land };
+  cached = { d: geoPath(proj)(shape) ?? "", scale: proj.scale(), translate: proj.translate() as [number, number], width, height, grid };
   return cached;
 }

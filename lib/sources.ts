@@ -726,11 +726,36 @@ export const FRANCE_RIOTS = {
   since: "2026-10-01T00:00:00Z",
   /** The days the page opens on: Friday 16 to Sunday 18 October, Paris time (UTC+2). */
   focus: { from: "2026-10-15T22:00:00Z", to: "2026-10-18T22:00:00Z", label: "16–18 October" },
+  /**
+   * The damage register's default window: the nights of Saturday 17 and Sunday 18 October, as reported —
+   * from midnight on the 17th to the end of Monday the 19th, Paris time, because a night's damage is
+   * tallied in the next day's reporting.
+   */
+  damageWindow: { from: "2026-10-16T22:00:00Z", to: "2026-10-19T22:00:00Z", label: "Nights of 17–18 October" },
   /** Google News keyless RSS, asked in French and in English. */
   newsQueries: {
     fr: ["émeutes France", "manifestations violences France", "interpellations manifestation Paris", "Nuñez bilan manifestations", "mobilisation étudiants vie chère", "Paris casseurs pillages", "Paris violences nuit 17 octobre"],
     en: ["France riots", "France protests violence", "Paris protests arrests", "France student protests cost of living", "Paris riots looting", "Paris clashes police tear gas"],
   },
+  /**
+   * Google News in other languages, each in its own national edition, read by
+   * the scheduled job; the translation step puts their headlines into English.
+   * An edition Google does not offer simply returns nothing and is reported.
+   */
+  otherEditions: [
+    { lang: "de", hl: "de", gl: "DE", ceid: "DE:de", q: ["Frankreich Krawalle", "Paris Ausschreitungen Proteste"] },
+    { lang: "es", hl: "es", gl: "ES", ceid: "ES:es", q: ["Francia disturbios", "París protestas saqueos"] },
+    { lang: "it", hl: "it", gl: "IT", ceid: "IT:it", q: ["Francia scontri proteste", "Parigi rivolta saccheggi"] },
+    { lang: "nl", hl: "nl", gl: "NL", ceid: "NL:nl", q: ["Frankrijk rellen", "Parijs onrust protesten"] },
+    { lang: "pt", hl: "pt-PT", gl: "PT", ceid: "PT:pt-150", q: ["França tumultos", "Paris protestos violência"] },
+    { lang: "pl", hl: "pl", gl: "PL", ceid: "PL:pl", q: ["Francja zamieszki", "Paryż protesty"] },
+    { lang: "sv", hl: "sv", gl: "SE", ceid: "SE:sv", q: ["Frankrike upplopp", "Paris kravaller protester"] },
+    { lang: "nb", hl: "no", gl: "NO", ceid: "NO:no", q: ["Frankrike opptøyer", "Paris demonstrasjoner"] },
+    { lang: "da", hl: "da", gl: "DK", ceid: "DK:da", q: ["Frankrig uroligheder", "Paris optøjer"] },
+    { lang: "fi", hl: "fi", gl: "FI", ceid: "FI:fi", q: ["Ranska mellakat", "Pariisi mielenosoitukset"] },
+  ],
+  /** Wikimedia Commons searches for freely licensed photographs, newest first; only files from the story's window are kept. */
+  commonsQueries: ["Paris protest October 2026", "manifestation Paris octobre 2026", "émeutes France 2026", "France protests 2026", "Marseille manifestation 2026", "Lyon manifestation 2026"],
   /** Google News restricted to government sites: their own announcements, as indexed. */
   officialSites: ["interieur.gouv.fr", "elysee.fr", "info.gouv.fr", "prefecturedepolice.interieur.gouv.fr", "gendarmerie.interieur.gouv.fr"],
   /** Bing News RSS, asked for article addresses the job can read for officials' figures. */
@@ -748,13 +773,13 @@ export const FRANCE_RIOTS = {
    */
   youtube: [
     { handles: ["France24_en", "FRANCE24English", "france24english"], name: "FRANCE 24 English" },
-    { handles: ["FRANCE24"], name: "FRANCE 24 (français)" },
-    { handles: ["BFMTV"], name: "BFMTV" },
-    { handles: ["franceinfo"], name: "franceinfo" },
-    { handles: ["lemondefr", "LeMonde", "lemonde"], name: "Le Monde" },
-    { handles: ["LeParisien"], name: "Le Parisien" },
+    { handles: ["FRANCE24"], name: "FRANCE 24 (français)", lang: "fr" },
+    { handles: ["BFMTV"], name: "BFMTV", lang: "fr" },
+    { handles: ["franceinfo"], name: "franceinfo", lang: "fr" },
+    { handles: ["lemondefr", "LeMonde", "lemonde"], name: "Le Monde", lang: "fr" },
+    { handles: ["LeParisien"], name: "Le Parisien", lang: "fr" },
     { handles: ["euronews"], name: "euronews" },
-    { handles: ["euronewsfr"], name: "euronews (en français)" },
+    { handles: ["euronewsfr"], name: "euronews (en français)", lang: "fr" },
     { handles: ["Reuters"], name: "Reuters" },
     { handles: ["AP"], name: "Associated Press" },
     { handles: ["AFP", "afpnewsagency", "AFPTV", "afpfr"], name: "AFP" },

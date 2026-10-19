@@ -231,6 +231,27 @@ none is summed, and a source that stops answering is shown as unavailable. `npm 
 checks the parsers against samples of each format and that the register stores no X text and
 attributes every quoted figure.
 
+**Other languages.** The scheduled job also asks Google News's German, Spanish, Italian, Dutch,
+Portuguese, Polish, Swedish, Norwegian, Danish and Finnish editions, and GDELT returns articles in
+any language. After each run, `scripts/etl/france/translate.py` translates every headline, title,
+quoted sentence and caption not in English with Argos Translate's open OpenNMT models, run offline
+in Actions with CTranslate2 — nothing is sent to a translation service. The English is stored beside
+the original (`en`), labelled as machine translation on the page, and never replaces it.
+
+**Damage register.** Articles in French and English are read for sentences that pair a verb of
+attack (looted, burned, smashed; pillé, incendié, saccagé) with a kind of property — town halls,
+police stations, shops, shopping centres, banks, restaurants, vehicles, transport, street furniture,
+homes, monuments — and the brands, named buildings, city and numbers each sentence prints. Rows are
+sentences, not objects, and are never totalled; they download as CSV.
+
+**Pictures and videos.** The image each article declares for link previews (`og:image`), the
+figures and YouTube embeds inside it, GDELT's preview images, freely licensed files from Wikimedia
+Commons (only CC, public-domain or GFDL, with author and licence), and the newsrooms' YouTube
+videos. All are shown from their publishers' own addresses with a credit and a link back; none is
+copied. The pixel maps of France (8-pixel cells of Natural Earth's outline) and of Paris (a
+schematic at 125 m or 250 m a cell) place sprites where headlines and quoted sentences name a city,
+square, station or district — a picture of the reporting, not of events.
+
 ### Ministries' own records
 
 `/ministries` reads two ministries' recurring publications directly. A scheduled job

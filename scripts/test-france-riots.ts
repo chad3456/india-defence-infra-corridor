@@ -9,6 +9,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
+  extractDamage, namedPlaces, damageCategories, mediaInHtml, parseCommons, langCode, mediaFeed, slimRegister, firstCity, BRANDS, BRAND_SECTOR,
   isAboutRiots, parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseGdeltTimeline,
   parseGovUkAdvice, extractClaims, extractBusinessReports, incidentsByCity, parseStooq, articleText, tweetsInHtml, tweetTime, isParis, inFocus, isOfficialRelevant, placesFromHeadlines, fixMojibake, parseBingNews, attribution, unescape, extractStatements, countsIn, statementKind, mergeBy, headlineKey, inWindow,
   type FranceRegister,
@@ -104,6 +105,32 @@ const inc = incidentsByCity(["La mairie de Limoges incendiée", "Pillages à Par
 ok("incidents by city: Limoges fire and public building, Paris looting and clashes", inc.find((c) => c.name === "Limoges")?.types.arson === 1 && inc.find((c) => c.name === "Limoges")?.types["public-buildings"] === 1 && inc.find((c) => c.name === "Paris")?.types.looting === 1 && inc.find((c) => c.name === "Paris")?.types.clashes === 1);
 ok("Stooq closes read, header and junk skipped", JSON.stringify(parseStooq("Date,Open,High,Low,Close,Volume\n2026-10-16,8000,8100,7900,8050.5,0\nN/D,,,,\n2026-10-19,8040,8060,7800,7850,0")) === JSON.stringify([{ d: "2026-10-16", close: 8050.5 }, { d: "2026-10-19", close: 7850 }]));
 
+console.log("\nOther languages, damage, pictures");
+for (const t of ["Frankreich: Krawalle in Paris nach Protesten", "Disturbios en Francia: saqueos en París", "Upplopp i Frankrike efter protester", "Mellakat Ranskassa jatkuvat", "Zamieszki we Francji", "Rellen in Parijs na protesten", "Scontri a Parigi, Francia in rivolta", "Optøjer i Frankrig", "Opptøyer i Frankrike"]) ok(`other languages: "${t}" names unrest in France`, isAboutRiots(t));
+ok("other languages: a German headline about German strikes is not about France", !isAboutRiots("Streik bei der Deutschen Bahn in Berlin"));
+ok("a newsroom named after France does not place a story in France", !isAboutRiots("Riots in Tirana enter a fifth day as Albania's anti-government protests escalate • FRANCE 24") && isAboutRiots("Violences à Paris : 500 gardes à vue • FRANCE 24"));
+ok("GDELT language names become codes", langCode("French") === "fr" && langCode("Norwegian") === "nb" && langCode("Albanian") === "sq" && langCode("Klingon") === "klingon");
+const dmg = extractDamage("La mairie de Bobigny a été incendiée dans la nuit, ainsi que le commissariat de Saint-Denis. Rioters looted the Apple Store and a Foot Locker on the Champs-Élysées in Paris, while 40 cars were torched. The weather in Paris was mild and 200 people marched.", { outlet: "o", url: "u", seen: null, lang: "fr" });
+ok("damage: two sentences, the calm one left out", dmg.length === 2, JSON.stringify(dmg.map((d) => d.quote.slice(0, 30))));
+ok("damage: the town hall and police station named, the city the one named first", dmg[0]?.categories.includes("public-building") === true && dmg[0]!.categories.includes("police") && dmg[0]!.places.join() === "mairie de Bobigny,commissariat de Saint-Denis" && dmg[0]!.city === "Bobigny", JSON.stringify(dmg[0]));
+ok("damage: brands, the kinds of property and the count picked out", dmg[1]?.brands.join() === "Apple Store,Foot Locker" && dmg[1]!.categories.includes("shop") && dmg[1]!.categories.includes("vehicle") && dmg[1]!.numbers.join() === "40", JSON.stringify(dmg[1]));
+ok("damage: a shopping centre is a shopping centre, and named once", JSON.stringify(namedPlaces("The Westfield Forum des Halles shopping centre was ransacked.")) === JSON.stringify(["Westfield Forum des Halles"]) && damageCategories("The Westfield Forum des Halles shopping centre was ransacked.").includes("mall"));
+ok("damage: English names a building before its noun", namedPlaces("Protesters set fire to the Nanterre police station and Bobigny town hall.").join() === "Nanterre police station,Bobigny town hall");
+ok("damage: a source is not a target — 'selon la préfecture' names no building", namedPlaces("Selon la préfecture, 40 voitures ont été incendiées.").length === 0 && !damageCategories("Selon la préfecture, 40 voitures ont été incendiées.").includes("public-building"));
+ok("damage: 'estampillées' is not 'pillées'", extractDamage("Je ne savais pas pour Carrefour, il faut arrêter de leur envoyer des bonnes soeurs estampillées CRS.", { outlet: "o", url: "u", seen: null, lang: "fr" }).length === 0);
+ok("damage: brands in a list, Hugo Boss and The Kooples included", extractDamage("Plusieurs commerces voisins, dont Hugo Boss, H&M, The Kooples et Printemps, ont été vandalisés et pillés.", { outlet: "o", url: "u", seen: null, lang: "fr" })[0]?.brands.join() === "H&M,Printemps,Hugo Boss,The Kooples");
+ok("first city is the first named, not the first listed", firstCity("Après Lyon, Paris a aussi connu des pillages") === "Lyon");
+ok("every brand has a sector", BRANDS.every(([b]) => !!BRAND_SECTOR[b]), BRANDS.filter(([b]) => !BRAND_SECTOR[b]).map(([b]) => b).join(", "));
+const md = mediaInHtml(`<meta property="og:image" content="https://a.com/photo.jpg"><meta content="/x/logo.png" property="og:image"><figure><img src="/p/2.jpg" width="800"><figcaption>Police à <b>Paris</b></figcaption></figure><figure><img src="/p/icon.png" width="40"></figure><script>var x="youtube.com/embed/zzzzzzzzzzz"</script><iframe src="https://www.youtube.com/embed/abcdefghijk">`, "https://a.com/art");
+ok("pictures: the preview image and figures kept, logos and icons dropped, captions read", md.filter((m) => m.kind === "image").map((m) => m.src).join() === "https://a.com/photo.jpg,https://a.com/p/2.jpg" && md[1]?.caption === "Police à Paris", JSON.stringify(md));
+ok("videos: embedded YouTube players found, scripts ignored", md.filter((m) => m.kind === "video").map((m) => m.videoId).join() === "abcdefghijk");
+const cm = parseCommons({ query: { pages: {
+  "1": { title: "File:Paris protest 17 October 2026.jpg", imageinfo: [{ url: "https://upload.wikimedia.org/a.jpg", thumburl: "https://upload.wikimedia.org/a-640.jpg", descriptionurl: "https://commons.wikimedia.org/wiki/File:a.jpg", timestamp: "2026-10-18T09:00:00Z", mime: "image/jpeg", extmetadata: { LicenseShortName: { value: "CC BY-SA 4.0" }, Artist: { value: "<a href='x'>Jane Doe</a>" }, ImageDescription: { value: "Manifestation à Paris" } } }] },
+  "2": { title: "File:Old.jpg", imageinfo: [{ url: "https://upload.wikimedia.org/b.jpg", descriptionurl: "https://commons.wikimedia.org/wiki/File:b.jpg", timestamp: "2019-01-01T00:00:00Z", mime: "image/jpeg", extmetadata: { LicenseShortName: { value: "CC BY 4.0" } } }] },
+  "3": { title: "File:Nolicence.jpg", imageinfo: [{ url: "https://upload.wikimedia.org/c.jpg", descriptionurl: "https://commons.wikimedia.org/wiki/File:c.jpg", timestamp: "2026-10-18T00:00:00Z", mime: "image/jpeg", extmetadata: { LicenseShortName: { value: "Fair use" } } }] },
+} } }, "2026-10-01T00:00:00Z");
+ok("Commons: new, freely licensed files kept with author and licence; old and unlicensed ones dropped", cm.length === 1 && cm[0]!.credit === "Jane Doe" && cm[0]!.license === "CC BY-SA 4.0" && cm[0]!.src.endsWith("a-640.jpg"), JSON.stringify(cm));
+
 console.log("\nThe register");
 const reg = JSON.parse(readFileSync(join(process.cwd(), "data", "france-riots", "register.json"), "utf8")) as FranceRegister;
 ok("X posts carry ids, never text", reg.x.posts.every((p) => /^\d+$/.test(p.id) && Object.keys(p).every((k) => ["id", "handle", "createdAt", "video"].includes(k))));
@@ -120,6 +147,15 @@ ok("headlines and videos are inside the window", reg.headlines.every((h) => inWi
 ok("press headlines name unrest in France", reg.headlines.filter((h) => h.kind === "press").every((h) => isAboutRiots(h.title)));
 ok("government-site items concern demonstrations or public order", reg.headlines.filter((h) => h.kind === "official").every((h) => isOfficialRelevant(h.title)));
 ok("X spending stays within the day's budget", reg.x.readsToday <= Math.max(reg.x.budgetPerDay, 0) + 100);
+const english = (x: { lang?: string }) => !x.lang || x.lang === "en";
+const items: Array<{ lang?: string; en?: string }> = [...reg.headlines, ...reg.statements, ...(reg.claims ?? []), ...(reg.damage ?? []), ...(reg.media ?? []), ...reg.videos];
+ok("a translation, where there is one, is non-empty and only on text not already in English", items.every((x) => x.en === undefined || (typeof x.en === "string" && x.en.trim().length > 0 && !english(x))), items.filter((x) => x.en !== undefined && english(x)).slice(0, 2).map((x) => JSON.stringify(x).slice(0, 100)).join(" | "));
+ok("translations say what made them", !items.some((x) => x.en) || !!reg.translation?.engine);
+ok("every damage row names a kind of property, is quoted, decoded and sourced", (reg.damage ?? []).every((d) => d.categories.length > 0 && d.quote.length >= 30 && !/&(?:[a-z]+|#x?[0-9a-f]+);/i.test(d.quote) && /^https?:/.test(d.url)));
+ok("every picture is shown from an https address, with a credit and the page it was published on", (reg.media ?? []).every((m) => /^https:\/\//.test(m.src) && /^https?:\/\//.test(m.page) && !!m.credit));
+ok("every Commons picture carries a free licence", (reg.media ?? []).filter((m) => m.via === "commons").every((m) => /^(?:CC|Public domain|PD|GFDL)/i.test(m.license ?? "")));
+ok("pictures are inside the story's window", (reg.media ?? []).every((m) => inWindow(m.seen, FRANCE_RIOTS.since)));
+ok("the page's copy of the register drops the bookkeeping and the media", slimRegister(reg).scanned.length === 0 && slimRegister(reg).media.length === 0 && mediaFeed(reg).length >= reg.videos.length);
 
 console.log(failed ? `\n${failed} failed` : "\nall passed");
 process.exit(failed ? 1 : 0);

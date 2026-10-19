@@ -185,7 +185,8 @@ if (d.viaNote !== undefined) {
   ok("says what a Former or Potential row means",
     /not a claim that the state operates/i.test(d.viaNote));
   const flagged = d.types.flatMap((t) => t.operators)
-    .filter((o) => o.via && /\b(former|potential|prospective)\b/i.test(o.via)).length;
+    // The connector's own definition of "not current": cancelled, failed and rejected orders count too.
+    .filter((o) => o.via && /\b(former|potential|prospective|cancelled|failed|rejected)\b/i.test(o.via)).length;
   ok("the provisional count matches the rows that carry a provisional group",
     (d.provisionalRows ?? 0) === flagged, `${d.provisionalRows} vs ${flagged}`);
 }

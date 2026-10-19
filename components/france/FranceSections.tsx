@@ -1,10 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { geoMercator } from "d3-geo";
+import { Translated } from "./Translated";
 import {
-  KIND_LABEL, THEME_LABEL, INCIDENT_LABEL, incidentsByCity, xSearchUrl,
-  type Statement, type StatementKind, type Claim, type ClaimTheme, type BusinessReport, type Headline, type Outline, type IncidentType,
+  KIND_LABEL, THEME_LABEL, xSearchUrl,
+  type Statement, type StatementKind, type Claim, type ClaimTheme, type BusinessReport,
   type MarketPoint, type EmbeddedPost,
 } from "@/lib/france-riots-shared";
 
@@ -69,7 +69,7 @@ export function KeyFigures({ statements, now }: { statements: Statement[]; now: 
             <>
               <p className="story-display mt-1 text-[30px] leading-none tabular-nums">{figureFor(s)}</p>
               <p className="mt-1 text-[12px]" style={{ color: "var(--story-ink-2)" }}>latest stated, according to {s.who}</p>
-              <blockquote className="mt-2 text-[12.5px] leading-[1.5]" style={{ color: "var(--story-ink-2)" }}>&ldquo;{s.quote.length > 220 ? `${s.quote.slice(0, 217)}…` : s.quote}&rdquo;</blockquote>
+              <blockquote className="mt-2 text-[12.5px] leading-[1.5]" style={{ color: "var(--story-ink-2)" }}><Translated text={s.quote.length > 220 ? `${s.quote.slice(0, 217)}…` : s.quote} en={s.en} lang={s.lang} quote /></blockquote>
               <div className="mt-1.5"><Src outlet={s.outlet} url={s.url} seen={s.seen} now={now} /></div>
             </>
           ) : <p className="mt-2 text-[12.5px]" style={{ color: "var(--story-ink-3)" }}>No figure stated by a named source in this view yet.</p>}
@@ -80,46 +80,6 @@ export function KeyFigures({ statements, now }: { statements: Statement[]; now: 
 }
 
 /* ── Where: what the headlines report, by city and kind ───────────────── */
-
-export function IncidentMap({ outline, headlines }: { outline: Outline; headlines: Headline[] }) {
-  const [type, setType] = useState<"all" | IncidentType>("all");
-  const proj = useMemo(() => geoMercator().scale(outline.scale).translate(outline.translate), [outline]);
-  const cities = useMemo(() => incidentsByCity(headlines.map((h) => h.title)), [headlines]);
-  const val = (c: (typeof cities)[number]) => (type === "all" ? c.count : c.types[type] ?? 0);
-  const shown = cities.filter((c) => val(c) > 0).sort((a, b) => val(b) - val(a));
-  const max = Math.max(1, ...shown.map(val));
-  return (
-    <div>
-      <Chips value={type} onChange={setType} options={[["all", "Every report"], ...(Object.keys(INCIDENT_LABEL) as IncidentType[]).map((t) => [t, INCIDENT_LABEL[t]] as [IncidentType, string])]} />
-      <div className="mt-3 grid gap-4 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
-        <svg viewBox={`0 0 ${outline.width} ${outline.height}`} style={{ width: "100%", height: "auto", maxHeight: 520 }} role="img" aria-label={`Cities named in headlines reporting ${type === "all" ? "the riots" : INCIDENT_LABEL[type].toLowerCase()}`}>
-          <path d={outline.d} fill="var(--story-card)" stroke="var(--story-ink-3)" strokeWidth={0.8} />
-          {[...shown].reverse().map((c) => {
-            const xy = proj([c.lon, c.lat]);
-            return xy ? <circle key={c.name} cx={xy[0]} cy={xy[1]} r={3 + 20 * Math.sqrt(val(c) / max)} fill={HOT} fillOpacity={0.35} stroke={HOT}><title>{`${c.name}: ${val(c)} headlines`}</title></circle> : null;
-          })}
-          {shown.slice(0, 8).map((c) => {
-            const xy = proj([c.lon, c.lat]);
-            return xy ? <text key={`t${c.name}`} x={xy[0] + 6} y={xy[1] - 6} fontSize="11" fontWeight={600} fill="var(--story-ink)" style={{ paintOrder: "stroke", stroke: "var(--story-card)", strokeWidth: 3 }}>{c.name}</text> : null;
-          })}
-        </svg>
-        <table className="w-full self-start text-[12px]">
-          <thead><tr className="text-left" style={{ color: "var(--story-ink-3)" }}><th className="pb-1">City</th>{(Object.keys(INCIDENT_LABEL) as IncidentType[]).map((t) => <th key={t} className="pb-1 text-right font-medium" title={INCIDENT_LABEL[t]}>{INCIDENT_LABEL[t].split(" ")[0]}</th>)}</tr></thead>
-          <tbody>
-            {shown.slice(0, 14).map((c) => (
-              <tr key={c.name} className="border-t" style={{ borderColor: "var(--story-rule)" }}>
-                <td className="py-1 font-medium">{c.name}</td>
-                {(Object.keys(INCIDENT_LABEL) as IncidentType[]).map((t) => <td key={t} className="mono text-right tabular-nums" style={{ color: c.types[t] ? "var(--story-ink)" : "var(--story-ink-3)" }}>{c.types[t] ?? "·"}</td>)}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
-/* ── Businesses named as attacked ─────────────────────────────────────── */
 
 export function Businesses({ reports, now }: { reports: BusinessReport[]; now: number }) {
   const [open, setOpen] = useState<string | null>(null);
@@ -141,7 +101,7 @@ export function Businesses({ reports, now }: { reports: BusinessReport[]; now: n
           {open === b.brand && (
             <ul className="mt-2 space-y-2">
               {b.rs.slice(0, 8).map((r) => (
-                <li key={r.quote} className="text-[12.5px] leading-[1.5]">&ldquo;{r.quote}&rdquo; <Src outlet={r.outlet} url={r.url} seen={r.seen} now={now} /></li>
+                <li key={r.quote} className="text-[12.5px] leading-[1.5]"><Translated text={r.quote} en={r.en} lang={r.lang ?? "en"} quote /> <Src outlet={r.outlet} url={r.url} seen={r.seen} now={now} /></li>
               ))}
             </ul>
           )}
@@ -174,7 +134,7 @@ export function Claims({ claims, profile, now }: { claims: Claim[]; profile: Sta
           {shown.map((c) => (
             <li key={c.quote} className="story-card p-3">
               <p className="text-[10.5px] font-bold uppercase tracking-[0.08em]" style={{ color: HOT }}>{c.speaker} · {c.themes.map((t) => THEME_LABEL[t]).join(" · ")}</p>
-              <blockquote className="mt-1 text-[13px] leading-[1.55]">&ldquo;{c.quote}&rdquo;</blockquote>
+              <blockquote className="mt-1 text-[13px] leading-[1.55]"><Translated text={c.quote} en={c.en} lang={c.lang} quote /></blockquote>
               <div className="mt-1"><Src outlet={c.outlet} url={c.url} seen={c.seen} now={now} /></div>
             </li>
           ))}
@@ -186,7 +146,7 @@ export function Claims({ claims, profile, now }: { claims: Claim[]; profile: Sta
         <p className="mt-1 text-[11.5px] leading-[1.5]" style={{ color: "var(--story-ink-3)" }}>Ages, nationalities, records: the evidence a claim about causes can be checked against, as officials state it.</p>
         <ul className="mt-3 space-y-3">
           {profile.slice(0, 15).map((s) => (
-            <li key={s.quote} className="text-[12.5px] leading-[1.5]">&ldquo;{s.quote}&rdquo; <span className="text-[11px]" style={{ color: "var(--story-ink-2)" }}>— {s.who}</span> <Src outlet={s.outlet} url={s.url} seen={s.seen} now={now} /></li>
+            <li key={s.quote} className="text-[12.5px] leading-[1.5]"><Translated text={s.quote} en={s.en} lang={s.lang} quote /> <span className="text-[11px]" style={{ color: "var(--story-ink-2)" }}>— {s.who}</span> <Src outlet={s.outlet} url={s.url} seen={s.seen} now={now} /></li>
           ))}
           {!profile.length && <li><Muted>No official statement on the profile of those arrested in the articles read so far.</Muted></li>}
         </ul>
@@ -233,7 +193,7 @@ export function Economy({ markets, statements, now }: { markets: { cac40: Market
         {statements.slice(0, 16).map((s) => (
           <li key={s.quote} className="story-card p-3 text-[12.5px] leading-[1.5]">
             <p className="text-[10.5px] font-bold uppercase tracking-[0.08em]" style={{ color: HOT }}>{KIND_LABEL[s.kind]} · according to {s.who}</p>
-            &ldquo;{s.quote}&rdquo; <div className="mt-1"><Src outlet={s.outlet} url={s.url} seen={s.seen} now={now} /></div>
+            <Translated text={s.quote} en={s.en} lang={s.lang} quote /> <div className="mt-1"><Src outlet={s.outlet} url={s.url} seen={s.seen} now={now} /></div>
           </li>
         ))}
         {!statements.length && <li><Muted>No figure on the economic cost stated by a named source yet.</Muted></li>}

@@ -4,7 +4,7 @@ import FranceLive from "@/components/france/FranceLive";
 import { Eyebrow, Standfirst } from "@/components/stories/Kit";
 import { franceOutline } from "@/lib/france-outline";
 import { FRANCE_RIOTS } from "@/lib/sources";
-import type { FranceLivePayload, FranceRegister } from "@/lib/france-riots-shared";
+import { mediaFeed, slimRegister, type FranceLivePayload, type FranceRegister, type MediaPage } from "@/lib/france-riots-shared";
 
 /**
  * France's October 2026 riots, tracked live. The page is built from the
@@ -14,7 +14,7 @@ import type { FranceLivePayload, FranceRegister } from "@/lib/france-riots-share
 
 export const metadata = {
   title: "France riots, live: reports, videos and official statements · Bharat Tracker",
-  description: "A live tracker of the October 2026 riots in France: headlines in French and English, newsroom videos, officials' figures quoted from reporting, coverage by hour and by place, government announcements and travel advice — refreshed every minute.",
+  description: "A live tracker of the October 2026 riots in France: headlines in a dozen languages translated into English, a pixel map of France and Paris, a register of property damage and brands affected, photos and videos, officials' figures quoted from reporting, government announcements and travel advice — refreshed every minute.",
 };
 
 /** The reporting the background sentence rests on; the tracker below carries the rest. */
@@ -28,10 +28,12 @@ const BACKGROUND = [
 export default function FranceRiotsPage() {
   let reg: FranceRegister | null = null;
   try { reg = JSON.parse(readFileSync(join(process.cwd(), "data", "france-riots", "register.json"), "utf8")) as FranceRegister; } catch { reg = null; }
+  const feed = mediaFeed(reg);
+  const media: MediaPage = { items: feed.slice(0, 24), total: feed.length, offset: 0 };
   const initial: FranceLivePayload = {
     fetchedAt: reg?.updatedAt ?? new Date(0).toISOString(),
     headlines: reg?.headlines ?? [], videos: reg?.videos ?? [], advisories: reg?.advisories ?? [],
-    register: reg, registerFrom: reg ? "deployment" : "none", status: reg?.status ?? [],
+    register: reg ? slimRegister(reg) : null, registerFrom: reg ? "deployment" : "none", status: reg?.status ?? [],
   };
 
   return (
@@ -42,18 +44,21 @@ export default function FranceRiotsPage() {
         Protests over the cost of living and public spending, led by students since early October, turned to rioting, arson and looting in several French cities on
         Saturday 17 October 2026, according to reporting by{" "}
         {BACKGROUND.map((b, i) => <span key={b.url}>{i ? (i === BACKGROUND.length - 1 ? " and " : ", ") : ""}<a className="underline decoration-dotted" href={b.url} target="_blank" rel="noopener noreferrer">{b.outlet}</a></span>)}.
-        This page opens on Friday 16 to Sunday 18 October, with a lens for Paris and the Île-de-France, and gathers what was and is being published: the reporting hour by hour,
-        posts on X that newsrooms embedded, live streams, where fires and looting were reported, the shops and banks named as attacked, what officials say,
-        who claims what is behind it, and what it is doing to the economy. It refreshes itself every minute.
+        This page opens on Friday 16 to Sunday 18 October, with a lens for Paris and the Île-de-France, and gathers what was and is being published — in French, English and ten
+        other languages, translated into English: the reporting hour by hour, posts on X that newsrooms embedded, live streams, a pixel map of France and of Paris street by street,
+        a register of the property and brands reported damaged, photos and videos, what officials say, who claims what is behind it, and what it is doing to the economy.
+        It refreshes itself every minute.
       </Standfirst>
 
-      <FranceLive initial={initial} outline={franceOutline()} config={{ focus: FRANCE_RIOTS.focus, accounts: FRANCE_RIOTS.accounts, liveStreams: FRANCE_RIOTS.liveStreams, webcams: FRANCE_RIOTS.webcams }} />
+      <FranceLive initial={initial} outline={franceOutline()} media={media} config={{ focus: FRANCE_RIOTS.focus, damageWindow: FRANCE_RIOTS.damageWindow, accounts: FRANCE_RIOTS.accounts, liveStreams: FRANCE_RIOTS.liveStreams, webcams: FRANCE_RIOTS.webcams }} />
 
       <section className="mt-14 border-t pt-8" style={{ borderColor: "var(--story-rule)" }}>
         <Eyebrow>What this tracker is, and is not</Eyebrow>
         <ul className="mt-3 max-w-[74ch] list-disc space-y-1.5 pl-5 text-[13px] leading-[1.6]" style={{ color: "var(--story-ink-2)" }}>
           <li><b>Everything here is a report.</b> Figures are shown as the sentence an article printed, with who gave them. They are not checked, totalled or charted as fact; police, ministry and organisers routinely count differently, and counts change through a night.</li>
           <li><b>Two speeds.</b> Headlines, newsroom videos and the UK&apos;s travel advice are asked for every minute while the page is open. GDELT&apos;s index, quoted figures, the Interior Ministry&apos;s press page and X are read by a scheduled job — set to run every twenty minutes, though GitHub often starts it less often, as rarely as every two or three hours — which also keeps everything it has seen so the record outlasts each source&apos;s short memory.</li>
+          <li><b>Translations are a machine&apos;s.</b> Text in other languages is translated into English offline by the scheduled job with Argos Translate&apos;s open models, labelled as machine translation, and shown with the original. Names, numbers and negations are where machine translation errs most; the original is the record.</li>
+          <li><b>Pictures are the publishers&apos;.</b> Photos and videos are shown from the address their publisher serves them at — the image an article declares for link previews, its own figures, embedded videos, freely licensed files on Wikimedia Commons — with the credit and a link back. Nothing is copied or stored here, and a picture its publisher withdraws disappears from the page.</li>
           <li><b>No private individuals.</b> Posts on X are searched only from institutions, public officials and newsrooms, and the site stores their ids, never their text; the post itself comes from X when you ask to see it. Videos are newsrooms&apos; own.</li>
           <li><b>Coverage is not violence.</b> The hourly pulse and the map measure how much is written and which places are named, not what happened where.</li>
           <li><b>A source that stops answering says so</b> in the list of sources, rather than being replaced by an older figure.</li>

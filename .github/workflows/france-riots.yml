@@ -13,6 +13,10 @@ name: France riots tracker (October 2026)
 # fifteen. A run that changes nothing commits nothing. After STOP_AFTER the job
 # does nothing, so a finished story does not keep a scheduler busy.
 #
+# Headlines, quotes and captions in other languages are then machine-translated
+# into English offline (scripts/etl/france/translate.py, Argos Translate's open
+# models run with CTranslate2); the models are cached between runs.
+#
 # X costs money per post read. X_FRANCE_POSTS_PER_DAY (a repository variable,
 # default 100, about $0.50 a day) caps it; set it to 0 to stop reading X.
 
@@ -25,6 +29,7 @@ on:
       - "scripts/etl/connectors/france-riots.ts"
       - "lib/france-riots-shared.ts"
       - ".github/workflows/france-riots.yml"
+      - "scripts/etl/france/**"
 
 permissions:
   contents: write
@@ -39,7 +44,7 @@ env:
 jobs:
   register:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 35
     steps:
       - name: Still running?
         id: window
@@ -61,6 +66,24 @@ jobs:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           X_FRANCE_POSTS_PER_DAY: ${{ vars.X_FRANCE_POSTS_PER_DAY || '100' }}
         run: npm run france:riots
+      - uses: actions/setup-python@v5
+        if: steps.window.outputs.go == 'yes'
+        with: { python-version: "3.12" }
+      - name: Translation models (cached)
+        id: models
+        if: steps.window.outputs.go == 'yes'
+        uses: actions/cache@v4
+        with:
+          path: .cache/argos
+          key: argos-xx-en-${{ hashFiles('scripts/etl/france/translate.py') }}
+      - name: Translate into English
+        if: steps.window.outputs.go == 'yes'
+        # A failed translation leaves the register as the job wrote it: untranslated, not broken.
+        continue-on-error: true
+        run: |
+          pip install --quiet "ctranslate2>=4,<5" "sentencepiece>=0.2"
+          if [ "${{ steps.models.outputs.cache-hit }}" != "true" ]; then python3 -I scripts/etl/france/translate.py --prefetch; fi
+          python3 -I scripts/etl/france/translate.py
       - name: Check
         if: steps.window.outputs.go == 'yes'
         run: npm run test:france

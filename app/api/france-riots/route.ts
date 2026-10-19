@@ -22,7 +22,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { FRANCE_RIOTS } from "@/lib/sources";
 import {
-  parseGoogleNews, parseYouTube, parseGovUkAdvice, channelIdFromPage, isAboutRiots, isOfficialRelevant, inWindow, mergeBy, headlineKey,
+  parseGoogleNews, parseYouTube, parseGovUkAdvice, channelIdFromPage, isAboutRiots, isOfficialRelevant, inWindow, mergeBy, headlineKey, slimRegister,
   type FranceLivePayload, type FranceRegister, type Headline, type SourceStatus, type Video, type Advisory,
 } from "@/lib/france-riots-shared";
 
@@ -100,6 +100,7 @@ export async function GET(): Promise<NextResponse> {
     { id: "register", label: `Scheduled job's register (${from === "github" ? "latest run" : from === "deployment" ? "as deployed" : "unavailable"})`, ok: !!reg, count: reg ? 1 : 0 },
   ];
 
-  const body: FranceLivePayload = { fetchedAt: new Date().toISOString(), headlines, videos, advisories, register: reg, registerFrom: from, status };
+  // The page pages through the media itself (/api/france-riots/media) and has no use for the job's bookkeeping.
+  const body: FranceLivePayload = { fetchedAt: new Date().toISOString(), headlines, videos, advisories, register: reg ? slimRegister(reg) : null, registerFrom: from, status };
   return NextResponse.json(body, { headers: { "cache-control": "public, s-maxage=60, stale-while-revalidate=60" } });
 }
