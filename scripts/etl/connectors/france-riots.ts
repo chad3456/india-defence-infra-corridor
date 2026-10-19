@@ -35,15 +35,17 @@ import { isEntryPoint } from "../lib/entry";
 import { FRANCE_RIOTS } from "../../../lib/sources";
 import {
   parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseBingNews, parseGdeltTimeline, parseGovUkAdvice,
-  articleText, extractStatements, tweetsInHtml, tweetTime, attribution, statementKind, countsIn, hasEntity, isAboutRiots, isOfficialRelevant, inWindow, mergeBy, headlineKey, placesFromHeadlines,
-  type FranceRegister, type Headline, type SourceStatus, type Statement, type Video, type XPost, type EmbeddedPost,
+  articleText, extractStatements, extractClaims, extractBusinessReports, parseStooq, tweetsInHtml, tweetTime, attribution, statementKind, countsIn, hasEntity, isAboutRiots, isOfficialRelevant, inWindow, mergeBy, headlineKey, placesFromHeadlines,
+  type FranceRegister, type Headline, type SourceStatus, type Statement, type Video, type XPost, type EmbeddedPost, type Claim, type BusinessReport,
 } from "../../../lib/france-riots-shared";
 
 const OUT = join(process.cwd(), "data", "france-riots", "register.json");
 const GAP = 2_000;
 /** GDELT asks for no more than one request every five seconds. */
 const GDELT_GAP = 6_000;
-const ARTICLES_PER_RUN = 35;
+const ARTICLES_PER_RUN = 45;
+/** Version 3: articles are also read for claims about causes and for named businesses. */
+const SCAN_VERSION = 3;
 const X_USD_PER_POST = 0.005;
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const now = () => new Date().toISOString();
@@ -55,7 +57,7 @@ const GDELT = (mode: string, extra: string) => `https://api.gdeltproject.org/api
 
 export function emptyRegister(): FranceRegister {
   return {
-    updatedAt: now(), youtubeChannels: {}, headlines: [], videos: [], articles: [], pulse: [], places: [], statements: [], advisories: [], scanned: [], embedded: [],
+    updatedAt: now(), youtubeChannels: {}, headlines: [], videos: [], articles: [], pulse: [], places: [], statements: [], advisories: [], scanned: [], embedded: [], claims: [], businesses: [], markets: { cac40: [], eurusd: [] }, scanVersion: SCAN_VERSION,
     x: { active: false, reason: "not yet run", day: now().slice(0, 10), readsToday: 0, budgetPerDay: 0, costUsdToday: 0, posts: [] },
     status: [],
   };
@@ -190,7 +192,10 @@ export async function run(): Promise<void> {
 
   // ── Articles: officials' figures, and the posts on X newsrooms embedded ──
   // Articles read before embedded posts were collected are read once more.
+  if ((reg.scanVersion ?? 0) < SCAN_VERSION) { reg.scanned = []; reg.scanVersion = SCAN_VERSION; }
   const read = new Set(reg.scanned ?? []);
+  const claims: Claim[] = [];
+  const biz: BusinessReport[] = [];
   const todo = reg.articles.filter((a) => !read.has(a.url) && /^(French|English)$/i.test(a.language)).slice(0, ARTICLES_PER_RUN);
   const found: Statement[] = [];
   const posts: EmbeddedPost[] = [];
@@ -203,7 +208,10 @@ export async function run(): Promise<void> {
     readOk++;
     const text = articleText(page.data);
     if (!isAboutRiots(text.slice(0, 4000))) continue;
-    found.push(...extractStatements(text, { outlet: a.domain, url: a.url, seen: a.seen, lang: /french/i.test(a.language) ? "fr" : "en" }));
+    const meta = { outlet: a.domain, url: a.url, seen: a.seen, lang: /french/i.test(a.language) ? "fr" : "en" };
+    found.push(...extractStatements(text, meta));
+    claims.push(...extractClaims(text, meta));
+    biz.push(...extractBusinessReports(text, { outlet: a.domain, url: a.url, seen: a.seen }));
     if (!isAboutRiots(a.title)) continue;
     for (const t of tweetsInHtml(page.data)) {
       const at = tweetTime(t.id);
@@ -212,6 +220,10 @@ export async function run(): Promise<void> {
     }
   }
   reg.scanned = [...read].slice(-3000);
+  reg.claims = mergeBy(reg.claims ?? [], claims, (c) => c.quote, 400);
+  reg.businesses = mergeBy(reg.businesses ?? [], biz, (b) => `${b.brand}|${b.quote}`, 400);
+  status.push({ id: "claims", label: "Claims about causes, credited to their speakers", ok: true, count: reg.claims.length });
+  status.push({ id: "businesses", label: "Named businesses reported attacked", ok: true, count: reg.businesses.length });
   delete (reg as { readUrls?: unknown }).readUrls;
   const byPost = new Map<string, EmbeddedPost>();
   for (const p of [...(reg.embedded ?? []), ...posts]) if (!byPost.has(p.id)) byPost.set(p.id, p);
@@ -227,6 +239,16 @@ export async function run(): Promise<void> {
     const r = await getJson<unknown>(a.url, { timeoutMs: 30_000, retries: 1, cacheMs: 0 });
     if (r.ok) reg.advisories = [parseGovUkAdvice(r.data, { id: a.id, name: a.name, page: a.page }), ...reg.advisories.filter((x) => x.id !== a.id)];
     status.push({ id: a.id, label: a.name, ok: r.ok, count: r.ok ? 1 : 0, ...(r.ok ? {} : { error: r.error }) });
+  }
+
+  // ── Markets: the CAC 40 and the euro, daily closes from Stooq ──
+  reg.markets = reg.markets ?? { cac40: [], eurusd: [] };
+  for (const [key, sym] of [["cac40", "^cac"], ["eurusd", "eurusd"]] as const) {
+    const r = await getText(`https://stooq.com/q/d/l/?s=${encodeURIComponent(sym)}&i=d`, { timeoutMs: 30_000, retries: 1, cacheMs: 0 });
+    const pts = r.ok && r.data ? parseStooq(r.data).filter((p) => p.d >= "2026-08-01") : [];
+    if (pts.length) reg.markets[key] = pts;
+    status.push({ id: `stooq-${key}`, label: key === "cac40" ? "CAC 40 closes (Stooq)" : "Euro in dollars (Stooq)", ok: pts.length > 0, count: reg.markets[key].length, ...(pts.length ? {} : { error: r.ok ? "no rows" : r.error }) });
+    await sleep(GAP);
   }
 
   // ── X ──

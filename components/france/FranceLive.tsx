@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { geoMercator } from "d3-geo";
+import { KeyFigures, IncidentMap, Businesses, Claims, Economy, LiveStreams, Accounts } from "./FranceSections";
 import {
-  KIND_LABEL, X_LIVE_SEARCHES, xSearchUrl, mergeBy, headlineKey, placesFromHeadlines, isParis, inFocus,
+  KIND_LABEL, X_LIVE_SEARCHES, xSearchUrl, mergeBy, headlineKey, isParis, inFocus,
   type FranceLivePayload, type Headline, type Outline, type EmbeddedPost, type Statement, type StatementKind, type Video, type XPost,
 } from "@/lib/france-riots-shared";
 
@@ -96,39 +96,6 @@ function Pulse({ points }: { points: Array<{ t: string; v: number }> }) {
         })}
         <text x={Math.min(W - 120, pad.l + points.indexOf(peak) * step)} y={y(peak.v) - 4} fontSize="10.5" fontWeight={700} fill="var(--story-ink)">{`peak ${peak.v}/h`}</text>
       </svg>
-    </div>
-  );
-}
-
-function FranceMap({ outline, places }: { outline: Outline; places: Array<{ name: string; lat: number; lon: number; count: number }> }) {
-  const proj = useMemo(() => geoMercator().scale(outline.scale).translate(outline.translate), [outline]);
-  const max = Math.max(1, ...places.map((p) => p.count));
-  const top = places.slice(0, 12);
-  return (
-    <div className="grid gap-4 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
-      <svg viewBox={`0 0 ${outline.width} ${outline.height}`} style={{ width: "100%", height: "auto", maxHeight: 520 }} role="img" aria-label={`Places named in coverage: ${top.map((p) => `${p.name} ${p.count}`).join(", ")}`}>
-        <path d={outline.d} fill="var(--story-card)" stroke="var(--story-ink-3)" strokeWidth={0.8} />
-        {[...places].reverse().map((p) => {
-          const xy = proj([p.lon, p.lat]);
-          if (!xy) return null;
-          return <circle key={`${p.name}${p.lat}`} cx={xy[0]} cy={xy[1]} r={3 + 20 * Math.sqrt(p.count / max)} fill={HOT} fillOpacity={0.35} stroke={HOT} strokeWidth={1}><title>{`${p.name}: named ${p.count} times`}</title></circle>;
-        })}
-        {top.slice(0, 7).map((p) => {
-          const xy = proj([p.lon, p.lat]);
-          return xy ? <text key={`l${p.name}`} x={xy[0] + 6} y={xy[1] - 6} fontSize="11" fontWeight={600} fill="var(--story-ink)" style={{ paintOrder: "stroke", stroke: "var(--story-card)", strokeWidth: 3 }}>{p.name.split(",")[0]}</text> : null;
-        })}
-      </svg>
-      <ol className="space-y-1.5 text-[12.5px]">
-        {top.map((p, i) => (
-          <li key={p.name} className="flex items-center gap-2">
-            <span className="mono w-5 text-right text-[11px]" style={{ color: "var(--story-ink-3)" }}>{i + 1}</span>
-            <span className="min-w-0 flex-1 truncate">{p.name}</span>
-            <span className="h-2 rounded-r-[3px]" style={{ width: `${Math.max(4, (p.count / max) * 120)}px`, background: HOT }} />
-            <span className="mono w-10 text-right text-[11px] tabular-nums">{p.count}</span>
-          </li>
-        ))}
-        {!top.length && <li style={{ color: "var(--story-ink-3)" }}>No French city named in the headlines yet.</li>}
-      </ol>
     </div>
   );
 }
@@ -304,7 +271,15 @@ function EmbeddedPosts({ posts }: { posts: EmbeddedPost[] }) {
   );
 }
 
-export default function FranceLive({ initial, outline, focus }: { initial: FranceLivePayload; outline: Outline; focus: { from: string; to: string; label: string } }) {
+interface Config {
+  focus: { from: string; to: string; label: string };
+  accounts: ReadonlyArray<{ group: string; list: ReadonlyArray<readonly [string, string, string]> }>;
+  liveStreams: ReadonlyArray<readonly [string, string]>;
+  webcams: ReadonlyArray<{ name: string; url: string }>;
+}
+
+export default function FranceLive({ initial, outline, config }: { initial: FranceLivePayload; outline: Outline; config: Config }) {
+  const { focus } = config;
   const [data, setData] = useState<FranceLivePayload>(initial);
   const [state, setState] = useState<"loading" | "ok" | "failed">("loading");
   const [paused, setPaused] = useState(false);
@@ -338,10 +313,11 @@ export default function FranceLive({ initial, outline, focus }: { initial: Franc
   const allStatements = reg?.statements ?? [];
   const statements = allStatements.filter((s) => pass(s.seen, `${s.quote} ${s.url}`));
   const press = headlines.filter((h) => h.kind === "press");
-  // The map follows the days chosen but not the Paris lens, which would leave one dot.
-  const places = useMemo(() => placesFromHeadlines(press.filter((h) => span === "all" || inFocus(h.published, focus)).map((h) => h.title)), [headlines, span]);
   const embedded = (reg?.embedded ?? []).filter((p) => pass(p.createdAt, `${p.articleTitle} ${p.articleUrl}`));
   const official = headlines.filter((h) => h.kind === "official");
+  const claims = (reg?.claims ?? []).filter((c) => pass(c.seen, `${c.quote} ${c.url}`));
+  const businesses = (reg?.businesses ?? []).filter((b) => pass(b.seen, `${b.quote} ${b.city ?? ""} ${b.url}`));
+  const pressInSpan = press.filter((h) => span === "all" || inFocus(h.published, focus));
   const keyOf = (h: Headline) => headlineKey(h);
   // What was on the page at first load; anything else that arrives is new.
   if (firstSeen.current === null && state !== "loading") firstSeen.current = new Set([...headlines.map(keyOf), ...videos.map((v) => v.id), ...statements.map((s) => s.quote)]);
@@ -375,7 +351,7 @@ export default function FranceLive({ initial, outline, focus }: { initial: Franc
       </div>
 
       <nav aria-label="On this page" className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[12.5px]">
-        {[["hours", "Hour by hour"], ["embedded", "Posts newsrooms embedded"], ["figures", "Officials' figures"], ["pulse", "Coverage pulse"], ["map", "Where"], ["videos", "Videos"], ["x", "Posts on X"], ["headlines", "Headlines"], ["government", "Government & advisories"], ["world", "World coverage"], ["sources", "Sources"]].map(([id, label]) => (
+        {[["key", "Key figures"], ["live", "Live streams"], ["hours", "Hour by hour"], ["embedded", "Posts newsrooms embedded"], ["accounts", "Accounts on X"], ["figures", "Officials' figures"], ["map", "Where"], ["businesses", "Businesses hit"], ["claims", "Claimed causes"], ["economy", "Economy"], ["pulse", "Coverage pulse"], ["videos", "Videos"], ["x", "Posts on X"], ["headlines", "Headlines"], ["government", "Government & advisories"], ["world", "World coverage"], ["sources", "Sources"]].map(([id, label]) => (
           <a key={id} href={`#${id}`} className="underline decoration-dotted underline-offset-2">{label}</a>
         ))}
       </nav>
@@ -387,6 +363,16 @@ export default function FranceLive({ initial, outline, focus }: { initial: Franc
         <span className="text-[11.5px]" style={{ color: "var(--story-ink-3)" }}>Applies to every section below. Undated items appear only under &ldquo;All of October&rdquo;.</span>
       </div>
 
+      <Section id="key" title="Key figures, as last stated"
+        note={<>For each kind of figure, the most recent one a named official, police force, court or organiser gave, in the article&apos;s words. Figures change through a night and differ by who counts; none is confirmed here.</>}>
+        <KeyFigures statements={statements} now={now} />
+      </Section>
+
+      <Section id="live" title="Live streams and public webcams"
+        note={<>Newsrooms&apos; round-the-clock live channels on YouTube, and links to public city cameras and to streams live now. Press a channel to watch; nothing plays until you do.</>}>
+        <LiveStreams streams={config.liveStreams} channels={reg?.youtubeChannels ?? {}} webcams={config.webcams} />
+      </Section>
+
       <Section id="hours" title={span === "focus" ? `${focus.label}, hour by hour` : "Hour by hour"}
         note={<>How many of the headlines collected here were published in each hour, Paris time, with the first reports of every three-hour block. It shows when the reporting surged, which follows events with a lag; it is not a count of incidents.</>}>
         <HourByHour headlines={inView.filter((h) => h.kind === "press")} window={span === "focus" ? focus : { from: (reg?.headlines ?? []).map((h) => h.published ?? "").filter(Boolean).sort()[0] ?? focus.from, to: new Date(now).toISOString() }} />
@@ -395,6 +381,11 @@ export default function FranceLive({ initial, outline, focus }: { initial: Franc
       <Section id="embedded" title="Posts on X that newsrooms embedded"
         note={<>Posts on X — eyewitness video, police and ministry statements, reporters on the ground — that news sites and live blogs placed in their own coverage, found by reading those articles. The post appears through X&apos;s own embed; this site stores only its id, and its time is read from the id. A newsroom choosing to embed a post is not a verification of what it shows.</>}>
         <EmbeddedPosts posts={embedded} />
+      </Section>
+
+      <Section id="accounts" title="Accounts on X to follow"
+        note={<>Public accounts whose posts on the riots readers look for: the government and security forces, politicians across the French parties, reporters filming on the ground, and commentators abroad of differing views. Listed by role, not ranked or endorsed; X sells its checkmarks, so this list does not use them. Each links to the account and to X&apos;s own search of its posts on the unrest.</>}>
+        <Accounts groups={config.accounts} embedded={reg?.embedded ?? []} />
       </Section>
 
       <Section id="figures" title="What officials have said, in their words"
@@ -418,9 +409,24 @@ export default function FranceLive({ initial, outline, focus }: { initial: Franc
         <Pulse points={reg?.pulse ?? []} />
       </Section>
 
-      <Section id="map" title="Where it is being reported from"
-        note={<>French cities named in the {headlines.filter((h) => h.kind === "press").length} headlines collected here, sized by how many name them, recounted every minute. Where the reporting is about, not where the most happened: Paris is named in stories about the whole country.</>}>
-        <FranceMap outline={outline} places={places} />
+      <Section id="map" title="Where: fires, looting, attacks on buildings, clashes"
+        note={<>French cities named in the {pressInSpan.length} headlines in this view, by what those headlines report there — fires, looting, attacks on public buildings, clashes, casualties — recounted every minute. A count of headlines, not of incidents: one fire reported by twenty outlets is twenty.</>}>
+        <IncidentMap outline={outline} headlines={pressInSpan} />
+      </Section>
+
+      <Section id="businesses" title="Shops, chains and banks reported attacked"
+        note={<>Businesses named in the articles read as looted, vandalised or burned, with the sentence that says so. Only names the reporting prints are listed; a chain named once may stand for one shop.</>}>
+        <Businesses reports={businesses} now={now} />
+      </Section>
+
+      <Section id="claims" title="Who says what is behind it"
+        note={<>Claims about the causes — immigration and the suburbs, the far left, the cost of living and the student movement, policing, foreign interference, the government, crime — in the words of whoever made them, as articles reported them. They are claims, not findings: set them against what officials say about who was actually arrested, on the right.</>}>
+        <Claims claims={claims} profile={statements.filter((s) => s.kind === "profile")} now={now} />
+      </Section>
+
+      <Section id="economy" title="The economy: markets and the cost"
+        note={<>The Paris stock index and the euro around the riots, and what insurers, business groups and ministers say the damage and disruption cost.</>}>
+        <Economy markets={reg?.markets} statements={statements.filter((s) => s.kind === "cost" || s.kind === "economy")} now={now} />
       </Section>
 
       <Section id="videos" title="Videos from newsrooms"

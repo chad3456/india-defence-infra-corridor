@@ -10,7 +10,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
   isAboutRiots, parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseGdeltTimeline,
-  parseGovUkAdvice, articleText, tweetsInHtml, tweetTime, isParis, inFocus, isOfficialRelevant, placesFromHeadlines, fixMojibake, parseBingNews, attribution, unescape, extractStatements, countsIn, statementKind, mergeBy, headlineKey, inWindow,
+  parseGovUkAdvice, extractClaims, extractBusinessReports, incidentsByCity, parseStooq, articleText, tweetsInHtml, tweetTime, isParis, inFocus, isOfficialRelevant, placesFromHeadlines, fixMojibake, parseBingNews, attribution, unescape, extractStatements, countsIn, statementKind, mergeBy, headlineKey, inWindow,
   type FranceRegister,
 } from "../lib/france-riots-shared";
 import { FRANCE_RIOTS } from "../lib/sources";
@@ -66,6 +66,7 @@ ok("a minister's arrest figure is kept, attributed", st.some((s) => s.kind === "
 ok("injuries attributed to the prefecture", st.some((s) => s.kind === "injured" && s.who === "Paris Police Prefecture"));
 ok("a date is not a count: no statement from the date-only sentence", !st.some((s) => /défilé/.test(s.quote)));
 ok("a sentence naming no source is not kept", extractStatements("Some 300 cars were torched overnight across the country.", meta).length === 0);
+ok("ages and distances are not counts", countsIn("A 22-year-old police officer died 250 miles away; un homme de 34 ans, âgé de 19 ; 600 injured").join() === "600", countsIn("A 22-year-old police officer died 250 miles away; un homme de 34 ans, âgé de 19 ; 600 injured").join());
 ok("years, days and times are not counts", countsIn("En 2026, le 17 octobre à 22h, 450 personnes") .join() === "450");
 ok("kinds: arrests, damage, turnout", statementKind("400 people were arrested") === "arrests" && statementKind("200 cars torched") === "damage" && statementKind("550,000 protesters") === "protesters");
 ok("a sentence with two sources names both, in order", attribution("According to the Ministry of the Interior, 550,000 people took to the streets; the CGT union puts the number at 800,000.") === "the Interior Ministry; organisers or unions");
@@ -79,6 +80,25 @@ ok("a sentence with an entity that cannot be decoded is not kept", extractStatem
 const merged = mergeBy([{ ...gn[0]! }], [{ ...gn[0]!, published: "2026-10-18T00:00:00Z" }], headlineKey, 10);
 ok("merge: one entry per headline, first sighting kept", merged.length === 1 && merged[0]!.published === "2026-10-17T21:04:00.000Z");
 
+console.log("\nDamage, claims, economy");
+ok("a burned tourist office is damage, not the tourism economy", statementKind("L'office de tourisme de Lyon a été incendié, 40 interpellations selon la préfecture.") !== "economy");
+ok("hotel cancellations are the economy", statementKind("Les hôteliers parisiens font état de 30 % d'annulations, selon l'UMIH.") === "economy");
+ok("a euro damage figure is a cost", statementKind("Les assureurs estiment les dégâts à 650 millions d'euros, selon France Assureurs.") === "cost");
+ok("'violences' is not 'viol': violence alone is not an assault on a person's body", statementKind("Les violences ont fait 300 blessés selon la police.") === "injured");
+ok("sexual assaults are their own kind", statementKind("Le parquet a ouvert 12 enquêtes pour agression sexuelle.") === "assaults");
+ok("who was arrested: ages and records are a profile", statementKind("Selon le parquet, 40 % des 855 interpellés sont mineurs.") === "profile");
+ok("forces deployed", statementKind("Le ministre de l'Intérieur a annoncé que 80 000 policiers et gendarmes seront mobilisés samedi.") === "deployment");
+const cl = extractClaims("Donald Trump blamed immigration for the riots, saying France is burning. The weather was mild. Jean-Luc Mélenchon accused the government of provoking the violence with its austerity budget.", { outlet: "o", url: "u", seen: null, lang: "en" });
+ok("claims: a speaker, a verb and a theme, credited to the speaker", cl.length === 2 && cl[0]!.speaker === "Donald Trump" && cl[0]!.themes.includes("immigration") && cl[1]!.speaker === "Jean-Luc Mélenchon (LFI)" && cl[1]!.themes.includes("cost-of-living"), JSON.stringify(cl.map((c) => [c.speaker, c.themes])));
+ok("a minister named by title is a speaker: the far-left claim is his", (() => { const c = extractClaims("S'exprimant devant la presse, le ministre de l'Intérieur a fait valoir qu'en marge des cortèges, s'étaient constitués des groupes de casseurs à l'instigation très claire de l'ultragauche.", { outlet: "o", url: "u", seen: null, lang: "fr" }); return c.length === 1 && c[0]!.speaker === "Laurent Nuñez (Interior Minister)" && c[0]!.themes.includes("far-left"); })());
+ok("'constitués' is not 'tués'", statementKind("Le ministre a dénombré 110 défilés ; des groupes de casseurs s'étaient constitués, selon la police.") !== "deaths");
+ok("claims: a sentence with no named speaker is not a claim", extractClaims("Many blamed immigration for the riots across France.", { outlet: "o", url: "u", seen: null, lang: "en" }).length === 0);
+const bz = extractBusinessReports("A Paris, un McDonald's et une agence BNP ont été pillés dans la nuit. L'Apple Store a rouvert normalement.", { outlet: "o", url: "u", seen: null });
+ok("businesses: named and attacked, with the city", bz.length === 2 && bz.every((b) => b.city === "Paris") && bz.map((b) => b.brand).join() === "McDonald's,BNP Paribas", JSON.stringify(bz.map((b) => [b.brand, b.city])));
+const inc = incidentsByCity(["La mairie de Limoges incendiée", "Pillages à Paris", "Heurts à Paris, gaz lacrymogène"]);
+ok("incidents by city: Limoges fire and public building, Paris looting and clashes", inc.find((c) => c.name === "Limoges")?.types.arson === 1 && inc.find((c) => c.name === "Limoges")?.types["public-buildings"] === 1 && inc.find((c) => c.name === "Paris")?.types.looting === 1 && inc.find((c) => c.name === "Paris")?.types.clashes === 1);
+ok("Stooq closes read, header and junk skipped", JSON.stringify(parseStooq("Date,Open,High,Low,Close,Volume\n2026-10-16,8000,8100,7900,8050.5,0\nN/D,,,,\n2026-10-19,8040,8060,7800,7850,0")) === JSON.stringify([{ d: "2026-10-16", close: 8050.5 }, { d: "2026-10-19", close: 7850 }]));
+
 console.log("\nThe register");
 const reg = JSON.parse(readFileSync(join(process.cwd(), "data", "france-riots", "register.json"), "utf8")) as FranceRegister;
 ok("X posts carry ids, never text", reg.x.posts.every((p) => /^\d+$/.test(p.id) && Object.keys(p).every((k) => ["id", "handle", "createdAt", "video"].includes(k))));
@@ -87,6 +107,8 @@ ok("X posts come only from the listed institutions, officials and newsrooms", re
 ok("embedded posts carry ids, handles, times and the article that embedded them — never text", (reg.embedded ?? []).every((p) => Object.keys(p).every((k) => ["id", "handle", "createdAt", "outlet", "articleUrl", "articleTitle"].includes(k))));
 ok("every embedded post comes from an article whose title names unrest in France", (reg.embedded ?? []).every((p) => isAboutRiots(p.articleTitle)));
 ok("each embedded post's time is the one its id encodes, inside the story's window", (reg.embedded ?? []).every((p) => p.createdAt === tweetTime(p.id) && inWindow(p.createdAt, FRANCE_RIOTS.since)));
+ok("every claim names its speaker and a theme, and comes from an article", (reg.claims ?? []).every((c) => !!c.speaker && c.themes.length > 0 && /^https?:/.test(c.url)));
+ok("every business listed is named in its quote", (reg.businesses ?? []).every((b) => b.quote.length > 20 && /^https?:/.test(b.url)));
 ok("every quoted figure names who gave it", reg.statements.every((s) => !!s.who && s.numbers.length > 0 && s.quote.length >= 40));
 ok("no quote carries an undecoded HTML entity", reg.statements.every((s) => !/&(?:[a-z]+|#x?[0-9a-f]+);/i.test(s.quote)), reg.statements.filter((s) => /&(?:[a-z]+|#x?[0-9a-f]+);/i.test(s.quote)).slice(0, 2).map((s) => s.quote.slice(0, 80)).join(" | "));
 ok("headlines and videos are inside the window", reg.headlines.every((h) => inWindow(h.published, FRANCE_RIOTS.since)) && reg.videos.every((v) => inWindow(v.published, FRANCE_RIOTS.since)));

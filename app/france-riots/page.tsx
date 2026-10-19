@@ -43,10 +43,11 @@ export default function FranceRiotsPage() {
         Saturday 17 October 2026, according to reporting by{" "}
         {BACKGROUND.map((b, i) => <span key={b.url}>{i ? (i === BACKGROUND.length - 1 ? " and " : ", ") : ""}<a className="underline decoration-dotted" href={b.url} target="_blank" rel="noopener noreferrer">{b.outlet}</a></span>)}.
         This page opens on Friday 16 to Sunday 18 October, with a lens for Paris and the Île-de-France, and gathers what was and is being published: the reporting hour by hour,
-        posts on X that newsrooms embedded, newsroom video, what officials say and government notices. It refreshes itself every minute.
+        posts on X that newsrooms embedded, live streams, where fires and looting were reported, the shops and banks named as attacked, what officials say,
+        who claims what is behind it, and what it is doing to the economy. It refreshes itself every minute.
       </Standfirst>
 
-      <FranceLive initial={initial} outline={franceOutline()} focus={FRANCE_RIOTS.focus} />
+      <FranceLive initial={initial} outline={franceOutline()} config={{ focus: FRANCE_RIOTS.focus, accounts: FRANCE_RIOTS.accounts, liveStreams: FRANCE_RIOTS.liveStreams, webcams: FRANCE_RIOTS.webcams }} />
 
       <section className="mt-14 border-t pt-8" style={{ borderColor: "var(--story-rule)" }}>
         <Eyebrow>What this tracker is, and is not</Eyebrow>

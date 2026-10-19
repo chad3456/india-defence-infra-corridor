@@ -24,7 +24,7 @@ export interface Video { id: string; title: string; channel: string; handle: str
 export interface Article { url: string; title: string; domain: string; language: string; country: string; seen: string | null; image: string | null }
 export interface PulsePoint { t: string; v: number }
 export interface Place { name: string; lat: number; lon: number; count: number }
-export type StatementKind = "arrests" | "injured" | "deaths" | "protesters" | "damage" | "other";
+export type StatementKind = "arrests" | "injured" | "deaths" | "protesters" | "damage" | "cost" | "economy" | "assaults" | "deployment" | "profile" | "other";
 export interface Statement { quote: string; numbers: string[]; kind: StatementKind; who: string | null; outlet: string; url: string; seen: string | null; lang: string }
 export interface Advisory { id: string; name: string; page: string; updatedAt: string | null; change: string | null; excerpt: string | null }
 export interface XPost { id: string; handle: string; createdAt: string; video: boolean }
@@ -33,6 +33,12 @@ export interface EmbeddedPost { id: string; handle: string; createdAt: string; o
 /** Metropolitan France as one SVG path, with the projection that drew it (lib/france-outline.ts). */
 export interface Outline { d: string; scale: number; translate: [number, number]; width: number; height: number }
 export interface SourceStatus { id: string; label: string; ok: boolean; count: number; error?: string }
+/** A claim about what or who is behind the violence, in the speaker's words as an article reported them. */
+export interface Claim { quote: string; themes: ClaimTheme[]; speaker: string; outlet: string; url: string; seen: string | null; lang: string }
+export type ClaimTheme = "immigration" | "far-left" | "far-right" | "cost-of-living" | "policing" | "foreign" | "government" | "crime";
+/** A named business reported as attacked, looted or burned, with the sentence that says so. */
+export interface BusinessReport { brand: string; city: string | null; quote: string; outlet: string; url: string; seen: string | null }
+export interface MarketPoint { d: string; close: number }
 
 export interface FranceRegister {
   updatedAt: string;
@@ -47,6 +53,11 @@ export interface FranceRegister {
   /** Articles already read for figures and embedded posts. */
   scanned: string[];
   embedded: EmbeddedPost[];
+  claims: Claim[];
+  businesses: BusinessReport[];
+  markets: { cac40: MarketPoint[]; eurusd: MarketPoint[] };
+  /** Raised when articles must be read again for something new; the job re-reads them once. */
+  scanVersion?: number;
   x: { active: boolean; reason?: string; day: string; readsToday: number; budgetPerDay: number; costUsdToday: number; lastAt?: string; posts: XPost[] };
   status: SourceStatus[];
 }
@@ -321,6 +332,9 @@ const WHO: Array<[RegExp, string]> = [
   [/police nationale|national police|police said|selon la police|according to (?:the )?police|police sources?/i, "police"],
   [/organisateurs|organisers|organizers|syndicat|union|CGT|CFDT|FO\b|intersyndicale/i, "organisers or unions"],
   [/according to (?:the )?authorities|authorities said|selon les autorités|les autorités ont/i, "the authorities"],
+  [/france assureurs|assureurs|insurers|insurance (?:federation|industry)/i, "insurers"],
+  [/fédération du commerce|alliance du commerce|\bCCI\b|chambre de commerce|confédération des petites|CPME|MEDEF|U2P|retailers.? (?:group|federation)/i, "business groups"],
+  [/ministre de l.économie|economy minister|finance minister|ministre des finances|bercy/i, "the Economy Ministry"],
   [/selon les (?:sapeurs-)?pompiers|les pompiers ont (?:indiqué|annoncé|précisé)|firefighters said|according to (?:the )?(?:firefighters|fire service)|fire service said/i, "firefighters"],
   [/selon (?:le|la) maire|selon la mairie|(?:le|la) maire\b.{0,40}\ba (?:déclaré|annoncé|indiqué|dénoncé)|mayor (?:said|told|announced|denounced)|according to the mayor/i, "a mayor"],
 ];
@@ -341,7 +355,7 @@ export function attribution(s: string): string | null {
   return out.length ? out.join("; ") : null;
 }
 
-const NUMBER = /\b\d{1,3}(?:[  ,.]\d{3})+\b|\b\d{2,}\b|\b(?:dozens|hundreds|thousands|dizaines|centaines|milliers)\b/gi;
+const NUMBER = /\b\d+(?:[.,]\d+)?\s*(?:millions?|milliards?|billions?|M€|Md€)\b|\b\d{1,3}(?:[  ,.]\d{3})+\b|\b\d{2,}\b|\b(?:dozens|hundreds|thousands|dizaines|centaines|milliers)\b/gi;
 
 const MONTH = "janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout|septembre|octobre|novembre|décembre|decembre|january|february|march|april|may|june|july|august|september|october|november|december";
 
@@ -353,14 +367,24 @@ export function countsIn(s: string): string[] {
     if (/^(19|20)\d{2}$/.test(n)) return [];
     if (new RegExp(`^\\s*(?:${MONTH})`, "i").test(after) || new RegExp(`(?:${MONTH})\\s*$`, "i").test(before)) return [];
     if (/^\s*(?:h\b|h\d|heures?|:\d|am\b|pm\b)/i.test(after)) return [];
+    // Ages are not counts: "a 22-year-old officer died" is one death, not 22; "un homme de 34 ans".
+    if (/^\s*-?\s*(?:years?[- ]old|year\b|ans\b|an\b|-an)/i.test(after) || /(?:^|[^\p{L}])(?:âgée?s? de|aged)\s*$/iu.test(before)) return [];
+    // Nor are distances: "250 miles southwest of Paris".
+    if (/^\s*(?:miles?\b|km\b|kilom[eè]tres?|kilometers?|mètres|metres|meters)/i.test(after)) return [];
     return [n];
   });
 }
 
 /** What a sentence counts, by the first keyword family it carries. */
 export function statementKind(s: string): StatementKind {
+  if (/mineurs|âge moyen|average age|aged between|nationalit|étrangers? en situation|foreign nationals|sans papiers|casier judiciaire|criminal record|déjà connus des services|known to (?:the )?police|fichés? s\b/i.test(s)) return "profile";
+  if (/€|\beuros?\b|M€|Md€/i.test(s) && /dégât|damage|coût|cost|préjudice|sinistre|destroy|détruit|repair|réparation|assur|insur/i.test(s)) return "cost";
+  if (/tourism (?:sector|industry)|secteur (?:du )?touris|fréquentation touristique|tourist (?:numbers|bookings|arrivals)|hôteliers?|hoteliers?|réservations?|bookings?|cancellations?|annulations?|chiffre d.affaires|turnover|retail sales|pertes? d.exploitation|CAC ?40|bourse de paris|stock market|investors|spread|\bOAT\b|bond yields?|croissance|economic growth|\bPIB\b|\bGDP\b/i.test(s)) return "economy";
+  if (/agression sexuelle|agressions sexuelles|sexual(?:ly)? assault|sexual violence|\bviols?\b|\bviolée?s?\b|\brape[sd]?\b|harcèlement|harass|molest|attouchement/i.test(s)) return "assaults";
+  if (/(?:policiers|gendarmes|forces de l.ordre|officers|police)\b.{0,40}\b(?:mobilisés|déployés|deployed|mobilised|mobilized)|blindés|armou?red vehicles|\barmée\b|\barmy\b|soldiers|militaires|sentinelle|raid\b|GIGN|BRI\b|CRS\b.{0,20}(?:déployé|mobilis)/i.test(s)) return "deployment";
   if (/interpell|arrest|gardes? à vue|en garde|détenu|detain/i.test(s)) return "arrests";
-  if (/\bmorts?\b|dead|killed|tués?|décès|died/i.test(s)) return "deaths";
+  // Whole words: "constitués" is not "tués", "deadline" is not "dead".
+  if (/(?<!\p{L})(?:morts?|tu[ée]e?s?|décès|décédée?s?|dead|killed|died)(?!\p{L})/iu.test(s)) return "deaths";
   if (/blessé|injur|hurt|hospital/i.test(s)) return "injured";
   if (/manifestants|protesters|demonstrators|défilé|marched|took to the streets|dans la rue|particip|took part|attended|ont manifesté|mobilisés/i.test(s)) return "protesters";
   if (/véhicules?|voitures?|cars?\b|vehicles?|incendi|burn|torched|bâtiments?|buildings?|commerces?|shops?|magasins?|pillag|loot|dégradation/i.test(s)) return "damage";
@@ -396,7 +420,9 @@ export function extractStatements(text: string, meta: { outlet: string; url: str
 }
 
 export const KIND_LABEL: Record<StatementKind, string> = {
-  arrests: "Arrests and custody", injured: "Injured", deaths: "Deaths", protesters: "Turnout", damage: "Damage and arson", other: "Other figures",
+  arrests: "Arrests and custody", injured: "Injured", deaths: "Deaths", protesters: "Turnout", damage: "Damage and arson",
+  cost: "Cost of damage", economy: "Economy and trade", assaults: "Assaults, incl. sexual", deployment: "Forces deployed",
+  profile: "Who was arrested", other: "Other figures",
 };
 
 /** Live searches on X that a reader can open themselves: no cost to the site, nothing stored. */
@@ -407,3 +433,124 @@ export const X_LIVE_SEARCHES: Array<{ label: string; q: string }> = [
   { label: "Interior Ministry & Paris police", q: "from:Interieur_Gouv OR from:prefpolice" },
 ];
 export const xSearchUrl = (q: string) => `https://x.com/search?q=${encodeURIComponent(q)}&f=live`;
+
+
+/* ── Claims about the causes, credited to whoever makes them ─────────── */
+
+/** People and bodies whose claims about the riots are reported. Their words are quoted, never adopted. */
+export const SPEAKERS: Array<[RegExp, string]> = [
+  [/\bmacron\b|président de la république|french president/i, "Emmanuel Macron (President)"], [/lecornu|premier ministre|prime minister/i, "Sébastien Lecornu (Prime Minister)"],
+  [/nu[ñn]ez|ministre de l.intérieur|interior minister|minister of the interior/i, "Laurent Nuñez (Interior Minister)"],
+  [/retailleau/i, "Bruno Retailleau (LR)"], [/bardella/i, "Jordan Bardella (RN)"], [/le pen/i, "Marine Le Pen (RN)"], [/m[ée]lenchon/i, "Jean-Luc Mélenchon (LFI)"],
+  [/zemmour/i, "Éric Zemmour (Reconquête)"], [/ciotti/i, "Éric Ciotti (UDR)"], [/glucksmann/i, "Raphaël Glucksmann (Place publique)"], [/olivier faure/i, "Olivier Faure (PS)"],
+  [/ruffin/i, "François Ruffin"], [/braun-? ?pivet/i, "Yaël Braun-Pivet (Assembly President)"], [/\btrump\b/i, "Donald Trump"], [/\bvance\b/i, "JD Vance"],
+  [/\bmusk\b/i, "Elon Musk"], [/gad saad/i, "Gad Saad"], [/magyar/i, "Péter Magyar (Hungarian PM)"], [/orb[aá]n/i, "Viktor Orbán"], [/meloni/i, "Giorgia Meloni"],
+  [/\bCGT\b|intersyndicale|syndicats?\b|unions?\b/i, "unions"], [/UNEF|union étudiante|student union|organisations? étudiantes?|lycéens?/i, "student organisations"],
+  [/préfe|prefect/i, "a prefect"], [/parquet|procureur|prosecutor/i, "prosecutors"],
+];
+const THEMES: Array<[ClaimTheme, RegExp]> = [
+  ["immigration", /immigr|migrant|étrangers?\b|foreigners?|islam|muslim|musulman|banlieues?|quartiers populaires|cités\b|sharia|frontières|borders/i],
+  ["far-left", /ultra-?gauche|extrême gauche|far[- ]left|antifa|black ?bloc|\bLFI\b|insoumis|anarchis/i],
+  ["far-right", /ultra-?droite|extrême droite|far[- ]right|identitaires?|néo-?nazi/i],
+  ["cost-of-living", /vie chère|cost[- ]of[- ]living|pouvoir d.achat|prix|prices|salaires|wages|austérité|austerity|budget|étudiants?|students?|jeunesse|youth|précarité/i],
+  ["policing", /violences policières|police (?:violence|brutality)|maintien de l.ordre|\bLBD\b|flash-?ball|grenades?|tear ?gas|lacrymo/i],
+  ["foreign", /ingérence|interference|russi|kremlin|bots?\b|désinformation|disinformation|algéri/i],
+  ["government", /démission|resign|gouvernement (?:est )?responsable|government (?:is )?(?:to blame|responsible)|macron (?:is )?responsible|échec du gouvernement|failure of (?:the )?government/i],
+  ["crime", /délinquan|criminal gangs?|bandes|gangs?\b|trafic|dealers?|pillards|looters? (?:were|are) criminals|opportunis/i],
+];
+const CLAIM_VERB = /accus|blam|dénonc|pointe du doigt|responsab|fault|attribu|lie\b|lient|links?\b|linked|said|says|a déclaré|a affirmé|a fait valoir|a assuré|a estimé|estime|selon|instigation|claims?|claimed|insist|warn|aver|wrote|a écrit|tweet|posted|a posté/i;
+export const THEME_LABEL: Record<ClaimTheme, string> = {
+  immigration: "Immigration, Islam or the suburbs", "far-left": "The far left or black bloc", "far-right": "The far right",
+  "cost-of-living": "Cost of living, students, austerity", policing: "Policing", foreign: "Foreign interference", government: "The government", crime: "Crime and gangs",
+};
+
+/**
+ * Sentences in which a named person or body says what or who is behind the
+ * violence. Kept when the sentence names a speaker, a claim verb and at least
+ * one theme. The claim is the speaker's; the site reports that it was made.
+ */
+export function extractClaims(text: string, meta: { outlet: string; url: string; seen: string | null; lang: string }): Claim[] {
+  const out: Claim[] = [];
+  const seen = new Set<string>();
+  for (const raw of text.split(/\n+/).flatMap((p) => p.split(/(?<=[.!?»”])\s+(?=[A-ZÀ-ÖØ-Þ«“"])/))) {
+    const s = raw.trim();
+    if (s.length < 50 || s.length > 450 || seen.has(s) || hasEntity(s) || !CLAIM_VERB.test(s) || !/émeut|riot|violen|casseur|pill|loot|unrest|chaos|troubles|manifest|protest|incendi|burn/i.test(s)) continue;
+    const speaker = SPEAKERS.find(([re]) => re.test(s))?.[1];
+    if (!speaker) continue;
+    const themes = THEMES.filter(([, re]) => re.test(s)).map(([t]) => t);
+    if (!themes.length) continue;
+    seen.add(s);
+    out.push({ quote: s, themes, speaker, ...meta });
+  }
+  return out;
+}
+
+/* ── Named businesses reported attacked ───────────────────────────────── */
+
+/** Chains, brands and banks, as reporting names them. Matched as whole words, case-sensitively for short names. */
+export const BRANDS: Array<[string, RegExp]> = [
+  ["McDonald's", /McDonald|McDo\b/], ["Burger King", /Burger King/], ["KFC", /\bKFC\b/], ["Starbucks", /Starbucks/], ["Apple Store", /Apple(?: Store)?\b/],
+  ["Nike", /\bNike\b/], ["Adidas", /\bAdidas\b/], ["Foot Locker", /Foot ?Locker/], ["Zara", /\bZara\b/], ["H&M", /\bH&M\b|\bH & M\b/], ["Lacoste", /Lacoste/],
+  ["Louis Vuitton", /Louis Vuitton|\bLVMH\b/], ["Dior", /\bDior\b/], ["Chanel", /\bChanel\b/], ["Hermès", /Herm[èe]s/], ["Cartier", /Cartier/], ["Sephora", /Sephora/],
+  ["Fnac", /\bFnac\b/], ["Darty", /\bDarty\b/], ["Decathlon", /Decathlon|Décathlon/], ["Monoprix", /Monoprix/], ["Franprix", /Franprix/], ["Carrefour", /Carrefour/],
+  ["Lidl", /\bLidl\b/], ["Auchan", /Auchan/], ["Intermarché", /Intermarch[ée]/], ["Leclerc", /Leclerc/], ["Galeries Lafayette", /Galeries Lafayette/], ["Printemps", /\bPrintemps\b/],
+  ["Orange", /\bOrange\b(?! mécanique)/], ["SFR", /\bSFR\b/], ["Bouygues Telecom", /Bouygues/], ["Free", /\bboutique Free\b|\bFree Center\b/], ["Tesla", /\bTesla\b/],
+  ["BNP Paribas", /BNP/], ["Société Générale", /Soci[ée]t[ée] G[ée]n[ée]rale/], ["Crédit Agricole", /Cr[ée]dit Agricole/], ["LCL", /\bLCL\b/], ["Caisse d'Épargne", /Caisse d.[ÉE]pargne/],
+  ["La Banque Postale", /Banque Postale/], ["Crédit Mutuel", /Cr[ée]dit Mutuel/], ["Rolex", /\bRolex\b/], ["Uniqlo", /Uniqlo/], ["Primark", /Primark/], ["JD Sports", /JD Sports/],
+];
+const ATTACKED = /pill[ée]|pillage|loot|saccag|ransack|vandalis|dégrad|incendi|brûl|burn|torch|smash|brisé|cassé|défonc|attaqu|attack|ravag|dévalis|cambriol|break-?in|broken into/i;
+
+/** Sentences naming a business as looted, vandalised or burned, with the city if the sentence names one. */
+export function extractBusinessReports(text: string, meta: { outlet: string; url: string; seen: string | null }): BusinessReport[] {
+  const out: BusinessReport[] = [];
+  const seen = new Set<string>();
+  for (const raw of text.split(/\n+/).flatMap((p) => p.split(/(?<=[.!?»”])\s+(?=[A-ZÀ-ÖØ-Þ«“"])/))) {
+    const s = raw.trim();
+    if (s.length < 30 || s.length > 420 || hasEntity(s) || !ATTACKED.test(s)) continue;
+    const city = CITIES.find((c) => new RegExp(`(?<![\\p{L}-])(?:${[c.name, ...(c.alt ?? [])].join("|")})(?![\\p{L}-])`, "u").test(s))?.name ?? null;
+    for (const [brand, re] of BRANDS) {
+      if (!re.test(s) || seen.has(`${brand}|${s}`)) continue;
+      seen.add(`${brand}|${s}`);
+      out.push({ brand, city, quote: s, ...meta });
+    }
+  }
+  return out;
+}
+
+/* ── What the headlines report, by city ───────────────────────────────── */
+
+export type IncidentType = "arson" | "looting" | "public-buildings" | "clashes" | "casualties";
+export const INCIDENT_LABEL: Record<IncidentType, string> = {
+  arson: "Fires and arson", looting: "Looting and vandalism", "public-buildings": "Attacks on public buildings", clashes: "Clashes with police", casualties: "Injuries or deaths",
+};
+const INCIDENTS: Array<[IncidentType, RegExp]> = [
+  ["arson", /incendi|brûl|burn|torch|fire|flamm|blaze|ablaze/i],
+  ["looting", /pill|loot|saccag|ransack|vandal|dégrad|smash|vitrines?|storefront|casseurs/i],
+  ["public-buildings", /mairie|town hall|city hall|préfecture|prefecture|commissariat|police station|école|school|lycée|tribunal|courthouse|office de tourisme|tourist office|siège|headquarters|bâtiment public|public building/i],
+  ["clashes", /heurts|affrontements?|clash|lacrymo|tear ?gas|canon à eau|water cannon|charges?\b|barricad/i],
+  ["casualties", /bless|injur|hurt|mort\b|morts\b|dead|killed|died|décès/i],
+];
+export function incidentTypes(title: string): IncidentType[] {
+  return INCIDENTS.filter(([, re]) => re.test(title)).map(([t]) => t);
+}
+/** For each city the headlines name: how many headlines report each kind of incident there. */
+export function incidentsByCity(titles: string[]): Array<Place & { types: Partial<Record<IncidentType, number>> }> {
+  const res = CITIES.map((c) => ({ c, re: new RegExp(`(?<![\\p{L}-])(?:${[c.name, ...(c.alt ?? [])].join("|")})(?![\\p{L}-])`, "u") }));
+  return res.map(({ c, re }) => {
+    const mine = titles.filter((t) => re.test(t));
+    const types: Partial<Record<IncidentType, number>> = {};
+    for (const t of mine) for (const k of incidentTypes(t)) types[k] = (types[k] ?? 0) + 1;
+    return { name: c.name, lat: c.lat, lon: c.lon, count: mine.length, types };
+  }).filter((p) => p.count > 0).sort((a, b) => b.count - a.count);
+}
+
+/* ── Markets ──────────────────────────────────────────────────────────── */
+
+/** Stooq's daily CSV (Date,Open,High,Low,Close,Volume): closes, oldest first. */
+export function parseStooq(csv: string): MarketPoint[] {
+  return csv.trim().split(/\r?\n/).slice(1).flatMap((l) => {
+    const [d, , , , c] = l.split(",");
+    const close = Number(c);
+    return d && /^\d{4}-\d{2}-\d{2}$/.test(d) && Number.isFinite(close) && close > 0 ? [{ d, close }] : [];
+  });
+}

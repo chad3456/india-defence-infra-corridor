@@ -735,8 +735,10 @@ export const FRANCE_RIOTS = {
   officialSites: ["interieur.gouv.fr", "elysee.fr", "info.gouv.fr", "prefecturedepolice.interieur.gouv.fr", "gendarmerie.interieur.gouv.fr"],
   /** Bing News RSS, asked for article addresses the job can read for officials' figures. */
   bingQueries: {
-    fr: ["émeutes interpellations bilan", "violences manifestations ministre de l'Intérieur", "manifestation 17 octobre bilan blessés", "en direct manifestation 17 octobre", "Paris émeutes vidéos", "direct violences Paris manifestation"],
-    en: ["France riots arrests interior minister", "France protests injured police", "Paris riots damage", "France protests live updates", "Paris riots video", "Paris riots live"],
+    fr: ["émeutes interpellations bilan", "violences manifestations ministre de l'Intérieur", "manifestation 17 octobre bilan blessés", "en direct manifestation 17 octobre", "Paris émeutes vidéos", "direct violences Paris manifestation",
+      "magasins pillés 17 octobre", "émeutes coût dégâts assureurs", "émeutes Marseille pillages", "émeutes immigration accuse", "émeutes commerçants tourisme impact"],
+    en: ["France riots arrests interior minister", "France protests injured police", "Paris riots damage", "France protests live updates", "Paris riots video", "Paris riots live",
+      "France riots shops looted", "France riots cost damage insurers", "France riots blame immigration", "France riots economy tourism"],
   },
   /** GDELT DOC 2.0 query: multilingual, every outlet GDELT monitors. */
   gdeltQuery: '(émeutes OR émeutiers OR "riots" OR "rioters" OR "violences urbaines") (France OR Paris OR Lyon OR Marseille OR Bordeaux OR Lille OR Nantes OR Toulouse)',
@@ -771,6 +773,45 @@ export const FRANCE_RIOTS = {
   xAccounts: [
     "Interieur_Gouv", "prefpolice", "PoliceNationale", "Gendarmerie", "Elysee", "EmmanuelMacron",
     "AFP", "afpfr", "Reuters", "FRANCE24", "France24_en", "BFMTV", "franceinfo", "lemondefr", "Le_Figaro", "le_Parisien", "euronews",
+  ],
+  /**
+   * Public accounts on X whose posts about the riots a reader may want to follow:
+   * institutions, politicians across the French parties, reporters filming on the
+   * ground, and commentators abroad — chosen to span views, labelled by role,
+   * never ranked. The page links to each account and to an X search of its posts;
+   * it does not endorse what any of them says.
+   */
+  accounts: [
+    { group: "French government and security forces", list: [
+      ["EmmanuelMacron", "Emmanuel Macron", "President of the Republic"], ["SebLecornu", "Sébastien Lecornu", "Prime Minister"], ["NunezLaurent", "Laurent Nuñez", "Interior Minister"],
+      ["Interieur_Gouv", "Ministère de l'Intérieur", "Interior Ministry"], ["prefpolice", "Préfecture de police", "Paris police prefecture"], ["PoliceNationale", "Police nationale", "National police"], ["Gendarmerie", "Gendarmerie nationale", "Gendarmerie"],
+    ] },
+    { group: "French politicians, across the parties", list: [
+      ["J_Bardella", "Jordan Bardella", "Rassemblement national"], ["MLP_officiel", "Marine Le Pen", "Rassemblement national"], ["ZemmourEric", "Éric Zemmour", "Reconquête"], ["ECiotti", "Éric Ciotti", "UDR"],
+      ["BrunoRetailleau", "Bruno Retailleau", "Les Républicains"], ["YaelBRAUNPIVET", "Yaël Braun-Pivet", "President of the National Assembly"], ["rglucks1", "Raphaël Glucksmann", "Place publique"],
+      ["faureolivier", "Olivier Faure", "Parti socialiste"], ["JLMelenchon", "Jean-Luc Mélenchon", "La France insoumise"],
+    ] },
+    { group: "Reporters filming on the ground", list: [
+      ["RemyBuisine", "Rémy Buisine", "Journalist, Brut"], ["ClementLanot", "Clément Lanot", "Freelance video journalist"],
+    ] },
+    { group: "Commentators and politicians abroad", list: [
+      ["GadSaad", "Gad Saad", "Academic and commentator"], ["JDVance", "JD Vance", "US Vice President"], ["realDonaldTrump", "Donald Trump", "US President"], ["elonmusk", "Elon Musk", "Owner of X"],
+      ["visegrad24", "Visegrád 24", "News aggregator account"], ["DrEliDavid", "Eli David", "Commentator"], ["WalidPhares", "Walid Phares", "Commentator"],
+    ] },
+  ],
+  /** Newsrooms' round-the-clock live streams on YouTube, by the channel handle the job resolves. */
+  liveStreams: [
+    ["FRANCE24", "FRANCE 24 (français)"], ["France24_en", "FRANCE 24 English"], ["franceinfo", "franceinfo"], ["BFMTV", "BFMTV"], ["euronewsfr", "euronews (français)"],
+    ["euronews", "euronews (English)"], ["aljazeeraenglish", "Al Jazeera English"], ["SkyNews", "Sky News"], ["dwnews", "DW News"],
+  ],
+  /** Public webcams and live searches: tourist and city cameras, not police CCTV, which is not public. */
+  webcams: [
+    { name: "Live streams from Paris, now (YouTube search)", url: "https://www.youtube.com/results?search_query=Paris+live&sp=EgJAAQ%253D%253D" },
+    { name: "Live streams from Marseille, now (YouTube search)", url: "https://www.youtube.com/results?search_query=Marseille+live&sp=EgJAAQ%253D%253D" },
+    { name: "Live streams from Lyon, now (YouTube search)", url: "https://www.youtube.com/results?search_query=Lyon+live&sp=EgJAAQ%253D%253D" },
+    { name: "SkylineWebcams — Paris", url: "https://www.skylinewebcams.com/en/webcam/france/ile-de-france/paris.html" },
+    { name: "EarthCam — Paris", url: "https://www.earthcam.com/world/france/paris/" },
+    { name: "Viewsurf — French city webcams", url: "https://www.viewsurf.com/" },
   ],
   /** Foreign governments' travel advice for France: what they tell their citizens. */
   advisories: [
