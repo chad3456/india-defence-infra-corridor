@@ -445,7 +445,7 @@ export const SPEAKERS: Array<[RegExp, string]> = [
   [/tondelier/i, "Marine Tondelier (Les Écologistes)"], [/manuel bompard/i, "Manuel Bompard (LFI)"], [/sophie binet/i, "Sophie Binet (CGT)"],
   [/retailleau/i, "Bruno Retailleau (LR)"], [/bardella/i, "Jordan Bardella (RN)"], [/le pen/i, "Marine Le Pen (RN)"], [/m[ée]lenchon/i, "Jean-Luc Mélenchon (LFI)"],
   [/zemmour/i, "Éric Zemmour (Reconquête)"], [/ciotti/i, "Éric Ciotti (UDR)"], [/glucksmann/i, "Raphaël Glucksmann (Place publique)"], [/olivier faure/i, "Olivier Faure (PS)"],
-  [/ruffin/i, "François Ruffin"], [/braun-? ?pivet/i, "Yaël Braun-Pivet (Assembly President)"], [/\btrump\b|dirigeant américain|président américain|président des [ée]tats-unis|US president|American president|president of the United States/i, "Donald Trump"], [/\bvance\b/i, "JD Vance"],
+  [/ruffin/i, "François Ruffin"], [/braun-? ?pivet/i, "Yaël Braun-Pivet (Assembly President)"], [/\btrump\b|dirigeant américain|président américain|président des [ée]tats-unis|US president|American president|president of the United States/i, "Donald Trump"], [/\bvance\b/i, "JD Vance"], [/\bkhanna\b/i, "Ro Khanna (US Representative)"],
   [/\bmusk\b/i, "Elon Musk"], [/gad saad/i, "Gad Saad"], [/magyar/i, "Péter Magyar (Hungarian PM)"], [/orb[aá]n/i, "Viktor Orbán"], [/meloni/i, "Giorgia Meloni"],
   [/\bCGT\b|intersyndicale|syndicats?\b|unions?\b/i, "unions"], [/UNEF|union étudiante|student union|organisations? étudiantes?|lycéens?/i, "student organisations"],
   [/préfe|prefect/i, "a prefect"], [/parquet|procureur|prosecutor/i, "prosecutors"],
