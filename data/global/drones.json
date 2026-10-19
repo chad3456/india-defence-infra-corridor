@@ -1,15 +1,15 @@
 {
-  "builtAt": "2026-10-12T13:15:14.011Z",
+  "builtAt": "2026-10-19T10:52:29.574Z",
   "source": "English Wikipedia, the Operators section of each type's article.",
   "note": "Which countries are publicly recorded as operating each type. Not an inventory — no airframe counts, and no statement of whether a given operator arms them. Not a record of combat use, which is a separate and harder claim.",
   "gap": "Incomplete by construction. Classified and small-batch transfers do not reach an encyclopaedia, and an article's Operators section is edited unevenly, so an absent country means nobody wrote it down rather than that nobody flies it.",
   "originNote": "Each type's country of origin is stated in this file rather than parsed. It is the one fact about these aircraft that is neither disputed nor dependent on an article's section layout; everything else on a row is read from the page.",
   "readCount": 16,
   "faults": [],
-  "provisionalRows": 2,
+  "provisionalRows": 6,
   "viaNote": "An operator row carries `via` when it was read from a named subsection. Rows under a Former or Potential heading are counted in provisionalRows and are not a claim that the state operates the type today.",
   "typeCount": 18,
-  "countryCount": 70,
+  "countryCount": 72,
   "types": [
     {
       "page": "Bayraktar_TB2",
@@ -333,9 +333,31 @@
         {
           "country": "United States of America",
           "asWritten": ";{{Flagu|United States}}"
+        },
+        {
+          "country": "Colombia",
+          "asWritten": "==== Colombia ====",
+          "via": "Potential Operators"
+        },
+        {
+          "country": "Finland",
+          "asWritten": "==== Finland ====",
+          "via": "Potential Operators"
+        },
+        {
+          "country": "Greece",
+          "asWritten": "==== Greece ====",
+          "via": "Potential Operators"
+        },
+        {
+          "country": "Australia",
+          "asWritten": "==== Australia ====",
+          "via": "Cancelled acquisitions"
         }
       ],
-      "nonState": [],
+      "nonState": [
+        "In August 2015, it was revealed that Australians"
+      ],
       "read": true,
       "method": "list",
       "unresolved": [
@@ -1431,6 +1453,28 @@
       ]
     },
     {
+      "country": "Colombia",
+      "types": [
+        "MQ-9 Reaper",
+        "Elbit Hermes 900"
+      ],
+      "origins": [
+        "United States",
+        "Israel"
+      ]
+    },
+    {
+      "country": "Australia",
+      "types": [
+        "MQ-9 Reaper",
+        "IAI Heron"
+      ],
+      "origins": [
+        "United States",
+        "Israel"
+      ]
+    },
+    {
       "country": "Egypt",
       "types": [
         "Wing Loong",
@@ -1659,6 +1703,24 @@
       ]
     },
     {
+      "country": "Finland",
+      "types": [
+        "MQ-9 Reaper"
+      ],
+      "origins": [
+        "United States"
+      ]
+    },
+    {
+      "country": "Greece",
+      "types": [
+        "MQ-9 Reaper"
+      ],
+      "origins": [
+        "United States"
+      ]
+    },
+    {
       "country": "Côte d'Ivoire",
       "types": [
         "Wing Loong II"
@@ -1680,24 +1742,6 @@
       "country": "South Korea",
       "types": [
         "IAI Heron"
-      ],
-      "origins": [
-        "Israel"
-      ]
-    },
-    {
-      "country": "Australia",
-      "types": [
-        "IAI Heron"
-      ],
-      "origins": [
-        "Israel"
-      ]
-    },
-    {
-      "country": "Colombia",
-      "types": [
-        "Elbit Hermes 900"
       ],
       "origins": [
         "Israel"
@@ -1855,12 +1899,16 @@
     {
       "origin": "United States",
       "originCountry": "United States of America",
-      "operators": 15,
+      "operators": 19,
       "countries": [
+        "Australia",
         "Belgium",
         "Canada",
+        "Colombia",
         "Denmark",
+        "Finland",
         "France",
+        "Greece",
         "India",
         "Italy",
         "Japan",
