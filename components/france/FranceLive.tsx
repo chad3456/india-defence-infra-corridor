@@ -245,7 +245,7 @@ function EmbeddedPosts({ posts }: { posts: EmbeddedPost[] }) {
     s.src = "https://platform.twitter.com/widgets.js"; s.async = true; s.onload = run;
     document.body.appendChild(s);
   }, [show, n]);
-  if (!posts.length) return <p className="text-[13px]" style={{ color: "var(--story-ink-3)" }}>No embedded posts in this view yet. The job reads up to 35 new articles every twenty minutes and collects the posts on X they embed.</p>;
+  if (!posts.length) return <p className="text-[13px]" style={{ color: "var(--story-ink-3)" }}>No embedded posts in this view yet. The scheduled job reads new articles on each run and collects the posts on X they embed.</p>;
   return (
     <div>
       {!show ? (
@@ -401,7 +401,7 @@ export default function FranceLive({ initial, outline, config }: { initial: Fran
               </figure>
             ))}
           </div>
-        ) : <p className="text-[13px]" style={{ color: "var(--story-ink-3)" }}>No quoted figures yet. The scheduled job reads new articles every twenty minutes and keeps the sentences in which a named official, the police or the organisers give a count.</p>}
+        ) : <p className="text-[13px]" style={{ color: "var(--story-ink-3)" }}>No quoted figures yet. The scheduled job reads new articles on each run and keeps the sentences in which a named official, the police or the organisers give a count.</p>}
       </Section>
 
       <Section id="pulse" title="How much is being written, hour by hour"

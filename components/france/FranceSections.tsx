@@ -226,9 +226,9 @@ export function Economy({ markets, statements, now }: { markets: { cac40: Market
     <div>
       <div className="grid gap-6 md:grid-cols-2">
         <Line pts={since(markets?.cac40 ?? [])} mark="2026-10-19" label="CAC 40, Paris stock index" fmt={(v) => v.toFixed(0)} />
-        <Line pts={since(markets?.eurusd ?? [])} mark="2026-10-19" label="Euro, in US dollars" fmt={(v) => v.toFixed(3)} />
+        <Line pts={since(markets?.eurusd ?? [])} mark="2026-10-19" label="Euro, in US dollars (ECB)" fmt={(v) => v.toFixed(3)} />
       </div>
-      <p className="mt-1 text-[11px]" style={{ color: "var(--story-ink-3)" }}>Daily closes from Stooq. The line marks the first trading day after the riots of Saturday 17 October. Markets move for many reasons at once — France&apos;s budget and debt among them — and a move here is not a measure of what the riots cost.</p>
+      <p className="mt-1 text-[11px]" style={{ color: "var(--story-ink-3)" }}>Daily closes: the CAC 40 from Yahoo Finance (Stooq as a fallback), the euro at the European Central Bank's reference rate. The line marks the first trading day after the riots of Saturday 17 October. Markets move for many reasons at once — France&apos;s budget and debt among them — and a move here is not a measure of what the riots cost.</p>
       <ul className="mt-4 grid gap-3 md:grid-cols-2">
         {statements.slice(0, 16).map((s) => (
           <li key={s.quote} className="story-card p-3 text-[12.5px] leading-[1.5]">

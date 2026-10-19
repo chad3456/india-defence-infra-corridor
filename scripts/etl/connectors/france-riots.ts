@@ -36,7 +36,7 @@ import { FRANCE_RIOTS } from "../../../lib/sources";
 import {
   parseGoogleNews, parseYouTube, channelIdFromPage, parseGdeltArticles, parseBingNews, parseGdeltTimeline, parseGovUkAdvice,
   articleText, extractStatements, extractClaims, extractBusinessReports, parseStooq, tweetsInHtml, tweetTime, attribution, statementKind, countsIn, hasEntity, isAboutRiots, isOfficialRelevant, inWindow, mergeBy, headlineKey, placesFromHeadlines,
-  type FranceRegister, type Headline, type SourceStatus, type Statement, type Video, type XPost, type EmbeddedPost, type Claim, type BusinessReport,
+  type FranceRegister, type Headline, type SourceStatus, type Statement, type Video, type XPost, type EmbeddedPost, type Claim, type BusinessReport, type MarketPoint,
 } from "../../../lib/france-riots-shared";
 
 const OUT = join(process.cwd(), "data", "france-riots", "register.json");
@@ -220,7 +220,9 @@ export async function run(): Promise<void> {
     }
   }
   reg.scanned = [...read].slice(-3000);
-  reg.claims = mergeBy(reg.claims ?? [], claims, (c) => c.quote, 400);
+  const rereadClaims = (reg.claims ?? []).flatMap((c) => extractClaims(c.quote, { outlet: c.outlet, url: c.url, seen: c.seen, lang: c.lang }));
+  reg.claims = mergeBy(rereadClaims, claims, (c) => c.quote, 400);
+  reg.businesses = (reg.businesses ?? []).filter((b) => !hasEntity(b.quote));
   reg.businesses = mergeBy(reg.businesses ?? [], biz, (b) => `${b.brand}|${b.quote}`, 400);
   status.push({ id: "claims", label: "Claims about causes, credited to their speakers", ok: true, count: reg.claims.length });
   status.push({ id: "businesses", label: "Named businesses reported attacked", ok: true, count: reg.businesses.length });
@@ -241,14 +243,32 @@ export async function run(): Promise<void> {
     status.push({ id: a.id, label: a.name, ok: r.ok, count: r.ok ? 1 : 0, ...(r.ok ? {} : { error: r.error }) });
   }
 
-  // ── Markets: the CAC 40 and the euro, daily closes from Stooq ──
+  // ── Markets: CAC 40 closes from Yahoo's chart API (Stooq as a fallback), the euro from the ECB via Frankfurter ──
   reg.markets = reg.markets ?? { cac40: [], eurusd: [] };
-  for (const [key, sym] of [["cac40", "^cac"], ["eurusd", "eurusd"]] as const) {
-    const r = await getText(`https://stooq.com/q/d/l/?s=${encodeURIComponent(sym)}&i=d`, { timeoutMs: 30_000, retries: 1, cacheMs: 0 });
-    const pts = r.ok && r.data ? parseStooq(r.data).filter((p) => p.d >= "2026-08-01") : [];
-    if (pts.length) reg.markets[key] = pts;
-    status.push({ id: `stooq-${key}`, label: key === "cac40" ? "CAC 40 closes (Stooq)" : "Euro in dollars (Stooq)", ok: pts.length > 0, count: reg.markets[key].length, ...(pts.length ? {} : { error: r.ok ? "no rows" : r.error }) });
-    await sleep(GAP);
+  {
+    let pts: MarketPoint[] = [];
+    let err = "";
+    const y = await getJson<{ chart?: { result?: Array<{ timestamp?: number[]; indicators?: { quote?: Array<{ close?: Array<number | null> }> } }> } }>(
+      "https://query1.finance.yahoo.com/v8/finance/chart/%5EFCHI?range=3mo&interval=1d", { timeoutMs: 30_000, retries: 1, cacheMs: 0 });
+    const res = y.data?.chart?.result?.[0];
+    if (res?.timestamp && res.indicators?.quote?.[0]?.close) {
+      const closes = res.indicators.quote[0].close;
+      pts = res.timestamp.flatMap((t, i) => { const c = closes[i]; return typeof c === "number" && c > 0 ? [{ d: new Date(t * 1000).toISOString().slice(0, 10), close: Math.round(c * 100) / 100 }] : []; });
+    } else err = `Yahoo: ${y.error ?? "no rows"}`;
+    if (!pts.length) {
+      const st = await getText("https://stooq.com/q/d/l/?s=%5Ecac&i=d", { timeoutMs: 30_000, retries: 1, cacheMs: 0 });
+      pts = st.ok && st.data ? parseStooq(st.data) : [];
+      if (!pts.length) err += `; Stooq: ${st.ok ? "no rows" : st.error}`;
+    }
+    pts = pts.filter((p) => p.d >= "2026-08-01");
+    if (pts.length) reg.markets.cac40 = pts;
+    status.push({ id: "cac40", label: "CAC 40 daily closes", ok: pts.length > 0, count: reg.markets.cac40.length, ...(pts.length ? {} : { error: err }) });
+  }
+  {
+    const f = await getJson<{ rates?: Record<string, { USD?: number }> }>("https://api.frankfurter.app/2026-08-01..?from=EUR&to=USD", { timeoutMs: 30_000, retries: 1, cacheMs: 0 });
+    const pts = Object.entries(f.data?.rates ?? {}).flatMap(([d, r]) => (typeof r.USD === "number" ? [{ d, close: r.USD }] : [])).sort((a, b) => a.d.localeCompare(b.d));
+    if (pts.length) reg.markets.eurusd = pts;
+    status.push({ id: "eurusd", label: "Euro in dollars (ECB reference rate)", ok: pts.length > 0, count: reg.markets.eurusd.length, ...(pts.length ? {} : { error: f.error ?? "no rows" }) });
   }
 
   // ── X ──

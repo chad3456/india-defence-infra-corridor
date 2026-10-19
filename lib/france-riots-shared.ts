@@ -165,7 +165,7 @@ function entity(name: string): string | null {
   return m ? (m[1]! + MARKS[m[2]!]!).normalize("NFC") : null;
 }
 /** Is any entity still undecoded in this text? */
-export const hasEntity = (t: string) => /&(?:[a-zA-Z][a-zA-Z0-9]*|#x?[0-9a-fA-F]+);/.test(t);
+export const hasEntity = (t: string) => /&(?:[a-zA-Z][a-zA-Z0-9]*|#x?[0-9a-fA-F]+);|\\u[0-9a-fA-F]{4}/.test(t);
 
 /** Entities decoded, CDATA unwrapped, whitespace collapsed: text as a reader sees it. */
 export function unescape(s: string): string {
@@ -439,11 +439,13 @@ export const xSearchUrl = (q: string) => `https://x.com/search?q=${encodeURIComp
 
 /** People and bodies whose claims about the riots are reported. Their words are quoted, never adopted. */
 export const SPEAKERS: Array<[RegExp, string]> = [
-  [/\bmacron\b|président de la république|french president/i, "Emmanuel Macron (President)"], [/lecornu|premier ministre|prime minister/i, "Sébastien Lecornu (Prime Minister)"],
+  [/\bmacron\b|président de la république|french president|chef de l.[ée]tat|head of state|l.[ée]lys[ée]e a/i, "Emmanuel Macron (President)"], [/lecornu|premier ministre|prime minister/i, "Sébastien Lecornu (Prime Minister)"],
   [/nu[ñn]ez|ministre de l.intérieur|interior minister|minister of the interior/i, "Laurent Nuñez (Interior Minister)"],
+  [/[ée]douard philippe/i, "Édouard Philippe (Horizons)"], [/gabriel attal/i, "Gabriel Attal (Renaissance)"], [/wauquiez/i, "Laurent Wauquiez (LR)"],
+  [/tondelier/i, "Marine Tondelier (Les Écologistes)"], [/manuel bompard/i, "Manuel Bompard (LFI)"], [/sophie binet/i, "Sophie Binet (CGT)"],
   [/retailleau/i, "Bruno Retailleau (LR)"], [/bardella/i, "Jordan Bardella (RN)"], [/le pen/i, "Marine Le Pen (RN)"], [/m[ée]lenchon/i, "Jean-Luc Mélenchon (LFI)"],
   [/zemmour/i, "Éric Zemmour (Reconquête)"], [/ciotti/i, "Éric Ciotti (UDR)"], [/glucksmann/i, "Raphaël Glucksmann (Place publique)"], [/olivier faure/i, "Olivier Faure (PS)"],
-  [/ruffin/i, "François Ruffin"], [/braun-? ?pivet/i, "Yaël Braun-Pivet (Assembly President)"], [/\btrump\b/i, "Donald Trump"], [/\bvance\b/i, "JD Vance"],
+  [/ruffin/i, "François Ruffin"], [/braun-? ?pivet/i, "Yaël Braun-Pivet (Assembly President)"], [/\btrump\b|dirigeant américain|président américain|président des [ée]tats-unis|US president|American president|president of the United States/i, "Donald Trump"], [/\bvance\b/i, "JD Vance"],
   [/\bmusk\b/i, "Elon Musk"], [/gad saad/i, "Gad Saad"], [/magyar/i, "Péter Magyar (Hungarian PM)"], [/orb[aá]n/i, "Viktor Orbán"], [/meloni/i, "Giorgia Meloni"],
   [/\bCGT\b|intersyndicale|syndicats?\b|unions?\b/i, "unions"], [/UNEF|union étudiante|student union|organisations? étudiantes?|lycéens?/i, "student organisations"],
   [/préfe|prefect/i, "a prefect"], [/parquet|procureur|prosecutor/i, "prosecutors"],
@@ -458,7 +460,7 @@ const THEMES: Array<[ClaimTheme, RegExp]> = [
   ["government", /démission|resign|gouvernement (?:est )?responsable|government (?:is )?(?:to blame|responsible)|macron (?:is )?responsible|échec du gouvernement|failure of (?:the )?government/i],
   ["crime", /délinquan|criminal gangs?|bandes|gangs?\b|trafic|dealers?|pillards|looters? (?:were|are) criminals|opportunis/i],
 ];
-const CLAIM_VERB = /accus|blam|dénonc|pointe du doigt|responsab|fault|attribu|lie\b|lient|links?\b|linked|said|says|a déclaré|a affirmé|a fait valoir|a assuré|a estimé|estime|selon|instigation|claims?|claimed|insist|warn|aver|wrote|a écrit|tweet|posted|a posté/i;
+const CLAIM_VERB = /accus|blam|dénonc|pointe du doigt|responsab|fault|attribu|lie\b|lient|links?\b|linked|said|says|a déclaré|a affirmé|a fait valoir|a assuré|a estimé|acknowledged|a reconnu|estime|selon|instigation|claims?|claimed|insist|warn|aver|wrote|a écrit|tweet|posted|a posté/i;
 export const THEME_LABEL: Record<ClaimTheme, string> = {
   immigration: "Immigration, Islam or the suburbs", "far-left": "The far left or black bloc", "far-right": "The far right",
   "cost-of-living": "Cost of living, students, austerity", policing: "Policing", foreign: "Foreign interference", government: "The government", crime: "Crime and gangs",
@@ -475,7 +477,16 @@ export function extractClaims(text: string, meta: { outlet: string; url: string;
   for (const raw of text.split(/\n+/).flatMap((p) => p.split(/(?<=[.!?»”])\s+(?=[A-ZÀ-ÖØ-Þ«“"])/))) {
     const s = raw.trim();
     if (s.length < 50 || s.length > 450 || seen.has(s) || hasEntity(s) || !CLAIM_VERB.test(s) || !/émeut|riot|violen|casseur|pill|loot|unrest|chaos|troubles|manifest|protest|incendi|burn/i.test(s)) continue;
-    const speaker = SPEAKERS.find(([re]) => re.test(s))?.[1];
+    // The speaker is the one named nearest a reporting verb: in "Édouard Philippe, former
+    // prime minister to Emmanuel Macron, said…", it is Philippe, not Macron.
+    const verbs = [...s.matchAll(new RegExp(CLAIM_VERB.source, "gi"))].map((m) => m.index ?? 0);
+    let speaker: string | undefined, best = Infinity;
+    for (const [re, name] of SPEAKERS) {
+      for (const m of s.matchAll(new RegExp(re.source, "gi"))) {
+        const d = Math.min(...verbs.map((v) => Math.abs(v - (m.index ?? 0))));
+        if (d < best) { best = d; speaker = name; }
+      }
+    }
     if (!speaker) continue;
     const themes = THEMES.filter(([, re]) => re.test(s)).map(([t]) => t);
     if (!themes.length) continue;
