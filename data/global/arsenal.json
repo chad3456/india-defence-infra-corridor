@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-19T11:15:40.961Z",
+ "builtAt": "2026-10-19T21:45:04.206Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206498,7 +206498,7 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   },
   {
@@ -206531,6 +206531,20 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-1nghds6",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-10-19",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/pentagon/2026/10/19/pentagon-bae-sign-deal-for-up-to-25000-precision-guided-munition-kits-a-year/",
+   "headline": "Pentagon, BAE sign deal for up to 25,000 precision-guided munition kits a year",
+   "primary": false
+  },
   {
    "id": "ev-1yfmc1a",
    "kind": "order",
@@ -207754,239 +207768,6 @@
  ],
  "groups": [
   {
-   "key": "order||israel",
-   "systems": [],
-   "countries": [
-    "Israel"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1yfmc1a",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Israel"
-     ],
-     "value": {
-      "amount": 235000000,
-      "currency": "USD",
-      "asWritten": "$235M"
-     },
-     "date": "2026-10-19",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/mystery-european-buyer-signs-235m-israeli-rocket-deal/",
-     "headline": "Mystery European buyer signs $235M Israeli rocket deal",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defence Blog"
-   ],
-   "value": {
-    "amount": 235000000,
-    "currency": "USD",
-    "asWritten": "$235M"
-   },
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order||canada",
-   "systems": [],
-   "countries": [
-    "Canada"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1knubzj",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Canada"
-     ],
-     "value": {
-      "amount": 33000000,
-      "currency": "USD",
-      "asWritten": "$33M"
-     },
-     "date": "2026-10-17",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/canadas-calian-wins-33m-deal-to-script-nato-war-games/",
-     "headline": "Canada’s Calian wins $33M deal to script NATO war games",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defence Blog"
-   ],
-   "value": {
-    "amount": 33000000,
-    "currency": "USD",
-    "asWritten": "$33M"
-   },
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order||ukraine",
-   "systems": [],
-   "countries": [
-    "Ukraine"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-13siez9",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Ukraine"
-     ],
-     "value": null,
-     "date": "2026-10-16",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/pentagon/2026/10/16/order-to-limit-starshield-for-ukraine-came-from-inside-white-house-sources-say/",
-     "headline": "Order to limit Starshield for Ukraine came from inside White House, sources say",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defense News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order||taiwan",
-   "systems": [],
-   "countries": [
-    "Taiwan"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1ov4wm3",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Taiwan"
-     ],
-     "value": null,
-     "date": "2026-10-15",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/10/av-and-thunder-tiger-sign-mou-to-explore-uncrewed-systems-integration-and-co-production-in-taiwan/",
-     "headline": "AV and Thunder Tiger Sign MOU to Explore Uncrewed Systems Integration and Co-Production in Taiwan",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "delivery||taiwan",
-   "systems": [],
-   "countries": [
-    "Taiwan"
-   ],
-   "kind": "delivery",
-   "events": [
-    {
-     "id": "ev-16hxq3v",
-     "kind": "delivery",
-     "systems": [],
-     "countries": [
-      "Taiwan"
-     ],
-     "value": null,
-     "date": "2026-10-15",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/10/shield-ai-delivers-first-v-bat-to-taiwan-coast-guard/",
-     "headline": "Shield AI Delivers First V-BAT to Taiwan Coast Guard",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "delivery||united kingdom",
-   "systems": [],
-   "countries": [
-    "United Kingdom"
-   ],
-   "kind": "delivery",
-   "events": [
-    {
-     "id": "ev-13pp620",
-     "kind": "delivery",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-10-14",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/news/dsei-uk-27-mod-leaders-focus-on-speed-innovation-and-readiness",
-     "headline": "NAD and CDS want capability delivered faster as DSEI 27 launched",
-     "primary": true
-    },
-    {
-     "id": "ev-1x1xxwv",
-     "kind": "delivery",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-10-10",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/news/faster-front-line-delivery-with-new-testing-and-evaluation-programme",
-     "headline": "Faster front-line delivery with new Testing and Evaluation programme",
-     "primary": true
-    }
-   ],
-   "outlets": [
-    "UK Ministry of Defence"
-   ],
-   "value": null,
-   "verdict": "from a primary source"
-  },
-  {
-   "key": "order||greece",
-   "systems": [],
-   "countries": [
-    "Greece"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-18gp7zp",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Greece"
-     ],
-     "value": null,
-     "date": "2026-10-14",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/10/hellenic-navy-tests-saronics-corsair-usv-ahead-of-major-order/",
-     "headline": "Hellenic Navy Tests SARONIC’s Corsair USV Ahead of Major Order",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -207994,6 +207775,20 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-1nghds6",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-10-19",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/pentagon/2026/10/19/pentagon-bae-sign-deal-for-up-to-25000-precision-guided-munition-kits-a-year/",
+     "headline": "Pentagon, BAE sign deal for up to 25,000 precision-guided munition kits a year",
+     "primary": false
+    },
     {
      "id": "ev-1lcwg5z",
      "kind": "order",
@@ -208468,6 +208263,239 @@
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "order||israel",
+   "systems": [],
+   "countries": [
+    "Israel"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1yfmc1a",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Israel"
+     ],
+     "value": {
+      "amount": 235000000,
+      "currency": "USD",
+      "asWritten": "$235M"
+     },
+     "date": "2026-10-19",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/mystery-european-buyer-signs-235m-israeli-rocket-deal/",
+     "headline": "Mystery European buyer signs $235M Israeli rocket deal",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": {
+    "amount": 235000000,
+    "currency": "USD",
+    "asWritten": "$235M"
+   },
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order||canada",
+   "systems": [],
+   "countries": [
+    "Canada"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1knubzj",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Canada"
+     ],
+     "value": {
+      "amount": 33000000,
+      "currency": "USD",
+      "asWritten": "$33M"
+     },
+     "date": "2026-10-17",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/canadas-calian-wins-33m-deal-to-script-nato-war-games/",
+     "headline": "Canada’s Calian wins $33M deal to script NATO war games",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": {
+    "amount": 33000000,
+    "currency": "USD",
+    "asWritten": "$33M"
+   },
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order||ukraine",
+   "systems": [],
+   "countries": [
+    "Ukraine"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-13siez9",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-10-16",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/pentagon/2026/10/16/order-to-limit-starshield-for-ukraine-came-from-inside-white-house-sources-say/",
+     "headline": "Order to limit Starshield for Ukraine came from inside White House, sources say",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order||taiwan",
+   "systems": [],
+   "countries": [
+    "Taiwan"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1ov4wm3",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Taiwan"
+     ],
+     "value": null,
+     "date": "2026-10-15",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/av-and-thunder-tiger-sign-mou-to-explore-uncrewed-systems-integration-and-co-production-in-taiwan/",
+     "headline": "AV and Thunder Tiger Sign MOU to Explore Uncrewed Systems Integration and Co-Production in Taiwan",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "delivery||taiwan",
+   "systems": [],
+   "countries": [
+    "Taiwan"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-16hxq3v",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "Taiwan"
+     ],
+     "value": null,
+     "date": "2026-10-15",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/shield-ai-delivers-first-v-bat-to-taiwan-coast-guard/",
+     "headline": "Shield AI Delivers First V-BAT to Taiwan Coast Guard",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "delivery||united kingdom",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-13pp620",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-14",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/news/dsei-uk-27-mod-leaders-focus-on-speed-innovation-and-readiness",
+     "headline": "NAD and CDS want capability delivered faster as DSEI 27 launched",
+     "primary": true
+    },
+    {
+     "id": "ev-1x1xxwv",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-10",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/news/faster-front-line-delivery-with-new-testing-and-evaluation-programme",
+     "headline": "Faster front-line delivery with new Testing and Evaluation programme",
+     "primary": true
+    }
+   ],
+   "outlets": [
+    "UK Ministry of Defence"
+   ],
+   "value": null,
+   "verdict": "from a primary source"
+  },
+  {
+   "key": "order||greece",
+   "systems": [],
+   "countries": [
+    "Greece"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-18gp7zp",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Greece"
+     ],
+     "value": null,
+     "date": "2026-10-14",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/hellenic-navy-tests-saronics-corsair-usv-ahead-of-major-order/",
+     "headline": "Hellenic Navy Tests SARONIC’s Corsair USV Ahead of Major Order",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order||saudi arabia+united states",
