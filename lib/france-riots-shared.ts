@@ -126,7 +126,7 @@ export interface FranceLivePayload {
 export const LANGUAGES: Record<string, string> = {
   en: "English", fr: "French", de: "German", es: "Spanish", it: "Italian", nl: "Dutch", pt: "Portuguese", pl: "Polish",
   sv: "Swedish", da: "Danish", nb: "Norwegian", fi: "Finnish", sq: "Albanian", ro: "Romanian", cs: "Czech", el: "Greek",
-  tr: "Turkish", ar: "Arabic", ru: "Russian", uk: "Ukrainian", hu: "Hungarian",
+  tr: "Turkish", ar: "Arabic", ru: "Russian", uk: "Ukrainian", hu: "Hungarian", ca: "Catalan", sk: "Slovak", sl: "Slovenian", bg: "Bulgarian",
 };
 /** A GDELT language name ("French") as a code ("fr"); unknown names pass through lower-cased. */
 export function langCode(name: string): string {

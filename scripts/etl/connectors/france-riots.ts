@@ -274,7 +274,12 @@ export async function run(): Promise<void> {
     const k = m.videoId ?? m.src.replace(/[?#].*$/, "");
     if (!byMedia.has(k)) byMedia.set(k, m);
   }
-  reg.media = [...byMedia.values()].sort((a, b) => (b.seen ?? "").localeCompare(a.seen ?? "")).slice(0, 2000);
+  // Pages are served over https, so a picture must be too; one with no credit is not shown at all.
+  const safe = (m: MediaItem): MediaItem | null => {
+    const src = m.src.replace(/^http:\/\//, "https://");
+    return /^https:\/\//.test(src) && /^https?:\/\//.test(m.page) && m.credit.trim() ? { ...m, src } : null;
+  };
+  reg.media = [...byMedia.values()].map(safe).filter((m): m is MediaItem => !!m).sort((a, b) => (b.seen ?? "").localeCompare(a.seen ?? "")).slice(0, 2000);
   status.push({ id: "media", label: `Pictures and videos (${reg.media.filter((m) => m.via === "commons").length} from Wikimedia Commons)`, ok: true, count: reg.media.length });
   status.push({ id: "commons", label: "Wikimedia Commons search", ok: commonsOk > 0, count: commons.length });
   delete (reg as { readUrls?: unknown }).readUrls;

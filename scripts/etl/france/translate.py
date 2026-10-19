@@ -50,7 +50,10 @@ PREFETCH = ["fr", "de", "es", "it", "nl", "pt", "pl", "sv", "da", "nb", "fi", "s
 # GDELT names languages in English; Argos codes them ISO 639-1 ("nb" for Norwegian Bokmål).
 GDELT = {"french": "fr", "english": "en", "german": "de", "spanish": "es", "italian": "it", "dutch": "nl", "portuguese": "pt",
          "polish": "pl", "swedish": "sv", "danish": "da", "norwegian": "nb", "finnish": "fi", "albanian": "sq", "romanian": "ro",
-         "czech": "cs", "greek": "el", "turkish": "tr", "arabic": "ar", "russian": "ru", "ukrainian": "uk", "hungarian": "hu"}
+         "czech": "cs", "greek": "el", "turkish": "tr", "arabic": "ar", "russian": "ru", "ukrainian": "uk", "hungarian": "hu",
+         "catalan": "ca", "galician": "gl", "basque": "eu", "estonian": "et", "latvian": "lv", "lithuanian": "lt", "slovak": "sk",
+         "slovenian": "sl", "bulgarian": "bg", "hebrew": "he", "japanese": "ja", "korean": "ko", "chinese": "zh", "indonesian": "id",
+         "persian": "fa", "hindi": "hi", "vietnamese": "vi", "thai": "th", "malay": "ms", "irish": "ga", "urdu": "ur", "bengali": "bn"}
 FRENCH_WORDS = re.compile(r"\b(?:les|des|une|été|dans|avec|pour|qui|sont|ont|selon|lors|après|été|depuis|leurs?)\b", re.I)
 QUOTES = str.maketrans({"’": "'", "‘": "'", "“": '"', "”": '"', "«": '"', "»": '"'})
 SENTENCE = re.compile(r"(?<=[.!?…»”])\s+(?=[A-ZÀ-ÖØ-Þ«“\"])")
@@ -124,7 +127,8 @@ def model_dir(lang: str) -> pathlib.Path | None:
             # extractall refuses absolute paths and "..": the archive cannot write outside `home`.
             z.extractall(home)
         model = next((p.parent for p in home.rglob("model.bin")), None)
-        sp = next(iter(home.rglob("sentencepiece.model")), None) or next((p for p in home.rglob("*.model") if "spm" in p.name or "sentencepiece" in p.name), None)
+        # Packages tokenise one of two ways: SentencePiece, or Moses tokenising plus subword BPE codes.
+        sp = next(iter(home.rglob("sentencepiece.model")), None) or next(iter(home.rglob("bpe.model")), None)
         if not model or not sp:
             files = sorted(str(p.relative_to(home)) for p in home.rglob("*") if p.is_file())[:40]
             shutil.rmtree(home, ignore_errors=True)
@@ -146,7 +150,31 @@ class Translator:
         meta = json.loads((home / "ok.json").read_text())
         self.version = meta.get("version")
         self.tr = ctranslate2.Translator(str(home / meta["model"]), device="cpu", intra_threads=max(1, os.cpu_count() or 1))
-        self.sp = sentencepiece.SentencePieceProcessor(model_file=str(home / meta["sp"]))
+        self.bpe = meta["sp"].endswith("bpe.model")
+        if self.bpe:
+            # As argostranslate's BPETokenizer: normalise punctuation, Moses-tokenise, apply the BPE codes;
+            # decode by joining "@@ " continuations and Moses-detokenising into English.
+            from sacremoses import MosesDetokenizer, MosesPunctNormalizer, MosesTokenizer
+            from subword_nmt.apply_bpe import BPE
+
+            self.norm, self.tok, self.detok = MosesPunctNormalizer(lang), MosesTokenizer(lang), MosesDetokenizer("en")
+            with open(home / meta["sp"], encoding="utf-8") as f:
+                self.codes = BPE(f)
+        else:
+            self.sp = sentencepiece.SentencePieceProcessor(model_file=str(home / meta["sp"]))
+
+    def encode(self, s: str) -> list[str]:
+        if not self.bpe:
+            return self.sp.encode(s, out_type=str)
+        words = " ".join(self.tok.tokenize(self.norm.normalize(s), escape=False)).strip().split(" ")
+        return self.codes.segment_tokens(words)
+
+    def decode(self, tokens: list[str]) -> str:
+        if not self.bpe:
+            # Joined as pieces, the way Argos does: decoding through the source model leaves
+            # target-only pieces with their "▁" word marks showing.
+            return "".join(tokens).replace("▁", " ").strip()
+        return self.detok.detokenize(" ".join(tokens).replace("@@ ", "").split(" "))
 
     def __call__(self, texts: list[str]) -> list[str]:
         pieces: list[tuple[int, list[str]]] = []
@@ -155,15 +183,13 @@ class Translator:
             plain = t.strip().translate(QUOTES)
             for s in SENTENCE.split(plain) or [plain]:
                 if s.strip():
-                    pieces.append((i, self.sp.encode(s.strip(), out_type=str)))
+                    pieces.append((i, self.encode(s.strip())))
         out: list[list[str]] = [[] for _ in texts]
         for start in range(0, len(pieces), 32):
             chunk = pieces[start:start + 32]
             res = self.tr.translate_batch([p for _, p in chunk], beam_size=2, max_decoding_length=256)
             for (i, _), r in zip(chunk, res):
-                # Joined as pieces, the way Argos does: decoding through the source model leaves
-                # target-only pieces with their "▁" word marks showing.
-                out[i].append("".join(r.hypotheses[0]).replace("▁", " ").strip())
+                out[i].append(self.decode(r.hypotheses[0]))
         return [re.sub(r"\s+([,.;:!?])", r"\1", re.sub(r"\s+", " ", " ".join(x))).strip() for x in out]
 
 

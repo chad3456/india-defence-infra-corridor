@@ -81,7 +81,7 @@ jobs:
         # A failed translation leaves the register as the job wrote it: untranslated, not broken.
         continue-on-error: true
         run: |
-          pip install --quiet "ctranslate2>=4,<5" "sentencepiece>=0.2"
+          pip install --quiet "ctranslate2>=4,<5" "sentencepiece>=0.2" "sacremoses>=0.1" "subword-nmt>=0.3"
           if [ "${{ steps.models.outputs.cache-hit }}" != "true" ]; then python3 -I scripts/etl/france/translate.py --prefetch; fi
           python3 -I scripts/etl/france/translate.py
       - name: Check
