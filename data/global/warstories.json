@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-19T04:40:15.420Z",
-  "previousBuild": "2026-10-18T22:26:20.737Z",
+  "builtAt": "2026-10-19T15:36:08.592Z",
+  "previousBuild": "2026-10-19T04:40:15.420Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,23 +12,23 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 207,
-    "createdThisRun": 0,
-    "corroboratedThisRun": 0,
+    "stories": 211,
+    "createdThisRun": 4,
+    "corroboratedThisRun": 2,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 280,
     "corroboration": {
-      "one": 172,
+      "one": 175,
       "two": 14,
-      "threePlus": 21
+      "threePlus": 22
     }
   },
   "byTheme": [
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 114
+      "n": 115
     },
     {
       "id": "autonomy",
@@ -36,14 +36,14 @@
       "n": 64
     },
     {
-      "id": "targeting",
-      "label": "Targeting, ISR and decision systems",
-      "n": 21
-    },
-    {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 21
+      "n": 23
+    },
+    {
+      "id": "targeting",
+      "label": "Targeting, ISR and decision systems",
+      "n": 22
     },
     {
       "id": "military-ai",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 37
+      "n": 38
     },
     {
       "iso": "IND",
@@ -65,7 +65,7 @@
     {
       "iso": "UKR",
       "name": "Ukraine",
-      "n": 8
+      "n": 9
     },
     {
       "iso": "DEU",
@@ -80,6 +80,11 @@
     {
       "iso": "FRA",
       "name": "France",
+      "n": 2
+    },
+    {
+      "iso": "RUS",
+      "name": "Russia",
       "n": 2
     },
     {
@@ -101,11 +106,6 @@
       "iso": "IRN",
       "name": "Iran",
       "n": 1
-    },
-    {
-      "iso": "RUS",
-      "name": "Russia",
-      "n": 1
     }
   ],
   "feeds": [
@@ -119,13 +119,13 @@
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 5
+      "kept": 6
     },
     {
       "outlet": "Army Times",
@@ -149,19 +149,19 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 6
+      "kept": 4
     },
     {
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Defense One",
@@ -477,6 +477,38 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/ai-military-targeting-may-move-faster-than-humans-can-authenticate-critics-warn/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/industry/techwatch/2026/10/19/us-army-cyber-command-charts-course-for-human-ai-equilibrium/",
+      "headline": "US Army Cyber Command charts course for human-AI equilibrium",
+      "firstSeen": "2026-10-19",
+      "lastSeen": "2026-10-19",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/industry/techwatch/2026/10/19/us-army-cyber-command-charts-course-for-human-ai-equilibrium/",
+          "published": "2026-10-19"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/industry/techwatch/2026/10/19/us-army-cyber-command-charts-course-for-human-ai-equilibrium/",
+          "published": "2026-10-19"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/industry/techwatch/2026/10/19/us-army-cyber-command-charts-course-for-human-ai-equilibrium/",
+          "published": "2026-10-19"
         }
       ]
     },
@@ -1226,6 +1258,89 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/pentagon-orders-more-fuzes-to-turn-hydra-rockets-into-drone-killers/",
+      "headline": "Pentagon orders more fuzes to turn Hydra rockets into drone killers",
+      "firstSeen": "2026-09-29",
+      "lastSeen": "2026-10-19",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/pentagon-orders-more-fuzes-to-turn-hydra-rockets-into-drone-killers/",
+          "published": "2026-09-29"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/nato-hybrid-symposium-addresses-russian-sabotage-and-cyber-threats-to-critical-infrastructure/",
+      "headline": "NATO Hybrid Symposium addresses Russian sabotage and cyber threats to critical infrastructure",
+      "firstSeen": "2026-10-19",
+      "lastSeen": "2026-10-19",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "RUS",
+          "name": "Russia"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/nato-hybrid-symposium-addresses-russian-sabotage-and-cyber-threats-to-critical-infrastructure/",
+          "published": "2026-10-19"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/u-s-marine-corps-to-strengthen-gulf-of-finland-maritime-surveillance-under-natos-baltic-sentry/",
+      "headline": "U.S. Marine Corps to strengthen Gulf of Finland maritime surveillance under NATO’s Baltic Sentry",
+      "firstSeen": "2026-10-19",
+      "lastSeen": "2026-10-19",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-marine-corps-to-strengthen-gulf-of-finland-maritime-surveillance-under-natos-baltic-sentry/",
+          "published": "2026-10-19"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/ukraine-uses-heavy-drone-to-fly-wounded-soldier-off-front/",
+      "headline": "Ukraine uses heavy drone to fly wounded soldier off front",
+      "firstSeen": "2026-10-19",
+      "lastSeen": "2026-10-19",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "UKR",
+          "name": "Ukraine"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/ukraine-uses-heavy-drone-to-fly-wounded-soldier-off-front/",
+          "published": "2026-10-19"
         }
       ]
     },
@@ -3177,28 +3292,6 @@
         {
           "outlet": "Defence Industry Europe",
           "url": "https://defence-industry.eu/shield-ais-hivemind-coordinates-two-kraken-k3-scout-vessels-in-uk-maritime-surveillance-trial-ahead-of-planned-tests-with-nato-partners/",
-          "published": "2026-09-29"
-        }
-      ]
-    },
-    {
-      "id": "https://defence-blog.com/pentagon-orders-more-fuzes-to-turn-hydra-rockets-into-drone-killers/",
-      "headline": "Pentagon orders more fuzes to turn Hydra rockets into drone killers",
-      "firstSeen": "2026-09-29",
-      "lastSeen": "2026-09-29",
-      "themes": [
-        "drone"
-      ],
-      "countries": [
-        {
-          "iso": "USA",
-          "name": "United States"
-        }
-      ],
-      "sources": [
-        {
-          "outlet": "Defence Blog",
-          "url": "https://defence-blog.com/pentagon-orders-more-fuzes-to-turn-hydra-rockets-into-drone-killers/",
           "published": "2026-09-29"
         }
       ]
