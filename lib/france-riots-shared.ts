@@ -445,7 +445,7 @@ export const SPEAKERS: Array<[RegExp, string]> = [
   [/tondelier/i, "Marine Tondelier (Les Écologistes)"], [/manuel bompard/i, "Manuel Bompard (LFI)"], [/sophie binet/i, "Sophie Binet (CGT)"],
   [/retailleau/i, "Bruno Retailleau (LR)"], [/bardella/i, "Jordan Bardella (RN)"], [/le pen/i, "Marine Le Pen (RN)"], [/m[ée]lenchon/i, "Jean-Luc Mélenchon (LFI)"],
   [/zemmour/i, "Éric Zemmour (Reconquête)"], [/ciotti/i, "Éric Ciotti (UDR)"], [/glucksmann/i, "Raphaël Glucksmann (Place publique)"], [/olivier faure/i, "Olivier Faure (PS)"],
-  [/ruffin/i, "François Ruffin"], [/braun-? ?pivet/i, "Yaël Braun-Pivet (Assembly President)"], [/\btrump\b|dirigeant américain|président américain|président des [ée]tats-unis|US president|American president|president of the United States/i, "Donald Trump"], [/\bvance\b/i, "JD Vance"], [/\bkhanna\b/i, "Ro Khanna (US Representative)"],
+  [/ruffin/i, "François Ruffin"], [/braun-? ?pivet/i, "Yaël Braun-Pivet (Assembly President)"], [/\btrump\b|dirigeant américain|(?<!vice-)président américain|(?<!vice-)président des [ée]tats-unis|(?<!vice )US president|(?<!vice )American president|(?<!vice )president of the United States/i, "Donald Trump"], [/\bvance\b/i, "JD Vance"], [/\bkhanna\b/i, "Ro Khanna (US Representative)"],
   [/\bmusk\b/i, "Elon Musk"], [/gad saad/i, "Gad Saad"], [/magyar/i, "Péter Magyar (Hungarian PM)"], [/orb[aá]n/i, "Viktor Orbán"], [/meloni/i, "Giorgia Meloni"],
   [/\bCGT\b|intersyndicale|syndicats?\b|unions?\b/i, "unions"], [/UNEF|union étudiante|student union|organisations? étudiantes?|lycéens?/i, "student organisations"],
   [/préfe|prefect/i, "a prefect"], [/parquet|procureur|prosecutor/i, "prosecutors"],
@@ -479,14 +479,19 @@ export function extractClaims(text: string, meta: { outlet: string; url: string;
     if (s.length < 50 || s.length > 450 || seen.has(s) || hasEntity(s) || !CLAIM_VERB.test(s) || !/émeut|riot|violen|casseur|pill|loot|unrest|chaos|troubles|manifest|protest|incendi|burn/i.test(s)) continue;
     // The speaker is the one named nearest a reporting verb: in "Édouard Philippe, former
     // prime minister to Emmanuel Macron, said…", it is Philippe, not Macron.
+    // A name directly followed by its verb ("Khanna went on to claim…") is the speaker before
+    // any name that merely sits near one ("…replying to JD Vance, who had said…").
     const verbs = [...s.matchAll(new RegExp(CLAIM_VERB.source, "gi"))].map((m) => m.index ?? 0);
-    let speaker: string | undefined, best = Infinity;
+    let speaker: string | undefined, best = Infinity, subject: string | undefined, subjectAt = Infinity;
     for (const [re, name] of SPEAKERS) {
       for (const m of s.matchAll(new RegExp(re.source, "gi"))) {
-        const d = Math.min(...verbs.map((v) => Math.abs(v - (m.index ?? 0))));
+        const at = m.index ?? 0, end = at + m[0].length;
+        const d = Math.min(...verbs.map((v) => Math.abs(v - at)));
         if (d < best) { best = d; speaker = name; }
+        if (verbs.some((v) => v >= end && v - end <= 25 && !/[,;.:]/.test(s.slice(end, v))) && at < subjectAt) { subjectAt = at; subject = name; }
       }
     }
+    speaker = subject ?? speaker;
     if (!speaker) continue;
     const themes = THEMES.filter(([, re]) => re.test(s)).map(([t]) => t);
     if (!themes.length) continue;
