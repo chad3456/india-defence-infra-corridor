@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-20T05:23:16.854Z",
+  "builtAt": "2026-10-20T13:53:43.593Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,29 +10,29 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1191,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1190,
-    "withOutlet": 1112,
+    "items": 1198,
+    "addedThisRun": 7,
+    "carriedFromEarlierRuns": 1191,
+    "withOutlet": 1118,
     "bySubject": {
-      "scst": 806,
-      "pmshri": 385
+      "scst": 808,
+      "pmshri": 390
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 306
+    "offSubjectDropped": 307
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 583
+      "n": 586
     },
     {
       "key": "use",
-      "n": 417
+      "n": 420
     },
     {
       "key": "dispute",
-      "n": 64
+      "n": 65
     },
     {
       "key": "acquittal",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 102
+      "n": 104
     },
     {
       "key": "Lawtext",
@@ -213,6 +213,10 @@
       "n": 6
     },
     {
+      "key": "The Federal",
+      "n": 6
+    },
+    {
       "key": "The Mooknayak English",
       "n": 6
     },
@@ -226,10 +230,6 @@
     },
     {
       "key": "Citizens for Justice and Peace | CJP",
-      "n": 5
-    },
-    {
-      "key": "The Federal",
       "n": 5
     },
     {
@@ -261,6 +261,10 @@
       "n": 5
     },
     {
+      "key": "Forward Press",
+      "n": 4
+    },
+    {
       "key": "Law Trend",
       "n": 4
     },
@@ -283,10 +287,6 @@
     {
       "key": "deccanchronicle.com",
       "n": 4
-    },
-    {
-      "key": "TheWire.in",
-      "n": 4
     }
   ],
   "perQuery": [
@@ -298,7 +298,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "act-registered",
@@ -306,8 +306,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 7,
-      "kept": 1,
+      "bing": 6,
+      "kept": 0,
       "offSubject": 8
     },
     {
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 42
+      "offSubject": 43
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 7,
+      "bing": 6,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
@@ -338,17 +338,17 @@
       "google": 47,
       "bing": 0,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 14
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 60,
+      "google": 62,
       "bing": 0,
       "kept": 0,
-      "offSubject": 23
+      "offSubject": 24
     },
     {
       "id": "act-acquittal",
@@ -358,7 +358,7 @@
       "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 41
+      "offSubject": 45
     },
     {
       "id": "act-hostile",
@@ -367,8 +367,8 @@
       "expect": "acquittal",
       "google": 26,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 11
+      "kept": 1,
+      "offSubject": 10
     },
     {
       "id": "act-misuse-claim",
@@ -385,9 +385,9 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 25,
+      "google": 26,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 2
     },
     {
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 50,
-      "bing": 1,
+      "google": 49,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 16
     },
     {
       "id": "act-fabricated",
@@ -416,9 +416,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 12,
-      "kept": 0,
-      "offSubject": 5
+      "bing": 0,
+      "kept": 2,
+      "offSubject": 1
     },
     {
       "id": "shri-sanctioned",
@@ -426,9 +426,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 45,
-      "bing": 1,
-      "kept": 0,
-      "offSubject": 4
+      "bing": 2,
+      "kept": 1,
+      "offSubject": 5
     },
     {
       "id": "shri-funds",
@@ -445,19 +445,19 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 51,
+      "google": 52,
       "bing": 3,
-      "kept": 0,
-      "offSubject": 12
+      "kept": 1,
+      "offSubject": 13
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 45,
       "bing": 2,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 3
     },
     {
@@ -465,17 +465,17 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 30,
+      "google": 29,
       "bing": 2,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 16
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 52,
+      "google": 53,
       "bing": 4,
       "kept": 0,
       "offSubject": 11
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
-      "bing": 1,
+      "google": 44,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 31
+      "offSubject": 32
     }
   ],
   "items": [
@@ -9466,7 +9466,8 @@
       "published": "2026-02-26",
       "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOZEl2V3dHdlk1bzRFbzZvY0lSbkhRLXVBNm5iT3FUZGpBdlZvNFNqSEVQWmEzU196dVZ1QlpRajNXamZaYW9UZDFyVDYyQWdWb2JFaGVkUkF0XzJxM2ZiRGNhMlIydGFTOTZtVXo4TU1XZllhd2NPc05XbFNGeGkxTnhEWWctZDlKYmpkOEZsR3lIeXBCUW5LWTVHcFdsYlo0OGxzRHdqdnVaVTNNNk9Zcjd6N1Q2cE9FQzNPUkNITlhKWDVjN2RkYWZDOFkxUzkxVHhBZUdvMUE3dHQtZ2JyVEd2OURtRFgzbHBaZVRR0gHzAUFVX3lxTE1NRnNQRk1YVE9kUHVDV1h4Vi1Xd0ZEeHVMa2xHamh4TVRYMW9EY0VmLVcyMDRtaXNyN1NlMlJFZm1oMTQyakNSbWRIVkVxSU9oeWtpVXhGTzR1NVNyZl9rdWloNmpfa0szZGRQd2NqQm1MU3JUdHdhd3Rtc3hBQmN4WFNwSDZoZ1c3Z0Fid0puSEpBVDBDTVVNWFdiVnZGaGRDcTNaUHBLcEdJT3hGRDVNWkVBdEFyRzZXeWVwUG9BczdCcnlqV0N3WEhsNW5NSV9DTFQ4RVd0dVRnb1cyNkZmc1VhNFFMNkdUWGdrYkFPRVVnSQ?oc=5",
       "queries": [
-        "shri-sanctioned"
+        "shri-sanctioned",
+        "shri-general"
       ],
       "indexes": [
         "google"
@@ -13266,7 +13267,8 @@
         "act-registered"
       ],
       "indexes": [
-        "bing"
+        "bing",
+        "google"
       ],
       "firstSeen": "2026-09-23"
     },
@@ -19908,6 +19910,119 @@
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFA2Q1dzYmdkYUlpaFF1YXdrdC1KUF9tbGpYWVFmbVloZGdYR2lQZWxmR0dzcU5pQWE3M054VXQ3eDVVRzA1OFRwdXNVRVZuQURnMDBKbk9EZUZITkFtXzc5Ri03SG1MZnR4?oc=5",
       "queries": [
         "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-20"
+    },
+    {
+      "id": "the gokulraj murder case the story of a conviction under the sc st act",
+      "headline": "The Gokulraj Murder Case: The story of a conviction under the SC-ST Act",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Forward Press",
+      "published": "2022-03-12",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNanp5c2NPNjA4RVdDRHJjSkpiVUxicUNnbElGUUNoZzZaUzZiOHpVNnJaNVpGYUphczlwSkZ5N3Y0SGlOT2NYR1l2U05nYzFXR3NtX0l0Ni0zRjlUNktUVW1NRTFndUc0SkVDc1plZFAtOFpZWVp1VnNjeWdSRXpLR1RUclMtZ1FBMXJLQjd4MENSaTE3TF9BcFJHQmtlNGRycUpnMng3cjFTM00?oc=5",
+      "queries": [
+        "act-hostile"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-20"
+    },
+    {
+      "id": "sc st act what modi government plans to change after supreme court verdict and how all you",
+      "headline": "SC/ST Act: What Modi government plans to change after Supreme Court verdict and how – All you need to know",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Financial Express",
+      "published": "2018-08-02",
+      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOMnNmalJER1l4blVEdHc1VjlSM25PVlZHczFQRW9CbWtqT2ZYbzFwdWtVSkMtLWFiLTIzSWkxTnZNbWpRemhUbmxsSWZkMW5xZldabVA4TjUzUE1aLTMyUHdIWHlDemVaUG5tZWt4M1BSR3BnRE00R0x4ZWZNd3FsTGdEend3bjdleWdqbllpMzUtQ1FrLVRoZmpkYktUYTJoQW5oR0FGRjNKLUxyQ081Ym1zYy1yRTlqLUFQbk9NNkhHNXRLaklic0hoc29tal9GNy1SVXNjRlQ1Z0hLbVJUSDVNTDc3X1J2UFI2WdIB8wFBVV95cUxQci15blVYamItUWxEWGR2ZGFLcHNsU0h3WlhrazJoOVJFZmFQQWdKZi1tV1o5Y0Zjcnd4THhPYU5KLS00SS1KSVpkMFVqV25oZmhzSmNFdHZIbGZ5MWcyY3A4S2Z1OTltYnI1VXZwc291Ql9xckxwc0U0czM2NFlhaXNfQWZfR1NRVEE5WDFRNGl3YzZaa0Q4TVVOMDRzY0tCZHhna1BQMmQ4VXE2LUZDZWVuYXZJMDh5YlViUTh6TG9HeTRGeC1Uc0VPZ1ZmR1A2aG53Z0k1ZWN4eTlPc3UyTzVhd291THRGUGQ1djlSVzIzS1E?oc=5",
+      "queries": [
+        "act-dilution"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-20"
+    },
+    {
+      "id": "pm shri schools building a new model of school education in uttar pradesh",
+      "headline": "PM Shri schools: Building a new model of school education in Uttar Pradesh",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2026-10-20",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOUkMzMTk3S1VjbGVtSzBOZjc5Y2JzQnZfWi1XWFpkWW1uS0JjODBOS1hNWkpDcHF4VjlycHZXYUxkWnVOUmQ3ZkNOeEc4UGg3VVVXbElTVGhrNVh5NWFKTXVNV3JsWGpzR3hpSWVBeXBmaWFPazFjeDNySVY0S0RONTNMQUo2MXdMNm9Ma084aWUtb2lFaDE3Q3pHR0hXRDNYNWxQZXBob1o4R01vUG9EREQzVlFQT3pDbS1kRFVrZDEyYkl6bDhVVmcxNHgtd3NUUG5kbzJxRE1EWURSSXdIM2930gHnAUFVX3lxTE9YWHFGT1p6T2hlYUlPUm56dGdJa1lxZmRST0JJTEMtenk5MERMcEJvWGNaSUJPLXFteERHS1dhQ1hiUUVtQXR3QlBRVlBPTjlSVWxLbFFwbERLQnM2TV9NcEoyVlVXTmRNMUJ1N0NLQlc3ZHNNem9Db1lacEYzSGR4WUVhN0dTaERjY1BMcHU0QTlqb21faGFrMEJfWEJ2Qk9JUXUwbHhCY0JaaHpmb1FCQ1VaVkswTVJSZFFYN2J6WHdUQUV4M3h2VGp5bE9qOHdCdmI4LWRhSmYyRDNMcGVDUUo3VnlOSQ?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-20"
+    },
+    {
+      "id": "below national average karnataka trails in pm shri schools rollout",
+      "headline": "Below national average: Karnataka trails in PM Shri schools rollout",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2026-03-20",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPN0daSWwxOWdDeXl6WHZnT3ZUQU1vTnE4MzRiVnE0Z0FBVWdvYU1LaktnaVh1QnZrX3JzQ0drUXB5S2lBZEJEVW81Z19adjNJdUJWWV9fRzR6SUhueUhsSFJQQVVBa2VBV1pSWm9yREtfSEMtX3ZIZ0oxNFN6eW15OWFWOE9pU0V6RzRwbThqOG1VN2htRExxNTJ3azlYdmVkc1FKVVpBSW91ZUVVY0ZnQnNlcTd0M3dFNXNDN3ZQREF1T2VRRFJPajBPTFJYdFNPTU95RC1mak1tQnPSAeABQVVfeXFMTWVJMjVPN1djc0FydjlOdV83TEdUVk9TcEtoRGhPXzdWUnI0RWc3VTM3S0FJTUdaSVZiQ2ZtWXlCTnhjZ2pKTFhFbGlQNEVTOFFVRDFieHNpbVBzOE0xYnlJRFNTQ2d3OGpOYXFrbkNjMzRiMWlyblhteGE0c3M5NTdiWnhocnRoaHh5Zkg1aGphdjkxellqWlNzOEl2TVI3RHRlWmZZWDh4amU3TUdaRnZBNHZHN2J1ZDZnZ2t0V1ZidnVlX0h1bVFuM3hhcTBfWDI0N3p2M3I0M0lZcjV3Vk0?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-20"
+    },
+    {
+      "id": "up expands pm shri network 1 565 schools push nep 2020 model focus shifts to community",
+      "headline": "UP expands PM SHRI network: 1,565 schools push NEP 2020 model; focus shifts to community",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-10-20",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ad77243087344299c64d225a3a6651c&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fup-expands-pm-shri-network-1565-schools-push-nep-2020-model-focus-shifts-to-community%2far-AA2fE5yY&c=2244250167195339640&mkt=en-us",
+      "queries": [
+        "shri-sanctioned",
+        "shri-upgrade"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-10-20"
+    },
+    {
+      "id": "pm shri ghs new market kohima inaugurates multiple academic facilities",
+      "headline": "PM SHRI GHS NEW MARKET KOHIMA INAUGURATES MULTIPLE ACADEMIC FACILITIES",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "DIPR Nagaland",
+      "published": "2026-04-02",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQeTVqbFFjOU4wTGdlMk1YVEc0VDRUNmR0cGtPU2xsLUk0VW9YUnZTNkVDX3JiSmpHakQ4SEJTODVNM24tU2k0a0kzV0hSZllFeUV0N2xLdjg5ZktKT3Z4c1RYU0Y5WVV1RlVySF8yUnY1MGxZTHdOODMwZFJFSG1PTnVwNDB3QjlmMDJKbzdhd1lwdndVTW42RVh0WHhKNTQ?oc=5",
+      "queries": [
+        "shri-upgrade"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-20"
+    },
+    {
+      "id": "row over pm shri deepens in kerala cpi may skip next cabinet meet",
+      "headline": "Row over PM SHRI deepens in Kerala: CPI may skip next cabinet meet",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": "The Federal",
+      "published": "2025-10-27",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNS0JvUk5FODlJeThxeUYtMFNaU0kwU1hDQkhPUHZyRHRVX0dycTB3akpYNnJzSzdJY25RMmxhWk1yVDdPN3Uxd05rcTE3SnJuVW5UUldzdTFxVmVTYU1YSTJLTDZIa3JGakE3Y2dGNlZXNXVCNmJHQXZlS2tzRmktTTViUzI3MEYzZ0tvemVDanpYdGxlUGtDcEV6VzhlZVREWjA0b1pnZGJiV05KRE9vbi1Dc21BMVh5MEpZWHB6OUNDb2Z1Zjg3SzFUbVMzMExRelVQUzFTYkNyS0luNG1BNUlR?oc=5",
+      "queries": [
+        "shri-mou"
       ],
       "indexes": [
         "google"
