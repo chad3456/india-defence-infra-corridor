@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-20T13:33:51.160Z",
-  "previousBuild": "2026-10-20T04:50:44.329Z",
+  "builtAt": "2026-10-20T20:00:23.931Z",
+  "previousBuild": "2026-10-20T13:33:51.160Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,16 +12,16 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 216,
-    "createdThisRun": 5,
-    "corroboratedThisRun": 0,
-    "feedsAnswered": 14,
+    "stories": 217,
+    "createdThisRun": 1,
+    "corroboratedThisRun": 2,
+    "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 283,
+    "itemsSeen": 275,
     "corroboration": {
       "one": 180,
       "two": 14,
-      "threePlus": 22
+      "threePlus": 23
     }
   },
   "byTheme": [
@@ -33,7 +33,7 @@
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 65
+      "n": 66
     },
     {
       "id": "cyber-ew",
@@ -112,7 +112,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 36,
+      "items": 38,
       "kept": 3
     },
     {
@@ -125,13 +125,13 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "Army Times",
       "ok": true,
       "items": 25,
-      "kept": 5
+      "kept": 4
     },
     {
       "outlet": "C4ISRNET",
@@ -149,13 +149,13 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 3
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 4
+      "kept": 2
     },
     {
       "outlet": "Breaking Defense",
@@ -167,13 +167,14 @@
       "outlet": "Defense One",
       "ok": true,
       "items": 22,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "Naval News",
-      "ok": true,
-      "items": 10,
-      "kept": 0
+      "ok": false,
+      "items": 0,
+      "kept": 0,
+      "error": "HTTP 503"
     },
     {
       "outlet": "Defence Blog",
@@ -477,6 +478,33 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/ai-military-targeting-may-move-faster-than-humans-can-authenticate-critics-warn/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://www.defenseone.com/technology/2026/09/air-force-contemplates-unmanned-tankers/416069/",
+      "headline": "Air Force contemplates unmanned tankers",
+      "firstSeen": "2026-09-17",
+      "lastSeen": "2026-10-20",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defense One",
+          "url": "https://www.defenseone.com/technology/2026/09/air-force-contemplates-unmanned-tankers/416069/",
+          "published": "2026-09-17"
+        },
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/industry/techwatch/2026/10/20/us-air-force-f-22-pilot-controls-unmanned-fq-44-in-flight/",
+          "published": "2026-10-20"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/industry/techwatch/2026/10/20/us-air-force-f-22-pilot-controls-unmanned-fq-44-in-flight/",
+          "published": "2026-10-20"
         }
       ]
     },
@@ -1352,6 +1380,23 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/microwave-drone-killer-now-on-pentagons-online-store/",
+          "published": "2026-10-20"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/u-s-navy-remotely-controls-mq-25a-unmanned-tanker-over-2100-miles-away-from-uss-ronald-reagan-during-pacific-sea-trial/",
+      "headline": "U.S. Navy remotely controls MQ-25A unmanned tanker over 2,100 miles away from USS Ronald Reagan during Pacific sea trial",
+      "firstSeen": "2026-10-20",
+      "lastSeen": "2026-10-20",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-navy-remotely-controls-mq-25a-unmanned-tanker-over-2100-miles-away-from-uss-ronald-reagan-during-pacific-sea-trial/",
           "published": "2026-10-20"
         }
       ]
@@ -4369,23 +4414,6 @@
           "outlet": "DefenseScoop",
           "url": "https://defensescoop.com/2026/09/18/drone-dominance-program-gauntlet-2-results/",
           "published": "2026-09-18"
-        }
-      ]
-    },
-    {
-      "id": "https://www.defenseone.com/technology/2026/09/air-force-contemplates-unmanned-tankers/416069/",
-      "headline": "Air Force contemplates unmanned tankers",
-      "firstSeen": "2026-09-17",
-      "lastSeen": "2026-09-17",
-      "themes": [
-        "autonomy"
-      ],
-      "countries": [],
-      "sources": [
-        {
-          "outlet": "Defense One",
-          "url": "https://www.defenseone.com/technology/2026/09/air-force-contemplates-unmanned-tankers/416069/",
-          "published": "2026-09-17"
         }
       ]
     },
