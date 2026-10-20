@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-20T13:53:43.593Z",
+  "builtAt": "2026-10-20T20:10:53.811Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1198,
-    "addedThisRun": 7,
-    "carriedFromEarlierRuns": 1191,
-    "withOutlet": 1118,
+    "items": 1200,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1198,
+    "withOutlet": 1119,
     "bySubject": {
       "scst": 808,
-      "pmshri": 390
+      "pmshri": 392
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 307
+    "offSubjectDropped": 306
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 586
+      "n": 588
     },
     {
       "key": "use",
@@ -125,6 +125,10 @@
       "n": 13
     },
     {
+      "key": "Deccan Herald",
+      "n": 12
+    },
+    {
       "key": "Outlook India",
       "n": 12
     },
@@ -135,10 +139,6 @@
     {
       "key": "SabrangIndia",
       "n": 12
-    },
-    {
-      "key": "Deccan Herald",
-      "n": 11
     },
     {
       "key": "Telegraph India",
@@ -308,7 +308,7 @@
       "google": 100,
       "bing": 6,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "act-convicted",
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 43
+      "offSubject": 42
     },
     {
       "id": "act-atrocity",
@@ -326,7 +326,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 6,
+      "bing": 7,
       "kept": 0,
       "offSubject": 8
     },
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 62,
+      "google": 59,
       "bing": 0,
       "kept": 0,
-      "offSubject": 24
+      "offSubject": 22
     },
     {
       "id": "act-acquittal",
@@ -358,7 +358,7 @@
       "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 45
+      "offSubject": 46
     },
     {
       "id": "act-hostile",
@@ -367,7 +367,7 @@
       "expect": "acquittal",
       "google": 26,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 10
     },
     {
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 47,
+      "google": 45,
       "bing": 2,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "act-dilution",
@@ -387,7 +387,7 @@
       "expect": "allegation",
       "google": 26,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 2
     },
     {
@@ -395,8 +395,8 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 49,
-      "bing": 0,
+      "google": 50,
+      "bing": 1,
       "kept": 0,
       "offSubject": 16
     },
@@ -405,7 +405,7 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 33,
+      "google": 32,
       "bing": 0,
       "kept": 0,
       "offSubject": 22
@@ -416,19 +416,19 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 0,
+      "bing": 12,
       "kept": 2,
-      "offSubject": 1
+      "offSubject": 2
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 45,
+      "google": 44,
       "bing": 2,
-      "kept": 1,
-      "offSubject": 5
+      "kept": 0,
+      "offSubject": 4
     },
     {
       "id": "shri-funds",
@@ -447,7 +447,7 @@
       "expect": "use",
       "google": 52,
       "bing": 3,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 13
     },
     {
@@ -455,9 +455,9 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 45,
+      "google": 44,
       "bing": 2,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 3
     },
     {
@@ -465,10 +465,10 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 29,
+      "google": 30,
       "bing": 2,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 17
     },
     {
       "id": "shri-nep",
@@ -478,17 +478,17 @@
       "google": 53,
       "bing": 4,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 12
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 44,
-      "bing": 0,
+      "google": 43,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 33
     }
   ],
   "items": [
@@ -19687,7 +19687,8 @@
         "shri-general"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-10-17"
     },
@@ -19990,7 +19991,9 @@
       "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ad77243087344299c64d225a3a6651c&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fup-expands-pm-shri-network-1565-schools-push-nep-2020-model-focus-shifts-to-community%2far-AA2fE5yY&c=2244250167195339640&mkt=en-us",
       "queries": [
         "shri-sanctioned",
-        "shri-upgrade"
+        "shri-upgrade",
+        "shri-general",
+        "shri-nep"
       ],
       "indexes": [
         "bing"
@@ -20026,6 +20029,38 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-10-20"
+    },
+    {
+      "id": "west bengal to implement pm shri initiative after four years",
+      "headline": "West Bengal to implement PM-SHRI initiative after four years",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Deccan Herald",
+      "published": "2026-05-15",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPRW40d19PbDZtanplcTdfYlJMZzF1WmFOMnVyRjUtZ29lOGxmWEZ5NWJrNFdCZUE3cExZeWYxeW90cGg4WEhTTDZqeElKeEpLYjdSQVZRaXRYc3hWR0ZaMU9YaER2UzRxQk1kSjhsaEJqNV9fczRiNjFmeHRjOGlKUkRDb05LcnA3QXVlSEJHX3pLdFJLLWxQeFk5VnBmYU5JTVRXbGVwMWU3UURyNFhtakJ5c1hudw?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-20"
+    },
+    {
+      "id": "kerala govt to join centre s flagship education initiative pm shri scheme despite cpi obje",
+      "headline": "Kerala Govt To Join Centre's Flagship Education Initiative, PM SHRI Scheme, Despite CPI Objections",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2025-10-19",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ad7caa39cae4c328a9b0e499ff5bfe1&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2findia%2fkerala-govt-to-join-centre-s-flagship-education-initiative-pm-shri-scheme-despite-cpi-objections%2far-AA1OKZSk&c=15355887960657371353&mkt=en-us",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-10-20"
     }
