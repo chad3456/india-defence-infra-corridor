@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-19T21:17:37.444Z",
+  "builtAt": "2026-10-20T05:23:16.854Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1190,
-    "addedThisRun": 0,
+    "items": 1191,
+    "addedThisRun": 1,
     "carriedFromEarlierRuns": 1190,
-    "withOutlet": 1111,
+    "withOutlet": 1112,
     "bySubject": {
-      "scst": 805,
+      "scst": 806,
       "pmshri": 385
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 309
+    "offSubjectDropped": 306
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 416
+      "n": 417
     },
     {
       "key": "dispute",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 86
+      "n": 87
     },
     {
       "key": "The Indian Express",
@@ -307,8 +307,8 @@
       "expect": "use",
       "google": 100,
       "bing": 7,
-      "kept": 0,
-      "offSubject": 9
+      "kept": 1,
+      "offSubject": 8
     },
     {
       "id": "act-convicted",
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 43
+      "offSubject": 42
     },
     {
       "id": "act-atrocity",
@@ -326,7 +326,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 6,
+      "bing": 7,
       "kept": 0,
       "offSubject": 7
     },
@@ -338,14 +338,14 @@
       "google": 47,
       "bing": 0,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 15
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 62,
+      "google": 60,
       "bing": 0,
       "kept": 0,
       "offSubject": 23
@@ -358,7 +358,7 @@
       "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 43
+      "offSubject": 41
     },
     {
       "id": "act-hostile",
@@ -368,24 +368,24 @@
       "google": 26,
       "bing": 0,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 11
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 46,
+      "google": 47,
       "bing": 2,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 26,
+      "google": 25,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -425,27 +425,27 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 47,
+      "google": 45,
       "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 4
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 69,
+      "google": 67,
       "bing": 1,
       "kept": 0,
-      "offSubject": 22
+      "offSubject": 21
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 50,
+      "google": 51,
       "bing": 3,
       "kept": 0,
       "offSubject": 12
@@ -455,7 +455,7 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 44,
+      "google": 43,
       "bing": 2,
       "kept": 0,
       "offSubject": 3
@@ -465,7 +465,7 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 31,
+      "google": 30,
       "bing": 2,
       "kept": 0,
       "offSubject": 17
@@ -19897,6 +19897,22 @@
         "google"
       ],
       "firstSeen": "2026-10-19"
+    },
+    {
+      "id": "high court of bombay at goa quashes fir against bsnl officers in sc st act case no intent ",
+      "headline": "High Court of Bombay at Goa Quashes FIR Against BSNL Officers in SC/ST Act Case — No Intent to Humiliate or Insult Complainant. Adverse remarks made by superior officers in official capacity do not attract Section 3(1)(ix) of SC & ST (Prevention of Atrocitie",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-09-26",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFA2Q1dzYmdkYUlpaFF1YXdrdC1KUF9tbGpYWVFmbVloZGdYR2lQZWxmR0dzcU5pQWE3M054VXQ3eDVVRzA1OFRwdXNVRVZuQURnMDBKbk9EZUZITkFtXzc5Ri03SG1MZnR4?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-20"
     }
   ]
 }
