@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-20T04:50:44.329Z",
-  "previousBuild": "2026-10-19T21:03:19.299Z",
+  "builtAt": "2026-10-20T13:33:51.160Z",
+  "previousBuild": "2026-10-20T04:50:44.329Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 211,
-    "createdThisRun": 0,
+    "stories": 216,
+    "createdThisRun": 5,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 283,
     "corroboration": {
-      "one": 175,
+      "one": 180,
       "two": 14,
       "threePlus": 22
     }
@@ -28,17 +28,17 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 115
+      "n": 117
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 64
+      "n": 65
     },
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 23
+      "n": 24
     },
     {
       "id": "targeting",
@@ -48,14 +48,14 @@
     {
       "id": "military-ai",
       "label": "AI in military use",
-      "n": 6
+      "n": 7
     }
   ],
   "byCountry": [
     {
       "iso": "USA",
       "name": "United States",
-      "n": 38
+      "n": 39
     },
     {
       "iso": "IND",
@@ -68,14 +68,14 @@
       "n": 9
     },
     {
-      "iso": "DEU",
-      "name": "Germany",
+      "iso": "GBR",
+      "name": "United Kingdom",
       "n": 5
     },
     {
-      "iso": "GBR",
-      "name": "United Kingdom",
-      "n": 4
+      "iso": "DEU",
+      "name": "Germany",
+      "n": 5
     },
     {
       "iso": "FRA",
@@ -149,7 +149,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Defense News",
@@ -1258,6 +1258,101 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/10/20/navy-expands-contract-ceiling-for-ai-enabled-repair-robots/",
+      "headline": "Navy expands contract ceiling for AI-enabled repair robots",
+      "firstSeen": "2026-10-20",
+      "lastSeen": "2026-10-20",
+      "themes": [
+        "military-ai"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/10/20/navy-expands-contract-ceiling-for-ai-enabled-repair-robots/",
+          "published": "2026-10-20"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/royal-navy-leads-aukus-trials-of-crewed-and-autonomous-systems-to-track-enemy-submarines/",
+      "headline": "Royal Navy leads AUKUS trials of crewed and autonomous systems to track enemy submarines",
+      "firstSeen": "2026-10-20",
+      "lastSeen": "2026-10-20",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "GBR",
+          "name": "United Kingdom"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/royal-navy-leads-aukus-trials-of-crewed-and-autonomous-systems-to-track-enemy-submarines/",
+          "published": "2026-10-20"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/u-s-navy-accelerates-next-generation-jammer-low-band-development-for-ea-18g-growler-electronic-warfare-aircraft/",
+      "headline": "U.S. Navy accelerates Next Generation Jammer Low Band development for EA-18G Growler electronic warfare aircraft",
+      "firstSeen": "2026-10-20",
+      "lastSeen": "2026-10-20",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-navy-accelerates-next-generation-jammer-low-band-development-for-ea-18g-growler-electronic-warfare-aircraft/",
+          "published": "2026-10-20"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-navy-sub-hunter-plane-circles-off-bulgaria-after-drone-strikes/",
+      "headline": "U.S. Navy sub hunter plane circles off Bulgaria after drone strikes",
+      "firstSeen": "2026-10-20",
+      "lastSeen": "2026-10-20",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-navy-sub-hunter-plane-circles-off-bulgaria-after-drone-strikes/",
+          "published": "2026-10-20"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/microwave-drone-killer-now-on-pentagons-online-store/",
+      "headline": "Microwave drone killer now on Pentagon’s online store",
+      "firstSeen": "2026-10-20",
+      "lastSeen": "2026-10-20",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/microwave-drone-killer-now-on-pentagons-online-store/",
+          "published": "2026-10-20"
         }
       ]
     },
