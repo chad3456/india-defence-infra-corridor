@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-20T10:25:19.518Z",
+ "builtAt": "2026-10-20T20:53:33.601Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206498,7 +206498,7 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 2,
+   "kept": 3,
    "via": "direct"
   },
   {
@@ -206517,10 +206517,10 @@
   },
   {
    "outlet": "Naval News",
-   "ok": true,
-   "items": 10,
+   "ok": false,
+   "items": 0,
    "kept": 0,
-   "via": "direct"
+   "via": "unconfigured"
   },
   {
    "outlet": "Defence Blog",
@@ -206531,6 +206531,26 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-1a3zzax",
+   "kind": "order",
+   "systems": [
+    "U.S. Navy"
+   ],
+   "countries": [
+    "United States"
+   ],
+   "value": {
+    "amount": 300000000,
+    "currency": "USD",
+    "asWritten": "$300M"
+   },
+   "date": "2026-10-20",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/news/your-navy/2026/10/20/us-navy-gecko-robotics-surge-ai-maintenance-contract-to-300m/",
+   "headline": "US Navy, Gecko Robotics surge AI maintenance contract to $300M",
+   "primary": false
+  },
   {
    "id": "ev-1nghds6",
    "kind": "order",
@@ -207767,6 +207787,63 @@
   }
  ],
  "groups": [
+  {
+   "key": "order|u.s. navy|united states",
+   "systems": [
+    "U.S. Navy"
+   ],
+   "countries": [
+    "United States"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1a3zzax",
+     "kind": "order",
+     "systems": [
+      "U.S. Navy"
+     ],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 300000000,
+      "currency": "USD",
+      "asWritten": "$300M"
+     },
+     "date": "2026-10-20",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/news/your-navy/2026/10/20/us-navy-gecko-robotics-surge-ai-maintenance-contract-to-300m/",
+     "headline": "US Navy, Gecko Robotics surge AI maintenance contract to $300M",
+     "primary": false
+    },
+    {
+     "id": "ev-1r3bdn2",
+     "kind": "order",
+     "systems": [
+      "U.S. Navy"
+     ],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-15",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/industry/techwatch/2026/09/15/us-navy-boeing-ink-first-mq-25a-stingray-production-contract/",
+     "headline": "US Navy, Boeing ink first MQ-25A Stingray production contract",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News"
+   ],
+   "value": {
+    "amount": 300000000,
+    "currency": "USD",
+    "asWritten": "$300M"
+   },
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||united states",
    "systems": [],
@@ -209271,39 +209348,6 @@
    ],
    "outlets": [
     "Defence Blog"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order|u.s. navy|united states",
-   "systems": [
-    "U.S. Navy"
-   ],
-   "countries": [
-    "United States"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1r3bdn2",
-     "kind": "order",
-     "systems": [
-      "U.S. Navy"
-     ],
-     "countries": [
-      "United States"
-     ],
-     "value": null,
-     "date": "2026-09-15",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/industry/techwatch/2026/09/15/us-navy-boeing-ink-first-mq-25a-stingray-production-contract/",
-     "headline": "US Navy, Boeing ink first MQ-25A Stingray production contract",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defense News"
    ],
    "value": null,
    "verdict": "a single report, uncorroborated"
