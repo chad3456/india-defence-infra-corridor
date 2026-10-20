@@ -1,16 +1,14 @@
 {
-  "id": "run-1792497796591",
-  "startedAt": "2026-10-20T11:44:35.975Z",
-  "finishedAt": "2026-10-20T12:03:16.591Z",
+  "id": "run-1792509519654",
+  "startedAt": "2026-10-20T15:12:18.184Z",
+  "finishedAt": "2026-10-20T15:18:39.654Z",
   "status": "partial",
   "connectorsRun": 9,
-  "connectorsFailed": 1,
-  "seriesUpdated": 40,
+  "connectorsFailed": 0,
+  "seriesUpdated": 726,
   "messages": [
-    "worldbank: NY.GDP.PCAP.CD: This operation was aborted",
-    "worldbank: NY.GDP.PCAP.PP.CD: This operation was aborted",
-    "worldbank: NY.GNP.PCAP.CD: This operation was aborted",
-    "worldbank: stopped after 2 of 690 indicators — run budget spent; the rest keep their stored values",
+    "worldbank: SL.EMP.OWAC.FE.ZS: no Indian observations",
+    "worldbank: SL.EMP.OWAC.MA.ZS: no Indian observations",
     "satp: terror: https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir -> HTTP 403",
     "satp: terror: no candidate URL yielded a full table; keeping previous data",
     "ingest: The Tribune: HTTP 403",
@@ -20,7 +18,7 @@
     "ingest: The Statesman: HTTP 403",
     "ingest: ANI: HTTP 404",
     "ingest: Firstpost: HTTP 403",
-    "ingest: WION: This operation was aborted",
+    "ingest: WION: HTTP 404",
     "ingest: Outlook India: HTTP 404",
     "ingest: Scroll.in: response was not a feed (blocked or interstitial)",
     "ingest: The Wire: response was not a feed (blocked or interstitial)",
@@ -29,7 +27,7 @@
     "ingest: Defence Aviation Post: HTTP 404",
     "ingest: Daily Excelsior: HTTP 403",
     "ingest: Search: pipelines — gas pipeline India commissioned: feed had no items",
-    "ingest funnel: 1762 items -> 623 candidates -> 64 events (lost: 266 no sector, 172 not an action, 121 no place)",
+    "ingest funnel: 1766 items -> 622 candidates -> 59 events (lost: 267 no sector, 177 not an action, 119 no place)",
     "x: X_BEARER_TOKEN not set — reading X is paid per post since February 2026, so this connector is inactive. Official announcements still arrive via the PIB, PMO and ministry feeds at no cost."
   ]
 }
