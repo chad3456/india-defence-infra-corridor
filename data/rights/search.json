@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-20T20:10:53.811Z",
+  "builtAt": "2026-10-20T23:27:38.600Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1200,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1198,
-    "withOutlet": 1119,
+    "items": 1201,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1200,
+    "withOutlet": 1120,
     "bySubject": {
       "scst": 808,
-      "pmshri": 392
+      "pmshri": 393
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 306
+    "offSubjectDropped": 307
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 588
+      "n": 589
     },
     {
       "key": "use",
@@ -113,15 +113,15 @@
       "n": 14
     },
     {
+      "key": "Onmanorama",
+      "n": 14
+    },
+    {
       "key": "ET Education",
       "n": 13
     },
     {
       "key": "Maktoob",
-      "n": 13
-    },
-    {
-      "key": "Onmanorama",
       "n": 13
     },
     {
@@ -298,7 +298,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "act-registered",
@@ -308,7 +308,7 @@
       "google": 100,
       "bing": 6,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 9
     },
     {
       "id": "act-convicted",
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 42
+      "offSubject": 43
     },
     {
       "id": "act-atrocity",
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 59,
+      "google": 58,
       "bing": 0,
       "kept": 0,
-      "offSubject": 22
+      "offSubject": 21
     },
     {
       "id": "act-acquittal",
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 45,
+      "google": 46,
       "bing": 2,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "act-dilution",
@@ -405,7 +405,7 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 33,
       "bing": 0,
       "kept": 0,
       "offSubject": 22
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 12,
-      "kept": 2,
+      "kept": 0,
       "offSubject": 2
     },
     {
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 44,
+      "google": 43,
       "bing": 2,
       "kept": 0,
       "offSubject": 4
@@ -455,9 +455,9 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 44,
+      "google": 45,
       "bing": 2,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 3
     },
     {
@@ -465,20 +465,20 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 30,
+      "google": 29,
       "bing": 2,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 16
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 53,
+      "google": 52,
       "bing": 4,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 11
     },
     {
       "id": "shri-criticism",
@@ -488,7 +488,7 @@
       "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 33
+      "offSubject": 32
     }
   ],
   "items": [
@@ -20061,6 +20061,22 @@
       ],
       "indexes": [
         "bing"
+      ],
+      "firstSeen": "2026-10-20"
+    },
+    {
+      "id": "onmanorama explains by joining pm shri has cpm allowed saffronisation of kerala education",
+      "headline": "Onmanorama Explains | By joining PM SHRI, has CPM allowed saffronisation of Kerala education",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Onmanorama",
+      "published": "2025-10-20",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNTV9ILTRNUFVVR1VESFNEc2F4Z0luSWJxNVplUXc4OEZVeWw2My1RMnhta1UtNWptREJwbWNXR0Q5Z1N5M2ZxZjB2MExIalJ3ZnBRQ0NZcFBoZzUyM0RMQWw1N2V0N0s0ZVVJeHZDM3NlaTg4blhsMFl2dHYxTTF0NWxpUHVSY1MtV2RtTVpjRDJQcTNkVHZrSEVkVnFqUU1BWkw5RmlDNlY5d0s2NklsVlA3OXdXRnpG?oc=5",
+      "queries": [
+        "shri-mou"
+      ],
+      "indexes": [
+        "google"
       ],
       "firstSeen": "2026-10-20"
     }
