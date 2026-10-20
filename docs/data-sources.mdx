@@ -252,6 +252,32 @@ copied. The pixel maps of France (8-pixel cells of Natural Earth's outline) and 
 schematic at 125 m or 250 m a cell) place sprites where headlines and quoted sentences name a city,
 square, station or district — a picture of the reporting, not of events.
 
+### Politics on Instagram
+
+`/instagram-politics` has twenty dashboards on the BJP, Congress, AAP and the Cockroach Janta Party
+(CJP) on Instagram. Two kinds of number appear, and each dashboard says which it shows.
+
+**Published figures** live in `data/instagram/published.json`: follower counts, engagement per
+post, comment sentiment and claims about where followers are. Each records the publisher, the
+address, the date it applies to, a confidence grade and the sentence it was read from. Data Beings'
+study of the CJP's NEET and CEC protests is transcribed from its chart images; its source entry says
+the original post has not yet been located. A table on the page checks the numbers in circulation
+about that study against the charts themselves.
+
+**Measured figures** come from `npm run instagram` (`.github/workflows/instagram.yml`, twice a
+day). It reads Meta's Graph API business-discovery endpoint: followers, posts, and the likes and
+comments on each post since 20 April 2026, for the party and leader accounts listed in
+`lib/instagram.ts`. It needs the repository secrets `IG_GRAPH_TOKEN` and `IG_USER_ID`, which belong
+to an Instagram Business or Creator account linked to a Meta app. The token is sent in a request
+header and never written to a URL, a cache or a log. Without the secrets the job records that it is
+inactive, and those dashboards show *awaiting data*.
+
+Instagram is not scraped. Comment text, views, reach and audience location are not available for
+accounts the site does not own, so it publishes no sentiment of its own. Bot activity is shown only
+as signals: follower jumps, and comments-to-likes ratios far outside an account's own range, each
+listed beside its innocent explanations. `npm run test:instagram` checks every figure's source and
+arithmetic, and that the register holds no token or comment text.
+
 ### Ministries' own records
 
 `/ministries` reads two ministries' recurring publications directly. A scheduled job

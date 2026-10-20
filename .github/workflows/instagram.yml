@@ -1,0 +1,52 @@
+name: Indian politics on Instagram
+
+# Reads public counts for the party and leader accounts on /instagram-politics
+# from Meta's Graph API (business discovery): followers, posts, and likes and
+# comments per post. Twice a day, so follower history builds one snapshot a
+# day. Needs repository secrets IG_GRAPH_TOKEN and IG_USER_ID (an Instagram
+# Business or Creator account linked to a Meta app); without them the job
+# records that it is inactive and the page runs on published figures.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 2,14 * * *"
+  push:
+    paths:
+      - "scripts/etl/connectors/instagram.ts"
+      - "lib/instagram.ts"
+      - ".github/workflows/instagram.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram
+  cancel-in-progress: false
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: "${{ github.ref_name }}" }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Read the accounts
+        env:
+          IG_GRAPH_TOKEN: ${{ secrets.IG_GRAPH_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: npm run instagram
+      - name: Check
+        run: npm run test:instagram
+      - name: Commit
+        run: |
+          if [ -n "$(git status --porcelain data/instagram/register.json)" ]; then
+            .github/scripts/commit-generated.sh data/instagram/register.json "data(instagram): politics register $(date -u +'%Y-%m-%d %H:%M')"
+          else
+            echo "nothing changed; nothing to commit"
+          fi
