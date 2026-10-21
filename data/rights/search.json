@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-21T14:10:45.499Z",
+  "builtAt": "2026-10-21T20:24:31.681Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1224,
+    "items": 1226,
     "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1222,
-    "withOutlet": 1143,
+    "carriedFromEarlierRuns": 1224,
+    "withOutlet": 1145,
     "bySubject": {
-      "scst": 831,
+      "scst": 833,
       "pmshri": 393
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 277
+    "offSubjectDropped": 294
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 603
+      "n": 605
     },
     {
       "key": "use",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 104
+      "n": 105
     },
     {
       "key": "Lawtext",
@@ -297,8 +297,8 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 7
+      "kept": 2,
+      "offSubject": 6
     },
     {
       "id": "act-registered",
@@ -315,20 +315,20 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 29,
+      "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 42
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
+      "google": 50,
       "bing": 5,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 57,
+      "google": 55,
       "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 19
     },
     {
       "id": "act-acquittal",
@@ -358,7 +358,7 @@
       "google": 97,
       "bing": 1,
       "kept": 0,
-      "offSubject": 46
+      "offSubject": 47
     },
     {
       "id": "act-hostile",
@@ -377,7 +377,7 @@
       "expect": "allegation",
       "google": 48,
       "bing": 2,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 8
     },
     {
@@ -385,10 +385,10 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 17,
+      "google": 25,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 2
     },
     {
       "id": "act-false",
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 33,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 22
+      "offSubject": 5
     },
     {
       "id": "shri-general",
@@ -465,10 +465,10 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 29,
-      "bing": 2,
+      "google": 28,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 15
     },
     {
       "id": "shri-nep",
@@ -478,7 +478,7 @@
       "google": 53,
       "bing": 4,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 11
     },
     {
       "id": "shri-criticism",
@@ -20464,6 +20464,38 @@
       "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQd082UExBdDVDQkZOelNsbGxBalJPaGR1bC0zQ1dGVFN4S25MbWYycm9nWlZMSXI2MTlWbjA2eUoycUg3U0Jzd1NESmxGNTBYVVd5QkRWNHUtUEdNQndLTXQ0Y3NzemxCUEYyVlZ4MHV0eXhoZVVpbDQxZEpPWjhFZXo3aUlmVHBkWGFpNFpRUHNBN2FLM1luWXRfUHpha3JCelZkQVBQdU9HZWYwQ3MyQ0lreGU1cXNPSmM1SjN2T2NwVWtab0xMVXpvUFgtM3dMXy1SXzFQN1dpdVNBOG52NFJDbWZMVnpKa043eGVXbjU5blHSAfgBQVVfeXFMT0xYNS1vTndTRWxWcUhfN2RMaTZjdFV2YVJOclk0OUlNTG8tdkJBZkx2S3UwSnRCa0JUMzdzbTRBT3BaWkxwZzNEX0IxWXVWdkNLYTNWVEt1ODZQZ1ROTXkyV2RoMURMc1BnQWJUUHZ2VWN4WG5ESHJDNk85NnVSVGczQjZnS2IyVmwzSmZMR3h6czRvcXI5b09ySWQyZUJyWUdRREFqeGc3VkRTNVBiUDlfNTZmam9ka0JZb2MyUnJXSjB4LXctUDllSjM1UFM4a055T20zZWhXUzJqb1ZiTVRnTmR4X2xuTDNTODBRZ09lU2lRdHQwYjA?oc=5",
       "queries": [
         "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "file reports on complaints filed against higher officials invoking sc st act madras hc",
+      "headline": "File reports on complaints filed against higher officials invoking SC/ST Act: Madras HC",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2026-10-21",
+      "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxPazZPbFdzang4alhwNFp3cU8zMThjVUIyaGpBaVpwOE9NWFk2NHE2WGxCWE5YM3VfZk1OZHRHNmhKelR5cnZyTVFPMFlRWExkVnpwQXRrV2NoWGx0NExrMkdyLWdsRTB2MHdsS2tHU3IwR2JMSGpNTWJubEc0bFZGdWdSc2pkMkVXenpxMHRGUUJ6VTJ0Q08xdFVXOTE0ejdoSG9yM3pCSHZMSktqZDY0NjZtSDNSbmpkMEt5MUJEeXQxLUY2OEFxSElVOGZ4cXZ6dS1PT1RObnRNZ2xGSWdya29fMVJJWTRiS1JPWUdaMHdNTHfSAfgBQVVfeXFMTUFwV0JCeUlTT1h4d3gzbS1TeEl4Y2JHOW55REpwZ1VwalVSdzRHWkN5ellQaVJ0T0R1T2RQMmZJQ1ppUkVsNnlwVWlpcW9FbWE1YUU2LXBQQTdNQnJ2a1M5ai1wd3RTZU9xc1dadTNsUWk0MHl1VjdGSkpNNzFfVVduSWxQZjFYOUo3dWQzVWd2d0d0eDEwREZsTmxyczVNTzhhMm9zQ0V2TVg1YmdZR2hrSTZwU19lYlJDbmFtZXZUN1BRTngzTFdrRE8wNTA2cHJYOWMxRWl3eFFJczFtNmhPWHJrMU42ZWpBaVRTRkNEb2QydTFrNnk?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "casteist slurs made in private not offence under sc st act says supreme court",
+      "headline": "Casteist slurs made in private not offence under SC/ST Act, says Supreme Court",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Scroll.in",
+      "published": "2026-08-21",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPOHpHaXJNbmNXVWJwZzVveERuWUY4bk1BQy0wSmU5WmttVFd1VndjWElhSDFYZ3ZZMzlQUS1rMS0wekpWYjN4enRqR2wwWVZjeVdsWm4tVHplRHZNeWpqMllBUGhkX2JJbGpkQXhhaTVYdE5pNlJuT2xHMFRuZ3dRLXNQaTFDeFFRTWZDOTRoQlR2SEltNUdId1AtYlRFZVBrX0RjMDJTRko3aXpuWmR30gG0AUFVX3lxTFBSVV9kWFZha2REbDh3dnI2VWpJeS12SXFqa09tZTlPbF9Gb1hRdlZTTDlNLVdkdmR2dDlpUHE3M1dpb1R6SHp2bElmWFlUdVY3cUNGOVNXeHFHVEFMbkx3TkJVWjl3VUI3WDZhRjJfbEJpR2JETjF5NnNWM01lQnFwalpYdGFBN3hRR29odWprMlB4ZHRHV3NCZDRELTNXZUZQUWpvYUNDMFNSZEtoMzBRLVdGOA?oc=5",
+      "queries": [
+        "act-general"
       ],
       "indexes": [
         "google"
