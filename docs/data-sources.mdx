@@ -252,6 +252,24 @@ copied. The pixel maps of France (8-pixel cells of Natural Earth's outline) and 
 schematic at 125 m or 250 m a cell) place sprites where headlines and quoted sentences name a city,
 square, station or district — a picture of the reporting, not of events.
 
+### Luxury beliefs, tested
+
+`/luxury-beliefs` tests Rob Henderson's idea of "luxury beliefs" against Indian data in seven areas.
+In each area it asks whether India's better-off and its poor believe or choose differently, and
+who bears the cost of the belief the better-off favour, and it gives the strongest case against
+calling the belief a luxury. The idea is treated as a hypothesis, and the page scores nothing.
+
+Published figures live in `data/luxury-beliefs/published.json`, each with its source and the
+sentence it was read from. The National Family Health Survey's breakdowns by wealth quintile and
+schooling (NFHS-4 and NFHS-5) come from the DHS Program's public API through
+`npm run nfhs:class` (`.github/workflows/luxury-beliefs.yml`, weekly). Indicators are matched by
+their DHS label, so a renamed one is reported as missing rather than replaced. The gap between the
+richest and poorest fifth is the only number the page computes.
+
+Headlines for each area come live from Google News in English and Hindi (`/api/luxury-beliefs`,
+cached 60 seconds). They are pointers to reporting and are never used as data.
+`npm run test:luxury` checks the sources, the headline rule and the DHS parsers.
+
 ### Politics on Instagram
 
 `/instagram-politics` has twenty dashboards on the BJP, Congress, AAP and the Cockroach Janta Party

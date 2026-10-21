@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "luxury-beliefs-2026-10",
+    title: "Luxury beliefs, tested",
+    blurb:
+      "Rob Henderson's \"luxury beliefs\" tested against Indian data in seven areas — schooling language, farming, climate, prohibition, " +
+      "marriage, gender norms, policing — with live headlines and the NFHS broken down by wealth and schooling.",
+    href: "/luxury-beliefs",
+    since: "2026-10-21",
+  },
+  {
     id: "instagram-politics-2026-10",
     title: "Politics on Instagram",
     blurb:

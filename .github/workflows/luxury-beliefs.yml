@@ -1,0 +1,48 @@
+name: Luxury beliefs — NFHS by class
+
+# Reads India's National Family Health Survey tables by wealth quintile,
+# schooling and residence from the DHS Program's public API for
+# /luxury-beliefs. The survey changes rarely, so weekly is enough; a run that
+# finds nothing new commits nothing. The page's headlines are live on their
+# own (/api/luxury-beliefs) and need no job.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 3 * * 1"
+  push:
+    paths:
+      - "scripts/etl/connectors/nfhs-class.ts"
+      - "lib/luxury-beliefs.ts"
+      - ".github/workflows/luxury-beliefs.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: luxury-beliefs
+  cancel-in-progress: false
+
+jobs:
+  nfhs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: "${{ github.ref_name }}" }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Read the NFHS tables
+        run: npm run nfhs:class
+      - name: Check
+        run: npm run test:luxury
+      - name: Commit
+        run: |
+          if [ -n "$(git status --porcelain data/luxury-beliefs/nfhs.json)" ]; then
+            .github/scripts/commit-generated.sh data/luxury-beliefs/nfhs.json "data(luxury-beliefs): NFHS by class $(date -u +'%Y-%m-%d %H:%M')"
+          else
+            echo "nothing changed; nothing to commit"
+          fi
