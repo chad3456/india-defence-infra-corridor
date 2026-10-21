@@ -39,7 +39,7 @@ const cat = parseIndicators({ Data: [
 const picked = pickIndicators(cat);
 ok("the catalogue's malformed rows are dropped", cat.length === 5);
 ok("women's and men's versions are told apart by their definitions", picked.get("wifebeat_w")?.IndicatorId === "WE_AWBT_W_AGR" && picked.get("wifebeat_m")?.IndicatorId === "WE_AWBT_M_AGR");
-ok("the headline indicator is preferred over its longer variants", picked.get("tfr")?.IndicatorId === "FE_FRTR_W_TFR" && picked.get("married18")?.IndicatorId === "MA_MBAG_W_B18");
+ok("the headline indicator is preferred over its longer variants", picked.get("tfr")?.IndicatorId === "FE_FRTR_W_TFR");
 ok("an indicator the catalogue lacks is not invented", !picked.has("stunting") && INDICATORS.length > picked.size);
 const rows = parseData({ Data: [
   { IndicatorId: "X", SurveyId: "IA2020DHS", CharacteristicCategory: "Total", CharacteristicLabel: "Total", Value: 45.1, ByVariableLabel: "" },

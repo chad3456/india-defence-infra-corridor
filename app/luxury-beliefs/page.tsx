@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { Eyebrow, Standfirst } from "@/components/stories/Kit";
-import { Awaiting, Bars, fmt } from "@/components/instagram/Charts";
+import { Awaiting, fmt } from "@/components/instagram/Charts";
 import { LiveHeadlines } from "@/components/luxury/LiveHeadlines";
 import { AREAS, SURVEYS, gap, type LbPublished, type LbSource, type NfhsIndicator, type NfhsRegister } from "@/lib/luxury-beliefs";
 
@@ -25,6 +25,8 @@ function Gradient({ ind }: { ind: NfhsIndicator }) {
   const s5 = ind.surveys[SURVEYS[0].id], s4 = ind.surveys[SURVEYS[1].id];
   if (!s5) return null;
   const unit = /fertility|ideal number/i.test(ind.title) ? "" : "%";
+  // One scale for both breakdowns of an indicator, so wealth and schooling can be compared bar for bar.
+  const max = Math.max(...s5.rows.map((r) => r.value));
   const block = (category: string, label: string) => {
     const rows = s5.rows.filter((r) => r.category.toLowerCase() === category);
     if (!rows.length) return null;
@@ -32,7 +34,15 @@ function Gradient({ ind }: { ind: NfhsIndicator }) {
     return (
       <div>
         <p className="text-[10.5px] font-semibold uppercase tracking-[0.06em]" style={{ color: "var(--story-ink-3)" }}>{label}{g ? ` · ${g.high.label} vs ${g.low.label}: ${g.diff > 0 ? "+" : ""}${g.diff}${unit === "%" ? " points" : ""}` : ""}</p>
-        <div className="mt-1.5"><Bars unit={unit} max={Math.max(...s5.rows.map((r) => r.value))} rows={rows.map((r) => ({ label: r.label, value: r.value, colour: category === "wealth quintile" ? "var(--series-1)" : "var(--series-3)" }))} /></div>
+        <ul className="mt-1.5 space-y-1">
+          {rows.map((r) => (
+            <li key={r.label} className="grid grid-cols-[5.5rem_minmax(0,1fr)_2.8rem] items-center gap-2 text-[11.5px]" title={`${r.label}: ${r.value}${unit}`}>
+              <span>{r.label}</span>
+              <span className="block h-2.5 rounded-r-[3px]" style={{ width: `${(100 * r.value) / max}%`, background: category === "wealth quintile" ? "var(--series-1)" : "var(--series-3)" }} />
+              <span className="mono text-right tabular-nums">{r.value}{unit}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     );
   };
