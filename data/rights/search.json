@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-21T20:24:31.681Z",
+  "builtAt": "2026-10-21T23:41:47.401Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1226,
+    "items": 1228,
     "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1224,
-    "withOutlet": 1145,
+    "carriedFromEarlierRuns": 1226,
+    "withOutlet": 1147,
     "bySubject": {
-      "scst": 833,
+      "scst": 835,
       "pmshri": 393
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 294
+    "offSubjectDropped": 267
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 605
+      "n": 607
     },
     {
       "key": "use",
@@ -201,6 +201,10 @@
       "n": 7
     },
     {
+      "key": "The Mooknayak English",
+      "n": 7
+    },
+    {
       "key": "NDTV",
       "n": 7
     },
@@ -226,10 +230,6 @@
     },
     {
       "key": "NewsClick",
-      "n": 6
-    },
-    {
-      "key": "The Mooknayak English",
       "n": 6
     },
     {
@@ -295,10 +295,10 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 48,
       "bing": 0,
-      "kept": 2,
-      "offSubject": 6
+      "kept": 1,
+      "offSubject": 1
     },
     {
       "id": "act-registered",
@@ -315,20 +315,20 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 28,
       "bing": 0,
       "kept": 0,
-      "offSubject": 42
+      "offSubject": 6
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 50,
+      "google": 51,
       "bing": 5,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "act-compensation",
@@ -355,10 +355,10 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 97,
+      "google": 99,
       "bing": 1,
       "kept": 0,
-      "offSubject": 47
+      "offSubject": 46
     },
     {
       "id": "act-hostile",
@@ -368,7 +368,7 @@
       "google": 26,
       "bing": 0,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 9
     },
     {
       "id": "act-misuse-claim",
@@ -398,17 +398,17 @@
       "google": 50,
       "bing": 1,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 16
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 10,
+      "google": 32,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 5
+      "kept": 1,
+      "offSubject": 22
     },
     {
       "id": "shri-general",
@@ -425,40 +425,40 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 43,
+      "google": 42,
       "bing": 2,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 5
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 68,
+      "google": 69,
       "bing": 1,
       "kept": 0,
-      "offSubject": 22
+      "offSubject": 23
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 53,
-      "bing": 3,
+      "google": 52,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 13
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 45,
+      "google": 14,
       "bing": 2,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 0
     },
     {
       "id": "shri-withheld",
@@ -466,7 +466,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 28,
-      "bing": 1,
+      "bing": 2,
       "kept": 0,
       "offSubject": 15
     },
@@ -478,7 +478,7 @@
       "google": 53,
       "bing": 4,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 12
     },
     {
       "id": "shri-criticism",
@@ -4995,7 +4995,8 @@
       "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPdUJvRThyQ3dXWlI4TlVUY21ENDBwZjZSdHdISmdqQzhaTGI4LUIwdlBZeE9FV29yeFpXaU9jZk9GUExiTmdpRTlpT3Q3c2diT095dnJyalRtUzhKYlJQd1NjaUVFbVlGbzJBN0FwWlBMRVU3Ny10NGhxYmk0WTExWmMybnpWTDFVdWhKZzFKNmFWZDVjVnF3OFl6a1lRUzdZcTc0aHBVSmMtMjVKbVRlY0xSY1ZtY19zcXpXRDh2dlZXY2VVZ0pzbUliQkYxd9IB0wFBVV95cUxPSGVFQW1yZU1WOV9VOUtEUTBKdXBLWGpMMWxqcFhoNUxFejRuRFlubGEwRGRDY0k4NWVDbzRoVXRhUlRRMTlvN2JlZkxOSjdjRG9ndWFneUFNVm40Z215bGJSb3RMZGszZ3hObHFOQXp4SC1RZm1XNWFuQlBmYU05b3VSbVFVYkZCSHpUVi1aZkZ1anF3d0UyWnJienVlQnVvR05iclNDMXY3TndtN2ZXNkZ1MUEyNDU1a1k0VnlnaTZ2RzBxdFA0Q1VPZUpHeFFDemY4?oc=5",
       "queries": [
         "act-compensation",
-        "act-acquittal"
+        "act-acquittal",
+        "act-hostile"
       ],
       "indexes": [
         "google"
@@ -10357,7 +10358,8 @@
       "published": "2025-03-27",
       "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxOdGJjbVVNUk0yS2hWYTFLX1F4ZFM2eHBrNXVfTDlFbUdYbUZXYTMxT1Y2QXJJX1A4WXhSbzRocEk2VjZ2VzhGQ0RhTWNGNVBRV0FOakxKVDktSGl4OWRZMnJtcWZuWFhzendtRl91blprOXh4aVJuSDhjMjg1dlU4VUVPUW8tYVA2NWhrV29GZkxQSTVSakZRalJVOUdJNkFfQXdVMm1wUFVoeDB5cnNadFdhYjVtTTRJSzlReUdoeDUybEVod1ptMVVPRVVFVzI5X1VNUGJaTWh4Q2wtM1J6S1ljeU04eWNjVDd5TGIyS29vTnRtaUc5RFFKVC1XTDhNdDBGbUNlN0h3Z0M3cDhTdU5lQdIBmAJBVV95cUxNejNtUnpNRWhiQ1NNQmNrelk1ZmppQnJ4TGNsODRHb0tndjhvRzJ2b2ZYZ0dDQ3hfUHVOYTdsSWlLaGJGUWZ3NFFmY1pqck5qVFVfZEl0RzNpQ25lR2QzZloxbHhCdUJpSFpHNTNEX0R2cDRrU2dZQzFhaGwzQ3h1Z1lONzZzT1N6U0lCMms4WE5mdkZBOU9NelpBSTJ5YmRNMnMza1dPSnFhOHN0ZXE5LUFGVXFSTlNCRVM3Z2JDT0dpWG14allSSWhqSHRYSFdKdENWdFNLZlpNTUlFVU0ycG9EZWI2d1hLWDhmQzVvY2Y0ZjBMd3BJMnpkOE5qUEhmQkQ3MzV0MWlrLU54ZEdBMDc2bjdmejhR?oc=5",
       "queries": [
-        "shri-funds"
+        "shri-funds",
+        "shri-mou"
       ],
       "indexes": [
         "google"
@@ -12792,7 +12794,8 @@
       "published": "2024-09-24",
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNMWVZUWpBdjY2NkRzR1NNZ05WZ0gydHJneWU2LXY3UmRvanp6N2szNFJralZUc0JhMElqZFNhR0U1NExpd0s4V0RTbmM1c3FLLWsxWndhV3MzRnAtX1pNVmZ2YVhYV051cXhKMGZDMVlfU1ZzaDRSSmlldWZLNnUtSUx4YVFVT21iYWxseFJwZDk0Wno5SlJnU1lSbjUyZWk4aUU0?oc=5",
       "queries": [
-        "act-compensation"
+        "act-compensation",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -15485,7 +15488,8 @@
       "published": "2026-05-06",
       "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPWGxEcUg5YWRKVmRmWmowbWw5emM3Y19LSG5MbS1ta0pCLWhBa2hLMkVqcUFra0xNcEpNaFdMMnlaSklRUk9rYUFVdnZGVkdaWUJkTFVtVlM5djlxV0VDLWdSNzZmWjZQQWJ3VksyeWM0NjZfbF9Oc1NBVmRWUDcwX3BfRnpzbHlYWGxMTk5mVFhmNWd3N3Z5ZWtjQTFjQ21IcGhaVldCZEdEdUc2S2dXX2l5N0lhQmwxUURmZlYxUEpPNWFtVVFGWHNKWlFpZ0NURUF5bEwxSdIB3gFBVV95cUxNU3BxVXRlR2dkT3NYV083dGRrX3JFNFMwVUJsNWpSTTNzbFpVbFlMQkNueFFRcFpYdFpab25qUkJ2NFBiOXBiUXhsQUpXYTc0UWQzVXMzQUFEbkFwOEdfN0lpOVU2UmN5dnJyY0Q4WG5rVkotdkVTZjlrbXI3aGtIdWZ6Qi1nU3hTNFJoazF3ZVJsQTRVc0RzLXFVLXRUcFF0S3o3TkNla1U1eXVhUWY0QW5FZW9qTnphZldqeXlBSkF3YjY4akZOR01QRzlhT2VYRVJha3pYMFg3eFR0Tnc?oc=5",
       "queries": [
-        "shri-sanctioned"
+        "shri-sanctioned",
+        "shri-general"
       ],
       "indexes": [
         "google"
@@ -20496,6 +20500,38 @@
       "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPOHpHaXJNbmNXVWJwZzVveERuWUY4bk1BQy0wSmU5WmttVFd1VndjWElhSDFYZ3ZZMzlQUS1rMS0wekpWYjN4enRqR2wwWVZjeVdsWm4tVHplRHZNeWpqMllBUGhkX2JJbGpkQXhhaTVYdE5pNlJuT2xHMFRuZ3dRLXNQaTFDeFFRTWZDOTRoQlR2SEltNUdId1AtYlRFZVBrX0RjMDJTRko3aXpuWmR30gG0AUFVX3lxTFBSVV9kWFZha2REbDh3dnI2VWpJeS12SXFqa09tZTlPbF9Gb1hRdlZTTDlNLVdkdmR2dDlpUHE3M1dpb1R6SHp2bElmWFlUdVY3cUNGOVNXeHFHVEFMbkx3TkJVWjl3VUI3WDZhRjJfbEJpR2JETjF5NnNWM01lQnFwalpYdGFBN3hRR29odWprMlB4ZHRHV3NCZDRELTNXZUZQUWpvYUNDMFNSZEtoMzBRLVdGOA?oc=5",
       "queries": [
         "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "delhi cop accused of sexual harassment during protest files case against journalist under ",
+      "headline": "Delhi cop accused of sexual harassment during protest, files case against journalist under SC/ST Act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "News9live",
+      "published": "2026-10-14",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOZUFHRGNDeFktd29qbGtndlZCS0pxX0JvUWtXN1U0cE5Qb3VsaWozdndFVDFFWWxlN2YwZ0w2b3dWTEpSRjFzTWFFamRSZXpCOTUyOWdLeUNOY3FSX3NyNHJGMFY1QU9aekNDWXZxdHZaQkZIT1FGLWNDRzZKamNaWFpROVphVUlIU0NSOUlGWFBGUnkzaTBwUkIyX3RlSEZvQ1hjU3BEVExvLUdGOEt0MDdLajhWQWpBTjZRNnZBTDZSQnpSS2RoSkNZRlNqUldMQ3RlS0N30gHbAUFVX3lxTE1ndkxYRzZDdGpKUWdtUWlTMWc1VDNVaENKQTNqa2p4TlFXcGFQcnZjQ0c5OGlGYldTSEp5THNHVGhrSjI5VmFGd05NZm02VU1VTFc2R1ZyZUVoZXBqZUw5OC1oN1FGUm9ydEl5dzZObUhwX3RudFRyUHh6NWJDT0RDMXhnMHRJLWxpeTdQOEhoel93amF6THMwTEFmYUtoNUFWMkRZVWYtTGxfSEJEUFVrTXNuckdhdXljWlYxUWVHMzVkWk1zd2d6eU81VEVIUl9iQnpPTFFWOHQwVQ?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "know who is parmanand gupta how a rogue advocate turned a 21 yo dalit student s identity i",
+      "headline": "Know Who Is Parmanand Gupta: How A Rogue Advocate Turned a 21-YO Dalit Student's Identity Into a Weapon for Money in Uttar Pradesh",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Mooknayak English",
+      "published": "2025-08-22",
+      "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQelhDb0Eyb0ZTdzY5Uk5VY2VObDV3ZE9UTVZDMGptUGcwbWZUd3Y3YndQSFdEXzVqZ2o2dlZabDY2eW5qVUROLXNxdkRBcjR4WlRXbzVteGN2WGN3SHVjaVZuSWRoNVB0WTZjY0JQTVhWNWZNRENVSjkzTmVNczVlMHZZZTc4eTBGNl9VeFYyeV82LUlDc3JKdlVwUDM3STFZWERsNzh4OHRLRkkwRnBjbXpjR1oxb3dpa2VfSmRJUmZBcXItUnlndXBWZ0lmNWhZV2V3RVE4LW5yVllQd2gtYVVwZS1sa1g0cDM5SV95eGFzZk1uT2NfZ2JnY9IBiAJBVV95cUxPVDdjei1NWFBGR21tZFZOUTc3YkxFbFZOZ0ZWckR4SFR3Q055UDZqa1QtUldsYXNoN0JhTkE5ZGZSODg0YVlXWXhIYlViNm5ILVJqYUFpcGxhVzZELUFVME5QanczNmlNR1hRWWE4c0JRYm5PX2VQZHc1WmM2MG9EeGVmQV9UNmM2YXoxd0l3Zk5JTzlqYmtSSGxkTUE4YWNjb0J4MXBLSW1URjNzTHdjZy01SHl1bXdsY1lNbXlRNTA5akZKbk4xUHF2MUhsaWFyaUdaNWFJS1RZbk10akpoYTU0QkFCSHFIcGVDbXNralp5MHF1MmI3ek5zVG9mRnQ1cWd0eHk5OXg?oc=5",
+      "queries": [
+        "act-fabricated"
       ],
       "indexes": [
         "google"
