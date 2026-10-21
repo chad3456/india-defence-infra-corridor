@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-20T23:27:38.600Z",
+  "builtAt": "2026-10-21T05:22:37.999Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1201,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1200,
-    "withOutlet": 1120,
+    "items": 1222,
+    "addedThisRun": 21,
+    "carriedFromEarlierRuns": 1201,
+    "withOutlet": 1141,
     "bySubject": {
-      "scst": 808,
+      "scst": 829,
       "pmshri": 393
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 307
+    "offSubjectDropped": 282
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 589
+      "n": 601
     },
     {
       "key": "use",
-      "n": 420
+      "n": 427
     },
     {
       "key": "dispute",
@@ -40,7 +40,7 @@
     },
     {
       "key": "allegation",
-      "n": 55
+      "n": 57
     },
     {
       "key": "false-finding",
@@ -66,7 +66,7 @@
     },
     {
       "key": "The Hindu",
-      "n": 41
+      "n": 46
     },
     {
       "key": "Hindustan Times",
@@ -78,11 +78,11 @@
     },
     {
       "key": "LawBeat",
-      "n": 28
+      "n": 29
     },
     {
       "key": "Verdictum",
-      "n": 25
+      "n": 27
     },
     {
       "key": "ThePrint",
@@ -93,16 +93,20 @@
       "n": 19
     },
     {
+      "key": "SCC Online",
+      "n": 18
+    },
+    {
       "key": "livelaw.in",
       "n": 18
     },
     {
-      "key": "SCC Online",
+      "key": "Careers360",
       "n": 16
     },
     {
-      "key": "Careers360",
-      "n": 16
+      "key": "Live Law",
+      "n": 15
     },
     {
       "key": "LawChakra",
@@ -173,10 +177,6 @@
       "n": 9
     },
     {
-      "key": "Live Law",
-      "n": 9
-    },
-    {
       "key": "The Statesman",
       "n": 8
     },
@@ -201,6 +201,14 @@
       "n": 7
     },
     {
+      "key": "NDTV",
+      "n": 7
+    },
+    {
+      "key": "Citizens for Justice and Peace | CJP",
+      "n": 6
+    },
+    {
       "key": "Wansom AI",
       "n": 6
     },
@@ -217,24 +225,16 @@
       "n": 6
     },
     {
+      "key": "NewsClick",
+      "n": 6
+    },
+    {
       "key": "The Mooknayak English",
       "n": 6
     },
     {
       "key": "News18",
       "n": 6
-    },
-    {
-      "key": "NDTV",
-      "n": 6
-    },
-    {
-      "key": "Citizens for Justice and Peace | CJP",
-      "n": 5
-    },
-    {
-      "key": "NewsClick",
-      "n": 5
     },
     {
       "key": "Bar and Bench",
@@ -295,20 +295,20 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 46,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 7
+      "kept": 9,
+      "offSubject": 1
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 57,
       "bing": 6,
-      "kept": 0,
-      "offSubject": 9
+      "kept": 11,
+      "offSubject": 7
     },
     {
       "id": "act-convicted",
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 43
+      "offSubject": 42
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 7,
-      "kept": 0,
-      "offSubject": 8
+      "bing": 5,
+      "kept": 1,
+      "offSubject": 6
     },
     {
       "id": "act-compensation",
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 58,
+      "google": 57,
       "bing": 0,
       "kept": 0,
       "offSubject": 21
@@ -358,7 +358,7 @@
       "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 46
+      "offSubject": 47
     },
     {
       "id": "act-hostile",
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 46,
+      "google": 45,
       "bing": 2,
       "kept": 0,
       "offSubject": 7
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 26,
+      "google": 25,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 67,
+      "google": 10,
       "bing": 1,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 5
     },
     {
       "id": "shri-upgrade",
@@ -457,7 +457,7 @@
       "expect": "dispute",
       "google": 45,
       "bing": 2,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 3
     },
     {
@@ -465,10 +465,10 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 29,
+      "google": 30,
       "bing": 2,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 17
     },
     {
       "id": "shri-nep",
@@ -3448,7 +3448,8 @@
       "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNeS03eUdvXzZ4YURUclpfVUg3eW5rRWFKbmY3R0gzWmxQZHpVNW9fNFV5UGhMMi1lQ21pQWtPRzZvQy1GMzROMkVxVVZRUkYyaDJOLUFCaUdDWTJINFF6cllfUFFja25nLWQ0YU8wMWViUTJvZnRiMUJ2bU80VHQ4MEZWT2k2bkFsNGdRT2FNVkNvOW40QnpTM0RZMUdmWmdMZi1sMU9uaGFRSmtEaVIzUWFxUThfdVFPOWJ1cHhCcFTSAcYBQVVfeXFMT3NLUF9aSU9YM2NaYm1zX0tQUnV5bkJBSnFNMFhKTy13eVBWZUlZeEFNUy1heVkwOUNYem9vS2w0SUE4dXF4SW9fdWVMbWdkQU9FLUViLVZ2VlFTMVgzX2tOS3VqSGpWMG9xMTg2dXJXQWlPMTRsOTlDVUJ6SU9tV1lwQ2tlRU13UlB1ZFl0U0ZscW5La096dkZVcHVPTS1XelBtUjJmbGxKLWwtTEszVElwVXlUdk9VVWhzMEhaWDdiMVFxcW5B?oc=5",
       "queries": [
         "act-convicted",
-        "act-fabricated"
+        "act-fabricated",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -5233,7 +5234,8 @@
         "act-compensation",
         "act-pendency",
         "act-acquittal",
-        "act-misuse-claim"
+        "act-misuse-claim",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -5574,7 +5576,8 @@
       "published": "2023-02-17",
       "url": "https://news.google.com/rss/articles/CBMixAJBVV95cUxNZ0hSTDJDcUNOZ0RJNEhKM2hla2tNWlN5U3lWTERvS1VpT3N6dUxsSm0ta05fbzBQRmhQX3h1a042SHVyWFFtNkZsd1BiU2ZhUENpU0ZhUUhMYXpaV1l6bGlQY3JxMWhWWXJDYnZMdWltenpGTUtMZldiTkdlOHVZakhKOGY1bEwzeW8waGxPb192dEV1cXhoWGt5MWlNLUs0LWNZQXh6SklBY1h0ajQ0WTNhTkNRTDNYV1BXUEFnU2V2OGU2empuakNZQ1p6NHNqSmhhUDJkdlgzUUFfY1VVSmxmczAyN0dsS05ZM3BpVTFZM1Q3RHRrVVQ1MERMNE1zdDZ5OFBIeGc3aS12anl2MkZhUkh1SHpVLVB2d3YwbTF5U196SDVNSlhKb2dPVGpyWDhtY19aUDNfRDVVcl9xYzc4ZlM?oc=5",
       "queries": [
-        "act-pendency"
+        "act-pendency",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -6687,7 +6690,8 @@
       "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOTmo0UVJwSVBsaDRRd1gyYVUwc2ZsUkZKcW9UblYtT2N2UmlHUFdzbENRLXRrYUxfSHNmaVRWZEttWE1aSXBWM2ZIMUVjLUd0Y3VYTGswZDQzd1VmTThqVEFxTXJFQ09ZRnRBb0tjMjR2YzVuVDlHV3JnZFpELU9UaUV6VUc?oc=5",
       "queries": [
         "act-misuse-claim",
-        "act-dilution"
+        "act-dilution",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -6834,7 +6838,8 @@
       "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOel9CSXNLUF9ZOXV5VTRpU2dWc2N6c1hkQXBXdmUtZk1jbmZILWp6ZHB4STRGMXdxbHdORGEtellFcWxGdlpDMmtLZ09qeEZxa2FFS202UHpvekwwODRYY3NmSFU1US05dl9vSERoWS1GdnN3TmYxVG0za2c5dXhPY1ZybFpaNXpNOUZXd3h0WE1keTF1RXpZaXQwdVZFbFpHVlMtbmdOODJFNnh4bmtNTVZNeFp1dGFPbmxzRVV0VmRNSWRlX0t5cGJRR0RidWxQVEdjQ3VGUDJnTFhxYXVfYjhpdjjSAeoBQVVfeXFMUE5nMHBXMXFJd0lWUTktMDVuR1hZT1QtblpVcmwwWmVkd0tJLUpHQmdlamtKdEtlMUlnY3BMaUJpTlZqOGh6Q0NsZTFKSUVNOFR1a3hEX0QtV2NCbUdvbEZvZXJPbHNYQk5rVU1zbTBnMGJLTG82cVA3aUw4NXZBY1c3ZWVVLUxFTXlKcFZ5LU8wN0VsaHVfc0U5RWl1bHhWNGNhRjk4RjB6LU1LNHFMR1RjZDFCbzY3eVhVR2Zfei1IaDVaSnZiTk54MTJPLVhITkRmSTNZN3dhd3RTQVpOOFljbkFqeTlvTnJn?oc=5",
       "queries": [
         "act-misuse-claim",
-        "act-false"
+        "act-false",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -7013,7 +7018,8 @@
       "published": "2018-04-04",
       "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNSGdpeXhKcEZNbnZWZVNnQnBWWE5lYTVXUlJqYkdyUG1pLVl2SVdFZFRSX2xNWnpFX1RCLVIzUVJJUFBHbWhtZHRWbVBhSk5fakZ0Wl9xYm9wbld0VFZsRVJoUDJ6QUpCcHlJeDRsVXdORE4xcTdSQTFZT3d3NVNVVHBqQk9UbXlReEdGdUpsOVlSM2kyRnNjOElxaUNiYUUwSS1QZF9DaGRtbTM4YXFWaEVMRGQxcFFfUG8ybmxRSVBmcHUwZDRRTmhqUHRfdXcxclZOUEdldlNJWEU5d0RQbGhEcmRFSkdueTlEbw?oc=5",
       "queries": [
-        "act-dilution"
+        "act-dilution",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -7093,7 +7099,8 @@
       "published": "2018-08-02",
       "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNSFdVODZQTEJxNllXUWJINFc3WURvRnI1QmpQOW1xT25LRkZ3YVRSYk05WW41U3NoZ01ueXBoWndvNjVTdXZ6cS1YajNSWnNaX2lmLXU0RWU1X3JQNnl5Nk9fVWhLZ2lIVHNWZ2tGZGxIN2txbEdMNmNBdElTc18yTFBmQkVBZ2Vhc3hhOUFTQ09TVnc2VXpIQ0JIVWVhTGJjZ21uMDZn0gGrAUFVX3lxTE93ZjBVd3hGTE5vZzZnY29sZFEzZU1rcDRYN2xZQk1VVk9oMzRkRV9nMUZELUFmMGlMVlVxN2NfaWM3OEg5cTJWYU5hb2hFNF9GcXd1Y3dpRDdDRlMxLW1OZnVwVFVBYnBNR0RlaE9GTnliRzE5eVdoME9NYmk4RXRvRllvRm9yZldCaGtYQWs1QndOT2hVNkZOWjYyZ0lKYVo1RV9VNnMwWnNwWQ?oc=5",
       "queries": [
-        "act-dilution"
+        "act-dilution",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -7285,7 +7292,8 @@
       "published": "2023-07-25",
       "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPMWo5MVk1ZC04RzhQaUpwYjJ5cV9MSTJNMGs1ZXhuOTlkc3kzNDZnMk0wZ1VTbTNQS09mYVBBSGx5VXlpb2tzMkZjVGJSWDFfTzJDZkZiejhGTUE0YUl3Rk5sYkxONjNjcW9hQkdEekNPTE5QYzJKZ1pETkpiMkZZX0VDYy1sVVRRWkUwSlRJNkU2TlFQWWlEYmdWWGtILWowQ0Z0VUtZcUg?oc=5",
       "queries": [
-        "act-false"
+        "act-false",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -7349,7 +7357,8 @@
       "published": "2025-07-24",
       "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPR0d6d2N2cDdDVEl5RnZ0aTZiRE1yNHhDNUg0NUxPQURoZHJYbXN3anBEajNfOVM3QnBYNUxZOWRaVEhfWVM2eGRlbUVpR0NLVFBHaUFXVm5wYUpwYkFUTjJ2aVZ5bmN3cWFhYWR4bTZlcDFYVk5DTF9LTzJaYzQwajBtbHE1cFJ4ald6U1VpYVdBQkM3Skh0ZmNuX2Q3emdJb1ZTbzQycWhybkprb2xuaS1FLTgtQdIBuwFBVV95cUxOck15NmdTakRibGNUbDZpTU82Y1pTcE1sZ0hINUVIVFF6VjFzQjJ5NHFyRmR5X3JFY3ROTFB0YXdZT2pJNnpEUWEtNDhWalFrQ2s5NW1vNm9RVnZVUkFpaXR0ZVd3UlByY19EVVdEaTRKRTNncXZKX3hFTUprOFd4VGZ3bXdOWDJHbUxac0lwTjlEeXZ6Q3pGQmZFbjRaXzZEVFpKdjBxQmJ0VFhKLVZJcm1NanZPdXFLcnBB?oc=5",
       "queries": [
-        "act-false"
+        "act-false",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -13461,7 +13470,8 @@
       "published": "2026-09-23",
       "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQX1JTVDR5NDBPdkVVNlRPeHB4Nkd3VFMzWUo1Z18yVm01Sm9xXzV6T3dVVi1iVXJCNTNXNE5NUGFBNHlkVGZyQ0hoQWV5aDdDNC1TNkJ0VERORFUxdnZMRWNidTE1SWlTaUNTektQQ1doLThYa09BaHphX0ZTSnhoY1JkM0o0dHV6S0NyMTRuR2xhTkRESjU4UDRFVmkxWnJpS0tYd3p3WjJKS1RFQTlpM1JJUnJQTHI4VXhnMjBzaS11bTdGMW1kR2kxYmgxd9IB1gFBVV95cUxQR0lmSko4Y0dyOG14emViY0tXd0h1YWFWYnhZdHZIMWJUaEwzMndEMjgwR0tQVlRaYThIY2ZSVjNWSGJLNXlXS0hiOWIyVW5fbzczSGtfWnEyN1VLdnZDcW1wR0hld1JsWlFDcExFazNTSW0wOHZBdFlDVUl0c2xpU19qbGV1N2xjX2lqNGJSM2lBYUxuQXA3emJzZ0hvR2x0Q2JZdE11dm9SMUpidnYwYW5nb0hYMjVkUFpWUTVxVVVvUlRmRWZKZXB2UE55ZVFxazUxUUZn?oc=5",
       "queries": [
-        "act-general"
+        "act-general",
+        "act-misuse-claim"
       ],
       "indexes": [
         "google"
@@ -18855,7 +18865,8 @@
       "published": "2018-04-14",
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOQUMyNDRLajZyYk56OGpZRDE5T1FlVzFHRUJTQ1J2V1dQbVpDM2hPOEdXdTVRQ0NqM3BQa2hyY25DcTR6NlkzWk9qZ2xoTThDTnQwLWhMaFFjSDJGMnVPMFptaUlWd2VMLW5PZlROaWlhWkFLZkRuN1JsaHdUUUpYU0VaRHVoOTA3QjJvdVFfSnc5ZkN3cDFyWjYyUDBqQko2X0JfbHhieS03Ym8?oc=5",
       "queries": [
-        "act-dilution"
+        "act-dilution",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -19051,7 +19062,8 @@
         "act-registered"
       ],
       "indexes": [
-        "bing"
+        "bing",
+        "google"
       ],
       "firstSeen": "2026-10-15"
     },
@@ -19424,10 +19436,12 @@
       "published": "2026-10-16",
       "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ad27e5607324586a78245c8e7119161&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fdelhi-hc-refuses-to-stay-sc-st-act-probe-against-two-journalists%2far-AA2enG5e&c=17140951746284868887&mkt=en-us",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-general"
       ],
       "indexes": [
-        "bing"
+        "bing",
+        "google"
       ],
       "firstSeen": "2026-10-16"
     },
@@ -20079,6 +20093,344 @@
         "google"
       ],
       "firstSeen": "2026-10-20"
+    },
+    {
+      "id": "legal protections for scheduled castes and scheduled tribes understanding the framework",
+      "headline": "Legal Protections For Scheduled Castes And Scheduled Tribes: Understanding The Framework",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Live Law",
+      "published": "2025-04-16",
+      "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxPaHJ0dkNpWmhkcjY4TDRjb2VLVzlJTGRvZlJkVjQwU2IxRzJpaExNV3dZSjZDajdHeDNPV29qU2hNbkFYU092LWNTUVIwWXlpbnNPYnlwTkJhU3FObTNoMXBnU2NFR1pKRUx0VWRpUEZpLWtWdTctUVd0QmdJclJnaVhjcG5wdVlDTXhVVWJZX29HeThOR0g3UFVmN2J0UkZleFFidlVQdzVMRkVOUkdsVC1JQ2ZING10T2xGZFBPamhDM1h6ZC1pR2pDNUgxU0VqQ2VpRE1HOHR0NWFscjB6SGdyUzZUY1lEelY3Tk5sUmJNQVNRdzdTWF9Na2E0dTjSAYQCQVVfeXFMT1BjTVRsbk15SW1aOEhIcFFnLU5iUFJOTXA1RGIxbnNHQUIzTVJZVnFiejRrb3RXMVRHc3gwRGhhd2FQUkRPNTZaWEFsRjNjU19SWnNxenNBOUlZZUl0VzVFdjlHMWNCcmx1clNFRkdtc0hQeG1qTVlBY0RDZGNULXNVd1BzTWZOcXVPVE5FcHQyQUpWZHdsRlFNNUdVTnB5WWpWbEdYM3p6eVVwTEJTSXZucUlMLTlBU3g0b0RvMVU2a3RHQjNoaG9Tek1GWXhQZHNnRkRUdnF3aWxiU1c0Q252YzlzXzB2ZlJtLWVOUTJVTW9YeUlrWXpLTjNIaUMxLTdSaW0?oc=5",
+      "queries": [
+        "act-general",
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "bar of anticipatory bail under sc st act not applicable on application u s 482 bnss scc ti",
+      "headline": "Bar of anticipatory bail under SC/ST Act not applicable on application u/s 482 BNSS | SCC Times",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "SCC Online",
+      "published": "2025-12-12",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPMEpveE9xSU5sT2hlbFhPay1TeERsYVNsM0lJdjVEdE4ycVotNXU0V3BzbnhYWF93WEV5eEdlSUluQlU3TlBLeWJtMkRJVC1Da29OUThQSW9BQ2sxZEU0RFplU2pEc3pzbE0xc0k1UjVBRnAzWXdUWWNzcDJVMGZWZEkzVkJSQTJwQ2d6ZzYtdWpsMG41MWVXYVJGc2NoejRrc2hqZTRJazNRcjdWQ2Nna0o4aFU3XzZuLUVlRXRYZEtENFloNllQUW9ZaDl2UjdzWVM3c0F4ZFY4elgwYnc?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "sc st act brought to improve conditions of vulnerable class supreme court",
+      "headline": "SC/ST Act Brought To Improve Conditions Of Vulnerable Class: Supreme Court",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "NDTV",
+      "published": "2025-09-02",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQZ0tKWUFodTRRZDFIUjFuVm1UdDF0NGFrWG5mbzRfbm1ZaUdKTks5TGRrRExFTklwbGNadHBLb0ZOeW9tM2xFNUZLbjQxbzJ2cGhwWm1FcUVaLVdIejVYSWxkdmRBMVRveXhYY2xiWVhhUEZUSnBmb1hZbzdEWV8yTEdTRGhvTEZaTEs5d29YS1NSSXhwRmlRUkh5Z1B6c0VvQTVlVjMtTkJBdUVoNy13MWhQNNIBuwFBVV95cUxNUjBSaVlvbkExM1pWTVdIank3Qmp0UUU3NHV2UXdnUmhGM1FFemVpUlVLZHpiSGVZYmtjZFFuRW43VmlHX0VBVTRwSXhEc3BOeWJuUWpiWU5uSHFacUdjRHZnNHlRR3puZUEyaktnc0dsU0JnRTFmSEVnZHBsX3loS1pRMW54RFVSZ2xZcndla1B5RmZJWFFBYmRha25VeFhReVV3QU1Id0lSMUxkU3VHTjhkOExIbDRweUJj?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "is caste name calling not an offence under the sc st act",
+      "headline": "Is Caste name calling not an offence under the SC/ST Act?",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Citizens for Justice and Peace | CJP",
+      "published": "2023-03-01",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQeU9PWG1CZzJjdUZXZ2NWMWtWemozbVJVenpVSDlYNXZVanFTbVJmVWhLdHY4SFBROU5FRklLVnhzWFhRZ2syVl9yODhVb2RWV1RJMVFDTERYdGNlUzRDcFFjSU8yX3E4TkVoOFJpVk5VWUxud3BPWTl6dHlzdmlkaDF30gGHAUFVX3lxTE1IUEczMHp6R3gyVHFhMF81SmRIOGZocXZBTWNWNTFBaXU2TFRJRzUySldWZVBtTnJHU0RmYkRucXdmazNQQ0x2V05UVDB5TXJaai0zX2NpX1Z6NEdhYzhhVk1yVVV2bFd6RVFwNzZRWkNnR1NjMEItU3Z1MXd3WXQwdWRycHN1bw?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "sc st act anticipatory bail supreme court s big ruling explained",
+      "headline": "SC/ST Act & Anticipatory Bail: Supreme Court’s Big Ruling Explained",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawBeat",
+      "published": "2025-09-03",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOWFFJWWozM1hMOUxZNU5OcE8zek5OZWY5MXA1ZmdINFdHRlU5VVA1Z3ZtdWdEQ3dreDFzRFhLNFBfUmFtUEhqY2o5d2lvaG5zZ1BQcFo0YjRzOHYzbmNRSDVyZHBOX0RPVm9DSDRXTlkzSmZuZlB2ZllhdHZRaHZobGV1Q1FReHVDX0x4M3VWX0xITkVaNE9Tdm9VQVMwM0wxMDdTaFcxN0lJTnBKY3VHMnhlWdIBuAFBVV95cUxOSkF1Ul9hRWxVN1pvRDBuUE5rcFo2THJucm4tNVFaUm5ZQzNtNTNNYjZXMV84eXBkeS1kQUhJcEE2em5vX0ViaGFFRmRJWWNjSjNncU5NbTByaHlWeUdES0VnODV2YU5lVXRBY2tWWnloT3A4ejhzcmpiNU5TQ2xyOHdZVFg2bUQyckdBb0FYRU51V3JsTVl2LTlaVmNBZWtsY2FnLXROcHVtX21PWU5pZXd5cVZZUlM4?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "what does any place within public view under sc st act mean",
+      "headline": "What Does ‘Any Place Within Public View’ Under SC/ST Act Mean?",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "NewsClick",
+      "published": "2022-07-15",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOYlZNTXdlQlRNNWROMEc3VHpPb1U0SUZOeDRDYzRsMUppUXFCYzZweFNPQldhSWpFeXc4SF9hb2JEVHMxTlBISFgyMks2ZHp0QzBFc2I3OFVVV2ZCaDM2NzZWYUJTM2tkNzFLMzBUYmZ6SGhPSGszM2hPaUFWRlNpbXNJOGVFVUlnSnAtVWxWaFpkLW0xT3BxaDVlUdIBoAFBVV95cUxQVkx0OS1scV9MRWROOWlIU1l2VnJDX2dpVC1nZUt2MTZYOXY0S3VockUzeE5CUmg3NmNRSEFLMG9tWUZlTW40M3lPLS00cjY5T3dSVkQ2SlVKZ0doYnR0NGNuYnF6aFpLZld2WWNseGhndjhPWHY5OGRBMTh6U3pveWhXMUhIaFROWEV0cDJVSEY0eXVYaENYRjNMWXl0NVBn?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "9 dead as dalit protests over sc st act rock north india",
+      "headline": "9 dead as Dalit protests over SC/ST Act rock north India",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Hindu",
+      "published": "2018-04-02",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNS0c1TUowY2dOaDFyMW43VVQ1aFVtZkFZeFFoTjNUaDNJcmtwYXpIRmFWeGEzWW9waGQzNmVMVktxMDk4OExHR05xLV9Xc1VheG1Cc2R4S3ptQXAzNHNxRmdMQ28xZHRBLWplNXhiREo2RldHM1lrYTVQTlFncDlKdTNsbzlxUldQbnh1aVVuTmgtZjdiTlA3R3RqakNDdVhRR1g2eFhUV1kxT3FPM3YwRUtBOWM3LVNqUEHSAcABQVVfeXFMTlNPRE1SQlVhYTNpd0J6X296UklZaGVnMVdNZ2g1dTdYUzdzTC1kWlh2MXNZdWFaN0hIUVloN0VlTUx3ZzEwWk95bVJBZUIwNjVBano2UTZkbFN1QWF3dk5Jb2pEekZqSG9laDVFeEVHX1NmSmVQVDNfSXpySGdPYzc4NmoydlBXUlN6cGdEV05EdE1BaEpSVHRnUDZRS2lPSFdMa3VGUmtVdWZjdEItSzVXREdTdVA0aDZEZ0pEbVVK?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "all insults not offence under sc st act supreme court",
+      "headline": "All insults not offence under SC/ST Act: Supreme Court",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Hindu",
+      "published": "2020-11-05",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPY2VyVktGbzhvTnlHUWtOSzdoSzlsNUt2a1NzRlZ6Zlh0Zzh2TTMya1ZPQ0xEb1FGRGZFSDRBclJGaE5DajhBcFdRN2Z1RXdmalBXSXFCNk05X1pQdnU1T2lMMnlGUzA1dDhqT2x0LXNScnV6a0VxanFvOTFmR21lZmFGRTN2NE5yeDIxc1FCSjJacW5xbXhubDJreEVyaWlBR21lZklTSWRUSkRsYnRsMEpqQ0R1VjZPb0JsUjl2MmkxQnFmR3hmV3dVcFdSZTNrc1BwTENqLW9PVTB6Mml0YWZzemRldDjSAe4BQVVfeXFMT0lrcVpjS3dCaUswQzdONnYxeU5mcDVLWE9uak9LNFZ2alB1Mjh1UF9ZYTNBcE94VW5LWGx6RGhzY3BzeHF4dmx0MWcta05QTkQtWmJORUMxNnhrWWZ5dVdNQnR3VVo5eFVjMUFIc1NIMkdQOXhPYS1jMVlNWGk0dllqY1A2LW5uRk1XNTgweGVaSDV3T1BvSGJMQU5acDRWdExpRHFzYnJ5MlZfM2NzYjBNRmN2b2UyS2tjdElaMXdQX1VWTUV0VzFCTVJCWmhuaUVpMXphVUhMdGExSUhPYldRZGxoU0E0cWRZRE0zdw?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "sc st atrocities act has become a means to blackmail citizens public servants supreme cour",
+      "headline": "SC/ST Atrocities Act has become a means to blackmail citizens, public servants: Supreme Court",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "The Hindu",
+      "published": "2018-03-20",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOcEFWM29WT0NBTWZDbUd0WXA5VDZRd3NVQXRhaWdvREJ1Z2w0NnVJMGw2ZFMwQ0VtbjdpMXhiSkJOUU0xSTVuQ1dnTzNDV3FOWlEwLUE2VjNQcVVYQ1QwQmFlNHJjYXVaMG03eEI4cHExM0p5OUlEVy12aHdDcUstZmJadV9uNzBXS2ZzRVJhZEczY3Zza0pFOWptdnh6dEVlYkNvcE1XaDRSd2EzYXd3emhINzBsZGFUS0xWbXhLQU05SWNJTzhyS3VHSzFZSjBrV2pWV9IB2wFBVV95cUxQOFUxVlJ1azNIN2VUZzFfUkx0TGVVR1lrME9YQW1LNDZtVUIxbmRmT2x0Q3dBSmk0ZmtOdS1neVNrNzljYkxBYmF3WmdGaTg1MXJmeWdDZ054eGxiS2g5amt6NXUyMDgxTmZ4Q19ieU5JUDJUSWVDNVQ4Tk5PckpXUXVucnpULWNyTG1PYVNZVDJ2OGl5WUp6LXo3bTZjRkUxajlqSS03ZHU5QUctSnI2cmU2U1NBTW5YQ1BHN3NDN2tab1hkbjNNUEp6LWQ4UDNkQ1BKcnNJNGlIaWM?oc=5",
+      "queries": [
+        "act-general",
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "police can t refuse to register fir on land dispossession complaints by sc st community by",
+      "headline": "Police Can't Refuse To Register FIR On Land Dispossession Complaints By SC/ST Community By Terming It As...",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Live Law",
+      "published": "2025-11-24",
+      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOankyb2JwdjdlX2k4eTdCdy1kNk9ZN0NkeHhlSnl3QnR3cmltcWJ3X2JvNWR1djhLdmc3RGo3WjBSeWt3cUJ0bGVkRGtENUJndHV4bDNsOVdwd1l3NWVjMnluMkZFU29QdWJQT0ZxRHFvRms1X2s5M3pDWHpYZk9OLUN4Sm5hdlZqVzR4cE84eU5KQnA1SzdMYTdQVS16Q1pPTkFUOWc0Y2paMHg0WmlYcDlNYW8tVEc3TjhQbFJGLV9qYk5lZVFrY3RzTm92SjBfNlJDRlk1bUN6OXMyWUNwWlFBUdIB6AFBVV95cUxNRUdBSkxibExtV3U5bDF1ZHdPUjhpMFVxM0I1cEtxeVBuanBQTUNKSHE4TnFSMjMxMVhnby1WbGNocVhiZ0R4ampRWlE4YThHV1k3RG9kbDl5ZjhMU2NUOGZ6VGRHYjZ4bjRGckItQVV1dzFlNHNQM2pRTDZrSjlacUtqbkRrVDVMTGZ4YkZZb1IwZE1hUUdtNDZwRTY2dGxBZWNZb3J2eDAwWjU4UkJyZVBnbkp1NjM2SFRKTWpyWFhWRl92b1czS0R4TURVaUtaLW9lOEJzMDJfVE55VWVWTmtOVmtsQlpZ?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "every sc st complaint must lead to registration of fir without any preliminary inquiry ord",
+      "headline": "Every SC/ST complaint must lead to registration of FIR without any preliminary inquiry, orders Madras High Court",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Hindu",
+      "published": "2025-07-24",
+      "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQV21EMENheXlJdlhYQTByaWhJT3BKd3lYcmoyenVNdC1iWEhtejJoS0hFQl9yZjYydnFkdU1fRzVnaDgzWWg1TF9Ld2x6V2l0TmQwNkRyMkJSODlTcjNGY2wtbVhqSm5fN28zb3VNYl9QblFESXRMRTRkUWVMWFlPaVg2NUxQbHJrTjNLNjNETXo3SnVxdGdxMHhDUy1EYjA3U1ZKR3VNNHpOYkt0dEhabkZwUjlXaElRQWZfVmhDcHpYclRzS0NBWDdpcUxFV0hPRUFRX2t1U29tdnQ5U1FoZFU2MjNGZkw4SF9aU2xjMXJGTGZUeHhDTlJzQUh3S1BObnprSHhfcWZ1SDhD0gGTAkFVX3lxTE9oWG4yUUU0N092Z3IzWVF1SldRajdXTmdvS25WN2NlRVhWTjZKWjBoMVMzVElTSlBDZ1JSU1h1MnJPcjZkM0ZOODJ0dmViZWszVWtlV3hkTE9GOTZtMDB5WWNzZFFxTGtFVGVpcHRQZnVnWkJsd2FNQWEwZE1ITGZhNjB3VFhNNGo3R2IzSVlLQ19obndDMDBZTlpieVJ3dnpfUV9OYXRUcGdSV1BJZ2xoQ2RlV1pCelNjVnJBZzBuTVFEcnFjWWZKaU56cndpa09USWx6UFBISTNhTWR6LWdSVTNNaHdRbzMzUW1tcHdBUWs1TVVwdkd3NVhGUzBHSHlmOWd5MXo2Q0hzdzBVUGlheTFR?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "s 18 1 a sc st act no preliminary enquiry before registration of fir if complaint disclose",
+      "headline": "[S.18(1)(a) SC/ST Act] No Preliminary Enquiry Before Registration Of FIR If Complaint Discloses...",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Live Law",
+      "published": "2025-07-26",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQbnNqTEpMU25hNmRFRGJPMlBTU1FfN2FiWVJCVEdNbVJEYWhxek5CV0tNdVBUelIzSWZucVpZU1ZzMHlvQWlNSXI3SGkyMUlBdmpXV245U1dZbkhoaHNOZjlWWWRwdWdhNXdDXzZTZ0JoRUZsMUZfdUtRVDJZY253WUxIdHhmV2RKYUthV0Y5NWFacmphTHVjdnhBNXNXMXozR0VsbVFWRGItdEFveXVsMkliMUF0cWlnU0QxenZLeUJNbzdYWm5mTdIBzgFBVV95cUxQM1h2VXZleFV4NVVaLUpiczZIVjlvWW1melc1NExuVWQzZHVhU2JXS0k1YV9yNVE3YlZOX0wyd2t5MHpVUDNSVkVXMkstMm04WDBjdmxJY1gzVUh6WTBBYTlZOXNnbmlsZXJTS0RjNFNBOUI0WFBFdzBJazRLZWlEUzdwZGR0S0g4T1FTQzVGU3Q0NEVwNGRkekhJOXhnaVB4cmhaT281ZGR0ZEdRM1BWeUUwNWM3UUpXaWRYck5xY25IRzRfWEN0aGZKUWZldw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "ensure strict compliance with sc st act rules time bound filing of final report in all cas",
+      "headline": "Ensure Strict Compliance With SC/ST Act & Rules, Time-Bound Filing Of Final Report In All Cases: Madras...",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Verdictum",
+      "published": "2025-07-26",
+      "url": "https://news.google.com/rss/articles/CBMiqwJBVV95cUxPeXhtdGlzMWRWeEZ3akZnSjRwZVlFVzhQUkV5TzUyVW5nSzBIaFAwbldidDhlUFhsejFpZWsxTnpTZ28tVUc1aGMzTm1iOVhSOXNQZEFzb2I5NDI5Tkd2d2pPRGpvWlRnSGJxSlVGZVBBenI0ZlJzYUFNN3V2V21wUGVQTHZjR25iTXYwQzdjeEEtSVV5YTNGZWc3UVRwQ1gyb05uLUtLVkI3aFlPcXV6LVNYcC0zcHRhZUFiMDUxQVcwMTRoamZIZHhnd2N0YnZ4c25YSl84SXllTWtScTJSaU94QjlMUm93TzdkYjNmaDV3RHhibEZYRFpRMHdKX3BSQkpaNkpWeFZBTXJKZWg2clJXR1JQa0xKRHNpaS02RVlITmtGTVpsMkxGMNIBsAJBVV95cUxPcHFpWUNhTXBQUl9fd3l4bU40OWdhaUlkWjFGbmxHVmVOSmpTQlpkS3FweE53QXBNdGE2RjlwZjd6ZkdhNzB0c2NPdTA2UTltSVlNRThXQTk5VnVTdlNKQzdlR0dVWVY4aFlJdWY3TTUzZXhxdmM1U3F1YU00cXZRLXBaZGlDN2hZVVVSVXRMUS1rLTEwTkVTUUQzS1VnRUpYbjAtZl9oaXR1bGRPcFR2TjZSZHNoTVdNendrOHRacXdZYlpnTUFEdVZTYnZsSTZGYzczb2J3anFmNWhRb2FYcnA1VjYtek1yV1RMdnNCUFFtb3FjZ1RyNWtpOGVRQjJOSmVSTDEwcEk0LV9YdExEVGI2eXlaMFhYZzlnMmR4VGxrakpHSkxnUWpWbl93eklU?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "all proceedings under sc st prevention of atrocities act including those seeking registrat",
+      "headline": "All Proceedings Under SC-ST (Prevention Of Atrocities) Act Including Those Seeking Registration Of FIR...",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Verdictum",
+      "published": "2024-09-05",
+      "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPR0xMMlpKbXQtYUZYak1VY0lwLVNvbXgyODV3c0dIWnVuOUhlcU5hcUtER3VPM0RRdDRYWGxqdWJLdWR0M2IwZ0VBUG5nOV85dEJJOWRoSkkzVWNHMmU5SjF2ZnJQVUlvSWN1R3EwcVhIdnctVmQ2RWMyZlFwSlNlZDQ0OU01ZVVFRExtSk9KNnphUGVYZW5TVW41NDdwb1lTeWtEV01ra1BNVGI0LWR0Nzc0dFJDMEFMeG1vRUVrSkFCbEtqYXVCYmdPT0s1SlhCREZmYWpSaGxVcllGMGxRSko3MnV4RV9fVVZlOElCTV9jd9IB9wFBVV95cUxPdjZpNnd6dVlxY0JKUHBUOUE2a3VSNTN4eUl4ZEs5M2RNYlFob3dDWUViUlpPN0o2cy1naXN5VXJNWHJDWGdfUTlCY3lnc2RKNkQ1QU91dTJ2NzJONzhfenlOd2JQMTFpcGh3cTUyOGxQVFhuOWNyYmNQOEZQZzN4UHh0ZE9wdkRfSmNXWlFVQXZhcXhrOUVpU2swYXlNeW5VU1hOb05tM3N0cWZPTFlVRnFkal9KcWVrakVDaWNqbmJ5YUtzTE56WTJ5MjRQbHFCdVM3U0hsSVFVc29KSi1LQTJiM0d0ZjI4U1A2ci1fVzBscmdQaTdZ?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "no mention of accused persons awareness of caste at time of alleged incident even otherwis",
+      "headline": "‘No mention of accused persons awareness of caste at time of alleged incident; even otherwise remarks not made in public place’: P&H HC quashes SC/ST Act case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "SCC Online",
+      "published": "2024-12-03",
+      "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNdk81cTdIVkxCUHJ4eEhqU0FnVmhETWo3QWVMWGFPekJvbGh2aHYyNnd2TFhLWFFTV2NNWVpJWTdsTDJGOXdQSDRuZi1QMlZ3dGhBVTdqc1hKU2FyZVNoaURCbFEtRVFVNmFNY1ZHQmJRYnNZcjljUGJPeFVzSVVpWjJUWmZjYVJHdFlvbG1VX0E0Mnp2LVM5c2pZanZrdjN0aDVPRXBOZGVZSV83VWRSbnJlUkN4Qy1Fdk12ZnUtbzBqd2lybWlDRFZLU3hSY3loZW5ObkpCTG04Vk1lUFdYUS1QdGNUVGFCaWJnZ0ptMVV4dEU?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "sc st act no bar on anticipatory bail unless prima facie offence is made out supreme court",
+      "headline": "SC/ST Act | No Bar On Anticipatory Bail Unless Prima Facie Offence Is Made Out: Supreme Court",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Live Law",
+      "published": "2024-08-23",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPSndyQlRBdlpQaGIyN1FkNko2Um5KLUFIcnNKekpHVElUMFVfc3dGWmozNEdBZ3J5U1FDN3lxcmwwQXd1U1lSWDU4T1FHSVZBYk9zR0lselVzUjI5a3hEaGxnMkNVdG5Ea2R0blJWYzRCeGp5THNibGlpVmdEV1Mzb0h0anNHNl94RjB1NWxhU1BlT0hKZWFGNkVoaU91NWJBZkVfOXM1TGtTUUpPMnpqdEhUcUVTaU44c2wzS25oZ2xaSnd4RXNnaER6b9IB0AFBVV95cUxOUUtqNVNFT3pneDd3UER1QjBMRTJadWFFR21rcENfdHhENzNTWmcwck1oQ21rOGJuY0YtVkpOSHJpYkJJYXBvaWd1RlhSeFRMN0JQS3c2TkZCNVp0YzdYcE1NckxfbWw3ZnJ2Rk5xZFA4d1NZNUZzSnBGWHVJQmM4b3JGaHIzbldUNEJ1OEhwa2Q4SkRUWng5YklCaTVFdDZLNWp2ZXFWSXlvbE5PZnVyTzRoNlZ6WDMxWllNZi1yRndiWjEzd0t5R0k5aW1LRFlL?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "sc st act desirable to outline caste related utterances in fir or chargesheet before subje",
+      "headline": "SC/ST Act | Desirable To Outline Caste Related Utterances In FIR Or Chargesheet Before Subjecting Accused ...",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Live Law",
+      "published": "2023-05-26",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOZDVBQTczOXNsVDV0aVFURzVMc2htNFR2RzhNRUgxNkxGY0NCQ2d3QzdjcTlnRXVDT2tQMmFseHNaWmZJQW5Eb3RuM2dDQnV2RjN6cnVEZnhPeTl1N2JxbDZ6MUJraDg2UzJMbEh0QmNaSHp0UUxqcjFTQXVSM0NyWEpPcHVicGtWRGVaY3FJRVE0TFIwVWxPM3hqRUhwZ3YtenVnTUc4eWN3WlFYaUxjTFB3TkhlM09xSUw5azhIOHBmalBRVnpra2I3cXBMNDDSAdQBQVVfeXFMTVlBdmVYSDVCbS13dlN6N082ckxENUJqX1ZoWjE4SVlTQjliQ0ZlTjlkVlAxTFVwNU5QeXVvYmd5TDFGMS14dlFkcldKSEliNG5BaFFHZXpWVnFtUmRULWFhdWtTNVZRV1liMmFVSHJDNFZJRlV1MHo3RXpLS2dGdVlmWWRXN1JVTGliOHM5N0xwVnVxTmZLdy1BMlY3SnBOTGNzZ3RxWXdUYTlhTXM0VjhXbjNlaksyNFdTTm93N3NPQ0NEb3FoajdzZHNkc2xucXpmZVY?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "sc st act misuse don t register fir at 3rd party s instance sans opinion of district attor",
+      "headline": "SC/ST Act Misuse- Don't Register FIR At 3rd Party's Instance Sans Opinion Of District Attorney (Legal):...",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "Live Law",
+      "published": "2021-10-18",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNYXRJXzRBTk1IYU54V1RieldkLWZVREJZZHZVUWR0WmtHQ0lTVW9fcUZsT050ZTVKQmtZcmdnTnRHQlpwYzhVdjVseDZOZXBTdHBENUtSVVlfSnB3UnV5aUpRUFFoZG5ZNVBfNEQ4ekJNUU9aV3RiWUloRlNCVEdvQ2JYNk96LU1jeG85dlNIemFHbEFRSHIybXVzS2czeF9obDFaLXNWWDNuSTRGYzk5UmU0NzVuMGFyVUNMcFhJQlB2YVVjRlY0am1ZcVFmUk9qT3l0WU5FTFZnZklfVW1xZkZB0gHnAUFVX3lxTE5xZC0zTUx6WWV4aWpPSlVQREtzUDFnMHJKMWZRN3BreUI5N1poXzNmMkdrcENWQU1GT1o2aS0tV1ZfcXY1WlZ3YzkzTWhfTWRRcWNNTndoOUVrb3ZqbkNMNlFIamVHeW5Hd3hVUmFHNnVaWjVPY0ZjZDVEUFN0dUZfdk1TV2Q2bjBldkhUV3ZNdUh5ck5CMUt5eXBtd1I1a1Jja3hSS0d2cjBlX19GNW9JN1J1X1U4Z28zbVMzVHJnZnBqaHdmSWt2cHBuVFc3UnBmLTN2ZVdCdklVdGxGZGxERTg3WUVvOA?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "preliminary enquiry not a must for every complaint under sc st act says supreme court",
+      "headline": "Preliminary enquiry not a must for every complaint under SC/ST Act, says Supreme Court",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Hindu",
+      "published": "2018-05-03",
+      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNV0xKTTB0bkV5UmVwbENpcFY0UzloVHNxLUlLS2p1bG9LWVlIQVdmOWgxcUY4dkhQWFVSWFlrWG1rSHg0bWozdF9SRmV4X2FhaERfb0lKX2JEeEJyVnoyX3lsZ2JoM1daSGRyOGV5TjV2b2ZwQzQwTUJlUEw4dkNYNVBCSzRjNU04cmFGVjdNbFVhNHRobHprcXd2RXUyU04xTDVlcGY3eDNaS0hIRnpmTVhDVi01b1RGQTdZaHJEYzhEWVBGNllha01SNlFFNExvYm5QS0NtYjZFTnd6OE84dEpQTnFBaWhUR3fSAfABQVVfeXFMTVV5V3ctUHp5VnpPa0NsdGpCQTBPTXk0TFQ4QThFOGJ6X2ZvUEkwZktzQkR0bGcwdFctQ1A4bjR6bmVqTk9rRjdMdlB0WTk0UGRsTXFOV0xsUXpidFE3Ql9DdGVQOHpZcEhzRVJZVGtBakZSakt6cGZDeHUwenQ4OGtYclFESnF2YXJHb0hUa3o0VFFxa3JwSE1jNXMzRHIwVkw1UkFfQjBmdklaQzhrVk9jRVNBRFk3LUtyUk5tUTIydmVidlZqaE82RzgyQTBsaVBPWnZZbVBSTlF0bXJIMGNUNEF4S2hoOFhMTGVCNUd3?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "aaj tak tv anchor sudhir chaudhary who spent time in tihar jail in extortion case now book",
+      "headline": "Aaj Tak TV anchor Sudhir Chaudhary, who spent time in Tihar jail in extortion case, now booked under SC/ST Act for mocking tribal community",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "JantaKaReporter",
+      "published": "2024-02-02",
+      "url": "https://news.google.com/rss/articles/CBMimwJBVV95cUxPNjdrZ1ROajZ4a29tdy1sZFo0STZ5MlVMTEQxbnNyT2JQbEZwcnptaWtpRXgxRW04M0tvQUppV0s0RVE2OVdmUXNaY2c5dHZYeUQ4YWpQaVhtWUJmMmcydTVXVkhQV1BYRGRhVU9NSUtvaVRBX1NOT2hPbGIweEVuSEdGb1dtLVpvZUU2aUJFWnR2Z2tFaEhUMlpXZXVvaEkyTktaa2hhVnNDRmJPM1pNNE5DOW0yQ2EzRG9NNjk2UEdqZXlLRGtmVG14ZU9vU3NLaW00ZndUdlJlb2hveEpoQ28tSlpwb2pLdEVONGJ3aHpEdW5YcHpPYW43cTE5cEFwaExYWG1uSlZHazBqRHhoUm0wM2RsYl93T01z?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "16 year old dalit boy allegedly stripped and beaten for drinking water in kanpur",
+      "headline": "16-Year-Old Dalit Boy Allegedly Stripped And Beaten For Drinking Water In Kanpur",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Brut",
+      "published": "2026-06-02",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNMXZlTkZOM0xzcURvQzdCRXZ3dk1UOVN5R3BOYmJjWFM2bmRZd2o2SjR3YkdUWVJOOEFNOEtjWFdJTXNFelVZYVhfMTg0eWFBYkxVMjlRVkg4WmxDRmNCc3NIM0h2TzdNMU1abTFHQ29GRktXQWwtbnotRUpRUG5rT3NrUC14anI0RTl5SHZjbV9xNW9kT2ptVDRhTzhLSUQ3N1d4QzdGdV9PMTZpODRDTFpucHAxeWFPeEs2bUNsaUpjOTdkbWxGVA?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
     }
   ]
 }
