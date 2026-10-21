@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-21T05:22:37.999Z",
+  "builtAt": "2026-10-21T14:10:45.499Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1222,
-    "addedThisRun": 21,
-    "carriedFromEarlierRuns": 1201,
-    "withOutlet": 1141,
+    "items": 1224,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1222,
+    "withOutlet": 1143,
     "bySubject": {
-      "scst": 829,
+      "scst": 831,
       "pmshri": 393
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 282
+    "offSubjectDropped": 277
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 601
+      "n": 603
     },
     {
       "key": "use",
@@ -69,12 +69,12 @@
       "n": 46
     },
     {
-      "key": "Hindustan Times",
+      "key": "India Today",
       "n": 31
     },
     {
-      "key": "India Today",
-      "n": 30
+      "key": "Hindustan Times",
+      "n": 31
     },
     {
       "key": "LawBeat",
@@ -137,16 +137,16 @@
       "n": 12
     },
     {
+      "key": "Telegraph India",
+      "n": 12
+    },
+    {
       "key": "Court Book",
       "n": 12
     },
     {
       "key": "SabrangIndia",
       "n": 12
-    },
-    {
-      "key": "Telegraph India",
-      "n": 11
     },
     {
       "key": "The News Mill",
@@ -295,30 +295,30 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 46,
+      "google": 100,
       "bing": 0,
-      "kept": 9,
-      "offSubject": 1
+      "kept": 1,
+      "offSubject": 7
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 57,
+      "google": 100,
       "bing": 6,
-      "kept": 11,
-      "offSubject": 7
+      "kept": 0,
+      "offSubject": 13
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 29,
       "bing": 0,
       "kept": 0,
-      "offSubject": 42
+      "offSubject": 7
     },
     {
       "id": "act-atrocity",
@@ -327,7 +327,7 @@
       "expect": "use",
       "google": 51,
       "bing": 5,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -335,10 +335,10 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 47,
+      "google": 48,
       "bing": 0,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 15
     },
     {
       "id": "act-pendency",
@@ -355,10 +355,10 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 100,
+      "google": 97,
       "bing": 1,
       "kept": 0,
-      "offSubject": 47
+      "offSubject": 46
     },
     {
       "id": "act-hostile",
@@ -375,20 +375,20 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 45,
+      "google": 48,
       "bing": 2,
-      "kept": 0,
-      "offSubject": 7
+      "kept": 1,
+      "offSubject": 8
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 25,
+      "google": 17,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 0
     },
     {
       "id": "act-false",
@@ -398,7 +398,7 @@
       "google": 50,
       "bing": 1,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 15
     },
     {
       "id": "act-fabricated",
@@ -418,7 +418,7 @@
       "google": 100,
       "bing": 12,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "shri-sanctioned",
@@ -435,20 +435,20 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 10,
+      "google": 68,
       "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 22
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 52,
+      "google": 53,
       "bing": 3,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 14
     },
     {
       "id": "shri-mou",
@@ -465,20 +465,20 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 30,
+      "google": 29,
       "bing": 2,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 16
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 52,
+      "google": 53,
       "bing": 4,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 12
     },
     {
       "id": "shri-criticism",
@@ -488,7 +488,7 @@
       "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 33
     }
   ],
   "items": [
@@ -685,7 +685,8 @@
       "published": "2026-09-12",
       "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNeF9HWFRZWjRtNG1udXdhYWs2Z0FUNndyN285Qy1nY2pTLWVJaHdaRFpIUHd3LWhVZU8wQzZFV3pBYUtTdHRyNW4yakw0dnQ4QkFZNmpQQ1JXYTQ5WEtGRjZiV0V2WG1IOVlrR2pCSW9IYXNHNDgxZmZkUXBucEMxTnJzbG1SbHBMNDJMMjZhQzh5TzBpcHZPS2FGdkFLYjNVb0VicmxpWE1BY0pEdTExYUNjdEo3OGZQWWI2SHc2MjJPdjI0YmVRRDNrakpweXU5eXdqbnd2M2RlZlBO0gHiAUFVX3lxTFB4bWthcE9qVlIxQzJ3aGxYTWpUSWZaZXl1UXIya0VyTEhCWlN5djNwaUliNTNhOW5LTmdCWjl3c1VoZmw1U3NhZU8tc1cyYXplNWg2d1hmU1JGV05DanFkdzgtTS1BOVhZdlZzOVNBVFkxaFp1YjJqTnVldWpLeUViVTFwRGppUko4VF9UZW9XOWwxRmFwS2t4VWFtNnBYN1ZaQXFFSFpTRWRUR0RkTWI4RllLWUlVeEFQbFBxOEhtNVJFUTg3MlFxYWRRcnl0RzNPUFpiQXF0SmFBQlViOHZ5aGc?oc=5",
       "queries": [
-        "act-general"
+        "act-general",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -701,7 +702,8 @@
       "published": "2026-08-31",
       "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQWnhfUG1kYXl5TDY2RWxVS2hKeFQ4R1drTXRXUmtjZlJCYUJCMWR5dlY3ZXhLUWtpTlIyR0F0NnI5NHUyc3VYWGtmQ1BaVmJQT21SMmFLVHF0SmVjUXgyT09sMEpFT0k5MGRuY1dPU1lKNGxaN2daTFZ5QzlQV05tLW55aGNFNlRJSzZHQU1qQTA2VkJXQ3BfaHozdHppWTlmYWtUNDhYalpRQjRIb3lsWDV0X1d1dFhha2lN0gHAAUFVX3lxTFBRZDhZX2E3dlZZaG9CbGpka3dCWGJXem5BdnU4Sy1kTTZNVWhrSEhLdUtkWkdjSHJGYThNS1Zmdnk1OFI4TGNqOURybU1KS3o1NzJWbFZlQ1libE91M29VVlN2U3JJNkF2NnU3THd6Z1ppZW52eGNrZEhmdEJSaEZHU1RPUDVvenJOdGotd29GZDJpd3NXR3ZhN1pvWUtaMHhmMnJha1d6Q19kS2J4WDEtcTNHZnpUeTEyYTZTbFFEVg?oc=5",
       "queries": [
-        "act-general"
+        "act-general",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -2602,7 +2604,8 @@
       "published": "2026-08-30",
       "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxObDJpMUVXNktyaEJlTnp3RFBZNFpFWXBFU055MzNKYzRvNWxwcUZmOGZRdEIyeW5wc241eVlLVGd5SlMtTjNiRVFmc3lSRVdFamd2Q3JheXREZWFTT3lfR0kyUnFMSmNobnh6RUpaVm9saTBXeGtpeTdxalByQ0EyaUpSV1Zoc3dubEh5RGlhc0x2Q1o0SkNtUUJwSllFdzNuNzR6QUpxc29FZHd1VEczVFoyM1A2R1hES0FPYUhYNXJBdUxkNjNBQ0hlOGticHRnLUJRM29JVVAxMHlza3cyNW9rRjFVQdIB8wFBVV95cUxNNUZBc3d4d3V4TDNyai1Hb3lhQi1rUTZCNWtaSEtSTW8xTzJkSjB0SnB4dnE2amFPdmZ2bWFIR041elBoN2tzRzZ5UzVyUjVTT2FhY1BBUndsWVpwZ09JUVAyM2RGVi1hUTRxVjNsM0w2QklkTXVhNHRzREVWLU85SERFM2NFdXFCbUNvb1FuOHF5WHJiNTZnWG5fSUM0bm5na25iM3Z6NVN2cDJfY3RTZGdnMy1WekFfdEN6dVd3WGxZNHBnblRVR3pkcm1sb3d3U2tzenRvWGwzME91dzhlTzc4VWZJang5X3hvTHZfZlJ5ZjQ?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -4921,7 +4924,8 @@
       "published": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOLURjLWxSNGZwM3JHZU5SeEdOZFdscHdha0ZBQjJ1NFQxV0NuSjVDVXRvOG5za2UzYmhLazk0S0t4TEhfSXFyQjFOYjlBMFJISEFMTDlUTGJEcm5WV3hyQ1ZDQXZVdGNnMVN5YlBOd1RLYmFsNklSRjU2cDliRndPbmk0bmhYM2dtYzhlUHpwSEVxbWk5NjRQTzBrenQ3M2RpN1RKcEIzRXRXUl9ZMEhGT3FPZ29ZS0hlSUHSAb8BQVVfeXFMUFdKOFJ4Z2tPblFXSnVQNEtPZlZpLVNwZHIzNmpWRnUwMktadG1iOE92NmNueUVkSTdZRndFX3JqeFVib0VxVGlMNExXdGJsc2dIQ2pjd0x0bTlzWGtXeks1WHNfa0JKNHhBZVBLWlo1a2xCd0lyM3RqTHQ5UHVtdnJVSG1oOGY4YWI3ZzU1Q04teDJ4dEp0TGJBalFBbDJWbmNyTmxSczh6SG1KQ1hxaXRpVktuNnozN3VENGwyMjQ?oc=5",
       "queries": [
-        "act-compensation"
+        "act-compensation",
+        "act-registered"
       ],
       "indexes": [
         "google",
@@ -12884,7 +12888,8 @@
       "published": "2026-09-22",
       "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPTnA2Tjh2cXZmM1NJN3lXV1FjT0dybGxUbFVLZWtwNlVKdGh2WGxFd1V5MkRnNzVleUt0a3ZoZmUtM1R5dkVpWFZlcWNHcWZBdGhGWU9mZ2VrT2RzRzhRS250YUZBUkVPTmJRc2JnV2NKNU9yT2xLWTdfS2VfVk43TlpPTTRHOFRLWVBtZ29hTEhjUWJoaFJfUkEzUTVEaDEwa0o3TUY2MWVQUTNZbV9sM3FDamd2SDlr0gG_AUFVX3lxTE9hX0stS2cxLW1wLWJ3U3JIZklHZmhJd25LLTZCM3hPVHMwR3BiQVlKRklHLWJ0VWZTNE9DenVFS0hZaUlmMENYTTZCaDhLODVWUlczektHQW9HUGh4VkhmQWcwajhmc21sMjlwZEpoWENTeGw0RWVfSkR2d05IS1RTZ2xrWVpabkdaT3h3VnNtQzkzclRFVGdDcm9GakVPM0tCYjFIY00zblNtcjZyVWNEeFAxT3NOQzE2OFhUeWpj?oc=5",
       "queries": [
-        "act-misuse-claim"
+        "act-misuse-claim",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -18187,7 +18192,8 @@
         "shri-general"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-10-09"
     },
@@ -20426,6 +20432,38 @@
       "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNMXZlTkZOM0xzcURvQzdCRXZ3dk1UOVN5R3BOYmJjWFM2bmRZd2o2SjR3YkdUWVJOOEFNOEtjWFdJTXNFelVZYVhfMTg0eWFBYkxVMjlRVkg4WmxDRmNCc3NIM0h2TzdNMU1abTFHQ29GRktXQWwtbnotRUpRUG5rT3NrUC14anI0RTl5SHZjbV9xNW9kT2ptVDRhTzhLSUQ3N1d4QzdGdV9PMTZpODRDTFpucHAxeWFPeEs2bUNsaUpjOTdkbWxGVA?oc=5",
       "queries": [
         "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "sc st act case filed over kharge purification ritual at haldwani ramlila ground",
+      "headline": "SC/ST Act case filed over Kharge 'purification' ritual at Haldwani Ramlila Ground",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Telegraph India",
+      "published": "2026-09-09",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQWmtZUWdnQW1CR1hlWUlfVkkwRE4tUDBIbjNsalFXRl9uak5aSWdBZ1V1Um5fb0dLWW1MRVVacXgxcGtyeXYwb1BMUlZHN1JKNXpnd1NQVEdaR0MyY3FVZUtUR3dTSHpuMnhMeHlVblE2MHVuYmRyS1g2NWl0dHd0d1AyUzZ0NkdiR2tWa2hGSjNESnVaNUZpN1hCWnhNZVdJZGlUeWNLd1NONFBYN1k4cVF4Zm9vSXlBaElnV0Q5NWhtc3FOcmxFTVRRVF9faTdWWnNWSmU0TF94MnpaYmh1Z9IB5gFBVV95cUxQRkNabEg0eFJZTzNwSjVwQ0RJbm5wMjVrYW5xb3NlR3lnVEtFa2NkQXpONkRpS0J2dlJWVTZYQTc0UllhWkxWTWs4V296d1htMmcwd0ZYR203LWtjVFY4Wi1mQjFnc052OUhjOVY0blVpU1B1VDNsUEJFQmlPSnlEbWdrd01hS1JzNDFLT2R6eS16azJEWjNHSkZlX1Zxbk5OQXJVU0tyZkhkTGtTNFNqdVJNNk9ab0FZS1RpLU5SVThZUHYyRm1fMGZGRFlLcHRsbXRvSzlVaW9FbWlDemYtS0hBUHEzUQ?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "amid quota rush an sc community that doesn t want to be a scheduled caste anymore",
+      "headline": "Amid quota rush, an SC community that doesn't want to be a Scheduled Caste anymore",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "India Today",
+      "published": "2026-09-27",
+      "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQd082UExBdDVDQkZOelNsbGxBalJPaGR1bC0zQ1dGVFN4S25MbWYycm9nWlZMSXI2MTlWbjA2eUoycUg3U0Jzd1NESmxGNTBYVVd5QkRWNHUtUEdNQndLTXQ0Y3NzemxCUEYyVlZ4MHV0eXhoZVVpbDQxZEpPWjhFZXo3aUlmVHBkWGFpNFpRUHNBN2FLM1luWXRfUHpha3JCelZkQVBQdU9HZWYwQ3MyQ0lreGU1cXNPSmM1SjN2T2NwVWtab0xMVXpvUFgtM3dMXy1SXzFQN1dpdVNBOG52NFJDbWZMVnpKa043eGVXbjU5blHSAfgBQVVfeXFMT0xYNS1vTndTRWxWcUhfN2RMaTZjdFV2YVJOclk0OUlNTG8tdkJBZkx2S3UwSnRCa0JUMzdzbTRBT3BaWkxwZzNEX0IxWXVWdkNLYTNWVEt1ODZQZ1ROTXkyV2RoMURMc1BnQWJUUHZ2VWN4WG5ESHJDNk85NnVSVGczQjZnS2IyVmwzSmZMR3h6czRvcXI5b09ySWQyZUJyWUdRREFqeGc3VkRTNVBiUDlfNTZmam9ka0JZb2MyUnJXSjB4LXctUDllSjM1UFM4a055T20zZWhXUzJqb1ZiTVRnTmR4X2xuTDNTODBRZ09lU2lRdHQwYjA?oc=5",
+      "queries": [
+        "act-misuse-claim"
       ],
       "indexes": [
         "google"
