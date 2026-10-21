@@ -18,7 +18,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getJson } from "../lib/http";
 import { isEntryPoint } from "../lib/entry";
-import { INDICATORS, SURVEYS, parseData, parseIndicators, pickIndicators, rank, type NfhsIndicator, type NfhsRegister } from "../../../lib/luxury-beliefs";
+import { INDICATORS, SURVEYS, nearest, parseData, parseIndicators, pickIndicators, rank, type NfhsIndicator, type NfhsRegister } from "../../../lib/luxury-beliefs";
 
 const OUT = join(process.cwd(), "data", "luxury-beliefs", "nfhs.json");
 const API = "https://api.dhsprogram.com/rest/dhs";
@@ -30,16 +30,31 @@ export async function run(): Promise<void> {
   const catalogue = parseIndicators(cat.data);
   const picked = pickIndicators(catalogue);
   console.log(`catalogue: ${catalogue.length} indicators; matched ${picked.size} of ${INDICATORS.length}`);
-  for (const w of INDICATORS) console.log(`  ${picked.has(w.key) ? "ok  " : "MISS"} ${w.key}: ${picked.get(w.key)?.IndicatorId ?? "—"} ${picked.get(w.key)?.Label ?? ""}`);
+  for (const w of INDICATORS) {
+    console.log(`  ${picked.has(w.key) ? "ok  " : "MISS"} ${w.key}: ${picked.get(w.key)?.IndicatorId ?? "—"} ${picked.get(w.key)?.Label ?? ""}`);
+    if (!picked.has(w.key)) for (const n of nearest(catalogue, w.key)) console.log(`         near: ${n}`);
+  }
 
   const ids = [...new Set([...picked.values()].map((p) => p.IndicatorId))];
   const rows: ReturnType<typeof parseData> = [];
-  for (let page = 1; page <= 20 && ids.length; page++) {
-    const r = await getJson<{ TotalPages?: number }>(`${API}/data?surveyIds=${SURVEYS.map((s) => s.id).join(",")}&indicatorIds=${ids.join(",")}&breakdown=background&returnFields=IndicatorId,SurveyId,CharacteristicCategory,CharacteristicLabel,Value,ByVariableLabel,IsPreferred&f=json&perpage=5000&page=${page}`, { timeoutMs: 90_000, retries: 2, cacheMs: 0 });
-    if (!r.ok) { console.error(`DHS data page ${page}: ${r.error}; the previous file is kept`); if (!previous) process.exit(1); return; }
-    rows.push(...parseData(r.data));
-    if ((r.data?.TotalPages ?? 1) <= page) break;
+  let raw = 0;
+  const tally = new Map<string, Set<string>>();
+  // The national figure comes with breakdown=national; wealth, schooling and residence with breakdown=background.
+  for (const breakdown of ["national", "background"]) {
+    for (let page = 1; page <= 20 && ids.length; page++) {
+      const r = await getJson<{ TotalPages?: number; Data?: unknown[] }>(`${API}/data?surveyIds=${SURVEYS.map((s) => s.id).join(",")}&indicatorIds=${ids.join(",")}&breakdown=${breakdown}&returnFields=IndicatorId,SurveyId,CharacteristicCategory,CharacteristicLabel,Value,ByVariableLabel,IsPreferred&f=json&perpage=5000&page=${page}`, { timeoutMs: 90_000, retries: 2, cacheMs: 0 });
+      if (!r.ok) { console.error(`DHS data (${breakdown}) page ${page}: ${r.error}; the previous file is kept`); if (!previous) process.exit(1); return; }
+      raw += r.data?.Data?.length ?? 0;
+      for (const d of (r.data?.Data ?? []) as Array<Record<string, unknown>>) {
+        const k = `${d.IndicatorId} ${d.SurveyId}`;
+        tally.set(k, (tally.get(k) ?? new Set()).add(`${d.CharacteristicCategory}${d.ByVariableLabel ? ` / by "${d.ByVariableLabel}"` : ""}`));
+      }
+      rows.push(...parseData(r.data));
+      if ((r.data?.TotalPages ?? 1) <= page) break;
+    }
   }
+  console.log(`data: ${raw} rows returned, ${rows.length} kept`);
+  for (const [k, cats] of tally) console.log(`  ${k}: ${[...cats].slice(0, 6).join("; ")}`);
 
   const status: NfhsRegister["status"] = [];
   const indicators: NfhsIndicator[] = INDICATORS.flatMap((w) => {
@@ -54,7 +69,7 @@ export async function run(): Promise<void> {
       const uniq = mine.filter((r) => { const k = `${r.category}|${r.label}`; if (seen.has(k)) return false; seen.add(k); return true; });
       surveys[s.id] = { total: uniq.find((r) => r.category === "Total")?.value ?? null, rows: uniq.filter((r) => r.category !== "Total").map((r) => ({ category: r.category, label: r.label, value: r.value })).sort((a, b) => a.category.localeCompare(b.category) || rank(a.label) - rank(b.label)) };
     }
-    status.push({ key: w.key, ok: !!surveys[SURVEYS[0].id], note: surveys[SURVEYS[0].id] ? `${p.IndicatorId}` : "matched, but no NFHS-5 rows" });
+    status.push({ key: w.key, ok: !!surveys[SURVEYS[0].id], note: surveys[SURVEYS[0].id] ? `${p.IndicatorId}` : `matched ${p.IndicatorId}, but no NFHS-5 rows by wealth or schooling` });
     return [{ key: w.key, id: p.IndicatorId, dhsLabel: p.Label, title: w.title, area: w.area, higherIs: w.higherIs, surveys }];
   });
 

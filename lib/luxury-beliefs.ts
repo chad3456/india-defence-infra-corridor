@@ -48,16 +48,16 @@ export const belongsTo = (area: AreaId, title: string) => AREA_TERMS[area].test(
  * found instead of silently becoming another. `sex` picks the women's or men's
  * version where DHS publishes both.
  */
-export const INDICATORS: Array<{ key: string; area: AreaId; label: RegExp; sex?: "women" | "men"; title: string; higherIs: "worse" | "better" | "neither" }> = [
-  { key: "wifebeat_w", area: "gender", label: /(wife beating|beating (?:his )?wife).*(at least one|any)/i, sex: "women", title: "Women who say a husband is justified in beating his wife for at least one reason", higherIs: "worse" },
-  { key: "wifebeat_m", area: "gender", label: /(wife beating|beating (?:his )?wife).*(at least one|any)/i, sex: "men", title: "Men who say a husband is justified in beating his wife for at least one reason", higherIs: "worse" },
-  { key: "married18", area: "family", label: /(20-24|20 to 24).*(married|union).*(before|by) (age )?18/i, title: "Women aged 20–24 first married before 18", higherIs: "worse" },
-  { key: "tfr", area: "family", label: /^total fertility rate/i, title: "Total fertility rate (children per woman)", higherIs: "neither" },
-  { key: "ideal", area: "family", label: /mean ideal number of children/i, sex: "women", title: "Mean ideal number of children (women)", higherIs: "neither" },
-  { key: "decisions", area: "gender", label: /participat.*(all three|three) decisions/i, title: "Married women who take part in all three household decisions", higherIs: "better" },
-  { key: "tobacco_m", area: "prohibition", label: /(use any|any use of|uses? any) (type of )?tobacco/i, sex: "men", title: "Men who use any kind of tobacco", higherIs: "worse" },
-  { key: "stunting", area: "family", label: /stunt|height-for-age.*below -?2/i, title: "Children under five who are stunted", higherIs: "worse" },
-  { key: "internet_w", area: "language", label: /ever used the internet/i, sex: "women", title: "Women who have ever used the internet", higherIs: "better" },
+export const INDICATORS: Array<{ key: string; area: AreaId; label: RegExp; loose: RegExp; sex?: "women" | "men"; title: string; higherIs: "worse" | "better" | "neither" }> = [
+  { key: "wifebeat_w", area: "gender", label: /(wife beating|beating (?:his )?wife).*(at least one|any)/i, loose: /wife beating/i, sex: "women", title: "Women who say a husband is justified in beating his wife for at least one reason", higherIs: "worse" },
+  { key: "wifebeat_m", area: "gender", label: /(wife beating|beating (?:his )?wife).*(at least one|any)/i, loose: /wife beating/i, sex: "men", title: "Men who say a husband is justified in beating his wife for at least one reason", higherIs: "worse" },
+  { key: "married18", area: "family", label: /(married|union).*(before|by) (exact )?(age )?18|(20-24|20 to 24).*(married|union).*18/i, loose: /married|marriage/i, title: "Women aged 20–24 first married before 18", higherIs: "worse" },
+  { key: "tfr", area: "family", label: /^total fertility rate/i, loose: /fertility/i, title: "Total fertility rate (children per woman)", higherIs: "neither" },
+  { key: "ideal", area: "family", label: /mean ideal number of children/i, loose: /ideal/i, sex: "women", title: "Mean ideal number of children (women)", higherIs: "neither" },
+  { key: "decisions", area: "gender", label: /participat.*(all three|three) decisions/i, loose: /decision/i, title: "Married women who take part in all three household decisions", higherIs: "better" },
+  { key: "tobacco_m", area: "prohibition", label: /tobacco/i, loose: /tobacco|smok/i, sex: "men", title: "Men who use any kind of tobacco", higherIs: "worse" },
+  { key: "stunting", area: "family", label: /stunt|height-for-age.*below -?2/i, loose: /stunt|height/i, title: "Children under five who are stunted", higherIs: "worse" },
+  { key: "internet_w", area: "language", label: /internet/i, loose: /internet|mobile|phone/i, sex: "women", title: "Women who have ever used the internet", higherIs: "better" },
 ];
 /** NFHS-5 (2019–21) and NFHS-4 (2015–16), as the DHS Program names them. */
 export const SURVEYS = [{ id: "IA2020DHS", label: "NFHS-5, 2019–21" }, { id: "IA2015DHS", label: "NFHS-4, 2015–16" }] as const;
@@ -71,12 +71,18 @@ export interface NfhsRegister { updatedAt: string; source: string; status: Array
 export function pickIndicators(catalogue: DhsIndicator[]): Map<string, DhsIndicator> {
   const out = new Map<string, DhsIndicator>();
   for (const want of INDICATORS) {
-    const cands = catalogue.filter((c) => want.label.test(c.Label) && (!want.sex || new RegExp(want.sex === "women" ? "\\bwom[ae]n\\b" : "(?<!wo)\\bmen\\b", "i").test(`${c.Label} ${c.Definition ?? ""}`)));
+    const cands = catalogue.filter((c) => (want.label.test(c.Label) || (want.key === "married18" && /20-24/.test(`${c.Label} ${c.Definition ?? ""}`) && want.label.test(`${c.Label} ${c.Definition ?? ""}`))) && (!want.sex || new RegExp(want.sex === "women" ? "\\bwom[ae]n\\b" : "(?<!wo)\\bmen\\b", "i").test(`${c.Label} ${c.Definition ?? ""}`)));
     // The shortest label is the headline indicator; longer ones are its variants ("…among the employed").
     const best = cands.sort((a, b) => a.Label.length - b.Label.length)[0];
     if (best) out.set(want.key, best);
   }
   return out;
+}
+
+/** For an indicator not found: the catalogue labels nearest it, so the next fix is a matter of reading the log. */
+export function nearest(catalogue: DhsIndicator[], key: string): string[] {
+  const w = INDICATORS.find((x) => x.key === key);
+  return w ? catalogue.filter((c) => w.loose.test(c.Label)).map((c) => `${c.IndicatorId}: ${c.Label}`).slice(0, 8) : [];
 }
 
 /** The catalogue as the DHS API returns it. */
@@ -101,7 +107,7 @@ export function parseData(body: unknown): Array<{ id: string; survey: string; ca
 
 /** Wealth quintiles and schooling levels in their natural order, lowest first, whatever order the API returns. */
 const ORDER = ["lowest", "second", "middle", "fourth", "highest", "no education", "primary", "secondary", "higher", "urban", "rural"];
-export const rank = (label: string) => { const i = ORDER.findIndex((o) => label.toLowerCase().startsWith(o)); return i < 0 ? 99 : i; };
+export const rank = (label: string) => { const i = ORDER.findIndex((o) => new RegExp(`^${o}\\b`, "i").test(label.trim())); return i < 0 ? 99 : i; };
 
 /** The gap between the top and the bottom of a breakdown, in the indicator's own units. Null if either end is missing. */
 export function gap(rows: Breakdown[], category: string): { low: Breakdown; high: Breakdown; diff: number } | null {
