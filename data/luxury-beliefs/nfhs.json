@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-21T05:22:31.435Z",
+ "updatedAt": "2026-10-21T05:26:11.054Z",
  "source": "https://api.dhsprogram.com/",
  "status": [
   {
@@ -15,7 +15,7 @@
   {
    "key": "married18",
    "ok": false,
-   "note": "no indicator in the DHS catalogue matches this label"
+   "note": "matched MA_MBAG_M_B18, but no NFHS-5 rows by wealth or schooling"
   },
   {
    "key": "tfr",
@@ -24,18 +24,18 @@
   },
   {
    "key": "ideal",
-   "ok": false,
-   "note": "matched, but no NFHS-5 rows"
+   "ok": true,
+   "note": "PR_IDLC_W_MNA"
   },
   {
    "key": "decisions",
    "ok": false,
-   "note": "matched, but no NFHS-5 rows"
+   "note": "matched WE_WEMP_W_DMK, but no NFHS-5 rows by wealth or schooling"
   },
   {
    "key": "tobacco_m",
-   "ok": false,
-   "note": "no indicator in the DHS catalogue matches this label"
+   "ok": true,
+   "note": "AH_TOBC_M_OTH"
   },
   {
    "key": "stunting",
@@ -58,13 +58,8 @@
    "higherIs": "worse",
    "surveys": {
     "IA2020DHS": {
-     "total": null,
+     "total": 38.2,
      "rows": [
-      {
-       "category": "Education",
-       "label": "Secondary",
-       "value": 37.8
-      },
       {
        "category": "Education",
        "label": "No education",
@@ -74,6 +69,11 @@
        "category": "Education",
        "label": "Primary",
        "value": 42.9
+      },
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 37.8
       },
       {
        "category": "Education",
@@ -118,13 +118,8 @@
      ]
     },
     "IA2015DHS": {
-     "total": null,
+     "total": 44.6,
      "rows": [
-      {
-       "category": "Education",
-       "label": "Secondary",
-       "value": 42.9
-      },
       {
        "category": "Education",
        "label": "No education",
@@ -134,6 +129,11 @@
        "category": "Education",
        "label": "Primary",
        "value": 48.4
+      },
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 42.9
       },
       {
        "category": "Education",
@@ -192,11 +192,6 @@
      "rows": [
       {
        "category": "Education",
-       "label": "Secondary",
-       "value": 33.6
-      },
-      {
-       "category": "Education",
        "label": "No education",
        "value": 40
       },
@@ -204,6 +199,11 @@
        "category": "Education",
        "label": "Primary",
        "value": 39.5
+      },
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 33.6
       },
       {
        "category": "Education",
@@ -252,11 +252,6 @@
      "rows": [
       {
        "category": "Education",
-       "label": "Secondary",
-       "value": 31.6
-      },
-      {
-       "category": "Education",
        "label": "No education",
        "value": 39.3
       },
@@ -264,6 +259,11 @@
        "category": "Education",
        "label": "Primary",
        "value": 35.8
+      },
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 31.6
       },
       {
        "category": "Education",
@@ -310,6 +310,15 @@
    }
   },
   {
+   "key": "married18",
+   "id": "MA_MBAG_M_B18",
+   "dhsLabel": "Men first married by exact age 18",
+   "title": "Women aged 20–24 first married before 18",
+   "area": "family",
+   "higherIs": "worse",
+   "surveys": {}
+  },
+  {
    "key": "tfr",
    "id": "FE_FRTR_W_TFR",
    "dhsLabel": "Total fertility rate 15-49",
@@ -318,13 +327,8 @@
    "higherIs": "neither",
    "surveys": {
     "IA2020DHS": {
-     "total": null,
+     "total": 2,
      "rows": [
-      {
-       "category": "Education",
-       "label": "Secondary",
-       "value": 2
-      },
       {
        "category": "Education",
        "label": "No education",
@@ -334,6 +338,11 @@
        "category": "Education",
        "label": "Primary",
        "value": 2.3
+      },
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 2
       },
       {
        "category": "Education",
@@ -378,13 +387,8 @@
      ]
     },
     "IA2015DHS": {
-     "total": null,
+     "total": 2.2,
      "rows": [
-      {
-       "category": "Education",
-       "label": "Secondary",
-       "value": 2.1
-      },
       {
        "category": "Education",
        "label": "No education",
@@ -394,6 +398,11 @@
        "category": "Education",
        "label": "Primary",
        "value": 2.5
+      },
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 2.1
       },
       {
        "category": "Education",
@@ -446,7 +455,16 @@
    "title": "Mean ideal number of children (women)",
    "area": "family",
    "higherIs": "neither",
-   "surveys": {}
+   "surveys": {
+    "IA2020DHS": {
+     "total": 2.1,
+     "rows": []
+    },
+    "IA2015DHS": {
+     "total": 2.2,
+     "rows": []
+    }
+   }
   },
   {
    "key": "decisions",
@@ -458,6 +476,136 @@
    "surveys": {}
   },
   {
+   "key": "tobacco_m",
+   "id": "AH_TOBC_M_OTH",
+   "dhsLabel": "Men who smoke other tobacco",
+   "title": "Men who use any kind of tobacco",
+   "area": "prohibition",
+   "higherIs": "worse",
+   "surveys": {
+    "IA2020DHS": {
+     "total": 33.5,
+     "rows": [
+      {
+       "category": "Education",
+       "label": "No education",
+       "value": 56
+      },
+      {
+       "category": "Education",
+       "label": "Primary",
+       "value": 55.6
+      },
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 30.2
+      },
+      {
+       "category": "Education",
+       "label": "Higher",
+       "value": 12.7
+      },
+      {
+       "category": "Residence",
+       "label": "Urban",
+       "value": 23.3
+      },
+      {
+       "category": "Residence",
+       "label": "Rural",
+       "value": 37.3
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Lowest",
+       "value": 54.1
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Second",
+       "value": 42.9
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Middle",
+       "value": 31.9
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Fourth",
+       "value": 23.7
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Highest",
+       "value": 13.7
+      }
+     ]
+    },
+    "IA2015DHS": {
+     "total": 19.4,
+     "rows": [
+      {
+       "category": "Education",
+       "label": "No education",
+       "value": 25.8
+      },
+      {
+       "category": "Education",
+       "label": "Primary",
+       "value": 28.1
+      },
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 19.3
+      },
+      {
+       "category": "Education",
+       "label": "Higher",
+       "value": 10.5
+      },
+      {
+       "category": "Residence",
+       "label": "Urban",
+       "value": 16.9
+      },
+      {
+       "category": "Residence",
+       "label": "Rural",
+       "value": 21.2
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Lowest",
+       "value": 28.5
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Second",
+       "value": 25.2
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Middle",
+       "value": 20.3
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Fourth",
+       "value": 16.5
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Highest",
+       "value": 11.6
+      }
+     ]
+    }
+   }
+  },
+  {
    "key": "stunting",
    "id": "CN_NUTS_C_HA2",
    "dhsLabel": "Children stunted",
@@ -466,13 +614,8 @@
    "higherIs": "worse",
    "surveys": {
     "IA2020DHS": {
-     "total": null,
+     "total": 35.5,
      "rows": [
-      {
-       "category": "Education",
-       "label": "Secondary",
-       "value": 33.3
-      },
       {
        "category": "Education",
        "label": "No education",
@@ -482,6 +625,11 @@
        "category": "Education",
        "label": "Primary",
        "value": 41.6
+      },
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 33.3
       },
       {
        "category": "Education",
@@ -526,13 +674,8 @@
      ]
     },
     "IA2015DHS": {
-     "total": null,
+     "total": 38.4,
      "rows": [
-      {
-       "category": "Education",
-       "label": "Secondary",
-       "value": 32.8
-      },
       {
        "category": "Education",
        "label": "No education",
@@ -542,6 +685,11 @@
        "category": "Education",
        "label": "Primary",
        "value": 43.5
+      },
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 32.8
       },
       {
        "category": "Education",
