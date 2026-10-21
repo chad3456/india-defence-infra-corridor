@@ -1,0 +1,591 @@
+{
+ "updatedAt": "2026-10-21T05:22:31.435Z",
+ "source": "https://api.dhsprogram.com/",
+ "status": [
+  {
+   "key": "wifebeat_w",
+   "ok": true,
+   "note": "WE_AWBT_W_AGR"
+  },
+  {
+   "key": "wifebeat_m",
+   "ok": true,
+   "note": "WE_AWBT_M_AGR"
+  },
+  {
+   "key": "married18",
+   "ok": false,
+   "note": "no indicator in the DHS catalogue matches this label"
+  },
+  {
+   "key": "tfr",
+   "ok": true,
+   "note": "FE_FRTR_W_TFR"
+  },
+  {
+   "key": "ideal",
+   "ok": false,
+   "note": "matched, but no NFHS-5 rows"
+  },
+  {
+   "key": "decisions",
+   "ok": false,
+   "note": "matched, but no NFHS-5 rows"
+  },
+  {
+   "key": "tobacco_m",
+   "ok": false,
+   "note": "no indicator in the DHS catalogue matches this label"
+  },
+  {
+   "key": "stunting",
+   "ok": true,
+   "note": "CN_NUTS_C_HA2"
+  },
+  {
+   "key": "internet_w",
+   "ok": false,
+   "note": "no indicator in the DHS catalogue matches this label"
+  }
+ ],
+ "indicators": [
+  {
+   "key": "wifebeat_w",
+   "id": "WE_AWBT_W_AGR",
+   "dhsLabel": "Wife beating justified for at least one specific reason [Women]",
+   "title": "Women who say a husband is justified in beating his wife for at least one reason",
+   "area": "gender",
+   "higherIs": "worse",
+   "surveys": {
+    "IA2020DHS": {
+     "total": null,
+     "rows": [
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 37.8
+      },
+      {
+       "category": "Education",
+       "label": "No education",
+       "value": 43.2
+      },
+      {
+       "category": "Education",
+       "label": "Primary",
+       "value": 42.9
+      },
+      {
+       "category": "Education",
+       "label": "Higher",
+       "value": 28.8
+      },
+      {
+       "category": "Residence",
+       "label": "Urban",
+       "value": 33.6
+      },
+      {
+       "category": "Residence",
+       "label": "Rural",
+       "value": 40.4
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Lowest",
+       "value": 40.4
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Second",
+       "value": 40.4
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Middle",
+       "value": 42.6
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Fourth",
+       "value": 39.4
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Highest",
+       "value": 28.1
+      }
+     ]
+    },
+    "IA2015DHS": {
+     "total": null,
+     "rows": [
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 42.9
+      },
+      {
+       "category": "Education",
+       "label": "No education",
+       "value": 51.6
+      },
+      {
+       "category": "Education",
+       "label": "Primary",
+       "value": 48.4
+      },
+      {
+       "category": "Education",
+       "label": "Higher",
+       "value": 33.7
+      },
+      {
+       "category": "Residence",
+       "label": "Urban",
+       "value": 39.8
+      },
+      {
+       "category": "Residence",
+       "label": "Rural",
+       "value": 47.3
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Lowest",
+       "value": 49.3
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Second",
+       "value": 48.7
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Middle",
+       "value": 48.7
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Fourth",
+       "value": 44.8
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Highest",
+       "value": 33.9
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "wifebeat_m",
+   "id": "WE_AWBT_M_AGR",
+   "dhsLabel": "Wife beating justified for at least one specific reason [Men]",
+   "title": "Men who say a husband is justified in beating his wife for at least one reason",
+   "area": "gender",
+   "higherIs": "worse",
+   "surveys": {
+    "IA2020DHS": {
+     "total": 33.5,
+     "rows": [
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 33.6
+      },
+      {
+       "category": "Education",
+       "label": "No education",
+       "value": 40
+      },
+      {
+       "category": "Education",
+       "label": "Primary",
+       "value": 39.5
+      },
+      {
+       "category": "Education",
+       "label": "Higher",
+       "value": 26.3
+      },
+      {
+       "category": "Residence",
+       "label": "Urban",
+       "value": 29.5
+      },
+      {
+       "category": "Residence",
+       "label": "Rural",
+       "value": 35.6
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Lowest",
+       "value": 36.2
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Second",
+       "value": 35.7
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Middle",
+       "value": 36.8
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Fourth",
+       "value": 33.7
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Highest",
+       "value": 25.2
+      }
+     ]
+    },
+    "IA2015DHS": {
+     "total": 31.7,
+     "rows": [
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 31.6
+      },
+      {
+       "category": "Education",
+       "label": "No education",
+       "value": 39.3
+      },
+      {
+       "category": "Education",
+       "label": "Primary",
+       "value": 35.8
+      },
+      {
+       "category": "Education",
+       "label": "Higher",
+       "value": 25.4
+      },
+      {
+       "category": "Residence",
+       "label": "Urban",
+       "value": 28.4
+      },
+      {
+       "category": "Residence",
+       "label": "Rural",
+       "value": 34.1
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Lowest",
+       "value": 37.4
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Second",
+       "value": 34.3
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Middle",
+       "value": 34.9
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Fourth",
+       "value": 32.4
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Highest",
+       "value": 23.1
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "tfr",
+   "id": "FE_FRTR_W_TFR",
+   "dhsLabel": "Total fertility rate 15-49",
+   "title": "Total fertility rate (children per woman)",
+   "area": "family",
+   "higherIs": "neither",
+   "surveys": {
+    "IA2020DHS": {
+     "total": null,
+     "rows": [
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 2
+      },
+      {
+       "category": "Education",
+       "label": "No education",
+       "value": 2.8
+      },
+      {
+       "category": "Education",
+       "label": "Primary",
+       "value": 2.3
+      },
+      {
+       "category": "Education",
+       "label": "Higher",
+       "value": 1.7
+      },
+      {
+       "category": "Residence",
+       "label": "Urban",
+       "value": 1.6
+      },
+      {
+       "category": "Residence",
+       "label": "Rural",
+       "value": 2.1
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Lowest",
+       "value": 2.6
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Second",
+       "value": 2.1
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Middle",
+       "value": 1.9
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Fourth",
+       "value": 1.7
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Highest",
+       "value": 1.6
+      }
+     ]
+    },
+    "IA2015DHS": {
+     "total": null,
+     "rows": [
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 2.1
+      },
+      {
+       "category": "Education",
+       "label": "No education",
+       "value": 3.1
+      },
+      {
+       "category": "Education",
+       "label": "Primary",
+       "value": 2.5
+      },
+      {
+       "category": "Education",
+       "label": "Higher",
+       "value": 1.6
+      },
+      {
+       "category": "Residence",
+       "label": "Urban",
+       "value": 1.8
+      },
+      {
+       "category": "Residence",
+       "label": "Rural",
+       "value": 2.4
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Lowest",
+       "value": 3.2
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Second",
+       "value": 2.5
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Middle",
+       "value": 2.1
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Fourth",
+       "value": 1.8
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Highest",
+       "value": 1.5
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "ideal",
+   "id": "PR_IDLC_W_MNA",
+   "dhsLabel": "Mean ideal number of children for all women",
+   "title": "Mean ideal number of children (women)",
+   "area": "family",
+   "higherIs": "neither",
+   "surveys": {}
+  },
+  {
+   "key": "decisions",
+   "id": "WE_WEMP_W_DMK",
+   "dhsLabel": "Married women participating in all three decisions",
+   "title": "Married women who take part in all three household decisions",
+   "area": "gender",
+   "higherIs": "better",
+   "surveys": {}
+  },
+  {
+   "key": "stunting",
+   "id": "CN_NUTS_C_HA2",
+   "dhsLabel": "Children stunted",
+   "title": "Children under five who are stunted",
+   "area": "family",
+   "higherIs": "worse",
+   "surveys": {
+    "IA2020DHS": {
+     "total": null,
+     "rows": [
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 33.3
+      },
+      {
+       "category": "Education",
+       "label": "No education",
+       "value": 46.3
+      },
+      {
+       "category": "Education",
+       "label": "Primary",
+       "value": 41.6
+      },
+      {
+       "category": "Education",
+       "label": "Higher",
+       "value": 23
+      },
+      {
+       "category": "Residence",
+       "label": "Urban",
+       "value": 30.1
+      },
+      {
+       "category": "Residence",
+       "label": "Rural",
+       "value": 37.3
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Lowest",
+       "value": 46.1
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Second",
+       "value": 39.7
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Middle",
+       "value": 34.4
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Fourth",
+       "value": 28.1
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Highest",
+       "value": 22.9
+      }
+     ]
+    },
+    "IA2015DHS": {
+     "total": null,
+     "rows": [
+      {
+       "category": "Education",
+       "label": "Secondary",
+       "value": 32.8
+      },
+      {
+       "category": "Education",
+       "label": "No education",
+       "value": 50.8
+      },
+      {
+       "category": "Education",
+       "label": "Primary",
+       "value": 43.5
+      },
+      {
+       "category": "Education",
+       "label": "Higher",
+       "value": 20.9
+      },
+      {
+       "category": "Residence",
+       "label": "Urban",
+       "value": 31
+      },
+      {
+       "category": "Residence",
+       "label": "Rural",
+       "value": 41.2
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Lowest",
+       "value": 51.4
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Second",
+       "value": 43.5
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Middle",
+       "value": 36.5
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Fourth",
+       "value": 29.2
+      },
+      {
+       "category": "Wealth quintile",
+       "label": "Highest",
+       "value": 22.2
+      }
+     ]
+    }
+   }
+  }
+ ]
+}
