@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-21T20:10:05.740Z",
-  "previousBuild": "2026-10-21T13:48:32.945Z",
+  "builtAt": "2026-10-21T23:19:06.504Z",
+  "previousBuild": "2026-10-21T20:10:05.740Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 223,
+    "stories": 225,
     "createdThisRun": 2,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 262,
     "corroboration": {
-      "one": 186,
+      "one": 188,
       "two": 14,
       "threePlus": 23
     }
@@ -33,7 +33,7 @@
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 68
+      "n": 70
     },
     {
       "id": "cyber-ew",
@@ -148,13 +148,13 @@
       "outlet": "DefenseScoop",
       "ok": true,
       "items": 10,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 3
     },
     {
       "outlet": "Defense News",
@@ -1406,6 +1406,40 @@
         {
           "outlet": "Naval News",
           "url": "https://www.navalnews.com/naval-news/2026/10/edge-leads-integration-of-sovereign-autonomous-systems-in-uae-navy-demonstration-with-allied-forces/",
+          "published": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/10/21/air-force-cca-drones-sustainment-plan/",
+      "headline": "Air Force starting to game out sustainment framework for CCA drones",
+      "firstSeen": "2026-10-21",
+      "lastSeen": "2026-10-21",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/10/21/air-force-cca-drones-sustainment-plan/",
+          "published": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/u-s-moves-to-establish-autonomous-warfare-command-to-accelerate-battlefield-adoption-of-drones-and-robotics/",
+      "headline": "U.S. moves to establish Autonomous Warfare Command to accelerate battlefield adoption of drones and robotics",
+      "firstSeen": "2026-10-21",
+      "lastSeen": "2026-10-21",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-moves-to-establish-autonomous-warfare-command-to-accelerate-battlefield-adoption-of-drones-and-robotics/",
           "published": "2026-10-21"
         }
       ]
