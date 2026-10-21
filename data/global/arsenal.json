@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-21T10:35:32.627Z",
+ "builtAt": "2026-10-21T20:54:00.969Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206444,6 +206444,13 @@
    "source": "Hypersonic_weapon"
   },
   {
+   "name": "Fatah-II ER",
+   "key": "fatah ii er",
+   "kind": "hypersonic",
+   "country": "Pakistan",
+   "source": "Hypersonic_weapon"
+  },
+  {
    "name": "DARPA Hypersonic Air-breathing Weapon Concept",
    "key": "darpa hypersonic air breathing weapon concept",
    "kind": "hypersonic",
@@ -206498,7 +206505,7 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 3,
+   "kept": 2,
    "via": "direct"
   },
   {
@@ -206517,10 +206524,10 @@
   },
   {
    "outlet": "Naval News",
-   "ok": false,
-   "items": 0,
+   "ok": true,
+   "items": 10,
    "kept": 0,
-   "via": "unconfigured"
+   "via": "direct"
   },
   {
    "outlet": "Defence Blog",
@@ -206531,6 +206538,22 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-1ywnz6h",
+   "kind": "delivery",
+   "systems": [
+    "Submarine"
+   ],
+   "countries": [
+    "United Kingdom"
+   ],
+   "value": null,
+   "date": "2026-10-21",
+   "outlet": "UK Ministry of Defence",
+   "url": "https://www.gov.uk/government/collections/submarine-delivery-agency-sda-annual-report-and-accounts",
+   "headline": "Submarine Delivery Agency (SDA): Annual Report and Accounts",
+   "primary": true
+  },
   {
    "id": "ev-1a3zzax",
    "kind": "order",
@@ -207787,6 +207810,39 @@
   }
  ],
  "groups": [
+  {
+   "key": "delivery|submarine|united kingdom",
+   "systems": [
+    "Submarine"
+   ],
+   "countries": [
+    "United Kingdom"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-1ywnz6h",
+     "kind": "delivery",
+     "systems": [
+      "Submarine"
+     ],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-21",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/collections/submarine-delivery-agency-sda-annual-report-and-accounts",
+     "headline": "Submarine Delivery Agency (SDA): Annual Report and Accounts",
+     "primary": true
+    }
+   ],
+   "outlets": [
+    "UK Ministry of Defence"
+   ],
+   "value": null,
+   "verdict": "from a primary source"
+  },
   {
    "key": "order|u.s. navy|united states",
    "systems": [
