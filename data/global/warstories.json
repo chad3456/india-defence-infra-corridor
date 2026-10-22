@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-22T13:48:16.363Z",
-  "previousBuild": "2026-10-22T04:44:14.208Z",
+  "builtAt": "2026-10-22T20:07:24.248Z",
+  "previousBuild": "2026-10-22T13:48:16.363Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 226,
-    "createdThisRun": 0,
+    "stories": 230,
+    "createdThisRun": 4,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 13,
+    "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 251,
+    "itemsSeen": 260,
     "corroboration": {
-      "one": 189,
+      "one": 193,
       "two": 14,
       "threePlus": 23
     }
@@ -28,22 +28,22 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 118
+      "n": 120
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 71
+      "n": 72
     },
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 27
+      "n": 28
     },
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 22
+      "n": 23
     },
     {
       "id": "military-ai",
@@ -55,12 +55,12 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 39
+      "n": 40
     },
     {
       "iso": "IND",
       "name": "India",
-      "n": 19
+      "n": 20
     },
     {
       "iso": "UKR",
@@ -117,20 +117,20 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 43,
+      "items": 42,
       "kept": 4
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Military Times",
       "ok": true,
       "items": 25,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Army Times",
@@ -154,19 +154,19 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 2
+      "kept": 4
     },
     {
       "outlet": "Defense One",
@@ -176,10 +176,9 @@
     },
     {
       "outlet": "Naval News",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "HTTP 503"
+      "ok": true,
+      "items": 10,
+      "kept": 2
     },
     {
       "outlet": "Defence Blog",
@@ -1291,6 +1290,85 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/indian-air-force-engages-industry-on-future-drone-and-autonomous-systems/",
+      "headline": "Indian Air Force Engages Industry on Future Drone and Autonomous Systems",
+      "firstSeen": "2026-10-22",
+      "lastSeen": "2026-10-22",
+      "themes": [
+        "autonomy",
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/indian-air-force-engages-industry-on-future-drone-and-autonomous-systems/",
+          "published": "2026-10-22"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/10/navy-awards-applied-intuition-25m-to-deploy-ai-sensor-fusion-at-sea/",
+      "headline": "Navy awards Applied Intuition $25M to deploy AI sensor fusion at sea",
+      "firstSeen": "2026-10-22",
+      "lastSeen": "2026-10-22",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/navy-awards-applied-intuition-25m-to-deploy-ai-sensor-fusion-at-sea/",
+          "published": "2026-10-22"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/10/army-unit-experimenting-with-small-drones-for-tailored-cyber-effects/",
+      "headline": "Army unit experimenting with small drones for ‘tailored cyber effects’",
+      "firstSeen": "2026-10-22",
+      "lastSeen": "2026-10-22",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/army-unit-experimenting-with-small-drones-for-tailored-cyber-effects/",
+          "published": "2026-10-22"
+        }
+      ]
+    },
+    {
+      "id": "https://www.navalnews.com/naval-news/2026/10/pentagon-diu-sprint-counter-uas-armed-usvs/",
+      "headline": "Pentagon Launches 120-Day “Sprint” to Field Counter-UAS Armed USVs",
+      "firstSeen": "2026-10-22",
+      "lastSeen": "2026-10-22",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Naval News",
+          "url": "https://www.navalnews.com/naval-news/2026/10/pentagon-diu-sprint-counter-uas-armed-usvs/",
+          "published": "2026-10-22"
         }
       ]
     },
