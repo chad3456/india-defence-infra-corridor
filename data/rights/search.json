@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-21T23:41:47.401Z",
+  "builtAt": "2026-10-22T05:26:15.688Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1228,
+    "items": 1230,
     "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1226,
-    "withOutlet": 1147,
+    "carriedFromEarlierRuns": 1228,
+    "withOutlet": 1149,
     "bySubject": {
-      "scst": 835,
+      "scst": 837,
       "pmshri": 393
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 267
+    "offSubjectDropped": 291
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 607
+      "n": 609
     },
     {
       "key": "use",
@@ -121,16 +121,16 @@
       "n": 14
     },
     {
+      "key": "Deccan Herald",
+      "n": 13
+    },
+    {
       "key": "ET Education",
       "n": 13
     },
     {
       "key": "Maktoob",
       "n": 13
-    },
-    {
-      "key": "Deccan Herald",
-      "n": 12
     },
     {
       "key": "Outlook India",
@@ -295,10 +295,10 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 48,
+      "google": 100,
       "bing": 0,
       "kept": 1,
-      "offSubject": 1
+      "offSubject": 5
     },
     {
       "id": "act-registered",
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 100,
       "bing": 6,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 13
     },
     {
@@ -315,30 +315,30 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 28,
+      "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 42
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
+      "google": 50,
       "bing": 5,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 48,
+      "google": 47,
       "bing": 0,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 13
     },
     {
       "id": "act-pendency",
@@ -355,17 +355,17 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 99,
-      "bing": 1,
+      "google": 100,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 46
+      "offSubject": 47
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 26,
+      "google": 25,
       "bing": 0,
       "kept": 0,
       "offSubject": 9
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 48,
+      "google": 49,
       "bing": 2,
       "kept": 0,
       "offSubject": 8
@@ -395,19 +395,19 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 50,
+      "google": 49,
       "bing": 1,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 14
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 33,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 22
     },
     {
@@ -425,10 +425,10 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 42,
+      "google": 9,
       "bing": 2,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 0
     },
     {
       "id": "shri-funds",
@@ -448,7 +448,7 @@
       "google": 52,
       "bing": 2,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "shri-mou",
@@ -475,10 +475,10 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 53,
+      "google": 31,
       "bing": 4,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 4
     },
     {
       "id": "shri-criticism",
@@ -6531,7 +6531,9 @@
       "published": "2026-07-31",
       "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPQklQQnV4eW9aa1BqRzdXcnp2R2pvU1FaYUdMSGNfTjMwSkpPT3kxM2dOZmQ1TW1BNGhUbGFuUkhOTHRhOXIwMlZGUkt3QzM3a1MzcmwxdVBWdFZGZHhRQWZRcTZidG1jTGxKTC04R1hLaEQxM19NSjg5VDNWZzhRUXo1cl9FMXE4cWthdHQzN2FXbDBoemJPNEFuZExZMXE4aGExZHdmd1JQNllOdXR6R3VWMTlCQlFqSC0zZGRaYzNMVklOU3ZFNWNud1JvYXJYZGZlMUR5Yl9rX1lyVTBNRnVyMXYxNTJmb01zLVB6VEt6TFlSdnfSAfsBQVVfeXFMUGpwQjR1LUJ2OXhBd0l6TGJWSGh3dVZRaktNcXFBelhlMFE2aXVTQWt6WHVjRHdaNGJURTlvUEc2dVpXU0pFVUN0WmtWYkx4MVZFYWc0VXpmSElOeWgzMGk2MmliYXBpYXBlZnFBakNOZ28xS2ZvTW1uUnBBQWdxUGVTcGx1ZTdzeTZKVXF4RGctUWduTEFFNnBvRG1VX2c5QVhES29GbVlTVkUzWlFPeFhJcGlHV0tiaWxsQnJzazRyclZra0E3WXRlUjVUZHI0RS1vMTk2SGNHcVU0alJZcEk0RDRZOXBDTk5GQmNOS09sOThNcmJvN1F3NVE?oc=5",
       "queries": [
-        "act-hostile"
+        "act-hostile",
+        "act-convicted",
+        "act-acquittal"
       ],
       "indexes": [
         "google"
@@ -7507,7 +7509,8 @@
       "published": "2023-10-26",
       "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNQWdEZGRuZF8xbWkzWTZxc0t0bDNPR0QxUmZmMkVjeHNMRWYtRUNHTEdvbDVIVms4UjhhYWZrUEs0QVFOcEtoOGFDZ3VQaVJ5QTF3R1JfOHZfOUcyMVo2eFQya0c2RDFUUlRfNzJ2a2NXakJ6bTlETHRzV2c2STFicVhmMnNDdXdNbWhnYmlnLXdvS1lyd3JWN2UzeV9HelQxQmxaVmpNNmZEVHhkODFlYno5eWVtMHF4bTlUTi0xLVdHcXo5ZlFkMTZSNGZfVUdKU0swSTAtaTR5ZmI0SUl3WklJS2ZLYWpiY2pXUU1HeXRFUkY5NTZ2NNIB_gFBVV95cUxNaVNSeG9nN09udWFxQzFzdmxLM19JZVZZcUZfdFBSTnJIY3hVcTF1NlROb3otbjItRER5S0lobVJJcGZsNFJxOF8xOVJaakNONnNPVktDY1l1YWxlakZsWVloNkc5a1BaaEV4X3lYczgybUhrVFFHMFduY2JzQ2pRbjNlaDJHdVhXR21SckJwSlZxV0tMU3VRV2tUX2VqYjRaY1o2ZmQ2d2F3YTRtZHRHQ0owVWkzTGNLUFQwbGFmX3JmWEVOWVBra1FRQzlKa1pZQlF0ZThnVXNqTFF6dF9iaHJrOXZEMF83dkUxVUpiR1RIcHNxV2c2clpkS3dGQQ?oc=5",
       "queries": [
-        "act-false"
+        "act-false",
+        "act-fabricated"
       ],
       "indexes": [
         "google"
@@ -20531,12 +20534,45 @@
       "published": "2025-08-22",
       "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQelhDb0Eyb0ZTdzY5Uk5VY2VObDV3ZE9UTVZDMGptUGcwbWZUd3Y3YndQSFdEXzVqZ2o2dlZabDY2eW5qVUROLXNxdkRBcjR4WlRXbzVteGN2WGN3SHVjaVZuSWRoNVB0WTZjY0JQTVhWNWZNRENVSjkzTmVNczVlMHZZZTc4eTBGNl9VeFYyeV82LUlDc3JKdlVwUDM3STFZWERsNzh4OHRLRkkwRnBjbXpjR1oxb3dpa2VfSmRJUmZBcXItUnlndXBWZ0lmNWhZV2V3RVE4LW5yVllQd2gtYVVwZS1sa1g0cDM5SV95eGFzZk1uT2NfZ2JnY9IBiAJBVV95cUxPVDdjei1NWFBGR21tZFZOUTc3YkxFbFZOZ0ZWckR4SFR3Q055UDZqa1QtUldsYXNoN0JhTkE5ZGZSODg0YVlXWXhIYlViNm5ILVJqYUFpcGxhVzZELUFVME5QanczNmlNR1hRWWE4c0JRYm5PX2VQZHc1WmM2MG9EeGVmQV9UNmM2YXoxd0l3Zk5JTzlqYmtSSGxkTUE4YWNjb0J4MXBLSW1URjNzTHdjZy01SHl1bXdsY1lNbXlRNTA5akZKbk4xUHF2MUhsaWFyaUdaNWFJS1RZbk10akpoYTU0QkFCSHFIcGVDbXNralp5MHF1MmI3ek5zVG9mRnQ1cWd0eHk5OXg?oc=5",
       "queries": [
-        "act-fabricated"
+        "act-fabricated",
+        "act-compensation"
       ],
       "indexes": [
         "google"
       ],
       "firstSeen": "2026-10-21"
+    },
+    {
+      "id": "in up congress weighs sc st act like law to protect poorer obc communities",
+      "headline": "In UP, Congress weighs SC/ST Act-like law to protect poorer OBC communities",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "National Herald",
+      "published": "2026-09-21",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOMndqMmg0UU5PTU4ydzlYTkZFcEFSRHhVRXphcjlSME9lM1NoclpQSFI3TmFBczFRMFNGRHdIR1p4eUI0SHlMYkZJRDB2Rk5vbC00MUh5MmZ6UUdlN3VkWTliRWNmNU5UMnlEc2syWDBDa1hXRHoycmwzMjhFM2pjSEJQT3REN1VhSm5nYXkyQ25kQzJUdHNUdEU5MFM5S29IMGlGVTItT01Db1dwZ3lvb2pHbnMxSkFzYmZMTmR6SzJnellaMlJWMHNR0gHXAUFVX3lxTE5FTG9OdEFINEJNdExnemk1Y0VoUk42OHZPOFoyVnFqVUQ3a3FTdlhKMkhmaXZxMUVkQXVhSnAtaE12N2tESDBIbHZQMng3RjJkT05LZHBzbF83cHR4bmxBY2RENl8xUWRHeGFYMG51YkRJVGk1MjBxSnYyVHZ6X2NVNW9lV2JLdF9DNUl3a1liMjBLQWg4V1ZLMkdWRHh6ckxtT3Y3TTZxNjBIcmFyaUxfZVNqazEzWFlucjlIVm9aNi13M0lHV3ZoQ2pXbzFVVXhjNmpwWjRv?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-22"
+    },
+    {
+      "id": "sc st intimidation charges added against hindutva influencer bhardwaj pocso invoked too",
+      "headline": "SC/ST, intimidation charges added against Hindutva influencer Bhardwaj; POCSO invoked too",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Deccan Herald",
+      "published": "2026-09-04",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQTm1fY1JEamU1SS0wb0pPb2JYOUp1TWtOeTNEZ3lwOXZnMi0tUUd0MVFoWmwxaExmMURQRVpBRG5aeFJjZE5EWW1nM0hpU0NEb3EybzNURC16eDYzUW83SFJVdnBNTWdZb0J0dHJreURXU3lJSF9lTG9oYS1NODNubmVTVkFGR2VoSnhLMGFvcGpTbGZ1MW4tV1JYWVRsdTRIeWtBN09QZ1JaeWgzTDVwNHVkQ1k4a2VqWlRCeUxIemZJWHhkWHRrQg?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-22"
     }
   ]
 }
