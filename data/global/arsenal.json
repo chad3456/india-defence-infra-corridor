@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-22T10:38:54.535Z",
+ "builtAt": "2026-10-22T20:48:52.594Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206505,14 +206505,14 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 25,
-   "kept": 2,
+   "kept": 3,
    "via": "direct"
   },
   {
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
@@ -206533,11 +206533,53 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-n2rxdu",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-10-22",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/news/pentagon-congress/2026/10/22/pentagon-lockheed-agree-to-10-year-deal-for-850-f-35-jets/",
+   "headline": "Pentagon, Lockheed agree to 10-year deal for 850 F-35 jets",
+   "primary": false
+  },
+  {
+   "id": "ev-wywaye",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-10-22",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/10/pentagon-lockheed-agree-to-decade-long-f-35-framework-deal-for-hundreds-of-jets/",
+   "headline": "Pentagon, Lockheed agree to decade-long F-35 framework deal for hundreds of jets",
+   "primary": false
+  },
+  {
+   "id": "ev-8zrzkg",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-10-22",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/lockheed-lines-up-deal-for-850-u-s-f-35s-over-10-years/",
+   "headline": "Lockheed lines up deal for 850 U.S. F-35s over 10 years",
+   "primary": false
+  },
   {
    "id": "ev-1ywnz6h",
    "kind": "delivery",
@@ -207811,96 +207853,6 @@
  ],
  "groups": [
   {
-   "key": "delivery|submarine|united kingdom",
-   "systems": [
-    "Submarine"
-   ],
-   "countries": [
-    "United Kingdom"
-   ],
-   "kind": "delivery",
-   "events": [
-    {
-     "id": "ev-1ywnz6h",
-     "kind": "delivery",
-     "systems": [
-      "Submarine"
-     ],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-10-21",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/collections/submarine-delivery-agency-sda-annual-report-and-accounts",
-     "headline": "Submarine Delivery Agency (SDA): Annual Report and Accounts",
-     "primary": true
-    }
-   ],
-   "outlets": [
-    "UK Ministry of Defence"
-   ],
-   "value": null,
-   "verdict": "from a primary source"
-  },
-  {
-   "key": "order|u.s. navy|united states",
-   "systems": [
-    "U.S. Navy"
-   ],
-   "countries": [
-    "United States"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1a3zzax",
-     "kind": "order",
-     "systems": [
-      "U.S. Navy"
-     ],
-     "countries": [
-      "United States"
-     ],
-     "value": {
-      "amount": 300000000,
-      "currency": "USD",
-      "asWritten": "$300M"
-     },
-     "date": "2026-10-20",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/news/your-navy/2026/10/20/us-navy-gecko-robotics-surge-ai-maintenance-contract-to-300m/",
-     "headline": "US Navy, Gecko Robotics surge AI maintenance contract to $300M",
-     "primary": false
-    },
-    {
-     "id": "ev-1r3bdn2",
-     "kind": "order",
-     "systems": [
-      "U.S. Navy"
-     ],
-     "countries": [
-      "United States"
-     ],
-     "value": null,
-     "date": "2026-09-15",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/industry/techwatch/2026/09/15/us-navy-boeing-ink-first-mq-25a-stingray-production-contract/",
-     "headline": "US Navy, Boeing ink first MQ-25A Stingray production contract",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defense News"
-   ],
-   "value": {
-    "amount": 300000000,
-    "currency": "USD",
-    "asWritten": "$300M"
-   },
-   "verdict": "a single report, uncorroborated"
-  },
-  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -207908,6 +207860,48 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-n2rxdu",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-10-22",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/news/pentagon-congress/2026/10/22/pentagon-lockheed-agree-to-10-year-deal-for-850-f-35-jets/",
+     "headline": "Pentagon, Lockheed agree to 10-year deal for 850 F-35 jets",
+     "primary": false
+    },
+    {
+     "id": "ev-wywaye",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-10-22",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/10/pentagon-lockheed-agree-to-decade-long-f-35-framework-deal-for-hundreds-of-jets/",
+     "headline": "Pentagon, Lockheed agree to decade-long F-35 framework deal for hundreds of jets",
+     "primary": false
+    },
+    {
+     "id": "ev-8zrzkg",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-10-22",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/lockheed-lines-up-deal-for-850-u-s-f-35s-over-10-years/",
+     "headline": "Lockheed lines up deal for 850 U.S. F-35s over 10 years",
+     "primary": false
+    },
     {
      "id": "ev-1nghds6",
      "kind": "order",
@@ -208389,13 +208383,103 @@
    ],
    "outlets": [
     "Defense News",
+    "Breaking Defense",
     "Defence Blog",
     "Defense One",
-    "Breaking Defense",
     "Naval News"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "delivery|submarine|united kingdom",
+   "systems": [
+    "Submarine"
+   ],
+   "countries": [
+    "United Kingdom"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-1ywnz6h",
+     "kind": "delivery",
+     "systems": [
+      "Submarine"
+     ],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-21",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/collections/submarine-delivery-agency-sda-annual-report-and-accounts",
+     "headline": "Submarine Delivery Agency (SDA): Annual Report and Accounts",
+     "primary": true
+    }
+   ],
+   "outlets": [
+    "UK Ministry of Defence"
+   ],
+   "value": null,
+   "verdict": "from a primary source"
+  },
+  {
+   "key": "order|u.s. navy|united states",
+   "systems": [
+    "U.S. Navy"
+   ],
+   "countries": [
+    "United States"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1a3zzax",
+     "kind": "order",
+     "systems": [
+      "U.S. Navy"
+     ],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 300000000,
+      "currency": "USD",
+      "asWritten": "$300M"
+     },
+     "date": "2026-10-20",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/news/your-navy/2026/10/20/us-navy-gecko-robotics-surge-ai-maintenance-contract-to-300m/",
+     "headline": "US Navy, Gecko Robotics surge AI maintenance contract to $300M",
+     "primary": false
+    },
+    {
+     "id": "ev-1r3bdn2",
+     "kind": "order",
+     "systems": [
+      "U.S. Navy"
+     ],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-15",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/industry/techwatch/2026/09/15/us-navy-boeing-ink-first-mq-25a-stingray-production-contract/",
+     "headline": "US Navy, Boeing ink first MQ-25A Stingray production contract",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News"
+   ],
+   "value": {
+    "amount": 300000000,
+    "currency": "USD",
+    "asWritten": "$300M"
+   },
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order||israel",
