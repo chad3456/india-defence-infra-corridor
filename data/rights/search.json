@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-22T14:08:57.673Z",
+  "builtAt": "2026-10-22T20:21:02.851Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1241,
-    "addedThisRun": 11,
-    "carriedFromEarlierRuns": 1230,
-    "withOutlet": 1155,
+    "items": 1242,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1241,
+    "withOutlet": 1156,
     "bySubject": {
-      "scst": 847,
+      "scst": 848,
       "pmshri": 394
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 279
+    "offSubjectDropped": 306
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 433
+      "n": 434
     },
     {
       "key": "dispute",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 105
+      "n": 106
     },
     {
       "key": "Lawtext",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 11,
-      "kept": 7,
-      "offSubject": 13
+      "bing": 5,
+      "kept": 0,
+      "offSubject": 12
     },
     {
       "id": "act-convicted",
@@ -325,10 +325,10 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 8,
-      "bing": 0,
+      "google": 50,
+      "bing": 5,
       "kept": 1,
-      "offSubject": 1
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -345,17 +345,17 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 13,
+      "google": 57,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 21
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 96,
+      "google": 97,
       "bing": 0,
       "kept": 0,
       "offSubject": 44
@@ -365,7 +365,7 @@
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 25,
+      "google": 26,
       "bing": 0,
       "kept": 0,
       "offSubject": 8
@@ -376,7 +376,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 47,
-      "bing": 4,
+      "bing": 2,
       "kept": 0,
       "offSubject": 7
     },
@@ -396,9 +396,9 @@
       "subject": "scst",
       "expect": "false-finding",
       "google": 50,
-      "bing": 0,
-      "kept": 1,
-      "offSubject": 15
+      "bing": 1,
+      "kept": 0,
+      "offSubject": 16
     },
     {
       "id": "act-fabricated",
@@ -408,7 +408,7 @@
       "google": 33,
       "bing": 0,
       "kept": 0,
-      "offSubject": 22
+      "offSubject": 21
     },
     {
       "id": "shri-general",
@@ -418,7 +418,7 @@
       "google": 100,
       "bing": 12,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "shri-sanctioned",
@@ -426,8 +426,8 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 44,
-      "bing": 3,
-      "kept": 1,
+      "bing": 2,
+      "kept": 0,
       "offSubject": 5
     },
     {
@@ -435,7 +435,7 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 69,
+      "google": 68,
       "bing": 1,
       "kept": 0,
       "offSubject": 23
@@ -446,7 +446,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 51,
-      "bing": 3,
+      "bing": 2,
       "kept": 0,
       "offSubject": 12
     },
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 44,
-      "bing": 1,
+      "bing": 2,
       "kept": 0,
       "offSubject": 3
     },
@@ -465,10 +465,10 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 28,
-      "bing": 0,
+      "google": 29,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 16
     },
     {
       "id": "shri-nep",
@@ -476,7 +476,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 52,
-      "bing": 0,
+      "bing": 4,
       "kept": 0,
       "offSubject": 11
     },
@@ -486,7 +486,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 43,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 33
     }
@@ -20760,6 +20760,22 @@
       ],
       "indexes": [
         "bing"
+      ],
+      "firstSeen": "2026-10-22"
+    },
+    {
+      "id": "man aides booked for assaulting dalit man over tank dispute",
+      "headline": "Man, aides booked for assaulting dalit man over tank dispute",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Times of India",
+      "published": "2026-09-27",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNT3ZsUk55eVJlRm1SUmVrNGlRYXVwZlhyLXBld290MXV4Skt3WllLRHJEUFdDOGhBQWVxdDJwdHdBNTVkczNoZkpFU281WGpHM3lnQjBWVWNJajZOWnRNYjh4WnNtUW5CUGVmR1Z3N3BuUVZGLW5sdVhJVjBuXzd0eUNfYXZudFdKcXVDSzRVMENFS0J5NzZPTHRETGZlSDloVVhKbEdFczVsVk93cWZ4dkcwR1h6NDl1cnRhNHBDSkdCQ0M2ajNEUlJlY0FBMXPSAdQBQVVfeXFMUFJfSXpVNnB5UGhGWWpvMnozS3FBTjg3SG1IN1o4LVY2dEdrLVhLUU9mc1JiVDEyekRoaUItS0RBY2pPNk5GeHVLbndNWjZfOGRKZHJPYTh0U1dQOUJjM01lV2hsRmpFRTdqaGhEVUF1bjZuVjFZakwxUGxnWXpVQ0laOFZ5TjVBUHdtbnFiSkNBZDhuWnNyQjBrVTdiWGVxaGxGNzBXLVM0VTZ3T2N4S0FxZXpjUFZyU0ctdklwWjctcFZ5dDh1bVlxZ0pCbW8tajFkLTQ?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
       ],
       "firstSeen": "2026-10-22"
     }
