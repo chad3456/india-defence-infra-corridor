@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-22T17:25:08.385Z",
+  "builtAt": "2026-10-22T21:49:31.990Z",
   "note": "Named things per state, for the map to answer a click with. Each layer records how its rows reached a state and how many did not, because the join is where this kind of file goes wrong invisibly.",
   "refused": [
     {
@@ -25636,8 +25636,8 @@
       "blurb": "Every railway station the mobility dataset holds a coordinate for, placed into the state whose polygon contains it. Presence only — the source carries a name, a station code and a coordinate, and nothing about how many trains stop or how many people pass through, so a count of stations is a count of stations and not of service.",
       "join": "Point-in-polygon against the map's own topology. A station in no polygon is listed unplaced, never assigned to a neighbour.",
       "source": "OpenStreetMap, via the mobility connector.",
-      "total": 10327,
-      "placed": 10155,
+      "total": 10325,
+      "placed": 10153,
       "unplacedCount": 120,
       "deduped": 52,
       "unplaced": [
@@ -55638,13 +55638,6 @@
             "lon": 81.8805
           },
           {
-            "name": "DARAGANJ STATION",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 25.4444,
-            "lon": 81.8805
-          },
-          {
             "name": "Darauli",
             "why": "Station code DRV.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -59432,13 +59425,6 @@
             "lon": 79.41
           },
           {
-            "name": "Nigatapur",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 25.2515,
-            "lon": 82.7606
-          },
-          {
             "name": "Nigatpur",
             "why": "Station code NTU.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -61274,7 +61260,7 @@
           },
           {
             "name": "Sindurwa",
-            "why": "No station code in this dataset.",
+            "why": "Station code SYW.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 26.4928,
             "lon": 81.5694
