@@ -54,7 +54,7 @@ export const WHATS_NEW: NewFeature[] = [
     id: "instagram-politics-2026-10",
     title: "Politics on Instagram",
     blurb:
-      "Twenty dashboards on the BJP, Congress, AAP and the Cockroach Janta Party on Instagram — followers, engagement per post, " +
+      "Dashboards on the BJP, Congress, AAP and the Cockroach Janta Party on Instagram — followers, engagement per post, " +
       "the CJP from launch to the CEC protest, published comment sentiment checked against its own charts, and the bot claims.",
     href: "/instagram-politics",
     since: "2026-10-20",

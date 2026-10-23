@@ -272,7 +272,7 @@ cached 60 seconds). They are pointers to reporting and are never used as data.
 
 ### Politics on Instagram
 
-`/instagram-politics` has twenty dashboards on the BJP, Congress, AAP and the Cockroach Janta Party
+`/instagram-politics` has sixteen dashboards built from published figures (twenty once the Graph API job has data) on the BJP, Congress, AAP and the Cockroach Janta Party
 (CJP) on Instagram. Two kinds of number appear, and each dashboard says which it shows.
 
 **Published figures** live in `data/instagram/published.json`: follower counts, engagement per
@@ -288,7 +288,7 @@ comments on each post since 20 April 2026, for the party and leader accounts lis
 `lib/instagram.ts`. It needs the repository secrets `IG_GRAPH_TOKEN` and `IG_USER_ID`, which belong
 to an Instagram Business or Creator account linked to a Meta app. The token is sent in a request
 header and never written to a URL, a cache or a log. Without the secrets the job records that it is
-inactive, and those dashboards show *awaiting data*.
+inactive, and those dashboards are not shown.
 
 Instagram is not scraped. Comment text, views, reach and audience location are not available for
 accounts the site does not own, so it publishes no sentiment of its own. Bot activity is shown only

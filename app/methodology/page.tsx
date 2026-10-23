@@ -115,10 +115,10 @@ export default function MethodologyPage() {
             Year-on-year, indexed, growth-rate and share views are computed here from the stored
             series, and every one says so beneath its title. Derived views are only generated where
             they are meaningful — a year-on-year chart is never drawn across non-adjacent periods,
-            and an index chart is never drawn off a zero base. Of {stats.total} charts,{" "}
-            {stats.live} are live on currently-loaded data and {stats.pending} await the pipeline
-            backfill; the pending ones are shown with an explicit &ldquo;awaiting data&rdquo; state
-            rather than an empty axis.
+            and an index chart is never drawn off a zero base. {stats.total} charts are published. A chart is published only when every series it draws
+            has data, and a chart over time only when each series has at least three real
+            observations: {stats.pending} defined charts are held back because no source has filled
+            them yet, and {stats.thin} because two points are a comparison, not a trend.
           </p>
         </section>
 

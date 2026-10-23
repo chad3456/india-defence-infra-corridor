@@ -12,14 +12,20 @@ import { INDIA_SERIES } from "./india-catalogue";
  * spec pairs a stored series with a transform and a mark type; a handful of
  * generic SVG chart components render every one of them.
  *
- * Two rules keep the gallery honest:
+ * Three rules keep the gallery honest:
  *   1. A spec is only emitted when the transform is *meaningful* for that
  *      series (see `transformIsValid`) — no year-on-year charts drawn across a
  *      three-point series, no index charts off a zero base.
- *   2. Specs for series the ETL has not yet populated are still emitted, but
- *      flagged `pending` so the gallery shows an explicit "awaiting data"
- *      state rather than an empty axis pretending to be a finding.
+ *   2. A chart is published only when every series it draws has data. Specs
+ *      for series no connector has filled are still built (the audit checks
+ *      them, and `pendingSpecs()` lists them for the methodology page), but
+ *      they are not in the gallery.
+ *   3. A chart over time needs at least MIN_POINTS real observations in every
+ *      series it draws: two points are a comparison, not a trend.
  */
+
+/** The fewest real observations a chart over time is published with. */
+export const MIN_POINTS = 3;
 
 export interface RegistryEntry extends ChartSpec {
   /** True when no data has loaded for this spec's series yet. */
@@ -337,9 +343,19 @@ function curatedSpecs(): RegistryEntry[] {
 }
 
 let cached: RegistryEntry[] | null = null;
+let cachedAll: RegistryEntry[] | null = null;
 
-export function getRegistry(): RegistryEntry[] {
-  if (cached) return cached;
+/** Too thin to publish: a series over time with fewer than MIN_POINTS real observations. */
+function thin(spec: RegistryEntry): boolean {
+  return spec.seriesIds.some((id) => {
+    const s = getSeries(id);
+    return !!s && isTemporal(s) && definedPoints(s).length < MIN_POINTS;
+  });
+}
+
+/** Every spec the catalogues define, published or not. */
+export function allSpecs(): RegistryEntry[] {
+  if (cachedAll) return cachedAll;
   const all = [
     ...curatedSpecs(),
     ...specsFromLoadedSeries(),
@@ -347,12 +363,24 @@ export function getRegistry(): RegistryEntry[] {
     ...specsFromPendingSecurity(),
   ];
   const seen = new Set<string>();
-  cached = all.filter((s) => {
+  cachedAll = all.filter((s) => {
     if (seen.has(s.id)) return false;
     seen.add(s.id);
     return true;
   });
+  return cachedAll;
+}
+
+/** The published gallery: charts with data, enough of it to draw what they claim. */
+export function getRegistry(): RegistryEntry[] {
+  if (cached) return cached;
+  cached = allSpecs().filter((s) => !s.pending && !thin(s));
   return cached;
+}
+
+/** Specs held back, and why: no data yet, or too few observations to be a chart over time. */
+export function heldBack(): Array<{ spec: RegistryEntry; reason: "no data" | "too few points" }> {
+  return allSpecs().filter((s) => s.pending || thin(s)).map((spec) => ({ spec, reason: spec.pending ? "no data" : "too few points" }));
 }
 
 export function getChart(id: string): RegistryEntry | undefined {
@@ -365,10 +393,12 @@ export function registryByCategory(category: Category): RegistryEntry[] {
 
 export function registryStats() {
   const all = getRegistry();
+  const held = heldBack();
   return {
     total: all.length,
-    live: all.filter((c) => !c.pending).length,
-    pending: all.filter((c) => c.pending).length,
+    live: all.length,
+    pending: held.filter((h) => h.reason === "no data").length,
+    thin: held.filter((h) => h.reason === "too few points").length,
     byCategory: all.reduce<Record<string, number>>((acc, c) => {
       acc[c.category] = (acc[c.category] ?? 0) + 1;
       return acc;

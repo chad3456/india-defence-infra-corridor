@@ -400,7 +400,7 @@ export default function Home() {
               k: "Method",
               href: "/methodology",
               t: "What counts as a source",
-              d: "Every series names its publisher, the date it was last reconciled, and a confidence grade. Anything that fails the publish gate is listed as awaiting data rather than estimated.",
+              d: "Every series names its publisher, the date it was last reconciled, and a confidence grade. Anything that fails the publish gate is left out rather than estimated.",
             },
             {
               k: "Benchmark",
@@ -433,17 +433,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pipeline status */}
-      {DATA_COVERAGE.wdiPending && (
-        <section className="mt-12 rounded-md border border-dashed p-5">
-          <p className="eyebrow">pipeline status</p>
-          <p className="mt-2 max-w-[64ch] text-[12.5px] leading-relaxed text-[color:var(--text-secondary)]">
-            {stats.pending} of {stats.total} charts are waiting on the first ETL run. They are
-            listed with an explicit &ldquo;awaiting data&rdquo; state rather than rendered from
-            estimates.
-          </p>
-        </section>
-      )}
+
     </div>
   );
 }

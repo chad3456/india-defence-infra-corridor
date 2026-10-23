@@ -40,7 +40,8 @@ export default async function ChartsPage({
   const rawView = sp.view === "all" ? undefined : (sp.view ?? "level");
   const view = TRANSFORMS.includes(rawView as Transform) ? (rawView as Transform) : undefined;
   const showingAll = sp.view === "all";
-  const status = sp.status === "live" || sp.status === "pending" ? sp.status : undefined;
+  // Every published chart has data; the old live/awaiting filter has nothing left to separate.
+  const status: string | undefined = undefined;
   const page = Math.max(1, Number(sp.page ?? "1") || 1);
 
   const stats = registryStats();
@@ -48,8 +49,6 @@ export default async function ChartsPage({
   let charts = getRegistry();
   if (category) charts = charts.filter((c) => c.category === category);
   if (view) charts = charts.filter((c) => c.transform === view);
-  if (status === "live") charts = charts.filter((c) => !c.pending);
-  if (status === "pending") charts = charts.filter((c) => c.pending);
 
   // Live charts first — a reader should hit real data before placeholders.
   charts = [...charts].sort((a, b) => Number(a.pending) - Number(b.pending));
@@ -100,12 +99,13 @@ export default async function ChartsPage({
       <section className="border-b pb-5">
         <p className="eyebrow">chart gallery</p>
         <h1 className="display mt-4 max-w-[22ch] text-[32px] leading-[1.07] sm:text-[42px]">
-          {stats.total} charts, {stats.live} live
+          {stats.total} charts
         </h1>
         <p className="mt-2 max-w-[600px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
           Derived views — year-on-year, indexed, growth rates — are labelled as derived and are only
-          generated where the underlying series has enough points to make them meaningful. Charts
-          awaiting the ETL backfill are shown explicitly rather than hidden.
+          generated where the underlying series has enough points to make them meaningful. Only charts
+          with data are shown: a chart is held back until every series it draws has at least three
+          real observations over time.
         </p>
       </section>
 
@@ -133,18 +133,6 @@ export default async function ChartsPage({
               {TRANSFORM_LABELS[t]}
             </Chip>
           ))}
-        </div>
-        <div className="flex items-center gap-2 overflow-x-auto">
-          <span className="eyebrow shrink-0 pr-1">data</span>
-          <Chip href={qs({ status: undefined, page: "1" })} active={!status}>
-            all
-          </Chip>
-          <Chip href={qs({ status: "live", page: "1" })} active={status === "live"}>
-            live now ({stats.live})
-          </Chip>
-          <Chip href={qs({ status: "pending", page: "1" })} active={status === "pending"}>
-            awaiting ETL ({stats.pending})
-          </Chip>
         </div>
       </div>
 

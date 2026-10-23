@@ -1,0 +1,44 @@
+name: Spatial India — district data
+
+# Reads every district and field from Spatial India's free API
+# (api.spatialindia.com) for /districts, and their outlines once. Weekly: the
+# underlying sources (Census 2011, NFHS-5, NCRB, NJDG, RBI…) change rarely.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 4 * * 2"
+  push:
+    paths:
+      - "scripts/etl/connectors/spatial-india.ts"
+      - "lib/spatial-india.ts"
+      - ".github/workflows/spatial-india.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: spatial-india
+  cancel-in-progress: false
+
+jobs:
+  districts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: "${{ github.ref_name }}" }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Read Spatial India
+        run: npm run spatial:india
+      - name: Commit
+        run: |
+          for f in probe districts boundaries; do
+            if [ -f "data/spatial-india/$f.json" ] && [ -n "$(git status --porcelain data/spatial-india/$f.json)" ]; then
+              .github/scripts/commit-generated.sh "data/spatial-india/$f.json" "data(spatial-india): $f $(date -u +'%Y-%m-%d %H:%M')"
+            fi
+          done

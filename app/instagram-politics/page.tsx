@@ -17,7 +17,7 @@ import {
 
 export const metadata = {
   title: "Politics on Instagram: BJP, Congress, AAP and the CJP · Bharat Tracker",
-  description: "Twenty dashboards on Indian politics on Instagram — followers, engagement per post, the CJP from its launch to the CEC protest, comment sentiment as published, and the claims about bots — every figure sourced, every claim checked against its own chart.",
+  description: "Dashboards on Indian politics on Instagram — followers, engagement per post, the CJP from its launch to the CEC protest, comment sentiment as published, and the claims about bots — every figure sourced, every claim checked against its own chart.",
 };
 
 const load = <T,>(f: string): T | null => { try { return JSON.parse(readFileSync(join(process.cwd(), "data", "instagram", f), "utf8")) as T; } catch { return null; } };
@@ -63,14 +63,14 @@ export default function InstagramPoliticsPage() {
   const monthAgo = today ? new Date(Date.parse(today) - 30 * 86_400_000).toISOString().slice(0, 10) : "";
   const awaiting = (what: ReactNode) => <Awaiting>{what} {reg?.reason ?? "The scheduled job has not run yet."}</Awaiting>;
 
-  const nav: Array<[number, string]> = [[1, "Followers"], [5, "After 20 July"], [7, "The CJP study"], [10, "Sentiment"], [14, "Claims checked"], [15, "Bots & origin"], [17, "Measured"]];
+  const nav: Array<[number, string]> = [[1, "Followers"], [5, "After 20 July"], [7, "The CJP study"], [10, "Sentiment"], [14, "Claims checked"], [15, "Bots & origin"], ...(measured ? [[17, "Measured"] as [number, string]] : [])];
 
   return (
     <article className="pt-6">
       <Eyebrow tone="hot">India · Instagram · April–October 2026</Eyebrow>
       <h1 className="story-display mt-3 max-w-[24ch] text-[32px] sm:text-[44px]">Indian politics on Instagram, by the numbers</h1>
       <Standfirst>
-        How the BJP, Congress, AAP and the Cockroach Janta Party fare on Instagram, measured by what can actually be counted: followers, posts, likes and comments. Twenty
+        How the BJP, Congress, AAP and the Cockroach Janta Party fare on Instagram, measured by what can actually be counted: followers, posts, likes and comments. {measured ? "Twenty" : "Sixteen"}
         dashboards, from the CJP&apos;s launch in May to its protest against the Chief Election Commissioner in October. Published figures name their source and the
         sentence they were read from. Comment sentiment is a published study&apos;s, credited to it and checked against its own charts. Nothing here is a poll: engagement measures attention, which outrage earns as readily as approval.
       </Standfirst>
@@ -239,6 +239,8 @@ export default function InstagramPoliticsPage() {
         </Panel>
       </div>
 
+      {/* The measured dashboards appear only once the Graph API job has data: an empty dashboard is not published. */}
+      {measured && (<>
       <h2 className="story-display mt-12 text-[24px]">Measured by this site</h2>
       <p className="mt-2 max-w-[74ch] text-[12.5px] leading-[1.55]" style={{ color: "var(--story-ink-3)" }}>
         Read twice a day from Meta&apos;s Graph API for {ACCOUNTS.map((a) => `@${a.handle}`).join(", ")}: followers, posts, and the likes and comments on every post since {dmy("2026-04-20")}.
@@ -333,6 +335,7 @@ export default function InstagramPoliticsPage() {
           ) : awaiting("Caption topics and comment-to-like outliers, per account.")}
         </Panel>
       </div>
+      </>)}
 
       <section id="reading" className="mt-14 border-t pt-8" style={{ borderColor: "var(--story-rule)" }}>
         <Eyebrow>Reading the record</Eyebrow>

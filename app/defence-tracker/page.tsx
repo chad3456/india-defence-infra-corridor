@@ -102,7 +102,6 @@ export default function DefenceTrackerPage() {
 
   const specById = new Map(ALL_SECURITY_SPECS.map((s) => [s.id, s]));
   const filled = ALL_SECURITY_SPECS.filter((s) => getSeries(s.id));
-  const awaiting = ALL_SECURITY_SPECS.filter((s) => !getSeries(s.id));
   const points = filled.reduce((n, s) => n + definedPoints(getSeries(s.id)!).length, 0);
 
   return (
@@ -127,36 +126,11 @@ export default function DefenceTrackerPage() {
             <dd className="tnum mt-0.5 text-[15px]">{points}</dd>
           </div>
           <div>
-            <dt className="eyebrow">awaiting data</dt>
-            <dd className="tnum mt-0.5 text-[15px]">{awaiting.length}</dd>
-          </div>
-          <div>
             <dt className="eyebrow">theatres</dt>
             <dd className="tnum mt-0.5 text-[15px]">2</dd>
           </div>
         </dl>
       </section>
-
-      {awaiting.length > 0 && (
-        <section className="mt-6 rounded-lg border p-4">
-          <p className="text-[12px] font-medium">
-            {awaiting.length} of {ALL_SECURITY_SPECS.length} series on this page have no data yet
-          </p>
-          <p className="mt-1.5 text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
-            They are listed rather than hidden. Each names the source it is waiting for, and the
-            charts render an explicit awaiting-data state instead of an empty axis. A gallery that
-            looks complete because its gaps are hidden is the failure this project exists to avoid.
-          </p>
-          <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
-            {awaiting.map((s) => (
-              <li key={s.id} className="text-[11px] text-[color:var(--text-muted)]">
-                <span className="text-[color:var(--text-secondary)]">{s.title}</span>
-                {s.filledBy === "curated" ? " — needs a document read by a person" : " — next pipeline run"}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
 
       {/* ---------------- The map ---------------- */}
       <section id="map" className="mt-10">
@@ -185,13 +159,12 @@ export default function DefenceTrackerPage() {
       {SECTIONS.map((section) => {
         const charts = chartsFor(section.seriesIds);
         if (charts.length === 0) return null;
-        const live = charts.filter((c) => !c.pending).length;
         return (
           <section key={section.id} id={section.id} className="mt-10">
             <div className="flex flex-wrap items-baseline justify-between gap-2 border-b pb-2">
               <h2 className="display text-[21px] leading-tight">{section.title}</h2>
               <p className="tnum text-[11px] text-[color:var(--text-muted)]">
-                {live} of {charts.length} live
+                {charts.length} chart{charts.length === 1 ? "" : "s"}
               </p>
             </div>
             <p className="mt-2 max-w-[720px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">

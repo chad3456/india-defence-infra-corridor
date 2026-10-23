@@ -5,7 +5,7 @@
  * points at a series that does not exist and is not a known pending indicator,
  * or if ids collide.
  */
-import { getRegistry, registryStats } from "../lib/registry";
+import { allSpecs, registryStats } from "../lib/registry";
 import { getSeries, getAllSeries, sourcesForSeries } from "../lib/data";
 import { WDI_BY_ID } from "../lib/wdi-catalogue";
 import { SECURITY_BY_ID } from "../lib/security-catalogue";
@@ -14,7 +14,8 @@ import { INDIA_BY_ID } from "../lib/india-catalogue";
 const TARGET = 250;
 
 function main() {
-  const registry = getRegistry();
+  // Every defined spec is checked, published or held back: a typo in a held-back spec is still a typo.
+  const registry = allSpecs();
   const stats = registryStats();
   const errors: string[] = [];
 
@@ -44,7 +45,7 @@ function main() {
   console.log("Chart registry");
   console.log(`  total charts   : ${stats.total}`);
   console.log(`  live now       : ${stats.live}`);
-  console.log(`  awaiting ETL   : ${stats.pending}`);
+  console.log(`  held back      : ${stats.pending} with no data, ${stats.thin} with too few points`);
   console.log("  by category    :");
   for (const [cat, n] of Object.entries(stats.byCategory).sort((a, b) => b[1] - a[1])) {
     console.log(`      ${cat.padEnd(16)} ${n}`);
