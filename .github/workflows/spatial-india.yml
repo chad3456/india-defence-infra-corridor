@@ -7,7 +7,9 @@ name: Spatial India — district data
 on:
   workflow_dispatch:
   schedule:
-    - cron: "23 4 * * 2"
+    # Daily while the outlines and per-district records are still filling in (each run resumes);
+    # after that, a run that finds nothing new commits nothing.
+    - cron: "23 4 * * *"
   push:
     paths:
       - "scripts/etl/connectors/spatial-india.ts"
@@ -24,7 +26,7 @@ concurrency:
 jobs:
   districts:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
         with: { ref: "${{ github.ref_name }}" }
@@ -37,7 +39,7 @@ jobs:
         run: npm run spatial:india
       - name: Commit
         run: |
-          for f in probe districts boundaries; do
+          for f in probe districts values outlines; do
             if [ -f "data/spatial-india/$f.json" ] && [ -n "$(git status --porcelain data/spatial-india/$f.json)" ]; then
               .github/scripts/commit-generated.sh "data/spatial-india/$f.json" "data(spatial-india): $f $(date -u +'%Y-%m-%d %H:%M')"
             fi

@@ -47,16 +47,17 @@ export function simplifyRing(ring: number[][], tol: number): number[][] {
     const [a, b] = stack.pop()!;
     let max = 0, at = -1;
     const [ax, ay] = ring[a]!, [bx, by] = ring[b]!;
-    const dx = bx! - ax!, dy = by! - ay!, len = Math.hypot(dx, dy) || 1e-12;
+    const dx = bx! - ax!, dy = by! - ay!, len = Math.hypot(dx, dy);
     for (let i = a + 1; i < b; i++) {
       const [px, py] = ring[i]!;
-      const d = Math.abs(dy * px! - dx * py! + bx! * ay! - by! * ax!) / len;
+      // A closed ring starts and ends on the same point: measure from that point, not from a zero-length line.
+      const d = len < 1e-12 ? Math.hypot(px! - ax!, py! - ay!) : Math.abs(dy * px! - dx * py! + bx! * ay! - by! * ax!) / len;
       if (d > max) { max = d; at = i; }
     }
     if (max > tol && at > 0) { keep[at] = 1; stack.push([a, at], [at, b]); }
   }
   const out = ring.filter((_, i) => keep[i]).map((p) => [round(p[0]!), round(p[1]!)]);
-  return out.length >= 4 ? out : ring.slice(0, 4).map((p) => [round(p[0]!), round(p[1]!)]);
+  return out.length >= 4 ? out : [];
 }
 const round = (x: number) => Math.round(x * 1e4) / 1e4;
 
@@ -67,14 +68,51 @@ export function geometryOf(body: unknown, tol = 0.004): Geometry | null {
   if (g?.type === "FeatureCollection") g = (g.features?.[0]?.geometry ?? null) as typeof g;
   else if (g?.type === "Feature") g = (g.geometry ?? null) as typeof g;
   if (!g || !Array.isArray(g.coordinates)) return null;
-  if (g.type === "Polygon") return { type: "Polygon", coordinates: (g.coordinates as number[][][]).map((r) => simplifyRing(r, tol)) };
-  if (g.type === "MultiPolygon") return { type: "MultiPolygon", coordinates: (g.coordinates as number[][][][]).map((p) => p.map((r) => simplifyRing(r, tol))) };
+  // Rings that simplify away (islets smaller than the tolerance) are dropped, not faked.
+  const poly = (p: number[][][]) => {
+    const rings = p.map((r) => simplifyRing(r, tol));
+    // An outer ring that vanishes takes its holes with it; a hole that vanishes is just dropped.
+    return rings[0] && rings[0].length >= 4 ? [rings[0], ...rings.slice(1).filter((r) => r.length >= 4)] : [];
+  };
+  if (g.type === "Polygon") { const c = poly(g.coordinates as number[][][]); return c.length ? { type: "Polygon", coordinates: c } : null; }
+  if (g.type === "MultiPolygon") { const c = (g.coordinates as number[][][][]).map(poly).filter((p) => p.length); return c.length ? { type: "MultiPolygon", coordinates: c } : null; }
   return null;
 }
 
 /* ── What the page reads ───────────────────────────────────────────────── */
 
 export interface SpatialDistricts { fetchedAt: string; source: string; pagination: string; count: number; rows: Array<Record<string, unknown>> }
+/** One indicator as /v1/indicators describes it. */
+export interface SpatialIndicator { id: string; name: string; description?: string; unit?: string; source?: string; vintage?: string; category?: string[]; polarity?: string; caveat?: string; estimation_method?: string; coverage?: number; status?: string }
+/** Indicator values by district: [value, estimated] pairs, keyed by objectid then indicator id. */
+export interface SpatialValues { fetchedAt: string; method: string; meta: { dataset_version?: string; attribution?: string[]; citation?: string }; indicators: SpatialIndicator[]; values: Record<string, Record<string, [number | null, boolean]>> }
+
+/**
+ * The values in one district record, whatever shape the API gives them:
+ * { indicator_id: number } or { indicator_id: { value, estimated } } or a list
+ * of { id, value, estimated }.
+ */
+export function valuesIn(rec: Record<string, unknown>, ids: Set<string>): Record<string, [number | null, boolean]> {
+  const out: Record<string, [number | null, boolean]> = {};
+  const take = (id: string, v: unknown) => {
+    if (!ids.has(id)) return;
+    if (typeof v === "number" || v === null) { out[id] = [typeof v === "number" && Number.isFinite(v) ? v : null, false]; return; }
+    if (v && typeof v === "object") {
+      const o = v as Record<string, unknown>;
+      const val = typeof o.value === "number" && Number.isFinite(o.value) ? o.value : null;
+      out[id] = [val, o.estimated === true || o.is_estimated === true];
+    }
+  };
+  const walk = (o: Record<string, unknown>) => {
+    for (const [k, v] of Object.entries(o)) {
+      if (ids.has(k)) take(k, v);
+      else if (Array.isArray(v)) for (const x of v) { if (x && typeof x === "object") { const r = x as Record<string, unknown>; const id = typeof r.id === "string" ? r.id : typeof r.indicator === "string" ? r.indicator : typeof r.indicator_id === "string" ? r.indicator_id : null; if (id) take(id, r); } }
+      else if (v && typeof v === "object" && !Array.isArray(v)) walk(v as Record<string, unknown>);
+    }
+  };
+  walk(rec);
+  return out;
+}
 export interface SpatialProbe { fetchedAt: string; endpoints: Array<{ path: string; status: number; contentType: string; sample: string }> }
 
 /**
