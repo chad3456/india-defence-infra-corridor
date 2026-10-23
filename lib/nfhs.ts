@@ -78,7 +78,7 @@ export const METRIC_NOTES: Record<string, string> = {
   skilled_births: "Births in the two years before each survey.",
   anc4: "Mothers with a birth in the two years before each survey.",
   wifebeat: "Not published by DHS for 1998–99.",
-  literate_women: "1998–99 covered ever-married women only.",
+  literate_women: "Not published by DHS for 1998–99.",
   overweight_women: "1998–99 covered ever-married women only.",
 };
 
