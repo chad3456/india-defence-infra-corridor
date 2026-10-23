@@ -1,0 +1,45 @@
+name: NFHS — every round, metric by metric
+
+# Reads every India National Family Health Survey round the DHS Program
+# publishes (NFHS-2 1998–99 onwards) for /health: national, urban/rural,
+# wealth and state figures for each tracked metric. Weekly — a new round or a
+# DHS revision is picked up within days; otherwise nothing is committed.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "11 5 * * 3"
+  push:
+    paths:
+      - "scripts/etl/connectors/nfhs-rounds.ts"
+      - "lib/nfhs.ts"
+      - ".github/workflows/nfhs-rounds.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nfhs-rounds
+  cancel-in-progress: false
+
+jobs:
+  rounds:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: "${{ github.ref_name }}" }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Read every NFHS round
+        run: npm run nfhs:rounds
+      - name: Commit
+        run: |
+          if [ -n "$(git status --porcelain data/nfhs/rounds.json)" ]; then
+            .github/scripts/commit-generated.sh data/nfhs/rounds.json "data(nfhs): every round $(date -u +'%Y-%m-%d %H:%M')"
+          else
+            echo "nothing changed; nothing to commit"
+          fi
