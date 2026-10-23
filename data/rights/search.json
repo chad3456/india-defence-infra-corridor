@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-23T05:26:19.764Z",
+  "builtAt": "2026-10-23T13:52:05.887Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1247,
+    "items": 1251,
     "addedThisRun": 4,
-    "carriedFromEarlierRuns": 1243,
-    "withOutlet": 1161,
+    "carriedFromEarlierRuns": 1247,
+    "withOutlet": 1165,
     "bySubject": {
-      "scst": 853,
+      "scst": 857,
       "pmshri": 394
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 295
+    "offSubjectDropped": 272
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 618
+      "n": 620
     },
     {
       "key": "use",
-      "n": 435
+      "n": 436
     },
     {
       "key": "dispute",
@@ -40,7 +40,7 @@
     },
     {
       "key": "allegation",
-      "n": 57
+      "n": 58
     },
     {
       "key": "false-finding",
@@ -62,7 +62,7 @@
     },
     {
       "key": "The New Indian Express",
-      "n": 50
+      "n": 51
     },
     {
       "key": "The Hindu",
@@ -82,7 +82,7 @@
     },
     {
       "key": "Verdictum",
-      "n": 27
+      "n": 28
     },
     {
       "key": "ThePrint",
@@ -101,15 +101,15 @@
       "n": 18
     },
     {
+      "key": "LawChakra",
+      "n": 17
+    },
+    {
       "key": "Careers360",
       "n": 16
     },
     {
       "key": "Live Law",
-      "n": 16
-    },
-    {
-      "key": "LawChakra",
       "n": 16
     },
     {
@@ -197,6 +197,10 @@
       "n": 7
     },
     {
+      "key": "LawStreet Journal",
+      "n": 7
+    },
+    {
       "key": "Bhaskar English",
       "n": 7
     },
@@ -214,10 +218,6 @@
     },
     {
       "key": "Wansom AI",
-      "n": 6
-    },
-    {
-      "key": "LawStreet Journal",
       "n": 6
     },
     {
@@ -306,8 +306,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 5,
-      "kept": 0,
+      "bing": 6,
+      "kept": 1,
       "offSubject": 13
     },
     {
@@ -315,19 +315,19 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 30,
       "bing": 0,
       "kept": 0,
-      "offSubject": 44
+      "offSubject": 7
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 50,
+      "google": 49,
       "bing": 7,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -337,18 +337,18 @@
       "expect": "use",
       "google": 48,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 14
+      "kept": 1,
+      "offSubject": 13
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 58,
+      "google": 59,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 21
+      "kept": 0,
+      "offSubject": 23
     },
     {
       "id": "act-acquittal",
@@ -358,7 +358,7 @@
       "google": 96,
       "bing": 0,
       "kept": 0,
-      "offSubject": 43
+      "offSubject": 44
     },
     {
       "id": "act-hostile",
@@ -377,28 +377,28 @@
       "expect": "allegation",
       "google": 49,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 7
+      "kept": 0,
+      "offSubject": 9
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 28,
+      "google": 16,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 0
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 21,
+      "google": 51,
       "bing": 1,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 15
     },
     {
       "id": "act-fabricated",
@@ -407,7 +407,7 @@
       "expect": "false-finding",
       "google": 33,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 21
     },
     {
@@ -418,7 +418,7 @@
       "google": 100,
       "bing": 12,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "shri-sanctioned",
@@ -435,8 +435,8 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 67,
-      "bing": 0,
+      "google": 66,
+      "bing": 1,
       "kept": 0,
       "offSubject": 22
     },
@@ -455,28 +455,28 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 42,
-      "bing": 0,
+      "google": 43,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 4
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 28,
+      "google": 29,
       "bing": 2,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 16
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 52,
-      "bing": 4,
+      "google": 53,
+      "bing": 5,
       "kept": 0,
       "offSubject": 12
     },
@@ -653,7 +653,8 @@
       "published": "2026-09-15",
       "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQbTNQVDBDMDRYM05VamlRM2R4c2pHSlFEcmhFbEMwSE1ESmJHOEFwMVMtcGZpWUJjSV8zMTM3MGhOVk0wNVFIZ29uejVsdDVqX3dmX1FDcTJLWEpTMFI3NnZGZVlRTTBfUVBLWTRIWV96bHA3N3E3WXBPYmVMT21LNGlwMG9Pb1Y3RjVsYmtYZ2ZmSFJhaUJPMW14dkgtQ0Nuanc3aUxYcHFpU1F4T1FBd1NhZy1NT2FNeUZGSGg5aG9tdDFoUXY4RQ?oc=5",
       "queries": [
-        "act-general"
+        "act-general",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -15925,7 +15926,8 @@
         "act-compensation"
       ],
       "indexes": [
-        "bing"
+        "bing",
+        "google"
       ],
       "firstSeen": "2026-09-29"
     },
@@ -20856,6 +20858,70 @@
       "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNNVl6Ti01WnpieTh3TEp0dE5ZUDNWMnNrMmxuTEhLSFdyQ0lRcTNhV21ackdrQmhXTXVBLWlKdVB2ZlQ0bVdjMnc4T0JpRElIOWpadUpLR1hpdG9GbTFkYk8xZEtfZDBQYUV0Rkg3WnpKYVF5cWFuaDE4MlAzNlNlZFdHNFJaX0lqM1VPdmtUTTBiUWVaNFNLS0ZrQWd4UHFQYW5lVTdR0gGrAUFVX3lxTE11aEJmWGVTTDQxVjdIUC1Zc1Y4c01pSHNlRFY1bmNrQk5PLWJoMFZ4NGFRNGJ3WHlLZkxmQUxDX29hTTloX3plRUJYSmJ0TXZBWFRMUW15TGJkRW1BU3lZdEtwbWl4WVRacXBZd2JjYXRhdHp1STN2VFlHSVZTM1BfdVlYUDNBNHA4YVIzYm5rQjE1S3M3SDN6Wm9vLWNZREtvWUoxZlZIWDlVaw?oc=5",
       "queries": [
         "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-23"
+    },
+    {
+      "id": "caste identity alone not a ground to invoke sc st act allahabad hc",
+      "headline": "Caste identity alone not a ground to invoke SC/ST Act: Allahabad HC",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The New Indian Express",
+      "published": "2026-09-12",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNR3pPSnZlOEI0MFZXRHlXSmplVXZwWEd4eENWS3U1MWRYZ2NhTWJBWU1ibG1WbXFDbk9hMXlqV21PM1NNQzdNY0pxaTBfNGtvN0tSbUpjT2hRQVp6VnZtaUtiRF9kYnd6MzhFR1VjOU5vX2lMZ0FqSkxLR2N3bnlkaEVxVXNfNkNsS1JWSUk1YUt4Y0dYRDBScGJRdnM0MHlsZXIyX0F1NXNHb0ZUWTFwaXBtZjF1ak44Ny00aUpDdWVHLXFLLU1uVlBHSdIB2AFBVV95cUxNTUFqRkdkR2VIcElqZlFwZXpiZ1VOTmRpV01BTjFlNldEYmh0V013c3FuSXZHU0FNcEo0eXlSX2tpLVJCMVdhTEd2Tk4zLUpRdlBmNE1IcmVmZ3BiWUlSMmx6SkdXOENzQS1Td09xcnRQeGVsdE5rNjZNZG9WcGg3eTBVeG10UlFsd2JSZDhCU2QwdGM2OUQ1MXFYMldIWW9YSzV6QTF2Wm9aV1R6OGRYb01HOTdpdzdYWEUycXlNblExT2tfOFZZYTY4Yi1EeDRjNHB6OHpyVkU?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-23"
+    },
+    {
+      "id": "journalist s plea for protection from arrest in sc st case not heard urgently by delhi hig",
+      "headline": "Journalist's Plea For Protection From Arrest In SC/ST Case Not Heard Urgently By Delhi High Court",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "LawChakra",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQeER3SGJEc0NDWFNzV281emtYbGd6Z0I3NXBhUUJMTWxvRzdGYkxtcGItcjNNY2xKbk1HdWk1aF9rNS1vQVphekdCeDh6aWFRNWo4aHlYa2xOcWdhWUZrNEpkSXZzTzlRcGhDSDI1OVhCclgxTXFsT1FrRU4xN1lKN0RFYjF5THZkbEpv?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-23"
+    },
+    {
+      "id": "allahabad hc orders up wide inquiry into misuse of sc st act relief benefits",
+      "headline": "Allahabad HC Orders UP-Wide Inquiry Into ‘Misuse’ Of SC/ST Act Relief Benefits",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "LawStreet Journal",
+      "published": "2026-09-07",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPZXNjd2lEd0stSnhaT3BEeTRMR0VNX18tQTFIRTIwUEhfOUZsa3pmcmR3WDE4RlNpSURwM09PLWl3N2NNOVJFMUZUUWdiZ3h3X2x2bllWZjVmOVV4ajBwQW1acXMtamRJalhkZVk3dXR5M3pLRjB3cWwzZDZCMkYzV0c5S3BFV3ZNTDBkSUhPTXN5ZW5SX3hCVzFlcTdtOFpSd1lQY09MMWY?oc=5",
+      "queries": [
+        "act-compensation"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-23"
+    },
+    {
+      "id": "presence of employees at factory gate satisfies public view u s 3 sc st act karnataka high",
+      "headline": "Presence Of Employees At Factory Gate Satisfies \"Public View\" U/S 3 SC/ST Act: Karnataka High Court...",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Verdictum",
+      "published": "2026-04-06",
+      "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxOX0xyYXRjbXRvTmgxX3Q5RmN1eWZrdmRnb3RCUmJnWEFtTlprZFZIbUczQzNOVmlMUzh1SlBJZDdnNk54c1lGVmlabHlZdmlSU3NlZ2dtQVdDWUU5NDl3Nm9RZnpJblFaU29PdjVQcmxDZzQtemZ5VWhqZF85RlNfVE1XVkZaSGFiS2pIdVcwUDRybzJaNDRmc2dXTnV1YXpraXo0dXh4Y3VYQWJYR2MwbWZ2UF8xNUxTal9LemV1bjk3bWJuOExrOGdjc195ZTlGdUNYZFVDUWZYanE2SzA3eTV3bEEtNGQ5NUdfQnNfQ2xKUFFMLUxTUFV2X2Z4amZxbUEzZ0pDRmhtSENWa1FN0gGUAkFVX3lxTE9ZWW9CZXR2NTVDQUduNjBRaDU5elNxRHlRWGZYZlN1UDk2TVBjWGwyZ0RlRFpUMjQycTdyVnZjWjdHdVc4emg3Q3ZKUEV0bVQ4LUlBUzl0ZUFKUTJzMW9jbS0yMER6VDM4N3V0NERLQXJnaHBQeUVCX25WdDF4R3NNcGxfSGNNbmJGOE1pSHdUSHVDb0dTU2EzaUVxWGlTb3ktRTMzS2JZM0FqZVQ2cEctUUVoVXVMR2tHM3AxOHozaTBKbGRlcGw0YjVUc1p2cHl1bjQwODZ5MVk4eDFFYTljX0RkSWhhYjNyWHpNNzRWazVKbm5pUWdET3JxcTVHWTBqQ0xmemprNVVmUXZaRVlVc0dHUA?oc=5",
+      "queries": [
+        "act-fabricated"
       ],
       "indexes": [
         "google"
