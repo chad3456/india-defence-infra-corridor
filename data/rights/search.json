@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-23T20:08:15.444Z",
+  "builtAt": "2026-10-23T23:34:00.963Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1252,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1251,
-    "withOutlet": 1166,
+    "items": 1255,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 1252,
+    "withOutlet": 1169,
     "bySubject": {
-      "scst": 858,
+      "scst": 861,
       "pmshri": 394
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 288
+    "offSubjectDropped": 246
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 436
+      "n": 437
     },
     {
       "key": "dispute",
@@ -36,7 +36,7 @@
     },
     {
       "key": "acquittal",
-      "n": 62
+      "n": 64
     },
     {
       "key": "allegation",
@@ -50,11 +50,11 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 106
+      "n": 107
     },
     {
       "key": "Lawtext",
-      "n": 87
+      "n": 89
     },
     {
       "key": "The Indian Express",
@@ -295,40 +295,40 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 37,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 6
+      "kept": 0,
+      "offSubject": 1
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 54,
+      "google": 100,
       "bing": 6,
-      "kept": 0,
-      "offSubject": 7
+      "kept": 2,
+      "offSubject": 13
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 99,
       "bing": 0,
       "kept": 0,
-      "offSubject": 46
+      "offSubject": 45
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 49,
-      "bing": 6,
+      "google": 50,
+      "bing": 7,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "act-compensation",
@@ -345,20 +345,20 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 14,
+      "google": 58,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 21
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 96,
+      "google": 28,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 44
+      "kept": 1,
+      "offSubject": 2
     },
     {
       "id": "act-hostile",
@@ -376,7 +376,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 49,
-      "bing": 2,
+      "bing": 1,
       "kept": 0,
       "offSubject": 9
     },
@@ -388,7 +388,7 @@
       "google": 28,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "act-false",
@@ -398,7 +398,7 @@
       "google": 50,
       "bing": 1,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 14
     },
     {
       "id": "act-fabricated",
@@ -418,7 +418,7 @@
       "google": 100,
       "bing": 12,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "shri-sanctioned",
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 65,
+      "google": 10,
       "bing": 1,
       "kept": 0,
-      "offSubject": 22
+      "offSubject": 6
     },
     {
       "id": "shri-upgrade",
@@ -458,7 +458,7 @@
       "google": 43,
       "bing": 2,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 5
     },
     {
       "id": "shri-withheld",
@@ -466,7 +466,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 29,
-      "bing": 2,
+      "bing": 1,
       "kept": 0,
       "offSubject": 16
     },
@@ -20939,6 +20939,54 @@
       "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPajRxRFRuYnJEbmZaLWtjdjIzNmtvMGs1NmVub1lXTC0xX2RWNVgtZGRCa1ZUbUUzZTdOVnhzYjlXUkYxc0JYX1oxNjF3clpoMWNfTHlOMFdzdExXRG9VT0RYQUFHazR1b1RzMWJBRFhFVkNDUnlaT0JPaWxfLVYwbjFYanRnODRkRTBtc1dMWUhBaUQyOGw4eTJJa21TMDY5eFFTSmhzU0FSTm1XRVRpbHBsTC0tTjdvRGZ1bjRuZFEzZ2hw?oc=5",
       "queries": [
         "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-23"
+    },
+    {
+      "id": "delhi police file fir against 2 youtubers under sc st act on acp complaint",
+      "headline": "Delhi Police file FIR against 2 YouTubers under SC/ST Act on ACP complaint",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Times of India",
+      "published": "2026-10-14",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNY0JGQ1YtV0NWS2lIRkI0a2N2N2dQbGlfV1FKenRzeW5aZlppSG9HZmtLajA3ZjdCcVVmNmFZbU5RS2tSMUl0dmstOFR5ZXA5NkRnZVQ1bEJCdGZuT2x1Y2tnWGtRWGhDa3VyN0ZLY3otZmlBZG5hRjR0TDllaXFLc0dDeEdGZnY1SXhDeWQ4TVJtdllzc1c5VU50ZmFDVGl3SndwZ2xrUm5xeVkySjZKdmthN1h6ZUJLWXkwY1pTNGprRWNKQWx1d0lR0gHPAUFVX3lxTE0xdXBOcXBoTG5KMFFqQ2trdG1HRWJXU0VXb3RPRlZCN3VVMXR3QUxKam5WMjJiUDFnSFBrUWVidWVsR3FOdUFVTzNQQmZhUVFRekJKU3NFcnJxVkhrdUtRTmNqTFBWNXlOcm9JNW40bXBmVUxSRzY5WXh2UmpybWY3ZXZEbnY5YUlMVG0zN2dLQ3hjOGZTSXc1blNTZks3LUo5S0FNUUJoNC1VTmtXUjZCbnJ6YVNxT01FQUhoUkp3QzhkZFVrZndTTF9pYWZ3Yw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-23"
+    },
+    {
+      "id": "bombay high court allows revision by original informant against discharge of accused in sc",
+      "headline": "Bombay High Court Allows Revision by Original Informant Against Discharge of Accused in SC/ST Atrocities Case — Prima Facie Case Made Out for Framing of Charges. The court held that the Sessions Judge erred in discharging the accused by conducting",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-10-22",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1IemQwYzJpMmdJWC1hUHRPWjlKTWhFaXVCeGVDem5aWmFQNzhuQzV0QzFNaTNMbDM4TUhaRk5BdTVOSkg0TTJ2S3daZGU1b3FEQnVIZVhYY25rUmo5ZlJ5aFVPNVpLZw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-23"
+    },
+    {
+      "id": "high court of karnataka acquits accused in sc st act case due to inconsistent evidence and",
+      "headline": "High Court of Karnataka Acquits Accused in SC/ST Act Case Due to Inconsistent Evidence and Lack of Proof of Caste-Based Intent. Conviction under Sections 302, 307, 324, 504, 506 read with Section 149 IPC and Sections 3(2)(v) and 3(2)(v-a) of SC & ST (Pr",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-08-20",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBrYlZTMFdsbDk3TVk5dzRpTGF6dzhjUUxhelA1dkZPTlhUaE05OXZtRWRmcDlPXzRJWEhBUWctUzQ5VVAwYVNaQ0Z2Y2lpXzNNcGF2Ug?oc=5",
+      "queries": [
+        "act-acquittal"
       ],
       "indexes": [
         "google"
