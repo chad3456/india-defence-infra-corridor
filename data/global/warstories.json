@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-23T13:26:37.501Z",
-  "previousBuild": "2026-10-23T04:49:04.104Z",
+  "builtAt": "2026-10-23T19:57:46.393Z",
+  "previousBuild": "2026-10-23T13:26:37.501Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 231,
-    "createdThisRun": 1,
+    "stories": 233,
+    "createdThisRun": 2,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 261,
+    "itemsSeen": 229,
     "corroboration": {
-      "one": 194,
+      "one": 196,
       "two": 14,
       "threePlus": 23
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 121
+      "n": 122
     },
     {
       "id": "autonomy",
@@ -48,7 +48,7 @@
     {
       "id": "military-ai",
       "label": "AI in military use",
-      "n": 7
+      "n": 8
     }
   ],
   "byCountry": [
@@ -117,14 +117,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 43,
+      "items": 41,
       "kept": 4
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
-      "items": 30,
-      "kept": 1
+      "items": 0,
+      "kept": 0
     },
     {
       "outlet": "Military Times",
@@ -154,19 +154,19 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 25,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "Defense One",
@@ -178,13 +178,13 @@
       "outlet": "Naval News",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1306,6 +1306,40 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/u-s-army-takes-over-retired-u-s-navy-drone-helicopters/",
+          "published": "2026-10-23"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/off-duty/military-culture/2026/10/23/a-super-rebrand-navy-mandates-dropping-artificial-intelligence/",
+      "headline": "A ‘super’ rebrand: Navy mandates dropping ‘artificial intelligence’",
+      "firstSeen": "2026-10-23",
+      "lastSeen": "2026-10-23",
+      "themes": [
+        "military-ai"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/off-duty/military-culture/2026/10/23/a-super-rebrand-navy-mandates-dropping-artificial-intelligence/",
+          "published": "2026-10-23"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/u-s-army-funds-l3harris-long-range-drone-interceptor-development-and-flight-testing/",
+      "headline": "U.S. Army funds L3Harris long-range drone interceptor development and flight testing",
+      "firstSeen": "2026-10-23",
+      "lastSeen": "2026-10-23",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-army-funds-l3harris-long-range-drone-interceptor-development-and-flight-testing/",
           "published": "2026-10-23"
         }
       ]
