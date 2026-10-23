@@ -75,6 +75,12 @@ export async function run(): Promise<void> {
     const val = (s: string, cat: RegExp, lab: RegExp) => mine.find((r) => r.SurveyId === s && own(r) && cat.test(String(r.CharacteristicCategory)) && lab.test(String(r.CharacteristicLabel)))?.Value ?? null;
     // Child marriage is published by age: the 20–24 row is the headline.
     const total = (s: string) => (m.key === "married18" ? val(s, /^age/i, /^20-24$/) : val(s, /^total$/i, /.*/));
+    // Where a round has more than one candidate national row, log them all: which is the headline is read, not guessed.
+    for (const s of surveys) {
+      const c = mine.filter((r) => r.SurveyId === s.id && /^total/i.test(String(r.CharacteristicCategory)));
+      if (c.length !== 1) console.log(`  ? ${m.key} ${s.id}: ${c.map((r) => `[${r.CharacteristicCategory} | by="${r.ByVariableLabel ?? ""}" pref=${r.IsPreferred}] ${r.Value}`).join("  ") || "no Total row"}`);
+    }
+    if (m.key === "married18") for (const r of mine.filter((x) => x.SurveyId === surveys.at(-1)?.id).slice(0, 12)) console.log(`  ? married18 row: [${r.CharacteristicCategory}: ${r.CharacteristicLabel} | by="${r.ByVariableLabel ?? ""}" pref=${r.IsPreferred}] ${r.Value}`);
     const points: Point[] = surveys.map((s) => {
       const states: Record<string, number> = {};
       for (const r of mine.filter((x) => x.SurveyId === s.id && own(x) && /^(region|state)/i.test(String(x.CharacteristicCategory)))) states[String(r.CharacteristicLabel).replace(/^\.+/, "").trim()] = r.Value!;

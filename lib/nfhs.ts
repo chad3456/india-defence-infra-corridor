@@ -56,14 +56,14 @@ export interface NfhsRounds { fetchedAt: string; source: string; surveys: Survey
 /** The India surveys DHS holds, oldest first; standard DHS surveys only (not special or AIS rounds). */
 export function parseSurveys(body: unknown): Survey[] {
   const data = (body as { Data?: Array<Record<string, unknown>> })?.Data ?? [];
-  return data.flatMap((d) => {
+  const found = data.flatMap((d) => {
     const id = String(d.SurveyId ?? ""), year = Number(d.SurveyYear);
     if (!/^IA\d{4}DHS$/.test(id) || !Number.isFinite(year)) return [];
-    return [{ id, year, label: String(d.SurveyYearLabel ?? year), name: String(d.SurveyNum ? `NFHS (${d.SurveyYearLabel ?? year})` : d.SurveyYearLabel ?? year), released: typeof d.ReleaseDate === "string" ? d.ReleaseDate : null }];
+    return [{ id, year, label: String(d.SurveyYearLabel ?? year), released: typeof d.ReleaseDate === "string" ? d.ReleaseDate : null }];
   }).sort((a, b) => a.year - b.year);
+  // NFHS-1 is 1992–93; rounds count on from it in fieldwork order.
+  return found.map((s) => ({ ...s, name: `NFHS-${found.filter((x) => x.year >= 1992 && x.year <= s.year).length + (found.some((x) => x.year < 1995) ? 0 : 1)}` }));
 }
-/** NFHS-2 1998–99, NFHS-3 2005–06 … by the order DHS lists them (NFHS-1 is 1992–93). */
-export const roundName = (s: Survey, all: Survey[]) => `NFHS-${all.findIndex((x) => x.id === s.id) + 1 + (all[0] && all[0].year > 1995 ? 1 : 0)}`;
 
 /** Change per year between two rounds, in the metric's own units: derived, and labelled so wherever shown. */
 export function perYear(a: { year: number; v: number | null }, b: { year: number; v: number | null }): number | null {
