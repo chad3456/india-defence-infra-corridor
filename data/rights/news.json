@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-23T17:16:59.738Z",
+  "builtAt": "2026-10-23T21:30:55.781Z",
   "source": "5 Indian newsrooms, read as RSS. Each was probed before being added.",
   "method": "Headlines are matched to a subject and then to one of four things: the law or scheme operating, a court acquitting, somebody alleging misuse, or a court finding a specific complaint false. Near-duplicate headlines are folded together and the independent newsrooms behind each are counted. The register accumulates across scheduled runs.",
   "refusal": "An acquittal is not recorded as misuse. An acquittal under this Act can follow from a false complaint and can equally follow from a hostile witness, from intimidation of the complainant, from an investigation that never gathered the evidence the statute requires, or from a compromise outside court — and no public dataset separates them. Only a court or agency finding a specific complaint false is filed as evidence of misuse, and somebody saying the law is misused is filed as somebody saying so.",
@@ -10,25 +10,25 @@
     "Anything from before this register started. It accumulates forward from its first run."
   ],
   "counts": {
-    "items": 28,
-    "createdThisRun": 0,
+    "items": 30,
+    "createdThisRun": 2,
     "corroboratedThisRun": 0,
     "feedsAnswered": 5,
     "feedsTried": 5,
-    "itemsSeen": 196,
+    "itemsSeen": 195,
     "bySubject": {
-      "scst": 27,
+      "scst": 29,
       "pmshri": 1
     }
   },
   "facets": {
     "scst": {
-      "use": 6,
+      "use": 7,
       "acquittal": 0,
       "allegation": 0,
       "false-finding": 0,
       "dispute": 0,
-      "unclassified": 21
+      "unclassified": 22
     },
     "pmshri": {
       "use": 0,
@@ -44,13 +44,13 @@
       "outlet": "The Hindu",
       "ok": true,
       "items": 60,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Hindustan Times",
       "ok": true,
       "items": 100,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Mint",
@@ -67,7 +67,7 @@
     {
       "outlet": "Newslaundry",
       "ok": true,
-      "items": 1,
+      "items": 0,
       "kept": 0
     }
   ],
@@ -89,6 +89,36 @@
           "outlet": "The Hindu",
           "url": "https://www.thehindu.com/data/the-influence-of-dalit-voters-in-uttar-pradesh/article71496795.ece",
           "published": "2026-09-23"
+        }
+      ]
+    },
+    {
+      "id": "https://www.thehindu.com/news/national/tamil-nadu/r-senthamil-selvan-is-new-chairperson-of-tnccs-scheduled-caste-department/article71616858.ece",
+      "headline": "R. Senthamil Selvan is new chairperson of TNCC’s Scheduled Caste department",
+      "subject": "scst",
+      "facet": "unclassified",
+      "firstSeen": "2026-10-23",
+      "lastSeen": "2026-10-23",
+      "sources": [
+        {
+          "outlet": "The Hindu",
+          "url": "https://www.thehindu.com/news/national/tamil-nadu/r-senthamil-selvan-is-new-chairperson-of-tnccs-scheduled-caste-department/article71616858.ece",
+          "published": "2026-10-23"
+        }
+      ]
+    },
+    {
+      "id": "https://www.hindustantimes.com/india-news/tn-school-principal-teacher-2-students-booked-after-class-11-dalit-boy-found-dead-in-coimbatore-101792775766447.html",
+      "headline": "TN school principal, teacher, 2 students booked after Class 11 Dalit boy found dead in Coimbatore",
+      "subject": "scst",
+      "facet": "use",
+      "firstSeen": "2026-10-23",
+      "lastSeen": "2026-10-23",
+      "sources": [
+        {
+          "outlet": "Hindustan Times",
+          "url": "https://www.hindustantimes.com/india-news/tn-school-principal-teacher-2-students-booked-after-class-11-dalit-boy-found-dead-in-coimbatore-101792775766447.html",
+          "published": "2026-10-23"
         }
       ]
     },
