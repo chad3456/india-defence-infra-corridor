@@ -30,6 +30,15 @@ const START = Date.now();
 const BUDGET_MS = Number(process.env.SPATIAL_BUDGET_MIN ?? 45) * 60_000;
 const left = () => BUDGET_MS - (Date.now() - START);
 const PACE = 2_000;
+/** Which half this runner does: "values" (catalogue, districts, values) or "outlines"; both by default. */
+const PART = process.env.SPATIAL_PART ?? "all";
+/** Writes a file only when its content (timestamps aside) changed: a finished run commits nothing. */
+async function writeIfChanged(file: string, doc: Record<string, unknown>, pretty = false): Promise<boolean> {
+  const strip = (o: unknown) => JSON.stringify(o, (k, v) => (k === "fetchedAt" ? undefined : v));
+  if (existsSync(file) && strip(JSON.parse(await readFile(file, "utf8"))) === strip(doc)) return false;
+  await writeFile(file, (pretty ? JSON.stringify(doc, null, 1) : JSON.stringify(doc)) + "\n");
+  return true;
+}
 
 /** One GET, paced, with patience for the rate limit: a 429 waits (Retry-After, or 30 s, 60 s, 120 s) and tries again. */
 async function get(url: string, as: "json" | "text" = "json"): Promise<{ ok: true; data: unknown; text: string } | { ok: false; status: number; error: string }> {
@@ -74,7 +83,7 @@ export async function run(): Promise<void> {
     if (r.ok && url.endsWith("/v1/districts/1")) detailSample = r.data;
     console.log(`  probe ${url}: ${r.ok ? `ok, ${r.text.length} bytes` : r.error}`);
   }
-  await writeFile(join(DIR, "probe.json"), JSON.stringify({ fetchedAt: new Date().toISOString(), endpoints } satisfies SpatialProbe, null, 1) + "\n");
+  if (PART !== "outlines") await writeIfChanged(join(DIR, "probe.json"), { fetchedAt: new Date().toISOString(), endpoints } satisfies SpatialProbe, true);
 
   // ── The catalogue of indicators ──
   const ind = await get(`${SPATIAL_BASE}/v1/indicators`);
@@ -92,7 +101,7 @@ export async function run(): Promise<void> {
     if (page.length < 100) break;
   }
   const dfile = join(DIR, "districts.json");
-  if (rows.length) await writeFile(dfile, JSON.stringify({ fetchedAt: new Date().toISOString(), source: `${SPATIAL_BASE}/v1/districts`, pagination: "limit+offset", count: rows.length, rows } satisfies SpatialDistricts) + "\n");
+  if (rows.length && PART !== "outlines") await writeIfChanged(dfile, { fetchedAt: new Date().toISOString(), source: `${SPATIAL_BASE}/v1/districts`, pagination: "limit+offset", count: rows.length, rows } satisfies SpatialDistricts);
   else if (!existsSync(dfile)) { console.error("no districts at all"); process.exit(1); }
   const ids = (rows.length ? rows : (JSON.parse(await readFile(dfile, "utf8")) as SpatialDistricts).rows).map(idOf).filter((x): x is string => !!x);
   console.log(`districts: ${ids.length}`);
@@ -109,7 +118,7 @@ export async function run(): Promise<void> {
   const params = (((openapi?.paths as Record<string, Record<string, { parameters?: Array<{ name?: string }> }>>)?.["/v1/districts"]?.get?.parameters) ?? []).map((p) => p.name ?? "").filter(Boolean);
   console.log(`openapi /v1/districts parameters: ${params.join(", ") || "(none found)"}`);
   const selector = params.find((p) => /^(indicators?|fields|include|columns|select)$/i.test(p));
-  if (selector && want.size) {
+  if (PART !== "outlines" && selector && want.size) {
     const list = [...want];
     for (let i = 0; i < list.length && left() > 0; i += 20) {
       const chunk = list.slice(i, i + 20);
@@ -124,9 +133,11 @@ export async function run(): Promise<void> {
     method = `GET /v1/districts?${selector}=…, 100 districts a request`;
   }
   const filled = () => Object.values(values).filter((v) => Object.keys(v).length >= want.size * 0.5).length;
-  if (filled() < ids.length * 0.5 && detailSample) {
+  // A district already read is not read again until the dataset version changes: a new district with
+  // few indicators is complete, not unfinished.
+  if (PART !== "outlines" && ids.some((id) => !values[id]) && detailSample) {
     method = "GET /v1/districts/{objectid}, one district a request";
-    const todo = ids.filter((id) => !values[id] || Object.keys(values[id]!).length < want.size * 0.5);
+    const todo = ids.filter((id) => !values[id]);
     console.log(`values by district record: ${todo.length} to fetch`);
     for (const id of todo) {
       if (left() < 10 * 60_000) { console.log("  time budget reached; the next run continues"); break; }
@@ -135,12 +146,12 @@ export async function run(): Promise<void> {
     }
   }
   console.log(`values: ${filled()} of ${ids.length} districts carry most indicators (${method})`);
-  if (Object.keys(values).length) await writeFile(vfile, JSON.stringify({ version: VALUES_VERSION, fetchedAt: new Date().toISOString(), method, meta, indicators, values } satisfies SpatialValues) + "\n");
+  if (PART !== "outlines" && Object.keys(values).length) await writeIfChanged(vfile, { version: VALUES_VERSION, fetchedAt: new Date().toISOString(), method, meta, indicators, values } satisfies SpatialValues);
 
   // ── Outlines: fetched once, resumed across runs ──
   const ofile = join(DIR, "outlines.json");
   const have: Record<string, Geometry> = existsSync(ofile) ? (JSON.parse(await readFile(ofile, "utf8")) as Record<string, Geometry>) : {};
-  const need = ids.filter((id) => !have[id]);
+  const need = PART === "values" ? [] : ids.filter((id) => !have[id]);
   console.log(`outlines: ${Object.keys(have).length} stored, ${need.length} to fetch`);
   let fails = 0;
   for (const id of need) {
@@ -149,7 +160,7 @@ export async function run(): Promise<void> {
     const g = r.ok ? geometryOf(r.data) : null;
     if (g) have[id] = g; else if (++fails <= 5) console.log(`  outline ${id}: ${r.ok ? "no geometry" : r.error}`);
   }
-  if (Object.keys(have).length) await writeFile(ofile, JSON.stringify(have) + "\n");
+  if (PART !== "values" && Object.keys(have).length) await writeIfChanged(ofile, have);
   console.log(`outlines: ${Object.keys(have).length} stored, ${fails} failed`);
 }
 

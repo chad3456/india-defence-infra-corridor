@@ -1,15 +1,16 @@
 name: Spatial India — district data
 
-# Reads every district and field from Spatial India's free API
-# (api.spatialindia.com) for /districts, and their outlines once. Weekly: the
-# underlying sources (Census 2011, NFHS-5, NCRB, NJDG, RBI…) change rarely.
+# Reads every district indicator from Spatial India's free API
+# (api.spatialindia.com) for the district map on /map, and the district
+# outlines. The API is rate-limited, so values and outlines run as two jobs on
+# separate runners, each resuming where the last run stopped. Every two hours
+# until both are complete; after that a run finds nothing new and commits
+# nothing.
 
 on:
   workflow_dispatch:
   schedule:
-    # Daily while the outlines and per-district records are still filling in (each run resumes);
-    # after that, a run that finds nothing new commits nothing.
-    - cron: "23 4 * * *"
+    - cron: "23 */2 * * *"
   push:
     paths:
       - "scripts/etl/connectors/spatial-india.ts"
@@ -19,12 +20,15 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: spatial-india
-  cancel-in-progress: false
-
 jobs:
-  districts:
+  read:
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [values, outlines]
+    concurrency:
+      group: spatial-india-${{ matrix.part }}
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 55
     steps:
@@ -35,11 +39,15 @@ jobs:
           node-version: "22"
           cache: npm
       - run: npm ci
-      - name: Read Spatial India
+      - name: Read Spatial India (${{ matrix.part }})
+        env:
+          SPATIAL_PART: ${{ matrix.part }}
         run: npm run spatial:india
       - name: Commit
         run: |
-          for f in probe districts values outlines; do
+          files="probe districts values"
+          [ "${{ matrix.part }}" = "outlines" ] && files="outlines"
+          for f in $files; do
             if [ -f "data/spatial-india/$f.json" ] && [ -n "$(git status --porcelain data/spatial-india/$f.json)" ]; then
               .github/scripts/commit-generated.sh "data/spatial-india/$f.json" "data(spatial-india): $f $(date -u +'%Y-%m-%d %H:%M')"
             fi
