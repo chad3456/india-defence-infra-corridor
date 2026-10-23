@@ -20,7 +20,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { isEntryPoint } from "../lib/entry";
 import {
-  SPATIAL_BASE, geometryOf, idOf, rowsOf, valuesIn,
+  SPATIAL_BASE, VALUES_VERSION, geometryOf, idOf, rowsOf, valuesIn,
   type Geometry, type SpatialDistricts, type SpatialIndicator, type SpatialProbe, type SpatialValues,
 } from "../../../lib/spatial-india";
 
@@ -104,7 +104,7 @@ export async function run(): Promise<void> {
   const vfile = join(DIR, "values.json");
   const prev: SpatialValues | null = existsSync(vfile) ? (JSON.parse(await readFile(vfile, "utf8")) as SpatialValues) : null;
   const want = new Set(indicators.map((i) => i.id));
-  const values: SpatialValues["values"] = prev && prev.meta?.dataset_version === meta.dataset_version ? { ...prev.values } : {};
+  const values: SpatialValues["values"] = prev && prev.version === VALUES_VERSION && prev.meta?.dataset_version === meta.dataset_version ? { ...prev.values } : {};
   let method = prev?.method ?? "";
   const params = (((openapi?.paths as Record<string, Record<string, { parameters?: Array<{ name?: string }> }>>)?.["/v1/districts"]?.get?.parameters) ?? []).map((p) => p.name ?? "").filter(Boolean);
   console.log(`openapi /v1/districts parameters: ${params.join(", ") || "(none found)"}`);
@@ -135,7 +135,7 @@ export async function run(): Promise<void> {
     }
   }
   console.log(`values: ${filled()} of ${ids.length} districts carry most indicators (${method})`);
-  if (Object.keys(values).length) await writeFile(vfile, JSON.stringify({ fetchedAt: new Date().toISOString(), method, meta, indicators, values } satisfies SpatialValues) + "\n");
+  if (Object.keys(values).length) await writeFile(vfile, JSON.stringify({ version: VALUES_VERSION, fetchedAt: new Date().toISOString(), method, meta, indicators, values } satisfies SpatialValues) + "\n");
 
   // ── Outlines: fetched once, resumed across runs ──
   const ofile = join(DIR, "outlines.json");

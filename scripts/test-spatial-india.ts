@@ -24,6 +24,8 @@ ok("a hole smaller than the tolerance is dropped; the outline stays", g?.type ==
 ok("an outline that vanishes is no outline", geometryOf({ type: "Polygon", coordinates: [[[77, 28], [77.0001, 28], [77, 28.0001], [77, 28]]] }) === null);
 const v = valuesIn({ objectid: 1, indicators: [{ id: "a", value: 5, estimated: true }, { id: "b", value: null }], c: 7, d: { value: 2, estimated: false }, z: 9 }, new Set(["a", "b", "c", "d"]));
 const sorted = (o: object) => JSON.stringify(Object.entries(o).sort());
+const doc = valuesIn({ objectid: 3, district: "X", values: { a: 41.2, b: null, z: 1 }, estimated: { a: true, b: false } }, new Set(["a", "b"]));
+ok("the documented shape: values and their estimated flags read together", sorted(doc) === sorted({ a: [41.2, true], b: [null, false] }), JSON.stringify(doc));
 ok("values read from every shape the API might use, with their estimated flags; others ignored", sorted(v) === sorted({ a: [5, true], b: [null, false], c: [7, false], d: [2, false] }), JSON.stringify(v));
 
 const dir = join(process.cwd(), "data", "spatial-india");

@@ -7,7 +7,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { geoMercator, geoPath } from "d3-geo";
 import type { Feature, FeatureCollection, Geometry as GeoGeometry } from "geojson";
-import { idOf, type DistrictMapData, type Geometry, type SpatialDistricts, type SpatialValues } from "./spatial-india";
+import { VALUES_VERSION, idOf, type DistrictMapData, type Geometry, type SpatialDistricts, type SpatialValues } from "./spatial-india";
 
 export type { DistrictMapData, DistrictShape } from "./spatial-india";
 
@@ -30,6 +30,9 @@ export function districtMap(width = 640, height = 720): DistrictMapData | null {
   }).filter((s) => s.d);
   // Measured = a value that is not flagged as estimated: the only kind this site publishes.
   const indicators = values.indicators.map((ind) => ({ ...ind, measured: Object.values(values.values).filter((v) => { const x = v[ind.id]; return !!x && x[0] !== null && !x[1]; }).length }));
+  // Published only with good coverage: outlines and values for at least 90% of districts, and values that carry the estimated flag.
+  const withValues = Object.keys(values.values).length;
+  if (values.version !== VALUES_VERSION || shapes.length < districts.count * 0.9 || withValues < districts.count * 0.9) return null;
   cached = { width, height, shapes, indicators, meta: values.meta, fetchedAt: values.fetchedAt, districts: districts.count, outlines: shapes.length };
   return cached;
 }
@@ -37,7 +40,7 @@ export function districtMap(width = 640, height = 720): DistrictMapData | null {
 /** One indicator's values by district, estimates removed. */
 export function indicatorValues(id: string): { values: Record<string, number>; estimated: number; missing: number } | null {
   const values = read<SpatialValues>("values.json");
-  if (!values || !values.indicators.some((i) => i.id === id)) return null;
+  if (!values || values.version !== VALUES_VERSION || !values.indicators.some((i) => i.id === id)) return null;
   const out: Record<string, number> = {};
   let estimated = 0, missing = 0;
   for (const [d, v] of Object.entries(values.values)) {

@@ -86,9 +86,11 @@ export function geometryOf(body: unknown, tol = 0.004): Geometry | null {
 
 export interface SpatialDistricts { fetchedAt: string; source: string; pagination: string; count: number; rows: Array<Record<string, unknown>> }
 /** One indicator as /v1/indicators describes it. */
-export interface SpatialIndicator { id: string; name: string; description?: string; unit?: string; source?: string; vintage?: string; category?: string[]; polarity?: string; caveat?: string; estimation_method?: string; coverage?: number; status?: string }
+export interface SpatialIndicator { id: string; name: string; description?: string; unit?: string; source?: string; vintage?: string; category?: string[]; polarity?: string; caveat?: string; estimation_method?: string; coverage?: number; zero_districts?: number; status?: string }
 /** Indicator values by district: [value, estimated] pairs, keyed by objectid then indicator id. */
-export interface SpatialValues { fetchedAt: string; method: string; meta: { dataset_version?: string; attribution?: string[]; citation?: string }; indicators: SpatialIndicator[]; values: Record<string, Record<string, [number | null, boolean]>> }
+/** Raised when stored values must be read again: version 2 carries the per-value estimated flag. */
+export const VALUES_VERSION = 2;
+export interface SpatialValues { version?: number; fetchedAt: string; method: string; meta: { dataset_version?: string; attribution?: string[]; citation?: string }; indicators: SpatialIndicator[]; values: Record<string, Record<string, [number | null, boolean]>> }
 
 /**
  * The values in one district record, whatever shape the API gives them:
@@ -97,6 +99,16 @@ export interface SpatialValues { fetchedAt: string; method: string; meta: { data
  */
 export function valuesIn(rec: Record<string, unknown>, ids: Set<string>): Record<string, [number | null, boolean]> {
   const out: Record<string, [number | null, boolean]> = {};
+  // The documented shape (OpenAPI "District"): { values: { id: number|null }, estimated: { id: boolean } }.
+  const root = (rec.district && typeof rec.district === "object" ? rec.district : rec) as Record<string, unknown>;
+  if (root.values && typeof root.values === "object" && !Array.isArray(root.values)) {
+    const vals = root.values as Record<string, unknown>, est = (root.estimated && typeof root.estimated === "object" ? root.estimated : {}) as Record<string, unknown>;
+    for (const [k, v] of Object.entries(vals)) {
+      if (!ids.has(k)) continue;
+      out[k] = [typeof v === "number" && Number.isFinite(v) ? v : null, est[k] === true];
+    }
+    return out;
+  }
   const take = (id: string, v: unknown) => {
     if (!ids.has(id)) return;
     if (typeof v === "number" || v === null) { out[id] = [typeof v === "number" && Number.isFinite(v) ? v : null, false]; return; }

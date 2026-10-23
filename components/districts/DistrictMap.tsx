@@ -12,7 +12,8 @@ import type { DistrictMapData } from "@/lib/spatial-india";
 
 type Payload = { values: Record<string, number>; estimated: number; missing: number };
 const STEPS = [18, 36, 54, 72, 90];
-const hue = (polarity?: string) => (polarity === "negative" ? "var(--s-hot)" : polarity === "positive" ? "var(--s-cool)" : "var(--series-1)");
+/** Polarity as the API states it: higher-worse in the warm hue, higher-better in the cool one, neutral in blue — never ranked as an achievement. */
+const hue = (polarity?: string) => (polarity === "higher-worse" ? "var(--s-hot)" : polarity === "higher-better" ? "var(--s-cool)" : "var(--series-1)");
 const fmt = (v: number, unit?: string) => {
   const a = Math.abs(v);
   const s = a >= 1e7 ? `${(v / 1e6).toFixed(1)}M` : a >= 1e5 ? `${(v / 1e3).toFixed(0)}K` : a >= 100 ? v.toFixed(0) : a >= 10 ? v.toFixed(1) : v.toFixed(2);
@@ -116,6 +117,8 @@ export default function DistrictMap({ data }: { data: DistrictMapData }) {
               <dt style={{ color: "var(--story-ink-3)" }}>Unit</dt><dd>{ind.unit ?? "—"}</dd>
               <dt style={{ color: "var(--story-ink-3)" }}>Measured in</dt><dd>{Object.keys(vals?.values ?? {}).length || ind.measured} of {data.districts} districts{vals ? ` · ${vals.estimated} estimated by Spatial India, not shown · ${vals.missing} not covered` : ""}</dd>
               {ind.caveat && (<><dt style={{ color: "var(--story-ink-3)" }}>Caveat</dt><dd>{ind.caveat}</dd></>)}
+              {(ind.zero_districts ?? 0) > 0 && (<><dt style={{ color: "var(--story-ink-3)" }}>Zeros</dt><dd>{ind.zero_districts} districts report exactly 0 — the low end may be under-reporting, not an absence.</dd></>)}
+              <dt style={{ color: "var(--story-ink-3)" }}>Direction</dt><dd>{ind.polarity === "higher-better" ? "Higher is better" : ind.polarity === "higher-worse" ? "Higher is worse" : "Neither end is good or bad: not a ranking of achievement"}</dd>
             </dl>
           </div>
         )}
@@ -133,7 +136,7 @@ export default function DistrictMap({ data }: { data: DistrictMapData }) {
           <div className="grid gap-3 sm:grid-cols-2">
             {([["Highest", ranked.slice(0, 8)], ["Lowest", ranked.slice(-8).reverse()]] as const).map(([label, rows]) => (
               <div key={label} className="story-card p-3">
-                <p className="text-[10.5px] font-bold uppercase tracking-[0.06em]" style={{ color: "var(--story-ink-3)" }}>{label}</p>
+                <p className="text-[10.5px] font-bold uppercase tracking-[0.06em]" style={{ color: "var(--story-ink-3)" }}>{label} value</p>
                 <ol className="mt-1.5 space-y-0.5 text-[11.5px]">
                   {rows.map((r) => (
                     <li key={r.d} className="flex justify-between gap-2"><button type="button" className="truncate text-left hover:underline" onClick={() => setPinned(r.d)}>{r.s!.name} <span style={{ color: "var(--story-ink-3)" }}>· {r.s!.state}</span></button><span className="mono shrink-0 tabular-nums">{fmt(r.v, ind?.unit)}</span></li>
