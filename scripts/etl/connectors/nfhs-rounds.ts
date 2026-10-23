@@ -13,7 +13,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getJson } from "../lib/http";
 import { isEntryPoint } from "../lib/entry";
-import { METRICS, parseSurveys, type MetricSeries, type NfhsRounds, type Point } from "../../../lib/nfhs";
+import { METRICS, WITHHELD, parseSurveys, type MetricSeries, type NfhsRounds, type Point } from "../../../lib/nfhs";
 
 const API = "https://api.dhsprogram.com/rest/dhs";
 const OUT = join(process.cwd(), "data", "nfhs", "rounds.json");
@@ -68,13 +68,15 @@ export async function run(): Promise<void> {
   // An indicator's own figure: no by-variable split, or the one DHS marks preferred.
   const own = (r: Row) => !r.ByVariableLabel || r.IsPreferred === 1;
   const metrics: MetricSeries[] = [];
+  const withheld: NfhsRounds["withheld"] = [];
   for (const m of METRICS) {
     const p = picked.get(m.key);
     if (!p) continue;
     const mine = rows.filter((r) => r.IndicatorId === p.IndicatorId && typeof r.Value === "number");
     const val = (s: string, cat: RegExp, lab: RegExp) => mine.find((r) => r.SurveyId === s && own(r) && cat.test(String(r.CharacteristicCategory)) && lab.test(String(r.CharacteristicLabel)))?.Value ?? null;
     // Child marriage is published by age: the 20–24 row is the headline.
-    const total = (s: string) => (m.key === "married18" ? val(s, /^age/i, /^20-24$/) : val(s, /^total$/i, /.*/));
+    // Some indicators are filed under the age range they cover ("Total 15-49").
+    const total = (s: string) => (m.key === "married18" ? val(s, /^age/i, /^20-24$/) : val(s, /^total$/i, /.*/) ?? val(s, /^total 15-49$/i, /.*/));
     // Where a round has more than one candidate national row, log them all: which is the headline is read, not guessed.
     for (const s of surveys) {
       const c = mine.filter((r) => r.SurveyId === s.id && /^total/i.test(String(r.CharacteristicCategory)));
@@ -86,12 +88,19 @@ export async function run(): Promise<void> {
       for (const r of mine.filter((x) => x.SurveyId === s.id && own(x) && /^(region|state)/i.test(String(x.CharacteristicCategory)))) states[String(r.CharacteristicLabel).replace(/^\.+/, "").trim()] = r.Value!;
       return { survey: s.id, total: total(s.id), urban: val(s.id, /^residence$/i, /^urban$/i), rural: val(s.id, /^residence$/i, /^rural$/i), poorest: val(s.id, /^wealth quintile$/i, /^lowest$/i), richest: val(s.id, /^wealth quintile$/i, /^highest$/i), states };
     });
+    for (const w of WITHHELD.filter((x) => x.key === m.key)) {
+      const i = points.findIndex((pt) => pt.survey === w.survey);
+      if (i < 0) continue;
+      withheld.push({ key: m.key, survey: w.survey, returned: points[i]!.total, why: w.why });
+      points[i] = { survey: w.survey, total: null, urban: null, rural: null, poorest: null, richest: null, states: {} };
+      console.log(`  withheld ${m.key} ${w.survey} (DHS returned ${withheld.at(-1)!.returned})`);
+    }
     if (!points.some((pt) => pt.total !== null)) { missing.push({ key: m.key, note: `${p.IndicatorId} matched, but no national figure in any round` }); continue; }
     metrics.push({ key: m.key, id: p.IndicatorId, dhsLabel: p.Label, definition: p.Definition ?? "", points });
     console.log(`  ${m.key}: ${points.map((pt) => `${pt.survey.slice(2, 6)}=${pt.total ?? "—"} (${Object.keys(pt.states).length} states)`).join("  ")}`);
   }
 
-  const doc: NfhsRounds = { fetchedAt: new Date().toISOString(), source: "https://api.dhsprogram.com/", surveys, metrics, missing };
+  const doc: NfhsRounds = { fetchedAt: new Date().toISOString(), source: "https://api.dhsprogram.com/", surveys, metrics, missing, withheld };
   if (prev && JSON.stringify({ ...prev, fetchedAt: "" }) === JSON.stringify({ ...doc, fetchedAt: "" })) { console.log("no change"); return; }
   await mkdir(join(process.cwd(), "data", "nfhs"), { recursive: true });
   await writeFile(OUT, JSON.stringify(doc, null, 1) + "\n");

@@ -3104,54 +3104,12 @@
     },
     {
      "survey": "IA2020DHS",
-     "total": 6,
-     "urban": 6.9,
-     "rural": 5.7,
-     "poorest": 6.1,
-     "richest": 7.7,
-     "states": {
-      "New Delhi": 8,
-      "Haryana": 4.7,
-      "Himachal Pradesh": 1.7,
-      "Jammu, Kashmir & Ladakh": 2.9,
-      "Jammu & Kashmir": 2.9,
-      "Ladakh": 4.4,
-      "Punjab": 4,
-      "Rajasthan": 2.6,
-      "Madhya Pradesh, inc Chhattisgarh": 5.1,
-      "Madhya Pradesh": 5.3,
-      "Chhattisgarh": 4.7,
-      "Uttar Pradesh, inc Uttarakhand": 6.3,
-      "Uttar Pradesh": 6.5,
-      "Uttarakhand": 3,
-      "Bihar, inc Jharkhand": 6.4,
-      "Bihar": 6.1,
-      "Jharkhand": 7.5,
-      "Odisha": 1.9,
-      "West Bengal": 4.9,
-      "Arunachal Pradesh": 11.7,
-      "Assam": 8.2,
-      "Manipur": 5.6,
-      "Meghalaya": 8.4,
-      "Mizoram": 7.3,
-      "Nagaland": 7.4,
-      "Sikkim": 10.3,
-      "Tripura": 9,
-      "Goa": 4.1,
-      "Gujarat": 3.1,
-      "Maharashtra": 12.3,
-      "Andhra Pradesh including Telangana": 6.6,
-      "Andhra Pradesh": 7.2,
-      "Telangana": 5.8,
-      "Karnataka": 4.7,
-      "Kerala": 5.7,
-      "Tamil Nadu": 6.1,
-      "Andaman and Nicobar Islands": 11.4,
-      "Chandigarh": 7,
-      "Dadra and Nagar Haveli, Daman and Diu": 5.6,
-      "Lakshadweep": 2.1,
-      "Puducherry": 6.3
-     }
+     "total": null,
+     "urban": null,
+     "rural": null,
+     "poorest": null,
+     "richest": null,
+     "states": {}
     }
    ]
   },
@@ -4112,6 +4070,14 @@
   {
    "key": "literate_women",
    "note": "ED_LITR_W_LIT matched, but no national figure in any round"
+  }
+ ],
+ "withheld": [
+  {
+   "key": "vaccinated",
+   "survey": "IA2020DHS",
+   "returned": 6,
+   "why": "DHS returns about 6% for 2019–21 against 62% in 2015–16 and 88% measles coverage in the same round; a fall of that size in the share of children with all basic vaccinations is not credible, so the round is left blank until the figure is reconciled."
   }
  ]
 }

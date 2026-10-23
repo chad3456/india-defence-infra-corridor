@@ -288,6 +288,20 @@ Headlines for each area come live from Google News in English and Hindi (`/api/l
 cached 60 seconds). They are pointers to reporting and are never used as data.
 `npm run test:luxury` checks the sources, the headline rule and the DHS parsers.
 
+### The National Family Health Survey, round by round
+
+`/nfhs` compares every NFHS round the DHS Program publishes for India (NFHS-2, 1998–99, onwards) on
+the same measures, using the definitions DHS harmonises across rounds. `npm run nfhs:rounds`
+(`.github/workflows/nfhs-rounds.yml`, weekly) asks DHS which India surveys it holds rather than
+assuming, finds each measure in `lib/nfhs.ts` by its DHS id or label, and writes the national
+figure, towns and villages, the poorest and richest fifths, and every state to
+`data/nfhs/rounds.json`. A round DHS did not publish is absent and drawn as a break in the line.
+A value DHS returns that cannot be what its label says is listed in `WITHHELD`, with the reason,
+and shown as a gap; the returned value is kept in the file beside it. States are compared on
+1998–99 boundaries, which DHS republishes each later round on. Changes between rounds, pace per
+year and the rich–poor gap are the only numbers the page computes, and each is labelled derived.
+`npm run test:nfhs` checks the parsers, the arithmetic and the committed file.
+
 ### Politics on Instagram
 
 `/instagram-politics` has sixteen dashboards built from published figures (twenty once the Graph API job has data) on the BJP, Congress, AAP and the Cockroach Janta Party

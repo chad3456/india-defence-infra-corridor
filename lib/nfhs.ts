@@ -1,6 +1,6 @@
 /**
  * India's National Family Health Survey, every round in the DHS Program's API,
- * compared metric by metric (/health). Shared by the connector, the page and
+ * compared metric by metric (/nfhs). Shared by the connector, the page and
  * the tests. No node imports.
  *
  * ── Why DHS ──────────────────────────────────────────────────────────────
@@ -46,12 +46,48 @@ export const METRICS: Array<{ key: string; theme: Theme; title: string; unit: "%
   { key: "water", theme: "Households", title: "Households with an improved source of drinking water", unit: "%", higherIs: "better", ids: ["WS_SRCE_H_IMP"], label: /improved (source of )?drinking water/i },
   { key: "sanitation", theme: "Households", title: "Households with improved sanitation", unit: "%", higherIs: "better", ids: ["WS_TLET_H_IMP"], label: /improved sanitation|improved (toilet|sanitation) facility/i },
 ];
+/**
+ * Values DHS returns that cannot be what the label says, held back as gaps.
+ * Each entry names what was returned and why it was not shown; the job
+ * records the returned value beside it so a correction upstream is visible.
+ */
+export const WITHHELD: Array<{ key: string; survey: string; why: string }> = [
+  { key: "vaccinated", survey: "IA2020DHS", why: "DHS returns about 6% for 2019–21 against 62% in 2015–16 and 88% measles coverage in the same round; a fall of that size in the share of children with all basic vaccinations is not credible, so the round is left blank until the figure is reconciled." },
+];
+
+/** What each round can and cannot be compared on, as the survey reports describe their own designs. */
+export const ROUND_NOTES: Record<string, string> = {
+  IA1999DHS: "Interviewed ever-married women only; weighed and measured children under three, not under five. States as they were before Chhattisgarh, Jharkhand, Uttarakhand and Telangana were formed.",
+  IA2006DHS: "First round to interview all women aged 15–49, never-married included, and to weigh and measure every child under five.",
+  IA2015DHS: "First round with a sample large enough to report every district.",
+    IA2020DHS: "Fieldwork ran from June 2019 to April 2021 in two phases; the second was suspended for the Covid-19 lockdown and resumed in November 2020, so some states were surveyed before the pandemic and others during it.",
+};
+
+/** Per-metric reading notes: what a change across rounds does and does not mean. */
+export const METRIC_NOTES: Record<string, string> = {
+  imr: "A rate for the five years before each survey, so 2019–21 describes roughly 2015–20.",
+  u5mr: "A rate for the five years before each survey.",
+  nmr: "A rate for the five years before each survey.",
+  stunting: "1998–99 measured children under three only; its figure is not strictly comparable with the under-five figures that follow.",
+  wasting: "1998–99 measured children under three only.",
+  underweight: "1998–99 measured children under three only.",
+  anaemia_child: "Not published by DHS for 1998–99. Measured from a drop of capillary blood in every round shown; the method has been questioned, but it is the same across these rounds.",
+  anaemia_women: "Not published by DHS for 1998–99.",
+  married18: "Women aged 20–24 at the survey, so each figure describes marriages roughly five to ten years earlier. DHS publishes no state breakdown.",
+  facility_births: "Births in the two years before each survey.",
+  skilled_births: "Births in the two years before each survey.",
+  anc4: "Mothers with a birth in the two years before each survey.",
+  wifebeat: "Not published by DHS for 1998–99.",
+  literate_women: "1998–99 covered ever-married women only.",
+  overweight_women: "1998–99 covered ever-married women only.",
+};
+
 export const THEMES: Theme[] = ["Child survival", "Nutrition", "Maternal care", "Immunisation", "Fertility & family planning", "Women's lives", "Households"];
 
 export interface Survey { id: string; year: number; label: string; name: string; released: string | null }
 export interface Point { survey: string; total: number | null; urban: number | null; rural: number | null; poorest: number | null; richest: number | null; states: Record<string, number> }
 export interface MetricSeries { key: string; id: string; dhsLabel: string; definition: string; points: Point[] }
-export interface NfhsRounds { fetchedAt: string; source: string; surveys: Survey[]; metrics: MetricSeries[]; missing: Array<{ key: string; note: string }> }
+export interface NfhsRounds { fetchedAt: string; source: string; surveys: Survey[]; metrics: MetricSeries[]; missing: Array<{ key: string; note: string }>; withheld: Array<{ key: string; survey: string; returned: number | null; why: string }> }
 
 /** The India surveys DHS holds, oldest first; standard DHS surveys only (not special or AIS rounds). */
 export function parseSurveys(body: unknown): Survey[] {
@@ -68,4 +104,12 @@ export function parseSurveys(body: unknown): Survey[] {
 /** Change per year between two rounds, in the metric's own units: derived, and labelled so wherever shown. */
 export function perYear(a: { year: number; v: number | null }, b: { year: number; v: number | null }): number | null {
   return a.v !== null && b.v !== null && b.year > a.year ? (b.v - a.v) / (b.year - a.year) : null;
+}
+
+/** States compared across all four rounds on 1998–99 boundaries: DHS republishes each later round on them ("Bihar, inc Jharkhand"). */
+export const comparableStates = (d: NfhsRounds) => Object.keys(d.metrics[0]?.points[0]?.states ?? {});
+/** Today's states and union territories, as the latest round reports them: no "inc" aggregates, and Jammu & Kashmir split from Ladakh where DHS splits them. */
+export function currentStates(d: NfhsRounds): string[] {
+  const last = d.metrics.reduce<string[]>((acc, m) => { const k = Object.keys(m.points.at(-1)?.states ?? {}); return k.length > acc.length ? k : acc; }, []);
+  return last.filter((s) => !/\binc\b|including/i.test(s) && !(s === "Jammu, Kashmir & Ladakh" && last.includes("Ladakh")));
 }

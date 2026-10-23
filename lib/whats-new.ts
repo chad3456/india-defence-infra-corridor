@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "nfhs-rounds-2026-10",
+    title: "Two decades of the National Family Health Survey",
+    blurb:
+      "Every NFHS round since 1998–99 compared on the same 23 measures — child deaths, stunting, anaemia, hospital births, vaccination, " +
+      "fertility, child marriage, electricity, sanitation — for India, the richest and poorest fifths, towns and villages, and every state.",
+    href: "/nfhs",
+    since: "2026-10-23",
+  },
+  {
     id: "district-map-2026-10",
     title: "India by district",
     blurb:
