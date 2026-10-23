@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-22T23:39:39.533Z",
+  "builtAt": "2026-10-23T05:26:19.764Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1243,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1242,
-    "withOutlet": 1157,
+    "items": 1247,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 1243,
+    "withOutlet": 1161,
     "bySubject": {
-      "scst": 849,
+      "scst": 853,
       "pmshri": 394
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 284
+    "offSubjectDropped": 295
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 615
+      "n": 618
     },
     {
       "key": "use",
-      "n": 434
+      "n": 435
     },
     {
       "key": "dispute",
@@ -70,7 +70,7 @@
     },
     {
       "key": "India Today",
-      "n": 31
+      "n": 33
     },
     {
       "key": "Hindustan Times",
@@ -86,7 +86,7 @@
     },
     {
       "key": "ThePrint",
-      "n": 21
+      "n": 22
     },
     {
       "key": "opindia.com",
@@ -105,12 +105,12 @@
       "n": 16
     },
     {
-      "key": "LawChakra",
+      "key": "Live Law",
       "n": 16
     },
     {
-      "key": "Live Law",
-      "n": 15
+      "key": "LawChakra",
+      "n": 16
     },
     {
       "key": "Deccan Herald",
@@ -295,10 +295,10 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 48,
+      "google": 100,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 2
+      "kept": 1,
+      "offSubject": 6
     },
     {
       "id": "act-registered",
@@ -308,7 +308,7 @@
       "google": 100,
       "bing": 5,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 13
     },
     {
       "id": "act-convicted",
@@ -327,7 +327,7 @@
       "expect": "use",
       "google": 50,
       "bing": 7,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -347,36 +347,36 @@
       "expect": "use",
       "google": 58,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 22
+      "kept": 1,
+      "offSubject": 21
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 98,
+      "google": 96,
       "bing": 0,
       "kept": 0,
-      "offSubject": 45
+      "offSubject": 43
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 25,
+      "google": 26,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 9
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 48,
-      "bing": 1,
+      "google": 49,
+      "bing": 0,
       "kept": 1,
       "offSubject": 7
     },
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 25,
+      "google": 28,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 50,
+      "google": 21,
       "bing": 1,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 4
     },
     {
       "id": "act-fabricated",
@@ -418,7 +418,7 @@
       "google": 100,
       "bing": 12,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "shri-sanctioned",
@@ -436,7 +436,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 67,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 22
     },
@@ -445,18 +445,18 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 8,
+      "google": 51,
       "bing": 2,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 12
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 44,
-      "bing": 2,
+      "google": 42,
+      "bing": 0,
       "kept": 0,
       "offSubject": 3
     },
@@ -465,8 +465,8 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 29,
-      "bing": 1,
+      "google": 28,
+      "bing": 2,
       "kept": 0,
       "offSubject": 15
     },
@@ -475,10 +475,10 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 29,
+      "google": 52,
       "bing": 4,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 12
     },
     {
       "id": "shri-criticism",
@@ -15841,7 +15841,8 @@
       "queries": [
         "act-registered",
         "act-false",
-        "act-misuse-claim"
+        "act-misuse-claim",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -20796,6 +20797,70 @@
         "google"
       ],
       "firstSeen": "2026-10-22"
+    },
+    {
+      "id": "coimbatore dalit boy suicide beef bullying charge police book 4 under sc st act india toda",
+      "headline": "Coimbatore Dalit Boy Suicide, Beef Bullying Charge, Police Book 4 Under SC-ST Act - India Today",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "India Today",
+      "published": "2026-10-23",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOTnplaFRjZElKUkpySHE3a1pZVHE4SEFiWXptNEYwUUo4YWtOcWVDS2Q1VDZPQ0tvMk9ubmxxNW9Cb2dBX3VmeFh1eUZjUGJvQXQtZllLeU9Pd0doeFlFeTl6bEo0Y1NMSkVfbzljZngwSncxa3JXRTVDcnJSdUR0bXZ2bHM0cVdUUTN1TGVrU2xBU1d0SVhJcS1ic0tTM1BDZ1M3SENTbFZha0U5d2Q2OGN1VTVQRGd5SjJSamJBOW9zdThuaXNGcjZZT29GVExnN1E0bElYNWHSAd4BQVVfeXFMUDV2TWQ4SUZPSjN0ajMweUhlNWdIN3hCRXN1SUNuQUZkWlNzb3JnWldJRl9Bb185UkxPVFFBWWVLWVdWMDF0MG02VkVrYjRXOTlHR3owUF9ZOG16WUlkMEZFNTdyN2ZSa0FraHlrTl9MRkp2MVR4TTBzbnFNcWtkcW5yR0pNNEVMNV9GVmZSX2dNSWNMcF91aU85RWV5djJnS3A2MjlZSlZnTWRMWGpuLWF4MDk3U21kM3hRc1BjdXJzZ1JTRzZBZzRqdGFjeDkxMDN6YWNaaUIxNjVNSzFn?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-23"
+    },
+    {
+      "id": "3 teachers assault 8 year old dalit boy place scorpion in his pants case filed",
+      "headline": "3 teachers assault 8-year-old Dalit boy, place scorpion in his pants; case filed",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "India Today",
+      "published": "2025-11-02",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOakdmN1R5cWJHaWtaYk9HN2M3NFlKVFBpTlFVX0hpNmxYekhXMlRJdmh6Rl9FeGJ6TmFKUnhDeXVrN0p0SDYwM3ZQaUc0eXhvSlM0QnlpMXVYZDRTeDFSWHQ5MFk2VkU3UzJEanR0Wl9PMEZOT0NPaVkzZHpDSmVySjJHU2N1Vy1QY2ZyWW5aR0ZhS0VVb0ZiRUdLQzQ2Sk9zdDBoNFRIc1dscXRnZjF0dlExblFNT0loR2ZkREpfNkNpcEZjYmczUENmS21xWEkz0gHWAUFVX3lxTE5nenBBNHFUbWhXa0drdkY1U19sVXNqOFhtTmt2bk9vLWlQMGlYUFUyVlBUMjNVUExzTzFCeHJmUXFoZmtHLURGclNPeHN5b29VRFFmTm1SWVF4cE13YjA0VXFuVzI2WEt4R0VWNjVWS0VPSHR2cDV1ZUQzOTFmMlBveW5aT214NnVjSThqVHJHVXltaTlhdmhwb3UyX3ZncWdYSHVqWVhoeFM3UXdtUTNtT0t4TmZwa2NiamRsX1JZYnA5UXViQVFCZXV3MVVmMzQ2WnBRQ2c?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-23"
+    },
+    {
+      "id": "calcutta high court directs state to disclose number of pending cases under sc st act in w",
+      "headline": "Calcutta High Court Directs State To Disclose Number Of Pending Cases Under SC/ST Act In WB",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Live Law",
+      "published": "2022-01-31",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPQm9wand6dGhHVUlUUGw2RkxMZklvOU5yZk1UZ185Z21uV3ZYdjFuMVR4TEZrOXZJdG00enVtbmRJZkNrRXB1LVJJN2ZHOWF6S2lYQzZjRGp0SkZfSjJ3RXNuU2hVamZBRGloRGtKaHhjR01SUTNQeG0yNWtGWDdjSjF6WFdydHcyWEJfTkk1ODYtSWthQ3BEYnBOSHY4TmktdE5vUnluRlViNDIxOGxYRUNlclFyNEF0LWRLMzR5WDRBX2xQWDZzZ1RkNkJkd9IB0wFBVV95cUxNanJpVl9pM1NfV1Y1S2NvZDlRTXBGUmYweW54NVNVdHR5alIwenF0RmlfcWRzZzRQb1JrQzJrNE54X0VsXzY1T2xLdHhybXlnZDhPMGE0QmF1MlNzWHkzZ05GOXFfZzJLSlpTc2l4YzBHLTRyNl9KSGxfYzB3VjE4cndzSXFhLXNyUUhZZGlTd1JreGh0clFxQks0a3pZakoyQXRfVHJrSHNHWTdObnJwbzdPVDhMd3c1NW5IOXRTcDZTeFhzWmtOMjEwYk5hLUg3Y25v?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-23"
+    },
+    {
+      "id": "high courts are diluting sc st act ignoring modi govt s amendments",
+      "headline": "High courts are diluting SC/ST Act, ignoring Modi govt’s amendments",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "ThePrint",
+      "published": "2019-08-09",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNNVl6Ti01WnpieTh3TEp0dE5ZUDNWMnNrMmxuTEhLSFdyQ0lRcTNhV21ackdrQmhXTXVBLWlKdVB2ZlQ0bVdjMnc4T0JpRElIOWpadUpLR1hpdG9GbTFkYk8xZEtfZDBQYUV0Rkg3WnpKYVF5cWFuaDE4MlAzNlNlZFdHNFJaX0lqM1VPdmtUTTBiUWVaNFNLS0ZrQWd4UHFQYW5lVTdR0gGrAUFVX3lxTE11aEJmWGVTTDQxVjdIUC1Zc1Y4c01pSHNlRFY1bmNrQk5PLWJoMFZ4NGFRNGJ3WHlLZkxmQUxDX29hTTloX3plRUJYSmJ0TXZBWFRMUW15TGJkRW1BU3lZdEtwbWl4WVRacXBZd2JjYXRhdHp1STN2VFlHSVZTM1BfdVlYUDNBNHA4YVIzYm5rQjE1S3M3SDN6Wm9vLWNZREtvWUoxZlZIWDlVaw?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-23"
     }
   ]
 }
