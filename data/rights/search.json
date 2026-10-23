@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-23T13:52:05.887Z",
+  "builtAt": "2026-10-23T20:08:15.444Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1251,
-    "addedThisRun": 4,
-    "carriedFromEarlierRuns": 1247,
-    "withOutlet": 1165,
+    "items": 1252,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1251,
+    "withOutlet": 1166,
     "bySubject": {
-      "scst": 857,
+      "scst": 858,
       "pmshri": 394
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 272
+    "offSubjectDropped": 288
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 620
+      "n": 621
     },
     {
       "key": "use",
@@ -114,7 +114,7 @@
     },
     {
       "key": "Deccan Herald",
-      "n": 14
+      "n": 15
     },
     {
       "key": "ANI News",
@@ -305,20 +305,20 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 54,
       "bing": 6,
-      "kept": 1,
-      "offSubject": 13
+      "kept": 0,
+      "offSubject": 7
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 30,
+      "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 46
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 49,
-      "bing": 7,
+      "bing": 6,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -337,7 +337,7 @@
       "expect": "use",
       "google": 48,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 13
     },
     {
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 59,
+      "google": 14,
       "bing": 0,
       "kept": 0,
-      "offSubject": 23
+      "offSubject": 2
     },
     {
       "id": "act-acquittal",
@@ -376,7 +376,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 49,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
       "offSubject": 9
     },
@@ -385,17 +385,17 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 16,
+      "google": 28,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 3
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 51,
+      "google": 50,
       "bing": 1,
       "kept": 0,
       "offSubject": 15
@@ -407,7 +407,7 @@
       "expect": "false-finding",
       "google": 33,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 21
     },
     {
@@ -418,7 +418,7 @@
       "google": 100,
       "bing": 12,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "shri-sanctioned",
@@ -435,7 +435,7 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 66,
+      "google": 65,
       "bing": 1,
       "kept": 0,
       "offSubject": 22
@@ -445,10 +445,10 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 51,
+      "google": 50,
       "bing": 2,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 11
     },
     {
       "id": "shri-mou",
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 53,
+      "google": 52,
       "bing": 5,
       "kept": 0,
       "offSubject": 12
@@ -16668,7 +16668,8 @@
       "published": "2024-12-30",
       "url": "https://news.google.com/rss/articles/CBMinAJBVV95cUxPajBvdDhCM0dLclh1WDlzelRDSEpIV2phY2pmSXJUWWJYQms1VzNEQlc0V1Rld0hjSGxFMWNrWVo2MkthWlF4bXctemhqRkRHVXI5andVOWZwbDc0TzhaaDNkU1JhRUF5OHFpWk04UGFXT1NldDlHekFHUjk1QUhfQ185MzA3ZFkyWnliMVBRYVlfU3AxakhwREstQkZDTnpRNnhIMDlGT3ZnVDZfSG9udU9iRHVxeDR2YVNZU0p4SXZkSEdDckxOV1lNVTZnMGN0SF9rODI4TTZDR1ZWdDBobm11NEYtTGFzel9kRnY0eFNRZFlEM0cxc3hyNXlNQ005RTBuQi1lem5fd0hVaERPSG9fN0h5SVNZNUZkRNIBogJBVV95cUxOWGUwX3JmUGRaeWs1U2x4YlpUcGZ0Z3F5TjRRU2MxdXRsd2lEOWZJb2t1cllQNlhhcEJ6VHJ5SzBkTTVTaHhuNUFfdnhJUFZJcUVuTjFqTkkzRWZQVGFnUkxnUWVHR01IU3VnZHVFLWhxNy1JdzRUM1YyZEdCZ2JVWFg3MzduTVoxVE1fd1VrUzFGMkl6ZEp3QUNGQVZJd1FodDdqc09OcGgzcVFwUkJ1RTJFOXB3YVZaUXcxMlZrc1k3Yl9adXFQQWdiN0xTVjdGUDVWa2d4aWI5SVA5TjRfOGp4T0NndXZtdTdjLTduTTJ4Y3VfUC1NUy1aTlhZcXRQcUhjOGw4d2R4cGxGZVVSZzNNdllYUkFoT3htNnNTam9aZw?oc=5",
       "queries": [
-        "act-pendency"
+        "act-pendency",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -20922,6 +20923,22 @@
       "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxOX0xyYXRjbXRvTmgxX3Q5RmN1eWZrdmRnb3RCUmJnWEFtTlprZFZIbUczQzNOVmlMUzh1SlBJZDdnNk54c1lGVmlabHlZdmlSU3NlZ2dtQVdDWUU5NDl3Nm9RZnpJblFaU29PdjVQcmxDZzQtemZ5VWhqZF85RlNfVE1XVkZaSGFiS2pIdVcwUDRybzJaNDRmc2dXTnV1YXpraXo0dXh4Y3VYQWJYR2MwbWZ2UF8xNUxTal9LemV1bjk3bWJuOExrOGdjc195ZTlGdUNYZFVDUWZYanE2SzA3eTV3bEEtNGQ5NUdfQnNfQ2xKUFFMLUxTUFV2X2Z4amZxbUEzZ0pDRmhtSENWa1FN0gGUAkFVX3lxTE9ZWW9CZXR2NTVDQUduNjBRaDU5elNxRHlRWGZYZlN1UDk2TVBjWGwyZ0RlRFpUMjQycTdyVnZjWjdHdVc4emg3Q3ZKUEV0bVQ4LUlBUzl0ZUFKUTJzMW9jbS0yMER6VDM4N3V0NERLQXJnaHBQeUVCX25WdDF4R3NNcGxfSGNNbmJGOE1pSHdUSHVDb0dTU2EzaUVxWGlTb3ktRTMzS2JZM0FqZVQ2cEctUUVoVXVMR2tHM3AxOHozaTBKbGRlcGw0YjVUc1p2cHl1bjQwODZ5MVk4eDFFYTljX0RkSWhhYjNyWHpNNzRWazVKbm5pUWdET3JxcTVHWTBqQ0xmemprNVVmUXZaRVlVc0dHUA?oc=5",
       "queries": [
         "act-fabricated"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-23"
+    },
+    {
+      "id": "mere use of casteist words not an offence under sc st act allahabad hc",
+      "headline": "Mere use of casteist words not an offence under SC/ST Act: Allahabad HC",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Deccan Herald",
+      "published": "2026-08-20",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPajRxRFRuYnJEbmZaLWtjdjIzNmtvMGs1NmVub1lXTC0xX2RWNVgtZGRCa1ZUbUUzZTdOVnhzYjlXUkYxc0JYX1oxNjF3clpoMWNfTHlOMFdzdExXRG9VT0RYQUFHazR1b1RzMWJBRFhFVkNDUnlaT0JPaWxfLVYwbjFYanRnODRkRTBtc1dMWUhBaUQyOGw4eTJJa21TMDY5eFFTSmhzU0FSTm1XRVRpbHBsTC0tTjdvRGZ1bjRuZFEzZ2hw?oc=5",
+      "queries": [
+        "act-general"
       ],
       "indexes": [
         "google"
