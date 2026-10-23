@@ -16,7 +16,7 @@ const STEPS = [18, 36, 54, 72, 90];
 const hue = (polarity?: string) => (polarity === "higher-worse" ? "var(--s-hot)" : polarity === "higher-better" ? "var(--s-cool)" : "var(--series-1)");
 const fmt = (v: number, unit?: string) => {
   const a = Math.abs(v);
-  const s = a >= 1e7 ? `${(v / 1e6).toFixed(1)}M` : a >= 1e5 ? `${(v / 1e3).toFixed(0)}K` : a >= 100 ? v.toFixed(0) : a >= 10 ? v.toFixed(1) : v.toFixed(2);
+  const s = a >= 1e7 ? `${(v / 1e6).toFixed(1)}M` : a >= 1e5 ? `${(v / 1e3).toFixed(0)}K` : a >= 1000 ? Math.round(v).toLocaleString("en-IN") : a >= 100 ? v.toFixed(0) : a >= 10 ? v.toFixed(1) : v.toFixed(2);
   return unit === "%" ? `${s}%` : unit ? `${s} ${unit}` : s;
 };
 
