@@ -6,6 +6,8 @@ import ChartCard from "@/components/charts/ChartCard";
 import { getChart } from "@/lib/registry";
 import Freshness from "@/components/map/Freshness";
 import { refreshState } from "@/lib/freshness";
+import DistrictMap from "@/components/districts/DistrictMap";
+import { districtMap } from "@/lib/spatial-india-map";
 
 export const metadata = { title: "Map & timelapse" };
 
@@ -20,6 +22,7 @@ export default async function MapPage() {
   const events = fromDb && fromDb.length > 0 ? fromDb : getEvents();
   const latest = events[0]?.date ?? null;
   const refresh = refreshState();
+  const districts = districtMap();
 
   const related = [
     "expressway-length--level",
@@ -77,6 +80,33 @@ export default async function MapPage() {
         </p>
         <IndiaMap />
       </section>
+
+      {/* Districts, every indicator — shown only once the scheduled job has outlines and values. */}
+      {districts && districts.shapes.length > 0 && (
+        <section id="districts" className="story border-t py-6" style={{ background: "transparent" }}>
+          <h2 className="display text-[21px] leading-tight">India by district: {districts.indicators.filter((i) => i.measured >= 50).length} indicators</h2>
+          <p className="mt-1.5 mb-4 max-w-[680px] text-[12px] leading-relaxed text-[color:var(--text-secondary)]">
+            Government district data — Census 2011, NFHS-5, NCRB, the courts&apos; data grid, RBI, the Agriculture Census, MSME registrations and more —
+            as harmonised onto {districts.districts} districts by Spatial India. Pick an indicator; districts are shaded in five equal-sized groups of the
+            measured values. Where a district was created after a source was published, Spatial India inherits or apportions a value and flags it as
+            estimated; this map leaves those blank, so every coloured district is a measurement. Indicators measured in fewer than 50 districts are not offered.
+          </p>
+          <DistrictMap data={districts} />
+          <div className="mt-5 max-w-[860px] text-[10.5px] leading-[1.55] text-[color:var(--text-muted)]">
+            <p>
+              {districts.meta.citation ?? "Spatial India, https://spatialindia.com"} Dataset version {districts.meta.dataset_version ?? "—"}; read{" "}
+              {districts.fetchedAt ? new Date(districts.fetchedAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "—"} through
+              its free API (<a className="underline" href="https://spatialindia.com/api-platform" target="_blank" rel="noopener noreferrer">api.spatialindia.com</a>), which is free for
+              non-commercial use with attribution. Spatial India is not a government body and its data are not official; where a figure matters, check it
+              against the source named beside it.
+            </p>
+            <details className="mt-2">
+              <summary className="cursor-pointer">Attribution for each source</summary>
+              <ul className="mt-1 list-disc space-y-1 pl-5">{(districts.meta.attribution ?? []).map((a) => <li key={a}>{a}</li>)}</ul>
+            </details>
+          </div>
+        </section>
+      )}
 
       <section className="border-t py-6">
         <h2 className="display text-[21px] leading-tight">The same story as data</h2>

@@ -252,6 +252,24 @@ copied. The pixel maps of France (8-pixel cells of Natural Earth's outline) and 
 schematic at 125 m or 250 m a cell) place sprites where headlines and quoted sentences name a city,
 square, station or district — a picture of the reporting, not of events.
 
+### Districts (Spatial India)
+
+The district map at `/map#districts` draws indicators from Spatial India (api.spatialindia.com).
+Spatial India harmonises district data from government releases onto one district geography:
+Census 2011, NFHS-5 district factsheets, NCRB, the National Judicial Data Grid, RBI's BSR-1, the
+Agriculture Census, Udyam registrations and others. `npm run spatial:india`
+(`.github/workflows/spatial-india.yml`) reads the indicator catalogue, every district, every value
+with Spatial India's own *estimated* flag, and the district outlines. The outlines are simplified,
+fetched once, and resumed across runs, because the free API is rate-limited.
+
+Where a district was created after a source was published, Spatial India inherits the parent
+district's value or apportions one by area, and flags it. This site does not publish estimates, so
+flagged values are drawn blank and counted as not measured. Indicators measured in fewer than 50
+districts are not offered. Spatial India is not a government body. Its data is free for
+non-commercial use with attribution, and the page carries its citation and every per-source
+attribution it lists. `npm run test:spatial` checks the parsers and that no estimated value is
+served to the map.
+
 ### Luxury beliefs, tested
 
 `/luxury-beliefs` tests Rob Henderson's idea of "luxury beliefs" against Indian data in seven areas.

@@ -30,7 +30,7 @@ export function rowsOf(body: unknown): Array<Record<string, unknown>> {
 
 /** The district's identifier for boundaries: an objectid, else an LGD code, else an id. */
 export function idOf(row: Record<string, unknown>): string | null {
-  for (const re of [/^objectid$/i, /objectid/i, /^lgd_?(district_?)?code$/i, /^id$/i]) {
+  for (const re of [/^objectid$/i, /objectid/i, /^lgd_?(district_?)?code$/i, /^dist(rict)?_?lgd$/i, /^id$/i]) {
     const k = Object.keys(row).find((x) => re.test(x));
     if (k && (typeof row[k] === "string" || typeof row[k] === "number")) return String(row[k]);
   }
@@ -39,6 +39,9 @@ export function idOf(row: Record<string, unknown>): string | null {
 
 /** Douglas–Peucker on one ring, then rounding: a district outline small enough to ship, close enough to read. */
 export function simplifyRing(ring: number[][], tol: number): number[][] {
+  // A ring smaller than the tolerance in both directions is a sliver: dropped, whatever its point count.
+  const xs = ring.map((p) => p[0]!), ys = ring.map((p) => p[1]!);
+  if (Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)) < tol) return [];
   if (ring.length < 5) return ring.map((p) => [round(p[0]!), round(p[1]!)]);
   const keep = new Uint8Array(ring.length);
   keep[0] = keep[ring.length - 1] = 1;
@@ -149,4 +152,12 @@ export function isEstimated(row: Record<string, unknown>, field: string): boolea
   for (const k of [`${field}_estimated`, `${field}_is_estimated`, `is_${field}_estimated`]) if (row[k] === true) return true;
   const flags = row.estimated_fields ?? row.estimatedFields;
   return Array.isArray(flags) && flags.includes(field);
+}
+
+/** What the district map receives from the server: outlines as SVG paths, and the indicator catalogue. */
+export interface DistrictShape { id: string; name: string; state: string; d: string }
+export interface DistrictMapData {
+  width: number; height: number; shapes: DistrictShape[];
+  indicators: Array<SpatialIndicator & { measured: number }>;
+  meta: SpatialValues["meta"]; fetchedAt: string | null; districts: number; outlines: number;
 }

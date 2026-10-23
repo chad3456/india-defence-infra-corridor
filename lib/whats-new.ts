@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "district-map-2026-10",
+    title: "India by district",
+    blurb:
+      "Every district indicator Spatial India harmonises from government sources — Census, NFHS-5, NCRB, courts, RBI and more — " +
+      "on one district map under the India map, measured values only: estimates are left blank.",
+    href: "/map#districts",
+    since: "2026-10-23",
+  },
+  {
     id: "luxury-beliefs-2026-10",
     title: "Luxury beliefs, tested",
     blurb:
