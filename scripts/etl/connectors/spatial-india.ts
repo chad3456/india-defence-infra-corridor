@@ -75,7 +75,8 @@ export async function run(): Promise<void> {
   // ── What the API says about itself ──
   const endpoints: SpatialProbe["endpoints"] = [];
   let openapi: Record<string, unknown> | null = null, detailSample: unknown = null;
-  for (const url of PROBE) {
+  // The outlines runner needs only the district list: it spends its rate-limit budget on outlines.
+  for (const url of PART === "outlines" ? [] : PROBE) {
     const r = await get(url, url.endsWith(".json") || url.includes("/v1/") ? "json" : "text");
     const text = r.ok ? r.text : r.error;
     endpoints.push({ path: url.replace(SPATIAL_BASE, ""), status: r.ok ? 200 : r.status, contentType: "", sample: text.slice(0, url.endsWith("openapi.json") ? 60_000 : 8_000) });
@@ -86,7 +87,7 @@ export async function run(): Promise<void> {
   if (PART !== "outlines") await writeIfChanged(join(DIR, "probe.json"), { fetchedAt: new Date().toISOString(), endpoints } satisfies SpatialProbe, true);
 
   // ── The catalogue of indicators ──
-  const ind = await get(`${SPATIAL_BASE}/v1/indicators`);
+  const ind: Awaited<ReturnType<typeof get>> = PART === "outlines" ? { ok: false, status: 0, error: "not needed for outlines" } : await get(`${SPATIAL_BASE}/v1/indicators`);
   const indicators = ind.ok ? (rowsOf(ind.data) as unknown as SpatialIndicator[]).filter((x) => typeof x.id === "string") : [];
   const meta = ind.ok ? ((ind.data as { meta?: SpatialValues["meta"] }).meta ?? {}) : {};
   console.log(`indicators: ${indicators.length}`);
