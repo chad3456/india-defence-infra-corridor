@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-24T12:58:11.255Z",
+  "builtAt": "2026-10-24T19:04:16.388Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,37 +10,37 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1270,
-    "addedThisRun": 15,
-    "carriedFromEarlierRuns": 1255,
-    "withOutlet": 1184,
+    "items": 1277,
+    "addedThisRun": 7,
+    "carriedFromEarlierRuns": 1270,
+    "withOutlet": 1190,
     "bySubject": {
-      "scst": 863,
-      "pmshri": 407
+      "scst": 868,
+      "pmshri": 409
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 301
+    "offSubjectDropped": 312
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 630
+      "n": 631
     },
     {
       "key": "use",
-      "n": 443
+      "n": 447
+    },
+    {
+      "key": "acquittal",
+      "n": 65
     },
     {
       "key": "dispute",
       "n": 65
     },
     {
-      "key": "acquittal",
-      "n": 64
-    },
-    {
       "key": "allegation",
-      "n": 58
+      "n": 59
     },
     {
       "key": "false-finding",
@@ -54,11 +54,11 @@
     },
     {
       "key": "Lawtext",
-      "n": 89
+      "n": 90
     },
     {
       "key": "The Indian Express",
-      "n": 58
+      "n": 59
     },
     {
       "key": "The New Indian Express",
@@ -74,7 +74,7 @@
     },
     {
       "key": "Hindustan Times",
-      "n": 31
+      "n": 32
     },
     {
       "key": "LawBeat",
@@ -141,16 +141,16 @@
       "n": 12
     },
     {
+      "key": "The News Mill",
+      "n": 12
+    },
+    {
       "key": "Court Book",
       "n": 12
     },
     {
       "key": "SabrangIndia",
       "n": 12
-    },
-    {
-      "key": "The News Mill",
-      "n": 11
     },
     {
       "key": "ndtv.com",
@@ -193,6 +193,10 @@
       "n": 8
     },
     {
+      "key": "NDTV",
+      "n": 8
+    },
+    {
       "key": "Citizens for Justice and Peace | CJP",
       "n": 7
     },
@@ -210,10 +214,6 @@
     },
     {
       "key": "The Mooknayak English",
-      "n": 7
-    },
-    {
-      "key": "NDTV",
       "n": 7
     },
     {
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 5
     },
     {
@@ -306,27 +306,27 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 6,
-      "kept": 0,
-      "offSubject": 14
+      "bing": 5,
+      "kept": 1,
+      "offSubject": 13
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 98,
+      "google": 99,
       "bing": 0,
       "kept": 0,
-      "offSubject": 47
+      "offSubject": 48
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 50,
-      "bing": 7,
+      "google": 51,
+      "bing": 6,
       "kept": 1,
       "offSubject": 6
     },
@@ -338,27 +338,27 @@
       "google": 48,
       "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 14
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 57,
+      "google": 56,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 21
+      "kept": 1,
+      "offSubject": 22
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 96,
+      "google": 95,
       "bing": 0,
       "kept": 0,
-      "offSubject": 44
+      "offSubject": 43
     },
     {
       "id": "act-hostile",
@@ -367,8 +367,8 @@
       "expect": "acquittal",
       "google": 26,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 9
+      "kept": 2,
+      "offSubject": 8
     },
     {
       "id": "act-misuse-claim",
@@ -378,7 +378,7 @@
       "google": 49,
       "bing": 1,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "act-dilution",
@@ -415,10 +415,10 @@
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 37,
+      "google": 100,
       "bing": 11,
-      "kept": 13,
-      "offSubject": 2
+      "kept": 1,
+      "offSubject": 3
     },
     {
       "id": "shri-sanctioned",
@@ -435,7 +435,7 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 66,
+      "google": 65,
       "bing": 1,
       "kept": 0,
       "offSubject": 22
@@ -445,10 +445,10 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 8,
+      "google": 50,
       "bing": 2,
-      "kept": 0,
-      "offSubject": 0
+      "kept": 1,
+      "offSubject": 12
     },
     {
       "id": "shri-mou",
@@ -466,7 +466,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 29,
-      "bing": 1,
+      "bing": 2,
       "kept": 0,
       "offSubject": 16
     },
@@ -488,7 +488,7 @@
       "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 33
+      "offSubject": 32
     }
   ],
   "items": [
@@ -19316,7 +19316,8 @@
       "published": "2026-06-29",
       "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNYkx6Nk81N3NNNXZXRjlNd2Nhb25OeDQxOThqZTFZWnNvS2NDVU56dE9XVmJ3RkwyY3REcFFvQjdCbmpONnRMOFJBRFNxaDNpU2tNMEs1UmVBSXBPbFlPczFUb1JqcjBYWjZGYWRjeVVxOWdULVRieTFPQVBZNEFoX3c0MXFWM2paMlJJdmlSWURRdEJ1VUJGNTFnWXh4X2FLT2Y5RUR2V0pZSHg1SHN5alRaMzTSAbsBQVVfeXFMTVlRQjdUQzhJa1AwQTI3ZVhhbmkxODhqVTNTeU0zV0otSFc5anRUNU1GdVBUdUJHUmdOYVE0RlFmRVNhMUp6dHNsSEk3azN5SnNUWXpJV19aZk5xZUVSTE1LNW5CMVJ5eDl3V3J5YWxDYXBGU29HZVNqbzF2dFN2eGlHbFdtWW5CUWJGYm5wcUZ5RWFNVGF4d1Q0ODJIcVJCVEtSTFNkUjFPSVg2QlQydUJWVUx0eDhoaERPTQ?oc=5",
       "queries": [
-        "shri-general"
+        "shri-general",
+        "shri-sanctioned"
       ],
       "indexes": [
         "google"
@@ -21238,6 +21239,118 @@
       "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQR1BibmhxRTF1MlluNTNpalNzck9NazFGY3JNRDFVdDFVbEZ4eUc2UjlmWlF6bWNEdXRVcUdxSzdGMVJmNTBVSkExWTRuWWQ5Qzd0NWdOLUtkSTBPMjlYY1d5Snh5d3VNUV96NGNHOXBMYWxfQVJvVGs4UXBhS3IzU2tESi00Y2E5RC1ZelQwQ1pGdUtyZU9hUU5tTGI5b3FaUkJGR0RrSEdGVjN4LXJvOVcycG9BeTNCcHdIRFFLbEMydTFhV296QlNOMzdTREpPUURhNjNfX3Y3dVNvOTlrRndKTWFXSzdueXBoWWZn?oc=5",
       "queries": [
         "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "ajit bharti appeals to delhi high court against denial of anticipatory bail in sc st act c",
+      "headline": "Ajit Bharti appeals to Delhi High Court against denial of anticipatory bail in SC/ST Act case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The News Mill",
+      "published": "2026-09-09",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQSE5mN01qLWwyQjVEbFJ0WEs2UGowZlU5YjBuemQxaU5nYVUxeGI1cjBnM0dQNU9mR0NsUk1Bb0lJOFRjczRtdEthWmVpM3lsVnBLNEdmcWpLVGEzaVRnVzJBZlNkVGVKUHFvRzNEckQ3SkVpQm5ibFlnSHFxcWl1cEtuMWN6RnBBdl9zY2ZYQWplQ2hwaUtPREhBbTdlUkQzWXhEX0pIRXo4NVRaTnBoM1RvMUtFM0VnUFlVNDFrS1c3b0hr?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "dalit man claims he was assaulted in custody by cops dies later at hospital",
+      "headline": "Dalit Man Claims He Was Assaulted In Custody By Cops, Dies Later At Hospital",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "NDTV",
+      "published": "2026-03-11",
+      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQNlhDV2dYLW9sZHZsT0ZnTldpYlY3ZXBpNUc4X19oWnRnb0tOam9mVlA3Q2pGWTBxVE5nNFN6ODMwSVE4YlA2eFpFUEhlWkhLVmVLMlBIYU45R3V0VjYzdlQyVGxSX3c5eDJlOE54aXVCbnh2UjhOdnF2TkdId1RCODh4dHFiM2FnOTU4UHNNQ25fT3l3dHNhYUtDNlJVaDdtQmJNeTVycVJqcG5nQ0dpX0EweTJ4OGNUc1dFZ0NMWWloS09xZGlPaDR0NEtpU0NWb2FOckx1YVBPQ1VrbUZ0dV9jSmJlbEFK0gHwAUFVX3lxTE8yRHJuaXA0ZHlfazZjaEtvRkRGU2VvNGlSNC00LW9aa1JmUl9KNVhKZ0g1ellCZWZkWE1aYXNXWTl3dEhpTTQ1dnYxUEdiUFA5Uk95RW1tZTR6LTdrLVpkdmMtRGF4WDZjTXBJaS1GOWlDRDFJUVd1TVBIXzhMNHpwcGY3bmVhSlhoVUF4WW1MbFktenNZZEZGdE5kbjUwVXRabG5JdW1kWlpYS2syTTNLS09uRGdUNXh5YV8wVnRwSVJVdGxjZUxXNzhCUXgyNGI5UjlTNWpQY0dGbll6VmFubmZRMDdWdndLMjlCQnE0Rg?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "bombay high court quashes criminal proceedings in sc st act case due to inordinate delay i",
+      "headline": "Bombay High Court Quashes Criminal Proceedings in SC/ST Act Case Due to Inordinate Delay in Filing FIR. Unexplained Delay of Two Years in Lodging Complaint for Incident of 2008 Held to Be an Abuse of Process of Law Under Section 482 CrPC.",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "Lawtext",
+      "published": "2026-08-16",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE4xQm9vWnRvTldncS0zM0VDYUJjNWJzZGNjWU02SUc2TWdsY2JLeWFqbmlqSk9PaHdSZjdwbDloWGkwcW9la2JQNEZsbl9vcnlhODRJUy12VFUwNllLa2hLS2hnR0wyZw?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "court acquits all accused in 2014 dalit boy murder case",
+      "headline": "Court acquits all accused in 2014 Dalit boy murder case",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "The Indian Express",
+      "published": "2017-11-24",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQbnVJalZZV1lpaUQxUnZIVFNiR1F2OWtwSGpvM3NEWFJQeFBCSmhTWktndW1rNlMtUXBiOG02Y0xjTnA3WjM0NXAwWFBsOTNUQ25sYmljcjFGTnlteW15YW1QYWpLN3dBd1gzYjFVQ1ZGMDZBS05jTW1wdnBPQk94Mi1TRjRCZ1JiRlp5OUYzSTc4cVV0cVZyR3I0UW9BNzV4REVyT2Z2SHRMdlZV0gGzAUFVX3lxTE12VGdDbW9PU2V0ekVITWFfeklNNWtDUnhtZHQ2Q0k1LWFXSzFLQXZqdUMyakppdlJidHRidzA2WmJOYjNIMHBMeHdvVmhDd3FTRHZic0Rqak9vTzlhVVljM1RqRzBTTVM2Uk12WkhXNkJxYUxlYWJOYmwwU0lsTVRYdU8yWndkNFRCODJFODZNYnVvMXF2WEZwYWgwN3NaS2Fzem1EOE5Dd3RHOEhrdHRQanFN?oc=5",
+      "queries": [
+        "act-hostile"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "maha cm directs authorities to increase conviction rate in atrocities act cases",
+      "headline": "Maha CM directs authorities to increase conviction rate in Atrocities Act cases",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Social News XYZ",
+      "published": "2026-07-03",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNa25EN3pxOXhHT0JXQlRtc3dmMWF4YWlMRTFqdUhaR1BDVmtFRGl6N0s4TV9oQTBBTGx6TDEzQ1ltNFRQZXlnUTA1bnUxNHVyN3NyVHRBSUV3Q2x0NXh2MFJ0emZXSXBWOXZBbnR1WjNsMURNVnFIenJPNTJqNFVacWZpT2ZFWGhnWVpsNGZCYWdWS2gyN2RIMlZOc1A4MElHY2ZWYXpMaEZlcHN4X0xQUmZodEpOTUhQWEHSAboBQVVfeXFMTWtuRDd6cTl4R09CV0JUbXN3ZjFheGFpTEUxanVIWkdQQ1ZrRURpejdLOE1faEEwQUxsekwxM0NZbTRUUGV5Z1EwNW51MTR1cjdzclR0QUlFd0NsdDV4djBSdHpmV0lwVjl2QW50dVozbDFETVZxSHpyTzUyajRVWnFmaU9mRVhoZ1labDRmQmFnVktoMjdkSDJWTnNQODBJR2NmVmF6TGhGZXBzeF9MUFJmaHRKTk1IUFhB?oc=5",
+      "queries": [
+        "act-hostile"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "yogi government to give bal vatika children a new world of learning corners modern facilit",
+      "headline": "Yogi Government to give Bal Vatika children a new world of ‘Learning Corners’, modern facilities to be developed in 966 PM SHRI Schools, ₹193 lakh approved",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-09-28",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add010667b5496f8f822b0b57f9e938&url=https%3a%2f%2fwww.prokerala.com%2fnews%2farticles%2fa1818047.html&c=11711714769757343379&mkt=en-us",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "pm shri schools in varanasi to upgrade education infrastructure",
+      "headline": "PM Shri schools in Varanasi to upgrade education infrastructure",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "Hindustan Times",
+      "published": "2025-07-09",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPQmU2akdIT1pnT3AtOWRfc2xyTDNNTUlBbjVpc0ZTdDJqTGJ5Q0RDOEJWVm9rVVdOVWR1LWpaQlpPU0FSckpKZnBqSXRtVXhhSDFLQkwxWFUtSVk0ZmJmQ0NnVnRmT3lOclFrWVQ0ZFVmZHNlNHIyWXhUUjcwNFZ0WGh2Vy1jN2U5aTI1RElFR1JRRndqbGdCam5mLUJ6U2g3bFB5dlI0aE0zY2dYNVphMGk3VDVORFdXbmxGOTJvMUwwNVFy?oc=5",
+      "queries": [
+        "shri-upgrade"
       ],
       "indexes": [
         "google"
