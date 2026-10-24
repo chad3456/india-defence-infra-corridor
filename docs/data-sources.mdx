@@ -288,6 +288,20 @@ Headlines for each area come live from Google News in English and Hindi (`/api/l
 cached 60 seconds). They are pointers to reporting and are never used as data.
 `npm run test:luxury` checks the sources, the headline rule and the DHS parsers.
 
+### Tunnel boring machines
+
+`/tbm` follows India's tunnel boring machines after the Railway Minister's claim of 22 October 2026
+that India now builds them. No official register of TBMs in India exists, so the evidence is
+reporting: company releases (Herrenknecht, L&T, MEIL), project owners (NHSRCL, BEML) and the
+press, each figure quoted with its outlet in `data/tbm/published.json`. Where two outlets disagree
+— a machine's weight, where the bullet-train TBMs were built — both are given. Claims carry a
+status: *stated* (a minister's word as reported), *confirmed* (a company or official record) or
+*reported* (unnamed sources). The machine count is a floor, not a census. The 3D stage
+(`components/tbm/stage.ts`) is a generic diagram except where it encodes a figure from the
+register: ring diameters, one bead per named machine, and the reported origin of each part.
+Live headlines come from Google News (`/api/tbm`, cached two minutes) and never become figures.
+`npm run test:tbm` checks the register.
+
 ### The National Family Health Survey, round by round
 
 `/nfhs` compares every NFHS round the DHS Program publishes for India (NFHS-2, 1998–99, onwards) on

@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "tbm-2026-10",
+    title: "The machines that dig India's tunnels",
+    blurb:
+      "A 3D particle story of India's tunnel boring machines: how one works, every machine reported in India drawn to scale, where they dig, " +
+      "which parts are made here, China's export controls from 18 November, and the claim that India now builds 8 m and 15 m TBMs, checked.",
+    href: "/tbm",
+    since: "2026-10-24",
+  },
+  {
     id: "nfhs-rounds-2026-10",
     title: "Two decades of the National Family Health Survey",
     blurb:

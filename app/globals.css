@@ -2240,3 +2240,39 @@ figcaption .bk-note { margin: 0; font-size: 12px; }
   .pc-multi { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pc-gantt-days i:nth-child(odd) { display: none; }
 }
+
+/* ── /tbm: the tunnel boring machine particle story ─────────────────────── */
+/* The stage is dark in both themes; its labels carry fixed light colours to match. */
+.story:has(.tbm-scrolly) { overflow-x: clip; }
+.tbm-stage { background: #04060c; margin-left: -16px; margin-right: -16px; }
+@media (min-width: 640px) { .tbm-stage { margin-left: -24px; margin-right: -24px; } }
+.tbm-scrolly [data-step] { pointer-events: none; }
+.tbm-card { background: var(--story-card); border: 1px solid var(--story-rule); border-radius: 14px; padding: 18px 20px; }
+.tbm-step { pointer-events: auto; box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4); }
+.tbm-step h3 { font-size: 21px; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 8px; }
+.tbm-step p { font-size: 14px; line-height: 1.6; color: var(--story-ink-2); margin-top: 8px; }
+.tbm-step .tbm-big { font-size: 40px; font-weight: 900; letter-spacing: -0.03em; line-height: 1; color: var(--story-ink); margin-top: 10px; }
+.tbm-cite { font-family: var(--font-mono); font-size: 10.5px; color: var(--story-ink-3); }
+.tbm-cite a { text-decoration: underline dotted; text-underline-offset: 2px; }
+.tbm-kicker {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #ffd08a; background: rgba(4, 6, 12, 0.72); padding: 4px 8px; border-radius: 4px;
+}
+.tbm-legend { display: flex; flex-direction: column; gap: 4px; background: rgba(4, 6, 12, 0.78); padding: 8px 10px; border-radius: 6px; font-size: 11.5px; color: #e6ecf8; max-width: 260px; }
+.tbm-legend li { display: flex; align-items: center; gap: 7px; }
+.tbm-legend li span { display: inline-block; width: 16px; height: 4px; border-radius: 2px; flex: none; }
+.tbm-lab { font-family: var(--font-mono); font-size: 11px; line-height: 1.3; color: #eef3ff; background: rgba(4, 6, 12, 0.72); padding: 3px 7px; border-radius: 4px; white-space: nowrap; }
+.tbm-lab-t { display: block; font-weight: 700; }
+.tbm-lab-s { display: block; color: #a9b4cc; font-weight: 400; }
+.tbm-ring-built .tbm-lab-t { color: #9cc8ff; }
+.tbm-ring-stated .tbm-lab-t { color: #ffc56b; }
+.tbm-ring-target .tbm-lab-t { color: #ff9a80; }
+.tbm-ring-planned .tbm-lab-t { color: #6be8b0; }
+.tbm-maker .tbm-lab-t { color: #6be8b0; }
+.tbm-china .tbm-lab-t { color: #ff8a8a; }
+.tbm-map .tbm-lab-t { color: #ffd08a; }
+@media (max-width: 640px) { .tbm-lab { font-size: 9.5px; padding: 2px 5px; } .tbm-lab-s { display: none; } }
+@media (min-width: 1024px) { .tbm-stage { margin-left: -40px; margin-right: -40px; } }
+@media (max-width: 640px) {
+  .tbm-legend { top: 44px; bottom: auto; left: 16px; right: 16px; flex-direction: row; flex-wrap: wrap; gap: 3px 10px; font-size: 10px; max-width: none; padding: 5px 8px; }
+}
