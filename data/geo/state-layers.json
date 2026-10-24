@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-24T11:21:54.403Z",
+  "builtAt": "2026-10-24T16:08:57.204Z",
   "note": "Named things per state, for the map to answer a click with. Each layer records how its rows reached a state and how many did not, because the join is where this kind of file goes wrong invisibly.",
   "refused": [
     {
@@ -24788,10 +24788,10 @@
       "blurb": "Urban rail lines as OpenStreetMap has them tagged, each placed by the state its midpoint falls in. Station counts are tags rather than an operator's published figure.",
       "join": "The line's midpoint, point-in-polygon. A line that crosses a state border appears once, under the state containing its middle.",
       "source": "OpenStreetMap, via the mobility connector.",
-      "total": 118,
+      "total": 119,
       "placed": 115,
       "unplacedCount": 2,
-      "deduped": 1,
+      "deduped": 2,
       "unplaced": [
         "Blue Line (Chennai International Airport → Wimco Nagar Depot)",
         "Blue Line (Wimco Nagar Depot → Chennai International Airport)"
@@ -25461,15 +25461,15 @@
         ],
         "West Bengal": [
           {
-            "name": "Blue Line (Dakshineshwar → Kavi Subhash)",
-            "why": "Kolkata Metro, 26 stations · run by Metro Railway, Kolkata.",
+            "name": "Blue Line (Dakshineshwar → Shahid Khudiram)",
+            "why": "Kolkata Metro, 25 stations · run by Metro Railway, Kolkata.",
             "basis": "OpenStreetMap relation tags: line name, station count and operator as tagged",
             "lat": 22.534,
             "lon": 88.3461
           },
           {
-            "name": "Blue Line (Kavi Subhash → Dakshineshwar)",
-            "why": "Kolkata Metro, 26 stations · run by Metro Railway, Kolkata.",
+            "name": "Blue Line (Shahid Khudiram → Dakshineshwar)",
+            "why": "Kolkata Metro, 25 stations · run by Metro Railway, Kolkata.",
             "basis": "OpenStreetMap relation tags: line name, station count and operator as tagged",
             "lat": 22.5724,
             "lon": 88.3587
@@ -48034,7 +48034,7 @@
             "why": "Station code UAM.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 11.4052,
-            "lon": 76.6963
+            "lon": 76.6964
           },
           {
             "name": "Udumalaippettai",
