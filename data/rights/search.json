@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-24T05:05:38.964Z",
+  "builtAt": "2026-10-24T12:58:11.255Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1255,
-    "addedThisRun": 0,
+    "items": 1270,
+    "addedThisRun": 15,
     "carriedFromEarlierRuns": 1255,
-    "withOutlet": 1169,
+    "withOutlet": 1184,
     "bySubject": {
-      "scst": 861,
-      "pmshri": 394
+      "scst": 863,
+      "pmshri": 407
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 300
+    "offSubjectDropped": 301
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 621
+      "n": 630
     },
     {
       "key": "use",
-      "n": 437
+      "n": 443
     },
     {
       "key": "dispute",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 107
+      "n": 108
     },
     {
       "key": "Lawtext",
@@ -66,11 +66,11 @@
     },
     {
       "key": "The Hindu",
-      "n": 46
+      "n": 48
     },
     {
       "key": "India Today",
-      "n": 33
+      "n": 34
     },
     {
       "key": "Hindustan Times",
@@ -86,7 +86,7 @@
     },
     {
       "key": "ThePrint",
-      "n": 22
+      "n": 23
     },
     {
       "key": "opindia.com",
@@ -245,6 +245,10 @@
       "n": 5
     },
     {
+      "key": "TheWire.in",
+      "n": 5
+    },
+    {
       "key": "Business Standard",
       "n": 5
     },
@@ -277,15 +281,11 @@
       "n": 4
     },
     {
+      "key": "Vajiram & Ravi",
+      "n": 4
+    },
+    {
       "key": "The Legal Affair",
-      "n": 4
-    },
-    {
-      "key": "Jagran Josh",
-      "n": 4
-    },
-    {
-      "key": "deccanchronicle.com",
       "n": 4
     }
   ],
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 5
     },
     {
@@ -308,27 +308,27 @@
       "google": 100,
       "bing": 6,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 14
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 99,
+      "google": 98,
       "bing": 0,
       "kept": 0,
-      "offSubject": 46
+      "offSubject": 47
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 8,
+      "google": 50,
       "bing": 7,
-      "kept": 0,
-      "offSubject": 2
+      "kept": 1,
+      "offSubject": 6
     },
     {
       "id": "act-compensation",
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 28,
+      "google": 29,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -415,10 +415,10 @@
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 100,
-      "bing": 10,
-      "kept": 0,
-      "offSubject": 3
+      "google": 37,
+      "bing": 11,
+      "kept": 13,
+      "offSubject": 2
     },
     {
       "id": "shri-sanctioned",
@@ -435,7 +435,7 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 65,
+      "google": 66,
       "bing": 1,
       "kept": 0,
       "offSubject": 22
@@ -445,10 +445,10 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 49,
+      "google": 8,
       "bing": 2,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 0
     },
     {
       "id": "shri-mou",
@@ -458,24 +458,24 @@
       "google": 43,
       "bing": 2,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 6
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 23,
-      "bing": 2,
+      "google": 29,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 16
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 52,
+      "google": 51,
       "bing": 5,
       "kept": 0,
       "offSubject": 12
@@ -488,7 +488,7 @@
       "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 33
     }
   ],
   "items": [
@@ -9845,7 +9845,8 @@
       "published": "2022-09-10",
       "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNbWFEblhBTWM2U1RGb1p0cjZYOTFDRnhPbkY1T2M4Xy1DNkhSM3llQ0gwTjJnaDJ6Nk1GY3ZnU1hsSlJ0M0Rua3VjM19DaVl4Sm9JWDVxM2hpOFBSci1fM2ZkQTdoVmJJRFZXM0NqSXdQUFpHTUdzLVAwVGJPTmYtTjJDdnI4dGFrZGk0bkZQdEJLMVZWQk02RnpHU2ZFclN5Y0UybUJEa2J5anJuZk40OTRqNzlXamPSAb4BQVVfeXFMUFA1ajhzeDFGMERlalg2dVNwRkFfSTh4MHh4LXFxSERLSzdOd1pUVTV5amVnRHh0OGFiV1p4blJpMWhjQ05iNzFCTHFwelc0bVFBTGJRZHFKUWRWLWxqWWpLR3hrTzhwY2FBZk5jWk1HXzJfT0F1ZGdFMFJsaHloUUJQYmc5THFkby14RlpzRURmek5ERlFsXzFwcDExS2JTYUNycDJ3U1hxaXhTaWRiWkozNERCVGM0bGtMaEkxQQ?oc=5",
       "queries": [
-        "shri-sanctioned"
+        "shri-sanctioned",
+        "shri-general"
       ],
       "indexes": [
         "google"
@@ -10182,7 +10183,8 @@
       "published": "2025-06-26",
       "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOQWE1NzRweDhkOFhGam9vU3dQTHNRN0RtdWRBYWdNYUNlamxmb1VTRFMwNnZ0QjAxdndqSzlOaVZuY0ViVGJyUExycXlyRnl0eHdfT2wwemRVZEo5YXcwbG5FWm5LbzBDYTJjeFN1aHFaN0JkQmJvdG9jWWhUUC1XZE16SVRFYkVDRDRacXI1SlBRdlVXeWlqaXFsWGJfdzhpV3VTODh5aVpfelBfU1RsSVpsVm1SUlBvZ3VrOGhxZzFpdDBSWTc2WkNOWTFuaDRYUUllQ3V0TzZNZ3BabkRHZ3hMa3JWRlZ5Q3Q2NNIB8gFBVV95cUxNR3VTSlBGQXdnTEN0ZmNhSlF5dDQ4VHhFRlZtaTNTTHVqOEVEZm5UaE1nQ3VCLUJueTR0Ty0wNGpfVHJXVVY1NTRkTGhaaEtwOENOa0RYQVVfZGxuWGRqcnNteUlYRVUydE9ISWFOTTRkdXVZTVRoLVVxbEFoSzNaRXJYNHgxN0R0Q0lRSmp0X3djVm45Y2hmTWVkc3NJeVZtUllRVzFtcWN2RjgxdWZfWWd2NkpMVkVRT0N1UEh5cWN6SDlQSmdsM1IzSWZjUGtET1E1dnRYRnFhMEsxb3hEcERwUTh1Y2FVbUZ6UDlFdkFGQQ?oc=5",
       "queries": [
-        "shri-funds"
+        "shri-funds",
+        "shri-general"
       ],
       "indexes": [
         "google"
@@ -11100,7 +11102,8 @@
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNMzdubkRnUDM4R1QwZFNVMjNEOHRWNWRaY0hNcmF1czRrd2NCekhkdElxZ1ItZVJnbDF6X1dpcmU1dl8tbkRSNWZWaUNmTGlobkRFbExBUUt6Y0g1bV9qZlYyWnFUMzBYSnVuZHZCR3JoUTBmMTdyT05lVGtKelNPaUJxSjhSYXl3TWhhak5lRG51ZkxLUjFEaEVlR25SZGIybFFJ0gGqAUFVX3lxTE9JTkFqUTV3cUxERWlBR2hnZy13dWhqenlfcjlkeTBkVEZKSG5qdkRtY25Na1lTQzBiYnhVMWpjNEV3VUswc25Qc3hUX3M4VVVoOTFPRk10RG54bUJGQWsxazhXWnFTRXU4WGFjR0Y4eVV1UkxNWGVrRTJxZzVBN2hSdHFDSkV1Ym5IZzc4dVJKdFdiNVR6Ml9RZW9GVk5SZXh3b3llRV9sVDln?oc=5",
       "queries": [
         "shri-mou",
-        "shri-nep"
+        "shri-nep",
+        "shri-general"
       ],
       "indexes": [
         "google"
@@ -11134,7 +11137,8 @@
       "published": "2025-10-23",
       "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNWk0tWG9RNFFfM05kVExwTE1GNUNfbTFwdlhmOVdnWlBOM3JhbTFTNXl6V0ZmMEVOZTlzZ2ltcWc1SmhKRzVIRmNGSW11WW0zM2RkeWpYLWJRbkR0NVNiZlBOY29JNnp3T1RFejVaTEtDejhZeUZFbzQ5c3lwQXdSSXpXQmE4RHNFN3llOFVYYlR4WnJOZWUwTGFaTk1zR3VlUU8xSkdYQ0pPV1N5ZDNsMmU0amxOdw?oc=5",
       "queries": [
-        "shri-mou"
+        "shri-mou",
+        "shri-general"
       ],
       "indexes": [
         "google"
@@ -11185,7 +11189,8 @@
       "queries": [
         "shri-mou",
         "shri-nep",
-        "shri-sanctioned"
+        "shri-sanctioned",
+        "shri-general"
       ],
       "indexes": [
         "google"
@@ -11320,7 +11325,8 @@
       "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPQkpYY001a1g1TGZSb2V6VTZDMXpMT3ZrTjUtZlJaVDZNNXhUZEJTdUhhR200MHBoRTB5SE1TSVZDQjd3VHVMUDBRNnhVZWZMcUJGVHBHaHJVd19SbUxOOEVwSlpabjdHR2QyRms2UUIwd080RllzMW9vNnlXVzNxQXVpRVY0bTVIOGczY2pLQk9PTnFiX09QdWtIa3d5aEoyQ1NIelVfRm1RUzRHZU00SVY0bl9iXzdCWVp5UlEtcHBSU0RxdVZyY0hyaEpLaHZMNTJmVGduVmJCYXE1aVItRllvUDJYd9IB6wFBVV95cUxQc2VNVTlmNldsWnhZNWVWcnRiYjBzODRISjhiYU9FeDhIOV81NVJUOEhBeTRqWlM2N2luUFBQV2VkSEhmMlJScFRkN2RfM3NNQ0taeEN1aFluQzZOWlZwcjZEOWNBMUxZYVpvSkVNRTBHT2YzLWdRMDBOSTVqZGhnZjRqOXhxNmM1NUotTmdoYzdjN3pNeWZWZTJHVXBxMUphOGhxRVlITWUyckp6aGFnaEN2UFhTQi1qcElfbTVRTW91VFMzS180aUhJNTEyb2FkeEMzQlhTTUJYbGQ1MEhtQjZDelktaDROVjFB?oc=5",
       "queries": [
         "shri-mou",
-        "shri-nep"
+        "shri-nep",
+        "shri-general"
       ],
       "indexes": [
         "google"
@@ -11369,7 +11375,8 @@
       "published": "2024-07-17",
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOOEw4Q20wQmJ5Um5tbkxCN0h5TmN1cHFpWV9tSHRYV3RYU0dJNHpFNDRxdllieE5EVXEtdkFrbkx0VFA1ZnpRVENrMHI5V0d3SzNlZXU3cGhOMHlFWnJzUzRBb3Y2VlFsdFc2UWhWWERNTkkwZW5pTWRfOE9EVkc5WUQ3NmxhX0tNMFo3ald6a3Z5UnpIVGViLW0zMWE1bVI0ZVU3SGsxY2Z6NzjSAbIBQVVfeXFMUHVlQk5hMVpYZVdheE5OUVBhZGRaelFvUm9LZFhPci1DLU5LUW4wUjllaWxLMzNqUXVlUk9wZGZvWXEwMUpLSUV1Q2ZmU2g5b3plV1lZeWxocVJsRlA2Qklvanl4cFk2VUVERWNpQUI4WHV0TU1HY2xWWVhQbkpDNkR2aWd4VXk5R1NYN2NSM2pfdDBjNi1KdWgyeHJsTWYxck4yVG9MOUZRcjRNNnF1NFc2Zw?oc=5",
       "queries": [
-        "shri-mou"
+        "shri-mou",
+        "shri-general"
       ],
       "indexes": [
         "google"
@@ -12089,7 +12096,8 @@
       "published": "2025-03-26",
       "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQSlQ5ZnpHTG1LV3BkYTdCQmxoY3VpSGZfMFVxdzBzVXVjREJzd0d4U0luWklMUFFwYl9oLXJBRlJtMDBPU1I0bWgwd0xWTHZ6TzdhZ01DU0hrZnNUUE5GT25RYndfelBxWXBFR2JDSGRjdzV4OUtXaU1TUU9kZ3J1STR5NEtXY1hDUXRfQ3N0LUtGTjFKYWZvdXhDeGlyZzlpRHllbU9jeFFKZzV1Q2RDODJRVnlpaVF3SWt6Rm9VQmYtc1AxRm1pSWRGczY1a2RMaTQ1bUFod1hpeHBMcUoxWEhn?oc=5",
       "queries": [
-        "shri-criticism"
+        "shri-criticism",
+        "shri-general"
       ],
       "indexes": [
         "google"
@@ -14091,7 +14099,8 @@
       "published": "2026-09-24",
       "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOZHJWbWhqVjF3LUFSRW9YREJXQWN0OERIM3BKa2xROHVCWmdlSk5zVnpIZWRuMjFvRXMxbTE0T3NEa2U3UE1Hbi1maDF0a0ZLajk2NGdkWlE1b2lnWnBHUXBaaHNpQVVWVmlCVFNrZXlZWmU5enhtVlE1Ukp6TVp4SGxUSFMzT2EwMGlkZkRnWkNyMi1TNHo1b3pOZDNhdlpmYjBtVTFjcTJtWHdz0gGsAUFVX3lxTE5kclZtaGpWMXctQVJFb1hEQldBY3Q4REgzcEprbFE4dUJaZ2VKTnNWekhlZG4yMW9FczFtMTRPc0RrZTdQTUduLWZoMXRrRktqOTY0Z2RaUTVvaWdacEdRcFpoc2lBVVZWaUJUU2tleVlaZTl6eG1WUTVSSnpNWnhIbFRIUzNPYTAwaWRmRGdaQ3IyLVM0ejVvek5kM2F2WmZiMG1VMWNxMm1Yd3M?oc=5",
       "queries": [
-        "act-general"
+        "act-general",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -20994,6 +21003,246 @@
         "google"
       ],
       "firstSeen": "2026-10-23"
+    },
+    {
+      "id": "delhi police register fir under sc st act against journalist who accused acp of sexual har",
+      "headline": "Delhi Police Register FIR Under SC/ST Act Against Journalist Who Accused ACP of Sexual Harassment During Protest",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "TheWire.in",
+      "published": "2026-10-15",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNbDNRZWhzY3NKbXpoellPdkpMdGpCdTh4aExVd2NlZ3RpUGRkVnNfOE1RcUdGVnJ0Q1diTWRSZFAybWlmZjE3RnJXdmdBNFpkWHk2WmZsci1BUUtmcUhEbkFTRy1iLWlfOVVmNmt0dnZBdjFYc1pOV01JYmhIVDdSSmpBODhzY1otT3NmSDZmbk5pYlN6YnU2T2w0LXctdEZmUnhxUEhLS25sYWFFVVRXWUdycUlyc2ZtV2tsU0FobUJRcFpUVDlKT3hERHdNNDg0c092SVJfVGw4U054YndCTzROTmRNb1nSAewBQVVfeXFMTmVFNEhEUUs0UF9oS1dRTFhMT0Z1aEU5bUpXNDdZdTkwNGtBSlpOUDJlX1JIZWo2NG14eEc0ejZGWmdKZDdlNy1odU0xQzJCdmpFY3BSZlItVy1raVg2YVFIYU5EdWRJWVJrMkJKZy10TGlFMkFrTDRnb29JaFY5UkhDWGZlQnJlU3kwbHowb3FJWldJWEVSMVRpMGNUX3d2MEV0X1pyOURHUzNEbjZsTlJNOVdEdGFsQjV0RFpkTkV2NFRrQTNzZDViQTFWQUQxbUxLSWswc0FlNXJJcFhnczFzSTdmS29XdTlITXk?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "dalit tragedies the hidden horrors of caste violence",
+      "headline": "Dalit Tragedies: The Hidden Horrors of Caste Violence",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Probe",
+      "published": "2024-04-27",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNb2JGbW9xY3gzeWVGemRNeDZqNDFhNEpZV1FXbEtzVFFTbXZjYndxaHRPOExjX0FxbmtVUU1YR25qSnFiUW1wVkJHVWRZVW5uN1dqTm9ITlFoU1NERTB2MDMwUDBQdDAzMXpHeW9sVE5ldW1VZVRHYlZfXzlQakZIT0xZV3N6ZVd0QlU5N1l6a0U4VTMtX1ZrN9IBmAFBVV95cUxNb2JGbW9xY3gzeWVGemRNeDZqNDFhNEpZV1FXbEtzVFFTbXZjYndxaHRPOExjX0FxbmtVUU1YR25qSnFiUW1wVkJHVWRZVW5uN1dqTm9ITlFoU1NERTB2MDMwUDBQdDAzMXpHeW9sVE5ldW1VZVRHYlZfXzlQakZIT0xZV3N6ZVd0QlU5N1l6a0U4VTMtX1ZrNw?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "pm shri scheme covers 639 rajasthan schools over 3 12 lakh students enrolled",
+      "headline": "PM SHRI scheme covers 639 Rajasthan schools, over 3.12 lakh students enrolled",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "ET Government",
+      "published": "2026-02-04",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNRk55ZnNLSjN3U0h2azZONHE1YjBDeWRHdF9DNWdVZzJJLVlnLTQxOU9YLXdGNHVTQWpkZDF6dDMzMnNPR2VBLWpiS0RIQmo2c05CSjZ5Z056dktYb25ESjVEOGJOVlA5TElpNWd6Y2thR19FNE4wUmcwVWJjSTRIQkxFaWg4YjJrOE5JRk5UMFJ1eHlNX3pkWHQyX19TY3J4cFNjR0pzZmlqZFIzZHZWVzZuOTRZZWNOZ3ktVElpc2JTWThPRWU4TnFqV1BuSWxELV9ZMnE5NVpuZ3VScngw0gHjAUFVX3lxTFBVdWUycUItbXlyLWsteTBjYkFsRkZXcFRwMzFhQVhLSml2dk81NFNSVXBjOXhfdkdyZDJNZHNLc0NiMkVEU21iU0dMbWNtQjcxWDJzemFpTk10dlFPNHdMMngzM3FMM3IyRVBxMklZR3V2WW85QWo2ckRqT0lmQUlHWldGWmF1aUVCanlfMTZ3Uno0UnVGS1lVOXRhUTBjZ2NSaW45MmhXODBoQlhrUHZ6NzlUUDdtWDBlQ0JsZENmdU1EMEFHRTNRWXQyYmZZZGFPaVh0TVhtNlVWSnF4LUxFZ0hr?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "students of pm shri kendriya vidyalaya sabarmati students visit prerana school and archaeo",
+      "headline": "Students of PM SHRI Kendriya Vidyalaya Sabarmati Students Visit Prerana School and Archaeological Experiential Museum, Vadnagar under PM SHRI Exposure Visit Programme",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Press Information Bureau",
+      "published": "2025-12-03",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE8wUm5rckpWT0JJNVNTWkdtM3FUQ0dWS21aOWpUMlNVOGNUaDNCLWZ1Rm5EdWF4RmZ3TU10bnhUSXdnR0FrY3BKSGc4bzQ5OHVkNWQ1STViSUJVMGl4ODZGeEVPQ3ZqblM5?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "pm shri scheme launch date selection process objective",
+      "headline": "PM-SHRI Scheme, Launch Date, Selection Process, Objective",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "Vajiram & Ravi",
+      "published": "2025-10-24",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5lQjgzNFNoOV9WSUxmLW1SV0UzRU9oZDZnSkNYT1AybWdMSjNuNnhTTzJERjhGdHlGT1RXemN1bjVFQng2dmFsSVZYdlRPRnUyRzMwd1gwc0gySU9UQmtWRGhnVWprX3RVcVE?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "pm shri scheme objectives key features latest news",
+      "headline": "PM-SHRI Scheme, Objectives, Key Features, Latest News",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Vajiram & Ravi",
+      "published": "2025-05-01",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPTkpSa0VraEZITWVXYkI0bEUxYnhHZ3lhRzMwOExmVWhkZXZWRHlBM1h1cVVVNmlZX3g3dG5hME9taUM0Z3doaDBrd0I3NEVyUHZhZFpxZ29DNm9WYmk5UFItSnBacFN2UDRmZWx6Q1B5emZrQ1lBTXZBbEhxTmRaSTNDaDZpNHZYUGJuajNjRUtrZDlSYjBoMEtNYTdkSGxqaUN4SlRjY0xqUQ?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "cabinet approves a new centrally sponsored scheme pm shri schools pm schools for rising in",
+      "headline": "Cabinet approves a new centrally sponsored Scheme – PM SHRI Schools (PM ScHools for Rising India)",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "PM India",
+      "published": "2022-09-07",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNUFJUTk9vMUFHNXVYZE9UX1NiZlNDZHpvQldPV2Q1ZFVYNzZUSnhuTzBob2NDUXFZdUJIczFwbXUyTF9zSjAzMnUzbU0zaWUxSmZkVTJVU0N3YlZFLUxpeDItYnVtekNqSlRUejBsYXJQNV9TTVVoenE4OWJDeUNMRU9BRnI0MlJXVEd4SlZBQ0gyLVl6cWdLR1pYRDRYN0ZXajltUWZjeHBsNmRLN2xGOUJNRG1WRTRPeGgzLVlMYU9IVlJHWU9PY1RSWXNtOGpxV3hJ?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "kerala government gives nod to pm shri schools scheme",
+      "headline": "Kerala government gives nod to PM SHRI Schools scheme",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "India Today",
+      "published": "2025-10-25",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQa1QxVHllU2lYWk5wVUc1eGpxUnpia0I0NF83VzNUOGdidkdsQm01b1E0VE5yT3Rja0NXM2x4REtnZ1pGZzI3WVVJbjFQV0FfOXdvNVFjMFV0ZnZ0WGMxVHBiVF9acjVoLTRUMVlkT0p1cmxoamdBT3BwdFZobWdrYndBT1NFYnRDQ3lSYUk1Nllyb0Z5Y0QzT2UtazM2ajBmT3Z2TkNUT29oTTRRQU5qTGw3bWJLbXBIaFRhT0F2UmtRcXFUQ2QtVC1KNzhJOVI3Yk1IbWQ3SEZ4SGfSAeABQVVfeXFMTnN2clNXYW5NQ21KZVNDcVpER09CbzVUcXQ4TEw1dFZKRHlnMnBqVko5Tk1yeTlqZzZwNWtFS3ItVE1qbC1ZbXhibkRjRmplS0F6VjNRTFpiZ2pBV3VZTXdVZUVEYWhqSzJTVmpyYlJPV1Z2eWdOeXdUX1AyZkF5VllZcm14NUNRUTUzaTZCN0FjQi1LOUV4a0d4SDY4b0lLMC10c1Rrbi1oZllHSGNmX3FmZF9hU3Bld2hBaWVCb3lTU3hWVTN6emEtclZYT3BIUHVndjFsWEVfVkpkMVdpY3k?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "tamil nadu agrees to implement pm shri school scheme centre",
+      "headline": "Tamil Nadu agrees to implement PM SHRI school scheme: Centre",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2024-03-15",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOZG5JOFFFOVVRWURMc091WlVvMC1qb3N0UGtxU3Rjc25BX1FfWVViY1FDeGJ0UWZMZllGS0g1Mkx0R01aSDBaSGZwSi04QzJfR1pYNXdXQTdGOURkNlExdFE1RXJQOGo2U01qX0NQaDhLcERGNkROdDZ6dXJuZldNXzRHMEZFTWpxZ3lYRUtpbDRrN0dyMlNod25DcFliNWp1T3JybWN2OGtVQy0tZGZZQW9IaWlRV2RQTEpLRFV4Um5YRkJmcXfSAcsBQVVfeXFMTW5DUldvLXRMd1ZOTm5veXpqMDgySjUxMmY0MlpMZHVkVWtWY0VkZXBpR0tjOVJLNjA2d29GQWQwdURhM3NRRTlkX2dGemcxejFHSEphWlBDZHZBZFhjMVJsa1dydy1SOUZMc2lkSHdGV3NfV2lMQk9XRFl6NDNGUk9DMGxRTDdqVXBmanZRSWJ4OTU2ajFNZl83dEwxRFMyejY5WnBtdUl5Wk84cXVVY1JtbEN2M01KLXVQYWR6d1VFY0pfRlNsRUtVN1E?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "student enrolment goes up by 76 in 40 pm shri schools in 5 states",
+      "headline": "Student enrolment goes up by 76% in 40 PM-SHRI schools in 5 states",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Vision IAS",
+      "published": "2025-01-04",
+      "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOaTk4cW9pcUJlTnQ0cENtNzczcjRSUHV3ay1HSUlSaU9XZWttTXZiY3R4QjdRaS1FT2JoR2JuRWVfWmZhN2cwdWdsTzNQa01NNzdBV2h6ZVFIMG9JU1h5SDlTenlQU3JneWNUc3M2NFhkNUhQc1Q2QnhFSmN2Znd5MzdIalpzMFlPT0pQc05udjdjZFFEbTdLalhVTFJkS3diTlNzTExBYnhHRGhQcTcxMTVmdEpjQmo4ekdyRlZwVUZmRmN3VkV5QXBFQ1hvQVluMEdxdF9UUHZoS2ZlajBiejJqcGc0VzJFa1FuRVJRaGZNVEQ1VmgyN3hDdlI5SzV3aHZiWGJUcUd6bTE4?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "stopping funds of states disagreeing to implement pm shri school scheme not justified par ",
+      "headline": "Stopping funds of states disagreeing to implement PM Shri school scheme not justified: Par panel",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "ThePrint",
+      "published": "2025-03-26",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOWDVPUWJmeGZ1RVF4bFBmV3FZaTRBZUlYNVhVNXdfZy1rUnpvWTFiQkpOUEg2Z2hvbEdmS1pJTnl3bmlZVVFtYW93dG1nUF8tZ0lZQlNpOGU5akNQQ3hYMnphcDloQVNkZ1JFSFpLdUFudmE1dGR3NFVUQUduQTRneTAyMkc0Y1pBWVhtWElpUTVlaUgtYVdFOC11cTNlck1GSm9RRmJhd1hLckpMRkh3RTJ6MnJUTTFEOEdvWVB0blBfbVlWYUZsWWxR0gHPAUFVX3lxTE1KVmVZWEQtZVNMOHNDU293R20tWDZaRl9rQll3SlFVLVJnekprVXpTWEQ3cmVXLVpTZjhKSjVVdVFpNTBfaFlOand2c1NkSVZXZjJkWTBmaVVuU3F6bE1haXVlQjBIQ2JxNVBaYjlPU0VCOVlqRVFoWFBIUndZRkh0X0RzcmJsUmRwbi1VaGlBWnZhUFNuTGt4dnlGeGNmZldJR09ZWmFVRldMdTNCNEd3aGVmT3VDS3JXLU5lVzlBa1BkbGlGa014ekVaWUpWZw?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "union cabinet approves pm shri schools scheme",
+      "headline": "Union Cabinet approves PM Shri schools scheme",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "The Hindu",
+      "published": "2022-09-07",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPblhlSXo3bFFoZUJ3UWlYanlpV0ozb2ptUDczdWZDSFQ1Q3dDWDN3SERMRnJUQV9MMng0cFk2VDFlQ3I1c1ZMRDdNWl9pbng3SG9hRDU4cU83UnBsUzgzN3FkbDd3ZzNJck9CR2RHeXF5anVhZk5UTVEwZmE1MkpPakc1b0hPSXdmZjBaNFB3MkxOZlpHNHBwOUxQbXMyNjJyd1A3aFln0gGsAUFVX3lxTE43WUR2aDBWSldUZENzenQ2RjJhYzZ6MkkyX0Q3ZGl5Um9Ka1FtMmp5bjl1X0tpYlNwcFRwa0hYMllTQnVXVU5lQWh6cWJnc2RfS1lob3FQNUxPQUlZTEc4bHlxUzBuZ2Q1U3Z6UUhpczZ2MFlMbmlzU2Nnb0lCZUZnYlBrX0hVX1JOMWFGUWNGM2Z6ZktaYjBybTNMNzJiRnhOSjBwdXdxOTNadGM?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "telangana s 5 973 govt schools selected under pm shri schools scheme",
+      "headline": "Telangana’s 5,973 govt schools selected under PM SHRI Schools scheme",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "Telangana Today",
+      "published": "2022-12-18",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOVUl2QXRUN0tieDlOQ3RUcGFkUlFfSElvWTFBVEhQalI5WVQ5Q2lINzVmaWNkdmxxcmVlN0xKZGJEM1JyWFJvMkRVMDRSTmkwVzhnVGwycnZrb1NFMFlSSVpkWEU5ZUJFazdFNkNleHVSRmdlQ2t4TVpZZ0lkN0MxT2JUbElZM2xMdlpZQ2JzdVRCWi01R2lHVQ?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "pm shri schools",
+      "headline": "PM SHRI Schools",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Drishti IAS",
+      "published": "2022-09-06",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQeHlZQU41NGdIRGZzZmxObTZNb2VTNC12d083UHVqeTdZVXhFLXh0aTlBcU0xMEY2LXhyY3psMy1lRmc3WDcwb3ozNDhocFJuQ3ZiampRcWFLdW1ldVJSdWlUVG9uSnJvbjRrbS1Ob3VqZDNJM1F6MEhFVVJibk5DcXlB?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "jawahar navodaya vidyalaya selected for strengthening under pm shri schools scheme says mp",
+      "headline": "Jawahar Navodaya Vidyalaya selected for strengthening under PM SHRI Schools Scheme, says MP",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "The Hindu",
+      "published": "2024-09-15",
+      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQR1BibmhxRTF1MlluNTNpalNzck9NazFGY3JNRDFVdDFVbEZ4eUc2UjlmWlF6bWNEdXRVcUdxSzdGMVJmNTBVSkExWTRuWWQ5Qzd0NWdOLUtkSTBPMjlYY1d5Snh5d3VNUV96NGNHOXBMYWxfQVJvVGs4UXBhS3IzU2tESi00Y2E5RC1ZelQwQ1pGdUtyZU9hUU5tTGI5b3FaUkJGR0RrSEdGVjN4LXJvOVcycG9BeTNCcHdIRFFLbEMydTFhV296QlNOMzdTREpPUURhNjNfX3Y3dVNvOTlrRndKTWFXSzdueXBoWWZn?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-24"
     }
   ]
 }
