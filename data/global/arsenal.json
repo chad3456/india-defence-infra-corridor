@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-23T20:39:09.534Z",
+ "builtAt": "2026-10-24T09:47:38.540Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206402,34 +206402,6 @@
    "source": "Hypersonic_weapon"
   },
   {
-   "name": "Type 25 HVGP",
-   "key": "type 25 hvgp",
-   "kind": "hypersonic",
-   "country": "Japan",
-   "source": "Hypersonic_weapon"
-  },
-  {
-   "name": "DARPA Hypersonic Air-breathing Weapon Concept",
-   "key": "darpa hypersonic air breathing weapon concept",
-   "kind": "hypersonic",
-   "country": "United States",
-   "source": "Hypersonic_weapon"
-  },
-  {
-   "name": "Long-Range Hypersonic Weapon",
-   "key": "long range hypersonic weapon",
-   "kind": "hypersonic",
-   "country": "United States",
-   "source": "Hypersonic_weapon"
-  },
-  {
-   "name": "OpFires",
-   "key": "opfires",
-   "kind": "hypersonic",
-   "country": "United States",
-   "source": "Hypersonic_weapon"
-  },
-  {
    "name": "BM-04",
    "key": "bm 04",
    "kind": "hypersonic",
@@ -206458,6 +206430,13 @@
    "source": "Hypersonic_weapon"
   },
   {
+   "name": "Hyper Velocity Gliding Projectile",
+   "key": "hyper velocity gliding projectile",
+   "kind": "hypersonic",
+   "country": "Japan",
+   "source": "Hypersonic_weapon"
+  },
+  {
    "name": "Hwasong-11E",
    "key": "hwasong 11e",
    "kind": "hypersonic",
@@ -206469,6 +206448,27 @@
    "key": "fatah ii er",
    "kind": "hypersonic",
    "country": "Pakistan",
+   "source": "Hypersonic_weapon"
+  },
+  {
+   "name": "DARPA Hypersonic Air-breathing Weapon Concept",
+   "key": "darpa hypersonic air breathing weapon concept",
+   "kind": "hypersonic",
+   "country": "United States",
+   "source": "Hypersonic_weapon"
+  },
+  {
+   "name": "Long-Range Hypersonic Weapon",
+   "key": "long range hypersonic weapon",
+   "kind": "hypersonic",
+   "country": "United States",
+   "source": "Hypersonic_weapon"
+  },
+  {
+   "name": "OpFires",
+   "key": "opfires",
+   "kind": "hypersonic",
+   "country": "United States",
    "source": "Hypersonic_weapon"
   },
   {
@@ -206504,8 +206504,8 @@
   {
    "outlet": "Defense News",
    "ok": true,
-   "items": 25,
-   "kept": 1,
+   "items": 10,
+   "kept": 0,
    "via": "direct"
   },
   {
@@ -206533,11 +206533,29 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-j5hhku",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": {
+    "amount": 20700000000,
+    "currency": "USD",
+    "asWritten": "$20.7B"
+   },
+   "date": "2026-10-24",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/u-s-air-force-details-20-7b-amraam-missile-contract/",
+   "headline": "U.S. Air Force details $20.7B AMRAAM missile contract",
+   "primary": false
+  },
   {
    "id": "ev-4dr95f",
    "kind": "order",
@@ -206589,20 +206607,6 @@
    "primary": false
   },
   {
-   "id": "ev-n2rxdu",
-   "kind": "order",
-   "systems": [],
-   "countries": [
-    "United States"
-   ],
-   "value": null,
-   "date": "2026-10-22",
-   "outlet": "Defense News",
-   "url": "https://www.defensenews.com/news/pentagon-congress/2026/10/22/pentagon-lockheed-agree-to-10-year-deal-for-850-f-35-jets/",
-   "headline": "Pentagon, Lockheed agree to 10-year deal for 850 F-35 jets",
-   "primary": false
-  },
-  {
    "id": "ev-wywaye",
    "kind": "order",
    "systems": [],
@@ -206614,6 +206618,20 @@
    "outlet": "Breaking Defense",
    "url": "https://breakingdefense.com/2026/10/pentagon-lockheed-agree-to-decade-long-f-35-framework-deal-for-hundreds-of-jets/",
    "headline": "Pentagon, Lockheed agree to decade-long F-35 framework deal for hundreds of jets",
+   "primary": false
+  },
+  {
+   "id": "ev-n2rxdu",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-10-22",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/news/pentagon-congress/2026/10/22/pentagon-lockheed-agree-to-10-year-deal-for-850-f-35-jets/",
+   "headline": "Pentagon, Lockheed agree to 10-year deal for 850 F-35 jets",
    "primary": false
   },
   {
@@ -207903,50 +207921,6 @@
  ],
  "groups": [
   {
-   "key": "order||ukraine",
-   "systems": [],
-   "countries": [
-    "Ukraine"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-4dr95f",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Ukraine"
-     ],
-     "value": null,
-     "date": "2026-10-23",
-     "outlet": "Breaking Defense",
-     "url": "https://breakingdefense.com/2026/10/kyiv-eyes-purchase-of-planned-iceye-nokia-sovereign-communication-sats/",
-     "headline": "Kyiv eyes purchase of planned ICEYE, Nokia &#8216;sovereign&#8217; communication sats",
-     "primary": false
-    },
-    {
-     "id": "ev-13siez9",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Ukraine"
-     ],
-     "value": null,
-     "date": "2026-10-16",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/pentagon/2026/10/16/order-to-limit-starshield-for-ukraine-came-from-inside-white-house-sources-say/",
-     "headline": "Order to limit Starshield for Ukraine came from inside White House, sources say",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Breaking Defense",
-    "Defense News"
-   ],
-   "value": null,
-   "verdict": "corroborated by independent outlets"
-  },
-  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -207954,6 +207928,24 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-j5hhku",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 20700000000,
+      "currency": "USD",
+      "asWritten": "$20.7B"
+     },
+     "date": "2026-10-24",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-air-force-details-20-7b-amraam-missile-contract/",
+     "headline": "U.S. Air Force details $20.7B AMRAAM missile contract",
+     "primary": false
+    },
     {
      "id": "ev-adfk2o",
      "kind": "order",
@@ -207973,20 +207965,6 @@
      "primary": false
     },
     {
-     "id": "ev-n2rxdu",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States"
-     ],
-     "value": null,
-     "date": "2026-10-22",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/news/pentagon-congress/2026/10/22/pentagon-lockheed-agree-to-10-year-deal-for-850-f-35-jets/",
-     "headline": "Pentagon, Lockheed agree to 10-year deal for 850 F-35 jets",
-     "primary": false
-    },
-    {
      "id": "ev-wywaye",
      "kind": "order",
      "systems": [],
@@ -207998,6 +207976,20 @@
      "outlet": "Breaking Defense",
      "url": "https://breakingdefense.com/2026/10/pentagon-lockheed-agree-to-decade-long-f-35-framework-deal-for-hundreds-of-jets/",
      "headline": "Pentagon, Lockheed agree to decade-long F-35 framework deal for hundreds of jets",
+     "primary": false
+    },
+    {
+     "id": "ev-n2rxdu",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-10-22",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/news/pentagon-congress/2026/10/22/pentagon-lockheed-agree-to-10-year-deal-for-850-f-35-jets/",
+     "headline": "Pentagon, Lockheed agree to 10-year deal for 850 F-35 jets",
      "primary": false
     },
     {
@@ -208495,13 +208487,57 @@
    ],
    "outlets": [
     "Defence Blog",
-    "Defense News",
     "Breaking Defense",
+    "Defense News",
     "Defense One",
     "Naval News"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "order||ukraine",
+   "systems": [],
+   "countries": [
+    "Ukraine"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-4dr95f",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-10-23",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/10/kyiv-eyes-purchase-of-planned-iceye-nokia-sovereign-communication-sats/",
+     "headline": "Kyiv eyes purchase of planned ICEYE, Nokia &#8216;sovereign&#8217; communication sats",
+     "primary": false
+    },
+    {
+     "id": "ev-13siez9",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-10-16",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/pentagon/2026/10/16/order-to-limit-starshield-for-ukraine-came-from-inside-white-house-sources-say/",
+     "headline": "Order to limit Starshield for Ukraine came from inside White House, sources say",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Breaking Defense",
+    "Defense News"
+   ],
+   "value": null,
+   "verdict": "corroborated by independent outlets"
   },
   {
    "key": "order|apache|",
