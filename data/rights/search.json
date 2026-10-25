@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-24T22:46:34.430Z",
+  "builtAt": "2026-10-25T05:23:15.939Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1279,
+    "items": 1281,
     "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1277,
-    "withOutlet": 1192,
+    "carriedFromEarlierRuns": 1279,
+    "withOutlet": 1194,
     "bySubject": {
-      "scst": 870,
+      "scst": 872,
       "pmshri": 409
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 301
+    "offSubjectDropped": 250
   },
   "byFacet": [
     {
@@ -28,11 +28,11 @@
     },
     {
       "key": "use",
-      "n": 447
+      "n": 448
     },
     {
       "key": "acquittal",
-      "n": 66
+      "n": 67
     },
     {
       "key": "dispute",
@@ -102,7 +102,7 @@
     },
     {
       "key": "LawChakra",
-      "n": 17
+      "n": 18
     },
     {
       "key": "Careers360",
@@ -233,6 +233,10 @@
       "n": 6
     },
     {
+      "key": "TheWire.in",
+      "n": 6
+    },
+    {
       "key": "News18",
       "n": 6
     },
@@ -242,10 +246,6 @@
     },
     {
       "key": "Free Press Journal",
-      "n": 5
-    },
-    {
-      "key": "TheWire.in",
       "n": 5
     },
     {
@@ -297,8 +297,8 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 5
+      "kept": 1,
+      "offSubject": 6
     },
     {
       "id": "act-registered",
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 50,
       "bing": 5,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 5
     },
     {
@@ -315,10 +315,10 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 98,
+      "google": 30,
       "bing": 0,
       "kept": 0,
-      "offSubject": 48
+      "offSubject": 7
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 6,
+      "bing": 5,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -338,7 +338,7 @@
       "google": 48,
       "bing": 0,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 13
     },
     {
       "id": "act-pendency",
@@ -358,14 +358,14 @@
       "google": 97,
       "bing": 1,
       "kept": 1,
-      "offSubject": 45
+      "offSubject": 46
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 26,
+      "google": 27,
       "bing": 0,
       "kept": 0,
       "offSubject": 8
@@ -378,7 +378,7 @@
       "google": 49,
       "bing": 1,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "act-dilution",
@@ -395,7 +395,7 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 50,
+      "google": 49,
       "bing": 1,
       "kept": 0,
       "offSubject": 17
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 64,
+      "google": 10,
       "bing": 1,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 6
     },
     {
       "id": "shri-upgrade",
@@ -458,17 +458,17 @@
       "google": 43,
       "bing": 2,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 5
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 23,
+      "google": 29,
       "bing": 2,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 16
     },
     {
       "id": "shri-nep",
@@ -21388,6 +21388,38 @@
         "google"
       ],
       "firstSeen": "2026-10-24"
+    },
+    {
+      "id": "rahul gandhi demanded fir over haldwani purification ritual a day later uttarakhand police",
+      "headline": "Rahul Gandhi Demanded FIR Over Haldwani Purification Ritual. A Day Later, Uttarakhand Police Book Him Under SC/ST Act",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "TheWire.in",
+      "published": "2026-08-30",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQazQtek8tOUxHUUlkM04tcWRrbFBiT1R2SGZKcC1JQ2JTdnpiZjdUai1IeTViWWRPcVRiRlBvOUt2VlRDMjhna0VSU1piQzQyc09lcEMwOUFVckJmeDJTbS1MU0FMdTNtQ193RG5LYndhRW4xajl5cVFjTUlxeU9TRUE4UXJndnVQX3NzVk0tV2pvMjhsamVvVWgwWlVha1E3SHpjYlVMVlduYy1rZi11X09R?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-25"
+    },
+    {
+      "id": "sc st act acquittal upheld as alleged caste based insult not in public view gujarat high c",
+      "headline": "SC/ST Act Acquittal Upheld As Alleged Caste-Based Insult Not In Public View: Gujarat High Court",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "LawChakra",
+      "published": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNaFVvMlhVV1ZqV0xpWi1zdVc0RnRtM3dDT083M092ckh1MmJxSkxFUlNsUGQ4RlEzOXBkbnVxNTRDSWtxWEVlNWQ0b2hQcUpoQmdEVVBtc2FOUjNXUmlUZVF3Zm9CeW0yQXJieTltVHFtTHFOUXItVHRlOHBsWHJhRHlUbzRCUQ?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-25"
     }
   ]
 }
