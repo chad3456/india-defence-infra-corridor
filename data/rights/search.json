@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-25T19:18:59.310Z",
+  "builtAt": "2026-10-25T22:51:18.687Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1286,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 1283,
-    "withOutlet": 1198,
+    "items": 1287,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1286,
+    "withOutlet": 1199,
     "bySubject": {
-      "scst": 876,
+      "scst": 877,
       "pmshri": 410
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 284
+    "offSubjectDropped": 296
   },
   "byFacet": [
     {
@@ -32,7 +32,7 @@
     },
     {
       "key": "acquittal",
-      "n": 67
+      "n": 68
     },
     {
       "key": "dispute",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 92
+      "n": 93
     },
     {
       "key": "The Indian Express",
@@ -305,10 +305,10 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
-      "bing": 6,
-      "kept": 1,
-      "offSubject": 13
+      "google": 44,
+      "bing": 5,
+      "kept": 0,
+      "offSubject": 3
     },
     {
       "id": "act-convicted",
@@ -317,16 +317,16 @@
       "expect": "use",
       "google": 100,
       "bing": 1,
-      "kept": 1,
-      "offSubject": 47
+      "kept": 0,
+      "offSubject": 48
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 50,
-      "bing": 5,
+      "google": 51,
+      "bing": 4,
       "kept": 0,
       "offSubject": 7
     },
@@ -345,9 +345,9 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 55,
+      "google": 54,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 17
     },
     {
@@ -355,9 +355,9 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 99,
+      "google": 100,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 47
     },
     {
@@ -385,30 +385,30 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 28,
+      "google": 15,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 0
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 21,
+      "google": 49,
       "bing": 2,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 15
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 10,
+      "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 20
     },
     {
       "id": "shri-general",
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 11,
+      "bing": 12,
       "kept": 0,
       "offSubject": 3
     },
@@ -428,7 +428,7 @@
       "google": 44,
       "bing": 2,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 5
     },
     {
       "id": "shri-funds",
@@ -458,7 +458,7 @@
       "google": 44,
       "bing": 2,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "shri-withheld",
@@ -468,14 +468,14 @@
       "google": 29,
       "bing": 2,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 14
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 50,
+      "google": 51,
       "bing": 4,
       "kept": 0,
       "offSubject": 10
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 42,
       "bing": 1,
       "kept": 0,
-      "offSubject": 33
+      "offSubject": 32
     }
   ],
   "items": [
@@ -21497,6 +21497,22 @@
       "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQRkNFbklNaDFiUkxrbzJZWlZjRjNsMVdUaE1KOFZoalAxYXl0ZDNTcFp5VXFlQUtMM293SWktNFlLZDhYN3pVZ2hDZTBPeDNuZldBU3hYV0lWWmNBTHU2WXJGTEpsOEl3SmpzU2xzdHpMb2ViYzdOeERGZjRJQnJIOWo3bUtHWjcyaEtNX3JRRnM3NzdYcmZuV3NLRUg0NHBoTGh5VDdJNmtWQ0xhSEVUeUdMekFGVjBy0gG-AUFVX3lxTFBaMDdYS0VlT0JzYUp3NUVGejVjSm1Zb0t0MkZNeEd5QUFJTDBTSHZCTG0tczlVV00tQm11a1d6SXp3bFMwZ1hkX0R5UFp1d2RRMGpLRDN3R0ZQWjdPZjRpWWJ0WmU5R1B0UjhxSEc3ZlQ0MFRfTWxySzM5X1N6RHB6ZkFaSV8wS0dPZWpwVkZyTF8tVDQyMXBrSURoVWpDSy0tREdDRlhoX216cG4xZW1qd1FoUXZNYVd1MDRjZUE?oc=5",
       "queries": [
         "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-25"
+    },
+    {
+      "id": "bombay high court dismisses state appeal against acquittal in pocso and sc st act case due",
+      "headline": "Bombay High Court Dismisses State Appeal Against Acquittal in POCSO and SC/ST Act Case Due to Lack of Evidence. Trial court's acquittal upheld as prosecution failed to prove homicidal death, sexual assault, and knowledge of victim's caste under Sections",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-10-25",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE00aV9nZ1Y0NU1JbUdvU1MzSnRoU05TRFlvUTNjdjFHbHNRWTR5QmlrT1UtV1lGN3hJWWl1eU9wV2xBUTZLV1ctODdBUEtzVHNrX2cxVjViMnpWa2ZRN19yWlUxU0FFUQ?oc=5",
+      "queries": [
+        "act-acquittal"
       ],
       "indexes": [
         "google"
