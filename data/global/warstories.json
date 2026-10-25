@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-25T13:11:42.272Z",
-  "previousBuild": "2026-10-25T04:40:43.295Z",
+  "builtAt": "2026-10-25T19:03:21.668Z",
+  "previousBuild": "2026-10-25T13:11:42.272Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 241,
-    "createdThisRun": 2,
+    "stories": 242,
+    "createdThisRun": 1,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 224,
+    "itemsSeen": 223,
     "corroboration": {
-      "one": 204,
+      "one": 205,
       "two": 14,
       "threePlus": 23
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 125
+      "n": 126
     },
     {
       "id": "autonomy",
@@ -60,7 +60,7 @@
     {
       "iso": "IND",
       "name": "India",
-      "n": 22
+      "n": 23
     },
     {
       "iso": "UKR",
@@ -117,14 +117,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 36,
+      "items": 35,
       "kept": 3
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Military Times",
@@ -154,7 +154,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defense News",
@@ -1328,6 +1328,28 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/philadelphia-startups-unmanned-vehicle-makes-u-s-army-shortlist/",
+          "published": "2026-10-25"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/indian-army-selects-hilds-talon-k-for-ai-interceptor-uav/",
+      "headline": "Indian Army Selects Hild’s Talon K for AI Interceptor UAV",
+      "firstSeen": "2026-10-25",
+      "lastSeen": "2026-10-25",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/indian-army-selects-hilds-talon-k-for-ai-interceptor-uav/",
           "published": "2026-10-25"
         }
       ]
