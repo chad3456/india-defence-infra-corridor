@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-25T05:23:15.939Z",
+  "builtAt": "2026-10-25T13:24:24.340Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1281,
+    "items": 1283,
     "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1279,
-    "withOutlet": 1194,
+    "carriedFromEarlierRuns": 1281,
+    "withOutlet": 1195,
     "bySubject": {
-      "scst": 872,
-      "pmshri": 409
+      "scst": 873,
+      "pmshri": 410
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 250
+    "offSubjectDropped": 273
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 632
+      "n": 633
     },
     {
       "key": "use",
@@ -40,7 +40,7 @@
     },
     {
       "key": "allegation",
-      "n": 59
+      "n": 60
     },
     {
       "key": "false-finding",
@@ -177,6 +177,10 @@
       "n": 9
     },
     {
+      "key": "NDTV",
+      "n": 9
+    },
+    {
       "key": "The Statesman",
       "n": 8
     },
@@ -190,10 +194,6 @@
     },
     {
       "key": "Mathrubhumi English",
-      "n": 8
-    },
-    {
-      "key": "NDTV",
       "n": 8
     },
     {
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -305,20 +305,20 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 50,
-      "bing": 5,
+      "google": 43,
+      "bing": 6,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 3
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 30,
-      "bing": 0,
+      "google": 100,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 48
     },
     {
       "id": "act-atrocity",
@@ -326,7 +326,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 51,
-      "bing": 5,
+      "bing": 4,
       "kept": 0,
       "offSubject": 7
     },
@@ -335,20 +335,20 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 48,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 4
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 56,
+      "google": 55,
       "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 20
     },
     {
       "id": "act-acquittal",
@@ -357,8 +357,8 @@
       "expect": "acquittal",
       "google": 97,
       "bing": 1,
-      "kept": 1,
-      "offSubject": 46
+      "kept": 0,
+      "offSubject": 47
     },
     {
       "id": "act-hostile",
@@ -377,75 +377,75 @@
       "expect": "allegation",
       "google": 49,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 7
+      "kept": 1,
+      "offSubject": 9
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 28,
+      "google": 15,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 0
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 49,
-      "bing": 1,
+      "google": 50,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 16
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 33,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 4
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 37,
+      "google": 100,
       "bing": 12,
-      "kept": 0,
-      "offSubject": 2
+      "kept": 1,
+      "offSubject": 3
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 43,
+      "google": 10,
       "bing": 2,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 0
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 10,
+      "google": 65,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 21
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 50,
+      "google": 48,
       "bing": 2,
       "kept": 0,
       "offSubject": 12
@@ -455,10 +455,10 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 44,
       "bing": 2,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 6
     },
     {
       "id": "shri-withheld",
@@ -468,7 +468,7 @@
       "google": 29,
       "bing": 2,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 15
     },
     {
       "id": "shri-nep",
@@ -476,9 +476,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 51,
-      "bing": 5,
+      "bing": 4,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 11
     },
     {
       "id": "shri-criticism",
@@ -488,7 +488,7 @@
       "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 33
     }
   ],
   "items": [
@@ -3475,7 +3475,8 @@
         "act-fabricated"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -21418,6 +21419,38 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-10-25"
+    },
+    {
+      "id": "uttar pradesh minister says sc st law being misused demands rollback",
+      "headline": "Uttar Pradesh Minister Says SC/ST Law Being \"Misused\", Demands Rollback",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "NDTV",
+      "published": "2018-09-09",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQMjg0R0VkM19LLXd3YXFCcnpJTmd4aTVpakg1eW9vZzV4VHJpcHl4Z2w0cFloTTdXZ2dvUTlGcjYtMnVDbzVKTFJxN0N4SFd4Z1ItV3lNNzVBTFc4bVlJTHhMN2JQSU5HSlNwSldtNzBuaFZGblpNNWI5U1BJck45NWg4OGtHRUg3RVh4b2lIMTdWc0owME1VXzJRQmFFTEFrc01PZll0ZXNmRERq?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-25"
+    },
+    {
+      "id": "teachers day narendra modi announces pm shri yojana know all about the scheme here",
+      "headline": "Teachers' Day: Narendra Modi announces PM-SHRI Yojana; know all about the scheme here",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2022-09-05",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ade02de324e4c2699426a71ebf1bf64&url=https%3a%2f%2fwww.freepressjournal.in%2feducation%2fteachers-day-narendra-modi-announces-pm-shri-yojana-know-all-about-the-scheme-here&c=4139644117986482684&mkt=en-us",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-10-25"
     }
