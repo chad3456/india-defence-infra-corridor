@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-25T22:51:18.687Z",
+  "builtAt": "2026-10-26T05:22:54.608Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,12 +10,12 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1287,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1286,
-    "withOutlet": 1199,
+    "items": 1289,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1287,
+    "withOutlet": 1201,
     "bySubject": {
-      "scst": 877,
+      "scst": 879,
       "pmshri": 410
     },
     "queriesAsked": 20,
@@ -28,11 +28,11 @@
     },
     {
       "key": "use",
-      "n": 449
+      "n": 450
     },
     {
       "key": "acquittal",
-      "n": 68
+      "n": 69
     },
     {
       "key": "dispute",
@@ -58,7 +58,7 @@
     },
     {
       "key": "The Indian Express",
-      "n": 59
+      "n": 60
     },
     {
       "key": "The New Indian Express",
@@ -181,6 +181,10 @@
       "n": 9
     },
     {
+      "key": "Citizens for Justice and Peace | CJP",
+      "n": 8
+    },
+    {
       "key": "The Statesman",
       "n": 8
     },
@@ -195,10 +199,6 @@
     {
       "key": "Mathrubhumi English",
       "n": 8
-    },
-    {
-      "key": "Citizens for Justice and Peace | CJP",
-      "n": 7
     },
     {
       "key": "LawStreet Journal",
@@ -295,20 +295,20 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 36,
       "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 0
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 44,
+      "google": 100,
       "bing": 5,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 13
     },
     {
       "id": "act-convicted",
@@ -318,17 +318,17 @@
       "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 48
+      "offSubject": 45
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 51,
+      "google": 9,
       "bing": 4,
-      "kept": 0,
-      "offSubject": 7
+      "kept": 1,
+      "offSubject": 2
     },
     {
       "id": "act-compensation",
@@ -358,7 +358,7 @@
       "google": 100,
       "bing": 1,
       "kept": 1,
-      "offSubject": 47
+      "offSubject": 45
     },
     {
       "id": "act-hostile",
@@ -385,10 +385,10 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 15,
+      "google": 27,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 2
     },
     {
       "id": "act-false",
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 12,
+      "bing": 11,
       "kept": 0,
       "offSubject": 3
     },
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 44,
+      "google": 43,
       "bing": 2,
       "kept": 0,
       "offSubject": 5
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 65,
+      "google": 67,
       "bing": 1,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 23
     },
     {
       "id": "shri-upgrade",
@@ -458,7 +458,7 @@
       "google": 44,
       "bing": 2,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "shri-withheld",
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 42,
+      "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 33
     }
   ],
   "items": [
@@ -21518,6 +21518,38 @@
         "google"
       ],
       "firstSeen": "2026-10-25"
+    },
+    {
+      "id": "everyday atrocity mapping the normalisation of violence against dalits and adivasis in 202",
+      "headline": "Everyday Atrocity: Mapping the normalisation of violence against Dalits and Adivasis in 2025",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Citizens for Justice and Peace | CJP",
+      "published": "2025-07-05",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNQmE1RmV6U24yN0cyTDN5MDVKRmNIc2pwMU9SeHRwYmw1TWo0REl0alp0WjFWejBsRE1oQThrc3NxVlBtVWFIVmVfSzBWbFRQZ2Q4SkF6c2hCRl9SUkJNOVNHOWhUMEpCYks0MFRoUFpxOF9ZUllVd3JyaDl4Y0hYTmlVQ1BSZTMxcGFBU0djckdzZURXMThPX3RjZ2hlNFJtd2x0eTBSXzJzQ1VlcWs5b9IBtgFBVV95cUxQUHpwdHFHaERRa2o1RGVzT3hURHhLT09XMjJ4R2R3VFdBWTZCWjdZU0dTU0xWMzJtUHdpYTNrQ3N4cVgyd0lrYy0zSFBpT01OU3FGd1RrVmx2c29GcVk3MnJZSFhxOGpIV180MUVPWEV5UlBoR0ZwZGYyc2c1bHREb2gwSWNRWmU1OU1YMnFXV2RyRDZqUGVHei13ODY4UGZXeU1RWnhkcWIxYzlNUlBhLV9jLXhjdw?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-26"
+    },
+    {
+      "id": "hc acquits rape convict of charges under sc st act cites amendments in act supreme court j",
+      "headline": "HC acquits rape convict of charges under SC/ST Act; cites amendments in Act, Supreme Court judgment",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "The Indian Express",
+      "published": "2025-05-15",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPazZFOHFaNG1jREpKYUtoRnhfU0hzaTdDeXdGYVZHb1g4WXUyRUxNenZraXUtZkY1TC13QzB2ZWtCb3g1d1BSZC1CRHZPOW5GMUxBWVBDT2dmYXgwNDlJaWl5cDlCSEVlNXlEeTlDUWhnbGVqZ01RVzl5WDVqellWT09Ld0JtMXBZYm1qYXNBY0JwU0ZiOVM1TjZQa0JlZDhNVEZRdlUyMGRkbWdKa1dYUWJ4MkLSAbsBQVVfeXFMTzVTbjM4X0Z5VUUtNVRvajN2WkcxTUNfb0ZlT0FxUzZROXJldFVyVkNfczllakpMS1AxZ0d5Q2h0X2hXNGk2dzlCTHdfTjctU1VpU3hJQXBnRmtpZUYtVlZmMHNmd1AzTXdNdXgzcjhfdnU3Nmk2UXk3TF9lNTJyYm9GNmZ6aXB3eFVXS1FEUl9LY3VwWVV4QTE0RXlzUFlPTEdqZUZpNWRmR2NmU0l4MWFPSEVsdEhFdjZEZw?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-26"
     }
   ]
 }
