@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "income-tax-2026-10",
+    title: "What India's income tax buys",
+    blurb:
+      "A visual essay on ₹12.41 lakh crore of personal income tax: counted in iPhones, BrahMos, Rafales, carriers, moon missions and AIIMS; " +
+      "who pays it, where it goes, your slab in seconds of government, India against the US — and \"I pay taxes, so…\" against the numbers.",
+    href: "/income-tax",
+    since: "2026-10-26",
+  },
+  {
     id: "tbm-2026-10",
     title: "The machines that dig India's tunnels",
     blurb:

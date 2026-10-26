@@ -288,6 +288,19 @@ Headlines for each area come live from Google News in English and Hindi (`/api/l
 cached 60 seconds). They are pointers to reporting and are never used as data.
 `npm run test:luxury` checks the sources, the headline rule and the DHS parsers.
 
+### What income tax buys
+
+`/income-tax` is a visual essay on India's personal income tax. Its inputs live in
+`data/tax/published.json`: FY 2025-26 collections (CBDT, as reported), return filers and zero-liability
+returns (Lok Sabha replies, as reported), Union Budget 2026-27 estimates, GST, GDP (MoSPI), US
+federal receipts (Treasury, CBO), who pays US income tax (Tax Foundation on IRS data), tax-to-GDP
+(OECD, EY), the new-regime slabs, and the published prices of the things it counts. Every count of
+things, per-person figure, share and slab tax is computed in `lib/tax.ts` and labelled derived on the
+page; dollar conversions use the rate the RBI assumed for H2 FY 2025-26. The income-band split of
+returns comes from a secondary analysis and is marked low confidence; the BrahMos unit price is a
+single outlet's estimate and is marked unverified. `npm run test:tax` checks the register and the
+slab arithmetic.
+
 ### Tunnel boring machines
 
 `/tbm` follows India's tunnel boring machines after the Railway Minister's claim of 22 October 2026
