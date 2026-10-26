@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-26T05:22:54.608Z",
+  "builtAt": "2026-10-26T15:31:13.372Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1289,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1287,
-    "withOutlet": 1201,
+    "items": 1292,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 1289,
+    "withOutlet": 1204,
     "bySubject": {
-      "scst": 879,
-      "pmshri": 410
+      "scst": 881,
+      "pmshri": 411
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 296
+    "offSubjectDropped": 304
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 635
+      "n": 636
     },
     {
       "key": "use",
-      "n": 450
+      "n": 452
     },
     {
       "key": "acquittal",
@@ -295,20 +295,20 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 36,
+      "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 6
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
-      "bing": 5,
-      "kept": 0,
-      "offSubject": 13
+      "google": 41,
+      "bing": 6,
+      "kept": 1,
+      "offSubject": 4
     },
     {
       "id": "act-convicted",
@@ -325,10 +325,10 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 9,
-      "bing": 4,
+      "google": 50,
+      "bing": 5,
       "kept": 1,
-      "offSubject": 2
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 54,
+      "google": 56,
       "bing": 0,
       "kept": 0,
       "offSubject": 17
@@ -357,7 +357,7 @@
       "expect": "acquittal",
       "google": 100,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 45
     },
     {
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 49,
+      "google": 50,
       "bing": 1,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 10
     },
     {
       "id": "act-dilution",
@@ -398,7 +398,7 @@
       "google": 49,
       "bing": 2,
       "kept": 0,
-      "offSubject": 15
+      "offSubject": 16
     },
     {
       "id": "act-fabricated",
@@ -417,8 +417,8 @@
       "expect": "use",
       "google": 100,
       "bing": 11,
-      "kept": 0,
-      "offSubject": 3
+      "kept": 1,
+      "offSubject": 9
     },
     {
       "id": "shri-sanctioned",
@@ -428,14 +428,14 @@
       "google": 43,
       "bing": 2,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 6
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 67,
+      "google": 66,
       "bing": 1,
       "kept": 0,
       "offSubject": 23
@@ -445,7 +445,7 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 48,
+      "google": 50,
       "bing": 2,
       "kept": 0,
       "offSubject": 12
@@ -458,7 +458,7 @@
       "google": 44,
       "bing": 2,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "shri-withheld",
@@ -488,7 +488,7 @@
       "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 33
+      "offSubject": 31
     }
   ],
   "items": [
@@ -10238,7 +10238,8 @@
         "shri-upgrade",
         "shri-mou",
         "shri-withheld",
-        "shri-sanctioned"
+        "shri-sanctioned",
+        "shri-nep"
       ],
       "indexes": [
         "google"
@@ -10760,7 +10761,8 @@
       "published": "2026-07-19",
       "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxPZXBKUjAtYVRrSTFDR1NQUDI3WTQxNmN0eUFxU0NtRXhSNlluMzlJVjVxVmEtaVJSblZ3UDN6X2JRdlRkd200aEZvaXpDWTdhZThHdzY2SXJhYm8waThPcmxqak9aOU85LXlMZ1FCTDR2TUY2V2lSX2ctblk1cGU4X3RiOHFGV3UtdUhTX3NTcjVoRTF3OTh3ek51ODBqb2pSZ28yY3paZHZrSkgtXzQ5VnZWclY0Y28yOUtwWWhEU2JxSWItN055dV9mREktYmpHdGdaT0xEM0JMUHJjRmF6NmtGeGh2LTEwVHpMZ0F4bWQ1d2l10gH6AUFVX3lxTE1RVnBaaGNvcFJYSURPUEM1dER5VUxQX29HUEtkbk5TaFF6NlRCdWMxbVhlcm9SY05xZ3ZWMmF1d3R5UWJodjdydHhWNW9BZ21TQnFaZGxwLU0tbHhrQ1RuMVNHYzVIZ29BXzU0Q2UxaU5SeDlHMnlaWThwVlBiZnpZMU9IbEJBemdhdkZ3SEktUm9zeml4SV91ZXF2Q1FHNzdvcWt5VHlrS2NlQjVHaHEyVkRQbXc0eGhyNnBGOGNYcjBqbEpUY3JOc0lUYnN2TkRJaDNHV3p4ZVZCNVFzdjQ5ZDhodk0wNzVqcEtRQWNfd0MyWkFyWEZIWnc?oc=5",
       "queries": [
-        "shri-upgrade"
+        "shri-upgrade",
+        "shri-general"
       ],
       "indexes": [
         "google"
@@ -21545,6 +21547,55 @@
       "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPazZFOHFaNG1jREpKYUtoRnhfU0hzaTdDeXdGYVZHb1g4WXUyRUxNenZraXUtZkY1TC13QzB2ZWtCb3g1d1BSZC1CRHZPOW5GMUxBWVBDT2dmYXgwNDlJaWl5cDlCSEVlNXlEeTlDUWhnbGVqZ01RVzl5WDVqellWT09Ld0JtMXBZYm1qYXNBY0JwU0ZiOVM1TjZQa0JlZDhNVEZRdlUyMGRkbWdKa1dYUWJ4MkLSAbsBQVVfeXFMTzVTbjM4X0Z5VUUtNVRvajN2WkcxTUNfb0ZlT0FxUzZROXJldFVyVkNfczllakpMS1AxZ0d5Q2h0X2hXNGk2dzlCTHdfTjctU1VpU3hJQXBnRmtpZUYtVlZmMHNmd1AzTXdNdXgzcjhfdnU3Nmk2UXk3TF9lNTJyYm9GNmZ6aXB3eFVXS1FEUl9LY3VwWVV4QTE0RXlzUFlPTEdqZUZpNWRmR2NmU0l4MWFPSEVsdEhFdjZEZw?oc=5",
       "queries": [
         "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-26"
+    },
+    {
+      "id": "sc st act cannot be invoked without clear allegation of caste based insult allahabad hc",
+      "headline": "SC-ST Act Cannot Be Invoked Without Clear Allegation Of Caste-Based Insult: Allahabad HC",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "ABP Live English",
+      "published": "2026-10-26",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOa2hkU0xsdXFBVUVmVm1LMVVZdjRkOHI0N2owdnNlV2N1cE9UOWdrV1ptaXNBY0JXaEVXdGRZelQzWko1ZWJHOXBmOFlCOFNPWDUxMkN3YndyeFBpMG1JVmxwSDRFcXU5TTBIOWtoOTU1TFJrSmpVZnlYQmttZlBkeEljVklIMlpQUHJUclFxeGFRV1ZndmxmZC1JWGdZV1JkWWdDWmtUeHBTRU9VUlBlUmtNWGw3LWpsWFJfWkpzTXp0N3daSDRtcW1SbDJLTGVOd0lnaHdn0gHbAUFVX3lxTE45ZHVkdzM4d0RuYmQyMUVUcUdnTkdHbFFMWVo5OWo5ZHBEaGhpNDdjS1V1Y1U4UWN4aDZHMExWdW5DMXB4eUFiTkFBbEZieWxMS0M5Q3pDVkk2NWJyS3JhRjQ3XzJLcm14cFhHaDB4X3lqV1k1VGxYVnNybGluNjBDd2ZvOTIxbWQ2MUpYQ1hjLVpuUUpFSEJYcG80QVptOU91UGFtRHdZN2lCQ2Z5WFFmdzRzWC1BSkdicWNLVDB4eHNCY1A3T0FQOEpSRFhlY21qYUxWbGNZYUhRNA?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google",
+        "bing"
+      ],
+      "firstSeen": "2026-10-26"
+    },
+    {
+      "id": "dalit children assaulted over theft accusation in india",
+      "headline": "Dalit children assaulted over theft accusation in India",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Muslim Network TV",
+      "published": "2026-09-02",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPUHpBMHJUTWF6OFRndXZ4ZzZZNUJxSzhGUXp2dWdvRDdlRG9VbzJMdC1VQ1h1T3JfLWV1dDgzcFVFdlp4VXN5YV9LZVR0bkhXbzdnbVhMTzZMcWZoTmRUUUpnUFdEQ1MtRnhxek9oWDQ1ck5udXZ4SkRkNklyd2p5WXprT2tTbzFDTUpkM1pn?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-26"
+    },
+    {
+      "id": "pm shri scheme 13 092 schools selected over 20 lakh students to benefit",
+      "headline": "PM SHRI scheme: 13,092 schools selected, over 20 lakh students to benefit",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "Mid-Day",
+      "published": "2026-09-15",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOVldOcW9ZR3hIN05Hc0hRR1JKVElueFZXNmVONU8tazFfUGNDMlhVRE9aUVBFZG5tRGlFalpnaHZmeGg1czZRcE9McUlhUFZpejhsQlFraDJXdXg1Qm5qTFphTHNQQ2M4UHlBaUxoQm9pcDF6QmNWWUZaVnJXTG1la0xWU09CQUNDb0s4MHZBTEd5RzRRdnBibmFiZDY3UmVSMldvQmI3WEtlRFhBQUVVaHd6UjZQQ0tFX283WnA1WHJRaU11MXJQdzNxa3pta21wdjhzbXFn?oc=5",
+      "queries": [
+        "shri-general"
       ],
       "indexes": [
         "google"
