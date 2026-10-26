@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "demolitions-2026-10",
+    title: "Religious structures demolished as encroachments",
+    blurb:
+      "Temples, mazars, mosques, madrasas, gurdwaras and churches demolished as encroachments since 2014: every official and court figure state by state, " +
+      "a documented floor that adds only what does not overlap, cases across faiths, the law behind the drives, both sides' positions and live reporting.",
+    href: "/demolitions",
+    since: "2026-10-26",
+  },
+  {
     id: "income-tax-2026-10",
     title: "What India's income tax buys",
     blurb:

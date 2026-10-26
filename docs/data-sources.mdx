@@ -288,6 +288,19 @@ Headlines for each area come live from Google News in English and Hindi (`/api/l
 cached 60 seconds). They are pointers to reporting and are never used as data.
 `npm run test:luxury` checks the sources, the headline rule and the DHS parsers.
 
+### Religious structures demolished as encroachments
+
+`/demolitions` collects every published count of religious structures demolished or removed as
+encroachments since 2014: state replies to assemblies, affidavits and statements to high courts,
+and officials' figures as reported. No national count exists. Each figure is kept with its state,
+window, basis (*official* or *reported*), quote and sources in `data/demolitions/published.json`.
+Figures overlap — a state's later total contains its earlier one — so `lib/demolitions.ts` adds
+only records marked `headline`, chosen not to overlap, and the page calls the sum a floor. Faith
+is shown only where a source gives it. Partisan and advocacy outlets are labelled and used only
+where they quote an official or court; an advocacy compilation of 2,166 cases is shown but never
+added. Live headlines come from Google News (`/api/demolitions`) and never become figures.
+`npm run test:demolitions` checks the register, the floor and the headline filter.
+
 ### What income tax buys
 
 `/income-tax` is a visual essay on India's personal income tax. Its inputs live in
