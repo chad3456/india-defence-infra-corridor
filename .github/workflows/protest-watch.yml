@@ -1,0 +1,47 @@
+name: Protest Watch — protests worldwide
+
+# Builds data/protest-watch/register.json for /protest-watch: the day's
+# protest headlines from Google News in two dozen national editions and a
+# dozen languages — searched by protest words only, never by cause — and
+# GDELT's protest-coverage pulse. Every 30 minutes; a run that adds nothing
+# commits nothing. The live route reads the register straight from this
+# branch, so a run is on the page within a minute of its commit.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "7,37 * * * *"
+  push:
+    paths:
+      - "scripts/etl/connectors/protest-watch.ts"
+      - "lib/protest-watch.ts"
+      - ".github/workflows/protest-watch.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: protest-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: "${{ github.ref_name }}" }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Collect protest headlines
+        run: npm run protest:watch
+      - name: Commit
+        run: |
+          if [ -n "$(git status --porcelain data/protest-watch/register.json)" ]; then
+            .github/scripts/commit-generated.sh data/protest-watch/register.json "data(protests): world watch $(date -u +'%Y-%m-%d %H:%M')"
+          else
+            echo "nothing changed; nothing to commit"
+          fi
