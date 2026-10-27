@@ -288,6 +288,21 @@ Headlines for each area come live from Google News in English and Hindi (`/api/l
 cached 60 seconds). They are pointers to reporting and are never used as data.
 `npm run test:luxury` checks the sources, the headline rule and the DHS parsers.
 
+### Protest Watch
+
+`/protest-watch` tracks protests worldwide. `npm run protest:watch` (`.github/workflows/protest-watch.yml`,
+every 30 minutes) searches Google News in 25 national editions and 12 languages for protest words only —
+never a cause — reads GDELT's protest-coverage pulse, and keeps a rolling seven-day register in
+`data/protest-watch/register.json`; `/api/protest-watch` reads that register from the branch and adds the
+past hour from six editions on each request. One set of rules in `lib/protest-watch.ts` gives every
+headline a cause, a country (from a city or country it names, never from the cause; otherwise unplaced) and
+any losses it ties to the protest itself — a war toll a protest is about is never counted as deaths at the
+protest. An event is one cause, one country, one day; its figure is the largest any headline reported, not a
+sum. Every figure is a headline's, linked and unverified. The verifier agent
+(`.claude/agents/protest-watch-verifier.md`) checks the largest figures, chosen by size and never by cause,
+against two independent sources and records them in `data/protest-watch/verified.json`.
+`npm run test:protest-watch` checks the rules and the register.
+
 ### Free Palestine, Inc.?
 
 `/free-palestine-inc` tests a thesis in circulation — that pro-Palestine activism abroad has become a

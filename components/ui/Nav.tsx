@@ -57,6 +57,7 @@ const GROUPS: Group[] = [
         dashboard: { parts: [{ href: "/ministries/commerce", label: "Commerce: trade" }, { href: "/ministries/home-affairs", label: "Home Affairs: reports" }] } },
       { href: "/protests", label: "Protest and public order", blurb: "Riots, public property, police firing and casualties since 2004, every figure checked",
         dashboard: { parts: [{ href: "/protests/delhi-2026-10-10", label: "Delhi, 10 October" }] } },
+      { href: "/protest-watch", label: "Protest Watch, live", blurb: "Protests worldwide every minute: where, what cause, how covered, what was reported — every cause by the same rules", dashboard: {} },
       { href: "/free-palestine-inc", label: "Free Palestine, Inc.?", blurb: "Cause or career? Gaza's toll, the hashtags, the keffiyeh boom, the money and the protests — 21 claims checked", dashboard: {} },
       { href: "/demolitions", label: "Religious structures demolished", blurb: "Temples, mazars, mosques removed as encroachments since 2014: every official and court figure, what adds up, and what does not", dashboard: {} },
       { href: "/income-tax", label: "What income tax buys", blurb: "₹12.41 lakh crore counted in iPhones, missiles and moon missions; who pays, where it goes, and India against the US", dashboard: {} },

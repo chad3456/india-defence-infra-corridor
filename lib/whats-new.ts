@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "protest-watch-2026-10",
+    title: "Protest Watch: protests worldwide, live",
+    blurb:
+      "Every protest the news reports, in 12 languages and 25 editions, refreshed every minute: where, what cause, how covered, and the arrests, " +
+      "injuries, deaths and damage reported — every cause, Palestine included, measured by the same rules, with any one comparable to all the rest.",
+    href: "/protest-watch",
+    since: "2026-10-27",
+  },
+  {
     id: "free-palestine-inc-2026-10",
     title: "Free Palestine, Inc.? Cause, career, or both",
     blurb:
