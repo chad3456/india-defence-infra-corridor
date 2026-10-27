@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-27T14:57:58.349Z",
+  "builtAt": "2026-10-27T21:01:01.868Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1300,
-    "addedThisRun": 7,
-    "carriedFromEarlierRuns": 1293,
-    "withOutlet": 1211,
+    "items": 1302,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1300,
+    "withOutlet": 1213,
     "bySubject": {
-      "scst": 889,
+      "scst": 891,
       "pmshri": 411
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 253
+    "offSubjectDropped": 121
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 641
+      "n": 642
     },
     {
       "key": "use",
-      "n": 455
+      "n": 456
     },
     {
       "key": "acquittal",
@@ -66,7 +66,7 @@
     },
     {
       "key": "The Hindu",
-      "n": 50
+      "n": 51
     },
     {
       "key": "India Today",
@@ -295,19 +295,19 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 40,
       "bing": 0,
-      "kept": 2,
-      "offSubject": 7
+      "kept": 0,
+      "offSubject": 1
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 48,
-      "bing": 3,
-      "kept": 4,
+      "google": 46,
+      "bing": 5,
+      "kept": 1,
       "offSubject": 4
     },
     {
@@ -315,20 +315,20 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 30,
       "bing": 1,
       "kept": 0,
-      "offSubject": 46
+      "offSubject": 7
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 50,
-      "bing": 4,
-      "kept": 1,
-      "offSubject": 6
+      "google": 9,
+      "bing": 5,
+      "kept": 0,
+      "offSubject": 1
     },
     {
       "id": "act-compensation",
@@ -345,20 +345,20 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 59,
+      "google": 57,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 18
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 100,
+      "google": 28,
       "bing": 1,
       "kept": 0,
-      "offSubject": 46
+      "offSubject": 4
     },
     {
       "id": "act-hostile",
@@ -368,47 +368,47 @@
       "google": 27,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 9
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 10,
+      "google": 49,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 1
+      "kept": 1,
+      "offSubject": 10
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 14,
+      "google": 26,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 2
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 22,
+      "google": 49,
       "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 17
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 4
     },
     {
       "id": "shri-general",
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 33,
-      "bing": 12,
+      "bing": 11,
       "kept": 0,
       "offSubject": 2
     },
@@ -435,60 +435,60 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 65,
+      "google": 10,
       "bing": 1,
       "kept": 0,
-      "offSubject": 24
+      "offSubject": 6
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 8,
+      "google": 48,
       "bing": 2,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 13
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 0,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 0
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 28,
+      "google": 24,
       "bing": 2,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 10
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 50,
-      "bing": 5,
+      "google": 28,
+      "bing": 4,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 3
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 10,
       "bing": 1,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 6
     }
   ],
   "items": [
@@ -5697,7 +5697,8 @@
       "published": "2025-10-24",
       "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOWWhFRGFOVC1rZVF6cXNtMDgzYkxjR2JTZjJ3UHkyR2FzSDhiZ1VUWjR4aUpxTGhCeHZvejJYRENhTFE3ck9TZGdWWE1DMEVJR1hGdllBRjB4MWVtMjdyOFFMMXR3NkRjX3o4R0xxS1RiZko2RWNfcFlkaWlmMEFRRjlSUk4wY2oxWVZsQTk4X2FDa2QzX05Pak9IVmg2VFB0U25ScGhpVE1UYWlRQmJkYTZuRDVSQzlzbGNlUjBrekFCMkU?oc=5",
       "queries": [
-        "act-pendency"
+        "act-pendency",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -21732,6 +21733,38 @@
       ],
       "indexes": [
         "bing"
+      ],
+      "firstSeen": "2026-10-27"
+    },
+    {
+      "id": "delhi high court refuses to stay probe against woman scribe in sc st act case filed by acp",
+      "headline": "Delhi High Court refuses to stay probe against woman scribe in SC/ST Act case filed by ACP",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Hindu",
+      "published": "2026-10-27",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQdGEyR3VWYkZweW5LaG5QTWU3dlVrUHI2bzNRVGd4dnVYa0p1VFhqX2ZodEVPRUY3N09Val91X2pNUzA1dzR0X2p4TUdNR2p2RU9jb25YeFdha3BtLVA2Yl9nODVtNnFSWlFFRTFRRWFMc05fYjVSRVJIcnhzbnYyaXJKSktINXNRdF9sUEhIQld0aDRkY1d3SXMwTTl5eGpsM3dSX21zWkFEOG9ZRUFyUW9HdWVYdU8tZHhYY3MwNGk2STBVUGxaWUprbTJvNVpBa09NX1hXN1VVS1dBTE9tcEhGdkVMOTDSAe4BQVVfeXFMTUVQYkhpenY5ZS1hTE9neVh0YUpZSE9DX1RYRDk1RTQ2X3h3dFItRmxQZmZmX2diMENtd0kxYlhhc0hVVDBIc2w4QzBsbzJXdUNWU2JWSm1uNmtFQ3hQVmxjbkxXSHI0aWdGV0w0bmpmZ005TjFoUmpwdXNkQzhxR05fM1V3bmJCRDdLQ1VVZW1ab1J4a1dPMDVBbmx4bDJ2QW96NmRlRzFxNHYtc2s1dmdQNk1iNW9pSEJWcHNEbjRRNXZRa2tCcURCMFZrRVRLa0NNb0RObFhsWjNqN1o4OUU5clRaZ2VvTEZTR3dwdw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-27"
+    },
+    {
+      "id": "what does any place within public view under sc st prevention of atrocities act mean",
+      "headline": "What does ‘any place within public view’ under SC/ST (Prevention of Atrocities) Act mean?",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Leaflet",
+      "published": "2022-07-14",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNSVFfMThwSF9zZ2VTQUJaUUl5eTNZRjRoUG1XUE9UamdwZFJmR1RNY0VxQ1R0OHNWa1hOMmJlOTlpRk9Jd0lpbHFIalhGQjV3S19pMlVVZzV6TV9yZm1sRWlPYURhcWhFdy1DWmNLNVgxQ2VmeWg3aFNMT2JLd3JlMlhPOFRVVmUxbUpoVjBBODFOVTMzYXFJbzBSdUlTV2xhM1E?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
       ],
       "firstSeen": "2026-10-27"
     }
