@@ -288,6 +288,20 @@ Headlines for each area come live from Google News in English and Hindi (`/api/l
 cached 60 seconds). They are pointers to reporting and are never used as data.
 `npm run test:luxury` checks the sources, the headline rule and the DHS parsers.
 
+### Free Palestine, Inc.?
+
+`/free-palestine-inc` tests a thesis in circulation — that pro-Palestine activism abroad has become a
+career and a product line — against the record, in `data/free-palestine/published.json`. Gaza's toll
+is the Gaza health ministry's (via WAFA); population, GDP and reconstruction come from PCBS, UNCTAD and
+the UN/EU/World Bank assessment; hashtag counts are those TikTok published; keffiyeh sales are Jungle
+Scout's via Reuters and the Hirbawi factory's own estimate via NPR; protest counts are the Crowd
+Counting Consortium's. Figures from Israel's government or military, and the advocacy-group income
+figure attributed to Israel's diaspora ministry, are labelled as one side's claim. Twenty-one claims
+from an essay making the argument each carry a verdict and their sources. No private individual is
+named, and an antisemitic trope in the source essay is marked removed rather than repeated. No
+country-by-country hashtag or merchandise sales data was found, and none is estimated.
+`npm run test:fp` checks the register and the derived shares.
+
 ### Religious structures demolished as encroachments
 
 `/demolitions` collects every published count of religious structures demolished or removed as

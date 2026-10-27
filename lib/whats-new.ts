@@ -42,6 +42,15 @@ export const NEW_FOR_DAYS = 30;
  */
 export const WHATS_NEW: NewFeature[] = [
   {
+    id: "free-palestine-inc-2026-10",
+    title: "Free Palestine, Inc.? Cause, career, or both",
+    blurb:
+      "A scrolling visual essay testing the claim that pro-Palestine activism has become a career and a product line: Gaza's toll and economy, " +
+      "#FreePalestine's reach, the keffiyeh boom, the fundraising, the protests — and 21 claims in circulation, each checked against the record.",
+    href: "/free-palestine-inc",
+    since: "2026-10-27",
+  },
+  {
     id: "demolitions-2026-10",
     title: "Religious structures demolished as encroachments",
     blurb:

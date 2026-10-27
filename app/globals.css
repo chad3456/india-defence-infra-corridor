@@ -2276,3 +2276,8 @@ figcaption .bk-note { margin: 0; font-size: 12px; }
 @media (max-width: 640px) {
   .tbm-legend { top: 44px; bottom: auto; left: 16px; right: 16px; flex-direction: row; flex-wrap: wrap; gap: 3px 10px; font-size: 10px; max-width: none; padding: 5px 8px; }
 }
+
+/* ── /free-palestine-inc: the pinned panel fades between pictures ─────── */
+@keyframes fp-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.fp-fade { animation: fp-fade 0.35s ease-out; }
+@media (prefers-reduced-motion: reduce) { .fp-fade { animation: none; } }
