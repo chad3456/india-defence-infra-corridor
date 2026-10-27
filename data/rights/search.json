@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-26T21:14:24.981Z",
+  "builtAt": "2026-10-27T05:40:21.708Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1292,
-    "addedThisRun": 0,
+    "items": 1293,
+    "addedThisRun": 1,
     "carriedFromEarlierRuns": 1292,
-    "withOutlet": 1204,
+    "withOutlet": 1205,
     "bySubject": {
-      "scst": 881,
+      "scst": 882,
       "pmshri": 411
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 257
+    "offSubjectDropped": 145
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 452
+      "n": 453
     },
     {
       "key": "acquittal",
@@ -89,16 +89,16 @@
       "n": 23
     },
     {
+      "key": "SCC Online",
+      "n": 19
+    },
+    {
       "key": "opindia.com",
       "n": 19
     },
     {
       "key": "LawChakra",
       "n": 19
-    },
-    {
-      "key": "SCC Online",
-      "n": 18
     },
     {
       "key": "livelaw.in",
@@ -295,10 +295,10 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 38,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 5
+      "kept": 1,
+      "offSubject": 1
     },
     {
       "id": "act-registered",
@@ -306,7 +306,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 5,
+      "bing": 6,
       "kept": 0,
       "offSubject": 13
     },
@@ -315,20 +315,20 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 29,
       "bing": 1,
       "kept": 0,
-      "offSubject": 45
+      "offSubject": 6
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 50,
+      "google": 9,
       "bing": 4,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 2
     },
     {
       "id": "act-compensation",
@@ -345,17 +345,17 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 55,
+      "google": 11,
       "bing": 0,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 1
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 29,
+      "google": 27,
       "bing": 1,
       "kept": 0,
       "offSubject": 3
@@ -365,7 +365,7 @@
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 26,
+      "google": 27,
       "bing": 0,
       "kept": 0,
       "offSubject": 8
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 49,
+      "google": 9,
       "bing": 1,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 1
     },
     {
       "id": "act-dilution",
@@ -416,16 +416,16 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 11,
+      "bing": 12,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 4
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 43,
+      "google": 42,
       "bing": 2,
       "kept": 0,
       "offSubject": 6
@@ -435,40 +435,40 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 65,
+      "google": 10,
       "bing": 1,
       "kept": 0,
-      "offSubject": 23
+      "offSubject": 6
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 49,
+      "google": 8,
       "bing": 2,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 0
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 44,
+      "google": 13,
       "bing": 2,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 0
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 29,
+      "google": 23,
       "bing": 2,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 10
     },
     {
       "id": "shri-nep",
@@ -485,7 +485,7 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 42,
       "bing": 1,
       "kept": 0,
       "offSubject": 31
@@ -15316,7 +15316,8 @@
       "published": "2026-09-20",
       "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQVlFjRUNHQ192OGhxQUtPWlBFSURIVUJwTy1WWkJiWUhsbEZzeFN5T0VZRUFibnZWNS1SUVhVUl9pZkZ6bV83dklKYzVYTzhScHFYMXB3RU9aLU12LXlCQjR0dUZZQ1dQWHh6UkNXN2cyZU95SU5mRzF5OVJuS0I1aHU0SjR2TlJFc1pwWGhTa3VZRjAtd2FDWnJYMW9wY25leWMtdlVhYTQzRExNaW1BVTR1cG5FR0NHRVh5TTVPUHpqZFVaRmpjWXVGQkJmY21Fcy1CSkQ0SXpJdTNRejRyQThfUnowTzFtU1VMOUtn0gHzAUFVX3lxTE1fTU95X2wtN3M5TXBoTDh3c09SX2thMkxhLWFacWpHRGhYYThWT3Nlb1pHaGZFQ0VSN1NCck1zQVlyM0g3RzFxMlRzYWhYSUxWLUJUQUZnWmZKT0dndTl3cTBaWlQ2dDUtNFBUb0FLY0psYW9ZQ2stbVRyYUh2dzJEUWl5Skh6ZjVrczFkOTBoalNGQ1NpMFg2ZGdINUdPbHFYd0NnejU2UzZXMEE3VThoeUxUbXVMUkJUb1VNRWhiMmdidS1icktnMlltaVgxbEQ3Ykc4cnRmZ3BsTW83Rm5aY2UyUjZKRzNFclBmQm42MnVYUQ?oc=5",
       "queries": [
-        "act-general"
+        "act-general",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -21562,7 +21563,8 @@
       "published": "2026-10-26",
       "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOa2hkU0xsdXFBVUVmVm1LMVVZdjRkOHI0N2owdnNlV2N1cE9UOWdrV1ptaXNBY0JXaEVXdGRZelQzWko1ZWJHOXBmOFlCOFNPWDUxMkN3YndyeFBpMG1JVmxwSDRFcXU5TTBIOWtoOTU1TFJrSmpVZnlYQmttZlBkeEljVklIMlpQUHJUclFxeGFRV1ZndmxmZC1JWGdZV1JkWWdDWmtUeHBTRU9VUlBlUmtNWGw3LWpsWFJfWkpzTXp0N3daSDRtcW1SbDJLTGVOd0lnaHdn0gHbAUFVX3lxTE45ZHVkdzM4d0RuYmQyMUVUcUdnTkdHbFFMWVo5OWo5ZHBEaGhpNDdjS1V1Y1U4UWN4aDZHMExWdW5DMXB4eUFiTkFBbEZieWxMS0M5Q3pDVkk2NWJyS3JhRjQ3XzJLcm14cFhHaDB4X3lqV1k1VGxYVnNybGluNjBDd2ZvOTIxbWQ2MUpYQ1hjLVpuUUpFSEJYcG80QVptOU91UGFtRHdZN2lCQ2Z5WFFmdzRzWC1BSkdicWNLVDB4eHNCY1A3T0FQOEpSRFhlY21qYUxWbGNZYUhRNA?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-general"
       ],
       "indexes": [
         "google",
@@ -21601,6 +21603,22 @@
         "google"
       ],
       "firstSeen": "2026-10-26"
+    },
+    {
+      "id": "karnataka hc charges under prevention of sc st atrocities act are applicable only when nam",
+      "headline": "Karnataka HC | Charges under Prevention of SC/ ST (Atrocities) Act are applicable only when name of a victim's caste is taken with the intention to insult and humiliate them",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "SCC Online",
+      "published": "2023-02-08",
+      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQTXlDb3YwVm1fTDNIekRJMTROR3ZuQ2d0UzZTUWxmLWV6clFweWpPUGlOVkZsQmJxVkFNRVRld2VNWkhvRThIazd2NnpXYWNDN0Z3OEJ4UEVQa3FjcGpuajR3eGNNRkp5ajN0X3F0T3FsdTNZMWZSX0V6VUpfWU9xTTh5Y1U0Q0VwWVV0Y1p1RER3T0hoSXYybF92RTNKNlBTZEFsR3o0WGYzWFdEcmxIaHJLNDJueWNFTU41MmVjUXR0SVdsUW42WmFETXpma2I5ME9rUjNNTVpLbDZrdjVmT1JIcHhxR1N1X2YwVkVwMA?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-27"
     }
   ]
 }
