@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-27T10:59:34.290Z",
+ "builtAt": "2026-10-27T21:29:13.354Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206512,29 +206512,29 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   },
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 23,
+   "items": 22,
    "kept": 0,
    "via": "direct"
   },
   {
    "outlet": "Naval News",
-   "ok": true,
-   "items": 10,
+   "ok": false,
+   "items": 0,
    "kept": 0,
-   "via": "direct"
+   "via": "unconfigured"
   },
   {
    "outlet": "Defence Blog",
@@ -206545,6 +206545,24 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-5f38hd",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": {
+    "amount": 694000000,
+    "currency": "USD",
+    "asWritten": "$694M"
+   },
+   "date": "2026-10-27",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/industry/techwatch/2026/10/27/us-air-force-awards-lockheed-martin-694m-hypersonic-missile-production-contract/",
+   "headline": "US Air Force awards Lockheed Martin $694M hypersonic missile production contract",
+   "primary": false
+  },
   {
    "id": "ev-j5hhku",
    "kind": "order",
@@ -207936,6 +207954,24 @@
    "kind": "order",
    "events": [
     {
+     "id": "ev-5f38hd",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 694000000,
+      "currency": "USD",
+      "asWritten": "$694M"
+     },
+     "date": "2026-10-27",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/industry/techwatch/2026/10/27/us-air-force-awards-lockheed-martin-694m-hypersonic-missile-production-contract/",
+     "headline": "US Air Force awards Lockheed Martin $694M hypersonic missile production contract",
+     "primary": false
+    },
+    {
      "id": "ev-j5hhku",
      "kind": "order",
      "systems": [],
@@ -208493,9 +208529,9 @@
     }
    ],
    "outlets": [
+    "Defense News",
     "Defence Blog",
     "Breaking Defense",
-    "Defense News",
     "Defense One",
     "Naval News"
    ],
