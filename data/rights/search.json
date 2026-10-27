@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-27T05:40:21.708Z",
+  "builtAt": "2026-10-27T14:57:58.349Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1293,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1292,
-    "withOutlet": 1205,
+    "items": 1300,
+    "addedThisRun": 7,
+    "carriedFromEarlierRuns": 1293,
+    "withOutlet": 1211,
     "bySubject": {
-      "scst": 882,
+      "scst": 889,
       "pmshri": 411
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 145
+    "offSubjectDropped": 253
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 636
+      "n": 641
     },
     {
       "key": "use",
-      "n": 453
+      "n": 455
     },
     {
       "key": "acquittal",
@@ -66,7 +66,7 @@
     },
     {
       "key": "The Hindu",
-      "n": 49
+      "n": 50
     },
     {
       "key": "India Today",
@@ -105,11 +105,11 @@
       "n": 18
     },
     {
-      "key": "Careers360",
-      "n": 16
+      "key": "Live Law",
+      "n": 17
     },
     {
-      "key": "Live Law",
+      "key": "Careers360",
       "n": 16
     },
     {
@@ -161,15 +161,15 @@
       "n": 10
     },
     {
+      "key": "The Economic Times",
+      "n": 10
+    },
+    {
       "key": "India Legal",
       "n": 9
     },
     {
       "key": "The Tribune",
-      "n": 9
-    },
-    {
-      "key": "The Economic Times",
       "n": 9
     },
     {
@@ -237,6 +237,10 @@
       "n": 6
     },
     {
+      "key": "Business Standard",
+      "n": 6
+    },
+    {
       "key": "News18",
       "n": 6
     },
@@ -245,11 +249,11 @@
       "n": 5
     },
     {
-      "key": "Free Press Journal",
+      "key": "Law Trend",
       "n": 5
     },
     {
-      "key": "Business Standard",
+      "key": "Free Press Journal",
       "n": 5
     },
     {
@@ -266,10 +270,6 @@
     },
     {
       "key": "Forward Press",
-      "n": 4
-    },
-    {
-      "key": "Law Trend",
       "n": 4
     },
     {
@@ -295,40 +295,40 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 38,
+      "google": 100,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 1
+      "kept": 2,
+      "offSubject": 7
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
-      "bing": 6,
-      "kept": 0,
-      "offSubject": 13
+      "google": 48,
+      "bing": 3,
+      "kept": 4,
+      "offSubject": 4
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 29,
+      "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 46
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 9,
+      "google": 50,
       "bing": 4,
-      "kept": 0,
-      "offSubject": 2
+      "kept": 1,
+      "offSubject": 6
     },
     {
       "id": "act-compensation",
@@ -345,20 +345,20 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 11,
+      "google": 59,
       "bing": 0,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 20
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 27,
+      "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 46
     },
     {
       "id": "act-hostile",
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 9,
+      "google": 10,
       "bing": 1,
       "kept": 0,
       "offSubject": 1
@@ -385,60 +385,60 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 26,
+      "google": 14,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 0
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 49,
+      "google": 22,
       "bing": 1,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 5
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 33,
+      "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 20
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 100,
+      "google": 33,
       "bing": 12,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 2
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 42,
+      "google": 10,
       "bing": 2,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 0
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 10,
+      "google": 65,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 24
     },
     {
       "id": "shri-upgrade",
@@ -455,20 +455,20 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 13,
-      "bing": 2,
+      "google": 43,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 6
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 23,
+      "google": 28,
       "bing": 2,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 13
     },
     {
       "id": "shri-nep",
@@ -476,19 +476,19 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 50,
-      "bing": 4,
+      "bing": 5,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 9
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 42,
+      "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 31
+      "offSubject": 32
     }
   ],
   "items": [
@@ -21617,6 +21617,121 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-10-27"
+    },
+    {
+      "id": "delhi hc refuses to stay probe against woman scribe in sc st act case",
+      "headline": "Delhi HC refuses to stay probe against woman scribe in SC/ST Act case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Business Standard",
+      "published": "2026-10-27",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQRjVIZzdVNHFTbkoyZEYyTVZJb3EwblRncFJneE5XbzF3eVlxdlhydWFDNjhEVVAtRVQtVDF1c2d5bmFFQWtjQm1WbUtBeUJfVTZlWGFucmt3WXA3WS1fcFUteXB5OE5sYm1QaXdHSjIxUlRHODZCN1ZvNnhsLVF2Y1hGOWxDMU44Ul81MkdhMzEyVU5UZlVXUjdERkVKaXBpbmpJMHYxUzJidHVMYkREZENHX3M1UWdBNEJ3dlJxUlZUdm44WFBrLXJIdEFrcEXSAdQBQVVfeXFMUHlkbThYSDM3RzA1Uzljckh3akVxXzk1dHBNMmJubW4yNmtkREl0UThXTUhDeXh6cEJCdk9OUHlibGluSF9vS3I2MmZ2OXhEeWdSMlFtRU51ZkMtSTZSR3JLdVZ0S3lXU0N3WDlfUVQ2aC03eEtVM2t2RnJRaDVRMWZkaVQ0V25NbWl5dl9LOW52cnY1cldmTEw0WUZ1Z1AtRFJLamx3eU1TM2xRQnVkbVR4MVdkcEhNYW9CYXNqSW9YeTRJRWJZeXJvQk1GNTNOM1VoRXQ?oc=5",
+      "queries": [
+        "act-general",
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-27"
+    },
+    {
+      "id": "delhi hc issues notice on journalists pleas refuses to stay probe in acp vivek bhagat s sc",
+      "headline": "Delhi HC issues notice on journalists' pleas, refuses to stay probe in ACP Vivek Bhagat's SC/ST act case l",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Economic Times",
+      "published": "2026-10-27",
+      "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxOdXZVd0c1M21obGVwdUVDcmxnX0N2R19ydlFIekFqdWpyYUppOGpYYjBJYm1nVVkwN2t2UURKd2FjdVgwMXc2Wi1OaTZOUmU4MnYxandldW9CTjFKZkFYa3oxVUpxRDU2NlprMVQ0X09VdDhSMHRUVjNVNDJkTUhFREswck0zYVRxT2U0NEE5cGwzTHlPdjdvR0FUcE5ndFk0cFNCdGRfaUswZVVuaDA3WEdHa3ZDNVNDN3NUSmRaUWx4YWtXbWtSS0NIWGRUb3Z0dUJPYnJxbS1xYnEwWXplRWw2dFMxWmNueHhjSXpTTWJMMFdNUk02TXpqV3A1ZGhicFBmWlNhNNIBjAJBVV95cUxPb29BUlA5aUkzUUZLQmVOWEdvU2FuLWJ0OF9LNlBBUWhvcllvNjFja3RBODdvd2NKN05nLWhtMldyaXZRMXhxdUdqcm5seDhXano4T1FqOXZXMVlRU3k0MEc5dmVRS2JJMC1iRjk4WVdxR1pmcFZid0xlSHhCRHdOQndFcTdWeUJLNDlKM0cwT2twWnFadWVPaXJ6R2lqSkVoUE1kRldwUGVpMGdONFlHNXpZekpDRlNIR2hFcUVIOVJTLWJYZXlGZ1JuV2djUXRUYmxKazZCWENwQW1xMHBIRC1qd093N0tXV3BrRklDX2dlZDJWcG53R1RNVVlCOWlPdlBUTkFfRDJ2RTdU?oc=5",
+      "queries": [
+        "act-general",
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-27"
+    },
+    {
+      "id": "delhi hc refuses to stay probe against woman scribe in sc st act case filed by acp",
+      "headline": "Delhi HC refuses to stay probe against woman scribe in SC/ST Act case filed by ACP",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Hindu",
+      "published": "2026-10-27",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPMkV2UW1sWW13QWdZWnU5emotQ1ZONEszVzJZOUc5OFlhVlV3b1JDRktlQWwzYlJzUDZqeUQ5Y04wYnpqTmtZLXB0X3hpNVBWRUJfZEVUbThqYUVRUlpHbmZENFVwSlJLbUlEb2dlYVRpTWlvYU5jcnZ1a0FycVM5UGVEMEJsYkpKQ3UwUEtKeVZUTXZxVU51TlVaX01sQ1Z0Zng5ZHlEeWpQOUc1Ql9icWJkbnU1eUVZLV9vTUZFbGs1ZzBuSmU3QW9iYnJicnBmVGc5U0xuSG5mbDRR0gHjAUFVX3lxTE50dXlmNW1ZQTQwMmV3c041c3hzdnBNa1lHS0owd3A4UFZaLWRlRk1GOFdLYVEwdHlTWUdxVW9aSzB1eUY3YmJaWDNDV1dzNnNYcGFfbENuX1g3WllVMGdGazlrczRZTGtETGR5aFkteXpzc0lEQTMtb19VX1ljLVpuQUFBeHQtbFgwMjVhODNhNXBqd0dJR09wUzkyNjlCaHQ4UURuTm9NRDQxNF9rc3l4NnNSSVJpLWhRQzRTRWstNXVuOVkwcC12Rm92ZFd1QXgya2VBamVQOWdZZUNVbFo4MkU0?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google",
+        "bing"
+      ],
+      "firstSeen": "2026-10-27"
+    },
+    {
+      "id": "no stay for now on investigation into sc st act fir lodged by acp vivek bhagat against wom",
+      "headline": "No Stay For Now On Investigation Into SC/ST Act FIR Lodged By ACP Vivek Bhagat Against Woman Journalist:...",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Live Law",
+      "published": "2026-10-27",
+      "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxQVWo3bURhSmlhWDZZTGtSdVN4RmFvM2JianItTVhNd1JiMHBRVlFoM0N5RUtMdHNvejk0cHUzR0hyM2RhalNEMThGTnhDa0xfcGdBbXF3UGdfRkl2dm5ibnJBblQzRkIzdVBEVjh4TUpkUjM1Y29Pei1SNFh3VEFWV3RnOWVVUVFVV3NxcTdEUDROamUwZ3J3UHRKSDAteVFFN1FFMExHQm9PVG12cWZzNHZYVDAyaGExVFU0R1djbzlyTmZrQnRqNUktaWJDYlJIWW51YXpiZmVKb0Y2VTdlUWRfUDNqY0V0ZjFGR25waUNTenBfb01wMFBBT2YyclVrTTF3dmpBVzTSAY4CQVVfeXFMT0diU3k3U21xRzVKSTlmdFdDUGFDS0k1Ti1GUEdFWTFtUkJwUVVjakkxeWRlY2xhZkh6SHk4SGxUOWVxTlRzd1ZVS3RlLTJRNmxYWjlMY0JrQ3l3dzUzb1FwRVBUUzl3S0ZrRF9WSE9FVXBXWEFOaWtqblRiSUFsUXc4Z2pWWEdSMWhGMmdtY1hhZDZxakN4LUZQT2xIRlhPWG5TQVJqOTk2ZWF3NVdiZTZTV0R6RHJOQnIxQnJQQzNpUzVEcTVublctWXB1T2MxS0xQaFBEejV4dVBMSWlxd2lDVzFCR2hCVjZzQTFZQ3JYVkZ1S1E1amlQU0pqdm5GdG1sOE5Ob2ItYlRKZmFB?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-27"
+    },
+    {
+      "id": "delhi high court declines to halt probe against journalist in sc st act case seeks police ",
+      "headline": "Delhi High Court Declines to Halt Probe Against Journalist in SC/ST Act Case, Seeks Police Response",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Law Trend",
+      "published": "2026-10-27",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNSXpyZzFaNTN3VXROMEpkYmlRWTl2NWxDMHIyd1R6cU1tTmtWazd3ZV9KQ0tzRjdLejlPSms3bFNaTGkzNDhuUzBXUzFwOGFNRG5saW9rcmVmY2dnVXc2ZGxaNEdyS29lOXNXaFlwYTlyX3Z6SGNVR0t0WWh4emNFaHlJanNCR2Z6VGNqUGd1WEZENEEzdlBjQkp4RUNHell0RnJONHB5cjIwVUc3c3NWRUdUd3lEcWU3OVY4?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-27"
+    },
+    {
+      "id": "hc refuses to stay probe against journalist in sc st case",
+      "headline": "HC refuses to stay probe against journalist in SC/ST case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "NewsBytes",
+      "published": "2026-10-27",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPVDdvb1JwX1ZzVHBEZFFnWDdicnhaUEpiYzhuUE9Wd0NzYk84Yl9Cb0lOaWM2S2VNZjZ0TlBRaWNFcVBDYzZlb2xDbG1QdFI4aGhOLXJ6Rl80ZU1EaUgxNmkxdkM5c21NaXJoRVZzYmExbFFJR3pORVJoT1hsU1dlRDl1ZDhuWVl1?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-27"
+    },
+    {
+      "id": "brs leaders urge dgp to launch special drive on pending cases of atrocities",
+      "headline": "BRS leaders urge DGP to launch special drive on pending cases of atrocities",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-10-27",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ae0bb96d4394276bb153f9ace7dc710&url=https%3a%2f%2fwww.thehindu.com%2fnews%2fnational%2ftelangana%2fbrs-leaders-urge-dgp-to-launch-special-drive-on-pending-cases-of-atrocities%2farticle71631390.ece&c=13254485870849597378&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-10-27"
     }
