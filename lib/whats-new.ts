@@ -69,6 +69,15 @@ export const WHATS_NEW: NewFeature[] = [
     since: "2026-10-26",
   },
   {
+    id: "space-2026-10",
+    title: "How a satellite works, and India in space",
+    blurb:
+      "A holographic 3D explainer: NISAR, the NASA–ISRO radar launched from Sriharikota, taken apart — power, pointing, radar, data, heat — " +
+      "with an X-ray explorer, NISAR's live position, ISRO's ground stations, India's fleet in orbit now, and the record: launches, failures, money and imported chips.",
+    href: "/space",
+    since: "2026-10-27",
+  },
+  {
     id: "income-tax-2026-10",
     title: "What India's income tax buys",
     blurb:

@@ -357,6 +357,21 @@ register: ring diameters, one bead per named machine, and the reported origin of
 Live headlines come from Google News (`/api/tbm`, cached two minutes) and never become figures.
 `npm run test:tbm` checks the register.
 
+### How a satellite works, and India in space
+
+`/space` explains a satellite part by part through NISAR, the NASA–ISRO radar launched from
+Sriharikota in July 2025, then sets India's space programme against the record. Every figure is in
+`data/space-story/published.json` with its source: ISRO's and NASA JPL's mission pages, ESA's
+eoPortal, a Parliament reply on the fleet, ISRO's indigenisation page, and dated press reports for
+launches, failures and the budget. Each part carries who built it — ISRO, NASA/JPL or jointly —
+as those sources state it; a part inside ISRO's bus is coloured as ISRO's without guessing its
+supplier. The holographic model (`components/space/model.ts`) is NISAR's layout, not its
+blueprint: only the 12 m reflector and 9 m boom are drawn at their published lengths. NISAR's live
+position and India's fleet are propagated in the browser with SGP4 from CelesTrak's element sets
+(`/api/tle`, which falls back to the weekly snapshot); sunlight and ground-station contact are
+computed from those positions. Orbital period, speed and download time are derived with stated
+formulae and labelled so. `npm run test:space` checks the register and the arithmetic.
+
 ### The National Family Health Survey, round by round
 
 `/nfhs` compares every NFHS round the DHS Program publishes for India (NFHS-2, 1998–99, onwards) on

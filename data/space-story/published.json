@@ -1,0 +1,811 @@
+{
+ "about": "How a satellite works, part by part, through one real Indian satellite — NISAR, the NASA–ISRO radar launched from Sriharikota in July 2025 — and where India stands in space: the fleet, the launches, the money, the dependence and the next steps.",
+ "accessed": "2026-10-27",
+ "sources": [
+  {
+   "id": "isro-nisar",
+   "publisher": "ISRO",
+   "title": "GSLV-F16 / NISAR mission page",
+   "url": "https://www.isro.gov.in/Mission_GSLVF16_NISAR_Home.html",
+   "published": null,
+   "tier": 1,
+   "kind": "official"
+  },
+  {
+   "id": "eo-nisar",
+   "publisher": "ESA eoPortal",
+   "title": "NISAR (NASA-ISRO Synthetic Aperture Radar)",
+   "url": "https://www.eoportal.org/satellite-missions/nisar",
+   "published": null,
+   "tier": 2,
+   "kind": "reference"
+  },
+  {
+   "id": "sfn-nisar",
+   "publisher": "Spaceflight Now",
+   "title": "GSLV-F16 • NISAR",
+   "url": "https://spaceflightnow.com/launch/gslv-f16-nisar/",
+   "published": "2025-07-30",
+   "tier": 2,
+   "kind": "press"
+  },
+  {
+   "id": "nasa-nisar",
+   "publisher": "NASA",
+   "title": "NISAR: about the satellite",
+   "url": "https://science.nasa.gov/mission/nisar/about-the-satellite",
+   "published": null,
+   "tier": 1,
+   "kind": "official"
+  },
+  {
+   "id": "pib-nisar",
+   "publisher": "PIB",
+   "title": "NISAR: Parliament reply",
+   "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2198276&reg=3&lang=2",
+   "published": null,
+   "tier": 1,
+   "kind": "official"
+  },
+  {
+   "id": "fleet-53",
+   "publisher": "Free Press Journal (reporting a Parliament reply)",
+   "title": "How many satellites does India have in orbit? A look at ISRO's fleet",
+   "url": "https://www.freepressjournal.in/tech/how-many-satellites-does-india-have-in-orbit-a-look-at-isros-fleet-in-the-sky-2",
+   "published": null,
+   "tier": 2,
+   "kind": "press"
+  },
+  {
+   "id": "keeptrack-india",
+   "publisher": "KeepTrack",
+   "title": "How many satellites does India have",
+   "url": "https://keeptrack.space/live-count/how-many-satellites-does-india-have",
+   "published": null,
+   "tier": 3,
+   "kind": "reference"
+  },
+  {
+   "id": "uni-150",
+   "publisher": "UNI",
+   "title": "India to nearly triple satellite fleet in orbit: ISRO chairman",
+   "url": "https://www.uniindia.com/india-to-nearly-triple-satellite-fleet-in-orbit-isro-chairman/south/news/3664544.html",
+   "published": "2025-12-01",
+   "tier": 2,
+   "kind": "press"
+  },
+  {
+   "id": "air-economy",
+   "publisher": "All India Radio News",
+   "title": "India's space economy will grow 5 times from $8.4 billion to $44 billion by 2033: Dr Jitendra Singh",
+   "url": "https://newsonair.gov.in/indias-space-economy-will-grow-5-times-from-8-4-billion-to-44-billion-by-2033-dr-jitendra-singh",
+   "published": null,
+   "tier": 1,
+   "kind": "official"
+  },
+  {
+   "id": "bt-budget",
+   "publisher": "Business Today",
+   "title": "Budget 2026: ISRO sees modest funding hike as Department of Space gets ₹13,705 crore",
+   "url": "https://www.businesstoday.in/amp/union-budget/news/story/budget-2026-isro-sees-modest-funding-hike-for-2026-27-as-department-of-space-gets-rs-13705-crore-514032-2026-02-01",
+   "published": "2026-02-01",
+   "tier": 2,
+   "kind": "press"
+  },
+  {
+   "id": "laex-unspent",
+   "publisher": "LAEX",
+   "title": "Space Budget boosts ISRO, sidelines private space firms",
+   "url": "https://laex.in/daily-issue/space-budget-boosts-isro-sidelines-pvt-firms/",
+   "published": null,
+   "tier": 3,
+   "kind": "press"
+  },
+  {
+   "id": "isro-indigenisation",
+   "publisher": "ISRO",
+   "title": "Indigenisation",
+   "url": "https://www.isro.gov.in/ISRO_EN/Indigenisation.html",
+   "published": null,
+   "tier": 1,
+   "kind": "official"
+  },
+  {
+   "id": "nk-ics",
+   "publisher": "NewKerala",
+   "title": "ISRO develops indigenous ICs for launch vehicles with MeitY SCL",
+   "url": "https://www.newkerala.com/news/o/india-boosts-space-self-reliance-new-indigenous-integrated-circuits-launch-445",
+   "published": null,
+   "tier": 3,
+   "kind": "press"
+  },
+  {
+   "id": "bt-pslv-c62",
+   "publisher": "Business Today",
+   "title": "ISRO's PSLV-C62 mission fails, second rare setback in eight months",
+   "url": "https://www.businesstoday.in/science/story/isros-pslv-c62-mission-fails-second-rare-setback-in-eight-months-for-workhorse-launcher-510482-2026-01-12",
+   "published": "2026-01-12",
+   "tier": 2,
+   "kind": "press"
+  },
+  {
+   "id": "wiki-c61",
+   "publisher": "Wikipedia",
+   "title": "PSLV-C61",
+   "url": "https://en.wikipedia.org/wiki/PSLV-C61",
+   "published": null,
+   "tier": 3,
+   "kind": "reference"
+  },
+  {
+   "id": "dh-100th",
+   "publisher": "Deccan Herald",
+   "title": "Hitting a century: ISRO launches 100th mission, NVS-02, from Sriharikota",
+   "url": "https://www.deccanherald.com/science/space/hitting-a-century-isro-launches-100th-satellite-nvs-02-from-sriharikota-3377455",
+   "published": "2025-01-29",
+   "tier": 2,
+   "kind": "press"
+  },
+  {
+   "id": "sir-bluebird",
+   "publisher": "Space Intel Report",
+   "title": "India's LVM3 rocket's 9th consecutive success places AST SpaceMobile BlueBird 6 into 520 km orbit",
+   "url": "https://www.spaceintelreport.com/indias-lvm3-rockets-9th-consecutive-success-2nd-launch-in-52-days-places-ast-spacemobile-bluebird-6-into-520-km-orbit/",
+   "published": "2025-12-24",
+   "tier": 2,
+   "kind": "press"
+  },
+  {
+   "id": "cnbc-vikram",
+   "publisher": "CNBC",
+   "title": "India's Skyroot launches Vikram-1 in first private orbital rocket mission",
+   "url": "https://www.cnbc.com/2026/07/18/indias-skyroot-launches-first-private-orbital-rocket-mission.html",
+   "published": "2026-07-18",
+   "tier": 2,
+   "kind": "press"
+  },
+  {
+   "id": "isro-spadex",
+   "publisher": "ISRO",
+   "title": "SpaDeX mission",
+   "url": "https://www.isro.gov.in/mission_SpaDeX.html",
+   "published": null,
+   "tier": 1,
+   "kind": "official"
+  },
+  {
+   "id": "vision-spadex",
+   "publisher": "Vision IAS (summarising The Indian Express)",
+   "title": "SpaDeX mission",
+   "url": "https://visionias.in/current-affairs/upsc-daily-news-summary/article/2025-01-20/the-indian-express/science-and-technology/knowledge-nugget-of-the-day-spadex-mission",
+   "published": "2025-01-20",
+   "tier": 3,
+   "kind": "press"
+  },
+  {
+   "id": "wiki-isro-missions",
+   "publisher": "Wikipedia",
+   "title": "List of ISRO missions",
+   "url": "https://en.wikipedia.org/wiki/List_of_ISRO_missions",
+   "published": null,
+   "tier": 3,
+   "kind": "reference"
+  },
+  {
+   "id": "wiki-gaganyaan1",
+   "publisher": "Wikipedia",
+   "title": "Gaganyaan-1",
+   "url": "https://en.wikipedia.org/wiki/Gaganyaan-1",
+   "published": null,
+   "tier": 3,
+   "kind": "reference"
+  },
+  {
+   "id": "nbm-kulasekarapattinam",
+   "publisher": "NBM&CW",
+   "title": "Kulasekarapattinam spaceport set for 2026-27 commissioning with ₹986 crore allocation",
+   "url": "https://www.nbmcw.com/news/kulasekarapattinam-spaceport-set-for-2026-27-commissioning-with-rs986-cr-allocation.html",
+   "published": null,
+   "tier": 3,
+   "kind": "press"
+  },
+  {
+   "id": "isro-istrac",
+   "publisher": "ISRO",
+   "title": "ISRO Telemetry, Tracking and Command Network (ISTRAC)",
+   "url": "https://www.isro.gov.in/ISTRAC.html",
+   "published": null,
+   "tier": 1,
+   "kind": "official"
+  },
+  {
+   "id": "celestrak",
+   "publisher": "CelesTrak",
+   "title": "Current GP element sets",
+   "url": "https://celestrak.org/NORAD/elements/",
+   "published": null,
+   "tier": 1,
+   "kind": "reference"
+  },
+  {
+   "id": "jpl-spacecraft",
+   "publisher": "NASA JPL",
+   "title": "NISAR press kit: the spacecraft",
+   "url": "https://www.jpl.nasa.gov/press-kits/nisar/mission-overview/spacecraft/",
+   "published": null,
+   "tier": 1,
+   "kind": "official"
+  },
+  {
+   "id": "jpl-facts",
+   "publisher": "NASA JPL",
+   "title": "NISAR press kit: quick facts",
+   "url": "https://www.jpl.nasa.gov/press-kits/nisar/quick-facts",
+   "published": null,
+   "tier": 1,
+   "kind": "official"
+  },
+  {
+   "id": "air-g1-dec",
+   "publisher": "All India Radio News",
+   "title": "ISRO chairman Dr V Narayanan confirms Gaganyaan G1 launch set for December",
+   "url": "https://www.newsonair.gov.in/isro-chairman-dr-v-narayanan-confirms-gaganyaan-g1-launch-set-for-december",
+   "published": "2025-10-23",
+   "tier": 1,
+   "kind": "official"
+  }
+ ],
+ "nisar": {
+  "launch": {
+   "vehicle": "GSLV-F16",
+   "date": "2025-07-30",
+   "time": "17:40 IST",
+   "site": "Satish Dhawan Space Centre, Sriharikota",
+   "sources": [
+    "isro-nisar",
+    "pib-nisar"
+   ]
+  },
+  "massKg": 2392,
+  "massSource": "sfn-nisar",
+  "massNote": "ISRO gives about 2,400 kg lift-off mass.",
+  "orbit": {
+   "altitudeKm": 747,
+   "inclinationDeg": 98.4,
+   "kind": "Sun-synchronous",
+   "sources": [
+    "isro-nisar",
+    "sfn-nisar"
+   ],
+   "note": "Spaceflight Now gives 743 km."
+  },
+  "reflectorM": 12,
+  "boomM": 9,
+  "reflectorSources": [
+   "isro-nisar",
+   "eo-nisar"
+  ],
+  "deployed": {
+   "from": "2025-08-09",
+   "to": "2025-08-15",
+   "source": "isro-nisar"
+  },
+  "firstLight": {
+   "date": "2025-08-19",
+   "what": "First-day payload operations of the S-band SAR",
+   "source": "isro-nisar"
+  },
+  "kaGbps": 3.5,
+  "recorderTbit": 9,
+  "split": {
+   "india": "The spacecraft bus, the S-band radar, the launch vehicle and launch services",
+   "us": "The L-band radar, the solid-state recorder, GPS and the 3.5 Gbps Ka-band telecom system; the radar structure was integrated and tested at JPL, then delivered to ISRO",
+   "sources": [
+    "eo-nisar",
+    "isro-nisar"
+   ]
+  },
+  "swathKm": 242,
+  "repeatDays": 12,
+  "coverageSources": [
+   "eo-nisar",
+   "nasa-nisar"
+  ]
+ },
+ "parts": [
+  {
+   "id": "reflector",
+   "group": "The radar",
+   "name": "12 m reflector",
+   "origin": "us",
+   "does": "A gold-plated wire-mesh dish that folds like an umbrella for launch and opens in orbit. It catches the radar echo from the ground and focuses it on the feeds.",
+   "inNisar": "12 m across, shared by both radars; fully deployed on 15 August 2025.",
+   "sources": [
+    "isro-nisar",
+    "eo-nisar"
+   ],
+   "stat": {
+    "value": "12 m",
+    "label": "across",
+    "source": "isro-nisar"
+   }
+  },
+  {
+   "id": "boom",
+   "group": "The radar",
+   "name": "9 m deployable boom",
+   "origin": "us",
+   "does": "A hinged arm that unfolds in stages to hold the reflector far enough from the spacecraft for the radar beam to form.",
+   "inNisar": "9 m long; deployment ran 9–15 August 2025.",
+   "sources": [
+    "isro-nisar",
+    "eo-nisar"
+   ],
+   "stat": {
+    "value": "9 m",
+    "label": "long",
+    "source": "isro-nisar"
+   }
+  },
+  {
+   "id": "lband",
+   "group": "The radar",
+   "name": "L-band radar (24 cm)",
+   "origin": "us",
+   "does": "Sends pulses that pass through leaves and dry soil, so it sees forest structure and ground that moves by centimetres.",
+   "inNisar": "Built by NASA's Jet Propulsion Laboratory.",
+   "sources": [
+    "eo-nisar"
+   ],
+   "stat": {
+    "value": "24 cm",
+    "label": "wavelength",
+    "source": "nasa-nisar"
+   }
+  },
+  {
+   "id": "sband",
+   "group": "The radar",
+   "name": "S-band radar (~10 cm)",
+   "origin": "india",
+   "does": "A shorter wavelength, more sensitive to crops, snow and surface roughness. Together with L-band it reads two layers of the same ground.",
+   "inNisar": "Built by ISRO; first-day operations began on 19 August 2025.",
+   "sources": [
+    "eo-nisar",
+    "isro-nisar"
+   ],
+   "stat": {
+    "value": "10 cm",
+    "label": "wavelength (9.4 cm in some references)",
+    "source": "nasa-nisar"
+   }
+  },
+  {
+   "id": "ris",
+   "group": "The radar",
+   "name": "Radar instrument structure",
+   "origin": "joint",
+   "does": "The frame that carries both radars' feeds and electronics and anchors the boom.",
+   "inNisar": "Integrated and tested at JPL with both radars, then delivered to ISRO to be joined to the bus.",
+   "sources": [
+    "eo-nisar"
+   ],
+   "stat": {
+    "value": "242 km",
+    "label": "swath imaged at once",
+    "source": "eo-nisar"
+   }
+  },
+  {
+   "id": "recorder",
+   "group": "Data",
+   "name": "Solid-state recorder",
+   "origin": "us",
+   "does": "Stores radar data until the satellite passes over a ground station.",
+   "inNisar": "About 9 terabits at end of life.",
+   "sources": [
+    "eo-nisar"
+   ],
+   "stat": {
+    "value": "~9 Tbit",
+    "label": "capacity",
+    "source": "eo-nisar"
+   }
+  },
+  {
+   "id": "kaband",
+   "group": "Data",
+   "name": "Ka-band data downlink",
+   "origin": "us",
+   "does": "A high-frequency radio that sends the stored data to ground stations in minutes-long passes.",
+   "inNisar": "3.5 gigabits a second.",
+   "sources": [
+    "eo-nisar"
+   ],
+   "stat": {
+    "value": "3.5 Gbps",
+    "label": "downlink",
+    "source": "eo-nisar"
+   }
+  },
+  {
+   "id": "gps",
+   "group": "Data",
+   "name": "GPS receivers",
+   "origin": "us",
+   "does": "Fix the satellite's position precisely, so each radar image can be placed on the map and compared with the last.",
+   "inNisar": "Supplied by NASA.",
+   "sources": [
+    "eo-nisar"
+   ],
+   "stat": null
+  },
+  {
+   "id": "bus",
+   "group": "The spacecraft (ISRO)",
+   "name": "Spacecraft bus",
+   "origin": "india",
+   "does": "The body that keeps everything alive: structure, power, pointing, propulsion, heat and the radio link for commands.",
+   "inNisar": "Provided by ISRO.",
+   "sources": [
+    "eo-nisar",
+    "isro-nisar"
+   ],
+   "stat": {
+    "value": "2,392 kg",
+    "label": "the whole satellite at launch",
+    "source": "sfn-nisar"
+   }
+  },
+  {
+   "id": "solar",
+   "group": "The spacecraft (ISRO)",
+   "name": "Solar array",
+   "origin": "india-bus",
+   "does": "Panels of solar cells turned towards the Sun, generating the satellite's power whenever it is in daylight.",
+   "inNisar": "Two motorised arrays, part of ISRO’s bus; about 5 kW in full sun. The cell supplier is not published.",
+   "sources": [
+    "eo-nisar",
+    "jpl-spacecraft"
+   ],
+   "stat": {
+    "value": "~5 kW",
+    "label": "from two arrays, about 23 m², in full sun",
+    "source": "jpl-spacecraft"
+   }
+  },
+  {
+   "id": "battery",
+   "group": "The spacecraft (ISRO)",
+   "name": "Battery",
+   "origin": "india-bus",
+   "does": "Stores daylight power for the minutes of each orbit spent in Earth's shadow, and for radar bursts larger than the array alone supplies.",
+   "inNisar": "Part of ISRO's bus.",
+   "sources": [
+    "eo-nisar"
+   ],
+   "stat": {
+    "value": "180 Ah",
+    "label": "capacity",
+    "source": "jpl-facts"
+   }
+  },
+  {
+   "id": "wheels",
+   "group": "The spacecraft (ISRO)",
+   "name": "Reaction wheels",
+   "origin": "india-bus",
+   "does": "Flywheels spun faster or slower by motors; as one speeds up, the satellite turns the other way. This is how it points without spending fuel.",
+   "inNisar": "Part of ISRO's attitude-control system.",
+   "sources": [
+    "eo-nisar"
+   ],
+   "stat": null
+  },
+  {
+   "id": "startrackers",
+   "group": "The spacecraft (ISRO)",
+   "name": "Star sensors",
+   "origin": "india-bus",
+   "does": "Small cameras that photograph the stars and match them to a catalogue, telling the computer exactly which way the satellite faces.",
+   "inNisar": "Part of ISRO's attitude-control system.",
+   "sources": [
+    "eo-nisar"
+   ],
+   "stat": null
+  },
+  {
+   "id": "propulsion",
+   "group": "The spacecraft (ISRO)",
+   "name": "Propellant tank and thrusters",
+   "origin": "india-bus",
+   "does": "Small rocket motors that raise the orbit after launch, hold it against drag and, at the end of life, lower it.",
+   "inNisar": "Part of ISRO's bus.",
+   "sources": [
+    "eo-nisar"
+   ],
+   "stat": null
+  },
+  {
+   "id": "thermal",
+   "group": "The spacecraft (ISRO)",
+   "name": "Thermal blankets and radiators",
+   "origin": "india-bus",
+   "does": "Multi-layer insulation keeps heat in on the cold side; mirrored radiators throw it away on the hot side, holding electronics near room temperature.",
+   "inNisar": "Part of ISRO's bus.",
+   "sources": [
+    "eo-nisar"
+   ],
+   "stat": null
+  },
+  {
+   "id": "ttc",
+   "group": "The spacecraft (ISRO)",
+   "name": "Command and telemetry antennas",
+   "origin": "india-bus",
+   "does": "Low-rate radios for the satellite's health reports and the commands that run it, heard by ISRO's tracking network.",
+   "inNisar": "Part of ISRO's bus; tracked by ISTRAC.",
+   "sources": [
+    "eo-nisar",
+    "isro-istrac"
+   ],
+   "stat": null
+  }
+ ],
+ "origins": {
+  "india": {
+   "label": "Built by ISRO",
+   "colour": "#3ddc97"
+  },
+  "india-bus": {
+   "label": "ISRO bus subsystem",
+   "colour": "#7be3b5"
+  },
+  "us": {
+   "label": "Built by NASA / JPL",
+   "colour": "#ff6b8b"
+  },
+  "joint": {
+   "label": "Integrated jointly",
+   "colour": "#ffc857"
+  }
+ },
+ "dependence": {
+  "satellitesImportedPct": "50–55%",
+  "launchersImportedPct": "about 10%",
+  "what": "ISRO's own figures for imported content — mainly electronics and packages in satellites",
+  "source": "isro-indigenisation",
+  "progress": "ISRO and the government's Semiconductor Laboratory have developed four indigenous integrated circuits for launch-vehicle avionics.",
+  "progressSource": "nk-ics"
+ },
+ "fleet": {
+  "total": 53,
+  "rows": [
+   {
+    "kind": "Communication",
+    "n": 21
+   },
+   {
+    "kind": "Earth observation",
+    "n": 21
+   },
+   {
+    "kind": "Navigation",
+    "n": 8
+   },
+   {
+    "kind": "Science",
+    "n": 3
+   }
+  ],
+  "source": "fleet-53",
+  "note": "Operational satellites per a Parliament reply. A catalogue count of Indian objects in orbit, including dead ones, is about 117, with 70 active by KeepTrack's count.",
+  "catalogueSource": "keeptrack-india",
+  "plan": "ISRO's chairman said in December 2025 the fleet should grow to nearly 150 within two to three years.",
+  "planSource": "uni-150"
+ },
+ "places": [
+  {
+   "id": "shar",
+   "name": "Satish Dhawan Space Centre, Sriharikota",
+   "kind": "launch",
+   "lat": 13.72,
+   "lon": 80.23,
+   "note": "India's spaceport; every orbital launch since 1979, including NISAR and Vikram-1.",
+   "source": "isro-nisar"
+  },
+  {
+   "id": "kulasekarapattinam",
+   "name": "Kulasekarapattinam (under construction)",
+   "kind": "launch",
+   "lat": 8.4,
+   "lon": 78.05,
+   "note": "India's second spaceport, for small rockets; commissioning targeted in 2026–27, ₹985.96 crore allocated.",
+   "source": "nbm-kulasekarapattinam"
+  },
+  {
+   "id": "blr",
+   "name": "ISTRAC, Bengaluru",
+   "kind": "ground",
+   "lat": 13.03,
+   "lon": 77.51,
+   "note": "Mission control and tracking headquarters.",
+   "source": "isro-istrac"
+  },
+  {
+   "id": "lko",
+   "name": "Lucknow",
+   "kind": "ground",
+   "lat": 26.85,
+   "lon": 80.95,
+   "source": "isro-istrac"
+  },
+  {
+   "id": "tvm",
+   "name": "Thiruvananthapuram",
+   "kind": "ground",
+   "lat": 8.52,
+   "lon": 76.94,
+   "source": "isro-istrac"
+  },
+  {
+   "id": "pb",
+   "name": "Port Blair",
+   "kind": "ground",
+   "lat": 11.62,
+   "lon": 92.73,
+   "source": "isro-istrac"
+  },
+  {
+   "id": "mru",
+   "name": "Mauritius",
+   "kind": "ground",
+   "lat": -20.16,
+   "lon": 57.5,
+   "source": "isro-istrac"
+  },
+  {
+   "id": "bru",
+   "name": "Brunei",
+   "kind": "ground",
+   "lat": 4.94,
+   "lon": 114.95,
+   "source": "isro-istrac"
+  },
+  {
+   "id": "biak",
+   "name": "Biak, Indonesia",
+   "kind": "ground",
+   "lat": -1.18,
+   "lon": 136.1,
+   "source": "isro-istrac"
+  },
+  {
+   "id": "shar-gs",
+   "name": "Sriharikota tracking",
+   "kind": "ground",
+   "lat": 13.7,
+   "lon": 80.2,
+   "source": "isro-istrac"
+  }
+ ],
+ "timeline": [
+  {
+   "date": "2023-08-23",
+   "what": "Chandrayaan-3 lands near the Moon's south pole — the first landing there.",
+   "tone": "win",
+   "sources": [
+    "wiki-isro-missions"
+   ]
+  },
+  {
+   "date": "2024-01-06",
+   "what": "Aditya-L1 reaches the Sun–Earth L1 point to watch the solar corona.",
+   "tone": "win",
+   "sources": [
+    "wiki-isro-missions"
+   ]
+  },
+  {
+   "date": "2025-01",
+   "what": "SpaDeX docks two satellites in orbit — India the fourth country to do it, after the US, Russia and China.",
+   "tone": "win",
+   "sources": [
+    "isro-spadex",
+    "vision-spadex"
+   ]
+  },
+  {
+   "date": "2025-01-29",
+   "what": "ISRO's 100th launch from Sriharikota: GSLV-F15 with navigation satellite NVS-02.",
+   "tone": "win",
+   "sources": [
+    "dh-100th"
+   ]
+  },
+  {
+   "date": "2025-05-18",
+   "what": "PSLV-C61 fails in its third stage; EOS-09 lost.",
+   "tone": "loss",
+   "sources": [
+    "wiki-c61"
+   ]
+  },
+  {
+   "date": "2025-06-25",
+   "what": "Shubhanshu Shukla flies to the ISS on Axiom-4 — 18 days aboard.",
+   "tone": "win",
+   "sources": [
+    "wiki-isro-missions"
+   ]
+  },
+  {
+   "date": "2025-07-30",
+   "what": "GSLV-F16 launches NISAR, the NASA–ISRO radar satellite.",
+   "tone": "win",
+   "sources": [
+    "isro-nisar"
+   ]
+  },
+  {
+   "date": "2025-12-24",
+   "what": "LVM3 launches BlueBird 6, about 6,100 kg — the heaviest satellite launched from India, for a US customer.",
+   "tone": "win",
+   "sources": [
+    "sir-bluebird"
+   ]
+  },
+  {
+   "date": "2026-01-12",
+   "what": "PSLV-C62 fails near the end of its third stage — the second PSLV loss in eight months, and the first foreign customer payloads ISRO has lost.",
+   "tone": "loss",
+   "sources": [
+    "bt-pslv-c62"
+   ]
+  },
+  {
+   "date": "2026-07-18",
+   "what": "Skyroot's Vikram-1 reaches orbit — India's first private orbital rocket.",
+   "tone": "win",
+   "sources": [
+    "cnbc-vikram"
+   ]
+  },
+  {
+   "date": "2026-12",
+   "what": "Gaganyaan G1, the uncrewed test of India’s crew capsule with the robot Vyommitra aboard, planned for the last quarter of 2026 — after a December 2025 target slipped.",
+   "tone": "next",
+   "sources": [
+    "wiki-gaganyaan1",
+    "air-g1-dec"
+   ],
+   "label": "Q4 2026, planned"
+  }
+ ],
+ "money": {
+  "budget": {
+   "value": 13705.6,
+   "unit": "₹ crore",
+   "year": "2026-27",
+   "change": "about 2% over 2025-26's budget estimate",
+   "source": "bt-budget"
+  },
+  "unspent": {
+   "text": "Since 2020 the department has not spent even its revised budgets, leaving more than ₹12,000 crore unused, by one analysis.",
+   "source": "laex-unspent"
+  },
+  "economy": {
+   "now": 8.4,
+   "nowShare": "about 2% of the global space economy",
+   "target": 44,
+   "targetYear": 2033,
+   "targetShare": "about 8%",
+   "source": "air-economy",
+   "note": "The $44 billion is a policy target from IN-SPACe's Decadal Vision, not a forecast."
+  }
+ },
+ "live": {
+  "source": "celestrak",
+  "note": "Positions are propagated in your browser from CelesTrak’s public element sets with the SGP4 model; an element set a few days old is accurate to a few kilometres."
+ }
+}

@@ -183,12 +183,14 @@ export function elevationDegrees(
  * a satellite, so they are gone, and anything named as a rocket body or
  * debris is excluded whatever its prefix. "IRS-" was added when the first
  * snapshot showed IRS-P6 (RESOURCESAT-1) arriving under a name that begins
- * with the older programme's.
+ * with the older programme's. "NISAR" was added for the NASA–ISRO radar
+ * satellite, which ISRO launched and flies on its own bus; it is a joint
+ * mission, and /space says so, but it is in India's fleet as ISRO counts it.
  */
 export const INDIAN_PREFIXES = [
   "CARTOSAT", "RISAT", "RESOURCESAT", "OCEANSAT", "INSAT", "GSAT-", "IRNSS", "IRS-",
   "NVS-", "EOS-", "HYSIS", "MEGHA-TROPIQUES", "SCATSAT", "ASTROSAT",
-  "CHANDRAYAAN", "ADITYA", "SARAL", "KALPANA", "MICROSAT", "XPOSAT", "INS-",
+  "CHANDRAYAAN", "ADITYA", "SARAL", "KALPANA", "MICROSAT", "XPOSAT", "INS-", "NISAR",
 ] as const;
 
 /** Spent stages and fragments: catalogued objects, not satellites. */
