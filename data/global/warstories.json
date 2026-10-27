@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-27T14:31:18.044Z",
-  "previousBuild": "2026-10-27T05:04:04.919Z",
+  "builtAt": "2026-10-27T20:42:17.135Z",
+  "previousBuild": "2026-10-27T14:31:18.044Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,15 +12,15 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 251,
-    "createdThisRun": 4,
-    "corroboratedThisRun": 0,
+    "stories": 252,
+    "createdThisRun": 1,
+    "corroboratedThisRun": 1,
     "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 208,
+    "itemsSeen": 207,
     "corroboration": {
       "one": 214,
-      "two": 14,
+      "two": 15,
       "threePlus": 23
     }
   },
@@ -33,7 +33,7 @@
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 79
+      "n": 80
     },
     {
       "id": "cyber-ew",
@@ -141,7 +141,7 @@
       "outlet": "Army Times",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "C4ISRNET",
@@ -165,7 +165,7 @@
       "outlet": "Defense News",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Breaking Defense",
@@ -176,7 +176,7 @@
     {
       "outlet": "Defense One",
       "ok": true,
-      "items": 23,
+      "items": 22,
       "kept": 0
     },
     {
@@ -190,7 +190,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 3
+      "kept": 1
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -949,6 +949,28 @@
           "outlet": "C4ISRNET",
           "url": "https://www.c4isrnet.com/news/your-military/2026/08/21/us-army-to-end-experimental-drone-battalion-in-europe/",
           "published": "2026-08-21"
+        }
+      ]
+    },
+    {
+      "id": "https://www.armytimes.com/video/2026/10/27/building-a-power-layer-for-the-robotic-battlefield-chariot-defense/",
+      "headline": "Building a power layer for the robotic battlefield — Chariot Defense",
+      "firstSeen": "2026-10-27",
+      "lastSeen": "2026-10-27",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/video/2026/10/27/building-a-power-layer-for-the-robotic-battlefield-chariot-defense/",
+          "published": "2026-10-27"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/news/2026/10/27/building-a-power-layer-for-the-robotic-battlefield-chariot-defense/",
+          "published": "2026-10-27"
         }
       ]
     },
