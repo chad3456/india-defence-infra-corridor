@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-27T05:04:04.919Z",
-  "previousBuild": "2026-10-26T21:01:01.546Z",
+  "builtAt": "2026-10-27T14:31:18.044Z",
+  "previousBuild": "2026-10-27T05:04:04.919Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 247,
-    "createdThisRun": 0,
+    "stories": 251,
+    "createdThisRun": 4,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 14,
+    "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 218,
+    "itemsSeen": 208,
     "corroboration": {
-      "one": 210,
+      "one": 214,
       "two": 14,
       "threePlus": 23
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 128
+      "n": 130
     },
     {
       "id": "autonomy",
@@ -38,7 +38,7 @@
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 29
+      "n": 31
     },
     {
       "id": "targeting",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 40
+      "n": 42
     },
     {
       "iso": "IND",
@@ -70,7 +70,7 @@
     {
       "iso": "DEU",
       "name": "Germany",
-      "n": 8
+      "n": 9
     },
     {
       "iso": "GBR",
@@ -171,25 +171,26 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Defense One",
       "ok": true,
       "items": 23,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Naval News",
-      "ok": true,
-      "items": 10,
-      "kept": 0
+      "ok": false,
+      "items": 0,
+      "kept": 0,
+      "error": "HTTP 503"
     },
     {
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 3
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1295,6 +1296,89 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/10/how-the-pentagon-wants-to-buy-cyber-outcomes-not-equipment/",
+      "headline": "How the Pentagon wants to buy cyber outcomes, not equipment",
+      "firstSeen": "2026-10-27",
+      "lastSeen": "2026-10-27",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/10/how-the-pentagon-wants-to-buy-cyber-outcomes-not-equipment/",
+          "published": "2026-10-27"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-army-launches-project-griffin-to-automate-cyber-defense/",
+      "headline": "U.S. Army launches Project Griffin to automate cyber defense",
+      "firstSeen": "2026-10-27",
+      "lastSeen": "2026-10-27",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-army-launches-project-griffin-to-automate-cyber-defense/",
+          "published": "2026-10-27"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/shotgun-armed-drone-gets-pentagon-green-light/",
+      "headline": "Shotgun-armed drone gets Pentagon green light",
+      "firstSeen": "2026-10-27",
+      "lastSeen": "2026-10-27",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/shotgun-armed-drone-gets-pentagon-green-light/",
+          "published": "2026-10-27"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/german-troops-test-auterions-talon-drone-interceptor/",
+      "headline": "German troops test Auterion’s Talon drone interceptor",
+      "firstSeen": "2026-10-27",
+      "lastSeen": "2026-10-27",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "DEU",
+          "name": "Germany"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/german-troops-test-auterions-talon-drone-interceptor/",
+          "published": "2026-10-27"
         }
       ]
     },
