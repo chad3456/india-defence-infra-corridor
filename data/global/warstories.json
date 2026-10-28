@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-28T15:06:49.995Z",
-  "previousBuild": "2026-10-28T05:42:40.714Z",
+  "builtAt": "2026-10-28T21:04:11.417Z",
+  "previousBuild": "2026-10-28T15:06:49.995Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 258,
-    "createdThisRun": 3,
+    "stories": 262,
+    "createdThisRun": 4,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 14,
+    "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 219,
+    "itemsSeen": 211,
     "corroboration": {
-      "one": 220,
+      "one": 224,
       "two": 15,
       "threePlus": 23
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 134
+      "n": 136
     },
     {
       "id": "autonomy",
@@ -43,12 +43,12 @@
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 23
+      "n": 24
     },
     {
       "id": "military-ai",
       "label": "AI in military use",
-      "n": 9
+      "n": 10
     }
   ],
   "byCountry": [
@@ -122,7 +122,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 33,
+      "items": 37,
       "kept": 1
     },
     {
@@ -141,7 +141,7 @@
       "outlet": "Army Times",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "C4ISRNET",
@@ -153,7 +153,7 @@
       "outlet": "DefenseScoop",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 3
     },
     {
       "outlet": "Defence Industry Europe",
@@ -171,19 +171,20 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defense One",
       "ok": true,
-      "items": 21,
+      "items": 19,
       "kept": 0
     },
     {
       "outlet": "Naval News",
-      "ok": true,
-      "items": 10,
-      "kept": 0
+      "ok": false,
+      "items": 0,
+      "kept": 0,
+      "error": "HTTP 503"
     },
     {
       "outlet": "Defence Blog",
@@ -1416,6 +1417,74 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/beex-shows-alpha-mine-killing-drone-in-uk-after-u-s-navy-win/",
+          "published": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/10/28/army-test-range-access-commercial-vendors-drone-technology/",
+      "headline": "Army designates 2 additional ‘permissive’ sites for commercial vendors to test their drone and counter-drone tech",
+      "firstSeen": "2026-10-28",
+      "lastSeen": "2026-10-28",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/10/28/army-test-range-access-commercial-vendors-drone-technology/",
+          "published": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/10/28/us-military-opsec-risks-automated-surveillance-networks/",
+      "headline": "U.S. military building resilience against emerging OPSEC risks from automated surveillance networks",
+      "firstSeen": "2026-10-28",
+      "lastSeen": "2026-10-28",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/10/28/us-military-opsec-risks-automated-surveillance-networks/",
+          "published": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "https://defensescoop.com/2026/10/28/army-aws-wwt-ai-cybersecurity-project-griffin/",
+      "headline": "Army taps AWS and WWT to boost AI-enabled cybersecurity initiative",
+      "firstSeen": "2026-10-28",
+      "lastSeen": "2026-10-28",
+      "themes": [
+        "military-ai"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://defensescoop.com/2026/10/28/army-aws-wwt-ai-cybersecurity-project-griffin/",
+          "published": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "https://www.defensenews.com/video/2026/10/28/inside-msis-next-generation-of-counter-drone-defense/",
+      "headline": "Inside MSI’s Next Generation of Counter-Drone Defense",
+      "firstSeen": "2026-10-28",
+      "lastSeen": "2026-10-28",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/video/2026/10/28/inside-msis-next-generation-of-counter-drone-defense/",
           "published": "2026-10-28"
         }
       ]
