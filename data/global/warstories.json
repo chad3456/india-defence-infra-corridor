@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-28T05:42:40.714Z",
-  "previousBuild": "2026-10-27T20:42:17.135Z",
+  "builtAt": "2026-10-28T15:06:49.995Z",
+  "previousBuild": "2026-10-28T05:42:40.714Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 255,
+    "stories": 258,
     "createdThisRun": 3,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 220,
+    "itemsSeen": 219,
     "corroboration": {
-      "one": 217,
+      "one": 220,
       "two": 15,
       "threePlus": 23
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 131
+      "n": 134
     },
     {
       "id": "autonomy",
@@ -60,7 +60,7 @@
     {
       "iso": "IND",
       "name": "India",
-      "n": 24
+      "n": 26
     },
     {
       "iso": "UKR",
@@ -129,7 +129,7 @@
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 2
+      "kept": 4
     },
     {
       "outlet": "Military Times",
@@ -171,12 +171,12 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Defense One",
       "ok": true,
-      "items": 22,
+      "items": 21,
       "kept": 0
     },
     {
@@ -1355,6 +1355,67 @@
         {
           "outlet": "Indian Defence Research Wing",
           "url": "https://idrw.org/punes-aminuteman-targets-ankosha-c-loitering-munition-that-can-take-off-from-ins-vikrant/",
+          "published": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/india-military-drone-doctrine-swarm-warfare/",
+      "headline": "Why India Needs a Common Drone Warfare Doctrine for All Three Services",
+      "firstSeen": "2026-10-28",
+      "lastSeen": "2026-10-28",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/india-military-drone-doctrine-swarm-warfare/",
+          "published": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/ins-samarthak-set-to-become-indian-navys-drone-mothership/",
+      "headline": "INS Samarthak Set to Become Indian Navy’s Drone Mothership",
+      "firstSeen": "2026-10-28",
+      "lastSeen": "2026-10-28",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/ins-samarthak-set-to-become-indian-navys-drone-mothership/",
+          "published": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/beex-shows-alpha-mine-killing-drone-in-uk-after-u-s-navy-win/",
+      "headline": "BeeX shows ALPHA mine-killing drone in UK after U.S. Navy win",
+      "firstSeen": "2026-10-28",
+      "lastSeen": "2026-10-28",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/beex-shows-alpha-mine-killing-drone-in-uk-after-u-s-navy-win/",
           "published": "2026-10-28"
         }
       ]
