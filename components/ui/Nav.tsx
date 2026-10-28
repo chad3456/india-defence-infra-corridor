@@ -63,6 +63,7 @@ const GROUPS: Group[] = [
       { href: "/income-tax", label: "What income tax buys", blurb: "₹12.41 lakh crore counted in iPhones, missiles and moon missions; who pays, where it goes, and India against the US", dashboard: {} },
       { href: "/space", label: "How a satellite works", blurb: "NISAR taken apart in 3D with an X-ray explorer, its live position, India's fleet in orbit, and the record: launches, failures, money", dashboard: {} },
       { href: "/tbm", label: "Tunnel boring machines", blurb: "A 3D particle story: how a TBM works, every machine in India to scale, who builds them, and China's export controls", dashboard: {} },
+      { href: "/malnutrition", label: "Child malnutrition by district", blurb: "A dark, zoomable map of stunting, wasting, underweight and anaemia in every surveyed district, by WHO severity bands", dashboard: {} },
       { href: "/nfhs", label: "Family health, 1998–2021", blurb: "Every National Family Health Survey round since 1998–99 on the same measures: India, rich and poor, every state", dashboard: {} },
       { href: "/luxury-beliefs", label: "Luxury beliefs, tested", blurb: "Rob Henderson's idea against Indian data: who believes what, who pays — live headlines and the NFHS by class", dashboard: {} },
       { href: "/instagram-politics", label: "Politics on Instagram", blurb: "BJP, Congress, AAP and the CJP: followers, engagement and comment sentiment, every figure sourced", dashboard: {} },

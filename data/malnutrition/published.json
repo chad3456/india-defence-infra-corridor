@@ -1,0 +1,28 @@
+{
+ "accessed": "2026-10-28",
+ "sources": [
+  { "id": "spatial-nfhs5", "publisher": "IIPS / MoHFW, via Spatial India", "title": "NFHS-5 (2019–21) district factsheet tables, harmonised to district boundaries", "url": "https://api.spatialindia.com/v1/districts", "published": null, "tier": 1, "kind": "official" },
+  { "id": "dhs-api", "publisher": "The DHS Program", "title": "India NFHS-4 and NFHS-5 indicators, national and state", "url": "https://api.dhsprogram.com/", "published": null, "tier": 1, "kind": "official" },
+  { "id": "deonis-2019", "publisher": "de Onis et al., Public Health Nutrition", "title": "Prevalence thresholds for wasting, overweight and stunting in children under 5 years", "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6390397/", "published": "2019-01-01", "tier": 1, "kind": "reference" },
+  { "id": "who-nlis", "publisher": "WHO", "title": "Nutrition Landscape Information System: malnutrition in children", "url": "https://www.who.int/data/nutrition/nlis/info/malnutrition-in-children", "published": null, "tier": 1, "kind": "official" },
+  { "id": "who-anaemia-cdc", "publisher": "WHO / CDC", "title": "Worldwide prevalence of anaemia 1993–2005: classification of public-health significance", "url": "https://stacks.cdc.gov/view/cdc/5351/cdc_5351_DS1.pdf", "published": null, "tier": 1, "kind": "official" },
+  { "id": "iips-release", "publisher": "IIPS", "title": "Release of NFHS-6 compendiums of India, state and district fact sheets", "url": "https://www.nfhsiips.in/nfhsuser/release-details.php", "published": "2026-08-21", "tier": 1, "kind": "official" },
+  { "id": "iips-nfhs6-fs", "publisher": "IIPS", "title": "National Family Health Survey-6 (2023–24): fact sheets", "url": "https://www.nfhsiips.in/nfhsuser/assets/National%20Family%20Health%20Survey%20(NFHS-6)%202023-2024%20Fact%20Sheets.pdf", "published": "2026-05-29", "tier": 1, "kind": "official" },
+  { "id": "orf-nfhs6", "publisher": "ORF", "title": "Reducing stunting, building human capital: lessons from NFHS-6", "url": "https://www.orfonline.org/expert-speak/reducing-stunting-building-human-capital-lessons-from-nfhs-6", "published": null, "tier": 2, "kind": "press" },
+  { "id": "bs-nfhs6", "publisher": "Business Standard", "title": "NFHS-6: vaccination, institutional births improve but nutrition gaps remain", "url": "https://www.business-standard.com/health/nfhs-6-child-malnutrition-vaccination-institutional-births-adequate-diet-india-126060101569_1.html", "published": "2026-06-01", "tier": 2, "kind": "press" },
+  { "id": "vyasaa-nfhs6", "publisher": "Vyasaa Health", "title": "NFHS-6 (2023–24) India: key indicators and NFHS-5 comparison", "url": "https://health.vyasaa.com/nfhs-6", "published": null, "tier": 3, "kind": "press" },
+  { "id": "anantam-nfhs6", "publisher": "Anantam IAS", "title": "NFHS-6: key findings, NFHS-5 comparison and what is missing", "url": "https://anantamias.com/nfhs-6/", "published": null, "tier": 3, "kind": "press" }
+ ],
+ "nfhs6": {
+  "released": { "national": "2026-05-29", "districts": "2026-08-21", "sources": ["iips-nfhs6-fs", "iips-release"] },
+  "fieldwork": "May 2023 to December 2024",
+  "districts": 715,
+  "national": [
+   { "measure": "stunting", "value": 29.3, "sources": ["orf-nfhs6", "vyasaa-nfhs6"] },
+   { "measure": "underweight", "value": 31.8, "sources": ["orf-nfhs6", "bs-nfhs6"] },
+   { "measure": "wasting", "value": null, "disputed": "19.0% in one report, 19.3% in another; the fact sheet has not been checked here", "sources": ["vyasaa-nfhs6", "bs-nfhs6"] },
+   { "measure": "anaemia", "value": null, "disputed": "Not in the NFHS-6 national fact sheet, by one analysis", "sources": ["anantam-nfhs6"] }
+  ],
+  "severeWasting": { "nfhs5": 7.7, "nfhs6": 5.2, "sources": ["vyasaa-nfhs6"] }
+ }
+}

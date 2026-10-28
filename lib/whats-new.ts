@@ -69,6 +69,15 @@ export const WHATS_NEW: NewFeature[] = [
     since: "2026-10-26",
   },
   {
+    id: "malnutrition-2026-10",
+    title: "Where India's children are not growing",
+    blurb:
+      "A dark, zoomable district map of child stunting, wasting, underweight and anaemia from NFHS-5, coloured by WHO severity thresholds: " +
+      "search any district, zoom to a state, compare with the state and India, and see NFHS-6's newer national figures beside it.",
+    href: "/malnutrition",
+    since: "2026-10-28",
+  },
+  {
     id: "space-2026-10",
     title: "How a satellite works, and India in space",
     blurb:

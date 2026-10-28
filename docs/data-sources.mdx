@@ -372,6 +372,21 @@ position and India's fleet are propagated in the browser with SGP4 from CelesTra
 computed from those positions. Orbital period, speed and download time are derived with stated
 formulae and labelled so. `npm run test:space` checks the register and the arithmetic.
 
+### Child malnutrition by district
+
+`/malnutrition` maps four NFHS-5 (2019–21) district measures — stunting, wasting, underweight and
+child anaemia — from the district factsheet values Spatial India harmonises onto its district
+boundaries (`data/spatial-india/`). A value Spatial India flags as estimated, inherited by a
+district created after the survey, is never coloured: the district is hatched and counted as
+unmeasured. Stunting and wasting are banded by WHO–UNICEF's prevalence thresholds (de Onis et al.,
+2019) and anaemia by WHO's thresholds of public-health significance; WHO sets no current band for
+child underweight, so it uses plain ten-point bands. "Spread" mode bins measured districts into
+quintiles, labelled derived. National and state figures are the DHS Program's (`data/nfhs/`).
+NFHS-6 (2023–24) national figures are shown beside the map from `data/malnutrition/published.json`,
+with two outlets per figure and both values where outlets disagree; NFHS-6's district fact sheets
+(August 2026) are not yet on the map. `npm run test:malnutrition` checks the bands, the join and
+that no estimate is drawn.
+
 ### The National Family Health Survey, round by round
 
 `/nfhs` compares every NFHS round the DHS Program publishes for India (NFHS-2, 1998–99, onwards) on
