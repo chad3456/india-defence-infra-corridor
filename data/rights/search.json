@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-27T21:01:01.868Z",
+  "builtAt": "2026-10-28T06:21:29.039Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1302,
+    "items": 1304,
     "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1300,
-    "withOutlet": 1213,
+    "carriedFromEarlierRuns": 1302,
+    "withOutlet": 1215,
     "bySubject": {
       "scst": 891,
-      "pmshri": 411
+      "pmshri": 413
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 121
+    "offSubjectDropped": 172
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 642
+      "n": 644
     },
     {
       "key": "use",
@@ -62,11 +62,11 @@
     },
     {
       "key": "The New Indian Express",
-      "n": 51
+      "n": 52
     },
     {
       "key": "The Hindu",
-      "n": 51
+      "n": 52
     },
     {
       "key": "India Today",
@@ -295,19 +295,19 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 40,
+      "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 6
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 46,
+      "google": 48,
       "bing": 5,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 4
     },
     {
@@ -315,7 +315,7 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 30,
+      "google": 29,
       "bing": 1,
       "kept": 0,
       "offSubject": 7
@@ -326,19 +326,19 @@
       "subject": "scst",
       "expect": "use",
       "google": 9,
-      "bing": 5,
+      "bing": 4,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 2
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 9,
+      "google": 48,
       "bing": 0,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 13
     },
     {
       "id": "act-pendency",
@@ -355,7 +355,7 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 28,
+      "google": 29,
       "bing": 1,
       "kept": 0,
       "offSubject": 4
@@ -375,50 +375,50 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 49,
+      "google": 9,
       "bing": 1,
-      "kept": 1,
-      "offSubject": 10
+      "kept": 0,
+      "offSubject": 1
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 26,
+      "google": 14,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 0
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 49,
+      "google": 21,
       "bing": 1,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 5
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 10,
+      "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 20
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 33,
+      "google": 100,
       "bing": 11,
-      "kept": 0,
-      "offSubject": 2
+      "kept": 1,
+      "offSubject": 4
     },
     {
       "id": "shri-sanctioned",
@@ -445,7 +445,7 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 48,
+      "google": 51,
       "bing": 2,
       "kept": 0,
       "offSubject": 13
@@ -455,40 +455,40 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 0,
-      "bing": 1,
+      "google": 43,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 6
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 24,
+      "google": 28,
       "bing": 2,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 13
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 28,
+      "google": 54,
       "bing": 4,
-      "kept": 0,
-      "offSubject": 3
+      "kept": 1,
+      "offSubject": 9
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 10,
+      "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 32
     }
   ],
   "items": [
@@ -9256,7 +9256,8 @@
       "published": "2026-08-01",
       "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOMVJLdFNudUdUWlVFUm9PZHNPWjFsWWx2czNuQl9YWlpFVXdzQWZ2NnA0aFQtQTRHWGVndmlvblZXb2dVZ2pwME5QY0x3Vk1QZDdiVVBtZjRNZEhFVDAweGg3ck5JVjFxenZoZ19zLXJ3UXRIQ3MyR253QjVZUks2X0o5OFVQd3o0Ym95SV9NRUdONmw1bjQ2MlpGd2c0d280bUlhQ2xXc0hXRzNXQUFFaW1IZmxmb2FlMXfSAccBQVVfeXFMTWhDYVY2cjB4Qjc3c2hSdWkwR0NPZl9sUXRmMlprOGt1Uk9zbWJDc09ScTg5cjNKODhRUUJSSDJJM3drblRQdnBEb3pFREdCaS1qOWlaSm5HaGxmVUN2WlcxZ204ZDhwMGRCbnh2MWREYVl6UHllOG0tWjBjRlVNYmRKS2tDRVJKemNNdzVnMTIyRXNSZ0wyaVJTWFEwWWlRa0ZZZTZMLXdlMzRLVTlRSnRhLUd0d25GR2hXSlkwTUFLUmF4MUNJOA?oc=5",
       "queries": [
-        "shri-general"
+        "shri-general",
+        "shri-nep"
       ],
       "indexes": [
         "google"
@@ -11578,7 +11579,8 @@
       "published": "2025-10-30",
       "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOYXdydXFaaTljbWNFdWlnXzBQVEF2anM4SDlqZHBUU1kyTE5kc0UzX0pOYlFESFRfVGZ2MUprdGRBWDVqb25heEdXMkZTQU10RzdzOFBWQTlmaGJiemRCMEZjMVI3enMyNExkWUpSSGJXRTlSZnFQQ0ZEY2E3VV9WbTk0bVNHcmhZODdNaXQ2ejl6R0NJazNaZXNoejhhdmhtdFVkNFF6NXbSAa8BQVVfeXFMTmctdVdOUTc1LTV1ZlRyOEd4dDZwb0dXclhlLVB6OHU0TUlhVGhPV2xYeDVSNjhGcmEtdVVzOXVIVHdOczZrYVFjU05uWktlRTlaY1o4MXhzR3dJeVllY3NmWkF3bk1CZGNJVkxRQzNCYkFfNGJweENIRVBlcF9TdWlVdkpWQjhydXFaRlFxckItdkRaU01naXdaOC1HbjhzWE9QTFJNZER0QVIxcjRPOA?oc=5",
       "queries": [
-        "shri-withheld"
+        "shri-withheld",
+        "shri-nep"
       ],
       "indexes": [
         "google"
@@ -15515,7 +15517,8 @@
       "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPWGxEcUg5YWRKVmRmWmowbWw5emM3Y19LSG5MbS1ta0pCLWhBa2hLMkVqcUFra0xNcEpNaFdMMnlaSklRUk9rYUFVdnZGVkdaWUJkTFVtVlM5djlxV0VDLWdSNzZmWjZQQWJ3VksyeWM0NjZfbF9Oc1NBVmRWUDcwX3BfRnpzbHlYWGxMTk5mVFhmNWd3N3Z5ZWtjQTFjQ21IcGhaVldCZEdEdUc2S2dXX2l5N0lhQmwxUURmZlYxUEpPNWFtVVFGWHNKWlFpZ0NURUF5bEwxSdIB3gFBVV95cUxNU3BxVXRlR2dkT3NYV083dGRrX3JFNFMwVUJsNWpSTTNzbFpVbFlMQkNueFFRcFpYdFpab25qUkJ2NFBiOXBiUXhsQUpXYTc0UWQzVXMzQUFEbkFwOEdfN0lpOVU2UmN5dnJyY0Q4WG5rVkotdkVTZjlrbXI3aGtIdWZ6Qi1nU3hTNFJoazF3ZVJsQTRVc0RzLXFVLXRUcFF0S3o3TkNla1U1eXVhUWY0QW5FZW9qTnphZldqeXlBSkF3YjY4akZOR01QRzlhT2VYRVJha3pYMFg3eFR0Tnc?oc=5",
       "queries": [
         "shri-sanctioned",
-        "shri-general"
+        "shri-general",
+        "shri-nep"
       ],
       "indexes": [
         "google"
@@ -17757,7 +17760,8 @@
       "queries": [
         "act-registered",
         "act-misuse-claim",
-        "act-general"
+        "act-general",
+        "act-compensation"
       ],
       "indexes": [
         "google"
@@ -19764,7 +19768,8 @@
       "published": "2025-08-22",
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOZ3RnWHBPMVRSZWNRTGtmN1o2Q0l3aHExUlJrTjdNbWxiMzdqZVVLMHh1ZzVRN3VsOTBSZWYyZ2tjbEVxY29uQk9IQXpXSXhublNrbkRqaHRqMk1vUkloSGtaN3NJVmZuREpCcXViM29Qa3VRX0xEcmxQREh6UHdOM0dDWjlicS1ES015QXljc3UzNTF3S0JsQzRlWHlFU09rWTdXeDV2d3hXTHlEZVBERk5hczRBbzBVc05US3hjRQ?oc=5",
       "queries": [
-        "shri-funds"
+        "shri-funds",
+        "shri-upgrade"
       ],
       "indexes": [
         "google"
@@ -21767,6 +21772,38 @@
         "google"
       ],
       "firstSeen": "2026-10-27"
+    },
+    {
+      "id": "decision on pm shri soon as pressure mounts on keralam govt",
+      "headline": "Decision on PM SHRI soon as pressure mounts on Keralam govt.",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The Hindu",
+      "published": "2026-09-12",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNb0FWWWpxT2pFa2xwVVdVV0J3ZHJuUGw4aEpHdHJhVzQ3bmtpblZmTTd4d25rRF9sNFpKR1hwSnJWcVIwalRTLVU3ZU1adkJ4bzJoZmNPZk85czJpSFhiQWZjZGdXN1l3VmNTMTEyOEJLejhEOGt3bHo5TUhLczJOVkdzVXJyZXppYkljZzFIRm5vd0hnQ1phemVvZEFmU3R6S0RJanlabGlNY3JaQXpTaTZmeHM2TW5CUG4wbGMwNFJUc2fSAcoBQVVfeXFMUEdxQnFyUnF0eDA1S2NZcjZvSU9GYThrTVpxcGNFY0lGM1Z0Y1VtN1FlWFdoX0tlMWp4dFdYVV9HX2VVWjBRR0hiVEprY0djZ1NnWUpmQXJobmxEbEV0bUtBSkhDaUVCZW1XaWFta01YNDZOWms2TEdEa2lRd202Zjh6eDFRVmhObV9VSmlzdV9ia3N3MTBSN0VDejAxbVJzM1g1bTQzelp0YzV4ak0tQVllSjhMR1hDUFVkT3Nrb1gzSE9QZWFTc1ZsQQ?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-28"
+    },
+    {
+      "id": "iuml conveys reservations to cm v d satheesan on pm shri liquor tax",
+      "headline": "IUML conveys reservations to CM V D Satheesan on PM SHRI, liquor tax",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The New Indian Express",
+      "published": "2026-06-24",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPSU5Bc1dJODJJTGx4TGZVU0hnR2RfRnZIU1NlLVdEd0psR19vd2tCVnhOVGVVZ0Vkck1ta0dCVk9sbzE5Z1E5SnlGMVFUdk5mMnB4MFlZR2laLWNyWmtybDltRzNWNXNKMkljRnZRdzMxZzNJQml4amEybjhzUHJlQTZ1aU53YzhXN1B2R1dfWk1wdnM3R09lMG5JTjItTFhuVkpSNzdNcHpNS201cklUdEdOUVJSemstUHdtNi1jbHgwUVF40gHSAUFVX3lxTE80RElpZWtFSFowTGwxNXdiaEhzaUtzR1lweW1vN09MS010R0xwRDJhZmt3Zkx0SF9kZmp6MVdfZWtzWllGbFUycWZLMGItWVhWNHRkWENfWm0ycDFYVFdSYmVyQWtiS0FVbjNBdmdxcmh4U3BuekdwMXBoN21vMi1vTUVvRlcwdlhJOV9MLWN4SThONThHZVBRMW9QVFJtYUY1cGJ5VXJnUU1Pbl9HOFREdFUyTXVKcHA3Vkltc1lBTE9BNVRTUy02eUVuUFl6YTN5dw?oc=5",
+      "queries": [
+        "shri-nep"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-28"
     }
   ]
 }
