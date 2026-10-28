@@ -69,6 +69,15 @@ export const WHATS_NEW: NewFeature[] = [
     since: "2026-10-26",
   },
   {
+    id: "space-programme-2026-10",
+    title: "India's space programme, from Thumba to the Moon",
+    blurb:
+      "A holographic 3D explainer: every Indian rocket drawn to scale and taken apart stage by stage in a rocket explorer, Chandrayaan-3's route to the Moon, " +
+      "the Mars Orbiter's transfer, Aditya-L1's halo round L1, ISRO's centres on the map, and the record — the cryogenic-engine denial, the PSLV's two failures, the money.",
+    href: "/space-programme",
+    since: "2026-10-28",
+  },
+  {
     id: "malnutrition-2026-10",
     title: "Where India's children are not growing",
     blurb:

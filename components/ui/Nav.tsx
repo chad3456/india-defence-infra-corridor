@@ -61,6 +61,7 @@ const GROUPS: Group[] = [
       { href: "/free-palestine-inc", label: "Free Palestine, Inc.?", blurb: "Cause or career? Gaza's toll, the hashtags, the keffiyeh boom, the money and the protests — 21 claims checked", dashboard: {} },
       { href: "/demolitions", label: "Religious structures demolished", blurb: "Temples, mazars, mosques removed as encroachments since 2014: every official and court figure, what adds up, and what does not", dashboard: {} },
       { href: "/income-tax", label: "What income tax buys", blurb: "₹12.41 lakh crore counted in iPhones, missiles and moon missions; who pays, where it goes, and India against the US", dashboard: {} },
+      { href: "/space-programme", label: "India's space programme", blurb: "Every Indian rocket to scale and taken apart in 3D, the routes to the Moon, Mars and the Sun, ISRO's centres, and the record", dashboard: {} },
       { href: "/space", label: "How a satellite works", blurb: "NISAR taken apart in 3D with an X-ray explorer, its live position, India's fleet in orbit, and the record: launches, failures, money", dashboard: {} },
       { href: "/tbm", label: "Tunnel boring machines", blurb: "A 3D particle story: how a TBM works, every machine in India to scale, who builds them, and China's export controls", dashboard: {} },
       { href: "/malnutrition", label: "Child malnutrition by district", blurb: "A dark, zoomable map of stunting, wasting, underweight and anaemia in every surveyed district, by WHO severity bands", dashboard: {} },

@@ -372,6 +372,19 @@ position and India's fleet are propagated in the browser with SGP4 from CelesTra
 computed from those positions. Orbital period, speed and download time are derived with stated
 formulae and labelled so. `npm run test:space` checks the register and the arithmetic.
 
+### India's space programme
+
+`/space-programme` tells the programme's story over a holographic 3D stage, from the Thumba
+launch of 1963 to Vikram-1. Every figure is in `data/space-programme/published.json` with its
+source: ISRO's launcher, mission and centres pages first, then dated press reports and reference
+works where ISRO publishes nothing (SLV-3 and ASLV dimensions, the cryogenic-engine sanctions).
+The rockets are drawn at their published heights, so the line-up is to scale; how each height
+divides between stages, and most diameters, are drawn to be legible (`lib/space-programme.ts`).
+The Mars scene keeps the planets' orbit ratio and periods; the Moon and Sun scenes are schematic
+and labelled so. Mission costs resting on a single report are labelled "one report"; day counts
+are derived. `npm run test:space-programme` checks the citations, that each drawing fills its
+rocket's height, and the arithmetic.
+
 ### Child malnutrition by district
 
 `/malnutrition` maps four NFHS-5 (2019–21) district measures — stunting, wasting, underweight and
