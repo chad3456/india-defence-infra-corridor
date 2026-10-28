@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-28T15:30:52.404Z",
+  "builtAt": "2026-10-28T21:22:50.809Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1311,
-    "addedThisRun": 7,
-    "carriedFromEarlierRuns": 1304,
-    "withOutlet": 1222,
+    "items": 1314,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 1311,
+    "withOutlet": 1223,
     "bySubject": {
-      "scst": 895,
+      "scst": 898,
       "pmshri": 416
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 269
+    "offSubjectDropped": 176
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 459
+      "n": 462
     },
     {
       "key": "acquittal",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 110
+      "n": 111
     },
     {
       "key": "Lawtext",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -305,10 +305,10 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 47,
       "bing": 3,
-      "kept": 2,
-      "offSubject": 15
+      "kept": 0,
+      "offSubject": 4
     },
     {
       "id": "act-convicted",
@@ -318,7 +318,7 @@
       "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 48
+      "offSubject": 47
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 52,
-      "bing": 5,
-      "kept": 1,
-      "offSubject": 7
+      "bing": 7,
+      "kept": 2,
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
@@ -337,7 +337,7 @@
       "expect": "use",
       "google": 49,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 13
     },
     {
@@ -345,20 +345,20 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 15,
+      "google": 60,
       "bing": 0,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 21
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 100,
+      "google": 28,
       "bing": 1,
       "kept": 0,
-      "offSubject": 46
+      "offSubject": 4
     },
     {
       "id": "act-hostile",
@@ -398,67 +398,67 @@
       "google": 49,
       "bing": 1,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 18
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 3
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 100,
-      "bing": 11,
-      "kept": 1,
-      "offSubject": 8
+      "google": 33,
+      "bing": 9,
+      "kept": 0,
+      "offSubject": 2
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 40,
+      "google": 10,
       "bing": 2,
-      "kept": 1,
-      "offSubject": 5
+      "kept": 0,
+      "offSubject": 0
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 11,
+      "google": 10,
       "bing": 1,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 48,
+      "google": 8,
       "bing": 2,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 0
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 13,
-      "bing": 2,
+      "google": 43,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 6
     },
     {
       "id": "shri-withheld",
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 10,
       "bing": 1,
-      "kept": 1,
-      "offSubject": 32
+      "kept": 0,
+      "offSubject": 6
     }
   ],
   "items": [
@@ -11214,7 +11214,8 @@
       "queries": [
         "shri-mou",
         "shri-nep",
-        "shri-criticism"
+        "shri-criticism",
+        "shri-general"
       ],
       "indexes": [
         "google"
@@ -21916,6 +21917,54 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-10-28"
+    },
+    {
+      "id": "ex congress councillor son booked under atrocities act",
+      "headline": "Ex-Congress councillor, son booked under Atrocities Act",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Times of India",
+      "published": "2026-10-28",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNUHVaRExoX1dnb1VHZnJ6SG1CTUVQSTh4dzFaNFBhTHVzUVlYMTd0ZXg0YWNKd1JhTVFRd2dDYkc1OGdPalZfd3JjbTRjekJlcEx5amdmTWdUNm5xdXpIc1VQX1JWXzctZ3MzTUF3ckZsRHVKeWhPMzNVUjRlUHdBdWNhMThCeVVaOXk0bHVVV1htTW5pR3JaTW9NcElhWVRpNGtfZTlFajJHbXVXN1pGYlRfZHBCdF9mcmNEWXZ1bHZCNkFkZEHSAcsBQVVfeXFMUFNpWWZReUsxUUlIY1NvOHJLeWYzTlVCU3pyNnVqbDI5aFFsVS1CM2UtZVN1anFCWHVwT2x3U1VhUkl1NkE5QzRKXzZyWUJTN1VBX3M2RFRONFZXR3VrNjNXM3NkM1BfekpDejMwQTJBYnB6a2thRGs5bVEya1BjODdXWUpUemZ5UkktWG53cTlDOGtiSWdheWN2d19Ja0FhYW9NN2dicUhWcG5vWEk0RHlSTnlfM2pKV1VtVkZsQk5PVjN3MnY0QUJlYWs?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-28"
+    },
+    {
+      "id": "man sentenced to life imprisonment for raping dalit minor in barabanki",
+      "headline": "Man sentenced to life imprisonment for raping Dalit minor in Barabanki",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-10-28",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ae2674a9d0445378fa5a85b2d45076e&url=https%3a%2f%2ftimesofindia.indiatimes.com%2fcity%2flucknow%2fman-sentenced-to-life-imprisonment-for-raping-dalit-minor-in-barabanki%2farticleshow%2f135278868.cms&c=9114048691997338268&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-10-28"
+    },
+    {
+      "id": "guj cong leaders meet governor to raise dalit atrocities issue",
+      "headline": "Guj Cong leaders meet Governor to raise Dalit atrocities issue",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2018-05-24",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ae2674a9d0445378fa5a85b2d45076e&url=https%3a%2f%2fwww.india.com%2fnews%2fguj-cong-leaders-meet-governor-to-raise-dalit-atrocities-issue-3073241%2f&c=11187839576315032530&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-10-28"
     }
