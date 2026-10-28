@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-27T20:42:17.135Z",
-  "previousBuild": "2026-10-27T14:31:18.044Z",
+  "builtAt": "2026-10-28T05:42:40.714Z",
+  "previousBuild": "2026-10-27T20:42:17.135Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 252,
-    "createdThisRun": 1,
-    "corroboratedThisRun": 1,
-    "feedsAnswered": 13,
+    "stories": 255,
+    "createdThisRun": 3,
+    "corroboratedThisRun": 0,
+    "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 207,
+    "itemsSeen": 220,
     "corroboration": {
-      "one": 214,
+      "one": 217,
       "two": 15,
       "threePlus": 23
     }
@@ -28,12 +28,12 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 130
+      "n": 131
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 80
+      "n": 81
     },
     {
       "id": "cyber-ew",
@@ -48,7 +48,7 @@
     {
       "id": "military-ai",
       "label": "AI in military use",
-      "n": 8
+      "n": 9
     }
   ],
   "byCountry": [
@@ -60,7 +60,7 @@
     {
       "iso": "IND",
       "name": "India",
-      "n": 23
+      "n": 24
     },
     {
       "iso": "UKR",
@@ -122,20 +122,20 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 30,
+      "items": 33,
       "kept": 1
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Military Times",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Army Times",
@@ -153,7 +153,7 @@
       "outlet": "DefenseScoop",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defence Industry Europe",
@@ -181,10 +181,9 @@
     },
     {
       "outlet": "Naval News",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "HTTP 503"
+      "ok": true,
+      "items": 10,
+      "kept": 0
     },
     {
       "outlet": "Defence Blog",
@@ -1322,6 +1321,45 @@
       ]
     },
     {
+      "id": "https://idrw.org/indian-army-plans-ground-loyal-wingman-tanks-for-main-battle-tanks/",
+      "headline": "Indian Army Plans Ground Loyal Wingman Tanks for Main Battle Tanks",
+      "firstSeen": "2026-10-28",
+      "lastSeen": "2026-10-28",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/indian-army-plans-ground-loyal-wingman-tanks-for-main-battle-tanks/",
+          "published": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/punes-aminuteman-targets-ankosha-c-loitering-munition-that-can-take-off-from-ins-vikrant/",
+      "headline": "Pune’s Aminuteman Targets Ankosha C Loitering Munition that can take off from INS Vikrant",
+      "firstSeen": "2026-10-28",
+      "lastSeen": "2026-10-28",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/punes-aminuteman-targets-ankosha-c-loitering-munition-that-can-take-off-from-ins-vikrant/",
+          "published": "2026-10-28"
+        }
+      ]
+    },
+    {
       "id": "https://breakingdefense.com/2026/10/how-the-pentagon-wants-to-buy-cyber-outcomes-not-equipment/",
       "headline": "How the Pentagon wants to buy cyber outcomes, not equipment",
       "firstSeen": "2026-10-27",
@@ -1400,6 +1438,23 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/german-troops-test-auterions-talon-drone-interceptor/",
+          "published": "2026-10-27"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/industry/techwatch/2026/10/27/marine-corps-fast-tracks-ai-powered-ultrasounds-blood-coolers-to-battlefield/",
+      "headline": "Marine Corps fast-tracks AI-powered ultrasounds, blood coolers to battlefield",
+      "firstSeen": "2026-10-27",
+      "lastSeen": "2026-10-27",
+      "themes": [
+        "military-ai"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/industry/techwatch/2026/10/27/marine-corps-fast-tracks-ai-powered-ultrasounds-blood-coolers-to-battlefield/",
           "published": "2026-10-27"
         }
       ]
