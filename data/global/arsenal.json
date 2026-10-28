@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-28T11:40:00.156Z",
+ "builtAt": "2026-10-28T21:54:19.074Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206512,20 +206512,20 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   },
   {
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 22,
+   "items": 19,
    "kept": 0,
    "via": "direct"
   },
@@ -206545,6 +206545,35 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-19bwc89",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Russia"
+   ],
+   "value": null,
+   "date": "2026-10-28",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/global/europe/2026/10/28/trumps-russian-diesel-deal-benefits-moscow-more-than-us-consumers-experts-say/",
+   "headline": "Trump&#8217;s Russian diesel deal benefits Moscow more than US consumers, experts say",
+   "primary": false
+  },
+  {
+   "id": "ev-lksebe",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-10-28",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/10/startup-biosphere-wins-pentagon-contract-to-scale-up-production-of-key-chemicals/",
+   "headline": "Startup Biosphere wins Pentagon contract to scale up production of key chemicals",
+   "primary": false
+  },
   {
    "id": "ev-5f38hd",
    "kind": "order",
@@ -207946,6 +207975,37 @@
  ],
  "groups": [
   {
+   "key": "order||russia+united states",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Russia"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-19bwc89",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Russia"
+     ],
+     "value": null,
+     "date": "2026-10-28",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/global/europe/2026/10/28/trumps-russian-diesel-deal-benefits-moscow-more-than-us-consumers-experts-say/",
+     "headline": "Trump&#8217;s Russian diesel deal benefits Moscow more than US consumers, experts say",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -207953,6 +208013,20 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-lksebe",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-10-28",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/10/startup-biosphere-wins-pentagon-contract-to-scale-up-production-of-key-chemicals/",
+     "headline": "Startup Biosphere wins Pentagon contract to scale up production of key chemicals",
+     "primary": false
+    },
     {
      "id": "ev-5f38hd",
      "kind": "order",
@@ -208529,9 +208603,9 @@
     }
    ],
    "outlets": [
+    "Breaking Defense",
     "Defense News",
     "Defence Blog",
-    "Breaking Defense",
     "Defense One",
     "Naval News"
    ],
