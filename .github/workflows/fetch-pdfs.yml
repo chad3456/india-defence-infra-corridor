@@ -1,0 +1,48 @@
+name: Source PDFs — fetch
+
+# Fetches each document listed in data/pdf/fetch.json into data/pdf/ and
+# commits it, for hosts this repo's development sandbox cannot reach. A file
+# already committed is not fetched again: a pinned document must not change
+# shape under a reader. Each download must be a PDF and under 60 MB, and TLS
+# verification is never turned off.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "data/pdf/fetch.json"
+      - ".github/workflows/fetch-pdfs.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-pdfs
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch listed documents not yet committed
+        run: |
+          set -uo pipefail
+          failed=0
+          for row in $(jq -c '.[] | {file, url} | @base64' -r data/pdf/fetch.json); do
+            file=$(echo "$row" | base64 -d | jq -r .file)
+            url=$(echo "$row" | base64 -d | jq -r .url)
+            out="data/pdf/$file"
+            if [ -f "$out" ]; then echo "$file: already committed"; continue; fi
+            tmp="$RUNNER_TEMP/$file"
+            code=$(curl -sSL --retry 3 --retry-delay 5 --max-time 600 -A "BharatTracker/0.1 (+https://github.com/${GITHUB_REPOSITORY})" -o "$tmp" -w "%{http_code}" "$url") || code="curl-failed"
+            size=$(stat -c %s "$tmp" 2>/dev/null || echo 0)
+            if [ "$code" != "200" ]; then echo "::error::$file: $url answered $code"; failed=1; continue; fi
+            if [ "$(head -c 4 "$tmp")" != "%PDF" ]; then echo "::error::$file: not a PDF ($(file -b "$tmp"))"; failed=1; continue; fi
+            if [ "$size" -gt 62914560 ]; then echo "::error::$file: $size bytes, over the 60 MB cap"; failed=1; continue; fi
+            mv "$tmp" "$out"
+            echo "$file: $size bytes, sha256 $(sha256sum "$out" | cut -d' ' -f1)"
+            .github/scripts/commit-generated.sh "$out" "data(pdf): $file from its publisher" || failed=1
+          done
+          exit $failed

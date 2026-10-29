@@ -17,6 +17,13 @@ assumed layout on a live page and published incident counts as civilian deaths.
 A pinned document can also be looked at, page by page, and the extraction
 compared against what the page actually says.
 
+## Fetching one the sandbox cannot reach
+
+Add an entry to `fetch.json` (file name, URL, publisher, title, date) and push.
+`.github/workflows/fetch-pdfs.yml` downloads it in Actions, checks it is a PDF
+under 60 MB, and commits it here. A file already committed is never fetched
+again.
+
 ## Reading one
 
 ```bash
