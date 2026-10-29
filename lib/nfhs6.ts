@@ -76,7 +76,8 @@ export function parsePage(frags: Fragment[]): ParsedPage {
   if (heads.length < 2) return { geo, columns: [], rows: [], problems: ["no header row found"] };
   const columns = columnsFor(heads.length);
   const colMin = heads[0]!.x;
-  const body = all.filter((f) => f.y < headY - 2);
+  // The body: below the header row, except that a section heading may sit level with it, left of the columns.
+  const body = all.filter((f) => f.y < headY - 2 || (f.y < headY + 1.5 && f.x < colMin - 60 && !/^Indicators$/i.test(f.text.trim())));
   const values = body.filter((f) => f.x >= colMin - 14 && VALUE.test(f.text.trim()));
   const labels = body.filter((f) => f.x < colMin - 14);
 
@@ -103,7 +104,10 @@ export function parsePage(frags: Fragment[]): ParsedPage {
 
   const rows: ParsedRow[] = starts.map((s, i) => {
     const y0 = s.l.y, y1 = starts[i + 1]?.l.y ?? -Infinity;
-    const section = sections.filter((h) => h.y > y0).at(-1)?.text ?? "";
+    const head = sections.filter((h) => h.y > y0).at(-1);
+    // "Women" and "Men" sub-head a block: name them with the block's heading above them on the page.
+    const parent = head && /^(Women|Men)$/i.test(head.text) ? sections.filter((h) => h.y > head.y && !/^(Women|Men)$/i.test(h.text)).at(-1) : undefined;
+    const section = head ? (parent ? `${parent.text} · ${head.text}` : head.text) : "";
     const stopAt = sections.find((h) => h.y < y0 && h.y > y1)?.y ?? -Infinity;
     // A label wraps onto indented lines, two or three at most; footnotes start flush with the numbers and are not part of it.
     const cont = textLines.filter((l) => l !== s.l && l.y < y0 && l.y > Math.max(y1, stopAt, y0 - 26) && l.x > numberedX + 6 && !NUM.test(l.text));
@@ -210,4 +214,10 @@ export const CHANGE_LABELS = ["Fell 5+", "Fell 2–5", "Fell 0.5–2", "Within �
 export function fmtNum(v: number): string {
   const a = Math.abs(v);
   return a >= 100 ? v.toFixed(0) : v.toFixed(1);
+}
+
+/** An indicator's label for display: blocks sub-headed by sex share wording, so say whose it is. */
+export function displayLabel(ind: Nfhs6Indicator): string {
+  const m = / · (Women|Men)$/.exec(ind.section);
+  return m ? `${ind.label} (${m[1]!.toLowerCase()})` : ind.label;
 }

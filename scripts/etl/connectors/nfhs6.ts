@@ -57,14 +57,21 @@ async function readPdf(bytes: Uint8Array): Promise<{ pages: number; geos: Map<st
   lastPages = pages;
   const geos = new Map<string, ParsedRow[]>();
   const problems: string[] = [];
-  let lastSection = "";
+  let lastSection = "", lastParent = "";
   for (const pg of pages) {
     if (!pg.fragments.some((f) => /Key Indicators/i.test(f.text))) continue;
     const out = parsePage(pg.fragments);
     if (!out.geo) { problems.push(`page ${pg.page}: no geography heading`); continue; }
     for (const p of out.problems) problems.push(`page ${pg.page} (${out.geo}): ${p}`);
     const rows = geos.get(out.geo) ?? [];
-    for (const r of out.rows) { if (r.section) lastSection = r.section; else r.section = lastSection; rowPage.set(r, pg.page); rows.push(r); }
+    for (const r of out.rows) {
+      if (r.section) lastSection = r.section; else r.section = lastSection;
+      // "Women" and "Men" sub-head a block (blood sugar, blood pressure): keep the block's heading with them.
+      if (/^(Women|Men)$/i.test(r.section)) r.section = `${lastParent} · ${r.section}`;
+      else lastParent = r.section.split(" · ")[0]!;
+      rowPage.set(r, pg.page);
+      rows.push(r);
+    }
     geos.set(out.geo, rows);
   }
   return { pages: pages.length, geos, problems };
