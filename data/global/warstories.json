@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-29T15:14:08.013Z",
-  "previousBuild": "2026-10-29T05:47:45.188Z",
+  "builtAt": "2026-10-29T21:07:46.197Z",
+  "previousBuild": "2026-10-29T15:14:08.013Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 266,
-    "createdThisRun": 4,
-    "corroboratedThisRun": 1,
+    "stories": 267,
+    "createdThisRun": 1,
+    "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 221,
+    "itemsSeen": 220,
     "corroboration": {
-      "one": 227,
+      "one": 228,
       "two": 16,
       "threePlus": 23
     }
@@ -33,7 +33,7 @@
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 81
+      "n": 82
     },
     {
       "id": "cyber-ew",
@@ -127,7 +127,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 37,
+      "items": 36,
       "kept": 1
     },
     {
@@ -140,7 +140,7 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Army Times",
@@ -164,13 +164,13 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Breaking Defense",
@@ -194,7 +194,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1404,6 +1404,23 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/israels-smart-shooter-exports-drone-killing-weapon-station-to-asia/",
+          "published": "2026-10-29"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/huntington-ingalls-industries-says-10-romulus-unmanned-vessels-are-under-construction-for-u-s-navy/",
+      "headline": "Huntington Ingalls Industries says 10 Romulus unmanned vessels are under construction for U.S. Navy",
+      "firstSeen": "2026-10-29",
+      "lastSeen": "2026-10-29",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/huntington-ingalls-industries-says-10-romulus-unmanned-vessels-are-under-construction-for-u-s-navy/",
           "published": "2026-10-29"
         }
       ]
