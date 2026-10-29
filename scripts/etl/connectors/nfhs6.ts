@@ -79,6 +79,16 @@ function toRows(rows: ParsedRow[]): Nfhs6Row[] {
   });
 }
 
+/**
+ * Labels the fact sheet itself misprints on some state pages. The row's
+ * position and its values' scale show which indicator it is; India's label
+ * is used and the misprint is noted rather than hidden.
+ */
+export const KNOWN_MISPRINTS: Array<{ n: number; printed: RegExp; why: string }> = [
+  { n: 86, printed: /^Mildly elevated blood pressure/i, why: "printed with #84's wording on some state pages; its values sit at #86's place and scale (elevated or on medicine)" },
+];
+export const misprinted = (n: number, label: string) => KNOWN_MISPRINTS.some((m) => m.n === n && m.printed.test(label));
+
 /** The gates. Returns the reasons a file must not be written. */
 export function gate(indicators: Nfhs6Indicator[], geos: Map<string, ParsedRow[]>, minGeos: number, minIndicators: number): string[] {
   const fails: string[] = [];
@@ -90,7 +100,7 @@ export function gate(indicators: Nfhs6Indicator[], geos: Map<string, ParsedRow[]
     if (ns.size !== rows.length) fails.push(`${geo}: an indicator number appears twice`);
     for (const r of rows) {
       const ref = byN.get(r.n);
-      if (ref && !sameLabel(ref.label, r.label)) fails.push(`${geo} #${r.n}: label differs from India's ("${r.label.slice(0, 60)}")`);
+      if (ref && !sameLabel(ref.label, r.label) && !misprinted(r.n, r.label)) fails.push(`${geo} #${r.n}: label differs from India's ("${r.label.slice(0, 60)}")`);
       if (isPercent(r.unit)) for (const c of Object.values(r.cells)) if (c?.v != null && (c.v < 0 || c.v > 100)) fails.push(`${geo} #${r.n}: ${c.v}% out of range`);
     }
   }
@@ -111,7 +121,8 @@ async function states(): Promise<{ written: boolean; errors: string[] }> {
   const india = geos.get("India");
   if (!india) return { written: false, errors: ["no India pages found", ...problems.slice(0, 20)] };
   const indicators: Nfhs6Indicator[] = india.map((r) => ({ n: r.n, label: r.label, unit: r.unit, section: r.section }));
-  const fails = gate(indicators, geos, 31, 90);
+  for (const [g, rows] of geos) for (const r of rows) if (r.n !== 0 && misprinted(r.n, r.label) && !sameLabel(indicators.find((i) => i.n === r.n)?.label ?? "", r.label)) problems.push(`${g} #${r.n}: ${KNOWN_MISPRINTS.find((m) => m.n === r.n)!.why}`);
+  const fails = gate(indicators, geos, 31, indicators.length - 3);
   // Every page with a problem or a failed row goes to the debug file, written either way.
   const badPages = new Set<number>(problems.map((p) => Number(/^page (\d+)/.exec(p)?.[1])).filter((x) => x > 0));
   for (const f of fails) { const m = /^(.+) #(\d+):/.exec(f); const row = m ? geos.get(m[1]!)?.find((r) => r.n === Number(m[2])) : undefined; const pg = row ? rowPage.get(row) : undefined; if (pg) badPages.add(pg); }

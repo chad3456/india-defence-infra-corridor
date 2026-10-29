@@ -88,7 +88,8 @@ export function parsePage(frags: Fragment[]): ParsedPage {
     if (ln) { ln.text = ln.x <= f.x ? `${ln.text} ${f.text.trim()}` : `${f.text.trim()} ${ln.text}`; ln.x = Math.min(ln.x, f.x); }
     else lines.push({ text: f.text.trim(), x: f.x, y: f.y });
   }
-  for (const l of lines) l.text = l.text.replace(/\s+/g, " ").trim();
+  // Some pages set an indicator number's digits as separate glyphs ("1 1 . Children…"): join them.
+  for (const l of lines) l.text = l.text.replace(/\s+/g, " ").trim().replace(/^((?:\d\s?){1,3})\s?\./, (_m, g: string) => `${g.replace(/\s/g, "")}.`);
   // A line that is only footnote marks (a superscript set off its baseline) is not part of any label.
   const isMark = (t: string) => t.split(" ").every((w) => FOOTNOTE.test(w.replace(/,$/, "")));
   const textLines = lines.filter((l) => !isMark(l.text));
