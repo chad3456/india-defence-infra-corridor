@@ -62,27 +62,32 @@ async function main() {
     const ls = links(html, r.finalUrl ?? url);
     const docs = ls.filter((l) => /\.pdf|\.xlsx?|\.csv|nfhs-?6|compendium|district|fact/i.test(`${l.href} ${l.text}`));
     for (const l of docs) if (/\.pdf(?:$|\?)/i.test(l.href)) found.add(l.href);
-    const forms = [...html.matchAll(/<form\b[^>]*>/gi)].map((m) => m[0].slice(0, 200));
-    (report.pages as unknown[]).push({ url, status: r.status, error: r.error, finalUrl: r.finalUrl, bytes: r.bytes?.length ?? 0, forms, links: docs.slice(0, 300), allLinks: ls.length });
+    const forms = [...html.matchAll(/<form\b[\s\S]*?<\/form>/gi)].map((m) => m[0].replace(/\s+/g, " ").slice(0, 6000));
+    const pdfStrings = [...new Set([...html.matchAll(/["'(]([^"'()<>\s]*\.pdf)["')]/gi)].map((m) => m[1]!))].slice(0, 200);
+    const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)].map((m) => m[1]!).filter((t) => /download|pdf|compendium|login|guest|ajax|fetch\(/i.test(t)).map((t) => t.replace(/\s+/g, " ").slice(0, 3000));
+    const text = html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").slice(0, 5000);
+    (report.pages as unknown[]).push({ url, status: r.status, error: r.error, finalUrl: r.finalUrl, bytes: r.bytes?.length ?? 0, forms, pdfStrings, scripts, text: /release|publication/.test(url) ? text : undefined, links: docs.slice(0, 300), allLinks: ls.length });
     console.log(`page ${url}: ${r.status} ${r.bytes?.length ?? 0} bytes, ${docs.length} document links`);
   }
   // Each PDF: does it answer, how big, how many pages, and what do a few pages say.
-  for (const url of [...found].slice(0, 40)) {
+  for (const url of [...found].filter((u) => !/vacancy|rfp/i.test(u)).slice(0, 40)) {
     const r = await get(url, 180_000);
     const entry: Record<string, unknown> = { url, status: r.status, type: r.type, bytes: r.bytes?.length ?? 0, error: r.error };
     if (r.bytes && r.status === 200 && /pdf/i.test(r.type + url)) {
       try {
-        const head = await extractPages(r.bytes, { firstPage: 1, lastPage: 1 });
+        const bytes = r.bytes;
+        const head = await extractPages(bytes.slice(), { firstPage: 1, lastPage: 1 });
         const { getDocument } = await import("pdfjs-dist/legacy/build/pdf.mjs");
-        const task = getDocument({ data: r.bytes.slice(), useSystemFonts: true });
+        const task = getDocument({ data: bytes.slice(), useSystemFonts: true });
         const doc = await task.promise;
         entry.pages = doc.numPages;
         await task.destroy();
-        const want = [1, 2, 3, 4, 5, 6, Math.min(doc.numPages, 20), Math.min(doc.numPages, 40)];
+        const big = doc.numPages > 20;
+        const want = big ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, Math.min(doc.numPages, 20), Math.min(doc.numPages, 40), doc.numPages] : Array.from({ length: doc.numPages }, (_, i) => i + 1);
         const sample: Array<{ page: number; rows: string[][] }> = [];
         for (const p of [...new Set(want)]) {
-          const [pg] = await extractPages(r.bytes, { firstPage: p, lastPage: p });
-          if (pg) sample.push({ page: p, rows: fragmentsToRows(pg.fragments).slice(0, 90).map((row) => row.map((c) => c.slice(0, 120))) });
+          const [pg] = await extractPages(bytes.slice(), { firstPage: p, lastPage: p });
+          if (pg) sample.push({ page: p, rows: fragmentsToRows(pg.fragments).slice(0, 140).map((row) => row.map((c) => c.slice(0, 120))) });
         }
         entry.sample = sample;
         entry.firstPageText = head[0]?.fragments.map((f) => f.text).join(" ").slice(0, 600);
