@@ -154,3 +154,59 @@ export function marksOf(cells: ParsedRow["cells"]): string {
   const s = (["urban", "rural", "total", "prev"] as Column[]).map((c) => code(cells[c]?.mark)).join("");
   return s === "----" ? "" : s;
 }
+
+/* ── Reading published rows, for the map ───────────────────────────────── */
+
+export type Area = "total" | "urban" | "rural";
+const AREA_INDEX: Record<Area | "prev", number> = { urban: 1, rural: 2, total: 3, prev: 4 };
+
+export function cellOf(rows: Nfhs6Row[] | undefined, n: number, area: Area | "prev"): number | null {
+  const r = rows?.find((x) => x[0] === n);
+  const v = r?.[AREA_INDEX[area]];
+  return typeof v === "number" ? v : null;
+}
+
+/** The mark on one cell: "s" small sample, "x" suppressed, "n" not available, "" none. */
+export function markOf(rows: Nfhs6Row[] | undefined, n: number, area: Area | "prev"): string {
+  const m = rows?.find((x) => x[0] === n)?.[5];
+  if (typeof m !== "string") return "";
+  const ch = m[AREA_INDEX[area] - 1];
+  return ch && ch !== "-" ? ch : "";
+}
+
+/** Change from NFHS-5 to NFHS-6 in the unit's own points — derived. Null unless both rounds have a value. */
+export function changeOf(rows: Nfhs6Row[] | undefined, n: number): number | null {
+  const now = cellOf(rows, n, "total"), then = cellOf(rows, n, "prev");
+  return now === null || then === null ? null : Math.round((now - then) * 10) / 10;
+}
+
+/**
+ * How an indicator is coloured. Stunting and wasting use WHO–UNICEF's
+ * prevalence thresholds and underweight plain ten-point bands, as on the
+ * NFHS-5 map; every other indicator is binned into quintiles of the
+ * geographies shown (derived) on a neutral ramp — colour shows magnitude, not
+ * a verdict on whether more is better.
+ */
+export type Scale = { kind: "who-stunting" | "who-wasting" | "plain-underweight" | "quintile"; bounds: number[]; labels: string[] };
+
+export function scaleFor(ind: Nfhs6Indicator, values: number[]): Scale {
+  const l = ind.label.toLowerCase();
+  if (/\bstunted\b/.test(l)) return { kind: "who-stunting", bounds: [0, 2.5, 10, 20, 30], labels: ["Very low", "Low", "Medium", "High", "Very high"] };
+  if (/\bwasted\b/.test(l) && !/severely/.test(l)) return { kind: "who-wasting", bounds: [0, 2.5, 5, 10, 15], labels: ["Very low", "Low", "Medium", "High", "Very high"] };
+  if (/\bunderweight\b/.test(l)) return { kind: "plain-underweight", bounds: [0, 10, 20, 30, 40], labels: ["Under 10%", "10–20%", "20–30%", "30–40%", "40% and over"] };
+  const s = [...values].sort((a, b) => a - b);
+  if (!s.length) return { kind: "quintile", bounds: [0], labels: ["—"] };
+  const q = (p: number) => s[Math.min(s.length - 1, Math.floor(p * s.length))]!;
+  const bounds = [...new Set([s[0]!, q(0.2), q(0.4), q(0.6), q(0.8)])];
+  const unit = isPercent(ind.unit) ? "%" : "";
+  return { kind: "quintile", bounds, labels: bounds.map((b, i) => `${fmtNum(b)}${i < bounds.length - 1 ? `–${fmtNum(bounds[i + 1]!)}` : "+"}${unit}`) };
+}
+
+/** Change bands, symmetric about zero, in points. */
+export const CHANGE_BOUNDS = [-Infinity, -5, -2, -0.5, 0.5, 2, 5];
+export const CHANGE_LABELS = ["Fell 5+", "Fell 2–5", "Fell 0.5–2", "Within ±0.5", "Rose 0.5–2", "Rose 2–5", "Rose 5+"];
+
+export function fmtNum(v: number): string {
+  const a = Math.abs(v);
+  return a >= 100 ? v.toFixed(0) : v.toFixed(1);
+}
