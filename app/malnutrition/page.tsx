@@ -2,8 +2,9 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { MalnutritionTabs } from "@/components/malnutrition/MalnutritionTabs";
 import { malnutritionMap } from "@/lib/malnutrition-map";
-import { loadNfhs6 } from "@/lib/nfhs6-load";
-import { cellOf } from "@/lib/nfhs6";
+import { loadNfhs6, loadYouth } from "@/lib/nfhs6-load";
+import { cellOf, insights } from "@/lib/nfhs6";
+import { Nfhs6Insights } from "@/components/malnutrition/Nfhs6Insights";
 import { MEASURE, MEASURES, bandOf, rampFor, ranked, shareAtOrAbove, stateKey, type MeasureId } from "@/lib/malnutrition";
 
 /**
@@ -47,6 +48,9 @@ export default function MalnutritionPage() {
 
   const n6data = loadNfhs6(data.districts);
   const india6 = n6data.states?.geos.India;
+  const n6ins = n6data.states ? insights(n6data.states) : null;
+  const youth = loadYouth(data.districts);
+  const youthIns = youth.states ? insights(youth.states) : null;
   const veryHighStunting = shareAtOrAbove(data.districts, "stunting", 30);
   const veryHighWasting = shareAtOrAbove(data.districts, "wasting", 15);
   const severeAnaemia = shareAtOrAbove(data.districts, "anaemia", 40);
@@ -102,8 +106,20 @@ export default function MalnutritionPage() {
       </section>
 
       <section className="mt-8" aria-label="District map">
-        <MalnutritionTabs data={data} nfhs6={n6data.states} stateOf={n6data.stateOf} districtRows={n6data.districtRows} />
+        <MalnutritionTabs data={data} nfhs6={n6data.states} stateOf={n6data.stateOf} districtRows={n6data.districtRows} youth={youth.states ? { states: youth.states, stateOf: youth.stateOf } : null} />
       </section>
+
+      {n6data.states && n6ins && <Nfhs6Insights data={n6data.states} ins={n6ins} />}
+
+      {youth.states && youthIns && (
+        <Nfhs6Insights data={youth.states} ins={youthIns} copy={{
+          eyebrow: "Youth in India 2022 · ages 15–29 · MoSPI",
+          title: "India's young people, theme by theme",
+          intro: `MoSPI's National Statistical Office compiles NFHS, UDISE+, AISHE, the Periodic Labour Force Survey and the Sample Registration System for 15–29-year-olds. Every figure below is read from ${youth.states.indicators.length} indicators in its state-wise statements, in the copy committed to this repository; rounds differ by indicator and are named beside each. Every change, gap and ranking is derived.`,
+          gapNote: "Enrolment ratios are gross: enrolment of any age over the population of the official age. Female unemployment is a share of a small female labour force, so it moves sharply. Early marriage is left out: it is measured for women before 18 and men before 21.",
+          label: "Youth in India 2022 insights by theme",
+        }} />
+      )}
 
       <section className="mt-12">
         <h2 className="mal-h2">State by state, NFHS-5</h2>

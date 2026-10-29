@@ -411,6 +411,31 @@ does not automate. To add them: download the compendiums from IIPS (its guest lo
 to a GitHub release tagged `nfhs6-districts`, and run the NFHS-6 workflow. The same reader writes
 `data/nfhs6/districts.json` if 300+ districts pass the same gates, and a layout report either way.
 
+Themes regroup the fact sheet's survey modules by subject — health care, nutrition, education, early
+and primary education, marriage and fertility, relationships and violence, women's assets and agency,
+women and men, households (`THEMES` in `lib/nfhs6.ts`); every indicator sits in at least one. For the
+twelve indicators measured for women and men with the same wording, the map can show women's value
+minus men's (derived). Child marriage is not paired: it is measured before 18 for women and before 21
+for men. The insights under the map — largest national moves, women–men and urban–rural gaps, and
+each theme's largest state rise and fall — are computed from the fact sheet by `insights()`; state
+extremes leave out union territories, which are small samples, and any cell marked small.
+
+### Youth in India 2022 (MoSPI), by state
+
+MoSPI's National Statistical Office compiles NFHS, UDISE+, AISHE, the Periodic Labour Force Survey and
+the Sample Registration System for 15–29-year-olds. The PDF is committed at
+`data/pdf/mospi-youth-in-india-2022.pdf`, fetched in Actions by `.github/workflows/fetch-pdfs.yml` from
+the entry in `data/pdf/fetch.json`. `npm run youth:build` reads nine state-wise statements (9, 15, 23,
+30, 38, 39, 41, 46, 47) into `data/youth/states.json`, in NFHS-6's shape, so the same map shows it: 23
+indicators on early marriage, teenage childbearing, enrolment, gender parity, schooling attained, labour
+force participation, unemployment and youth death rates. Every indicator carries its statement, page,
+compiling agency and its own rounds, which differ by indicator. A row is accepted only with the
+statement's full column count, or with fewer where the page says "Included in…" (a state that did not
+yet exist); split rows — the old Dadra and Nagar Haveli and Daman and Diu rows — are left out and
+listed. Statement 30 (c) is headed 2020-21 but sourced to PLFS 2019-20, as is the report's contents
+page; it is labelled 2019–20. `npm run test:youth` re-reads the PDF and fails if the committed file
+differs, and checks figures read by eye against the printed pages.
+
 ### Child malnutrition by district
 
 `/malnutrition` maps four NFHS-5 (2019–21) district measures — stunting, wasting, underweight and

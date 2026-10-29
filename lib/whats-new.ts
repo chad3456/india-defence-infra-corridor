@@ -69,6 +69,15 @@ export const WHATS_NEW: NewFeature[] = [
     since: "2026-10-26",
   },
   {
+    id: "youth-nfhs6-themes-2026-10",
+    title: "NFHS-6 by theme, and Youth in India 2022",
+    blurb:
+      "NFHS-6's 101 indicators grouped by subject — health, education, early schooling, marriage, relationships and violence, women and men — with a women-minus-men map " +
+      "and computed insights; and MoSPI's Youth in India 2022 read state by state: early marriage, enrolment, gender parity, youth jobs and unemployment.",
+    href: "/malnutrition",
+    since: "2026-10-29",
+  },
+  {
     id: "nfhs6-2026-10",
     title: "NFHS-6, every indicator, by state",
     blurb:
