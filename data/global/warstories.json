@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-29T05:47:45.188Z",
-  "previousBuild": "2026-10-28T21:04:11.417Z",
+  "builtAt": "2026-10-29T15:14:08.013Z",
+  "previousBuild": "2026-10-29T05:47:45.188Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,15 +12,15 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 262,
-    "createdThisRun": 0,
-    "corroboratedThisRun": 0,
+    "stories": 266,
+    "createdThisRun": 4,
+    "corroboratedThisRun": 1,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 221,
     "corroboration": {
-      "one": 224,
-      "two": 15,
+      "one": 227,
+      "two": 16,
       "threePlus": 23
     }
   },
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 136
+      "n": 139
     },
     {
       "id": "autonomy",
@@ -38,7 +38,7 @@
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 31
+      "n": 32
     },
     {
       "id": "targeting",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 42
+      "n": 43
     },
     {
       "iso": "IND",
@@ -98,6 +98,11 @@
       "n": 2
     },
     {
+      "iso": "ISR",
+      "name": "Israel",
+      "n": 1
+    },
+    {
       "iso": "TUR",
       "name": "Türkiye",
       "n": 1
@@ -129,13 +134,13 @@
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 4
+      "kept": 2
     },
     {
       "outlet": "Military Times",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Army Times",
@@ -165,7 +170,7 @@
       "outlet": "Defense News",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Breaking Defense",
@@ -177,7 +182,7 @@
       "outlet": "Defense One",
       "ok": true,
       "items": 19,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Naval News",
@@ -189,7 +194,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -952,6 +957,33 @@
       ]
     },
     {
+      "id": "https://www.militarytimes.com/news/your-military/2026/10/29/us-navy-wants-more-visible-role-for-drone-boats-as-one-deploys-for-the-first-time/",
+      "headline": "US Navy wants more visible role for drone boats as one deploys for the first time",
+      "firstSeen": "2026-10-29",
+      "lastSeen": "2026-10-29",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/news/your-military/2026/10/29/us-navy-wants-more-visible-role-for-drone-boats-as-one-deploys-for-the-first-time/",
+          "published": "2026-10-29"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/naval/2026/10/29/us-navy-wants-more-visible-role-for-drone-boats-as-one-deploys-for-the-first-time/",
+          "published": "2026-10-29"
+        }
+      ]
+    },
+    {
       "id": "https://www.armytimes.com/video/2026/10/27/building-a-power-layer-for-the-robotic-battlefield-chariot-defense/",
       "headline": "Building a power layer for the robotic battlefield — Chariot Defense",
       "firstSeen": "2026-10-27",
@@ -1317,6 +1349,62 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://www.defenseone.com/business/2026/10/defense-business-brief-tech-edge-pacfleet-talks-cyber-and-more/416906/",
+      "headline": "Defense Business Brief: Tech at the edge; PACFLEET talks cyber; and more",
+      "firstSeen": "2026-10-29",
+      "lastSeen": "2026-10-29",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defense One",
+          "url": "https://www.defenseone.com/business/2026/10/defense-business-brief-tech-edge-pacfleet-talks-cyber-and-more/416906/",
+          "published": "2026-10-29"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-military-trains-on-palletized-suads-anti-drone-system/",
+      "headline": "U.S. military trains on palletized SUADS anti-drone system",
+      "firstSeen": "2026-10-29",
+      "lastSeen": "2026-10-29",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-military-trains-on-palletized-suads-anti-drone-system/",
+          "published": "2026-10-29"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/israels-smart-shooter-exports-drone-killing-weapon-station-to-asia/",
+      "headline": "Israel’s Smart Shooter exports drone-killing weapon station to Asia",
+      "firstSeen": "2026-10-29",
+      "lastSeen": "2026-10-29",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "ISR",
+          "name": "Israel"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/israels-smart-shooter-exports-drone-killing-weapon-station-to-asia/",
+          "published": "2026-10-29"
         }
       ]
     },
