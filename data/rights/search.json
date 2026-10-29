@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-29T06:32:27.830Z",
+  "builtAt": "2026-10-29T15:35:59.249Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -11,15 +11,15 @@
   ],
   "counts": {
     "items": 1317,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 1314,
+    "addedThisRun": 0,
+    "carriedFromEarlierRuns": 1317,
     "withOutlet": 1226,
     "bySubject": {
       "scst": 901,
       "pmshri": 416
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 222
+    "offSubjectDropped": 191
   },
   "byFacet": [
     {
@@ -298,7 +298,7 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "act-registered",
@@ -306,19 +306,19 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 3,
-      "kept": 1,
-      "offSubject": 14
+      "bing": 4,
+      "kept": 0,
+      "offSubject": 15
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 99,
+      "google": 29,
       "bing": 1,
       "kept": 0,
-      "offSubject": 46
+      "offSubject": 6
     },
     {
       "id": "act-atrocity",
@@ -327,7 +327,7 @@
       "expect": "use",
       "google": 52,
       "bing": 7,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 8
     },
     {
@@ -335,40 +335,40 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 49,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 4
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 15,
+      "google": 59,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 20
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 30,
+      "google": 98,
       "bing": 1,
-      "kept": 1,
-      "offSubject": 4
+      "kept": 0,
+      "offSubject": 45
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 26,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 3
     },
     {
       "id": "act-misuse-claim",
@@ -385,20 +385,20 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 14,
+      "google": 26,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 2
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 49,
+      "google": 22,
       "bing": 1,
       "kept": 0,
-      "offSubject": 17
+      "offSubject": 6
     },
     {
       "id": "act-fabricated",
@@ -415,8 +415,8 @@
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 33,
-      "bing": 10,
+      "google": 34,
+      "bing": 11,
       "kept": 0,
       "offSubject": 2
     },
@@ -425,50 +425,50 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 42,
+      "google": 10,
       "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 0
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 65,
+      "google": 10,
       "bing": 1,
       "kept": 0,
-      "offSubject": 24
+      "offSubject": 5
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 49,
+      "google": 8,
       "bing": 2,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 0
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 13,
-      "bing": 2,
+      "google": 43,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 5
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 24,
-      "bing": 2,
+      "google": 27,
+      "bing": 3,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 13
     },
     {
       "id": "shri-nep",
@@ -11248,7 +11248,8 @@
       "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNREphcDM3dHZxT1pLMVgyeTRrOFdPcV9EXzFvSlZGMXMwdUJCWmNTbWFMVmU4SmQzUDFhRVlxM0hDSjhBNDlNREkxOWFpQ0dQVEFoNzBuZUpRYmFGWDVSQ3NJbUJTcGc5NkwxMUZXMTlteFVVUW1MV0YxcmFnaTVpZ3hJQ3BwVWNSNUNBTms0M056QzFoLXRlbzVsZHI5dzdSNVFlVEIzaTN5Y1MzNTdaR3ZNdmRYQlZpaGRHSnh5T2ZuVXPSAcoBQVVfeXFMT0htNTlxWmVXcUFpbGI1dmhtUDBMclJNeDQ2RU9DQVZRdlJSSVVZUllYOHY5UUp1R1pxakZGOWhpVnVpQlRuUUJjeDduUFlFZ1FDWnZSWHZudUZuOUViMDdES09EWFYxRkpIUXp4bjllcHFXQkZHZk9waVNicGROVHVTby11MldpQVozTFBlQk91ekxEelJXaC1OX1JWTmh4cTNqaXNOZkQwdjBMMGN0RDAzYklGRWJHdkpGNWh4S2w4RkUySkJQX25IQQ?oc=5",
       "queries": [
         "shri-mou",
-        "shri-nep"
+        "shri-nep",
+        "shri-funds"
       ],
       "indexes": [
         "google"
@@ -19162,7 +19163,8 @@
       "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPV1drNVVSeVgzMGRxYkJrcm8yQ0VWckZTNVBTODVDMmp1bzRfMDF5cGNJXzFqZzBZbmlINkxIRm1Kb0lHOTJzSUlOT09TSkdweHVhZEtPZzc2SVlPbHJoYnczdHZjR2JwZ1hDQndzWXJGdDFjQWREdmozYWlkclhtbVBJYXZpVDlxb2Y3Z1FkOEVodmVCaG9PVjdlVU5lQW91bC14dnpnUFc5SzZqQ05lQWMxMV9OV2hVaGJoUHdnZXpiUF9Mam9lb1Z2RGtMWlVnMlB2UEc3cGN1MlNGTWNkaGhxUkVhR1BiaFpPbU1zNA?oc=5",
       "queries": [
         "shri-general",
-        "shri-sanctioned"
+        "shri-sanctioned",
+        "shri-withheld"
       ],
       "indexes": [
         "google",
@@ -19198,7 +19200,8 @@
         "shri-general",
         "shri-sanctioned",
         "shri-mou",
-        "shri-withheld"
+        "shri-withheld",
+        "shri-funds"
       ],
       "indexes": [
         "bing"
@@ -21476,7 +21479,8 @@
       "published": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9pa1pHcjc2VkkyajU3SUxJSlhza0dRWnlxcEJ1UlRVRGxsQy1vbF9mV004RkdZRzcwdFZOY0pzR3RTVUJsS1RkNUdoZE9XN3ozd3VmWG1ZaTBRMDh1UmxpQnBBY2Y2N2FUTU83V1RKZVNXN2tw?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-pendency"
       ],
       "indexes": [
         "google"
