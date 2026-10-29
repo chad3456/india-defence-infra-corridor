@@ -31,16 +31,12 @@ jobs:
           node-version: "22"
           cache: npm
       - run: npm ci
-      - name: Diagnose the connection
-        continue-on-error: true
+      - name: Trust the emSign chain IIPS sends
         run: |
-          for h in www.nfhsiips.in nfhsiips.in rchiips.org main.mohfw.gov.in; do
-            echo "== $h"; getent hosts "$h" || echo "no DNS answer"
-            timeout 25 openssl s_client -connect "$h:443" -servername "$h" -showcerts </dev/null 2>&1 | grep -E "^ ?[0-9] s:|i:|Verify return code|connect:|errno" | head -12 || true
-            curl -sS -o /dev/null -w "https %{http_code} %{remote_ip} %{time_total}s\n" --max-time 30 "https://$h/" || true
-            curl -sS -o /dev/null -w "http %{http_code} %{remote_ip} %{time_total}s\n" --max-time 30 "http://$h/" || true
-          done
-          curl -sS -I --max-time 40 "https://www.nfhsiips.in/nfhsuser/assets/National%20Family%20Health%20Survey%20(NFHS-6)%202023-2024%20Fact%20Sheets.pdf" || true
+          .github/scripts/emsign-chain.sh www.nfhsiips.in "$RUNNER_TEMP/emsign-chain.pem"
+          echo "NODE_EXTRA_CA_CERTS=$RUNNER_TEMP/emsign-chain.pem" >> "$GITHUB_ENV"
+          cat /etc/ssl/certs/ca-certificates.crt "$RUNNER_TEMP/emsign-chain.pem" > "$RUNNER_TEMP/bundle.pem"
+          curl -sS -I --cacert "$RUNNER_TEMP/bundle.pem" --max-time 40 "https://www.nfhsiips.in/nfhsuser/release-details.php" | head -5 || true
       - name: Probe
         run: npx tsx scripts/etl/probe-nfhs6.ts
       - name: Commit the probe report
