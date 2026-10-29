@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-28T21:22:50.809Z",
+  "builtAt": "2026-10-29T06:32:27.830Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,29 +10,29 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1314,
+    "items": 1317,
     "addedThisRun": 3,
-    "carriedFromEarlierRuns": 1311,
-    "withOutlet": 1223,
+    "carriedFromEarlierRuns": 1314,
+    "withOutlet": 1226,
     "bySubject": {
-      "scst": 898,
+      "scst": 901,
       "pmshri": 416
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 176
+    "offSubjectDropped": 222
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 648
+      "n": 649
     },
     {
       "key": "use",
-      "n": 462
+      "n": 463
     },
     {
       "key": "acquittal",
-      "n": 69
+      "n": 70
     },
     {
       "key": "dispute",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 93
+      "n": 94
     },
     {
       "key": "The Indian Express",
@@ -70,7 +70,7 @@
     },
     {
       "key": "India Today",
-      "n": 34
+      "n": 35
     },
     {
       "key": "Hindustan Times",
@@ -82,7 +82,7 @@
     },
     {
       "key": "Verdictum",
-      "n": 28
+      "n": 29
     },
     {
       "key": "ThePrint",
@@ -297,28 +297,28 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 6
+      "kept": 0,
+      "offSubject": 7
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 47,
+      "google": 100,
       "bing": 3,
-      "kept": 0,
-      "offSubject": 4
+      "kept": 1,
+      "offSubject": 14
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 99,
       "bing": 1,
       "kept": 0,
-      "offSubject": 47
+      "offSubject": 46
     },
     {
       "id": "act-atrocity",
@@ -327,7 +327,7 @@
       "expect": "use",
       "google": 52,
       "bing": 7,
-      "kept": 2,
+      "kept": 1,
       "offSubject": 8
     },
     {
@@ -345,19 +345,19 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 60,
+      "google": 15,
       "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 2
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 28,
+      "google": 30,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 4
     },
     {
@@ -365,10 +365,10 @@
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 9,
+      "google": 26,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 8
     },
     {
       "id": "act-misuse-claim",
@@ -398,17 +398,17 @@
       "google": 49,
       "bing": 1,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 17
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 9,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 4
     },
     {
       "id": "shri-general",
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 33,
-      "bing": 9,
+      "bing": 10,
       "kept": 0,
       "offSubject": 2
     },
@@ -425,40 +425,40 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 10,
-      "bing": 2,
+      "google": 42,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 5
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 10,
+      "google": 65,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 24
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 8,
+      "google": 49,
       "bing": 2,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 13
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
-      "bing": 1,
+      "google": 13,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 0
     },
     {
       "id": "shri-withheld",
@@ -475,20 +475,20 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 52,
+      "google": 28,
       "bing": 4,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 2
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 10,
+      "google": 43,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 33
     }
   ],
   "items": [
@@ -21967,6 +21967,54 @@
         "bing"
       ],
       "firstSeen": "2026-10-28"
+    },
+    {
+      "id": "bombay high court dismisses petition to quash fir in sc st atrocity case chargesheet filed",
+      "headline": "Bombay High Court Dismisses Petition to Quash FIR in SC/ST Atrocity Case — Chargesheet Filed, Petitioner May Seek Discharge. Caste of Accused Need Not Be Mentioned in FIR as Per Supreme Court Decisions.",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-10-24",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5PUWdWRzVld29JMWM0UDljQVVheG5lRDdlc05ZY185cF85dkozallRQUtnUXRmNWVYMHZlYVZmNXd3bGItaWVKYlVsX19GTkFBUGhLTw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-29"
+    },
+    {
+      "id": "kerala police arrests sdpi leader in dalit activist assault case",
+      "headline": "Kerala Police arrests SDPI leader in Dalit activist assault case",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "India Today",
+      "published": "2022-07-05",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPMm5mdzlSRjJsd2NYeEdUX0hoX3labkVSZ2x5dkdEbHRCeXZ2UWN6TWQ1UV9LS0c3MkZJbWhiblEwYkdxMDBNOC1PX0IxYnQxTHNoWXNzaHpXQ0QtUnd5MHBxUFVCSlhOZVRpNllQRnQwd3VVbWd0TkhuOWdfempyLXdqTlhmQ2ZEcmktTUpINTdsNTY5TnV2N0dlRzVSOHFnSlZaOHNwSi1EY0F4M1dpRjlEUmNvX2hTU3fSAb8BQVVfeXFMT0s4NnZwYWJkYkp0TUpkTFZWVG5nT3pLNnhnUGtUUWZNaTlYTFdRMFpfSlNXcGJUSlNZSnBzeEt4ajRpMV9PM1Vhb2t1QnFCWi1kcmRUYnhQZWN6aW5XdWNNZ1VNZ09KaTJYc1VyNlBLNTZLa0l5cjJIaGwyT0ItMDdXaDZKTllwdVVKVllURy0yN0tVWUtmRFIzUmVWbXotWlZJRVlfQ1VoZzNZVWx4VVRYWVVMQVY5dmgycW5GNTQ?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-29"
+    },
+    {
+      "id": "offence u s 3 sc st act not made out when no one other than complainant s family members w",
+      "headline": "Offence U/S. 3 SC-ST Act Not Made Out When No One Other Than Complainant’s Family Members Were Present In ...",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Verdictum",
+      "published": "2025-04-08",
+      "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxQaS1JWGhwRkZJdWxrU2R6SHBQUDJNMDIzVmtVMDJxNlQzQmVrTGJCSE1zdS1yOHJVTEZ2ZFppeTBzNmtaSmZHVlJUeFlMaTZUZFVWcGZ3UWdsTG1HQ3kzdGpkU3hWdUp4XzdVdGJSODRPWGZCS0xqRmNtd1hPQ2k2dU9XRDlVbFZDbkR3dFB4SVZid1ZyTlZHcUxQSzJlUXpQSlhQX21MMkpZSTZwU2hOSmNyUjA3cnkzMEJha1FpUUdHOUNGNW5sTkZzbXFRTkd0Uldadzd6SGgzWmhoX1BuckVJTWU2M25hUWhoQUQwTzM2dURwMlJjb29BS1NtcExfTXUzYTByYVl2TTl3T2o40gGUAkFVX3lxTE1MTTVlUW0tUnE4MFdBYU1OZDNCU3JIcC1VOEN6Z3V3WWpLWXl5YVRCTXpCR1QyS1M5TDZpSlNlUWViLTlpQUhleUQtanZTYTUzR2tFMVJrM1lJMVhGbjhGMm5BcVIyazZOcS0tcWZUU3p4d2pnVFZPWjc1ZmNlR1ZqbUJEZVFpTUFjdHVxRVI5SkNtWFVRdGwtWEdwZ2dlVS1wZVhIY1lMdHJTaGJ5MWhIQ1lBNDJRcHVRVFhNLXB5QmtxX2MzdXptWHRkVHQxSjRxWUthM3ZBWm85WFVEVS1yNXZMeWMySnZ3YmpZWFd6M3ZMaEFWdlVXWnRmQ0ZNUEVvRkpPX1pqZFAyQ29MVFFnel9xQw?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-29"
     }
   ]
 }
