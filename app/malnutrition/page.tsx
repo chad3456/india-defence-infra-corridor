@@ -1,7 +1,9 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { MalnutritionMap } from "@/components/malnutrition/MalnutritionMap";
+import { MalnutritionTabs } from "@/components/malnutrition/MalnutritionTabs";
 import { malnutritionMap } from "@/lib/malnutrition-map";
+import { loadNfhs6 } from "@/lib/nfhs6-load";
+import { cellOf } from "@/lib/nfhs6";
 import { MEASURE, MEASURES, bandOf, rampFor, ranked, shareAtOrAbove, stateKey, type MeasureId } from "@/lib/malnutrition";
 
 /**
@@ -13,7 +15,7 @@ import { MEASURE, MEASURES, bandOf, rampFor, ranked, shareAtOrAbove, stateKey, t
 
 export const metadata = {
   title: "Child malnutrition, district by district · Bharat Tracker",
-  description: "An interactive dark map of stunting, wasting, underweight and anaemia among India's children under five in every surveyed district (NFHS-5, 2019–21), coloured by WHO severity thresholds, with state and national comparisons and NFHS-6's newer national figures.",
+  description: "An interactive dark map of every NFHS-6 (2023–24) indicator by state, read from IIPS's fact sheets, and of stunting, wasting, underweight and anaemia in every surveyed district (NFHS-5, 2019–21), coloured by WHO severity thresholds, with the change between rounds.",
 };
 
 interface Src { id: string; publisher: string; title: string; url: string; published: string | null; tier: number }
@@ -23,7 +25,7 @@ interface Published {
   nfhs6: {
     released: { national: string; districts: string; sources: string[] };
     fieldwork: string; districts: number;
-    national: Array<{ measure: MeasureId; value: number | null; disputed?: string; sources: string[] }>;
+    national: Array<{ measure: MeasureId; value: number | null; disputed?: string; note?: string; sources: string[] }>;
     severeWasting: { nfhs5: number; nfhs6: number; sources: string[] };
   };
 }
@@ -43,6 +45,8 @@ export default function MalnutritionPage() {
     return (<article><h1 className="mal-title">Child malnutrition, district by district</h1><p className="mal-lede">The district files this page is built from are not in this build.</p></article>);
   }
 
+  const n6data = loadNfhs6(data.districts);
+  const india6 = n6data.states?.geos.India;
   const veryHighStunting = shareAtOrAbove(data.districts, "stunting", 30);
   const veryHighWasting = shareAtOrAbove(data.districts, "wasting", 15);
   const severeAnaemia = shareAtOrAbove(data.districts, "anaemia", 40);
@@ -56,12 +60,13 @@ export default function MalnutritionPage() {
 
   return (
     <article className="mt-5">
-      <p className="mal-eyebrow">India · Health · Children under five · NFHS-5 districts</p>
+      <p className="mal-eyebrow">India · Health · NFHS-6 (2023–24) by state · NFHS-5 (2019–21) by district</p>
       <h1 className="mal-title">Where India&apos;s children are not growing</h1>
       <p className="mal-lede">
         More than a third of India&apos;s children under five — {pc(data.national.stunting.nfhs5)} in NFHS-5 — were too short for their age. That average hides a country of
         extremes: {pc(worst("stunting").v.stunting)} of small children were stunted in {worst("stunting").name}, {pc(best("stunting").v.stunting)} in {best("stunting").name}. This map shows every district the National Family Health Survey measured, on four
-        measures of undernutrition, coloured by the thresholds WHO uses to call a level of malnutrition low or very high.
+        measures of undernutrition, coloured by the thresholds WHO uses to call a level of malnutrition low or very high — and every one of NFHS-6&apos;s 101 indicators, from
+        stunting to schooling, internet use, blood sugar and spousal violence, by state, with the change since NFHS-5.
       </p>
 
       <div className="mal-stats">
@@ -89,15 +94,15 @@ export default function MalnutritionPage() {
           })}
         </div>
         <p className="mal-note">
-          NFHS-6 was surveyed {pub.nfhs6.fieldwork} in {pub.nfhs6.districts} districts. Its national fact sheet came out on {day(pub.nfhs6.released.national)}, and the district fact
-          sheets on {day(pub.nfhs6.released.districts)} — as PDF compendiums behind a guest login, which this site cannot yet read. Until it can, the map below is NFHS-5 (2019–21),
-          the newest district data the site holds. Severe wasting fell from {pub.nfhs6.severeWasting.nfhs5}% to {pub.nfhs6.severeWasting.nfhs6}%, by one report. NFHS-5 values above are the DHS
-          Program&apos;s. <Cite ids={[...pub.nfhs6.released.sources, ...pub.nfhs6.severeWasting.sources, "dhs-api"]} />
+          NFHS-6 was surveyed {pub.nfhs6.fieldwork} in {pub.nfhs6.districts} districts, every state and UT but Manipur. These figures are read directly from IIPS&apos;s India and
+          State/UT fact sheet, released {day(pub.nfhs6.released.national)}{india6 ? <> — severe wasting {pc(cellOf(india6, 71, "prev"))} → {pc(cellOf(india6, 71, "total"))}, overweight {pc(cellOf(india6, 73, "prev"))} → {pc(cellOf(india6, 73, "total"))}</> : null}; the press reports
+          beside them are cross-checks. {pub.nfhs6.national.find((x) => x.note)?.note} District fact sheets followed on {day(pub.nfhs6.released.districts)}, as compendiums behind
+          IIPS&apos;s download form; {n6data.districtRows ? "they are on the map below." : "they are not on the map yet — the map shows NFHS-6 by state and NFHS-5 by district."} <Cite ids={[...pub.nfhs6.released.sources, "dhs-api"]} />
         </p>
       </section>
 
       <section className="mt-8" aria-label="District map">
-        <MalnutritionMap data={data} />
+        <MalnutritionTabs data={data} nfhs6={n6data.states} stateOf={n6data.stateOf} districtRows={n6data.districtRows} />
       </section>
 
       <section className="mt-12">

@@ -24,20 +24,11 @@ import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { extractPages } from "../lib/pdf-table";
-import { isPercent, marksOf, parsePage, type Nfhs6Indicator, type Nfhs6Row, type Nfhs6States, type ParsedRow } from "../../../lib/nfhs6";
+import { KNOWN_MISPRINTS, isPercent, marksOf, misprinted, parsePage, sameLabel, type Nfhs6Indicator, type Nfhs6Row, type Nfhs6States, type ParsedRow } from "../../../lib/nfhs6";
 
 const FACT_SHEETS = "https://www.nfhsiips.in/nfhsuser/assets/National%20Family%20Health%20Survey%20(NFHS-6)%202023-2024%20Fact%20Sheets.pdf";
 const UA = "BharatTracker/0.1 (+https://github.com/chad3456/india-defence-infra-corridor)";
 const DIR = join(process.cwd(), "data", "nfhs6");
-
-const squash = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
-/** Two labels for one indicator: the same once spacing is ignored, allowing a letter or two clipped in extraction. */
-export function sameLabel(a: string, b: string): boolean {
-  const x = squash(a).slice(0, 60), y = squash(b).slice(0, 60);
-  if (x === y) return true;
-  const k = Math.min(x.length, y.length);
-  return k >= 20 && x.slice(0, k - 2) === y.slice(0, k - 2);
-}
 
 /** Pages a run could not read cleanly, with their positioned fragments, so the layout can be looked at. */
 async function writeDebug(pageNumbers: number[]) {
@@ -86,16 +77,6 @@ function toRows(rows: ParsedRow[]): Nfhs6Row[] {
   });
 }
 
-/**
- * Labels the fact sheet itself misprints on some state pages. The row's
- * position and its values' scale show which indicator it is; India's label
- * is used and the misprint is noted rather than hidden.
- */
-export const KNOWN_MISPRINTS: Array<{ n: number; printed: RegExp; why: string }> = [
-  { n: 86, printed: /^Mildly elevated blood pressure/i, why: "printed with #84's wording on some state pages; its values sit at #86's place and scale (elevated or on medicine)" },
-];
-export const misprinted = (n: number, label: string) => KNOWN_MISPRINTS.some((m) => m.n === n && m.printed.test(label));
-
 /** The gates. Returns the reasons a file must not be written. */
 export function gate(indicators: Nfhs6Indicator[], geos: Map<string, ParsedRow[]>, minGeos: number, minIndicators: number): string[] {
   const fails: string[] = [];
@@ -131,7 +112,8 @@ async function states(): Promise<{ written: boolean; errors: string[] }> {
   for (const [g, rows] of geos) for (const r of rows) if (r.n !== 0 && misprinted(r.n, r.label) && !sameLabel(indicators.find((i) => i.n === r.n)?.label ?? "", r.label)) problems.push(`${g} #${r.n}: ${KNOWN_MISPRINTS.find((m) => m.n === r.n)!.why}`);
   const fails = gate(indicators, geos, 31, indicators.length - 3);
   // Every page with a problem or a failed row goes to the debug file, written either way.
-  const badPages = new Set<number>(problems.map((p) => Number(/^page (\d+)/.exec(p)?.[1])).filter((x) => x > 0));
+  // Pages without a geography heading are the cover, contents and appendix tables: expected, not worth dumping.
+  const badPages = new Set<number>(problems.filter((p) => !/no geography heading/.test(p)).map((p) => Number(/^page (\d+)/.exec(p)?.[1])).filter((x) => x > 0));
   for (const f of fails) { const m = /^(.+) #(\d+):/.exec(f); const row = m ? geos.get(m[1]!)?.find((r) => r.n === Number(m[2])) : undefined; const pg = row ? rowPage.get(row) : undefined; if (pg) badPages.add(pg); }
   if (badPages.size) await writeDebug([...badPages].slice(0, 12));
   if (fails.length) return { written: false, errors: [`gate failed: ${fails.length} problems`, ...fails.slice(0, 40), ...problems.slice(0, 20)] };

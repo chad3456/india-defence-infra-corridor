@@ -221,3 +221,25 @@ export function displayLabel(ind: Nfhs6Indicator): string {
   const m = / · (Women|Men)$/.exec(ind.section);
   return m ? `${ind.label} (${m[1]!.toLowerCase()})` : ind.label;
 }
+
+/* ── Comparing labels across geographies ───────────────────────────────── */
+
+const squash = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+/** Two labels for one indicator: the same once spacing is ignored, allowing a letter or two clipped in extraction. */
+export function sameLabel(a: string, b: string): boolean {
+  const x = squash(a).slice(0, 60), y = squash(b).slice(0, 60);
+  if (x === y) return true;
+  const k = Math.min(x.length, y.length);
+  return k >= 20 && x.slice(0, k - 2) === y.slice(0, k - 2);
+}
+
+/**
+ * Labels the fact sheet itself misprints on some state pages. The row's
+ * position and its values' scale show which indicator it is; India's label
+ * is used and the misprint is noted rather than hidden.
+ */
+export const KNOWN_MISPRINTS: Array<{ n: number; printed: RegExp; why: string }> = [
+  { n: 86, printed: /^Mildly elevated blood pressure/i, why: "printed with #84's wording on some state pages; its values sit at #86's place and scale (elevated or on medicine)" },
+];
+export const misprinted = (n: number, label: string) => KNOWN_MISPRINTS.some((m) => m.n === n && m.printed.test(label));
+

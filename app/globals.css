@@ -2474,3 +2474,25 @@ figcaption .bk-note { margin: 0; font-size: 12px; }
   .mal-row > .relative { flex: 1 1 100%; }
   .mal-hint { display: none; }
 }
+
+/* ── /malnutrition: NFHS-6 tabs and indicator picker ──────────────────── */
+.n6-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; margin-bottom: 12px; }
+.n6-tabs button { text-align: left; border: 1px solid #222d3f; background: #0c1320; border-radius: 10px; padding: 10px 14px; color: #9fb0c6; }
+.n6-tabs button b { display: block; font-size: 16px; color: #dbe4f0; }
+.n6-tabs button span { display: block; font-size: 12px; }
+.n6-tabs button[aria-selected="true"] { border-color: #f58a3d; background: #1a120b; }
+.n6-tabs button[aria-selected="true"] b { color: #ffc08a; }
+.n6-pick { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; }
+.n6-pick .mal-search { width: 220px; }
+.n6-select { flex: 1 1 360px; min-width: 0; max-width: 100%; border-radius: 8px; }
+.n6-select optgroup { color: #8798ae; font-style: normal; }
+.n6-select option { color: #dbe4f0; background: #0c1320; }
+.mal-seg button:disabled { opacity: 0.4; cursor: not-allowed; }
+.n6-mini { width: 100%; margin-top: 8px; border-collapse: collapse; font-size: 12px; }
+.n6-mini td { padding: 3px 4px; border-bottom: 1px solid #141c29; vertical-align: top; color: #dbe4f0; }
+.n6-mini td + td { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; color: #ffc08a; }
+.n6-mini td.n6-dim { color: #7d8ea5; }
+.n6-mini tr { cursor: pointer; }
+.n6-mini tr:hover td, .n6-mini tr.n6-on td { background: #172235; }
+.n6-profile { max-height: 60svh; overflow-y: auto; margin-top: 6px; padding-right: 4px; }
+@media (max-width: 640px) { .n6-pick .mal-search { width: 100%; } }

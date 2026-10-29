@@ -69,6 +69,15 @@ export const WHATS_NEW: NewFeature[] = [
     since: "2026-10-26",
   },
   {
+    id: "nfhs6-2026-10",
+    title: "NFHS-6, every indicator, by state",
+    blurb:
+      "All 101 indicators of the 2023–24 National Family Health Survey, read from IIPS's own fact sheets, on the dark map: stunting, vaccination, " +
+      "schooling, internet use, blood sugar, spousal violence — total, urban and rural, and the change since NFHS-5, with every state's full profile.",
+    href: "/malnutrition",
+    since: "2026-10-29",
+  },
+  {
     id: "space-programme-2026-10",
     title: "India's space programme, from Thumba to the Moon",
     blurb:

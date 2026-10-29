@@ -385,6 +385,32 @@ and labelled so. Mission costs resting on a single report are labelled "one repo
 are derived. `npm run test:space-programme` checks the citations, that each drawing fills its
 rocket's height, and the arithmetic.
 
+### NFHS-6 (2023–24), every indicator
+
+`/malnutrition` maps all 101 indicators of NFHS-6's India and State/UT fact sheets. The connector
+(`scripts/etl/connectors/nfhs6.ts`, `.github/workflows/nfhs6.yml`, weekly and on a release) downloads
+IIPS's public fact-sheet PDF in GitHub Actions — this sandbox cannot reach IIPS — and commits only
+the extracted figures, `data/nfhs6/states.json`, never the PDF. IIPS serves its certificate with a
+chain whose first path ends at a root current trust stores dropped; the workflow adds the emSign
+intermediates the server itself sends (`.github/scripts/emsign-chain.sh`), so verification stays on.
+
+Each "Key Indicators" page is read by position (`lib/nfhs6.ts`): the header row fixes the Urban,
+Rural, Total and NFHS-5 columns, a value belongs to the column it sits under and to the numbered
+label above it, and footnote marks are dropped. "(n)" values (25–49 unweighted cases) are kept and
+marked; "*" (fewer than 25) is kept as a gap. Nothing is written unless India and 31+ geographies
+read, each carries India's full indicator set (three at most missing), every percentage lies between
+0 and 100, and every label matches India's. The fact sheet prints #86 with #84's wording on two state
+pages; India's label is used and the misprint noted in the file. Change since NFHS-5 is derived from
+the fact sheet's own NFHS-5 column. Stunting and wasting are coloured by WHO thresholds; every other
+indicator by quintiles of the states shown, on a neutral ramp. `npm run test:nfhs6` checks the
+parser against seven real pages (`scripts/fixtures/nfhs6-pages.json`) and the extract against
+independent reporting.
+
+District fact sheets are published as compendiums behind IIPS's download form, which this project
+does not automate. To add them: download the compendiums from IIPS (its guest login), attach the PDFs
+to a GitHub release tagged `nfhs6-districts`, and run the NFHS-6 workflow. The same reader writes
+`data/nfhs6/districts.json` if 300+ districts pass the same gates, and a layout report either way.
+
 ### Child malnutrition by district
 
 `/malnutrition` maps four NFHS-5 (2019–21) district measures — stunting, wasting, underweight and
