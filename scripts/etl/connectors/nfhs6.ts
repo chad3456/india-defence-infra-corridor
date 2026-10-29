@@ -31,10 +31,30 @@ const UA = "BharatTracker/0.1 (+https://github.com/chad3456/india-defence-infra-
 const DIR = join(process.cwd(), "data", "nfhs6");
 
 const squash = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+/** Two labels for one indicator: the same once spacing is ignored, allowing a letter or two clipped in extraction. */
+export function sameLabel(a: string, b: string): boolean {
+  const x = squash(a).slice(0, 60), y = squash(b).slice(0, 60);
+  if (x === y) return true;
+  const k = Math.min(x.length, y.length);
+  return k >= 20 && x.slice(0, k - 2) === y.slice(0, k - 2);
+}
+
+/** Pages a run could not read cleanly, with their positioned fragments, so the layout can be looked at. */
+async function writeDebug(pageNumbers: number[]) {
+  const want = new Set(pageNumbers);
+  const pages = lastPages.filter((p) => want.has(p.page)).map((p) => ({ page: p.page, f: p.fragments.map((x) => [x.text.slice(0, 120), Math.round(x.x * 10) / 10, Math.round(x.y * 10) / 10]) }));
+  await mkdir(DIR, { recursive: true });
+  await writeFile(join(DIR, "debug.json"), JSON.stringify({ writtenAt: new Date().toISOString(), pages }) + "\n");
+}
 
 /** Read every key-indicator page of one PDF into geography → rows. */
+type PageFrags = Awaited<ReturnType<typeof extractPages>>;
+let lastPages: PageFrags = [];
+const rowPage = new WeakMap<ParsedRow, number>();
+
 async function readPdf(bytes: Uint8Array): Promise<{ pages: number; geos: Map<string, ParsedRow[]>; problems: string[] }> {
   const pages = await extractPages(bytes);
+  lastPages = pages;
   const geos = new Map<string, ParsedRow[]>();
   const problems: string[] = [];
   let lastSection = "";
@@ -44,7 +64,7 @@ async function readPdf(bytes: Uint8Array): Promise<{ pages: number; geos: Map<st
     if (!out.geo) { problems.push(`page ${pg.page}: no geography heading`); continue; }
     for (const p of out.problems) problems.push(`page ${pg.page} (${out.geo}): ${p}`);
     const rows = geos.get(out.geo) ?? [];
-    for (const r of out.rows) { if (r.section) lastSection = r.section; else r.section = lastSection; rows.push(r); }
+    for (const r of out.rows) { if (r.section) lastSection = r.section; else r.section = lastSection; rowPage.set(r, pg.page); rows.push(r); }
     geos.set(out.geo, rows);
   }
   return { pages: pages.length, geos, problems };
@@ -70,7 +90,7 @@ export function gate(indicators: Nfhs6Indicator[], geos: Map<string, ParsedRow[]
     if (ns.size !== rows.length) fails.push(`${geo}: an indicator number appears twice`);
     for (const r of rows) {
       const ref = byN.get(r.n);
-      if (ref && squash(ref.label).slice(0, 40) !== squash(r.label).slice(0, 40)) fails.push(`${geo} #${r.n}: label differs from India's ("${r.label.slice(0, 60)}")`);
+      if (ref && !sameLabel(ref.label, r.label)) fails.push(`${geo} #${r.n}: label differs from India's ("${r.label.slice(0, 60)}")`);
       if (isPercent(r.unit)) for (const c of Object.values(r.cells)) if (c?.v != null && (c.v < 0 || c.v > 100)) fails.push(`${geo} #${r.n}: ${c.v}% out of range`);
     }
   }
@@ -92,6 +112,10 @@ async function states(): Promise<{ written: boolean; errors: string[] }> {
   if (!india) return { written: false, errors: ["no India pages found", ...problems.slice(0, 20)] };
   const indicators: Nfhs6Indicator[] = india.map((r) => ({ n: r.n, label: r.label, unit: r.unit, section: r.section }));
   const fails = gate(indicators, geos, 31, 90);
+  // Every page with a problem or a failed row goes to the debug file, written either way.
+  const badPages = new Set<number>(problems.map((p) => Number(/^page (\d+)/.exec(p)?.[1])).filter((x) => x > 0));
+  for (const f of fails) { const m = /^(.+) #(\d+):/.exec(f); const row = m ? geos.get(m[1]!)?.find((r) => r.n === Number(m[2])) : undefined; const pg = row ? rowPage.get(row) : undefined; if (pg) badPages.add(pg); }
+  if (badPages.size) await writeDebug([...badPages].slice(0, 12));
   if (fails.length) return { written: false, errors: [`gate failed: ${fails.length} problems`, ...fails.slice(0, 40), ...problems.slice(0, 20)] };
   const out: Nfhs6States = {
     source: { url: FACT_SHEETS, title: "National Family Health Survey (NFHS-6), 2023-24: India and State/UT Fact Sheets", released: "2026-05-29", publisher: "IIPS and Ministry of Health and Family Welfare" },

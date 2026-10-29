@@ -58,7 +58,7 @@ jobs:
         run: npx tsx scripts/etl/connectors/nfhs6.ts
       - name: Commit
         run: |
-          for f in data/nfhs6/states.json data/nfhs6/districts.json data/nfhs6/district-report.json; do
+          for f in data/nfhs6/states.json data/nfhs6/districts.json data/nfhs6/district-report.json data/nfhs6/debug.json; do
             if [ -f "$f" ] && [ -n "$(git status --porcelain "$f")" ]; then
               .github/scripts/commit-generated.sh "$f" "data(nfhs6): $(basename "$f" .json) $(date -u +'%Y-%m-%d %H:%M')"
             fi
