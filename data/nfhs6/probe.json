@@ -1,5 +1,5 @@
 {
- "probedAt": "2026-10-29T06:14:17.805Z",
+ "probedAt": "2026-10-29T06:15:56.008Z",
  "pages": [
   {
    "url": "https://www.nfhsiips.in/",
@@ -7,6 +7,12 @@
    "finalUrl": "https://www.nfhsiips.in/nfhsuser/index.php",
    "bytes": 45491,
    "forms": [],
+   "pdfStrings": [
+    "files/rfp.pdf"
+   ],
+   "scripts": [
+    " function showSweetAlert(message) { Swal.fire({ icon: 'error', title: 'Validation Error', html: message, // Use html for potential bolding confirmButtonText: 'Understood', confirmButtonColor: '#3085d6' }); } $.fn.DataTable.ext.pager.numbers_length=9; $('#sampleTable').DataTable( { responsive: true, scrollX: false, \"pagingType\": \"full_numbers\", layout: { topStart: { buttons: [ { extend: 'pdfHtml5', filename: 'RequestList_' + new Date().toISOString().slice(0,10), text: '<button type=\"button\" class=\"btn btn-link\"><i class=\"bi bi-file-earmark-pdf\"></i> PDF</button>', titleAttr: 'Export to PDF', orientation: 'landscape', exportOptions: { columns: ':visible' // or specify columns } }, { extend: 'excelHtml5', filename: 'RequestList_' + new Date().toISOString().slice(0,10), text: '<button type=\"button\" class=\"btn btn-link\"><i class=\"bi bi-file-earmark-excel\"></i> Excel</button>', titleAttr: 'Export to Excel' }, { extend: 'print', filename: 'RequestList_' + new Date().toISOString().slice(0,10), text: '<button type=\"button\" class=\"btn btn-link\"><i class=\"bi bi-printer\"></i> Print</button>', titleAttr: 'Sent to Printer' } ]} }, }); "
+   ],
    "links": [
     {
      "href": "https://www.nfhsiips.in/nfhsuser/nfhs6.php",
@@ -57,6 +63,11 @@
    "finalUrl": "https://www.nfhsiips.in/nfhsuser/release-details.php",
    "bytes": 23224,
    "forms": [],
+   "pdfStrings": [],
+   "scripts": [
+    " function showSweetAlert(message) { Swal.fire({ icon: 'error', title: 'Validation Error', html: message, // Use html for potential bolding confirmButtonText: 'Understood', confirmButtonColor: '#3085d6' }); } $.fn.DataTable.ext.pager.numbers_length=9; $('#sampleTable').DataTable( { responsive: true, scrollX: false, \"pagingType\": \"full_numbers\", layout: { topStart: { buttons: [ { extend: 'pdfHtml5', filename: 'RequestList_' + new Date().toISOString().slice(0,10), text: '<button type=\"button\" class=\"btn btn-link\"><i class=\"bi bi-file-earmark-pdf\"></i> PDF</button>', titleAttr: 'Export to PDF', orientation: 'landscape', exportOptions: { columns: ':visible' // or specify columns } }, { extend: 'excelHtml5', filename: 'RequestList_' + new Date().toISOString().slice(0,10), text: '<button type=\"button\" class=\"btn btn-link\"><i class=\"bi bi-file-earmark-excel\"></i> Excel</button>', titleAttr: 'Export to Excel' }, { extend: 'print', filename: 'RequestList_' + new Date().toISOString().slice(0,10), text: '<button type=\"button\" class=\"btn btn-link\"><i class=\"bi bi-printer\"></i> Print</button>', titleAttr: 'Sent to Printer' } ]} }, }); "
+   ],
+   "text": " --> --> --> NFHS Nation Family Health Survey --> National Family Health Survey --> Ministry of Health & Family Welfare --> --> स्वास्थ्य एवं परिवार कल्याण मंत्रालय Ministry of Health &amp; Family Welfare स्वास्थ्य एवं परिवार कल्याण विभाग Department of Health &amp; Family Welfare About Us About Us NFHS-1 NFHS-2 NFHS-3 NFHS-4 NFHS-5 NFHS-6 Notices Whats New Press Release Vacancy Tender Media NFHS-6 Media NFHS-4 & NFHS-5 Media Photo Gallery Video Gallery Press Release Speeches E-Book --> Tenders Recent Tenders Awarded Tenders Schemes --> Services --> Documents Publications Questionnaire Manual Event Data --> Data Request Data --> Grievance --> Important Links --> Employees Principal Investigator Project Staff Contact Us Login Login --> Home NFHS-6 Release Details NATIONAL FAMILY HEALTH SURVEY 2023-24 (NFHS-6) Release of NFHS-6 Compendiums of India/State/District Fact Sheets The National Family Health Survey 2023–24 (NFHS-6), the sixth round in the NFHS series, provides comprehensive information on population, health, and nutrition for India and each State/Union Territory (UT), except Manipur. The Ministry of Health and Family Welfare (MoHFW), Government of India designated the International Institute for Population Sciences (IIPS), Mumbai as the nodal agency for conducting NFHS-6. NFHS-6 fieldwork was carried out between May 2023 and December 2024 across 715 districts of the country. The NFHS-6 Compendium of Fact Sheets for India and States/UTs was released on 29 May 2026. The District Fact Sheet Compendiums for Andhra Pradesh (13 districts), Andaman and Nicobar Islands (3 districts), Telangana (33 districts), Jammu and Kashmir (20 districts), Ladakh (2 districts), and Mizoram (8 districts) were released on 20 August 2026 , while the remaining States/UTs were released on 21 August 2026. To access the NFHS-6 Compendiums, use the publication section below. Guest login credentials may be used to log in and download the compendiums. View Release Note (PDF) View / Download Fact Sheets Website policies Terms and Conditions Help Web Information Manager FAQ Feedback Contact Us --> Website Content Managed by NFHS IT Designed, Developed and Hosted by National Family Health Survey (NFHS) Visitor 2511045 ",
    "links": [
     {
      "href": "https://www.nfhsiips.in/nfhsuser/nfhs6.php",
@@ -83,9 +94,15 @@
    "finalUrl": "https://www.nfhsiips.in/nfhsuser/publication.php",
    "bytes": 46021,
    "forms": [
-    "<form class=\"form-horizontal\" enctype=\"multipart/form-data\" method=\"POST\" action=\"/nfhsuser/publication.php\">",
-    "<form class=\"form-horizontal\" enctype=\"multipart/form-data\" method=\"POST\" id=\"modal-form\">"
+    "<form class=\"form-horizontal\" enctype=\"multipart/form-data\" method=\"POST\" action=\"/nfhsuser/publication.php\"> <div class=\"mb-3 row\"> <label class=\"form-label col-md-2\" for=\"nfhsphaseid\">Select Round</label> <div class=\"col-md-6\"> <select class=\"form-control\" id=\"nfhsphaseid\" onchange=\"checkArea()\" required> <option>Select Round</option> <option value= \"1\"> NFHS-1 (1992-93) </option> <option value= \"2\"> NFHS-2 (1998-99) </option> <option value= \"3\"> NFHS-3 (2005-06) </option> <option value= \"4\"> NFHS-4 (2015-16) </option> <option value= \"5\"> NFHS-5 (2019-21) </option> <option value= \"6\"> NFHS-6 (2023-24) </option> </select> </div> </div> <div class=\"mb-3 row\"> <label class=\"form-label col-md-2\" for=\"publicationid\">Select Type*</label> <div class=\"col-md-6\"> <select class=\"form-control\" id=\"publicationid\" name=\"publicationid\" onchange=\"getDiv()\" required> <option value=\"\">Select Type</option> </select> </div> </div> <div id=\"divstatedisplay\"> <div class=\"mb-3 row\"> <label class=\"form-label col-md-2\" for=\"stateid\">Select State*</label> <div class=\"col-md-6\"> <select class=\"form-control\" id=\"stateid\" name=\"stateid\" onchange=\"matchDistrict()\" > <option value=\"\">Select State</option> </select> </div> </div> </div> <div id=\"divstateanddistrict\"> <div class=\"mb-3 row\"> <label class=\"form-label col-md-2\" for=\"stateid1\">Select State*</label> <div class=\"col-md-6\"> <select class=\"form-control\" id=\"stateid1\" name=\"stateid1\" onchange=\"matchDistrict()\" > <option value=\"\">Select State</option> </select> </div> </div> <div class=\"mb-3 row\"> <label class=\"form-label col-md-2\" for=\"districtid\">Select District*</label> <div class=\"col-md-6\"> <select class=\"form-control\" id=\"districtid\" name=\"districtid\" > <option value=\"\">Select District</option> </select> </div> </div> </div> <div id=\"divshowvol\" style=\"display: none\"> <div class=\"mb-3 row\"> <label class=\"form-label col-md-2\" for=\"volumnid\">Select Volume*</label> <div class=\"col-md-6\"> <select class=\"form-control\" id=\"volumnid\" name=\"volumnid\" > <option value=\"\">Select Volume</option> <option value=\"val1\">Volume 1</option> <option value=\"val2\">Volume 2</option> </select> </div> </div> </div> <div class=\"mb-3 row\"> <label class=\"btn-primary\" onclick=\"getUploadFile()\">Search</label> <div class=\"col-md-12\" style=\"text-align: center\"> <label class=\"label label-primary\" id=\"filestatus\"></label> <label class=\"label label-primary\" id=\"filestatus1\" style=\"display: none\">File Not Found</label> <input type=\"hidden\" name=\"folderpath\" id=\"folderpath\"> <input type=\"hidden\" name=\"publicationuploadid\" id=\"publicationuploadid\"> </div> </div> <div class=\"row\" id=\"buttondiv\"> <div class=\"col-md-8 col-md-offset-3\"> <button class=\"btn btn-info\" type=\"button\" data-toggle=\"modal\" onclick=\"checkFile()\"> <i class=\"bi bi-check-circle-fill me-2\"></i>Download</button> &nbsp;&nbsp;&nbsp; <a class=\"btn btn-danger\" href=\"#\" onclick=\"location.reload();\"><i class=\"bi bi-x-circle-fill me-2\"></i>Cancel</a> </div> </div> <br> </form>",
+    "<form class=\"form-horizontal\" enctype=\"multipart/form-data\" method=\"POST\" id=\"modal-form\"> <div class=\"modal-body\"> <div class=\"mb-3 row\"> <label class=\"form-label col-md-2\">Name:</label> <div class=\"col-md-6\"> <input class=\"form-control\" id=\"person_name\" name=\"person_name\" type=\"text\" placeholder=\"Enter Name\" required> </div> </div> <div class=\"mb-3 row\"> <label class=\"form-label col-md-2\" for=\"mobile\">Mobile Number:</label> <div class=\"col-md-6\"> <input class=\"form-control\" id=\"person_mobile\" type=\"tel\" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength=\"10\" pattern=\"[0-9]{10}\" placeholder=\"Enter Mobile Number\" required> </div> </div> <div class=\"mb-3 row\"> <label class=\"form-label col-md-2\" for=\"email\">Email id:</label> <div class=\"col-md-6\"> <input class=\"form-control\" id=\"person_email\" type=\"email\" placeholder=\"Enter Email Address\" required> </div> </div> <div class=\"mb-3 row\"> <label class=\"form-label col-md-2\" for=\"profession\">Profession:</label> <div class=\"col-md-6\"> <input class=\"form-control\" id=\"person_profession\" type=\"text\" placeholder=\"eg. Student/NGO/Institute,Govt.Official etc\" required> </div> </div> <div class=\"mb-3 row\"> <label class=\"form-label col-md-2\" for=\"purpose\">Purpose:</label> <div class=\"col-md-6\"> <input class=\"form-control\" id=\"person_purpose\" type=\"text\" placeholder=\"Purpose\" required> </div> </div> </div> <div class=\"modal-footer\"> <button type=\"submit\" class=\"btn btn-info \">Download</button> <button type=\"button\" class=\"btn btn-danger \" data-bs-dismiss=\"modal\" onclick=\"location.reload();\">Close</button> </div> </form>"
    ],
+   "pdfStrings": [],
+   "scripts": [
+    " function showSweetAlert(message) { Swal.fire({ icon: 'error', title: 'Validation Error', html: message, // Use html for potential bolding confirmButtonText: 'Understood', confirmButtonColor: '#3085d6' }); } $.fn.DataTable.ext.pager.numbers_length=9; $('#sampleTable').DataTable( { responsive: true, scrollX: false, \"pagingType\": \"full_numbers\", layout: { topStart: { buttons: [ { extend: 'pdfHtml5', filename: 'RequestList_' + new Date().toISOString().slice(0,10), text: '<button type=\"button\" class=\"btn btn-link\"><i class=\"bi bi-file-earmark-pdf\"></i> PDF</button>', titleAttr: 'Export to PDF', orientation: 'landscape', exportOptions: { columns: ':visible' // or specify columns } }, { extend: 'excelHtml5', filename: 'RequestList_' + new Date().toISOString().slice(0,10), text: '<button type=\"button\" class=\"btn btn-link\"><i class=\"bi bi-file-earmark-excel\"></i> Excel</button>', titleAttr: 'Export to Excel' }, { extend: 'print', filename: 'RequestList_' + new Date().toISOString().slice(0,10), text: '<button type=\"button\" class=\"btn btn-link\"><i class=\"bi bi-printer\"></i> Print</button>', titleAttr: 'Sent to Printer' } ]} }, }); ",
+    " let selectedstateid=''; let selecteddistid=''; let folderpath=''; $( document ).ready(function() { $(\"#divstatedisplay\").hide(); $(\"#divstateanddistrict\").hide(); $('#nfhsphaseid').prop('selectedIndex',0); $('#publicationid').prop('selectedIndex',0); $('#volumnid').prop('selectedIndex',0); $('#districtid').prop('selectedIndex',0); $(\"#buttondiv\").css('display','none'); }); function matchDistrict() { clearVar(); var nfhsphaseid=$(\"#nfhsphaseid\").val(); var divstateid=$(\"#stateid\").val(); var divstatedistid=$(\"#stateid1\").val(); selectedstateid = divstateid ? divstateid : divstatedistid; //console.log(\"I have id: \"+selectedstateid); $.ajax({ url:\"../js/ajax/ajax_getDistrictList.php\", //the page containing php script type: \"post\", //request type, dataType: 'json', data: {nfhsphaseid:nfhsphaseid, stateid:selectedstateid}, success:function(result) { //console.log(result); if(!$.trim(result)) { $(\"#districtid\").val(\"\"); str=\"<option value=''>Select District</option>\"; $(\"#districtid\").html(str); } else{ //$(\"#selectdistrict\").css(\"display\",\"show\"); var str=\"\"; $.each(result, function(i){ $(\"#districtid\").val(\"\"); str+=\"<option value='\"+result[i].districtid+\"'>\"+result[i].district_name+\"</option>\"; }); $(\"#districtid\").html(\"<option value=''>Select District</option>\"+str); } } }); } function checkArea() { clearVar(); clearDropdown(); document.getElementById(\"divshowvol\").style.display = \"none\"; $('#buttondiv').css('display','none'); $('#divstatedisplay').css('display','none'); $('#divstateanddistrict').css('display','none'); var nfhsphaseid=$(\"#nfhsphaseid\").val(); findPublicationType(nfhsphaseid); } function findPublicationType(argnfhsid) { var nfhsphaseid=argnfhsid; $.ajax({ url:\"../js/ajax/ajax_findPublicationType.php\", //the page containing php script type: \"post\", //request type, dataType: 'json', data: {nfhsphaseid:nfhsphaseid}, success:function(result) { if(!$.trim(result)) { $(\"#publicationid\").val(\"\"); str=\"<option value=''>Select Type</option>\"; $(\"#publicationid\").html(str); } else { var str=\"\"; $.each(result, function(i){ $(\"#publicationid\").val(\"\"); str+=\"<option value='\"+result[i].publicationid+\"'>\"+result[i].publicationtype+\"</option>\"; }); $(\"#publicationid\").html(\"<option value=''>Select Type</option>\"+str); } } }); } function getDiv() { clearVar(); clearDropdown(); document.getElementById(\"divshowvol\").style.display = \"none\"; $(\"#buttondiv\").css('display','none'); $(\"#divstatedisplay\").css('display','none'); $(\"#divstateanddistrict\").css('display','none'); var nfhsphaseid=$(\"#nfhsphaseid\").val(); var publicationid=$(\"#publicationid\").val(); if( (publicationid==4) &&( (nfhsphaseid == 3) || (nfhsphaseid==5) ) ) { document.getElementById(\"divshowvol\").style.display = \"block\"; }else{ document.getElementById(\"divshowvol\").style.display = \"none\"; $.ajax({ url:\"../js/ajax/ajax_checkPublicationType.php\", //the page containing php script type: \"post\", //request type, dataType: 'json', data: {publicationid:publicationid}, success:function(resul"
+   ],
+   "text": " --> --> --> NFHS Nation Family Health Survey --> National Family Health Survey --> Ministry of Health & Family Welfare --> --> स्वास्थ्य एवं परिवार कल्याण मंत्रालय Ministry of Health &amp; Family Welfare स्वास्थ्य एवं परिवार कल्याण विभाग Department of Health &amp; Family Welfare About Us About Us NFHS-1 NFHS-2 NFHS-3 NFHS-4 NFHS-5 NFHS-6 Notices Whats New Press Release Vacancy Tender Media NFHS-6 Media NFHS-4 & NFHS-5 Media Photo Gallery Video Gallery Press Release Speeches E-Book --> Tenders Recent Tenders Awarded Tenders Schemes --> Services --> Documents Publications Questionnaire Manual Event Data --> Data Request Data --> Grievance --> Important Links --> Employees Principal Investigator Project Staff Contact Us Login Login --> Instructions We provide a \"Guest Login\" facility for users who wish to download multiple reports or factsheets without entering their details for each download. Session Validity: The Guest Login is valid for one browser session only . Once you log out or close the browser, you will need to enter your details again to download files. To continue, click Guest Login below. Otherwise, click Close to close this window. Close Guest Login Home Publication Publications Important Note:- After Selection of Proper dropdown you have to click on \"Search\" Button. After That, \"Download\" Button Select Round Select Round NFHS-1 (1992-93) NFHS-2 (1998-99) NFHS-3 (2005-06) NFHS-4 (2015-16) NFHS-5 (2019-21) NFHS-6 (2023-24) Select Type* Select Type Select State* Select State Select State* Select State Select District* Select District Select Volume* Select Volume Volume 1 Volume 2 Search File Not Found Download &nbsp;&nbsp;&nbsp; Cancel Fill Details to Download &times; --> Name: Mobile Number: = 48 && event.charCode Email id: Profession: Purpose: Download Close Website policies Terms and Conditions Help Web Information Manager FAQ Feedback Contact Us --> Website Content Managed by NFHS IT Designed, Developed and Hosted by National Family Health Survey (NFHS) Visitor 2511046 ",
    "links": [
     {
      "href": "https://www.nfhsiips.in/nfhsuser/nfhs6.php",
@@ -104,6 +121,10 @@
    "finalUrl": "https://www.nfhsiips.in/nfhsuser/nfhs6.php",
    "bytes": 19812,
    "forms": [],
+   "pdfStrings": [],
+   "scripts": [
+    " function showSweetAlert(message) { Swal.fire({ icon: 'error', title: 'Validation Error', html: message, // Use html for potential bolding confirmButtonText: 'Understood', confirmButtonColor: '#3085d6' }); } $.fn.DataTable.ext.pager.numbers_length=9; $('#sampleTable').DataTable( { responsive: true, scrollX: false, \"pagingType\": \"full_numbers\", layout: { topStart: { buttons: [ { extend: 'pdfHtml5', filename: 'RequestList_' + new Date().toISOString().slice(0,10), text: '<button type=\"button\" class=\"btn btn-link\"><i class=\"bi bi-file-earmark-pdf\"></i> PDF</button>', titleAttr: 'Export to PDF', orientation: 'landscape', exportOptions: { columns: ':visible' // or specify columns } }, { extend: 'excelHtml5', filename: 'RequestList_' + new Date().toISOString().slice(0,10), text: '<button type=\"button\" class=\"btn btn-link\"><i class=\"bi bi-file-earmark-excel\"></i> Excel</button>', titleAttr: 'Export to Excel' }, { extend: 'print', filename: 'RequestList_' + new Date().toISOString().slice(0,10), text: '<button type=\"button\" class=\"btn btn-link\"><i class=\"bi bi-printer\"></i> Print</button>', titleAttr: 'Sent to Printer' } ]} }, }); "
+   ],
    "links": [
     {
      "href": "https://www.nfhsiips.in/nfhsuser/nfhs6.php#",
@@ -178,6 +199,12 @@
    "finalUrl": "https://www.nfhsiips.in/nfhsuser/index.php",
    "bytes": 45491,
    "forms": [],
+   "pdfStrings": [
+    "files/rfp.pdf"
+   ],
+   "scripts": [
+    " function showSweetAlert(message) { Swal.fire({ icon: 'error', title: 'Validation Error', html: message, // Use html for potential bolding confirmButtonText: 'Understood', confirmButtonColor: '#3085d6' }); } $.fn.DataTable.ext.pager.numbers_length=9; $('#sampleTable').DataTable( { responsive: true, scrollX: false, \"pagingType\": \"full_numbers\", layout: { topStart: { buttons: [ { extend: 'pdfHtml5', filename: 'RequestList_' + new Date().toISOString().slice(0,10), text: '<button type=\"button\" class=\"btn btn-link\"><i class=\"bi bi-file-earmark-pdf\"></i> PDF</button>', titleAttr: 'Export to PDF', orientation: 'landscape', exportOptions: { columns: ':visible' // or specify columns } }, { extend: 'excelHtml5', filename: 'RequestList_' + new Date().toISOString().slice(0,10), text: '<button type=\"button\" class=\"btn btn-link\"><i class=\"bi bi-file-earmark-excel\"></i> Excel</button>', titleAttr: 'Export to Excel' }, { extend: 'print', filename: 'RequestList_' + new Date().toISOString().slice(0,10), text: '<button type=\"button\" class=\"btn btn-link\"><i class=\"bi bi-printer\"></i> Print</button>', titleAttr: 'Sent to Printer' } ]} }, }); "
+   ],
    "links": [
     {
      "href": "https://www.nfhsiips.in/nfhsuser/nfhs6.php",
@@ -229,35 +256,2519 @@
    "status": 200,
    "type": "application/pdf",
    "bytes": 12341321,
-   "parseError": "TypeError: Cannot perform %TypedArray%.prototype.slice on a detached ArrayBuffer"
+   "pages": 182,
+   "sample": [
+    {
+     "page": 1,
+     "rows": []
+    },
+    {
+     "page": 2,
+     "rows": []
+    },
+    {
+     "page": 3,
+     "rows": [
+      [
+       "NATIONAL FAMILY HEALTH SURVEY"
+      ],
+      [
+       "(NFHS-6), 2023-24"
+      ]
+     ]
+    },
+    {
+     "page": 4,
+     "rows": []
+    },
+    {
+     "page": 5,
+     "rows": [
+      [
+       "NATIONAL FAMILY HEALTH SURVEY (NFHS-6)"
+      ],
+      [
+       "2023-24"
+      ],
+      [
+       "FACT SHEETS"
+      ],
+      [
+       "MAY 2026"
+      ]
+     ]
+    },
+    {
+     "page": 6,
+     "rows": [
+      [
+       "Suggested citation: International Institute for Population Sciences (IIPS) 2026."
+      ],
+      [
+       "National Family Health Survey (NFHS-6), 2023-24: India and State/UT Fact Sheets.",
+       "Mumbai: IIPS."
+      ],
+      [
+       "For additional information about the 2023-24 National Family Health Survey (NFHS-6), please"
+      ],
+      [
+       "contact:"
+      ],
+      [
+       "International Institute for Population Sciences, Govandi Station Road, B.S. Devashi Marg, Deonar,"
+      ],
+      [
+       "Mumbai-400 088"
+      ],
+      [
+       "Telephone:",
+       "022 –42372549"
+      ],
+      [
+       "Email:",
+       "nfhs6pmu@gmail.com, nfhsdata@iipsindia.ac.in"
+      ],
+      [
+       "For related information, visit",
+       "https://www.iipsindia.ac.in",
+       "and",
+       "https://www.nfhsiips.in"
+      ]
+     ]
+    },
+    {
+     "page": 7,
+     "rows": [
+      [
+       ",r*"
+      ],
+      [
+       "]sre{",
+       "qftEn"
+      ],
+      [
+       "\\rE",
+       "o-sr\"r"
+      ],
+      [
+       "q"
+      ],
+      [
+       "{srql",
+       "cq",
+       "sf{(D-"
+      ],
+      [
+       "TIFTfl",
+       "iMEE'FT"
+      ],
+      [
+       "g?F'TCT",
+       "rdna",
+       "Bq-a"
+      ],
+      [
+       "CiTKI",
+       ";IggI"
+      ],
+      [
+       "Minister"
+      ],
+      [
+       "JAGAT",
+       "PRAKASH",
+       "NADDA",
+       "Health",
+       "&",
+       "Famlly Wellare"
+      ],
+      [
+       "and Chemicals",
+       "&",
+       "Fertlllzers"
+      ],
+      [
+       "Government",
+       "ol",
+       "lndla"
+      ],
+      [
+       "I"
+      ],
+      [
+       "T"
+      ],
+      [
+       "\\"
+      ],
+      [
+       "I"
+      ],
+      [
+       "l"
+      ],
+      [
+       "MESSAGE"
+      ],
+      [
+       "It",
+       "gives me immense pleasure",
+       "to",
+       "release",
+       "the",
+       "key",
+       "findings of",
+       "the",
+       "Sixth Round of"
+      ],
+      [
+       "the",
+       "National Family Health Survey (2023-24)."
+      ],
+      [
+       "The",
+       "Factsheets",
+       "contain",
+       "the",
+       "highlights",
+       "for the",
+       "country",
+       "and",
+       "State/UT-wise"
+      ],
+      [
+       "on",
+       "population, health,",
+       "family",
+       "planning",
+       "and",
+       "nutrition related",
+       "key"
+      ],
+      [
+       "estimates"
+      ],
+      [
+       "indicators",
+       "such",
+       "as",
+       "fertility,",
+       "maternal,",
+       "child",
+       "and",
+       "adult",
+       "health,",
+       "women and",
+       "child"
+      ],
+      [
+       "nutrition.",
+       "These",
+       "indicators",
+       "throw",
+       "light",
+       "on important aspects",
+       "of",
+       "family well-being",
+       "of"
+      ],
+      [
+       "population",
+       "of",
+       "different",
+       "States/UTs.",
+       "As",
+       "in",
+       "previous rounds,",
+       "the",
+       "NFHS€"
+      ],
+      [
+       "the"
+      ],
+      [
+       "the",
+       "performance",
+       "of",
+       "various flagships",
+       "programmes"
+      ],
+      [
+       "estimates",
+       "will",
+       "help",
+       "to",
+       "track"
+      ],
+      [
+       "launched",
+       "by",
+       "the Government of lndia",
+       "in",
+       "recent years."
+      ],
+      [
+       "from",
+       "NFHS-6",
+       "would",
+       "enable",
+       "the",
+       "policy",
+       "makers",
+       "at",
+       "State"
+      ],
+      [
+       "I",
+       "hope",
+       "that the estimates"
+      ],
+      [
+       "to",
+       "arrive at",
+       "informed",
+       "decision-making and",
+       "policy"
+      ],
+      [
+       "and UT",
+       "level",
+       "and stakeholders"
+      ],
+      [
+       "to",
+       "health,",
+       "population resources",
+       "and",
+       "nutrition",
+       "and",
+       "help",
+       "in"
+      ],
+      [
+       "interventions related"
+      ],
+      [
+       "taking corrective measures",
+       "and",
+       "initiatives",
+       "in",
+       "the",
+       "right direction."
+      ],
+      [
+       "(Jagat Prakash",
+       "Nadda)"
+      ],
+      [
+       "irrqftr",
+       "r:",
+       "olmr",
+       "l.",
+       "rzroz,",
+       "Eftq",
+       "aa.",
+       "!ff'",
+       "fr.r,",
+       "6+q",
+       "r+c-r,",
+       "Tg",
+       "ffi-rrooor"
+      ],
+      [
+       "Office:",
+       "Room",
+       "No.",
+       "12107,",
+       "2*",
+       "Floor,'C'Vving,",
+       "Kartavya Bhawan-1, New",
+       "Delhi-l1OOO1"
+      ],
+      [
+       "Tele.:",
+       "(O): +91-11-24013301,",
+       "24013302,",
+       "24013303.",
+       "Enail:",
+       "min-hftn@gov.in"
+      ]
+     ]
+    },
+    {
+     "page": 8,
+     "rows": []
+    },
+    {
+     "page": 9,
+     "rows": []
+    },
+    {
+     "page": 10,
+     "rows": []
+    },
+    {
+     "page": 11,
+     "rows": []
+    },
+    {
+     "page": 12,
+     "rows": []
+    },
+    {
+     "page": 20,
+     "rows": []
+    },
+    {
+     "page": 40,
+     "rows": [
+      [
+       "Assam - Key Indicators"
+      ],
+      [
+       "NFHS-6",
+       "NFHS-5"
+      ],
+      [
+       "Indicators",
+       "(2023-24)",
+       "(2019-21)"
+      ],
+      [
+       "Postnatal Care (for last birth in the 5 years before the survey)",
+       "Urban",
+       "Rural",
+       "Total",
+       "Total"
+      ],
+      [
+       "41. Mothers who received postnatal care from a doctor/nurse/LHV/ANM/midwife/other health"
+      ],
+      [
+       "+",
+       "75.6",
+       "66.6",
+       "67.4",
+       "65.3"
+      ],
+      [
+       "personnel within 2 days of delivery",
+       "(%)"
+      ],
+      [
+       "42. Children born at home who were taken to a health facility for a check-up within 24 hours of"
+      ],
+      [
+       "(7.5)",
+       "7.0",
+       "7.1",
+       "2.0"
+      ],
+      [
+       "birth (%)"
+      ],
+      [
+       "43. Children who received postnatal care from a doctor/nurse/LHV/ANM/midwife/ other health"
+      ],
+      [
+       "+",
+       "79.8",
+       "68.5",
+       "69.5",
+       "69.9"
+      ],
+      [
+       "personnel within 2 days of delivery",
+       "(%)"
+      ],
+      [
+       "Child Vaccinations and Vitamin A Supplementation"
+      ],
+      [
+       "44. Children age 12-23 months fully vaccinated based on information from either vaccination"
+      ],
+      [
+       "6",
+       "83.8",
+       "81.5",
+       "81.7",
+       "66.7"
+      ],
+      [
+       "card or mother's recall",
+       "(%)"
+      ],
+      [
+       "45. Children age 12-23 months fully vaccinated based on information from vaccination card"
+      ],
+      [
+       "7",
+       "71.8"
+      ],
+      [
+       "only",
+       "(%)",
+       "87.6",
+       "87.8",
+       "87.7"
+      ],
+      [
+       "46. Children age 12-23 months who have received any vaccine (%)",
+       "97.3",
+       "95.3",
+       "95.5",
+       "94.7"
+      ],
+      [
+       "47. Children age 12-23 months who have received BCG (%)",
+       "95.8",
+       "93.9",
+       "94.0",
+       "92.5"
+      ],
+      [
+       "8"
+      ],
+      [
+       "48. Children age 12-23 months who have received 3 doses of polio vaccine",
+       "(%)",
+       "89.0",
+       "83.6",
+       "84.1",
+       "73.4"
+      ],
+      [
+       "49. Children age 12-23 months who have received 3 doses of pentavalent vaccine (%)",
+       "89.3",
+       "88.5",
+       "88.6",
+       "82.5"
+      ],
+      [
+       "50. Children age 12-23 months who have received the first dose of measles-containing"
+      ],
+      [
+       "94.3",
+       "90.2",
+       "90.5",
+       "82.8"
+      ],
+      [
+       "vaccine (MCV) (%)"
+      ],
+      [
+       "51. Children age 24-35 months who have received a second dose of measles-containing"
+      ],
+      [
+       "75.9",
+       "67.5",
+       "68.1",
+       "35.5"
+      ],
+      [
+       "vaccine (MCV) (%)"
+      ],
+      [
+       "52. Children age 12-23 months who have received birth dose of hepatitis B vaccine (%)",
+       "75.4",
+       "71.4",
+       "71.7",
+       "53.9"
+      ],
+      [
+       "53. Children age 12-23 months who have received 3 doses of rotavirus vaccine (%)",
+       "87.0",
+       "87.4",
+       "87.4",
+       "45.4"
+      ],
+      [
+       "54. Children age 9-35 months who received a vitamin A dose in the last 6 months (%)",
+       "81.6",
+       "78.2",
+       "78.5",
+       "58.2"
+      ],
+      [
+       "55. Children age 12-23 months who received most of their vaccinations in a public health"
+      ],
+      [
+       "88.4",
+       "96.6",
+       "95.9",
+       "95.6"
+      ],
+      [
+       "facility (%)"
+      ],
+      [
+       "56. Children age 12-23 months who received most of their vaccinations in a private health"
+      ],
+      [
+       "8.9",
+       "1.2",
+       "1.9",
+       "2.3"
+      ],
+      [
+       "facility (%)"
+      ],
+      [
+       "Treatment of Childhood Diseases (children under age 5 years)"
+      ],
+      [
+       "57. Prevalence of diarrhoea in the 2 weeks preceding the survey (%)",
+       "1.4",
+       "2.0",
+       "1.9",
+       "5.5"
+      ],
+      [
+       "58. Prevalence of severe diarrhoea in the 2 weeks preceding the survey (%)",
+       "0.5",
+       "0.4",
+       "0.4",
+       "0.8"
+      ],
+      [
+       "59. Prevalence of symptoms of acute respiratory infection (ARI) in the 2 weeks preceding the"
+      ],
+      [
+       "0.9",
+       "0.6",
+       "0.6",
+       "2.5"
+      ],
+      [
+       "survey (%)"
+      ],
+      [
+       "60. Children with fever or symptoms of ARI in the 2 weeks preceding the survey taken to a health"
+      ],
+      [
+       "51.2",
+       "43.8",
+       "44.4",
+       "51.2"
+      ],
+      [
+       "facility or health provider (%)"
+      ],
+      [
+       "Child Feeding Practices and Nutritional Status of Children"
+      ],
+      [
+       "9"
+      ],
+      [
+       "61. Children under age 3 years breastfed within one hour of birth",
+       "(%)",
+       "42.8",
+       "55.9",
+       "54.8",
+       "49.1"
+      ],
+      [
+       "10"
+      ],
+      [
+       "62. Children under age 6 months exclusively breastfed",
+       "(%)",
+       "60.0",
+       "53.8",
+       "54.3",
+       "63.6"
+      ],
+      [
+       "10"
+      ],
+      [
+       "63. Children under age 6 months currently breastfeeding",
+       "(%)",
+       "98.9",
+       "98.4",
+       "98.4",
+       "95.4"
+      ],
+      [
+       "64. Children under age 6 months exclusively breastfed or breastfeeding and consuming plain"
+      ],
+      [
+       "10",
+       "82.5",
+       "73.7",
+       "74.4",
+       "77.8"
+      ],
+      [
+       "water only/other milk",
+       "(%)"
+      ],
+      [
+       "10"
+      ],
+      [
+       "65. Children age 6-8 months receiving solid or semi-solid food and breastmilk",
+       "(%)",
+       "(71.5)",
+       "66.2",
+       "66.6",
+       "51.7"
+      ],
+      [
+       "10, 11"
+      ],
+      [
+       "66. Breastfeeding children age 6-23 months receiving an adequate diet",
+       "(%)",
+       "14.9",
+       "16.1",
+       "16.0",
+       "7.5"
+      ],
+      [
+       "10, 11"
+      ],
+      [
+       "67. Non-breastfeeding children age 6-23 months receiving an adequate diet",
+       "(%)",
+       "*",
+       "21.0",
+       "23.6",
+       "3.1"
+      ],
+      [
+       "10, 11"
+      ],
+      [
+       "68. Total children age 6-23 months receiving an adequate diet",
+       "(%)",
+       "16.7",
+       "16.3",
+       "16.4",
+       "7.2"
+      ],
+      [
+       "12"
+      ],
+      [
+       "69. Children under 5 years who are stunted (height-for-age)",
+       "(%)",
+       "21.7",
+       "31.0",
+       "30.3",
+       "35.3"
+      ],
+      [
+       "12"
+      ],
+      [
+       "70. Children under 5 years who are wasted (weight-for-height)",
+       "(%)",
+       "17.4",
+       "21.8",
+       "21.4",
+       "21.7"
+      ],
+      [
+       "13"
+      ],
+      [
+       "71. Children under 5 years who are severely wasted (weight-for-height)",
+       "(%)",
+       "6.3",
+       "8.7",
+       "8.5",
+       "9.0"
+      ],
+      [
+       "12"
+      ],
+      [
+       "72. Children under 5 years who are underweight (weight-for-age)",
+       "(%)",
+       "20.1",
+       "31.6",
+       "30.7",
+       "32.8"
+      ],
+      [
+       "14"
+      ],
+      [
+       "73. Children under 5 years who are overweight (weight-for-height)",
+       "(%)",
+       "3.9",
+       "4.3",
+       "4.2",
+       "4.8"
+      ],
+      [
+       "+"
+      ],
+      [
+       "LHV = Lady Health Visitor; ANM = Auxiliary Nurse Midwife"
+      ],
+      [
+       "6"
+      ],
+      [
+       "Vaccinated with BCG, measles-containing vaccine (MCV)/MR/MMR/Measles, and 3 doses each of polio (excluding polio vaccine"
+      ],
+      [
+       "7"
+      ],
+      [
+       "Among children whose vaccination card was shown to the interviewer, percentage vaccinated with BCG, measles-containing v"
+      ],
+      [
+       "each of polio (excluding polio vaccine given at birth) and DPT or penta vaccine."
+      ],
+      [
+       "8"
+      ],
+      [
+       "Not including polio vaccination given at birth."
+      ],
+      [
+       "9"
+      ],
+      [
+       "Based on the last child born in the 3 years before the survey."
+      ],
+      [
+       "10"
+      ],
+      [
+       "Based on the youngest child living with the mother."
+      ],
+      [
+       "11"
+      ],
+      [
+       "Breastfed children receiving 4 or more food groups and a minimum meal frequency, non-breastfed children fed with a minim"
+      ],
+      [
+       "Practices (fed with other milk or milk products at least twice a day, a minimum meal frequency that is, receiving solid "
+      ],
+      [
+       "infants 6-8 months and at least three times a day for breastfed children 9-23 months, and solid or semi-solid foods from"
+      ],
+      [
+       "milk products food group)."
+      ],
+      [
+       "12"
+      ],
+      [
+       "Below -2 standard deviations, based on the WHO standard."
+      ],
+      [
+       "13"
+      ],
+      [
+       "Below -3 standard deviations, based on the WHO standard."
+      ],
+      [
+       "14"
+      ],
+      [
+       "Above +2 standard deviations, based on the WHO standard."
+      ],
+      [
+       "18"
+      ]
+     ]
+    },
+    {
+     "page": 182,
+     "rows": [
+      [
+       "For additional information"
+      ],
+      [
+       "Director General (Statistics)",
+       "Director & Senior Professor/"
+      ],
+      [
+       "Ministry of Health and Family Welfare",
+       "Principal Investigator (NFHS-6)"
+      ],
+      [
+       "Government of India",
+       "International Institute for Population Sciences"
+      ],
+      [
+       "rd"
+      ],
+      [
+       "Room no. 311, 3",
+       "Floor",
+       "Govandi Station Road,",
+       "B.S. Devashi Marg,",
+       "Deonar"
+      ],
+      [
+       "Indian Red Cross Society Building",
+       "Mumbai",
+       "–",
+       "400 088 (India)"
+      ],
+      [
+       "Red Cross Road",
+       "Telephone: 022-4237 2549"
+      ],
+      [
+       "New Delhi",
+       "–",
+       "110 001 (India)",
+       "Email: nfhs6pmu@gmail.com"
+      ],
+      [
+       "Landline: 011-2373 6973/2373 6975",
+       "nfhsdata@iipsindia.ac.in"
+      ],
+      [
+       "Email: dgstats.mohfw@gov.in",
+       "Website: https://www.iipsindia.ac.in"
+      ],
+      [
+       "https://www.nfhsiips.in"
+      ],
+      [
+       "Chief Director (Statistics)"
+      ],
+      [
+       "Ministry of Health and Family Welfare"
+      ],
+      [
+       "Government of India"
+      ],
+      [
+       "rd"
+      ],
+      [
+       "Room no. 313, 3",
+       "Floor"
+      ],
+      [
+       "Indian Red Cross Society Building"
+      ],
+      [
+       "Red Cross Road"
+      ],
+      [
+       "New Delhi",
+       "–",
+       "110 001 (India)"
+      ],
+      [
+       "Landline: 011-2373 6983"
+      ],
+      [
+       "Email: cdstats.mohfw@gov.in"
+      ],
+      [
+       "https://www.mohfw.gov.in or https://www.nfhsiips.in"
+      ]
+     ]
+    }
+   ],
+   "firstPageText": ""
   },
   {
    "url": "https://www.nfhsiips.in/nfhsuser/assets/pdf/nfhs6%20fact%20sheet%20compendiums%20release%20writeup%20for%20website%20FINAL%2021aug26.pdf",
    "status": 200,
    "type": "application/pdf",
    "bytes": 93560,
-   "parseError": "TypeError: Cannot perform %TypedArray%.prototype.slice on a detached ArrayBuffer"
-  },
-  {
-   "url": "https://www.nfhsiips.in/nfhsuser/files/rfp.pdf",
-   "status": 200,
-   "type": "text/html; charset=UTF-8",
-   "bytes": 45491,
-   "parseError": "InvalidPDFException: Invalid PDF structure."
+   "pages": 1,
+   "sample": [
+    {
+     "page": 1,
+     "rows": [
+      [
+       "NATIONAL FAMILY HEALTH SURVEY 2023-24 (NFHS-6)"
+      ],
+      [
+       "Release of NFHS-6 Compendiums of India/State/District Fact Sheets"
+      ],
+      [
+       "The National Family Health Survey 2023",
+       "–",
+       "24 (NFHS-6), the sixth round in the NFHS series,"
+      ],
+      [
+       "provides comprehensive information on population, health, and nutrition for India and each"
+      ],
+      [
+       "State/Union Territory (UT), except Manipur. The Ministry of Health and Family Welfare"
+      ],
+      [
+       "(MoHFW), Government of India designated the International Institute for Population Sciences"
+      ],
+      [
+       "(IIPS), Mumbai as the nodal agency for conducting NFHS-6. NFHS-6 fieldwork was carried"
+      ],
+      [
+       "out between May 2023 and December 2024 across 715 districts of the country."
+      ],
+      [
+       "The",
+       "NFHS-6 Compendium of Fact Sheets for India and States/UTs was released on 29"
+      ],
+      [
+       "May 2026",
+       ". The District Fact Sheet Compendiums for Andhra Pradesh (13 districts), Andaman"
+      ],
+      [
+       "and Nicobar Islands (3 districts), Telangana (33 districts), Jammu and Kashmir (20 districts),"
+      ],
+      [
+       "Ladakh (2 districts), and Mizoram (8 districts) were",
+       "released on 20 August 2026",
+       ", while the"
+      ],
+      [
+       "remaining States/UTs were",
+       "released on 21 August 2026",
+       "."
+      ],
+      [
+       "To access the NFHS-6 Compendiums, visit: -",
+       "https://www.nfhsiips.in/nfhsuser/publication.php"
+      ],
+      [
+       "Use your guest login credentials to login and download the compendiums."
+      ]
+     ]
+    }
+   ],
+   "firstPageText": "NATIONAL FAMILY HEALTH SURVEY 2023-24 (NFHS-6) Release of NFHS-6 Compendiums of India/State/District Fact Sheets The National Family Health Survey 2023 – 24 (NFHS-6), the sixth round in the NFHS series, provides comprehensive information on population, health, and nutrition for India and each State/Union Territory (UT), except Manipur. The Ministry of Health and Family Welfare (MoHFW), Government of India designated the International Institute for Population Sciences (IIPS), Mumbai as the nodal agency for conducting NFHS-6. NFHS-6 fieldwork was carried out between May 2023 and December 2024 ac"
   },
   {
    "url": "https://www.nfhsiips.in/nfhsuser/assets/pdf/NFHS%20data%20quality%20assurance.pdf",
    "status": 200,
    "type": "application/pdf",
    "bytes": 257042,
-   "parseError": "TypeError: Cannot perform %TypedArray%.prototype.slice on a detached ArrayBuffer"
-  },
-  {
-   "url": "https://www.nfhsiips.in/nfhsuser/assets/pdf/vacancy/Advetisement%20for%20hiring%20post%20CRO,SPO%20and%20JRO%20-NFHS%206%20Project.pdf",
-   "status": 200,
-   "type": "application/pdf",
-   "bytes": 312858,
-   "parseError": "TypeError: Cannot perform %TypedArray%.prototype.slice on a detached ArrayBuffer"
+   "pages": 15,
+   "sample": [
+    {
+     "page": 1,
+     "rows": [
+      [
+       "NATIONAL FAMILY HEALTH SURVEY 2019-20"
+      ],
+      [
+       "NFHS-5"
+      ],
+      [
+       "DATA QUALITY ASSURANCE AND"
+      ],
+      [
+       "QUALITY CONTROL MECHANISMS"
+      ],
+      [
+       "2019-20"
+      ],
+      [
+       "International Institute for Population Sciences"
+      ],
+      [
+       "Govandi Station Road, Deonar"
+      ],
+      [
+       "Mumbai-400 088."
+      ]
+     ]
+    },
+    {
+     "page": 2,
+     "rows": []
+    },
+    {
+     "page": 3,
+     "rows": [
+      [
+       "Background of NFHS"
+      ],
+      [
+       "The National Family Health Survey (NFHS) in India was initiated in the early 1990s with the"
+      ],
+      [
+       "first NFHS being conducted in 1992-93. Since then, India has successfully completed four"
+      ],
+      [
+       "rounds - NFHS-2 in 1998-99, NFHS-3 in 2005-06 and NFHS-4 in 2015-16. All four rounds of"
+      ],
+      [
+       "the survey were conducted under the stewardship of the Ministry of Health and Family Welfare"
+      ],
+      [
+       "(MoHFW), Government of India, with the International Institute for Population Sciences"
+      ],
+      [
+       "(IIPS), Mumbai, as the nodal agency and technical assistance provided by the United States"
+      ],
+      [
+       "1"
+      ],
+      [
+       "Agency for International Development (USAID) through ICF Macro (now called ICF)",
+       "."
+      ],
+      [
+       "USAID has been the primary funder for the NFHS surveys, but in the two most recent surveys"
+      ],
+      [
+       "(NFHS-3 and NFHS-4), other development partners, such as DFID, the Bill and Melinda Gates"
+      ],
+      [
+       "Foundation, UNICEF, UNFPA, and the MacArthur Foundation, as well as the Government of"
+      ],
+      [
+       "India, also supported the surveys in a major way. The main objectives of the NFHS programme"
+      ],
+      [
+       "have been to strengthen India’s demographic and health database by providing information that"
+      ],
+      [
+       "is both reliable and relied upon; to strengthen the survey research capabilities of Indian"
+      ],
+      [
+       "institutions to provide, analyse, and disseminate high quality data; and to anticipate and meet"
+      ],
+      [
+       "the country’s needs for data on emerging health and family welfare issues."
+      ],
+      [
+       "The contents of previous rounds of NFHS are generally retained and additional components"
+      ],
+      [
+       "are added from one round to another. The main objective of each successive round of the NFHS"
+      ],
+      [
+       "has been to provide essential data on health and family welfare and emerging issues in this"
+      ],
+      [
+       "area. NFHS data are also useful in setting benchmarks and examining progress in the health"
+      ],
+      [
+       "sector the country has made over time. Besides providing evidence for the effectiveness of"
+      ],
+      [
+       "ongoing programmes, the data from NFHS help in identifying the need for new programmes"
+      ],
+      [
+       "with an area specific focus."
+      ],
+      [
+       "In 2019-20, India will implement the fifth round of the National Family Health Survey (NFHS-"
+      ],
+      [
+       "5). Like its predecessors, NFHS-5 will be conducted under the stewardship of the Ministry of"
+      ],
+      [
+       "Health and Family Welfare, coordinated by the International Institute for Population Sciences,"
+      ],
+      [
+       "Mumbai, and implemented by a group of survey organizations and Population Research"
+      ],
+      [
+       "Centres, selected following a rigorous selection procedure. Technical assistance for NFHS-5"
+      ],
+      [
+       "will be provided by ICF, USA, with financial support from USAID."
+      ],
+      [
+       ",."
+      ],
+      [
+       "1"
+      ],
+      [
+       "ICF International implements the USAID-supported MEASURE DHS Project, and has the experience of providing technical assi"
+      ],
+      [
+       "more than 300 surveys in more than 90 countries."
+      ]
+     ]
+    },
+    {
+     "page": 4,
+     "rows": [
+      [
+       "NFHS being a nationwide large-scale survey is of huge magnitude and requires detailed"
+      ],
+      [
+       "planning and careful implementation for it to be a success. The survey is a long process that"
+      ],
+      [
+       "involves many stages including:"
+      ],
+      [
+       "1.",
+       "Project planning and management covering preparation of the project proposal,"
+      ],
+      [
+       "budget, formation of various committees, etc."
+      ],
+      [
+       "2.",
+       "Development, pretesting, finalization, and translation of survey instruments"
+      ],
+      [
+       "including CAPI programs and other documents such as forms manuals, etc."
+      ],
+      [
+       "3.",
+       "Sample design, selection of Primary Sampling Units (PSUs), household mapping"
+      ],
+      [
+       "and listing, and sample household selection"
+      ],
+      [
+       "4.",
+       "Recruitment of project staff and selection of Field Agencies (FAs)"
+      ],
+      [
+       "5.",
+       "Procurement and distribution of supplies and equipment"
+      ],
+      [
+       "6.",
+       "Training of personnel for all aspects of the survey"
+      ],
+      [
+       "7.",
+       "Prepare fieldwork implementation protocols and streamline other field"
+      ],
+      [
+       "arrangements to minimize non-sampling errors"
+      ],
+      [
+       "8.",
+       "Preparation of protocols for planning, monitoring and implementation of the"
+      ],
+      [
+       "survey. Development of quality check procedures like back checks, field check"
+      ],
+      [
+       "tables, etc. for all aspects of the survey"
+      ],
+      [
+       "9.",
+       "Development of a tabulation plan for national and state reports, as well as national,"
+      ],
+      [
+       "state, and district fact sheets"
+      ],
+      [
+       "10.",
+       "Production of data sets and tables"
+      ],
+      [
+       "11.",
+       "Dissemination of survey results"
+      ],
+      [
+       "12.",
+       "Release of publications and data sets for public use through various websites."
+      ],
+      [
+       "Project Planning and Management"
+      ],
+      [
+       "For all rounds of NFHS, decisions about policies and procedures are generally reviewed by"
+      ],
+      [
+       "four project committees, namely a Steering Committee (SC) under the chairmanship of the"
+      ],
+      [
+       "Secretary of Health and Family Welfare, a Project Management Committee (PMC) under the"
+      ],
+      [
+       "chairmanship",
+       "of",
+       "the",
+       "Additional",
+       "Secretary and",
+       "Mission",
+       "Director",
+       "(ASMD),",
+       "a",
+       "Financial"
+      ],
+      [
+       "Management Committee (FMC) under the chairmanship of the Additional Secretary and"
+      ],
+      [
+       "Financial Advisor, and a Technical Advisory Committee (TAC) under the chairmanship of a"
+      ],
+      [
+       "person recommended by the Secretary, Department of Health and Family Welfare. These"
+      ],
+      [
+       "Committees include representatives of MoHFW and other Ministries of the Government of"
+      ],
+      [
+       "India, such as Statistics and Plan Implementation and Women and Child Development, as well"
+      ],
+      [
+       "as CSO, NSSO, ICMR, NACO, the Development Partners, IIPS, ICF and individual experts in"
+      ],
+      [
+       "population, health and gender."
+      ],
+      [
+       "NFHS is usually conducted in all the states/union territories of India, and key survey indicators"
+      ],
+      [
+       "are estimated at the national and state levels. From the fourth round onwards, estimates are also"
+      ]
+     ]
+    },
+    {
+     "page": 5,
+     "rows": [
+      [
+       "available at the district level. Interviews are administered to eligible respondents, comprising"
+      ],
+      [
+       "of household respondents and all eligible women and men."
+      ],
+      [
+       "Development, Pretesting, Finalization, and Translation of Survey Instruments and"
+      ],
+      [
+       "Manuals"
+      ],
+      [
+       "NFHS collects information on a wide variety of indicators that assist policymakers and"
+      ],
+      [
+       "programme managers to formulate, implement and monitor programmes and strategies to"
+      ],
+      [
+       "achieve health, family welfare, and other development goals. The nodal agency (IIPS, Mumbai)"
+      ],
+      [
+       "is responsible for developing and finalizing the questionnaires based on advice received from"
+      ],
+      [
+       "key stakeholders and the Technical Advisory Committee, and also on the lessons learned from"
+      ],
+      [
+       "the pretest of all the questionnaires."
+      ],
+      [
+       "As indicated earlier, different types of questionnaires are developed and administered in"
+      ],
+      [
+       "NFHS surveys (Household Questionnaire, Woman’s Questionnaire (age 15-49), Man's"
+      ],
+      [
+       "Questionnaire (age 15-54) and Biomarker Questionnaire). The draft questionnaires are"
+      ],
+      [
+       "developed based on a critical review of the contents of the questionnaires used in the most"
+      ],
+      [
+       "recent round of NFHS and the Demographic and Health Survey questionnaires and modules."
+      ],
+      [
+       "Various steps are followed for developing and finalizing the NFHS survey instruments. All"
+      ],
+      [
+       "questionnaires will be translated into Hindi and all other official Indian languages."
+      ],
+      [
+       "To ensure that all persons involved in the NFHS survey understand the field protocols and the"
+      ],
+      [
+       "contents of the instruments, particularly the field investigators and supervisors, various"
+      ],
+      [
+       "manuals are prepared (Interviewer’s Manual, Supervisor’s Manual, Health Investigator’s"
+      ],
+      [
+       "Manual, Household Mapping and List Manual and other manuals) are prepared. Also,"
+      ],
+      [
+       "fieldwork",
+       "related",
+       "forms,",
+       "referral",
+       "letters,",
+       "information",
+       "pamphlets,",
+       "etc.",
+       "are",
+       "prepared",
+       "for"
+      ],
+      [
+       "distribution during fieldwork."
+      ],
+      [
+       "All survey instruments and field procedures are pretested in the field at a suitable location."
+      ],
+      [
+       "Interviewers, supervisors and health investigators who will be part of the pretest exercise are"
+      ],
+      [
+       "trained",
+       "to",
+       "implement",
+       "the",
+       "questionnaires",
+       "and",
+       "field",
+       "procedures,",
+       "including",
+       "the",
+       "clinical,"
+      ],
+      [
+       "anthropometric and biochemical (CAB) component. Feedback from the pretest exercise is used"
+      ],
+      [
+       "to finalize the questionnaires in English and Hindi. Accordingly, all the manuals are also"
+      ],
+      [
+       "revised and finalized for use during the main survey fieldwork."
+      ],
+      [
+       "Recruitment of project staff and selection of Field Agencies (FAs)"
+      ],
+      [
+       "The vast amount of complex work associated with the NFHS surveys requires the involvement"
+      ],
+      [
+       "of an extensive network of persons with diverse backgrounds and expertise. The work involves"
+      ],
+      [
+       "management,",
+       "coordination,",
+       "sampling,",
+       "training,",
+       "fieldwork,",
+       "supervision,",
+       "data",
+       "processing,"
+      ],
+      [
+       "production of tables and data sets, data analysis, report writing and dissemination of findings."
+      ],
+      [
+       "These activities are handled by IIPS faculty and staff specially recruited for the project by IIPS,"
+      ],
+      [
+       "and ICF staff/consultants. In each round about 15 Field Agencies are chosen through a rigorous"
+      ],
+      [
+       "selection process to conduct the NFHS fieldwork in the different states of India. The staff"
+      ]
+     ]
+    },
+    {
+     "page": 6,
+     "rows": [
+      [
+       "recruited by IIPS, ICF and the FAs for the survey need to have relevant qualifications and"
+      ],
+      [
+       "experience as specified in the NFHS proposal."
+      ],
+      [
+       "Training of personnel"
+      ],
+      [
+       "Various training of trainers (ToT) workshops are held to provide training to trainers for the"
+      ],
+      [
+       "different aspects of the survey. The trained FA staff then provide training to the field staff"
+      ],
+      [
+       "recruited by them to carry out fieldwork in the states assigned to them. The training is guided"
+      ],
+      [
+       "by the standard survey documents to ensure that the same rigorous procedures are followed"
+      ],
+      [
+       "throughout the country. At the state level, in-depth training is typically conducted for at least"
+      ],
+      [
+       "four weeks, and only trainees that pass a test that is graded by IIPS are retained for"
+      ],
+      [
+       "conducting fieldwork."
+      ],
+      [
+       "Fieldwork implementation and monitoring"
+      ],
+      [
+       "Protocols for fieldwork implementation and monitoring are laid down for the smooth execution"
+      ],
+      [
+       "of the fieldwork. Also, rigorous procedures to check data quality check are conducted"
+      ],
+      [
+       "throughout the course of the fieldwork. These include back checks of the questionnaires in the"
+      ],
+      [
+       "field, and the frequent examination of an extensive set of fieldcheck tables to detect systematic"
+      ],
+      [
+       "errors at the level of the interviewing teams and individual",
+       "interviewers. Any problems that"
+      ],
+      [
+       "are detected by the fieldcheck tables can be immediately be relayed back to the Field Agencies"
+      ],
+      [
+       "to be addressed in a timely fashion."
+      ],
+      [
+       "Procurement and distribution of supplies and equipment"
+      ],
+      [
+       "The vast quantity of equipment and supplies required to conduct interviews and various CAB"
+      ],
+      [
+       "measurements and tests are procured before the launch of the survey by IIPS through a stringent"
+      ],
+      [
+       "bidding process. All equipment and supplies purchased must meet the clear and detailed"
+      ],
+      [
+       "minimum requirements specified in the bidding document. IIPS also arranges for timely"
+      ],
+      [
+       "transportation of the equipment and supplies to different FAs before the start of the fieldwork."
+      ],
+      [
+       "IIPS oversees the management, storage, maintenance and transportation of equipment and"
+      ],
+      [
+       "supplies throughout the fieldwork period, which is a crucial and challenging task and requires"
+      ],
+      [
+       "constant coordination and monitoring by IIPS with the FAs and field staff."
+      ],
+      [
+       "Sampling Design"
+      ],
+      [
+       "A uniform sample design, which is representative at the national, state/union territory and"
+      ],
+      [
+       "district level, is adopted in each round of the survey. Each district is stratified into urban and"
+      ],
+      [
+       "rural areas. Each rural stratum is sub-stratified into smaller substrata which are created taking"
+      ],
+      [
+       "into account the village population and the percentage of the population belonging to scheduled"
+      ],
+      [
+       "castes and scheduled tribes (SC/ST). Within each explicit rural sampling stratum, a sample of"
+      ],
+      [
+       "villages is selected as sample Primary Sampling Units (PSUs); before the PSU selection, PSUs"
+      ],
+      [
+       "are sorted according to the literacy rate of women age 6+ years. Within each urban sampling"
+      ],
+      [
+       "stratum, a sample of Census Enumeration Blocks (CEBs) is selected as sample PSUs; before"
+      ],
+      [
+       "the PSU selection, PSUs are sorted according to the percentage of the SC/ST population. In the"
+      ],
+      [
+       "second stage of selection, a fixed number of 22 households per cluster is selected with an equal"
+      ],
+      [
+       "probability systematic selection from a newly created list of households living in the selected"
+      ]
+     ]
+    },
+    {
+     "page": 7,
+     "rows": [
+      [
+       "PSUs. The list of households is created as a result of the mapping and household listing"
+      ],
+      [
+       "operation conducted in each selected PSU before the household selection in the second stage."
+      ],
+      [
+       "Sample Weights"
+      ],
+      [
+       "Due to the non-proportional allocation of the sample to the different survey domains and to"
+      ],
+      [
+       "their urban and rural areas, sampling weights are required for any analysis using the survey"
+      ],
+      [
+       "data. A design weight is calculated to account for the overall selection probability of each"
+      ],
+      [
+       "household in the survey. The design weight is adjusted for household non-response and for"
+      ],
+      [
+       "individual non-response to obtain the sampling weights for households, for women, and for"
+      ],
+      [
+       "men, respectively. A special weight for domestic violence is calculated that accounts for the"
+      ],
+      [
+       "random selection of only one woman per household. A special weight is also calculated for the"
+      ],
+      [
+       "testing of dried blood spots to account for the test nonresponse. Each weight is normalized"
+      ],
+      [
+       "using two approaches yielding two versions, a national and a state weight. For national weights,"
+      ],
+      [
+       "the sampling weights are normalized in order to give a total number of weighted cases that"
+      ],
+      [
+       "equals the total number of unweighted cases at the national level, whereas for the state weights,"
+      ],
+      [
+       "the sampling weights are normalized in order to give a total number of weighted cases that"
+      ],
+      [
+       "equals the total number of unweighted cases at the state level. Normalization is done by"
+      ],
+      [
+       "multiplying the sampling weight by the estimated sampling fraction, calculated on the national"
+      ],
+      [
+       "level for national weights or on the state-level for state weights."
+      ],
+      [
+       "Non-Sampling Errors"
+      ],
+      [
+       "The overall implementation plan for NFHS comprising of hiring of staff, training of personnel,"
+      ],
+      [
+       "etc. and strategies to monitor and supervise the fieldwork are formalized to ensure survey data"
+      ],
+      [
+       "quality and minimize non-sampling errors. Also, uniform fieldwork implementation protocols"
+      ],
+      [
+       "and other field arrangements are streamlined to minimize non-sampling errors. The design"
+      ],
+      [
+       "effect, standard error, relative standard error, and 95% confidence intervals for key indicators"
+      ],
+      [
+       "are estimated for each state and all India, as well as in urban and rural areas, and these measure"
+      ],
+      [
+       "are published in the reports."
+      ],
+      [
+       "The data quality control measures adopted during various stages of the project to ensure high"
+      ],
+      [
+       "data quality are briefly described below."
+      ]
+     ]
+    },
+    {
+     "page": 8,
+     "rows": [
+      [
+       "Strategies for Mapping & Listing (M&L) to Ensure Data Quality"
+      ],
+      [
+       "To ensure high quality data, the mapping and household listing teams follow the protocol given"
+      ],
+      [
+       "below:"
+      ],
+      [
+       "",
+       "The quality checks are conducted primarily by the Mapping and Listing Coordinator(s)"
+      ],
+      [
+       "of each Field Agency."
+      ],
+      [
+       "",
+       "The M&L operation is conducted in a phased manner by grouping 5-6 adjoining"
+      ],
+      [
+       "districts. The districtwise team movement plan is shared with IIPS at least two weeks"
+      ],
+      [
+       "in advance."
+      ],
+      [
+       "",
+       "The educational qualifications and experience of all M&L staff recruited by the FA"
+      ],
+      [
+       "should be as mentioned in the Request for Proposals (RFP). The minimum qualification"
+      ],
+      [
+       "for mappers and listers is graduation in any stream. All the educational documents of"
+      ],
+      [
+       "the M&L trainees are verified by the IIPS Senior Project Officer (SPO)/Project Officer"
+      ],
+      [
+       "(PO)."
+      ],
+      [
+       "",
+       "After training, there is the provision of field practice to make mapper and listers well"
+      ],
+      [
+       "acquainted with",
+       "the real",
+       "field",
+       "situation.",
+       "SPO/PO/PIs of",
+       "NFHS-5/Officials",
+       "from"
+      ],
+      [
+       "MoHFW will assess the quality of data collected during field practice. If they find the"
+      ],
+      [
+       "performance of the mapper and lister trainees not to be up to the mark, there additional"
+      ],
+      [
+       "training is required."
+      ],
+      [
+       "",
+       "Continuous supervision of the household listing operation by coordinators of the FA is"
+      ],
+      [
+       "mandatory to ensure the quality of work."
+      ],
+      [
+       "",
+       "To assess the work done by the teams, M&L coordinator(s) of the FA have to do a"
+      ],
+      [
+       "complete and independent listing operation of 5 completed PSUs (randomly selected"
+      ],
+      [
+       "by IIPS) per district. After matching the two lists, a detailed report together with the"
+      ],
+      [
+       "two sets of M&L forms, after the IIPS field SPO/PO signs the documents, should be"
+      ],
+      [
+       "shared with IIPS highlighting the differences, if any. In the case of any major"
+      ],
+      [
+       "discrepancy, the whole PSU will have to be relisted. Also, if systematic errors are"
+      ],
+      [
+       "noticed and it is not possible to make corrections on the listing forms, the listed PSU"
+      ],
+      [
+       "should be relisted."
+      ],
+      [
+       "",
+       "An Excel spreadsheet containing error free listing data must be countersigned by the M"
+      ],
+      [
+       "& L coordinator of the FA and the IIPS SPO/ PO before being sent to the NFHS-5"
+      ],
+      [
+       "office."
+      ],
+      [
+       "",
+       "To ensure the quality of data, the selection of households from the listing forms is"
+      ],
+      [
+       "undertaken centrally at IIPS for each PSU and provided to the FA along with the"
+      ],
+      [
+       "necessary household details, which eliminates the chance of substitution, duplication or"
+      ],
+      [
+       "omission."
+      ]
+     ]
+    },
+    {
+     "page": 9,
+     "rows": [
+      [
+       "Strategies for Field Staff to Ensure Data Quality"
+      ],
+      [
+       "To ensure high data quality, the field staff follow the protocol given below:"
+      ],
+      [
+       "",
+       "Phasing the field operations into two parts, where all the states/groups of States/UTs"
+      ],
+      [
+       "are divided in two phases having a balanced distribution of the work load in each phase."
+      ],
+      [
+       "This ensures effective management of survey implementation and stringent monitoring"
+      ],
+      [
+       "of the fieldwork."
+      ],
+      [
+       "",
+       "The largest states are divided into 2-3 parts and the survey is implemented in a cluster"
+      ],
+      [
+       "of 5-6 adjoining districts at a time to ensure effective implementation and close"
+      ],
+      [
+       "monitoring of the survey."
+      ],
+      [
+       "",
+       "Intensified centralized hands-on training of the trainer’s (ToT) of 3 weeks’ duration for"
+      ],
+      [
+       "the",
+       "four",
+       "core",
+       "team",
+       "members",
+       "of",
+       "each",
+       "FA",
+       "(i.e.,",
+       "the",
+       "State",
+       "Coordinator,",
+       "the"
+      ],
+      [
+       "Demographer/Social Scientist, the IT Coordinator and the CAB Coordinator) is"
+      ],
+      [
+       "organized by IIPS. Further, to ensure the quality of the training, one ToT is organized"
+      ],
+      [
+       "for each phase and the number of participants in each ToT is limited."
+      ],
+      [
+       "",
+       "NFHS stringently follows ethical protocols at every level of data collection and"
+      ],
+      [
+       "processing inclusive of informed consent, the potential risks and benefits, voluntary"
+      ],
+      [
+       "participation, ensuring privacy and confidentiality of data."
+      ],
+      [
+       "",
+       "NFHS ensures the educational qualifications of each field investigator, which should"
+      ],
+      [
+       "be consistent with the criteria specified in the RFP. All the documents relating to their"
+      ],
+      [
+       "educational qualifications are verified by the IIPS SPO/PO before initiation of the state"
+      ],
+      [
+       "level training."
+      ],
+      [
+       "",
+       "The core team members of the FAs trained by IIPS in the centrally organised ToT are"
+      ],
+      [
+       "responsible for state level training. Training of field staff organised at the state level is"
+      ],
+      [
+       "for four weeks’ duration with adequate emphasis on classroom teaching and field"
+      ],
+      [
+       "practice. All the state level training courses are closely monitored by the PIs, SPOs/POs"
+      ],
+      [
+       "and, where possible, an ICF Representative and Officials from MoHFW."
+      ],
+      [
+       "",
+       "Each state level training is limited to field staff required for conducting the NFHS"
+      ],
+      [
+       "survey for each of the 10 districts. FAs are required to conduct additional training"
+      ],
+      [
+       "courses if they are assigned a state having more than 10 districts."
+      ],
+      [
+       "",
+       "The field investigators and supervisor level trainees must pass a test conducted by the"
+      ],
+      [
+       "IIPS SPO/PO at the end of the each training at the state level before they are deployed"
+      ],
+      [
+       "for the actual fieldwork. To compensate for those who drop out of the training or do not"
+      ],
+      [
+       "make the grade, about 10-15% more trainees than are necessary for the fieldwork attend"
+      ],
+      [
+       "the training course."
+      ],
+      [
+       "",
+       "NFHS adheres to the protocol of maintaining gender sensitive team composition with"
+      ],
+      [
+       "a mix of an adequate number of male and female investigators who belong to the native"
+      ],
+      [
+       "state and have proficiency in the local language(s)."
+      ],
+      [
+       "",
+       "Data collection through the CAPI program eliminates errors by automatically following"
+      ],
+      [
+       "skip patterns, filters, identification of those who are eligible for questions."
+      ],
+      [
+       "",
+       "Multi-layer monitoring of fieldwork is adopted to strengthen the data quality, including"
+      ],
+      [
+       "spot checks, back checks, review of field check tables and continuous supportive"
+      ],
+      [
+       "supervision. Results obtained on a daily basis using inbuilt CAPI programs are used to"
+      ]
+     ]
+    },
+    {
+     "page": 10,
+     "rows": [
+      [
+       "provide continuous feedback and to adopt corrective measures on an individual and"
+      ],
+      [
+       "team basis for various aspects of survey implementation."
+      ],
+      [
+       "",
+       "District and state level Coordinators of the FA are required to revisit a minimum of"
+      ],
+      [
+       "10% of PSUs from each district that are randomly selected by the IIPS SPO/PO."
+      ],
+      [
+       "",
+       "IIPS SPOs/POs are required to spot check and back check surveyed households in a"
+      ],
+      [
+       "minimum of 10% of PSUs randomly selected by the IIPS Central Office."
+      ],
+      [
+       "",
+       "The feedback obtained from the above checks is shared with investigators at field level"
+      ],
+      [
+       "de-briefing sessions by Core Team members of the FA, IIPS SPOs/POs, and PIs,"
+      ],
+      [
+       "especially at the initial stages of data collection."
+      ],
+      [
+       "",
+       "To ensure a high level of response rates, NFHS has a provision of a four-day stay in the"
+      ],
+      [
+       "field. Investigators must make at least 3 visits at different points of time and different"
+      ],
+      [
+       "days during the stay if an eligible respondent is not available in previous visits."
+      ],
+      [
+       "",
+       "A districtwise allotment of selected households in each of the selected PSUs for"
+      ],
+      [
+       "different clusters of 5-6 adjoining districts is made by the NFHS central office. This"
+      ],
+      [
+       "strategy is effective in the remote monitoring of field team movement plans from the"
+      ],
+      [
+       "central office."
+      ],
+      [
+       "",
+       "NFHS has developed a protocol of accessing real time data on a daily basis using the"
+      ],
+      [
+       "SyncCloud data streaming system. Continuous evaluation of data through field check"
+      ],
+      [
+       "tables and regular feedback to field teams avoids errors and improves the quality of the"
+      ],
+      [
+       "data."
+      ],
+      [
+       "",
+       "In addition to all the above measures to ensure data quality, NFHS has a provision to"
+      ],
+      [
+       "organise review meetings with the head of the FAs to maintain a high standard of data"
+      ],
+      [
+       "quality."
+      ]
+     ]
+    },
+    {
+     "page": 11,
+     "rows": [
+      [
+       "Strategies for the Team Supervisor to Ensure Data Quality"
+      ],
+      [
+       "To ensure high quality data the team supervisor follows the protocol given below:"
+      ],
+      [
+       "",
+       "NFHS provides training at all levels of the survey team involved in the survey, from"
+      ],
+      [
+       "interviewers to trainers, as well as to the central team overseeing the process. This will"
+      ],
+      [
+       "ensure that all involved persons are clear with regard to their role in ensuring good"
+      ],
+      [
+       "quality of data."
+      ],
+      [
+       "",
+       "The team supervisor plays an important by reviewing various aspects of data collection,"
+      ],
+      [
+       "focusing on those undertakings that are proving complex and difficult or guidelines that"
+      ],
+      [
+       "are not being adhered to sufficiently by interviewers."
+      ],
+      [
+       "",
+       "The main role of the supervisor is to provide feedback to the interviewers on an"
+      ],
+      [
+       "individual basis and to report progress and protocol adherence to the state office of the"
+      ],
+      [
+       "FA. He/She is also responsible for managing the supply and inventory required in the"
+      ],
+      [
+       "field. The supervisor is the core link between field teams and the state core team. A"
+      ],
+      [
+       "well trained supervisor is very helpful in collecting quality data in surveys like NFHS."
+      ],
+      [
+       "",
+       "NFHS has assigned a distinct role to supervisors in terms of planning fieldwork at the"
+      ],
+      [
+       "local level, checking all materials, and reporting procedures."
+      ],
+      [
+       "",
+       "NFHS",
+       "evaluates",
+       "the",
+       "supervisors",
+       "before",
+       "their",
+       "appointment",
+       "by",
+       "considering",
+       "their"
+      ],
+      [
+       "education, experience and performance in the test conducted by IIPS."
+      ],
+      [
+       "",
+       "Each survey team has a supervisor who oversees and coordinates the work of the"
+      ],
+      [
+       "interviewers, as well as provides on-site training and support."
+      ],
+      [
+       "",
+       "Supervisors plan the daily work at the beginning of the work day such as allotment of"
+      ],
+      [
+       "selected households to each interviewer, synchronization of the data and reviewing the"
+      ],
+      [
+       "data quality jointly with the IIPS SPO/PO at the end of the day."
+      ],
+      [
+       "",
+       "Supervisors help to build rapport with the head of the community, PRI members and"
+      ],
+      [
+       "other stakeholders in the community. These relationships help minimize nonresponse"
+      ],
+      [
+       "and obtain reliable information from the selected respondents."
+      ],
+      [
+       "",
+       "NFHS adheres to the protocol of the centralized selection of households after"
+      ],
+      [
+       "completion of M&L of households and receiving verified excel spreadsheets. At the"
+      ],
+      [
+       "field level, the supervisors ensure the implementation of survey in the selected"
+      ],
+      [
+       "households and eligible respondents."
+      ],
+      [
+       "",
+       "The completed interviews are checked by the supervisor before synchronization of data"
+      ],
+      [
+       "to the central office."
+      ],
+      [
+       "",
+       "Pursuant to the NFHS protocol, 10% of the surveyed households are to be back checked"
+      ],
+      [
+       "by supervisors."
+      ]
+     ]
+    },
+    {
+     "page": 12,
+     "rows": [
+      [
+       "Strategies for CAB Team to Ensure Data Quality"
+      ],
+      [
+       "To ensure high quality data, the CAB team follows the protocol given below:"
+      ],
+      [
+       "",
+       "Training of Trainers for the CAB health investigators in NFHS is imparted by"
+      ],
+      [
+       "international experts having experience in CAB training across different DHS surveys."
+      ],
+      [
+       "",
+       "The protocols used for collection of CAB data have been developed as per international"
+      ],
+      [
+       "standards which allows comparability with other DHS surveys."
+      ],
+      [
+       "",
+       "NFHS uses standard, self-calibrating equipment having the latest technologies to ensure"
+      ],
+      [
+       "minimum instrument errors. The equipment used in the survey are also standardized"
+      ],
+      [
+       "periodically to ensure the accuracy and consistency of the measurements."
+      ],
+      [
+       "",
+       "NFHS ascertains the qualifications and experience of the health investigators for good"
+      ],
+      [
+       "quality CAB data. Health investigators must meet the prescribed qualifications, such as"
+      ],
+      [
+       "having a degree in Medical Lab Technology/B. Pharm/BUMS/BHMS/BAMS or a"
+      ],
+      [
+       "Diploma in Nursing (ANM/GNM) or in Medical Lab Technology (DMLT), and they"
+      ],
+      [
+       "should understand the investigation procedures well. All the educational documents of"
+      ],
+      [
+       "HIs will be verified by the IIPS SPO/PO prior to training."
+      ],
+      [
+       "",
+       "An in-dapth dedicated CAB training for three weeks is given to the health investigators"
+      ],
+      [
+       "with adequate practice sessions in-house and in the community. The trained health"
+      ],
+      [
+       "investigators are integrated with the core survey team before comprehensive field"
+      ],
+      [
+       "practice and feedback. Before participating in the main fieldwork, health investigators"
+      ],
+      [
+       "must qualify with a minimum of 80% marks in a written exam conducted by IIPS at the"
+      ],
+      [
+       "end of the training."
+      ],
+      [
+       "",
+       "Standardization of trainers as well as health investigators is performed at different"
+      ],
+      [
+       "trainings and only those trainers/investigators who perform as per the required"
+      ],
+      [
+       "standards are allowed to be part of survey."
+      ],
+      [
+       "",
+       "The CAB investigations during fieldwork are closely monitored to ensure that health"
+      ],
+      [
+       "investigators",
+       "obtain",
+       "informed",
+       "consent",
+       "from",
+       "respondents",
+       "and",
+       "follow",
+       "the",
+       "sample"
+      ],
+      [
+       "collection and biomarker measurement protocols correctly and professionally. Health"
+      ],
+      [
+       "coordinators",
+       "of",
+       "the",
+       "FA,",
+       "IIPS",
+       "POs/SPOs,",
+       "IIPS",
+       "PIs,",
+       "and,",
+       "where",
+       "possible,",
+       "ICF"
+      ],
+      [
+       "representatives and officials from MoHFW conduct spot-checks to monitor and"
+      ],
+      [
+       "supervise the CAB investigations to provide timely feedback and ensure that corrective"
+      ],
+      [
+       "measures are taken when they are warranted. NFHS continuously strives to raise the"
+      ],
+      [
+       "bar of quality of CAB data by assessing the performance of each health investigator and"
+      ],
+      [
+       "organising",
+       "debriefing",
+       "sessions",
+       "to",
+       "bolster",
+       "the",
+       "technical",
+       "competencies",
+       "of",
+       "health"
+      ],
+      [
+       "investigators."
+      ],
+      [
+       "",
+       "The CAB investigations are also monitored regularly with the help of field check tables"
+      ],
+      [
+       "generated at the FA headquarters and IIPS. The feedback from associated laboratories"
+      ],
+      [
+       "is also sought to ensure proper collection and transport of DBS samples. NFHS has an"
+      ],
+      [
+       "e-tracking system to monitor the transportation of DBS from the field to designated lab"
+      ],
+      [
+       "within stipulated time. The lab also provides feedback on the quality of the dried blood"
+      ],
+      [
+       "spots to make improvements, if necessary."
+      ],
+      [
+       "",
+       "NFHS follows strict protocols of storage, maintenance, distribution and handling of"
+      ],
+      [
+       "CAB equipment and consumables to ensure minimal instrumental errors."
+      ]
+     ]
+    },
+    {
+     "page": 13,
+     "rows": [
+      [
+       "",
+       "To minimise recording errors, all the entries of CAB investigations in the biomarker"
+      ],
+      [
+       "questionnaires are done jointly by the health investigators and the field investigators"
+      ],
+      [
+       "and are verified/ edited by the team supervisor."
+      ]
+     ]
+    },
+    {
+     "page": 14,
+     "rows": [
+      [
+       "Strategies Incorporated in CAPI to Ensure Data Quality"
+      ],
+      [
+       "Since 2015-16, NFHS has adopted CAPI technology to conduct interviews, which helps in"
+      ],
+      [
+       "strengthening the data quality and saves time. CAPI software provides results in real time,"
+      ],
+      [
+       "which are easily exportable to Excel, CSV, SPSS, and STATA file formats. The CAPI data"
+      ],
+      [
+       "entry and editing program is designed with adequate checks and they follow strategies to ensure"
+      ],
+      [
+       "high data quality:"
+      ],
+      [
+       "",
+       "Extensive training is provided to the IT coordinator of each FA, including software and"
+      ],
+      [
+       "hardware troubleshooting. In addition, NFHS provides remote technical support to all"
+      ],
+      [
+       "field teams and FA from the central office."
+      ],
+      [
+       "",
+       "The CAPI program used in NFHS has an inbuilt feature to select the appropriate"
+      ],
+      [
+       "language for the interviews from multiple regional languages."
+      ],
+      [
+       "",
+       "Control and management of fieldwork across the country is arranged from the central"
+      ],
+      [
+       "office by allotment of work to each of more than 500 teams working and accessing their"
+      ],
+      [
+       "progress on a real-time basis."
+      ],
+      [
+       "",
+       "An inbuilt algorithm in the CAPI program automatically handles skip patterns, filters,"
+      ],
+      [
+       "and eligibility for questionnaires and sections."
+      ],
+      [
+       "",
+       "The provision of synchronizing data from interviewer’s CAPI to supervisor’s CAPI"
+      ],
+      [
+       "provides an opportunity for back check of information to improve data quality."
+      ],
+      [
+       "",
+       "An",
+       "inbuilt",
+       "mechanism",
+       "partially",
+       "saves",
+       "incomplete",
+       "questionnaires",
+       "to",
+       "provide"
+      ],
+      [
+       "opportunities to complete the interview in multiple sessions and minimize respondent’s"
+      ],
+      [
+       "fatigue."
+      ],
+      [
+       "",
+       "Use of SyncCloud Technology improves the data synchronization from the supervisor’s"
+      ],
+      [
+       "CAPI instrument to the Central Office, which gives access to real-time data from any"
+      ],
+      [
+       "device or computer."
+      ],
+      [
+       "",
+       "The CAPI programs help in generating field check tables on key indicators on a daily"
+      ],
+      [
+       "basis which are reviewed by the Quality Assurance Team in the central office to allow"
+      ],
+      [
+       "individual level feedback to be communicated back to the teams working across"
+      ],
+      [
+       "different parts of the country."
+      ],
+      [
+       "",
+       "NFHS assigns a unique code to each investigator within a state, which helps in tracking"
+      ],
+      [
+       "the progress and performance of the investigator after individual level feedback is"
+      ],
+      [
+       "provided."
+      ]
+     ]
+    },
+    {
+     "page": 15,
+     "rows": [
+      [
+       "Strategies to Assess Non-Sampling Errors: Evidence from NFHS-4"
+      ],
+      [
+       "For the first time in the NFHS series, when coverage was increased from the state to the district"
+      ],
+      [
+       "level, there was an increase in sample size more than fivefold. The National Statistical"
+      ],
+      [
+       "Commission advised IIPS to estimate the magnitude of non-sampling errors in NFHS-4 on an"
+      ],
+      [
+       "experimental basis in two states of India, namely Kerala and Jharkhand. For estimating the"
+      ],
+      [
+       "non-sampling errors, NFHS-4 selected two independent subsamples each from Kerala and"
+      ],
+      [
+       "Jharkhand. The estimates obtained from the two independent subsamples in each state were"
+      ],
+      [
+       "compared and found to be well within an acceptable limit. A brief description of the process"
+      ],
+      [
+       "and results is presented below:"
+      ],
+      [
+       "Methodology:",
+       "In order to estimate the possible extent of non-sampling errors in Kerala and"
+      ],
+      [
+       "Jharkhand, two independent subsamples were selected in both the states. Independent teams"
+      ],
+      [
+       "comprising of one supervisor, three female investigators, one male investigator, and two health"
+      ],
+      [
+       "investigators were assigned the job of conducting fieldwork in each of the two subsamples in"
+      ],
+      [
+       "each state. For example, in Kerala, Team A conducted the fieldwork in first subsample and"
+      ],
+      [
+       "Team B conducted the fieldwork in second subsample. The members of Team A and Team B"
+      ],
+      [
+       "were selected in such a way that the composition of the teams in terms of age, years of"
+      ],
+      [
+       "schooling, and years of fieldwork experience of the members were similar. It was also ensured"
+      ],
+      [
+       "that the two independent subsamples included PSUs from each district of the two states. For"
+      ],
+      [
+       "the main fieldwork, the districts from each state were grouped into sets of contiguous districts"
+      ],
+      [
+       "(usually 4-5 districts). For proper monitoring of the fieldwork, the main survey fieldwork"
+      ],
+      [
+       "started in first set of districts. After completion of the fieldwork in first set of districts, the"
+      ],
+      [
+       "teams moved to the second set of districts. While five sets of districts were formed in"
+      ],
+      [
+       "Jharkhand, only four sets were formed in Kerala. Thirty field teams were trained in Jharkhand"
+      ],
+      [
+       "and 18 were trained in Kerala."
+      ],
+      [
+       "Findings:",
+       "The comparison of estimates from the two independent subsamples in Jharkhand"
+      ],
+      [
+       "suggests that the differences in only 11 out of 72 indicators across the two independent"
+      ],
+      [
+       "subsamples are statistically significant. In Kerala, the estimates from two independent"
+      ],
+      [
+       "subsamples were statistically different for only 7 indicators out of a total of 72 indicators. The"
+      ],
+      [
+       "results in each state show that there is no difference in the estimates across the two subsamples"
+      ],
+      [
+       "for a large majority of indicators, as would be expected from a survey with a low level of"
+      ],
+      [
+       "nonsampling errors."
+      ]
+     ]
+    }
+   ],
+   "firstPageText": "NATIONAL FAMILY HEALTH SURVEY 2019-20 NFHS-5 DATA QUALITY ASSURANCE AND QUALITY CONTROL MECHANISMS 2019-20 International Institute for Population Sciences Govandi Station Road, Deonar Mumbai-400 088."
   }
  ]
 }
