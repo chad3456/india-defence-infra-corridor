@@ -1,0 +1,41 @@
+name: NFHS-6 — what IIPS publishes, before it is read
+
+# The sandbox cannot reach nfhsiips.in. This lists the IIPS pages' document
+# links and samples each NFHS-6 fact-sheet PDF (size, pages, a few pages of
+# text rows) into data/nfhs6/probe.json, so the extractor is written against
+# what the documents actually say. Commits no PDF and publishes no figure.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/etl/probe-nfhs6.ts"
+      - ".github/workflows/nfhs6-probe.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nfhs6-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: "${{ github.ref_name }}" }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Probe
+        run: npx tsx scripts/etl/probe-nfhs6.ts
+      - name: Commit the probe report
+        if: always()
+        run: |
+          if [ -f data/nfhs6/probe.json ]; then
+            .github/scripts/commit-generated.sh data/nfhs6/probe.json "chore(nfhs6): IIPS document probe $(date -u +'%Y-%m-%d %H:%M')"
+          fi
