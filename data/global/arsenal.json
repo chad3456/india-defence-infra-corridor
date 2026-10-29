@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-10-29T11:45:19.638Z",
+ "builtAt": "2026-10-29T22:00:46.531Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206512,14 +206512,14 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   },
   {
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   },
   {
@@ -206545,6 +206545,21 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-jvfe04",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Germany",
+    "Netherlands"
+   ],
+   "value": null,
+   "date": "2026-10-29",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/germany-and-netherlands-raise-schakal-order-to-291-fighting-vehicles/",
+   "headline": "Germany and Netherlands raise Schakal order to 291 fighting vehicles",
+   "primary": false
+  },
   {
    "id": "ev-22ggi",
    "kind": "order",
@@ -208003,6 +208018,37 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||germany+netherlands",
+   "systems": [],
+   "countries": [
+    "Germany",
+    "Netherlands"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-jvfe04",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Germany",
+      "Netherlands"
+     ],
+     "value": null,
+     "date": "2026-10-29",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/germany-and-netherlands-raise-schakal-order-to-291-fighting-vehicles/",
+     "headline": "Germany and Netherlands raise Schakal order to 291 fighting vehicles",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||germany+ukraine",
    "systems": [],
