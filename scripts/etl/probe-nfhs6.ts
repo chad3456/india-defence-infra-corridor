@@ -37,7 +37,8 @@ async function get(url: string, timeoutMs = 60_000): Promise<{ status: number; t
     const buf = new Uint8Array(await res.arrayBuffer());
     return { status: res.status, type: res.headers.get("content-type") ?? "", bytes: buf, finalUrl: res.url };
   } catch (e) {
-    return { status: 0, type: "", bytes: null, error: String(e).slice(0, 200) };
+    const cause = (e as { cause?: { code?: string; message?: string } }).cause;
+    return { status: 0, type: "", bytes: null, error: `${String(e).slice(0, 120)}${cause ? ` · cause: ${cause.code ?? ""} ${cause.message ?? ""}`.slice(0, 240) : ""}` };
   }
 }
 
