@@ -64,7 +64,7 @@ async function main() {
     for (const l of docs) if (/\.pdf(?:$|\?)/i.test(l.href)) found.add(l.href);
     const forms = [...html.matchAll(/<form\b[\s\S]*?<\/form>/gi)].map((m) => m[0].replace(/\s+/g, " ").slice(0, 6000));
     const pdfStrings = [...new Set([...html.matchAll(/["'(]([^"'()<>\s]*\.pdf)["')]/gi)].map((m) => m[1]!))].slice(0, 200);
-    const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)].map((m) => m[1]!).filter((t) => /download|pdf|compendium|login|guest|ajax|fetch\(/i.test(t)).map((t) => t.replace(/\s+/g, " ").slice(0, 3000));
+    const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)].map((m) => m[1]!).filter((t) => /download|pdf|compendium|login|guest|ajax|fetch\(/i.test(t)).map((t) => t.replace(/\s+/g, " ").slice(0, /publication/.test(url) ? 30000 : 3000));
     const text = html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").slice(0, 5000);
     (report.pages as unknown[]).push({ url, status: r.status, error: r.error, finalUrl: r.finalUrl, bytes: r.bytes?.length ?? 0, forms, pdfStrings, scripts, text: /release|publication/.test(url) ? text : undefined, links: docs.slice(0, 300), allLinks: ls.length });
     console.log(`page ${url}: ${r.status} ${r.bytes?.length ?? 0} bytes, ${docs.length} document links`);
@@ -90,6 +90,14 @@ async function main() {
           if (pg) sample.push({ page: p, rows: fragmentsToRows(pg.fragments).slice(0, 140).map((row) => row.map((c) => c.slice(0, 120))) });
         }
         entry.sample = sample;
+        if (big) {
+          // Which state each page belongs to: its first two rows, every page.
+          const all = await extractPages(bytes.slice());
+          entry.heads = all.map((pg) => ({ page: pg.page, n: pg.fragments.length, head: fragmentsToRows(pg.fragments).slice(0, 2).map((r) => r.join(" ")).join(" / ").slice(0, 160) }));
+          // Positioned fragments for the first key-indicators pages, so columns can be located by x.
+          const keyPages = all.filter((pg) => /Key Indicators/i.test(fragmentsToRows(pg.fragments).slice(0, 2).flat().join(" "))).slice(0, 4);
+          entry.fragments = keyPages.map((pg) => ({ page: pg.page, f: pg.fragments.map((x) => [x.text.slice(0, 90), Math.round(x.x * 10) / 10, Math.round(x.y * 10) / 10]) }));
+        }
         entry.firstPageText = head[0]?.fragments.map((f) => f.text).join(" ").slice(0, 600);
       } catch (e) { entry.parseError = String(e).slice(0, 200); }
     }
