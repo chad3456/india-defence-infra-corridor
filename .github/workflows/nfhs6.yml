@@ -1,0 +1,65 @@
+name: NFHS-6 — fact sheets, read
+
+# Reads IIPS's NFHS-6 (2023-24) fact sheets into data/nfhs6/: the India and
+# State/UT fact sheet, which IIPS links publicly, and — when a person has
+# attached them to the "nfhs6-districts" release — the district compendiums,
+# which IIPS publishes behind its download form and this does not fetch.
+# Only extracted figures are committed, never the PDFs.
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published, edited]
+  schedule:
+    - cron: "23 4 * * 1"
+  push:
+    paths:
+      - "scripts/etl/connectors/nfhs6.ts"
+      - "lib/nfhs6.ts"
+      - ".github/workflows/nfhs6.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nfhs6
+  cancel-in-progress: false
+
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: "${{ github.event_name == 'release' && 'claude/india-defence-infra-tracker-qfpsfu' || github.ref_name }}" }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Trust the emSign chain IIPS sends
+        run: |
+          .github/scripts/emsign-chain.sh www.nfhsiips.in "$RUNNER_TEMP/emsign-chain.pem"
+          echo "NODE_EXTRA_CA_CERTS=$RUNNER_TEMP/emsign-chain.pem" >> "$GITHUB_ENV"
+      - name: Fetch district compendiums attached to the release, if any
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/nfhs6-districts"
+          if gh release view nfhs6-districts >/dev/null 2>&1; then
+            gh release download nfhs6-districts --dir "$RUNNER_TEMP/nfhs6-districts" --pattern "*.pdf" --clobber
+            ls -la "$RUNNER_TEMP/nfhs6-districts"
+            echo "NFHS6_DISTRICT_DIR=$RUNNER_TEMP/nfhs6-districts" >> "$GITHUB_ENV"
+          else
+            echo "no nfhs6-districts release: district figures stay as they are"
+          fi
+      - name: Read the fact sheets
+        run: npx tsx scripts/etl/connectors/nfhs6.ts
+      - name: Commit
+        run: |
+          for f in data/nfhs6/states.json data/nfhs6/districts.json data/nfhs6/district-report.json; do
+            if [ -f "$f" ] && [ -n "$(git status --porcelain "$f")" ]; then
+              .github/scripts/commit-generated.sh "$f" "data(nfhs6): $(basename "$f" .json) $(date -u +'%Y-%m-%d %H:%M')"
+            fi
+          done
