@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-29T21:28:56.186Z",
+  "builtAt": "2026-10-30T06:31:26.182Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1320,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 1317,
-    "withOutlet": 1228,
+    "items": 1324,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 1320,
+    "withOutlet": 1232,
     "bySubject": {
-      "scst": 903,
-      "pmshri": 417
+      "scst": 905,
+      "pmshri": 419
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 185
+    "offSubjectDropped": 214
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 650
+      "n": 653
     },
     {
       "key": "use",
-      "n": 465
+      "n": 466
     },
     {
       "key": "acquittal",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 111
+      "n": 112
     },
     {
       "key": "Lawtext",
@@ -62,7 +62,7 @@
     },
     {
       "key": "The Hindu",
-      "n": 53
+      "n": 54
     },
     {
       "key": "The New Indian Express",
@@ -117,16 +117,16 @@
       "n": 15
     },
     {
+      "key": "ET Education",
+      "n": 14
+    },
+    {
       "key": "ANI News",
       "n": 14
     },
     {
       "key": "Onmanorama",
       "n": 14
-    },
-    {
-      "key": "ET Education",
-      "n": 13
     },
     {
       "key": "Maktoob",
@@ -295,20 +295,20 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 37,
+      "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 8
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 47,
+      "google": 100,
       "bing": 3,
-      "kept": 0,
-      "offSubject": 2
+      "kept": 1,
+      "offSubject": 13
     },
     {
       "id": "act-convicted",
@@ -325,9 +325,9 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 9,
+      "google": 8,
       "bing": 7,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 1
     },
     {
@@ -335,17 +335,17 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 10,
+      "google": 49,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 4
+      "kept": 1,
+      "offSubject": 12
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 58,
+      "google": 57,
       "bing": 0,
       "kept": 0,
       "offSubject": 20
@@ -355,60 +355,60 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 29,
+      "google": 98,
       "bing": 1,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 45
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 9,
+      "google": 26,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 8
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 49,
+      "google": 9,
       "bing": 1,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 1
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 26,
+      "google": 14,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 0
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 48,
+      "google": 20,
       "bing": 1,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 6
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 10,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 19
+      "kept": 0,
+      "offSubject": 4
     },
     {
       "id": "shri-general",
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 10,
+      "bing": 12,
       "kept": 1,
       "offSubject": 6
     },
@@ -425,10 +425,10 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 10,
+      "google": 40,
       "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 6
     },
     {
       "id": "shri-funds",
@@ -445,28 +445,28 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 49,
+      "google": 7,
       "bing": 2,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 0
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
-      "bing": 2,
+      "google": 13,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 0
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 28,
-      "bing": 2,
+      "google": 27,
+      "bing": 3,
       "kept": 0,
       "offSubject": 13
     },
@@ -475,10 +475,10 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 28,
-      "bing": 4,
+      "google": 51,
+      "bing": 5,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 10
     },
     {
       "id": "shri-criticism",
@@ -487,8 +487,8 @@
       "expect": "dispute",
       "google": 43,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 32
+      "kept": 1,
+      "offSubject": 31
     }
   ],
   "items": [
@@ -11335,7 +11335,8 @@
       "queries": [
         "shri-mou",
         "shri-nep",
-        "shri-general"
+        "shri-general",
+        "shri-sanctioned"
       ],
       "indexes": [
         "google"
@@ -22069,6 +22070,70 @@
         "google"
       ],
       "firstSeen": "2026-10-29"
+    },
+    {
+      "id": "rajasthan high court quashes cheating and sc st act fir after compromise relies on gian si",
+      "headline": "Rajasthan High Court quashes cheating and SC/ST Act FIR after compromise, relies on Gian Singh",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The PinkCity Post",
+      "published": "2026-10-26",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNVm5ZUFFoekc5cG02dGFhQ1prSHhTYlJZdEtkd3JIQTY5eWtPbDNIOE5LdHNSbWd4MGg0Q3A2RF9vNlFtYnFiSVZxdTExNUJxVU5CaWFPTmZIbEpoQXpXR19EamlpZm1QeXJlX05JYzMtRE5jbkNaWUxMWEdnU0ktRkM3NlpoUmtvaUhxWEQ4Nm5YRlVBckxpaU9QSXo3Ynk1SUZ1dFI0NUZaYjRlSFZ4Q0xQWVNOeFo1NHVEZHJJeHA?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-30"
+    },
+    {
+      "id": "madras high court upholds enhanced relief for kin of dalit girl who killed self",
+      "headline": "Madras high court upholds enhanced relief for kin of dalit girl who killed self",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2019-12-24",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNVTRFaU1XUlZhb1F4WllBUERpbzFkTFc3bjhuWThyemdpVGFUb2QtLXdqT1VUTTMtbElyV2hLRFN1dTZCZWJXX1luRzNlcEFQOWZoZmdGNzVWdUx0YllpZEV0NllpRFdrLU5DVWNILVpvNHJSUnFuMGVSUy1hVVY0WmlNcUNURGlmQ05ZZzVBX0tvLTE0dzd4Qk5vdUQyLUY2Smc3ZWp4YjRLQk5uRi1zajlmQlRqM21DSHRXNk1fWXJvcFNMbDJnaktVVWFCOEVxaWJQVtIB2gFBVV95cUxPTmRXd3ptWktnY3hUSk10WlRsT1pWOU5nUmd1ZzU1N29qNHlQaFE2dGFUYUJNQXRiaVhFODRaRTFKdUdQUnlEbG1UbFFNdlNnOXRlcXFWdjY0bXBGWUpmRTVHN3UtcVVfNmVUZnNiUW1XUHM5S19iNF9kRUpiazV3ejZrWXluRU9fZXpCNk9PLXlRc3Q2X2RVOHVyd2JOeDNPWjYxYnFCbHZfUWhNa1hKLWxKRXpSOU9KODhVLW5hTHczOGo0VU1mUDAteTRfYUtjV214VFJWUTJkUQ?oc=5",
+      "queries": [
+        "act-compensation"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-30"
+    },
+    {
+      "id": "andhra ranks first in pm shri fund utilisation claims education minister",
+      "headline": "Andhra ranks first in PM SHRI fund utilisation, claims Education Minister",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "ET Education",
+      "published": "2026-10-29",
+      "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxPY1FEV21Va0h6ckdIRmVlc2liVkt2ampNOE1zT2ZiUXhhVHljVFFKZWg5eEFQMmJpekRmWm1QUnV2U0xHNUM4aDRadFU0eVFwZFVGOXBwRm1HbW9UT1FWeXJscHM3OTlKNmRQMXNZZ1Y0YUZBbVhVUHBjdjdUMTIxN2RPR2RRT016NkJjYlY0WlFMTEY1MnNqYlRKV2pZZmk0aV9lWGJITjM1YnVDMWVWX3pUTWNSam5yQ0pEbnJRQVptZDVnZmE0MERtSm10cGVyOUhvNnZwR09laWhsb1dzYjJheVBFWVhic1F6eDc3N093TFRVNDZCRjNBLU_SAfcBQVVfeXFMTWNqZXItYzg4VlRuMzNpOVpaMEdFVDFRTnNDMVpqWW5yN0h5Y1Z0cW10MFRaVnlSVTNiMWdpZmNydlVSM3hqeDFWT0VCbURyQzRqUDV0TXNDYlJPemNubW1VRkktS01QTXc2WGpCQnJfVDB0SFNpcWZRdzNzZlZOWmdXNENPVzZib2VILUhYQ2Y1RmprVlFZcEZvaXBWV1k1bEt3a1NwWTVjTWYwc01nR1dVenVVQjFsMk91VDhEdHZWVWhrV21YLTRRVFVCSW1fVFhfYXdrRXpWRXN6V296Z1lBTnMxN0gtU2dncXgta1ZaQ2NXcjI1TQ?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-30"
+    },
+    {
+      "id": "pm shri signing a tactical decision minister",
+      "headline": "PM SHRI signing a tactical decision: Minister",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The Hindu",
+      "published": "2025-10-24",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQQlk2dUlaYjFzTFJTcV94QVZmS2p5alpVcjYzVlhTaW5MRlc1azBvNGZrMkpFSWpzX3J0QXBVaTVtMUpEYy1rSHpQSmVBYTFsdS1rREZvMF9YbnZqN0RwNUtCY0NpbElVX3pYQXk1bEJHSU9nbDZlWFRPRzlkTWVxc19ydk9HMkJteE1KX2JyeExKLTV4dy12UUpvM0VsUktGa09YLUhRMEtzVzdvekNN0gG2AUFVX3lxTFBYUm1HZ3hzU3hUY2R2eXQ4bVRTSDk3WUhZc1oxOUwzS3I3dDFrZWJBdHl0aVlJcDJ6TThrQlBxRHV4aFIyUFRPSk95d2M1N19UZzhqUkZuZllCQVliczE5WUl3ekltRVpzSEJlUmJHRUJiTm9rcTF5V1AzSE5GNnpNRkt0Z1N3V2ZXcjBiVE5tUHl2X0lDc1RNNGlZYWVRQnlFVmRXeTE0bFI1dnlMRHl3QTFDa3J3?oc=5",
+      "queries": [
+        "shri-criticism"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-30"
     }
   ]
 }
