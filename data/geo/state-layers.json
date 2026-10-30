@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-30T13:16:48.968Z",
+  "builtAt": "2026-10-30T22:34:07.042Z",
   "note": "Named things per state, for the map to answer a click with. Each layer records how its rows reached a state and how many did not, because the join is where this kind of file goes wrong invisibly.",
   "refused": [
     {
@@ -25636,8 +25636,8 @@
       "blurb": "Every railway station the mobility dataset holds a coordinate for, placed into the state whose polygon contains it. Presence only — the source carries a name, a station code and a coordinate, and nothing about how many trains stop or how many people pass through, so a count of stations is a count of stations and not of service.",
       "join": "Point-in-polygon against the map's own topology. A station in no polygon is listed unplaced, never assigned to a neighbour.",
       "source": "OpenStreetMap, via the mobility connector.",
-      "total": 10329,
-      "placed": 10157,
+      "total": 10327,
+      "placed": 10155,
       "unplacedCount": 120,
       "deduped": 52,
       "unplaced": [
@@ -26189,6 +26189,13 @@
             "lon": 73.3283
           },
           {
+            "name": "Aundh",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.5503,
+            "lon": 73.8083
+          },
+          {
             "name": "Ausa Road",
             "why": "Station code OSA.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -26257,6 +26264,13 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 17.6763,
             "lon": 75.8456
+          },
+          {
+            "name": "Balewadi High Street",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.5705,
+            "lon": 73.7748
           },
           {
             "name": "Balewadi Phata",
@@ -26336,18 +26350,18 @@
             "lon": 72.8413
           },
           {
-            "name": "Baner",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.555,
-            "lon": 73.7979
-          },
-          {
             "name": "Baner Gaon",
             "why": "No station code in this dataset.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 18.5592,
             "lon": 73.7906
+          },
+          {
+            "name": "Baner Pashan Link Road",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.555,
+            "lon": 73.7977
           },
           {
             "name": "Bangur Nagar",
@@ -26656,6 +26670,13 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 21.0989,
             "lon": 75.0037
+          },
+          {
+            "name": "Bhosalenagar RBI",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.5364,
+            "lon": 73.8367
           },
           {
             "name": "Bhugaon",
@@ -27536,8 +27557,8 @@
             "name": "District Court (Pink Line)",
             "why": "No station code in this dataset.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5283,
-            "lon": 73.8561
+            "lat": 18.5284,
+            "lon": 73.856
           },
           {
             "name": "District Court (Purple Line)",
@@ -27573,13 +27594,6 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 18.9675,
             "lon": 72.8445
-          },
-          {
-            "name": "Doehler India",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5881,
-            "lon": 73.7029
           },
           {
             "name": "Dolavli",
@@ -27981,13 +27995,6 @@
             "lon": 76.9713
           },
           {
-            "name": "High Street",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5705,
-            "lon": 73.7748
-          },
-          {
             "name": "Himayatnagar",
             "why": "Station code HEM.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -28009,11 +28016,25 @@
             "lon": 77.1478
           },
           {
-            "name": "Hinjawadi",
+            "name": "Hinjawadi Phase 1",
             "why": "No station code in this dataset.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5924,
-            "lon": 73.7374
+            "lat": 18.591,
+            "lon": 73.7463
+          },
+          {
+            "name": "Hinjawadi Phase 2 Circle 1",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.5966,
+            "lon": 73.7172
+          },
+          {
+            "name": "Hinjawadi Phase 2 Circle 2",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.5942,
+            "lon": 73.7092
           },
           {
             "name": "Hirapur",
@@ -28072,13 +28093,6 @@
             "lon": 73.5639
           },
           {
-            "name": "IISER",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5503,
-            "lon": 73.8082
-          },
-          {
             "name": "Indapur",
             "why": "Station code INP.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -28091,13 +28105,6 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 21.1737,
             "lon": 79.1007
-          },
-          {
-            "name": "Infosys",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5942,
-            "lon": 73.7092
           },
           {
             "name": "Institute of Engineers",
@@ -28133,13 +28140,6 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 21.1036,
             "lon": 79.0682
-          },
-          {
-            "name": "Jakat Naka",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.591,
-            "lon": 73.7463
           },
           {
             "name": "Jalamb Junction",
@@ -29073,13 +29073,6 @@
             "lon": 73.8077
           },
           {
-            "name": "Krushi Anusandhan",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5503,
-            "lon": 73.8082
-          },
-          {
             "name": "Kudal",
             "why": "Station code KUDL.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -29309,6 +29302,27 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 18.8096,
             "lon": 73.3352
+          },
+          {
+            "name": "Maan",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.5792,
+            "lon": 73.688
+          },
+          {
+            "name": "Maan Bus Depot",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.5881,
+            "lon": 73.7029
+          },
+          {
+            "name": "Maan MIDC Circle - Phase 2",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.584,
+            "lon": 73.6948
           },
           {
             "name": "Madanapur",
@@ -29647,13 +29661,6 @@
             "lon": 72.8467
           },
           {
-            "name": "Megapolis Circle",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5792,
-            "lon": 73.688
-          },
-          {
             "name": "Metpanjra",
             "why": "Station code MER.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -29715,6 +29722,13 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 19.2038,
             "lon": 76.9157
+          },
+          {
+            "name": "Mitcon Balewadi",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.575,
+            "lon": 73.7661
           },
           {
             "name": "Mitewani",
@@ -30172,13 +30186,6 @@
             "lon": 72.9878
           },
           {
-            "name": "NICMAR",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.575,
-            "lon": 73.7661
-          },
-          {
             "name": "Nidi",
             "why": "Station code NIDI.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -30305,6 +30312,13 @@
             "lon": 73.6721
           },
           {
+            "name": "Padmabhushan Chowk",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.5945,
+            "lon": 73.7278
+          },
+          {
             "name": "Padsali",
             "why": "Station code PSS.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -30366,13 +30380,6 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 19.6979,
             "lon": 72.7719
-          },
-          {
-            "name": "Pall India",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5945,
-            "lon": 73.7278
           },
           {
             "name": "Palsap",
@@ -30774,6 +30781,13 @@
             "lon": 73.8724
           },
           {
+            "name": "Pune University",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.5423,
+            "lon": 73.8272
+          },
+          {
             "name": "Puntamba Junction",
             "why": "Station code PB.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -30795,11 +30809,11 @@
             "lon": 78.3545
           },
           {
-            "name": "Quadron",
+            "name": "R K Laxman Museum Balewadi",
             "why": "No station code in this dataset.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.584,
-            "lon": 73.6948
+            "lat": 18.5743,
+            "lon": 73.7718
           },
           {
             "name": "Rabale",
@@ -30963,13 +30977,6 @@
             "lon": 76.0444
           },
           {
-            "name": "RBI",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5364,
-            "lon": 73.8367
-          },
-          {
             "name": "RBI Colony",
             "why": "No station code in this dataset.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -31059,6 +31066,13 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 19.7806,
             "lon": 74.4807
+          },
+          {
+            "name": "Sakal Nagar",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.5463,
+            "lon": 73.8197
           },
           {
             "name": "Sakegaon",
@@ -31278,13 +31292,6 @@
             "lon": 75.9102
           },
           {
-            "name": "Savitribal Phule Pune University",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5423,
-            "lon": 73.8272
-          },
-          {
             "name": "Sawantwadi Road",
             "why": "Station code SWV.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -31481,18 +31488,18 @@
             "lon": 72.842
           },
           {
-            "name": "Shivaji Chowk",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5924,
-            "lon": 73.7373
-          },
-          {
             "name": "Shivaji Chowk (Chembur)",
             "why": "No station code in this dataset.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 19.0479,
             "lon": 72.907
+          },
+          {
+            "name": "Shivaji Chowk Hinjawadi",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.5924,
+            "lon": 73.7374
           },
           {
             "name": "Shivaji Nagar",
@@ -32594,13 +32601,6 @@
             "lon": 79.4415
           },
           {
-            "name": "Wipro",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5966,
-            "lon": 73.7172
-          },
-          {
             "name": "Wirur",
             "why": "Station code WIRR.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -32613,13 +32613,6 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 19.0086,
             "lon": 72.8193
-          },
-          {
-            "name": "YASHADA",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5463,
-            "lon": 73.8197
           },
           {
             "name": "Yavat",
@@ -45186,13 +45179,6 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 11.3706,
             "lon": 79.2194
-          },
-          {
-            "name": "Ichchiputtur",
-            "why": "Station code IPT.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 13.1326,
-            "lon": 79.6388
           },
           {
             "name": "Illavalengal",
