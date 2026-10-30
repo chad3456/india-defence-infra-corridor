@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-30T15:23:33.299Z",
+  "builtAt": "2026-10-30T21:06:04.607Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1327,
+    "items": 1330,
     "addedThisRun": 3,
-    "carriedFromEarlierRuns": 1324,
-    "withOutlet": 1235,
+    "carriedFromEarlierRuns": 1327,
+    "withOutlet": 1238,
     "bySubject": {
-      "scst": 907,
-      "pmshri": 420
+      "scst": 909,
+      "pmshri": 421
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 231
+    "offSubjectDropped": 241
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 656
+      "n": 659
     },
     {
       "key": "use",
@@ -78,7 +78,7 @@
     },
     {
       "key": "LawBeat",
-      "n": 30
+      "n": 31
     },
     {
       "key": "Verdictum",
@@ -94,7 +94,7 @@
     },
     {
       "key": "SCC Online",
-      "n": 19
+      "n": 20
     },
     {
       "key": "opindia.com",
@@ -109,15 +109,15 @@
       "n": 17
     },
     {
+      "key": "ET Education",
+      "n": 16
+    },
+    {
       "key": "Careers360",
       "n": 16
     },
     {
       "key": "Deccan Herald",
-      "n": 15
-    },
-    {
-      "key": "ET Education",
       "n": 15
     },
     {
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 100,
-      "bing": 3,
+      "bing": 4,
       "kept": 1,
-      "offSubject": 13
+      "offSubject": 16
     },
     {
       "id": "act-convicted",
@@ -328,24 +328,24 @@
       "google": 9,
       "bing": 7,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 1
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 49,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 4
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 13,
+      "google": 12,
       "bing": 0,
       "kept": 0,
       "offSubject": 1
@@ -365,67 +365,67 @@
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 9,
+      "google": 26,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 8
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 9,
+      "google": 49,
       "bing": 1,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 10
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 26,
+      "google": 14,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 0
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 20,
+      "google": 19,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 5
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 4
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 34,
-      "bing": 10,
+      "google": 100,
+      "bing": 11,
       "kept": 1,
-      "offSubject": 2
+      "offSubject": 6
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 39,
+      "google": 38,
       "bing": 1,
       "kept": 0,
       "offSubject": 5
@@ -435,57 +435,57 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 62,
+      "google": 61,
       "bing": 1,
       "kept": 0,
-      "offSubject": 23
+      "offSubject": 22
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 8,
+      "google": 48,
       "bing": 2,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 13
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 42,
+      "google": 13,
       "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 0
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 23,
+      "google": 27,
       "bing": 3,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 13
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 28,
-      "bing": 3,
+      "google": 52,
+      "bing": 4,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 11
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 42,
+      "google": 43,
       "bing": 1,
       "kept": 0,
       "offSubject": 31
@@ -22177,6 +22177,54 @@
       "outlet": "ET Education",
       "published": "2025-10-24",
       "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPWl9DSS1FVnphdFFMZmlyQlBHT3JGUTJuUXpFLWNpX3h1Mnp4c21CR3c3UnZmWi1Wdm5KQjB5eE4yb0FfVFMtWHBha3l0ZWx6NldtZmQ1MjN3YUJfcDlTX08ySkFUVEZ6R2pvZ0hOQjFScmZaVHRwZjNOc19HY3pFUmdPeDJWaUE1ZjBtREpMQnhRU0p0X3JtU3pvUUh0MjRiWmstZGVNckpCMS1DWmE4ek9COHJEcU9Vb2IwOXQybW1ZbWt0cmY5X1R0YllyYnpoa25rQzBlRDJ2UVN3OElEWl9iYjJOWEVh0gHuAUFVX3lxTFBGZ2N4SE55MVRkYkM2d0lvV0FUeEZsTVNWMTNjOGlvcEE4MXVwem1ZV2FudWJDaWZ5YW50MmEyRmRfU1NGdmhheFM4SkR5cXYtWE5YQVdKRG5jRzJtc3JZWUVYaFZjczJ6aGJ2TmRja213MTlZYXFEWFJtdjN2bUpHS3JTSXBydzJhenRwTHNsOVI4cVJSR1haWmpaWTRlXzNNVDJRenpUMHkzUGE4RnJib3pvNjhQWXpYYkp4cjdCQWgtZkRmaUpPUnF5WVlOZHNObEFRM2l6VXBKeS1lRXBNdzVNa1FZRFFENHNud1E?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-30"
+    },
+    {
+      "id": "anticipatory bail maintainable only before high court in absence of prima facie case under",
+      "headline": "Anticipatory bail maintainable only before High Court in absence of prima facie case under SC/ST Act: Andhra Pradesh High Court",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "SCC Online",
+      "published": "2025-09-29",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQSHNkTmxzTFp2WDlDUmdyZEhfc0w3RkY3bUhSeGsyeTU0THZid3pZaGQxTFk0RmJZckhFbzNIN2FnaU8wWUpEQWRfZjFzcF9DTEdaaG10MEFFTVNhN2c3cnlwWlVKRmZiMDNPdndTUTRGamYycGdaODJTTG1YNnUwN295WWt1VFhQeENhSkZtVG1VSm9YNm9aUnZnLVNLZw?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-30"
+    },
+    {
+      "id": "bank officers can t face sc st act prosecution for initiating loan recovery supreme court",
+      "headline": "Bank Officers Can't Face SC/ST Act Prosecution For Initiating Loan Recovery: Supreme Court",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawBeat",
+      "published": "2026-10-30",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOak1CX0lLTXNwVmxZZ2VGTEk4RGVNUlhWNE9IM240eENtX0hXTUtEWTFPcDRTamNBRTFqZXcyXzZ6OUgyQk4tSkt0TkltVVJMd05SaFkySjY5MXV4UURWWnR6SXVFREpLNTJOR0RjaWFacDE2cXNHN2U2b2RfVUU5ZVNOa3p2TUltZlFNbjFxWW5GN1JuejMzM18zTTNzc0h3c0l4VHFCajUwVjdCRDlRLW9YRmZxQnU3NXl5ZXBHMjVkcmtHeGfSAcsBQVVfeXFMTWVKUjg4RHd1eThvRWpQdTNnNlpVdXBkX2NJRFpibkExWnZHcnpfLWN2UFJpVGpqcF83NlRtbWROUU1iLUpKbTVWNTNOUUd4N04zaEVscWhYWEE3NC03eHh4OVNRdmhrR1RHdUdfVFh3bTVGb3FJQjNqUWdWQkc5UEFCa2pITHc3dmVyYlNwaFdmcldoTF8wUzdmemxjd2tEZDNYWmZNU0VGbjh4X3VCMTdmZjVjZzNxRDZTdlBZVnYtR3lyV3d0ZnV3a0U?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-30"
+    },
+    {
+      "id": "centre asks kerala to decide on pm shri scheme at the earliest",
+      "headline": "Centre asks Kerala to decide on PM SHRI scheme ‘at the earliest’",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "ET Education",
+      "published": "2026-09-12",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQU1l6cnpuSzFFaFY4X0RHYm9UYzBkZ0VqZ0pVdkVJZmx1ZElWbUxJb2dZQ3U3SFNLNUhtZEFnbkRWeXpsdEFqNUlwSWVGN01zYUs3NzlJM2IwQkFpeV92anQxZHlwQ3dQakVURllTZmtJVGhWUi1QTlhHZTRsVVZNNXdjOVpPRUNPWFpINU1xS0VYZnplOUYzUWJ4dmlCZno0RE5CMzJ1aERtXzVSSXJBajFyNVdqam1ZVjR0dDlOMTBvZW1hSFQ0WTZPNXk1QzVuM1FOek8zWVBxZHB1bnVfSmNR0gHcAUFVX3lxTFAyR1FFWmE4WGFWS1NMZmVSVUltUkFRSmdfWDM0b0pVcUlmV05PUjYzdVo0VDdvamZ4WlNJZXV0TEs4TlYxZVpha0hVR2R5RTAzRXRqNWJEX2FodFgzcnExWmptTnQ0elZNeWxEc1Y3eVVQTXUyWE54eEo3MDJUYTZHRXV2cFBKOTVMOW1oR3k0UnUwSHhuY1BMdGI4WHlTYldvcGRLYndianVqWjlHSVZEQ0lUdUpQSlk0cVhKU3NiRkVmdTNyeDMteVFlekcwNUVwRHNMc2h3aExNdXA?oc=5",
       "queries": [
         "shri-general"
       ],
