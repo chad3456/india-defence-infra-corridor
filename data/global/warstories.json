@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-29T21:07:46.197Z",
-  "previousBuild": "2026-10-29T15:14:08.013Z",
+  "builtAt": "2026-10-30T05:48:24.636Z",
+  "previousBuild": "2026-10-29T21:07:46.197Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 267,
+    "stories": 268,
     "createdThisRun": 1,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 14,
+    "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 220,
+    "itemsSeen": 209,
     "corroboration": {
-      "one": 228,
+      "one": 229,
       "two": 16,
       "threePlus": 23
     }
@@ -38,7 +38,7 @@
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 32
+      "n": 33
     },
     {
       "id": "targeting",
@@ -127,14 +127,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 36,
+      "items": 35,
       "kept": 1
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 2
+      "kept": 0
     },
     {
       "outlet": "Military Times",
@@ -182,13 +182,14 @@
       "outlet": "Defense One",
       "ok": true,
       "items": 19,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Naval News",
-      "ok": true,
-      "items": 10,
-      "kept": 0
+      "ok": false,
+      "items": 0,
+      "kept": 0,
+      "error": "HTTP 503"
     },
     {
       "outlet": "Defence Blog",
@@ -1421,6 +1422,23 @@
         {
           "outlet": "Defence Industry Europe",
           "url": "https://defence-industry.eu/huntington-ingalls-industries-says-10-romulus-unmanned-vessels-are-under-construction-for-u-s-navy/",
+          "published": "2026-10-29"
+        }
+      ]
+    },
+    {
+      "id": "https://www.defenseone.com/threats/2026/10/pentagon-investigates-suspected-cyberattack-behind-military-freezer-failures/416929/",
+      "headline": "Six military freezers went bad in August. Was it a cyber attack?",
+      "firstSeen": "2026-10-29",
+      "lastSeen": "2026-10-29",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defense One",
+          "url": "https://www.defenseone.com/threats/2026/10/pentagon-investigates-suspected-cyberattack-behind-military-freezer-failures/416929/",
           "published": "2026-10-29"
         }
       ]
