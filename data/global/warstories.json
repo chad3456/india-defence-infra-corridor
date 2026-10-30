@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-10-30T05:48:24.636Z",
-  "previousBuild": "2026-10-29T21:07:46.197Z",
+  "builtAt": "2026-10-30T15:03:05.359Z",
+  "previousBuild": "2026-10-30T05:48:24.636Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 268,
-    "createdThisRun": 1,
+    "stories": 271,
+    "createdThisRun": 3,
     "corroboratedThisRun": 0,
     "feedsAnswered": 13,
     "feedsTried": 14,
     "itemsSeen": 209,
     "corroboration": {
-      "one": 229,
+      "one": 232,
       "two": 16,
       "threePlus": 23
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 139
+      "n": 142
     },
     {
       "id": "autonomy",
@@ -60,7 +60,7 @@
     {
       "iso": "IND",
       "name": "India",
-      "n": 26
+      "n": 27
     },
     {
       "iso": "UKR",
@@ -134,7 +134,7 @@
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "Military Times",
@@ -164,7 +164,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defense News",
@@ -195,7 +195,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1350,6 +1350,62 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/indian-armys-third-artrac-drone-training-batch-graduates-at-iit-ropar/",
+      "headline": "Indian Army’s Third ARTRAC Drone Training Batch Graduates at IIT Ropar",
+      "firstSeen": "2026-10-30",
+      "lastSeen": "2026-10-30",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/indian-armys-third-artrac-drone-training-batch-graduates-at-iit-ropar/",
+          "published": "2026-10-30"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/d-propulse-targets-2027-tests-for-navys-counter-drone-missile/",
+      "headline": "D-Propulse Targets 2027 Tests for Navy’s Counter-Drone Missile",
+      "firstSeen": "2026-10-30",
+      "lastSeen": "2026-10-30",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/d-propulse-targets-2027-tests-for-navys-counter-drone-missile/",
+          "published": "2026-10-30"
+        }
+      ]
+    },
+    {
+      "id": "https://www.defensenews.com/video/2026/10/30/eos-defense-systems-prepares-to-build-slinger-counter-drone-systems/",
+      "headline": "EOS Defense Systems Prepares to Build Slinger Counter-Drone Systems",
+      "firstSeen": "2026-10-30",
+      "lastSeen": "2026-10-30",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/video/2026/10/30/eos-defense-systems-prepares-to-build-slinger-counter-drone-systems/",
+          "published": "2026-10-30"
         }
       ]
     },
