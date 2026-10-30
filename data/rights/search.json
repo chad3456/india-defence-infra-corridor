@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-30T06:31:26.182Z",
+  "builtAt": "2026-10-30T15:23:33.299Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1324,
-    "addedThisRun": 4,
-    "carriedFromEarlierRuns": 1320,
-    "withOutlet": 1232,
+    "items": 1327,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 1324,
+    "withOutlet": 1235,
     "bySubject": {
-      "scst": 905,
-      "pmshri": 419
+      "scst": 907,
+      "pmshri": 420
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 214
+    "offSubjectDropped": 231
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 653
+      "n": 656
     },
     {
       "key": "use",
@@ -78,7 +78,7 @@
     },
     {
       "key": "LawBeat",
-      "n": 29
+      "n": 30
     },
     {
       "key": "Verdictum",
@@ -118,7 +118,7 @@
     },
     {
       "key": "ET Education",
-      "n": 14
+      "n": 15
     },
     {
       "key": "ANI News",
@@ -257,6 +257,10 @@
       "n": 5
     },
     {
+      "key": "The Siasat Daily",
+      "n": 5
+    },
+    {
       "key": "ETV Bharat",
       "n": 5
     },
@@ -277,10 +281,6 @@
       "n": 4
     },
     {
-      "key": "The Siasat Daily",
-      "n": 4
-    },
-    {
       "key": "Vajiram & Ravi",
       "n": 4
     },
@@ -295,10 +295,10 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 36,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 8
+      "kept": 1,
+      "offSubject": 0
     },
     {
       "id": "act-registered",
@@ -315,20 +315,20 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 30,
+      "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 46
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 8,
+      "google": 9,
       "bing": 7,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 2
     },
     {
       "id": "act-compensation",
@@ -337,7 +337,7 @@
       "expect": "use",
       "google": 49,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 12
     },
     {
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 57,
+      "google": 13,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 1
     },
     {
       "id": "act-acquittal",
@@ -365,10 +365,10 @@
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 26,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 3
     },
     {
       "id": "act-misuse-claim",
@@ -385,10 +385,10 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 14,
+      "google": 26,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 2
     },
     {
       "id": "act-false",
@@ -405,30 +405,30 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 10,
+      "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 21
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 100,
-      "bing": 12,
+      "google": 34,
+      "bing": 10,
       "kept": 1,
-      "offSubject": 6
+      "offSubject": 2
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 40,
+      "google": 39,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 5
     },
     {
       "id": "shri-funds",
@@ -445,7 +445,7 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 7,
+      "google": 8,
       "bing": 2,
       "kept": 0,
       "offSubject": 0
@@ -455,39 +455,39 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 13,
+      "google": 42,
       "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 5
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 27,
+      "google": 23,
       "bing": 3,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 10
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 51,
-      "bing": 5,
+      "google": 28,
+      "bing": 3,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 3
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 42,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 31
     }
   ],
@@ -2558,7 +2558,8 @@
       "published": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQbjNla214WEhHRVZzZTBGQmQ5ZTU5SDlndWtvOEcwd0RYaTlGWFhtZjVYWUhLNF93MzVnR2ZFYnh1aWlabG1SRVlNcmtmbnJGNmJyRkYxN1lpSW1CRVBQTEgxNUpPVkJGRDNOX1V1bTJNbm9FUUhBVWtvU0FybGN5WFIyUnAwRE1wVjJtTUZTR0NBUk9zNG0weXFHQ2Q1UVY5Y3RJNzJtNnlPTEEzOHhaQmlXTURVRDVVUl8zRkp5Y2dKNUtBNWhlUDFRQkRfV3I3SDlVeUFCb21KZjFBWHdFRlF4ckpHUQ?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-fabricated"
       ],
       "indexes": [
         "google"
@@ -22048,7 +22049,8 @@
       "published": "2026-10-28",
       "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPZHRja0JKdUdhbjU0dGFxTWJKRFl3WHRsWXVsa3FXYzZZY090VDVqSW1haEFjUHBRMXJXWHhnOGNfOUtqMnY0M2pKT3BUZGhURW9MTUVGbTlqd0I1WS1vdzFUNHcwa1NtcDRkZ1kycWxPWTNuSkoyLVBid2RFV29qUg?oc=5",
       "queries": [
-        "act-fabricated"
+        "act-fabricated",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -22129,6 +22131,54 @@
       "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQQlk2dUlaYjFzTFJTcV94QVZmS2p5alpVcjYzVlhTaW5MRlc1azBvNGZrMkpFSWpzX3J0QXBVaTVtMUpEYy1rSHpQSmVBYTFsdS1rREZvMF9YbnZqN0RwNUtCY0NpbElVX3pYQXk1bEJHSU9nbDZlWFRPRzlkTWVxc19ydk9HMkJteE1KX2JyeExKLTV4dy12UUpvM0VsUktGa09YLUhRMEtzVzdvekNN0gG2AUFVX3lxTFBYUm1HZ3hzU3hUY2R2eXQ4bVRTSDk3WUhZc1oxOUwzS3I3dDFrZWJBdHl0aVlJcDJ6TThrQlBxRHV4aFIyUFRPSk95d2M1N19UZzhqUkZuZllCQVliczE5WUl3ekltRVpzSEJlUmJHRUJiTm9rcTF5V1AzSE5GNnpNRkt0Z1N3V2ZXcjBiVE5tUHl2X0lDc1RNNGlZYWVRQnlFVmRXeTE0bFI1dnlMRHl3QTFDa3J3?oc=5",
       "queries": [
         "shri-criticism"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-30"
+    },
+    {
+      "id": "hc refuses to stay probe against woman scribe in sc st act case",
+      "headline": "HC refuses to stay probe against woman scribe in SC/ST Act case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Siasat Daily",
+      "published": "2026-10-27",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQazd0a09obWtIUlF0ZmJydVBmTVZHM0U1clYxaXNUcDNIcVZmY2ZuZ3QxUDRrSW8zVWkzZzBlaUpLNGM0T05OcExtZTRQOS1tWTY2NTR3ZG1zWTZ6MmhSNm16WlBzMlZELXhhbTlMWXBreEY2R1o5NElaVVpDMHF1emVOdlRNcnVLSWhtZDJKRTFSemJON0RKYmRmSdIBoAFBVV95cUxNNkFycUhUU3BPV3hySG5CSkZDS0JVU3F3UGhYb1NZYUNKTm13Rmx6QmE4c1ZwR1l2ckF5WjhhYTJ3czBGX1BQQkV5bk1GUjhaeHJTdjFjUWl0bEFiSUZqV3JHMUk5Mm51WDJUOThYSDgxMS1HZkI2cFMySEQ4bTdUM1UyakZKZFE2b2ZmMGhmaDVQLWd4b1Byd2I2eFZhS0hW?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-30"
+    },
+    {
+      "id": "bank officers can t face sc st act prosecution for initiating loan recovery sc",
+      "headline": "Bank Officers Can't Face SC/ST Act Prosecution For Initiating Loan Recovery: SC",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawBeat",
+      "published": "2026-10-30",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOak1CX0lLTXNwVmxZZ2VGTEk4RGVNUlhWNE9IM240eENtX0hXTUtEWTFPcDRTamNBRTFqZXcyXzZ6OUgyQk4tSkt0TkltVVJMd05SaFkySjY5MXV4UURWWnR6SXVFREpLNTJOR0RjaWFacDE2cXNHN2U2b2RfVUU5ZVNOa3p2TUltZlFNbjFxWW5GN1JuejMzM18zTTNzc0h3c0l4VHFCajUwVjdCRDlRLW9YRmZxQnU3NXl5ZXBHMjVkcmtHeGfSAcsBQVVfeXFMTWVKUjg4RHd1eThvRWpQdTNnNlpVdXBkX2NJRFpibkExWnZHcnpfLWN2UFJpVGpqcF83NlRtbWROUU1iLUpKbTVWNTNOUUd4N04zaEVscWhYWEE3NC03eHh4OVNRdmhrR1RHdUdfVFh3bTVGb3FJQjNqUWdWQkc5UEFCa2pITHc3dmVyYlNwaFdmcldoTF8wUzdmemxjd2tEZDNYWmZNU0VGbjh4X3VCMTdmZjVjZzNxRDZTdlBZVnYtR3lyV3d0ZnV3a0U?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-30"
+    },
+    {
+      "id": "kerala signs mou with education ministry to join pm shri schools scheme",
+      "headline": "Kerala signs MoU with Education Ministry to join PM SHRI Schools scheme",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "ET Education",
+      "published": "2025-10-24",
+      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPWl9DSS1FVnphdFFMZmlyQlBHT3JGUTJuUXpFLWNpX3h1Mnp4c21CR3c3UnZmWi1Wdm5KQjB5eE4yb0FfVFMtWHBha3l0ZWx6NldtZmQ1MjN3YUJfcDlTX08ySkFUVEZ6R2pvZ0hOQjFScmZaVHRwZjNOc19HY3pFUmdPeDJWaUE1ZjBtREpMQnhRU0p0X3JtU3pvUUh0MjRiWmstZGVNckpCMS1DWmE4ek9COHJEcU9Vb2IwOXQybW1ZbWt0cmY5X1R0YllyYnpoa25rQzBlRDJ2UVN3OElEWl9iYjJOWEVh0gHuAUFVX3lxTFBGZ2N4SE55MVRkYkM2d0lvV0FUeEZsTVNWMTNjOGlvcEE4MXVwem1ZV2FudWJDaWZ5YW50MmEyRmRfU1NGdmhheFM4SkR5cXYtWE5YQVdKRG5jRzJtc3JZWUVYaFZjczJ6aGJ2TmRja213MTlZYXFEWFJtdjN2bUpHS3JTSXBydzJhenRwTHNsOVI4cVJSR1haWmpaWTRlXzNNVDJRenpUMHkzUGE4RnJib3pvNjhQWXpYYkp4cjdCQWgtZkRmaUpPUnF5WVlOZHNObEFRM2l6VXBKeS1lRXBNdzVNa1FZRFFENHNud1E?oc=5",
+      "queries": [
+        "shri-general"
       ],
       "indexes": [
         "google"
