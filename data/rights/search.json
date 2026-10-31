@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-31T20:20:54.645Z",
+  "builtAt": "2026-10-31T23:48:14.228Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1333,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1331,
-    "withOutlet": 1241,
+    "items": 1337,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 1333,
+    "withOutlet": 1244,
     "bySubject": {
-      "scst": 912,
-      "pmshri": 421
+      "scst": 914,
+      "pmshri": 423
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 169
+    "offSubjectDropped": 173
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 661
+      "n": 662
     },
     {
       "key": "use",
-      "n": 467
+      "n": 468
     },
     {
       "key": "acquittal",
@@ -36,11 +36,11 @@
     },
     {
       "key": "dispute",
-      "n": 65
+      "n": 66
     },
     {
       "key": "allegation",
-      "n": 60
+      "n": 61
     },
     {
       "key": "false-finding",
@@ -295,10 +295,10 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 35,
       "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 0
     },
     {
       "id": "act-registered",
@@ -315,20 +315,20 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 29,
       "bing": 1,
       "kept": 0,
-      "offSubject": 48
+      "offSubject": 7
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 50,
+      "google": 9,
       "bing": 7,
-      "kept": 2,
-      "offSubject": 7
+      "kept": 0,
+      "offSubject": 1
     },
     {
       "id": "act-compensation",
@@ -345,47 +345,47 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 12,
+      "google": 56,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 19
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 29,
+      "google": 95,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 46
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 25,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 3
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 10,
+      "google": 49,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 2
+      "kept": 2,
+      "offSubject": 9
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 14,
+      "google": 15,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 19,
-      "bing": 0,
+      "google": 49,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 19
     },
     {
       "id": "act-fabricated",
@@ -415,20 +415,20 @@
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 100,
-      "bing": 10,
-      "kept": 0,
-      "offSubject": 6
+      "google": 33,
+      "bing": 11,
+      "kept": 1,
+      "offSubject": 2
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 39,
-      "bing": 0,
+      "google": 9,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 0
     },
     {
       "id": "shri-funds",
@@ -436,7 +436,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 10,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 5
     },
@@ -445,20 +445,20 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 48,
-      "bing": 0,
+      "google": 8,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 0
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 13,
+      "google": 42,
       "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 5
     },
     {
       "id": "shri-withheld",
@@ -466,18 +466,18 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 27,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 13
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 27,
-      "bing": 3,
-      "kept": 0,
+      "google": 28,
+      "bing": 4,
+      "kept": 1,
       "offSubject": 3
     },
     {
@@ -22277,6 +22277,70 @@
       "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxON3hVM2ZuTkFiZmZnVm9aUDMzeUJzYzlIUktHbVFGWVh6WXdiWF9jdUpfRU56SFFGLXJYM2FBYTRvOXU1YmxYa3Z5THVGTElsbThUcGhOaDN0TVE0Nzd2VWpQZ21sN3FvVGJsUzlNNkpUdTRoV1B3bXh1R251Vk1kejd3MEZDd050dFdNRk51WEV3S1I2ODZvcnRhaUM0a3PSAaQBQVVfeXFMTkNfUVJGQ0duLWpHQWFvZXVpRkNZb05zeHpQWl9wM1JldkpEX1V1TFpGc2dnMU10RlNxN2FQUzhHNlo4TTRGR1YxaUNOdFBmQU8wLUZncmV0c0thWEZiaUJuVVZoU1NabkFmY0JSYzA5SkdTcnBXVWdQN0lWWGNIWHZlQndPRzU1bThlQmZWZGpxMklDbDViRU55Y3RhWjJXY2xnWUQ?oc=5",
       "queries": [
         "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-31"
+    },
+    {
+      "id": "up shocker aligarh family swindles 46 lakh by misusing sc st act ncw demands action",
+      "headline": "UP shocker: Aligarh family swindles ₹46 lakh by misusing SC/ST Act; NCW demands action",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "OpIndia",
+      "published": "2025-09-04",
+      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQeUhqaVA0T2JweVgxcnBfYjdvZkxJWkliY0RrY3FXdEFJSGRDNkx2VHJhQ1FjbUtodU81VEh1dERYT3ktMXJOdUZEV0ZVcUtiZFBjUGVGNDhfRWh1RlJEM0VsOTQteXVBUThtQ1Z4VXMtZ1hLdWZxWmxMczZScjhJd1VVQzRHR2dEWGV0UlJ1R2tiTlEwVDVvY2dtT0EwM18xbE5Hc2JLeVMwZ2o2LWtmbEVjOUljUGZxaS1FSjlETzFIMHMxdXFTM0FQYncyWUNBRkRBbUtfUmEzc1BROFNnSWRnRTM?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-31"
+    },
+    {
+      "id": "supreme court affirms quashing of sc st act charges for government officers caste alone ca",
+      "headline": "Supreme Court Affirms Quashing of SC/ST Act Charges for Government Officers: “Caste Alone Cannot Be Basis for Prosecution Without Mala Fide Intent or Evidence of Caste-Based Offence”",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Raw Law",
+      "published": "2025-07-25",
+      "url": "https://news.google.com/rss/articles/CBMipAJBVV95cUxQV1c1VGw4Vk1QdExGWG1IRDVRNE9OWjVLUXY5WGFHbjZiTFlQdE52dXlOR1FGQkxad2V4dGw1QTFzQzgyeE9MM011eU5pa29YVC1IZmJEWW1vbXBhc3Q3NlUxTkRPdDByOS14U2M0YnFUV1JUMUtJYVotOENLSC1UTWZ1LUthRHMzWEFCajlsNklNUTljb1AzR2JuQ2RsdUdqb0RPemFSVVhRVTgtendmS3pVYVNlckJsUEV5R1BORm5YMjQ2UFBtbzZmN3pXaF83c2RBUmFRRmt5UFp2Y0pDYUk1NzViMzRia0RRTzc5NWNWTnppNWQyeXUwQkRGYm5WdE95MzVsa3M0bEtwcmFGZVA0NmZFOWQ1UHlFWHpZcnhabFRh?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-31"
+    },
+    {
+      "id": "101 punjab schools selected for upgrade under pm shri scheme",
+      "headline": "101 Punjab schools selected for upgrade under PM SHRI scheme",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": null,
+      "published": "2025-03-11",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ae67e145bbc416d903ac42e79d9b39c&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fIndia%2f101-punjab-schools-selected-for-upgrade-under-pm-shri-scheme%2far-AA1AJ3EY&c=15865339797168528883&mkt=en-us",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-10-31"
+    },
+    {
+      "id": "tamil nadu denied funds for rejecting pm shri scheme nep and language policy at the core",
+      "headline": "Tamil Nadu Denied Funds for Rejecting PM SHRI Scheme: NEP and Language Policy at the Core",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": "usthadian.com",
+      "published": "2025-07-14",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQSUVBZ0pydjBGMXhrZ2otclMyaHotUk5YYXdoTFZtWVhNT2xPOGVfTml3UjJJN3NsLU9RdmZZajRMeFFraFc0Q3RoTHpWQjFtb0phQThJV0t1RjdldDhVczk4c2NQYUpBUnN3Z2FycGFtdmRmWm9NRkpLVjFYLVF1bDZNeC1ha2pmQVZ3TzY1N2NQYzBYWkZqZElLNUdJVkRzVW4xa0kzTldaUVBZRXU1XzIzcTg1dw?oc=5",
+      "queries": [
+        "shri-nep"
       ],
       "indexes": [
         "google"
