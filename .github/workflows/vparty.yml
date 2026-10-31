@@ -1,0 +1,58 @@
+name: V-Party — expert-coded party positions
+
+# Downloads V-Dem's V-Party data (party identity and organisation, expert-coded,
+# 1970 onwards, 178 countries) from the V-Dem Institute's own R package,
+# extracts the party-position variables with their codebook entries, and
+# commits a slim JSON for the 12-axis political test's anchors. The RData
+# itself is not committed.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 3 1 * *"
+  push:
+    paths:
+      - "scripts/etl/r/vparty-extract.R"
+      - "scripts/etl/connectors/vparty.ts"
+      - ".github/workflows/vparty.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vparty
+  cancel-in-progress: false
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Download V-Party from vdemdata
+        run: |
+          mkdir -p "$RUNNER_TEMP/vparty"
+          for f in vparty codebook; do
+            curl -sSL --retry 3 --fail -o "$RUNNER_TEMP/vparty/$f.RData" "https://github.com/vdeminstitute/vdemdata/raw/master/data/$f.RData"
+          done
+          ls -la "$RUNNER_TEMP/vparty"
+          git ls-remote https://github.com/vdeminstitute/vdemdata master | cut -f1 > "$RUNNER_TEMP/vparty/commit.txt"
+      - name: Extract
+        run: Rscript scripts/etl/r/vparty-extract.R "$RUNNER_TEMP/vparty/vparty.RData" "$RUNNER_TEMP/vparty/codebook.RData" "$RUNNER_TEMP/vparty"
+      - name: Build data/axes/vparty.json
+        env:
+          VPARTY_DIR: ${{ runner.temp }}/vparty
+        run: npx tsx scripts/etl/connectors/vparty.ts
+      - name: Commit
+        run: |
+          for f in data/axes/vparty.json data/axes/vparty-codebook.json; do
+            if [ -f "$f" ] && [ -n "$(git status --porcelain "$f")" ]; then
+              .github/scripts/commit-generated.sh "$f" "data(axes): $(basename "$f" .json) $(date -u +'%Y-%m-%d')"
+            fi
+          done

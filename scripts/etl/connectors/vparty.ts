@@ -1,0 +1,60 @@
+/**
+ * V-Party (V-Dem Institute): expert-coded positions of political parties in
+ * 178 countries since 1970, read from the CSV that scripts/etl/r/vparty-extract.R
+ * writes out of the V-Dem Institute's own R package data. Runs in Actions.
+ *
+ * Writes each party's most recent coded observation, with its raw variables,
+ * and the codebook entries for those variables. Nothing here maps a variable
+ * onto an axis — that is lib/axes-anchors.ts, written against the codebook
+ * this commits, so a variable's direction is read rather than assumed.
+ * Connectors never throw; a failed gate leaves the committed files as they were.
+ */
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { csvObjects } from "../lib/csv";
+
+const DIR = process.env.VPARTY_DIR ?? "";
+const OUT = join(process.cwd(), "data", "axes");
+const ID_COLS = new Set(["country_name", "country_text_id", "year", "v2paid", "v2paenname", "v2paorname", "v2pashname", "v2pavote", "v2paseatshare", "v2pagovsup"]);
+
+function main() {
+  const csv = join(DIR, "vparty-slim.csv");
+  if (!DIR || !existsSync(csv)) { console.error("vparty: no extract to read"); return; }
+  const rows = csvObjects(readFileSync(csv, "utf8"));
+  const vars = Object.keys(rows[0] ?? {}).filter((k) => !ID_COLS.has(k));
+  const num = (s: string | undefined) => (s === undefined || s === "" || s === "NA" ? null : Number.isFinite(Number(s)) ? Math.round(Number(s) * 1000) / 1000 : null);
+  // Each party's latest coded year.
+  const latest = new Map<string, Record<string, string>>();
+  for (const r of rows) {
+    const id = r.v2paid;
+    if (!id) continue;
+    const prev = latest.get(id);
+    if (!prev || Number(r.year) > Number(prev.year)) latest.set(id, r);
+  }
+  const parties = [...latest.values()].map((r) => ({
+    id: Number(r.v2paid), country: r.country_name, iso3: r.country_text_id, year: Number(r.year),
+    name: r.v2paenname || r.v2paorname, orig: r.v2paorname || undefined, abbr: r.v2pashname || undefined,
+    vote: num(r.v2pavote), seats: num(r.v2paseatshare), gov: num(r.v2pagovsup),
+    v: Object.fromEntries(vars.map((k) => [k, num(r[k])]).filter(([, x]) => x !== null)),
+  })).sort((a, b) => a.country!.localeCompare(b.country!) || (b.vote ?? 0) - (a.vote ?? 0));
+  const countries = new Set(parties.map((p) => p.country));
+  const fails: string[] = [];
+  if (parties.length < 1500) fails.push(`only ${parties.length} parties`);
+  if (countries.size < 150) fails.push(`only ${countries.size} countries`);
+  for (const k of ["v2pariglef", "v2paplur", "v2papeople", "v2paimmig"]) if (!vars.some((v) => v.startsWith(k))) fails.push(`no ${k} column`);
+  if (fails.length) { console.error(`vparty: gate failed: ${fails.join("; ")}`); return; }
+  mkdirSync(OUT, { recursive: true });
+  const commit = existsSync(join(DIR, "commit.txt")) ? readFileSync(join(DIR, "commit.txt"), "utf8").trim() : null;
+  writeFileSync(join(OUT, "vparty.json"), JSON.stringify({
+    source: { title: "Varieties of Party Identity and Organization (V-Party) dataset", publisher: "V-Dem Institute, University of Gothenburg", url: "https://www.v-dem.net/data/v-party-dataset/", via: "https://github.com/vdeminstitute/vdemdata", commit, licence: "CC BY-SA 4.0" },
+    fetchedAt: new Date().toISOString(), rows: rows.length, variables: vars, parties,
+  }) + "\n");
+  const cbFile = join(DIR, "vparty-codebook.csv");
+  const cb = existsSync(cbFile) ? csvObjects(readFileSync(cbFile, "utf8")) : [];
+  const cbCols = existsSync(join(DIR, "codebook-columns.txt")) ? readFileSync(join(DIR, "codebook-columns.txt"), "utf8").split("\n").filter(Boolean) : [];
+  const allCols = existsSync(join(DIR, "vparty-columns.txt")) ? readFileSync(join(DIR, "vparty-columns.txt"), "utf8").split("\n").filter(Boolean) : [];
+  writeFileSync(join(OUT, "vparty-codebook.json"), JSON.stringify({ fetchedAt: new Date().toISOString(), codebookColumns: cbCols, vpartyColumns: allCols, entries: cb }, null, 1) + "\n");
+  console.log(`vparty: ${rows.length} rows, ${parties.length} parties, ${countries.size} countries, ${vars.length} variables, ${cb.length} codebook entries`);
+}
+
+try { main(); } catch (e) { console.error(`vparty: ${String(e).slice(0, 300)}`); }
