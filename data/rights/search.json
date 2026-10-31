@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-30T21:06:04.607Z",
+  "builtAt": "2026-10-31T06:21:45.033Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1330,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 1327,
-    "withOutlet": 1238,
+    "items": 1331,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1330,
+    "withOutlet": 1239,
     "bySubject": {
-      "scst": 909,
+      "scst": 910,
       "pmshri": 421
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 241
+    "offSubjectDropped": 137
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 659
+      "n": 660
     },
     {
       "key": "use",
@@ -106,7 +106,7 @@
     },
     {
       "key": "Live Law",
-      "n": 17
+      "n": 18
     },
     {
       "key": "ET Education",
@@ -295,47 +295,47 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 36,
+      "google": 100,
       "bing": 0,
       "kept": 1,
-      "offSubject": 0
+      "offSubject": 8
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
-      "bing": 4,
-      "kept": 1,
-      "offSubject": 16
+      "google": 44,
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 3
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 29,
       "bing": 1,
       "kept": 0,
-      "offSubject": 46
+      "offSubject": 6
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 9,
+      "google": 51,
       "bing": 7,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 10,
+      "google": 9,
       "bing": 0,
       "kept": 0,
       "offSubject": 4
@@ -355,30 +355,30 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 98,
-      "bing": 1,
+      "google": 30,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 45
+      "offSubject": 5
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 26,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 2
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 49,
-      "bing": 1,
+      "google": 10,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 2
     },
     {
       "id": "act-dilution",
@@ -395,20 +395,20 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 19,
+      "google": 49,
       "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 19
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 10,
+      "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 21
     },
     {
       "id": "shri-general",
@@ -416,29 +416,29 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 11,
-      "kept": 1,
-      "offSubject": 6
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 5
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 38,
+      "google": 9,
       "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 0
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 61,
-      "bing": 1,
+      "google": 10,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 22
+      "offSubject": 5
     },
     {
       "id": "shri-upgrade",
@@ -446,7 +446,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 48,
-      "bing": 2,
+      "bing": 1,
       "kept": 0,
       "offSubject": 13
     },
@@ -455,10 +455,10 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 13,
-      "bing": 1,
+      "google": 42,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 5
     },
     {
       "id": "shri-withheld",
@@ -466,29 +466,29 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 27,
-      "bing": 3,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 52,
-      "bing": 4,
+      "google": 51,
+      "bing": 3,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 10
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
-      "bing": 1,
+      "google": 10,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 31
+      "offSubject": 8
     }
   ],
   "items": [
@@ -22232,6 +22232,22 @@
         "google"
       ],
       "firstSeen": "2026-10-30"
+    },
+    {
+      "id": "caste insult behind closed doors meaning of place within public view under sc st act",
+      "headline": "Caste Insult Behind Closed Doors: Meaning Of 'Place Within Public View' Under SC/ST Act”",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Live Law",
+      "published": "2026-09-03",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQcUJ4VTNoalFfb0pHQ3RQaWN2dTA3aG8wWXRmT0ZXdXpfaW5kdjlaWGZXaDVTOEJlaWJhb25SRC1STi1YV0pOUTZLeTNudnBsQXdoUzBvUDF1SVJLRDluS0FnbFhFWTltRDIwT05EMXc2aE13bDR0b3h3c0UxbHVod05lT0I3enRtNVRWNjJUQzlvLUpPekV30gGcAUFVX3lxTE1wb2dmQndONklPX3ZlVV9zdC05dDdyRC1qSEtUMlhuN0pFbzg1Um81WHF0allpWXRpOVM2MVNHWmIzRm1jSk9tWFRyaW5UVFBnUFZ2clF1cUJ3V2JJMUJISTZ6dHRYU3M5MTdFdVNYd3J5QmNBSC0tN3h1eVlkX0h4N1FLaDZmUDVmS0VKVVJZQjNQYi1SX2JwbTNvSQ?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-31"
     }
   ]
 }
