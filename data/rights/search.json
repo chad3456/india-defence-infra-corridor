@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-31T14:48:38.387Z",
+  "builtAt": "2026-10-31T20:20:54.645Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1331,
-    "addedThisRun": 0,
+    "items": 1333,
+    "addedThisRun": 2,
     "carriedFromEarlierRuns": 1331,
-    "withOutlet": 1239,
+    "withOutlet": 1241,
     "bySubject": {
-      "scst": 910,
+      "scst": 912,
       "pmshri": 421
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 223
+    "offSubjectDropped": 169
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 660
+      "n": 661
     },
     {
       "key": "use",
-      "n": 466
+      "n": 467
     },
     {
       "key": "acquittal",
@@ -133,6 +133,10 @@
       "n": 13
     },
     {
+      "key": "SabrangIndia",
+      "n": 13
+    },
+    {
       "key": "Outlook India",
       "n": 12
     },
@@ -146,10 +150,6 @@
     },
     {
       "key": "Court Book",
-      "n": 12
-    },
-    {
-      "key": "SabrangIndia",
       "n": 12
     },
     {
@@ -295,20 +295,20 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 35,
+      "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 6
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 42,
+      "google": 100,
       "bing": 2,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 16
     },
     {
       "id": "act-convicted",
@@ -318,57 +318,57 @@
       "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 46
+      "offSubject": 48
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 9,
+      "google": 50,
       "bing": 7,
-      "kept": 0,
-      "offSubject": 0
+      "kept": 2,
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 9,
+      "google": 49,
       "bing": 0,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 13
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 13,
+      "google": 12,
       "bing": 0,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 0
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 95,
+      "google": 29,
       "bing": 1,
       "kept": 0,
-      "offSubject": 45
+      "offSubject": 6
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 9,
+      "google": 25,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 9
     },
     {
       "id": "act-misuse-claim",
@@ -376,7 +376,7 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 10,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 2
     },
@@ -396,7 +396,7 @@
       "subject": "scst",
       "expect": "false-finding",
       "google": 19,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 5
     },
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 4
     },
     {
       "id": "shri-general",
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 100,
-      "bing": 11,
+      "bing": 10,
       "kept": 0,
       "offSubject": 6
     },
@@ -426,7 +426,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 39,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 5
     },
@@ -435,18 +435,18 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 60,
-      "bing": 1,
+      "google": 10,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 5
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 49,
-      "bing": 2,
+      "google": 48,
+      "bing": 0,
       "kept": 0,
       "offSubject": 14
     },
@@ -466,17 +466,17 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 27,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 28,
-      "bing": 4,
+      "google": 27,
+      "bing": 3,
       "kept": 0,
       "offSubject": 3
     },
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
-      "bing": 1,
+      "google": 10,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 31
+      "offSubject": 8
     }
   ],
   "items": [
@@ -22245,6 +22245,38 @@
       "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQcUJ4VTNoalFfb0pHQ3RQaWN2dTA3aG8wWXRmT0ZXdXpfaW5kdjlaWGZXaDVTOEJlaWJhb25SRC1STi1YV0pOUTZLeTNudnBsQXdoUzBvUDF1SVJLRDluS0FnbFhFWTltRDIwT05EMXc2aE13bDR0b3h3c0UxbHVod05lT0I3enRtNVRWNjJUQzlvLUpPekV30gGcAUFVX3lxTE1wb2dmQndONklPX3ZlVV9zdC05dDdyRC1qSEtUMlhuN0pFbzg1Um81WHF0allpWXRpOVM2MVNHWmIzRm1jSk9tWFRyaW5UVFBnUFZ2clF1cUJ3V2JJMUJISTZ6dHRYU3M5MTdFdVNYd3J5QmNBSC0tN3h1eVlkX0h4N1FLaDZmUDVmS0VKVVJZQjNQYi1SX2JwbTNvSQ?oc=5",
       "queries": [
         "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-31"
+    },
+    {
+      "id": "65 year old dalit man allegedly forced to drink urine thrashed when he refuses up",
+      "headline": "65 year-old Dalit man allegedly forced to drink urine, thrashed when he refuses: UP",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "SabrangIndia",
+      "published": "2020-10-13",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNMXVlV042Z3EzR2xXYm1DN0lXR1RBcFA0dmg5R19WanNORDJaSm5SRVUwcGNDbHJNRW4wdWJMOWNnZmJIQzRaQmdmNUxJbE8wSnlpWnFZdlM0UDF6WTR5aC0taERSM3lnanBUd1c3Vl9taDVMNGVDeWkzQUVzRXZzUW04cDRDdzFFNHNZYTMzclZsdVNLV1BQRDBQSUY2NEhsVjFvLW12SlRQQnph?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-10-31"
+    },
+    {
+      "id": "ram kadam of mns booked for assaulting dalit youths",
+      "headline": "Ram Kadam of MNS booked for assaulting Dalit youths",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "DNA India",
+      "published": "2014-04-22",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxON3hVM2ZuTkFiZmZnVm9aUDMzeUJzYzlIUktHbVFGWVh6WXdiWF9jdUpfRU56SFFGLXJYM2FBYTRvOXU1YmxYa3Z5THVGTElsbThUcGhOaDN0TVE0Nzd2VWpQZ21sN3FvVGJsUzlNNkpUdTRoV1B3bXh1R251Vk1kejd3MEZDd050dFdNRk51WEV3S1I2ODZvcnRhaUM0a3PSAaQBQVVfeXFMTkNfUVJGQ0duLWpHQWFvZXVpRkNZb05zeHpQWl9wM1JldkpEX1V1TFpGc2dnMU10RlNxN2FQUzhHNlo4TTRGR1YxaUNOdFBmQU8wLUZncmV0c0thWEZiaUJuVVZoU1NabkFmY0JSYzA5SkdTcnBXVWdQN0lWWGNIWHZlQndPRzU1bThlQmZWZGpxMklDbDViRU55Y3RhWjJXY2xnWUQ?oc=5",
+      "queries": [
+        "act-atrocity"
       ],
       "indexes": [
         "google"
