@@ -436,6 +436,21 @@ listed. Statement 30 (c) is headed 2020-21 but sourced to PLFS 2019-20, as is th
 page; it is labelled 2019–20. `npm run test:youth` re-reads the PDF and fails if the committed file
 differs, and checks figures read by eye against the printed pages.
 
+### V-Party expert-coded party positions (the 12-axis test)
+
+`/political-axes` is a questionnaire — twelve axes, eight statements each, four keyed to each pole
+(`lib/axes.ts`) — that a reader answers for themselves or for a leader or government, with a source per
+answer. The site publishes no score for anyone. Its one outside dataset is V-Dem's V-Party (expert-coded
+party positions at each national election since 1970), downloaded in Actions from the V-Dem Institute's
+`vdemdata` R package (`.github/workflows/vparty.yml`, monthly), extracted with base R
+(`scripts/etl/r/vparty-extract.R`) and committed as each party's latest coded year,
+`data/axes/vparty.json`. Seven axes have a V-Party measure (`ANCHOR_MAP` in `lib/axes-anchors.ts`), each
+labelled with what V-Party actually asked; trade, environment, civil liberties, world order and force
+have none and get no anchor. The package's codebook covers V-Dem's country data only, so each scale's
+direction and range is tested on every build (`npm run test:axes`) against V-Dem's populism and
+anti-pluralism indices and against undisputed cases; the test is how the welfare scale was found to run
+0–5, not 0–4.
+
 ### Child malnutrition by district
 
 `/malnutrition` maps four NFHS-5 (2019–21) district measures — stunting, wasting, underweight and

@@ -97,6 +97,7 @@ const GROUPS: Group[] = [
       { href: "/elections/electorate", label: "Electorate", blurb: "The roll by gender; religion, SC and ST by district (Census 2011)" },
       { href: "/elections/sir", label: "Roll revision (SIR)", blurb: "Names left off draft rolls, by the reason given" },
       { href: "/elections/turnout", label: "Turnout", blurb: "Turnout and electors by state, 2014 to 2024" },
+      { href: "/political-axes", label: "The 12-axis political test", blurb: "Twelve axes, 96 balanced statements: test yourself, or rate any leader or government on their record, with sources and V-Dem's expert anchors" },
     ],
   },
   {

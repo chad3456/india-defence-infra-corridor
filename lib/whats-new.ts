@@ -69,6 +69,15 @@ export const WHATS_NEW: NewFeature[] = [
     since: "2026-10-26",
   },
   {
+    id: "political-axes-2026-10",
+    title: "The 12-axis political test",
+    blurb:
+      "Twelve separate axes, eight statements each, half pointing each way. Take it yourself, or rate any leader or government on their record with a source per " +
+      "answer; compare raters, and lay V-Dem's expert-coded positions for 1,900 parties in 170 countries beside the result.",
+    href: "/political-axes",
+    since: "2026-10-31",
+  },
+  {
     id: "youth-nfhs6-themes-2026-10",
     title: "NFHS-6 by theme, and Youth in India 2022",
     blurb:

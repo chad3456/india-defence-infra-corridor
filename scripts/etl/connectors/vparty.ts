@@ -3,10 +3,9 @@
  * 178 countries since 1970, read from the CSV that scripts/etl/r/vparty-extract.R
  * writes out of the V-Dem Institute's own R package data. Runs in Actions.
  *
- * Writes each party's most recent coded observation, with its raw variables,
- * and the codebook entries for those variables. Nothing here maps a variable
- * onto an axis — that is lib/axes-anchors.ts, written against the codebook
- * this commits, so a variable's direction is read rather than assumed.
+ * Writes each party's most recent coded observation with its raw variables.
+ * Nothing here maps a variable onto an axis — that is lib/axes-anchors.ts,
+ * whose scale directions are tested against undisputed cases on every build.
  * Connectors never throw; a failed gate leaves the committed files as they were.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -51,12 +50,7 @@ function main() {
     source: { title: "Varieties of Party Identity and Organization (V-Party) dataset", publisher: "V-Dem Institute, University of Gothenburg", url: "https://www.v-dem.net/data/v-party-dataset/", via: "https://github.com/vdeminstitute/vdemdata", commit, licence: "CC BY-SA 4.0" },
     fetchedAt: new Date().toISOString(), rows: rows.length, variables: vars, parties,
   }) + "\n");
-  const cbFile = join(DIR, "vparty-codebook.csv");
-  const cb = existsSync(cbFile) ? csvObjects(readFileSync(cbFile, "utf8")) : [];
-  const cbCols = existsSync(join(DIR, "codebook-columns.txt")) ? readFileSync(join(DIR, "codebook-columns.txt"), "utf8").split("\n").filter(Boolean) : [];
-  const allCols = existsSync(join(DIR, "vparty-columns.txt")) ? readFileSync(join(DIR, "vparty-columns.txt"), "utf8").split("\n").filter(Boolean) : [];
-  writeFileSync(join(OUT, "vparty-codebook.json"), JSON.stringify({ fetchedAt: new Date().toISOString(), codebookColumns: cbCols, vpartyColumns: allCols, entries: cb }, null, 1) + "\n");
-  console.log(`vparty: ${rows.length} rows, ${parties.length} parties, ${countries.size} countries, ${vars.length} variables, ${cb.length} codebook entries`);
+  console.log(`vparty: ${rows.length} rows, ${parties.length} parties, ${countries.size} countries, ${vars.length} variables`);
 }
 
 try { main(); } catch (e) { console.error(`vparty: ${String(e).slice(0, 300)}`); }

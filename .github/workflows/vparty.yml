@@ -2,8 +2,7 @@ name: V-Party — expert-coded party positions
 
 # Downloads V-Dem's V-Party data (party identity and organisation, expert-coded,
 # 1970 onwards, 178 countries) from the V-Dem Institute's own R package,
-# extracts the party-position variables with their codebook entries, and
-# commits a slim JSON for the 12-axis political test's anchors. The RData
+# extracts the party-position variables, and commits a slim JSON for the 12-axis political test's anchors. The RData
 # itself is not committed.
 
 on:
@@ -51,7 +50,7 @@ jobs:
         run: npx tsx scripts/etl/connectors/vparty.ts
       - name: Commit
         run: |
-          for f in data/axes/vparty.json data/axes/vparty-codebook.json; do
+          for f in data/axes/vparty.json; do
             if [ -f "$f" ] && [ -n "$(git status --porcelain "$f")" ]; then
               .github/scripts/commit-generated.sh "$f" "data(axes): $(basename "$f" .json) $(date -u +'%Y-%m-%d')"
             fi
