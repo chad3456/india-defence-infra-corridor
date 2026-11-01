@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-31T22:48:04.903Z",
+  "builtAt": "2026-11-01T02:31:50.712Z",
   "source": "adsb.lol and adsb.fi, two independent community ADS-B aggregators, each reading its /v2/mil endpoint. Both decide for themselves which ICAO addresses are military, from community-maintained lists that do not agree with each other.",
   "method": "Both feeds are read at each snapshot and combined by ICAO hex. How far they agree is recorded rather than averaged away. Positions are rounded to a tenth of a degree — about eleven kilometres — which is the resolution the claim 'there is military air activity over this region' can carry. Registrations are not kept, and no aircraft is counted against a named installation.",
   "refusal": "Absence from these feeds is not absence from the sky, and nothing here may be read as a count of what is flying. Military aircraft are not obliged to broadcast ADS-B and routinely do not.",
@@ -9,7 +9,7 @@
     "Anything about a specific airfield. At this sample size a count near any one place is small enough to be noise and precise enough to be believed, which is the worst combination a statistic can have.",
     "What an aircraft is. The type code comes from the feed and is only as good as the community database behind it; a blank or wrong type is common and is left blank rather than guessed."
   ],
-  "keptSnapshots": 221,
+  "keptSnapshots": 222,
   "keepLimit": 336,
   "snapshots": [
     {
@@ -205552,6 +205552,179 @@
         [
           120.9,
           14.6
+        ]
+      ]
+    },
+    {
+      "at": "2026-11-01T02:31:50.673Z",
+      "perFeed": [
+        {
+          "id": "adsb.lol",
+          "ok": true,
+          "aircraft": 45,
+          "withPosition": 13
+        },
+        {
+          "id": "adsb.fi",
+          "ok": true,
+          "aircraft": 41,
+          "withPosition": 18
+        }
+      ],
+      "agreement": {
+        "both": 32,
+        "onlyFirst": 13,
+        "onlySecond": 9
+      },
+      "aircraft": 54,
+      "byRegion": [
+        {
+          "region": "North America",
+          "n": 10
+        },
+        {
+          "region": "Pacific",
+          "n": 4
+        },
+        {
+          "region": "South Asia",
+          "n": 1
+        }
+      ],
+      "byType": [
+        {
+          "type": "TWR",
+          "n": 7
+        },
+        {
+          "type": "C295",
+          "n": 4
+        },
+        {
+          "type": "C17",
+          "n": 3
+        },
+        {
+          "type": "K35R",
+          "n": 3
+        },
+        {
+          "type": "AS65",
+          "n": 2
+        },
+        {
+          "type": "EC45",
+          "n": 2
+        },
+        {
+          "type": "C30J",
+          "n": 2
+        },
+        {
+          "type": "C130",
+          "n": 2
+        },
+        {
+          "type": "B752",
+          "n": 1
+        },
+        {
+          "type": "GLF5",
+          "n": 1
+        },
+        {
+          "type": "B38M",
+          "n": 1
+        },
+        {
+          "type": "PC21",
+          "n": 1
+        },
+        {
+          "type": "G222",
+          "n": 1
+        },
+        {
+          "type": "B734",
+          "n": 1
+        },
+        {
+          "type": "A320",
+          "n": 1
+        },
+        {
+          "type": "C5M",
+          "n": 1
+        },
+        {
+          "type": "H47",
+          "n": 1
+        },
+        {
+          "type": "CN35",
+          "n": 1
+        }
+      ],
+      "points": [
+        [
+          -158,
+          21.1
+        ],
+        [
+          -112.9,
+          34.6
+        ],
+        [
+          -100.5,
+          28.8
+        ],
+        [
+          -98.2,
+          26.5
+        ],
+        [
+          -90.6,
+          35.1
+        ],
+        [
+          -83.8,
+          40.3
+        ],
+        [
+          -81.2,
+          28.5
+        ],
+        [
+          -79.6,
+          42.7
+        ],
+        [
+          -68.7,
+          43.9
+        ],
+        [
+          149.2,
+          -35.7
+        ],
+        [
+          150.7,
+          -34.9
+        ],
+        [
+          152.7,
+          -27.2
+        ],
+        [
+          172.5,
+          -43.6
+        ],
+        [
+          -106.4,
+          31.8
+        ],
+        [
+          77.8,
+          27.6
         ]
       ]
     }
