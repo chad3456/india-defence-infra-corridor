@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-01T06:54:40.397Z",
+  "builtAt": "2026-11-01T15:30:36.227Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1337,
-    "addedThisRun": 0,
+    "items": 1340,
+    "addedThisRun": 3,
     "carriedFromEarlierRuns": 1337,
-    "withOutlet": 1244,
+    "withOutlet": 1247,
     "bySubject": {
-      "scst": 914,
+      "scst": 917,
       "pmshri": 423
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 203
+    "offSubjectDropped": 215
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 662
+      "n": 663
     },
     {
       "key": "use",
-      "n": 468
+      "n": 470
     },
     {
       "key": "acquittal",
@@ -217,6 +217,10 @@
       "n": 7
     },
     {
+      "key": "ETV Bharat",
+      "n": 7
+    },
+    {
       "key": "Wansom AI",
       "n": 6
     },
@@ -261,10 +265,6 @@
       "n": 5
     },
     {
-      "key": "ETV Bharat",
-      "n": 5
-    },
-    {
       "key": "Moneycontrol.com",
       "n": 5
     },
@@ -281,11 +281,11 @@
       "n": 4
     },
     {
-      "key": "Vajiram & Ravi",
+      "key": "Rediff",
       "n": 4
     },
     {
-      "key": "The Legal Affair",
+      "key": "Vajiram & Ravi",
       "n": 4
     }
   ],
@@ -295,7 +295,7 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 37,
+      "google": 36,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -305,10 +305,10 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 45,
+      "google": 100,
       "bing": 2,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 15
     },
     {
       "id": "act-convicted",
@@ -317,7 +317,7 @@
       "expect": "use",
       "google": 100,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 47
     },
     {
@@ -325,10 +325,10 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 50,
-      "bing": 6,
+      "google": 9,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 0
     },
     {
       "id": "act-compensation",
@@ -345,40 +345,40 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 56,
+      "google": 11,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 0
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 30,
-      "bing": 1,
+      "google": 96,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 46
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 25,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 3
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 49,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 1
     },
     {
       "id": "act-dilution",
@@ -395,20 +395,20 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 19,
-      "bing": 1,
+      "google": 49,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 18
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 10,
+      "google": 32,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 4
+      "kept": 2,
+      "offSubject": 19
     },
     {
       "id": "shri-general",
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 33,
-      "bing": 12,
+      "bing": 0,
       "kept": 0,
       "offSubject": 1
     },
@@ -426,7 +426,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 39,
-      "bing": 1,
+      "bing": 0,
       "kept": 0,
       "offSubject": 6
     },
@@ -435,20 +435,20 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 60,
-      "bing": 1,
+      "google": 10,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 4
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 48,
+      "google": 8,
       "bing": 1,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 0
     },
     {
       "id": "shri-mou",
@@ -465,20 +465,20 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 27,
-      "bing": 1,
+      "google": 23,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 8
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 28,
-      "bing": 4,
+      "google": 51,
+      "bing": 3,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 11
     },
     {
       "id": "shri-criticism",
@@ -11318,7 +11318,8 @@
       "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOcWxEb0UzMENBY3R1UXhrRWtYM3pYT3JKWk9GMG1fckYxVENuWHlqRkhlTEthLWt6eUczV2xod24zMEtIWDlQRmhhWnBvN2V3NzVlNTBIRUlYZU9wek1CRENZZkkyQlBTZ0xTbHB3ZUVEWHZ2LWNRdzJzUWlhWnRwQk9zX2ZoM3JISUhfekFJT2E0cTZTdWlLcEhyN19yUnBLRHRxbE03R25tcDM4T1lBZGVvOGRKLVJ3WDVTRG5Rdi1JMkFDNVRsazlR0gHPAUFVX3lxTFBnWGg5SHppZFdlOEFkNENDc1VWM2VrMjVHa0k4ZHJzbEU5YjVOWWw1b1d5SW51SVBINW1GODJkbkZBaW5uNF9ydG5aY2lnaFNtQVk1SVZsSjJCUm5taDlqVVhTekg4TUt2VV9BQjNKeXA1TTlGOHFjWXpySm11ZnMzRl9uREtRbGVBNW92c21WQjdPRW9HY2dwN0VJcnBrSmgyb01GQWdWS1lfN3Y2Vk9iOUltMkI3X1JtTXZsRThZMXk4Y0VmT0dQRFZyVmhYRQ?oc=5",
       "queries": [
         "shri-mou",
-        "shri-nep"
+        "shri-nep",
+        "shri-funds"
       ],
       "indexes": [
         "google"
@@ -22346,6 +22347,54 @@
         "google"
       ],
       "firstSeen": "2026-10-31"
+    },
+    {
+      "id": "muzaffarnagar court jails four for life in 2010 dalit farmer attack",
+      "headline": "Muzaffarnagar Court Jails Four For Life In 2010 Dalit Farmer Attack",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Rediff",
+      "published": "2026-11-01",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOVW5VS3g1QkFrUFhncUJQaldHTjJGc1E4ZW9WeFEzT0FsQ1hiaGlOWWxoNnp1eWxOWE9vNFZXN0sxdmlRM3FBNFJ0WkdRTDNZZ3VZejVHS2xRbm9kYmdvR1hrdjRaX2ozYW4wZ3piNnRhS19mYnhnVm5KSU5uMWU3TTZESXVXUTNVbFRQUU1PUzVMTUxQdjR0aVI5ZUxuWVBST2lB0gGmAUFVX3lxTE1HTFh2TnhFZEZTSnA0YXdKQklacXhUaTVPUDdLMU5HcjVKOFJJcU8xUGxIdWNvS1hoQVFGZ3ZCMUZxemZ2S3l6UEVSLTU2VGNNaEJRYlJXdWNSc2p4aWExWGFRbHVTMGZENm03RjBERV9qMzBUNVpoTUpyd01IdkVwcjlrMnNyemRueEpKMklvVWhnNENJeVFxcGZwd2ctemI2Unc0ckE?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-01"
+    },
+    {
+      "id": "from grievance to justice nhaa receives 6 34 lakh atrocity complaints in last over five ye",
+      "headline": "From Grievance To Justice: NHAA Receives 6.34 Lakh Atrocity Complaints In Last Over Five Years",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "ETV Bharat",
+      "published": "2025-08-11",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNaW9MeTBpa3NnX2VZZC1aQ2ttbDhoOGwycWx1UzU5QVNZM1ZMd2FxeU95akEyYW5Gems2Ym5MSEZGUzNOWFVNdnZPODRPMGdtSjFUcndFVk80eF9DM3FwWTl3QWk0WkI5al84ckt6YUt4S3o0X0J4UlNZY3RKWEZqRHRhLWFXNHJqcElWeGRZalJDOUFnLXJ3aTl4cDBIME82MnRDS1NiRS1MaVVrOFNXd2N3cjctcDVERmdmRWMxV01IVkN2Y190OUhNQTFMRFBBaURlR1Qtdzhka3VsZFHSAeMBQVVfeXFMT2Zvc215SVhGZFYxUkQyS05fTGRSc3NxZXhjNTRTb1g2WGFGZEdSR196Mk5SWjRWbFVYYU1aQkdGVzM4N1BDU1hfY1ZMZmxHZ1ZabUlnbEgxMVlheXJxc2JKdzludDhwR3FzQ1FkOHZTd0YxdC1XOUtVa2hUYTFZLVZDcEpsVFdRTm02OGNGYkI0VmJyXzVyZmhPTVdGTHM4aUhRV0dCVmt3LXJrd0xER3loY09YM082aVhodUZ1bDVXMWYxd0NxZTN6V1l6NmpWYzRkdWpMdGtEeHhRZ0cwbmtKZG8?oc=5",
+      "queries": [
+        "act-fabricated"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-01"
+    },
+    {
+      "id": "jamia professor booked under sc st act after employee alleges casteist abuse assault",
+      "headline": "Jamia Professor Booked Under SC/ST Act After Employee Alleges Casteist Abuse, Assault",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "ETV Bharat",
+      "published": "2026-01-21",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQNGlYSUM4QlE4cEVyOGFQazFfVy1pRVVvWkp3d3Jfbk9DVVlIQ2dBb1pMN2dvX1JRUzFXb2FSVlJrWFF2bVNZMnRSemNIUndMQUttdU1CWXl6ZjMycXhMdGdKRGlPRFVlRlVCcmV4aUdLYkkzODEyZHB5azM2Wjh3NThWRC1ja1VxSjNGUVNkTU8zdkFqbFNaSnBucmZoaFRDZUlHR2RBQzZrZ0ZlOFp0Y3NObU1KQjZJcWgxcXZvUV9kdE5HVzdYbGtZVGFLTDZoYVlfUVZHb9IB3AFBVV95cUxQOUttRWR5Zzlma1RVNzNPMlNmcEh6YUdYSDhIM0QtZHBDOVNvUXlaTXh5dy11aXZjdGl3ekJyc3JUZU5pVGlXdTJfTWN5SG9ITVBvRVFKMUtOdFJYNUR0R01QTmgtNmRGM1djc245aFg5UWp4U1luU25Tc3ptYTA1VktoSm5HcXhhY3Q0eTBCek1YeHVSSXNiWmlWeXg1djhEZF80eXRiM2VyQ25XRWxOVUgzd1k2QVJFTEFHOG1EbGVGQk0tWFFuYzN2SnJxQm5CbUlra3gwcjRuMldM?oc=5",
+      "queries": [
+        "act-fabricated"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-01"
     }
   ]
 }
