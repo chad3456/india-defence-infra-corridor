@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-26T10:11:10.499Z",
+  "builtAt": "2026-11-02T12:28:59.414Z",
   "source": "English Wikipedia's per-force 'List of active … aircraft' articles, read header-first. Those articles compile mostly from IISS's Military Balance and FlightGlobal's World Air Forces, and carry those publications' lag and their disagreements.",
   "method": "Tables are matched on their headers, never on column position. A table without both an aircraft column and a quantity column is skipped and counted rather than read by guessing. A quantity cell yields a number only when it carries one unambiguously; a range, a dash or prose yields null, which is counted separately and never treated as zero. A force whose quantity cells parsed less than sixty per cent of the time has its fleet total withheld while its list of types is kept.",
   "refusal": "No fleet total is reconciled against another catalogue, and no aircraft is resolved to a base. Every number here says 'a public catalogue lists this many', which is a weaker claim than 'this country has this many' and is the only one the source supports.",
@@ -12,8 +12,8 @@
   "counts": {
     "forces": 13,
     "types": 792,
-    "counted": 647,
-    "unreadable": 145,
+    "counted": 648,
+    "unreadable": 144,
     "totalsWithheld": 1,
     "failed": 1
   },
@@ -588,9 +588,9 @@
         }
       ],
       "types": 64,
-      "counted": 55,
-      "unreadable": 9,
-      "total": 508,
+      "counted": 56,
+      "unreadable": 8,
+      "total": 498,
       "tablesRead": 6,
       "tablesSkipped": 3
     },
@@ -928,7 +928,7 @@
             "Type",
             "Notes"
           ],
-          "rows": 17,
+          "rows": 18,
           "typeAt": -1,
           "serviceAt": -1,
           "used": false,
@@ -3106,23 +3106,23 @@
       "iso": "CHN",
       "country": "China",
       "force": "PLA Air Force",
-      "type": "Shenyang J-16",
-      "origin": "China",
-      "role": "",
-      "variant": "J-16D",
-      "inService": 20,
-      "inServiceRaw": "20"
-    },
-    {
-      "iso": "CHN",
-      "country": "China",
-      "force": "PLA Air Force",
       "type": "Shaanxi Y-9",
       "origin": "China",
       "role": "",
       "variant": "Y-9LG/X",
       "inService": 17,
       "inServiceRaw": "17+"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
+      "type": "Shenyang J-16",
+      "origin": "China",
+      "role": "",
+      "variant": "J-16D",
+      "inService": 20,
+      "inServiceRaw": "20"
     },
     {
       "iso": "CHN",
@@ -6983,7 +6983,7 @@
       "role": "Swingrole fighter",
       "variant": "Rafale B / C",
       "inService": null,
-      "inServiceRaw": "title=World Air Forces 2026 |url=https://www.flightglobal.com/download?ac=113841 |archive-url=https://web.archive.org/web/20251210145634/https://www.flightglobal.com/download?ac=113841 |archive-date=10 December 2025}} (+42 on order)"
+      "inServiceRaw": "date=10 September 2026 |title=Chiffres clés de la Défense 2026 |url=https://www.defense.gouv.fr/sites/default/files/ministere-armees/Chiffres_Cle%CC%81s_2026EN-webVF.pdf |url-status= |archive-url=https://web.archive.org/web/20261102054905/https://www.defense.gouv.fr/sites/default/files/ministere-armees/Chiffres_Cle%CC%81s_2026EN-webVF.pdf |archive-date=2 November 2026}} (+42 on order)"
     },
     {
       "iso": "FRA",
@@ -7015,15 +7015,15 @@
       "origin": "France",
       "role": "Fighter bomber",
       "variant": "Mirage 2000D",
-      "inService": null,
-      "inServiceRaw": "?"
+      "inService": 2,
+      "inServiceRaw": "2"
     },
     {
       "iso": "FRA",
       "country": "France",
       "force": "France (all services)",
       "type": "Airbus A400M",
-      "origin": "Spain, France, Germany, United Kindom, Belgium, Turkey",
+      "origin": "Spain, France, Germany, United Kingdom, Belgium, Turkey",
       "role": "Strategic airlifter / tactical airlifter",
       "variant": "–",
       "inService": 20,
@@ -7225,7 +7225,7 @@
       "role": "Aerobatic display",
       "variant": "Alpha Jet E",
       "inService": null,
-      "inServiceRaw": "-"
+      "inServiceRaw": "title=World Air Forces 2026|url=https://www.flightglobal.com/download?ac=113841|archive-url=https://web.archive.org/web/20251210145634/https://www.flightglobal.com/download?ac=113841|archive-date=10 December 2025}}"
     },
     {
       "iso": "FRA",
@@ -7257,8 +7257,8 @@
       "origin": "France Germany",
       "role": "Aggressor / training",
       "variant": "Alpha Jet E",
-      "inService": 42,
-      "inServiceRaw": "42 (incl PAF)"
+      "inService": 30,
+      "inServiceRaw": "30"
     },
     {
       "iso": "FRA",
