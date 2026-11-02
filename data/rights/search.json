@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-01T20:52:32.174Z",
+  "builtAt": "2026-11-02T06:54:24.323Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1340,
-    "addedThisRun": 0,
+    "items": 1342,
+    "addedThisRun": 2,
     "carriedFromEarlierRuns": 1340,
-    "withOutlet": 1247,
+    "withOutlet": 1249,
     "bySubject": {
-      "scst": 917,
-      "pmshri": 423
+      "scst": 918,
+      "pmshri": 424
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 219
+    "offSubjectDropped": 220
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 470
+      "n": 471
     },
     {
       "key": "acquittal",
@@ -40,7 +40,7 @@
     },
     {
       "key": "allegation",
-      "n": 61
+      "n": 62
     },
     {
       "key": "false-finding",
@@ -273,6 +273,10 @@
       "n": 5
     },
     {
+      "key": "OpIndia",
+      "n": 5
+    },
+    {
       "key": "Forward Press",
       "n": 4
     },
@@ -282,10 +286,6 @@
     },
     {
       "key": "Rediff",
-      "n": 4
-    },
-    {
-      "key": "Vajiram & Ravi",
       "n": 4
     }
   ],
@@ -298,14 +298,14 @@
       "google": 100,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 44,
+      "google": 41,
       "bing": 2,
       "kept": 0,
       "offSubject": 3
@@ -315,30 +315,30 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 29,
       "bing": 1,
       "kept": 0,
-      "offSubject": 47
+      "offSubject": 6
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 9,
+      "google": 50,
       "bing": 7,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 7
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 49,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 4
     },
     {
       "id": "act-pendency",
@@ -355,40 +355,40 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 30,
+      "google": 96,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 6
+      "kept": 1,
+      "offSubject": 47
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 25,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 3
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 9,
+      "google": 49,
       "bing": 0,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 11
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 25,
+      "google": 14,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 0
     },
     {
       "id": "act-false",
@@ -415,70 +415,70 @@
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 33,
+      "google": 100,
       "bing": 12,
-      "kept": 0,
-      "offSubject": 1
+      "kept": 1,
+      "offSubject": 6
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 38,
+      "google": 39,
       "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 6
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 59,
+      "google": 58,
       "bing": 1,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 19
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 48,
+      "google": 49,
       "bing": 1,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 13
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 42,
+      "google": 13,
       "bing": 1,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 0
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 23,
+      "google": 27,
       "bing": 1,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 12
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 52,
+      "google": 51,
       "bing": 3,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 12
     },
     {
       "id": "shri-criticism",
@@ -22396,6 +22396,38 @@
         "google"
       ],
       "firstSeen": "2026-11-01"
+    },
+    {
+      "id": "alleged incident inside house fight with own brothers over property dispute not offence un",
+      "headline": "Alleged incident inside house, fight with own brothers over property dispute not offence under SC/ST Act: SC quashes case where family members tried to misuse provision",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "OpIndia",
+      "published": "2026-05-12",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPZFBNU1hOSktQTzZwOGozYm95MW9Dc1RjLU1ab2Rsbm5fQk9oSGRaTXdVWWNWcy1vX0ZHQjRDWE9DOExocllacFVlNzdpaWJEVzJjOTRnbG9pdkljTnNPbDE3eExWQ0dQd0JZcGF5MTVtOXNmUmZmVDJlcTVaQkNIMjJnZWtqdkZCeHAwVzRJbkJtVjVLSjBhUUwwS3pfWEs3cjl2NnFURU5ibXA3aVZBVnBYNGN2cHFqcU1mVXppSnFDX1A1Ti1vQ2FSb294akpYVXpocg?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-02"
+    },
+    {
+      "id": "13 092 schools selected as pm shri schools across states uts goi",
+      "headline": "13,092 schools selected as PM SHRI schools across states, UTs: GOI",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "The Earth News",
+      "published": "2026-08-05",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQc2liVnphSDNqdmNZV0toMklaOHZadW9xS0lrQUpNcldTWnNBd1ZqbjRtNWE2dHlxb0xHekpFbzktLXZvQjM4cHVIa1AtS2pYbEs1SlJkRzJ2ZkdnWDRsbDlvUThxcmV0cy1yaG9mem1XZGlRYlIxR003eTE3RFBTTmZkOGZxZE9kUG9yUTlB?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-02"
     }
   ]
 }
