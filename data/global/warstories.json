@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-02T06:00:37.962Z",
-  "previousBuild": "2026-11-01T20:30:27.568Z",
+  "builtAt": "2026-11-02T18:22:00.112Z",
+  "previousBuild": "2026-11-02T06:00:37.962Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 277,
-    "createdThisRun": 1,
+    "stories": 279,
+    "createdThisRun": 2,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 212,
+    "itemsSeen": 213,
     "corroboration": {
-      "one": 238,
+      "one": 240,
       "two": 16,
       "threePlus": 23
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 144
+      "n": 145
     },
     {
       "id": "autonomy",
@@ -38,7 +38,7 @@
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 33
+      "n": 34
     },
     {
       "id": "targeting",
@@ -127,14 +127,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 28,
+      "items": 29,
       "kept": 0
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "Military Times",
@@ -152,7 +152,7 @@
       "outlet": "C4ISRNET",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 0
     },
     {
       "outlet": "DefenseScoop",
@@ -170,13 +170,13 @@
       "outlet": "Defense News",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense One",
@@ -194,7 +194,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1370,6 +1370,40 @@
         {
           "outlet": "Indian Defence Research Wing",
           "url": "https://idrw.org/ig-defence-jwala-micro-missile-kal-strike-drone-drdo-visit/",
+          "published": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/11/pacific-command-bolsters-network-defense-with-cyber-defense-forces-pacific/",
+      "headline": "Pacific Command bolsters network defense with Cyber Defense Forces Pacific",
+      "firstSeen": "2026-11-02",
+      "lastSeen": "2026-11-02",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/11/pacific-command-bolsters-network-defense-with-cyber-defense-forces-pacific/",
+          "published": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-army-tests-drone-on-3d-printed-jet-fuel-engine/",
+      "headline": "U.S. Army tests drone on 3D-printed jet-fuel engine",
+      "firstSeen": "2026-11-02",
+      "lastSeen": "2026-11-02",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-army-tests-drone-on-3d-printed-jet-fuel-engine/",
           "published": "2026-11-02"
         }
       ]
