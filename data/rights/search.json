@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-02T06:54:24.323Z",
+  "builtAt": "2026-11-02T18:52:59.366Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1342,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1340,
-    "withOutlet": 1249,
+    "items": 1345,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 1342,
+    "withOutlet": 1252,
     "bySubject": {
-      "scst": 918,
+      "scst": 921,
       "pmshri": 424
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 220
+    "offSubjectDropped": 149
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 663
+      "n": 665
     },
     {
       "key": "use",
-      "n": 471
+      "n": 472
     },
     {
       "key": "acquittal",
@@ -62,11 +62,11 @@
     },
     {
       "key": "The Hindu",
-      "n": 54
+      "n": 55
     },
     {
       "key": "The New Indian Express",
-      "n": 52
+      "n": 53
     },
     {
       "key": "India Today",
@@ -165,6 +165,10 @@
       "n": 10
     },
     {
+      "key": "NDTV",
+      "n": 10
+    },
+    {
       "key": "India Legal",
       "n": 9
     },
@@ -174,10 +178,6 @@
     },
     {
       "key": "EdexLive",
-      "n": 9
-    },
-    {
-      "key": "NDTV",
       "n": 9
     },
     {
@@ -295,10 +295,10 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 35,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 8
+      "kept": 1,
+      "offSubject": 0
     },
     {
       "id": "act-registered",
@@ -306,8 +306,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 41,
-      "bing": 2,
-      "kept": 0,
+      "bing": 0,
+      "kept": 1,
       "offSubject": 3
     },
     {
@@ -315,30 +315,30 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 29,
-      "bing": 1,
+      "google": 30,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 50,
-      "bing": 7,
+      "google": 49,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 5
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 10,
+      "google": 48,
       "bing": 0,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 13
     },
     {
       "id": "act-pendency",
@@ -355,20 +355,20 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 96,
-      "bing": 1,
-      "kept": 1,
-      "offSubject": 47
+      "google": 29,
+      "bing": 0,
+      "kept": 0,
+      "offSubject": 5
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 9,
+      "google": 25,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 3
+      "kept": 1,
+      "offSubject": 10
     },
     {
       "id": "act-misuse-claim",
@@ -378,54 +378,54 @@
       "google": 49,
       "bing": 0,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 10
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 14,
+      "google": 25,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 2
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 20,
-      "bing": 1,
+      "google": 50,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 20
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 10,
+      "google": 32,
       "bing": 0,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 19
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 100,
+      "google": 34,
       "bing": 12,
-      "kept": 1,
-      "offSubject": 6
+      "kept": 0,
+      "offSubject": 1
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 39,
+      "google": 40,
       "bing": 1,
       "kept": 0,
       "offSubject": 6
@@ -435,28 +435,28 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 58,
+      "google": 9,
       "bing": 1,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 4
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 49,
-      "bing": 1,
+      "google": 9,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 0
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 13,
-      "bing": 1,
+      "google": 14,
+      "bing": 0,
       "kept": 0,
       "offSubject": 0
     },
@@ -465,10 +465,10 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 27,
-      "bing": 1,
+      "google": 18,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 5
     },
     {
       "id": "shri-nep",
@@ -476,19 +476,19 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 51,
-      "bing": 3,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 12
+      "offSubject": 11
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 32
+      "offSubject": 7
     }
   ],
   "items": [
@@ -10070,7 +10070,8 @@
         "shri-funds",
         "shri-mou",
         "shri-nep",
-        "shri-criticism"
+        "shri-criticism",
+        "shri-general"
       ],
       "indexes": [
         "google"
@@ -22423,6 +22424,54 @@
       "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQc2liVnphSDNqdmNZV0toMklaOHZadW9xS0lrQUpNcldTWnNBd1ZqbjRtNWE2dHlxb0xHekpFbzktLXZvQjM4cHVIa1AtS2pYbEs1SlJkRzJ2ZkdnWDRsbDlvUThxcmV0cy1yaG9mem1XZGlRYlIxR003eTE3RFBTTmZkOGZxZE9kUG9yUTlB?oc=5",
       "queries": [
         "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-02"
+    },
+    {
+      "id": "over 33 000 cases filed under sc st act in madhya pradesh in 4 years centre",
+      "headline": "Over 33,000 Cases Filed Under SC/ST Act In Madhya Pradesh In 4 Years: Centre",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "NDTV",
+      "published": "2021-12-25",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNYnd0T0dUWUFKc0dqVUxyWXRwdkRvMERsOHU0X3VBUXdfQ3hQSVRUU19DaUlUWGtObGk4OWptODVLNnlaMGRrb29rS2swbzJJLUFENkhVSVRvR3MxR0Q2Skp4SllqX0pNaWhfcXhUZFFWU2oyQkRBYTVrSUdVTjNaQzg1VXVuUktNeFp0bmVHRVVRcU5uRWJRSW5kanhvaDdYZHVDaU1peXBPa0MwVTV3dldFUU1HZ2hFTzNVd2N1TXd5RXNHbTdqbFBiRmdMVm5aaU0zWA?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-02"
+    },
+    {
+      "id": "jharkhand hc imposes rs 8 000 cost on state for failing to file response in sc st act case",
+      "headline": "Jharkhand HC imposes Rs 8,000 cost on state for failing to file response in SC/ST Act case against ED officials",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The New Indian Express",
+      "published": "2026-11-02",
+      "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPZ0k1eFlWQ3pNaVZDWkZGeE1zZFplZkJMMmU5RzF6TTNIVlhPWDdocWdWT2lrUzFXOUtNd2FEVkVmODN0aWg0UHFCSkRFMTlnYzliclVheXREbWFDMWU1YjItYXhuTlhjWGxycFFWWVdtODlWbzhHUTZSVmZVdy1XU1hhQkNTZ1JfZWxHWERqb0otdHgweEttLURzVFVFemd3bVpZMG1CQVFid0N6R1hnUjNIMExTRXozSVlJMGNfaW80eUVIR3JYaHJPSWpaeTBGQXVfemJBLW1uNHktQmVsWFNEbHV3dTVDblo5OWlDa0VMQdIB_wFBVV95cUxNMENuWVJFZ0F2TGtCOUdiclloWkdpeHdHRjV5R3ZBcXlIUWk3MTF2VmtIdEczS1RWODNLTTQza1RQb3lnSlNhUmtjcmtHZjlROFprV3EyVzJpZmFycndGa3FQd01yNDh6Y0g1dnQwQmw3b2Vvbi00QjFOTVYyNUdVakp4ck9zd3FYY2hhb0tJcTJubFhzOS1GbEtHekktQ2ctbkxBZ2FZMDVucFRGMjZ3N2tnQWpTMzRfMGNfc3NHU2lXbEptOVFWcTQwc3pWV3VscS1Pc2UyVG1wUm55R1Q0YWtyZ0ZzTF9rMlNWdmU1cjBOZjlaWFgyLTlPcm5IMTQ?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-02"
+    },
+    {
+      "id": "conviction under sc st act just 27 in 2014 16",
+      "headline": "Conviction under SC/ST Act just 27% in 2014-16",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Hindu",
+      "published": "2018-07-29",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQSHdlRDdMdHFpcENrZFI5TU9KMnhDeEVnWmtMb3JydDE4UmZIWEh3TG03T0ZLbVRNN0Z5WEJHX19tM3l0bGl4bWk0RGN2UHF2UEFUTHJUSzVjNTB5cUpqRkd4Yi1vYW1YeGpVQ3EzamhCX3pBUHVHa2V4UENidlZzMkhSeThjY3NRSVFfUF9nVlpiSUZFaV9obWc1clBBV3cwV1ota2ZR0gGsAUFVX3lxTFBNdlRjaXh6R2hZZEctV0k1VFdxb1VoVF9ia1JnN2R2cmVyRGNma19MNjZxS0FMcF9NQXJmNXBjTlRfYlBUZ2J3S3NvU2NvYzVnOGdQaFpwVTJ6NERCUGU3UDJnQmo0TU1pZmE5dzA3VC03MjV3WmJlWG9sQThxSHdnRzRpVkJqVTZVOElnVmNMZm9YWkExTnNxYl85dW1hQlJvdmhEWFpaWTZxQ2E?oc=5",
+      "queries": [
+        "act-hostile"
       ],
       "indexes": [
         "google"
