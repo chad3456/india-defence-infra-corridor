@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-02T13:51:09.795Z",
+ "builtAt": "2026-11-03T00:02:58.266Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206512,14 +206512,14 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
@@ -206531,10 +206531,10 @@
   },
   {
    "outlet": "Naval News",
-   "ok": false,
-   "items": 0,
-   "kept": 0,
-   "via": "unconfigured"
+   "ok": true,
+   "items": 10,
+   "kept": 1,
+   "via": "direct"
   },
   {
    "outlet": "Defence Blog",
@@ -206545,6 +206545,39 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-1geplg8",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Ukraine"
+   ],
+   "value": {
+    "amount": 2100000000,
+    "currency": "USD",
+    "asWritten": "$2.1 billion"
+   },
+   "date": "2026-11-02",
+   "outlet": "Defense News",
+   "url": "https://www.defensenews.com/global/europe/2026/11/02/us-approves-2-1-billion-patriot-missile-sale-to-ukraine/",
+   "headline": "US approves $2.1 billion Patriot missile sale to Ukraine",
+   "primary": false
+  },
+  {
+   "id": "ev-njjz5b",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Greece"
+   ],
+   "value": null,
+   "date": "2026-11-02",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/11/greece-inks-deal-for-kc-390-fleet/",
+   "headline": "Greece inks deal for KC-390 fleet",
+   "primary": false
+  },
   {
    "id": "ev-fr7wht",
    "kind": "order",
@@ -208076,6 +208109,120 @@
  ],
  "groups": [
   {
+   "key": "order||ukraine+united states",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Ukraine"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1geplg8",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Ukraine"
+     ],
+     "value": {
+      "amount": 2100000000,
+      "currency": "USD",
+      "asWritten": "$2.1 billion"
+     },
+     "date": "2026-11-02",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/global/europe/2026/11/02/us-approves-2-1-billion-patriot-missile-sale-to-ukraine/",
+     "headline": "US approves $2.1 billion Patriot missile sale to Ukraine",
+     "primary": false
+    },
+    {
+     "id": "ev-k376bh",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-10-30",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-clears-sale-of-500-patriot-pac-3-missiles-to-ukraine/",
+     "headline": "U.S. clears sale of 500 Patriot PAC-3 missiles to Ukraine",
+     "primary": false
+    },
+    {
+     "id": "ev-cjft82",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-09-19",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-approves-ukraine-air-defense-package-with-unclear-weapons/",
+     "headline": "U.S. approves Ukraine air defense package with unclear weapons",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News",
+    "Defence Blog"
+   ],
+   "value": {
+    "amount": 2100000000,
+    "currency": "USD",
+    "asWritten": "$2.1 billion"
+   },
+   "verdict": "corroborated by independent outlets"
+  },
+  {
+   "key": "order||greece",
+   "systems": [],
+   "countries": [
+    "Greece"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-njjz5b",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Greece"
+     ],
+     "value": null,
+     "date": "2026-11-02",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/11/greece-inks-deal-for-kc-390-fleet/",
+     "headline": "Greece inks deal for KC-390 fleet",
+     "primary": false
+    },
+    {
+     "id": "ev-18gp7zp",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Greece"
+     ],
+     "value": null,
+     "date": "2026-10-14",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/hellenic-navy-tests-saronics-corsair-usv-ahead-of-major-order/",
+     "headline": "Hellenic Navy Tests SARONIC’s Corsair USV Ahead of Major Order",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Breaking Defense",
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "corroborated by independent outlets"
+  },
+  {
    "key": "order||indonesia",
    "systems": [],
    "countries": [
@@ -208799,52 +208946,6 @@
    "verdict": "outlets disagree on the value"
   },
   {
-   "key": "order||ukraine+united states",
-   "systems": [],
-   "countries": [
-    "United States",
-    "Ukraine"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-k376bh",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States",
-      "Ukraine"
-     ],
-     "value": null,
-     "date": "2026-10-30",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/u-s-clears-sale-of-500-patriot-pac-3-missiles-to-ukraine/",
-     "headline": "U.S. clears sale of 500 Patriot PAC-3 missiles to Ukraine",
-     "primary": false
-    },
-    {
-     "id": "ev-cjft82",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States",
-      "Ukraine"
-     ],
-     "value": null,
-     "date": "2026-09-19",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/u-s-approves-ukraine-air-defense-package-with-unclear-weapons/",
-     "headline": "U.S. approves Ukraine air defense package with unclear weapons",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defence Blog"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
    "key": "order||germany+netherlands",
    "systems": [],
    "countries": [
@@ -209325,35 +209426,6 @@
    ],
    "value": null,
    "verdict": "from a primary source"
-  },
-  {
-   "key": "order||greece",
-   "systems": [],
-   "countries": [
-    "Greece"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-18gp7zp",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Greece"
-     ],
-     "value": null,
-     "date": "2026-10-14",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/10/hellenic-navy-tests-saronics-corsair-usv-ahead-of-major-order/",
-     "headline": "Hellenic Navy Tests SARONIC’s Corsair USV Ahead of Major Order",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order||saudi arabia+united states",
