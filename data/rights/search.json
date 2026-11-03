@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-02T18:52:59.366Z",
+  "builtAt": "2026-11-03T02:41:37.767Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1345,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 1342,
-    "withOutlet": 1252,
+    "items": 1349,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 1345,
+    "withOutlet": 1256,
     "bySubject": {
       "scst": 921,
-      "pmshri": 424
+      "pmshri": 428
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 149
+    "offSubjectDropped": 207
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 665
+      "n": 667
     },
     {
       "key": "use",
@@ -36,7 +36,7 @@
     },
     {
       "key": "dispute",
-      "n": 66
+      "n": 68
     },
     {
       "key": "allegation",
@@ -66,7 +66,7 @@
     },
     {
       "key": "The New Indian Express",
-      "n": 53
+      "n": 54
     },
     {
       "key": "India Today",
@@ -109,11 +109,11 @@
       "n": 18
     },
     {
-      "key": "ET Education",
-      "n": 16
+      "key": "Careers360",
+      "n": 17
     },
     {
-      "key": "Careers360",
+      "key": "ET Education",
       "n": 16
     },
     {
@@ -295,60 +295,60 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 35,
+      "google": 100,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 0
+      "kept": 0,
+      "offSubject": 8
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 41,
-      "bing": 0,
-      "kept": 1,
-      "offSubject": 3
+      "google": 100,
+      "bing": 1,
+      "kept": 0,
+      "offSubject": 15
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 30,
+      "google": 98,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 47
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 49,
-      "bing": 0,
+      "google": 50,
+      "bing": 4,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 6
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 48,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 4
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 57,
+      "google": 12,
       "bing": 0,
       "kept": 0,
-      "offSubject": 21
+      "offSubject": 1
     },
     {
       "id": "act-acquittal",
@@ -358,17 +358,17 @@
       "google": 29,
       "bing": 0,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 6
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 25,
+      "google": 9,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 10
+      "kept": 0,
+      "offSubject": 3
     },
     {
       "id": "act-misuse-claim",
@@ -395,20 +395,20 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 50,
+      "google": 19,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 5
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 32,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 3
     },
     {
       "id": "shri-general",
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 34,
-      "bing": 12,
+      "bing": 0,
       "kept": 0,
       "offSubject": 1
     },
@@ -435,40 +435,40 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
-      "bing": 1,
-      "kept": 0,
-      "offSubject": 4
+      "google": 68,
+      "bing": 0,
+      "kept": 3,
+      "offSubject": 21
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
-      "bing": 0,
+      "google": 48,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 12
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 14,
+      "google": 42,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 4
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 18,
-      "bing": 0,
+      "google": 27,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 12
     },
     {
       "id": "shri-nep",
@@ -477,18 +477,18 @@
       "expect": "dispute",
       "google": 51,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 11
+      "kept": 1,
+      "offSubject": 9
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 10,
+      "google": 43,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 32
     }
   ],
   "items": [
@@ -22455,7 +22455,8 @@
       "published": "2026-11-02",
       "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPZ0k1eFlWQ3pNaVZDWkZGeE1zZFplZkJMMmU5RzF6TTNIVlhPWDdocWdWT2lrUzFXOUtNd2FEVkVmODN0aWg0UHFCSkRFMTlnYzliclVheXREbWFDMWU1YjItYXhuTlhjWGxycFFWWVdtODlWbzhHUTZSVmZVdy1XU1hhQkNTZ1JfZWxHWERqb0otdHgweEttLURzVFVFemd3bVpZMG1CQVFid0N6R1hnUjNIMExTRXozSVlJMGNfaW80eUVIR3JYaHJPSWpaeTBGQXVfemJBLW1uNHktQmVsWFNEbHV3dTVDblo5OWlDa0VMQdIB_wFBVV95cUxNMENuWVJFZ0F2TGtCOUdiclloWkdpeHdHRjV5R3ZBcXlIUWk3MTF2VmtIdEczS1RWODNLTTQza1RQb3lnSlNhUmtjcmtHZjlROFprV3EyVzJpZmFycndGa3FQd01yNDh6Y0g1dnQwQmw3b2Vvbi00QjFOTVYyNUdVakp4ck9zd3FYY2hhb0tJcTJubFhzOS1GbEtHekktQ2ctbkxBZ2FZMDVucFRGMjZ3N2tnQWpTMzRfMGNfc3NHU2lXbEptOVFWcTQwc3pWV3VscS1Pc2UyVG1wUm55R1Q0YWtyZ0ZzTF9rMlNWdmU1cjBOZjlaWFgyLTlPcm5IMTQ?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -22477,6 +22478,70 @@
         "google"
       ],
       "firstSeen": "2026-11-02"
+    },
+    {
+      "id": "kerala education min sivankutty meets pradhan conveys state s stance on pm shri project",
+      "headline": "Kerala Education Min Sivankutty meets Pradhan, conveys state’s stance on PM SHRI project",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The New Indian Express",
+      "published": "2025-11-11",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQS3hxQWpRUXhzdXozZmtER2RGU2RLN0ZLc1JOMFl3ZDlEZTNFc0Vnc3RMQ0N4aHBiLTlFMW8yLVUxYWZ3U09NaHp3RVhVOGZUdXphbHJGdzczRXRsdmtuU2U3M0VjYVgwUnRoT3FIZFZMUVhLWVZ6VWNIazJrZFlhM1ZQcDBXS1hvMFc0SmpfSXhyTjFrQjR6Q0ZLcVdlbEZGckIyNWE2bUpPdmwtTnlla3dzNUFTQjVQbGJoNUhfek1ueGxlUXg3ZVZkbEw4NHNmVE94X2hJY2Zza1RfaFHSAesBQVVfeXFMTk0zWkxwSjZuZTZlbkZFUHRlTWdocW1xNk9HMzJscTViUnFuWUltTHBKaHU4a3hTanp0N2hBdmVEVldjbENxWDlvR3FrMEhyWXJLYVBjTUFPZWNOanoyMl9HczJIXzVjTWFvS1kxbEFxWmZ0SDgzSU5wT2pYbjEtQWRNNmZMX3I2eW5BWGNZNnh5eDY0UXkzUXhkaXBfdTBmX0tudFdtRUpKeWxybUQ3aEtvVjU4amRLdEZVTks4MEppQ19IWWlueThEZjVKMnFVNk11NEV0OUtIdGp2Y21TeF94VEU3RHBSaFZSVQ?oc=5",
+      "queries": [
+        "shri-funds"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-03"
+    },
+    {
+      "id": "kerala will join pm shri scheme but no change in state education policy sivankutty",
+      "headline": "Kerala will join PM SHRI scheme, but no change in state education policy: Sivankutty",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Careers360",
+      "published": "2025-10-19",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQVnUxM3Rnb2swYVhQbjdxeHEtRjRtRENnNnJ5em5SaW5qZFhvcnUyaGtPUGF5Z09WLVlWenpFUS1tYnFUMWdaRHJoNXY3eEhfTVlxcEh5RTNXaXhPWnFCWVRtbkdzOFpYTUR6LUxJbHJSS2FUZkwwNFZiVzZyZkE4bldrcTBHVzNUYVNZMXBYRWcyU2F4T1NqVERhQnVqZFdnLXhKVmlCemZsQzBzYkJyZmk2RDhrNS1JUlh1NEtXS0FOSU5zS2pOR1Y0b3JkUUlEWEFoa0lENVPSAd4BQVVfeXFMTXZUSWstZ25JdDFZRGFHRXkxcjZmTGlKallhWURBbF9ma2x6WWpJUk5pLTY5Qi1JRm1Na25Wak1NSFIyZ3pVN1l6TFJBNmdxeWF3R21vR0ozcC1uMFlUajgwZC1KVmpZNk8xOXNuaGI0aXlnODJ0Tmo1VW9MMmg4ajNBUXdHeUlodWpJVldiMGhvYW9HbUZaeWVZcXVKSjRhN2ZCdzN1Q3R5ekRVOWRKM0M2OTBWa29RanlWMEpxZWdOUlJhQmY3d0xnSHdrQ3E5T1RlQ1dId0EzdkVxSy1B?oc=5",
+      "queries": [
+        "shri-funds"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-03"
+    },
+    {
+      "id": "withholding funds to states rejecting pm shri scheme unfair observes parl panel",
+      "headline": "Withholding funds to states rejecting PM Shri scheme unfair, observes Parl panel",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": "DT Next",
+      "published": "2025-03-26",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOeE43aFFtSnJXMFN1ZlJYQ3NzaTFvVG40Wlk0dFJjeW51X2JQN2NjNTdoTlIyRG1mWTlwLWpwdmRYbUFZT3ZsMTlEcnNnQ2tWS1FzUklXeTNDTVdQR2pIOTNoSjFOVGVBUFQwTTF0VTZGVmtydC1tbi1Cd0JFdmVrUDJZR2wxdnBsZ01lVFZDb1IyU0x3TmFYRmF1RUlGUXNDVU1vUGs1NmltX1A4c1Q3UGdNT1paa085UE1KM1Bva9IBzAFBVV95cUxQek5WRUFFRXJ2cGxRS3NoV2M3RmVwZWtPLTlub193elUwdVpCdm0tT0xXSTdrU3dlWjRFN1dSUUZ4M0tQSkRsRWhGQkVsdkNyVTRIeHQ2Y3l6N1F3XzNVODhkWUgxZHVBV2lZemt4MnFieDZ6SWVhd0VQbDEyS1psN3MzcmVlRG0zdGV5SkhmR3pidWRaam81cUZ6dzR0NnRzRTBqYVBvMGdHdG11cGYzUTM4cFR6a1JwMUNFM0JETHBHTHRwZ29KT2lZaVk?oc=5",
+      "queries": [
+        "shri-funds"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-03"
+    },
+    {
+      "id": "pm shri put on hold in kerala following strong opposition from cpi",
+      "headline": "PM SHRI Put on Hold in Kerala Following Strong Opposition From CPI",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": "Deccan Chronicle",
+      "published": "2025-10-29",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQZEpsR3hSaG1UeVFOU2tUWnNJRWlLb1I4Yzh5NTFmZXZlR292ZnhNRHVkZXFiY21uU280NlhMT2ZhMTZXTlo5X0JyUUZzcEt5TjVlc0dzNUloTDJjSlBYcnhYQ1RoT0pId28zcjhBZmJhUHU1SnJORWEwa3hGQi1BTDdTNGZzcm1YREdyMGtubXJWYU5zTC16RE1rUXdjOExKRjlLdWNpUDFzNUhZNkV2X0Zna1p3VVIwMGEwcTJyTzlsQktfeUJuRNIBzgFBVV95cUxOcU1ydFkwbzVTQ0I1TlczWXM1QzRmbllNWjVVeHJJM21ac29pMjVxRmJkZVZFaThYMTdwSzFMQjY4V3lzcjh4T3JqZE1pTGNlSFNuWXF4a28zaGF4LXY2eEVCZzIxYmZERG9ZcWNSbGNMWGNrVGRjUDBkSXIyYllqTDZhSWNXT2d3WHItcXM3V0lMWExWTk1xeTA5UjNHVEZKN2tZa0w4Q19RYnNsdTNHc2tGVkJXcFRpWEJJSmxiWVozUl9zME1WRUJzaU5lUQ?oc=5",
+      "queries": [
+        "shri-nep"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-03"
     }
   ]
 }
