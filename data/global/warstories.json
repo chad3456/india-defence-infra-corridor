@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-03T11:56:56.217Z",
-  "previousBuild": "2026-11-03T02:18:24.158Z",
+  "builtAt": "2026-11-03T19:29:47.451Z",
+  "previousBuild": "2026-11-03T11:56:56.217Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 283,
-    "createdThisRun": 0,
+    "stories": 288,
+    "createdThisRun": 5,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 12,
+    "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 194,
+    "itemsSeen": 216,
     "corroboration": {
-      "one": 244,
+      "one": 249,
       "two": 16,
       "threePlus": 23
     }
@@ -28,17 +28,17 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 148
+      "n": 149
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 86
+      "n": 89
     },
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 35
+      "n": 36
     },
     {
       "id": "targeting",
@@ -60,7 +60,7 @@
     {
       "iso": "IND",
       "name": "India",
-      "n": 29
+      "n": 30
     },
     {
       "iso": "UKR",
@@ -132,14 +132,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 29,
+      "items": 32,
       "kept": 1
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "Military Times",
@@ -169,7 +169,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense News",
@@ -181,27 +181,25 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Defense One",
       "ok": true,
-      "items": 20,
+      "items": 19,
       "kept": 3
     },
     {
       "outlet": "Naval News",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "HTTP 503"
+      "ok": true,
+      "items": 10,
+      "kept": 0
     },
     {
       "outlet": "Defence Blog",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "This operation was aborted"
+      "ok": true,
+      "items": 10,
+      "kept": 1
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1356,6 +1354,96 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/indian-navy-astra-120-foot-armed-uncrewed-surface-vessel/",
+      "headline": "Indian Navy Seeks 120-Foot Armed Autonomous Warship",
+      "firstSeen": "2026-11-03",
+      "lastSeen": "2026-11-03",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/indian-navy-astra-120-foot-armed-uncrewed-surface-vessel/",
+          "published": "2026-11-03"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/defence-experts-examine-emerging-threats-in-ai-and-cyber-warfare/",
+      "headline": "Defence Experts Examine Emerging Threats in AI and Cyber Warfare",
+      "firstSeen": "2026-11-03",
+      "lastSeen": "2026-11-03",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/defence-experts-examine-emerging-threats-in-ai-and-cyber-warfare/",
+          "published": "2026-11-03"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/saab-launches-next-generation-9lv-naval-combat-system-for-connected-crewed-and-uncrewed-fleets/",
+      "headline": "Saab launches next-generation 9LV naval combat system for connected crewed and uncrewed fleets",
+      "firstSeen": "2026-11-03",
+      "lastSeen": "2026-11-03",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/saab-launches-next-generation-9lv-naval-combat-system-for-connected-crewed-and-uncrewed-fleets/",
+          "published": "2026-11-03"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/11/gambit-series-offers-a-scalable-path-for-collaborative-combat-aircraft/",
+      "headline": "Gambit Series offers a scalable path for collaborative combat aircraft",
+      "firstSeen": "2026-11-03",
+      "lastSeen": "2026-11-03",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/11/gambit-series-offers-a-scalable-path-for-collaborative-combat-aircraft/",
+          "published": "2026-11-03"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/perseus-defense-tests-cheap-missile-against-drone/",
+      "headline": "Perseus Defense tests cheap missile against drone",
+      "firstSeen": "2026-11-03",
+      "lastSeen": "2026-11-03",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/perseus-defense-tests-cheap-missile-against-drone/",
+          "published": "2026-11-03"
         }
       ]
     },
