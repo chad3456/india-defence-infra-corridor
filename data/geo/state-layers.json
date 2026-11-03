@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-03T07:04:19.601Z",
+  "builtAt": "2026-11-03T19:45:30.354Z",
   "note": "Named things per state, for the map to answer a click with. Each layer records how its rows reached a state and how many did not, because the join is where this kind of file goes wrong invisibly.",
   "refused": [
     {
@@ -25012,8 +25012,8 @@
       "blurb": "Urban rail lines as OpenStreetMap has them tagged, each placed by the state its midpoint falls in. Station counts are tags rather than an operator's published figure.",
       "join": "The line's midpoint, point-in-polygon. A line that crosses a state border appears once, under the state containing its middle.",
       "source": "OpenStreetMap, via the mobility connector.",
-      "total": 118,
-      "placed": 115,
+      "total": 120,
+      "placed": 117,
       "unplacedCount": 2,
       "deduped": 1,
       "unplaced": [
@@ -25533,6 +25533,20 @@
             "basis": "OpenStreetMap relation tags: line name, station count and operator as tagged",
             "lat": 21.1418,
             "lon": 79.0823
+          },
+          {
+            "name": "Pink Line: District Court Pune→ Maan",
+            "why": "Pune Metropolitan Region Development Authority, 17 stations · run by PMRDA.",
+            "basis": "OpenStreetMap relation tags: line name, station count and operator as tagged",
+            "lat": 18.5897,
+            "lon": 73.7578
+          },
+          {
+            "name": "Pink Line: Maan → District Court Pune",
+            "why": "Pune Metropolitan Region Development Authority, 17 stations · run by PMRDA.",
+            "basis": "OpenStreetMap relation tags: line name, station count and operator as tagged",
+            "lat": 18.5736,
+            "lon": 73.7741
           },
           {
             "name": "Purple Line: PCMC Bhavan → Swargate",
@@ -26504,13 +26518,6 @@
             "lon": 73.7798
           },
           {
-            "name": "Balewadi Stadium",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5797,
-            "lon": 73.7615
-          },
-          {
             "name": "Balharshah",
             "why": "Station code BPQ.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -27022,7 +27029,7 @@
             "lon": 77.1813
           },
           {
-            "name": "Boribial",
+            "name": "Boribel",
             "why": "Station code BRB.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 18.4079,
@@ -31005,13 +31012,6 @@
             "lon": 73.8724
           },
           {
-            "name": "Pune University",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5423,
-            "lon": 73.8272
-          },
-          {
             "name": "Puntamba Junction",
             "why": "Station code PB.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -31516,6 +31516,13 @@
             "lon": 75.9102
           },
           {
+            "name": "Savitribai Phule Pune University",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.5423,
+            "lon": 73.8272
+          },
+          {
             "name": "Sawantwadi Road",
             "why": "Station code SWV.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -31719,13 +31726,6 @@
             "lon": 72.907
           },
           {
-            "name": "Shivaji Chowk Hinjawadi",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5924,
-            "lon": 73.7374
-          },
-          {
             "name": "Shivaji Nagar",
             "why": "No station code in this dataset.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -31752,6 +31752,20 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 20.6757,
             "lon": 77.0481
+          },
+          {
+            "name": "Shree Shiv Chhatrapati Shivaji Maharaj Chowk Hinjawadi",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.5924,
+            "lon": 73.7374
+          },
+          {
+            "name": "Shree Shiv Chhatrapati Sports Complex Mahalunge",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 18.5797,
+            "lon": 73.7615
           },
           {
             "name": "Shri Chatrapati Shahu Maharaj Terminus",
