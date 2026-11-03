@@ -64,6 +64,7 @@ const GROUPS: Group[] = [
       { href: "/space-programme", label: "India's space programme", blurb: "Every Indian rocket to scale and taken apart in 3D, the routes to the Moon, Mars and the Sun, ISRO's centres, and the record", dashboard: {} },
       { href: "/space", label: "How a satellite works", blurb: "NISAR taken apart in 3D with an X-ray explorer, its live position, India's fleet in orbit, and the record: launches, failures, money", dashboard: {} },
       { href: "/tbm", label: "Tunnel boring machines", blurb: "A 3D particle story: how a TBM works, every machine in India to scale, who builds them, and China's export controls", dashboard: {} },
+      { href: "/white-pill", label: "The white pill: progress, counted", blurb: "What is measurably getting better — poverty, inequality, space, tech, AI, infrastructure, defence exports — with the catch beside each chart, what changed after 2014, and live reporting", dashboard: {} },
       { href: "/malnutrition", label: "NFHS-6 and child malnutrition", blurb: "All 101 NFHS-6 indicators by state, and stunting, wasting, underweight and anaemia in every district, on a dark map", dashboard: {} },
       { href: "/nfhs", label: "Family health, 1998–2021", blurb: "Every National Family Health Survey round since 1998–99 on the same measures: India, rich and poor, every state", dashboard: {} },
       { href: "/luxury-beliefs", label: "Luxury beliefs, tested", blurb: "Rob Henderson's idea against Indian data: who believes what, who pays — live headlines and the NFHS by class", dashboard: {} },
@@ -215,6 +216,9 @@ export default function Nav() {
         <Link href="/" className="flex shrink-0 items-baseline gap-2">
           <span className="text-[15px] font-semibold tracking-tight">Bharat Tracker</span>
           <span className="eyebrow hidden sm:inline">since 2001</span>
+        </Link>
+        <Link href="/white-pill" className="wp-navpill -ml-3 sm:-ml-2" aria-current={pathname === "/white-pill" ? "page" : undefined}>
+          <span className="wp-dot" aria-hidden />White pill
         </Link>
 
         {/* Phones: one control, every group inside it. */}

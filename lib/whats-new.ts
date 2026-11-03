@@ -69,6 +69,15 @@ export const WHATS_NEW: NewFeature[] = [
     since: "2026-10-26",
   },
   {
+    id: "white-pill-2026-11",
+    title: "The white pill: India's progress, counted",
+    blurb:
+      "What is measurably getting better — poverty, inequality, space, technology, AI, infrastructure, defence exports — with the catch printed beside every chart, " +
+      "a pre-registered test of what changed after 2014, the reports on both sides, and live reporting.",
+    href: "/white-pill",
+    since: "2026-11-03",
+  },
+  {
     id: "political-axes-2026-10",
     title: "The 12-axis political test",
     blurb:

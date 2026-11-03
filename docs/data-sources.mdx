@@ -436,6 +436,22 @@ listed. Statement 30 (c) is headed 2020-21 but sourced to PLFS 2019-20, as is th
 page; it is labelled 2019–20. `npm run test:youth` re-reads the PDF and fails if the committed file
 differs, and checks figures read by eye against the printed pages.
 
+### The white pill (`/white-pill`)
+
+A progress page built only from what the record already holds: series from `data/series` (World Bank,
+ministries, SIPRI), NFHS rounds from `data/nfhs/rounds.json` with their poorest- and richest-fifth
+values, Indian AI releases from `data/ai/models.json`, and report findings in
+`data/white-pill/studies.json`, each with a link and the coverage it was checked against — including
+the reports that cut against the good news. Every chart card carries its caveat (`CARDS` in
+`lib/white-pill.ts`). The "after 2014" comparison uses a fixed list of measured indicators (`PACE`):
+the share of the remaining gap closed a year for coverage, the percentage fall for things that should
+fall, growth for counts, period averages for rates; a change needs more than 15% of the earlier rate,
+or half the series' own spread for averages. Modelled World Bank curves are excluded because they
+cannot show a break. Live headlines come from `/api/progress-live` (Google News search, neutral
+queries, two-minute cache) and never become numbers; posts from X are not republished.
+`npm run test:white-pill` checks every card resolves to a sourced series and that the page's prose
+claims still match the computed results.
+
 ### V-Party expert-coded party positions (the 12-axis test)
 
 `/political-axes` is a questionnaire — twelve axes, eight statements each, four keyed to each pole
