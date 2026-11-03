@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-03T09:04:52.488Z",
+  "builtAt": "2026-11-03T10:45:00.480Z",
   "source": "Citation templates in the reference lists of English Wikipedia articles on caste atrocities, the SC/ST (Prevention of Atrocities) Act, and central school policy. Only citation metadata is read — outlet, headline, date, URL. No Wikipedia prose is used.",
   "method": "Each article's wikitext is fetched once and its cite-news, cite-web, cite-report, cite-magazine, cite-journal and cite-press-release templates are walked brace by brace, so a nested template inside a title does not truncate it. A citation is kept when its headline, or its headline read together with the article citing it, is on subject.",
   "refusal": "A citation here is evidence that an outlet published a headline on a date. It is not evidence that the headline was true, it is not a verified fact, and it is not a sample of coverage.",
@@ -14,7 +14,7 @@
     "citations": 508,
     "withUrl": 491,
     "withOutlet": 484,
-    "withDate": 409,
+    "withDate": 408,
     "articlesRead": 37,
     "articlesMissing": 15,
     "byMatch": {
@@ -154,6 +154,10 @@
       "n": 3
     },
     {
+      "key": "Human Rights Watch",
+      "n": 3
+    },
+    {
       "key": "Neopolitico.com",
       "n": 2
     },
@@ -242,10 +246,6 @@
       "n": 2
     },
     {
-      "key": "Human Rights Watch",
-      "n": 2
-    },
-    {
       "key": "Slideshare.net",
       "n": 1
     },
@@ -301,11 +301,11 @@
     },
     {
       "key": "cite journal",
-      "n": 29
+      "n": 28
     },
     {
       "key": "cite report",
-      "n": 2
+      "n": 3
     },
     {
       "key": "cite magazine",
@@ -352,7 +352,7 @@
       "title": "Reservation in India",
       "note": "The adjacent policy argued about in the same terms",
       "ok": true,
-      "citations": 127,
+      "citations": 128,
       "kept": 3
     },
     {
@@ -422,15 +422,15 @@
       "title": "Tsunduru massacre",
       "note": "1991",
       "ok": true,
-      "citations": 7,
-      "kept": 7
+      "citations": 8,
+      "kept": 8
     },
     {
       "title": "Karamchedu massacre",
       "note": "1985",
       "ok": true,
       "citations": 5,
-      "kept": 4
+      "kept": 3
     },
     {
       "title": "Bathani Tola massacre",
@@ -590,7 +590,7 @@
       "title": "Caste system in India",
       "note": "The structure the Act sits inside",
       "ok": true,
-      "citations": 105,
+      "citations": 104,
       "kept": 7
     },
     {
@@ -611,7 +611,7 @@
       "title": "Adivasi",
       "note": "The Scheduled Tribes half of the statute, usually left out of the argument",
       "ok": true,
-      "citations": 66,
+      "citations": 67,
       "kept": 9
     },
     {
@@ -5116,6 +5116,21 @@
       "matchedOn": "headline"
     },
     {
+      "id": "https://www.hrw.org/reports/pdfs/i/india/india929.pdf",
+      "headline": "Police Killings and Rural Violence in Andhra Pradesh",
+      "outlet": "Human Rights Watch",
+      "published": null,
+      "url": "https://www.hrw.org/reports/pdfs/i/india/india929.pdf",
+      "subject": "scst",
+      "facet": "unclassified",
+      "articles": [
+        "Tsunduru massacre",
+        "Karamchedu massacre"
+      ],
+      "template": "cite report",
+      "matchedOn": "bibliography"
+    },
+    {
       "id": "http://balagopal.org/wp-content/uploads/2009/10/Post-Chundur_and_Other_Chundurs.pdf",
       "headline": "Post-Chundur_and_Other_Chundurs.pdf",
       "outlet": "balagopal.org",
@@ -5170,20 +5185,6 @@
       ],
       "template": "cite news",
       "matchedOn": "headline"
-    },
-    {
-      "id": "https://www.hrw.org/reports/pdfs/i/india/india929.pdf",
-      "headline": "Human Rights in India — Police Killings and Rural Killings in Andhra Pradesh",
-      "outlet": "Human Rights Watch - Asia",
-      "published": "1992",
-      "url": "https://www.hrw.org/reports/pdfs/i/india/india929.pdf",
-      "subject": "scst",
-      "facet": "unclassified",
-      "articles": [
-        "Karamchedu massacre"
-      ],
-      "template": "cite journal",
-      "matchedOn": "bibliography"
     },
     {
       "id": "?::the karamchedu killings and the struggle to uncover untouchability, in dynamics of caste and law: dalits, oppression and constitutional democracy in india",
@@ -5790,7 +5791,7 @@
     },
     {
       "id": "http://timesofindia.indiatimes.com/city/lucknow/Rohith-Vemula-was-a-Dalitsays-SC/ST-panel-chief-Punia/articleshow/50799258.cms",
-      "headline": "Rohith Vemula was a Dalit,says SC/ST panel chief Punia",
+      "headline": "Rohith Vemula was a Dalit, says SC/ST panel chief Punia",
       "outlet": "The Times of India",
       "published": "2016-02-01",
       "url": "http://timesofindia.indiatimes.com/city/lucknow/Rohith-Vemula-was-a-Dalitsays-SC/ST-panel-chief-Punia/articleshow/50799258.cms",
@@ -6643,11 +6644,11 @@
       "matchedOn": "bibliography"
     },
     {
-      "id": "https://www.hrw.org/wr2k1/asia/india.html",
+      "id": "https://www.hrw.org/legacy/wr2k1/asia/india.html",
       "headline": "India: Human Rights Developments",
       "outlet": "World Report 2001",
       "published": "2001",
-      "url": "https://www.hrw.org/wr2k1/asia/india.html",
+      "url": "https://www.hrw.org/legacy/wr2k1/asia/india.html",
       "subject": "scst",
       "facet": "unclassified",
       "articles": [
