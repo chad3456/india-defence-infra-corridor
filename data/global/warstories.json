@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-04T12:07:48.636Z",
-  "previousBuild": "2026-11-04T00:36:42.437Z",
+  "builtAt": "2026-11-04T19:45:01.856Z",
+  "previousBuild": "2026-11-04T12:07:48.636Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 293,
-    "createdThisRun": 5,
+    "stories": 294,
+    "createdThisRun": 1,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 218,
+    "itemsSeen": 221,
     "corroboration": {
-      "one": 254,
+      "one": 255,
       "two": 16,
       "threePlus": 23
     }
@@ -38,7 +38,7 @@
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 37
+      "n": 38
     },
     {
       "id": "targeting",
@@ -132,14 +132,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 33,
+      "items": 36,
       "kept": 1
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Military Times",
@@ -169,7 +169,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 0
     },
     {
       "outlet": "Defense News",
@@ -181,7 +181,7 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defense One",
@@ -1457,6 +1457,23 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/russian-infauna-electronic-warfare-vehicle-spotted-in-mali/",
+          "published": "2026-11-04"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/gps-jamming-hits-almost-all-of-natos-eastern-flank-in-one-day/",
+      "headline": "GPS jamming hits almost all of NATO’s eastern flank in one day",
+      "firstSeen": "2026-11-04",
+      "lastSeen": "2026-11-04",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/gps-jamming-hits-almost-all-of-natos-eastern-flank-in-one-day/",
           "published": "2026-11-04"
         }
       ]
