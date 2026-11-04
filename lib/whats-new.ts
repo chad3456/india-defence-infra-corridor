@@ -69,6 +69,15 @@ export const WHATS_NEW: NewFeature[] = [
     since: "2026-10-26",
   },
   {
+    id: "since-2020-2026-11",
+    title: "The BJP since the pandemic, election by election",
+    blurb:
+      "Every assembly election from Bihar 2020 to May 2026 and the 2024 Lok Sabha, counted from ECI's seat pages: BJP and NDA seats and vote share, who governs now, " +
+      "the Rajya Sabha, women's and men's turnout, why voters gave or refused another term, and the wars, pandemic and economy of the same years.",
+    href: "/elections/since-2020",
+    since: "2026-11-04",
+  },
+  {
     id: "white-pill-2026-11",
     title: "The white pill: India's progress, counted",
     blurb:

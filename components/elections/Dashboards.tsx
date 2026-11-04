@@ -18,6 +18,7 @@ export const ELECTION_TABS = [
   { href: "/elections/electorate", label: "Electorate" },
   { href: "/elections/sir", label: "SIR" },
   { href: "/elections/turnout", label: "Turnout" },
+  { href: "/elections/since-2020", label: "Since the pandemic" },
 ];
 
 export function ElectionsTabs() {

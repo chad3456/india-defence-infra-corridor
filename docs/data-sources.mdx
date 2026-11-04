@@ -436,6 +436,21 @@ listed. Statement 30 (c) is headed 2020-21 but sourced to PLFS 2019-20, as is th
 page; it is labelled 2019–20. `npm run test:youth` re-reads the PDF and fails if the committed file
 differs, and checks figures read by eye against the printed pages.
 
+### The BJP since the pandemic (`/elections/since-2020`)
+
+Every assembly election from Bihar 2020 to May 2026 and the 2024 Lok Sabha. Seats and vote shares are
+counted from ECI's seat pages in `data/elections/results` (NOTA included in the vote); where the archive
+holds fewer than 98% of a house's seats (December 2023), seats come from ECI's own party tally and vote
+shares are left blank. Bihar 2020 and the 2021 round predate the archive and are reported, each with two
+sources, in `data/elections/since-2020.json`, which also holds the NDA line-up for each election — the
+BJP's pre-poll alliance, spelled as ECI spells it — who formed the government, Rajya Sabha milestones and
+the period's world events. NDA totals computed from the line-ups are tested against independently reported
+totals (293, 273, 230, 202, 164, 102 and others); where a line-up could not be confirmed the BJP is shown
+alone. Voter opinion comes from Lokniti-CSDS's 2024 post-poll findings report, committed at
+`data/pdf/lokniti-nes2024-postpoll-findings.pdf` (the Internet Archive's copy; Lokniti removed the file),
+and every figure taken from it is checked against its page on each build (`npm run test:since-2020`). The
+report gives national answers, not cross-tabulations, so the vote by age is not shown.
+
 ### The white pill (`/white-pill`)
 
 A progress page built only from what the record already holds: series from `data/series` (World Bank,
