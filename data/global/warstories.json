@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-04T00:36:42.437Z",
-  "previousBuild": "2026-11-03T19:29:47.451Z",
+  "builtAt": "2026-11-04T12:07:48.636Z",
+  "previousBuild": "2026-11-04T00:36:42.437Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 288,
-    "createdThisRun": 0,
+    "stories": 293,
+    "createdThisRun": 5,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 218,
     "corroboration": {
-      "one": 249,
+      "one": 254,
       "two": 16,
       "threePlus": 23
     }
@@ -28,17 +28,17 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 149
+      "n": 152
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 89
+      "n": 90
     },
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 36
+      "n": 37
     },
     {
       "id": "targeting",
@@ -65,7 +65,7 @@
     {
       "iso": "UKR",
       "name": "Ukraine",
-      "n": 9
+      "n": 10
     },
     {
       "iso": "DEU",
@@ -80,17 +80,17 @@
     {
       "iso": "FRA",
       "name": "France",
-      "n": 3
+      "n": 4
+    },
+    {
+      "iso": "RUS",
+      "name": "Russia",
+      "n": 4
     },
     {
       "iso": "AUS",
       "name": "Australia",
       "n": 3
-    },
-    {
-      "iso": "RUS",
-      "name": "Russia",
-      "n": 2
     },
     {
       "iso": "KOR",
@@ -169,7 +169,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "Defense News",
@@ -199,7 +199,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 3
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1354,6 +1354,110 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/safran-partners-with-uvad-to-power-falcon-supersonic-target-drone-for-missile-defence-training/",
+      "headline": "Safran partners with UVAD to power Falcon supersonic target drone for missile defence training",
+      "firstSeen": "2026-11-04",
+      "lastSeen": "2026-11-04",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/safran-partners-with-uvad-to-power-falcon-supersonic-target-drone-for-missile-defence-training/",
+          "published": "2026-11-04"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/ukraine-says-october-strikes-hit-20-russian-drone-sites-and-47-military-supply-depots/",
+      "headline": "Ukraine says October strikes hit 20 Russian drone sites and 47 military supply depots",
+      "firstSeen": "2026-11-04",
+      "lastSeen": "2026-11-04",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "RUS",
+          "name": "Russia"
+        },
+        {
+          "iso": "UKR",
+          "name": "Ukraine"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/ukraine-says-october-strikes-hit-20-russian-drone-sites-and-47-military-supply-depots/",
+          "published": "2026-11-04"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/france-orders-ucuv-uncrewed-combat-submarine/",
+      "headline": "France orders UCUV uncrewed combat submarine",
+      "firstSeen": "2026-11-04",
+      "lastSeen": "2026-11-04",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "FRA",
+          "name": "France"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/france-orders-ucuv-uncrewed-combat-submarine/",
+          "published": "2026-11-04"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-troops-test-andurils-heimdal-drone-sensor-on-southern-border/",
+      "headline": "U.S. troops test Anduril’s Heimdal drone sensor on southern border",
+      "firstSeen": "2026-11-04",
+      "lastSeen": "2026-11-04",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-troops-test-andurils-heimdal-drone-sensor-on-southern-border/",
+          "published": "2026-11-04"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/russian-infauna-electronic-warfare-vehicle-spotted-in-mali/",
+      "headline": "Russian Infauna electronic warfare vehicle spotted in Mali",
+      "firstSeen": "2026-11-04",
+      "lastSeen": "2026-11-04",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "RUS",
+          "name": "Russia"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/russian-infauna-electronic-warfare-vehicle-spotted-in-mali/",
+          "published": "2026-11-04"
         }
       ]
     },
