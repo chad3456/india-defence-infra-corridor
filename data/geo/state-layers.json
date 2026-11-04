@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-04T06:47:17.159Z",
+  "builtAt": "2026-11-04T19:58:02.987Z",
   "note": "Named things per state, for the map to answer a click with. Each layer records how its rows reached a state and how many did not, because the join is where this kind of file goes wrong invisibly.",
   "refused": [
     {
@@ -25217,8 +25217,8 @@
             "name": "Purple Line (Challaghatta → Whitefield (Kadugodi))",
             "why": "Namma Metro, 37 stations · run by BMRCL.",
             "basis": "OpenStreetMap relation tags: line name, station count and operator as tagged",
-            "lat": 12.9754,
-            "lon": 77.6073
+            "lat": 12.9765,
+            "lon": 77.6267
           },
           {
             "name": "Purple Line (Mysuru Road → Pattandur Agrahara)",
@@ -25538,15 +25538,15 @@
             "name": "Pink Line: District Court Pune→ Maan",
             "why": "Pune Metropolitan Region Development Authority, 17 stations · run by PMRDA.",
             "basis": "OpenStreetMap relation tags: line name, station count and operator as tagged",
-            "lat": 18.5897,
-            "lon": 73.7578
+            "lat": 18.5752,
+            "lon": 73.7695
           },
           {
             "name": "Pink Line: Maan → District Court Pune",
             "why": "Pune Metropolitan Region Development Authority, 17 stations · run by PMRDA.",
             "basis": "OpenStreetMap relation tags: line name, station count and operator as tagged",
-            "lat": 18.5736,
-            "lon": 73.7741
+            "lat": 18.555,
+            "lon": 73.798
           },
           {
             "name": "Purple Line: PCMC Bhavan → Swargate",
@@ -25874,8 +25874,8 @@
       "blurb": "Every railway station the mobility dataset holds a coordinate for, placed into the state whose polygon contains it. Presence only — the source carries a name, a station code and a coordinate, and nothing about how many trains stop or how many people pass through, so a count of stations is a count of stations and not of service.",
       "join": "Point-in-polygon against the map's own topology. A station in no polygon is listed unplaced, never assigned to a neighbour.",
       "source": "OpenStreetMap, via the mobility connector.",
-      "total": 10327,
-      "placed": 10154,
+      "total": 10330,
+      "placed": 10157,
       "unplacedCount": 121,
       "deduped": 52,
       "unplaced": [
@@ -27797,13 +27797,6 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 18.5268,
             "lon": 73.8569
-          },
-          {
-            "name": "District Court Metro Station",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 18.5267,
-            "lon": 73.8576
           },
           {
             "name": "Diva Junction",
@@ -44873,6 +44866,13 @@
             "lon": 80.2191
           },
           {
+            "name": "Anna Nagar KV",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.0802,
+            "lon": 80.1986
+          },
+          {
             "name": "Anna Nagar Tower",
             "why": "Station code SAT.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -47939,6 +47939,13 @@
             "lon": 80.2015
           },
           {
+            "name": "Thirumangalam Junction",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.0876,
+            "lon": 80.1988
+          },
+          {
             "name": "Thirumullaivoyal",
             "why": "Station code TMVL.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -48602,6 +48609,20 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 13.1103,
             "lon": 80.2092
+          },
+          {
+            "name": "Villivakkam Bus Terminus Metro",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.1054,
+            "lon": 80.2081
+          },
+          {
+            "name": "Villivakkam CTH Road",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.1035,
+            "lon": 80.2015
           },
           {
             "name": "Villivakkam Metro",
