@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-04T06:40:39.235Z",
+  "builtAt": "2026-11-04T19:53:01.326Z",
   "source": "5 Indian newsrooms, read as RSS. Each was probed before being added.",
   "method": "Headlines are matched to a subject and then to one of four things: the law or scheme operating, a court acquitting, somebody alleging misuse, or a court finding a specific complaint false. Near-duplicate headlines are folded together and the independent newsrooms behind each are counted. The register accumulates across scheduled runs.",
   "refusal": "An acquittal is not recorded as misuse. An acquittal under this Act can follow from a false complaint and can equally follow from a hostile witness, from intimidation of the complainant, from an investigation that never gathered the evidence the statute requires, or from a compromise outside court — and no public dataset separates them. Only a court or agency finding a specific complaint false is filed as evidence of misuse, and somebody saying the law is misused is filed as somebody saying so.",
@@ -10,25 +10,25 @@
     "Anything from before this register started. It accumulates forward from its first run."
   ],
   "counts": {
-    "items": 37,
-    "createdThisRun": 1,
+    "items": 39,
+    "createdThisRun": 2,
     "corroboratedThisRun": 0,
     "feedsAnswered": 5,
     "feedsTried": 5,
-    "itemsSeen": 196,
+    "itemsSeen": 195,
     "bySubject": {
-      "scst": 36,
+      "scst": 38,
       "pmshri": 1
     }
   },
   "facets": {
     "scst": {
-      "use": 8,
+      "use": 9,
       "acquittal": 0,
       "allegation": 0,
       "false-finding": 0,
       "dispute": 0,
-      "unclassified": 28
+      "unclassified": 29
     },
     "pmshri": {
       "use": 0,
@@ -50,7 +50,7 @@
       "outlet": "Hindustan Times",
       "ok": true,
       "items": 100,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Mint",
@@ -67,7 +67,7 @@
     {
       "outlet": "Newslaundry",
       "ok": true,
-      "items": 1,
+      "items": 0,
       "kept": 0
     }
   ],
@@ -103,6 +103,36 @@
         {
           "outlet": "The Hindu",
           "url": "https://www.thehindu.com/news/national/karnataka/dalit-organisations-protest-against-atrocities-seek-action-against-police-officials-for-complaints-against-victims-in-karnataka/article71661427.ece",
+          "published": "2026-11-04"
+        }
+      ]
+    },
+    {
+      "id": "https://www.thehindu.com/opinion/editorial/damning-report-on-justice-muralidhars-report-on-israeli-atrocities/article71665929.ece",
+      "headline": "Damning report: On Justice Muralidhar’s report on Israeli atrocities",
+      "subject": "scst",
+      "facet": "use",
+      "firstSeen": "2026-11-04",
+      "lastSeen": "2026-11-04",
+      "sources": [
+        {
+          "outlet": "The Hindu",
+          "url": "https://www.thehindu.com/opinion/editorial/damning-report-on-justice-muralidhars-report-on-israeli-atrocities/article71665929.ece",
+          "published": "2026-11-04"
+        }
+      ]
+    },
+    {
+      "id": "https://www.hindustantimes.com/india-news/dialling-the-wrong-number-supreme-court-rejects-plea-for-rotation-of-sc-st-reserved-seats-101793784663407.html",
+      "headline": "‘Dialling wrong number’: CJI Surya Kant-led Supreme Court bench on plea seeking rotation of SC/ST seats",
+      "subject": "scst",
+      "facet": "unclassified",
+      "firstSeen": "2026-11-04",
+      "lastSeen": "2026-11-04",
+      "sources": [
+        {
+          "outlet": "Hindustan Times",
+          "url": "https://www.hindustantimes.com/india-news/dialling-the-wrong-number-supreme-court-rejects-plea-for-rotation-of-sc-st-reserved-seats-101793784663407.html",
           "published": "2026-11-04"
         }
       ]
