@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-03T22:31:22.180Z",
+ "builtAt": "2026-11-04T13:16:17.056Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206512,14 +206512,14 @@
    "outlet": "Defense News",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   },
   {
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
@@ -206540,11 +206540,42 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-19kjdry",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Jordan"
+   ],
+   "value": null,
+   "date": "2026-11-04",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/u-s-clears-jordan-to-buy-1500-apkws-drone-killing-rockets/",
+   "headline": "U.S. clears Jordan to buy 1,500 APKWS drone-killing rockets",
+   "primary": false
+  },
+  {
+   "id": "ev-r5b5nc",
+   "kind": "order",
+   "systems": [
+    "U.S. Navy"
+   ],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-11-03",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/11/thales-subsidiary-lands-us-navy-contract-for-remote-mine-hunting-modules/",
+   "headline": "Thales subsidiary lands US Navy contract for remote mine hunting modules",
+   "primary": false
+  },
   {
    "id": "ev-1geplg8",
    "kind": "order",
@@ -208109,6 +208140,111 @@
  ],
  "groups": [
   {
+   "key": "order||jordan+united states",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Jordan"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-19kjdry",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Jordan"
+     ],
+     "value": null,
+     "date": "2026-11-04",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-clears-jordan-to-buy-1500-apkws-drone-killing-rockets/",
+     "headline": "U.S. clears Jordan to buy 1,500 APKWS drone-killing rockets",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order|u.s. navy|united states",
+   "systems": [
+    "U.S. Navy"
+   ],
+   "countries": [
+    "United States"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-r5b5nc",
+     "kind": "order",
+     "systems": [
+      "U.S. Navy"
+     ],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-11-03",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/11/thales-subsidiary-lands-us-navy-contract-for-remote-mine-hunting-modules/",
+     "headline": "Thales subsidiary lands US Navy contract for remote mine hunting modules",
+     "primary": false
+    },
+    {
+     "id": "ev-1a3zzax",
+     "kind": "order",
+     "systems": [
+      "U.S. Navy"
+     ],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 300000000,
+      "currency": "USD",
+      "asWritten": "$300M"
+     },
+     "date": "2026-10-20",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/news/your-navy/2026/10/20/us-navy-gecko-robotics-surge-ai-maintenance-contract-to-300m/",
+     "headline": "US Navy, Gecko Robotics surge AI maintenance contract to $300M",
+     "primary": false
+    },
+    {
+     "id": "ev-1r3bdn2",
+     "kind": "order",
+     "systems": [
+      "U.S. Navy"
+     ],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-15",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/industry/techwatch/2026/09/15/us-navy-boeing-ink-first-mq-25a-stingray-production-contract/",
+     "headline": "US Navy, Boeing ink first MQ-25A Stingray production contract",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Breaking Defense",
+    "Defense News"
+   ],
+   "value": {
+    "amount": 300000000,
+    "currency": "USD",
+    "asWritten": "$300M"
+   },
+   "verdict": "corroborated by independent outlets"
+  },
+  {
    "key": "order||ukraine+united states",
    "systems": [],
    "countries": [
@@ -209194,63 +209330,6 @@
    ],
    "value": null,
    "verdict": "from a primary source"
-  },
-  {
-   "key": "order|u.s. navy|united states",
-   "systems": [
-    "U.S. Navy"
-   ],
-   "countries": [
-    "United States"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1a3zzax",
-     "kind": "order",
-     "systems": [
-      "U.S. Navy"
-     ],
-     "countries": [
-      "United States"
-     ],
-     "value": {
-      "amount": 300000000,
-      "currency": "USD",
-      "asWritten": "$300M"
-     },
-     "date": "2026-10-20",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/news/your-navy/2026/10/20/us-navy-gecko-robotics-surge-ai-maintenance-contract-to-300m/",
-     "headline": "US Navy, Gecko Robotics surge AI maintenance contract to $300M",
-     "primary": false
-    },
-    {
-     "id": "ev-1r3bdn2",
-     "kind": "order",
-     "systems": [
-      "U.S. Navy"
-     ],
-     "countries": [
-      "United States"
-     ],
-     "value": null,
-     "date": "2026-09-15",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/industry/techwatch/2026/09/15/us-navy-boeing-ink-first-mq-25a-stingray-production-contract/",
-     "headline": "US Navy, Boeing ink first MQ-25A Stingray production contract",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defense News"
-   ],
-   "value": {
-    "amount": 300000000,
-    "currency": "USD",
-    "asWritten": "$300M"
-   },
-   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order||israel",
