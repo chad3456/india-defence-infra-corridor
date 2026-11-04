@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-04T12:36:37.098Z",
+  "builtAt": "2026-11-04T20:05:50.666Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1358,
-    "addedThisRun": 4,
-    "carriedFromEarlierRuns": 1354,
-    "withOutlet": 1262,
+    "items": 1361,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 1358,
+    "withOutlet": 1264,
     "bySubject": {
-      "scst": 925,
-      "pmshri": 433
+      "scst": 926,
+      "pmshri": 435
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 184
+    "offSubjectDropped": 59
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 672
+      "n": 675
     },
     {
       "key": "use",
@@ -74,7 +74,7 @@
     },
     {
       "key": "Hindustan Times",
-      "n": 32
+      "n": 33
     },
     {
       "key": "LawBeat",
@@ -295,7 +295,7 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 33,
+      "google": 34,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -305,8 +305,8 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 42,
-      "bing": 0,
+      "google": 45,
+      "bing": 2,
       "kept": 0,
       "offSubject": 3
     },
@@ -315,10 +315,10 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 97,
-      "bing": 2,
+      "google": 27,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 47
+      "offSubject": 5
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 9,
-      "bing": 3,
-      "kept": 2,
-      "offSubject": 1
+      "bing": 4,
+      "kept": 1,
+      "offSubject": 2
     },
     {
       "id": "act-compensation",
@@ -336,16 +336,16 @@
       "subject": "scst",
       "expect": "use",
       "google": 9,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 4
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 15,
+      "google": 14,
       "bing": 0,
       "kept": 0,
       "offSubject": 1
@@ -355,10 +355,10 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 90,
+      "google": 30,
       "bing": 1,
       "kept": 0,
-      "offSubject": 48
+      "offSubject": 8
     },
     {
       "id": "act-hostile",
@@ -395,50 +395,50 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 51,
+      "google": 20,
       "bing": 1,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 5
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 30,
-      "bing": 1,
+      "google": 10,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 5
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 100,
+      "google": 33,
       "bing": 12,
       "kept": 1,
-      "offSubject": 6
+      "offSubject": 1
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 39,
-      "bing": 3,
+      "google": 9,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 0
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 10,
-      "bing": 3,
+      "google": 11,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 5
     },
     {
       "id": "shri-upgrade",
@@ -446,8 +446,8 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 10,
-      "bing": 4,
-      "kept": 0,
+      "bing": 1,
+      "kept": 1,
       "offSubject": 0
     },
     {
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 15,
-      "bing": 3,
+      "bing": 1,
       "kept": 0,
       "offSubject": 0
     },
@@ -466,17 +466,17 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 20,
-      "bing": 9,
-      "kept": 1,
-      "offSubject": 9
+      "bing": 1,
+      "kept": 0,
+      "offSubject": 7
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 32,
-      "bing": 4,
+      "google": 33,
+      "bing": 3,
       "kept": 0,
       "offSubject": 3
     },
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 10,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     }
   ],
   "items": [
@@ -22698,6 +22698,54 @@
       "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aeb26c8ac2043af80b354050b3312f0&url=https%3a%2f%2fwww.deccanherald.com%2findia%2fkeralam%2fcentres-parliament-reply-on-pm-shri-iuml-dissent-puts-kerala-govt-in-tight-spot-4094779&c=15653709774533822190&mkt=es-mx",
       "queries": [
         "shri-withheld"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-11-04"
+    },
+    {
+      "id": "india 200 upper caste members attack a dalit locality in south india and burn 100 houses",
+      "headline": "India: 200 upper caste members attack a Dalit locality in South India and burn 100 houses",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "World Organisation Against Torture | OMCT",
+      "published": "2021-01-22",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNLThoM2o5TEZnSlJUek1CNHFSaEF6ZzVaTTdad1VqQkVuNjNWZjNxMVVWeTBjNDBBTzJhemtvNW03WEg2Y2s4Ni1HaExnUS1WVlI5cUZQQzRjWXliOXk0MEE3ZG1Zb1lSVGo5eGVqNEpyMnhhZG5fbmw1dVN5enhIaGZTWjNwaktTZDNOUzZmekNxSGFjb3g2TjBibFA0S21iaVk1eHNDaWZkUE4yR2xXMkRQM0MtNHA4MWk4YktUcFFacjhidzNGWVR1UnRGYV84STZBbDhfd3RfZlk?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-04"
+    },
+    {
+      "id": "kerala signs mou with centre to join pm shri schools scheme india news",
+      "headline": "Kerala signs MoU with Centre to join PM SHRI schools scheme | India News",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Hindustan Times",
+      "published": "2025-10-24",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNU2ltWmNOSUFFd1FkZE4tdHN1X1RKcjBZNl85Ykk4bkNRRkllMzVFd1Y3d0ZjZXFhSkVLLU5RMnNuYUVwSXdGQUFIeXhoRVZmZzdpQWhmTmJNMk9OMVkxOU1VVURNM1Mwb01GMGJ6S3dUdHRvRC1BRS11U1lPQ0tuY3ZycXhJLWxHQjJsc09HXzJmLWFraUkxQmwxOERVWTEtWUw0Rk8zVkpIU0xqVUlGOWNaT0tqamFZZ3RsNm9MZ9IBxAFBVV95cUxQQmh6N0NvU1JTdVh5Y1FMdHRja2VnV1hVUTRtVmZ4U3ZjVm1kZzJVb09xV0NlWHdxSE5TY2pORFJNdU5WTGxnVGZEZEVNT0wtSV9pSm1ONS1QR1FrcHEzNi0tU0M5RUYzS0ROLUVmZDNKN3VmYW5ydlgycTVZQjRxRDVoYzA5OV9DQ29naE5hV1c4Z2pXeGxoU3V6eUFkNlRFczR1YVVjVDJRRlNwT2hmbGpPWlNNY0xtMHJXZExVdDdVLWlx?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-04"
+    },
+    {
+      "id": "pad banks to be set up in 200 pm shri schools in prayagraj division",
+      "headline": "Pad banks to be set up in 200 PM SHRI schools in Prayagraj division",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-11-03",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aeb9006a5b847909998390e448122d0&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fIndia%2fpad-banks-to-be-set-up-in-200-pm-shri-schools-in-prayagraj-division%2far-AA2gHML0&c=12907529553632178333&mkt=en-us",
+      "queries": [
+        "shri-upgrade"
       ],
       "indexes": [
         "bing"
