@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-05T12:19:45.721Z",
-  "previousBuild": "2026-11-05T00:54:02.423Z",
+  "builtAt": "2026-11-05T21:59:20.477Z",
+  "previousBuild": "2026-11-05T12:19:45.721Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 296,
-    "createdThisRun": 2,
+    "stories": 301,
+    "createdThisRun": 5,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 13,
+    "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 204,
+    "itemsSeen": 226,
     "corroboration": {
-      "one": 257,
+      "one": 262,
       "two": 16,
       "threePlus": 23
     }
@@ -28,22 +28,22 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 152
+      "n": 153
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 90
+      "n": 92
     },
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 39
+      "n": 40
     },
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 25
+      "n": 26
     },
     {
       "id": "military-ai",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 44
+      "n": 45
     },
     {
       "iso": "IND",
@@ -80,7 +80,7 @@
     {
       "iso": "FRA",
       "name": "France",
-      "n": 4
+      "n": 5
     },
     {
       "iso": "RUS",
@@ -91,6 +91,11 @@
       "iso": "AUS",
       "name": "Australia",
       "n": 3
+    },
+    {
+      "iso": "PAK",
+      "name": "Pakistan",
+      "n": 2
     },
     {
       "iso": "KOR",
@@ -118,11 +123,6 @@
       "n": 1
     },
     {
-      "iso": "PAK",
-      "name": "Pakistan",
-      "n": 1
-    },
-    {
       "iso": "IRN",
       "name": "Iran",
       "n": 1
@@ -132,14 +132,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 39,
-      "kept": 1
+      "items": 41,
+      "kept": 2
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Military Times",
@@ -163,13 +163,13 @@
       "outlet": "DefenseScoop",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 0
     },
     {
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense News",
@@ -185,16 +185,15 @@
     },
     {
       "outlet": "Defense One",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "HTTP 403"
+      "ok": true,
+      "items": 20,
+      "kept": 3
     },
     {
       "outlet": "Naval News",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 3
     },
     {
       "outlet": "Defence Blog",
@@ -1388,6 +1387,105 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/u-s-army-creates-new-office-to-run-aerial-and-ground-surveillance/",
+          "published": "2026-11-05"
+        }
+      ]
+    },
+    {
+      "id": "https://www.twz.com/land/this-is-the-armys-new-malet-kit-that-turns-mortars-into-drone-dropped-weapons",
+      "headline": "This Is The Army’s New MALET Kit That Turns Mortars Into Drone-Dropped Weapons",
+      "firstSeen": "2026-11-05",
+      "lastSeen": "2026-11-05",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "The War Zone",
+          "url": "https://www.twz.com/land/this-is-the-armys-new-malet-kit-that-turns-mortars-into-drone-dropped-weapons",
+          "published": "2026-11-05"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/pakistan-faaz-iir-missile-test-100km-jf17/",
+      "headline": "Did PL-15 Jamming Concerns Push Pakistan Towards IIR Guided Fa’az Missile Technology?",
+      "firstSeen": "2026-11-05",
+      "lastSeen": "2026-11-05",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "PAK",
+          "name": "Pakistan"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/pakistan-faaz-iir-missile-test-100km-jf17/",
+          "published": "2026-11-05"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/finnish-navy-to-establish-unmanned-systems-company-within-its-coastal-brigade-in-2027/",
+      "headline": "Finnish Navy to establish unmanned systems company within its Coastal Brigade in 2027",
+      "firstSeen": "2026-11-05",
+      "lastSeen": "2026-11-05",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/finnish-navy-to-establish-unmanned-systems-company-within-its-coastal-brigade-in-2027/",
+          "published": "2026-11-05"
+        }
+      ]
+    },
+    {
+      "id": "https://www.navalnews.com/event-news/euronaval-2026/2026/11/hgh-receives-the-french-navys-perseus-label-for-its-spynel-f-maritime-surveillance-system/",
+      "headline": "HGH receives the French Navy’s Perséus label for its SPYNEL-F Maritime Surveillance System",
+      "firstSeen": "2026-11-05",
+      "lastSeen": "2026-11-05",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        },
+        {
+          "iso": "FRA",
+          "name": "France"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Naval News",
+          "url": "https://www.navalnews.com/event-news/euronaval-2026/2026/11/hgh-receives-the-french-navys-perseus-label-for-its-spynel-f-maritime-surveillance-system/",
+          "published": "2026-11-05"
+        }
+      ]
+    },
+    {
+      "id": "https://www.navalnews.com/event-news/euronaval-2026/2026/11/fairbanks-morse-defense-unveils-autohook-for-fully-autonomous-vessel-recovery-at-euronaval-2026/",
+      "headline": "Fairbanks Morse Defense Unveils AutoHook for Fully Autonomous Vessel Recovery at EURONAVAL 2026",
+      "firstSeen": "2026-11-05",
+      "lastSeen": "2026-11-05",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Naval News",
+          "url": "https://www.navalnews.com/event-news/euronaval-2026/2026/11/fairbanks-morse-defense-unveils-autohook-for-fully-autonomous-vessel-recovery-at-euronaval-2026/",
           "published": "2026-11-05"
         }
       ]
