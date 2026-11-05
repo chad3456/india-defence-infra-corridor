@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-05T13:29:32.261Z",
+ "builtAt": "2026-11-05T22:51:55.455Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206546,6 +206546,20 @@
  ],
  "events": [
   {
+   "id": "ev-goj1hl",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Ukraine"
+   ],
+   "value": null,
+   "date": "2026-11-05",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/11/ukraine-eyeing-new-spacex-starshield-deal-by-mid-2027-still-no-answers-about-october-problems/",
+   "headline": "Ukraine eyeing new SpaceX Starshield deal by mid-2027, still no answers about October problems",
+   "primary": false
+  },
+  {
    "id": "ev-1p16550",
    "kind": "order",
    "systems": [],
@@ -208140,6 +208154,79 @@
  ],
  "groups": [
   {
+   "key": "order||ukraine",
+   "systems": [],
+   "countries": [
+    "Ukraine"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-goj1hl",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-11-05",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/11/ukraine-eyeing-new-spacex-starshield-deal-by-mid-2027-still-no-answers-about-october-problems/",
+     "headline": "Ukraine eyeing new SpaceX Starshield deal by mid-2027, still no answers about October problems",
+     "primary": false
+    },
+    {
+     "id": "ev-1kbojfa",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-10-31",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/patriot-sale-to-ukraine-approved-but-first-missiles-may-be-years-away/",
+     "headline": "Patriot sale to Ukraine approved, but first missiles may be years away",
+     "primary": false
+    },
+    {
+     "id": "ev-4dr95f",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-10-23",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/10/kyiv-eyes-purchase-of-planned-iceye-nokia-sovereign-communication-sats/",
+     "headline": "Kyiv eyes purchase of planned ICEYE, Nokia &#8216;sovereign&#8217; communication sats",
+     "primary": false
+    },
+    {
+     "id": "ev-13siez9",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-10-16",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/pentagon/2026/10/16/order-to-limit-starshield-for-ukraine-came-from-inside-white-house-sources-say/",
+     "headline": "Order to limit Starshield for Ukraine came from inside White House, sources say",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Breaking Defense",
+    "Defence Blog",
+    "Defense News"
+   ],
+   "value": null,
+   "verdict": "corroborated by independent outlets"
+  },
+  {
    "key": "order||united kingdom",
    "systems": [],
    "countries": [
@@ -208487,65 +208574,6 @@
    ],
    "value": null,
    "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order||ukraine",
-   "systems": [],
-   "countries": [
-    "Ukraine"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1kbojfa",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Ukraine"
-     ],
-     "value": null,
-     "date": "2026-10-31",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/patriot-sale-to-ukraine-approved-but-first-missiles-may-be-years-away/",
-     "headline": "Patriot sale to Ukraine approved, but first missiles may be years away",
-     "primary": false
-    },
-    {
-     "id": "ev-4dr95f",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Ukraine"
-     ],
-     "value": null,
-     "date": "2026-10-23",
-     "outlet": "Breaking Defense",
-     "url": "https://breakingdefense.com/2026/10/kyiv-eyes-purchase-of-planned-iceye-nokia-sovereign-communication-sats/",
-     "headline": "Kyiv eyes purchase of planned ICEYE, Nokia &#8216;sovereign&#8217; communication sats",
-     "primary": false
-    },
-    {
-     "id": "ev-13siez9",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Ukraine"
-     ],
-     "value": null,
-     "date": "2026-10-16",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/pentagon/2026/10/16/order-to-limit-starshield-for-ukraine-came-from-inside-white-house-sources-say/",
-     "headline": "Order to limit Starshield for Ukraine came from inside White House, sources say",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defence Blog",
-    "Breaking Defense",
-    "Defense News"
-   ],
-   "value": null,
-   "verdict": "corroborated by independent outlets"
   },
   {
    "key": "order||united states",
