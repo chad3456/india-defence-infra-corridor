@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-05T01:06:44.532Z",
+  "builtAt": "2026-11-05T12:47:47.565Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1362,
+    "items": 1363,
     "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1361,
-    "withOutlet": 1265,
+    "carriedFromEarlierRuns": 1362,
+    "withOutlet": 1266,
     "bySubject": {
-      "scst": 927,
+      "scst": 928,
       "pmshri": 435
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 63
+    "offSubjectDropped": 61
   },
   "byFacet": [
     {
@@ -40,7 +40,7 @@
     },
     {
       "key": "allegation",
-      "n": 62
+      "n": 63
     },
     {
       "key": "false-finding",
@@ -58,7 +58,7 @@
     },
     {
       "key": "The Indian Express",
-      "n": 60
+      "n": 61
     },
     {
       "key": "The Hindu",
@@ -295,9 +295,9 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 35,
+      "google": 36,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 0
     },
     {
@@ -305,8 +305,8 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 44,
-      "bing": 2,
+      "google": 42,
+      "bing": 1,
       "kept": 0,
       "offSubject": 3
     },
@@ -315,10 +315,10 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 28,
+      "google": 26,
       "bing": 1,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 5
     },
     {
       "id": "act-atrocity",
@@ -326,9 +326,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 9,
-      "bing": 4,
+      "bing": 5,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 1
     },
     {
       "id": "act-compensation",
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 13,
+      "google": 14,
       "bing": 0,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 2
     },
     {
       "id": "act-acquittal",
@@ -356,9 +356,9 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 30,
-      "bing": 1,
+      "bing": 3,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 9
     },
     {
       "id": "act-hostile",
@@ -397,7 +397,7 @@
       "expect": "false-finding",
       "google": 21,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 5
     },
     {
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 10,
+      "google": 8,
       "bing": 0,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 3
     },
     {
       "id": "shri-general",
@@ -435,7 +435,7 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 11,
+      "google": 12,
       "bing": 1,
       "kept": 0,
       "offSubject": 5
@@ -445,8 +445,8 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
-      "bing": 1,
+      "google": 10,
+      "bing": 2,
       "kept": 0,
       "offSubject": 0
     },
@@ -488,7 +488,7 @@
       "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     }
   ],
   "items": [
@@ -22765,6 +22765,24 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-11-05"
+    },
+    {
+      "id": "not every caste abuse attracts sc st act gujarat high court upholds acquittal in 16 yr old",
+      "headline": "‘Not every ‘caste abuse’ attracts SC/ST Act’: Gujarat High Court upholds acquittal in 16-yr-old case",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "The Indian Express",
+      "published": "2026-11-05",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPSjRtU1ljMXU4UzZtamQyanZIdGlPbnluMkYyUU9uWmlTOFhfYlpzQTNpRXRMR0gyYWcxaXlkUUxGQnd2ZXMzeTl1Y1BZZ0F3VXNyRjdnTEQ1TFRXZDdoVl9CUDY2SW5sbmdZYlJPMUMyakQ0ZGJZQ2FicWJsY2RrcXhWNWJCUTRxY1dUNC0tQWN6bnVDM1AwM19ETjRYZUtuTkdRZmlic9IBrgFBVV95cUxQaUdDT09JVHpaYldCRFlDVGM1ZmZBaTBCb0c5VDZ5T0VkTHlQTXhWNXFGajJaOUNmLXJBOVNwWExwNUM0ZFk2eHVTZHl3RzRjV0ViMW40T3FwME5pU0puMXc4YW5RVkRzLXAzTmVSVFk4Q0EzVGNLZnBQOXBTMEFSeVVPUXpCZUNyYVBtZDFfdUN4ZXBvNzJwRWQ4ZEhsdUxUYlBuaDJCYW1HUG83QUE?oc=5",
+      "queries": [
+        "act-general",
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-11-05"
     }
