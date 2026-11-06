@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-06T12:31:49.264Z",
+  "builtAt": "2026-11-06T19:44:53.557Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -11,8 +11,8 @@
   ],
   "counts": {
     "items": 1366,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1364,
+    "addedThisRun": 0,
+    "carriedFromEarlierRuns": 1366,
     "withOutlet": 1267,
     "bySubject": {
       "scst": 929,
@@ -305,9 +305,9 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 46,
+      "google": 45,
       "bing": 3,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 4
     },
     {
@@ -325,8 +325,8 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 8,
-      "bing": 4,
+      "google": 9,
+      "bing": 5,
       "kept": 0,
       "offSubject": 1
     },
@@ -335,7 +335,7 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 8,
+      "google": 9,
       "bing": 0,
       "kept": 0,
       "offSubject": 4
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 14,
+      "google": 16,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 10,
+      "google": 9,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 16,
+      "google": 17,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -415,9 +415,9 @@
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 32,
+      "google": 33,
       "bing": 12,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 1
     },
     {
@@ -4948,7 +4948,8 @@
       "published": "2026-08-12",
       "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBaZzRqcS1RU09yUnlXMVBfYTdQMjdZYWFuOTBnajRhRVB4RkU4cjJmbFBsZXVITjRRa1JqY2tFbWplMlZnS0dRLWJIdFpvejVJbk1PX01WZUFCS3UyeVZhTHNEZTlPbUNXYVVEWW9JSjJWeGVMWmdETGo4dGk?oc=5",
       "queries": [
-        "act-compensation"
+        "act-compensation",
+        "act-general"
       ],
       "indexes": [
         "google"
