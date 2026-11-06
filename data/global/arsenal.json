@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-06T13:14:16.496Z",
+ "builtAt": "2026-11-06T22:23:53.303Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206525,7 +206525,7 @@
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 20,
+   "items": 21,
    "kept": 0,
    "via": "direct"
   },
@@ -206533,7 +206533,7 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
@@ -206545,6 +206545,20 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-1ngwgff",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Sweden"
+   ],
+   "value": null,
+   "date": "2026-11-06",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/event-news/euronaval-2026/2026/11/saab-receives-order-to-equip-swedens-new-frigates/",
+   "headline": "Saab receives order to equip Sweden’s new frigates",
+   "primary": false
+  },
   {
    "id": "ev-ey8ibm",
    "kind": "order",
@@ -208171,6 +208185,49 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||sweden",
+   "systems": [],
+   "countries": [
+    "Sweden"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1ngwgff",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Sweden"
+     ],
+     "value": null,
+     "date": "2026-11-06",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/event-news/euronaval-2026/2026/11/saab-receives-order-to-equip-swedens-new-frigates/",
+     "headline": "Saab receives order to equip Sweden’s new frigates",
+     "primary": false
+    },
+    {
+     "id": "ev-eoqban",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Sweden"
+     ],
+     "value": null,
+     "date": "2026-10-01",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/naval-group-begins-production-of-swedens-first-fdi-frigate-just-one-month-after-contract-signing/",
+     "headline": "Naval Group Begins Production of Sweden&#8217;s First FDI Frigate Just One Month After Contract Signing",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||united states",
    "systems": [],
@@ -209942,35 +209999,6 @@
      "outlet": "Naval News",
      "url": "https://www.navalnews.com/naval-news/2026/10/metal-shark-awarded-contract-for-13-patrol-boats-for-vietnam/",
      "headline": "Metal Shark Awarded Contract for 13 Patrol Boats for Vietnam",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order||sweden",
-   "systems": [],
-   "countries": [
-    "Sweden"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-eoqban",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Sweden"
-     ],
-     "value": null,
-     "date": "2026-10-01",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/10/naval-group-begins-production-of-swedens-first-fdi-frigate-just-one-month-after-contract-signing/",
-     "headline": "Naval Group Begins Production of Sweden&#8217;s First FDI Frigate Just One Month After Contract Signing",
      "primary": false
     }
    ],
