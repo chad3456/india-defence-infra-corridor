@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-05T22:51:55.455Z",
+ "builtAt": "2026-11-06T13:14:16.496Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206540,11 +206540,29 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-ey8ibm",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": {
+    "amount": 4170000000,
+    "currency": "USD",
+    "asWritten": "$4.17 billion"
+   },
+   "date": "2026-11-06",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/u-s-army-sets-up-4-17-billion-contract-to-rebuild-its-ammunition-plants/",
+   "headline": "U.S. Army sets up $4.17 billion contract to rebuild its ammunition plants",
+   "primary": false
+  },
   {
    "id": "ev-goj1hl",
    "kind": "order",
@@ -208154,428 +208172,6 @@
  ],
  "groups": [
   {
-   "key": "order||ukraine",
-   "systems": [],
-   "countries": [
-    "Ukraine"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-goj1hl",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Ukraine"
-     ],
-     "value": null,
-     "date": "2026-11-05",
-     "outlet": "Breaking Defense",
-     "url": "https://breakingdefense.com/2026/11/ukraine-eyeing-new-spacex-starshield-deal-by-mid-2027-still-no-answers-about-october-problems/",
-     "headline": "Ukraine eyeing new SpaceX Starshield deal by mid-2027, still no answers about October problems",
-     "primary": false
-    },
-    {
-     "id": "ev-1kbojfa",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Ukraine"
-     ],
-     "value": null,
-     "date": "2026-10-31",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/patriot-sale-to-ukraine-approved-but-first-missiles-may-be-years-away/",
-     "headline": "Patriot sale to Ukraine approved, but first missiles may be years away",
-     "primary": false
-    },
-    {
-     "id": "ev-4dr95f",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Ukraine"
-     ],
-     "value": null,
-     "date": "2026-10-23",
-     "outlet": "Breaking Defense",
-     "url": "https://breakingdefense.com/2026/10/kyiv-eyes-purchase-of-planned-iceye-nokia-sovereign-communication-sats/",
-     "headline": "Kyiv eyes purchase of planned ICEYE, Nokia &#8216;sovereign&#8217; communication sats",
-     "primary": false
-    },
-    {
-     "id": "ev-13siez9",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Ukraine"
-     ],
-     "value": null,
-     "date": "2026-10-16",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/pentagon/2026/10/16/order-to-limit-starshield-for-ukraine-came-from-inside-white-house-sources-say/",
-     "headline": "Order to limit Starshield for Ukraine came from inside White House, sources say",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Breaking Defense",
-    "Defence Blog",
-    "Defense News"
-   ],
-   "value": null,
-   "verdict": "corroborated by independent outlets"
-  },
-  {
-   "key": "order||united kingdom",
-   "systems": [],
-   "countries": [
-    "United Kingdom"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1p16550",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-11-04",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/publications/list-of-maa-approved-organisations",
-     "headline": "List of MAA approved organizations",
-     "primary": true
-    },
-    {
-     "id": "ev-warzqh",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-10-29",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/uk-keeps-623-boxer-order-and-adds-heavy-wheeled-recovery-vehicle/",
-     "headline": "UK keeps 623 Boxer order and adds heavy wheeled recovery vehicle",
-     "primary": false
-    },
-    {
-     "id": "ev-8yr084",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-10-02",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/news/30-boost-to-uk-military-transport-aircraft-availability-under-new-deal",
-     "headline": "30% boost to UK military transport aircraft availability under new deal",
-     "primary": true
-    },
-    {
-     "id": "ev-xithjw",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-09-21",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/publications/design-approved-organization-scheme-daos",
-     "headline": "Design Approved Organization Scheme (DAOS)",
-     "primary": true
-    },
-    {
-     "id": "ev-1tu2uoh",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-09-17",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
-     "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "UK Ministry of Defence",
-    "Defence Blog",
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "from a primary source"
-  },
-  {
-   "key": "order||jordan+united states",
-   "systems": [],
-   "countries": [
-    "United States",
-    "Jordan"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-19kjdry",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States",
-      "Jordan"
-     ],
-     "value": null,
-     "date": "2026-11-04",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/u-s-clears-jordan-to-buy-1500-apkws-drone-killing-rockets/",
-     "headline": "U.S. clears Jordan to buy 1,500 APKWS drone-killing rockets",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defence Blog"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order|u.s. navy|united states",
-   "systems": [
-    "U.S. Navy"
-   ],
-   "countries": [
-    "United States"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-r5b5nc",
-     "kind": "order",
-     "systems": [
-      "U.S. Navy"
-     ],
-     "countries": [
-      "United States"
-     ],
-     "value": null,
-     "date": "2026-11-03",
-     "outlet": "Breaking Defense",
-     "url": "https://breakingdefense.com/2026/11/thales-subsidiary-lands-us-navy-contract-for-remote-mine-hunting-modules/",
-     "headline": "Thales subsidiary lands US Navy contract for remote mine hunting modules",
-     "primary": false
-    },
-    {
-     "id": "ev-1a3zzax",
-     "kind": "order",
-     "systems": [
-      "U.S. Navy"
-     ],
-     "countries": [
-      "United States"
-     ],
-     "value": {
-      "amount": 300000000,
-      "currency": "USD",
-      "asWritten": "$300M"
-     },
-     "date": "2026-10-20",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/news/your-navy/2026/10/20/us-navy-gecko-robotics-surge-ai-maintenance-contract-to-300m/",
-     "headline": "US Navy, Gecko Robotics surge AI maintenance contract to $300M",
-     "primary": false
-    },
-    {
-     "id": "ev-1r3bdn2",
-     "kind": "order",
-     "systems": [
-      "U.S. Navy"
-     ],
-     "countries": [
-      "United States"
-     ],
-     "value": null,
-     "date": "2026-09-15",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/industry/techwatch/2026/09/15/us-navy-boeing-ink-first-mq-25a-stingray-production-contract/",
-     "headline": "US Navy, Boeing ink first MQ-25A Stingray production contract",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Breaking Defense",
-    "Defense News"
-   ],
-   "value": {
-    "amount": 300000000,
-    "currency": "USD",
-    "asWritten": "$300M"
-   },
-   "verdict": "corroborated by independent outlets"
-  },
-  {
-   "key": "order||ukraine+united states",
-   "systems": [],
-   "countries": [
-    "United States",
-    "Ukraine"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1geplg8",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States",
-      "Ukraine"
-     ],
-     "value": {
-      "amount": 2100000000,
-      "currency": "USD",
-      "asWritten": "$2.1 billion"
-     },
-     "date": "2026-11-02",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/global/europe/2026/11/02/us-approves-2-1-billion-patriot-missile-sale-to-ukraine/",
-     "headline": "US approves $2.1 billion Patriot missile sale to Ukraine",
-     "primary": false
-    },
-    {
-     "id": "ev-k376bh",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States",
-      "Ukraine"
-     ],
-     "value": null,
-     "date": "2026-10-30",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/u-s-clears-sale-of-500-patriot-pac-3-missiles-to-ukraine/",
-     "headline": "U.S. clears sale of 500 Patriot PAC-3 missiles to Ukraine",
-     "primary": false
-    },
-    {
-     "id": "ev-cjft82",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United States",
-      "Ukraine"
-     ],
-     "value": null,
-     "date": "2026-09-19",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/u-s-approves-ukraine-air-defense-package-with-unclear-weapons/",
-     "headline": "U.S. approves Ukraine air defense package with unclear weapons",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defense News",
-    "Defence Blog"
-   ],
-   "value": {
-    "amount": 2100000000,
-    "currency": "USD",
-    "asWritten": "$2.1 billion"
-   },
-   "verdict": "corroborated by independent outlets"
-  },
-  {
-   "key": "order||greece",
-   "systems": [],
-   "countries": [
-    "Greece"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-njjz5b",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Greece"
-     ],
-     "value": null,
-     "date": "2026-11-02",
-     "outlet": "Breaking Defense",
-     "url": "https://breakingdefense.com/2026/11/greece-inks-deal-for-kc-390-fleet/",
-     "headline": "Greece inks deal for KC-390 fleet",
-     "primary": false
-    },
-    {
-     "id": "ev-18gp7zp",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Greece"
-     ],
-     "value": null,
-     "date": "2026-10-14",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/10/hellenic-navy-tests-saronics-corsair-usv-ahead-of-major-order/",
-     "headline": "Hellenic Navy Tests SARONIC’s Corsair USV Ahead of Major Order",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Breaking Defense",
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "corroborated by independent outlets"
-  },
-  {
-   "key": "order||indonesia",
-   "systems": [],
-   "countries": [
-    "Indonesia"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-fr7wht",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Indonesia"
-     ],
-     "value": null,
-     "date": "2026-10-31",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/10/chess-dynamics-wins-3m-contract-for-indonesian-bung-tomo-class-frigates/",
-     "headline": "Chess Dynamics Wins £3M Contract for Indonesian Bung Tomo-Class Frigates",
-     "primary": false
-    },
-    {
-     "id": "ev-1qask35",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Indonesia"
-     ],
-     "value": null,
-     "date": "2026-09-28",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/09/fincantieri-and-pt-pal-indonesia-sign-agreement-for-the-modernization-of-ex-giuseppe-garibaldi/",
-     "headline": "Fincantieri and PT PAL Indonesia sign agreement for the modernization of ex-Giuseppe Garibaldi",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -208583,6 +208179,24 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-ey8ibm",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 4170000000,
+      "currency": "USD",
+      "asWritten": "$4.17 billion"
+     },
+     "date": "2026-11-06",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-army-sets-up-4-17-billion-contract-to-rebuild-its-ammunition-plants/",
+     "headline": "U.S. Army sets up $4.17 billion contract to rebuild its ammunition plants",
+     "primary": false
+    },
     {
      "id": "ev-1pyezt8",
      "kind": "order",
@@ -209187,14 +208801,436 @@
     }
    ],
    "outlets": [
+    "Defence Blog",
     "Naval News",
     "Breaking Defense",
     "Defense News",
-    "Defence Blog",
     "Defense One"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "order||ukraine",
+   "systems": [],
+   "countries": [
+    "Ukraine"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-goj1hl",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-11-05",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/11/ukraine-eyeing-new-spacex-starshield-deal-by-mid-2027-still-no-answers-about-october-problems/",
+     "headline": "Ukraine eyeing new SpaceX Starshield deal by mid-2027, still no answers about October problems",
+     "primary": false
+    },
+    {
+     "id": "ev-1kbojfa",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-10-31",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/patriot-sale-to-ukraine-approved-but-first-missiles-may-be-years-away/",
+     "headline": "Patriot sale to Ukraine approved, but first missiles may be years away",
+     "primary": false
+    },
+    {
+     "id": "ev-4dr95f",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-10-23",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/10/kyiv-eyes-purchase-of-planned-iceye-nokia-sovereign-communication-sats/",
+     "headline": "Kyiv eyes purchase of planned ICEYE, Nokia &#8216;sovereign&#8217; communication sats",
+     "primary": false
+    },
+    {
+     "id": "ev-13siez9",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-10-16",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/pentagon/2026/10/16/order-to-limit-starshield-for-ukraine-came-from-inside-white-house-sources-say/",
+     "headline": "Order to limit Starshield for Ukraine came from inside White House, sources say",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Breaking Defense",
+    "Defence Blog",
+    "Defense News"
+   ],
+   "value": null,
+   "verdict": "corroborated by independent outlets"
+  },
+  {
+   "key": "order||united kingdom",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1p16550",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-11-04",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/publications/list-of-maa-approved-organisations",
+     "headline": "List of MAA approved organizations",
+     "primary": true
+    },
+    {
+     "id": "ev-warzqh",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-29",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/uk-keeps-623-boxer-order-and-adds-heavy-wheeled-recovery-vehicle/",
+     "headline": "UK keeps 623 Boxer order and adds heavy wheeled recovery vehicle",
+     "primary": false
+    },
+    {
+     "id": "ev-8yr084",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-02",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/news/30-boost-to-uk-military-transport-aircraft-availability-under-new-deal",
+     "headline": "30% boost to UK military transport aircraft availability under new deal",
+     "primary": true
+    },
+    {
+     "id": "ev-xithjw",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-09-21",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/publications/design-approved-organization-scheme-daos",
+     "headline": "Design Approved Organization Scheme (DAOS)",
+     "primary": true
+    },
+    {
+     "id": "ev-1tu2uoh",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-09-17",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
+     "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "UK Ministry of Defence",
+    "Defence Blog",
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "from a primary source"
+  },
+  {
+   "key": "order||jordan+united states",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Jordan"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-19kjdry",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Jordan"
+     ],
+     "value": null,
+     "date": "2026-11-04",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-clears-jordan-to-buy-1500-apkws-drone-killing-rockets/",
+     "headline": "U.S. clears Jordan to buy 1,500 APKWS drone-killing rockets",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order|u.s. navy|united states",
+   "systems": [
+    "U.S. Navy"
+   ],
+   "countries": [
+    "United States"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-r5b5nc",
+     "kind": "order",
+     "systems": [
+      "U.S. Navy"
+     ],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-11-03",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/11/thales-subsidiary-lands-us-navy-contract-for-remote-mine-hunting-modules/",
+     "headline": "Thales subsidiary lands US Navy contract for remote mine hunting modules",
+     "primary": false
+    },
+    {
+     "id": "ev-1a3zzax",
+     "kind": "order",
+     "systems": [
+      "U.S. Navy"
+     ],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 300000000,
+      "currency": "USD",
+      "asWritten": "$300M"
+     },
+     "date": "2026-10-20",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/news/your-navy/2026/10/20/us-navy-gecko-robotics-surge-ai-maintenance-contract-to-300m/",
+     "headline": "US Navy, Gecko Robotics surge AI maintenance contract to $300M",
+     "primary": false
+    },
+    {
+     "id": "ev-1r3bdn2",
+     "kind": "order",
+     "systems": [
+      "U.S. Navy"
+     ],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-09-15",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/industry/techwatch/2026/09/15/us-navy-boeing-ink-first-mq-25a-stingray-production-contract/",
+     "headline": "US Navy, Boeing ink first MQ-25A Stingray production contract",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Breaking Defense",
+    "Defense News"
+   ],
+   "value": {
+    "amount": 300000000,
+    "currency": "USD",
+    "asWritten": "$300M"
+   },
+   "verdict": "corroborated by independent outlets"
+  },
+  {
+   "key": "order||ukraine+united states",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Ukraine"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1geplg8",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Ukraine"
+     ],
+     "value": {
+      "amount": 2100000000,
+      "currency": "USD",
+      "asWritten": "$2.1 billion"
+     },
+     "date": "2026-11-02",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/global/europe/2026/11/02/us-approves-2-1-billion-patriot-missile-sale-to-ukraine/",
+     "headline": "US approves $2.1 billion Patriot missile sale to Ukraine",
+     "primary": false
+    },
+    {
+     "id": "ev-k376bh",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-10-30",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-clears-sale-of-500-patriot-pac-3-missiles-to-ukraine/",
+     "headline": "U.S. clears sale of 500 Patriot PAC-3 missiles to Ukraine",
+     "primary": false
+    },
+    {
+     "id": "ev-cjft82",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Ukraine"
+     ],
+     "value": null,
+     "date": "2026-09-19",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-approves-ukraine-air-defense-package-with-unclear-weapons/",
+     "headline": "U.S. approves Ukraine air defense package with unclear weapons",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News",
+    "Defence Blog"
+   ],
+   "value": {
+    "amount": 2100000000,
+    "currency": "USD",
+    "asWritten": "$2.1 billion"
+   },
+   "verdict": "corroborated by independent outlets"
+  },
+  {
+   "key": "order||greece",
+   "systems": [],
+   "countries": [
+    "Greece"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-njjz5b",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Greece"
+     ],
+     "value": null,
+     "date": "2026-11-02",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/11/greece-inks-deal-for-kc-390-fleet/",
+     "headline": "Greece inks deal for KC-390 fleet",
+     "primary": false
+    },
+    {
+     "id": "ev-18gp7zp",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Greece"
+     ],
+     "value": null,
+     "date": "2026-10-14",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/hellenic-navy-tests-saronics-corsair-usv-ahead-of-major-order/",
+     "headline": "Hellenic Navy Tests SARONIC’s Corsair USV Ahead of Major Order",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Breaking Defense",
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "corroborated by independent outlets"
+  },
+  {
+   "key": "order||indonesia",
+   "systems": [],
+   "countries": [
+    "Indonesia"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-fr7wht",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Indonesia"
+     ],
+     "value": null,
+     "date": "2026-10-31",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/10/chess-dynamics-wins-3m-contract-for-indonesian-bung-tomo-class-frigates/",
+     "headline": "Chess Dynamics Wins £3M Contract for Indonesian Bung Tomo-Class Frigates",
+     "primary": false
+    },
+    {
+     "id": "ev-1qask35",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Indonesia"
+     ],
+     "value": null,
+     "date": "2026-09-28",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/fincantieri-and-pt-pal-indonesia-sign-agreement-for-the-modernization-of-ex-giuseppe-garibaldi/",
+     "headline": "Fincantieri and PT PAL Indonesia sign agreement for the modernization of ex-Giuseppe Garibaldi",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order||germany+netherlands",
