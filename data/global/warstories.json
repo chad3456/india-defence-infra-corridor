@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-06T06:43:12.053Z",
-  "previousBuild": "2026-11-05T21:59:20.477Z",
+  "builtAt": "2026-11-06T15:55:36.303Z",
+  "previousBuild": "2026-11-06T06:43:12.053Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 302,
+    "stories": 303,
     "createdThisRun": 1,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 223,
     "corroboration": {
-      "one": 263,
+      "one": 264,
       "two": 16,
       "threePlus": 23
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 153
+      "n": 154
     },
     {
       "id": "autonomy",
@@ -193,7 +193,7 @@
       "outlet": "Naval News",
       "ok": true,
       "items": 10,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "Defence Blog",
@@ -1375,6 +1375,23 @@
         {
           "outlet": "Indian Defence Research Wing",
           "url": "https://idrw.org/airbotix-india-first-aerostat-surveillance-iron-ore-mine/",
+          "published": "2026-11-06"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/shield-unveils-first-x-bat-combat-drone-prototype-with-test-flight-planned-for-2026/",
+      "headline": "Shield unveils first X-BAT combat drone prototype with test flight planned for 2026",
+      "firstSeen": "2026-11-06",
+      "lastSeen": "2026-11-06",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/shield-unveils-first-x-bat-combat-drone-prototype-with-test-flight-planned-for-2026/",
           "published": "2026-11-06"
         }
       ]
