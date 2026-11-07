@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-07T15:13:14.658Z",
+  "builtAt": "2026-11-07T20:33:34.809Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1368,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1366,
-    "withOutlet": 1269,
+    "items": 1369,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1368,
+    "withOutlet": 1270,
     "bySubject": {
-      "scst": 931,
+      "scst": 932,
       "pmshri": 437
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 61
+    "offSubjectDropped": 63
   },
   "byFacet": [
     {
@@ -40,7 +40,7 @@
     },
     {
       "key": "allegation",
-      "n": 63
+      "n": 64
     },
     {
       "key": "false-finding",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 34,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 0
     },
     {
@@ -305,7 +305,7 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 44,
+      "google": 41,
       "bing": 2,
       "kept": 0,
       "offSubject": 3
@@ -317,7 +317,7 @@
       "expect": "use",
       "google": 30,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 7
     },
     {
@@ -325,17 +325,17 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 9,
-      "bing": 3,
+      "google": 8,
+      "bing": 5,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 2
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 8,
+      "google": 9,
       "bing": 0,
       "kept": 0,
       "offSubject": 4
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 16,
+      "google": 15,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -375,17 +375,17 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 9,
+      "google": 10,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 1
+      "kept": 1,
+      "offSubject": 2
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 18,
+      "google": 17,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -405,7 +405,7 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 8,
+      "google": 9,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -445,10 +445,10 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
-      "bing": 1,
+      "google": 10,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 1
     },
     {
       "id": "shri-mou",
@@ -475,10 +475,10 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 31,
+      "google": 29,
       "bing": 2,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "shri-criticism",
@@ -22861,6 +22861,22 @@
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE12c1Fhb1A5QjQzRGVsUkpmeGRLVXYyRzZ4R1VTZlFpdmVMX3VjVXI0VEFkTDJtdjRYTVZWb1Q4ZzJ3cTZlMk85U29OWFZiVUtFeEJ1UA?oc=5",
       "queries": [
         "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-07"
+    },
+    {
+      "id": "news supreme court declines to entertain plea alleging misuse of sc st act",
+      "headline": "News - Supreme Court Declines to Entertain Plea Alleging Misuse of SC/ST Act",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "The Law Advice",
+      "published": "2026-09-22",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPQ18yd1pfTmlNcVJiQl85RGlJZHJmRDhZczNEM0F4QVVZNTRid0F5S2pCTjEtV3JjMkEyUUYyNng2OVZJQWFUWUs5U3ZyR2tBNjVNMHFkVmE1cmtmekltbllFVXh1LUlvcURqNlg0eW91T2hqNkNnSG14RzVFLTItNEtETDJqOHR3UTBBU3psdHpiTGx3OVZyUW5qeF9JVHp4MVItOTJn?oc=5",
+      "queries": [
+        "act-misuse-claim"
       ],
       "indexes": [
         "google"
