@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-07T06:39:41.096Z",
+  "builtAt": "2026-11-07T15:13:14.658Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1366,
-    "addedThisRun": 0,
+    "items": 1368,
+    "addedThisRun": 2,
     "carriedFromEarlierRuns": 1366,
-    "withOutlet": 1267,
+    "withOutlet": 1269,
     "bySubject": {
-      "scst": 929,
+      "scst": 931,
       "pmshri": 437
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 60
+    "offSubjectDropped": 61
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 677
+      "n": 678
     },
     {
       "key": "use",
-      "n": 478
+      "n": 479
     },
     {
       "key": "acquittal",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 95
+      "n": 96
     },
     {
       "key": "The Indian Express",
@@ -78,7 +78,7 @@
     },
     {
       "key": "LawBeat",
-      "n": 31
+      "n": 32
     },
     {
       "key": "Verdictum",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 34,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 0
     },
     {
@@ -305,7 +305,7 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 42,
+      "google": 44,
       "bing": 2,
       "kept": 0,
       "offSubject": 3
@@ -315,9 +315,9 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 29,
+      "google": 30,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 7
     },
     {
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 15,
+      "google": 16,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -368,7 +368,7 @@
       "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 4
     },
     {
       "id": "act-misuse-claim",
@@ -378,14 +378,14 @@
       "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 1
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 17,
+      "google": 18,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -405,18 +405,18 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 7,
+      "google": 8,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 32,
-      "bing": 12,
+      "google": 33,
+      "bing": 11,
       "kept": 0,
       "offSubject": 1
     },
@@ -445,7 +445,7 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 10,
+      "google": 9,
       "bing": 1,
       "kept": 0,
       "offSubject": 0
@@ -22834,6 +22834,38 @@
         "bing"
       ],
       "firstSeen": "2026-11-06"
+    },
+    {
+      "id": "supreme court bats for sc st act like law for disabled persons",
+      "headline": "Supreme Court bats for SC/ST Act like law for disabled persons",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawBeat",
+      "published": "2025-11-27",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOQjRrWU1ZdlowakNUbWRhd29hWkpacDh1WWVXdlVxUC01WWlVelJ1a2xEd3BvSUpERDE0akdSZEp6REZNQktjQkpvc1NGNVJuc1Jnc0dhMncxWUVXMkNDNmtPd0pmVV90R09ja1NnNUlVcDFSSXU4NGpFNGVsMWh4aGRHR3hvUGg4ZzRqU3dWTjZsZkdJMEdPRTQtcFJzc1ZLanfSAacBQVVfeXFMTkstek9kWVpyY3MzWFU1QkkwRC1KRHhMTUxRSjJwWV9ZN1hfekJVbG5EbmNHWVhDRF9zM0hSUmo0M0d1Yzg5dmd5b0hSX2g2d1FjdW1sdkpfQmtFQWNjYTNLSlhwX3owS1p0Sm1CdzBMZ0JYWkJVSkFMMmZYc0MwaWtkcFN6X2pvSzlVMFhyUTZsQ3FEUnJqMXFtVllFZ0lWTHV4ckFQclk?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-07"
+    },
+    {
+      "id": "supreme court modifies sentence for convicted individual under sc st act and ipc releases ",
+      "headline": "Supreme Court Modifies Sentence for Convicted Individual Under SC/ST Act and IPC — Releases After Admonition. The court granted the appellant the benefit of the Probation of Offenders Act, 1958, considering the absence of previous convictions and the na",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-11-06",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE12c1Fhb1A5QjQzRGVsUkpmeGRLVXYyRzZ4R1VTZlFpdmVMX3VjVXI0VEFkTDJtdjRYTVZWb1Q4ZzJ3cTZlMk85U29OWFZiVUtFeEJ1UA?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-07"
     }
   ]
 }
