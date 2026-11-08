@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-08T06:45:26.589Z",
+  "builtAt": "2026-11-08T15:38:29.396Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,12 +10,12 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1370,
-    "addedThisRun": 0,
+    "items": 1371,
+    "addedThisRun": 1,
     "carriedFromEarlierRuns": 1370,
-    "withOutlet": 1271,
+    "withOutlet": 1272,
     "bySubject": {
-      "scst": 933,
+      "scst": 934,
       "pmshri": 437
     },
     "queriesAsked": 20,
@@ -40,7 +40,7 @@
     },
     {
       "key": "allegation",
-      "n": 64
+      "n": 65
     },
     {
       "key": "false-finding",
@@ -90,7 +90,7 @@
     },
     {
       "key": "LawChakra",
-      "n": 22
+      "n": 23
     },
     {
       "key": "SCC Online",
@@ -325,7 +325,7 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 8,
+      "google": 9,
       "bing": 3,
       "kept": 0,
       "offSubject": 1
@@ -355,7 +355,7 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 29,
+      "google": 28,
       "bing": 1,
       "kept": 0,
       "offSubject": 7
@@ -375,9 +375,9 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 10,
+      "google": 9,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 1
     },
     {
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 33,
-      "bing": 11,
+      "bing": 10,
       "kept": 0,
       "offSubject": 1
     },
@@ -445,7 +445,7 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
+      "google": 8,
       "bing": 1,
       "kept": 0,
       "offSubject": 0
@@ -22899,6 +22899,22 @@
         "google"
       ],
       "firstSeen": "2026-11-07"
+    },
+    {
+      "id": "mp high court judge vivek agarwal misuse of sc st act false implications brokers get invol",
+      "headline": "MP High Court Judge Vivek Agarwal: \"Misuse Of SC-ST Act, False Implications & Brokers Get Involved In Such Cases For Compensation\"",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "LawChakra",
+      "published": "2025-02-09",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPOHF5QjhjTkd2cm5Nc1BWY010Y0ppR29DQ2UyQkMzRmROdXowSGt4aUdPM1JlQ1VQaUZiaGNzam9tRmswS3czRFVNcDRHSFJMYmxDWE5HbVdpQTNjbVFvbl9vMm1BMHdJd0hvWDAtNEs5QnBrOGhKM3Nna1NvZlRFQU91QVB5SzcxaFE?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-08"
     }
   ]
 }
