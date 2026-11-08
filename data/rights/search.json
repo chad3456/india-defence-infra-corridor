@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-08T15:38:29.396Z",
+  "builtAt": "2026-11-08T20:48:57.480Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,12 +10,12 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1371,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1370,
-    "withOutlet": 1272,
+    "items": 1373,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1371,
+    "withOutlet": 1273,
     "bySubject": {
-      "scst": 934,
+      "scst": 936,
       "pmshri": 437
     },
     "queriesAsked": 20,
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 479
+      "n": 481
     },
     {
       "key": "acquittal",
@@ -295,7 +295,7 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 34,
+      "google": 33,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -326,8 +326,8 @@
       "subject": "scst",
       "expect": "use",
       "google": 9,
-      "bing": 3,
-      "kept": 0,
+      "bing": 5,
+      "kept": 2,
       "offSubject": 1
     },
     {
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 12,
+      "google": 11,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -375,9 +375,9 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 9,
+      "google": 10,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 1
     },
     {
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 33,
-      "bing": 10,
+      "bing": 11,
       "kept": 0,
       "offSubject": 1
     },
@@ -445,7 +445,7 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 8,
+      "google": 9,
       "bing": 1,
       "kept": 0,
       "offSubject": 0
@@ -22913,6 +22913,38 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-11-08"
+    },
+    {
+      "id": "jharkhand dalit student assault case what happened inside the hostel",
+      "headline": "Jharkhand Dalit Student Assault Case: What Happened Inside The Hostel?",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Brut",
+      "published": "2026-07-20",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOcFBILVBucHR4MHNvNnd5SDVpY3JmLTdoSHo5SE5JX2ZMWEtFS0tlVW1SRzM5Z1lGWmFqcDFVd21EYXQwc21ZWmRvNEtBTHRPNmhWUlNFNWtRQWlCN2tGNG5ITk96X0pQT20xREJPX2R6QmxRNU83ZkFUYWdPWEJpbUVld1BITDItcF9qSlFtZGFvanJORzBpRWRwR3ZHUzF5aXhzbzZB?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-08"
+    },
+    {
+      "id": "dalit girl 16 dies after gang rape in up s firozabad",
+      "headline": "Dalit girl, 16, dies after gang rape in UP's Firozabad",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-11-08",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af0dfd9dafc4c9b835719e6ad87afd8&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fdalit-girl-16-dies-after-gang-rape-in-up-s-firozabad%2far-AA2gZTPa&c=5014205976227548204&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-11-08"
     }
