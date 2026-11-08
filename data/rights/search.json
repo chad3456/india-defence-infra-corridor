@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-07T20:33:34.809Z",
+  "builtAt": "2026-11-08T00:01:08.347Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1369,
+    "items": 1370,
     "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1368,
-    "withOutlet": 1270,
+    "carriedFromEarlierRuns": 1369,
+    "withOutlet": 1271,
     "bySubject": {
-      "scst": 932,
+      "scst": 933,
       "pmshri": 437
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 63
+    "offSubjectDropped": 58
   },
   "byFacet": [
     {
@@ -44,7 +44,7 @@
     },
     {
       "key": "false-finding",
-      "n": 10
+      "n": 11
     }
   ],
   "byOutlet": [
@@ -295,7 +295,7 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 34,
+      "google": 33,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -315,20 +315,20 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 30,
+      "google": 29,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 8,
-      "bing": 5,
+      "google": 9,
+      "bing": 4,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 1
     },
     {
       "id": "act-compensation",
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 15,
+      "google": 14,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -355,10 +355,10 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 30,
-      "bing": 3,
+      "google": 29,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 7
     },
     {
       "id": "act-hostile",
@@ -378,7 +378,7 @@
       "google": 10,
       "bing": 0,
       "kept": 1,
-      "offSubject": 2
+      "offSubject": 1
     },
     {
       "id": "act-dilution",
@@ -405,7 +405,7 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 9,
+      "google": 8,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -446,9 +446,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 10,
-      "bing": 2,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 0
     },
     {
       "id": "shri-mou",
@@ -475,10 +475,10 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 29,
+      "google": 30,
       "bing": 2,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "shri-criticism",
@@ -22875,6 +22875,22 @@
       "outlet": "The Law Advice",
       "published": "2026-09-22",
       "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPQ18yd1pfTmlNcVJiQl85RGlJZHJmRDhZczNEM0F4QVVZNTRid0F5S2pCTjEtV3JjMkEyUUYyNng2OVZJQWFUWUs5U3ZyR2tBNjVNMHFkVmE1cmtmekltbllFVXh1LUlvcURqNlg0eW91T2hqNkNnSG14RzVFLTItNEtETDJqOHR3UTBBU3psdHpiTGx3OVZyUW5qeF9JVHp4MVItOTJn?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-07"
+    },
+    {
+      "id": "the myth of the false case what the new indian supreme court order on the sc st act gets w",
+      "headline": "The myth of the false case: what the new Indian Supreme Court Order on the SC/ST Act gets wrong about caste-based violence and legal manipulation",
+      "subject": "scst",
+      "facet": "false-finding",
+      "outlet": "LSE Blogs",
+      "published": "2018-04-10",
+      "url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxOeTEyNzc4WlN5RFdlRjViNTRkNm1rZkVsWlNpQ1o2elhDbGZwSjVJa1NubXNVU0RpUHUxelFYSXQyel8zN29CMmdzdl9QMmprclpaWjRBT2lnM1g3TWJ2OTRGMzdTbHNWeklsZzY1SWNJTUU2N3h4djNYV0xNZi1KbE4tbUVhM1VacVhfYnRzdER2YzJvcHhiQ0dqUXJqeXdjeWloZ3VNWHN6WndFbnRKc3VDNVpHVzhzd1JUMkVjSlczcmlUNldUendIQ3E5c2lrdTZ0SHJnVTkyeFMybUlrNF9yYWtQd0JuQ1ZleTU1RnAwd1BXSUJiUkgyWDZncUxscVg0UFFkZ1RXSVUyVGxMaGt4c2ZMUk1T?oc=5",
       "queries": [
         "act-misuse-claim"
       ],
