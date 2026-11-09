@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-08T21:22:24.070Z",
+ "builtAt": "2026-11-09T14:21:11.214Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206526,7 +206526,7 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   },
   {
@@ -206538,6 +206538,20 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-1dq013n",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Denmark"
+   ],
+   "value": null,
+   "date": "2026-11-09",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/event-news/euronaval-2026/2026/11/babcock-and-saab-denmark-sign-strategic-agreement-for-arrowhead-frigate-opportunities/",
+   "headline": "Babcock and Saab Denmark sign strategic agreement for Arrowhead frigate opportunities",
+   "primary": false
+  },
   {
    "id": "ev-1pvt4nu",
    "kind": "order",
@@ -208192,6 +208206,50 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||denmark",
+   "systems": [],
+   "countries": [
+    "Denmark"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1dq013n",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Denmark"
+     ],
+     "value": null,
+     "date": "2026-11-09",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/event-news/euronaval-2026/2026/11/babcock-and-saab-denmark-sign-strategic-agreement-for-arrowhead-frigate-opportunities/",
+     "headline": "Babcock and Saab Denmark sign strategic agreement for Arrowhead frigate opportunities",
+     "primary": false
+    },
+    {
+     "id": "ev-l1p4nx",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Denmark"
+     ],
+     "value": null,
+     "date": "2026-09-21",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/global/europe/2026/09/21/denmark-says-nato-shares-responsibility-for-arctic-security-under-greenland-deal/",
+     "headline": "Denmark says NATO shares responsibility for Arctic security under Greenland deal",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News",
+    "Defense News"
+   ],
+   "value": null,
+   "verdict": "corroborated by independent outlets"
+  },
   {
    "key": "order||united states",
    "systems": [],
@@ -210232,35 +210290,6 @@
    ],
    "outlets": [
     "Defence Blog"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order||denmark",
-   "systems": [],
-   "countries": [
-    "Denmark"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-l1p4nx",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Denmark"
-     ],
-     "value": null,
-     "date": "2026-09-21",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/global/europe/2026/09/21/denmark-says-nato-shares-responsibility-for-arctic-security-under-greenland-deal/",
-     "headline": "Denmark says NATO shares responsibility for Arctic security under Greenland deal",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defense News"
    ],
    "value": null,
    "verdict": "a single report, uncorroborated"
