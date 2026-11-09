@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-09T00:06:51.272Z",
+  "builtAt": "2026-11-09T07:16:08.500Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -11,15 +11,15 @@
   ],
   "counts": {
     "items": 1375,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1373,
+    "addedThisRun": 0,
+    "carriedFromEarlierRuns": 1375,
     "withOutlet": 1273,
     "bySubject": {
       "scst": 937,
       "pmshri": 438
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 64
+    "offSubjectDropped": 59
   },
   "byFacet": [
     {
@@ -295,7 +295,7 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 33,
+      "google": 34,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -306,7 +306,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 39,
-      "bing": 0,
+      "bing": 3,
       "kept": 0,
       "offSubject": 3
     },
@@ -315,18 +315,18 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 31,
+      "google": 29,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 8,
-      "bing": 2,
+      "google": 9,
+      "bing": 4,
       "kept": 0,
       "offSubject": 1
     },
@@ -336,9 +336,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 9,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 4
     },
     {
       "id": "act-pendency",
@@ -355,8 +355,8 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 29,
-      "bing": 0,
+      "google": 30,
+      "bing": 1,
       "kept": 0,
       "offSubject": 7
     },
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 10,
+      "google": 9,
       "bing": 0,
       "kept": 0,
       "offSubject": 1
@@ -386,8 +386,8 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 18,
-      "bing": 1,
-      "kept": 1,
+      "bing": 0,
+      "kept": 0,
       "offSubject": 0
     },
     {
@@ -405,20 +405,20 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 8,
-      "bing": 1,
+      "google": 9,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 3
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 33,
-      "bing": 11,
-      "kept": 1,
-      "offSubject": 1
+      "google": 32,
+      "bing": 10,
+      "kept": 0,
+      "offSubject": 2
     },
     {
       "id": "shri-sanctioned",
@@ -426,7 +426,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 10,
-      "bing": 3,
+      "bing": 1,
       "kept": 0,
       "offSubject": 0
     },
@@ -436,7 +436,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 10,
-      "bing": 3,
+      "bing": 1,
       "kept": 0,
       "offSubject": 4
     },
@@ -446,7 +446,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 9,
-      "bing": 2,
+      "bing": 1,
       "kept": 0,
       "offSubject": 0
     },
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 13,
-      "bing": 3,
+      "bing": 1,
       "kept": 0,
       "offSubject": 0
     },
@@ -466,9 +466,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 20,
-      "bing": 6,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 7
     },
     {
       "id": "shri-nep",
@@ -476,7 +476,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 30,
-      "bing": 2,
+      "bing": 3,
       "kept": 0,
       "offSubject": 3
     },
