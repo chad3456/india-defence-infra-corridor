@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-09T13:18:00.771Z",
+  "builtAt": "2026-11-09T22:36:35.223Z",
   "note": "Named things per state, for the map to answer a click with. Each layer records how its rows reached a state and how many did not, because the join is where this kind of file goes wrong invisibly.",
   "refused": [
     {
@@ -25951,8 +25951,8 @@
       "blurb": "Every railway station the mobility dataset holds a coordinate for, placed into the state whose polygon contains it. Presence only — the source carries a name, a station code and a coordinate, and nothing about how many trains stop or how many people pass through, so a count of stations is a count of stations and not of service.",
       "join": "Point-in-polygon against the map's own topology. A station in no polygon is listed unplaced, never assigned to a neighbour.",
       "source": "OpenStreetMap, via the mobility connector.",
-      "total": 10323,
-      "placed": 10150,
+      "total": 10322,
+      "placed": 10149,
       "unplacedCount": 121,
       "deduped": 52,
       "unplaced": [
@@ -44930,10 +44930,10 @@
           },
           {
             "name": "Anna Nagar West",
-            "why": "Station code ANNG.",
+            "why": "No station code in this dataset.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 13.0985,
-            "lon": 80.201
+            "lat": 13.0964,
+            "lon": 80.1987
           },
           {
             "name": "Annanur",
@@ -45160,13 +45160,6 @@
             "lon": 79.9805
           },
           {
-            "name": "Chennai Chetpet",
-            "why": "Station code MSC.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 13.0743,
-            "lon": 80.2424
-          },
-          {
             "name": "Chennai International Airport",
             "why": "Station code SAP.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -45186,6 +45179,13 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 8.6793,
             "lon": 77.5617
+          },
+          {
+            "name": "Chetpet",
+            "why": "Station code MSC.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 13.0743,
+            "lon": 80.2424
           },
           {
             "name": "Chettinad",
@@ -47083,13 +47083,6 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 13.1187,
             "lon": 80.065
-          },
-          {
-            "name": "Pattabiram E Depot",
-            "why": "Station code PRES.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 13.146,
-            "lon": 80.0686
           },
           {
             "name": "Pattabiram Military Siding",
@@ -60713,6 +60706,13 @@
             "lon": 79.3761
           },
           {
+            "name": "Ramghat Halt",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 26.8051,
+            "lon": 82.2157
+          },
+          {
             "name": "Ramkola",
             "why": "Station code RKL.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -68625,13 +68625,6 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 24.5907,
             "lon": 87.8685
-          },
-          {
-            "name": "Nagarukhra Jn. (Proposed)",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 22.9452,
-            "lon": 88.6381
           },
           {
             "name": "Nagrakata",
