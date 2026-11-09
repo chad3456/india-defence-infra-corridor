@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-08T20:48:57.480Z",
+  "builtAt": "2026-11-09T00:06:51.272Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1373,
+    "items": 1375,
     "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1371,
+    "carriedFromEarlierRuns": 1373,
     "withOutlet": 1273,
     "bySubject": {
-      "scst": 936,
-      "pmshri": 437
+      "scst": 937,
+      "pmshri": 438
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 59
+    "offSubjectDropped": 64
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 678
+      "n": 680
     },
     {
       "key": "use",
@@ -305,8 +305,8 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 40,
-      "bing": 2,
+      "google": 39,
+      "bing": 0,
       "kept": 0,
       "offSubject": 3
     },
@@ -325,9 +325,9 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 9,
-      "bing": 5,
-      "kept": 2,
+      "google": 8,
+      "bing": 2,
+      "kept": 0,
       "offSubject": 1
     },
     {
@@ -336,9 +336,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 9,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 5
     },
     {
       "id": "act-pendency",
@@ -355,8 +355,8 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 28,
-      "bing": 1,
+      "google": 29,
+      "bing": 0,
       "kept": 0,
       "offSubject": 7
     },
@@ -386,8 +386,8 @@
       "subject": "scst",
       "expect": "allegation",
       "google": 18,
-      "bing": 0,
-      "kept": 0,
+      "bing": 1,
+      "kept": 1,
       "offSubject": 0
     },
     {
@@ -406,9 +406,9 @@
       "subject": "scst",
       "expect": "false-finding",
       "google": 8,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 4
     },
     {
       "id": "shri-general",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 33,
       "bing": 11,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 1
     },
     {
@@ -426,7 +426,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 10,
-      "bing": 1,
+      "bing": 3,
       "kept": 0,
       "offSubject": 0
     },
@@ -436,7 +436,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 10,
-      "bing": 1,
+      "bing": 3,
       "kept": 0,
       "offSubject": 4
     },
@@ -446,7 +446,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 9,
-      "bing": 1,
+      "bing": 2,
       "kept": 0,
       "offSubject": 0
     },
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 13,
-      "bing": 1,
+      "bing": 3,
       "kept": 0,
       "offSubject": 0
     },
@@ -466,9 +466,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 20,
-      "bing": 1,
+      "bing": 6,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 10
     },
     {
       "id": "shri-nep",
@@ -22947,6 +22947,40 @@
         "bing"
       ],
       "firstSeen": "2026-11-08"
+    },
+    {
+      "id": "protests erupt across gujarat over dilution of sc st act",
+      "headline": "Protests erupt across Gujarat over “dilution” of SC/ST Act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2018-04-02",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af10e5e39f649b88e8dce5f1a010058&url=https%3a%2f%2fwww.india.com%2fnews%2fprotests-erupt-across-gujarat-over-dilution-of-scst-act-2976489%2f&c=7184577565967230363&mkt=es-cl",
+      "queries": [
+        "act-dilution"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-11-09"
+    },
+    {
+      "id": "education ministry to urge west bengal tn to implement pm shri scheme push key nep initiat",
+      "headline": "Education Ministry To Urge West Bengal, TN To Implement PM SHRI Scheme, Push Key NEP Initiatives",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-05-06",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af10e70d9bc4d6eaf992fb4d7a12c0b&url=https%3a%2f%2fwww.news18.com%2feducation-career%2feducation-ministry-to-urge-west-bengal-tn-to-implement-pm-shri-scheme-push-key-nep-initiatives-10077142.html&c=13906037454723160027&mkt=es-cl",
+      "queries": [
+        "shri-general",
+        "shri-mou",
+        "shri-withheld"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-11-09"
     }
   ]
 }
