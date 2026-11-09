@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-09T06:26:18.617Z",
-  "previousBuild": "2026-11-08T20:29:16.314Z",
+  "builtAt": "2026-11-09T18:48:23.516Z",
+  "previousBuild": "2026-11-09T06:26:18.617Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,28 +12,28 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 309,
-    "createdThisRun": 0,
-    "corroboratedThisRun": 0,
+    "stories": 312,
+    "createdThisRun": 3,
+    "corroboratedThisRun": 7,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 216,
+    "itemsSeen": 217,
     "corroboration": {
       "one": 270,
-      "two": 16,
-      "threePlus": 23
+      "two": 17,
+      "threePlus": 25
     }
   },
   "byTheme": [
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 159
+      "n": 160
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 93
+      "n": 95
     },
     {
       "id": "cyber-ew",
@@ -73,24 +73,24 @@
       "n": 9
     },
     {
+      "iso": "GBR",
+      "name": "United Kingdom",
+      "n": 6
+    },
+    {
       "iso": "FRA",
       "name": "France",
       "n": 6
     },
     {
-      "iso": "GBR",
-      "name": "United Kingdom",
-      "n": 5
+      "iso": "AUS",
+      "name": "Australia",
+      "n": 4
     },
     {
       "iso": "RUS",
       "name": "Russia",
       "n": 4
-    },
-    {
-      "iso": "AUS",
-      "name": "Australia",
-      "n": 3
     },
     {
       "iso": "PAK",
@@ -132,32 +132,32 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 30,
+      "items": 31,
       "kept": 2
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Military Times",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "Army Times",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "C4ISRNET",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "DefenseScoop",
@@ -169,13 +169,13 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "Breaking Defense",
@@ -199,7 +199,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -215,6 +215,79 @@
     }
   ],
   "stories": [
+    {
+      "id": "https://defence-blog.com/neros-gets-450m-pentagon-loan-to-cut-reliance-on-chinese-drone-parts/",
+      "headline": "Neros gets $450M Pentagon loan to cut reliance on Chinese drone parts",
+      "firstSeen": "2026-11-02",
+      "lastSeen": "2026-11-09",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        },
+        {
+          "iso": "CHN",
+          "name": "China"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/neros-gets-450m-pentagon-loan-to-cut-reliance-on-chinese-drone-parts/",
+          "published": "2026-11-02"
+        },
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/news/2026/11/09/neros-to-expand-domestic-drone-production-with-450m-pentagon-loan/",
+          "published": "2026-11-09"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/industry/techwatch/2026/11/09/neros-to-expand-domestic-drone-production-with-450m-pentagon-loan/",
+          "published": "2026-11-09"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/industry/techwatch/2026/11/09/neros-to-expand-domestic-drone-production-with-450m-pentagon-loan/",
+          "published": "2026-11-09"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
+      "headline": "Drones incoming! New innovations on offer in UAS tech | Defense News Weekly Full Episode 11.10.26",
+      "firstSeen": "2026-11-09",
+      "lastSeen": "2026-11-09",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
+          "published": "2026-11-09"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
+          "published": "2026-11-09"
+        },
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
+          "published": "2026-11-09"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
+          "published": "2026-11-09"
+        }
+      ]
+    },
     {
       "id": "https://www.militarytimes.com/industry/techwatch/2026/10/14/us-army-to-stand-up-second-expeditionary-cyber-battalion-in-coming-months/",
       "headline": "US Army to stand up second expeditionary cyber battalion in coming months",
@@ -962,6 +1035,28 @@
       ]
     },
     {
+      "id": "https://defence-industry.eu/u-s-army-tests-fd-1-interceptor-as-a-lower-cost-option-against-massed-drone-attacks/",
+      "headline": "U.S. Army tests FD-1 interceptor as a lower-cost option against massed drone attacks",
+      "firstSeen": "2026-11-06",
+      "lastSeen": "2026-11-09",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-army-tests-fd-1-interceptor-as-a-lower-cost-option-against-massed-drone-attacks/",
+          "published": "2026-11-06"
+        },
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-army-tests-fd-1-drone-interceptor-over-the-baltic-sea/",
+          "published": "2026-11-09"
+        }
+      ]
+    },
+    {
       "id": "https://www.militarytimes.com/news/your-military/2026/10/29/us-navy-wants-more-visible-role-for-drone-boats-as-one-deploys-for-the-first-time/",
       "headline": "US Navy wants more visible role for drone boats as one deploys for the first time",
       "firstSeen": "2026-10-29",
@@ -1358,6 +1453,50 @@
       ]
     },
     {
+      "id": "https://defence-industry.eu/royal-navy-says-its-first-autonomous-squadron-will-deploy-uncrewed-boats-alongside-warships/",
+      "headline": "Royal Navy says its first autonomous squadron will deploy uncrewed boats alongside warships",
+      "firstSeen": "2026-11-09",
+      "lastSeen": "2026-11-09",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "GBR",
+          "name": "United Kingdom"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/royal-navy-says-its-first-autonomous-squadron-will-deploy-uncrewed-boats-alongside-warships/",
+          "published": "2026-11-09"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/australian-uncrewed-ground-vehicle-joins-u-s-army-trials-in-hawaii/",
+      "headline": "Australian uncrewed ground vehicle joins U.S. Army trials in Hawaii",
+      "firstSeen": "2026-11-09",
+      "lastSeen": "2026-11-09",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "AUS",
+          "name": "Australia"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/australian-uncrewed-ground-vehicle-joins-u-s-army-trials-in-hawaii/",
+          "published": "2026-11-09"
+        }
+      ]
+    },
+    {
       "id": "https://idrw.org/xinfiniti-aerospace-drone-inspector-di-naais-indian-navy/",
       "headline": "XINFINITI Aerospace Develops Drone Inspector for Navy’s P-8I Fleet",
       "firstSeen": "2026-11-08",
@@ -1483,23 +1622,6 @@
         {
           "outlet": "DefenseScoop",
           "url": "https://defensescoop.com/2026/11/06/gps-jamming-risks-to-civilians-from-military-testing/",
-          "published": "2026-11-06"
-        }
-      ]
-    },
-    {
-      "id": "https://defence-industry.eu/u-s-army-tests-fd-1-interceptor-as-a-lower-cost-option-against-massed-drone-attacks/",
-      "headline": "U.S. Army tests FD-1 interceptor as a lower-cost option against massed drone attacks",
-      "firstSeen": "2026-11-06",
-      "lastSeen": "2026-11-06",
-      "themes": [
-        "drone"
-      ],
-      "countries": [],
-      "sources": [
-        {
-          "outlet": "Defence Industry Europe",
-          "url": "https://defence-industry.eu/u-s-army-tests-fd-1-interceptor-as-a-lower-cost-option-against-massed-drone-attacks/",
           "published": "2026-11-06"
         }
       ]
@@ -1934,32 +2056,6 @@
         {
           "outlet": "Defense One",
           "url": "https://www.defenseone.com/policy/2026/11/industry-groups-cyber-sharing-law/416993/",
-          "published": "2026-11-02"
-        }
-      ]
-    },
-    {
-      "id": "https://defence-blog.com/neros-gets-450m-pentagon-loan-to-cut-reliance-on-chinese-drone-parts/",
-      "headline": "Neros gets $450M Pentagon loan to cut reliance on Chinese drone parts",
-      "firstSeen": "2026-11-02",
-      "lastSeen": "2026-11-02",
-      "themes": [
-        "drone"
-      ],
-      "countries": [
-        {
-          "iso": "USA",
-          "name": "United States"
-        },
-        {
-          "iso": "CHN",
-          "name": "China"
-        }
-      ],
-      "sources": [
-        {
-          "outlet": "Defence Blog",
-          "url": "https://defence-blog.com/neros-gets-450m-pentagon-loan-to-cut-reliance-on-chinese-drone-parts/",
           "published": "2026-11-02"
         }
       ]
