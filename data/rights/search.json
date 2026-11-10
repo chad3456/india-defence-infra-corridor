@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-09T19:13:20.947Z",
+  "builtAt": "2026-11-10T02:58:21.786Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -11,15 +11,15 @@
   ],
   "counts": {
     "items": 1376,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1375,
+    "addedThisRun": 0,
+    "carriedFromEarlierRuns": 1376,
     "withOutlet": 1274,
     "bySubject": {
       "scst": 938,
       "pmshri": 438
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 58
+    "offSubjectDropped": 60
   },
   "byFacet": [
     {
@@ -305,7 +305,7 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 40,
+      "google": 41,
       "bing": 1,
       "kept": 0,
       "offSubject": 3
@@ -326,7 +326,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 9,
-      "bing": 4,
+      "bing": 5,
       "kept": 0,
       "offSubject": 1
     },
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 12,
+      "google": 11,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -357,7 +357,7 @@
       "expect": "acquittal",
       "google": 30,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 7
     },
     {
@@ -416,7 +416,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 33,
-      "bing": 10,
+      "bing": 11,
       "kept": 0,
       "offSubject": 2
     },
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 11,
+      "google": 10,
       "bing": 1,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 5
     },
     {
       "id": "shri-upgrade",
@@ -488,7 +488,7 @@
       "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     }
   ],
   "items": [
