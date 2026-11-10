@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-09T14:21:11.214Z",
+ "builtAt": "2026-11-10T00:51:43.179Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206512,13 +206512,13 @@
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   },
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 21,
+   "items": 22,
    "kept": 0,
    "via": "direct"
   },
@@ -206538,6 +206538,21 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-u58xmi",
+   "kind": "order",
+   "systems": [
+    "Aster",
+    "Aster 30"
+   ],
+   "countries": [],
+   "value": null,
+   "date": "2026-11-09",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/11/mbda-on-contract-to-study-aster-30-missile-integration-in-mk-41-vls/",
+   "headline": "MBDA on contract to study Aster 30 missile integration in MK 41 VLS",
+   "primary": false
+  },
   {
    "id": "ev-1dq013n",
    "kind": "order",
@@ -208206,6 +208221,37 @@
   }
  ],
  "groups": [
+  {
+   "key": "order|aster+aster 30|",
+   "systems": [
+    "Aster",
+    "Aster 30"
+   ],
+   "countries": [],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-u58xmi",
+     "kind": "order",
+     "systems": [
+      "Aster",
+      "Aster 30"
+     ],
+     "countries": [],
+     "value": null,
+     "date": "2026-11-09",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/11/mbda-on-contract-to-study-aster-30-missile-integration-in-mk-41-vls/",
+     "headline": "MBDA on contract to study Aster 30 missile integration in MK 41 VLS",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||denmark",
    "systems": [],
