@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-09T18:48:23.516Z",
-  "previousBuild": "2026-11-09T06:26:18.617Z",
+  "builtAt": "2026-11-10T02:44:40.401Z",
+  "previousBuild": "2026-11-09T18:48:23.516Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 312,
+    "stories": 315,
     "createdThisRun": 3,
-    "corroboratedThisRun": 7,
+    "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 217,
+    "itemsSeen": 216,
     "corroboration": {
-      "one": 270,
+      "one": 273,
       "two": 17,
       "threePlus": 25
     }
@@ -33,7 +33,7 @@
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 95
+      "n": 98
     },
     {
       "id": "cyber-ew",
@@ -75,7 +75,7 @@
     {
       "iso": "GBR",
       "name": "United Kingdom",
-      "n": 6
+      "n": 7
     },
     {
       "iso": "FRA",
@@ -93,13 +93,13 @@
       "n": 4
     },
     {
-      "iso": "PAK",
-      "name": "Pakistan",
-      "n": 2
-    },
-    {
       "iso": "KOR",
       "name": "South Korea",
+      "n": 3
+    },
+    {
+      "iso": "PAK",
+      "name": "Pakistan",
       "n": 2
     },
     {
@@ -132,7 +132,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 31,
+      "items": 29,
       "kept": 2
     },
     {
@@ -145,7 +145,7 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 0
     },
     {
       "outlet": "Army Times",
@@ -169,7 +169,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defense News",
@@ -181,12 +181,12 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense One",
       "ok": true,
-      "items": 21,
+      "items": 22,
       "kept": 3
     },
     {
@@ -199,7 +199,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 3
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1492,6 +1492,67 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/australian-uncrewed-ground-vehicle-joins-u-s-army-trials-in-hawaii/",
+          "published": "2026-11-09"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/11/korean-air-aerospace-pushes-forward-with-collaborative-combat-aircraft-plans/",
+      "headline": "Korean Air Aerospace pushes forward with Collaborative Combat Aircraft plans",
+      "firstSeen": "2026-11-09",
+      "lastSeen": "2026-11-09",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "KOR",
+          "name": "South Korea"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/11/korean-air-aerospace-pushes-forward-with-collaborative-combat-aircraft-plans/",
+          "published": "2026-11-09"
+        }
+      ]
+    },
+    {
+      "id": "https://www.navalnews.com/naval-news/2026/11/first-ever-autonomous-royal-navy-squadron-launches-as-part-of-investment-in-hybrid-operations/",
+      "headline": "First ever autonomous Royal Navy squadron launches as part of investment in hybrid operations",
+      "firstSeen": "2026-11-09",
+      "lastSeen": "2026-11-09",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "GBR",
+          "name": "United Kingdom"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Naval News",
+          "url": "https://www.navalnews.com/naval-news/2026/11/first-ever-autonomous-royal-navy-squadron-launches-as-part-of-investment-in-hybrid-operations/",
+          "published": "2026-11-09"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-marine-corps-buys-ripsaw-m3-uncrewed-ground-vehicles/",
+      "headline": "U.S. Marine Corps buys RIPSAW M3 uncrewed ground vehicles",
+      "firstSeen": "2026-11-09",
+      "lastSeen": "2026-11-09",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-marine-corps-buys-ripsaw-m3-uncrewed-ground-vehicles/",
           "published": "2026-11-09"
         }
       ]
