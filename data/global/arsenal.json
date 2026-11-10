@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-10T13:46:40.466Z",
+ "builtAt": "2026-11-10T22:32:11.221Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206512,32 +206512,68 @@
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 23,
+   "items": 22,
    "kept": 0,
    "via": "direct"
   },
   {
    "outlet": "Naval News",
-   "ok": true,
-   "items": 10,
-   "kept": 2,
-   "via": "direct"
+   "ok": false,
+   "items": 0,
+   "kept": 0,
+   "via": "unconfigured"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-3eiy60",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "France"
+   ],
+   "value": {
+    "amount": 1700000000,
+    "currency": "USD",
+    "asWritten": "$1.7 billion"
+   },
+   "date": "2026-11-10",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/11/france-awards-1-7-billion-contract-to-airbus-thales-team-for-new-military-satellites/",
+   "headline": "France awards $1.7 billion contract to Airbus-Thales team for new military satellites",
+   "primary": false
+  },
+  {
+   "id": "ev-10uswyu",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": {
+    "amount": 400000000,
+    "currency": "USD",
+    "asWritten": "$400M"
+   },
+   "date": "2026-11-10",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/secretive-u-s-drone-maker-aevex-lands-400m-drone-contract/",
+   "headline": "Secretive U.S. drone maker AEVEX lands $400M drone contract",
+   "primary": false
+  },
   {
    "id": "ev-u58xmi",
    "kind": "order",
@@ -208222,79 +208258,41 @@
  ],
  "groups": [
   {
-   "key": "order|aster+aster 30|",
-   "systems": [
-    "Aster",
-    "Aster 30"
-   ],
-   "countries": [],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-u58xmi",
-     "kind": "order",
-     "systems": [
-      "Aster",
-      "Aster 30"
-     ],
-     "countries": [],
-     "value": null,
-     "date": "2026-11-09",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/11/mbda-on-contract-to-study-aster-30-missile-integration-in-mk-41-vls/",
-     "headline": "MBDA on contract to study Aster 30 missile integration in MK 41 VLS",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order||denmark",
+   "key": "order||france",
    "systems": [],
    "countries": [
-    "Denmark"
+    "France"
    ],
    "kind": "order",
    "events": [
     {
-     "id": "ev-1dq013n",
+     "id": "ev-3eiy60",
      "kind": "order",
      "systems": [],
      "countries": [
-      "Denmark"
+      "France"
      ],
-     "value": null,
-     "date": "2026-11-09",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/event-news/euronaval-2026/2026/11/babcock-and-saab-denmark-sign-strategic-agreement-for-arrowhead-frigate-opportunities/",
-     "headline": "Babcock and Saab Denmark sign strategic agreement for Arrowhead frigate opportunities",
-     "primary": false
-    },
-    {
-     "id": "ev-l1p4nx",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Denmark"
-     ],
-     "value": null,
-     "date": "2026-09-21",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/global/europe/2026/09/21/denmark-says-nato-shares-responsibility-for-arctic-security-under-greenland-deal/",
-     "headline": "Denmark says NATO shares responsibility for Arctic security under Greenland deal",
+     "value": {
+      "amount": 1700000000,
+      "currency": "USD",
+      "asWritten": "$1.7 billion"
+     },
+     "date": "2026-11-10",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/11/france-awards-1-7-billion-contract-to-airbus-thales-team-for-new-military-satellites/",
+     "headline": "France awards $1.7 billion contract to Airbus-Thales team for new military satellites",
      "primary": false
     }
    ],
    "outlets": [
-    "Naval News",
-    "Defense News"
+    "Breaking Defense"
    ],
-   "value": null,
-   "verdict": "corroborated by independent outlets"
+   "value": {
+    "amount": 1700000000,
+    "currency": "USD",
+    "asWritten": "$1.7 billion"
+   },
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order||united states",
@@ -208304,6 +208302,24 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-10uswyu",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 400000000,
+      "currency": "USD",
+      "asWritten": "$400M"
+     },
+     "date": "2026-11-10",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/secretive-u-s-drone-maker-aevex-lands-400m-drone-contract/",
+     "headline": "Secretive U.S. drone maker AEVEX lands $400M drone contract",
+     "primary": false
+    },
     {
      "id": "ev-1pvt4nu",
      "kind": "order",
@@ -208948,6 +208964,81 @@
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "order|aster+aster 30|",
+   "systems": [
+    "Aster",
+    "Aster 30"
+   ],
+   "countries": [],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-u58xmi",
+     "kind": "order",
+     "systems": [
+      "Aster",
+      "Aster 30"
+     ],
+     "countries": [],
+     "value": null,
+     "date": "2026-11-09",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/11/mbda-on-contract-to-study-aster-30-missile-integration-in-mk-41-vls/",
+     "headline": "MBDA on contract to study Aster 30 missile integration in MK 41 VLS",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "order||denmark",
+   "systems": [],
+   "countries": [
+    "Denmark"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1dq013n",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Denmark"
+     ],
+     "value": null,
+     "date": "2026-11-09",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/event-news/euronaval-2026/2026/11/babcock-and-saab-denmark-sign-strategic-agreement-for-arrowhead-frigate-opportunities/",
+     "headline": "Babcock and Saab Denmark sign strategic agreement for Arrowhead frigate opportunities",
+     "primary": false
+    },
+    {
+     "id": "ev-l1p4nx",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Denmark"
+     ],
+     "value": null,
+     "date": "2026-09-21",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/global/europe/2026/09/21/denmark-says-nato-shares-responsibility-for-arctic-security-under-greenland-deal/",
+     "headline": "Denmark says NATO shares responsibility for Arctic security under Greenland deal",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News",
+    "Defense News"
+   ],
+   "value": null,
+   "verdict": "corroborated by independent outlets"
   },
   {
    "key": "order||sweden",
