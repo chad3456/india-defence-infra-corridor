@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-11T16:10:45.645Z",
-  "previousBuild": "2026-11-11T06:17:45.486Z",
+  "builtAt": "2026-11-11T22:41:58.706Z",
+  "previousBuild": "2026-11-11T16:10:45.645Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 326,
-    "createdThisRun": 4,
+    "stories": 328,
+    "createdThisRun": 2,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 220,
+    "itemsSeen": 224,
     "corroboration": {
-      "one": 283,
+      "one": 285,
       "two": 18,
       "threePlus": 25
     }
@@ -33,7 +33,7 @@
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 101
+      "n": 102
     },
     {
       "id": "cyber-ew",
@@ -43,7 +43,7 @@
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 27
+      "n": 28
     },
     {
       "id": "military-ai",
@@ -132,8 +132,8 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 33,
-      "kept": 2
+      "items": 37,
+      "kept": 3
     },
     {
       "outlet": "Indian Defence Research Wing",
@@ -145,7 +145,7 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Army Times",
@@ -181,7 +181,7 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense One",
@@ -193,7 +193,7 @@
       "outlet": "Naval News",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defence Blog",
@@ -1549,6 +1549,40 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/u-s-air-force-buys-gear-for-droneshield-counter-drone-kits-in-texas/",
+          "published": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "https://www.twz.com/news-features/autonomous-cessna-caravan-air-ambulance-to-be-tested-by-u-s-military",
+      "headline": "Autonomous Cessna Caravan Air Ambulance To Be Tested By U.S. Military",
+      "firstSeen": "2026-11-11",
+      "lastSeen": "2026-11-11",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "The War Zone",
+          "url": "https://www.twz.com/news-features/autonomous-cessna-caravan-air-ambulance-to-be-tested-by-u-s-military",
+          "published": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/11/the-armys-coming-c2-challenge-is-fighting-across-thousands-of-miles/",
+      "headline": "The Army’s coming C2 challenge is fighting across thousands of miles",
+      "firstSeen": "2026-11-11",
+      "lastSeen": "2026-11-11",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/11/the-armys-coming-c2-challenge-is-fighting-across-thousands-of-miles/",
           "published": "2026-11-11"
         }
       ]
