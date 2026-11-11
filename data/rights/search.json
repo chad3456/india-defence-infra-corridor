@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-11T07:12:49.534Z",
+  "builtAt": "2026-11-11T16:40:23.913Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1379,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1378,
-    "withOutlet": 1277,
+    "items": 1381,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1379,
+    "withOutlet": 1278,
     "bySubject": {
-      "scst": 941,
+      "scst": 943,
       "pmshri": 438
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 60
+    "offSubjectDropped": 59
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 680
+      "n": 681
     },
     {
       "key": "use",
-      "n": 483
+      "n": 484
     },
     {
       "key": "acquittal",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 98
+      "n": 99
     },
     {
       "key": "The Indian Express",
@@ -315,20 +315,20 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 30,
+      "google": 29,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 9,
-      "bing": 4,
-      "kept": 0,
-      "offSubject": 1
+      "google": 8,
+      "bing": 5,
+      "kept": 1,
+      "offSubject": 0
     },
     {
       "id": "act-compensation",
@@ -365,17 +365,17 @@
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 10,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 5
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 10,
+      "google": 9,
       "bing": 0,
       "kept": 0,
       "offSubject": 1
@@ -415,7 +415,7 @@
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 32,
+      "google": 33,
       "bing": 11,
       "kept": 0,
       "offSubject": 2
@@ -445,7 +445,7 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
+      "google": 8,
       "bing": 1,
       "kept": 0,
       "offSubject": 1
@@ -465,7 +465,7 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 20,
+      "google": 19,
       "bing": 1,
       "kept": 0,
       "offSubject": 7
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 27,
+      "google": 26,
       "bing": 2,
       "kept": 0,
       "offSubject": 3
@@ -485,7 +485,7 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 9,
+      "google": 10,
       "bing": 0,
       "kept": 0,
       "offSubject": 7
@@ -19991,7 +19991,8 @@
       "published": "2026-08-06",
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQWVRZUi1leFlYck1aTGlUY3JvQWJzUDFzcThtWXRfaDNSSGZSbkE3RTB3S0xxRTN4YmcyMkY1WlNfajZEa2xTUWtFc2tOZndaX0xVb1BWVWZwR0pBU19jbVUwa2ladi1TVm1MTm1fZm81NG5tbEpJRUt1UW1vZXNVR25ha2h4LWxGaWVvbzZSNmd0d9IBkgFBVV95cUxQWVRZUi1leFlYck1aTGlUY3JvQWJzUDFzcThtWXRfaDNSSGZSbkE3RTB3S0xxRTN4YmcyMkY1WlNfajZEa2xTUWtFc2tOZndaX0xVb1BWVWZwR0pBU19jbVUwa2ladi1TVm1MTm1fZm81NG5tbEpJRUt1UW1vZXNVR25ha2h4LWxGaWVvbzZSNmd0dw?oc=5",
       "queries": [
-        "shri-general"
+        "shri-general",
+        "shri-sanctioned"
       ],
       "indexes": [
         "google"
@@ -23041,6 +23042,38 @@
       "outlet": "Lawtext",
       "published": "2026-11-10",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBHdzdTUUhpbDRYd05qR2xnY0FxWUtQRmdSSGNtODBVTnN3M0I0UWRvalo2V24taXpHOVVLaTFZQU5TeW1oYUw0eFRTaExiWjEtUHgzZkxJbFVVaEg1dGg2N082aDFKQQ?oc=5",
+      "queries": [
+        "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-11"
+    },
+    {
+      "id": "man arrested after dalit girl raped four months pregnant in bhadohi",
+      "headline": "Man Arrested After Dalit Girl Raped, Four Months Pregnant In Bhadohi",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-11-11",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af49a1748eb436799e5802b101b0107&url=https%3a%2f%2fwww.rediff.com%2fnews%2freport%2fdalit-minor-raped-pregnant-in-up-accused-arrested%2f20261111.htm&c=14543896176962430983&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-11-11"
+    },
+    {
+      "id": "supreme court upholds quashing of sc st act proceedings against public servants in intra c",
+      "headline": "Supreme Court Upholds Quashing of SC/ST Act Proceedings Against Public Servants in Intra-Caste Dispute. Absence of Caste-Based Malice and 8-Year Delay in Filing Complaint Found Fatal to Prosecution Under SC/ST Act.",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Lawtext",
+      "published": "2026-08-10",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5XZ0hDRVVRLU1qakRsXzc5UUVHT21uRHRKNkw2bi1IaUtJYnhIQ2NuMWtrcGNGcUVVUzBmSjFleEl0S290WnVKSi1OSVNyWjdfckdFNg?oc=5",
       "queries": [
         "act-false"
       ],
