@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-10T22:32:11.221Z",
+ "builtAt": "2026-11-11T12:57:21.858Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206524,20 +206524,34 @@
   },
   {
    "outlet": "Naval News",
-   "ok": false,
-   "items": 0,
+   "ok": true,
+   "items": 10,
    "kept": 0,
-   "via": "unconfigured"
+   "via": "direct"
   },
   {
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-y0u41f",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": null,
+   "date": "2026-11-11",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/spacex-wins-pentagon-deal-to-test-starlink-lasers-for-missile-tracking/",
+   "headline": "SpaceX wins Pentagon deal to test Starlink lasers for missile tracking",
+   "primary": false
+  },
   {
    "id": "ev-3eiy60",
    "kind": "order",
@@ -208258,43 +208272,6 @@
  ],
  "groups": [
   {
-   "key": "order||france",
-   "systems": [],
-   "countries": [
-    "France"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-3eiy60",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "France"
-     ],
-     "value": {
-      "amount": 1700000000,
-      "currency": "USD",
-      "asWritten": "$1.7 billion"
-     },
-     "date": "2026-11-10",
-     "outlet": "Breaking Defense",
-     "url": "https://breakingdefense.com/2026/11/france-awards-1-7-billion-contract-to-airbus-thales-team-for-new-military-satellites/",
-     "headline": "France awards $1.7 billion contract to Airbus-Thales team for new military satellites",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Breaking Defense"
-   ],
-   "value": {
-    "amount": 1700000000,
-    "currency": "USD",
-    "asWritten": "$1.7 billion"
-   },
-   "verdict": "a single report, uncorroborated"
-  },
-  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -208302,6 +208279,20 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-y0u41f",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": null,
+     "date": "2026-11-11",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/spacex-wins-pentagon-deal-to-test-starlink-lasers-for-missile-tracking/",
+     "headline": "SpaceX wins Pentagon deal to test Starlink lasers for missile tracking",
+     "primary": false
+    },
     {
      "id": "ev-10uswyu",
      "kind": "order",
@@ -208964,6 +208955,43 @@
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "order||france",
+   "systems": [],
+   "countries": [
+    "France"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-3eiy60",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "France"
+     ],
+     "value": {
+      "amount": 1700000000,
+      "currency": "USD",
+      "asWritten": "$1.7 billion"
+     },
+     "date": "2026-11-10",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/11/france-awards-1-7-billion-contract-to-airbus-thales-team-for-new-military-satellites/",
+     "headline": "France awards $1.7 billion contract to Airbus-Thales team for new military satellites",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Breaking Defense"
+   ],
+   "value": {
+    "amount": 1700000000,
+    "currency": "USD",
+    "asWritten": "$1.7 billion"
+   },
+   "verdict": "a single report, uncorroborated"
   },
   {
    "key": "order|aster+aster 30|",
