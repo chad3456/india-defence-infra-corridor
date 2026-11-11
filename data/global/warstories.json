@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-11T06:17:45.486Z",
-  "previousBuild": "2026-11-10T21:48:48.815Z",
+  "builtAt": "2026-11-11T16:10:45.645Z",
+  "previousBuild": "2026-11-11T06:17:45.486Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 322,
-    "createdThisRun": 0,
+    "stories": 326,
+    "createdThisRun": 4,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 220,
     "corroboration": {
-      "one": 279,
+      "one": 283,
       "two": 18,
       "threePlus": 25
     }
@@ -28,12 +28,12 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 165
+      "n": 169
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 100
+      "n": 101
     },
     {
       "id": "cyber-ew",
@@ -60,17 +60,17 @@
     {
       "iso": "IND",
       "name": "India",
-      "n": 32
+      "n": 33
+    },
+    {
+      "iso": "GBR",
+      "name": "United Kingdom",
+      "n": 10
     },
     {
       "iso": "UKR",
       "name": "Ukraine",
       "n": 10
-    },
-    {
-      "iso": "GBR",
-      "name": "United Kingdom",
-      "n": 9
     },
     {
       "iso": "DEU",
@@ -181,7 +181,7 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defense One",
@@ -199,7 +199,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1471,6 +1471,85 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/india-jet-powered-kamikaze-drone-programme-cost/",
+      "headline": "₹2,000-Crore Army Jet Powered Drone Plan Puts 11 Indian Industry in Race",
+      "firstSeen": "2026-11-11",
+      "lastSeen": "2026-11-11",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/india-jet-powered-kamikaze-drone-programme-cost/",
+          "published": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/saab-says-royal-navy-orders-15-million-of-drone-detection-radars-for-uncrewed-k3-scout-vessels/",
+      "headline": "Saab says Royal Navy orders £15 million of drone-detection radars for uncrewed K3 Scout vessels",
+      "firstSeen": "2026-11-11",
+      "lastSeen": "2026-11-11",
+      "themes": [
+        "autonomy",
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "GBR",
+          "name": "United Kingdom"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/saab-says-royal-navy-orders-15-million-of-drone-detection-radars-for-uncrewed-k3-scout-vessels/",
+          "published": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-k-minister-drives-missile-armed-stark-drone-boat-in-oslo/",
+      "headline": "U.K. minister drives missile-armed STARK drone boat in Oslo",
+      "firstSeen": "2026-11-11",
+      "lastSeen": "2026-11-11",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-k-minister-drives-missile-armed-stark-drone-boat-in-oslo/",
+          "published": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-air-force-buys-gear-for-droneshield-counter-drone-kits-in-texas/",
+      "headline": "U.S. Air Force buys gear for DroneShield counter-drone kits in Texas",
+      "firstSeen": "2026-11-11",
+      "lastSeen": "2026-11-11",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-air-force-buys-gear-for-droneshield-counter-drone-kits-in-texas/",
+          "published": "2026-11-11"
         }
       ]
     },
