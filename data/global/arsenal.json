@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-11T23:43:09.082Z",
+ "builtAt": "2026-11-12T13:59:22.112Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206451,6 +206451,13 @@
    "source": "Hypersonic_weapon"
   },
   {
+   "name": "Fatah-II ER",
+   "key": "fatah ii er",
+   "kind": "hypersonic",
+   "country": "Pakistan",
+   "source": "Hypersonic_weapon"
+  },
+  {
    "name": "DARPA Hypersonic Air-breathing Weapon Concept",
    "key": "darpa hypersonic air breathing weapon concept",
    "kind": "hypersonic",
@@ -206512,7 +206519,7 @@
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 1,
+   "kept": 0,
    "via": "direct"
   },
   {
@@ -206538,6 +206545,20 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-8bar8v",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "value": null,
+   "date": "2026-11-12",
+   "outlet": "UK Ministry of Defence",
+   "url": "https://www.gov.uk/government/news/uk-growth-and-security-boosted-as-royal-navy-agrees-export-deal-for-new-mine-hunting-motherships",
+   "headline": "UK growth and security boosted as Royal Navy agrees export deal for new mine-hunting motherships",
+   "primary": true
+  },
   {
    "id": "ev-y0u41f",
    "kind": "order",
@@ -208272,6 +208293,107 @@
  ],
  "groups": [
   {
+   "key": "order||united kingdom",
+   "systems": [],
+   "countries": [
+    "United Kingdom"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-8bar8v",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-11-12",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/news/uk-growth-and-security-boosted-as-royal-navy-agrees-export-deal-for-new-mine-hunting-motherships",
+     "headline": "UK growth and security boosted as Royal Navy agrees export deal for new mine-hunting motherships",
+     "primary": true
+    },
+    {
+     "id": "ev-1p16550",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-11-04",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/publications/list-of-maa-approved-organisations",
+     "headline": "List of MAA approved organizations",
+     "primary": true
+    },
+    {
+     "id": "ev-warzqh",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-29",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/uk-keeps-623-boxer-order-and-adds-heavy-wheeled-recovery-vehicle/",
+     "headline": "UK keeps 623 Boxer order and adds heavy wheeled recovery vehicle",
+     "primary": false
+    },
+    {
+     "id": "ev-8yr084",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-10-02",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/news/30-boost-to-uk-military-transport-aircraft-availability-under-new-deal",
+     "headline": "30% boost to UK military transport aircraft availability under new deal",
+     "primary": true
+    },
+    {
+     "id": "ev-xithjw",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-09-21",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/publications/design-approved-organization-scheme-daos",
+     "headline": "Design Approved Organization Scheme (DAOS)",
+     "primary": true
+    },
+    {
+     "id": "ev-1tu2uoh",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-09-17",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
+     "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "UK Ministry of Defence",
+    "Defence Blog",
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "from a primary source"
+  },
+  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -209183,93 +209305,6 @@
    ],
    "value": null,
    "verdict": "corroborated by independent outlets"
-  },
-  {
-   "key": "order||united kingdom",
-   "systems": [],
-   "countries": [
-    "United Kingdom"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-1p16550",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-11-04",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/publications/list-of-maa-approved-organisations",
-     "headline": "List of MAA approved organizations",
-     "primary": true
-    },
-    {
-     "id": "ev-warzqh",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-10-29",
-     "outlet": "Defence Blog",
-     "url": "https://defence-blog.com/uk-keeps-623-boxer-order-and-adds-heavy-wheeled-recovery-vehicle/",
-     "headline": "UK keeps 623 Boxer order and adds heavy wheeled recovery vehicle",
-     "primary": false
-    },
-    {
-     "id": "ev-8yr084",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-10-02",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/news/30-boost-to-uk-military-transport-aircraft-availability-under-new-deal",
-     "headline": "30% boost to UK military transport aircraft availability under new deal",
-     "primary": true
-    },
-    {
-     "id": "ev-xithjw",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-09-21",
-     "outlet": "UK Ministry of Defence",
-     "url": "https://www.gov.uk/government/publications/design-approved-organization-scheme-daos",
-     "headline": "Design Approved Organization Scheme (DAOS)",
-     "primary": true
-    },
-    {
-     "id": "ev-1tu2uoh",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "United Kingdom"
-     ],
-     "value": null,
-     "date": "2026-09-17",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/09/tkms-atlas-uk-awarded-uk-mod-ngcm-torpedo-defence-system-contract/",
-     "headline": "TKMS ATLAS UK Awarded UK MOD NGCM Torpedo Defence System Contract",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "UK Ministry of Defence",
-    "Defence Blog",
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "from a primary source"
   },
   {
    "key": "order||jordan+united states",
