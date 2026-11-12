@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-12T07:09:36.770Z",
-  "previousBuild": "2026-11-11T22:41:58.706Z",
+  "builtAt": "2026-11-12T16:47:56.282Z",
+  "previousBuild": "2026-11-12T07:09:36.770Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 328,
-    "createdThisRun": 0,
+    "stories": 334,
+    "createdThisRun": 6,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 14,
+    "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 224,
+    "itemsSeen": 213,
     "corroboration": {
-      "one": 285,
+      "one": 291,
       "two": 18,
       "threePlus": 25
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 169
+      "n": 174
     },
     {
       "id": "autonomy",
@@ -48,7 +48,7 @@
     {
       "id": "military-ai",
       "label": "AI in military use",
-      "n": 10
+      "n": 11
     }
   ],
   "byCountry": [
@@ -60,12 +60,12 @@
     {
       "iso": "IND",
       "name": "India",
-      "n": 33
+      "n": 34
     },
     {
       "iso": "GBR",
       "name": "United Kingdom",
-      "n": 10
+      "n": 11
     },
     {
       "iso": "UKR",
@@ -132,14 +132,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 37,
+      "items": 36,
       "kept": 3
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Military Times",
@@ -181,7 +181,7 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Defense One",
@@ -191,9 +191,10 @@
     },
     {
       "outlet": "Naval News",
-      "ok": true,
-      "items": 10,
-      "kept": 0
+      "ok": false,
+      "items": 0,
+      "kept": 0,
+      "error": "HTTP 503"
     },
     {
       "outlet": "Defence Blog",
@@ -205,7 +206,7 @@
       "outlet": "UK Ministry of Defence",
       "ok": true,
       "items": 20,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Press Information Bureau (India)",
@@ -1471,6 +1472,118 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/indias-military-drone-boom-creates-an-opening-for-deep-tech/",
+      "headline": "India’s Military Drone Boom Creates an Opening for Deep Tech",
+      "firstSeen": "2026-11-12",
+      "lastSeen": "2026-11-12",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/indias-military-drone-boom-creates-an-opening-for-deep-tech/",
+          "published": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/nato-moves-to-strengthen-air-and-missile-defence-with-faster-counter-drone-procurement/",
+      "headline": "NATO moves to strengthen air and missile defence with faster counter-drone procurement",
+      "firstSeen": "2026-11-12",
+      "lastSeen": "2026-11-12",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/nato-moves-to-strengthen-air-and-missile-defence-with-faster-counter-drone-procurement/",
+          "published": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/11/cry-drone-and-let-slip-the-fruit-flies-of-war/",
+      "headline": "Cry ‘drone,’ and let slip the fruit flies of war",
+      "firstSeen": "2026-11-12",
+      "lastSeen": "2026-11-12",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/11/cry-drone-and-let-slip-the-fruit-flies-of-war/",
+          "published": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/anti-drone-gun-maker-acs-hires-u-s-army-laser-chiefs-for-new-division/",
+      "headline": "Anti-drone gun maker ACS hires U.S. Army laser chiefs for new division",
+      "firstSeen": "2026-11-12",
+      "lastSeen": "2026-11-12",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/anti-drone-gun-maker-acs-hires-u-s-army-laser-chiefs-for-new-division/",
+          "published": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-army-drones-to-hunt-mines-and-fpv-threats-before-abrams-tanks-arrive/",
+      "headline": "U.S. Army drones to hunt mines and FPV threats before Abrams tanks arrive",
+      "firstSeen": "2026-11-12",
+      "lastSeen": "2026-11-12",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-army-drones-to-hunt-mines-and-fpv-threats-before-abrams-tanks-arrive/",
+          "published": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "https://www.gov.uk/government/news/uk-commandos-to-get-ai-enabled-edge-from-british-scale-up-arondite-as-company-expands-to-natos-northern-flank",
+      "headline": "UK Commandos to get AI-enabled edge from British scale-up Arondite, as company expands to NATO's northern flank",
+      "firstSeen": "2026-11-12",
+      "lastSeen": "2026-11-12",
+      "themes": [
+        "military-ai"
+      ],
+      "countries": [
+        {
+          "iso": "GBR",
+          "name": "United Kingdom"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "UK Ministry of Defence",
+          "url": "https://www.gov.uk/government/news/uk-commandos-to-get-ai-enabled-edge-from-british-scale-up-arondite-as-company-expands-to-natos-northern-flank",
+          "published": "2026-11-12"
         }
       ]
     },
