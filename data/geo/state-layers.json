@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-11T19:48:36.490Z",
+  "builtAt": "2026-11-12T07:30:30.659Z",
   "note": "Named things per state, for the map to answer a click with. Each layer records how its rows reached a state and how many did not, because the join is where this kind of file goes wrong invisibly.",
   "refused": [
     {
@@ -25089,8 +25089,8 @@
       "blurb": "Urban rail lines as OpenStreetMap has them tagged, each placed by the state its midpoint falls in. Station counts are tags rather than an operator's published figure.",
       "join": "The line's midpoint, point-in-polygon. A line that crosses a state border appears once, under the state containing its middle.",
       "source": "OpenStreetMap, via the mobility connector.",
-      "total": 120,
-      "placed": 117,
+      "total": 122,
+      "placed": 119,
       "unplacedCount": 2,
       "deduped": 1,
       "unplaced": [
@@ -25289,6 +25289,20 @@
             "basis": "OpenStreetMap relation tags: line name, station count and operator as tagged",
             "lat": 12.9609,
             "lon": 77.5746
+          },
+          {
+            "name": "Pink Line (Kalena Agrahara → Tavarekere)",
+            "why": "Namma Metro, 6 stations.",
+            "basis": "OpenStreetMap relation tags: line name, station count and operator as tagged",
+            "lat": 12.9029,
+            "lon": 77.6013
+          },
+          {
+            "name": "Pink Line (Tavarekere → Kalena Agrahara)",
+            "why": "Namma Metro, 6 stations.",
+            "basis": "OpenStreetMap relation tags: line name, station count and operator as tagged",
+            "lat": 12.9029,
+            "lon": 77.6014
           },
           {
             "name": "Purple Line (Challaghatta → Whitefield (Kadugodi))",
@@ -41378,6 +41392,13 @@
             "lon": 74.6426
           },
           {
+            "name": "Bilekahalli IIM-B",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 12.8957,
+            "lon": 77.5996
+          },
+          {
             "name": "Binkadakatti",
             "why": "Station code BKIT.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -42470,13 +42491,6 @@
             "lon": 75.72
           },
           {
-            "name": "IIMB",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 12.8957,
-            "lon": 77.5996
-          },
-          {
             "name": "Indi Road",
             "why": "Station code IDR.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -42580,13 +42594,6 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 12.9597,
             "lon": 74.8535
-          },
-          {
-            "name": "JP Nagar 4th Phase",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 12.9098,
-            "lon": 77.6001
           },
           {
             "name": "Jumnal",
@@ -43506,6 +43513,13 @@
             "lon": 77.5302
           },
           {
+            "name": "N S Palya",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 12.9098,
+            "lon": 77.6001
+          },
+          {
             "name": "Nadaprabhu Kempegowda Station, Majestic",
             "why": "No station code in this dataset.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -44304,6 +44318,13 @@
             "lon": 75.558
           },
           {
+            "name": "Suddaguntepalya",
+            "why": "No station code in this dataset.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 12.9295,
+            "lon": 77.6005
+          },
+          {
             "name": "Sujatapuram",
             "why": "Station code SJPM.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -44407,13 +44428,6 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 13.7115,
             "lon": 75.8126
-          },
-          {
-            "name": "Tavarekere",
-            "why": "No station code in this dataset.",
-            "basis": "OpenStreetMap: name, station code and coordinate only",
-            "lat": 12.9295,
-            "lon": 77.6005
           },
           {
             "name": "Tavargatti",
