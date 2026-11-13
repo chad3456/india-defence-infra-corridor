@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-12T17:07:59.421Z",
+  "builtAt": "2026-11-13T01:31:04.784Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1387,
-    "addedThisRun": 5,
-    "carriedFromEarlierRuns": 1382,
-    "withOutlet": 1283,
+    "items": 1391,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 1387,
+    "withOutlet": 1287,
     "bySubject": {
-      "scst": 949,
+      "scst": 953,
       "pmshri": 438
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 65
+    "offSubjectDropped": 67
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 685
+      "n": 688
     },
     {
       "key": "use",
-      "n": 486
+      "n": 487
     },
     {
       "key": "acquittal",
@@ -73,16 +73,16 @@
       "n": 36
     },
     {
+      "key": "LawBeat",
+      "n": 34
+    },
+    {
       "key": "Hindustan Times",
       "n": 33
     },
     {
-      "key": "LawBeat",
-      "n": 32
-    },
-    {
       "key": "Verdictum",
-      "n": 29
+      "n": 30
     },
     {
       "key": "ThePrint",
@@ -93,11 +93,11 @@
       "n": 23
     },
     {
-      "key": "SCC Online",
-      "n": 20
+      "key": "Live Law",
+      "n": 21
     },
     {
-      "key": "Live Law",
+      "key": "SCC Online",
       "n": 20
     },
     {
@@ -295,9 +295,9 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 36,
+      "google": 38,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 0
     },
     {
@@ -305,7 +305,7 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 41,
+      "google": 39,
       "bing": 0,
       "kept": 0,
       "offSubject": 4
@@ -317,7 +317,7 @@
       "expect": "use",
       "google": 35,
       "bing": 0,
-      "kept": 4,
+      "kept": 1,
       "offSubject": 8
     },
     {
@@ -325,7 +325,7 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 9,
+      "google": 8,
       "bing": 5,
       "kept": 0,
       "offSubject": 0
@@ -345,19 +345,19 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 17,
+      "google": 22,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 2
+      "kept": 1,
+      "offSubject": 3
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 29,
+      "google": 31,
       "bing": 2,
-      "kept": 0,
+      "kept": 2,
       "offSubject": 7
     },
     {
@@ -378,7 +378,7 @@
       "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 2
     },
     {
       "id": "act-dilution",
@@ -415,7 +415,7 @@
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 34,
+      "google": 31,
       "bing": 11,
       "kept": 0,
       "offSubject": 2
@@ -438,7 +438,7 @@
       "google": 10,
       "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 4
     },
     {
       "id": "shri-upgrade",
@@ -465,7 +465,7 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 21,
+      "google": 20,
       "bing": 1,
       "kept": 0,
       "offSubject": 8
@@ -488,7 +488,7 @@
       "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     }
   ],
   "items": [
@@ -4931,7 +4931,8 @@
       "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOLURjLWxSNGZwM3JHZU5SeEdOZFdscHdha0ZBQjJ1NFQxV0NuSjVDVXRvOG5za2UzYmhLazk0S0t4TEhfSXFyQjFOYjlBMFJISEFMTDlUTGJEcm5WV3hyQ1ZDQXZVdGNnMVN5YlBOd1RLYmFsNklSRjU2cDliRndPbmk0bmhYM2dtYzhlUHpwSEVxbWk5NjRQTzBrenQ3M2RpN1RKcEIzRXRXUl9ZMEhGT3FPZ29ZS0hlSUHSAb8BQVVfeXFMUFdKOFJ4Z2tPblFXSnVQNEtPZlZpLVNwZHIzNmpWRnUwMktadG1iOE92NmNueUVkSTdZRndFX3JqeFVib0VxVGlMNExXdGJsc2dIQ2pjd0x0bTlzWGtXeks1WHNfa0JKNHhBZVBLWlo1a2xCd0lyM3RqTHQ5UHVtdnJVSG1oOGY4YWI3ZzU1Q04teDJ4dEp0TGJBalFBbDJWbmNyTmxSczh6SG1KQ1hxaXRpVktuNnozN3VENGwyMjQ?oc=5",
       "queries": [
         "act-compensation",
-        "act-registered"
+        "act-registered",
+        "act-pendency"
       ],
       "indexes": [
         "google",
@@ -22220,7 +22221,8 @@
       "published": "2025-09-29",
       "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQSHNkTmxzTFp2WDlDUmdyZEhfc0w3RkY3bUhSeGsyeTU0THZid3pZaGQxTFk0RmJZckhFbzNIN2FnaU8wWUpEQWRfZjFzcF9DTEdaaG10MEFFTVNhN2c3cnlwWlVKRmZiMDNPdndTUTRGamYycGdaODJTTG1YNnUwN295WWt1VFhQeENhSkZtVG1VSm9YNm9aUnZnLVNLZw?oc=5",
       "queries": [
-        "act-general"
+        "act-general",
+        "act-pendency"
       ],
       "indexes": [
         "google"
@@ -23179,6 +23181,70 @@
         "google"
       ],
       "firstSeen": "2026-11-12"
+    },
+    {
+      "id": "sc st act anticipatory bail can be granted when prima facie case is not made out karnataka",
+      "headline": "SC/ST Act | Anticipatory Bail Can Be Granted When Prima Facie Case Is Not Made Out: Karnataka HC",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Verdictum",
+      "published": "2023-12-11",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPQkF1cDRYUG0tRDE2YjU0UE5qZHBBeG4wTm9DSUFpZnQtTDdPdHh5WnZUSlhlVzc3aU44OTlWMUxZcXQwLXd5UjJwWGljX0pVVWtwWG83MjQ1NlpQenp4WDNCaTlkd0Fsc0F2S19vbmlNR0NxUHVjWTRRdVY2TVRLMzZKY3BkT19NOVdIUUVnVDFDQVVQaUJKMHYyWVo1OVY1dU4wempkRFZ3dTJtUklmSEZ1SXJ2eFRHYTNVSktydy1VVDBOaHFYSm43dFQ1cUd4N21PUjlaTDdGaXhF0gHiAUFVX3lxTFBEXzFLa2hQNU00eTFWalYxUVhUeXZyRWRqRGUxellEbTdtUWQ3OEt5aFM3S2ZncGgxVU1NYjdGbFJOdDRxYVVPT2RncEtCdlFZTU9WU0s3T0dBRVFUYU9xdENUSThxVDdXOEQ3aU9ObGpoVXp3VXctOW5ueFVFR0pJMGZCODczeEZpN3JiRFB1d3A0TkxVbHlhSkJpRm9IQXRlc3BCb3dtWm43S2VZWUZLc3RXRmJ5b3ZFdnVNR0pwVGdUdW9HVVdfdnR4eWJieTNMUGhOa3BfeDlVcWZzUUpEbkE?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-13"
+    },
+    {
+      "id": "belated sc st act allegations probe gaps more why delhi court granted swatantra bhardwaj i",
+      "headline": "Belated SC/ST Act Allegations, Probe Gaps & More: Why Delhi Court Granted Swatantra Bhardwaj Interim Bail",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawBeat",
+      "published": "2026-09-15",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQdXpibVNYdktJaWV0QUltX2R4OTJ1YVQ5b2FwQlc1emM0TWlXbm5meVZ5UmU4NVpaZm9HZk9vME4yUldDdVdXWXZTRC1BbGFNbnVNRllYTGpwbDB5RGQzX0Y0QzFSUVNRdzMyVlZMdEVBeVJYTWllU01pc3RQUjREOEZJczJzbnUwMkljbDJpd3hMYV9pNjF5czVWUnBTaHF3UGFtdy0yS042UkMxdGhBVGdUa2ttTEducDBkUnY4aW5nZWFvcnhPRWtUWHJ0UHc2UHJYTW1la9IB3AFBVV95cUxObWdscmxLRmJnUDVET1pBb2FtOE8tdTZ6akp1RDJLc08waldtNHVlVzBjZ1I5MDU0YUdmVkpxUmJjbUVENGc5b051eXBPU2xIcUpYZWctYTQ2TFVmTlJ6Y2tvTDBYTUJBakVCN1B4UWhWY0t6TXZrUlpjTnVkOXVmU3lPTkRjaW5jLTY4ZDlvX05Lc3RXYncxWVdlaFAxSU5neUFheVBXOElRWkxCdU45MWZQX0pYYTZiYm5tR3ZIUnhxTW5BN3JCYm9IOVR5S1NwbzlLREc1dmNId0J5?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-13"
+    },
+    {
+      "id": "for conviction under sc st act offence of outraging woman s modesty must be committed on g",
+      "headline": "For Conviction Under SC/ST Act, Offence Of Outraging Woman's Modesty Must Be Committed On Ground Of...",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Live Law",
+      "published": "2024-01-29",
+      "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxOOEU1WFA2RkVsZFl4RUNEc2ZxV3VkeHBjd3hRMU5qZzMwQ1hFY0drYVE0dDU5cXdua1lZaGpjcjM3T19VQ0x4VWxGNnMyWERRSEZhSmxVQ05LR3RtOVlncy1BUDJwWEtLM1BTa0pFU1JhRHk4SHB5aGhYUVFwNjk5TmhsRy0tWk5hdUZ2WXlLS05nNEZXaVFUNDlYWlRIdU96R2JZYjV2ekhHc1lFMjhMUjZ5TFlDUHpVbGVKWVNxUVV6ekVGOE1OZWtsSnJxcjRhdkNzc0pkYlJ2SHZMbnJXRXl1bTNGamFOSXhoRlJFbTYwd9IB9wFBVV95cUxNclI4Qk5ZZGxtR3UtWnl0bl8xZGhDSkFIcElOc0k5LU51ZEJyNERIamxKRkJVY1VoZTRzUmVUR254WGFjQjhONmhOZGFrWjdHdjZ1dS02Y3J5U1Nzc0JOTktlTkljQWFOMDBIeWxhaDhSZ2VZRjM3Nm9sQks3eVZmRTQ5MHVxeng2REU0R1NpSTBPY2xnWEsyWVlwNmRKMG1GUDFJQUg0Y0Nud25RNXlfQ193ZUJlLTNoMWZlM0lCOHNTRk5VcVlxalppdzVXczJQX2ttTEVyZlNPSHg4OERIYklwdVRjMzZlb01HaWZnUlA5aVg5SHd3?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-13"
+    },
+    {
+      "id": "words must be laced with casteist remarks to attract sc st act kerala hc",
+      "headline": "Words Must be Laced with Casteist Remarks to Attract SC/ST Act : Kerala HC",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawBeat",
+      "published": "2024-12-02",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOSnNxOFVBckVQNmptY2V0bEs1NG1jZVB1OFBPbUxIcWhPMEhBNTRnb1J5eHlYWVk2QjhQQkNqcldwZkNaeVBORVcyVFFvUEFwNFB3VUJQblZpbDQySFVBaUxZcHNVS3FhQWM1Rk5xbFJlekZfcWZES2p2SzFfaWc0NUpqazlIYTBHMGlCcEs0eE1WWm9iWE1yd3pLb9IBoAFBVV95cUxOSHNmNlVOVXdtbjlhaEpuN2FDSGV5dEVyYjVzU3RkN1RCa0p5elF2SVZoOHFuWkJlanFLb3dBYjZJdGJQY1NCdnFTSkprM2VyWXFNT1JTQU92bXNvenJaUmtHR1p6TVQ2NDZBclhOcXc1Tk1TcHFidmJiN1h5eWkyZzRzUmRrak1ob1BTLVdkYXR6V0QyVC1MS3QtSmE1ck5p?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-13"
     }
   ]
 }
