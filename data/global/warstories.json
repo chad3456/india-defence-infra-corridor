@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-13T12:12:42.386Z",
-  "previousBuild": "2026-11-13T01:04:45.482Z",
+  "builtAt": "2026-11-13T19:41:47.221Z",
+  "previousBuild": "2026-11-13T12:12:42.386Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,15 +12,15 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 339,
-    "createdThisRun": 5,
-    "corroboratedThisRun": 1,
+    "stories": 341,
+    "createdThisRun": 2,
+    "corroboratedThisRun": 2,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 224,
     "corroboration": {
       "one": 295,
-      "two": 19,
+      "two": 21,
       "threePlus": 25
     }
   },
@@ -28,12 +28,12 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 178
+      "n": 179
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 103
+      "n": 104
     },
     {
       "id": "cyber-ew",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 45
+      "n": 46
     },
     {
       "iso": "IND",
@@ -150,13 +150,13 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "Army Times",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "C4ISRNET",
@@ -180,13 +180,13 @@
       "outlet": "Defense News",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 3
     },
     {
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Defense One",
@@ -204,7 +204,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -220,6 +220,38 @@
     }
   ],
   "stories": [
+    {
+      "id": "https://www.militarytimes.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
+      "headline": "Drones incoming! New innovations on offer in UAS tech | Defense News Weekly Full Episode 11.10.26",
+      "firstSeen": "2026-11-09",
+      "lastSeen": "2026-11-13",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
+          "published": "2026-11-09"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
+          "published": "2026-11-09"
+        },
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
+          "published": "2026-11-09"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
+          "published": "2026-11-09"
+        }
+      ]
+    },
     {
       "id": "https://defence-blog.com/neros-gets-450m-pentagon-loan-to-cut-reliance-on-chinese-drone-parts/",
       "headline": "Neros gets $450M Pentagon loan to cut reliance on Chinese drone parts",
@@ -257,38 +289,6 @@
         {
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/industry/techwatch/2026/11/09/neros-to-expand-domestic-drone-production-with-450m-pentagon-loan/",
-          "published": "2026-11-09"
-        }
-      ]
-    },
-    {
-      "id": "https://www.militarytimes.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
-      "headline": "Drones incoming! New innovations on offer in UAS tech | Defense News Weekly Full Episode 11.10.26",
-      "firstSeen": "2026-11-09",
-      "lastSeen": "2026-11-09",
-      "themes": [
-        "drone"
-      ],
-      "countries": [],
-      "sources": [
-        {
-          "outlet": "Military Times",
-          "url": "https://www.militarytimes.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
-          "published": "2026-11-09"
-        },
-        {
-          "outlet": "Army Times",
-          "url": "https://www.armytimes.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
-          "published": "2026-11-09"
-        },
-        {
-          "outlet": "C4ISRNET",
-          "url": "https://www.c4isrnet.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
-          "published": "2026-11-09"
-        },
-        {
-          "outlet": "Defense News",
-          "url": "https://www.defensenews.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
           "published": "2026-11-09"
         }
       ]
@@ -1040,6 +1040,55 @@
       ]
     },
     {
+      "id": "https://www.defensenews.com/video/2026/10/28/inside-msis-next-generation-of-counter-drone-defense/",
+      "headline": "Inside MSI’s Next Generation of Counter-Drone Defense",
+      "firstSeen": "2026-10-28",
+      "lastSeen": "2026-11-13",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/video/2026/10/28/inside-msis-next-generation-of-counter-drone-defense/",
+          "published": "2026-10-28"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/video/2026/11/13/inside-msis-next-generation-of-counter-drone-defense/",
+          "published": "2026-11-13"
+        }
+      ]
+    },
+    {
+      "id": "https://www.militarytimes.com/news/your-military/2026/11/13/us-air-force-adopts-new-force-design-focusing-on-sensors-and-autonomy/",
+      "headline": "US Air Force adopts new Force Design focusing on sensors and autonomy",
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/news/your-military/2026/11/13/us-air-force-adopts-new-force-design-focusing-on-sensors-and-autonomy/",
+          "published": "2026-11-13"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/air/2026/11/13/us-air-force-adopts-new-force-design-focusing-on-sensors-and-autonomy/",
+          "published": "2026-11-13"
+        }
+      ]
+    },
+    {
       "id": "https://defence-industry.eu/saab-says-royal-navy-orders-15-million-of-drone-detection-radars-for-uncrewed-k3-scout-vessels/",
       "headline": "Saab says Royal Navy orders £15 million of drone-detection radars for uncrewed K3 Scout vessels",
       "firstSeen": "2026-11-11",
@@ -1603,6 +1652,23 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/indian-troops-trained-on-homegrown-alakh-attack-drone/",
+          "published": "2026-11-13"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/vayuvya-defence-expands-bengaluru-presence-for-uav-engine-development/",
+      "headline": "Vayuvya Defence Expands Bengaluru Presence for UAV Engine Development",
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/vayuvya-defence-expands-bengaluru-presence-for-uav-engine-development/",
           "published": "2026-11-13"
         }
       ]
@@ -3004,23 +3070,6 @@
         {
           "outlet": "DefenseScoop",
           "url": "https://defensescoop.com/2026/10/28/army-aws-wwt-ai-cybersecurity-project-griffin/",
-          "published": "2026-10-28"
-        }
-      ]
-    },
-    {
-      "id": "https://www.defensenews.com/video/2026/10/28/inside-msis-next-generation-of-counter-drone-defense/",
-      "headline": "Inside MSI’s Next Generation of Counter-Drone Defense",
-      "firstSeen": "2026-10-28",
-      "lastSeen": "2026-10-28",
-      "themes": [
-        "drone"
-      ],
-      "countries": [],
-      "sources": [
-        {
-          "outlet": "Defense News",
-          "url": "https://www.defensenews.com/video/2026/10/28/inside-msis-next-generation-of-counter-drone-defense/",
           "published": "2026-10-28"
         }
       ]
