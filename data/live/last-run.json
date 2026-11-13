@@ -1,15 +1,20 @@
 {
-  "id": "run-1794514580294",
-  "startedAt": "2026-11-12T19:59:03.675Z",
-  "finishedAt": "2026-11-12T20:16:20.294Z",
+  "id": "run-1794553598117",
+  "startedAt": "2026-11-13T06:51:31.511Z",
+  "finishedAt": "2026-11-13T07:06:38.117Z",
   "status": "partial",
   "connectorsRun": 9,
   "connectorsFailed": 0,
-  "seriesUpdated": 46,
+  "seriesUpdated": 222,
   "messages": [
-    "worldbank: GC.DOD.TOTL.GD.ZS: This operation was aborted",
-    "worldbank: NY.GDS.TOTL.ZS: This operation was aborted",
-    "worldbank: stopped after 8 of 690 indicators — run budget spent; the rest keep their stored values",
+    "worldbank: GC.TAX.TOTL.GD.ZS: This operation was aborted",
+    "worldbank: SL.UEM.TOTL.ZS: This operation was aborted",
+    "worldbank: SL.TLF.CACT.FE.ZS: This operation was aborted",
+    "worldbank: NY.ADJ.SVNX.GN.ZS: HTTP 502",
+    "worldbank: NY.GDP.COAL.RT.ZS: HTTP 502",
+    "worldbank: NY.GDP.FRST.RT.ZS: HTTP 502",
+    "worldbank: FB.CBK.BRCH.P5: HTTP 502",
+    "worldbank: stopped after 184 of 690 indicators — run budget spent; the rest keep their stored values",
     "satp: terror: https://www.satp.org/datasheet-terrorist-attack/fatalities/india-jammukashmir -> HTTP 403",
     "satp: terror: no candidate URL yielded a full table; keeping previous data",
     "ingest: The Tribune: HTTP 403",
@@ -29,7 +34,7 @@
     "ingest: Daily Excelsior: HTTP 403",
     "ingest: Search: manufacturing — semiconductor fab India: feed had no items",
     "ingest: Search: psu-msme — MSME India cluster launched: feed had no items",
-    "ingest funnel: 1781 items -> 609 candidates -> 110 events (lost: 267 no sector, 141 not an action, 91 no place)",
+    "ingest funnel: 1789 items -> 626 candidates -> 94 events (lost: 289 no sector, 143 not an action, 100 no place)",
     "x: X_BEARER_TOKEN not set — reading X is paid per post since February 2026, so this connector is inactive. Official announcements still arrive via the PIB, PMO and ministry feeds at no cost."
   ]
 }
