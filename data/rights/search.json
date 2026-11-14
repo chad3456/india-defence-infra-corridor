@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-14T01:06:00.373Z",
+  "builtAt": "2026-11-14T11:48:41.107Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -19,7 +19,7 @@
       "pmshri": 438
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 63
+    "offSubjectDropped": 65
   },
   "byFacet": [
     {
@@ -295,7 +295,7 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 37,
+      "google": 36,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -305,7 +305,7 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 36,
+      "google": 38,
       "bing": 1,
       "kept": 0,
       "offSubject": 4
@@ -325,20 +325,20 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 9,
+      "google": 8,
       "bing": 4,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 0
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 10,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "act-pendency",
@@ -395,20 +395,20 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 22,
+      "google": 21,
       "bing": 0,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 4
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 8,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 4
     },
     {
       "id": "shri-general",
@@ -438,7 +438,7 @@
       "google": 10,
       "bing": 1,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 6
     },
     {
       "id": "shri-upgrade",
@@ -468,7 +468,7 @@
       "google": 19,
       "bing": 1,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "shri-nep",
@@ -478,7 +478,7 @@
       "google": 30,
       "bing": 2,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "shri-criticism",
@@ -7651,7 +7651,8 @@
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE95T250NUFvdkNOTXRUQU5YUng1OXYwajhEVUNfSFJZN0k5cjlPU1kyV21IY01SbXdYbjFvbkdFb1hWd3p2c09Ed2R4TENScWRaQ2NVcFBKRC1aa1BpN1BsMzhQNW1rUnYwa3pYblBmYThNMFBFLUE?oc=5",
       "queries": [
         "act-fabricated",
-        "act-false"
+        "act-false",
+        "act-misuse-claim"
       ],
       "indexes": [
         "google"
