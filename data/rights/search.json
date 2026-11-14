@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-14T11:48:41.107Z",
+  "builtAt": "2026-11-14T18:32:20.499Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1391,
-    "addedThisRun": 0,
+    "items": 1393,
+    "addedThisRun": 2,
     "carriedFromEarlierRuns": 1391,
-    "withOutlet": 1287,
+    "withOutlet": 1288,
     "bySubject": {
-      "scst": 953,
-      "pmshri": 438
+      "scst": 954,
+      "pmshri": 439
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 65
+    "offSubjectDropped": 67
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 688
+      "n": 689
     },
     {
       "key": "use",
-      "n": 487
+      "n": 488
     },
     {
       "key": "acquittal",
@@ -74,7 +74,7 @@
     },
     {
       "key": "LawBeat",
-      "n": 34
+      "n": 35
     },
     {
       "key": "Hindustan Times",
@@ -295,17 +295,17 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 36,
+      "google": 35,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 1
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 38,
+      "google": 36,
       "bing": 1,
       "kept": 0,
       "offSubject": 4
@@ -317,18 +317,18 @@
       "expect": "use",
       "google": 34,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 9
+      "kept": 1,
+      "offSubject": 8
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 8,
+      "google": 10,
       "bing": 4,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 1
     },
     {
       "id": "act-compensation",
@@ -338,17 +338,17 @@
       "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 22,
+      "google": 20,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 4
     },
     {
       "id": "act-acquittal",
@@ -398,7 +398,7 @@
       "google": 21,
       "bing": 0,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 5
     },
     {
       "id": "act-fabricated",
@@ -438,7 +438,7 @@
       "google": 10,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "shri-upgrade",
@@ -468,16 +468,16 @@
       "google": 19,
       "bing": 1,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 30,
+      "google": 31,
       "bing": 2,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 2
     },
     {
@@ -23248,6 +23248,38 @@
         "google"
       ],
       "firstSeen": "2026-11-13"
+    },
+    {
+      "id": "madras high court allows bail to men accused under sc st act subject to pledge against unt",
+      "headline": "Madras High Court Allows Bail to Men Accused Under SC/ST Act, Subject to Pledge Against Untouchability",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawBeat",
+      "published": "2024-02-19",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPd081dnJzQmoxUDlaaXRoa3N2WG9DLVo5VnVRT19JaEU3X3BQbXNHYVp1aG5DQmZKT3FnOU9ONUxjVUd5TFNpOXVNZ01acEdTanBLRVhfancydzRNYXpPZTdiWGNnbHpyWEw2bHpSUFdmcmo2Yk9iYllZRkhsZjlhUG0yVVJPZm1JQ1NYeFNUdUN4M3R1UkV0Wl8zcVJmZE5nQTlSOEhPUHhFTnBQV3MyOGl4dTA2R2RUMmcycWFGZlQ1TDhoNEHSAcsBQVVfeXFMT2h3RnJud0JhMDhDekd1bjdaOWFRSWlTWVdJMEJsNmx3WFdwbkFhOEFiV2U0MnQ5MGhvdHNhLXNWYTI4SlVpSGhpb2hvVnIwdGlsU3UwbzBhMFNqZ2kyTC0taXZPUkF1STdvSXFKNnBwN0FNYU1TVm4tdDNmcHY4ODJROFFrM1paRVltanZ3VVhDZ256MmwtLUYzWDVHX3BMNVhKbzhJREN4c1VJWkhfRlV3M0VrMGxlNTl1U3RHSk0xS1hzRTVaRTZXS28?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-14"
+    },
+    {
+      "id": "kerala may lose over rs 2 000 crore if it exits pm shri scheme education minister samsudhe",
+      "headline": "Kerala may lose over Rs 2,000 crore if it exits PM SHRI scheme: Education Minister Samsudheen",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-06-28",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af8a92ebdd24c85a2d1ae2ae729b65e&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fIndia%2fkerala-may-lose-over-rs-2-000-crore-if-it-exits-pm-shri-scheme-education-minister-samsudheen%2far-AA26LBdH&c=10951708644371168702&mkt=en-us",
+      "queries": [
+        "shri-nep"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-11-14"
     }
   ]
 }
