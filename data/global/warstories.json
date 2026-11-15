@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-15T06:30:24.624Z",
-  "previousBuild": "2026-11-14T23:55:01.512Z",
+  "builtAt": "2026-11-15T15:39:44.257Z",
+  "previousBuild": "2026-11-15T06:30:24.624Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -17,7 +17,7 @@
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 190,
+    "itemsSeen": 221,
     "corroboration": {
       "one": 300,
       "two": 21,
@@ -143,8 +143,8 @@
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
-      "items": 0,
-      "kept": 0
+      "items": 30,
+      "kept": 1
     },
     {
       "outlet": "Military Times",
@@ -191,20 +191,20 @@
     {
       "outlet": "Defense One",
       "ok": true,
-      "items": 22,
+      "items": 23,
       "kept": 1
     },
     {
       "outlet": "Naval News",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1557,6 +1557,28 @@
       ]
     },
     {
+      "id": "https://idrw.org/india-jet-powered-kamikaze-drone-programme-cost/",
+      "headline": "₹2,000-Crore Army Jet Powered Drone Plan Puts 11 Indian Industry in Race",
+      "firstSeen": "2026-11-11",
+      "lastSeen": "2026-11-15",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/india-jet-powered-kamikaze-drone-programme-cost/",
+          "published": "2026-11-11"
+        }
+      ]
+    },
+    {
       "id": "https://idrw.org/xinfiniti-autonomous-uncrewed-chetak-helicopter-trials/",
       "headline": "Xinfiniti Begins Trials to Turn Navy Chetak Into Drone",
       "firstSeen": "2026-11-14",
@@ -1878,28 +1900,6 @@
           "outlet": "UK Ministry of Defence",
           "url": "https://www.gov.uk/government/news/uk-commandos-to-get-ai-enabled-edge-from-british-scale-up-arondite-as-company-expands-to-natos-northern-flank",
           "published": "2026-11-12"
-        }
-      ]
-    },
-    {
-      "id": "https://idrw.org/india-jet-powered-kamikaze-drone-programme-cost/",
-      "headline": "₹2,000-Crore Army Jet Powered Drone Plan Puts 11 Indian Industry in Race",
-      "firstSeen": "2026-11-11",
-      "lastSeen": "2026-11-11",
-      "themes": [
-        "drone"
-      ],
-      "countries": [
-        {
-          "iso": "IND",
-          "name": "India"
-        }
-      ],
-      "sources": [
-        {
-          "outlet": "Indian Defence Research Wing",
-          "url": "https://idrw.org/india-jet-powered-kamikaze-drone-programme-cost/",
-          "published": "2026-11-11"
         }
       ]
     },
