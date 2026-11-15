@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-15T07:15:33.982Z",
+  "builtAt": "2026-11-15T15:55:53.663Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1394,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1393,
-    "withOutlet": 1289,
+    "items": 1396,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1394,
+    "withOutlet": 1291,
     "bySubject": {
-      "scst": 955,
+      "scst": 957,
       "pmshri": 439
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 67
+    "offSubjectDropped": 71
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 690
+      "n": 691
     },
     {
       "key": "use",
-      "n": 488
+      "n": 489
     },
     {
       "key": "acquittal",
@@ -249,6 +249,10 @@
       "n": 6
     },
     {
+      "key": "OpIndia",
+      "n": 6
+    },
+    {
       "key": "Bar and Bench",
       "n": 5
     },
@@ -277,10 +281,6 @@
       "n": 5
     },
     {
-      "key": "OpIndia",
-      "n": 5
-    },
-    {
       "key": "Forward Press",
       "n": 4
     },
@@ -295,9 +295,9 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 33,
+      "google": 36,
       "bing": 0,
-      "kept": 0,
+      "kept": 2,
       "offSubject": 1
     },
     {
@@ -305,7 +305,7 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 36,
+      "google": 38,
       "bing": 1,
       "kept": 0,
       "offSubject": 4
@@ -315,30 +315,30 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 34,
+      "google": 33,
       "bing": 0,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 8
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 10,
+      "google": 12,
       "bing": 4,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 2
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 10,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "act-pendency",
@@ -385,9 +385,9 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 19,
+      "google": 18,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 0
     },
     {
@@ -395,27 +395,27 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 21,
+      "google": 20,
       "bing": 0,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 4
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 8,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 4
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 27,
+      "google": 29,
       "bing": 10,
       "kept": 0,
       "offSubject": 2
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
-      "bing": 0,
+      "google": 10,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 9
     },
     {
       "id": "shri-upgrade",
@@ -448,7 +448,7 @@
       "google": 9,
       "bing": 2,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 1
     },
     {
       "id": "shri-mou",
@@ -475,10 +475,10 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 31,
+      "google": 32,
       "bing": 2,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "shri-criticism",
@@ -23292,6 +23292,38 @@
       "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNMFIzdWE2RUxTRnVUbFVmclVuLTVzXzdiOWdvZWpndGdHbVppSVg0Yk9aWXFzTUpjdG9MODQteG14RDBMMUppNC1DMVppSEV5QjRxcmZRR0w3SDZSTmFEQUNUallPMjAzemQtNHVwTEJ5SFgtNFBNY2RrR0ZMWGFmcUtCLXVQMVdHMWRRNC05czlER3hKNy1aNnEwcHBxdUVRTmdXbndSZng0ajVrQ21sc3dXQngxLUhvbVJuUlA2Z1FkV0xxNHN2aS1Ba0ZvdnlycXJXQzEzM0dzTUUwVk1TUlR6Q0lWR01aeEhmX3BzeHh1ajDSAYACQVVfeXFMUHdaUEd0RWhkcmpGNENpYUlncE9RaTVVR1ZVRFhORV9FOGlvQV90bDdrQVNfMkRXUXBodU8xYzJTeVpRYlpkcXlGNDVVWU5qR0h3QVZGeUszWWpQSWtfRVN6eGpWN2lVeUFKLV9NT3Q1LWQ3MEdzQUNNZUtncExlZTdIMHZGYWo2RzZVMDI0aWQzUmpsVTEwemF2QS1oU3A2akkyRkl1LXhqOEFaUlRabno4NlViaFhYVVAzaDg2cHFtRTltZVZpRE1jbVpSSHhEZDNmWnlVTEphYVdqdDN2TEVGRGlRZy1UbzBYZVVvc1NlWWhhVm5VX1NpV2FWamkyTQ?oc=5",
       "queries": [
         "act-dilution"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-15"
+    },
+    {
+      "id": "cases registered under sc st prevention of atrocities act rise to 53 372 in 2023 convictio",
+      "headline": "Cases Registered Under SC/ST (Prevention of Atrocities) Act Rise to 53,372 in 2023, Convictions and Persons Convicted More Than Double by 2024",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "www.pib.gov.in",
+      "published": "2026-07-30",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1scDV1NDRyeDhoX25GOVBITEo4NlNDV3REWi1teGNDMHNOcVAwNWI0R0JNRGpvQTNXR2N3SWYyNG1FdmotcUxqcEs3TTdJSmZDdk95ZUFDa1JKV2VaSnRxLTZZYlNfc2NzRGJZM3F3blBiOHRtcFJZNnd3?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-15"
+    },
+    {
+      "id": "sc st act case against bharat forge chairman baba kalyani quashed",
+      "headline": "SC/ST Act case against Bharat Forge chairman Baba Kalyani quashed",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "OpIndia",
+      "published": "2026-11-15",
+      "url": "https://news.google.com/rss/articles/CBMixgJBVV95cUxNOXVma3lzRldudmdCUVBBTmJ3bkxiRHZNX3FGQnVJN0Nza1BsZ0t1ampLS2FUeGhEWnpHajlNQ0xaTFZHVVFGdU1pT256T1hJTi0yWnNOaFVrNXJWMF9sSEpfVUo5VU5XOHktb3JoUFlOa1BGYXVCY1B3NFVwS0RVMFVSQWE0V2hYMHRmZFlJQnRjQjdXQU5sUUVCMzBhNEpBdHY4UkxSZkpLZmJhV2lxVGpZalBwaW5aVFFrdzhaVWZaX0Y5WWcwWjNZclU1cndMZXNZZWdmVEx5RlZmd1FXV25talQxdDRoUWdZazlSS0RvVm9aUFVPVUJ5b09iUTU5RUNGV0ZkeEJKVVFQMF9iUXBxejMyU3VMakxwMVF5MS1qOEc1RktyOG1ScmRFam01S1NrdFNhYmt4NUwtVnZhT05WYzJHQQ?oc=5",
+      "queries": [
+        "act-general"
       ],
       "indexes": [
         "google"
