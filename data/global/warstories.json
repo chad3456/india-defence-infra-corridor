@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-15T15:39:44.257Z",
-  "previousBuild": "2026-11-15T06:30:24.624Z",
+  "builtAt": "2026-11-15T21:02:29.701Z",
+  "previousBuild": "2026-11-15T15:39:44.257Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 346,
-    "createdThisRun": 0,
+    "stories": 347,
+    "createdThisRun": 1,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 221,
+    "itemsSeen": 219,
     "corroboration": {
-      "one": 300,
+      "one": 301,
       "two": 21,
       "threePlus": 25
     }
@@ -33,7 +33,7 @@
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 106
+      "n": 107
     },
     {
       "id": "cyber-ew",
@@ -75,7 +75,7 @@
     {
       "iso": "DEU",
       "name": "Germany",
-      "n": 10
+      "n": 11
     },
     {
       "iso": "FRA",
@@ -137,8 +137,8 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 33,
-      "kept": 2
+      "items": 31,
+      "kept": 1
     },
     {
       "outlet": "Indian Defence Research Wing",
@@ -174,7 +174,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense News",
@@ -1575,6 +1575,28 @@
           "outlet": "Indian Defence Research Wing",
           "url": "https://idrw.org/india-jet-powered-kamikaze-drone-programme-cost/",
           "published": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/general-atomics-wants-german-mission-systems-for-gambit-uncrewed-combat-aircraft-and-sees-potential-for-production-in-bavaria/",
+      "headline": "General Atomics wants German mission systems for Gambit uncrewed combat aircraft and sees potential for production in Bavaria",
+      "firstSeen": "2026-11-15",
+      "lastSeen": "2026-11-15",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "DEU",
+          "name": "Germany"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/general-atomics-wants-german-mission-systems-for-gambit-uncrewed-combat-aircraft-and-sees-potential-for-production-in-bavaria/",
+          "published": "2026-11-15"
         }
       ]
     },
