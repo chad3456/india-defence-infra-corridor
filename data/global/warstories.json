@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-16T06:27:32.588Z",
-  "previousBuild": "2026-11-15T21:02:29.701Z",
+  "builtAt": "2026-11-16T18:32:40.000Z",
+  "previousBuild": "2026-11-16T06:27:32.588Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,23 +12,23 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 347,
-    "createdThisRun": 0,
-    "corroboratedThisRun": 0,
-    "feedsAnswered": 14,
+    "stories": 350,
+    "createdThisRun": 3,
+    "corroboratedThisRun": 4,
+    "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 218,
+    "itemsSeen": 208,
     "corroboration": {
-      "one": 301,
-      "two": 21,
-      "threePlus": 25
+      "one": 302,
+      "two": 22,
+      "threePlus": 26
     }
   },
   "byTheme": [
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 182
+      "n": 185
     },
     {
       "id": "autonomy",
@@ -63,13 +63,13 @@
       "n": 36
     },
     {
-      "iso": "GBR",
-      "name": "United Kingdom",
-      "n": 11
-    },
-    {
       "iso": "UKR",
       "name": "Ukraine",
+      "n": 12
+    },
+    {
+      "iso": "GBR",
+      "name": "United Kingdom",
       "n": 11
     },
     {
@@ -78,14 +78,14 @@
       "n": 11
     },
     {
+      "iso": "RUS",
+      "name": "Russia",
+      "n": 7
+    },
+    {
       "iso": "FRA",
       "name": "France",
       "n": 6
-    },
-    {
-      "iso": "RUS",
-      "name": "Russia",
-      "n": 5
     },
     {
       "iso": "AUS",
@@ -144,13 +144,13 @@
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Military Times",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Army Times",
@@ -162,7 +162,7 @@
       "outlet": "C4ISRNET",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "DefenseScoop",
@@ -180,7 +180,7 @@
       "outlet": "Defense News",
       "ok": true,
       "items": 10,
-      "kept": 3
+      "kept": 1
     },
     {
       "outlet": "Breaking Defense",
@@ -196,9 +196,10 @@
     },
     {
       "outlet": "Naval News",
-      "ok": true,
-      "items": 10,
-      "kept": 1
+      "ok": false,
+      "items": 0,
+      "kept": 0,
+      "error": "HTTP 503"
     },
     {
       "outlet": "Defence Blog",
@@ -220,6 +221,38 @@
     }
   ],
   "stories": [
+    {
+      "id": "https://www.militarytimes.com/video/2026/11/16/drone-meet-bullet-companies-develop-new-counter-uas-capability-business-of-defense-part-3/",
+      "headline": "Drone, meet bullet — companies develop new counter UAS capability | Business of Defense – Part 3",
+      "firstSeen": "2026-11-16",
+      "lastSeen": "2026-11-16",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/video/2026/11/16/drone-meet-bullet-companies-develop-new-counter-uas-capability-business-of-defense-part-3/",
+          "published": "2026-11-16"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/video/2026/11/16/drone-meet-bullet-companies-develop-new-counter-uas-capability-business-of-defense-part-3/",
+          "published": "2026-11-16"
+        },
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/videos/2026/11/16/drone-meet-bullet-companies-develop-new-counter-uas-capability-business-of-defense-part-3/",
+          "published": "2026-11-16"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/video/2026/11/16/drone-meet-bullet-companies-develop-new-counter-uas-capability-business-of-defense-part-3/",
+          "published": "2026-11-16"
+        }
+      ]
+    },
     {
       "id": "https://www.militarytimes.com/video/2026/11/09/drones-incoming-new-innovations-on-offer-in-uas-tech-defense-news-weekly-full-episode-11-10-26/",
       "headline": "Drones incoming! New innovations on offer in UAS tech | Defense News Weekly Full Episode 11.10.26",
@@ -1040,6 +1073,28 @@
       ]
     },
     {
+      "id": "https://defence-blog.com/u-s-air-force-gets-its-first-uncrewed-fighter-aircraft/",
+      "headline": "U.S. Air Force gets its first uncrewed ‘fighter’ aircraft",
+      "firstSeen": "2026-09-25",
+      "lastSeen": "2026-11-16",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-air-force-gets-its-first-uncrewed-fighter-aircraft/",
+          "published": "2026-09-25"
+        },
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/royal-air-force-says-protector-rg1-uncrewed-aircraft-tracked-a-russian-vessel-for-more-than-10-hours/",
+          "published": "2026-11-16"
+        }
+      ]
+    },
+    {
       "id": "https://www.defensenews.com/video/2026/10/28/inside-msis-next-generation-of-counter-drone-defense/",
       "headline": "Inside MSI’s Next Generation of Counter-Drone Defense",
       "firstSeen": "2026-10-28",
@@ -1553,6 +1608,54 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/11/estonian-drone-company-targeted-in-sabotage-attempt-as-part-of-russias-hybrid-war-against-europe-prime-minister-michal/",
+      "headline": "Estonian drone company targeted in sabotage attempt, part of ‘Russia’s hybrid war against Europe’: PM Michal",
+      "firstSeen": "2026-11-16",
+      "lastSeen": "2026-11-16",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "RUS",
+          "name": "Russia"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/11/estonian-drone-company-targeted-in-sabotage-attempt-as-part-of-russias-hybrid-war-against-europe-prime-minister-michal/",
+          "published": "2026-11-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/russia-reports-its-biggest-ukrainian-drone-attack-of-the-war/",
+      "headline": "Russia reports its biggest Ukrainian drone attack of the war",
+      "firstSeen": "2026-11-16",
+      "lastSeen": "2026-11-16",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "RUS",
+          "name": "Russia"
+        },
+        {
+          "iso": "UKR",
+          "name": "Ukraine"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/russia-reports-its-biggest-ukrainian-drone-attack-of-the-war/",
+          "published": "2026-11-16"
         }
       ]
     },
@@ -6269,23 +6372,6 @@
         {
           "outlet": "Defence Industry Europe",
           "url": "https://defence-industry.eu/northrop-grumman-synoptics-marks-25-years-supporting-the-litening-targeting-pod-airborne-mine-detection-and-100-kilowatt-defense-laser-development/",
-          "published": "2026-09-25"
-        }
-      ]
-    },
-    {
-      "id": "https://defence-blog.com/u-s-air-force-gets-its-first-uncrewed-fighter-aircraft/",
-      "headline": "U.S. Air Force gets its first uncrewed ‘fighter’ aircraft",
-      "firstSeen": "2026-09-25",
-      "lastSeen": "2026-09-25",
-      "themes": [
-        "autonomy"
-      ],
-      "countries": [],
-      "sources": [
-        {
-          "outlet": "Defence Blog",
-          "url": "https://defence-blog.com/u-s-air-force-gets-its-first-uncrewed-fighter-aircraft/",
           "published": "2026-09-25"
         }
       ]
