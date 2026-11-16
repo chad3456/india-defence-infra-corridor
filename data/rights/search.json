@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-15T21:21:08.052Z",
+  "builtAt": "2026-11-16T07:21:25.531Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,13 +10,13 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1396,
-    "addedThisRun": 0,
+    "items": 1403,
+    "addedThisRun": 7,
     "carriedFromEarlierRuns": 1396,
     "withOutlet": 1291,
     "bySubject": {
-      "scst": 957,
-      "pmshri": 439
+      "scst": 962,
+      "pmshri": 441
     },
     "queriesAsked": 20,
     "offSubjectDropped": 71
@@ -24,15 +24,15 @@
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 691
+      "n": 692
     },
     {
       "key": "use",
-      "n": 489
+      "n": 494
     },
     {
       "key": "acquittal",
-      "n": 71
+      "n": 72
     },
     {
       "key": "dispute",
@@ -295,10 +295,10 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 37,
+      "google": 36,
       "bing": 0,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 0
     },
     {
       "id": "act-registered",
@@ -306,9 +306,9 @@
       "subject": "scst",
       "expect": "use",
       "google": 38,
-      "bing": 1,
+      "bing": 9,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 6
     },
     {
       "id": "act-convicted",
@@ -325,30 +325,30 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 13,
-      "bing": 5,
-      "kept": 0,
-      "offSubject": 4
+      "google": 11,
+      "bing": 10,
+      "kept": 4,
+      "offSubject": 2
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 10,
-      "bing": 0,
+      "google": 9,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 4
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 14,
+      "google": 13,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 1
     },
     {
       "id": "act-acquittal",
@@ -356,8 +356,8 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 30,
-      "bing": 2,
-      "kept": 0,
+      "bing": 3,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -368,7 +368,7 @@
       "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 3
     },
     {
       "id": "act-misuse-claim",
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 19,
+      "google": 18,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -395,7 +395,7 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 21,
+      "google": 19,
       "bing": 0,
       "kept": 0,
       "offSubject": 4
@@ -405,19 +405,19 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 8,
-      "bing": 0,
+      "google": 10,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 6
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 28,
-      "bing": 10,
-      "kept": 0,
+      "google": 30,
+      "bing": 11,
+      "kept": 2,
       "offSubject": 2
     },
     {
@@ -426,7 +426,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 10,
-      "bing": 1,
+      "bing": 4,
       "kept": 0,
       "offSubject": 0
     },
@@ -446,7 +446,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 9,
-      "bing": 2,
+      "bing": 1,
       "kept": 0,
       "offSubject": 0
     },
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 14,
-      "bing": 1,
+      "bing": 3,
       "kept": 0,
       "offSubject": 0
     },
@@ -465,8 +465,8 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 19,
-      "bing": 1,
+      "google": 18,
+      "bing": 4,
       "kept": 0,
       "offSubject": 8
     },
@@ -476,7 +476,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 32,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
       "offSubject": 3
     },
@@ -14684,10 +14684,12 @@
       "published": "2026-09-23",
       "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOcncwbW9abFM3R1c3b0lVMGFvVzIxTVRHa0JPZS1sT2NKSE9tRTRKa1phekEzcGJMSVdYZW9DdnczU0p0ZlNvYUpQcURmcTNrMm5CYW9zQXVfYTJzdTc3dnNUTmpNcVhQdWFIWTl1NUpRbHJ5VkNPWkhETW40WXlMdncwS2p2T3p2LVk2Wk1JUmdwM1hVanlmZVE1ZHhLc3FfYURpUzZ4bWJNZ0N3UU9aakdzMFhQY0FYeW0wVnJkOTVsbmpwbjllNHBUSDZITjh50gHWAUFVX3lxTE0wdGJwdFpnMnRjUFdXZFF5ekVULWFnVnlFM2hQODBCZHc3Q0pwNXNRNVNPaXYwZ241QjU4S1dWWU14T1p3T2VaRWh6dFktcm9UekNGTFR0cWJjUVllb3EzakdjUUQ0THFiU0Q3YlNRVEtsUGRxVTBHUnl1cVFDSVRycUdYZmhjRnB2NE5MMTQ4TE9rUVI3WDlmZVJnNnc0NUF0Z0xIV2FRTjRDenRLQlNxd2xVYTBzWUZNRDZlV3lXdlhwOHpycE5NMzJvXzBFanpuYXNyb3c?oc=5",
       "queries": [
-        "act-general"
+        "act-general",
+        "act-registered"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-25"
     },
@@ -19460,7 +19462,8 @@
         "act-general"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-10-16"
     },
@@ -20061,7 +20064,8 @@
       "published": "2026-10-20",
       "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOUkMzMTk3S1VjbGVtSzBOZjc5Y2JzQnZfWi1XWFpkWW1uS0JjODBOS1hNWkpDcHF4VjlycHZXYUxkWnVOUmQ3ZkNOeEc4UGg3VVVXbElTVGhrNVh5NWFKTXVNV3JsWGpzR3hpSWVBeXBmaWFPazFjeDNySVY0S0RONTNMQUo2MXdMNm9Ma084aWUtb2lFaDE3Q3pHR0hXRDNYNWxQZXBob1o4R01vUG9EREQzVlFQT3pDbS1kRFVrZDEyYkl6bDhVVmcxNHgtd3NUUG5kbzJxRE1EWURSSXdIM2930gHnAUFVX3lxTE9YWHFGT1p6T2hlYUlPUm56dGdJa1lxZmRST0JJTEMtenk5MERMcEJvWGNaSUJPLXFteERHS1dhQ1hiUUVtQXR3QlBRVlBPTjlSVWxLbFFwbERLQnM2TV9NcEoyVlVXTmRNMUJ1N0NLQlc3ZHNNem9Db1lacEYzSGR4WUVhN0dTaERjY1BMcHU0QTlqb21faGFrMEJfWEJ2Qk9JUXUwbHhCY0JaaHpmb1FCQ1VaVkswTVJSZFFYN2J6WHdUQUV4M3h2VGp5bE9qOHdCdmI4LWRhSmYyRDNMcGVDUUo3VnlOSQ?oc=5",
       "queries": [
-        "shri-general"
+        "shri-general",
+        "shri-sanctioned"
       ],
       "indexes": [
         "google",
@@ -22487,7 +22491,8 @@
         "act-general"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-11-02"
     },
@@ -23021,7 +23026,8 @@
         "act-registered"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-11-10"
     },
@@ -23329,6 +23335,118 @@
         "google"
       ],
       "firstSeen": "2026-11-15"
+    },
+    {
+      "id": "aap protests at congress bhawan chandigarh over dalit leader assault",
+      "headline": "AAP Protests at Congress Bhawan Chandigarh Over Dalit Leader Assault",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-11-04",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6afaae9512f84c9f9d98302982fe86ec&url=https%3a%2f%2fwww.illustrateddailynews.com%2fpolitics%2faap-gheraos-congress-bhawan-chandigarh-dalit-leader-assault-water-cannon-873602&c=14212369687267042089&mkt=en-ca",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-11-16"
+    },
+    {
+      "id": "punjab news aap gheraoes congress bhawan in chandigarh over assault humiliation of senior ",
+      "headline": "Punjab News:AAP Gheraoes Congress Bhawan In Chandigarh Over Assault & Humiliation Of Senior Dalit Congress Leader",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-11-04",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6afaae9512f84c9f9d98302982fe86ec&url=https%3a%2f%2fpatialapolitics.com%2f78143%2f&c=3724924420205415571&mkt=en-ca",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-11-16"
+    },
+    {
+      "id": "aap protests against congress over alleged assault of dalit leader",
+      "headline": "AAP Protests Against Congress Over Alleged Assault of Dalit Leader",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-11-05",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6afaae9512f84c9f9d98302982fe86ec&url=https%3a%2f%2fwww.thereportingtimes.com%2faap-protests-against-congress-over-alleged-assault-of-dalit-leader%2f&c=15545237075089424840&mkt=en-ca",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-11-16"
+    },
+    {
+      "id": "dalit adivasi women recount ordeals in 35 atrocity cases at hyderabad legal clinic",
+      "headline": "Dalit, Adivasi women recount ordeals in 35 atrocity cases at Hyderabad legal clinic",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-10-14",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6afaae9512f84c9f9d98302982fe86ec&url=https%3a%2f%2fwww.thehindu.com%2fnews%2fcities%2fHyderabad%2fdalit-adivasi-women-recount-ordeals-in-35-atrocity-cases-at-hyderabad-legal-clinic%2farticle71584731.ece&c=1208371256501033809&mkt=en-ca",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-11-16"
+    },
+    {
+      "id": "gujarat hc upholds acquittal of 8 accused in attack on dalit rti activist",
+      "headline": "Gujarat HC upholds acquittal of 8 accused in ‘attack’ on Dalit RTI activist",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": null,
+      "published": "2023-03-06",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6afaaea7785448b197a073faeed338d2&url=https%3a%2f%2findianexpress.com%2farticle%2fcities%2fahmedabad%2fgujarat-hc-upholds-acquittal-of-8-accused-in-attack-on-dalit-rti-activist-8482433%2f&c=10189911838096298931&mkt=en-ca",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-11-16"
+    },
+    {
+      "id": "udf govt attempting to implement pm shri scheme alleges cpi m leader sivankutty",
+      "headline": "UDF govt attempting to implement PM SHRI scheme, alleges CPI(M) leader Sivankutty",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-06-08",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6afaaecb117f46718721282c17275034&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2findia%2fudf-govt-attempting-to-implement-pm-shri-scheme-alleges-cpi-m-leader-sivankutty%2far-AA255LUF&c=18254042066559266758&mkt=en-ca",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-11-16"
+    },
+    {
+      "id": "kerala may lose over 2 000 crore if it exits pm shri scheme samsudheen",
+      "headline": "Kerala may lose over ₹2,000 crore if it exits PM SHRI scheme: Samsudheen",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-06-29",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6afaaecb117f46718721282c17275034&url=https%3a%2f%2fwww.hindustantimes.com%2findia-news%2fkerala-may-lose-over-rs-2-000-crore-if-it-exits-pm-shri-scheme-samsudheen-101782716918709.html&c=16958345854697340588&mkt=en-ca",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-11-16"
     }
   ]
 }
