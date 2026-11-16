@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-09T12:55:51.180Z",
+  "builtAt": "2026-11-16T12:48:57.862Z",
   "source": "English Wikipedia's per-force 'List of active … aircraft' articles, read header-first. Those articles compile mostly from IISS's Military Balance and FlightGlobal's World Air Forces, and carry those publications' lag and their disagreements.",
   "method": "Tables are matched on their headers, never on column position. A table without both an aircraft column and a quantity column is skipped and counted rather than read by guessing. A quantity cell yields a number only when it carries one unambiguously; a range, a dash or prose yields null, which is counted separately and never treated as zero. A force whose quantity cells parsed less than sixty per cent of the time has its fleet total withheld while its list of types is kept.",
   "refusal": "No fleet total is reconciled against another catalogue, and no aircraft is resolved to a base. Every number here says 'a public catalogue lists this many', which is a weaker claim than 'this country has this many' and is the only one the source supports.",
@@ -11,9 +11,9 @@
   ],
   "counts": {
     "forces": 13,
-    "types": 793,
-    "counted": 649,
-    "unreadable": 144,
+    "types": 792,
+    "counted": 646,
+    "unreadable": 146,
     "totalsWithheld": 1,
     "failed": 1
   },
@@ -147,17 +147,17 @@
             "In service",
             "Notes"
           ],
-          "rows": 69,
+          "rows": 67,
           "typeAt": 0,
           "serviceAt": 4,
           "used": true,
-          "filled": 61
+          "filled": 59
         }
       ],
-      "types": 61,
-      "counted": 58,
-      "unreadable": 3,
-      "total": 3482,
+      "types": 60,
+      "counted": 55,
+      "unreadable": 5,
+      "total": 3237,
       "tablesRead": 1,
       "tablesSkipped": 0
     },
@@ -802,7 +802,7 @@
       "types": 33,
       "counted": 29,
       "unreadable": 4,
-      "total": 857,
+      "total": 856,
       "tablesRead": 1,
       "tablesSkipped": 0
     },
@@ -2966,28 +2966,6 @@
       "type": "Xian H-6",
       "origin": "China",
       "role": "",
-      "variant": "H-6G/GMod",
-      "inService": 27,
-      "inServiceRaw": "27"
-    },
-    {
-      "iso": "CHN",
-      "country": "China",
-      "force": "PLA Air Force",
-      "type": "Xian H-6",
-      "origin": "China",
-      "role": "",
-      "variant": "H-6J",
-      "inService": 18,
-      "inServiceRaw": "18"
-    },
-    {
-      "iso": "CHN",
-      "country": "China",
-      "force": "PLA Air Force",
-      "type": "Xian H-6",
-      "origin": "China",
-      "role": "",
       "variant": "H-6H/M",
       "inService": 40,
       "inServiceRaw": "40"
@@ -3018,12 +2996,23 @@
       "iso": "CHN",
       "country": "China",
       "force": "PLA Air Force",
-      "type": "Xian JH-7",
+      "type": "Xian H-6",
       "origin": "China",
       "role": "",
-      "variant": "JH-7A",
-      "inService": 200,
-      "inServiceRaw": "200"
+      "variant": "Xian JH-7",
+      "inService": null,
+      "inServiceRaw": "China"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
+      "type": "Xian H-6",
+      "origin": "China",
+      "role": "",
+      "variant": "AEW&C",
+      "inService": null,
+      "inServiceRaw": ""
     },
     {
       "iso": "CHN",
@@ -7236,7 +7225,7 @@
       "role": "Aerobatic display",
       "variant": "Alpha Jet E",
       "inService": null,
-      "inServiceRaw": "title=World Air Forces 2026|url=https://www.flightglobal.com/download?ac=113841|archive-url=https://web.archive.org/web/20251210145634/https://www.flightglobal.com/download?ac=113841|archive-date=10 December 2025}}"
+      "inServiceRaw": "title=World Air Forces 2026 |url=https://www.flightglobal.com/download?ac=113841 |archive-url=https://web.archive.org/web/20251210145634/https://www.flightglobal.com/download?ac=113841 |archive-date=10 December 2025}}"
     },
     {
       "iso": "FRA",
@@ -8885,8 +8874,8 @@
       "origin": "",
       "role": "",
       "variant": "T-70",
-      "inService": 6,
-      "inServiceRaw": "6"
+      "inService": 5,
+      "inServiceRaw": "5"
     },
     {
       "iso": "TUR",
