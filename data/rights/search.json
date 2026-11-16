@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-16T07:21:25.531Z",
+  "builtAt": "2026-11-16T18:58:24.128Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1403,
-    "addedThisRun": 7,
-    "carriedFromEarlierRuns": 1396,
-    "withOutlet": 1291,
+    "items": 1404,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1403,
+    "withOutlet": 1292,
     "bySubject": {
-      "scst": 962,
+      "scst": 963,
       "pmshri": 441
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 71
+    "offSubjectDropped": 68
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 692
+      "n": 693
     },
     {
       "key": "use",
@@ -82,7 +82,7 @@
     },
     {
       "key": "Verdictum",
-      "n": 30
+      "n": 31
     },
     {
       "key": "ThePrint",
@@ -305,19 +305,19 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 38,
-      "bing": 9,
+      "google": 37,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 4
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 34,
+      "google": 33,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 9
     },
     {
@@ -325,10 +325,10 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 11,
-      "bing": 10,
-      "kept": 4,
-      "offSubject": 2
+      "google": 12,
+      "bing": 4,
+      "kept": 0,
+      "offSubject": 3
     },
     {
       "id": "act-compensation",
@@ -336,19 +336,19 @@
       "subject": "scst",
       "expect": "use",
       "google": 9,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 3
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 13,
+      "google": 16,
       "bing": 0,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 2
     },
     {
       "id": "act-acquittal",
@@ -356,8 +356,8 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 30,
-      "bing": 3,
-      "kept": 1,
+      "bing": 2,
+      "kept": 0,
       "offSubject": 6
     },
     {
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 18,
+      "google": 19,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -395,7 +395,7 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 19,
+      "google": 20,
       "bing": 0,
       "kept": 0,
       "offSubject": 4
@@ -405,10 +405,10 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 10,
-      "bing": 1,
+      "google": 9,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 3
     },
     {
       "id": "shri-general",
@@ -416,8 +416,8 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 30,
-      "bing": 11,
-      "kept": 2,
+      "bing": 10,
+      "kept": 0,
       "offSubject": 2
     },
     {
@@ -426,7 +426,7 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 10,
-      "bing": 4,
+      "bing": 1,
       "kept": 0,
       "offSubject": 0
     },
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 10,
-      "bing": 0,
+      "google": 9,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 9
     },
     {
       "id": "shri-upgrade",
@@ -446,9 +446,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 9,
-      "bing": 1,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 1
     },
     {
       "id": "shri-mou",
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 14,
-      "bing": 3,
+      "bing": 0,
       "kept": 0,
       "offSubject": 0
     },
@@ -466,7 +466,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 18,
-      "bing": 4,
+      "bing": 1,
       "kept": 0,
       "offSubject": 8
     },
@@ -475,10 +475,10 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 32,
-      "bing": 0,
+      "google": 30,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "shri-criticism",
@@ -5248,7 +5248,8 @@
         "act-pendency",
         "act-acquittal",
         "act-misuse-claim",
-        "act-general"
+        "act-general",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -23445,6 +23446,22 @@
       ],
       "indexes": [
         "bing"
+      ],
+      "firstSeen": "2026-11-16"
+    },
+    {
+      "id": "offence u s 3 2 v of sc st act not attracted if there is no allegation that accused commit",
+      "headline": "Offence U/S 3(2)(v) Of SC-ST Act Not Attracted If There Is No Allegation That Accused Committed IPC...",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Verdictum",
+      "published": "2023-12-01",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQZDJwd2RqcXJBTnkyOUcwNVlZcHZJcVVjTWZlMzRNakNkby1JNlg5eWFUV09RcDVQVkZGOG82LTdoYUYxMGFjWnZWbUdHUVoyUm9aNHVYVkxNdmFHOXRHTjBvRm5EV0pEcmZCZDIzWGtEeDhSRFhMb3hfYXZvVkV4RGFwTzZpWEZTR3JRNGpxQVQzc2xtekhpUmt6X1B4R1V5a2dMR2kyNTNxRGoydHJrR25YdERTSHBTandXSGpSWUpQcEFieHJCRtIBzgFBVV95cUxPU1FGMWNRdFVXSVpnMjNodUZYOVFjNnVRdEF5Y1FtWUUxTzVjMHozX083QXJJZkZVTXFaUElyRXZTQ1VBaW9remwxbk14LVhLWk43WDMtMThwSE10NUY1TjBmS01Vck1OdG1lVU1qME5DenFSdExYLURxa3V1b0VmRDR4SFlRaVRiT2dhTEVGTjQzRXZkQUpGT3FmQjZFTVdabS14bEZUNFNoR05rc0F1a1pCYjJuTVZIVzZBTl9EYXd0dldhUlJBQnI2ZVg4Zw?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
       ],
       "firstSeen": "2026-11-16"
     }
