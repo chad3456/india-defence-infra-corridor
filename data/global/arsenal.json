@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-17T14:54:19.413Z",
+ "builtAt": "2026-11-17T23:57:35.401Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206491,7 +206491,7 @@
    "outlet": "UK Ministry of Defence",
    "ok": true,
    "items": 50,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   },
   {
@@ -206512,7 +206512,7 @@
    "outlet": "Breaking Defense",
    "ok": true,
    "items": 15,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   },
   {
@@ -206524,10 +206524,10 @@
   },
   {
    "outlet": "Naval News",
-   "ok": false,
-   "items": 0,
+   "ok": true,
+   "items": 10,
    "kept": 0,
-   "via": "unconfigured"
+   "via": "direct"
   },
   {
    "outlet": "Defence Blog",
@@ -206538,6 +206538,41 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-1yzyc2b",
+   "kind": "delivery",
+   "systems": [],
+   "countries": [
+    "United Kingdom",
+    "Ukraine"
+   ],
+   "value": {
+    "amount": 240000000,
+    "currency": "GBP",
+    "asWritten": "£240 million"
+   },
+   "date": "2026-11-17",
+   "outlet": "UK Ministry of Defence",
+   "url": "https://www.gov.uk/government/news/more-than-1000-air-defence-missiles-for-ukraine-as-uk-delivers-240-million-in-winter-support",
+   "headline": "More than 1,000 air defence missiles for Ukraine as UK delivers £240 million in winter support",
+   "primary": true
+  },
+  {
+   "id": "ev-1syyn2t",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Russia",
+    "Ukraine",
+    "Finland"
+   ],
+   "value": null,
+   "date": "2026-11-17",
+   "outlet": "Breaking Defense",
+   "url": "https://breakingdefense.com/2026/11/russia-reportedly-wants-finland-to-leave-nato-as-part-of-ukraine-deal-history-geography-explain-why/",
+   "headline": "Russia reportedly wants Finland to leave NATO as part of Ukraine deal. History, geography explain why.",
+   "primary": false
+  },
   {
    "id": "ev-1bpmsk8",
    "kind": "order",
@@ -208303,6 +208338,78 @@
   }
  ],
  "groups": [
+  {
+   "key": "delivery||ukraine+united kingdom",
+   "systems": [],
+   "countries": [
+    "United Kingdom",
+    "Ukraine"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-1yzyc2b",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "United Kingdom",
+      "Ukraine"
+     ],
+     "value": {
+      "amount": 240000000,
+      "currency": "GBP",
+      "asWritten": "£240 million"
+     },
+     "date": "2026-11-17",
+     "outlet": "UK Ministry of Defence",
+     "url": "https://www.gov.uk/government/news/more-than-1000-air-defence-missiles-for-ukraine-as-uk-delivers-240-million-in-winter-support",
+     "headline": "More than 1,000 air defence missiles for Ukraine as UK delivers £240 million in winter support",
+     "primary": true
+    }
+   ],
+   "outlets": [
+    "UK Ministry of Defence"
+   ],
+   "value": {
+    "amount": 240000000,
+    "currency": "GBP",
+    "asWritten": "£240 million"
+   },
+   "verdict": "from a primary source"
+  },
+  {
+   "key": "order||finland+russia+ukraine",
+   "systems": [],
+   "countries": [
+    "Russia",
+    "Ukraine",
+    "Finland"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1syyn2t",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Russia",
+      "Ukraine",
+      "Finland"
+     ],
+     "value": null,
+     "date": "2026-11-17",
+     "outlet": "Breaking Defense",
+     "url": "https://breakingdefense.com/2026/11/russia-reportedly-wants-finland-to-leave-nato-as-part-of-ukraine-deal-history-geography-explain-why/",
+     "headline": "Russia reportedly wants Finland to leave NATO as part of Ukraine deal. History, geography explain why.",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Breaking Defense"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||united states",
    "systems": [],
