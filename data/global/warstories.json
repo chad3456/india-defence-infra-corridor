@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-17T13:25:11.996Z",
-  "previousBuild": "2026-11-17T02:56:09.253Z",
+  "builtAt": "2026-11-17T23:30:29.778Z",
+  "previousBuild": "2026-11-17T13:25:11.996Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,28 +12,28 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 354,
-    "createdThisRun": 3,
-    "corroboratedThisRun": 0,
-    "feedsAnswered": 13,
+    "stories": 356,
+    "createdThisRun": 2,
+    "corroboratedThisRun": 3,
+    "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 209,
+    "itemsSeen": 222,
     "corroboration": {
-      "one": 306,
+      "one": 307,
       "two": 22,
-      "threePlus": 26
+      "threePlus": 27
     }
   },
   "byTheme": [
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 187
+      "n": 188
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 107
+      "n": 108
     },
     {
       "id": "cyber-ew",
@@ -63,13 +63,13 @@
       "n": 36
     },
     {
-      "iso": "GBR",
-      "name": "United Kingdom",
-      "n": 12
-    },
-    {
       "iso": "UKR",
       "name": "Ukraine",
+      "n": 13
+    },
+    {
+      "iso": "GBR",
+      "name": "United Kingdom",
       "n": 12
     },
     {
@@ -137,7 +137,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 32,
+      "items": 35,
       "kept": 1
     },
     {
@@ -150,7 +150,7 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Army Times",
@@ -162,7 +162,7 @@
       "outlet": "C4ISRNET",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 3
     },
     {
       "outlet": "DefenseScoop",
@@ -180,7 +180,7 @@
       "outlet": "Defense News",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Breaking Defense",
@@ -196,16 +196,15 @@
     },
     {
       "outlet": "Naval News",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "HTTP 503"
+      "ok": true,
+      "items": 10,
+      "kept": 0
     },
     {
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -221,6 +220,43 @@
     }
   ],
   "stories": [
+    {
+      "id": "https://www.militarytimes.com/video/2026/11/17/watch-a-large-aerial-drone-evacuate-a-wounded-ukrainian-soldier-from-the-front-line/",
+      "headline": "Watch a large aerial drone evacuate a wounded Ukrainian soldier from the front line",
+      "firstSeen": "2026-11-17",
+      "lastSeen": "2026-11-17",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "UKR",
+          "name": "Ukraine"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/video/2026/11/17/watch-a-large-aerial-drone-evacuate-a-wounded-ukrainian-soldier-from-the-front-line/",
+          "published": "2026-11-17"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/video/2026/11/17/watch-a-large-aerial-drone-evacuate-a-wounded-ukrainian-soldier-from-the-front-line/",
+          "published": "2026-11-17"
+        },
+        {
+          "outlet": "C4ISRNET",
+          "url": "https://www.c4isrnet.com/videos/2026/11/17/watch-a-large-aerial-drone-evacuate-a-wounded-ukrainian-soldier-from-the-front-line/",
+          "published": "2026-11-17"
+        },
+        {
+          "outlet": "Defense News",
+          "url": "https://www.defensenews.com/video/2026/11/17/watch-a-large-aerial-drone-evacuate-a-wounded-ukrainian-soldier-from-the-front-line/",
+          "published": "2026-11-17"
+        }
+      ]
+    },
     {
       "id": "https://www.militarytimes.com/video/2026/11/16/drone-meet-bullet-companies-develop-new-counter-uas-capability-business-of-defense-part-3/",
       "headline": "Drone, meet bullet — companies develop new counter UAS capability | Business of Defense – Part 3",
@@ -1663,6 +1699,23 @@
         {
           "outlet": "UK Ministry of Defence",
           "url": "https://www.gov.uk/government/news/army-buys-hundreds-more-drones-and-electronic-warfare-kit-in-25-million-boost-to-strengthen-britains-defences-on-natos-eastern-flank",
+          "published": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/hanwha-completes-chunmoo-missile-test-campaign-at-sea-to-develop-strike-capabilities-for-crewed-and-uncrewed-vessels/",
+      "headline": "Hanwha completes Chunmoo missile test campaign at sea to develop strike capabilities for crewed and uncrewed vessels",
+      "firstSeen": "2026-11-17",
+      "lastSeen": "2026-11-17",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/hanwha-completes-chunmoo-missile-test-campaign-at-sea-to-develop-strike-capabilities-for-crewed-and-uncrewed-vessels/",
           "published": "2026-11-17"
         }
       ]
