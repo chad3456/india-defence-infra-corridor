@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-16T18:32:40.000Z",
-  "previousBuild": "2026-11-16T06:27:32.588Z",
+  "builtAt": "2026-11-17T02:56:09.253Z",
+  "previousBuild": "2026-11-16T18:32:40.000Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 350,
-    "createdThisRun": 3,
-    "corroboratedThisRun": 4,
+    "stories": 351,
+    "createdThisRun": 1,
+    "corroboratedThisRun": 0,
     "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 208,
+    "itemsSeen": 209,
     "corroboration": {
-      "one": 302,
+      "one": 303,
       "two": 22,
       "threePlus": 26
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 185
+      "n": 186
     },
     {
       "id": "autonomy",
@@ -137,7 +137,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 30,
+      "items": 32,
       "kept": 1
     },
     {
@@ -150,13 +150,13 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Army Times",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "C4ISRNET",
@@ -174,7 +174,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Defense News",
@@ -186,12 +186,12 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Defense One",
       "ok": true,
-      "items": 23,
+      "items": 22,
       "kept": 1
     },
     {
@@ -205,7 +205,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1655,6 +1655,23 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/russia-reports-its-biggest-ukrainian-drone-attack-of-the-war/",
+          "published": "2026-11-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/u-s-department-of-war-invites-seven-teams-to-live-fire-counter-drone-laser-trials-at-dugway-that-could-lead-to-immediate-purchase-orders/",
+      "headline": "U.S. Department of War invites seven teams to live-fire counter-drone laser trials at Dugway that could lead to immediate purchase orders",
+      "firstSeen": "2026-11-16",
+      "lastSeen": "2026-11-16",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-department-of-war-invites-seven-teams-to-live-fire-counter-drone-laser-trials-at-dugway-that-could-lead-to-immediate-purchase-orders/",
           "published": "2026-11-16"
         }
       ]
