@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-17T03:13:54.560Z",
+  "builtAt": "2026-11-17T13:54:39.904Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1405,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1404,
-    "withOutlet": 1293,
+    "items": 1407,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1405,
+    "withOutlet": 1294,
     "bySubject": {
-      "scst": 964,
-      "pmshri": 441
+      "scst": 965,
+      "pmshri": 442
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 56
+    "offSubjectDropped": 68
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 694
+      "n": 696
     },
     {
       "key": "use",
@@ -305,10 +305,10 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 39,
+      "google": 40,
       "bing": 1,
-      "kept": 1,
-      "offSubject": 4
+      "kept": 0,
+      "offSubject": 5
     },
     {
       "id": "act-convicted",
@@ -325,10 +325,10 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 12,
+      "google": 11,
       "bing": 4,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "act-compensation",
@@ -345,10 +345,10 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 16,
+      "google": 17,
       "bing": 0,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 3
     },
     {
       "id": "act-acquittal",
@@ -395,17 +395,17 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 20,
-      "bing": 0,
-      "kept": 0,
-      "offSubject": 4
+      "google": 19,
+      "bing": 1,
+      "kept": 1,
+      "offSubject": 3
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 8,
+      "google": 9,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -415,9 +415,9 @@
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 31,
+      "google": 32,
       "bing": 10,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 2
     },
     {
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 10,
+      "google": 9,
       "bing": 1,
       "kept": 0,
       "offSubject": 0
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 0,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 9
     },
     {
       "id": "shri-upgrade",
@@ -448,14 +448,14 @@
       "google": 9,
       "bing": 2,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 1
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 14,
+      "google": 13,
       "bing": 1,
       "kept": 0,
       "offSubject": 0
@@ -475,10 +475,10 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 30,
+      "google": 31,
       "bing": 2,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "shri-criticism",
@@ -23476,6 +23476,40 @@
       "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQbzN0bzRsSm9KM2ItZ2FIdHp3dF9fVzluSXQ1MVUyU0lzMWtkRjRLMm85RDhIZDgtRVdNUnhwUXczdURyRGhlZEthb0g4TmlkbzFIeDd3TXJoUTBXRXAwaWZqNk9wdlFWYjdoZnhXNHE1MTBJLXk1b1hkYmpCTTRXUjd3bjJwMkdTWHVVS1ozcVUxalo3Z2daM2ZyVjNjRnJxVklLTV9fV3JSNjEzRkFlaGd1U3hmYzkyME5QUF9zd0l0amtYV2fSAcsBQVVfeXFMUFJoaG1TSGIwc2U4NDlrMDBDUFEyM2FxUjlzSzZUWlZrTG1XYUlrQUp2aExSQ2huQzI3NGZQQnNFM2lwdzdBak0tcXRQbDVWbWJDbERtT0xucVBtZ1ZZdlNwa3MwNmZ4MlU2LTZFNnZIWFAyaVZaMk9mUkRxYi1UeTNNMFozSFJrVWtTek9CUWZIelEzRFRpclM3SE5yb3h0N3dEQndHbDUyVW1iTU8wM0c3dXZyY0pfUUNyMXo1TnFyc08tYjdwMDBjUG8?oc=5",
       "queries": [
         "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-17"
+    },
+    {
+      "id": "disputed claim of victim s conversion to christianity no ground to quash sc st act charge ",
+      "headline": "Disputed Claim Of Victim's Conversion To Christianity No Ground To Quash SC/ST Act Charge At Investigation Stage: AP High Court",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-11-16",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6afc5c69eb2c4074bf84766d2f253543&url=https%3a%2f%2fwww.livelaw.in%2fhigh-court%2fandhra-pradesh-high-court%2fap-high-court-declines-quash-sc-st-act-charge-murder-case-amid-dispute-558790&c=15869947611590946236&mkt=en-us",
+      "queries": [
+        "act-false"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-11-17"
+    },
+    {
+      "id": "implementation of pm shri scheme",
+      "headline": "Implementation of PM SHRI scheme",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "www.pib.gov.in",
+      "published": "2026-07-29",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1vNDFUamtpY0tPMkY4SHczOWVlanZDeFpXYWZjU1c2cnZjMDhZeEgzRkZqbzNDWGI2WjBXUVl2NUo5M3pjYXJBeWU3Z0VTVmpjeGhlcEZFODdHY1V2UmoyNmd5UjRzbTItRi1IUkh5OWpEOTNBc285ZkZ0TQ?oc=5",
+      "queries": [
+        "shri-general",
+        "shri-sanctioned",
+        "shri-funds"
       ],
       "indexes": [
         "google"
