@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-16T18:58:24.128Z",
+  "builtAt": "2026-11-17T03:13:54.560Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1404,
+    "items": 1405,
     "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1403,
-    "withOutlet": 1292,
+    "carriedFromEarlierRuns": 1404,
+    "withOutlet": 1293,
     "bySubject": {
-      "scst": 963,
+      "scst": 964,
       "pmshri": 441
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 68
+    "offSubjectDropped": 56
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 693
+      "n": 694
     },
     {
       "key": "use",
@@ -82,7 +82,7 @@
     },
     {
       "key": "Verdictum",
-      "n": 31
+      "n": 32
     },
     {
       "key": "ThePrint",
@@ -295,7 +295,7 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 36,
+      "google": 38,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -305,9 +305,9 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 37,
+      "google": 39,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 4
     },
     {
@@ -317,7 +317,7 @@
       "expect": "use",
       "google": 33,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 9
     },
     {
@@ -348,7 +348,7 @@
       "google": 16,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 1
     },
     {
       "id": "act-acquittal",
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 19,
+      "google": 18,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -405,7 +405,7 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 9,
+      "google": 8,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -415,7 +415,7 @@
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 30,
+      "google": 31,
       "bing": 10,
       "kept": 0,
       "offSubject": 2
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
-      "bing": 1,
+      "google": 0,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 0
     },
     {
       "id": "shri-upgrade",
@@ -448,7 +448,7 @@
       "google": 9,
       "bing": 2,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 0
     },
     {
       "id": "shri-mou",
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 14,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 0
     },
@@ -468,7 +468,7 @@
       "google": 18,
       "bing": 1,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "shri-nep",
@@ -18242,7 +18242,8 @@
       "published": "2018-08-02",
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxONGl3dTdqcWdQNUpTN0pxYmpBLURkUTBFYUNLSHRRbVYtTm1zc25RdWV0MjF1TEhHMUxkLTVzYzcyQlFpNEVmZUtFdzQzeUx2Vl9hRnFHV2dzemxWLU9OQk80dGZOQ0pJSXdMeHJiYnlFTEFsUFl4c2xaWTlWZHZxUU4wZlI0OV9rX01wRG9qT2lIcFRKb2t5NVAySl9YU1AtX0Znd1VmYjV2dzDSAbABQVVfeXFMTjZsQUgwRnVicWIwQkQzRS1tX19SbnVKSUZqYkk4SzFKQk9uRkxVaDZlVXc5Skp5ZjVMaUs1dUtyemNSODE4NVMwNmcybmtJbUpYdTktRFJfU2lhcmpfTkNMZWFTdEpTc0N2T08yVHFoSi1kX1VfckVLaWpKVEdLNncxb0VEcHZiMTE1VWZPR0pxaVZrRENJa1BnRkJET3o3RHJhYWF2cUYtZjBMd1RXUWc?oc=5",
       "queries": [
-        "act-dilution"
+        "act-dilution",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -23464,6 +23465,22 @@
         "google"
       ],
       "firstSeen": "2026-11-16"
+    },
+    {
+      "id": "cognizance of offence under sc st act by a magistrate instead of a special court does not ",
+      "headline": "Cognizance Of Offence Under SC/ST Act By A Magistrate Instead Of A Special Court, Does Not Vitiate...",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Verdictum",
+      "published": "2021-11-08",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQbzN0bzRsSm9KM2ItZ2FIdHp3dF9fVzluSXQ1MVUyU0lzMWtkRjRLMm85RDhIZDgtRVdNUnhwUXczdURyRGhlZEthb0g4TmlkbzFIeDd3TXJoUTBXRXAwaWZqNk9wdlFWYjdoZnhXNHE1MTBJLXk1b1hkYmpCTTRXUjd3bjJwMkdTWHVVS1ozcVUxalo3Z2daM2ZyVjNjRnJxVklLTV9fV3JSNjEzRkFlaGd1U3hmYzkyME5QUF9zd0l0amtYV2fSAcsBQVVfeXFMUFJoaG1TSGIwc2U4NDlrMDBDUFEyM2FxUjlzSzZUWlZrTG1XYUlrQUp2aExSQ2huQzI3NGZQQnNFM2lwdzdBak0tcXRQbDVWbWJDbERtT0xucVBtZ1ZZdlNwa3MwNmZ4MlU2LTZFNnZIWFAyaVZaMk9mUkRxYi1UeTNNMFozSFJrVWtTek9CUWZIelEzRFRpclM3SE5yb3h0N3dEQndHbDUyVW1iTU8wM0c3dXZyY0pfUUNyMXo1TnFyc08tYjdwMDBjUG8?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-17"
     }
   ]
 }
