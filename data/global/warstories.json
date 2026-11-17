@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-17T02:56:09.253Z",
-  "previousBuild": "2026-11-16T18:32:40.000Z",
+  "builtAt": "2026-11-17T13:25:11.996Z",
+  "previousBuild": "2026-11-17T02:56:09.253Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 351,
-    "createdThisRun": 1,
+    "stories": 354,
+    "createdThisRun": 3,
     "corroboratedThisRun": 0,
     "feedsAnswered": 13,
     "feedsTried": 14,
     "itemsSeen": 209,
     "corroboration": {
-      "one": 303,
+      "one": 306,
       "two": 22,
       "threePlus": 26
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 186
+      "n": 187
     },
     {
       "id": "autonomy",
@@ -38,7 +38,7 @@
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 41
+      "n": 43
     },
     {
       "id": "targeting",
@@ -63,14 +63,14 @@
       "n": 36
     },
     {
-      "iso": "UKR",
-      "name": "Ukraine",
+      "iso": "GBR",
+      "name": "United Kingdom",
       "n": 12
     },
     {
-      "iso": "GBR",
-      "name": "United Kingdom",
-      "n": 11
+      "iso": "UKR",
+      "name": "Ukraine",
+      "n": 12
     },
     {
       "iso": "DEU",
@@ -174,13 +174,13 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 1
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Breaking Defense",
@@ -205,7 +205,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1608,6 +1608,62 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/nato-uses-openai-models-to-protect-alliance-networks-as-cyber-defenders-train-with-ai-agents/",
+      "headline": "NATO uses OpenAI models to protect alliance networks as cyber defenders train with AI agents",
+      "firstSeen": "2026-11-17",
+      "lastSeen": "2026-11-17",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/nato-uses-openai-models-to-protect-alliance-networks-as-cyber-defenders-train-with-ai-agents/",
+          "published": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-army-tests-northrops-counter-drone-gun-truck/",
+      "headline": "U.S. Army tests Northrop’s counter-drone gun truck",
+      "firstSeen": "2026-11-17",
+      "lastSeen": "2026-11-17",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-army-tests-northrops-counter-drone-gun-truck/",
+          "published": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "id": "https://www.gov.uk/government/news/army-buys-hundreds-more-drones-and-electronic-warfare-kit-in-25-million-boost-to-strengthen-britains-defences-on-natos-eastern-flank",
+      "headline": "Army buys hundreds more drones and electronic warfare kit in £25 million boost to strengthen Britain’s defences on NATO’s eastern flank",
+      "firstSeen": "2026-11-17",
+      "lastSeen": "2026-11-17",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "GBR",
+          "name": "United Kingdom"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "UK Ministry of Defence",
+          "url": "https://www.gov.uk/government/news/army-buys-hundreds-more-drones-and-electronic-warfare-kit-in-25-million-boost-to-strengthen-britains-defences-on-natos-eastern-flank",
+          "published": "2026-11-17"
         }
       ]
     },
