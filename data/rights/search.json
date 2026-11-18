@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-17T23:41:26.733Z",
+  "builtAt": "2026-11-18T07:59:51.171Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1407,
-    "addedThisRun": 0,
+    "items": 1409,
+    "addedThisRun": 2,
     "carriedFromEarlierRuns": 1407,
-    "withOutlet": 1294,
+    "withOutlet": 1296,
     "bySubject": {
-      "scst": 965,
+      "scst": 967,
       "pmshri": 442
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 65
+    "offSubjectDropped": 66
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 696
+      "n": 697
     },
     {
       "key": "use",
-      "n": 494
+      "n": 495
     },
     {
       "key": "acquittal",
@@ -82,7 +82,7 @@
     },
     {
       "key": "Verdictum",
-      "n": 32
+      "n": 33
     },
     {
       "key": "ThePrint",
@@ -213,6 +213,10 @@
       "n": 7
     },
     {
+      "key": "NewsClick",
+      "n": 7
+    },
+    {
       "key": "The Mooknayak English",
       "n": 7
     },
@@ -234,10 +238,6 @@
     },
     {
       "key": "The Federal",
-      "n": 6
-    },
-    {
-      "key": "NewsClick",
       "n": 6
     },
     {
@@ -295,7 +295,7 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 39,
+      "google": 40,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -305,9 +305,9 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 39,
+      "google": 40,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 5
     },
     {
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 17,
+      "google": 19,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -356,7 +356,7 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 29,
-      "bing": 2,
+      "bing": 0,
       "kept": 0,
       "offSubject": 6
     },
@@ -385,9 +385,9 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 18,
+      "google": 20,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 0
     },
     {
@@ -396,7 +396,7 @@
       "subject": "scst",
       "expect": "false-finding",
       "google": 18,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 3
     },
@@ -405,7 +405,7 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 8,
+      "google": 9,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
+      "google": 10,
       "bing": 1,
       "kept": 0,
       "offSubject": 0
@@ -446,9 +446,9 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 9,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 1
     },
     {
       "id": "shri-mou",
@@ -456,7 +456,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 13,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 0
     },
@@ -465,8 +465,8 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 18,
-      "bing": 1,
+      "google": 19,
+      "bing": 0,
       "kept": 0,
       "offSubject": 7
     },
@@ -475,10 +475,10 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 32,
+      "google": 31,
       "bing": 2,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "shri-criticism",
@@ -488,7 +488,7 @@
       "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 8
     }
   ],
   "items": [
@@ -23516,6 +23516,38 @@
         "google"
       ],
       "firstSeen": "2026-11-17"
+    },
+    {
+      "id": "comedy skit meant to make people laugh karnataka high court quashes sc st act fir over kok",
+      "headline": "Comedy Skit Meant To Make People Laugh: Karnataka High Court Quashes SC-ST Act FIR Over \"Kokke Korava\"...",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Verdictum",
+      "published": "2026-11-13",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQZUVLM0lITHV2cThialBpLUF2ZEZKOVUtWkJ2VGNITC1oMnJqZDdadnhkWlZ6ZnpXcjRiYlU2ZWdDOFlZLURjNGdOUW5zZFJuX0VwUUVIYl9VYndqV3RuZ1JuNzdxejNQUVMyR3QtbU92ZDdVN2dHak5HM3ZXbFE2U3hRczBnS21DVkRGVm12TE1vQlYyb1hDQlJB0gGfAUFVX3lxTE5PSENUdFBURjl5eE9GUk9xOHphOG9BdHlydms1a3FoeUVFczdNZjQzUjQ3WllDQk1RYlNhZTNyUXM5MW9JZUhyZjFCUXR5bG9iTXhWakRGd1N0UVVTV3FtOWg2VnBqamlJWjhkZEJoNFVka21yMGtZYzYxLThUNjZmZEVYb1Uxc0VxSnVrUC1zaEZuaWhMaUYtR0xreXBnbw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-18"
+    },
+    {
+      "id": "chouhan promises to dilute sc st act sides with upper caste groups",
+      "headline": "Chouhan Promises to Dilute SC/ST Act, Sides With Upper Caste Groups",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "NewsClick",
+      "published": "2018-09-21",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNQlh4VjJrbEdQeXZuVTRfc3JYbHV2Q2xhcEJxcE4wbExxU1BDSEwya054N3hVdFhpNG9FXy05NkRXek1sOENXcWlkcDItNFRnSkhSa1BUT3dzUDMtLV9kaDNsY3BZXzgySVQ2dDlHdV9YaGtOWVhkdWVUQWRxcXVwV0ZwQ0Fzc2k2eFE?oc=5",
+      "queries": [
+        "act-dilution"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-18"
     }
   ]
 }
