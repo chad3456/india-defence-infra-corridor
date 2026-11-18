@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-18T07:59:51.171Z",
+  "builtAt": "2026-11-18T17:36:55.620Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1409,
+    "items": 1411,
     "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1407,
-    "withOutlet": 1296,
+    "carriedFromEarlierRuns": 1409,
+    "withOutlet": 1297,
     "bySubject": {
-      "scst": 967,
-      "pmshri": 442
+      "scst": 968,
+      "pmshri": 443
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 66
+    "offSubjectDropped": 67
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 697
+      "n": 698
     },
     {
       "key": "use",
@@ -40,7 +40,7 @@
     },
     {
       "key": "allegation",
-      "n": 65
+      "n": 66
     },
     {
       "key": "false-finding",
@@ -69,12 +69,12 @@
       "n": 55
     },
     {
-      "key": "India Today",
+      "key": "LawBeat",
       "n": 36
     },
     {
-      "key": "LawBeat",
-      "n": 35
+      "key": "India Today",
+      "n": 36
     },
     {
       "key": "Hindustan Times",
@@ -295,7 +295,7 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 40,
+      "google": 39,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -305,7 +305,7 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 40,
+      "google": 39,
       "bing": 1,
       "kept": 1,
       "offSubject": 5
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 19,
+      "google": 20,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -356,9 +356,9 @@
       "subject": "scst",
       "expect": "acquittal",
       "google": 29,
-      "bing": 0,
+      "bing": 2,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "act-hostile",
@@ -368,7 +368,7 @@
       "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 4
     },
     {
       "id": "act-misuse-claim",
@@ -385,9 +385,9 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 20,
+      "google": 19,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 0
     },
     {
@@ -395,7 +395,7 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 18,
+      "google": 17,
       "bing": 1,
       "kept": 0,
       "offSubject": 3
@@ -415,9 +415,9 @@
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 33,
-      "bing": 10,
-      "kept": 0,
+      "google": 34,
+      "bing": 9,
+      "kept": 1,
       "offSubject": 2
     },
     {
@@ -435,27 +435,27 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
+      "google": 8,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
-      "bing": 2,
+      "google": 8,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 0
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 13,
+      "google": 14,
       "bing": 1,
       "kept": 0,
       "offSubject": 0
@@ -466,9 +466,9 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 19,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "shri-nep",
@@ -20248,7 +20248,8 @@
       "published": "2023-03-01",
       "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQeU9PWG1CZzJjdUZXZ2NWMWtWemozbVJVenpVSDlYNXZVanFTbVJmVWhLdHY4SFBROU5FRklLVnhzWFhRZ2syVl9yODhVb2RWV1RJMVFDTERYdGNlUzRDcFFjSU8yX3E4TkVoOFJpVk5VWUxud3BPWTl6dHlzdmlkaDF30gGHAUFVX3lxTE1IUEczMHp6R3gyVHFhMF81SmRIOGZocXZBTWNWNTFBaXU2TFRJRzUySldWZVBtTnJHU0RmYkRucXdmazNQQ0x2V05UVDB5TXJaai0zX2NpX1Z6NEdhYzhhVk1yVVV2bFd6RVFwNzZRWkNnR1NjMEItU3Z1MXd3WXQwdWRycHN1bw?oc=5",
       "queries": [
-        "act-general"
+        "act-general",
+        "act-convicted"
       ],
       "indexes": [
         "google"
@@ -23546,6 +23547,39 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-11-18"
+    },
+    {
+      "id": "sc st act safeguards not for misuse allahabad high court flags victim s inappropriate cond",
+      "headline": "‘SC/ST Act Safeguards Not for Misuse’: Allahabad High Court Flags Victim’s ‘Inappropriate Conduct’",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "LawBeat",
+      "published": "2025-12-10",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNcGhKbjF1am5uTFJFM255cHlGZjJsWWJ4UkVFOEIycnFRNFFyTVFielltYnpueWE1VTZXZ05fMGxSLXBPWmwwVEhYZXZhcHl3S01oMnZOLVp5empRMVhKeDFPZGJiM3RPeHhMWU5vcXJVcWt4QmEwSC1vaXh6Yjd1cmU4WUVQMVpxTnJQQkMyUy1SeXpIWGliRWlNVnRSUXhGczhvWEhOUGt6LUNUdUtyTkNqeS1zd1lKTTEzQ3JzeGZBT1hpaUxVUG5Cd9IB0AFBVV95cUxPU0ozWWVDMWZwdW4taXhULV9pZm51QUFJaUx3WHlfWmtHTGpaaWdmUDVBV3F0TDRteU00QXpaRGpqUnVjdUc4YVlIQXp5X1VpV256WnVBSlVKMDhPNlVMNkxtNjdDQ3JzVXVidnQwZDRmTnNDMzNCSUdXbFpWQVA3T1VNR0FGMzk5cDJNam9RUXJjVWdFa2FjTENnMXFCUUdabmJGbjU4eWI5RnhkN2FmNEtuS2VKS3hRWXR5WE5xemxxcXh1Slh2am50eFRnaUd6?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-18"
+    },
+    {
+      "id": "left govt made mistake by signing pm shri agreement ldf convener",
+      "headline": "Left govt made mistake by signing PM SHRI agreement: LDF convener",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-11-18",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6afde20dd45f402cadf27105b4145b41&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fleft-govt-made-mistake-by-signing-pm-shri-agreement-ldf-convener%2far-AA2hIo5X&c=12540682155009732568&mkt=en-us",
+      "queries": [
+        "shri-general",
+        "shri-nep"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-11-18"
     }
