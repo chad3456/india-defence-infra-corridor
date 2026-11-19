@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-19T13:57:32.501Z",
+  "builtAt": "2026-11-19T23:16:40.085Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1414,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1412,
-    "withOutlet": 1299,
+    "items": 1415,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1414,
+    "withOutlet": 1300,
     "bySubject": {
-      "scst": 970,
+      "scst": 971,
       "pmshri": 444
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 70
+    "offSubjectDropped": 68
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 700
+      "n": 701
     },
     {
       "key": "use",
@@ -66,7 +66,7 @@
     },
     {
       "key": "The Hindu",
-      "n": 55
+      "n": 56
     },
     {
       "key": "LawBeat",
@@ -315,10 +315,10 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 24,
+      "google": 25,
       "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "act-atrocity",
@@ -335,10 +335,10 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 46,
+      "google": 7,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 11
+      "kept": 0,
+      "offSubject": 3
     },
     {
       "id": "act-pendency",
@@ -358,7 +358,7 @@
       "google": 28,
       "bing": 2,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "act-hostile",
@@ -375,17 +375,17 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 10,
+      "google": 47,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 1
+      "kept": 1,
+      "offSubject": 8
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 19,
+      "google": 18,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 34,
       "bing": 9,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 2
     },
     {
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
+      "google": 10,
       "bing": 1,
       "kept": 0,
       "offSubject": 0
@@ -435,18 +435,18 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
+      "google": 8,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
-      "bing": 1,
+      "google": 10,
+      "bing": 2,
       "kept": 0,
       "offSubject": 0
     },
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 32,
+      "google": 31,
       "bing": 2,
       "kept": 0,
       "offSubject": 3
@@ -938,7 +938,8 @@
         "act-general",
         "act-registered",
         "act-compensation",
-        "act-pendency"
+        "act-pendency",
+        "act-misuse-claim"
       ],
       "indexes": [
         "google",
@@ -6693,7 +6694,8 @@
       "published": "2025-08-25",
       "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNOXhycWQyd1VuSDkybUlpZWsxclhJUlhQRHZ2Z3dYOVE1bVlZd19LYmQyM3BpSXpvTHBDYTl5ZlFWSHI3MDZsdUJLT1NNRGhyWTlWQ1NfT1FWcU1vWENJWDNTZGp3c0VEOTN1NWt6Y2tqcGlQWlhwNXNOM1d6T2w3cEF3VFkydDd4SzVzdFhac3FGdVVRSzViSFEySQ?oc=5",
       "queries": [
-        "act-misuse-claim"
+        "act-misuse-claim",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -15107,7 +15109,8 @@
       "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPMFh2bXdvb01hd3Mxb1lVcTdjQ2NuSlhwcDRZaHZlS0tJNFBSbTllNzUyUTVpRXJITzc5ekNLQXBWV3RPeUdzWjVGcVdQVVMyakQwTC1WNXpaRm81OXhBcGtmcGFVMFVnVnhXMUYwZ1cyeXpQUl9kYkczVDNWOE9CeGpSZFVzeENENGZzRWFLaE95MjBXRUR2Umlqa1lfVnk2dlNYXzVjTnllNjF2V1diVFJhNF9mOGlsQ3o2alA4R1o2dHI0V3o5TnJIaDV6YWdobENDU3kzMnNLbGZjYVpB0gHkAUFVX3lxTE9GS1dZRVhMQ2xsU1B3aFk1enBvY2dlTEN6aVJfYmtwR21iZExxRzRldm1ZdnU3Skd4TUpYRXhLNFVvTlNfemxleDRub3pMQW5PMGo2aTBKajJPOGlCSk1uLTdZWFd2SWtibDd0VERHTlJyZE9pS2tYVDNTUUJPVkpMX2o1US1hMDRRd1gyNVpfdjVxNjVPRDFNaEV1emJUQlBELTN2TkNPS1JBc2FobnZySUNVYW5yY2EzNVJqMXVFcHFIWXdzd3hUT2ZWU1B4MDI3TUhWaXlBQ2FScmsyMlNtLUJRNw?oc=5",
       "queries": [
         "act-general",
-        "act-registered"
+        "act-registered",
+        "act-misuse-claim"
       ],
       "indexes": [
         "google"
@@ -23544,7 +23547,8 @@
       "published": "2018-09-21",
       "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNQlh4VjJrbEdQeXZuVTRfc3JYbHV2Q2xhcEJxcE4wbExxU1BDSEwya054N3hVdFhpNG9FXy05NkRXek1sOENXcWlkcDItNFRnSkhSa1BUT3dzUDMtLV9kaDNsY3BZXzgySVQ2dDlHdV9YaGtOWVhkdWVUQWRxcXVwV0ZwQ0Fzc2k2eFE?oc=5",
       "queries": [
-        "act-dilution"
+        "act-dilution",
+        "act-misuse-claim"
       ],
       "indexes": [
         "google"
@@ -23630,6 +23634,22 @@
       ],
       "indexes": [
         "bing"
+      ],
+      "firstSeen": "2026-11-19"
+    },
+    {
+      "id": "amend sc st act pmk",
+      "headline": "Amend SC/ST Act: PMK",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Hindu",
+      "published": "2012-12-21",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPck93OXVhV3lyQUVCbHpoQXdjSXYxU2VLVWYwT29QUUVQVHp1M01hcGZJVDM0allONmxuYjQ4am1ZNmFVVDRQeXVieENxZlNrQk1ZVWJXRjR2bVhZVUkzbzdsSExTTjVUeEsxa3FWSHA5d09iWUxmbGhOV18zLWlOWFZDNENuaHVMRUHSAZABQVVfeXFMTktRV1N5V1ZRc20tekRVWTAtMEdQazAwZ3I5a00zU0xmWmRDWWZNTXpfaWhKVmZzQjdrdG9mSHBHLS1aZjgxMXVGRENBWHJOVVl6eEMxV0hSamZCb1E0TDByQUtaVi1uTmxGWlp6RHFMSmNUdXprTFZkdGFMNDRHd2s0WGpRdlplWlB2c2R5aTJo?oc=5",
+      "queries": [
+        "act-misuse-claim"
+      ],
+      "indexes": [
+        "google"
       ],
       "firstSeen": "2026-11-19"
     }
