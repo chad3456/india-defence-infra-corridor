@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-18T17:36:55.620Z",
+  "builtAt": "2026-11-19T02:02:20.673Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1411,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1409,
-    "withOutlet": 1297,
+    "items": 1412,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1411,
+    "withOutlet": 1298,
     "bySubject": {
-      "scst": 968,
+      "scst": 969,
       "pmshri": 443
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 67
+    "offSubjectDropped": 62
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 698
+      "n": 699
     },
     {
       "key": "use",
@@ -93,12 +93,12 @@
       "n": 23
     },
     {
-      "key": "Live Law",
+      "key": "SCC Online",
       "n": 21
     },
     {
-      "key": "SCC Online",
-      "n": 20
+      "key": "Live Law",
+      "n": 21
     },
     {
       "key": "opindia.com",
@@ -295,9 +295,9 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 39,
+      "google": 38,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 0
     },
     {
@@ -305,9 +305,9 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 39,
+      "google": 38,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 5
     },
     {
@@ -315,10 +315,10 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 33,
+      "google": 27,
       "bing": 0,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 7
     },
     {
       "id": "act-atrocity",
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 20,
+      "google": 18,
       "bing": 0,
       "kept": 0,
       "offSubject": 3
@@ -358,7 +358,7 @@
       "google": 29,
       "bing": 2,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "act-hostile",
@@ -405,20 +405,20 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 9,
+      "google": 0,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 0
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 34,
+      "google": 0,
       "bing": 9,
-      "kept": 1,
-      "offSubject": 2
+      "kept": 0,
+      "offSubject": 1
     },
     {
       "id": "shri-sanctioned",
@@ -435,17 +435,17 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 8,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 9
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 8,
+      "google": 9,
       "bing": 1,
       "kept": 0,
       "offSubject": 0
@@ -466,7 +466,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 19,
-      "bing": 1,
+      "bing": 2,
       "kept": 0,
       "offSubject": 8
     },
@@ -11319,7 +11319,8 @@
         "shri-withheld"
       ],
       "indexes": [
-        "google"
+        "google",
+        "bing"
       ],
       "firstSeen": "2026-09-22"
     },
@@ -23582,6 +23583,22 @@
         "bing"
       ],
       "firstSeen": "2026-11-18"
+    },
+    {
+      "id": "explained can proceeding under sc st act be quashed on the basis of compromise between acc",
+      "headline": "Explained| Can proceeding under SC/ST Act be quashed on the basis of compromise between accused and victim?",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "SCC Online",
+      "published": "2021-10-27",
+      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxONUNhclFpNjY0c2x4NDdYYlpaaVBLckp4eWY5Y3VWcE1WQ2JVMy0xZlBhSS11VEU1SmlVOUR5elJqRzljOGx6TDhlR01MRTgyclVmS0xaZUNtUElOcHh1Z2tfbkRrR1paZjdHTG1Oa29DYXY3QzIzRS1wajhRNEtMTmdHVlc4dW5hbHB5aUxBa09KSTV2bWtlQ3lkS2FHbnFsUkVLSUtuMURtSmpSLTBlQ3FONTFZeDVvaUJCZUt6aE1Mbmk4QTBoQXV4MmlRWTlYaFBZcGFoM1NLOFZoci0xTkFVNEFpLWhT?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-19"
     }
   ]
 }
