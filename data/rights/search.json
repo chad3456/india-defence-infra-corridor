@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-19T02:02:20.673Z",
+  "builtAt": "2026-11-19T13:57:32.501Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1412,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1411,
-    "withOutlet": 1298,
+    "items": 1414,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1412,
+    "withOutlet": 1299,
     "bySubject": {
-      "scst": 969,
-      "pmshri": 443
+      "scst": 970,
+      "pmshri": 444
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 62
+    "offSubjectDropped": 70
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 699
+      "n": 700
     },
     {
       "key": "use",
-      "n": 495
+      "n": 496
     },
     {
       "key": "acquittal",
@@ -62,7 +62,7 @@
     },
     {
       "key": "The New Indian Express",
-      "n": 56
+      "n": 57
     },
     {
       "key": "The Hindu",
@@ -295,9 +295,9 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 38,
+      "google": 39,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 0
     },
     {
@@ -308,24 +308,24 @@
       "google": 38,
       "bing": 1,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 4
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 27,
+      "google": 24,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 10,
+      "google": 9,
       "bing": 4,
       "kept": 0,
       "offSubject": 1
@@ -335,10 +335,10 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 8,
+      "google": 46,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 3
+      "kept": 1,
+      "offSubject": 11
     },
     {
       "id": "act-pendency",
@@ -348,17 +348,17 @@
       "google": 18,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 29,
+      "google": 28,
       "bing": 2,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     },
     {
       "id": "act-hostile",
@@ -405,27 +405,27 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 0,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 3
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 0,
+      "google": 34,
       "bing": 9,
-      "kept": 0,
-      "offSubject": 1
+      "kept": 1,
+      "offSubject": 2
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 10,
+      "google": 9,
       "bing": 1,
       "kept": 0,
       "offSubject": 0
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 10,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 8
     },
     {
       "id": "shri-upgrade",
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 31,
+      "google": 32,
       "bing": 2,
       "kept": 0,
       "offSubject": 3
@@ -488,7 +488,7 @@
       "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     }
   ],
   "items": [
@@ -23597,6 +23597,39 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-11-19"
+    },
+    {
+      "id": "tamil nadu report sought on aid for kin of caste atrocity victims",
+      "headline": "Tamil Nadu: Report sought on aid for kin of caste atrocity victims",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The New Indian Express",
+      "published": "2026-11-12",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOOXprc1N4QjFDZVRiVFZnakRmNHlWSEtsTGdCdmpLMWFCaXNkSmtBQktKMTQtaXdldTAtUGdDZENCLUpHaGlYcHdrZThOMjVYMWM0UWRDREpYdU9Va29sTTBObkpSQmNEdDRtQTVXU1lOUTR5cl9Bb1FKbXgtS3ZpdlpBZVVzUktYSHJkclRCVUFybUI5Vm5xTXZ6X0FJMjF0bVJqZlRJRE9MRWFzR083eHo2eFBBNnFrUFhMYzZ4eTQ5SjcyU3A00gHUAUFVX3lxTE1rUjJsbVczaDdJNHVvTUN1cGthUnU0R0c0ZER2RllDblZHc21WT0FGSmJqUmxLb3QwWS1DMVhaYnRKV1VPUTBCUnVfaVpKaG1tLURmU1c5clZ5S0JOdlVRdUVQeU1CREh3WDF4QktJZ0d6MkNDbTBidGhxY3lwMzYwX2JNczRUbG91MTUxVGJpdW9sQjRTamNsUllPU1g4ZEF1X2tPd0hlSkZHWlVqWWU5alpPZ01uLWpBZk40UUZ5RURqbnFFdXBCUXFuMW91SUdtLXdp?oc=5",
+      "queries": [
+        "act-compensation"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-19"
+    },
+    {
+      "id": "pm shri pact well thought out not a mistake says sivankutty hits out at ally cpi",
+      "headline": "PM SHRI pact well thought out, not a mistake, says Sivankutty; hits out at ally CPI",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-11-19",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aff0022c02e41ef892f76039551a567&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fpm-shri-pact-well-thought-out-not-a-mistake-says-sivankutty-hits-out-at-ally-cpi%2far-AA2hJQvt&c=12203251186390955826&mkt=en-us",
+      "queries": [
+        "shri-general",
+        "shri-nep"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-11-19"
     }
