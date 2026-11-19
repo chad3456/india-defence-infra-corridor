@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-19T13:04:46.702Z",
-  "previousBuild": "2026-11-19T01:53:10.201Z",
+  "builtAt": "2026-11-19T23:03:33.244Z",
+  "previousBuild": "2026-11-19T13:04:46.702Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 359,
-    "createdThisRun": 3,
+    "stories": 364,
+    "createdThisRun": 5,
     "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 229,
+    "itemsSeen": 197,
     "corroboration": {
-      "one": 310,
+      "one": 315,
       "two": 22,
       "threePlus": 27
     }
@@ -28,22 +28,22 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 189
+      "n": 191
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 110
+      "n": 111
     },
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 43
+      "n": 44
     },
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 30
+      "n": 31
     },
     {
       "id": "military-ai",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 46
+      "n": 47
     },
     {
       "iso": "IND",
@@ -78,14 +78,14 @@
       "n": 11
     },
     {
-      "iso": "RUS",
-      "name": "Russia",
+      "iso": "FRA",
+      "name": "France",
       "n": 7
     },
     {
-      "iso": "FRA",
-      "name": "France",
-      "n": 6
+      "iso": "RUS",
+      "name": "Russia",
+      "n": 7
     },
     {
       "iso": "KOR",
@@ -137,14 +137,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 42,
+      "items": 40,
       "kept": 1
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
-      "items": 30,
-      "kept": 1
+      "items": 0,
+      "kept": 0
     },
     {
       "outlet": "Military Times",
@@ -156,7 +156,7 @@
       "outlet": "Army Times",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "C4ISRNET",
@@ -174,13 +174,13 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 3
     },
     {
       "outlet": "Defense News",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Breaking Defense",
@@ -204,7 +204,7 @@
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1705,6 +1705,101 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/south-korean-firm-wants-to-sell-romania-unmanned-army-vehicles/",
+          "published": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/united-states-defense-spending-proposal-would-cut-f-15ex-purchases-f-47-development-and-combat-drone-funding/",
+      "headline": "United States defense spending proposal would cut F-15EX purchases, F-47 development and combat drone funding",
+      "firstSeen": "2026-11-19",
+      "lastSeen": "2026-11-19",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/united-states-defense-spending-proposal-would-cut-f-15ex-purchases-f-47-development-and-combat-drone-funding/",
+          "published": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/rheinmetall-and-dutch-defence-ministry-agree-to-explore-unmanned-systems-hybrid-propulsion-and-vehicle-technologies/",
+      "headline": "Rheinmetall and Dutch defence ministry agree to explore unmanned systems, hybrid propulsion and vehicle technologies",
+      "firstSeen": "2026-11-19",
+      "lastSeen": "2026-11-19",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/rheinmetall-and-dutch-defence-ministry-agree-to-explore-unmanned-systems-hybrid-propulsion-and-vehicle-technologies/",
+          "published": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/uk-ministry-of-defence-says-25-million-package-will-equip-troops-in-estonia-with-more-drones-and-electronic-warfare-systems/",
+      "headline": "UK Ministry of Defence says £25 million package will equip troops in Estonia with more drones and electronic warfare systems",
+      "firstSeen": "2026-11-19",
+      "lastSeen": "2026-11-19",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/uk-ministry-of-defence-says-25-million-package-will-equip-troops-in-estonia-with-more-drones-and-electronic-warfare-systems/",
+          "published": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-army-to-stress-test-its-depots-with-cheap-attack-drone-production/",
+      "headline": "U.S. Army to stress test its depots with cheap attack drone production",
+      "firstSeen": "2026-11-19",
+      "lastSeen": "2026-11-19",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-army-to-stress-test-its-depots-with-cheap-attack-drone-production/",
+          "published": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/french-navy-gets-third-albatros-maritime-surveillance-jet/",
+      "headline": "French Navy gets third Albatros maritime surveillance jet",
+      "firstSeen": "2026-11-19",
+      "lastSeen": "2026-11-19",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [
+        {
+          "iso": "FRA",
+          "name": "France"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/french-navy-gets-third-albatros-maritime-surveillance-jet/",
           "published": "2026-11-19"
         }
       ]
