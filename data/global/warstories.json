@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-19T01:53:10.201Z",
-  "previousBuild": "2026-11-18T17:15:40.384Z",
+  "builtAt": "2026-11-19T13:04:46.702Z",
+  "previousBuild": "2026-11-19T01:53:10.201Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 356,
-    "createdThisRun": 0,
+    "stories": 359,
+    "createdThisRun": 3,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 13,
+    "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 189,
+    "itemsSeen": 229,
     "corroboration": {
-      "one": 307,
+      "one": 310,
       "two": 22,
       "threePlus": 27
     }
@@ -28,12 +28,12 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 188
+      "n": 189
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 108
+      "n": 110
     },
     {
       "id": "cyber-ew",
@@ -43,7 +43,7 @@
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 29
+      "n": 30
     },
     {
       "id": "military-ai",
@@ -60,7 +60,7 @@
     {
       "iso": "IND",
       "name": "India",
-      "n": 36
+      "n": 37
     },
     {
       "iso": "UKR",
@@ -88,14 +88,14 @@
       "n": 6
     },
     {
-      "iso": "AUS",
-      "name": "Australia",
+      "iso": "KOR",
+      "name": "South Korea",
       "n": 4
     },
     {
-      "iso": "KOR",
-      "name": "South Korea",
-      "n": 3
+      "iso": "AUS",
+      "name": "Australia",
+      "n": 4
     },
     {
       "iso": "PAK",
@@ -143,8 +143,8 @@
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
-      "items": 0,
-      "kept": 0
+      "items": 30,
+      "kept": 1
     },
     {
       "outlet": "Military Times",
@@ -174,7 +174,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense News",
@@ -196,22 +196,21 @@
     },
     {
       "outlet": "Naval News",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "HTTP 503"
-    },
-    {
-      "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
       "kept": 0
     },
     {
+      "outlet": "Defence Blog",
+      "ok": true,
+      "items": 10,
+      "kept": 1
+    },
+    {
       "outlet": "UK Ministry of Defence",
       "ok": true,
       "items": 20,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "Press Information Bureau (India)",
@@ -1645,6 +1644,68 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/indian-navy-celebrates-50-years-of-long-range-maritime-surveillance-operations/",
+      "headline": "Indian Navy Celebrates 50 Years of Long-Range Maritime Surveillance Operations",
+      "firstSeen": "2026-11-19",
+      "lastSeen": "2026-11-19",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/indian-navy-celebrates-50-years-of-long-range-maritime-surveillance-operations/",
+          "published": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/hanwha-demonstrates-counter-drone-and-grunt-robotic-systems-integration-with-romanian-military-networks-in-exercise/",
+      "headline": "Hanwha demonstrates counter-drone and GRUNT robotic systems’ integration with Romanian military networks in exercise",
+      "firstSeen": "2026-11-19",
+      "lastSeen": "2026-11-19",
+      "themes": [
+        "autonomy",
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/hanwha-demonstrates-counter-drone-and-grunt-robotic-systems-integration-with-romanian-military-networks-in-exercise/",
+          "published": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/south-korean-firm-wants-to-sell-romania-unmanned-army-vehicles/",
+      "headline": "South Korean firm wants to sell Romania unmanned army vehicles",
+      "firstSeen": "2026-11-19",
+      "lastSeen": "2026-11-19",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "KOR",
+          "name": "South Korea"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/south-korean-firm-wants-to-sell-romania-unmanned-army-vehicles/",
+          "published": "2026-11-19"
         }
       ]
     },
