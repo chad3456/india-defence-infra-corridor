@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-20T07:49:18.455Z",
+  "builtAt": "2026-11-20T17:20:41.567Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1420,
-    "addedThisRun": 5,
-    "carriedFromEarlierRuns": 1415,
-    "withOutlet": 1305,
+    "items": 1422,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1420,
+    "withOutlet": 1307,
     "bySubject": {
-      "scst": 976,
+      "scst": 978,
       "pmshri": 444
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 97
+    "offSubjectDropped": 91
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 703
+      "n": 705
     },
     {
       "key": "use",
@@ -265,6 +265,10 @@
       "n": 5
     },
     {
+      "key": "Rediff",
+      "n": 5
+    },
+    {
       "key": "The Siasat Daily",
       "n": 5
     },
@@ -283,10 +287,6 @@
     {
       "key": "Forward Press",
       "n": 4
-    },
-    {
-      "key": "HinduPost",
-      "n": 4
     }
   ],
   "perQuery": [
@@ -295,17 +295,17 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 37,
       "bing": 0,
-      "kept": 3,
-      "offSubject": 8
+      "kept": 0,
+      "offSubject": 0
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 40,
+      "google": 39,
       "bing": 1,
       "kept": 1,
       "offSubject": 4
@@ -315,17 +315,17 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 25,
+      "google": 24,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 6
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 10,
+      "google": 9,
       "bing": 4,
       "kept": 0,
       "offSubject": 1
@@ -335,17 +335,17 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 6,
+      "google": 7,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 17,
+      "google": 16,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -355,10 +355,10 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 28,
+      "google": 29,
       "bing": 2,
-      "kept": 1,
-      "offSubject": 6
+      "kept": 0,
+      "offSubject": 5
     },
     {
       "id": "act-hostile",
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 10,
+      "google": 49,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 1
+      "kept": 1,
+      "offSubject": 11
     },
     {
       "id": "act-dilution",
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 17,
+      "google": 47,
       "bing": 1,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 15
     },
     {
       "id": "act-fabricated",
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 10,
+      "google": 8,
       "bing": 1,
       "kept": 0,
       "offSubject": 0
@@ -446,36 +446,36 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 10,
-      "bing": 2,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 0
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 13,
+      "google": 45,
       "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 6
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 19,
-      "bing": 2,
+      "google": 23,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 10
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 33,
+      "google": 32,
       "bing": 2,
       "kept": 0,
       "offSubject": 3
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 34
+      "offSubject": 8
     }
   ],
   "items": [
@@ -3543,7 +3543,8 @@
       "published": "2025-11-06",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9IS3lhdHFodHFaa2JmSk9EYzcwa2w4b0p3b3hGd0UwemUyV3hwU2wzV19Sc3BDd0NpdGN5Y3JzS1p1SFFDOFgyWFpWc2ZGem12b3RHZENkWktVYmNSN3RNOGFfT1hpb054OEgtbmVwSXVWTlk?oc=5",
       "queries": [
-        "act-convicted"
+        "act-convicted",
+        "act-false"
       ],
       "indexes": [
         "google"
@@ -18086,7 +18087,8 @@
       "published": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9pa1pHcjc2VkkyajU3SUxJSlhza0dRWnlxcEJ1UlRVRGxsQy1vbF9mV004RkdZRzcwdFZOY0pzR3RTVUJsS1RkNUdoZE9XN3ozd3VmWG1ZaTBRMDh1UmxpQnBBY2Y2N2FUTU83V1RKZVNXN2tw?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-false"
       ],
       "indexes": [
         "google"
@@ -19730,7 +19732,8 @@
       "published": "2025-05-01",
       "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxONHdISklFV2g4RWNZTDJBM3FqOXd4SklKelpEaVdFSUVpMkttOEoxa2tSWTl3Wm5fcEJCTDhVeGduT0lnODRacFJqWnpibU9zeDU1MmNVTTMxalJXUXkxUWRZS0FVTDFWcVl5QjNCLUVkZjhxU1B6VGgtazB4a1pMR3JQWWpIczl2WUhkdHRXVVltZUtkdXBwVmIyOVVzRlVlUDY2VkpDT1BqOElHVEplejRB?oc=5",
       "queries": [
-        "shri-withheld"
+        "shri-withheld",
+        "shri-mou"
       ],
       "indexes": [
         "google"
@@ -23729,6 +23732,38 @@
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBlOG0yN1RFSjA2VU5yYzhIVEZEOE9sc3A1VGh2U01tMHVPOHpIM0VKY2NFV3drTmNJbXRMN0tsakhWOE1QQWpDNEN3Mk1QY21yYWVYNg?oc=5",
       "queries": [
         "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-20"
+    },
+    {
+      "id": "supreme court gives niyamat until january 7 to respond in sc st act case",
+      "headline": "Supreme Court Gives Niyamat Until January 7 to Respond in SC/ST Act Case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Wave Andaman",
+      "published": "2026-11-20",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOQ3pQU1VCRVB4aWdoZ3NCNkJHMzgxeWUzYXJRck5VTm83X3lDa2pJT2xaQ0pFcHZkRl9oWkIxWWVZUXRkRVc5OTVrWnBuWWFuNE1qRHd5amFOTE5SLWNLOGlPWUZoVkRIS29ua0drNUdzMldON19RS0dDQ2N4MzhDVVF3?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-20"
+    },
+    {
+      "id": "caste alone not enough to invoke sc st act allahabad hc",
+      "headline": "Caste alone not enough to invoke SC/ST Act: Allahabad HC",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Rediff",
+      "published": "2026-09-12",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPLUFKeXVRU01iMzlSZDdoWkNBLVdRd1liVUY2OEpzQ2RVVEs3NjAtcDdjdldFZzM1azlpaU1wVnU1MVdWUjVYQ3ozRDIyQWpYRzVTbjRMRVNjcm5UQXQ1YTluQUpJY2V5RU9kMHhKZ2hWR091b2FmQjFDWkVNdzJaLWFUT2V6VFBOWExEV181aUJvQU01Q0RMYVItT3U1NjdJNGRsRNIBpwFBVV95cUxPckFpdWI1d3B0LU9rbTNtS3RVN2ZjdWNGQWFhQ1BqYTlFRDJIYmRNekkzTEJ6UzAxeVBFY1lsb2trMzBSSXZmQUo0eWtRRHVPS0tEejMwX0MyLUpHN0prTEJhbThPcFpNZU1USzd2bFV1SFBpaFB1R3hxTklXbTZFN0xGc0U4Wmx2X2o3bHN0LTR4ell6OXJMaVVfNHhydlNzbnhqRkZUSQ?oc=5",
+      "queries": [
+        "act-misuse-claim"
       ],
       "indexes": [
         "google"
