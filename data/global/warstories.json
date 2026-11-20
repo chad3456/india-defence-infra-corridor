@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-20T07:14:52.710Z",
-  "previousBuild": "2026-11-19T23:03:33.244Z",
+  "builtAt": "2026-11-20T16:58:15.065Z",
+  "previousBuild": "2026-11-20T07:14:52.710Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,15 +12,15 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 364,
-    "createdThisRun": 0,
-    "corroboratedThisRun": 0,
-    "feedsAnswered": 14,
+    "stories": 368,
+    "createdThisRun": 4,
+    "corroboratedThisRun": 1,
+    "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 228,
+    "itemsSeen": 217,
     "corroboration": {
-      "one": 315,
-      "two": 22,
+      "one": 318,
+      "two": 23,
       "threePlus": 27
     }
   },
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 191
+      "n": 193
     },
     {
       "id": "autonomy",
@@ -38,7 +38,7 @@
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 44
+      "n": 46
     },
     {
       "id": "targeting",
@@ -55,12 +55,12 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 47
+      "n": 49
     },
     {
       "iso": "IND",
       "name": "India",
-      "n": 37
+      "n": 39
     },
     {
       "iso": "UKR",
@@ -98,14 +98,14 @@
       "n": 4
     },
     {
-      "iso": "PAK",
-      "name": "Pakistan",
+      "iso": "CHN",
+      "name": "China",
       "n": 2
     },
     {
-      "iso": "CHN",
-      "name": "China",
-      "n": 1
+      "iso": "PAK",
+      "name": "Pakistan",
+      "n": 2
     },
     {
       "iso": "TWN",
@@ -144,7 +144,7 @@
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Military Times",
@@ -168,13 +168,13 @@
       "outlet": "DefenseScoop",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 3
+      "kept": 0
     },
     {
       "outlet": "Defense News",
@@ -186,25 +186,26 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense One",
       "ok": true,
-      "items": 23,
+      "items": 22,
       "kept": 1
     },
     {
       "outlet": "Naval News",
-      "ok": true,
-      "items": 10,
-      "kept": 0
+      "ok": false,
+      "items": 0,
+      "kept": 0,
+      "error": "HTTP 503"
     },
     {
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 2
+      "kept": 3
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1109,6 +1110,33 @@
       ]
     },
     {
+      "id": "https://cyberscoop.com/sean-cairncross-out-national-cyber-director/",
+      "headline": "Trump taps Pentagon CIO Davies to be national cyber director",
+      "firstSeen": "2026-11-20",
+      "lastSeen": "2026-11-20",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://cyberscoop.com/sean-cairncross-out-national-cyber-director/",
+          "published": "2026-11-20"
+        },
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/11/pentagon-cio-davies-tapped-as-acting-national-cyber-director/",
+          "published": "2026-11-20"
+        }
+      ]
+    },
+    {
       "id": "https://defence-blog.com/u-s-air-force-gets-its-first-uncrewed-fighter-aircraft/",
       "headline": "U.S. Air Force gets its first uncrewed ‘fighter’ aircraft",
       "firstSeen": "2026-09-25",
@@ -1644,6 +1672,75 @@
           "outlet": "Defense News",
           "url": "https://www.defensenews.com/news/your-military/2026/09/16/us-military-must-adapt-as-formations-will-be-hunted-by-autonomous-systems-caine-says/",
           "published": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/indian-army-gem-bids-chinese-fpv-drone-components/",
+      "headline": "Chinese FPV Brands Appear in Multiple Indian Army Procurement Bids",
+      "firstSeen": "2026-11-20",
+      "lastSeen": "2026-11-20",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        },
+        {
+          "iso": "CHN",
+          "name": "China"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/indian-army-gem-bids-chinese-fpv-drone-components/",
+          "published": "2026-11-20"
+        }
+      ]
+    },
+    {
+      "id": "https://idrw.org/india-and-us-hold-23rd-military-cooperation-group-meeting-focus-on-niche-tech-cyber-domain/",
+      "headline": "India and US hold 23rd Military Cooperation Group meeting, focus on niche tech, cyber domain",
+      "firstSeen": "2026-11-20",
+      "lastSeen": "2026-11-20",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        },
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/india-and-us-hold-23rd-military-cooperation-group-meeting-focus-on-niche-tech-cyber-domain/",
+          "published": "2026-11-20"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/u-s-army-tests-saronic-drone-boats-to-guard-ammo-ports/",
+      "headline": "U.S. Army tests Saronic drone boats to guard ammo ports",
+      "firstSeen": "2026-11-20",
+      "lastSeen": "2026-11-20",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/u-s-army-tests-saronic-drone-boats-to-guard-ammo-ports/",
+          "published": "2026-11-20"
         }
       ]
     },
