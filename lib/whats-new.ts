@@ -69,6 +69,15 @@ export const WHATS_NEW: NewFeature[] = [
     since: "2026-10-26",
   },
   {
+    id: "corridors-2026-11",
+    title: "Every economic corridor, and the economy since 2014",
+    blurb:
+      "An index of the corridors India is part of — IMEC, the North–South corridor, Chennai–Vladivostok, the freight corridors, the bullet train, the industrial corridors — " +
+      "mapped, dated and checked; and a segmented regression across nine domains asking whether India's economy changed course after 2014.",
+    href: "/corridors",
+    since: "2026-11-20",
+  },
+  {
     id: "since-2020-2026-11",
     title: "The BJP since the pandemic, election by election",
     blurb:

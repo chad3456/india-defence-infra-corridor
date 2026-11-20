@@ -27,7 +27,7 @@ moved, not the number.
 |---|---:|---:|---|---|
 | Defence | 24 | 210 | 2001–2026 | PIB / MoD, SIPRI, PRS Legislative Research |
 | Infrastructure | 44 | 623 | 2001–2026 | MoRTH, MoCA, Ministry of Ports & Shipping, PIB |
-| Trade | 107 | 2396 | 2001–2025 | World Bank WDI, Department of Commerce |
+| Trade | 107 | 2398 | 2001–2025 | World Bank WDI, Department of Commerce |
 | Economy | 127 | 2828 | 2001–2025 | World Bank WDI |
 | Manufacturing | 18 | 375 | 2001–2025 | World Bank WDI, PIB |
 | Social | 81 | 1853 | 2001–2025 | World Bank WDI |
@@ -435,6 +435,24 @@ yet exist); split rows — the old Dadra and Nagar Haveli and Daman and Diu rows
 listed. Statement 30 (c) is headed 2020-21 but sourced to PLFS 2019-20, as is the report's contents
 page; it is labelled 2019–20. `npm run test:youth` re-reads the PDF and fails if the committed file
 differs, and checks figures read by eye against the printed pages.
+
+### Economic corridors and the economy since 2014 (`/corridors`)
+
+`data/corridors/corridors.json` indexes the corridors India is party to — international (IMEC, the
+INSTC, Chabahar, Chennai–Vladivostok, the Trilateral Highway, Kaladan, BBIN) and national (the two
+dedicated freight corridors, Mumbai–Ahmedabad high-speed rail, the Delhi–Mumbai Expressway, the
+industrial corridor programme, the defence corridors) — each with the year it was begun, its status as
+last reported, and at least two sources. A progress figure appears only where one was published; the
+expressway's "75–80%" is kept as a range. Routes are drawn through main nodes on basemaps served as
+static SVG (`/corridors/world.svg`, `/corridors/india.svg`). The economic test (`lib/its.ts`,
+`lib/corridors-economy.ts`) is a segmented regression of World Bank series, 2004–13 against 2014 on,
+with 95% ranges calibrated by simulation for each series' own autocorrelation (a cautious,
+median-unbiased-style AR(1) estimate; Newey–West errors were tried first and covered only 84% in
+simulation on this design); a change is called only when its 95% range excludes zero.
+Indicators were fixed before results were computed; mobile subscriptions were reclassified as neutral
+after the first run because they were saturating, and the page says so. ILO's modelled labour series
+are shown but not counted. `npm run test:corridors` checks the regression against known answers and the
+register against its rules.
 
 ### The BJP since the pandemic (`/elections/since-2020`)
 
