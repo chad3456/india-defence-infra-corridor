@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-19T23:16:40.085Z",
+  "builtAt": "2026-11-20T07:49:18.455Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,29 +10,29 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1415,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1414,
-    "withOutlet": 1300,
+    "items": 1420,
+    "addedThisRun": 5,
+    "carriedFromEarlierRuns": 1415,
+    "withOutlet": 1305,
     "bySubject": {
-      "scst": 971,
+      "scst": 976,
       "pmshri": 444
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 68
+    "offSubjectDropped": 97
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 701
+      "n": 703
     },
     {
       "key": "use",
-      "n": 496
+      "n": 498
     },
     {
       "key": "acquittal",
-      "n": 72
+      "n": 73
     },
     {
       "key": "dispute",
@@ -50,11 +50,11 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 114
+      "n": 115
     },
     {
       "key": "Lawtext",
-      "n": 99
+      "n": 100
     },
     {
       "key": "The Indian Express",
@@ -205,6 +205,10 @@
       "n": 8
     },
     {
+      "key": "Wansom AI",
+      "n": 7
+    },
+    {
       "key": "Bhaskar English",
       "n": 7
     },
@@ -227,10 +231,6 @@
     {
       "key": "ETV Bharat",
       "n": 7
-    },
-    {
-      "key": "Wansom AI",
-      "n": 6
     },
     {
       "key": "organiser.org",
@@ -295,19 +295,19 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 39,
+      "google": 100,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 0
+      "kept": 3,
+      "offSubject": 8
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 38,
+      "google": 40,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 4
     },
     {
@@ -325,7 +325,7 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 9,
+      "google": 10,
       "bing": 4,
       "kept": 0,
       "offSubject": 1
@@ -335,17 +335,17 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 7,
+      "google": 6,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 18,
+      "google": 17,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -357,7 +357,7 @@
       "expect": "acquittal",
       "google": 28,
       "bing": 2,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 6
     },
     {
@@ -365,7 +365,7 @@
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 10,
+      "google": 9,
       "bing": 0,
       "kept": 0,
       "offSubject": 4
@@ -375,17 +375,17 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 47,
+      "google": 10,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 8
+      "kept": 0,
+      "offSubject": 1
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 18,
+      "google": 17,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -415,8 +415,8 @@
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 34,
-      "bing": 9,
+      "google": 35,
+      "bing": 8,
       "kept": 0,
       "offSubject": 2
     },
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 8,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "shri-upgrade",
@@ -448,14 +448,14 @@
       "google": 10,
       "bing": 2,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 1
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 14,
+      "google": 13,
       "bing": 1,
       "kept": 0,
       "offSubject": 0
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 31,
+      "google": 33,
       "bing": 2,
       "kept": 0,
       "offSubject": 3
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 10,
+      "google": 43,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 34
     }
   ],
   "items": [
@@ -19713,7 +19713,8 @@
       "published": "2024-01-05",
       "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPTjBaYUdVQ1NCQjFlZEM1UjFqWk8zXzg2SUY3YmRpQjZMU19Nc0thUDB5cC1aZUN4UHp6eFJ4dVVSdmZidm5TVDNzX2wwbVN0cGk2TEE3Z1Q3SHlORXo3Q3BkNTdWWnBwUk9WT1l5ZzIxN0FwdFJ6VmN0QTExczNCd0hBX3NMRGNLTS1UUkhybU5MMFFqRUdkUA?oc=5",
       "queries": [
-        "shri-sanctioned"
+        "shri-sanctioned",
+        "shri-general"
       ],
       "indexes": [
         "google"
@@ -20724,7 +20725,8 @@
       "published": "2026-09-20",
       "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNQ0t3OVJMVUhfWmhhNXZ3cDc3WlRlbTBUTTM0LWI0VjVpWGJZUWtwZ3FvMXBiM1lTOUw1XzZXSm1MZWlJU2h5cHZfUTZLVTctcTdBTzVtOGd3XzQ3Tm9PS3lVcUVpZG5odlRsOFBha2hXMzRIaWRHUndTODMtbUxJaGVxdHRQeUNqbWRmdTlIaDdjOEhLQzZqakF30gGnAUFVX3lxTE9xU3V2OThFbm9qY1RHdG5lLTB1emwyaUdlUURFZWdXVXpvYmQzemkxR1dHYkg4WmktYlJNakFPM003MEI3T3ZxVWZtdnRMM2N6c3ZIVm81WXhzcHpZOHp3ZmxtZmY2Y3FDRm5FM1hfbVJWaktrYnBHaTdHYVNFelljYWlwSnQwYy1sQ0hxWFczb0w3WjFOMHFWd1pyYVQ3aUF3SWR5WFFV?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -23652,6 +23654,86 @@
         "google"
       ],
       "firstSeen": "2026-11-19"
+    },
+    {
+      "id": "an under reported landmark the 2021 cuddalore atrocities act verdict",
+      "headline": "An under-reported landmark: The 2021 Cuddalore Atrocities Act verdict",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Counterview",
+      "published": "2026-11-06",
+      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE0zQ3N0UWVLQjBKbE5QWG05b255dFZyX2pLV3J1Nk43QURaWDJlMVJIVjlhOWdDRnc4c0JkQlpDb0d3V3dzQ2tNVC1PLVhRUGJoYm9JTEc0YXU0RWV2T1ZLQ2lTaV9qVGFhWjhSVV9pWjNMcVN4UjNnYkhUXzg?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-20"
+    },
+    {
+      "id": "delhi court ajeet bharti anticipatory bail rejected sc st act",
+      "headline": "Delhi Court: Ajeet Bharti Anticipatory Bail Rejected, SC/ST Act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Wansom AI",
+      "published": "2026-09-07",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQY3ZpSzdRaFBnNEFMS1YxdUR2ZlRlYjJOTW12Q096X0x6SlVGVEgxbmlEMzBRZ0NwWGFUZFpBTVM1RDFLR1ZoVUNTSk1ua2VqVFM4RFFGX2tMSHRZbG1lak9mMnBoZ1ZGaU45TWE4ZUo0aldsV0ZlZTh2Q2dZS0pOaG4zX0ZDT1o3NTJPWFByenlCOEZib1kxTzBFMWhnS0owUFhUdVg4V01HUW9ibm9PaWVORDRrOXVQTzdqSUN2Q0pKZ0cxNFRv?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-20"
+    },
+    {
+      "id": "41 booked under sc st act over temple festival conflict",
+      "headline": "41 booked under SC/ST act over temple festival conflict",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Times of India",
+      "published": "2026-07-31",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPbWtUaE16WG9MQ3h2WS1qdWZLeXZsNkR0Qkp2MDQyS3BXOXpURWFsMkVHNG1GTXNrTy1aOGM1QktpY0VYWGxBek5ieHdGVEVaZGVaTUVjNU5RYm9TWDE0V2YxSG9lb2d2VFdQWHRFZnE2dlF0Z0FpaVJ5NFg0dmpCbHlndjFNTTk4ODBDakt6ODl0WDc3cWV4dlY3dE9SMkFLbTdGeXpNTXc1SHN0N3FBQ3MtU2ROUXZZRXVHQk1PZkNqUXFVSnpMONIBzgFBVV95cUxOVy0xNUR1ZkhSWWZjQk1UQWdyTmNvZ0cyU1cyMEQwTzBDcTdUalp2a2RaZS1rZk1lOGMwSVlXSm1NZHFkNkwwd0txdHhfeVJ5dldJd3dSaS13SEVzLVRtLVJ4cnRnSnFNRGVRS0o3OXl6MnNac2NrZ0JNMFN3eVFHcUxLY21kRVM1cV82aWQtSDc4aWtUb0dxOWgzVXMzaHVjZjZNSlduNUtRdDhoSURKRWxMU1J4aHZQRUI1eHVkeU1yZE9jSHEwbV9LcWNkdw?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-20"
+    },
+    {
+      "id": "supreme court gives niyamat until jan 7 in sc st act case",
+      "headline": "Supreme Court Gives Niyamat Until Jan 7 in SC/ST Act Case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Wave Andaman",
+      "published": "2026-11-20",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOQ3pQU1VCRVB4aWdoZ3NCNkJHMzgxeWUzYXJRck5VTm83X3lDa2pJT2xaQ0pFcHZkRl9oWkIxWWVZUXRkRVc5OTVrWnBuWWFuNE1qRHd5amFOTE5SLWNLOGlPWUZoVkRIS29ua0drNUdzMldON19RS0dDQ2N4MzhDVVF3?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-20"
+    },
+    {
+      "id": "high court of karnataka dismisses state appeal against acquittal in sc st atrocity case ac",
+      "headline": "High Court of Karnataka Dismisses State Appeal Against Acquittal in SC/ST Atrocity Case — Acquittal Upheld Due to Inconsistent Evidence and Absence of Public Witness. Caste-Based Insult Allegation Fails as Incident Occurred in Private Setting, Not in Publi",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-10-24",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBlOG0yN1RFSjA2VU5yYzhIVEZEOE9sc3A1VGh2U01tMHVPOHpIM0VKY2NFV3drTmNJbXRMN0tsakhWOE1QQWpDNEN3Mk1QY21yYWVYNg?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-20"
     }
   ]
 }
