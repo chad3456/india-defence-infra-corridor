@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-20T23:20:50.429Z",
+ "builtAt": "2026-11-21T13:42:47.105Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206518,7 +206518,7 @@
   {
    "outlet": "Defense One",
    "ok": true,
-   "items": 22,
+   "items": 23,
    "kept": 0,
    "via": "direct"
   },
@@ -206533,11 +206533,29 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-8dj561",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States"
+   ],
+   "value": {
+    "amount": 16000000000,
+    "currency": "USD",
+    "asWritten": "$16B"
+   },
+   "date": "2026-11-21",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/u-s-air-force-opens-16b-engine-deal-to-giants-and-startups-alike/",
+   "headline": "U.S. Air Force opens $16B engine deal to giants and startups alike",
+   "primary": false
+  },
   {
    "id": "ev-zcojza",
    "kind": "order",
@@ -208385,64 +208403,6 @@
  ],
  "groups": [
   {
-   "key": "order||denmark",
-   "systems": [],
-   "countries": [
-    "Denmark"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-zcojza",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Denmark"
-     ],
-     "value": null,
-     "date": "2026-11-19",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/global/europe/2026/11/19/denmark-ratifies-trump-deal-over-greenland-hoping-to-end-conflict/",
-     "headline": "Denmark ratifies Trump deal over Greenland, hoping to end conflict",
-     "primary": false
-    },
-    {
-     "id": "ev-1dq013n",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Denmark"
-     ],
-     "value": null,
-     "date": "2026-11-09",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/event-news/euronaval-2026/2026/11/babcock-and-saab-denmark-sign-strategic-agreement-for-arrowhead-frigate-opportunities/",
-     "headline": "Babcock and Saab Denmark sign strategic agreement for Arrowhead frigate opportunities",
-     "primary": false
-    },
-    {
-     "id": "ev-l1p4nx",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Denmark"
-     ],
-     "value": null,
-     "date": "2026-09-21",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/global/europe/2026/09/21/denmark-says-nato-shares-responsibility-for-arctic-security-under-greenland-deal/",
-     "headline": "Denmark says NATO shares responsibility for Arctic security under Greenland deal",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defense News",
-    "Naval News"
-   ],
-   "value": null,
-   "verdict": "corroborated by independent outlets"
-  },
-  {
    "key": "order||united states",
    "systems": [],
    "countries": [
@@ -208450,6 +208410,24 @@
    ],
    "kind": "order",
    "events": [
+    {
+     "id": "ev-8dj561",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States"
+     ],
+     "value": {
+      "amount": 16000000000,
+      "currency": "USD",
+      "asWritten": "$16B"
+     },
+     "date": "2026-11-21",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-air-force-opens-16b-engine-deal-to-giants-and-startups-alike/",
+     "headline": "U.S. Air Force opens $16B engine deal to giants and startups alike",
+     "primary": false
+    },
     {
      "id": "ev-13y6np9",
      "kind": "order",
@@ -209168,14 +209146,72 @@
     }
    ],
    "outlets": [
-    "Breaking Defense",
     "Defence Blog",
+    "Breaking Defense",
     "Naval News",
     "Defense News",
     "Defense One"
    ],
    "value": null,
    "verdict": "outlets disagree on the value"
+  },
+  {
+   "key": "order||denmark",
+   "systems": [],
+   "countries": [
+    "Denmark"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-zcojza",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Denmark"
+     ],
+     "value": null,
+     "date": "2026-11-19",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/global/europe/2026/11/19/denmark-ratifies-trump-deal-over-greenland-hoping-to-end-conflict/",
+     "headline": "Denmark ratifies Trump deal over Greenland, hoping to end conflict",
+     "primary": false
+    },
+    {
+     "id": "ev-1dq013n",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Denmark"
+     ],
+     "value": null,
+     "date": "2026-11-09",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/event-news/euronaval-2026/2026/11/babcock-and-saab-denmark-sign-strategic-agreement-for-arrowhead-frigate-opportunities/",
+     "headline": "Babcock and Saab Denmark sign strategic agreement for Arrowhead frigate opportunities",
+     "primary": false
+    },
+    {
+     "id": "ev-l1p4nx",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Denmark"
+     ],
+     "value": null,
+     "date": "2026-09-21",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/global/europe/2026/09/21/denmark-says-nato-shares-responsibility-for-arctic-security-under-greenland-deal/",
+     "headline": "Denmark says NATO shares responsibility for Arctic security under Greenland deal",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defense News",
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "corroborated by independent outlets"
   },
   {
    "key": "delivery||ukraine+united kingdom",
