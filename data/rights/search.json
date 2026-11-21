@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-21T01:47:24.486Z",
+  "builtAt": "2026-11-21T13:04:23.882Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,29 +10,29 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1425,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 1422,
-    "withOutlet": 1310,
+    "items": 1429,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 1425,
+    "withOutlet": 1314,
     "bySubject": {
-      "scst": 978,
-      "pmshri": 447
+      "scst": 980,
+      "pmshri": 449
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 87
+    "offSubjectDropped": 64
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 706
+      "n": 708
     },
     {
       "key": "use",
-      "n": 500
+      "n": 501
     },
     {
       "key": "acquittal",
-      "n": 73
+      "n": 74
     },
     {
       "key": "dispute",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 100
+      "n": 101
     },
     {
       "key": "The Indian Express",
@@ -114,7 +114,7 @@
     },
     {
       "key": "Careers360",
-      "n": 17
+      "n": 18
     },
     {
       "key": "Deccan Herald",
@@ -295,9 +295,9 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 37,
+      "google": 35,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 0
     },
     {
@@ -335,17 +335,17 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 7,
+      "google": 6,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 15,
+      "google": 14,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -355,9 +355,9 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 28,
-      "bing": 2,
-      "kept": 0,
+      "google": 30,
+      "bing": 1,
+      "kept": 1,
       "offSubject": 5
     },
     {
@@ -416,18 +416,18 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 35,
-      "bing": 9,
-      "kept": 1,
-      "offSubject": 3
+      "bing": 10,
+      "kept": 0,
+      "offSubject": 4
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 8,
+      "google": 9,
       "bing": 1,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 0
     },
     {
@@ -435,20 +435,20 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 69,
+      "google": 9,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 20
+      "kept": 1,
+      "offSubject": 7
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 52,
+      "google": 10,
       "bing": 2,
-      "kept": 2,
-      "offSubject": 11
+      "kept": 0,
+      "offSubject": 1
     },
     {
       "id": "shri-mou",
@@ -23813,6 +23813,70 @@
       "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPLTZVY2U3dHNtNUNXVUhQeXRtajlLbjYtdEx6cFlaRzVaRmV2ZDVIRW01eVptNjBuZll6NGp5Q2xDVWFWN3FkVC1XeUhQbFpWQW82WV9NSW9DeVhTUVNWRzI1Zzc3Tk5jSC1VT3BhMVhJMEFvaURPdHYtTjR1S0tOLU9rQUZ0WlluX1Vub1FDWVYwX1k2N2R3WjBlV3ZTekJ2R0hBckEzTHVjenNOOHNHV2xYUUUwYXZEdi03X08xeF9PUQ?oc=5",
       "queries": [
         "shri-upgrade"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-21"
+    },
+    {
+      "id": "no public view no offence telangana hc clarifies limits of sc st act in marital disputes",
+      "headline": "No Public View, No Offence: Telangana HC Clarifies Limits Of SC/ST Act In Marital Disputes",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Legal 500",
+      "published": "2025-08-27",
+      "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxObTZVUzVBQnhnSTZ5OW1pV3NBUkdUVE5QbkI4NkNBOXY5R1VDYm5TdnBVQ0dfZjZaWUxDZmM3QWMwc2JGMTlydlFVVXlTb2FtdGp6d3NaUmdob2J6WXdURHJwV3FwXzNTYWJxdHdJa0cxZGlfenFOUGV0R1VrTmxMbko3SXlabG9xNGdva0dHcjlFcFRqV2FRbGpxQ3lUZ3llWkxDYkFKal91cnZNcDFGUDNoRk0zX2swVFIxYTRvQk1zRmF4a3ZRQ1VhdXMwOHc5bGlsXzY4X215emkyOUV4TFR3OEd2bTFBNWJz?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-21"
+    },
+    {
+      "id": "high court of karnataka dismisses state appeal against acquittal in rape and sc st act cas",
+      "headline": "High Court of Karnataka Dismisses State Appeal Against Acquittal in Rape and SC/ST Act Case — Prosecution Fails to Prove Guilt Beyond Reasonable Doubt. Evidence of Prosecutrix Found Unreliable and Contradictory, Medical Evidence Not Supporting Ra",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-05-31",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBnWk5CemloMUhlZnNQN0hQZFp4aVlZQ3dDN3pnbnUwbjF3WmpEdUJPdWplMGRWNkRIQjBfZ1AxWHRob2c1XzZZdVFENVhiVVlvZ01DaA?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-21"
+    },
+    {
+      "id": "13 076 pm shri schools established in 3 years highest in uttar pradesh education ministry",
+      "headline": "13,076 PM SHRI schools established in 3 years; highest in Uttar Pradesh: Education ministry",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Careers360",
+      "published": "2025-12-03",
+      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQc2lFQ2pRRlFPaEIxaEJqbHFRVFR6OVo1M3BzRVRvRW9Ed1hKT1YwLUxzMUJ0Mi13Zm9xa2ZMcm9jOFNhWnlsMDFsVThidnBrYVlIQWdrRG1pUThDcmVTby1zd0FEakJSWTVyVGRXbmkwWXJXSkl2SmVGQlcydDVDT2J3NDFFUHdTMnZQbDBNbWFESDVmX2JrZUFRVnFrUmNoNG91YUNUQ20wOEhFN1hkRHVSams4Y3B3WmVwSlI4azZQWFVvUDBvV3llQ0cySVpueF9ENXpKd3BKUWh5X3dCM2Z1N2pkRFRKQTJISmhB0gHzAUFVX3lxTE9wWmZTUzJ5dlpJand2UGlvSUozaXRHYkFhMlZ0WHVTRHFNOWRkdm9acjBaYUhLOTdvQ0Zqc3VDREpjSFdpM0EzZ2RzdkpscW1nOUhjS1ZGRmdDSnYtWjhTbmsxRklLb2YzMF9NWGZtNWM1ZXlKMVpnU25JNmw2d2o0VEcwQ29EWGRvRE5sZUVnaFQ1a0VUT1JTeERBT1pPeV94cF9kcmFSZGxVdGI1MVNEa01LbUNlUW1fMWZhcVhZZ1o4X2dPamZqaE94RDhveDFOSkxET1hwLTBhLUhMM1RZUXlIa2JTT2VWS0xzU2hMalJQdw?oc=5",
+      "queries": [
+        "shri-sanctioned"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-21"
+    },
+    {
+      "id": "west bengal releases 296 64 crore in school grants cm says state will seek pm shri expansi",
+      "headline": "West Bengal releases ₹296.64 crore in school grants; CM says state will seek PM SHRI expansion",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "GK Today",
+      "published": "2026-11-21",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOTmFHU2NjbFN2NjhLUzU4ek94X0c1eTh1ZWh3U0NqMFo3a1JneDBTQ0hRWlpwWnhscE5xZU1SazJDR0VwMzk3TUZzckFHTkpxeXJFLWp1TnhySmRvMVZ4STVMbk1uTE5pc1ZsX21tSFRzenVrSGZTQWN4LV9GSGo5djBSOHZLZzdudms0ZFpXMElNTXM3Y0dnR01ZSVV3RmdzWi1HejRBb2RfTGlOVkpBUDhhN21hdVhHU2tzZFlscmNFeTQ?oc=5",
+      "queries": [
+        "shri-funds"
       ],
       "indexes": [
         "google"
