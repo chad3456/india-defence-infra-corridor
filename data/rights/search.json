@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-21T13:04:23.882Z",
+  "builtAt": "2026-11-21T21:56:04.942Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1429,
-    "addedThisRun": 4,
-    "carriedFromEarlierRuns": 1425,
-    "withOutlet": 1314,
+    "items": 1434,
+    "addedThisRun": 5,
+    "carriedFromEarlierRuns": 1429,
+    "withOutlet": 1319,
     "bySubject": {
-      "scst": 980,
-      "pmshri": 449
+      "scst": 984,
+      "pmshri": 450
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 64
+    "offSubjectDropped": 75
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 708
+      "n": 710
     },
     {
       "key": "use",
-      "n": 501
+      "n": 504
     },
     {
       "key": "acquittal",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 101
+      "n": 104
     },
     {
       "key": "The Indian Express",
@@ -129,6 +129,10 @@
       "n": 14
     },
     {
+      "key": "Court Book",
+      "n": 13
+    },
+    {
       "key": "Maktoob",
       "n": 13
     },
@@ -146,10 +150,6 @@
     },
     {
       "key": "The News Mill",
-      "n": 12
-    },
-    {
-      "key": "Court Book",
       "n": 12
     },
     {
@@ -295,9 +295,9 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 35,
+      "google": 36,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 0
     },
     {
@@ -305,17 +305,17 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 39,
+      "google": 100,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 4
+      "kept": 4,
+      "offSubject": 14
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 24,
+      "google": 25,
       "bing": 0,
       "kept": 0,
       "offSubject": 6
@@ -335,17 +335,17 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 6,
+      "google": 8,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 3
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 14,
+      "google": 13,
       "bing": 0,
       "kept": 0,
       "offSubject": 2
@@ -357,7 +357,7 @@
       "expect": "acquittal",
       "google": 30,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 5
     },
     {
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 17,
+      "google": 16,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -405,20 +405,20 @@
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 9,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 5
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 35,
-      "bing": 10,
-      "kept": 0,
-      "offSubject": 4
+      "google": 36,
+      "bing": 9,
+      "kept": 1,
+      "offSubject": 3
     },
     {
       "id": "shri-sanctioned",
@@ -427,7 +427,7 @@
       "expect": "use",
       "google": 9,
       "bing": 1,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 0
     },
     {
@@ -437,7 +437,7 @@
       "expect": "use",
       "google": 9,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 7
     },
     {
@@ -455,7 +455,7 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 13,
+      "google": 12,
       "bing": 1,
       "kept": 0,
       "offSubject": 0
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 32,
+      "google": 31,
       "bing": 2,
       "kept": 0,
       "offSubject": 4
@@ -23071,7 +23071,8 @@
       "published": "2026-11-10",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBHdzdTUUhpbDRYd05qR2xnY0FxWUtQRmdSSGNtODBVTnN3M0I0UWRvalo2V24taXpHOVVLaTFZQU5TeW1oYUw0eFRTaExiWjEtUHgzZkxJbFVVaEg1dGg2N082aDFKQQ?oc=5",
       "queries": [
-        "act-false"
+        "act-false",
+        "act-registered"
       ],
       "indexes": [
         "google"
@@ -23877,6 +23878,86 @@
       "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOTmFHU2NjbFN2NjhLUzU4ek94X0c1eTh1ZWh3U0NqMFo3a1JneDBTQ0hRWlpwWnhscE5xZU1SazJDR0VwMzk3TUZzckFHTkpxeXJFLWp1TnhySmRvMVZ4STVMbk1uTE5pc1ZsX21tSFRzenVrSGZTQWN4LV9GSGo5djBSOHZLZzdudms0ZFpXMElNTXM3Y0dnR01ZSVV3RmdzWi1HejRBb2RfTGlOVkpBUDhhN21hdVhHU2tzZFlscmNFeTQ?oc=5",
       "queries": [
         "shri-funds"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-21"
+    },
+    {
+      "id": "bombay high court quashes fir in sc st act case due to lack of intent to humiliate allegat",
+      "headline": "Bombay High Court Quashes FIR in SC/ST Act Case Due to Lack of Intent to Humiliate. Allegations of Caste-Based Insults Failed as Utterances Were Made in Service Dispute Context, Not with Intent to Humiliate Under Section 3(1)(r) of SC & ST (Prevention of",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-11-20",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBMVlZTTXNkVDYwWEJZVUs1Z3FYSUdLc2xmYXFMUnYyQUV2SWdjUnVIZ2hqTzYyNDIwTnc0TDQ1aldOMXcyWE9CYm8tNjc3YmZRcmpyYmtpY0N6M3RPRVJNdDJEaFJEQQ?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-21"
+    },
+    {
+      "id": "bombay high court quashes fir against nmmc officers in sc st act case no prima facie case ",
+      "headline": "Bombay High Court Quashes FIR Against NMMC Officers in SC/ST Act Case — No Prima Facie Case as Alleged Insult Occurred in Private Meeting, Not in Public View. Requirement of 'Public View' Under Section 3(1)(x) of SC/ST Act Not Satisfied When Incide",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-11-10",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBpUFozSkUxTEptWTlXSml0QlRiV0FQSVAtS21ydG40WUtsOVIwcU5SUVJTTFFJQ2dqaEMwYXdzeEpkaW5YYjYwdTlNWERLN2JXWE1ZcjNGTGtYQVp3TVBIX25HS1lCZw?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-21"
+    },
+    {
+      "id": "high court quashes sc st act proceedings against accused no 2 due to lack of specific alle",
+      "headline": "High Court Quashes SC/ST Act Proceedings Against Accused No.2 Due to Lack of Specific Allegations and Absence of Intent to Humiliate on Caste Basis. The court held that vague and omnibus allegations without specific overt acts do not constitute an offenc",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-11-03",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBTMGdIaklLLVF4MjJleW5sZm80QWF4bjBUaDZuMjM3WU80azhfdFBIRE9JMnBJdUVxclJEci1OUkgtbUd6cEJxYUJDZE1zTzlDZUdqVg?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-21"
+    },
+    {
+      "id": "delhi court rejects ajeet bharti s anticipatory bail plea in sc st act case over youtube r",
+      "headline": "Delhi Court Rejects Ajeet Bharti’s Anticipatory Bail Plea in SC/ST Act Case Over YouTube Remarks",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Court Book",
+      "published": "2026-09-07",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPZllqX0t4czJjT042eGVYc1luei1Uc015aG5wSDA5VXo0RW9QRzREWm4zY3NVdHNKRERRTGhHbGdGZ3I2NVpSWDJQVEtabEZyU09RanEta2JuMnZBM3A2S0V3SXphOU5GY3EwWFRiWXZDMlpWbG54c19BeFdJSWkyenBwNW1MNHdybzd5NnYxZlFxSTM1V1RXcC1JRGhhTkVUS1lLMUZVUzNPdGtjMXhkXzRoNDIyUDBBY3JZUGNR?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-21"
+    },
+    {
+      "id": "shri dharmendra pradhan interacts with students teachers parents of pm shri schools and al",
+      "headline": "Shri Dharmendra Pradhan interacts with students, teachers, parents of PM SHRI Schools and alumni of Prerana Programmes",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "PIB",
+      "published": "2024-08-15",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE0xMWVmR2J1ZVA3REI4RHF0VV82ZDRpVTB3MjVhRDVxc25SU2JyaTRpcnVBUnV1R21RZkRMNTc1NWxvVjVKbFJUdWI1RFRxam1lNGoyODRPYmUxU2RDc1NJd3FTeUM2YWNn?oc=5",
+      "queries": [
+        "shri-general"
       ],
       "indexes": [
         "google"
