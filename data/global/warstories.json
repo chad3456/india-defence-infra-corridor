@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-20T16:58:15.065Z",
-  "previousBuild": "2026-11-20T07:14:52.710Z",
+  "builtAt": "2026-11-21T01:30:46.897Z",
+  "previousBuild": "2026-11-20T16:58:15.065Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,28 +12,28 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 368,
-    "createdThisRun": 4,
-    "corroboratedThisRun": 1,
-    "feedsAnswered": 13,
+    "stories": 371,
+    "createdThisRun": 3,
+    "corroboratedThisRun": 2,
+    "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 217,
+    "itemsSeen": 229,
     "corroboration": {
-      "one": 318,
-      "two": 23,
-      "threePlus": 27
+      "one": 321,
+      "two": 22,
+      "threePlus": 28
     }
   },
   "byTheme": [
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 193
+      "n": 194
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 111
+      "n": 113
     },
     {
       "id": "cyber-ew",
@@ -65,7 +65,7 @@
     {
       "iso": "UKR",
       "name": "Ukraine",
-      "n": 13
+      "n": 14
     },
     {
       "iso": "GBR",
@@ -137,8 +137,8 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 40,
-      "kept": 1
+      "items": 41,
+      "kept": 2
     },
     {
       "outlet": "Indian Defence Research Wing",
@@ -150,13 +150,13 @@
       "outlet": "Military Times",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Army Times",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "C4ISRNET",
@@ -174,7 +174,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defense News",
@@ -186,26 +186,25 @@
       "outlet": "Breaking Defense",
       "ok": true,
       "items": 15,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Defense One",
       "ok": true,
-      "items": 22,
+      "items": 23,
       "kept": 1
     },
     {
       "outlet": "Naval News",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "HTTP 503"
+      "ok": true,
+      "items": 10,
+      "kept": 0
     },
     {
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 3
+      "kept": 1
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -221,6 +220,43 @@
     }
   ],
   "stories": [
+    {
+      "id": "https://cyberscoop.com/sean-cairncross-out-national-cyber-director/",
+      "headline": "Trump taps Pentagon CIO Davies to be national cyber director",
+      "firstSeen": "2026-11-20",
+      "lastSeen": "2026-11-20",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "DefenseScoop",
+          "url": "https://cyberscoop.com/sean-cairncross-out-national-cyber-director/",
+          "published": "2026-11-20"
+        },
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/11/pentagon-cio-davies-tapped-as-acting-national-cyber-director/",
+          "published": "2026-11-20"
+        },
+        {
+          "outlet": "Military Times",
+          "url": "https://www.militarytimes.com/news/pentagon-congress/2026/11/20/pentagon-cio-replaces-white-house-national-cyber-director-after-tech-outages/",
+          "published": "2026-11-20"
+        },
+        {
+          "outlet": "Army Times",
+          "url": "https://www.armytimes.com/news/pentagon-congress/2026/11/20/pentagon-cio-replaces-white-house-national-cyber-director-after-tech-outages/",
+          "published": "2026-11-20"
+        }
+      ]
+    },
     {
       "id": "https://www.militarytimes.com/video/2026/11/17/watch-a-large-aerial-drone-evacuate-a-wounded-ukrainian-soldier-from-the-front-line/",
       "headline": "Watch a large aerial drone evacuate a wounded Ukrainian soldier from the front line",
@@ -1110,33 +1146,6 @@
       ]
     },
     {
-      "id": "https://cyberscoop.com/sean-cairncross-out-national-cyber-director/",
-      "headline": "Trump taps Pentagon CIO Davies to be national cyber director",
-      "firstSeen": "2026-11-20",
-      "lastSeen": "2026-11-20",
-      "themes": [
-        "cyber-ew"
-      ],
-      "countries": [
-        {
-          "iso": "USA",
-          "name": "United States"
-        }
-      ],
-      "sources": [
-        {
-          "outlet": "DefenseScoop",
-          "url": "https://cyberscoop.com/sean-cairncross-out-national-cyber-director/",
-          "published": "2026-11-20"
-        },
-        {
-          "outlet": "Breaking Defense",
-          "url": "https://breakingdefense.com/2026/11/pentagon-cio-davies-tapped-as-acting-national-cyber-director/",
-          "published": "2026-11-20"
-        }
-      ]
-    },
-    {
       "id": "https://defence-blog.com/u-s-air-force-gets-its-first-uncrewed-fighter-aircraft/",
       "headline": "U.S. Air Force gets its first uncrewed ‘fighter’ aircraft",
       "firstSeen": "2026-09-25",
@@ -1740,6 +1749,62 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/u-s-army-tests-saronic-drone-boats-to-guard-ammo-ports/",
+          "published": "2026-11-20"
+        }
+      ]
+    },
+    {
+      "id": "https://www.twz.com/air/navy-cca-plans-will-not-wait-for-f-a-xx-next-generation-fighter",
+      "headline": "Navy CCA Plans Will Not Wait For F/A-XX Next Generation Fighter",
+      "firstSeen": "2026-11-20",
+      "lastSeen": "2026-11-20",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "The War Zone",
+          "url": "https://www.twz.com/air/navy-cca-plans-will-not-wait-for-f-a-xx-next-generation-fighter",
+          "published": "2026-11-20"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/anduril-industries-supports-u-s-army-virtual-reality-demonstration-of-autonomous-aviation-and-battlefield-networks/",
+      "headline": "Anduril Industries supports U.S. Army virtual reality demonstration of autonomous aviation and battlefield networks",
+      "firstSeen": "2026-11-20",
+      "lastSeen": "2026-11-20",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/anduril-industries-supports-u-s-army-virtual-reality-demonstration-of-autonomous-aviation-and-battlefield-networks/",
+          "published": "2026-11-20"
+        }
+      ]
+    },
+    {
+      "id": "https://breakingdefense.com/2026/11/swedens-nordic-air-defence-launches-k200-drone-interceptor-pushes-toward-ukraine-tests/",
+      "headline": "Sweden’s Nordic Air Defence launches K200 drone interceptor, pushes toward Ukraine tests",
+      "firstSeen": "2026-11-20",
+      "lastSeen": "2026-11-20",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "UKR",
+          "name": "Ukraine"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Breaking Defense",
+          "url": "https://breakingdefense.com/2026/11/swedens-nordic-air-defence-launches-k200-drone-interceptor-pushes-toward-ukraine-tests/",
           "published": "2026-11-20"
         }
       ]
