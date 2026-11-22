@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-22T07:31:24.094Z",
+  "builtAt": "2026-11-22T16:41:02.936Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,16 +10,16 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1436,
-    "addedThisRun": 2,
-    "carriedFromEarlierRuns": 1434,
-    "withOutlet": 1320,
+    "items": 1437,
+    "addedThisRun": 1,
+    "carriedFromEarlierRuns": 1436,
+    "withOutlet": 1321,
     "bySubject": {
-      "scst": 985,
+      "scst": 986,
       "pmshri": 451
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 107
+    "offSubjectDropped": 77
   },
   "byFacet": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "key": "use",
-      "n": 504
+      "n": 505
     },
     {
       "key": "acquittal",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 116
+      "n": 117
     },
     {
       "key": "Lawtext",
@@ -295,20 +295,20 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 38,
       "bing": 0,
       "kept": 1,
-      "offSubject": 9
+      "offSubject": 0
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 41,
       "bing": 1,
       "kept": 0,
-      "offSubject": 14
+      "offSubject": 4
     },
     {
       "id": "act-convicted",
@@ -325,7 +325,7 @@
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 9,
+      "google": 10,
       "bing": 4,
       "kept": 0,
       "offSubject": 1
@@ -335,10 +335,10 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 45,
+      "google": 8,
       "bing": 0,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 3
     },
     {
       "id": "act-pendency",
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 17,
+      "google": 16,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 47,
+      "google": 19,
       "bing": 1,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 3
     },
     {
       "id": "act-fabricated",
@@ -415,10 +415,10 @@
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 35,
-      "bing": 11,
-      "kept": 1,
-      "offSubject": 4
+      "google": 34,
+      "bing": 10,
+      "kept": 0,
+      "offSubject": 3
     },
     {
       "id": "shri-sanctioned",
@@ -445,10 +445,10 @@
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 10,
+      "google": 53,
       "bing": 2,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 13
     },
     {
       "id": "shri-mou",
@@ -475,17 +475,17 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 31,
+      "google": 29,
       "bing": 2,
       "kept": 0,
-      "offSubject": 4
+      "offSubject": 3
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 10,
+      "google": 9,
       "bing": 1,
       "kept": 0,
       "offSubject": 8
@@ -23993,6 +23993,23 @@
       ],
       "indexes": [
         "bing"
+      ],
+      "firstSeen": "2026-11-22"
+    },
+    {
+      "id": "woman agriculture officer assaulted in charkhi dadri five slaps in 5 seconds 2 booked unde",
+      "headline": "Woman agriculture officer assaulted in Charkhi Dadri; five slaps in 5 seconds, 2 booked under SC/ST act",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Times of India",
+      "published": "2026-11-22",
+      "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQT1JGUVBsU0hkbVdESnc3OTVnSFJEQ1M4TUZWS1dPNktpRVJWUVRkWlF4VEV4NTZXNmJKYXRDWER4TUlDZTZlV0tEVGE3N2NPb011N0RVMG5vQTI4TEVXWXdySkRLbXdrcEVyeVV0RmlCNGItVUcwbWFTdUdnMTNVby1ud0tHV25weEJXZzNJakxHSnBla19TeWF3emdSZWdTTXdxNFlBUjljUjNOTkRYUldreVhJNnNFQUJ1X1FBNkoxTnZUVTRSTHFDVjEtY2w3R3BUb0VGSjVoZDQyR2hTZEozTnJPVmh5dThfcVVjdWxMcDZEWWlRd3Y2YWZHRzdzYkx4c3VsWdIBjAJBVV95cUxQSUtzdnRodzg4UlJHcGF5MmVndWRkcFdudkdSN0Y1QkxGUzFWaFh4Y3RPaWR4c2NFVnZWZURMMnhIWHMxa3hPRmZiSDNZbW9vY0txOFBOZXppa1ZfUGl1SVlUSmNVRGhhMjNfZmE4NFJTc214RFBjTHFseEFNOE91SzNSa0xyUVRfdG44dEFvVVNiejJuNTFEY2JNQWl3Y0ZvWEpNVXplTDEzNlNOVDJQOFRCWl9iUUZPWk92M0F5Nkg2WlVKVjBGTy05RkpNMUlLNHJ0UEphTzZiVWE1eTViQ2JqSHpwMm01dk5jRFRkM25MZG5WdHFWaG5iN2pNVFU3RWNQSmpYWkJTaW5u?oc=5",
+      "queries": [
+        "act-general",
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
       ],
       "firstSeen": "2026-11-22"
     }
