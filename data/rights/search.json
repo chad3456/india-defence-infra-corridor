@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-21T21:56:04.942Z",
+  "builtAt": "2026-11-22T07:31:24.094Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1434,
-    "addedThisRun": 5,
-    "carriedFromEarlierRuns": 1429,
-    "withOutlet": 1319,
+    "items": 1436,
+    "addedThisRun": 2,
+    "carriedFromEarlierRuns": 1434,
+    "withOutlet": 1320,
     "bySubject": {
-      "scst": 984,
-      "pmshri": 450
+      "scst": 985,
+      "pmshri": 451
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 75
+    "offSubjectDropped": 107
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 710
+      "n": 711
     },
     {
       "key": "use",
@@ -40,7 +40,7 @@
     },
     {
       "key": "allegation",
-      "n": 66
+      "n": 67
     },
     {
       "key": "false-finding",
@@ -249,6 +249,10 @@
       "n": 6
     },
     {
+      "key": "Moneycontrol.com",
+      "n": 6
+    },
+    {
       "key": "OpIndia",
       "n": 6
     },
@@ -281,10 +285,6 @@
       "n": 5
     },
     {
-      "key": "Moneycontrol.com",
-      "n": 5
-    },
-    {
       "key": "India.com",
       "n": 5
     }
@@ -295,10 +295,10 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 36,
+      "google": 100,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 0
+      "kept": 1,
+      "offSubject": 9
     },
     {
       "id": "act-registered",
@@ -307,7 +307,7 @@
       "expect": "use",
       "google": 100,
       "bing": 1,
-      "kept": 4,
+      "kept": 0,
       "offSubject": 14
     },
     {
@@ -315,17 +315,17 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 25,
+      "google": 23,
       "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 5
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 10,
+      "google": 9,
       "bing": 4,
       "kept": 0,
       "offSubject": 1
@@ -335,20 +335,20 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 8,
+      "google": 45,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 11
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 13,
+      "google": 12,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 1
     },
     {
       "id": "act-acquittal",
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 16,
+      "google": 17,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 18,
+      "google": 47,
       "bing": 1,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 16
     },
     {
       "id": "act-fabricated",
@@ -408,17 +408,17 @@
       "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 6
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 36,
-      "bing": 9,
+      "google": 35,
+      "bing": 11,
       "kept": 1,
-      "offSubject": 3
+      "offSubject": 4
     },
     {
       "id": "shri-sanctioned",
@@ -438,7 +438,7 @@
       "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 8
     },
     {
       "id": "shri-upgrade",
@@ -465,10 +465,10 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 19,
+      "google": 20,
       "bing": 1,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 9
     },
     {
       "id": "shri-nep",
@@ -486,7 +486,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 10,
-      "bing": 0,
+      "bing": 1,
       "kept": 0,
       "offSubject": 8
     }
@@ -23963,6 +23963,38 @@
         "google"
       ],
       "firstSeen": "2026-11-21"
+    },
+    {
+      "id": "sc st act why supreme court rejected pil against its misuse and refused to revisit 2018",
+      "headline": "SC/ST Act: Why Supreme Court rejected PIL against its 'misuse' and refused to revisit 2018...",
+      "subject": "scst",
+      "facet": "allegation",
+      "outlet": "Moneycontrol.com",
+      "published": "2026-09-22",
+      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNc3ItbGRjWF9ZNkVab2pFUHVtUjFtRHEwQnFReUdMR3VoQ2F5R3dNU2xxU0lKSjlyZnEzOF9PUHZoX2VIemhDdlh0Z1hzRWxtNHpqNlZJbFpWZ1R1UlhQN3hIMzBUY1BoUlRZcWhsSXBsV09YaGgyeER2UngxdW5YNk9CSmhEbzBjYUxtcm4zZ2ZXZ0VBTG44UXIwWV9SanpoZElMeVVjdWpjaHpfZ0hDaDA5Ykw2UTN4b3BfckdqakxfZlFGWTRRQ1ZjVTAtbUxzWDRzWFc1ZkZrTmozaWgzVXNUWmXSAeoBQVVfeXFMTjNkSE5FVnRRY3c3WjdJVTBXeWNwWmdaUV8tbmtQT29MN3dTRUdWc1NHLVY0VXRVZkdRVlZMZDY2amotMGFQenlzd0lRWEhadGgxMlBnQmVMdmROSlduTENvaTQwbXZBUEpnZXZMT2J2bmxZVGlUZFc2UFc4dkZ4QkJsMVZQUkFjVGtSVkZ6OEtfS3Vycjh5TGI3cl9ZdjRwZ0tkQlZBVkNfOF93RDlEYTNJSjd3V3hoSzBjQ0FDbUVYSGVtYWhVN3kzUDhBVjlDOWJFN25HcXRXTmR4cmVvbHFVNlBsazRNMVNn?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-22"
+    },
+    {
+      "id": "cabinet okays 27 360 cr scheme for over 14 000 pm shri schools",
+      "headline": "Cabinet okays `27,360-cr scheme for over 14,000 PM-SHRI schools",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2022-09-07",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b029a215e1440388b3e677d6b5f6d74&url=https%3a%2f%2fwww.millenniumpost.in%2fbig-stories%2fcabinet-okays-27360-cr-scheme-for-over-14000-pm-shri-schools-492299&c=10936757765932927643&mkt=en-us",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-11-22"
     }
   ]
 }
