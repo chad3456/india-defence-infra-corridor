@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-22T06:46:34.170Z",
-  "previousBuild": "2026-11-21T21:39:21.486Z",
+  "builtAt": "2026-11-22T16:17:10.655Z",
+  "previousBuild": "2026-11-22T06:46:34.170Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 374,
-    "createdThisRun": 1,
+    "stories": 377,
+    "createdThisRun": 3,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 14,
+    "feedsAnswered": 13,
     "feedsTried": 14,
-    "itemsSeen": 226,
+    "itemsSeen": 216,
     "corroboration": {
-      "one": 324,
+      "one": 327,
       "two": 22,
       "threePlus": 28
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 197
+      "n": 199
     },
     {
       "id": "autonomy",
@@ -38,7 +38,7 @@
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 46
+      "n": 47
     },
     {
       "id": "targeting",
@@ -55,7 +55,7 @@
     {
       "iso": "USA",
       "name": "United States",
-      "n": 49
+      "n": 50
     },
     {
       "iso": "IND",
@@ -65,7 +65,7 @@
     {
       "iso": "UKR",
       "name": "Ukraine",
-      "n": 14
+      "n": 15
     },
     {
       "iso": "GBR",
@@ -80,7 +80,7 @@
     {
       "iso": "FRA",
       "name": "France",
-      "n": 7
+      "n": 8
     },
     {
       "iso": "RUS",
@@ -174,7 +174,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 2
     },
     {
       "outlet": "Defense News",
@@ -196,15 +196,16 @@
     },
     {
       "outlet": "Naval News",
-      "ok": true,
-      "items": 10,
-      "kept": 0
+      "ok": false,
+      "items": 0,
+      "kept": 0,
+      "error": "fetch failed"
     },
     {
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1697,6 +1698,71 @@
         {
           "outlet": "Indian Defence Research Wing",
           "url": "https://idrw.org/ig-defence-kal-drone-gulf-export-orders-95-percent-indigenous/",
+          "published": "2026-11-22"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/u-s-army-says-101st-airborne-demonstrates-drone-delivered-firepower-with-dark-and-blade-during-live-fire-training/",
+      "headline": "U.S. Army says 101st Airborne demonstrates drone-delivered firepower with DARK and BLADE during live-fire training",
+      "firstSeen": "2026-11-22",
+      "lastSeen": "2026-11-22",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/u-s-army-says-101st-airborne-demonstrates-drone-delivered-firepower-with-dark-and-blade-during-live-fire-training/",
+          "published": "2026-11-22"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/french-navy-commissions-de-grasse-nuclear-powered-attack-submarine-with-upgraded-combat-and-electronic-warfare-systems/",
+      "headline": "French Navy commissions De Grasse nuclear-powered attack submarine with upgraded combat and electronic warfare systems",
+      "firstSeen": "2026-11-22",
+      "lastSeen": "2026-11-22",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "FRA",
+          "name": "France"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/french-navy-commissions-de-grasse-nuclear-powered-attack-submarine-with-upgraded-combat-and-electronic-warfare-systems/",
+          "published": "2026-11-22"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-blog.com/maker-of-combat-proven-ukraine-drone-courts-us-special-forces/",
+      "headline": "Maker of combat-proven Ukraine drone courts US special forces",
+      "firstSeen": "2026-11-22",
+      "lastSeen": "2026-11-22",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "USA",
+          "name": "United States"
+        },
+        {
+          "iso": "UKR",
+          "name": "Ukraine"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/maker-of-combat-proven-ukraine-drone-courts-us-special-forces/",
           "published": "2026-11-22"
         }
       ]
