@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-22T16:41:02.936Z",
+  "builtAt": "2026-11-22T22:08:03.670Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1437,
-    "addedThisRun": 1,
-    "carriedFromEarlierRuns": 1436,
-    "withOutlet": 1321,
+    "items": 1441,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 1437,
+    "withOutlet": 1325,
     "bySubject": {
-      "scst": 986,
-      "pmshri": 451
+      "scst": 989,
+      "pmshri": 452
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 77
+    "offSubjectDropped": 87
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 711
+      "n": 713
     },
     {
       "key": "use",
@@ -32,7 +32,7 @@
     },
     {
       "key": "acquittal",
-      "n": 74
+      "n": 75
     },
     {
       "key": "dispute",
@@ -44,7 +44,7 @@
     },
     {
       "key": "false-finding",
-      "n": 12
+      "n": 13
     }
   ],
   "byOutlet": [
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 104
+      "n": 106
     },
     {
       "key": "The Indian Express",
@@ -62,7 +62,7 @@
     },
     {
       "key": "The New Indian Express",
-      "n": 57
+      "n": 58
     },
     {
       "key": "The Hindu",
@@ -297,7 +297,7 @@
       "expect": "use",
       "google": 38,
       "bing": 0,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 0
     },
     {
@@ -305,7 +305,7 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 41,
+      "google": 42,
       "bing": 1,
       "kept": 0,
       "offSubject": 4
@@ -335,20 +335,20 @@
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 8,
+      "google": 7,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 2
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 12,
+      "google": 57,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 1
+      "kept": 2,
+      "offSubject": 19
     },
     {
       "id": "act-acquittal",
@@ -367,7 +367,7 @@
       "expect": "acquittal",
       "google": 9,
       "bing": 0,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 4
     },
     {
@@ -375,7 +375,7 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 10,
+      "google": 9,
       "bing": 0,
       "kept": 0,
       "offSubject": 1
@@ -385,7 +385,7 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 16,
+      "google": 17,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -395,7 +395,7 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 19,
+      "google": 20,
       "bing": 1,
       "kept": 0,
       "offSubject": 3
@@ -415,10 +415,10 @@
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 34,
-      "bing": 10,
+      "google": 33,
+      "bing": 11,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 4
     },
     {
       "id": "shri-sanctioned",
@@ -435,20 +435,20 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
+      "google": 8,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 7
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 53,
-      "bing": 2,
+      "google": 9,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 0
     },
     {
       "id": "shri-mou",
@@ -475,20 +475,20 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 29,
+      "google": 51,
       "bing": 2,
-      "kept": 0,
-      "offSubject": 3
+      "kept": 1,
+      "offSubject": 8
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 9,
+      "google": 10,
       "bing": 1,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 9
     }
   ],
   "items": [
@@ -23925,7 +23925,8 @@
       "published": "2026-11-03",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBTMGdIaklLLVF4MjJleW5sZm80QWF4bjBUaDZuMjM3WU80azhfdFBIRE9JMnBJdUVxclJEci1OUkgtbUd6cEJxYUJDZE1zTzlDZUdqVg?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-pendency"
       ],
       "indexes": [
         "google"
@@ -24007,6 +24008,70 @@
       "queries": [
         "act-general",
         "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-22"
+    },
+    {
+      "id": "allahabad hc fines university teacher rs 5 lakh for false sc st act case",
+      "headline": "Allahabad HC Fines University Teacher Rs 5 Lakh for False SC/ST Act Case",
+      "subject": "scst",
+      "facet": "false-finding",
+      "outlet": "TaxGuru",
+      "published": "2024-02-25",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOQ0swZ2hTTGRBdVNhcjI5RU55RGV4NFhPbEtIU0o5bGdRVjJUSmdoVnJ5VHRVU1VCbGdkdEZHUUNwOHVHU0M3UGtLd05EbjBPZm1Kb2xzVXFhei1xYlMzZkx3aWhES2g0UV80LXZGc1JQdEVYYzNxMkVkNGwyU20yUmxHTzQxRXVfWTdDQ2U5NUdrN3hPb0l3VzRBVWJ4aFRUQzdRcHRFU1Z4QQ?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-22"
+    },
+    {
+      "id": "supreme court upholds high court s quashing of criminal proceedings under sc st act holdin",
+      "headline": "Supreme Court upholds High Court's Quashing of Criminal Proceedings Under SC/ST Act, Holding Conversion to Christianity Does Not entitle Caste-Based Protection.",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Lawtext",
+      "published": "2026-03-29",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE8zaTdpa3EwZDREYjdVV0h6aFFSTGRHc1lJOFFINkNzeGF6QzhKODRuaVBsckNXREpVMzhsdnVINUo3NU9kSXhGNnFhUEtyZXZuTjVIU2ctSEVwTlZMb2RSS05qamp2dw?oc=5",
+      "queries": [
+        "act-pendency"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-22"
+    },
+    {
+      "id": "gujarat high court upholds acquittal in atrocity case due to inconsistent evidence and lac",
+      "headline": "Gujarat High Court Upholds Acquittal in Atrocity Case Due to Inconsistent Evidence and Lack of Public View. Caste-Based Insult Allegation Fails as Incident Occurred in Private Setting, Not in Public View Under Section 3(1)(10) of SC & ST (Prevention of Atrocit",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-11-22",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1HQVU1eGdzWmh2SWN4ZHItb1Uzc0V5djZ1cXhTNzZDTVpzOWxhV3FGdUdsUnRUTmljVlJtTlZUaE9DNWJ5bzRZaVVZRzRPRWVHcmlTdE5VN1p3MXF5cHdMUTNaTktWUQ?oc=5",
+      "queries": [
+        "act-hostile"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-22"
+    },
+    {
+      "id": "reluctant to sign up for pm shri scheme due to 3 language formula cm stalin",
+      "headline": "Reluctant to sign up for PM-SHRI scheme due to 3-language formula: CM Stalin",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "The New Indian Express",
+      "published": "2024-09-28",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPVkNnb0pRcGs4ZDFpeldaNy1abTA2d1B1SW1ObzZ6YlYwWHpMclVvRS1ndU0zLUxyOGNXVHRrUHNFVFhrV3lwSm10ZzBoLVk5R1FKWjFpUXFLSzh6X3lRMEd3MEI0d2NhX2NsZjZrU0FmazdFZEhWNGs0RUpPTUpUOUNGdXhyNEd6cGp2UEhwczRkSThOUkNVWU5tWVRRQjhEOTF2SXUtRzJvRkhKdlpGT0VXdHVGTXR5R3NYaE42VlJVaEZiTmNGblFHYXA5cExscUFwVtIB4gFBVV95cUxPQWdEOXNNazRLOS11X0V3QTZiVWFXa09IQVhDaHZWVTVtNzI4bkFackk2V1hSaTN6QXFHZEJTZnNOSkpDVTZHb1BUVFhYSEk2S3lidGdUUW81TXVPZUdsYWhLRmFfXzZ1a2ZYZ1lGb3BWYUlCS1VKN0pCSWItSWpCeDhycU9yZ0xVaXhBM0hFRzVTWUM1MmxwaXh6cWxhRFZ0YnVxWlpQdUprMjNqLVc0QlVkVERHbWl1cG9PQXNBamRXTG9jQzRna2tzN1BuUXo1UnFSSDdhZ2hiVUJycnl5T3B3?oc=5",
+      "queries": [
+        "shri-nep"
       ],
       "indexes": [
         "google"
