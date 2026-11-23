@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-16T12:48:57.862Z",
+  "builtAt": "2026-11-23T14:44:04.888Z",
   "source": "English Wikipedia's per-force 'List of active … aircraft' articles, read header-first. Those articles compile mostly from IISS's Military Balance and FlightGlobal's World Air Forces, and carry those publications' lag and their disagreements.",
   "method": "Tables are matched on their headers, never on column position. A table without both an aircraft column and a quantity column is skipped and counted rather than read by guessing. A quantity cell yields a number only when it carries one unambiguously; a range, a dash or prose yields null, which is counted separately and never treated as zero. A force whose quantity cells parsed less than sixty per cent of the time has its fleet total withheld while its list of types is kept.",
   "refusal": "No fleet total is reconciled against another catalogue, and no aircraft is resolved to a base. Every number here says 'a public catalogue lists this many', which is a weaker claim than 'this country has this many' and is the only one the source supports.",
@@ -11,8 +11,8 @@
   ],
   "counts": {
     "forces": 13,
-    "types": 792,
-    "counted": 646,
+    "types": 793,
+    "counted": 647,
     "unreadable": 146,
     "totalsWithheld": 1,
     "failed": 1
@@ -147,17 +147,17 @@
             "In service",
             "Notes"
           ],
-          "rows": 67,
+          "rows": 69,
           "typeAt": 0,
           "serviceAt": 4,
           "used": true,
-          "filled": 59
+          "filled": 61
         }
       ],
-      "types": 60,
-      "counted": 55,
-      "unreadable": 5,
-      "total": 3237,
+      "types": 61,
+      "counted": 58,
+      "unreadable": 3,
+      "total": 3482,
       "tablesRead": 1,
       "tablesSkipped": 0
     },
@@ -352,11 +352,11 @@
             "Total",
             "Notes"
           ],
-          "rows": 27,
+          "rows": 26,
           "typeAt": 0,
           "serviceAt": 7,
           "used": true,
-          "filled": 22
+          "filled": 21
         },
         {
           "headers": [
@@ -396,8 +396,8 @@
           "filled": 1
         }
       ],
-      "types": 186,
-      "counted": 138,
+      "types": 185,
+      "counted": 137,
       "unreadable": 48,
       "total": 11103,
       "tablesRead": 6,
@@ -588,9 +588,9 @@
         }
       ],
       "types": 64,
-      "counted": 56,
-      "unreadable": 8,
-      "total": 498,
+      "counted": 54,
+      "unreadable": 10,
+      "total": 433,
       "tablesRead": 6,
       "tablesSkipped": 3
     },
@@ -792,17 +792,17 @@
             "In service",
             "Notes"
           ],
-          "rows": 40,
+          "rows": 41,
           "typeAt": 0,
           "serviceAt": 4,
           "used": true,
-          "filled": 33
+          "filled": 34
         }
       ],
-      "types": 33,
-      "counted": 29,
+      "types": 34,
+      "counted": 30,
       "unreadable": 4,
-      "total": 856,
+      "total": 859,
       "tablesRead": 1,
       "tablesSkipped": 0
     },
@@ -2966,6 +2966,28 @@
       "type": "Xian H-6",
       "origin": "China",
       "role": "",
+      "variant": "H-6G/GMod",
+      "inService": 27,
+      "inServiceRaw": "27"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
+      "type": "Xian H-6",
+      "origin": "China",
+      "role": "",
+      "variant": "H-6J",
+      "inService": 18,
+      "inServiceRaw": "18"
+    },
+    {
+      "iso": "CHN",
+      "country": "China",
+      "force": "PLA Air Force",
+      "type": "Xian H-6",
+      "origin": "China",
+      "role": "",
       "variant": "H-6H/M",
       "inService": 40,
       "inServiceRaw": "40"
@@ -2996,23 +3018,12 @@
       "iso": "CHN",
       "country": "China",
       "force": "PLA Air Force",
-      "type": "Xian H-6",
+      "type": "Xian JH-7",
       "origin": "China",
       "role": "",
-      "variant": "Xian JH-7",
-      "inService": null,
-      "inServiceRaw": "China"
-    },
-    {
-      "iso": "CHN",
-      "country": "China",
-      "force": "PLA Air Force",
-      "type": "Xian H-6",
-      "origin": "China",
-      "role": "",
-      "variant": "AEW&C",
-      "inService": null,
-      "inServiceRaw": ""
+      "variant": "JH-7A",
+      "inService": 200,
+      "inServiceRaw": "200"
     },
     {
       "iso": "CHN",
@@ -5141,17 +5152,6 @@
       "iso": "USA",
       "country": "United States",
       "force": "United States (all services)",
-      "type": "AV-8B Harrier II",
-      "origin": "McDonnell Douglas",
-      "role": "Close air support",
-      "variant": "",
-      "inService": 0,
-      "inServiceRaw": "0"
-    },
-    {
-      "iso": "USA",
-      "country": "United States",
-      "force": "United States (all services)",
       "type": "MV-22B Osprey",
       "origin": "Bell Boeing",
       "role": "Cargo/Transport",
@@ -6983,7 +6983,7 @@
       "role": "Swingrole fighter",
       "variant": "Rafale B / C",
       "inService": null,
-      "inServiceRaw": "date=10 September 2026 |title=Chiffres clés de la Défense 2026 |url=https://www.defense.gouv.fr/sites/default/files/ministere-armees/Chiffres_Cle%CC%81s_2026EN-webVF.pdf |url-status= |archive-url=https://web.archive.org/web/20261102054905/https://www.defense.gouv.fr/sites/default/files/ministere-armees/Chiffres_Cle%CC%81s_2026EN-webVF.pdf |archive-date=2 November 2026}} (+42 on order)"
+      "inServiceRaw": "title=World Air Forces 2027|url=https://misc.pagesuite.com/pdfdownload/bbd881a5-64bf-4f82-8887-2582d1978f9d.pdf|archive-url=https://web.archive.org/web/20261122000744/https://misc.pagesuite.com/pdfdownload/bbd881a5-64bf-4f82-8887-2582d1978f9d.pdf|archive-date=22 November 2026}}"
     },
     {
       "iso": "FRA",
@@ -7004,8 +7004,8 @@
       "origin": "France",
       "role": "Fighter bomber",
       "variant": "Mirage 2000D - RMV",
-      "inService": 50,
-      "inServiceRaw": "50"
+      "inService": null,
+      "inServiceRaw": "title=World Air Forces 2026 |url=https://www.flightglobal.com/download?ac=113841 |archive-url=https://web.archive.org/web/20251210145634/https://www.flightglobal.com/download?ac=113841 |archive-date=10 December 2025}}"
     },
     {
       "iso": "FRA",
@@ -7026,8 +7026,8 @@
       "origin": "Spain, France, Germany, United Kingdom, Belgium, Turkey",
       "role": "Strategic airlifter / tactical airlifter",
       "variant": "–",
-      "inService": 20,
-      "inServiceRaw": "20 (+25 on order)"
+      "inService": null,
+      "inServiceRaw": "date=2026-02-21 |title=Airbus : le programme A400M à nouveau en sursis |url=https://www.latribune.fr/article/defense-aerospatiale/defense/11684162920081/le-programme-a400m-a-nouveau-en-sursis |access-date=2026-08-30 |website=www.latribune.fr |language=fr}}"
     },
     {
       "iso": "FRA",
@@ -7246,8 +7246,8 @@
       "origin": "France",
       "role": "Operational conversion aircraft",
       "variant": "Mirage 2000-5F-SF2",
-      "inService": 7,
-      "inServiceRaw": "7"
+      "inService": 6,
+      "inServiceRaw": "6"
     },
     {
       "iso": "FRA",
@@ -7257,8 +7257,8 @@
       "origin": "France Germany",
       "role": "Aggressor / training",
       "variant": "Alpha Jet E",
-      "inService": 30,
-      "inServiceRaw": "30"
+      "inService": 31,
+      "inServiceRaw": "31"
     },
     {
       "iso": "FRA",
@@ -7301,8 +7301,8 @@
       "origin": "Germany",
       "role": "Ab initio trainer",
       "variant": "G120A-F",
-      "inService": 18,
-      "inServiceRaw": "18"
+      "inService": 17,
+      "inServiceRaw": "17"
     },
     {
       "iso": "FRA",
@@ -7312,8 +7312,8 @@
       "origin": "United States",
       "role": "Ab initio trainer",
       "variant": "–",
-      "inService": 16,
-      "inServiceRaw": "16"
+      "inService": 21,
+      "inServiceRaw": "21"
     },
     {
       "iso": "FRA",
@@ -7323,8 +7323,8 @@
       "origin": "United States",
       "role": "Ab initio trainer",
       "variant": "–",
-      "inService": 9,
-      "inServiceRaw": "9"
+      "inService": 10,
+      "inServiceRaw": "10"
     },
     {
       "iso": "FRA",
@@ -8975,6 +8975,17 @@
       "variant": "Block 1",
       "inService": 16,
       "inServiceRaw": "16 on order"
+    },
+    {
+      "iso": "TUR",
+      "country": "Türkiye",
+      "force": "Turkish Air Force",
+      "type": "Bayraktar Kızılelma",
+      "origin": "",
+      "role": "",
+      "variant": "A",
+      "inService": 3,
+      "inServiceRaw": "3"
     },
     {
       "iso": "TUR",
