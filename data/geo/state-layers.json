@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-23T15:16:12.636Z",
+  "builtAt": "2026-11-24T00:09:38.581Z",
   "note": "Named things per state, for the map to answer a click with. Each layer records how its rows reached a state and how many did not, because the join is where this kind of file goes wrong invisibly.",
   "refused": [
     {
@@ -24029,8 +24029,8 @@
       "blurb": "Every airport the mobility dataset holds a coordinate for, placed into the state whose polygon contains it. Named and located only — nothing here knows how busy any of them are, so this counts runways with a code, not traffic.",
       "join": "Point-in-polygon against the map's own topology. An airport in no polygon is listed unplaced, never assigned to a neighbour.",
       "source": "OurAirports, via the mobility connector.",
-      "total": 159,
-      "placed": 154,
+      "total": 160,
+      "placed": 155,
       "unplacedCount": 5,
       "deduped": 0,
       "unplaced": [
@@ -24577,6 +24577,13 @@
             "lon": 77.6082
           },
           {
+            "name": "Rampur Airfield",
+            "why": "Scheduled-service airport, IATA MZS.",
+            "basis": "OurAirports via the mobility connector: name, code and coordinate only",
+            "lat": 28.8172,
+            "lon": 78.9282
+          },
+          {
             "name": "Sarsawa Air Force Station",
             "why": "Scheduled-service airport, IATA SWN.",
             "basis": "OurAirports via the mobility connector: name, code and coordinate only",
@@ -24920,7 +24927,7 @@
             "lon": 79.5415
           },
           {
-            "name": "Uyyalawada Narasimha Reddy Airport ,   Kurnool",
+            "name": "Uyyalawada Narasimha Reddy Airport",
             "why": "Scheduled-service airport, IATA KJB.",
             "basis": "OurAirports via the mobility connector: name, code and coordinate only",
             "lat": 15.7155,
