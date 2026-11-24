@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-24T05:01:54.167Z",
+  "builtAt": "2026-11-24T19:45:22.250Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,21 +10,21 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1467,
-    "addedThisRun": 22,
-    "carriedFromEarlierRuns": 1445,
-    "withOutlet": 1351,
+    "items": 1470,
+    "addedThisRun": 3,
+    "carriedFromEarlierRuns": 1467,
+    "withOutlet": 1354,
     "bySubject": {
-      "scst": 998,
-      "pmshri": 469
+      "scst": 999,
+      "pmshri": 471
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 262
+    "offSubjectDropped": 160
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 726
+      "n": 728
     },
     {
       "key": "use",
@@ -36,7 +36,7 @@
     },
     {
       "key": "dispute",
-      "n": 72
+      "n": 73
     },
     {
       "key": "allegation",
@@ -58,7 +58,7 @@
     },
     {
       "key": "The Indian Express",
-      "n": 61
+      "n": 62
     },
     {
       "key": "The New Indian Express",
@@ -295,7 +295,7 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 38,
+      "google": 34,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -305,60 +305,60 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 41,
       "bing": 1,
-      "kept": 1,
-      "offSubject": 14
+      "kept": 0,
+      "offSubject": 3
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 99,
+      "google": 25,
       "bing": 0,
       "kept": 1,
-      "offSubject": 44
+      "offSubject": 6
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 50,
-      "bing": 0,
-      "kept": 4,
-      "offSubject": 8
+      "google": 10,
+      "bing": 3,
+      "kept": 0,
+      "offSubject": 2
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 46,
+      "google": 45,
       "bing": 0,
       "kept": 0,
-      "offSubject": 11
+      "offSubject": 10
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 59,
+      "google": 57,
       "bing": 0,
       "kept": 0,
-      "offSubject": 19
+      "offSubject": 16
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 96,
+      "google": 32,
       "bing": 1,
-      "kept": 1,
-      "offSubject": 45
+      "kept": 0,
+      "offSubject": 5
     },
     {
       "id": "act-hostile",
@@ -375,30 +375,30 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 49,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 1
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 23,
+      "google": 17,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 0
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 48,
+      "google": 19,
       "bing": 1,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 3
     },
     {
       "id": "act-fabricated",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 100,
       "bing": 8,
-      "kept": 15,
+      "kept": 2,
       "offSubject": 7
     },
     {
@@ -435,10 +435,10 @@
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
+      "google": 68,
       "bing": 0,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 21
     },
     {
       "id": "shri-upgrade",
@@ -455,37 +455,37 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 13,
+      "google": 44,
       "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 6
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 21,
+      "google": 20,
       "bing": 1,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 9
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 51,
+      "google": 54,
       "bing": 2,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 9
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 43,
+      "google": 44,
       "bing": 0,
       "kept": 0,
       "offSubject": 34
@@ -24498,6 +24498,55 @@
       "outlet": "ANI News",
       "published": "2026-06-18",
       "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQYkpZVmxQMG1CZDBZajZyMkR5dHptdlVKNTVfX3FuU2x2eVJfOFk0Q2JsbUtZMnpFeDdLdFE2OW41WWxqWERWemJSYUJ0WVRsanQ0UUU1T0l1RXJmdGI3QjlnbDVJM1dJQ0htbVpnM0ZzUHJORUtEeUc2UTM4dUlyM0VEZ3htM2NYOEc0N0ZDTnltVXQ1OWdhTEdYZkNaSEROMGFsNnBDNFRJLXgxUmd2a1RsZ3loWnZxY1VZR3Q5ZGZnWFRzbEJ6Nkl4OVVHb0ZSMXc?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-24"
+    },
+    {
+      "id": "if accused charged under pocso sc st act offences can be tried only by special pocso court",
+      "headline": "If accused charged under POCSO, SC/ST Act, offences can be tried only by special POCSO court: Bombay HC",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Indian Express",
+      "published": "2020-07-07",
+      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPUmlpbnBhXzktQTFzRFBndnlmTGhhdklldnJSaW15ck5MVVRLM3NoQ1haTGVKS05PWkp4Qmo1WXpnSVRCUkpxd2lxTHA4cEVnX1ZpTC02ZGZjbzd3WVdCeEt1enczQ05JTXNQUllmVmRvMmNERHlQNC1FYmhQdERReXE1ZURGNUhGSldOQUNmZWdrdl8xeUtpY1Q3YW55M3pZSFJnZ2RoSjB3bGFodXBDdHFDV3pPTWxBcm5oUEtKME9Ea0lwaHctd2s0N0Q2MVk0ZlVfdUIyZHFXUkVSZjdlYTJ1cGV3VmFUYlBORjFn0gH0AUFVX3lxTE0xNUtyUVUydHlSOHdKcWlFdlpzdlhmWC1iNlBqaHVZNzNycFZiaGFHeFM5ekp6eGR6dmJVOG5ETXlacDZVX0l0bmVKYzhidnN2ZEZUOTJxRDRkLTJDNEkwR2pIMkFUUVVPUFV2R3pUSjNpUGNMd2pkdGdYSVlSam85R0NXMTNkMk9DRmxZWUxRQUpVMXBRZnhMSWRpeEsyZGtsemtJWjhjQ0VtcHVsV2M0Qi1IbHlKVFFKQld1Y2hSdHhMdnRYX011SzFXMzNEMExkdFcyd0JTemRoS2JMbHl6eW95T1lUcWhKUVZzZ1Z3WmdQcXk?oc=5",
+      "queries": [
+        "act-convicted",
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-24"
+    },
+    {
+      "id": "udf ldf standoff over pm shri ends in oppn walkout in kerala assembly",
+      "headline": "UDF-LDF standoff over PM SHRI ends in Oppn walkout in Kerala Assembly",
+      "subject": "pmshri",
+      "facet": "dispute",
+      "outlet": "Telangana Today",
+      "published": "2026-06-24",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPNnZCU1Rpd0s3QzY0TnRqNUN4S3NBZmVNeW1STDJQUEJhcThwR1Vrb2JFeWJlbDBLR2pvVV9ERTVMTTAyUU9OdjB2WENhTDNjMEVIczJGbVVoaHA4RlJZQU50SkJ5ZmlSeXB0a0M4NktNcXpWVk5yNWVoTTlfNUZnWFhYZVNYWW9tY0dvZVJyN0lYTU8zRUYwQ1Y5TVY?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-24"
+    },
+    {
+      "id": "ker minister contradicts ruling udf convener says pm shri not discussed at front s meeting",
+      "headline": "Ker minister contradicts ruling UDF convener, says PM SHRI not discussed at front's meeting",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Metro Vaartha",
+      "published": "2026-07-31",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQT09VOWM2T1hMcW1FVlpzczdPRVpDRDB5U1NhY3dwQnQ3QjlLSkdHckdIY194Q1pSQ3pNRjhvclh2NURVMFhMdjZYeXdQa3pib1ZIRktGUFhwUTV6NWdJeWFQam4tVkthb1Z1eXZlcWVIWFAyU1NBQXdpVU1XMkJDTlJabmFGTkFiQk9UUjY4cE5sTVBmM1NLVGxnNnNyZzhBVE0wYk1nVnJSZjl4bmphdzZybWtHUER5RTd1elZsT1ZKY3JteHFjb1J5clI3WjTSAdwBQVVfeXFMTWVWY1FLMmt5cFU4SFBEZ1FHV1UwaHFZelBOcHpqaDhwVTBtTUo5SnZSN0RhWU41RGdGN0VlVFc0TFhhYWFVbFVVanNIR01lUlI1RWlTTzcyVXhOUTViRkhwRFdTbWZnUWNBeTJ1dGt1ZGNaY25LbDFiMWd2ODNmTG1Kcm04X3hxNGhSb0hXQ2hFOEZJbjFiM1I5bVlzcTB3dXBXRFUyd2txX1I1bTdJb0xiREpNdzc1VkhNUktQdThTYlFJYlZoYXg4c3I1anpaTFpKV19UdFY1MWJ3Uw?oc=5",
       "queries": [
         "shri-general"
       ],
