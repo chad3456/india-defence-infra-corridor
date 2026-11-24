@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-23T16:29:23.761Z",
+ "builtAt": "2026-11-24T03:28:13.790Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206533,11 +206533,26 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 0,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-qqwyxi",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Germany"
+   ],
+   "value": null,
+   "date": "2026-11-23",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/u-s-navy-clears-german-lar-8000-combat-diving-rebreather/",
+   "headline": "U.S. Navy clears German LAR 8000 combat diving rebreather",
+   "primary": false
+  },
   {
    "id": "ev-8dj561",
    "kind": "order",
@@ -208402,6 +208417,37 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||germany+united states",
+   "systems": [],
+   "countries": [
+    "United States",
+    "Germany"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-qqwyxi",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "United States",
+      "Germany"
+     ],
+     "value": null,
+     "date": "2026-11-23",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/u-s-navy-clears-german-lar-8000-combat-diving-rebreather/",
+     "headline": "U.S. Navy clears German LAR 8000 combat diving rebreather",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||united states",
    "systems": [],
