@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-23T20:13:43.536Z",
-  "previousBuild": "2026-11-23T07:37:13.117Z",
+  "builtAt": "2026-11-24T04:47:56.962Z",
+  "previousBuild": "2026-11-23T20:13:43.536Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 381,
-    "createdThisRun": 3,
+    "stories": 382,
+    "createdThisRun": 1,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 13,
+    "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 211,
+    "itemsSeen": 219,
     "corroboration": {
-      "one": 331,
+      "one": 332,
       "two": 22,
       "threePlus": 28
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 201
+      "n": 202
     },
     {
       "id": "autonomy",
@@ -65,7 +65,7 @@
     {
       "iso": "UKR",
       "name": "Ukraine",
-      "n": 15
+      "n": 16
     },
     {
       "iso": "GBR",
@@ -85,7 +85,7 @@
     {
       "iso": "RUS",
       "name": "Russia",
-      "n": 7
+      "n": 8
     },
     {
       "iso": "KOR",
@@ -137,7 +137,7 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 33,
+      "items": 31,
       "kept": 1
     },
     {
@@ -174,7 +174,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "Defense News",
@@ -196,10 +196,9 @@
     },
     {
       "outlet": "Naval News",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "fetch failed"
+      "ok": true,
+      "items": 10,
+      "kept": 0
     },
     {
       "outlet": "Defence Blog",
@@ -1756,6 +1755,32 @@
         {
           "outlet": "Defence Industry Europe",
           "url": "https://defence-industry.eu/aselsan-says-gokdeniz-naval-air-defence-system-destroyed-low-flying-jet-powered-drone-during-live-fire-demonstration/",
+          "published": "2026-11-23"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/quantum-systems-says-spys-intercepted-russias-jet-powered-geran-5-attack-drone-in-combat-testing-in-ukraine/",
+      "headline": "Quantum Systems says SPYS intercepted Russia’s jet-powered Geran-5 attack drone in combat testing in Ukraine",
+      "firstSeen": "2026-11-23",
+      "lastSeen": "2026-11-23",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "RUS",
+          "name": "Russia"
+        },
+        {
+          "iso": "UKR",
+          "name": "Ukraine"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/quantum-systems-says-spys-intercepted-russias-jet-powered-geran-5-attack-drone-in-combat-testing-in-ukraine/",
           "published": "2026-11-23"
         }
       ]
