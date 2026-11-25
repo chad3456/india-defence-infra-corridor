@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-24T19:45:22.250Z",
+  "builtAt": "2026-11-25T03:47:56.651Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1470,
-    "addedThisRun": 3,
-    "carriedFromEarlierRuns": 1467,
-    "withOutlet": 1354,
+    "items": 1474,
+    "addedThisRun": 4,
+    "carriedFromEarlierRuns": 1470,
+    "withOutlet": 1358,
     "bySubject": {
       "scst": 999,
-      "pmshri": 471
+      "pmshri": 475
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 160
+    "offSubjectDropped": 168
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 728
+      "n": 730
     },
     {
       "key": "use",
-      "n": 511
+      "n": 513
     },
     {
       "key": "acquittal",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 119
+      "n": 120
     },
     {
       "key": "Lawtext",
@@ -185,6 +185,10 @@
       "n": 9
     },
     {
+      "key": "Mathrubhumi English",
+      "n": 9
+    },
+    {
       "key": "Citizens for Justice and Peace | CJP",
       "n": 8
     },
@@ -206,10 +210,6 @@
     },
     {
       "key": "The Mooknayak English",
-      "n": 8
-    },
-    {
-      "key": "Mathrubhumi English",
       "n": 8
     },
     {
@@ -295,7 +295,7 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 34,
+      "google": 35,
       "bing": 0,
       "kept": 0,
       "offSubject": 0
@@ -315,60 +315,60 @@
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 25,
+      "google": 100,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 6
+      "kept": 0,
+      "offSubject": 44
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 10,
+      "google": 50,
       "bing": 3,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 8
     },
     {
       "id": "act-compensation",
       "label": "Compensation and relief",
       "subject": "scst",
       "expect": "use",
-      "google": 45,
+      "google": 7,
       "bing": 0,
       "kept": 0,
-      "offSubject": 10
+      "offSubject": 2
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 57,
+      "google": 11,
       "bing": 0,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 1
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 32,
-      "bing": 1,
+      "google": 96,
+      "bing": 0,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 43
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 24,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 3
     },
     {
       "id": "act-misuse-claim",
@@ -385,10 +385,10 @@
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 17,
+      "google": 22,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 2
     },
     {
       "id": "act-false",
@@ -408,37 +408,37 @@
       "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 5
     },
     {
       "id": "shri-general",
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 100,
-      "bing": 8,
-      "kept": 2,
-      "offSubject": 7
+      "google": 34,
+      "bing": 7,
+      "kept": 0,
+      "offSubject": 3
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
+      "google": 40,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 0
+      "kept": 2,
+      "offSubject": 7
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 68,
+      "google": 9,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 21
+      "kept": 1,
+      "offSubject": 7
     },
     {
       "id": "shri-upgrade",
@@ -446,8 +446,8 @@
       "subject": "pmshri",
       "expect": "use",
       "google": 52,
-      "bing": 2,
-      "kept": 0,
+      "bing": 1,
+      "kept": 1,
       "offSubject": 13
     },
     {
@@ -465,30 +465,30 @@
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 20,
+      "google": 22,
       "bing": 1,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 8
     },
     {
       "id": "shri-nep",
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 54,
+      "google": 30,
       "bing": 2,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 3
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 44,
+      "google": 9,
       "bing": 0,
       "kept": 0,
-      "offSubject": 34
+      "offSubject": 6
     }
   ],
   "items": [
@@ -24554,6 +24554,70 @@
         "google"
       ],
       "firstSeen": "2026-11-24"
+    },
+    {
+      "id": "bihar 836 schools set to be strengthened under pm shri scheme",
+      "headline": "Bihar: 836 schools set to be strengthened under “PM SHRI” scheme",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Organiser",
+      "published": "2025-02-18",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQR3FZcHIyUG8tZHZJb2dJQ3M1UVlTRmp5aldVNHhaREI4azRFSGNNbk1ydGxkeDl1dk1OLTlkMjk5eDFzbFZDQjFpeFlLU1N4NVdKVGJKYTBCQVlKN2hTY1VibDdGay1pM0hFaXZYSV9USzAycGhoMmtlVTNTejIzeW1QN0thSTFrTnh2WTdaclhybkM5Z1Qxa1UxQTQzcDZRZEMtOEtpVlp5YkRNWl9qMjdGS2lmc09HX3fSAb8BQVVfeXFMTkk5UklHQ3VjdzAxa2E1Z2stdGx0ZElnTG9qaDliWGR4cFg2R1k4a2hfTlNsd1lqdEhHNEJtMmt6SGJLTUIxanZoTElzTTl1WHlKcHlldVhYbVk2SHJMdHZESnVwV1hLVk1pQUJjSU8tN3l0OWZNR0d0Nno3bXZjR2lfMF82WGFyWnp5VmNkNDNjT2hic3RtNmNqUlFhWGN5WDFHdXpKc3FscHZUbkhyekM2UWdYUWFMOXZxWERLN1k?oc=5",
+      "queries": [
+        "shri-sanctioned"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-25"
+    },
+    {
+      "id": "centre says no pm shri funds released to kerala contradicts state government s claim",
+      "headline": "Centre says no PM SHRI funds released to Kerala, contradicts state government's claim",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "Mathrubhumi English",
+      "published": "2026-07-31",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOcE0xUUc4djMtdmZ0VXVxaW11eEgtd29mMmtmV0kza2JxR3ZpaVVPb28zM09tUzU4ZDFOTnJaYWpFOXhXMUgtdHBQS01KNkZ4U1VCYUVrVmk1VFpLZnN1Snctc0lYMFJScFpnVml2VWxZM1ZNZnB5T1JEbEhQRjZTZVJWTVVSLU42aWNTc29CMkI0cHRsVFlsVENOdUVibWRKdk5DQkNzeEtUcDNQVWl2WmF4c1ZLS0QtXzZmM2xkSFlzbVZnc3ltV2NHV3UyR25N0gHWAUFVX3lxTE1LT0hlUGdUNEhNZGV5UzhxblZ0dk5IeWxQMkRMWEIxQjhvM25iQ3RCYzB4WkVDYVJGQU8xWU1WeDIydVFOcUhFZHAtOUNwdzRzRTJFNGRPM0F0TGhBbFRZTVNDdFlITGZjdWU3dW5RSEczZ205YlRGck5pckRWTnJZNXJkcWtYbGhuVDBuRS1XcmJqeWs0ZzhTR08xM0VqMzIzZnpObTV2Z3BiWm9RZGgxcy1ob3d2SjhGRm5pZTRULXpMX1luczRGX01VQXV2eXdKYlV5S2c?oc=5",
+      "queries": [
+        "shri-sanctioned"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-25"
+    },
+    {
+      "id": "dr jitendra singh lauds the launch of the historic 1 lakh crore research development and i",
+      "headline": "Dr. Jitendra Singh lauds the launch of the historic ₹1 Lakh Crore Research, Development, and Innovation (RDI) Fund Scheme by PM Shri Narendra Modi, describing it as a transformative milestone in India’s scientific journey",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "pib.gov.in",
+      "published": "2025-11-05",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5HUGFyclU4SEtKTS1lVlN0UTFzd2JCUUdhQktDa01LU2hCRzVQNXNVczVMVEgzSmV2eF81VWNTQ3otVkpFM21tM1RNOFBGWjV1TXV0QlFHMDJHbGpxYnFNb0d0NmZBeTVt?oc=5",
+      "queries": [
+        "shri-funds"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-25"
+    },
+    {
+      "id": "centre approves 52 schools under pm shri yojana for cg",
+      "headline": "Centre approves 52 schools under PM Shri Yojana for CG",
+      "subject": "pmshri",
+      "facet": "use",
+      "outlet": "The Times of India",
+      "published": "2024-07-17",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQSWE3NlNid09LSTFkMUJMWTBOUnVlV0RGdjJYdkpQZ3lVYjBQNmtZclY0QUFuQ2tHeC1KZEFFanNYMXNGdnZpOHN3dEhqTDR5REV2TjBzbF9XMjVrVUt3YlhMWThHdTV5STVnd0ZhRllkd3dtNnBwb2xDNlJBUE9NZW9NLVVKUUN1cXNJX2tTdE9ldXRPUUV3Ykx0a0Y0VHFyTm5kSEo3OFhrcjZtWnZqRGRmMUE0ZmpHTmZWN25TNkpfS2RmdlM3V2hPd0NaZzd1QlhXd9IB2gFBVV95cUxPYTNoeGl5RmR3eERoSjVYRVk4ME1UM0dGSjVaYjVzbFFOY0hleTh6djNGcFJSMUJBX3BuOURxNUNIU24yN3pKd3YtSk44YnRlc0NTY0JGcjN2dmRkdHVmVzBsLTA0X3dNazFZZGtxLW9tT2Rtc0U2TGhMRGtZRGNaeVZXZ2puYWpTQmVRU0ZaLTRrLXo4RVBZa3VnWjhQbUxSN3pLaDFsNnp1RDhWbWh3aG00QkpnU3BuUEZUMXVmbmFiRDB0a3pZVFE0VE9ZVDBGVmxLQlU3MjM3UQ?oc=5",
+      "queries": [
+        "shri-upgrade"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-25"
     }
   ]
 }
