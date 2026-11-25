@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-25T03:33:02.329Z",
-  "previousBuild": "2026-11-24T19:30:21.585Z",
+  "builtAt": "2026-11-25T14:21:31.425Z",
+  "previousBuild": "2026-11-25T03:33:02.329Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,15 +12,15 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 389,
-    "createdThisRun": 2,
-    "corroboratedThisRun": 0,
+    "stories": 393,
+    "createdThisRun": 4,
+    "corroboratedThisRun": 1,
     "feedsAnswered": 14,
     "feedsTried": 14,
     "itemsSeen": 224,
     "corroboration": {
-      "one": 339,
-      "two": 22,
+      "one": 342,
+      "two": 23,
       "threePlus": 28
     }
   },
@@ -28,17 +28,17 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 206
+      "n": 208
     },
     {
       "id": "autonomy",
       "label": "Autonomous and unmanned systems",
-      "n": 116
+      "n": 117
     },
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 49
+      "n": 50
     },
     {
       "id": "targeting",
@@ -60,7 +60,7 @@
     {
       "iso": "IND",
       "name": "India",
-      "n": 43
+      "n": 44
     },
     {
       "iso": "UKR",
@@ -70,12 +70,12 @@
     {
       "iso": "GBR",
       "name": "United Kingdom",
-      "n": 13
+      "n": 14
     },
     {
       "iso": "DEU",
       "name": "Germany",
-      "n": 12
+      "n": 13
     },
     {
       "iso": "RUS",
@@ -174,7 +174,7 @@
       "outlet": "Defence Industry Europe",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 3
     },
     {
       "outlet": "Defense News",
@@ -198,13 +198,13 @@
       "outlet": "Naval News",
       "ok": true,
       "items": 10,
-      "kept": 0
+      "kept": 1
     },
     {
       "outlet": "Defence Blog",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 0
     },
     {
       "outlet": "UK Ministry of Defence",
@@ -1146,6 +1146,37 @@
       ]
     },
     {
+      "id": "https://defence-blog.com/israeli-elbit-to-fit-german-navy-f128-frigates-with-electronic-warfare/",
+      "headline": "Israeli Elbit to fit German Navy F128 frigates with electronic warfare",
+      "firstSeen": "2026-11-24",
+      "lastSeen": "2026-11-25",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "ISR",
+          "name": "Israel"
+        },
+        {
+          "iso": "DEU",
+          "name": "Germany"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Blog",
+          "url": "https://defence-blog.com/israeli-elbit-to-fit-german-navy-f128-frigates-with-electronic-warfare/",
+          "published": "2026-11-24"
+        },
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/elbit-systems-awarded-five-year-electronic-warfare-contract-for-german-f128-frigates/",
+          "published": "2026-11-25"
+        }
+      ]
+    },
+    {
       "id": "https://defence-blog.com/u-s-air-force-gets-its-first-uncrewed-fighter-aircraft/",
       "headline": "U.S. Air Force gets its first uncrewed ‘fighter’ aircraft",
       "firstSeen": "2026-09-25",
@@ -1702,6 +1733,89 @@
       ]
     },
     {
+      "id": "https://idrw.org/indian-defence-startup-pursues-unified-unmanned-systems-network/",
+      "headline": "Indian Defence Startup Pursues Unified Unmanned Systems Network",
+      "firstSeen": "2026-11-25",
+      "lastSeen": "2026-11-25",
+      "themes": [
+        "autonomy"
+      ],
+      "countries": [
+        {
+          "iso": "IND",
+          "name": "India"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/indian-defence-startup-pursues-unified-unmanned-systems-network/",
+          "published": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/nato-holds-baltic-counter-drone-drills-with-jets-from-four-nations-and-lithuanias-nasams/",
+      "headline": "NATO holds Baltic counter-drone drills with jets from four nations and Lithuania’s NASAMS",
+      "firstSeen": "2026-11-25",
+      "lastSeen": "2026-11-25",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/nato-holds-baltic-counter-drone-drills-with-jets-from-four-nations-and-lithuanias-nasams/",
+          "published": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/hii-says-186-million-royal-navy-minehunting-deal-is-its-largest-overseas-drone-order/",
+      "headline": "HII says $186 million Royal Navy minehunting deal is its largest overseas drone order",
+      "firstSeen": "2026-11-25",
+      "lastSeen": "2026-11-25",
+      "themes": [
+        "drone"
+      ],
+      "countries": [
+        {
+          "iso": "GBR",
+          "name": "United Kingdom"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/hii-says-186-million-royal-navy-minehunting-deal-is-its-largest-overseas-drone-order/",
+          "published": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "https://www.navalnews.com/naval-news/2026/11/elbit-to-supply-aqua-marine-ew-suite-for-germanys-f128-frigates/",
+      "headline": "Elbit to Supply Aqua Marine EW Suite for Germany’s F128 Frigates",
+      "firstSeen": "2026-11-25",
+      "lastSeen": "2026-11-25",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [
+        {
+          "iso": "DEU",
+          "name": "Germany"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Naval News",
+          "url": "https://www.navalnews.com/naval-news/2026/11/elbit-to-supply-aqua-marine-ew-suite-for-germanys-f128-frigates/",
+          "published": "2026-11-25"
+        }
+      ]
+    },
+    {
       "id": "https://www.twz.com/land/fireant-mini-uncrewed-ground-vehicles-deploy-drone-detection-sensors-in-u-s-army-test",
       "headline": "FireAnt Mini Uncrewed Ground Vehicles Deploy Drone Detection Sensors In U.S. Army Test",
       "firstSeen": "2026-11-24",
@@ -1782,32 +1896,6 @@
         {
           "outlet": "Defence Industry Europe",
           "url": "https://defence-industry.eu/droneshield-reaches-initial-operational-capability-with-fixed-site-counter-drone-system-for-pentagon-task-force/",
-          "published": "2026-11-24"
-        }
-      ]
-    },
-    {
-      "id": "https://defence-blog.com/israeli-elbit-to-fit-german-navy-f128-frigates-with-electronic-warfare/",
-      "headline": "Israeli Elbit to fit German Navy F128 frigates with electronic warfare",
-      "firstSeen": "2026-11-24",
-      "lastSeen": "2026-11-24",
-      "themes": [
-        "cyber-ew"
-      ],
-      "countries": [
-        {
-          "iso": "ISR",
-          "name": "Israel"
-        },
-        {
-          "iso": "DEU",
-          "name": "Germany"
-        }
-      ],
-      "sources": [
-        {
-          "outlet": "Defence Blog",
-          "url": "https://defence-blog.com/israeli-elbit-to-fit-german-navy-f128-frigates-with-electronic-warfare/",
           "published": "2026-11-24"
         }
       ]
