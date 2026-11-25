@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-24T19:30:21.585Z",
-  "previousBuild": "2026-11-24T04:47:56.962Z",
+  "builtAt": "2026-11-25T03:33:02.329Z",
+  "previousBuild": "2026-11-24T19:30:21.585Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 387,
-    "createdThisRun": 5,
+    "stories": 389,
+    "createdThisRun": 2,
     "corroboratedThisRun": 0,
-    "feedsAnswered": 13,
+    "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 212,
+    "itemsSeen": 224,
     "corroboration": {
-      "one": 337,
+      "one": 339,
       "two": 22,
       "threePlus": 28
     }
@@ -28,7 +28,7 @@
     {
       "id": "drone",
       "label": "Drones and loitering munitions",
-      "n": 205
+      "n": 206
     },
     {
       "id": "autonomy",
@@ -43,7 +43,7 @@
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 33
+      "n": 34
     },
     {
       "id": "military-ai",
@@ -65,12 +65,12 @@
     {
       "iso": "UKR",
       "name": "Ukraine",
-      "n": 16
+      "n": 17
     },
     {
       "iso": "GBR",
       "name": "United Kingdom",
-      "n": 12
+      "n": 13
     },
     {
       "iso": "DEU",
@@ -78,13 +78,13 @@
       "n": 12
     },
     {
-      "iso": "FRA",
-      "name": "France",
-      "n": 8
-    },
-    {
       "iso": "RUS",
       "name": "Russia",
+      "n": 9
+    },
+    {
+      "iso": "FRA",
+      "name": "France",
       "n": 8
     },
     {
@@ -137,14 +137,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 34,
+      "items": 36,
       "kept": 2
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 2
+      "kept": 3
     },
     {
       "outlet": "Military Times",
@@ -196,10 +196,9 @@
     },
     {
       "outlet": "Naval News",
-      "ok": false,
-      "items": 0,
-      "kept": 0,
-      "error": "HTTP 503"
+      "ok": true,
+      "items": 10,
+      "kept": 0
     },
     {
       "outlet": "Defence Blog",
@@ -1686,6 +1685,23 @@
       ]
     },
     {
+      "id": "https://idrw.org/kadet-defence-jx3-30-jet-uav-completes-50-flights/",
+      "headline": "Kadet Defence’s JX3-30 Jet UAV Completes 50 Flights",
+      "firstSeen": "2026-11-25",
+      "lastSeen": "2026-11-25",
+      "themes": [
+        "drone"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Indian Defence Research Wing",
+          "url": "https://idrw.org/kadet-defence-jx3-30-jet-uav-completes-50-flights/",
+          "published": "2026-11-25"
+        }
+      ]
+    },
+    {
       "id": "https://www.twz.com/land/fireant-mini-uncrewed-ground-vehicles-deploy-drone-detection-sensors-in-u-s-army-test",
       "headline": "FireAnt Mini Uncrewed Ground Vehicles Deploy Drone Detection Sensors In U.S. Army Test",
       "firstSeen": "2026-11-24",
@@ -1792,6 +1808,36 @@
         {
           "outlet": "Defence Blog",
           "url": "https://defence-blog.com/israeli-elbit-to-fit-german-navy-f128-frigates-with-electronic-warfare/",
+          "published": "2026-11-24"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/russia-is-targeting-british-firms-supplying-ukraines-armed-forces-mi5-unit-warns/",
+      "headline": "Russia is targeting British firms supplying Ukraine’s armed forces, MI5 unit warns",
+      "firstSeen": "2026-11-24",
+      "lastSeen": "2026-11-24",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [
+        {
+          "iso": "RUS",
+          "name": "Russia"
+        },
+        {
+          "iso": "UKR",
+          "name": "Ukraine"
+        },
+        {
+          "iso": "GBR",
+          "name": "United Kingdom"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/russia-is-targeting-british-firms-supplying-ukraines-armed-forces-mi5-unit-warns/",
           "published": "2026-11-24"
         }
       ]
