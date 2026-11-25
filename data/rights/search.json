@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-25T03:47:56.651Z",
+  "builtAt": "2026-11-25T15:02:01.232Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1474,
-    "addedThisRun": 4,
-    "carriedFromEarlierRuns": 1470,
-    "withOutlet": 1358,
+    "items": 1482,
+    "addedThisRun": 8,
+    "carriedFromEarlierRuns": 1474,
+    "withOutlet": 1364,
     "bySubject": {
-      "scst": 999,
+      "scst": 1007,
       "pmshri": 475
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 168
+    "offSubjectDropped": 156
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 730
+      "n": 735
     },
     {
       "key": "use",
-      "n": 513
+      "n": 516
     },
     {
       "key": "acquittal",
@@ -50,7 +50,7 @@
   "byOutlet": [
     {
       "key": "The Times of India",
-      "n": 120
+      "n": 121
     },
     {
       "key": "Lawtext",
@@ -66,7 +66,7 @@
     },
     {
       "key": "The Hindu",
-      "n": 57
+      "n": 58
     },
     {
       "key": "LawBeat",
@@ -165,6 +165,10 @@
       "n": 10
     },
     {
+      "key": "Wansom AI",
+      "n": 10
+    },
+    {
       "key": "lawchakra.in",
       "n": 10
     },
@@ -211,10 +215,6 @@
     {
       "key": "The Mooknayak English",
       "n": 8
-    },
-    {
-      "key": "Wansom AI",
-      "n": 7
     },
     {
       "key": "The Federal",
@@ -295,40 +295,40 @@
       "label": "The Act generally",
       "subject": "scst",
       "expect": "use",
-      "google": 35,
+      "google": 100,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 0
+      "kept": 4,
+      "offSubject": 8
     },
     {
       "id": "act-registered",
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 41,
+      "google": 100,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 3
+      "kept": 1,
+      "offSubject": 14
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 25,
       "bing": 0,
       "kept": 0,
-      "offSubject": 44
+      "offSubject": 5
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 50,
-      "bing": 3,
-      "kept": 0,
-      "offSubject": 8
+      "google": 51,
+      "bing": 4,
+      "kept": 3,
+      "offSubject": 9
     },
     {
       "id": "act-compensation",
@@ -345,7 +345,7 @@
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 11,
+      "google": 13,
       "bing": 0,
       "kept": 0,
       "offSubject": 1
@@ -355,10 +355,10 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 96,
+      "google": 30,
       "bing": 0,
       "kept": 0,
-      "offSubject": 43
+      "offSubject": 4
     },
     {
       "id": "act-hostile",
@@ -375,40 +375,40 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 10,
+      "google": 48,
       "bing": 0,
       "kept": 0,
-      "offSubject": 1
+      "offSubject": 9
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 22,
+      "google": 16,
       "bing": 0,
       "kept": 0,
-      "offSubject": 2
+      "offSubject": 0
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 19,
+      "google": 49,
       "bing": 1,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 16
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 10,
+      "google": 30,
       "bing": 0,
       "kept": 0,
-      "offSubject": 5
+      "offSubject": 19
     },
     {
       "id": "shri-general",
@@ -425,47 +425,47 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 40,
+      "google": 41,
       "bing": 1,
-      "kept": 2,
-      "offSubject": 7
+      "kept": 0,
+      "offSubject": 8
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
+      "google": 66,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 7
+      "kept": 0,
+      "offSubject": 21
     },
     {
       "id": "shri-upgrade",
       "label": "Upgrades and facilities",
       "subject": "pmshri",
       "expect": "use",
-      "google": 52,
+      "google": 51,
       "bing": 1,
-      "kept": 1,
-      "offSubject": 13
+      "kept": 0,
+      "offSubject": 15
     },
     {
       "id": "shri-mou",
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 44,
+      "google": 13,
       "bing": 1,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 0
     },
     {
       "id": "shri-withheld",
       "label": "Funds withheld",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 22,
+      "google": 20,
       "bing": 1,
       "kept": 0,
       "offSubject": 8
@@ -475,20 +475,20 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 30,
+      "google": 31,
       "bing": 2,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 4
     },
     {
       "id": "shri-criticism",
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 9,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 6
+      "offSubject": 7
     }
   ],
   "items": [
@@ -24616,6 +24616,134 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-11-25"
+    },
+    {
+      "id": "court junks sc st act charge against thai woman says unlikely she knew caste system",
+      "headline": "Court junks SC/ST Act charge against Thai woman, says unlikely she knew caste system",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "The Times of India",
+      "published": "2026-11-23",
+      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOcDBvMGNuV3Ztc0FNclhtQ0czY3gtSG81QjBmU1REU1NXeGh0R1BUTU9nM015bU1kNmstS3dwdS13bGdGWU5hb0sxM3NpYlVNRk9OZTN5eVU3YjdvQTU2U090WWdBNVR4MmV2cEtrZ3VNWWliOGdCUmUyaFl0TGEzR2ZFaXVIY2daclhGWWlWbW1IZmI2UXRoWGRpYkZzNFZqLXA2amZ2V2JVaXRDZmlvak5mSGpSeUN3TnFXWXhldnZKQmtzOFZ1X0xMUF9SaXFUTFdyWWlUY2dNWlB4anVrSy10NWRPVGFBaTh6NtIB8gFBVV95cUxOekhQRFYzSU8yN09Eb3FNUzRLMTVHN3kwazVRRXNHZHlHamR4em41eWQzQktDRC1KbzdPb2ZHbUJ6ejJKZXByTnNyU0Q0U2hNc0l1SHJxTDkyazB1Z0lqaWlISFFtb3dnekpDcExaanpXNi1QQV9wVHdNX2RUV3F6NmZEb0VoM0JhNUdHb2xUdjlHanVtMjJjdVphVjZfWlFBQUxLV3FtTTk5MDJFdm92UTdUX0V0TDRjVkdWUnBIQnptLWdiTHdpT0hCNzY5Zkl3SU04VG9sQXkyYXNMUnBIZldST25XNUZEUndxaHBKWGhXZw?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-25"
+    },
+    {
+      "id": "supreme court bank officers not liable under sc st act for loan recovery",
+      "headline": "Supreme Court: Bank Officers Not Liable Under SC/ST Act for Loan Recovery",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Wansom AI",
+      "published": "2026-10-30",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNMGRVWHFpazJJaVZPTU1kVjg0MmxfdXJtLUYzTGhxaHBmQXpTNmR5d3UzOWJlZFFKajE4OVpqUVcycXpsTTE2SUxsMG0yOURXVE9oaU00N180M3hmNlE4MGlCT2lBTWQtcGl6U19sWF8yTDdIYlZNSWtJQk1PNl9vZm0xOTlDTmVxdmtkRWtoYVZmaFdac0tiUGhKUURadV9XNzZxQVEwbnlxQmc0LWxMbWdkbnpSVFRFcm9oQXpraktnR21VZm5qdg?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-25"
+    },
+    {
+      "id": "delhi hc ajeet bharti denied anticipatory bail under sc st act",
+      "headline": "Delhi HC: Ajeet Bharti Denied Anticipatory Bail Under SC-ST Act",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Wansom AI",
+      "published": "2026-09-24",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPcjZNTTFwaE1DbVhUMF92bHExRDR2M2xoaHVtMFJRcDFMUzBkV210eGl3TkZwckNWZ245VVNNb09KWFExUVJVRmVOUmJvMlBGOVlsdDZvalV4b0lxeFB0cUhaUEhNcDdON2JVTW1JMTlkb2t6VC1pc25vS3gzUzhiWDFMcWRRN0N5Si1LazB0bDY3dWRXQTB5YU1BTVcxSDNpMFJPWFlRbUJCUW1tWXlpMzJTZHlTNHlJbm1EeEZqWjc3dmlnRXg2cFRn?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-25"
+    },
+    {
+      "id": "ajeet bharti sc st act anticipatory bail delhi denied for caste remarks",
+      "headline": "Ajeet Bharti SC/ST Act Anticipatory Bail Delhi Denied for Caste Remarks",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Wansom AI",
+      "published": "2026-09-09",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxORHBxN2VzTnY1Mk5PNHhGbUFxcG9VdnNLWXZWazFqTHM5WjFrRXgzOW1ldDRHTGp3WEZiN1RoSjZmVmNUUmV6amNzdDdSZmh0NUhtQ3FUeVJ6WUFIQzFZMERvRnJjYjctTE1BWWdpVnNHLXZpWk01em0wdWNIRm5YTDhHb3NKdVB5YlloSEpyYy02djRobE9oTmNGcThpZmxaQUo0T1pVZC1XRkhWUjVjV1U2eEp6djJQVkFpSzRXZ3JWTEU?oc=5",
+      "queries": [
+        "act-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-25"
+    },
+    {
+      "id": "life imprisonment for man in pocso sc st act case",
+      "headline": "Life Imprisonment For Man In POCSO, SC/ST Act Case",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "Rediff.com",
+      "published": "2026-11-24",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNUU1PeGYtWnhDcUUzYW5hck83blYxYnBQYWpEcFp4NWZEOThyZVpnRDJUYUI0Tk4xY3pQeGdlUlJTTjBJT3hydEt2ZHJ1a1ViNVpiUU1MUnVPTG0tRW4tZTBJM3ZLaC1PYXJhVGttRDNaQzdvMVRqSmNKVlZrREZJbXZaOWtBa01JVVBidUpOX2ZJQlVDdGRTTlgzRmJoTWxuaVdnVUc2T0Z4SFNKdnQwZdIBswFBVV95cUxNckVxekNvMk5ZQ0YwajNaQ1hjY1R0ZEoxeW1QVDg5NVlGWjNjY0dqamYwTmRwUGh3MlI3S2dEUE5HbUpPNHRjSURYbHhldVFsNHZKQjEydG9fUDF3VFN6NEJsbDRSSVdLZHFLb09vWndwUHE5YzNtX01kOTFFZFlSNTdsMjdQMUd2LUhVV0JEemhreGNwRVRwQ2x6QzNZRWdLVFhrTUpwOE1zOFNWLTRXeXJVWQ?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-25"
+    },
+    {
+      "id": "caste atrocity 12 members of a dalit family convert to buddhism in rajasthan",
+      "headline": "Caste atrocity | 12 members of a Dalit family convert to Buddhism in Rajasthan",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "The Hindu",
+      "published": "2022-10-22",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQY2ZpSmdTMzNqREYxTkF6VHdDcmhNY3lSRS1DVUhEOUd4clJVWDhDSmRhNTlPLWVBUEc0ZGtMUVpPRW16ajhTUERLeDlWZEZ4aU9mcndkeEIxLVhNaVVuZXViS21nR1M4LXVLVDRzVDNoWFNDUm51Q2QwQ192VldpRWg0c2duM3UyOUcyMVdBMGdJVWRnYzdwLUk3ZmtCc08yUXZubmx3bGRsbUhOZWZ1elFlejV6amhKVmNiSVNXZzhEdUdKMnE2SmhvM0s0OEJJai12ekZhMnpkZ3RLQ1dQUF9B0gHoAUFVX3lxTE5RbjB3WDZyaXB5RW9HWGVTcmY2VGdzN1A5aUNlemRfZzFwdzhQcDZkaUgyY0JYYkZreHQyNzBnb0c2c0FweWlTcUJOakpVM2prWU1ESjFrR0tYTm1OUnFxWHZwVVNqV1JLYzExQVcyVTVidF85WHh1MWVaQm1jOVJuRk9vazBQSXRUUGxEa1d4WVMwR0ZHN2VLblB0YUhpSHpfcldicmFqRkhXQ0VsOUxSbldoNXV1cUYxNTNMRDNaRm9FZzItVk5uYXJwczgtcHNTU2RCR3YtT2UtYXBieDBxbFIxWFJKSkQ?oc=5",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-25"
+    },
+    {
+      "id": "dalit woman flees meerut hotel after rape and assault man arrested",
+      "headline": "Dalit woman flees Meerut hotel after ‘rape and assault’, man arrested",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-11-25",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b06f8094d694ad68b2b0d6ab8681f1f&url=https%3a%2f%2findianexpress.com%2farticle%2fcities%2flucknow%2fmeerut-hotel-rape-case-dalit-woman-assault-10977890%2f&c=6938333756263595708&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
+      ],
+      "firstSeen": "2026-11-25"
+    },
+    {
+      "id": "man arrested for wrongful confinement rape of dalit woman at meerut hotel premises sealed",
+      "headline": "Man arrested for wrongful confinement, rape of Dalit woman at Meerut hotel; premises sealed",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": null,
+      "published": "2026-11-24",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b06f8094d694ad68b2b0d6ab8681f1f&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fother%2fman-arrested-for-wrongful-confinement-rape-of-dalit-woman-at-meerut-hotel-premises-sealed%2far-AA2icc6n&c=12363187821781925902&mkt=en-us",
+      "queries": [
+        "act-atrocity"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-11-25"
     }
