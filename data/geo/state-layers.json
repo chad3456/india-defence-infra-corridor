@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-25T08:58:06.210Z",
+  "builtAt": "2026-11-25T21:54:59.569Z",
   "note": "Named things per state, for the map to answer a click with. Each layer records how its rows reached a state and how many did not, because the join is where this kind of file goes wrong invisibly.",
   "refused": [
     {
@@ -26070,8 +26070,8 @@
       "blurb": "Every railway station the mobility dataset holds a coordinate for, placed into the state whose polygon contains it. Presence only — the source carries a name, a station code and a coordinate, and nothing about how many trains stop or how many people pass through, so a count of stations is a count of stations and not of service.",
       "join": "Point-in-polygon against the map's own topology. A station in no polygon is listed unplaced, never assigned to a neighbour.",
       "source": "OpenStreetMap, via the mobility connector.",
-      "total": 10328,
-      "placed": 10155,
+      "total": 10331,
+      "placed": 10158,
       "unplacedCount": 121,
       "deduped": 52,
       "unplaced": [
@@ -43224,6 +43224,13 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 17.476,
             "lon": 76.8954
+          },
+          {
+            "name": "Kushtagi",
+            "why": "Station code KHTI.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 15.7465,
+            "lon": 76.2046
           },
           {
             "name": "Kusugal",
@@ -84907,6 +84914,13 @@
             "lon": 78.2605
           },
           {
+            "name": "Baghwar",
+            "why": "Station code BGWR.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 24.3303,
+            "lon": 81.4136
+          },
+          {
             "name": "Bagmar",
             "why": "Station code BMA.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
@@ -86109,6 +86123,13 @@
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 23.3817,
             "lon": 80.0592
+          },
+          {
+            "name": "Govindgarh White Tiger",
+            "why": "Station code GGWT.",
+            "basis": "OpenStreetMap: name, station code and coordinate only",
+            "lat": 24.3933,
+            "lon": 81.3172
           },
           {
             "name": "Gudankhapa",
@@ -88036,8 +88057,8 @@
             "lon": 77.3296
           },
           {
-            "name": "Rampur Naikin Railway Station",
-            "why": "No station code in this dataset.",
+            "name": "Rampur Naikin",
+            "why": "Station code RPNN.",
             "basis": "OpenStreetMap: name, station code and coordinate only",
             "lat": 24.3544,
             "lon": 81.4749
