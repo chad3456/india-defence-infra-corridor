@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-26T00:43:20.720Z",
+  "builtAt": "2026-11-26T08:57:00.614Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,29 +10,29 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1482,
-    "addedThisRun": 0,
+    "items": 1487,
+    "addedThisRun": 5,
     "carriedFromEarlierRuns": 1482,
-    "withOutlet": 1364,
+    "withOutlet": 1369,
     "bySubject": {
-      "scst": 1007,
-      "pmshri": 475
+      "scst": 1011,
+      "pmshri": 476
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 166
+    "offSubjectDropped": 214
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 735
+      "n": 736
     },
     {
       "key": "use",
-      "n": 516
+      "n": 518
     },
     {
       "key": "acquittal",
-      "n": 78
+      "n": 80
     },
     {
       "key": "dispute",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 111
+      "n": 114
     },
     {
       "key": "The Indian Express",
@@ -90,7 +90,7 @@
     },
     {
       "key": "LawChakra",
-      "n": 23
+      "n": 24
     },
     {
       "key": "SCC Online",
@@ -305,20 +305,20 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 40,
+      "google": 100,
       "bing": 1,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 13
     },
     {
       "id": "act-convicted",
       "label": "Convictions",
       "subject": "scst",
       "expect": "use",
-      "google": 26,
+      "google": 98,
       "bing": 0,
-      "kept": 0,
-      "offSubject": 6
+      "kept": 2,
+      "offSubject": 42
     },
     {
       "id": "act-atrocity",
@@ -326,7 +326,7 @@
       "subject": "scst",
       "expect": "use",
       "google": 10,
-      "bing": 6,
+      "bing": 4,
       "kept": 0,
       "offSubject": 3
     },
@@ -355,10 +355,10 @@
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 30,
-      "bing": 0,
-      "kept": 0,
-      "offSubject": 4
+      "google": 96,
+      "bing": 1,
+      "kept": 2,
+      "offSubject": 43
     },
     {
       "id": "act-hostile",
@@ -375,10 +375,10 @@
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 48,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 9
+      "offSubject": 1
     },
     {
       "id": "act-dilution",
@@ -395,10 +395,10 @@
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 49,
+      "google": 19,
       "bing": 1,
       "kept": 0,
-      "offSubject": 16
+      "offSubject": 3
     },
     {
       "id": "act-fabricated",
@@ -415,30 +415,30 @@
       "label": "The scheme generally",
       "subject": "pmshri",
       "expect": "use",
-      "google": 35,
+      "google": 100,
       "bing": 7,
-      "kept": 0,
-      "offSubject": 3
+      "kept": 1,
+      "offSubject": 6
     },
     {
       "id": "shri-sanctioned",
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 40,
+      "google": 10,
       "bing": 1,
       "kept": 0,
-      "offSubject": 7
+      "offSubject": 0
     },
     {
       "id": "shri-funds",
       "label": "Funds released",
       "subject": "pmshri",
       "expect": "use",
-      "google": 64,
+      "google": 10,
       "bing": 0,
       "kept": 0,
-      "offSubject": 20
+      "offSubject": 8
     },
     {
       "id": "shri-upgrade",
@@ -455,7 +455,7 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 13,
+      "google": 14,
       "bing": 1,
       "kept": 0,
       "offSubject": 0
@@ -466,7 +466,7 @@
       "subject": "pmshri",
       "expect": "dispute",
       "google": 22,
-      "bing": 1,
+      "bing": 2,
       "kept": 0,
       "offSubject": 9
     },
@@ -475,7 +475,7 @@
       "label": "The policy behind it",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 50,
+      "google": 49,
       "bing": 2,
       "kept": 0,
       "offSubject": 8
@@ -24694,7 +24694,8 @@
       "published": "2026-11-24",
       "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNUU1PeGYtWnhDcUUzYW5hck83blYxYnBQYWpEcFp4NWZEOThyZVpnRDJUYUI0Tk4xY3pQeGdlUlJTTjBJT3hydEt2ZHJ1a1ViNVpiUU1MUnVPTG0tRW4tZTBJM3ZLaC1PYXJhVGttRDNaQzdvMVRqSmNKVlZrREZJbXZaOWtBa01JVVBidUpOX2ZJQlVDdGRTTlgzRmJoTWxuaVdnVUc2T0Z4SFNKdnQwZdIBswFBVV95cUxNckVxekNvMk5ZQ0YwajNaQ1hjY1R0ZEoxeW1QVDg5NVlGWjNjY0dqamYwTmRwUGh3MlI3S2dEUE5HbUpPNHRjSURYbHhldVFsNHZKQjEydG9fUDF3VFN6NEJsbDRSSVdLZHFLb09vWndwUHE5YzNtX01kOTFFZFlSNTdsMjdQMUd2LUhVV0JEemhreGNwRVRwQ2x6QzNZRWdLVFhrTUpwOE1zOFNWLTRXeXJVWQ?oc=5",
       "queries": [
-        "act-registered"
+        "act-registered",
+        "act-convicted"
       ],
       "indexes": [
         "google"
@@ -24748,6 +24749,86 @@
         "bing"
       ],
       "firstSeen": "2026-11-25"
+    },
+    {
+      "id": "supreme court dismisses appeal against conviction for murder under ipc and sc st act the f",
+      "headline": "Supreme Court Dismisses Appeal Against Conviction for Murder Under IPC and SC/ST Act. The FIR was upheld as a dying declaration, and the juvenile status of one accused was remitted for appropriate sentencing.",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-11-20",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1odTdhZzA2YVVhR2ZGUzZMd1lSdk9WX2t3OTEyZFdmQTc2S21MM1Z2SUs0UThoUGRXV1pSX045RktGNGRkSWVncEJ5M1NPQXNaaVhMUTRiRjc4MmtUd3RRNlZWenZ2QQ?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-26"
+    },
+    {
+      "id": "no prima facie atrocity if abuse not in public view patna hc grants anticipatory bail unde",
+      "headline": "No Prima Facie Atrocity If Abuse Not In Public View: Patna HC Grants Anticipatory Bail Under SC/ST Act",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "LawChakra",
+      "published": "2025-10-28",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE54eG82Vl9YQmFqWXI5a29BSlZUVzZsMU1mcUt6LVVNSkRxbEU3YnZPcnFoaV80MEkyLVBjaldQOVJiZEpKVFY4NXpYUl9zbE54MV8taWptYzFQLWJSYW8zS0FqYmQ2dVl0?oc=5",
+      "queries": [
+        "act-convicted"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-26"
+    },
+    {
+      "id": "gujarat high court dismisses state appeal against acquittal in atrocity case prosecution f",
+      "headline": "Gujarat High Court Dismisses State Appeal Against Acquittal in Atrocity Case — Prosecution Fails to Prove Caste-Based Insult in Public View Under SC/ST Act. The court upheld the trial court's acquittal as the evidence did not establish the essential ingredient",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-11-14",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1kMjh1QVhDX0YxWE4yMzAyV0xYODJURURhaVhpbEg5aFJReXVwRkxZLWNqTGdFSmYwQ19yc2FoMUVLUGdMRXVHTUlsT1NJT25nLWQzenIwX2pMMXpRMWF6VkxSdDBrdw?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-26"
+    },
+    {
+      "id": "supreme court remands victim s appeal in sc st atrocity case due to cursory high court ord",
+      "headline": "Supreme Court Remands Victim's Appeal in SC/ST Atrocity Case Due to Cursory High Court Order. High Court Failed to Re-appreciate Evidence in Appeal Against Acquittal Under Sections 3(1)(x) and 3(1)(xi) of SC/ST Act and Sections 354, 504, 506 IPC.",
+      "subject": "scst",
+      "facet": "acquittal",
+      "outlet": "Lawtext",
+      "published": "2026-09-02",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5DYnludUpldjlka0tERHNoMzhBTUhVMGtQUmFxUGJmSWlZWEhCSlh4WWtDdWI1TUJJYTYyVlV0NEZPVUtlNmVILURtSE1YMlNtMjAxRHpYWTJockZyX2RLeUsyRDJNSkU?oc=5",
+      "queries": [
+        "act-acquittal"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-26"
+    },
+    {
+      "id": "students of pm shri schools to get exposure visit opportunity will visit kendriya and navo",
+      "headline": "Students of PM SHRI Schools to Get Exposure Visit Opportunity: Will Visit Kendriya and Navodaya Vidyalayas",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": "insidebihar.com",
+      "published": "2026-06-26",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQaXdIOTA0ck84YXBiUUtXNnlpUVVoOUFNWnVVYkQyX0plZGJvS3AxUEdiNUJaa25zRzdJdFFPMFI0NUFZRHJUNkRucl91UFJZN2o2OXBXYk1qU0JjX1R3b3g1Y0FQY0R3Q3IzWTBDUzljWjhmSHEyZERxeWpuQk9IbEFjRUptUjNZd0U2Tm12TlFhMklDbERMY2sxQjhYZ2Y5YWpxaHF4V0E4YjA3MUFzVHVEenJaem5DbE41T3VPMDh6X3FVV0JCaG42QUJodUFhOUllcFNKZ1lRdw?oc=5",
+      "queries": [
+        "shri-general"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-26"
     }
   ]
 }
