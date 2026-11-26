@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-25T16:04:23.293Z",
+ "builtAt": "2026-11-26T01:10:22.663Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206526,7 +206526,7 @@
    "outlet": "Naval News",
    "ok": true,
    "items": 10,
-   "kept": 2,
+   "kept": 3,
    "via": "direct"
   },
   {
@@ -206538,6 +206538,20 @@
   }
  ],
  "events": [
+  {
+   "id": "ev-4n4qov",
+   "kind": "delivery",
+   "systems": [],
+   "countries": [
+    "Indonesia"
+   ],
+   "value": null,
+   "date": "2026-11-26",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/11/indonesian-navy-ksr-x33-missile-usv/",
+   "headline": "Indonesian Navy Takes Delivery of 58-Knot Missile-Capable USV",
+   "primary": false
+  },
   {
    "id": "ev-1hplpiu",
    "kind": "order",
@@ -208501,6 +208515,35 @@
   }
  ],
  "groups": [
+  {
+   "key": "delivery||indonesia",
+   "systems": [],
+   "countries": [
+    "Indonesia"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-4n4qov",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "Indonesia"
+     ],
+     "value": null,
+     "date": "2026-11-26",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/11/indonesian-navy-ksr-x33-missile-usv/",
+     "headline": "Indonesian Navy Takes Delivery of 58-Knot Missile-Capable USV",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order||united states",
    "systems": [],
