@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-25T14:21:31.425Z",
-  "previousBuild": "2026-11-25T03:33:02.329Z",
+  "builtAt": "2026-11-26T00:20:41.336Z",
+  "previousBuild": "2026-11-25T14:21:31.425Z",
   "source": "14 defence and security publishers, read as RSS. Each was probed before being added; outlets whose feeds did not answer are absent rather than listed and broken.",
   "method": "Every item is tested twice — once against a military vocabulary and once against five theme vocabularies — and kept only when both match, because 'AI' and 'drone' appear constantly in civil reporting. Items whose headlines are near-duplicates are folded into one story and the outlets behind it are counted, so a story's grade is the number of independent newsrooms carrying it. The register accumulates across scheduled runs and drops stories not seen for two years.",
   "refusal": "Nothing here is written by this project. A story is a headline someone else published, the outlets that published it, and what a keyword classifier made of it. No prose is generated, no claim is verified, and a high corroboration count means many newsrooms carried something — not that it is true.",
@@ -12,14 +12,14 @@
     "Which stories matter. Ordering is by corroboration and recency, both mechanical. Neither is a judgement about significance."
   ],
   "counts": {
-    "stories": 393,
-    "createdThisRun": 4,
-    "corroboratedThisRun": 1,
+    "stories": 395,
+    "createdThisRun": 2,
+    "corroboratedThisRun": 0,
     "feedsAnswered": 14,
     "feedsTried": 14,
-    "itemsSeen": 224,
+    "itemsSeen": 228,
     "corroboration": {
-      "one": 342,
+      "one": 344,
       "two": 23,
       "threePlus": 28
     }
@@ -38,12 +38,12 @@
     {
       "id": "cyber-ew",
       "label": "Cyber and electronic warfare",
-      "n": 50
+      "n": 51
     },
     {
       "id": "targeting",
       "label": "Targeting, ISR and decision systems",
-      "n": 34
+      "n": 35
     },
     {
       "id": "military-ai",
@@ -70,7 +70,7 @@
     {
       "iso": "GBR",
       "name": "United Kingdom",
-      "n": 14
+      "n": 15
     },
     {
       "iso": "DEU",
@@ -137,14 +137,14 @@
     {
       "outlet": "The War Zone",
       "ok": true,
-      "items": 36,
+      "items": 40,
       "kept": 2
     },
     {
       "outlet": "Indian Defence Research Wing",
       "ok": true,
       "items": 30,
-      "kept": 3
+      "kept": 2
     },
     {
       "outlet": "Military Times",
@@ -162,7 +162,7 @@
       "outlet": "C4ISRNET",
       "ok": true,
       "items": 10,
-      "kept": 1
+      "kept": 2
     },
     {
       "outlet": "DefenseScoop",
@@ -1716,6 +1716,23 @@
       ]
     },
     {
+      "id": "https://defence-industry.eu/bae-systems-says-f-35-electronic-warfare-deliveries-top-1500-with-block-4-deliveries-underway/",
+      "headline": "BAE Systems says F-35 electronic warfare deliveries top 1,500, with Block 4 deliveries underway",
+      "firstSeen": "2026-11-26",
+      "lastSeen": "2026-11-26",
+      "themes": [
+        "cyber-ew"
+      ],
+      "countries": [],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/bae-systems-says-f-35-electronic-warfare-deliveries-top-1500-with-block-4-deliveries-underway/",
+          "published": "2026-11-26"
+        }
+      ]
+    },
+    {
       "id": "https://idrw.org/kadet-defence-jx3-30-jet-uav-completes-50-flights/",
       "headline": "Kadet Defence’s JX3-30 Jet UAV Completes 50 Flights",
       "firstSeen": "2026-11-25",
@@ -1811,6 +1828,28 @@
         {
           "outlet": "Naval News",
           "url": "https://www.navalnews.com/naval-news/2026/11/elbit-to-supply-aqua-marine-ew-suite-for-germanys-f128-frigates/",
+          "published": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "https://defence-industry.eu/arx-robotics-says-gereon-is-first-ground-robot-to-join-british-army-targeting-network/",
+      "headline": "ARX Robotics says GEREON is first ground robot to join British Army targeting network",
+      "firstSeen": "2026-11-25",
+      "lastSeen": "2026-11-25",
+      "themes": [
+        "targeting"
+      ],
+      "countries": [
+        {
+          "iso": "GBR",
+          "name": "United Kingdom"
+        }
+      ],
+      "sources": [
+        {
+          "outlet": "Defence Industry Europe",
+          "url": "https://defence-industry.eu/arx-robotics-says-gereon-is-first-ground-robot-to-join-british-army-targeting-network/",
           "published": "2026-11-25"
         }
       ]
