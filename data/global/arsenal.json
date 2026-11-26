@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-26T01:10:22.663Z",
+ "builtAt": "2026-11-26T15:47:12.868Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206533,11 +206533,27 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 2,
+   "kept": 1,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-188dscg",
+   "kind": "order",
+   "systems": [
+    "Submarine"
+   ],
+   "countries": [
+    "United Kingdom"
+   ],
+   "value": null,
+   "date": "2026-11-26",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/11/uk-mod-awards-babcock-record-8-7b-gateway-submarine-support-deal/",
+   "headline": "UK MOD Awards Babcock Record £8.7B ‘Gateway’ Submarine Support Deal",
+   "primary": false
+  },
   {
    "id": "ev-4n4qov",
    "kind": "delivery",
@@ -206550,6 +206566,20 @@
    "outlet": "Naval News",
    "url": "https://www.navalnews.com/naval-news/2026/11/indonesian-navy-ksr-x33-missile-usv/",
    "headline": "Indonesian Navy Takes Delivery of 58-Knot Missile-Capable USV",
+   "primary": false
+  },
+  {
+   "id": "ev-1ulmi5",
+   "kind": "delivery",
+   "systems": [],
+   "countries": [
+    "Japan"
+   ],
+   "value": null,
+   "date": "2026-11-26",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/japan-takes-delivery-of-ai-guided-interceptor-drones/",
+   "headline": "Japan takes delivery of AI-guided interceptor drones",
    "primary": false
   },
   {
@@ -208516,6 +208546,39 @@
  ],
  "groups": [
   {
+   "key": "order|submarine|united kingdom",
+   "systems": [
+    "Submarine"
+   ],
+   "countries": [
+    "United Kingdom"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-188dscg",
+     "kind": "order",
+     "systems": [
+      "Submarine"
+     ],
+     "countries": [
+      "United Kingdom"
+     ],
+     "value": null,
+     "date": "2026-11-26",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/11/uk-mod-awards-babcock-record-8-7b-gateway-submarine-support-deal/",
+     "headline": "UK MOD Awards Babcock Record £8.7B ‘Gateway’ Submarine Support Deal",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
    "key": "delivery||indonesia",
    "systems": [],
    "countries": [
@@ -208540,6 +208603,35 @@
    ],
    "outlets": [
     "Naval News"
+   ],
+   "value": null,
+   "verdict": "a single report, uncorroborated"
+  },
+  {
+   "key": "delivery||japan",
+   "systems": [],
+   "countries": [
+    "Japan"
+   ],
+   "kind": "delivery",
+   "events": [
+    {
+     "id": "ev-1ulmi5",
+     "kind": "delivery",
+     "systems": [],
+     "countries": [
+      "Japan"
+     ],
+     "value": null,
+     "date": "2026-11-26",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/japan-takes-delivery-of-ai-guided-interceptor-drones/",
+     "headline": "Japan takes delivery of AI-guided interceptor drones",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
    ],
    "value": null,
    "verdict": "a single report, uncorroborated"
