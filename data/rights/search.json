@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-27T09:08:49.644Z",
+  "builtAt": "2026-11-27T21:41:38.725Z",
   "source": "Google News and Bing News keyless RSS, queried separately per tier, three seconds apart, merged across runs. Each item carries the outlet the index names as its source.",
   "method": "Queries are asked separately rather than as one broad search, so the rarest tier — a court finding a complaint false — is reached instead of being buried under the commonest. Every item is classified from its own headline, not from the query that returned it, and an item whose headline is not on subject is dropped and counted.",
   "refusal": "An item here is evidence that an outlet published a headline on a date. It is not a verified fact and it is not a sample of coverage. No rate of any kind is computed from these.",
@@ -10,25 +10,25 @@
     "That a headline is accurate. The register records that it was published, by whom, and when. The link is there so a reader goes and reads it."
   ],
   "counts": {
-    "items": 1493,
+    "items": 1497,
     "addedThisRun": 4,
-    "carriedFromEarlierRuns": 1489,
-    "withOutlet": 1375,
+    "carriedFromEarlierRuns": 1493,
+    "withOutlet": 1378,
     "bySubject": {
-      "scst": 1015,
-      "pmshri": 478
+      "scst": 1018,
+      "pmshri": 479
     },
     "queriesAsked": 20,
-    "offSubjectDropped": 232
+    "offSubjectDropped": 204
   },
   "byFacet": [
     {
       "key": "unclassified",
-      "n": 737
+      "n": 739
     },
     {
       "key": "use",
-      "n": 523
+      "n": 525
     },
     {
       "key": "acquittal",
@@ -54,7 +54,7 @@
     },
     {
       "key": "Lawtext",
-      "n": 115
+      "n": 116
     },
     {
       "key": "The Indian Express",
@@ -85,16 +85,16 @@
       "n": 33
     },
     {
+      "key": "LawChakra",
+      "n": 25
+    },
+    {
       "key": "ThePrint",
       "n": 24
     },
     {
-      "key": "LawChakra",
-      "n": 24
-    },
-    {
       "key": "SCC Online",
-      "n": 21
+      "n": 22
     },
     {
       "key": "Live Law",
@@ -305,10 +305,10 @@
       "label": "Cases registered",
       "subject": "scst",
       "expect": "use",
-      "google": 100,
+      "google": 42,
       "bing": 1,
       "kept": 1,
-      "offSubject": 10
+      "offSubject": 3
     },
     {
       "id": "act-convicted",
@@ -317,18 +317,18 @@
       "expect": "use",
       "google": 100,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 44
+      "kept": 0,
+      "offSubject": 45
     },
     {
       "id": "act-atrocity",
       "label": "Atrocities reported",
       "subject": "scst",
       "expect": "use",
-      "google": 52,
+      "google": 53,
       "bing": 4,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 9
     },
     {
       "id": "act-compensation",
@@ -338,77 +338,77 @@
       "google": 46,
       "bing": 0,
       "kept": 0,
-      "offSubject": 13
+      "offSubject": 12
     },
     {
       "id": "act-pendency",
       "label": "Pendency and special courts",
       "subject": "scst",
       "expect": "use",
-      "google": 57,
+      "google": 13,
       "bing": 0,
       "kept": 0,
-      "offSubject": 18
+      "offSubject": 1
     },
     {
       "id": "act-acquittal",
       "label": "Acquittals",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 98,
+      "google": 97,
       "bing": 1,
       "kept": 0,
-      "offSubject": 44
+      "offSubject": 45
     },
     {
       "id": "act-hostile",
       "label": "Hostile witnesses",
       "subject": "scst",
       "expect": "acquittal",
-      "google": 9,
+      "google": 24,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 9
     },
     {
       "id": "act-misuse-claim",
       "label": "Misuse alleged",
       "subject": "scst",
       "expect": "allegation",
-      "google": 47,
+      "google": 10,
       "bing": 0,
-      "kept": 1,
-      "offSubject": 9
+      "kept": 0,
+      "offSubject": 1
     },
     {
       "id": "act-dilution",
       "label": "Dilution and amendment",
       "subject": "scst",
       "expect": "allegation",
-      "google": 16,
+      "google": 24,
       "bing": 0,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 2
     },
     {
       "id": "act-false",
       "label": "Complaints found false",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 49,
+      "google": 48,
       "bing": 1,
-      "kept": 0,
-      "offSubject": 17
+      "kept": 2,
+      "offSubject": 16
     },
     {
       "id": "act-fabricated",
       "label": "Fabricated complaints",
       "subject": "scst",
       "expect": "false-finding",
-      "google": 9,
+      "google": 30,
       "bing": 0,
       "kept": 0,
-      "offSubject": 3
+      "offSubject": 18
     },
     {
       "id": "shri-general",
@@ -417,7 +417,7 @@
       "expect": "use",
       "google": 33,
       "bing": 6,
-      "kept": 1,
+      "kept": 0,
       "offSubject": 2
     },
     {
@@ -425,7 +425,7 @@
       "label": "Schools sanctioned",
       "subject": "pmshri",
       "expect": "use",
-      "google": 9,
+      "google": 10,
       "bing": 1,
       "kept": 0,
       "offSubject": 0
@@ -455,10 +455,10 @@
       "label": "States and the memorandum",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 15,
+      "google": 44,
       "bing": 1,
       "kept": 0,
-      "offSubject": 0
+      "offSubject": 5
     },
     {
       "id": "shri-withheld",
@@ -468,7 +468,7 @@
       "google": 22,
       "bing": 1,
       "kept": 0,
-      "offSubject": 8
+      "offSubject": 9
     },
     {
       "id": "shri-nep",
@@ -477,7 +477,7 @@
       "expect": "dispute",
       "google": 30,
       "bing": 2,
-      "kept": 0,
+      "kept": 1,
       "offSubject": 3
     },
     {
@@ -485,10 +485,10 @@
       "label": "Criticism of the scheme",
       "subject": "pmshri",
       "expect": "dispute",
-      "google": 44,
-      "bing": 0,
+      "google": 10,
+      "bing": 1,
       "kept": 0,
-      "offSubject": 33
+      "offSubject": 7
     }
   ],
   "items": [
@@ -24696,7 +24696,8 @@
       "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNUU1PeGYtWnhDcUUzYW5hck83blYxYnBQYWpEcFp4NWZEOThyZVpnRDJUYUI0Tk4xY3pQeGdlUlJTTjBJT3hydEt2ZHJ1a1ViNVpiUU1MUnVPTG0tRW4tZTBJM3ZLaC1PYXJhVGttRDNaQzdvMVRqSmNKVlZrREZJbXZaOWtBa01JVVBidUpOX2ZJQlVDdGRTTlgzRmJoTWxuaVdnVUc2T0Z4SFNKdnQwZdIBswFBVV95cUxNckVxekNvMk5ZQ0YwajNaQ1hjY1R0ZEoxeW1QVDg5NVlGWjNjY0dqamYwTmRwUGh3MlI3S2dEUE5HbUpPNHRjSURYbHhldVFsNHZKQjEydG9fUDF3VFN6NEJsbDRSSVdLZHFLb09vWndwUHE5YzNtX01kOTFFZFlSNTdsMjdQMUd2LUhVV0JEemhreGNwRVRwQ2x6QzNZRWdLVFhrTUpwOE1zOFNWLTRXeXJVWQ?oc=5",
       "queries": [
         "act-registered",
-        "act-convicted"
+        "act-convicted",
+        "act-general"
       ],
       "indexes": [
         "google"
@@ -24924,6 +24925,70 @@
       ],
       "indexes": [
         "google"
+      ],
+      "firstSeen": "2026-11-27"
+    },
+    {
+      "id": "p h high court quashes sc st act case over shopkeeper s harijan quota remark against deput",
+      "headline": "P&H High Court Quashes SC/ST Act Case Over Shopkeeper’s ‘Harijan Quota’ Remark Against Deputy Commissioner",
+      "subject": "scst",
+      "facet": "unclassified",
+      "outlet": "LawChakra",
+      "published": "2026-11-26",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOYTdGR0hLYXlzWXVlc3hwendvSXl6c2JFU0pTVDBpa0NjcVd1YTdQZThVZGNzNTRDWm1BakFpTDd6LTdlVTJzV29kcGFiQjgwQVBhRDRtMVdXc25EXy1CbDRXeUhfYnVLOEJleDRRNkVBVWYzYXE4QnBJX1h0bVRUWUdHYzdMa2xCNzkwSi1B?oc=5",
+      "queries": [
+        "act-registered"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-27"
+    },
+    {
+      "id": "bombay high court quashes rape and atrocities case against boyfriend consent under promise",
+      "headline": "Bombay High Court Quashes Rape and Atrocities Case Against Boyfriend: Consent Under Promise of Marriage Not Vitiated When Promise Was Not False From Inception. Distinction Between 'Breach of Promise' and 'False Promise' Reiterated Under Section 3",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "Lawtext",
+      "published": "2026-11-26",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5XaWlSZmp5X1Q2RjIzRFRTYzBNUm5Cb3Vyd2hEUkVOTVB2V1BCUld2X3kxQU9HOWdoVElKNUlleE9GUm5lekVEa1MxUjl5cWVtMm1PeEJMSFRmcTZBQ1lXdWpFN1FPbWlP?oc=5",
+      "queries": [
+        "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-27"
+    },
+    {
+      "id": "bombay hc sets aside 16 year old case against lawyer rules allegations fail to meet ipc an",
+      "headline": "Bombay HC sets aside 16-year-old case against lawyer, rules allegations fail to meet IPC and SC/ST Atrocities Act requirements",
+      "subject": "scst",
+      "facet": "use",
+      "outlet": "SCC Online",
+      "published": "2026-03-18",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPOHAta3ZOM0l0bHd5VXdqQmgyamE2SnU4YmpiYkdmOEt5eDFJMHp1NDFCcVc0SDgxRHFVZkZCcmFjdHNjOFJVYkVMZmVyM2VWbnFMSzc1S2NSWDNHOWxmSWpNVWxkczBTQmlsaEY4MHNWYW83ajVFZlc1Q05NQzdsQmIzd3ZlTkRORWQwS2s0SjRzdWJpa043SXR1SmVWYmtsLWc?oc=5",
+      "queries": [
+        "act-false"
+      ],
+      "indexes": [
+        "google"
+      ],
+      "firstSeen": "2026-11-27"
+    },
+    {
+      "id": "pm shri high command draws line",
+      "headline": "PM SHRI: High command draws line",
+      "subject": "pmshri",
+      "facet": "unclassified",
+      "outlet": null,
+      "published": "2026-07-06",
+      "url": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b09f90ce2ac4cb5be36bcb5d03ff6e6&url=https%3a%2f%2fwww.msn.com%2fen-in%2fnews%2fIndia%2fpm-shri-high-command-draws-line%2far-AA27maGB&c=6591868486029809952&mkt=en-us",
+      "queries": [
+        "shri-nep"
+      ],
+      "indexes": [
+        "bing"
       ],
       "firstSeen": "2026-11-27"
     }
