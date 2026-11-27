@@ -1,5 +1,5 @@
 {
- "builtAt": "2026-11-27T01:09:43.397Z",
+ "builtAt": "2026-11-27T15:35:35.101Z",
  "egress": "Direct fetch only. No unblocker is configured, so hosts that refuse a direct fetch are simply absent.",
  "note": "Publicly announced procurement and publicly catalogued inventories. Not an order of battle: nobody publishes how many of each system a country holds, and no count is estimated here.",
  "gap": "SIPRI arms-transfer values (TIV) are not reachable — fourteen candidate slugs were probed across two rounds and all returned 404, and SIPRI's own database sits behind a query form. Deal values come from the news layer with a corroboration grade rather than from SIPRI.",
@@ -206533,11 +206533,43 @@
    "outlet": "Defence Blog",
    "ok": true,
    "items": 10,
-   "kept": 1,
+   "kept": 2,
    "via": "direct"
   }
  ],
  "events": [
+  {
+   "id": "ev-1m8jfil",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Italy"
+   ],
+   "value": null,
+   "date": "2026-11-27",
+   "outlet": "Naval News",
+   "url": "https://www.navalnews.com/naval-news/2026/11/fincantieri-signs-contract-to-construct-the-3rd-lss-for-the-italian-navy/",
+   "headline": "Fincantieri signs contract to construct the 3rd LSS for the Italian Navy",
+   "primary": false
+  },
+  {
+   "id": "ev-ev9fy3",
+   "kind": "order",
+   "systems": [],
+   "countries": [
+    "Lithuania"
+   ],
+   "value": {
+    "amount": 1400000000,
+    "currency": "USD",
+    "asWritten": "$1.4 billion"
+   },
+   "date": "2026-11-27",
+   "outlet": "Defence Blog",
+   "url": "https://defence-blog.com/lithuania-signs-1-4-billion-deal-for-100-cv90-fighting-vehicles/",
+   "headline": "Lithuania signs $1.4 billion deal for 100 CV90 fighting vehicles",
+   "primary": false
+  },
   {
    "id": "ev-188dscg",
    "kind": "order",
@@ -208545,6 +208577,109 @@
   }
  ],
  "groups": [
+  {
+   "key": "order||italy",
+   "systems": [],
+   "countries": [
+    "Italy"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-1m8jfil",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Italy"
+     ],
+     "value": null,
+     "date": "2026-11-27",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/11/fincantieri-signs-contract-to-construct-the-3rd-lss-for-the-italian-navy/",
+     "headline": "Fincantieri signs contract to construct the 3rd LSS for the Italian Navy",
+     "primary": false
+    },
+    {
+     "id": "ev-brlp20",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Italy"
+     ],
+     "value": {
+      "amount": 4200000000,
+      "currency": "USD",
+      "asWritten": "$4.2 billion"
+     },
+     "date": "2026-09-24",
+     "outlet": "Defense News",
+     "url": "https://www.defensenews.com/global/europe/2026/09/24/italy-taps-state-owned-firms-to-build-two-naval-destroyers-in-42-billion-deal/",
+     "headline": "Italy taps state-owned firms to build two naval destroyers in $4.2 billion deal",
+     "primary": false
+    },
+    {
+     "id": "ev-n572do",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Italy"
+     ],
+     "value": null,
+     "date": "2026-09-24",
+     "outlet": "Naval News",
+     "url": "https://www.navalnews.com/naval-news/2026/09/italy-signs-e3-7b-contract-for-new-ddx-destroyers/",
+     "headline": "Italy Signs €3.7B Contract for New DDX Destroyers",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Naval News",
+    "Defense News"
+   ],
+   "value": {
+    "amount": 4200000000,
+    "currency": "USD",
+    "asWritten": "$4.2 billion"
+   },
+   "verdict": "corroborated by independent outlets"
+  },
+  {
+   "key": "order||lithuania",
+   "systems": [],
+   "countries": [
+    "Lithuania"
+   ],
+   "kind": "order",
+   "events": [
+    {
+     "id": "ev-ev9fy3",
+     "kind": "order",
+     "systems": [],
+     "countries": [
+      "Lithuania"
+     ],
+     "value": {
+      "amount": 1400000000,
+      "currency": "USD",
+      "asWritten": "$1.4 billion"
+     },
+     "date": "2026-11-27",
+     "outlet": "Defence Blog",
+     "url": "https://defence-blog.com/lithuania-signs-1-4-billion-deal-for-100-cv90-fighting-vehicles/",
+     "headline": "Lithuania signs $1.4 billion deal for 100 CV90 fighting vehicles",
+     "primary": false
+    }
+   ],
+   "outlets": [
+    "Defence Blog"
+   ],
+   "value": {
+    "amount": 1400000000,
+    "currency": "USD",
+    "asWritten": "$1.4 billion"
+   },
+   "verdict": "a single report, uncorroborated"
+  },
   {
    "key": "order|submarine|united kingdom",
    "systems": [
@@ -211019,58 +211154,6 @@
    ],
    "value": null,
    "verdict": "a single report, uncorroborated"
-  },
-  {
-   "key": "order||italy",
-   "systems": [],
-   "countries": [
-    "Italy"
-   ],
-   "kind": "order",
-   "events": [
-    {
-     "id": "ev-brlp20",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Italy"
-     ],
-     "value": {
-      "amount": 4200000000,
-      "currency": "USD",
-      "asWritten": "$4.2 billion"
-     },
-     "date": "2026-09-24",
-     "outlet": "Defense News",
-     "url": "https://www.defensenews.com/global/europe/2026/09/24/italy-taps-state-owned-firms-to-build-two-naval-destroyers-in-42-billion-deal/",
-     "headline": "Italy taps state-owned firms to build two naval destroyers in $4.2 billion deal",
-     "primary": false
-    },
-    {
-     "id": "ev-n572do",
-     "kind": "order",
-     "systems": [],
-     "countries": [
-      "Italy"
-     ],
-     "value": null,
-     "date": "2026-09-24",
-     "outlet": "Naval News",
-     "url": "https://www.navalnews.com/naval-news/2026/09/italy-signs-e3-7b-contract-for-new-ddx-destroyers/",
-     "headline": "Italy Signs €3.7B Contract for New DDX Destroyers",
-     "primary": false
-    }
-   ],
-   "outlets": [
-    "Defense News",
-    "Naval News"
-   ],
-   "value": {
-    "amount": 4200000000,
-    "currency": "USD",
-    "asWritten": "$4.2 billion"
-   },
-   "verdict": "corroborated by independent outlets"
   },
   {
    "key": "delivery||russia",
